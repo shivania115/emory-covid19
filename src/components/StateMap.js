@@ -8,9 +8,9 @@ import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, Vict
 
 import { useParams, useHistory } from 'react-router-dom';
 
-import { configs }  from "../data/state_config.js";
-import { dataState } from "../data/data_state.js";
-import { dataCountyPct } from "../data/data_county_pct.js";
+import configs from "../data/state_config.json";
+import dataState from "../data/data_state.json";
+import dataCountyPct from "../data/data_county_pct.json";
 
 export default function StateMap(props) {
 

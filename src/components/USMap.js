@@ -12,8 +12,8 @@ import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, Vict
 import { useHistory } from "react-router-dom";
 
 
-import { allStates } from "../data/allstates.js";
-import { dataStatePct } from "../data/data_state_pct.js";
+import allStates from "../data/allstates.json";
+import dataStatePct from "../data/data_state_pct.json";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
