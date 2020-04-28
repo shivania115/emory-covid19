@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
+  "homepage": "https://yubin-park.github.io/emory-covid19",
   "main": "src/index.js",
   "dependencies": {
     "@emotion/core": "^10.0.28",
@@ -42,13 +43,15 @@
     "victory": "^34.1.3"
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
