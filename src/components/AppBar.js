@@ -10,7 +10,7 @@ export default function Appbar(props) {
       <Menu borderless fixed='top'>
         <Container>
           <Menu.Item as='a' header>
-            <Image size='small' src='/logo.png' style={{ marginRight: '1.5em'}} />
+            <Image size='small' src='/emory-covid19/logo.png' style={{ marginRight: '1.5em'}} />
           </Menu.Item>
           <Menu.Item>
             COVID-19 Interactive Data Diver

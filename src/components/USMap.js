@@ -12,8 +12,8 @@ import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, Vict
 import { useHistory } from "react-router-dom";
 
 
-import allStates from "../data/allstates.json";
-import data from "../data/data_state_pct.json";
+import { allStates } from "../data/allstates.js";
+import { dataStatePct } from "../data/data_state_pct.js";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -76,7 +76,7 @@ export default function USMap(props) {
                               setTooltipContent("")
                             }}
                             onClick={()=>{
-                              history.push("/"+(+geo.id)+"");
+                              history.push("/emory-covid19/"+(+geo.id)+"");
                             }}
                             style={{
                               default: {
@@ -131,7 +131,7 @@ export default function USMap(props) {
                 <Header>
                 Statistics of {stateName}
                 </Header>
-                {data[fips] &&
+                {dataStatePct[fips] &&
                   <VictoryChart
                     theme={VictoryTheme.material}
                     domain={{ y: [0, 1] }}
@@ -155,12 +155,12 @@ export default function USMap(props) {
                       colorScale={["brown", "gold"]}
                     >
                       <VictoryBar
-                        data={data[fips]}
+                        data={dataStatePct[fips]}
                         x="var"
                         y="nation"
                       />
                       <VictoryBar
-                        data={data[fips]}
+                        data={dataStatePct[fips]}
                         x="var"
                         y="state"
                       />

@@ -8,9 +8,9 @@ import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, Vict
 
 import { useParams, useHistory } from 'react-router-dom';
 
-import configs from "../data/state_config.json";
-import stats from "../data/data_state.json";
-import data from "../data/data_county_pct.json";
+import { configs }  from "../data/state_config.js";
+import { dataState } from "../data/data_state.js";
+import { dataCountyPct } from "../data/data_county_pct.js";
 
 export default function StateMap(props) {
 
@@ -24,7 +24,7 @@ export default function StateMap(props) {
   useEffect(()=>{
     setConfig(configs.find(s => s.fips === stateFips));
 
-    setStateName(stats[stateFips].name);
+    setStateName(dataState[stateFips].name);
 
   }, []);
 
@@ -35,7 +35,7 @@ export default function StateMap(props) {
           {config &&
           <div>
           <Breadcrumb>
-            <Breadcrumb.Section link onClick={() => history.push('/')}>United States</Breadcrumb.Section>
+            <Breadcrumb.Section link onClick={() => history.push('/emory-covid19')}>United States</Breadcrumb.Section>
             <Breadcrumb.Divider />
             <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
@@ -84,7 +84,7 @@ export default function StateMap(props) {
               </Grid.Column>
               <Grid.Column width={4}>
                 <Header>Statistics of {countyName}</Header>
-                 {data[stateFips + countyFips] &&
+                 {dataCountyPct[stateFips + countyFips] &&
                   <VictoryChart
                     theme={VictoryTheme.material}
                     domain={{ y: [0, 1] }}
@@ -108,17 +108,17 @@ export default function StateMap(props) {
                       colorScale={["brown", "gold", "tomato"]}
                     >
                       <VictoryBar
-                        data={data[stateFips + countyFips]}
+                        data={dataCountyPct[stateFips + countyFips]}
                         x="var"
                         y="nation"
                       />
                       <VictoryBar
-                        data={data[stateFips + countyFips]}
+                        data={dataCountyPct[stateFips + countyFips]}
                         x="var"
                         y="state"
                       />
                       <VictoryBar
-                        data={data[stateFips + countyFips]}
+                        data={dataCountyPct[stateFips + countyFips]}
                         x="var"
                         y="county"
                       />

@@ -19,17 +19,17 @@ export default function App() {
   return (
       <Router>
         <Switch>
-          <Route path='/:stateFips/:countyFips'>
+          <Route path='/emory-covid19/:stateFips/:countyFips'>
             <CountyMap />
           </Route>  
-          <Route path='/:stateFips'>
+          <Route path='/emory-covid19/:stateFips'>
             <StateMap />
           </Route>
-          <Route path='/'>
+          <Route path='/emory-covid19'>
             <USMap />
           </Route>
           <Route path="*">
-            <Redirect to='/'/>
+            <Redirect to='/emory-covid19/'/>
           </Route>
         </Switch>
       </Router>
