@@ -27,6 +27,11 @@ WEIGHT = 'Population'
 STATE = 'state_fips'
 COUNTY = 'fips'
 
+# TODO: percentile
+# TODO: combine with national stat
+# TODO: combine with state stat
+# TODO: state, county name check again
+
 norm_us = 0
 norm_state = Counter()
 fips2state = {}

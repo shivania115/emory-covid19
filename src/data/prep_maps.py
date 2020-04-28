@@ -81,11 +81,11 @@ for state_info in allstates:
 
     state_info["fips"] = str(int(state_info["val"]))
     state_info["url"] = root + fn_state
-    state_info["offsetX"] = (refX - coord[0]) * 12
-    state_info["offsetY"] = (coord[1] - refY) * 12
+    state_info["offsetX"] = (refX - coord[0]) * 15
+    state_info["offsetY"] = (coord[1] - refY) * 15
     state_info["scale"] = 4000
 
-with open("state_config.json", "w") as fp:
+with open("state_config_org.json", "w") as fp:
 
     json.dump(allstates, fp, indent=2)
 

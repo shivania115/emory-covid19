@@ -4,7 +4,6 @@ import React from "react";
 import USMap from "./USMap";
 import StateMap from "./StateMap";
 import CountyMap from "./CountyMap";
-import { StitchAuthProvider, useStitchAuth } from "./StitchAuth";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -12,16 +11,12 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { 
-  Loader, 
-  Dimmer,
-} from 'semantic-ui-react';
+
 
 App.propTypes = {};
 export default function App() {
 
   return (
-    <StitchAuthProvider>
       <Router>
         <Switch>
           <Route path='/:stateFips/:countyFips'>
@@ -38,7 +33,6 @@ export default function App() {
           </Route>
         </Switch>
       </Router>
-    </StitchAuthProvider>
   );
 }
 

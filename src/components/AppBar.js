@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ErrorBoundary from "react-error-boundary";
-import { useStitchAuth } from "./StitchAuth";
-import { Container, Menu, Image, Dropdown, Button } from 'semantic-ui-react';
-import Jdenticon from 'react-jdenticon';
-import { users } from "../stitch";
-import { useHistory } from "react-router-dom";
+import { Container, Menu, Image } from 'semantic-ui-react';
 
 export default function Appbar(props) {
   
-  const { currentUserName, actions} = useStitchAuth();
-  const history = useHistory();
 
   return (
     <ErrorBoundary>
