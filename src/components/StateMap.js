@@ -8,9 +8,9 @@ import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, Vict
 
 import { useParams, useHistory } from 'react-router-dom';
 
-import configs from "../data/state_config.json";
-import dataState from "../data/data_state.json";
-import dataCountyPct from "../data/data_county_pct.json";
+//import configs from "../data/state_config.json";
+//import dataState from "../data/data_state.json";
+//import dataCountyPct from "../data/data_county_pct.json";
 
 export default function StateMap(props) {
 
@@ -22,12 +22,15 @@ export default function StateMap(props) {
   const history = useHistory();
 
   useEffect(()=>{
-    setConfig(configs.find(s => s.fips === stateFips));
+    //setConfig(configs.find(s => s.fips === stateFips));
 
-    setStateName(dataState[stateFips].name);
+    //setStateName(dataState[stateFips].name);
 
   }, []);
 
+
+  return <div>hello</div>;
+  /*
   return (
       <div>
         <AppBar />
@@ -146,5 +149,5 @@ export default function StateMap(props) {
         </Container>
       </div>
       );
-
+  */
 }

@@ -8,15 +8,17 @@ import ComposableMap from './ComposableMap';
 import Marker from './Marker';
 import Annotation from './Annotation';
 import ReactTooltip from "react-tooltip";
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, VictoryLegend } from 'victory';
+import { VictoryChart, 
+  VictoryGroup, 
+  VictoryBar, 
+  VictoryTheme, 
+  VictoryAxis, 
+  VictoryLegend,
+  VictoryLine } from 'victory';
 import { useHistory } from "react-router-dom";
 
 
-import allStates from "../data/allstates.json";
-import dataStatePct from "../data/data_state_pct.json";
-
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
-
 const offsets = {
   VT: [50, -8],
   NH: [34, 2],
@@ -33,9 +35,30 @@ const offsets = {
 export default function USMap(props) {
 
   const [stateName, setStateName] = useState('{State}');
-  const [fips, setFips] = useState('');
+  const [fips, setFips] = useState('nation');
   const [tooltipContent, setTooltipContent] = useState('');
   const history = useHistory();
+  const [dataBar, setDataBar] = useState({});
+  const [dataLine, setDataLine] = useState({});
+  const [dataNum, setDataNum] = useState();
+  const [stateLabels, setStateLabels] = useState([]);
+
+
+  useEffect(() => {
+
+    fetch('/emory-covid19/data/numbers.json').then(res => res.json())
+      .then(data => setDataNum(data));
+
+    fetch('/emory-covid19/data/barchartNV.json').then(res => res.json())
+      .then(data => setDataBar(data));
+    
+    fetch('/emory-covid19/data/linechartNV.json').then(res => res.json())
+      .then(data => setDataLine(data));
+
+    fetch('/emory-covid19/data/allstates.json').then(res => res.json())
+      .then(data => setStateLabels(data));
+
+  }, [])
 
   return (
       <div>
@@ -68,7 +91,7 @@ export default function USMap(props) {
                             stroke="#FFF"
                             geography={geo}
                             onMouseEnter={()=>{ 
-                              setFips((+geo.id)+"");
+                              setFips(geo.id);
                               setStateName(geo.properties.name); 
                               setTooltipContent('Click to see county-level data')
                             }}
@@ -84,11 +107,11 @@ export default function USMap(props) {
                                 outline: "none"
                               },
                               hover: {
-                                fill: "#F53",
+                                fill: "#e31b23",
                                 outline: "none"
                               },
                               pressed: {
-                                fill: "#E42",
+                                fill: "#e31b23",
                                 outline: "none"
                               }
                             }}
@@ -96,7 +119,7 @@ export default function USMap(props) {
                         ))}
                         {geographies.map(geo => {
                           const centroid = geoCentroid(geo);
-                          const cur = allStates.find(s => s.val === geo.id);
+                          const cur = stateLabels.find(s => s.val === geo.id);
                           return (
                             <g key={geo.rsmKey + "-name"}>
                               {cur &&
@@ -131,18 +154,41 @@ export default function USMap(props) {
                 <Header>
                 Statistics of {stateName}
                 </Header>
-                {dataStatePct[fips] &&
+                <Grid.Row>
+                {
+                  dataLine.nation &&
+                  <VictoryChart theme={VictoryTheme.material}
+                  height={300}>
+                    <VictoryAxis tickCount={2}
+                      tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                    <VictoryAxis dependentAxis tickCount={5}
+                      tickFormat={(y) => (y/1000+'k')}/>
+                    <VictoryGroup 
+                      colorScale={["#e7a614", "#e31b23"]}
+                    >
+                      <VictoryLine data={dataLine[fips]}
+                        x='t' y='case'
+                        />
+                      <VictoryLine data={dataLine[fips]}
+                        x='t' y='death'
+                        />
+                    </VictoryGroup>
+                  </VictoryChart>
+                }
+                </Grid.Row>
+                <Grid.Row>
+                {dataBar.nation &&
                   <VictoryChart
                     theme={VictoryTheme.material}
                     domain={{ y: [0, 1] }}
                     domainPadding={10}
-                    padding={{left: 120, top: 50, bottom: 50}}
-                    height={700}
+                    padding={{left: 160, top: 50, bottom: 50}}
+                    height={500}
                   >
                     <VictoryLegend
                       x={10} y={10}
                       orientation="horizontal"
-                      colorScale={["brown", "gold"]}
+                      colorScale={["#e7a614", "#e31b23"]}
                       data ={[
                         {name: "nation"}, {name: "state"}
                         ]}
@@ -151,23 +197,18 @@ export default function USMap(props) {
                     <VictoryAxis dependentAxis tickCount={2}/>
                     <VictoryGroup horizontal
                       offset={10}
-                      style={{data: {width: 6}}}
-                      colorScale={["brown", "gold"]}
+                      style={{data: {width: 5}}}
+                      colorScale={["#e7a614", "#e31b23"]}
                     >
                       <VictoryBar
-                        data={dataStatePct[fips]}
-                        x="var"
-                        y="nation"
+                        data={dataBar[fips]}
+                        x="nameShort"
+                        y="value"
                       />
-                      <VictoryBar
-                        data={dataStatePct[fips]}
-                        x="var"
-                        y="state"
-                      />
-
                     </VictoryGroup>
                   </VictoryChart>
                 }
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
