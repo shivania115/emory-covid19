@@ -230,6 +230,8 @@ def fips2county(fn="all-geocodes-v2017.csv"):
         reader = csv.reader(fp)
         header = next(reader)
         for row in reader:
+            if row[3] != "00000":
+                continue
             fips = row[1].strip() + row[2].strip()
             name = row[6].strip()
             fips2county[fips] = name

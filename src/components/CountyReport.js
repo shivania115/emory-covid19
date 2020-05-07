@@ -31,7 +31,12 @@ export default function CountyReport() {
   const [dataBar, setDataBar] = useState();
   const [dataLine, setDataLine] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
-  const [covidMetric, setCovidMetric] = useState();
+  const [covidMetric, setCovidMetric] = useState({case: 'N/A', death: 'N/A', t: 'n/a'});
+  const scatterX0 = 'COVID Mortality / 100k';
+  const scatterX1 = 'COVID Case Rate / 1M';
+  const scatterX2 = '% Over 65 Yrs';
+  const scatterX3 = '% Poverty';
+  const scatterX4 = '% Unemployed';
 
   useEffect(()=>{
 
@@ -79,7 +84,6 @@ export default function CountyReport() {
             </Header.Content>
           </Header>
           <Grid style={{paddingTop: '2em'}}>
-            { covidMetric &&
             <Grid.Row>
               <Grid.Column>
                 <Statistic size='small'>
@@ -94,10 +98,9 @@ export default function CountyReport() {
                   </Statistic.Value>
                   <Statistic.Label>Death</Statistic.Label>
                 </Statistic>
-                <span style={{padding: '3em', color: '#bdbfc1'}}>Last updated on {new Date(covidMetric.t*1000).toLocaleDateString()}</span>
+                <span style={{padding: '3em', color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
               </Grid.Column>
             </Grid.Row>
-            }
           </Grid>
           <Grid columns={3}>
             <Grid.Row>
@@ -124,10 +127,10 @@ export default function CountyReport() {
                   <VictoryGroup 
                     colorScale={["#e31b23", "#333333"]}
                   >
-                    <VictoryLine data={dataLine[countyFips]}
+                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                       x='t' y='case'
                       />
-                    <VictoryLine data={dataLine[countyFips]}
+                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                       x='t' y='death'
                       />
                   </VictoryGroup>  
@@ -159,7 +162,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataLine['state']}
                       x='t' y='case'
                       />
-                    <VictoryLine data={dataLine[countyFips]}
+                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                       x='t' y='case'
                       />
                   </VictoryGroup>  
@@ -191,7 +194,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataLine['state']}
                       x='t' y='death'
                       />
-                    <VictoryLine data={dataLine[countyFips]}
+                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                       x='t' y='death'
                       />
                   </VictoryGroup>  
@@ -271,13 +274,13 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={dataBar['scatter']}
+                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX0] && d[scatterX1]))}
                     size={5}
-                    x='COVID Case Rate / 1M'
-                    y='COVID Mortality / 100k'
+                    x={scatterX1}
+                    y={scatterX0}
                   />
-                  <VictoryAxis label='COVID Case Rate / 1M'/>
-                  <VictoryAxis dependentAxis label='COVID Mortality / 100k' style={{ axisLabel: {padding: 40} }} />
+                  <VictoryAxis label={scatterX1}/>
+                  <VictoryAxis dependentAxis label={scatterX0} style={{ axisLabel: {padding: 40} }} />
                 </VictoryChart>
               </Grid.Column>
               <Grid.Column>
@@ -289,13 +292,13 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={dataBar['scatter']}
+                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX0] && d[scatterX2]))}
                     size={5}
-                    x='% Over 65 Yrs'
-                    y='COVID Mortality / 100k'
+                    x={scatterX2}
+                    y={scatterX0}
                   />
-                  <VictoryAxis label='% Over 65 Yrs'/>
-                  <VictoryAxis dependentAxis label='COVID Mortality / 100k' style={{ axisLabel: {padding: 40} }} />
+                  <VictoryAxis label={scatterX2}/>
+                  <VictoryAxis dependentAxis label={scatterX0} style={{ axisLabel: {padding: 40} }} />
                 </VictoryChart>
               </Grid.Column>
               <Grid.Column>
@@ -307,13 +310,13 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={dataBar['scatter']}
+                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX1] && d[scatterX3]))}
                     size={5}
-                    x='% Poverty'
-                    y='COVID Mortality / 100k'
+                    x={scatterX3}
+                    y={scatterX1}
                   />
-                  <VictoryAxis label='% Poverty'/>
-                  <VictoryAxis dependentAxis label='COVID Mortality / 100k' style={{ axisLabel: {padding: 40} }} />
+                  <VictoryAxis label={scatterX3}/>
+                  <VictoryAxis dependentAxis label={scatterX1} style={{ axisLabel: {padding: 40} }} />
                 </VictoryChart>
               </Grid.Column>
               <Grid.Column>
@@ -325,13 +328,13 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={dataBar['scatter']}
+                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX1] && d[scatterX4]))}
                     size={5}
-                    x='% Unemployed'
-                    y='COVID Mortality / 100k'
+                    x={scatterX4}
+                    y={scatterX1}
                   />
-                  <VictoryAxis label='% Unemployed'/>
-                  <VictoryAxis dependentAxis label='COVID Mortality / 100k' style={{ axisLabel: {padding: 40} }} />
+                  <VictoryAxis label={scatterX4}/>
+                  <VictoryAxis dependentAxis label={scatterX1} style={{ axisLabel: {padding: 40} }} />
                 </VictoryChart>
               </Grid.Column>
             </Grid.Row>
@@ -352,8 +355,8 @@ export default function CountyReport() {
             </Table.Header>
             <Table.Body>
               {_.map(_.sortBy(dataBar[countyFips], 'seq'), 
-                (d) => (<Table.Row>
-                  <Table.Cell>{d.name}</Table.Cell>
+                (d) => (<Table.Row key={d.nameShort}>
+                  <Table.Cell>{d.nameShort}</Table.Cell>
                   <Table.Cell>{Math.round(d.value*100)/100}</Table.Cell>
                   <Table.Cell>{Math.round(_.find(dataBar.state, (x) => x.name==d.name).value*100)/100}</Table.Cell>
                   <Table.Cell>{Math.round(_.find(dataBar.nation, (x) => x.name==d.name).value*100)/100}</Table.Cell>

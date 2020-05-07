@@ -89,16 +89,12 @@ export default function StateMap(props) {
                         key={geo.rsmKey} 
                         geography={geo} 
                         onClick={()=>{
-                          console.log(geo)
                           history.push("/emory-covid19/" + stateFips + "/" +geo.properties.COUNTYFP);
                         }}
                         onMouseEnter={()=>{
-                          if (dataLine[geo.properties.COUNTYFP] && 
-                            dataBar[geo.properties.COUNTYFP]){
-                            setCountyFips(geo.properties.COUNTYFP);
-                            setCountyName(geo.properties.NAME);
-                            setTooltipContent('Click to see more county data');
-                          }
+                          setCountyFips(geo.properties.COUNTYFP);
+                          setCountyName(geo.properties.NAME);
+                          setTooltipContent('Click to see more county data');
                         }}
                         onMouseLeave={()=>{
                           setTooltipContent("")
@@ -146,10 +142,10 @@ export default function StateMap(props) {
                         <VictoryGroup 
                           colorScale={["#e31b23", "#333333"]}
                         >
-                          <VictoryLine data={dataLine[countyFips]}
+                          <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                             x='t' y='case'
                             />
-                          <VictoryLine data={dataLine[countyFips]}
+                          <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                             x='t' y='death'
                             />
                         </VictoryGroup>  
@@ -180,7 +176,7 @@ export default function StateMap(props) {
                           <VictoryLine data={dataLine.state}
                             x='t' y='case'
                             />
-                          <VictoryLine data={dataLine[countyFips]}
+                          <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
                             x='t' y='case'
                             />
                         </VictoryGroup>
