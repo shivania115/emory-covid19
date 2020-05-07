@@ -2,6 +2,6 @@
 
 To deploy the app on Github:
 ```
-$ npm deploy
+$ npm run deploy
 ```
 
