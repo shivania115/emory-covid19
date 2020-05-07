@@ -25,8 +25,6 @@ const makeProjection = ({
 
   const scl = projectionConfig.scale || null;
 
-  console.log(offsetX)
-
   let proj = projections[projection]().translate([width/2 + (offsetX)*scl/1000 ,
                                               height/2 + (offsetY)*scl/1000]);
 

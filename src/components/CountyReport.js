@@ -88,13 +88,14 @@ export default function CountyReport() {
               <Grid.Column>
                 <Statistic size='small'>
                   <Statistic.Value>
-                    {covidMetric.case.toLocaleString()}
+                    {covidMetric.case===null?'0':covidMetric.case.toLocaleString()}
+
                   </Statistic.Value>
                   <Statistic.Label>Cases</Statistic.Label>
                 </Statistic>
                 <Statistic style={{paddingLeft: '2em'}} size='small'>
                   <Statistic.Value>
-                    {covidMetric.death.toLocaleString()}
+                    {covidMetric.death===null?'0':covidMetric.death.toLocaleString()}
                   </Statistic.Value>
                   <Statistic.Label>Death</Statistic.Label>
                 </Statistic>
