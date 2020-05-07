@@ -209,7 +209,7 @@ export default function StateMap(props) {
                             y="value"
                           />
                           <VictoryBar
-                            data={dataBar[countyFips].slice(6)}
+                            data={dataBar[countyFips]?dataBar[countyFips].slice(6):[]}
                             x="nameShort"
                             y="value"
                           />
@@ -249,7 +249,7 @@ export default function StateMap(props) {
                             y="value"
                           />
                           <VictoryBar
-                            data={dataBar[countyFips].slice(0,6)}
+                            data={dataBar[countyFips]?dataBar[countyFips].slice(0,6):[]}
                             x="nameShort"
                             y="value"
                           />

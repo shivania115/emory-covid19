@@ -60,7 +60,7 @@ def get_scatter(d, fips, varmap):
 
     item = {}
     for k, v in d.items():
-        item[varmap[k].get("nameShort","")] = v
+        item[varmap[k].get("nameShort","")] = (v * 100 / varmap[k].get("rangeMax", 1))
         item["fips"] = fips
     return item
 
