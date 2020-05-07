@@ -12,8 +12,11 @@ export default function Appbar(props) {
           <Menu.Item as='a' header>
             <Image size='small' src='/emory-covid19/logo.png' style={{ marginRight: '1.5em'}} />
           </Menu.Item>
+          <Menu.Item active>
+            County Report
+          </Menu.Item>
           <Menu.Item>
-            COVID-19 Interactive Data Diver
+            Compare Counties
           </Menu.Item>
         </Container>
       </Menu>

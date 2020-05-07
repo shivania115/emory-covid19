@@ -61,6 +61,13 @@ fn_lst = ["AK-02-alaska-counties.json",
         "WV-54-west-virginia-counties.json",
         "WY-56-wyoming-counties.json"]
 
+fips2name = {}
+with open("us-state-ansi-fips.csv", "r") as fp:
+    reader = csv.reader(fp)
+    header = next(reader)
+    for row in reader:
+        fips2name[row[1].strip()] = row[0].strip()
+
 # https://d3-wiki.readthedocs.io/zh_CN/master/Geo-Projections/
 # Hutchinson, Kansas is the center
 root = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/"
@@ -79,7 +86,12 @@ for state_info in allstates:
     pprint(topojson.keys())
     coord = topojson["transform"]["translate"] 
 
-    state_info["fips"] = str(int(state_info["val"]))
+    state_info["nameShort"] = state_info["id"]
+    del state_info["id"]
+
+    state_info["fips"] = state_info["val"].zfill(2)
+    del state_info["val"]
+    state_info["name"] = fips2name[state_info["fips"]]
     state_info["url"] = root + fn_state
     state_info["offsetX"] = (refX - coord[0]) * 15
     state_info["offsetY"] = (coord[1] - refY) * 15

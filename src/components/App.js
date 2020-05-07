@@ -3,7 +3,7 @@ import React from "react";
 // Components & Hooks
 import USMap from "./USMap";
 import StateMap from "./StateMap";
-import CountyMap from "./CountyMap";
+import CountyReport from "./CountyReport";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -20,7 +20,7 @@ export default function App() {
       <Router>
         <Switch>
           <Route path='/emory-covid19/:stateFips/:countyFips'>
-            <CountyMap />
+            <CountyReport />
           </Route>  
           <Route path='/emory-covid19/:stateFips'>
             <StateMap />
