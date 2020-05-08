@@ -63,7 +63,7 @@ export default function CountyReport() {
 
   return (
       <div>
-        <AppBar />
+        <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em'}}>
           {config &&
           <div>
@@ -89,7 +89,6 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Value>
                     {covidMetric.case===null?'0':covidMetric.case.toLocaleString()}
-
                   </Statistic.Value>
                   <Statistic.Label>Cases</Statistic.Label>
                 </Statistic>

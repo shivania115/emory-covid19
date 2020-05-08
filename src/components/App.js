@@ -4,6 +4,7 @@ import React from "react";
 import USMap from "./USMap";
 import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
+import CountyCompare from "./CountyCompare";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -19,6 +20,9 @@ export default function App() {
   return (
       <Router>
         <Switch>
+          <Route path='/emory-covid19/compare-counties'>
+            <CountyCompare />
+          </Route>
           <Route path='/emory-covid19/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  

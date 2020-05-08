@@ -97,7 +97,7 @@ export default function USMap(props) {
 
   return (
       <div>
-        <AppBar />
+        <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em'}}>
           <Breadcrumb>
             <Breadcrumb.Section active>United States</Breadcrumb.Section>

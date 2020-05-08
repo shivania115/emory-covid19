@@ -1,0 +1,497 @@
+[
+  {
+    "nameShort": "AL",
+    "fips": "01",
+    "name": "Alabama",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/AL-01-alabama-counties.json",
+    "offsetX": -140.75799140038765,
+    "offsetY": -101.46558786754595,
+    "scale": 5000
+  },
+  {
+    "nameShort": "AK",
+    "fips": "02",
+    "name": "Alaska",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/AK-02-alaska-counties.json",
+    "offsetX": 300.827254608207,
+    "offsetY": -200.41022485027855,
+    "scale": 2500
+  },
+  {
+    "id": "AS",
+    "val": "60"
+  },
+  {
+    "nameShort": "AZ",
+    "fips": "04",
+    "name": "Arizona",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/AZ-04-arizona-counties.json",
+    "offsetX": 211.41383851523665,
+    "offsetY": -74.91578837368624,
+    "scale": 4000
+  },
+  {
+    "nameShort": "AR",
+    "fips": "05",
+    "name": "Arkansas",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/AR-05-arkansas-counties.json",
+    "offsetX": -55.52120954181377,
+    "offsetY": -75.82957988581539,
+    "scale": 5000
+  },
+  {
+    "nameShort": "CA",
+    "fips": "06",
+    "name": "California",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/CA-06-california-counties.json",
+    "offsetX": 335.3583165794211,
+    "offsetY": 0.87165032507625,
+    "scale": 2300
+  },
+  {
+    "nameShort": "CO",
+    "fips": "08",
+    "name": "Colorado",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/CO-08-colorado-counties.json",
+    "offsetX": 125.11072671304454,
+    "offsetY": 0.0,
+    "scale": 4000
+  },
+  {
+    "nameShort": "CT",
+    "fips": "09",
+    "name": "Connecticut",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/CT-09-connecticut-counties.json",
+    "offsetX": -300.86666979599823,
+    "offsetY": 80.88561758161861,
+    "scale": 8000
+  },
+  {
+    "nameShort": "DE",
+    "fips": "10",
+    "name": "Delaware",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/DE-10-delaware-counties.json",
+    "offsetX": -280.95330838618906,
+    "offsetY": 30.873380595157705,
+    "scale": 8000
+  },
+  {
+    "id": "DC",
+    "val": "11"
+  },
+  {
+    "nameShort": "FL",
+    "fips": "12",
+    "name": "Florida",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/FL-12-florida-counties.json",
+    "offsetX": -195.2610818763344,
+    "offsetY": -187.42741322955737,
+    "scale": 4000
+  },
+  {
+    "id": "FM",
+    "val": "64"
+  },
+  {
+    "nameShort": "GA",
+    "fips": "13",
+    "name": "Georgia",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/GA-13-georgia-counties.json",
+    "offsetX": -190.69763051375597,
+    "offsetY": -95.48558928250176,
+    "scale": 6000
+  },
+  {
+    "id": "GU",
+    "val": "66"
+  },
+  {
+    "nameShort": "HI",
+    "fips": "15",
+    "name": "Hawaii",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/HI-15-hawaii-counties.json",
+    "offsetX": 182.9647174466686,
+    "offsetY": -220.12905152750903,
+    "scale": 3000
+  },
+  {
+    "nameShort": "ID",
+    "fips": "16",
+    "name": "Idaho",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/ID-16-idaho-counties.json",
+    "offsetX": 227.8635260044374,
+    "offsetY": 124.9410785207279,
+    "scale": 3000
+  },
+  {
+    "nameShort": "IL",
+    "fips": "17",
+    "name": "Illinois",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/IL-17-illinois-counties.json",
+    "offsetX": -98.11641324348847,
+    "offsetY": 20.1681130874093384,
+    "scale": 5000
+  },
+  {
+    "nameShort": "IN",
+    "fips": "18",
+    "name": "Indiana",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/IN-18-indiana-counties.json",
+    "offsetX": -118.7711302521671,
+    "offsetY": 20.618482263183694,
+    "scale": 5000
+  },
+  {
+    "nameShort": "IA",
+    "fips": "19",
+    "name": "Iowa",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/IA-19-iowa-counties.json",
+    "offsetX": -35.42902568445024,
+    "offsetY": 50.788831629576165,
+    "scale": 5000
+  },
+  {
+    "nameShort": "KS",
+    "fips": "20",
+    "name": "Kansas",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/KS-20-kansas-counties.json",
+    "offsetX": 30.0,
+    "offsetY": -20.0,
+    "scale": 4000
+  },
+  {
+    "nameShort": "KY",
+    "fips": "21",
+    "name": "Kentucky",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/KY-21-kentucky-counties.json",
+    "offsetX": -150.2019923591445,
+    "offsetY": -20.4156550779483155,
+    "scale": 5000
+  },
+  {
+    "nameShort": "LA",
+    "fips": "22",
+    "name": "Louisiana",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/LA-22-louisiana-parishes.json",
+    "offsetX": -65.13032904326032,
+    "offsetY": -145.8919890792999,
+    "scale": 5000
+  },
+  {
+    "nameShort": "ME",
+    "fips": "23",
+    "name": "Maine",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/ME-23-maine-counties.json",
+    "offsetX": -324.52159869958365,
+    "offsetY": 151.00521798429398,
+    "scale": 4000
+  },
+  {
+    "id": "MH",
+    "val": "68"
+  },
+  {
+    "nameShort": "MD",
+    "fips": "24",
+    "name": "Maryland",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MD-24-maryland-counties.json",
+    "offsetX": -258.48408919840784,
+    "offsetY": 13.859990095309165,
+    "scale": 6000
+  },
+  {
+    "nameShort": "MA",
+    "fips": "25",
+    "name": "Massachusetts",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MA-25-massachusetts-counties.json",
+    "offsetX": -308.15138000578077,
+    "offsetY": 93.67750166429765,
+    "scale": 6000
+  },
+  {
+    "nameShort": "MI",
+    "fips": "26",
+    "name": "Michigan",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MI-26-michigan-counties.json",
+    "offsetX": -124.5134746939359,
+    "offsetY": 100.55145901614895,
+    "scale": 4000
+  },
+  {
+    "nameShort": "MN",
+    "fips": "27",
+    "name": "Minnesota",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MN-27-minnesota-counties.json",
+    "offsetX": -32.34309341061604,
+    "offsetY": 127.59898685712962,
+    "scale": 4000
+  },
+  {
+    "nameShort": "MS",
+    "fips": "28",
+    "name": "Mississippi",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MS-28-mississippi-counties.json",
+    "offsetX": -90.12969335853933,
+    "offsetY": -110.17539868105229,
+    "scale": 5000
+  },
+  {
+    "nameShort": "MO",
+    "fips": "29",
+    "name": "Missouri",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MO-29-missouri-counties.json",
+    "offsetX": -54.3029705389209,
+    "offsetY": -14.962064779437405,
+    "scale": 4000
+  },
+  {
+    "nameShort": "MT",
+    "fips": "30",
+    "name": "Montana",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/MT-30-montana-counties.json",
+    "offsetX": 159.95655744142874,
+    "offsetY": 130.80520383473544,
+    "scale": 3000
+  },
+  {
+    "nameShort": "NE",
+    "fips": "31",
+    "name": "Nebraska",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NE-31-nebraska-counties.json",
+    "offsetX": 40.01271506196545,
+    "offsetY": 35.110345121524986,
+    "scale": 4000
+  },
+  {
+    "nameShort": "NV",
+    "fips": "32",
+    "name": "Nevada",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NV-32-nevada-counties.json",
+    "offsetX": 279.29325800524424,
+    "offsetY": 20.868091863071697,
+    "scale": 3000
+  },
+  {
+    "nameShort": "NH",
+    "fips": "33",
+    "name": "New Hampshire",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NH-33-new-hampshire-counties.json",
+    "offsetX": -302.45576317741484,
+    "offsetY": 115.56956149138958,
+    "scale": 5000
+  },
+  {
+    "nameShort": "NJ",
+    "fips": "34",
+    "name": "New Jersey",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NJ-34-new-jersey-counties.json",
+    "offsetX": -277.3969561867675,
+    "offsetY": 50.027526426024792,
+    "scale": 6000
+  },
+  {
+    "nameShort": "NM",
+    "fips": "35",
+    "name": "New Mexico",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NM-35-new-mexico-counties.json",
+    "offsetX": 144.95178912224858,
+    "offsetY": -74.89710914175176,
+    "scale": 4000
+  },
+  {
+    "nameShort": "NY",
+    "fips": "36",
+    "name": "New York",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NY-36-new-york-counties.json",
+    "offsetX": -250.3517118377136,
+    "offsetY": 92.63807559107974,
+    "scale": 4000
+  },
+  {
+    "nameShort": "NC",
+    "fips": "37",
+    "name": "North Carolina",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/NC-37-north-carolina-counties.json",
+    "offsetX": -225.95556859852996,
+    "offsetY": -47.12770217043779,
+    "scale": 4000
+  },
+  {
+    "nameShort": "ND",
+    "fips": "38",
+    "name": "North Dakota",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/ND-38-north-dakota-counties.json",
+    "offsetX": 49.959735865033466,
+    "offsetY": 144.1355645207746,
+    "scale": 4000
+  },
+  {
+    "id": "MP",
+    "val": "69"
+  },
+  {
+    "nameShort": "OH",
+    "fips": "39",
+    "name": "Ohio",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/OH-39-ohio-counties.json",
+    "offsetX": -178.48550183112104,
+    "offsetY": 31.182249013585697,
+    "scale": 5000
+  },
+  {
+    "nameShort": "OK",
+    "fips": "40",
+    "name": "Oklahoma",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/OK-40-oklahoma-counties.json",
+    "offsetX": 30.251403974702086,
+    "offsetY": -60.5646808463635,
+    "scale": 4000
+  },
+  {
+    "nameShort": "OR",
+    "fips": "41",
+    "name": "Oregon",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/OR-41-oregon-counties.json",
+    "offsetX": 297.50397405516645,
+    "offsetY": 124.99711621653103,
+    "scale": 4000
+  },
+  {
+    "id": "PW",
+    "val": "70"
+  },
+  {
+    "nameShort": "PA",
+    "fips": "42",
+    "name": "Pennsylvania",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/PA-42-pennsylvania-counties.json",
+    "offsetX": -232.98767409580444,
+    "offsetY": 50.90751793628982,
+    "scale": 5000
+  },
+  {
+    "nameShort": "PR",
+    "fips": "72",
+    "name": "Puerto Rico",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/PR-72-puerto-rico-municipios.json",
+    "offsetX": -511.46116718131634,
+    "offsetY": -286.1845124666184,
+    "scale": 4000
+  },
+  {
+    "nameShort": "RI",
+    "fips": "44",
+    "name": "Rhode Island",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/RI-44-rhode-island-counties.json",
+    "offsetX": -320.83968577608255,
+    "offsetY": 78.295238501153634,
+    "scale": 7000
+  },
+  {
+    "nameShort": "SC",
+    "fips": "45",
+    "name": "South Carolina",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/SC-45-south-carolina-counties.json",
+    "offsetX": -220.4983581563579,
+    "offsetY": -84.38070156269657,
+    "scale": 5000
+  },
+  {
+    "nameShort": "SD",
+    "fips": "46",
+    "name": "South Dakota",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/SD-46-south-dakota-counties.json",
+    "offsetX": 50.065694258897437,
+    "offsetY": 82.35673359867633,
+    "scale": 4000
+  },
+  {
+    "nameShort": "TN",
+    "fips": "47",
+    "name": "Tennessee",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/TN-47-tennessee-counties.json",
+    "offsetX": -146.15582979882703,
+    "offsetY": -50.148280342087475,
+    "scale": 4000
+  },
+  {
+    "nameShort": "TX",
+    "fips": "48",
+    "name": "Texas",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/TX-48-texas-counties.json",
+    "offsetX": 48.74050801924142,
+    "offsetY": -147.29120120429695,
+    "scale": 2500
+  },
+  {
+    "id": "UM",
+    "val": "74"
+  },
+  {
+    "nameShort": "UT",
+    "fips": "49",
+    "name": "Utah",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/UT-49-utah-counties.json",
+    "offsetX": 199.99682157639546,
+    "offsetY": 20.07471692773755478,
+    "scale": 4000
+  },
+  {
+    "nameShort": "VT",
+    "fips": "50",
+    "name": "Vermont",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/VT-50-vermont-counties.json",
+    "offsetX": -289.2374535428863,
+    "offsetY": 116.01786305781471,
+    "scale": 6000
+  },
+  {
+    "nameShort": "VA",
+    "fips": "51",
+    "name": "Virginia",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/VA-51-virginia-counties.json",
+    "offsetX": -235.6507616370819,
+    "offsetY": -6.7805611921794195,
+    "scale": 4000
+  },
+  {
+    "id": "VI",
+    "val": "78"
+  },
+  {
+    "nameShort": "WA",
+    "fips": "53",
+    "name": "Washington",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/WA-53-washington-counties.json",
+    "offsetX": 285.0999547048333,
+    "offsetY": 178.27028569337966,
+    "scale": 4000
+  },
+  {
+    "nameShort": "WV",
+    "fips": "54",
+    "name": "West Virginia",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/WV-54-west-virginia-counties.json",
+    "offsetX": -211.3855831258794,
+    "offsetY": 13.138110964975702,
+    "scale": 5000
+  },
+  {
+    "nameShort": "WI",
+    "fips": "55",
+    "name": "Wisconsin",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/WI-55-wisconsin-counties.json",
+    "offsetX": -77.48101603848306,
+    "offsetY": 92.48748822221711,
+    "scale": 4000
+  },
+  {
+    "nameShort": "WY",
+    "fips": "56",
+    "name": "Wyoming",
+    "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/WY-56-wyoming-counties.json",
+    "offsetX": 140.070462578078,
+    "offsetY": 70.053730669028056,
+    "scale": 4000
+  }
+]

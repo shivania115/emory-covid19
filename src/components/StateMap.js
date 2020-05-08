@@ -55,7 +55,7 @@ export default function StateMap(props) {
 
   return (
       <div>
-        <AppBar />
+        <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em'}}>
           {config &&
           <div>
