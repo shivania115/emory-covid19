@@ -107,6 +107,9 @@ def barchart(fn="nationalraw.csv"):
     data_state = normalize(data_state, data_state_w, varmap)
     data_nation = normalize(data_nation, data_nation_w, varmap)
 
+    with open("../data_state.json", "w") as fp:
+        json.dump(data_state, fp)
+
     # 2 outputs (ready to print)
     output_nv = {} # nation view
     output_sv = {} # state views
@@ -125,7 +128,8 @@ def barchart(fn="nationalraw.csv"):
             data_by_state[sid] = {}
         output_sv[sid][cid] = get_vizitems(d, varmap)
         data_by_state[sid][cid] = d
-        if data_county_w[fips] > 10000:
+        if (data_county_w[fips] > 10000 and
+            d["PCT_NHBLACK10"] > 5):
             scatter.append(get_scatter(d, fips, varmap))
 
     coldata_nation = get_coldata(data_county)
