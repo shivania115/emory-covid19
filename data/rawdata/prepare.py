@@ -77,6 +77,7 @@ def barchart(fn="nationalraw.csv"):
     data_county = defaultdict(Counter)
     data_state = defaultdict(Counter)
     data_nation = defaultdict(Counter)
+    data_county_w = Counter()
     data_state_w = Counter()
     data_nation_w = Counter()
     with open("nationalraw.csv", "r") as fp:
@@ -96,6 +97,7 @@ def barchart(fn="nationalraw.csv"):
                 if v is None:
                     continue
                 data_county[sid+cid][k] = v
+                data_county_w[sid+cid] = w
                 data_state[sid][k] += (w * v)
                 data_nation["US"][k] += (w * v)
 
@@ -113,6 +115,7 @@ def barchart(fn="nationalraw.csv"):
     output_nv["nation"] = get_vizitems(data_nation["US"], varmap)
     output_nv[""] = get_vizitems0(varmap)
 
+    scatter = []
     data_by_state = defaultdict()
     for fips, d in data_county.items():
         sid = fips[:2]
@@ -122,7 +125,8 @@ def barchart(fn="nationalraw.csv"):
             data_by_state[sid] = {}
         output_sv[sid][cid] = get_vizitems(d, varmap)
         data_by_state[sid][cid] = d
-
+        if data_county_w[fips] > 10000:
+            scatter.append(get_scatter(d, fips, varmap))
 
     coldata_nation = get_coldata(data_county)
     for sid in output_sv.keys():
@@ -141,6 +145,9 @@ def barchart(fn="nationalraw.csv"):
         output_sv[sid][""] = get_vizitems0(varmap)
         output_sv[sid]["scatter"] = [get_scatter(v, k, varmap)
                                 for k, v in data_by_state[sid].items()]
+
+    with open("../scatter.json", "w") as fp:
+        json.dump(scatter, fp)
 
     with open("../barchartNV.json", "w") as fp:
         json.dump(output_nv, fp)
