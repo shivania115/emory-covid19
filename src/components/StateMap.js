@@ -81,7 +81,7 @@ export default function StateMap(props) {
                 <ComposableMap projection="geoAlbersUsa" 
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
-                  height={600} 
+                  height={500} 
                   data-tip=""
                   offsetX={config.offsetX}
                   offsetY={config.offsetY}>
@@ -103,7 +103,7 @@ export default function StateMap(props) {
                         }}
                         style={{
                               default: {
-                                fill: "#d0d0ce",
+                                fill: "#f2a900",
                                 stroke: '#fff'
                               },
                               hover: {
@@ -205,7 +205,7 @@ export default function StateMap(props) {
                         <VictoryGroup horizontal
                           offset={10}
                           style={{data: {width: 7}}}
-                          colorScale={["#b1b3b3", "#d0d0ce", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#f2a900", "#0033a0"]}
                         >
                           <VictoryBar
                             data={dataBar._nation.slice(6)}
@@ -235,7 +235,7 @@ export default function StateMap(props) {
                         <VictoryLegend
                           x={10} y={10}
                           orientation="horizontal"
-                          colorScale={["#b1b3b3", "#d0d0ce", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#f2a900", "#0033a0"]}
                           data ={[
                             {name: "nation"}, {name: "state"}, {name: "county"}
                             ]}
@@ -245,7 +245,7 @@ export default function StateMap(props) {
                         <VictoryGroup horizontal
                           offset={10}
                           style={{data: {width: 7}}}
-                          colorScale={["#b1b3b3", "#d0d0ce", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#f2a900", "#0033a0"]}
                         >
                           <VictoryBar
                             data={dataBar._nation.slice(0,6)}
