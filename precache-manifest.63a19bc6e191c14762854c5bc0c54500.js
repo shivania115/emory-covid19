@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8dc15ab573a9f0052f120efaf97e072e",
+    "revision": "50263fe43887d54b6acb2b11ddc388d3",
     "url": "/emory-covid19/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/emory-covid19/static/js/2.646cb5c5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "76e259c01cee5245b0ff",
-    "url": "/emory-covid19/static/js/main.2c00ea9c.chunk.js"
+    "revision": "ce81ee0becc3ea413323",
+    "url": "/emory-covid19/static/js/main.a4278d78.chunk.js"
   },
   {
     "revision": "89bce5758f834ab277e3",
