@@ -1,6 +1,7 @@
 import csv
 import json
 import pandas as pd
+import numpy as np
 from pprint import pprint
 from collections import defaultdict, Counter
 from dateutil.parser import *
@@ -77,6 +78,7 @@ def barchart(fn="nationalraw.csv"):
     data_county = defaultdict(Counter)
     data_state = defaultdict(Counter)
     data_nation = defaultdict(Counter)
+    data_county_w = Counter()
     data_state_w = Counter()
     data_nation_w = Counter()
     with open("nationalraw.csv", "r") as fp:
@@ -96,6 +98,7 @@ def barchart(fn="nationalraw.csv"):
                 if v is None:
                     continue
                 data_county[sid+cid][k] = v
+                data_county_w[sid+cid] = w
                 data_state[sid][k] += (w * v)
                 data_nation["US"][k] += (w * v)
 
@@ -105,6 +108,12 @@ def barchart(fn="nationalraw.csv"):
     data_state = normalize(data_state, data_state_w, varmap)
     data_nation = normalize(data_nation, data_nation_w, varmap)
 
+    with open("../data_county.json", "w") as fp:
+        json.dump(data_county, fp)
+
+    with open("../data_state.json", "w") as fp:
+        json.dump(data_state, fp)
+
     # 2 outputs (ready to print)
     output_nv = {} # nation view
     output_sv = {} # state views
@@ -113,6 +122,7 @@ def barchart(fn="nationalraw.csv"):
     output_nv["nation"] = get_vizitems(data_nation["US"], varmap)
     output_nv[""] = get_vizitems0(varmap)
 
+    scatter = []
     data_by_state = defaultdict()
     for fips, d in data_county.items():
         sid = fips[:2]
@@ -122,7 +132,9 @@ def barchart(fn="nationalraw.csv"):
             data_by_state[sid] = {}
         output_sv[sid][cid] = get_vizitems(d, varmap)
         data_by_state[sid][cid] = d
-
+        if (data_county_w[fips] > 10000 and
+            d["PCT_NHBLACK10"] > 5):
+            scatter.append(get_scatter(d, fips, varmap))
 
     coldata_nation = get_coldata(data_county)
     for sid in output_sv.keys():
@@ -136,11 +148,14 @@ def barchart(fn="nationalraw.csv"):
                 item["pctState"] = get_pct(item["rawvalue"], 
                                         coldata_state[item["var"]])
 
-        output_sv[sid]["nation"] = get_vizitems(data_nation["US"], varmap)
-        output_sv[sid]["state"] = get_vizitems(data_state[sid], varmap)
+        output_sv[sid]["_nation"] = get_vizitems(data_nation["US"], varmap)
+        output_sv[sid]["_state"] = get_vizitems(data_state[sid], varmap)
         output_sv[sid][""] = get_vizitems0(varmap)
-        output_sv[sid]["scatter"] = [get_scatter(v, k, varmap)
+        output_sv[sid]["_scatter"] = [get_scatter(v, k, varmap)
                                 for k, v in data_by_state[sid].items()]
+
+    with open("../scatter.json", "w") as fp:
+        json.dump(scatter, fp)
 
     with open("../barchartNV.json", "w") as fp:
         json.dump(output_nv, fp)
@@ -158,30 +173,35 @@ def get_lineitem(d):
     except ValueError:
         case = 0
         death = 0
-    if case == 0:
-        case = None
-    if death == 0:
-        death = None
+    #if case == 0:
+    #    case = None
+    #if death == 0:
+    #    death = None
     return {"t": int(parse(d["date"]).timestamp()),
             "case": case,
             "death": death}
+
+def sma(a, n=3) :
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
 
 def linechart(fn0="us.csv", 
             fn1="us-states.csv", 
             fn2="us-counties.csv"):
 
-    output_nv = {"nation": [], "": [{"t": 1579582800, 
-                                    "death": 1, "case": 1},
-                                    {"t": 1588731173, 
-                                    "death": 1, "case": 1}
-                                    ]}
+    item0 = {"t": 1579582800, "death": 1, "case": 1}
+    item1 = {"t": 1588731173, "death": 1, "case": 1}
+ 
+    output_nv = {"_nation": [], "": [item0, item1]}
+
     with open(fn0, "r") as fp:
         reader = csv.reader(fp)
         header = next(reader)
         for row in reader:
             d = {k:v for k, v in zip(header, row)}
             item = get_lineitem(d)
-            output_nv["nation"].append(item)
+            output_nv["_nation"].append(item)
     with open(fn1, "r") as fp:
         reader = csv.reader(fp)
         header = next(reader)
@@ -206,22 +226,36 @@ def linechart(fn0="us.csv",
             if sid not in output_nv:
                 continue
             if sid not in output_sv:
-                output_sv[sid] = {"nation": output_nv["nation"],
-                                "state": output_nv[sid],
-                                "": [{"t": 1579582800, 
-                                    "death": 1, "case": 1},
-                                    {"t": 1588731173, 
-                                    "death": 1, "case": 1}]}
+                output_sv[sid] = {"_nation": output_nv["_nation"],
+                                "_state": output_nv[sid],
+                                "": [item0, item1]}
             if cid not in output_sv[sid]:
                 output_sv[sid][cid] = []
             output_sv[sid][cid].append(item)
+
+    period = 7
+    for sid, d_sid in output_sv.items():
+        for cid, d_cid in d_sid.items():
+
+            if len(d_cid) > period: 
+
+                dcases = sma([x["case"] for x in d_cid], period)
+                ddeaths = sma([x["death"] for x in d_cid], period)
+            
+            for i in range(len(d_cid)):
+                if i < period:
+                    d_cid[i]["dcase"] = 0
+                    d_cid[i]["ddeath"] = 0
+                else:
+                    d_cid[i]["dcase"] = dcases[i-period]
+                    d_cid[i]["ddeath"] = ddeaths[i-period]
 
     with open("../linechartNV.json", "w") as fp:
         json.dump(output_nv, fp)
 
     for sid, d in output_sv.items():
         with open(f"../linechartSV{sid}.json", "w") as fp:
-            json.dump(output_sv[sid], fp)
+            json.dump(output_sv[sid], fp, indent=2)
 
 def fips2county(fn="all-geocodes-v2017.csv"):
 

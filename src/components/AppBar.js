@@ -14,11 +14,13 @@ export default function AppBar(props) {
       <Menu borderless fixed='top'>
         <Container>
           <Menu.Item as='a' header onClick={() => history.push('/emory-covid19')}>
-            <Image size='small' src='/emory-covid19/logo.png' style={{ marginRight: '1.5em'}} />
+            <span style={{fontWeight: 400, color: '#002878', lineHeight: 1.2}}>
+           COVID-19<br/>Health Equity<br/>Dashboard
+           </span>
           </Menu.Item>
           <Menu.Item 
             active={props.menu==='countyReport'} 
-            content='County Report'
+            content='Home'
             onClick={() => history.push('/emory-covid19')}
             name='countyReport'/>
           <Menu.Item 
@@ -26,6 +28,11 @@ export default function AppBar(props) {
             content='Compare Counties'
             onClick={() => history.push('/emory-covid19/compare-counties')}
             name='countyCompare'/>
+          <Menu.Menu position='right'>
+            <Menu.Item as='a' header>
+              <Image size='small' src='/emory-covid19/logo.png' />
+            </Menu.Item>
+          </Menu.Menu>
         </Container>
       </Menu>
     </ErrorBoundary>

@@ -12,7 +12,8 @@ import { VictoryChart,
   VictoryLegend,
   VictoryLine,
   VictoryLabel, 
-VictoryScatter} from 'victory';
+  VictoryScatter,
+} from 'victory';
 
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
@@ -20,6 +21,7 @@ import ReactTooltip from "react-tooltip";
 import fips2county from './fips2county.json'
 import configs from "./state_config.json";
 import _ from 'lodash';
+
 
 export default function CountyReport() {
 
@@ -116,7 +118,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={["#e31b23", "#333333"]}
                     data ={[
-                      {name: "cases"}, {name: "deaths"}
+                      {name: "new cases"}, {name: "new deaths"}
                       ]}
                   />
                   <VictoryAxis tickCount={2}
@@ -128,10 +130,10 @@ export default function CountyReport() {
                     colorScale={["#e31b23", "#333333"]}
                   >
                     <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='case'
+                      x='t' y='dcase'
                       />
                     <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='death'
+                      x='t' y='ddeath'
                       />
                   </VictoryGroup>  
                 </VictoryChart>
@@ -148,7 +150,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={["#df7a1c", "#e31b23"]}
                     data ={[
-                      {name: "state cases"}, {name: "county cases"}
+                      {name: "state new cases"}, {name: "county new cases"}
                       ]}
                   />
                   <VictoryAxis tickCount={2}
@@ -159,11 +161,11 @@ export default function CountyReport() {
                   <VictoryGroup 
                     colorScale={["#df7a1c", "#e31b23"]}
                   >
-                    <VictoryLine data={dataLine['state']}
-                      x='t' y='case'
+                    <VictoryLine data={dataLine._state}
+                      x='t' y='dcase'
                       />
                     <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='case'
+                      x='t' y='dcase'
                       />
                   </VictoryGroup>  
                 </VictoryChart>
@@ -180,7 +182,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={["#df7a1c", "#e31b23"]}
                     data ={[
-                      {name: "state deaths"}, {name: "county deaths"}
+                      {name: "state new deaths"}, {name: "county new deaths"}
                       ]}
                   />
                   <VictoryAxis tickCount={2}
@@ -191,11 +193,11 @@ export default function CountyReport() {
                   <VictoryGroup 
                     colorScale={["#df7a1c", "#e31b23"]}
                   >
-                    <VictoryLine data={dataLine['state']}
-                      x='t' y='death'
+                    <VictoryLine data={dataLine._state}
+                      x='t' y='ddeath'
                       />
                     <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='death'
+                      x='t' y='ddeath'
                       />
                   </VictoryGroup>  
                 </VictoryChart>
@@ -227,12 +229,12 @@ export default function CountyReport() {
                     colorScale={["#bdbfc1", "#f4c082", "#e31b23"]}
                   >
                     <VictoryBar
-                      data={_.sortBy(dataBar.nation, 'seq')}
+                      data={_.sortBy(dataBar._nation, 'seq')}
                       x="nameShort"
                       y="value"
                     />
                     <VictoryBar
-                      data={_.sortBy(dataBar.state, 'seq')}
+                      data={_.sortBy(dataBar._state, 'seq')}
                       x="nameShort"
                       y="value"
                     />
@@ -274,7 +276,7 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX0] && d[scatterX1]))}
+                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX0] && d[scatterX1]))}
                     size={5}
                     x={scatterX1}
                     y={scatterX0}
@@ -292,7 +294,7 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX0] && d[scatterX2]))}
+                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX0] && d[scatterX2]))}
                     size={5}
                     x={scatterX2}
                     y={scatterX0}
@@ -310,7 +312,7 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX1] && d[scatterX3]))}
+                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX1] && d[scatterX3]))}
                     size={5}
                     x={scatterX3}
                     y={scatterX1}
@@ -328,7 +330,7 @@ export default function CountyReport() {
                     sortKey={(d) => d.fips===countyFips}
                     style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#e31b23":"#bdbfc1",
                              fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar['scatter'], (d)=> (d[scatterX1] && d[scatterX4]))}
+                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX1] && d[scatterX4]))}
                     size={5}
                     x={scatterX4}
                     y={scatterX1}
@@ -358,8 +360,8 @@ export default function CountyReport() {
                 (d) => (<Table.Row key={d.nameShort}>
                   <Table.Cell>{d.nameShort}</Table.Cell>
                   <Table.Cell>{Math.round(d.value*100)/100}</Table.Cell>
-                  <Table.Cell>{Math.round(_.find(dataBar.state, (x) => x.name==d.name).value*100)/100}</Table.Cell>
-                  <Table.Cell>{Math.round(_.find(dataBar.nation, (x) => x.name==d.name).value*100)/100}</Table.Cell>
+                  <Table.Cell>{Math.round(_.find(dataBar._state, (x) => x.name==d.name).value*100)/100}</Table.Cell>
+                  <Table.Cell>{Math.round(_.find(dataBar._nation, (x) => x.name==d.name).value*100)/100}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>

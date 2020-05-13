@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, Loader } from 'semantic-ui-react'
+import { Container, Grid, Breadcrumb, Header, Loader, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -65,17 +65,19 @@ export default function StateMap(props) {
             <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
           </Breadcrumb>
-          <Header as='h2'>
-            <Header.Content>
-              Covid-19 Outcomes in {stateName}
-              <Header.Subheader>
-              Health determinants impact COVID-19 outcomes. 
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
+          <Divider hidden/>
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={8}>
+                <Header as='h2' style={{fontWeight: 400}}>
+                  <Header.Content>
+                    Covid-19 Outcomes in {stateName}
+                    <Header.Subheader style={{fontWeight: 300}}>
+                    Health determinants impact COVID-19 outcomes. 
+                    </Header.Subheader>
+                    <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
+                  </Header.Content>
+                </Header>
                 <ComposableMap projection="geoAlbersUsa" 
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
@@ -101,15 +103,15 @@ export default function StateMap(props) {
                         }}
                         style={{
                               default: {
-                                fill: "#ffcf82",
+                                fill: "#d0d0ce",
                                 stroke: '#fff'
                               },
                               hover: {
-                                fill: "#e31b23",
+                                fill: "#0033a0",
                                 outline: "none"
                               },
                               pressed: {
-                                fill: "#e31b23",
+                                fill: "#0033a0",
                                 outline: "none"
                               }
                             }}/>
@@ -118,7 +120,14 @@ export default function StateMap(props) {
                 </ComposableMap>
               </Grid.Column>
               <Grid.Column width={8}>
-                <Header>Statistics of {countyName}</Header>
+                <Header style={{fontWeight: 400}}>
+                  <Header.Content>
+                    Statistics of {countyName}
+                    <Header.Subheader style={{fontWeight: 300}}>
+                      New cases and new deaths are shown in 7-days moving averages.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
                 <Grid>
                   <Grid.Row columns={2}>
                     <Grid.Column>
@@ -129,9 +138,9 @@ export default function StateMap(props) {
                         <VictoryLegend
                           x={10} y={10}
                           orientation="horizontal"
-                          colorScale={["#e31b23", "#333333"]}
+                          colorScale={["#0033a0", "#da291c"]}
                           data ={[
-                            {name: "cases"}, {name: "deaths"}
+                            {name: "new cases"}, {name: "new deaths"}
                             ]}
                         />
                         <VictoryAxis tickCount={2}
@@ -140,28 +149,28 @@ export default function StateMap(props) {
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
-                          colorScale={["#e31b23", "#333333"]}
+                          colorScale={["#0033a0", "#da291c"]}
                         >
                           <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                            x='t' y='case'
+                            x='t' y='dcase'
                             />
                           <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                            x='t' y='death'
+                            x='t' y='ddeath'
                             />
                         </VictoryGroup>  
                       </VictoryChart>
                     </Grid.Column>
                     <Grid.Column>
                       <VictoryChart theme={VictoryTheme.material}
-                        height={250}
-                        scale={{y: 'log'}}
+                        height={250}       
+                        scale={{y: 'log'}}                 
                         minDomain={{y:1}}>
                         <VictoryLegend
                           x={10} y={10}
                           orientation="horizontal"
-                          colorScale={["#df7a1c", "#e31b23"]}
+                          colorScale={["#f2a900", "#0033a0"]}
                           data ={[
-                            {name: "state cases"}, {name: "county cases"}
+                            {name: "state new cases"}, {name: "county new cases"}
                             ]}
                         />
                         <VictoryAxis tickCount={2}
@@ -171,13 +180,13 @@ export default function StateMap(props) {
 
                           />
                         <VictoryGroup 
-                          colorScale={["#df7a1c", "#e31b23"]}
+                          colorScale={["#f2a900", "#0033a0"]}
                         >
-                          <VictoryLine data={dataLine.state}
-                            x='t' y='case'
+                          <VictoryLine data={dataLine._state}
+                            x='t' y='dcase'
                             />
                           <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                            x='t' y='case'
+                            x='t' y='dcase'
                             />
                         </VictoryGroup>
                       </VictoryChart>
@@ -196,15 +205,15 @@ export default function StateMap(props) {
                         <VictoryGroup horizontal
                           offset={10}
                           style={{data: {width: 7}}}
-                          colorScale={["#bdbfc1", "#f4c082", "#e31b23"]}
+                          colorScale={["#b1b3b3", "#d0d0ce", "#0033a0"]}
                         >
                           <VictoryBar
-                            data={dataBar.nation.slice(6)}
+                            data={dataBar._nation.slice(6)}
                             x="nameShort"
                             y="value"
                           />
                           <VictoryBar
-                            data={dataBar.state.slice(6)}
+                            data={dataBar._state.slice(6)}
                             x="nameShort"
                             y="value"
                           />
@@ -226,7 +235,7 @@ export default function StateMap(props) {
                         <VictoryLegend
                           x={10} y={10}
                           orientation="horizontal"
-                          colorScale={["#bdbfc1", "#f4c082", "#e31b23"]}
+                          colorScale={["#b1b3b3", "#d0d0ce", "#0033a0"]}
                           data ={[
                             {name: "nation"}, {name: "state"}, {name: "county"}
                             ]}
@@ -236,15 +245,15 @@ export default function StateMap(props) {
                         <VictoryGroup horizontal
                           offset={10}
                           style={{data: {width: 7}}}
-                          colorScale={["#bdbfc1", "#f4c082", "#e31b23"]}
+                          colorScale={["#b1b3b3", "#d0d0ce", "#0033a0"]}
                         >
                           <VictoryBar
-                            data={dataBar.nation.slice(0,6)}
+                            data={dataBar._nation.slice(0,6)}
                             x="nameShort"
                             y="value"
                           />
                           <VictoryBar
-                            data={dataBar.state.slice(0,6)}
+                            data={dataBar._state.slice(0,6)}
                             x="nameShort"
                             y="value"
                           />
