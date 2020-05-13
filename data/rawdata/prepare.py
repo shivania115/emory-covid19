@@ -107,6 +107,9 @@ def barchart(fn="nationalraw.csv"):
     data_state = normalize(data_state, data_state_w, varmap)
     data_nation = normalize(data_nation, data_nation_w, varmap)
 
+    with open("../data_county.json", "w") as fp:
+        json.dump(data_county, fp)
+
     with open("../data_state.json", "w") as fp:
         json.dump(data_state, fp)
 
