@@ -286,7 +286,9 @@ export default function CountyReport() {
                     x={scatterX1}
                     y={scatterX0}
                   />
-                  <VictoryAxis label={scatterX1 + ' (in log)'}/>
+                  <VictoryAxis label={scatterX1 + ' (in log)'}
+                    tickCount={5}
+                    tickFormat={(y) => (Math.round(y*100)/100)} />
                   <VictoryAxis dependentAxis label={scatterX0 + ' (in log)'} 
                     style={{ axisLabel: {padding: 40} }}
                     tickCount={5}

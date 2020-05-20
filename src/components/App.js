@@ -5,6 +5,7 @@ import USMap from "./USMap";
 import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
 import CountyCompare from "./CountyCompare";
+import AboutUs from "./AboutUs";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -23,6 +24,9 @@ export default function App() {
           <Route path='/emory-covid19/compare-counties'>
             <CountyCompare />
           </Route>
+          <Route path='/emory-covid19/about-us'>
+            <AboutUs />
+          </Route>          
           <Route path='/emory-covid19/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  
