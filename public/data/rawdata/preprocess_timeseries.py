@@ -11,25 +11,33 @@ SMA_WINDOW = 7
 def get_lineitem(d):
     cases = None
     deaths = None
+    caserate = None
+    mortality = None
+    caserate_ma = None
+    mortality_ma = None
     try:
         cases = int(d["cases"])
         deaths = int(d["deaths"])
+        caserate = float(d["caserate"])
+        mortality = float(d["covidmortality"])
+        caserate_ma = float(d["caserate7day"])
+        mortality_ma = float(d["covidmortality7day"])
     except ValueError:
         cases = 0
         deaths = 0
+        caserate = 0
+        mortality = 0
+        caserate_ma = 0
+        mortality_ma = 0
     return {"t": int(parse(d["date"]).timestamp()),
             "cases": cases,
-            "deaths": deaths}
-
-def sma(a, n=7) :
-    ret = np.cumsum(a, dtype=float)
-    ret[n:] = ret[n:] - ret[:-n]
-    return ret[n - 1:] / n
+            "deaths": deaths,
+            "caseRate": caserate,
+            "mortality": mortality,
+            "caseRateMA": caserate_ma,
+            "mortalityMA": mortality_ma}
 
 def linechart(fn="covidtimeseries.csv"):
-
-    item0 = {"t": 1579582800, "death": 1, "case": 1}
-    item1 = {"t": 1588731173, "death": 1, "case": 1}
 
     data = defaultdict(list)
     with open(fn, "r") as fp:
@@ -51,19 +59,14 @@ def linechart(fn="covidtimeseries.csv"):
                 k = d["fips"].zfill(5)
             data[k].append(item)
 
-    for k in data.keys():
-        v = sorted(data[k], key=lambda x: x["t"])
-        cases_sma = sma([x["cases"] for x in v], SMA_WINDOW)
-        deaths_sma = sma([x["deaths"] for x in v], SMA_WINDOW)
+    item0 = {"t": 1579582800, "deaths": 1, "cases": 1,
+                "caseRate": 0, "mortality": 0,
+                "caseRateMA": 0, "mortalityMA": 0}
+    item1 = {"t": 1588731173, "deaths": 1, "cases": 1,
+                "caseRate": 0, "mortality": 0,
+                "caseRateMA": 0, "mortalityMA": 0}
 
-        for i, item in enumerate(v):
-            if i < SMA_WINDOW:
-                item["casesMA"] = 0
-                item["deathsMA"] = 0
-            else:
-                item["casesMA"] = cases_sma[i-SMA_WINDOW]
-                item["deathsMA"] = deaths_sma[i-SMA_WINDOW]
-        data[k] = v
+    data["_"] = [item0, item1]
 
     output = defaultdict(dict)
     for k, v in data.items():
@@ -73,6 +76,7 @@ def linechart(fn="covidtimeseries.csv"):
 
     for k, v in output.items():
         v["_nation"] = data["_nation"] 
+        v["_"] = data["_"]
         with open(f"../timeseries{k}.json", "w") as fp:
             json.dump(v, fp, indent=2)
 

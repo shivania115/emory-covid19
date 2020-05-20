@@ -88,22 +88,22 @@ export default function USMap(props) {
   const [stateLabels, setStateLabels] = useState();
   const [colorScale, setColorScale] = useState();
   const colorPalette = [
-          "#324da0",
-          "#009fa8",
-          "#Acd2bd",
-          "#fefdbe",
-          "#F1c363",
-          "#E46f00",
-          "#A51122",
+          //"#324da0",
+          "#799FCB", //"#009fa8",
+          "#95B4CC", //"#Acd2bd",
+          "#AFC7D0", //"#fefdbe",
+          "#EEF1E6", //"#F1c363",
+          "#FEC9C9", //"#E46f00",
+          "#F9665E", //"#A51122",
         ];
 
   useEffect(() => {
 
     fetch('/emory-covid19/data/data.json').then(res => res.json())
-      .then(data => {
+      .then(x => {
         
-        setData(data);
-        setDataFltrd(_.filter(_.map(data, (d, k) => {
+        setData(x);
+        setDataFltrd(_.filter(_.map(x, (d, k) => {
           d.fips = k
           return d}), 
           d => (d.Population > 10000 && 
@@ -112,10 +112,10 @@ export default function USMap(props) {
               d.covidmortality)));
 
         const cs = scaleQuantile()
-        .domain(_.map(data, d=>d['covidmortality']))
+        .domain(_.map(x, d=>d['covidmortality']))
         .range(colorPalette);
         let scaleMap = {}
-        _.each(data, d=>{
+        _.each(x, d=>{
           scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
         setColorScale(scaleMap);
 
@@ -123,10 +123,10 @@ export default function USMap(props) {
       });
 
     fetch('/emory-covid19/data/date.json').then(res => res.json())
-      .then(data => setDate(data.date));
+      .then(x => setDate(x.date));
     
     fetch('/emory-covid19/data/allstates.json').then(res => res.json())
-      .then(data => setStateLabels(data));
+      .then(x => setStateLabels(x));
 
 
   }, [])
@@ -147,14 +147,13 @@ export default function USMap(props) {
               <Grid.Column width={9}>
                 <Header as='h1' style={{fontWeight: 400}}>
                   <Header.Content>
-                    The health impacts of COVID-19 vary <br/>
-                    dramatically from community to community. <br/>
-                    How does your community compare?
+                    COVID-19 is affecting every community differently, with some areas much harder-hit than others.
+                    What is happening where you live?
                     <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
                 <svg width="600" height="30">
-                  <text x={0} y={7} style={{fontSize: '0.5em'}}>COVID-19 Health Risk</text>
+                  <text x={0} y={7} style={{fontSize: '0.5em'}}>COVID-19 Mortality</text>
                   {_.map(colorPalette, (color, i) => {
                     return <rect key={i} x={12*i} y={10} width="12" height="12" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
@@ -192,9 +191,9 @@ export default function USMap(props) {
                             onClick={()=>{
                               history.push("/emory-covid19/"+geo.id.substring(0,2)+"");
                             }}
-                            fill={fips===geo.id.substring(0,2)?'#f2a900':
+                            fill={fips===geo.id.substring(0,2)?'#012169':
                             ((colorScale && data[geo.id] && data[geo.id]['covidmortality'])?
-                                colorScale[data[geo.id]['covidmortality']] : "#324da0")}
+                                colorScale[data[geo.id]['covidmortality']] : colorPalette[0])}
                           />
                         ))}
                         <MapLabels geographies={geographies} stateLabels={stateLabels}/>
@@ -206,11 +205,11 @@ export default function USMap(props) {
               <Grid.Column width={7}>
                 <Header as='h3' style={{fontWeight: 400}}>
                   <Header.Content>
-                    A Snapshot of Health Disparities in <span style={{color: "#f2a900"}}>{stateName}</span>
+                    A Snapshot of Health Disparities in <span style={{color: "#012169"}}>{stateName}</span>
                     <Header.Subheader style={{fontWeight: 300, lineHeight: '1.5em', fontSize: '0.9em'}}>
-                      This is one example of health disparities regarding the impacts of COVID-19. 
-                      As can be seen, the proportion of African American residents is correlated with COVID-19 mortality.
-                      Drill down to your county data by clicking on the map.
+                      This is one example of many health disparities regarding the impacts of COVID-19: 
+                      counties with higher proportions of African American residents tend to have higher COVID-19 mortality rates. 
+                      Drill down to additional data in your county by clicking on the map.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -224,14 +223,14 @@ export default function USMap(props) {
                       <VictoryLegend
                         x={10} y={10}
                         orientation="horizontal"
-                        colorScale={["#bdbfc1", "#f2a900"]}
+                        colorScale={["#bdbfc1", "#012169"]}
                         data ={[
                           {name: ('Other counties in '+ 'US')}, {name: 'Counties in '+stateName}
                           ]}
                       />
                       <VictoryScatter
                         sortKey={(d) => d.fips.substring(0,2)===fips}
-                        style={{ data: { fill: ({datum}) => datum.fips.substring(0,2)===fips?"#f2a900":"#bdbfc1",
+                        style={{ data: { fill: ({datum}) => datum.fips.substring(0,2)===fips?"#012169":"#bdbfc1",
                                  fillOpacity: ({datum}) => datum.fips.substring(0,2)===fips?1.0:0.5} }}
                         data={dataFltrd}
                         size={4}

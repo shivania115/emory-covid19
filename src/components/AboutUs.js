@@ -16,10 +16,10 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <List>
+        <List relaxed={true} size="large">
           <List.Item>
             <List.Header>Shivani A. Patel, PhD</List.Header>
-            Assitant Professor of Global Health at the Rollins School of Public Health
+            Assitant Professor of Global Health at the Rollins School of Public Health. PI of this project.
           </List.Item>
           <List.Item>
             <List.Header>K. M. Venkat Narayan, MD</List.Header>

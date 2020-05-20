@@ -8,14 +8,13 @@ export default function Notes(props){
     <Divider/>
     <Grid>
       <Grid.Row>
-        <Grid.Column>
-          The ways in which this dynamic epidemic will interact with county contextual factors and impact Americans in coming months (and years) are poorly understood. 
-          Early data suggest that population density, area-level poverty, residential segregation, underlying population health status (especially chronic comorbidity), and availability of services (especially testing coverage and primary care density) are associated with the geographical distribution of COVID-19—but these associations are not monotonic nor are they meaningful in isolation. 
-          Given the vast heterogeneity in social, demographic, and economic domains within and across US communities, a formidable challenge for public health actors will be responding to the epidemic in a manner that takes contextual factors into account and assures health equity among all Americans.<br/>
-          The experience with COVID-19 thus far indicates that previously existing public health infrastructure and data tracking systems were ill-prepared to dynamically collect and synthesize data for tailored response. 
-          For example, despite the early data indicating that area-level deprivation was associated with higher COVID-19 case fatality and mortality (per capita deaths), there is little guidance regarding how to critically incorporate the role of social determinants into the public health response to the epidemic. 
-          In particular, a coherent, easy-to-use, and actionable integration of COVID-19 epidemiologic data with county context is lacking. 
-          <b> This is why we put together this COVID-19 Health Equity Dashboard</b>.
+        <Grid.Column style={{fontSize: '1.2em', lineHeight: '1.5em'}}>
+          Early data about COVID-19 suggests that communities are affected very differently due to social determinants of health like population density, poverty, residential segregation, underlying chronic health conditions, and availability of medical services. 
+          In order to predict how the epidemic will continue to unfold and prepare for the future, it is critical to understand differences in underlying risk factors. 
+          There is no one-size-fits all approach to combat the epidemic, but accurate and meaningful data is a key component of a robust public health response that is informed by contextual factors and prioritizes health equity.
+          <br/><br/>
+          The COVID-19 Health Equity Dashboard seeks to fill the gaps in county-level data about the virus and underlying social determinants of health. 
+          Our goal is for this Dashboard to become a valuable resource for and critical component of tailored public health responses to COVID-19 across the wide range of environments that Americans inhabit. 
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={2}>

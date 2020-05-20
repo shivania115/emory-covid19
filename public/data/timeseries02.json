@@ -4,330 +4,424 @@
       "t": 1585713600,
       "cases": 143,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 19.391460706,
+      "mortality": 0.2712092406,
+      "caseRateMA": 1.6272554438,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1585800000,
       "cases": 146,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 19.798274567,
+      "mortality": 0.2712092406,
+      "caseRateMA": 1.4916508235,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1585886400,
       "cases": 156,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 21.15432077,
+      "mortality": 0.2712092406,
+      "caseRateMA": 1.3754182918,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1585972800,
       "cases": 169,
       "deaths": 3,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 22.917180834,
+      "mortality": 0.406813861,
+      "caseRateMA": 1.2979299374,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1586059200,
       "cases": 183,
       "deaths": 4,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 24.815645519,
+      "mortality": 0.5424184813,
+      "caseRateMA": 1.3366741146,
+      "mortalityMA": 0.0581162659
     },
     {
       "t": 1586145600,
       "cases": 189,
       "deaths": 4,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 25.629273241,
+      "mortality": 0.5424184813,
+      "caseRateMA": 1.3560462032,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1586232000,
       "cases": 211,
       "deaths": 4,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 28.612574888,
+      "mortality": 0.5424184813,
+      "caseRateMA": 1.5110229121,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1586318400,
       "cases": 224,
       "deaths": 5,
-      "casesMA": 171.0,
-      "deathsMA": 3.0
+      "caseRate": 30.375434952,
+      "mortality": 0.6780231016,
+      "caseRateMA": 1.569139178,
+      "mortalityMA": 0.0581162659
     },
     {
       "t": 1586404800,
       "cases": 233,
       "deaths": 5,
-      "casesMA": 182.57142857142858,
-      "deathsMA": 3.4285714285714284
+      "caseRate": 31.595876535,
+      "mortality": 0.6780231016,
+      "caseRateMA": 1.6853717097,
+      "mortalityMA": 0.0581162659
     },
     {
       "t": 1586491200,
       "cases": 244,
       "deaths": 5,
-      "casesMA": 195.0,
-      "deathsMA": 3.857142857142857
+      "caseRate": 33.087527358,
+      "mortality": 0.6780231016,
+      "caseRateMA": 1.7047437983,
+      "mortalityMA": 0.0581162659
     },
     {
       "t": 1586577600,
       "cases": 255,
       "deaths": 6,
-      "casesMA": 207.57142857142858,
-      "deathsMA": 4.285714285714286
+      "caseRate": 34.579178182,
+      "mortality": 0.8136277219,
+      "caseRateMA": 1.6659996211,
+      "mortalityMA": 0.0581162659
     },
     {
       "t": 1586664000,
       "cases": 270,
       "deaths": 6,
-      "casesMA": 219.85714285714286,
-      "deathsMA": 4.714285714285714
+      "caseRate": 36.613247487,
+      "mortality": 0.8136277219,
+      "caseRateMA": 1.6853717097,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1586750400,
       "cases": 275,
       "deaths": 6,
-      "casesMA": 232.28571428571428,
-      "deathsMA": 5.0
+      "caseRate": 37.291270588,
+      "mortality": 0.8136277219,
+      "caseRateMA": 1.6659996211,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1586836800,
       "cases": 283,
       "deaths": 7,
-      "casesMA": 244.57142857142858,
-      "deathsMA": 5.285714285714286
+      "caseRate": 38.376107551,
+      "mortality": 0.9492323422,
+      "caseRateMA": 1.3947903804,
+      "mortalityMA": 0.0581162659
     },
     {
       "t": 1586923200,
       "cases": 291,
       "deaths": 7,
-      "casesMA": 254.85714285714286,
-      "deathsMA": 5.714285714285714
+      "caseRate": 39.460944513,
+      "mortality": 0.9492323422,
+      "caseRateMA": 1.2979299374,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1587009600,
       "cases": 298,
       "deaths": 7,
-      "casesMA": 264.42857142857144,
-      "deathsMA": 6.0
+      "caseRate": 40.410176856,
+      "mortality": 0.9492323422,
+      "caseRateMA": 1.2591857601,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1587096000,
       "cases": 307,
       "deaths": 7,
-      "casesMA": 273.7142857142857,
-      "deathsMA": 6.285714285714286
+      "caseRate": 41.630618438,
+      "mortality": 0.9492323422,
+      "caseRateMA": 1.2204415829,
+      "mortalityMA": 0.0387441772
     },
     {
       "t": 1587182400,
       "cases": 312,
       "deaths": 7,
-      "casesMA": 282.7142857142857,
-      "deathsMA": 6.571428571428571
+      "caseRate": 42.30864154,
+      "mortality": 0.9492323422,
+      "caseRateMA": 1.1042090512,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1587268800,
       "cases": 317,
       "deaths": 7,
-      "casesMA": 290.85714285714283,
-      "deathsMA": 6.714285714285714
+      "caseRate": 42.986664642,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.910488165,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1587355200,
       "cases": 319,
       "deaths": 7,
-      "casesMA": 297.57142857142856,
-      "deathsMA": 6.857142857142857
+      "caseRate": 43.257873882,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.8523718992,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1587441600,
       "cases": 327,
       "deaths": 7,
-      "casesMA": 303.85714285714283,
-      "deathsMA": 7.0
+      "caseRate": 44.342710845,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.8523718992,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 333,
       "deaths": 7,
-      "casesMA": 310.14285714285717,
-      "deathsMA": 7.0
+      "caseRate": 45.156338567,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.8136277219,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 335,
       "deaths": 7,
-      "casesMA": 316.14285714285717,
-      "deathsMA": 7.0
+      "caseRate": 45.427547807,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.7167672788,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 337,
       "deaths": 7,
-      "casesMA": 321.42857142857144,
-      "deathsMA": 7.0
+      "caseRate": 45.698757048,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.5811626585,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 337,
       "deaths": 7,
-      "casesMA": 325.7142857142857,
-      "deathsMA": 7.0
+      "caseRate": 45.698757048,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.4843022154,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 339,
       "deaths": 7,
-      "casesMA": 329.2857142857143,
-      "deathsMA": 7.0
+      "caseRate": 45.969966289,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.4261859496,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 343,
       "deaths": 7,
-      "casesMA": 332.42857142857144,
-      "deathsMA": 7.0
+      "caseRate": 46.51238477,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.4649301268,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 349,
       "deaths": 7,
-      "casesMA": 335.85714285714283,
-      "deathsMA": 7.0
+      "caseRate": 47.326012492,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.4261859496,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 353,
       "deaths": 7,
-      "casesMA": 339.0,
-      "deathsMA": 7.0
+      "caseRate": 47.868430973,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.3874417723,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 353,
       "deaths": 7,
-      "casesMA": 341.85714285714283,
-      "deathsMA": 7.0
+      "caseRate": 47.868430973,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.3486975951,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 362,
       "deaths": 7,
-      "casesMA": 344.42857142857144,
-      "deathsMA": 7.0
+      "caseRate": 49.088872556,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.4843022154,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 363,
       "deaths": 7,
-      "casesMA": 348.0,
-      "deathsMA": 7.0
+      "caseRate": 49.224477176,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.503674304,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 366,
       "deaths": 7,
-      "casesMA": 351.7142857142857,
-      "deathsMA": 7.0
+      "caseRate": 49.631291037,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.5230463927,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 368,
       "deaths": 7,
-      "casesMA": 355.57142857142856,
-      "deathsMA": 7.0
+      "caseRate": 49.902500278,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.4843022154,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 369,
       "deaths": 7,
-      "casesMA": 359.14285714285717,
-      "deathsMA": 7.0
+      "caseRate": 50.038104898,
+      "mortality": 0.9492323422,
+      "caseRateMA": 0.3874417723,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 370,
       "deaths": 8,
-      "casesMA": 362.0,
-      "deathsMA": 7.0
+      "caseRate": 50.173709519,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.3293255065,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1588824000,
       "cases": 373,
       "deaths": 8,
-      "casesMA": 364.42857142857144,
-      "deathsMA": 7.142857142857143
+      "caseRate": 50.58052338,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.3874417723,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1588910400,
       "cases": 376,
       "deaths": 8,
-      "casesMA": 367.2857142857143,
-      "deathsMA": 7.285714285714286
+      "caseRate": 50.987337241,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2712092406,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1588996800,
       "cases": 377,
       "deaths": 8,
-      "casesMA": 369.2857142857143,
-      "deathsMA": 7.428571428571429
+      "caseRate": 51.122941861,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2712092406,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1589083200,
       "cases": 378,
       "deaths": 8,
-      "casesMA": 371.2857142857143,
-      "deathsMA": 7.571428571428571
+      "caseRate": 51.258546481,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2324650634,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1589169600,
       "cases": 380,
       "deaths": 8,
-      "casesMA": 373.0,
-      "deathsMA": 7.714285714285714
+      "caseRate": 51.529755722,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2324650634,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1589256000,
       "cases": 383,
       "deaths": 8,
-      "casesMA": 374.7142857142857,
-      "deathsMA": 7.857142857142857
+      "caseRate": 51.936569583,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2712092406,
+      "mortalityMA": 0.0193720886
     },
     {
       "t": 1589342400,
       "cases": 383,
       "deaths": 8,
-      "casesMA": 376.7142857142857,
-      "deathsMA": 8.0
+      "caseRate": 51.936569583,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.251837152,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 387,
       "deaths": 8,
-      "casesMA": 378.57142857142856,
-      "deathsMA": 8.0
+      "caseRate": 52.478988064,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2712092406,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 388,
       "deaths": 8,
-      "casesMA": 380.57142857142856,
-      "deathsMA": 8.0
+      "caseRate": 52.614592684,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2324650634,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 392,
       "deaths": 8,
-      "casesMA": 382.2857142857143,
-      "deathsMA": 8.0
+      "caseRate": 53.157011166,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.2905813293,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 396,
       "deaths": 8,
-      "casesMA": 384.42857142857144,
-      "deathsMA": 8.0
+      "caseRate": 53.699429647,
+      "mortality": 1.0848369626,
+      "caseRateMA": 0.3486975951,
+      "mortalityMA": 0.0
     }
   ],
   "02020": [
@@ -335,330 +429,424 @@
       "t": 1585713600,
       "cases": 67,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 22.981566725,
+      "mortality": 0.6860169172,
+      "caseRateMA": 1.9110471264,
+      "mortalityMA": 0.0980024167
     },
     {
       "t": 1585800000,
       "cases": 66,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 22.638558267,
+      "mortality": 0.6860169172,
+      "caseRateMA": 1.6170398762,
+      "mortalityMA": 0.0980024167
     },
     {
       "t": 1585886400,
       "cases": 73,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 25.039617477,
+      "mortality": 0.6860169172,
+      "caseRateMA": 1.4700362511,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1585972800,
       "cases": 81,
       "deaths": 2,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 27.783685146,
+      "mortality": 0.6860169172,
+      "caseRateMA": 1.323032626,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586059200,
       "cases": 85,
       "deaths": 3,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 29.15571898,
+      "mortality": 1.0290253758,
+      "caseRateMA": 1.2740314176,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586145600,
       "cases": 88,
       "deaths": 3,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 30.184744356,
+      "mortality": 1.0290253758,
+      "caseRateMA": 1.323032626,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586232000,
       "cases": 98,
       "deaths": 3,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 33.614828942,
+      "mortality": 1.0290253758,
+      "caseRateMA": 1.6170398762,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586318400,
       "cases": 103,
       "deaths": 4,
-      "casesMA": 79.71428571428571,
-      "deathsMA": 2.4285714285714284
+      "caseRate": 35.329871235,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.7640435013,
+      "mortalityMA": 0.0980024167
     },
     {
       "t": 1586404800,
       "cases": 109,
       "deaths": 4,
-      "casesMA": 84.85714285714286,
-      "deathsMA": 2.7142857142857144
+      "caseRate": 37.387921986,
+      "mortality": 1.3720338344,
+      "caseRateMA": 2.1070519599,
+      "mortalityMA": 0.0980024167
     },
     {
       "t": 1586491200,
       "cases": 112,
       "deaths": 4,
-      "casesMA": 91.0,
-      "deathsMA": 3.0
+      "caseRate": 38.416947362,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.9110471264,
+      "mortalityMA": 0.0980024167
     },
     {
       "t": 1586577600,
       "cases": 121,
       "deaths": 4,
-      "casesMA": 96.57142857142857,
-      "deathsMA": 3.2857142857142856
+      "caseRate": 41.504023489,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.9600483348,
+      "mortalityMA": 0.0980024167
     },
     {
       "t": 1586664000,
       "cases": 127,
       "deaths": 4,
-      "casesMA": 102.28571428571429,
-      "deathsMA": 3.5714285714285716
+      "caseRate": 43.562074241,
+      "mortality": 1.3720338344,
+      "caseRateMA": 2.0580507515,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586750400,
       "cases": 131,
       "deaths": 4,
-      "casesMA": 108.28571428571429,
-      "deathsMA": 3.7142857142857144
+      "caseRate": 44.934108075,
+      "mortality": 1.3720338344,
+      "caseRateMA": 2.1070519599,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586836800,
       "cases": 136,
       "deaths": 4,
-      "casesMA": 114.42857142857143,
-      "deathsMA": 3.857142857142857
+      "caseRate": 46.649150368,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.8620459181,
+      "mortalityMA": 0.0490012084
     },
     {
       "t": 1586923200,
       "cases": 139,
       "deaths": 4,
-      "casesMA": 119.85714285714286,
-      "deathsMA": 4.0
+      "caseRate": 47.678175744,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.7640435013,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 143,
       "deaths": 4,
-      "casesMA": 125.0,
-      "deathsMA": 4.0
+      "caseRate": 49.050209578,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.6660410846,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 150,
       "deaths": 4,
-      "casesMA": 129.85714285714286,
-      "deathsMA": 4.0
+      "caseRate": 51.451268788,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.8620459181,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 151,
       "deaths": 4,
-      "casesMA": 135.28571428571428,
-      "deathsMA": 4.0
+      "caseRate": 51.794277247,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.4700362511,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 154,
       "deaths": 4,
-      "casesMA": 139.57142857142858,
-      "deathsMA": 4.0
+      "caseRate": 52.823302623,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.323032626,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 155,
       "deaths": 4,
-      "casesMA": 143.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 53.166311081,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.1760290009,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 160,
       "deaths": 4,
-      "casesMA": 146.85714285714286,
-      "deathsMA": 4.0
+      "caseRate": 54.881353374,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.1760290009,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 164,
       "deaths": 4,
-      "casesMA": 150.28571428571428,
-      "deathsMA": 4.0
+      "caseRate": 56.253387209,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.2250302092,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 166,
       "deaths": 4,
-      "casesMA": 153.85714285714286,
-      "deathsMA": 4.0
+      "caseRate": 56.939404126,
+      "mortality": 1.3720338344,
+      "caseRateMA": 1.1270277925,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 168,
       "deaths": 4,
-      "casesMA": 157.14285714285714,
-      "deathsMA": 4.0
+      "caseRate": 57.625421043,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.8820217507,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 168,
       "deaths": 4,
-      "casesMA": 159.71428571428572,
-      "deathsMA": 4.0
+      "caseRate": 57.625421043,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.8330205423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 168,
       "deaths": 4,
-      "casesMA": 162.14285714285714,
-      "deathsMA": 4.0
+      "caseRate": 57.625421043,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.6860169172,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 171,
       "deaths": 4,
-      "casesMA": 164.14285714285714,
-      "deathsMA": 4.0
+      "caseRate": 58.654446419,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.7840193339,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 175,
       "deaths": 4,
-      "casesMA": 166.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 60.026480253,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.7350181255,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 179,
       "deaths": 4,
-      "casesMA": 168.57142857142858,
-      "deathsMA": 4.0
+      "caseRate": 61.398514087,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.7350181255,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 179,
       "deaths": 4,
-      "casesMA": 170.71428571428572,
-      "deathsMA": 4.0
+      "caseRate": 61.398514087,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.6370157088,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 185,
       "deaths": 4,
-      "casesMA": 172.57142857142858,
-      "deathsMA": 4.0
+      "caseRate": 63.456564839,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.8330205423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 185,
       "deaths": 4,
-      "casesMA": 175.0,
-      "deathsMA": 4.0
+      "caseRate": 63.456564839,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.8330205423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 187,
       "deaths": 4,
-      "casesMA": 177.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 64.142581756,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.931022959,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 189,
       "deaths": 4,
-      "casesMA": 180.14285714285714,
-      "deathsMA": 4.0
+      "caseRate": 64.828598673,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.8820217507,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 190,
       "deaths": 4,
-      "casesMA": 182.71428571428572,
-      "deathsMA": 4.0
+      "caseRate": 65.171607132,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.7350181255,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 190,
       "deaths": 4,
-      "casesMA": 184.85714285714286,
-      "deathsMA": 4.0
+      "caseRate": 65.171607132,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.5390132921,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 191,
       "deaths": 4,
-      "casesMA": 186.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 65.51461559,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.5880145004,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 194,
       "deaths": 4,
-      "casesMA": 188.14285714285714,
-      "deathsMA": 4.0
+      "caseRate": 66.543640966,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.4410108753,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 194,
       "deaths": 4,
-      "casesMA": 189.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 66.543640966,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.4410108753,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 194,
       "deaths": 4,
-      "casesMA": 190.71428571428572,
-      "deathsMA": 4.0
+      "caseRate": 66.543640966,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.3430084586,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 195,
       "deaths": 4,
-      "casesMA": 191.71428571428572,
-      "deathsMA": 4.0
+      "caseRate": 66.886649425,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.2940072502,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 196,
       "deaths": 4,
-      "casesMA": 192.57142857142858,
-      "deathsMA": 4.0
+      "caseRate": 67.229657883,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.2940072502,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 196,
       "deaths": 4,
-      "casesMA": 193.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 67.229657883,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.2940072502,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 199,
       "deaths": 4,
-      "casesMA": 194.28571428571428,
-      "deathsMA": 4.0
+      "caseRate": 68.258683259,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.392009667,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 200,
       "deaths": 4,
-      "casesMA": 195.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 68.601691718,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.2940072502,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 202,
       "deaths": 4,
-      "casesMA": 196.28571428571428,
-      "deathsMA": 4.0
+      "caseRate": 69.287708635,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.392009667,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 204,
       "deaths": 4,
-      "casesMA": 197.42857142857142,
-      "deathsMA": 4.0
+      "caseRate": 69.973725552,
+      "mortality": 1.3720338344,
+      "caseRateMA": 0.4900120837,
+      "mortalityMA": 0.0
     }
   ],
   "02090": [
@@ -666,330 +854,424 @@
       "t": 1585713600,
       "cases": 40,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 40.415879399,
+      "mortality": 0.0,
+      "caseRateMA": 4.1859303663,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585800000,
       "cases": 42,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 42.436673369,
+      "mortality": 0.0,
+      "caseRateMA": 3.8972455135,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585886400,
       "cases": 42,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 42.436673369,
+      "mortality": 0.0,
+      "caseRateMA": 3.3198758078,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 46,
       "deaths": 1,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 46.478261309,
+      "mortality": 1.010396985,
+      "caseRateMA": 3.3198758078,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586059200,
       "cases": 53,
       "deaths": 1,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 53.551040204,
+      "mortality": 1.010396985,
+      "caseRateMA": 3.6085606606,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586145600,
       "cases": 54,
       "deaths": 1,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 54.561437189,
+      "mortality": 1.010396985,
+      "caseRateMA": 3.3198758078,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586232000,
       "cases": 65,
       "deaths": 1,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 65.675804023,
+      "mortality": 1.010396985,
+      "caseRateMA": 4.3302727928,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586318400,
       "cases": 71,
       "deaths": 1,
-      "casesMA": 48.857142857142854,
-      "deathsMA": 0.5714285714285714
+      "caseRate": 71.738185933,
+      "mortality": 1.010396985,
+      "caseRateMA": 4.4746152192,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586404800,
       "cases": 73,
       "deaths": 1,
-      "casesMA": 53.285714285714285,
-      "deathsMA": 0.7142857142857143
+      "caseRate": 73.758979903,
+      "mortality": 1.010396985,
+      "caseRateMA": 4.4746152192,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586491200,
       "cases": 76,
       "deaths": 1,
-      "casesMA": 57.714285714285715,
-      "deathsMA": 0.8571428571428571
+      "caseRate": 76.790170858,
+      "mortality": 1.010396985,
+      "caseRateMA": 4.9076424985,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586577600,
       "cases": 76,
       "deaths": 2,
-      "casesMA": 62.57142857142857,
-      "deathsMA": 1.0
+      "caseRate": 76.790170858,
+      "mortality": 2.02079397,
+      "caseRateMA": 4.3302727928,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586664000,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 66.85714285714286,
-      "deathsMA": 1.1428571428571428
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 3.7529030871,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586750400,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 70.57142857142857,
-      "deathsMA": 1.2857142857142858
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 3.6085606606,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586836800,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 74.14285714285714,
-      "deathsMA": 1.4285714285714286
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 2.02079397,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1586923200,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 76.14285714285714,
-      "deathsMA": 1.5714285714285714
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 1.1547394114,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1587009600,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 77.28571428571429,
-      "deathsMA": 1.7142857142857142
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.8660545586,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1587096000,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 78.14285714285714,
-      "deathsMA": 1.8571428571428572
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.4330272793,
+      "mortalityMA": 0.1443424264
     },
     {
       "t": 1587182400,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 78.57142857142857,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.4330272793,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 79,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 79.821361813,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 80,
       "deaths": 2,
-      "casesMA": 79.0,
-      "deathsMA": 2.0
+      "caseRate": 80.831758798,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.1443424264,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 80,
       "deaths": 2,
-      "casesMA": 79.14285714285714,
-      "deathsMA": 2.0
+      "caseRate": 80.831758798,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.1443424264,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 81,
       "deaths": 2,
-      "casesMA": 79.28571428571429,
-      "deathsMA": 2.0
+      "caseRate": 81.842155783,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 81,
       "deaths": 2,
-      "casesMA": 79.57142857142857,
-      "deathsMA": 2.0
+      "caseRate": 81.842155783,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 81,
       "deaths": 2,
-      "casesMA": 79.85714285714286,
-      "deathsMA": 2.0
+      "caseRate": 81.842155783,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 82,
       "deaths": 2,
-      "casesMA": 80.14285714285714,
-      "deathsMA": 2.0
+      "caseRate": 82.852552768,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.4330272793,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 80.57142857142857,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.5773697057,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 81.14285714285714,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.4330272793,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 81.57142857142857,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.4330272793,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 82.0,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 82.28571428571429,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 82.57142857142857,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 82.85714285714286,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.1443424264,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 83,
       "deaths": 2,
-      "casesMA": 83.0,
-      "deathsMA": 2.0
+      "caseRate": 83.862949753,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 84,
       "deaths": 2,
-      "casesMA": 83.0,
-      "deathsMA": 2.0
+      "caseRate": 84.873346738,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.1443424264,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 83.14285714285714,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 83.42857142857143,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 83.71428571428571,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 84.0,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 84.28571428571429,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 84.57142857142857,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.2886848529,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 85,
       "deaths": 2,
-      "casesMA": 84.85714285714286,
-      "deathsMA": 2.0
+      "caseRate": 85.883743723,
+      "mortality": 2.02079397,
+      "caseRateMA": 0.1443424264,
+      "mortalityMA": 0.0
     }
   ],
   "02110": [
@@ -997,330 +1279,424 @@
       "t": 1585713600,
       "cases": 10,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.140036745,
+      "mortality": 0.0,
+      "caseRateMA": 3.5588613423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585800000,
       "cases": 10,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.140036745,
+      "mortality": 0.0,
+      "caseRateMA": 3.1140036745,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585886400,
       "cases": 11,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 34.25404042,
+      "mortality": 0.0,
+      "caseRateMA": 3.1140036745,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 12,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 37.368044094,
+      "mortality": 0.0,
+      "caseRateMA": 3.5588613423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586059200,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 43.596051443,
+      "mortality": 0.0,
+      "caseRateMA": 4.0037190101,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586145600,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 43.596051443,
+      "mortality": 0.0,
+      "caseRateMA": 4.0037190101,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 43.596051443,
+      "mortality": 0.0,
+      "caseRateMA": 2.2242883389,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 12.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 43.596051443,
+      "mortality": 0.0,
+      "caseRateMA": 1.7794306712,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 12.714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 43.596051443,
+      "mortality": 0.0,
+      "caseRateMA": 1.7794306712,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 13.285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 46.710055118,
+      "mortality": 0.0,
+      "caseRateMA": 1.7794306712,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 13.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 46.710055118,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 14.285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 49.824058792,
+      "mortality": 0.0,
+      "caseRateMA": 0.8897153356,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 17,
       "deaths": 0,
-      "casesMA": 14.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 52.938062467,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 15.0,
-      "deathsMA": 0.0
+      "caseRate": 56.052066141,
+      "mortality": 0.0,
+      "caseRateMA": 1.7794306712,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 21,
       "deaths": 0,
-      "casesMA": 15.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 65.394077165,
+      "mortality": 0.0,
+      "caseRateMA": 3.1140036745,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 23,
       "deaths": 0,
-      "casesMA": 16.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 71.622084514,
+      "mortality": 0.0,
+      "caseRateMA": 4.0037190101,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 24,
       "deaths": 0,
-      "casesMA": 17.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 74.736088189,
+      "mortality": 0.0,
+      "caseRateMA": 4.0037190101,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 24,
       "deaths": 0,
-      "casesMA": 19.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 74.736088189,
+      "mortality": 0.0,
+      "caseRateMA": 4.0037190101,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 24,
       "deaths": 0,
-      "casesMA": 20.428571428571427,
-      "deathsMA": 0.0
+      "caseRate": 74.736088189,
+      "mortality": 0.0,
+      "caseRateMA": 3.5588613423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 24,
       "deaths": 0,
-      "casesMA": 21.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 74.736088189,
+      "mortality": 0.0,
+      "caseRateMA": 3.1140036745,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 26,
       "deaths": 0,
-      "casesMA": 22.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 80.964095538,
+      "mortality": 0.0,
+      "caseRateMA": 3.5588613423,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 23.714285714285715,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 2.6691460067,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 24.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 1.7794306712,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 25.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 25.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 26.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 26.428571428571427,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 26.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.4448576678,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 27,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 84.078099212,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 29,
       "deaths": 0,
-      "casesMA": 27.0,
-      "deathsMA": 0.0
+      "caseRate": 90.306106561,
+      "mortality": 0.0,
+      "caseRateMA": 0.8897153356,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 29,
       "deaths": 0,
-      "casesMA": 27.285714285714285,
-      "deathsMA": 0.0
+      "caseRate": 90.306106561,
+      "mortality": 0.0,
+      "caseRateMA": 0.8897153356,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 29,
       "deaths": 0,
-      "casesMA": 27.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 90.306106561,
+      "mortality": 0.0,
+      "caseRateMA": 0.8897153356,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 29,
       "deaths": 0,
-      "casesMA": 27.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 90.306106561,
+      "mortality": 0.0,
+      "caseRateMA": 0.8897153356,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 29,
       "deaths": 0,
-      "casesMA": 28.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 90.306106561,
+      "mortality": 0.0,
+      "caseRateMA": 0.8897153356,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 30,
       "deaths": 0,
-      "casesMA": 28.428571428571427,
-      "deathsMA": 0.0
+      "caseRate": 93.420110236,
+      "mortality": 0.0,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.0
     }
   ],
   "02122": [
@@ -1328,330 +1704,424 @@
       "t": 1585713600,
       "cases": 8,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 13.667503801,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585800000,
       "cases": 8,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 13.667503801,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585886400,
       "cases": 10,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 17.084379752,
+      "mortality": 0.0,
+      "caseRateMA": 1.2203128394,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 10,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 17.084379752,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586059200,
       "cases": 11,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.792817727,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586145600,
       "cases": 12,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 20.501255702,
+      "mortality": 0.0,
+      "caseRateMA": 1.2203128394,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 12,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 20.501255702,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 12,
       "deaths": 0,
-      "casesMA": 10.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 20.501255702,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 13,
       "deaths": 0,
-      "casesMA": 10.714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 22.209693677,
+      "mortality": 0.0,
+      "caseRateMA": 1.2203128394,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 11.428571428571429,
-      "deathsMA": 0.0
+      "caseRate": 23.918131652,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 12.0,
-      "deathsMA": 0.0
+      "caseRate": 23.918131652,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 12.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 23.918131652,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 13.0,
-      "deathsMA": 0.0
+      "caseRate": 23.918131652,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 13.285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 23.918131652,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 13.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 25.626569627,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.0,
-      "deathsMA": 0.0
+      "caseRate": 25.626569627,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 14.285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 27.335007603,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 14.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 15.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 15.714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 16.285714285714285,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 16.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 17.285714285714285,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 17.714285714285715,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 18,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 30.751883553,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 20,
       "deaths": 0,
-      "casesMA": 18.0,
-      "deathsMA": 0.0
+      "caseRate": 34.168759503,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 20,
       "deaths": 0,
-      "casesMA": 18.285714285714285,
-      "deathsMA": 0.0
+      "caseRate": 34.168759503,
+      "mortality": 0.0,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 21,
       "deaths": 0,
-      "casesMA": 18.571428571428573,
-      "deathsMA": 0.0
+      "caseRate": 35.877197478,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 21,
       "deaths": 0,
-      "casesMA": 19.0,
-      "deathsMA": 0.0
+      "caseRate": 35.877197478,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 21,
       "deaths": 0,
-      "casesMA": 19.428571428571427,
-      "deathsMA": 0.0
+      "caseRate": 35.877197478,
+      "mortality": 0.0,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 19.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 35.877197478,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1588824000,
       "cases": 22,
       "deaths": 1,
-      "casesMA": 20.285714285714285,
-      "deathsMA": 0.14285714285714285
+      "caseRate": 37.585635454,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.9762502715,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1588910400,
       "cases": 22,
       "deaths": 1,
-      "casesMA": 20.857142857142858,
-      "deathsMA": 0.2857142857142857
+      "caseRate": 37.585635454,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1588996800,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 21.142857142857142,
-      "deathsMA": 0.42857142857142855
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.7321877036,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1589083200,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 21.571428571428573,
-      "deathsMA": 0.5714285714285714
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1589169600,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 21.857142857142858,
-      "deathsMA": 0.7142857142857143
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1589256000,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 22.142857142857142,
-      "deathsMA": 0.8571428571428571
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.2440625679
     },
     {
       "t": 1589342400,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 22.428571428571427,
-      "deathsMA": 1.0
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 22.714285714285715,
-      "deathsMA": 1.0
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.2440625679,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 23,
       "deaths": 1,
-      "casesMA": 22.857142857142858,
-      "deathsMA": 1.0
+      "caseRate": 39.294073429,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.2440625679,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 24,
       "deaths": 1,
-      "casesMA": 23.0,
-      "deathsMA": 1.0
+      "caseRate": 41.002511404,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.2440625679,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 25,
       "deaths": 1,
-      "casesMA": 23.142857142857142,
-      "deathsMA": 1.0
+      "caseRate": 42.710949379,
+      "mortality": 1.7084379752,
+      "caseRateMA": 0.4881251358,
+      "mortalityMA": 0.0
     }
   ],
   "02130": [
@@ -1659,330 +2129,424 @@
       "t": 1585713600,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 3.0792601564,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585800000,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 3.0792601564,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585886400,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 2.0528401043,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 2.0528401043,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586059200,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586145600,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 14.0,
-      "deathsMA": 0.0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 14.0,
-      "deathsMA": 0.0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 14.0,
-      "deathsMA": 0.0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 14.0,
-      "deathsMA": 0.0
+      "caseRate": 100.58916511,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.0,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.428571428571429,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 14.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 15.0,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 15,
       "deaths": 0,
-      "casesMA": 15.0,
-      "deathsMA": 0.0
+      "caseRate": 107.77410547,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.428571428571429,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.571428571428571,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 15.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 1.0264200521,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 16,
       "deaths": 0,
-      "casesMA": 16.0,
-      "deathsMA": 0.0
+      "caseRate": 114.95904584,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02170": [
@@ -1990,330 +2554,424 @@
       "t": 1585713600,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585800000,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585886400,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586059200,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586145600,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 4,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 3.7171266611,
+      "mortality": 0.0,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 5,
       "deaths": 0,
-      "casesMA": 4.0,
-      "deathsMA": 0.0
+      "caseRate": 4.6464083264,
+      "mortality": 0.0,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 6,
       "deaths": 0,
-      "casesMA": 4.142857142857143,
-      "deathsMA": 0.0
+      "caseRate": 5.5756899916,
+      "mortality": 0.0,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 9,
       "deaths": 0,
-      "casesMA": 4.428571428571429,
-      "deathsMA": 0.0
+      "caseRate": 8.3635349875,
+      "mortality": 0.0,
+      "caseRateMA": 0.6637726181,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 10,
       "deaths": 0,
-      "casesMA": 5.142857142857143,
-      "deathsMA": 0.0
+      "caseRate": 9.2928166527,
+      "mortality": 0.0,
+      "caseRateMA": 0.7965271417,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 6.0,
-      "deathsMA": 0.0
+      "caseRate": 13.009943314,
+      "mortality": 0.0,
+      "caseRateMA": 1.3275452361,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 14,
       "deaths": 0,
-      "casesMA": 7.428571428571429,
-      "deathsMA": 0.0
+      "caseRate": 13.009943314,
+      "mortality": 0.0,
+      "caseRateMA": 1.3275452361,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 15,
       "deaths": 1,
-      "casesMA": 8.857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 13.939224979,
+      "mortality": 0.9292816653,
+      "caseRateMA": 1.4602997597,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1586923200,
       "cases": 15,
       "deaths": 1,
-      "casesMA": 10.428571428571429,
-      "deathsMA": 0.14285714285714285
+      "caseRate": 13.939224979,
+      "mortality": 0.9292816653,
+      "caseRateMA": 1.3275452361,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1587009600,
       "cases": 15,
       "deaths": 1,
-      "casesMA": 11.857142857142858,
-      "deathsMA": 0.2857142857142857
+      "caseRate": 13.939224979,
+      "mortality": 0.9292816653,
+      "caseRateMA": 1.1947907125,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1587096000,
       "cases": 15,
       "deaths": 1,
-      "casesMA": 13.142857142857142,
-      "deathsMA": 0.42857142857142855
+      "caseRate": 13.939224979,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.7965271417,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1587182400,
       "cases": 17,
       "deaths": 1,
-      "casesMA": 14.0,
-      "deathsMA": 0.5714285714285714
+      "caseRate": 15.79778831,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.9292816653,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1587268800,
       "cases": 18,
       "deaths": 1,
-      "casesMA": 15.0,
-      "deathsMA": 0.7142857142857143
+      "caseRate": 16.727069975,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.5310180944,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1587355200,
       "cases": 19,
       "deaths": 1,
-      "casesMA": 15.571428571428571,
-      "deathsMA": 0.8571428571428571
+      "caseRate": 17.65635164,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.6637726181,
+      "mortalityMA": 0.1327545236
     },
     {
       "t": 1587441600,
       "cases": 19,
       "deaths": 1,
-      "casesMA": 16.285714285714285,
-      "deathsMA": 1.0
+      "caseRate": 17.65635164,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.5310180944,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 20,
       "deaths": 1,
-      "casesMA": 16.857142857142858,
-      "deathsMA": 1.0
+      "caseRate": 18.585633305,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.6637726181,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 20,
       "deaths": 1,
-      "casesMA": 17.571428571428573,
-      "deathsMA": 1.0
+      "caseRate": 18.585633305,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.6637726181,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 20,
       "deaths": 1,
-      "casesMA": 18.285714285714285,
-      "deathsMA": 1.0
+      "caseRate": 18.585633305,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.6637726181,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 20,
       "deaths": 1,
-      "casesMA": 19.0,
-      "deathsMA": 1.0
+      "caseRate": 18.585633305,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.3982635708,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 20,
       "deaths": 1,
-      "casesMA": 19.428571428571427,
-      "deathsMA": 1.0
+      "caseRate": 18.585633305,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 19.714285714285715,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 20.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.2655090472,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 20.285714285714285,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 20.428571428571427,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 20.571428571428573,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 20.714285714285715,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 20.857142857142858,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.1327545236,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 21,
       "deaths": 1,
-      "casesMA": 21.0,
-      "deathsMA": 1.0
+      "caseRate": 19.514914971,
+      "mortality": 0.9292816653,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02290": [
@@ -2321,323 +2979,415 @@
       "t": 1585800000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585886400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586059200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586145600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 18.772292097,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02240": [
@@ -2645,316 +3395,406 @@
       "t": 1585886400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1585972800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586059200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586145600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 14.455044811,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.1428571428571428,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.2857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.4285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.5714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.7142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.8571428571428572,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 28.910089621,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 43.365134432,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.142857142857143,
-      "deathsMA": 0.0
+      "caseRate": 43.365134432,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.2857142857142856,
-      "deathsMA": 0.0
+      "caseRate": 43.365134432,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.4285714285714284,
-      "deathsMA": 0.0
+      "caseRate": 43.365134432,
+      "mortality": 0.0,
+      "caseRateMA": 2.0650064015,
+      "mortalityMA": 0.0
     }
   ],
   "02195": [
@@ -2962,295 +3802,379 @@
       "t": 1586145600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586232000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 31.046258926,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.1428571428571428,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.2857142857142858,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.4285714285714286,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.5714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.7142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.8571428571428572,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 62.092517852,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.142857142857143,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.2857142857142856,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.4285714285714284,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.5714285714285716,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.7142857142857144,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 2.857142857142857,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 3,
       "deaths": 0,
-      "casesMA": 3.0,
-      "deathsMA": 0.0
+      "caseRate": 93.138776777,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02050": [
@@ -3258,288 +4182,370 @@
       "t": 1586232000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 7.8423991467,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586318400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 7.0581592321,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586404800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 7.0581592321,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586491200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 4.705439488,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586577600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 3.9211995734,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 2.352719744,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.7842399147,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 5.4896794027,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 10.979358805,
+      "mortality": 0.0,
+      "caseRateMA": 0.7842399147,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.1428571428571428,
-      "deathsMA": 0.0
+      "caseRate": 10.979358805,
+      "mortality": 0.0,
+      "caseRateMA": 0.7842399147,
+      "mortalityMA": 0.0
     }
   ],
   "02198": [
@@ -3547,260 +4553,334 @@
       "t": 1586577600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 15.571473061,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586664000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 15.571473061,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586750400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 15.571473061,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586836800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 4.4489923032,
+      "mortalityMA": 0.0
     },
     {
       "t": 1586923200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 4.4489923032,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 4.4489923032,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 4.4489923032,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.5714285714285714,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.7142857142857142,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 1.8571428571428572,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 2,
       "deaths": 0,
-      "casesMA": 2.0,
-      "deathsMA": 0.0
+      "caseRate": 31.142946123,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02180": [
@@ -3808,232 +4888,298 @@
       "t": 1586923200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587009600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 9.9920063949,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02150": [
@@ -4041,225 +5187,289 @@
       "t": 1587009600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587096000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587182400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587268800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587355200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587441600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587528000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 1.070491891,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587614400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587700800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587787200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587873600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 7.4934432372,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02220": [
@@ -4267,155 +5477,199 @@
       "t": 1587873600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1587960000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588046400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588132800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588219200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588305600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588392000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588478400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588564800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588651200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588737600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588824000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 11.564704522,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "02261": [
@@ -4423,78 +5677,100 @@
       "t": 1588824000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 4.6766851656,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588910400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 3.1177901104,
+      "mortalityMA": 0.0
     },
     {
       "t": 1588996800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 3.1177901104,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589083200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 3.1177901104,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589169600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 3.1177901104,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589256000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 1.5588950552,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589342400,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 1.5588950552,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589428800,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589515200,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589601600,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     },
     {
       "t": 1589688000,
       "cases": 1,
       "deaths": 0,
-      "casesMA": 1.0,
-      "deathsMA": 0.0
+      "caseRate": 10.912265386,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0
     }
   ],
   "_nation": [
@@ -4502,330 +5778,444 @@
       "t": 1585713600,
       "cases": 215161,
       "deaths": 5315,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 65.764797361,
+      "mortality": 1.6245504435,
+      "caseRateMA": 6.402619435,
+      "mortalityMA": 0.186710864
     },
     {
       "t": 1585800000,
       "cases": 244619,
       "deaths": 6542,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 74.768749753,
+      "mortality": 1.9995877707,
+      "caseRateMA": 6.94537342,
+      "mortalityMA": 0.2269261834
     },
     {
       "t": 1585886400,
       "cases": 277262,
       "deaths": 7902,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 84.746209795,
+      "mortality": 2.4152770657,
+      "caseRateMA": 7.61658937,
+      "mortalityMA": 0.2682767887
     },
     {
       "t": 1585972800,
       "cases": 312497,
       "deaths": 9466,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 95.51592473,
+      "mortality": 2.893319755,
+      "caseRateMA": 8.2427868679,
+      "mortalityMA": 0.3134699001
     },
     {
       "t": 1586059200,
       "cases": 337955,
       "deaths": 10828,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 103.29726155,
+      "mortality": 3.3096203579,
+      "caseRateMA": 8.5390091554,
+      "mortalityMA": 0.3548205054
     },
     {
       "t": 1586145600,
       "cases": 367567,
       "deaths": 12330,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 112.34828464,
+      "mortality": 3.7687125058,
+      "caseRateMA": 8.8947029577,
+      "mortalityMA": 0.3918482914
     },
     {
       "t": 1586232000,
       "cases": 399352,
       "deaths": 14579,
-      "casesMA": 0,
-      "deathsMA": 0
+      "caseRate": 122.06349364,
+      "mortality": 4.4561281121,
+      "caseRateMA": 9.2106180889,
+      "mortalityMA": 0.4492675585
     },
     {
       "t": 1586318400,
       "cases": 431169,
       "deaths": 16673,
-      "casesMA": 307773.28571428574,
-      "deathsMA": 9566.0
+      "caseRate": 131.78848357,
+      "mortality": 5.0961673649,
+      "caseRateMA": 9.4319551726,
+      "mortalityMA": 0.4959452745
     },
     {
       "t": 1586404800,
       "cases": 465846,
       "deaths": 18772,
-      "casesMA": 338631.5714285714,
-      "deathsMA": 11188.57142857143
+      "caseRate": 142.38764363,
+      "mortality": 5.7377348871,
+      "caseRateMA": 9.6598419826,
+      "mortalityMA": 0.5340210166
     },
     {
       "t": 1586491200,
       "cases": 499297,
       "deaths": 21028,
-      "casesMA": 370235.4285714286,
-      "deathsMA": 12935.714285714286
+      "caseRate": 152.61207202,
+      "mortality": 6.4272900707,
+      "caseRateMA": 9.6951231748,
+      "mortalityMA": 0.573144715
     },
     {
       "t": 1586577600,
       "cases": 531011,
       "deaths": 23105,
-      "casesMA": 401954.71428571426,
-      "deathsMA": 14810.857142857143
+      "caseRate": 162.3055796,
+      "mortality": 7.0621332073,
+      "caseRateMA": 9.5413792665,
+      "mortalityMA": 0.5955447789
     },
     {
       "t": 1586664000,
       "cases": 558150,
       "deaths": 24785,
-      "casesMA": 433171.0,
-      "deathsMA": 16759.285714285714
+      "caseRate": 170.60072061,
+      "mortality": 7.5756317482,
+      "caseRateMA": 9.6147798657,
+      "mortalityMA": 0.6094301986
     },
     {
       "t": 1586750400,
       "cases": 583894,
       "deaths": 26547,
-      "casesMA": 464627.4285714286,
-      "deathsMA": 18753.14285714286
+      "caseRate": 178.46947444,
+      "mortality": 8.1141939084,
+      "caseRateMA": 9.4458842572,
+      "mortalityMA": 0.6207830575
     },
     {
       "t": 1586836800,
       "cases": 610541,
       "deaths": 29246,
-      "casesMA": 495531.28571428574,
-      "deathsMA": 20784.14285714286
+      "caseRate": 186.61423374,
+      "mortality": 8.9391537668,
+      "caseRateMA": 9.2215342994,
+      "mortalityMA": 0.6404322364
     },
     {
       "t": 1586923200,
       "cases": 640557,
       "deaths": 31994,
-      "casesMA": 525701.1428571428,
-      "deathsMA": 22879.428571428572
+      "caseRate": 195.788741,
+      "mortality": 9.7790906659,
+      "caseRateMA": 9.1428939191,
+      "mortalityMA": 0.668989043
     },
     {
       "t": 1587009600,
       "cases": 672162,
       "deaths": 34264,
-      "casesMA": 555613.7142857143,
-      "deathsMA": 25068.14285714286
+      "caseRate": 205.4489323,
+      "mortality": 10.472925004,
+      "caseRateMA": 9.0087555248,
+      "mortalityMA": 0.676455731
     },
     {
       "t": 1587096000,
       "cases": 703651,
       "deaths": 36626,
-      "casesMA": 585087.4285714285,
-      "deathsMA": 27281.285714285714
+      "caseRate": 215.07366775,
+      "mortality": 11.1948795,
+      "caseRateMA": 8.9230851049,
+      "mortalityMA": 0.6810842042
     },
     {
       "t": 1587182400,
       "cases": 732031,
       "deaths": 38571,
-      "casesMA": 614280.8571428572,
-      "deathsMA": 29509.571428571428
+      "caseRate": 223.74812525,
+      "mortality": 11.789376323,
+      "caseRateMA": 8.777506522,
+      "mortalityMA": 0.6753204451
     },
     {
       "t": 1587268800,
       "cases": 757385,
       "deaths": 40089,
-      "casesMA": 642998.0,
-      "deathsMA": 31719.0
+      "caseRate": 231.49767406,
+      "mortality": 12.253358933,
+      "caseRateMA": 8.6995647792,
+      "mortalityMA": 0.6682467407
     },
     {
       "t": 1587355200,
       "cases": 784664,
       "deaths": 41919,
-      "casesMA": 671460.1428571428,
-      "deathsMA": 33905.28571428572
+      "caseRate": 239.83560662,
+      "mortality": 12.812705558,
+      "caseRateMA": 8.7665903115,
+      "mortalityMA": 0.6712159499
     },
     {
       "t": 1587441600,
       "cases": 810143,
       "deaths": 44587,
-      "casesMA": 700141.5714285715,
-      "deathsMA": 36101.28571428572
+      "caseRate": 247.62336217,
+      "mortality": 13.628190146,
+      "caseRateMA": 8.7155897761,
+      "mortalityMA": 0.6698623398
     },
     {
       "t": 1587528000,
       "cases": 838845,
       "deaths": 46896,
-      "casesMA": 728656.1428571428,
-      "deathsMA": 38292.857142857145
+      "caseRate": 256.39624022,
+      "mortality": 14.333944985,
+      "caseRateMA": 8.6582141739,
+      "mortalityMA": 0.6506934742
     },
     {
       "t": 1587614400,
       "cases": 872631,
       "deaths": 49064,
-      "casesMA": 756983.0,
-      "deathsMA": 40421.71428571428
+      "caseRate": 266.72306266,
+      "mortality": 14.996602626,
+      "caseRateMA": 8.7534471941,
+      "mortalityMA": 0.6462396604
     },
     {
       "t": 1587700800,
       "cases": 909471,
       "deaths": 51191,
-      "casesMA": 785621.4285714285,
-      "deathsMA": 42536.0
+      "caseRate": 277.9833521,
+      "mortality": 15.646728458,
+      "caseRateMA": 8.9870977632,
+      "mortalityMA": 0.6359784225
     },
     {
       "t": 1587787200,
       "cases": 943743,
       "deaths": 53151,
-      "casesMA": 815024.2857142857,
-      "deathsMA": 44616.71428571428
+      "caseRate": 288.45872233,
+      "mortality": 16.245810089,
+      "caseRateMA": 9.2443710117,
+      "mortalityMA": 0.6366333951
     },
     {
       "t": 1587873600,
       "cases": 970350,
       "deaths": 54406,
-      "casesMA": 845268.8571428572,
-      "deathsMA": 46699.57142857143
+      "caseRate": 296.59125547,
+      "mortality": 16.629405725,
+      "caseRateMA": 9.2990830587,
+      "mortalityMA": 0.6251495417
     },
     {
       "t": 1587960000,
       "cases": 993704,
       "deaths": 55979,
-      "casesMA": 875692.4285714285,
-      "deathsMA": 48744.857142857145
+      "caseRate": 303.7294965,
+      "mortality": 17.110199299,
+      "caseRateMA": 9.1276985541,
+      "mortalityMA": 0.6139276773
     },
     {
       "t": 1588046400,
       "cases": 1018356,
       "deaths": 58373,
-      "casesMA": 905555.2857142857,
-      "deathsMA": 50753.42857142857
+      "caseRate": 311.26447628,
+      "mortality": 17.84193472,
+      "caseRateMA": 9.0915877299,
+      "mortalityMA": 0.6019635107
     },
     {
       "t": 1588132800,
       "cases": 1045059,
       "deaths": 60887,
-      "casesMA": 935300.0,
-      "deathsMA": 52722.857142857145
+      "caseRate": 319.4263522,
+      "mortality": 18.610348608,
+      "caseRateMA": 9.0043017109,
+      "mortalityMA": 0.6109148032
     },
     {
       "t": 1588219200,
       "cases": 1075474,
       "deaths": 63097,
-      "casesMA": 964759.1428571428,
-      "deathsMA": 54721.57142857143
+      "caseRate": 328.72281536,
+      "mortality": 19.285843713,
+      "caseRateMA": 8.8571075288,
+      "mortalityMA": 0.6127487266
     },
     {
       "t": 1588305600,
       "cases": 1109433,
       "deaths": 64859,
-      "casesMA": 993736.7142857143,
-      "deathsMA": 56726.28571428572
+      "caseRate": 339.10251593,
+      "mortality": 19.824405873,
+      "caseRateMA": 8.7313091192,
+      "mortalityMA": 0.5968110593
     },
     {
       "t": 1588392000,
       "cases": 1138901,
       "deaths": 66442,
-      "casesMA": 1022302.7142857143,
-      "deathsMA": 58678.857142857145
+      "caseRate": 348.10952486,
+      "mortality": 20.308255986,
+      "caseRateMA": 8.5215432187,
+      "mortalityMA": 0.5803494139
     },
     {
       "t": 1588478400,
       "cases": 1164994,
       "deaths": 67773,
-      "casesMA": 1050182.4285714286,
-      "deathsMA": 60577.57142857143
+      "caseRate": 356.0849519,
+      "mortality": 20.715081318,
+      "caseRateMA": 8.4990994899,
+      "mortalityMA": 0.5836679419
     },
     {
       "t": 1588564800,
       "cases": 1186919,
       "deaths": 68832,
-      "casesMA": 1077988.7142857143,
-      "deathsMA": 62487.142857142855
+      "caseRate": 362.78641352,
+      "mortality": 21.038768791,
+      "caseRateMA": 8.4367024308,
+      "mortalityMA": 0.5612242131
     },
     {
       "t": 1588651200,
       "cases": 1210626,
       "deaths": 71066,
-      "casesMA": 1105590.857142857,
-      "deathsMA": 64323.28571428572
+      "caseRate": 370.03255037,
+      "mortality": 21.721599589,
+      "caseRateMA": 8.3954391552,
+      "mortalityMA": 0.5542378384
     },
     {
       "t": 1588737600,
       "cases": 1235131,
       "deaths": 73774,
-      "casesMA": 1133058.0,
-      "deathsMA": 66136.57142857143
+      "caseRate": 377.52259902,
+      "mortality": 22.549310333,
+      "caseRateMA": 8.2994638327,
+      "mortalityMA": 0.5627088178
     },
     {
       "t": 1588824000,
       "cases": 1263942,
       "deaths": 75733,
-      "casesMA": 1160211.142857143,
-      "deathsMA": 67977.57142857143
+      "caseRate": 386.32879335,
+      "mortality": 23.14808631,
+      "caseRateMA": 8.2294254262,
+      "mortalityMA": 0.5517489425
     },
     {
       "t": 1588910400,
       "cases": 1291526,
       "deaths": 77307,
-      "casesMA": 1187135.142857143,
-      "deathsMA": 69782.71428571429
+      "caseRate": 394.75995034,
+      "mortality": 23.629185538,
+      "caseRateMA": 7.951062059,
+      "mortalityMA": 0.5435399522
     },
     {
       "t": 1588996800,
       "cases": 1316441,
       "deaths": 78761,
-      "casesMA": 1213148.4285714286,
-      "deathsMA": 71561.0
+      "caseRate": 402.3753171,
+      "mortality": 24.073606299,
+      "caseRateMA": 7.7522560338,
+      "mortalityMA": 0.5379071876
     },
     {
       "t": 1589083200,
       "cases": 1336752,
       "deaths": 79692,
-      "casesMA": 1238511.2857142857,
-      "deathsMA": 73320.85714285714
+      "caseRate": 408.58345333,
+      "mortality": 24.358170074,
+      "caseRateMA": 7.4997859178,
+      "mortalityMA": 0.5204412508
     },
     {
       "t": 1589169600,
       "cases": 1354348,
       "deaths": 80681,
-      "casesMA": 1263048.142857143,
-      "deathsMA": 75023.57142857143
+      "caseRate": 413.96173924,
+      "mortality": 24.660461774,
+      "caseRateMA": 7.3107608172,
+      "mortalityMA": 0.5173847119
     },
     {
       "t": 1589256000,
       "cases": 1376639,
       "deaths": 82336,
-      "casesMA": 1286966.5714285714,
-      "deathsMA": 76716.28571428571
+      "caseRate": 420.77507017,
+      "mortality": 25.166318968,
+      "caseRateMA": 7.248931401,
+      "mortalityMA": 0.4921027684
     },
     {
       "t": 1589342400,
       "cases": 1397780,
       "deaths": 84104,
-      "casesMA": 1310682.7142857143,
-      "deathsMA": 78326.28571428571
+      "caseRate": 427.23689913,
+      "mortality": 25.706715052,
+      "caseRateMA": 7.1020428728,
+      "mortalityMA": 0.451057817
     },
     {
       "t": 1589428800,
       "cases": 1424734,
       "deaths": 85842,
-      "casesMA": 1333918.2857142857,
-      "deathsMA": 79802.0
+      "caseRate": 435.47549418,
+      "mortality": 26.237941518,
+      "caseRateMA": 7.0209572614,
+      "mortalityMA": 0.4414078869
     },
     {
       "t": 1589515200,
       "cases": 1450963,
       "deaths": 87435,
-      "casesMA": 1356888.5714285714,
-      "deathsMA": 81246.14285714286
+      "caseRate": 443.49249015,
+      "mortality": 26.724848171,
+      "caseRateMA": 6.9617914006,
+      "mortalityMA": 0.4422375189
     },
     {
       "t": 1589601600,
       "cases": 1474612,
       "deaths": 88660,
-      "casesMA": 1379665.2857142857,
-      "deathsMA": 82693.0
+      "caseRate": 450.72089907,
+      "mortality": 27.09927419,
+      "caseRateMA": 6.9065117107,
+      "mortalityMA": 0.4322382701
     },
     {
       "t": 1589688000,
       "cases": 1493613,
       "deaths": 89504,
-      "casesMA": 1402261.142857143,
-      "deathsMA": 84107.14285714286
+      "caseRate": 456.5286287,
+      "mortality": 27.357246076,
+      "caseRateMA": 6.8493107678,
+      "mortalityMA": 0.4284394289
+    }
+  ],
+  "_": [
+    {
+      "t": 1579582800,
+      "deaths": 1,
+      "cases": 1,
+      "caseRate": 0,
+      "mortality": 0,
+      "caseRateMA": 0,
+      "mortalityMA": 0
+    },
+    {
+      "t": 1588731173,
+      "deaths": 1,
+      "cases": 1,
+      "caseRate": 0,
+      "mortality": 0,
+      "caseRateMA": 0,
+      "mortalityMA": 0
     }
   ]
 }
