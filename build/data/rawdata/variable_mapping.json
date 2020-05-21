@@ -6,10 +6,10 @@
         "name": "Total COVID-19 Deaths",
         "group": "outcomes"},
     "mean7daycases": {
-        "name": "Average Daily Cases",
+        "name": "7-day Average Cases",
         "group": "outcomes"},
     "mean7daydeaths": {
-        "name": "Average Daily Deaths",
+        "name": "7-day Average Deaths",
         "group": "outcomes"},
     "covidmortality": {
         "name": "Total Deaths per 100,000",
@@ -18,10 +18,10 @@
         "name": "Total Cases per 100,000",
         "group": "outcomes"},
     "covidmortality7day": {
-        "name": "Average Daily Deaths per 100,000",
+        "name": "7-day Average Deaths per 100,000",
         "group": "outcomes"},
     "caserate7day": {
-        "name": "Average Daily Cases per 100,000",
+        "name": "7-day Average Cases per 100,000",
         "group": "outcomes"},
     "black": {
         "name": "% African American",
@@ -64,16 +64,7 @@
         "group": "exposure"},
     "Population": {
         "name": "Population",
-        "group": "misc"},
-    "popden": {
-        "name": "Population Density",
-        "group": "misc"},
-    "hhincome": {
-        "name": "Household Income",
-        "group": "misc"},
-    "_013_Urbanization": {
-        "name": "Urban-Rural Status",
-        "group": "misc"}        
+        "group": "misc"}
 }
 
 

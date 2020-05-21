@@ -32,14 +32,14 @@ function ScatterChart(props) {
       scale={{x: props.xlog?'log':'linear', y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-      <VictoryLegend
+      {props.showLegend && <VictoryLegend
         x={10} y={10}
         orientation="horizontal"
         colorScale={["#bdbfc1", "#0033a0"]}
         data ={[
           {name: ('Other counties in '+ props.stateName)}, {name: props.countyName}
           ]}
-      />
+      />}
       <VictoryScatter
         data={_.filter(_.map(props.data, (d, k)=>{d.fips=k; return d;}), (d)=> (
                  d.fips.length===5 &&
@@ -47,15 +47,15 @@ function ScatterChart(props) {
                  d[props.x] && d[props.y]))}
         sortKey={(d) => d.fips===(props.stateFips + props.countyFips)}
         style={{ data: { fill: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?"#0033a0":"#bdbfc1",
-                 fillOpacity: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?1.0:0.5} }}
-        size={5}
+                 fillOpacity: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?1.0:0.7} }}
+        size={4}
         x={props.x}
         y={props.y}
       />
-      <VictoryAxis label={props.x}
-        tickCount={5}
-        tickFormat={(y) => (Math.round(y*100)/100)} />
-      <VictoryAxis dependentAxis label={props.y} 
+      <VictoryAxis label={props.varMap[props.x].name}
+        tickCount={4}
+        tickFormat={(y) => (props.rescaleX?(Math.round(y/1000)+'k'):(Math.round(y*100)/100))} />
+      <VictoryAxis dependentAxis label={props.varMap[props.y].name} 
         style={{ axisLabel: {padding: 40} }}
         tickCount={5}
         tickFormat={(y) => (Math.round(y*100)/100)} />
@@ -108,15 +108,7 @@ export default function CountyReport() {
   const [dataTS, setDataTS] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
   const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', t: 'n/a'});
-  const scatterX0 = 'COVID Mortality / 100k';
-  const scatterX1 = 'COVID Case Rate / 1M';
-  const scatterX2 = '% Over 65 Yrs';
-  const scatterX3 = '% Poverty';
-  const scatterX4 = '% Unemployed';
-  const scatterX5 = '% Diabetes';
-  const scatterX6 = '% Obesity';
-  const scatterX7 = '% Hispanics';
-  const scatterX8 = '% Blacks';
+  const [varMap, setVarMap] = useState({});
 
   useEffect(()=>{
 
@@ -124,6 +116,9 @@ export default function CountyReport() {
     setConfig(configMatched);
     setStateName(configMatched.name);
     setCountyName(fips2county[stateFips+countyFips]);
+
+    fetch('/emory-covid19/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => setVarMap(x));
 
     fetch('/emory-covid19/data/data.json').then(res => res.json())
       .then(x => setData(x));
@@ -134,7 +129,7 @@ export default function CountyReport() {
   }, [stateFips]);
 
   useEffect(() => {
-    if (data && dataTS[stateFips+countyFips]){
+    if (dataTS && dataTS[stateFips+countyFips]){
       setCovidMetric(_.takeRight(dataTS[stateFips+countyFips])[0]);
     }
   }, [dataTS])
@@ -155,11 +150,11 @@ export default function CountyReport() {
             <Breadcrumb.Section active>{countyName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
           </Breadcrumb>
-          <Header as='h2'>
+          <Header as='h1' style={{fontWeight: 300}}>
             <Header.Content>
               Covid-19 Health Equity Report for {countyName}
-              <Header.Subheader>
-              Health determinants impact COVID-19 outcomes. 
+              <Header.Subheader style={{fontWeight: 300}}>
+              See how health determinants impact COVID-19 outcomes. 
               </Header.Subheader>
             </Header.Content>
           </Header>
@@ -182,6 +177,7 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>COVID-19 Outcome Variables</Divider>
           <Grid columns={2} centered>
             <Grid.Row>
               <Grid.Column>
@@ -272,7 +268,7 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Divider/>
+          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Exposure Variables</Divider>
           <Grid>
             <Grid.Row columns={3}>                    
               <Grid.Column>
@@ -339,17 +335,13 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Grid columns={1} textAlign='center'>
-            <Grid.Row>
-              <Grid.Column style={{fontWeight: 400}}>
-              {'Statistics of '+countyName + ' and Other Counties in '+ stateName}
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Bivariate Relationships of Outcomes and Exposure Variables</Divider>
           <Grid columns={3}>
             <Grid.Row>
               <Grid.Column>
                 <ScatterChart x="cases" y="deaths" 
+                  showLegend={true}
+                  varMap={varMap}
                   xlog={true} 
                   ylog={true} 
                   stateName={stateName}
@@ -359,7 +351,8 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="mean7daycases" y="mean7daydeaths" 
+                <ScatterChart x="caserate" y="covidmortality" 
+                  varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
                   countyFips={countyFips} 
@@ -367,7 +360,8 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME1" y="mean7daydeaths" 
+                <ScatterChart x="RPL_THEME1" y="covidmortality"
+                 varMap={varMap} 
                   stateName={stateName}
                   countyName={countyName}
                   countyFips={countyFips} 
@@ -376,8 +370,10 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-            <Grid.Column>
-                <ScatterChart x="RPL_THEME2" y="mean7daydeaths" 
+              <Grid.Column>
+                <ScatterChart x="RPL_THEME2" y="covidmortality"
+                  showLegend={true}
+                  varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
                   countyFips={countyFips} 
@@ -385,7 +381,8 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME3" y="mean7daydeaths" 
+                <ScatterChart x="RPL_THEME3" y="covidmortality"
+                  varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
                   countyFips={countyFips} 
@@ -393,7 +390,41 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME4" y="mean7daydeaths" 
+                <ScatterChart x="RPL_THEME4" y="covidmortality"
+                  varMap={varMap}
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>
+                <ScatterChart x="popden" y="covidmortality"
+                  showLegend={true}
+                  xlog={true}
+                  varMap={varMap}
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
+              </Grid.Column>
+              <Grid.Column>
+                <ScatterChart x="hhincome" y="covidmortality"
+                  varMap={varMap}
+                  xlog={true}
+                  rescaleX={true}
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
+              </Grid.Column>
+              <Grid.Column>
+                <ScatterChart x="black" y="covidmortality"
+                  varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
                   countyFips={countyFips} 
@@ -402,11 +433,7 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Header as='h4'>
-            <Header.Content>
-              Data Table
-            </Header.Content>
-          </Header>
+          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Data Table</Divider>
           <Table striped compact basic='very'>
             <Table.Header>
               <Table.Row>
@@ -419,10 +446,10 @@ export default function CountyReport() {
             <Table.Body>
               {_.map(data[stateFips+countyFips], 
                 (v, k) => (<Table.Row key={k}>
-                  <Table.Cell>{k}</Table.Cell>
-                  <Table.Cell>{Math.round(v*100)/100}</Table.Cell>
-                  <Table.Cell>{Math.round(data[stateFips][k]*100)/100}</Table.Cell>
-                  <Table.Cell>{Math.round(data['_nation'][k]*100)/100}</Table.Cell>
+                  <Table.Cell>{varMap[k]?varMap[k].name:k}</Table.Cell>
+                  <Table.Cell>{isNaN(v)?v:(Math.round(v*100)/100)}</Table.Cell>
+                  <Table.Cell>{isNaN(data[stateFips][k])?data[stateFips][k]:(Math.round(data[stateFips][k]*100)/100)}</Table.Cell>
+                  <Table.Cell>{isNaN(data['_nation'][k])?data['_nation'][k]:(Math.round(data['_nation'][k]*100)/100)}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>

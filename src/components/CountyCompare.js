@@ -8,7 +8,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
 import stateOptions from "./stateOptions.json";
-import measureOptions from "./measureOptions.json";
 import configs from "./state_config.json";
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
@@ -22,30 +21,43 @@ export default function CountyCompare() {
   const [colorScaleB, setColorScaleB] = useState();
   const [config, setConfig] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
-  const [dataBar, setDataBar] = useState();
+  const [data, setData] = useState();
+  const [varMap, setVarMap] = useState({});
+  const [measureOptions, setMeasureOptions] = useState([]);
+
+  useEffect(()=>{
+    fetch('/emory-covid19/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => {
+        setVarMap(x);
+        setMeasureOptions(_.filter(_.map(x, d=> {
+          return {key: d.name, value: d.name, text: d.name};
+        }), d => d.key !== "Urban-Rural Status"));
+      });
+  }, []);
 
   useEffect(()=>{
     
     const configMatched = configs.find(s => s.fips === stateFips);
     setConfig(configMatched);
 
-    if (stateFips){
-      fetch('/emory-covid19/data/barchartSV' + stateFips + '.json').then(res => res.json())
+    if (stateFips && varMap){
+      fetch('/emory-covid19/data/data.json').then(res => res.json())
         .then(data => {
           let coldata = {};
-          const dataFltrd = _.filter(data, (d, k)=>{
-              _.each(d, (item)=> {item.fips = k});
-              return (["scatter", "nation", "state", ""].indexOf(k) < 0);
-            });
+          const dataFltrd = _.filter(_.map(data, (d, k)=>{d.fips=k; return d;}), (d)=> (
+                 d.fips.length===5 &&
+                 d.fips.substring(0,2)===stateFips));
           _.each(dataFltrd, (d) => {
-            _.each(d, (item)=>{
-              if (!(item.nameShort in coldata)){
-                coldata[item.nameShort] = {}
+            _.each(d, (v, k)=>{
+              if (varMap[k]){
+                if (!(varMap[k].name in coldata)){
+                  coldata[varMap[k].name] = {};
+                }
+                coldata[varMap[k].name][d.fips] = v; 
               }
-              coldata[item.nameShort][item.fips] = item.value; 
             });
           });
-          setDataBar(coldata);
+          setData(coldata);
         });
       setMeasureA(null);
       setMeasureB(null);
@@ -57,7 +69,7 @@ export default function CountyCompare() {
   useEffect(() => {
     if (measureA){
       const cs = scaleQuantile()
-        .domain(_.map(dataBar[measureA], d=>d))
+        .domain(_.map(data[measureA], d=>d))
         .range([
           "#ffedea",
           "#ffcec5",
@@ -70,7 +82,7 @@ export default function CountyCompare() {
           "#782618"
         ]);
       let scaleMap = {}
-      _.each(dataBar[measureA], d=>{
+      _.each(data[measureA], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleA(scaleMap);
     }
@@ -79,7 +91,7 @@ export default function CountyCompare() {
   useEffect(() => {
     if (measureB){
       const cs = scaleQuantile()
-        .domain(_.map(dataBar[measureB], d=>d))
+        .domain(_.map(data[measureB], d=>d))
         .range([
           "#ffedea",
           "#ffcec5",
@@ -92,7 +104,7 @@ export default function CountyCompare() {
           "#782618"
         ]);
       let scaleMap = {}
-      _.each(dataBar[measureB], d=>{
+      _.each(data[measureB], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleB(scaleMap);
     }
@@ -196,15 +208,15 @@ export default function CountyCompare() {
                         geography={geo} 
                         onMouseEnter={()=>{
                           if(measureA && colorScaleA){
-                            const cur = dataBar[measureA][geo.properties.COUNTYFP];
+                            const cur = data[measureA][geo.properties.COUNTYFP];
                             setTooltipContent(cur?(Math.round(cur*100)/100):'');
                           }
                         }}
                         onMouseLeave={()=>{
                           setTooltipContent("")
                         }}
-                        fill={(measureA && colorScaleA && dataBar[measureA][geo.properties.COUNTYFP])?
-                                colorScaleA[dataBar[measureA][geo.properties.COUNTYFP]] : "#EEE"}
+                        fill={(measureA && colorScaleA && data[measureA][stateFips+geo.properties.COUNTYFP])?
+                                colorScaleA[data[measureA][stateFips+geo.properties.COUNTYFP]] : "#EEE"}
                       />
                     )}
                   </Geographies>
@@ -225,15 +237,15 @@ export default function CountyCompare() {
                         geography={geo} 
                         onMouseEnter={()=>{
                           if(measureB && colorScaleB){
-                            const cur = dataBar[measureB][geo.properties.COUNTYFP];
+                            const cur = data[measureB][geo.properties.COUNTYFP];
                             setTooltipContent(cur?(Math.round(cur*100)/100):'');
                           }
                         }}
                         onMouseLeave={()=>{
                           setTooltipContent("")
                         }}
-                        fill = {(measureB && colorScaleB && dataBar[measureB][geo.properties.COUNTYFP])?
-                                colorScaleB[dataBar[measureB][geo.properties.COUNTYFP]] : "#EEE"}
+                        fill = {(measureB && colorScaleB && data[measureB][stateFips+geo.properties.COUNTYFP])?
+                                colorScaleB[data[measureB][stateFips+geo.properties.COUNTYFP]] : "#EEE"}
                       />
                     )}
                   </Geographies>

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/emory-covid19/precache-manifest.63a19bc6e191c14762854c5bc0c54500.js"
+  "/emory-covid19/precache-manifest.62cdd9bc18718734ddfc740f84dc73c8.js"
 );
 
 self.addEventListener('message', (event) => {

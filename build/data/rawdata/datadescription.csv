@@ -1,25 +1,24 @@
 order,varname,varlabel,description
-13,DiagDiabetes_2016,"% Diabetes, 2016",Description for DiagDiabetes_2016 will go here.
-14,Obesity_2016,"% Obesity, 2016",Description for Obesity_2016 will go here.
-12,PCT_HISP10,% Hispanics,Description for PCT_HISP10 will go here.
-11,PCT_NHBLACK10,% Blacks,Description for PCT_NHBLACK10 will go here.
-8,POPLOSS00,Population loss,Description for POPLOSS00 will go here.
-18,POVRATE10,"% poverty, 2010",Description for POVRATE10 will go here.
-6,asdr,"Cardiometabolic mortality rates, 2014-2106",Description for asdr will go here.
-5,caseratecounty,"COVID cases per 100,000",Description for caseratecounty will go here.
-2,cases,Total COVID Cases,Description for cases will go here.
-4,covidmortalitycounty,"COVID deaths per 100,000",Description for covidmortalitycounty will go here.
-1,deaths,Total COVID Deaths,Description for deaths will go here.
-10,ecotype_2015,% Urban,Description for ecotype_2015 will go here.
-3,excessdeathscounty,COVID Proportionate mortality,Description for excessdeathscounty will go here.
-16,highover_2015,"% High school education or over, 2012-2016",Description for highover_2015 will go here.
-7,ttpop_2016,"Population, 2012-2016",Description for ttpop_2016 will go here.
-19,v004_rawvalue,"Primary care doctors per 100,000, 2016",Description for v004_rawvalue will go here.
-20,v005_rawvalue,"Preventable hospital stay, 2016",Description for v005_rawvalue will go here.
-15,v023_rawvalue,% Unemployed 2006-2010,Description for v023_rawvalue will go here.
-9,v053_rawvalue,"% Aged 65 years or over, 2017",Description for v053_rawvalue will go here.
-17,v063_rawvalue,"Median income, 2017 ($1000)",Description for v063_rawvalue will go here.
-22,v125_rawvalue,"Air pollution-particulate matter, 2014",Description for v125_rawvalue will go here.
-21,v132_rawvalue,"Access to exercise opportunities, 2010 & 2013",Description for v132_rawvalue will go here.
-24,v133_rawvalue,"Food environment index, 2012",Description for v133_rawvalue will go here.
-23,v137_rawvalue,"% Long commute- driving alone, 2009-2013",Description for v137_rawvalue will go here.
+1,_013_Urbanization_Code,Urban-Rural Status,Description for _013_Urbanization_Code will go here.
+2,black,% African American,Description for black will go here.
+3,poverty,% in Poverty,Description for poverty will go here.
+4,PCTUI,% Uninsured,Description for PCTUI will go here.
+5,diabetes,% Diabetes,Description for diabetes will go here.
+6,obesity,% Obese,Description for obesity will go here.
+7,age65over,% Over 65 y,Description for age65over will go here.
+8,groupquater,% in Group Quarters,Description for groupquater will go here.
+9,male,% Male,Description for male will go here.
+10,hhincome,hhincome,Description for hhincome will go here.
+11,college,college,Description for college will go here.
+12,RPL_THEME1,Socioeconomic Vulnerability,Description for RPL_THEME1 will go here.
+13,RPL_THEME2,Household Composition Vulnerability,Description for RPL_THEME2 will go here.
+14,RPL_THEME3,Minority/Language Vulnerability,Description for RPL_THEME3 will go here.
+15,RPL_THEME4,Housing/Transportaion Vulnerability,Description for RPL_THEME4 will go here.
+16,cases,Total COVID-19 Cases,Description for cases will go here.
+17,deaths,Total COVID-19 Deaths,Description for deaths will go here.
+18,mean7daycases,7-day Average Cases,Description for mean7daycases will go here.
+19,mean7daydeaths,7-day Average Deaths,Description for mean7daydeaths will go here.
+20,covidmortality,"Total Deaths per 100,000",Description for covidmortality will go here.
+21,caserate,"Total Cases per 100,000",Description for caserate will go here.
+22,covidmortality7day,"7-day Average Deaths per 100,000",Description for covidmortality7day will go here.
+23,caserate7day,"7-day Average Cases per 100,000",Description for caserate7day will go here.
