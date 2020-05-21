@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6090345ae89bc31c9e96811b1a0016ad",
+    "revision": "5750f25f9d435224fd8817c5d2d891c4",
     "url": "/emory-covid19/index.html"
   },
   {
-    "revision": "ce18f8942b4a2efb22cd",
+    "revision": "822515e1fa46813fce99",
     "url": "/emory-covid19/static/css/2.2385e5f5.chunk.css"
   },
   {
-    "revision": "ce18f8942b4a2efb22cd",
-    "url": "/emory-covid19/static/js/2.fe523476.chunk.js"
+    "revision": "822515e1fa46813fce99",
+    "url": "/emory-covid19/static/js/2.085bbb41.chunk.js"
   },
   {
     "revision": "0ac79d53dda6ffa0c6325c90109848cb",
-    "url": "/emory-covid19/static/js/2.fe523476.chunk.js.LICENSE.txt"
+    "url": "/emory-covid19/static/js/2.085bbb41.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "68dbed919f940718a73a",
-    "url": "/emory-covid19/static/js/main.38e514f6.chunk.js"
+    "revision": "c0035d38167d70f21725",
+    "url": "/emory-covid19/static/js/main.ca90201f.chunk.js"
   },
   {
     "revision": "89bce5758f834ab277e3",

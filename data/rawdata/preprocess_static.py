@@ -21,6 +21,9 @@ def barchart(fn="nationalraw.csv"):
             d = {k:v.strip() for k, v in zip(header, row)}
             d_new = {}
             for k in varmap.keys():
+                if k == "_013_Urbanization":
+                    d_new[k] = d[k]
+                    continue
                 try:
                     d_new[k] = float(d[k])
                 except ValueError:
