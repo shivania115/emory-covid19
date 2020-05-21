@@ -5,6 +5,7 @@ import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
 import { VictoryChart, 
+  VictoryContainer,
   VictoryGroup, 
   VictoryBar, 
   VictoryTheme, 
@@ -26,6 +27,40 @@ import configs from "./state_config.json";
 
 //import dataState from "../data/data_state.json";
 //import dataCountyPct from "../data/data_county_pct.json";
+
+function BarChart(props) {
+  const colors = {"nation": "#f2a900", 
+                  "state": "#84754e", 
+                  "county": "#0033a0"};
+  return (
+    <VictoryChart
+      theme={VictoryTheme.material}
+      width={280}
+      height={80}       
+      domainPadding={10}
+      scale={{y: props.ylog?'log':'linear'}}
+      minDomain={{y: props.ylog?1:0}}
+      padding={{left: 60, right: 10, top: 20, bottom: 30}}
+      containerComponent={<VictoryContainer responsive={false}/>}
+    >
+      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 10}}/>
+      <VictoryAxis style={{tickLabels: {fontSize: 8}}} />
+      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
+      <VictoryBar
+        horizontal
+        data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
+              {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
+              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
+        style={{
+          data: {
+            fill: ({ datum }) => colors[datum.key]
+          }
+        }}
+        x="key"
+        y="value"
+      />
+    </VictoryChart>);
+}
 
 export default function StateMap(props) {
 
@@ -108,7 +143,7 @@ export default function StateMap(props) {
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={8}>
-                <Header as='h2' style={{fontWeight: 400}}>
+                <Header as='h1' style={{fontWeight: 400}}>
                   <Header.Content>
                     Covid-19 Outcomes in {stateName}
                     <Header.Subheader style={{fontWeight: 300}}>
@@ -157,21 +192,24 @@ export default function StateMap(props) {
                 </ComposableMap>
               </Grid.Column>
               <Grid.Column width={8}>
-                <Header style={{fontWeight: 400}}>
+                <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
                     Statistics of {countyName}
                     <Header.Subheader style={{fontWeight: 300}}>
-                      Case rates and mortalities are shown in 7-days moving averages.
+                      Case rates and mortalities are shown in 7-days moving averages.<br/>
+                      Line charts show the statistics over time, and bar charts show the latest statistics.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
                 <Grid>
-                  <Grid.Row columns={2}>
+                  <Grid.Row columns={2} style={{padding: 0}}>
                     <Grid.Column>
                       <VictoryChart theme={VictoryTheme.material}
-                        height={250}       
-                        padding={{left: 50, right: 10, top: 60, bottom: 30}}>
-                        <VictoryLabel text="COVID-19 Cases / 100,000" x={180} y={20} textAnchor="middle"/>
+                        width={280}
+                        height={180}       
+                        padding={{left: 50, right: 10, top: 60, bottom: 30}}
+                        containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 10}}/>
                         <VictoryLegend
                           x={10} y={35}
                           orientation="horizontal"
@@ -181,8 +219,10 @@ export default function StateMap(props) {
                             ]}
                         />
                         <VictoryAxis tickCount={2}
+                           style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         <VictoryAxis dependentAxis tickCount={5}
+                         style={{tickLabels: {fontSize: 8, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
@@ -202,9 +242,11 @@ export default function StateMap(props) {
                     </Grid.Column>
                     <Grid.Column>
                       <VictoryChart theme={VictoryTheme.material}
-                        height={250}       
-                        padding={{left: 50, right: 10, top: 60, bottom: 30}}>
-                        <VictoryLabel text="COVID-19 Deaths / 100,000" x={180} y={20} textAnchor="middle"/>
+                        width={280}
+                        height={180}       
+                        padding={{left: 50, right: 10, top: 60, bottom: 30}}
+                        containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 10}}/>
                         <VictoryLegend
                           x={10} y={35}
                           orientation="horizontal"
@@ -214,8 +256,10 @@ export default function StateMap(props) {
                             ]}
                         />
                         <VictoryAxis tickCount={2}
+                         style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         <VictoryAxis dependentAxis tickCount={5}
+                         style={{tickLabels: {fontSize: 8, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
@@ -234,28 +278,77 @@ export default function StateMap(props) {
                       </VictoryChart>
                     </Grid.Column>
                   </Grid.Row>
-                  <Grid.Row columns={2}>
+                  <Grid.Row columns={2} style={{padding: 0}}>
                     <Grid.Column>
-                      <VictoryChart
-                        theme={VictoryTheme.material}
-                        domainPadding={20}
-                        padding={{left: 150, top: 50, bottom: 50}}
-                        height={400}
-                      >
-                        <VictoryAxis />
-                        <VictoryAxis dependentAxis tickCount={2}/>
-                        <VictoryGroup horizontal
-                          offset={10}
-                          style={{data: {width: 7}}}
-                          colorScale={["#f2a900", "#84754e", "#0033a0"]}
-                        >
-                          <VictoryBar
-                            data={_.map(data._nation, (v, k)=>{return {key: k, value: v};})}
-                            x="key"
-                            y="value"
-                          />
-                        </VictoryGroup>
-                      </VictoryChart>
+                      <BarChart 
+                        title="" 
+                        var="caserate7day" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <BarChart 
+                        title="" 
+                        var="covidmortality7day" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Divider/>
+                  <Grid.Row columns={2} style={{padding: 0}}>                    
+                    <Grid.Column>
+                      <BarChart 
+                        title="% African American" 
+                        var="black" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                      <BarChart 
+                        title="% in Poverty" 
+                        var="poverty" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                      <BarChart 
+                        title="% Uninsured" 
+                        var="PCTUI" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />  
+                      <BarChart 
+                        title="% Diabetes" 
+                        var="diabetes" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} /> 
+                    </Grid.Column>
+                    <Grid.Column>
+                      <BarChart 
+                        title="% Obese" 
+                        var="obesity" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                      <BarChart 
+                        title="% Over 65 y/o" 
+                        var="age65over" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                      <BarChart 
+                        title="% in Group Quarters" 
+                        var="groupquater" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
+                      <BarChart 
+                        title="% Male" 
+                        var="male" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        data={data} />
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>

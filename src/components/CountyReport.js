@@ -5,6 +5,7 @@ import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
 import { VictoryChart, 
+  VictoryContainer,
   VictoryGroup, 
   VictoryBar, 
   VictoryTheme, 
@@ -22,6 +23,79 @@ import fips2county from './fips2county.json'
 import configs from "./state_config.json";
 import _ from 'lodash';
 
+function ScatterChart(props) {
+
+  return (
+    <VictoryChart
+      width={400}
+      height={300}
+      scale={{x: props.xlog?'log':'linear', y: props.ylog?'log':'linear'}}
+      minDomain={{y: props.ylog?1:0}}
+      padding={{left: 80, right: 10, top: 50, bottom: 50}}>
+      <VictoryLegend
+        x={10} y={10}
+        orientation="horizontal"
+        colorScale={["#bdbfc1", "#0033a0"]}
+        data ={[
+          {name: ('Other counties in '+ props.stateName)}, {name: props.countyName}
+          ]}
+      />
+      <VictoryScatter
+        data={_.filter(_.map(props.data, (d, k)=>{d.fips=k; return d;}), (d)=> (
+                 d.fips.length===5 &&
+                 d.fips.substring(0,2)===props.stateFips &&
+                 d[props.x] && d[props.y]))}
+        sortKey={(d) => d.fips===(props.stateFips + props.countyFips)}
+        style={{ data: { fill: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?"#0033a0":"#bdbfc1",
+                 fillOpacity: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?1.0:0.5} }}
+        size={5}
+        x={props.x}
+        y={props.y}
+      />
+      <VictoryAxis label={props.x}
+        tickCount={5}
+        tickFormat={(y) => (Math.round(y*100)/100)} />
+      <VictoryAxis dependentAxis label={props.y} 
+        style={{ axisLabel: {padding: 40} }}
+        tickCount={5}
+        tickFormat={(y) => (Math.round(y*100)/100)} />
+    </VictoryChart>);
+
+}
+
+function BarChart(props) {
+  const colors = {"nation": "#f2a900", 
+                  "state": "#84754e", 
+                  "county": "#0033a0"};
+  return (
+    <VictoryChart
+      theme={VictoryTheme.material}
+      width={props.width || 560}
+      height={140}       
+      domainPadding={10}
+      scale={{y: props.ylog?'log':'linear'}}
+      minDomain={{y: props.ylog?1:0}}
+      padding={{left: 60, right: 10, top: 40, bottom: 50}}
+      containerComponent={<VictoryContainer responsive={false}/>}
+    >
+      <VictoryLabel text={props.title} x={(props.width || 560)/2} y={30} textAnchor="middle"/>
+      <VictoryAxis/>
+      <VictoryAxis dependentAxis/>
+      <VictoryBar
+        horizontal
+        data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
+              {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
+              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
+        style={{
+          data: {
+            fill: ({ datum }) => colors[datum.key]
+          }
+        }}
+        x="key"
+        y="value"
+      />
+    </VictoryChart>);
+}
 
 export default function CountyReport() {
 
@@ -30,10 +104,10 @@ export default function CountyReport() {
   const [stateName, setStateName] = useState('');
   const [countyName, setCountyName] = useState('');
   const history = useHistory();
-  const [dataBar, setDataBar] = useState();
-  const [dataLine, setDataLine] = useState();
+  const [data, setData] = useState();
+  const [dataTS, setDataTS] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
-  const [covidMetric, setCovidMetric] = useState({case: 'N/A', death: 'N/A', t: 'n/a'});
+  const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', t: 'n/a'});
   const scatterX0 = 'COVID Mortality / 100k';
   const scatterX1 = 'COVID Case Rate / 1M';
   const scatterX2 = '% Over 65 Yrs';
@@ -51,21 +125,21 @@ export default function CountyReport() {
     setStateName(configMatched.name);
     setCountyName(fips2county[stateFips+countyFips]);
 
-    fetch('/emory-covid19/data/barchartSV'+stateFips+'.json').then(res => res.json())
-      .then(data => setDataBar(data));
+    fetch('/emory-covid19/data/data.json').then(res => res.json())
+      .then(x => setData(x));
     
-    fetch('/emory-covid19/data/linechartSV'+stateFips+'.json').then(res => res.json())
-      .then(data => setDataLine(data));
+    fetch('/emory-covid19/data/timeseries'+stateFips+'.json').then(res => res.json())
+      .then(x => setDataTS(x));
 
   }, [stateFips]);
 
   useEffect(() => {
-    if (dataLine && dataLine[countyFips]){
-      setCovidMetric(_.takeRight(dataLine[countyFips])[0]);
+    if (data && dataTS[stateFips+countyFips]){
+      setCovidMetric(_.takeRight(dataTS[stateFips+countyFips])[0]);
     }
-  }, [dataLine])
+  }, [dataTS])
 
-  if (dataBar && dataLine) {
+  if (data && dataTS) {
 
   return (
       <div>
@@ -83,7 +157,7 @@ export default function CountyReport() {
           </Breadcrumb>
           <Header as='h2'>
             <Header.Content>
-              Covid-19 Outcomes in {countyName}
+              Covid-19 Health Equity Report for {countyName}
               <Header.Subheader>
               Health determinants impact COVID-19 outcomes. 
               </Header.Subheader>
@@ -94,362 +168,237 @@ export default function CountyReport() {
               <Grid.Column>
                 <Statistic size='small'>
                   <Statistic.Value>
-                    {covidMetric.case===null?'0':covidMetric.case.toLocaleString()}
+                    {covidMetric.cases===null?'0':covidMetric.cases.toLocaleString()}
                   </Statistic.Value>
                   <Statistic.Label>Total Cases</Statistic.Label>
                 </Statistic>
                 <Statistic style={{paddingLeft: '2em'}} size='small'>
                   <Statistic.Value>
-                    {covidMetric.death===null?'0':covidMetric.death.toLocaleString()}
+                    {covidMetric.deaths===null?'0':covidMetric.deaths.toLocaleString()}
                   </Statistic.Value>
-                  <Statistic.Label>Total Death</Statistic.Label>
+                  <Statistic.Label>Total Deaths</Statistic.Label>
                 </Statistic>
                 <span style={{padding: '3em', color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Grid columns={2} centered>
+            <Grid.Row>
+              <Grid.Column>
+                <VictoryChart theme={VictoryTheme.material}
+                  width={550}
+                  height={300}       
+                  padding={{left: 50, right: 10, top: 60, bottom: 30}}>
+                  <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle"/>
+                  <VictoryLegend
+                    x={10} y={35}
+                    orientation="horizontal"
+                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                    data ={[
+                      {name: "nation"}, {name: "state"}, {name: "county"}
+                      ]}
+                  />
+                  <VictoryAxis
+                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                  <VictoryAxis dependentAxis tickCount={5}
+                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
+                    />
+                  <VictoryGroup 
+                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                  >
+                    <VictoryLine data={dataTS["_nation"]}
+                      x='t' y='caseRateMA'
+                      />
+                    <VictoryLine data={dataTS[stateFips]}
+                      x='t' y='caseRateMA'
+                      />
+                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]}
+                      x='t' y='caseRateMA'
+                      />
+                  </VictoryGroup>
+                </VictoryChart>
+              </Grid.Column>
+              <Grid.Column>
+                <VictoryChart theme={VictoryTheme.material}
+                  width={550}
+                  height={300}       
+                  padding={{left: 50, right: 10, top: 60, bottom: 30}}>
+                  <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle"/>
+                  <VictoryLegend
+                    x={10} y={35}
+                    orientation="horizontal"
+                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                    data ={[
+                      {name: "nation"}, {name: "state"}, {name: "county"}
+                      ]}
+                  />
+                  <VictoryAxis
+                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                  <VictoryAxis dependentAxis tickCount={5}
+                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
+                    />
+                  <VictoryGroup 
+                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                  >
+                    <VictoryLine data={dataTS["_nation"]}
+                      x='t' y='mortalityMA'
+                      />
+                    <VictoryLine data={dataTS[stateFips]}
+                      x='t' y='mortalityMA'
+                      />
+                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]}
+                      x='t' y='mortalityMA'
+                      />
+                  </VictoryGroup>
+                </VictoryChart>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row columns={2}>
+              <Grid.Column>
+                <BarChart 
+                  title="" 
+                  var="caserate7day" 
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+              </Grid.Column>
+              <Grid.Column>
+                <BarChart 
+                  title="" 
+                  var="covidmortality7day" 
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Divider/>
+          <Grid>
+            <Grid.Row columns={3}>                    
+              <Grid.Column>
+                <BarChart 
+                  title="% African American" 
+                  var="black" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+                <BarChart 
+                  title="% in Poverty" 
+                  var="poverty" 
+                  width={350}                 
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+                <BarChart 
+                  title="% Uninsured" 
+                  var="PCTUI" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />  
+              </Grid.Column>
+              <Grid.Column>
+                <BarChart 
+                  title="% Diabetes" 
+                  var="diabetes" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} /> 
+                <BarChart 
+                  title="% Obese" 
+                  var="obesity"
+                  width={350} 
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+                <BarChart 
+                  title="% Over 65 y/o" 
+                  var="age65over" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+              </Grid.Column>
+              <Grid.Column>
+                <BarChart 
+                  title="% in Group Quarters" 
+                  var="groupquater" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+                <BarChart 
+                  title="% Male" 
+                  var="male" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Grid columns={1} textAlign='center'>
+            <Grid.Row>
+              <Grid.Column style={{fontWeight: 400}}>
+              {'Statistics of '+countyName + ' and Other Counties in '+ stateName}
               </Grid.Column>
             </Grid.Row>
           </Grid>
           <Grid columns={3}>
             <Grid.Row>
               <Grid.Column>
-                <VictoryChart theme={VictoryTheme.material}
-                  height={250}
-                  scale={{y: 'log'}}
-                  padding={{left: 50, right: 10, top: 60, bottom: 30}}
-                  minDomain={{y:1}}>
-                  <VictoryLabel text="New Cases & Deaths over Time (7-day avg.)" x={180} y={20} textAnchor="middle"/>
-                  <VictoryLegend
-                    x={10} y={35}
-                    orientation="horizontal"
-                    colorScale={["#0033a0", "#da291c"]}
-                    data ={[
-                      {name: "new cases"}, {name: "new deaths"}
-                      ]}
-                  />
-                  <VictoryAxis tickCount={2}
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                  <VictoryAxis dependentAxis tickCount={5}
-                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                    />
-                  <VictoryGroup 
-                    colorScale={["#0033a0", "#da291c"]}
-                  >
-                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='dcase'
-                      />
-                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='ddeath'
-                      />
-                  </VictoryGroup>  
-                </VictoryChart>
+                <ScatterChart x="cases" y="deaths" 
+                  xlog={true} 
+                  ylog={true} 
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
               </Grid.Column>
               <Grid.Column>
-                <VictoryChart theme={VictoryTheme.material}
-                  height={250}
-                  scale={{y: 'log'}}
-                  padding={{left: 50, right: 10, top: 60, bottom: 30}}
-                  minDomain={{y:1}}>
-                  <VictoryLabel text="County vs. State New Cases (7-day avg.)" x={180} y={20} textAnchor="middle"/>
-                  <VictoryLegend
-                    x={10} y={35}
-                    orientation="horizontal"
-                    colorScale={["#df7a1c", "#0033a0"]}
-                    data ={[
-                      {name: "state new cases"}, {name: "county new cases"}
-                      ]}
-                  />
-                  <VictoryAxis tickCount={2}
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                  <VictoryAxis dependentAxis tickCount={5}
-                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                    />
-                  <VictoryGroup 
-                    colorScale={["#df7a1c", "#0033a0"]}
-                  >
-                    <VictoryLine data={dataLine._state}
-                      x='t' y='dcase'
-                      />
-                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='dcase'
-                      />
-                  </VictoryGroup>  
-                </VictoryChart>
+                <ScatterChart x="mean7daycases" y="mean7daydeaths" 
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
               </Grid.Column>
               <Grid.Column>
-                <VictoryChart theme={VictoryTheme.material}
-                  height={250}
-                  scale={{y: 'log'}}
-                  padding={{left: 50, right: 10, top: 60, bottom: 30}}
-                  minDomain={{y:1}}>
-                  <VictoryLabel text="County vs. State New Deaths (7-day avg.)" x={180} y={20} textAnchor="middle"/>
-                  <VictoryLegend
-                    x={10} y={35}
-                    orientation="horizontal"
-                    colorScale={["#df7a1c", "#0033a0"]}
-                    data ={[
-                      {name: "state new deaths"}, {name: "county new deaths"}
-                      ]}
-                  />
-                  <VictoryAxis tickCount={2}
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                  <VictoryAxis dependentAxis tickCount={5}
-                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                    />
-                  <VictoryGroup 
-                    colorScale={["#df7a1c", "#0033a0"]}
-                  >
-                    <VictoryLine data={dataLine._state}
-                      x='t' y='ddeath'
-                      />
-                    <VictoryLine data={dataLine[countyFips]?dataLine[countyFips]:dataLine[""]}
-                      x='t' y='ddeath'
-                      />
-                  </VictoryGroup>  
-                </VictoryChart>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <Grid columns={1}>
-            <Grid.Row>
-              <Grid.Column>
-                <VictoryChart
-                  theme={VictoryTheme.material}
-                  domainPadding={20}
-                  width={960}
-                  height={300}
-                  padding={{left: 50, right: 10, top: 60, bottom: 80}}
-                >
-                  <VictoryLabel text="Heatlh Determinants and COVID Statistics" x={480} y={20} textAnchor="middle"/>
-                  <VictoryLegend
-                    x={80} y={40}
-                    orientation="horizontal"
-                    colorScale={["#bdbfc1", "#f4c082", "#0033a0"]}
-                    data ={[
-                      {name: "nation"}, {name: "state"}, {name: "county"}
-                      ]}
-                  />
-                  <VictoryGroup
-                    offset={10}
-                    style={{data: {width: 5}}}
-                    colorScale={["#bdbfc1", "#f4c082", "#0033a0"]}
-                  >
-                    <VictoryBar
-                      data={_.sortBy(dataBar._nation, 'seq')}
-                      x="nameShort"
-                      y="value"
-                    />
-                    <VictoryBar
-                      data={_.sortBy(dataBar._state, 'seq')}
-                      x="nameShort"
-                      y="value"
-                    />
-                    <VictoryBar
-                      data={_.sortBy(dataBar[countyFips], 'seq')}
-                      x="nameShort"
-                      y="value"
-                    />
-                  </VictoryGroup>
-                  <VictoryAxis tickLabelComponent={<VictoryLabel angle={-45} textAnchor="end" style={{fontSize: '8px'}}/>} /> 
-                  <VictoryAxis dependentAxis/> 
-                </VictoryChart>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <Grid columns={1} textAlign='center'>
-            <Grid.Row>
-              <Grid.Column>
-              <small style={{fontWeight: 700}}>{'Statistics of '+countyName + ' and Other Counties in '+ stateName}</small>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <Grid columns={4}>
-            <Grid.Row>
-              <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log', x: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryLegend
-                    x={10} y={10}
-                    orientation="horizontal"
-                    colorScale={["#bdbfc1", "#0033a0"]}
-                    data ={[
-                      {name: ('Other counties in '+ stateName)}, {name: countyName}
-                      ]}
-                  />
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX0] && d[scatterX1]))}
-                    size={5}
-                    x={scatterX1}
-                    y={scatterX0}
-                  />
-                  <VictoryAxis label={scatterX1 + ' (in log)'}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                  <VictoryAxis dependentAxis label={scatterX0 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
-              </Grid.Column>
-              <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX0] && d[scatterX2]))}
-                    size={5}
-                    x={scatterX2}
-                    y={scatterX0}
-                  />
-                  <VictoryAxis label={scatterX2}/>
-                  <VictoryAxis dependentAxis label={scatterX0 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
-              </Grid.Column>
-              <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX1] && d[scatterX3]))}
-                    size={5}
-                    x={scatterX3}
-                    y={scatterX1}
-                  />
-                  <VictoryAxis label={scatterX3}/>
-                  <VictoryAxis dependentAxis label={scatterX1 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
-              </Grid.Column>
-              <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX1] && d[scatterX4]))}
-                    size={5}
-                    x={scatterX4}
-                    y={scatterX1}
-                  />
-                  <VictoryAxis label={scatterX4}/>
-                  <VictoryAxis dependentAxis label={scatterX1 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
+                <ScatterChart x="RPL_THEME1" y="mean7daydeaths" 
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX0] && d[scatterX1]))}
-                    size={5}
-                    x={scatterX5}
-                    y={scatterX1}
-                  />
-                  <VictoryAxis label={scatterX5}/>
-                  <VictoryAxis dependentAxis label={scatterX1 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
+            <Grid.Column>
+                <ScatterChart x="RPL_THEME2" y="mean7daydeaths" 
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
               </Grid.Column>
               <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX0] && d[scatterX2]))}
-                    size={5}
-                    x={scatterX6}
-                    y={scatterX1}
-                  />
-                  <VictoryAxis label={scatterX6}/>
-                  <VictoryAxis dependentAxis label={scatterX1 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
+                <ScatterChart x="RPL_THEME3" y="mean7daydeaths" 
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
               </Grid.Column>
               <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX1] && d[scatterX3]))}
-                    size={5}
-                    x={scatterX7}
-                    y={scatterX1}
-                  />
-                  <VictoryAxis label={scatterX7}/>
-                  <VictoryAxis dependentAxis label={scatterX1 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
-              </Grid.Column>
-              <Grid.Column>
-                <VictoryChart
-                  width={400}
-                  height={300}
-                  scale={{y: 'log'}}                  
-                  padding={{left: 80, right: 10, top: 50, bottom: 50}}>
-                  <VictoryScatter
-                    sortKey={(d) => d.fips===countyFips}
-                    style={{ data: { fill: ({datum}) => datum.fips===countyFips?"#0033a0":"#bdbfc1",
-                             fillOpacity: ({datum}) => datum.fips===countyFips?1.0:0.5} }}
-                    data={_.filter(dataBar._scatter, (d)=> (d[scatterX1] && d[scatterX4]))}
-                    size={5}
-                    x={scatterX8}
-                    y={scatterX1}
-                  />
-                  <VictoryAxis label={scatterX8}/>
-                  <VictoryAxis dependentAxis label={scatterX1 + ' (in log)'} 
-                    style={{ axisLabel: {padding: 40} }}
-                    tickCount={5}
-                    tickFormat={(y) => (Math.round(y*100)/100)} />
-                </VictoryChart>
+                <ScatterChart x="RPL_THEME4" y="mean7daydeaths" 
+                  stateName={stateName}
+                  countyName={countyName}
+                  countyFips={countyFips} 
+                  stateFips={stateFips}
+                  data={data} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -468,12 +417,12 @@ export default function CountyReport() {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {_.map(_.sortBy(dataBar[countyFips], 'seq'), 
-                (d) => (<Table.Row key={d.nameShort}>
-                  <Table.Cell>{d.nameShort}</Table.Cell>
-                  <Table.Cell>{Math.round(d.value*100)/100}</Table.Cell>
-                  <Table.Cell>{Math.round(_.find(dataBar._state, (x) => x.name==d.name).value*100)/100}</Table.Cell>
-                  <Table.Cell>{Math.round(_.find(dataBar._nation, (x) => x.name==d.name).value*100)/100}</Table.Cell>
+              {_.map(data[stateFips+countyFips], 
+                (v, k) => (<Table.Row key={k}>
+                  <Table.Cell>{k}</Table.Cell>
+                  <Table.Cell>{Math.round(v*100)/100}</Table.Cell>
+                  <Table.Cell>{Math.round(data[stateFips][k]*100)/100}</Table.Cell>
+                  <Table.Cell>{Math.round(data['_nation'][k]*100)/100}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>
