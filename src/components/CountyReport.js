@@ -52,10 +52,10 @@ function ScatterChart(props) {
         x={props.x}
         y={props.y}
       />
-      <VictoryAxis label={props.varMap[props.x].name}
+      <VictoryAxis label={props.varMap[props.x]?props.varMap[props.x].name:props.x}
         tickCount={4}
         tickFormat={(y) => (props.rescaleX?(Math.round(y/1000)+'k'):(Math.round(y*100)/100))} />
-      <VictoryAxis dependentAxis label={props.varMap[props.y].name} 
+      <VictoryAxis dependentAxis label={props.varMap[props.y]?props.varMap[props.y].name:props.y} 
         style={{ axisLabel: {padding: 40} }}
         tickCount={5}
         tickFormat={(y) => (Math.round(y*100)/100)} />
