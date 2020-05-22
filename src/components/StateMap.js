@@ -29,7 +29,7 @@ import configs from "./state_config.json";
 //import dataCountyPct from "../data/data_county_pct.json";
 
 function BarChart(props) {
-  const colors = {"nation": "#f2a900", 
+  const colors = {"nation": "#b1b3b3", 
                   "state": "#84754e", 
                   "county": "#0033a0"};
   return (
@@ -40,7 +40,7 @@ function BarChart(props) {
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 70, right: 10, top: 20, bottom: 30}}
+      padding={{left: 70, right: 30, top: 20, bottom: 30}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
@@ -48,9 +48,12 @@ function BarChart(props) {
       <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
       <VictoryBar
         horizontal
+        barRatio={0.8}
+        labels={({ datum }) => (Math.round(datum.value*100)/100)}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
               {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
               {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
+        labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
             fill: ({ datum }) => colors[datum.key]
@@ -152,13 +155,13 @@ export default function StateMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="500" height="30">
-                  <text x={0} y={7} style={{fontSize: '0.5em'}}>COVID-19 Mortality</text>
+                <svg width="500" height="55">
+                  <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={12*i} y={10} width="12" height="12" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
-                  <text x={0} y={30} style={{fontSize: '0.5em'}}>Low</text>
-                  <text x={12 * (colorPalette.length - 1)} y={30} style={{fontSize: '0.5em'}}>High</text>
+                  <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
                 </svg>
                 <ComposableMap projection="geoAlbersUsa" 
                   projectionConfig={{scale:`${config.scale}`}} 
@@ -207,26 +210,30 @@ export default function StateMap(props) {
                       <VictoryChart theme={VictoryTheme.material}
                         width={280}
                         height={180}       
-                        padding={{left: 50, right: 10, top: 60, bottom: 30}}
+                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 10}}/>
+                        <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
                         <VictoryLegend
                           x={10} y={35}
                           orientation="horizontal"
-                          colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                           data ={[
                             {name: "nation"}, {name: "state"}, {name: "county"}
                             ]}
                         />
-                        <VictoryAxis tickCount={2}
-                           style={{tickLabels: {fontSize: 10}}} 
+                        <VictoryAxis
+                          tickValues={[
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
+                          style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{tickLabels: {fontSize: 8, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
-                          colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
@@ -244,26 +251,30 @@ export default function StateMap(props) {
                       <VictoryChart theme={VictoryTheme.material}
                         width={280}
                         height={180}       
-                        padding={{left: 50, right: 10, top: 60, bottom: 30}}
+                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 10}}/>
+                        <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
                         <VictoryLegend
                           x={10} y={35}
                           orientation="horizontal"
-                          colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                           data ={[
                             {name: "nation"}, {name: "state"}, {name: "county"}
                             ]}
                         />
-                        <VictoryAxis tickCount={2}
-                         style={{tickLabels: {fontSize: 10}}} 
+                        <VictoryAxis
+                          tickValues={[
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
+                          style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{tickLabels: {fontSize: 8, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
-                          colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'

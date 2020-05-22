@@ -29,6 +29,12 @@ def get_lineitem(d):
         mortality = 0
         caserate_ma = 0
         mortality_ma = 0
+
+    if caserate_ma < 0:
+        caserate_ma = 0
+    if mortality_ma < 0:
+        mortality_ma = 0
+
     return {"t": int(parse(d["date"]).timestamp()),
             "cases": cases,
             "deaths": deaths,

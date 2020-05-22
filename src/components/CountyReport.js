@@ -64,7 +64,7 @@ function ScatterChart(props) {
 }
 
 function BarChart(props) {
-  const colors = {"nation": "#f2a900", 
+  const colors = {"nation": "#b1b3b3", 
                   "state": "#84754e", 
                   "county": "#0033a0"};
   return (
@@ -75,7 +75,7 @@ function BarChart(props) {
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 60, right: 10, top: 40, bottom: 50}}
+      padding={{left: 60, right: 50, top: 40, bottom: 50}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={(props.width || 560)/2} y={30} textAnchor="middle"/>
@@ -83,9 +83,12 @@ function BarChart(props) {
       <VictoryAxis dependentAxis/>
       <VictoryBar
         horizontal
+        barRatio={0.8}
+        labels={({ datum }) => (Math.round(datum.value*100)/100)}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
               {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
               {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
+        labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
             fill: ({ datum }) => colors[datum.key]
@@ -184,23 +187,28 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 10, top: 60, bottom: 30}}>
+                  padding={{left: 50, right: 60, top: 60, bottom: 30}}>
                   <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle"/>
                   <VictoryLegend
                     x={10} y={35}
                     orientation="horizontal"
-                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                     data ={[
                       {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
                   />
                   <VictoryAxis
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}
+                    tickValues={[
+                      dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*3 - 1].t,
+                      dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*2 - 1].t,
+                      dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4) - 1].t,
+                      dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                     />
                   <VictoryGroup 
-                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caseRateMA'
@@ -218,23 +226,28 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 10, top: 60, bottom: 30}}>
+                  padding={{left: 50, right: 60, top: 60, bottom: 30}}>
                   <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle"/>
                   <VictoryLegend
                     x={10} y={35}
                     orientation="horizontal"
-                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                     data ={[
                       {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
                   />
                   <VictoryAxis
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}
+                    tickValues={[
+                      dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*3 - 1].t,
+                      dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*2 - 1].t,
+                      dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4) - 1].t,
+                      dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                     />
                   <VictoryGroup 
-                    colorScale={["#f2a900", "#84754e", "#0033a0"]}
+                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='mortalityMA'

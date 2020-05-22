@@ -152,13 +152,13 @@ export default function USMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="30">
-                  <text x={0} y={7} style={{fontSize: '0.5em'}}>COVID-19 Mortality</text>
+                <svg width="600" height="55">
+                  <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={12*i} y={10} width="12" height="12" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
-                  <text x={0} y={30} style={{fontSize: '0.5em'}}>Low</text>
-                  <text x={12 * (colorPalette.length - 1)} y={30} style={{fontSize: '0.5em'}}>High</text>
+                  <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
                 </svg>
                 <ComposableMap 
                   projection="geoAlbersUsa" 
