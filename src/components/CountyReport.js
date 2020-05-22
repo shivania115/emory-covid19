@@ -134,7 +134,7 @@ export default function CountyReport() {
     }
   }, [dataTS])
 
-  if (data && dataTS) {
+  if (data && dataTS && varMap) {
 
   return (
       <div>

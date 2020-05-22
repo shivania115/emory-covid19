@@ -36,15 +36,15 @@ function BarChart(props) {
     <VictoryChart
       theme={VictoryTheme.material}
       width={280}
-      height={80}       
+      height={90}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 60, right: 10, top: 20, bottom: 30}}
+      padding={{left: 70, right: 10, top: 20, bottom: 30}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 10}}/>
-      <VictoryAxis style={{tickLabels: {fontSize: 8}}} />
+      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
+      <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
       <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
       <VictoryBar
         horizontal
