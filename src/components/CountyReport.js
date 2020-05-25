@@ -120,13 +120,13 @@ export default function CountyReport() {
     setStateName(configMatched.name);
     setCountyName(fips2county[stateFips+countyFips]);
 
-    fetch('/emory-covid19/data/rawdata/variable_mapping.json').then(res => res.json())
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => setVarMap(x));
 
-    fetch('/emory-covid19/data/data.json').then(res => res.json())
+    fetch('/data/data.json').then(res => res.json())
       .then(x => setData(x));
     
-    fetch('/emory-covid19/data/timeseries'+stateFips+'.json').then(res => res.json())
+    fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
       .then(x => setDataTS(x));
 
   }, [stateFips]);
@@ -146,9 +146,9 @@ export default function CountyReport() {
           {config &&
           <div>
           <Breadcrumb>
-            <Breadcrumb.Section link onClick={() => history.push('/emory-covid19')}>United States</Breadcrumb.Section>
+            <Breadcrumb.Section link onClick={() => history.push('/')}>United States</Breadcrumb.Section>
             <Breadcrumb.Divider />
-            <Breadcrumb.Section link onClick={() => history.push('/emory-covid19/'+stateFips)}>{stateName}</Breadcrumb.Section>
+            <Breadcrumb.Section link onClick={() => history.push('/'+stateFips)}>{stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
             <Breadcrumb.Section active>{countyName}</Breadcrumb.Section>
             <Breadcrumb.Divider />

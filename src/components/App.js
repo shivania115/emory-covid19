@@ -21,23 +21,23 @@ export default function App() {
   return (
       <Router>
         <Switch>
-          <Route path='/emory-covid19/compare-counties'>
+          <Route path='/compare-counties'>
             <CountyCompare />
           </Route>
-          <Route path='/emory-covid19/about-us'>
+          <Route path='/about-us'>
             <AboutUs />
           </Route>          
-          <Route path='/emory-covid19/:stateFips/:countyFips'>
+          <Route path='/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  
-          <Route path='/emory-covid19/:stateFips'>
+          <Route path='/:stateFips'>
             <StateMap />
           </Route>
-          <Route path='/emory-covid19'>
+          <Route path='/'>
             <USMap />
           </Route>
           <Route path="*">
-            <Redirect to='/emory-covid19/'/>
+            <Redirect to='/'/>
           </Route>
         </Switch>
       </Router>

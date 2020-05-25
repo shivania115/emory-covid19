@@ -50,7 +50,7 @@ export default function Notes(props){
       <Divider hidden/>
       <Grid.Row columns={2}>
         <Grid.Column>          
-          <Image size='small' src='/emory-covid19/logo.png' />
+          <Image size='small' src='/logo.png' />
           &copy; 2020 Emory University. All rights reserved.
         </Grid.Column>
         <Grid.Column>          

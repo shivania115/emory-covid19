@@ -26,7 +26,7 @@ export default function CountyCompare() {
   const [measureOptions, setMeasureOptions] = useState([]);
 
   useEffect(()=>{
-    fetch('/emory-covid19/data/rawdata/variable_mapping.json').then(res => res.json())
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
         setVarMap(x);
         setMeasureOptions(_.filter(_.map(x, d=> {
@@ -41,7 +41,7 @@ export default function CountyCompare() {
     setConfig(configMatched);
 
     if (stateFips && varMap){
-      fetch('/emory-covid19/data/data.json').then(res => res.json())
+      fetch('/data/data.json').then(res => res.json())
         .then(data => {
           let coldata = {};
           const dataFltrd = _.filter(_.map(data, (d, k)=>{d.fips=k; return d;}), (d)=> (

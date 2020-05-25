@@ -95,7 +95,7 @@ export default function StateMap(props) {
 
     setStateName(configMatched.name);
 
-    fetch('/emory-covid19/data/data.json').then(res => res.json())
+    fetch('/data/data.json').then(res => res.json())
       .then(x => {
         setData(x);
 
@@ -109,7 +109,7 @@ export default function StateMap(props) {
         setColorScale(scaleMap);
       });
     
-    fetch('/emory-covid19/data/timeseries'+stateFips+'.json').then(res => res.json())
+    fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
       .then(x => {
 
         let countyMost = '';
@@ -137,7 +137,7 @@ export default function StateMap(props) {
           {config &&
           <div>
           <Breadcrumb>
-            <Breadcrumb.Section link onClick={() => history.push('/emory-covid19')}>United States</Breadcrumb.Section>
+            <Breadcrumb.Section link onClick={() => history.push('/')}>United States</Breadcrumb.Section>
             <Breadcrumb.Divider />
             <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
@@ -176,7 +176,7 @@ export default function StateMap(props) {
                         key={geo.rsmKey} 
                         geography={geo} 
                         onClick={()=>{
-                          history.push("/emory-covid19/" + stateFips + "/" +geo.properties.COUNTYFP);
+                          history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
                         }}
                         onMouseEnter={()=>{
                           setCountyFips(geo.properties.COUNTYFP);

@@ -99,7 +99,7 @@ export default function USMap(props) {
 
   useEffect(() => {
 
-    fetch('/emory-covid19/data/data.json').then(res => res.json())
+    fetch('/data/data.json').then(res => res.json())
       .then(x => {
         
         setData(x);
@@ -122,10 +122,10 @@ export default function USMap(props) {
 
       });
 
-    fetch('/emory-covid19/data/date.json').then(res => res.json())
+    fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date));
     
-    fetch('/emory-covid19/data/allstates.json').then(res => res.json())
+    fetch('/data/allstates.json').then(res => res.json())
       .then(x => setStateLabels(x));
 
 
@@ -189,7 +189,7 @@ export default function USMap(props) {
                               setTooltipContent("")
                             }}
                             onClick={()=>{
-                              history.push("/emory-covid19/"+geo.id.substring(0,2)+"");
+                              history.push("/"+geo.id.substring(0,2)+"");
                             }}
                             fill={fips===geo.id.substring(0,2)?'#012169':
                             ((colorScale && data[geo.id] && data[geo.id]['covidmortality'])?
