@@ -91,41 +91,45 @@ export default function StateMap(props) {
     
     const configMatched = configs.find(s => s.fips === stateFips);
 
-    setConfig(configMatched);
+    if (!configMatched){
+      history.push('/');
+    }else{
 
-    setStateName(configMatched.name);
+      setConfig(configMatched);
 
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-        setData(x);
+      setStateName(configMatched.name);
 
-        const cs = scaleQuantile()
-        .domain(_.map(x, d=>d['covidmortality']))
-        .range(colorPalette);
+      fetch('/data/data.json').then(res => res.json())
+        .then(x => {
+          setData(x);
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
-        setColorScale(scaleMap);
-      });
-    
-    fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
-      .then(x => {
+          const cs = scaleQuantile()
+          .domain(_.map(x, d=>d['covidmortality']))
+          .range(colorPalette);
 
-        let countyMost = '';
-        let mortalityMA = 0;
-        _.each(x, (v, k)=>{
-          if (k.length===5 && v.length > 0 && v[v.length-1].mortalityMA > mortalityMA){
-            countyMost = k.substring(2, 5);
-            mortalityMA = v[v.length-1].mortalityMA;
-          }
+          let scaleMap = {}
+          _.each(x, d=>{
+            scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
+          setColorScale(scaleMap);
         });
-        setCountyFips(countyMost);
-        setCountyName(fips2county[stateFips+countyMost]);
+      
+      fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
+        .then(x => {
 
-        setDataTS(x);
-      });
+          let countyMost = '';
+          let mortalityMA = 0;
+          _.each(x, (v, k)=>{
+            if (k.length===5 && v.length > 0 && v[v.length-1].mortalityMA > mortalityMA){
+              countyMost = k.substring(2, 5);
+              mortalityMA = v[v.length-1].mortalityMA;
+            }
+          });
+          setCountyFips(countyMost);
+          setCountyName(fips2county[stateFips+countyMost]);
 
+          setDataTS(x);
+        });
+    }
   }, [stateFips]);
 
   if (data && dataTS) {
@@ -133,7 +137,7 @@ export default function StateMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em'}}>
+        <Container style={{marginTop: '8em', minWidth: '960px'}}>
           {config &&
           <div>
           <Breadcrumb>

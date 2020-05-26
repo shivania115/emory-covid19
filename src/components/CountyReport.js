@@ -116,19 +116,22 @@ export default function CountyReport() {
   useEffect(()=>{
 
     const configMatched = configs.find(s => s.fips === stateFips);
-    setConfig(configMatched);
-    setStateName(configMatched.name);
-    setCountyName(fips2county[stateFips+countyFips]);
+    if(!configMatched || !fips2county[stateFips+countyFips]){
+      history.push('/');
+    }else{
+      setConfig(configMatched);
+      setStateName(configMatched.name);
+      setCountyName(fips2county[stateFips+countyFips]);
 
-    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-      .then(x => setVarMap(x));
+      fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+        .then(x => setVarMap(x));
 
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => setData(x));
-    
-    fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
-      .then(x => setDataTS(x));
-
+      fetch('/data/data.json').then(res => res.json())
+        .then(x => setData(x));
+      
+      fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
+        .then(x => setDataTS(x));
+    }
   }, [stateFips]);
 
   useEffect(() => {
@@ -142,7 +145,7 @@ export default function CountyReport() {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em'}}>
+        <Container style={{marginTop: '8em', minWidth: '960px'}}>
           {config &&
           <div>
           <Breadcrumb>
