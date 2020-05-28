@@ -1,7 +1,7 @@
 import React from 'react'
 import AppBar from './AppBar';
 import Notes from './Notes';
-import { Container, Grid, List, Divider, Image, Header } from 'semantic-ui-react'
+import { Container, Grid, List, Divider, Image, Header, Segment } from 'semantic-ui-react'
 
 export default function AboutUs(props){
 
@@ -15,58 +15,61 @@ export default function AboutUs(props){
             <Header.Subheader style={{fontWeight: 300}}>We are a group of epidemiologists, doctors, and software engineers from Emory University and University of Michigan.</Header.Subheader>
           </Header.Content>
         </Header>
+        <Grid columns={3}>
+          <Grid.Column>
+            <List bulleted>
+              <List.Item>Shivani A. Patel, PhD</List.Item>
+              <List.Item>K. M. Venkat Narayan, MD</List.Item>
+              <List.Item>Carlos Del Rio, MD</List.Item>
+              <List.Item>Mark Hutcheson, BS</List.Item>
+              <List.Item>Yubin Park, PhD</List.Item>
+              <List.Item>Daesung Choi, PhD</List.Item>
+              <List.Item>Pooja Naik, MD</List.Item>
+              <List.Item>Star Liu</List.Item>
+            </List>
+          </Grid.Column>
+          <Grid.Column>
+            <List bulleted>
+              <List.Item>Leanna Ehrlich, BA</List.Item>
+              <List.Item>Neil K. Mehta, PhD</List.Item>
+              <List.Item>Vince Marconi, MD</List.Item>
+              <List.Item>Michael Kramer, PhD</List.Item>
+              <List.Item>Rob O'Reilly, PhD</List.Item>
+              <List.Item>Sanjana Pampati, MPH</List.Item>
+              <List.Item>Joyce Ho, PhD</List.Item>
+              <List.Item>Shabatun Jamila Islam, MD</List.Item>
+            </List>
+          </Grid.Column>
+          <Grid.Column>
+            <List bulleted>
+              <List.Item>Anurag Mehta, MD</List.Item>
+              <List.Item>Aditi Nayak , MD</List.Item>
+              <List.Item>Arshed Quyyumi , MD</List.Item>
+              <List.Item>Yi-Ann Co, PhD</List.Item>
+              <List.Item>Samaah Sullivan, MD</List.Item>
+            </List>
+          </Grid.Column>
+        </Grid>
+        <Divider hidden/>
+        <Header as='h2' style={{fontWeight: 400}}>
+          <Header.Content>
+            Funding
+          </Header.Content>
+        </Header>
+        <p>The COVID-19 Health Equity Dashboard was developed with seed funding from Emory University’s Woodruff Health Sciences.</p>
+        <Divider hidden/>
+        <Header as='h2' style={{fontWeight: 400}}>
+          <Header.Content>
+            Feedback
+          </Header.Content>
+        </Header>
+        <p>We strive to make this a user-friendly resource for policy makers, public health actors, the public, researchers, 
+          and the media. Please share your feedback by mailing us at: 
+          <a href="mailto:covid19dashboard@emory.edu"> covid19dashboard@emory.edu</a>
+        </p>
 
-        <List relaxed={true} size="large">
-          <List.Item>
-            <List.Header>Shivani A. Patel, PhD</List.Header>
-            Assitant Professor of Global Health at the Rollins School of Public Health. PI of this project.
-          </List.Item>
-          <List.Item>
-            <List.Header>K. M. Venkat Narayan, MD</List.Header>
-            OC Hubert Professor of Global Health and Epidemiology, Rollins School of Public Health
-          </List.Item>
-          <List.Item>
-            <List.Header>Carlos Del Rio, MD</List.Header>
-            Professor of Medicine in the Division of Infectious Diseases at Emory University School of Medicine
-          </List.Item>
-          <List.Item>
-            <List.Header>Neil K. Mehta, PhD</List.Header>
-            Assistant Professor of Health Management and Policy at University of Michigan
-          </List.Item>
-          <List.Item>
-            <List.Header>Vince Marconi, MD</List.Header>
-            Professor of Medicine at Emory University
-          </List.Item>
-          <List.Item>
-            <List.Header>Michael Kramer, PhD</List.Header>
-            Associate Professor of Epidemiology at Emory University
-          </List.Item>
-          <List.Item>
-            <List.Header>Rob O'Reilly, PhD</List.Header>
-            Numeric Data Services Leader at the Emory Center for Digital Scholarship
-          </List.Item>
-          <List.Item>
-            <List.Header>Joyce Ho, PhD</List.Header>
-            Assistant Professor of Computer Science at Emory University
-          </List.Item>
-          <List.Item>
-            <List.Header>Yubin Park, PhD</List.Header>
-            Principal at Bonsai Research, LLC. Software development lead for the COVID-19 Health Equity Interactive Dashboard.
-          </List.Item>
-          <List.Item>
-            <List.Header>Daesung Choi, PhD</List.Header>
-            Postdoctoral Research Associate in the Department of Global Health at Emory University
-          </List.Item>
-          <List.Item>
-            <List.Header>Jing Zhang, PhD student</List.Header>
-            Department of Computer Science at Emory University
-          </List.Item>
-          <List.Item>
-            <List.Header>Mark Hutcheson</List.Header>
-            Managing Director at Emory Global Diabetes Research Center
-          </List.Item>
-        </List>
-      <Notes />
+        <Notes />
+
       </Container>
     </div>);
 }

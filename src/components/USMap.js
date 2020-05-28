@@ -136,7 +136,7 @@ export default function USMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '960px'}}>
+        <Container style={{marginTop: '6em', minWidth: '960px'}}>
           <Breadcrumb>
             <Breadcrumb.Section active>United States</Breadcrumb.Section>
             <Breadcrumb.Divider />
@@ -145,10 +145,10 @@ export default function USMap(props) {
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={9}>
-                <Header as='h1' style={{fontWeight: 400}}>
+                <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
-                    COVID-19 is affecting every community differently, with some areas much harder-hit than others.
-                    What is happening where you live?
+                    COVID-19 is affecting every community differently.<br/>
+                    Some areas are much harder-hit than others. What is happening where you live?
                     <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -203,13 +203,14 @@ export default function USMap(props) {
                 </ComposableMap>
               </Grid.Column>
               <Grid.Column width={7}>
-                <Header as='h3' style={{fontWeight: 400}}>
+                <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
                     A Snapshot of Health Disparities in <span style={{color: "#012169"}}>{stateName}</span>
-                    <Header.Subheader style={{fontWeight: 300, lineHeight: '1.5em', fontSize: '0.9em'}}>
-                      This is one example of many health disparities regarding the impacts of COVID-19: 
-                      counties with higher proportions of African American residents tend to have higher COVID-19 mortality rates. 
-                      Drill down to additional data in your county by clicking on the map.
+                    <Header.Subheader style={{fontWeight: 300}}>
+                      Counties with higher proportions of African American residents tend to have higher COVID-19 mortality. 
+                    </Header.Subheader>
+                    <Header.Subheader style={{fontWeight: 300}}>
+                      Click on the map to explore your state and county.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>

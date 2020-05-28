@@ -137,7 +137,7 @@ export default function StateMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '960px'}}>
+        <Container style={{marginTop: '6em', minWidth: '960px'}}>
           {config &&
           <div>
           <Breadcrumb>
@@ -150,7 +150,7 @@ export default function StateMap(props) {
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={8}>
-                <Header as='h1' style={{fontWeight: 400}}>
+                <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
                     Covid-19 Outcomes in {stateName}
                     <Header.Subheader style={{fontWeight: 300}}>
@@ -201,10 +201,11 @@ export default function StateMap(props) {
               <Grid.Column width={8}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
-                    Statistics of {countyName}
+                    How Does {countyName} Compare?
                     <Header.Subheader style={{fontWeight: 300}}>
-                      Case rates and mortalities are shown in 7-days moving averages.<br/>
-                      Line charts show the statistics over time, and bar charts show the latest statistics.
+                      The number of cases and deaths due to COVID-19 are dynamic. 
+                      Cases are declining in many counties and rising in others. 
+                      Trends in the case and hospitalization count in the past 14 days are being monitored to determine whether it is safe to reopen a county.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -293,25 +294,12 @@ export default function StateMap(props) {
                       </VictoryChart>
                     </Grid.Column>
                   </Grid.Row>
-                  <Grid.Row columns={2} style={{padding: 0}}>
-                    <Grid.Column>
-                      <BarChart 
-                        title="" 
-                        var="caserate7day" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        data={data} />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <BarChart 
-                        title="" 
-                        var="covidmortality7day" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        data={data} />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Divider/>
+                  <Header as='h2'>
+                    <Header.Subheader style={{fontWeight: 300}}>
+                    Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
+                    Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
+                    </Header.Subheader>
+                  </Header>
                   <Grid.Row columns={2} style={{padding: 0}}>                    
                     <Grid.Column>
                       <BarChart 

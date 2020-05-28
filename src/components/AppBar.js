@@ -25,9 +25,16 @@ export default function AppBar(props) {
             name='countyReport'/>
           <Menu.Item 
             active={props.menu==='countyCompare'} 
-            content='Compare Counties'
             onClick={() => history.push('/compare-counties')}
-            name='countyCompare'/>
+            name='countyCompare'>
+            Compare Counties
+          </Menu.Item>
+          <Menu.Item 
+            active={props.menu==='dataSources'} 
+            onClick={() => history.push('/data-sources')}
+            name='dataSources'>
+            Data Sources &<br/>Interpretation
+          </Menu.Item>
           <Menu.Item 
             active={props.menu==='aboutUs'} 
             content='About Us'

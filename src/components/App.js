@@ -6,6 +6,7 @@ import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
 import CountyCompare from "./CountyCompare";
 import AboutUs from "./AboutUs";
+import DataSources from "./DataSources";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -26,6 +27,9 @@ export default function App() {
           </Route>
           <Route path='/about-us'>
             <AboutUs />
+          </Route>
+          <Route path='/data-sources'>
+            <DataSources />
           </Route>          
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
