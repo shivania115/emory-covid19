@@ -47,6 +47,7 @@ export default function AboutUs(props){
               <List.Item>Arshed Quyyumi , MD</List.Item>
               <List.Item>Yi-Ann Co, PhD</List.Item>
               <List.Item>Samaah Sullivan, MD</List.Item>
+              <List.Item>Mohammed K. Ali, MD</List.Item>
             </List>
           </Grid.Column>
         </Grid>
