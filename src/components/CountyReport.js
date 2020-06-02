@@ -23,6 +23,10 @@ import fips2county from './fips2county.json'
 import configs from "./state_config.json";
 import _ from 'lodash';
 
+const countyColor = '#f2a900';
+const stateColor = '#b2b3b3';
+const nationColor = '#d9d9d7';
+
 function ScatterChart(props) {
 
   return (
@@ -35,7 +39,7 @@ function ScatterChart(props) {
       {props.showLegend && <VictoryLegend
         x={10} y={10}
         orientation="horizontal"
-        colorScale={["#bdbfc1", "#0033a0"]}
+        colorScale={[stateColor, countyColor]}
         data ={[
           {name: ('Other counties in '+ props.stateName)}, {name: props.countyName}
           ]}
@@ -46,7 +50,7 @@ function ScatterChart(props) {
                  d.fips.substring(0,2)===props.stateFips &&
                  d[props.x] && d[props.y]))}
         sortKey={(d) => d.fips===(props.stateFips + props.countyFips)}
-        style={{ data: { fill: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?"#0033a0":"#bdbfc1",
+        style={{ data: { fill: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?countyColor:stateColor,
                  fillOpacity: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?1.0:0.7} }}
         size={4}
         x={props.x}
@@ -64,9 +68,9 @@ function ScatterChart(props) {
 }
 
 function BarChart(props) {
-  const colors = {"nation": "#b1b3b3", 
-                  "state": "#84754e", 
-                  "county": "#0033a0"};
+  const colors = {"nation": nationColor, 
+                  "state": stateColor, 
+                  "county": countyColor};
   return (
     <VictoryChart
       theme={VictoryTheme.material}
@@ -158,7 +162,7 @@ export default function CountyReport() {
           </Breadcrumb>
           <Header as='h1' style={{fontWeight: 300}}>
             <Header.Content>
-              Covid-19 Health Equity Report for {countyName}
+              Covid-19 Health Equity Report for <span style={{color: countyColor}}>{countyName}</span>
               <Header.Subheader style={{fontWeight: 300}}>
               See how health determinants impact COVID-19 outcomes. 
               </Header.Subheader>
@@ -195,7 +199,7 @@ export default function CountyReport() {
                   <VictoryLegend
                     x={10} y={35}
                     orientation="horizontal"
-                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                    colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
                       {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
@@ -211,7 +215,7 @@ export default function CountyReport() {
                     tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                     />
                   <VictoryGroup 
-                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                    colorScale={[nationColor, stateColor, countyColor]}
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caseRateMA'
@@ -234,7 +238,7 @@ export default function CountyReport() {
                   <VictoryLegend
                     x={10} y={35}
                     orientation="horizontal"
-                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                    colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
                       {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
@@ -250,7 +254,7 @@ export default function CountyReport() {
                     tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                     />
                   <VictoryGroup 
-                    colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                    colorScale={[nationColor, stateColor, countyColor]}
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='mortalityMA'

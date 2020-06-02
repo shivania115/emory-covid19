@@ -12,6 +12,16 @@ import configs from "./state_config.json";
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 
+
+const colorPalette = [
+        "#e1dce2",
+        "#d3b6cd",
+        "#bf88b5", 
+        "#af5194", 
+        "#99528c", 
+        "#633c70", 
+      ];
+
 export default function CountyCompare() {
 
   const [stateFips, setStateFips] = useState();
@@ -70,17 +80,7 @@ export default function CountyCompare() {
     if (measureA){
       const cs = scaleQuantile()
         .domain(_.map(data[measureA], d=>d))
-        .range([
-          "#ffedea",
-          "#ffcec5",
-          "#ffad9f",
-          "#ff8a75",
-          "#ff5533",
-          "#e2492d",
-          "#be3d26",
-          "#9a311f",
-          "#782618"
-        ]);
+        .range(colorPalette);
       let scaleMap = {}
       _.each(data[measureA], d=>{
         scaleMap[d] = cs(d)});
@@ -92,17 +92,7 @@ export default function CountyCompare() {
     if (measureB){
       const cs = scaleQuantile()
         .domain(_.map(data[measureB], d=>d))
-        .range([
-          "#ffedea",
-          "#ffcec5",
-          "#ffad9f",
-          "#ff8a75",
-          "#ff5533",
-          "#e2492d",
-          "#be3d26",
-          "#9a311f",
-          "#782618"
-        ]);
+        .range(colorPalette);
       let scaleMap = {}
       _.each(data[measureB], d=>{
         scaleMap[d] = cs(d)});

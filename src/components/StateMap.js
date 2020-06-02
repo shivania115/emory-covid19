@@ -25,13 +25,24 @@ import fips2county from './fips2county.json'
 
 import configs from "./state_config.json";
 
-//import dataState from "../data/data_state.json";
-//import dataCountyPct from "../data/data_county_pct.json";
+const colorPalette = [
+        "#e1dce2",
+        "#d3b6cd",
+        "#bf88b5", 
+        "#af5194", 
+        "#99528c", 
+        "#633c70", 
+      ];
+const countyColor = '#f2a900';
+const stateColor = '#b2b3b3';
+const nationColor = '#d9d9d7';
+
+
 
 function BarChart(props) {
-  const colors = {"nation": "#b1b3b3", 
-                  "state": "#84754e", 
-                  "county": "#0033a0"};
+  const colors = {"nation": nationColor, 
+                  "state": stateColor, 
+                  "county": countyColor};
   return (
     <VictoryChart
       theme={VictoryTheme.material}
@@ -77,15 +88,6 @@ export default function StateMap(props) {
   const [dataTS, setDataTS] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
   const [colorScale, setColorScale] = useState();
-  const colorPalette = [
-          //"#324da0",
-          "#799FCB", //"#009fa8",
-          "#95B4CC", //"#Acd2bd",
-          "#AFC7D0", //"#fefdbe",
-          "#EEF1E6", //"#F1c363",
-          "#FEC9C9", //"#E46f00",
-          "#F9665E", //"#A51122",
-        ];
 
   useEffect(()=>{
     
@@ -190,7 +192,7 @@ export default function StateMap(props) {
                         onMouseLeave={()=>{
                           setTooltipContent("")
                         }}
-                        fill={countyFips===geo.properties.COUNTYFP?'#012169':
+                        fill={countyFips===geo.properties.COUNTYFP?countyColor:
                             ((colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortality'])?
                                 colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortality']] : colorPalette[0])}
                         />
@@ -201,7 +203,7 @@ export default function StateMap(props) {
               <Grid.Column width={8}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
-                    How Does {countyName} Compare?
+                    How Does <span style={{color: countyColor}}>{countyName}</span> Compare?
                     <Header.Subheader style={{fontWeight: 300}}>
                       The number of cases and deaths due to COVID-19 are dynamic. 
                       Cases are declining in many counties and rising in others. 
@@ -221,7 +223,7 @@ export default function StateMap(props) {
                         <VictoryLegend
                           x={10} y={35}
                           orientation="horizontal"
-                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                          colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
                             {name: "nation"}, {name: "state"}, {name: "county"}
                             ]}
@@ -238,7 +240,7 @@ export default function StateMap(props) {
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
-                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                          colorScale={[nationColor, stateColor, countyColor]}
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
@@ -262,7 +264,7 @@ export default function StateMap(props) {
                         <VictoryLegend
                           x={10} y={35}
                           orientation="horizontal"
-                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                          colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
                             {name: "nation"}, {name: "state"}, {name: "county"}
                             ]}
@@ -279,7 +281,7 @@ export default function StateMap(props) {
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
-                          colorScale={["#b1b3b3", "#84754e", "#0033a0"]}
+                          colorScale={[nationColor, stateColor, countyColor]}
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'
