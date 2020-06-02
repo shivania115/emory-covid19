@@ -24,7 +24,7 @@ export default function AboutUs(props){
               <List.Item>Mark Hutcheson, BS</List.Item>
               <List.Item>Yubin Park, PhD</List.Item>
               <List.Item>Daesung Choi, PhD</List.Item>
-              <List.Item>Pooja Naik, MD</List.Item>
+              <List.Item>Pooja Naik, B.Pharm</List.Item>
               <List.Item>Star Liu</List.Item>
             </List>
           </Grid.Column>
