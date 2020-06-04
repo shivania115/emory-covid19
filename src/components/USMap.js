@@ -143,7 +143,7 @@ export default function USMap(props) {
           c.fips = l
           return c}),
           c => (c.fips.length === 2)));
-        });
+      });
 
 
   }, [])
@@ -160,6 +160,11 @@ export default function USMap(props) {
           </Breadcrumb>
           <Divider hidden />
           <Grid columns={16}>
+          <div>
+            <a href="https://www.google.com/search?hl=en&tbm=isch&sxsrf=ALeKk00pjY9oL2XRQaLezhWvs9Nbby3l0Q%3A1591243302329&source=hp&biw=1309&bih=717&ei=JnLYXtexEcaOtQXul6WwDQ&q=cute+dog&oq=cute+dog&gs_lcp=CgNpbWcQAzIFCAAQsQMyBQgAELEDMgUIABCxAzIFCAAQsQMyBQgAELEDMgUIABCxAzICCAAyBQgAELEDMgUIABCxAzICCAA6BAgjECdQygtYqRJgvxNoAHAAeACAATqIAaMDkgEBOJgBAKABAaoBC2d3cy13aXotaW1n&sclient=img&ved=0ahUKEwjX3KKeo-fpAhVGR60KHe5LCdYQ4dUDCAc&uact=5#imgrc=gd2WUKb8QtPyoM" target="_blank"> See Dashboard Guide (PDF) </a> 
+            <br></br>
+            <a href="https://www.google.com" target="_blank"> See Dashboard Guide (YouTube) </a>
+          </div>
             <Grid.Row>
               <Grid.Column width={9}>
                 <Header as='h2' style={{fontWeight: 400}}>
@@ -200,7 +205,7 @@ export default function USMap(props) {
                               setStateName(configMatched.name);
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
-                              setTooltipContent(configMatched.name  + " Daily Cases:"  + dataState[stateFips]['mean7daycases']  + " Daily Deaths:" + dataState[stateFips]['mean7daydeaths'] + '. Click to see county-level data' )                            
+                              setTooltipContent(configMatched.name  + ". Daily Cases: "  + dataState[stateFips]['dailycases'].toFixed(0)  + ". Daily Deaths: " + dataState[stateFips]['dailydeaths'].toFixed(0) + ". Click to see county-level data")                            
                             }}
                             onMouseLeave={()=>{
                               setTooltipContent("")
