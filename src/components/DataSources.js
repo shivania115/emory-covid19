@@ -144,7 +144,7 @@ export default function DataSources(props){
             </Table.Row>
             <Table.Row>
               <Table.Cell>Population Density</Table.Cell>
-              <Table.Cell>Bridged-race population estimates by The National Center for Health Statistics </Table.Cell>
+              <Table.Cell>American Community Survey by the U.S. Census Bureau </Table.Cell>
               <Table.Cell><i>Population Density</i> is the total number of people who live in each county per square mile. </Table.Cell>
             </Table.Row>
             <Table.Row>

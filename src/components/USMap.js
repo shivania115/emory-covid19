@@ -95,6 +95,10 @@ export default function USMap(props) {
   const [tooltipContent, setTooltipContent] = useState('');
   const history = useHistory();
   const [dataFltrd, setDataFltrd] = useState();
+
+  const [dataStateFltrd, setDataStateFltrd] = useState();
+  const [dataState, setDataState] = useState();
+
   const [data, setData] = useState();
   const [date, setDate] = useState('');
   const [stateLabels, setStateLabels] = useState();
@@ -132,10 +136,19 @@ export default function USMap(props) {
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => setStateLabels(x));
 
+    fetch('/data/data.json').then(res => res.json())
+      .then(x => {
+        setDataState(x);
+        setDataStateFltrd(_.filter(_.map(x, (c, l) => {
+          c.fips = l
+          return c}),
+          c => (c.fips.length === 2)));
+        });
+
 
   }, [])
 
-  if (data && dataFltrd && stateLabels) {
+  if (data && dataFltrd && stateLabels && dataStateFltrd && dataState) {
 
   return (
       <div>
@@ -187,7 +200,7 @@ export default function USMap(props) {
                               setStateName(configMatched.name);
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
-                              setTooltipContent('Click to see county-level data')
+                              setTooltipContent(configMatched.name  + " Daily Cases:"  + dataState[stateFips]['mean7daycases']  + " Daily Deaths:" + dataState[stateFips]['mean7daydeaths'] + '. Click to see county-level data' )                            
                             }}
                             onMouseLeave={()=>{
                               setTooltipContent("")
