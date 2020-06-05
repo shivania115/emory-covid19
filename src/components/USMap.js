@@ -161,7 +161,7 @@ export default function USMap(props) {
           <Divider hidden />
           <Grid columns={16}>
           <div>
-            <a href="https://www.google.com/search?hl=en&tbm=isch&sxsrf=ALeKk00pjY9oL2XRQaLezhWvs9Nbby3l0Q%3A1591243302329&source=hp&biw=1309&bih=717&ei=JnLYXtexEcaOtQXul6WwDQ&q=cute+dog&oq=cute+dog&gs_lcp=CgNpbWcQAzIFCAAQsQMyBQgAELEDMgUIABCxAzIFCAAQsQMyBQgAELEDMgUIABCxAzICCAAyBQgAELEDMgUIABCxAzICCAA6BAgjECdQygtYqRJgvxNoAHAAeACAATqIAaMDkgEBOJgBAKABAaoBC2d3cy13aXotaW1n&sclient=img&ved=0ahUKEwjX3KKeo-fpAhVGR60KHe5LCdYQ4dUDCAc&uact=5#imgrc=gd2WUKb8QtPyoM" target="_blank"> See Dashboard Guide (PDF) </a> 
+            <a href="Dashboard user guide.pdf" target="_blank"> See Dashboard Guide (PDF) </a> 
             <br></br>
             <a href="https://www.google.com" target="_blank"> See Dashboard Guide (YouTube) </a>
           </div>

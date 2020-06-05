@@ -131,14 +131,7 @@ export default function CountyCompare() {
             </Header.Content>
           </Header>
 
-          <svg width="600" height="55">
-           <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Outcome Measure:  </text>
-                  {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                  })} 
-                  <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
-          </svg>
+
 
           {config &&
           <Grid columns={2} style={{paddingTop: '2em', minHeight: '400px'}}>
@@ -163,6 +156,16 @@ export default function CountyCompare() {
                         setMeasureA(value)
                       }}
                     />
+
+                    <svg width="600" height="55">
+                      <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Outcome Measure:  </text>
+                            {_.map(colorPalette, (color, i) => {
+                              return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                            })} 
+                            <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
+                            <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
+                    </svg>
+
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
