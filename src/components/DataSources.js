@@ -27,46 +27,46 @@ export default function DataSources(props){
             <Table.Row>
               <Table.Cell>Total COVID-19 Cases</Table.Cell>
               <Table.Cell>The New York Times Coronavirus (Covid-19) Data in the United States </Table.Cell>
-              <Table.Cell><i>Total COVID-19 Cases</i> is the number of people who have tested positive for COVID-19 in each county. </Table.Cell>
+              <Table.Cell><i>Total COVID-19 Cases</i> is the number of people who have tested positive for COVID-19 in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total COVID-19 Deaths</Table.Cell>
               <Table.Cell>The New York Times Coronavirus (Covid-19) Data in the United States  </Table.Cell>
-              <Table.Cell><i>Total COVID-19 Deaths</i> is the number of people who have died of confirmed or presumed COVID-19 cases in each county.  </Table.Cell>
+              <Table.Cell><i>Total COVID-19 Deaths</i> is the number of people who have died of confirmed or presumed COVID-19 cases in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Average Daily Cases</Table.Cell>
+              <Table.Cell>Average Daily COVID-19 Cases</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States </Table.Cell>
               <Table.Cell><i>Average Daily Deaths</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days. </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Average Daily Deaths</Table.Cell>
+              <Table.Cell>Average Daily COVID-19 Deaths</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States  </Table.Cell>
               <Table.Cell><i>Average Daily Cases</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days. </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Total Deaths per 100,000</Table.Cell>
+              <Table.Cell>Total COVID-19 Deaths per 100,000</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States and Bridged-race population estimates by The National Center for Health Statistics.</Table.Cell>
               <Table.Cell><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. <br/>
                           If every county in the United States had 100,000 residents, this is how many would have died in each county from COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Total Cases per 100,000</Table.Cell>
+              <Table.Cell>Total COVID-19 Cases per 100,000</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States and Bridged-race population estimates by The National Center for Health Statistics. </Table.Cell>
               <Table.Cell><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. <br/>
                         If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of cases in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Average Daily Deaths per 100,000</Table.Cell>
+              <Table.Cell>Average Daily COVID-19 Deaths per 100,000</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States and Bridged-race population estimates by The National Center for Health Statistics. </Table.Cell>
               <Table.Cell><i>Average Daily Deaths per 100,000</i> helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people. 
                 <br/>If every county in the United States had 100,000 residents, this is how many would have died from COVID-19 over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Average Daily Cases per 100,000</Table.Cell>
+              <Table.Cell>Average Daily COVID-19 Cases per 100,000</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States and Bridged-race population estimates by The National Center for Health Statistics. </Table.Cell>
               <Table.Cell><i>Average Daily Cases per 100,000</i> helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100,000 people. <br/>
                   If every county in the United States had 100,000 residents, this is how many would have tested positive for COVID-19 over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of cases in each county.
