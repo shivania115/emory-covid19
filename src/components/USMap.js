@@ -37,7 +37,14 @@ const colorPalette = [
       ];
 const colorHighlight = '#f2a900';
 
-
+function getMax(arr, prop) {
+    var max;
+    for (var i=0 ; i<arr.length ; i++) {
+        if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+            max = arr[i];
+    }
+    return max;
+}
 
 function MapLabels(props){
 
@@ -95,6 +102,10 @@ export default function USMap(props) {
   const [tooltipContent, setTooltipContent] = useState('');
   const history = useHistory();
   const [dataFltrd, setDataFltrd] = useState();
+
+  const [dataStateFltrd, setDataStateFltrd] = useState();
+  const [dataState, setDataState] = useState();
+
   const [data, setData] = useState();
   const [date, setDate] = useState('');
   const [stateLabels, setStateLabels] = useState();
@@ -132,10 +143,19 @@ export default function USMap(props) {
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => setStateLabels(x));
 
+    fetch('/data/data.json').then(res => res.json())
+      .then(x => {
+        setDataState(x);
+        setDataStateFltrd(_.filter(_.map(x, (c, l) => {
+          c.fips = l
+          return c}),
+          c => (c.fips.length === 2)));
+      });
+
 
   }, [])
 
-  if (data && dataFltrd && stateLabels) {
+  if (data && dataFltrd && stateLabels && dataStateFltrd && dataState) {
 
   return (
       <div>
@@ -147,6 +167,11 @@ export default function USMap(props) {
           </Breadcrumb>
           <Divider hidden />
           <Grid columns={16}>
+          <div>
+            <a href="Dashboard user guide.pdf" target="_blank"> See Dashboard Guide (PDF) </a> 
+            <br></br>
+            <a href="https://youtu.be/PmI42rHnI6U" target="_blank"> See Dashboard Guide (YouTube) </a>
+          </div>
             <Grid.Row>
               <Grid.Column width={9}>
                 <Header as='h2' style={{fontWeight: 400}}>
@@ -187,7 +212,7 @@ export default function USMap(props) {
                               setStateName(configMatched.name);
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
-                              setTooltipContent('Click to see county-level data')
+                              //setTooltipContent(configMatched.name  + ". \n Daily Cases: "  + dataState[stateFips]['dailycases'].toFixed(0)  + ". Daily Deaths: " + dataState[stateFips]['dailydeaths'].toFixed(0) + ". Click to see county-level data")                            
                             }}
                             onMouseLeave={()=>{
                               setTooltipContent("")
@@ -262,7 +287,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip>{tooltipContent}</ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b>Daily Cases</b>: {dataState[fips]['dailycases']} <br/> <b>Daily Deaths</b>: {dataState[fips]['dailydeaths']} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {

@@ -5,6 +5,12 @@
     "deaths": {
         "name": "Total COVID-19 Deaths",
         "group": "outcomes"},
+    "dailycases": {
+        "name": "Daily COVID-19 Cases",
+        "group": "outcomes"},
+    "dailydeaths": {
+        "name": "Daily COVID-19 Deaths",
+        "group": "outcomes"},
     "mean7daycases": {
         "name": "Average Daily Cases",
         "group": "outcomes"},

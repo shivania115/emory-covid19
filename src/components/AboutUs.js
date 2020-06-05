@@ -54,10 +54,10 @@ export default function AboutUs(props){
         <Divider hidden/>
         <Header as='h2' style={{fontWeight: 400}}>
           <Header.Content>
-            Funding
+            Support
           </Header.Content>
         </Header>
-        <p>The COVID-19 Health Equity Dashboard was developed with seed funding from Emory University’s Woodruff Health Sciences.</p>
+        <p>The COVID-19 Health Equity Dashboard was developed with seed funding from Emory University’s Woodruff Health Sciences and support from the Georgia Center for Diabetes Translation Research.</p>
         <Divider hidden/>
         <Header as='h2' style={{fontWeight: 400}}>
           <Header.Content>

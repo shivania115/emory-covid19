@@ -21,6 +21,14 @@ const colorPalette = [
         "#99528c", 
         "#633c70", 
       ];
+const colorPalette2 = [
+        "#D1E3FD",
+        "#ABC9F5",
+        "#7FAAE8 ", 
+        "#5489D6", 
+        "#2C68C0", 
+        "#0A49A4", 
+      ];
 
 export default function CountyCompare() {
 
@@ -33,15 +41,23 @@ export default function CountyCompare() {
   const [tooltipContent, setTooltipContent] = useState('');
   const [data, setData] = useState();
   const [varMap, setVarMap] = useState({});
-  const [measureOptions, setMeasureOptions] = useState([]);
+  const [measureOptionsA, setMeasureOptionsA] = useState([]);
+  const [measureOptionsB, setMeasureOptionsB] = useState([]);
+
+
+  const [legendMax, setLegendMax] = useState([]);
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
         setVarMap(x);
-        setMeasureOptions(_.filter(_.map(x, d=> {
-          return {key: d.name, value: d.name, text: d.name};
-        }), d => d.key !== "Urban-Rural Status"));
+        setMeasureOptionsA(_.filter(_.map(x, d=> {
+          return {key: d.name, value: d.name, text: d.name, group: d.group};
+        }), d => (d.key !== "Urban-Rural Status") && (d.group === "outcomes")));
+        setMeasureOptionsB(_.filter(_.map(x, d=> {
+          return {key: d.name, value: d.name, text: d.name, group: d.group};
+        }), d => (d.key !== "Urban-Rural Status") && (d.group !== "outcomes")));
+
       });
   }, []);
 
@@ -85,6 +101,7 @@ export default function CountyCompare() {
       _.each(data[measureA], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleA(scaleMap);
+      //setLegendMax();
     }
   }, [measureA]);
 
@@ -92,13 +109,15 @@ export default function CountyCompare() {
     if (measureB){
       const cs = scaleQuantile()
         .domain(_.map(data[measureB], d=>d))
-        .range(colorPalette);
+        .range(colorPalette2);
       let scaleMap = {}
       _.each(data[measureB], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleB(scaleMap);
     }
   }, [measureB]);  
+
+
 
   return (
       <div>
@@ -130,12 +149,16 @@ export default function CountyCompare() {
               />
             </Header.Content>
           </Header>
+
           {config &&
           <Grid columns={2} style={{paddingTop: '2em', minHeight: '400px'}}>
             <Grid.Row>
               <Grid.Column>
                 <Grid columns={2} centered>
                   <Grid.Column>
+                  <svg width = "500" height="30">
+                       <text x={0} y={15} style={{fontSize: '1.0em'}}>COVID-19 Outcome Measure:  </text>
+                  </svg>
                     <Dropdown
                       style={{background: '#fff', 
                               fontWeight: 400, 
@@ -148,17 +171,32 @@ export default function CountyCompare() {
                       search
                       selection
                       value={measureA}
-                      options={measureOptions}
+                      options={measureOptionsA}
                       onChange={(e, { value }) => {
                         setMeasureA(value)
                       }}
                     />
+
+                    <svg width="350" height="110">
+                            {_.map(colorPalette, (color, i) => {
+                              return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                            })} 
+                            <text x={0} y={36} style={{fontSize: '1.2em'}}> Low </text>
+                            <text x={40 * (colorPalette.length - 1)} y={36} style={{fontSize: '1.2em'}}> High </text> 
+
+                    </svg>
+
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
               <Grid.Column>
                 <Grid columns={2} centered>
                   <Grid.Column>
+
+                  <svg width = "500" height="30">
+                      <text x={0} y={15} style={{fontSize: '1.0em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
+                  </svg>
+
                     <Dropdown
                       style={{background: '#fff', 
                               fontWeight: 400, 
@@ -173,11 +211,21 @@ export default function CountyCompare() {
                       search
                       selection
                       value={measureB}
-                      options={measureOptions}
+                      options={measureOptionsB}
                       onChange={(e, { value }) => {
                         setMeasureB(value)
                       }}
                     />
+
+                    <svg width="350" height="110">
+                            {_.map(colorPalette2, (color, i) => {
+                              return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                            })} 
+                            <text x={0} y={36} style={{fontSize: '1.2em'}}>Low</text>
+                            <text x={40 * (colorPalette2.length - 1)} y={36} style={{fontSize: '1.2em'}}>High</text>    
+
+                    </svg>
+
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
