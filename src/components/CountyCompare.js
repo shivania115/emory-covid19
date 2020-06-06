@@ -22,12 +22,12 @@ const colorPalette = [
         "#633c70", 
       ];
 const colorPalette2 = [
-        "#D1E3FD",
-        "#ABC9F5",
-        "#7FAAE8 ", 
-        "#5489D6", 
-        "#2C68C0", 
-        "#0A49A4", 
+        "#e1dce2",
+        "#71C7EC",
+        "#1EBBD7",
+        "#0B92BF", 
+        "#0270A1", 
+        "#024174",  
       ];
 
 export default function CountyCompare() {
@@ -45,7 +45,6 @@ export default function CountyCompare() {
   const [measureOptionsB, setMeasureOptionsB] = useState([]);
 
 
-  const [legendMax, setLegendMax] = useState([]);
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -84,6 +83,7 @@ export default function CountyCompare() {
             });
           });
           setData(coldata);
+
         });
       setMeasureA(null);
       setMeasureB(null);
@@ -101,7 +101,8 @@ export default function CountyCompare() {
       _.each(data[measureA], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleA(scaleMap);
-      //setLegendMax();
+
+      
     }
   }, [measureA]);
 
@@ -288,7 +289,7 @@ export default function CountyCompare() {
                     )}
                   </Geographies>
                 </ComposableMap>
-                <ReactTooltip>{tooltipContent}</ReactTooltip>
+                <ReactTooltip>{tooltipContent} </ReactTooltip>
               </Grid.Column>
             </Grid.Row>  
           </Grid>
