@@ -111,6 +111,9 @@ export default function USMap(props) {
   const [stateLabels, setStateLabels] = useState();
   const [colorScale, setColorScale] = useState();
 
+  const [legendMax, setLegendMax] = useState([]);
+
+
 
   useEffect(() => {
 
@@ -133,7 +136,6 @@ export default function USMap(props) {
         _.each(x, d=>{
           scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
         setColorScale(scaleMap);
-
 
       });
 
