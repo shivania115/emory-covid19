@@ -289,7 +289,7 @@ export default function CountyCompare() {
                     )}
                   </Geographies>
                 </ComposableMap>
-                <ReactTooltip>{tooltipContent} </ReactTooltip>
+                <ReactTooltip>{tooltipContent}</ReactTooltip>
               </Grid.Column>
             </Grid.Row>  
           </Grid>
