@@ -89,6 +89,10 @@ export default function StateMap(props) {
   const [tooltipContent, setTooltipContent] = useState('');
   const [colorScale, setColorScale] = useState();
 
+  const [legendMax, setLegendMax] = useState([]);
+  const [legendMin, setLegendMin] = useState([]);
+  const [legendSplit, setLegendSplit] = useState([]);
+
   useEffect(()=>{
     
     const configMatched = configs.find(s => s.fips === stateFips);
@@ -113,6 +117,31 @@ export default function StateMap(props) {
           _.each(x, d=>{
             scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
           setColorScale(scaleMap);
+
+          var max = 0
+          var min = 100
+          var length = 0
+          _.each(x, d=> { 
+            if(d['covidmortality'] !== null){
+              length += 1
+            }
+            if (d['covidmortality'] > max) {
+              max = d['covidmortality']
+            } else if (d['covidmortality'] < min){
+              min = d['covidmortality']
+            }
+
+
+          });
+
+          setLegendMax(max.toFixed(0));
+          setLegendMin(min.toFixed(0));
+
+          var split = scaleQuantile()
+          .domain(_.map(x, d=>d['covidmortality']))
+          .range(colorPalette);
+
+          setLegendSplit(split.quantiles());
         });
       
       fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
@@ -161,13 +190,25 @@ export default function StateMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="500" height="55">
-                  <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
+                <svg width="600" height="70">
+                  <text x={0} y={10} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
+                  <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
+
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
-                  <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
+
+                  {_.map(legendSplit, (splitpoint, i) => {
+                    if(legendSplit[i] < 1){
+                      return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                    }
+                    return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
+                  <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
+
+
                 </svg>
                 <ComposableMap projection="geoAlbersUsa" 
                   projectionConfig={{scale:`${config.scale}`}} 
