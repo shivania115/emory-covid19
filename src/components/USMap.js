@@ -130,7 +130,7 @@ export default function USMap(props) {
           d => (d.Population > 10000 && 
               d.black > 5 && 
               d.fips.length === 5 && 
-              d.covidmortality)));
+              d.covidmortality > 0)));
 
         const cs = scaleQuantile()
         .domain(_.map(x, d=>d['covidmortality']))
