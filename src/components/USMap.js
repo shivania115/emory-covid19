@@ -112,9 +112,6 @@ export default function USMap(props) {
   const [colorScale, setColorScale] = useState();
 
   const [legendMax, setLegendMax] = useState([]);
-  const [legendMin, setLegendMin] = useState([]);
-  const [legendSplit, setLegendSplit] = useState([]);
-
 
 
 
@@ -139,31 +136,6 @@ export default function USMap(props) {
         _.each(x, d=>{
           scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
         setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        var length = 0
-        _.each(x, d=> { 
-          if(d['covidmortality'] !== null){
-            length += 1
-          }
-          if (d['covidmortality'] > max) {
-            max = d['covidmortality']
-          } else if (d['covidmortality'] < min){
-            min = d['covidmortality']
-          }
-
-
-        });
-
-        setLegendMax(max.toFixed(0));
-        setLegendMin(min.toFixed(0));
-
-        var split = scaleQuantile()
-        .domain(_.map(x, d=>d['covidmortality']))
-        .range(colorPalette);
-
-        setLegendSplit(split.quantiles());
-
 
       });
 
@@ -211,25 +183,13 @@ export default function USMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="70">
-                  <text x={0} y={10} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
-                  <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
-
+                <svg width="600" height="55">
+                  <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
-
-                  {_.map(legendSplit, (splitpoint, i) => {
-                    if(legendSplit[i] < 1){
-                      return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                    }
-                    return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                  })} 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
-                  <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
-
-
+                  <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
                 </svg>
                 <ComposableMap 
                   projection="geoAlbersUsa" 
@@ -267,7 +227,7 @@ export default function USMap(props) {
                                 colorScale[data[geo.id]['covidmortality']] : colorPalette[0])}
                           />
                         ))}
-                        <MapLabels geographies={geographies} stateLabels={stateLabels} />
+                        <MapLabels geographies={geographies} stateLabels={stateLabels}/>
                       </svg>
                     }
                   </Geographies>
