@@ -53,6 +53,9 @@ export default function CountyCompare() {
   const [legendMinA, setLegendMinA] = useState([]);
   const [legendMinB, setLegendMinB] = useState([]);
 
+  const [name, setName] = useState([]);
+
+
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -132,6 +135,8 @@ export default function CountyCompare() {
         setLegendMaxA(maxA.toFixed(0));
       }
       setLegendMinA(minA.toFixed(0));
+
+      setName(measureA);
     }
   }, [measureA]);
 
@@ -210,7 +215,7 @@ export default function CountyCompare() {
                 <Grid columns={2} centered>
                   <Grid.Column>
                   <svg width = "500" height="30">
-                       <text x={0} y={15} style={{fontSize: '1.0em'}}>COVID-19 Outcome Measure:  </text>
+                       <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 Outcome Measure:  </text>
                   </svg>
                     <Dropdown
                       style={{background: '#fff', 
@@ -247,9 +252,6 @@ export default function CountyCompare() {
                             <text x={0} y={95} style={{fontSize: '1.0em'}}> {legendMinA} </text> 
                             <text x={240} y={95} style={{fontSize: '1.0em'}}> {legendMaxA} </text> 
 
-                            
-
-
                     </svg>
 
                   </Grid.Column>
@@ -260,7 +262,7 @@ export default function CountyCompare() {
                   <Grid.Column>
 
                   <svg width = "500" height="30">
-                      <text x={0} y={15} style={{fontSize: '1.0em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
+                      <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
                   </svg>
 
                     <Dropdown

@@ -267,7 +267,7 @@ export default function USMap(props) {
                                 colorScale[data[geo.id]['covidmortality']] : colorPalette[0])}
                           />
                         ))}
-                        <MapLabels geographies={geographies} stateLabels={stateLabels}/>
+                        <MapLabels geographies={geographies} stateLabels={stateLabels} />
                       </svg>
                     }
                   </Geographies>
@@ -329,7 +329,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip >  <font size="+2"><b >{stateName}</b> </font> <br/> <b>Daily Cases</b>: {dataState[fips]['dailycases']} <br/> <b>Daily Deaths</b>: {dataState[fips]['dailydeaths']} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b>Daily Cases</b>: {dataState[fips]['dailycases']} <br/> <b>Daily Deaths</b>: {dataState[fips]['dailydeaths']} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {

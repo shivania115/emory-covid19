@@ -165,6 +165,15 @@ export default function StateMap(props) {
 
   if (data && dataTS) {
 
+  var dt = dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]
+
+  if (isNaN(dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"])) {
+    dt = {}
+
+  }
+  
+
+
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -289,7 +298,7 @@ export default function StateMap(props) {
                           <VictoryLine data={dataTS[stateFips]}
                             x='t' y='caseRateMA'
                             />
-                          <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]}
+                          <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='caseRateMA'
                             />
                         </VictoryGroup>
@@ -330,7 +339,7 @@ export default function StateMap(props) {
                           <VictoryLine data={dataTS[stateFips]}
                             x='t' y='mortalityMA'
                             />
-                          <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]}
+                          <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='mortalityMA'
                             />
                         </VictoryGroup>

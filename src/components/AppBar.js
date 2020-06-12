@@ -25,6 +25,16 @@ export default function AppBar(props) {
             content='Home'
             onClick={() => history.push('/')}
             name='countyReport'/>
+
+
+          <Menu.Item 
+            active={props.menu==='selectState'} 
+            onClick={() => history.push('/select-state')}
+            name='selectState'>
+            Select State
+          </Menu.Item>
+
+
           <Menu.Item 
             active={props.menu==='countyCompare'} 
             onClick={() => history.push('/compare-counties')}

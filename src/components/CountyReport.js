@@ -144,6 +144,7 @@ export default function CountyReport() {
     }
   }, [dataTS])
 
+
   if (data && dataTS && varMap) {
 
   return (
@@ -204,6 +205,7 @@ export default function CountyReport() {
                       {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
                   />
+
                   <VictoryAxis
                     tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}
                     tickValues={[
@@ -223,7 +225,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='caseRateMA'
                       />
-                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]}
+                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='caseRateMA'
                       />
                   </VictoryGroup>
@@ -262,7 +264,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='mortalityMA'
                       />
-                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]}
+                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='mortalityMA'
                       />
                   </VictoryGroup>
