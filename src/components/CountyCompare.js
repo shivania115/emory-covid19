@@ -239,6 +239,8 @@ export default function CountyCompare() {
                             {_.map(colorPalette, (color, i) => {
                               return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                             })} 
+                            <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
+                            <text x={288} y={66} style={{fontSize: '1.2em'}}> NA </text>
                             <text x={0} y={36} style={{fontSize: '1.2em'}}> Low </text>
                             <text x={40 * (colorPalette.length - 1)} y={36} style={{fontSize: '1.2em'}}> High </text> 
                             {_.map(legendSplitA, (split, i) => {
@@ -289,6 +291,8 @@ export default function CountyCompare() {
                             {_.map(colorPalette2, (color, i) => {
                               return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                             })} 
+                            <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
+                            <text x={288} y={66} style={{fontSize: '1.2em'}}> NA </text>
                             <text x={0} y={36} style={{fontSize: '1.2em'}}>Low</text>
                             <text x={40 * (colorPalette2.length - 1)} y={36} style={{fontSize: '1.2em'}}>High</text> 
                             {_.map(legendSplitB, (split, i) => {
@@ -318,6 +322,8 @@ export default function CountyCompare() {
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
                   height={600} 
+                  strokeWidth = {0.1}
+                  stroke = 'black'
                   data-tip=""
                   offsetX={config.offsetX}
                   offsetY={config.offsetY}>
@@ -336,7 +342,7 @@ export default function CountyCompare() {
                           setTooltipContent("")
                         }}
                         fill={(measureA && colorScaleA && data[measureA][stateFips+geo.properties.COUNTYFP])?
-                                colorScaleA[data[measureA][stateFips+geo.properties.COUNTYFP]] : "#EEE"}
+                                colorScaleA[data[measureA][stateFips+geo.properties.COUNTYFP]] : "#FFFFFF"}
                       />
                     )}
                   </Geographies>
@@ -347,6 +353,8 @@ export default function CountyCompare() {
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
                   height={600} 
+                  strokeWidth = {0.1}
+                  stroke = 'black'
                   data-tip=""
                   offsetX={config.offsetX}
                   offsetY={config.offsetY}>
@@ -365,7 +373,7 @@ export default function CountyCompare() {
                           setTooltipContent("")
                         }}
                         fill = {(measureB && colorScaleB && data[measureB][stateFips+geo.properties.COUNTYFP])?
-                                colorScaleB[data[measureB][stateFips+geo.properties.COUNTYFP]] : "#EEE"}
+                                colorScaleB[data[measureB][stateFips+geo.properties.COUNTYFP]] : "#FFFFFF"}
                       />
                     )}
                   </Geographies>

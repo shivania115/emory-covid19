@@ -131,13 +131,20 @@ export default function USMap(props) {
               d.black > 5 && 
               d.fips.length === 5 && 
               d.covidmortality > 0)));
-
+      
         const cs = scaleQuantile()
-        .domain(_.map(x, d=>d['covidmortality']))
+        .domain(_.map(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d.covidmortality >= 0)),
+          d=> d['covidmortality']))
         .range(colorPalette);
         let scaleMap = {}
         _.each(x, d=>{
-          scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
+          if(d['covidmortality'] >= 0){
+          scaleMap[d['covidmortality']] = cs(d['covidmortality'])}});
+      
         setColorScale(scaleMap);
         var max = 0
         var min = 100
@@ -159,7 +166,12 @@ export default function USMap(props) {
         setLegendMin(min.toFixed(0));
 
         var split = scaleQuantile()
-        .domain(_.map(x, d=>d['covidmortality']))
+        .domain(_.map(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d.covidmortality >= 0)),
+          d=> d['covidmortality']))
         .range(colorPalette);
 
         setLegendSplit(split.quantiles());
@@ -220,13 +232,16 @@ export default function USMap(props) {
                     return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
+                  <rect x={140} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={142} y={55} style={{fontSize: '0.8em'}}> NA </text>
+
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
                       return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
                     return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
+                  <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
 
 
@@ -236,6 +251,8 @@ export default function USMap(props) {
                   data-tip=""
                   width={600} 
                   height={380}
+                  strokeWidth= {0.1}
+                  stroke= 'black'
                   projectionConfig={{scale: 750}}
                    >
                   <Geographies geography={geoUrl}>
@@ -254,7 +271,7 @@ export default function USMap(props) {
                               setStateName(configMatched.name);
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
-                              //setTooltipContent(configMatched.name  + ". \n Daily Cases: "  + dataState[stateFips]['dailycases'].toFixed(0)  + ". Daily Deaths: " + dataState[stateFips]['dailydeaths'].toFixed(0) + ". Click to see county-level data")                            
+                              //setTooltipContent()                            
                             }}
                             onMouseLeave={()=>{
                               setTooltipContent("")
@@ -263,8 +280,11 @@ export default function USMap(props) {
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
-                            ((colorScale && data[geo.id] && data[geo.id]['covidmortality'])?
-                                colorScale[data[geo.id]['covidmortality']] : colorPalette[0])}
+                            ((colorScale && data[geo.id] && (data[geo.id]['covidmortality']) > 0)?
+                                colorScale[data[geo.id]['covidmortality']]: 
+                                (colorScale && data[geo.id] && data[geo.id]['covidmortality'] === 0)?
+                                  '#e1dce2':'#FFFFFF')}
+                            
                           />
                         ))}
                         <MapLabels geographies={geographies} stateLabels={stateLabels} />

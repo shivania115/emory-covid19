@@ -110,7 +110,12 @@ export default function StateMap(props) {
           setData(x);
 
           const cs = scaleQuantile()
-          .domain(_.map(x, d=>d['covidmortality']))
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d.covidmortality >= 0)),
+            d=> d['covidmortality']))
           .range(colorPalette);
 
           let scaleMap = {}
@@ -138,7 +143,12 @@ export default function StateMap(props) {
           setLegendMin(min.toFixed(0));
 
           var split = scaleQuantile()
-          .domain(_.map(x, d=>d['covidmortality']))
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d.covidmortality >= 0)),
+            d=> d['covidmortality']))
           .range(colorPalette);
 
           setLegendSplit(split.quantiles());
@@ -208,13 +218,16 @@ export default function StateMap(props) {
                     return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
+                  <rect x={140} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={142} y={55} style={{fontSize: '0.8em'}}>NA</text>
+
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
                       return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
                     return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
+                  <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
 
 
@@ -223,6 +236,8 @@ export default function StateMap(props) {
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
                   height={550} 
+                  strokeWidth = {0.1}
+                  stroke = 'black'
                   data-tip=""
                   offsetX={config.offsetX}
                   offsetY={config.offsetY}>
@@ -242,9 +257,12 @@ export default function StateMap(props) {
                         onMouseLeave={()=>{
                           setTooltipContent("")
                         }}
+                        
                         fill={countyFips===geo.properties.COUNTYFP?countyColor:
-                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortality'])?
-                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortality']] : colorPalette[0])}
+                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['covidmortality']) > 0)?
+                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortality']]: 
+                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortality'] === 0)?
+                                  '#e1dce2':'#FFFFFF')}
                         />
                     )}
                   </Geographies>
