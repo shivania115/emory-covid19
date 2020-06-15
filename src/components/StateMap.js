@@ -231,7 +231,7 @@ export default function StateMap(props) {
                   <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
 
-                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
+                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a county below for a detailed report. </text>
 
 
                 </svg>
@@ -255,7 +255,7 @@ export default function StateMap(props) {
                         onMouseEnter={()=>{
                           setCountyFips(geo.properties.COUNTYFP);
                           setCountyName(fips2county[stateFips+geo.properties.COUNTYFP]);
-                          setTooltipContent('Click to see more county data');
+                          setTooltipContent('Click for a detailed report');
                         }}
                         onMouseLeave={()=>{
                           setTooltipContent("")
