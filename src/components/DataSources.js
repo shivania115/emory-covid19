@@ -37,12 +37,12 @@ export default function DataSources(props){
             <Table.Row>
               <Table.Cell>Average Daily COVID-19 Cases</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States </Table.Cell>
-              <Table.Cell><i>Average Daily Deaths</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days. </Table.Cell>
+              <Table.Cell><i>Average Daily Deaths</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Average Daily COVID-19 Deaths</Table.Cell>
               <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States  </Table.Cell>
-              <Table.Cell><i>Average Daily Cases</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days. </Table.Cell>
+              <Table.Cell><i>Average Daily Cases</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total COVID-19 Deaths per 100,000</Table.Cell>

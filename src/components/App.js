@@ -25,6 +25,7 @@ export default function App() {
           <Route path='/compare-counties'>
             <CountyCompare />
           </Route>
+
           <Route path='/about-team'>
             <AboutUs />
           </Route>

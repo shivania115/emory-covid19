@@ -112,6 +112,9 @@ export default function USMap(props) {
   const [colorScale, setColorScale] = useState();
 
   const [legendMax, setLegendMax] = useState([]);
+  const [legendMin, setLegendMin] = useState([]);
+  const [legendSplit, setLegendSplit] = useState([]);
+
 
 
 
@@ -127,15 +130,52 @@ export default function USMap(props) {
           d => (d.Population > 10000 && 
               d.black > 5 && 
               d.fips.length === 5 && 
-              d.covidmortality > 0)));
-
+              d.covidmortalityfig > 0)));
+      
         const cs = scaleQuantile()
-        .domain(_.map(x, d=>d['covidmortality']))
+        .domain(_.map(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d.covidmortalityfig > 0)),
+          d=> d['covidmortalityfig']))
         .range(colorPalette);
         let scaleMap = {}
         _.each(x, d=>{
-          scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
+          if(d['covidmortalityfig'] > 0){
+          scaleMap[d['covidmortalityfig']] = cs(d['covidmortalityfig'])}});
+      
         setColorScale(scaleMap);
+        var max = 0
+        var min = 100
+        var length = 0
+        _.each(x, d=> { 
+          if(d['covidmortalityfig'] !== null){
+            length += 1
+          }
+          if (d['covidmortalityfig'] > max) {
+            max = d['covidmortalityfig']
+          } else if (d['covidmortalityfig'] < min && d['covidmortalityfig'] > 0){
+            min = d['covidmortalityfig']
+          }
+
+
+        });
+
+        setLegendMax(max.toFixed(0));
+        setLegendMin(min.toFixed(0));
+
+        var split = scaleQuantile()
+        .domain(_.map(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d.covidmortalityfig > 0)),
+          d=> d['covidmortalityfig']))
+        .range(colorPalette);
+
+        setLegendSplit(split.quantiles());
+
 
       });
 
@@ -180,22 +220,43 @@ export default function USMap(props) {
                   <Header.Content>
                     COVID-19 is affecting every community differently.<br/>
                     Some areas are much harder-hit than others. What is happening where you live?
-                    <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
+                    <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="55">
-                  <text x={0} y={15} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
+                <svg width="600" height="70">
+                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
+                  <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
+
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={20*i} y={20} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
-                  <text x={0} y={52} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={52} style={{fontSize: '0.8em'}}>High</text>
+
+                  <rect x={145} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={167} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
+                  <text x={167} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+
+                  {_.map(legendSplit, (splitpoint, i) => {
+                    if(legendSplit[i] < 1){
+                      return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                    }
+                    return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
+                  <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
+
+
+                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
+
+
                 </svg>
                 <ComposableMap 
                   projection="geoAlbersUsa" 
                   data-tip=""
                   width={600} 
                   height={380}
+                  strokeWidth= {0.1}
+                  stroke= 'black'
                   projectionConfig={{scale: 750}}
                    >
                   <Geographies geography={geoUrl}>
@@ -214,7 +275,7 @@ export default function USMap(props) {
                               setStateName(configMatched.name);
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
-                              //setTooltipContent(configMatched.name  + ". \n Daily Cases: "  + dataState[stateFips]['dailycases'].toFixed(0)  + ". Daily Deaths: " + dataState[stateFips]['dailydeaths'].toFixed(0) + ". Click to see county-level data")                            
+                              //setTooltipContent()                            
                             }}
                             onMouseLeave={()=>{
                               setTooltipContent("")
@@ -223,15 +284,24 @@ export default function USMap(props) {
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
-                            ((colorScale && data[geo.id] && data[geo.id]['covidmortality'])?
-                                colorScale[data[geo.id]['covidmortality']] : colorPalette[0])}
+                            ((colorScale && data[geo.id] && (data[geo.id]['covidmortalityfig']) > 0)?
+                                colorScale[data[geo.id]['covidmortalityfig']]: 
+                                (colorScale && data[geo.id] && data[geo.id]['covidmortalityfig'] === 0)?
+                                  '#e1dce2':'#FFFFFF')}
+                            
                           />
                         ))}
-                        <MapLabels geographies={geographies} stateLabels={stateLabels}/>
+                        <MapLabels geographies={geographies} stateLabels={stateLabels} />
                       </svg>
                     }
                   </Geographies>
                 </ComposableMap>
+                <Grid.Row style={{paddingTop: 0}}>
+                    <small style={{fontWeight: 300}}>
+                    <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
+                    <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days.
+                    </small>
+                  </Grid.Row>
               </Grid.Column>
               <Grid.Column width={7}>
                 <Header as='h2' style={{fontWeight: 400}}>
@@ -267,7 +337,7 @@ export default function USMap(props) {
                         data={dataFltrd}
                         size={4}
                         x='black'
-                        y='covidmortality'
+                        y='covidmortalityfig'
                       />
                       <VictoryAxis label={'% African American'}/>
                       <VictoryAxis dependentAxis 
@@ -289,7 +359,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b>Daily Cases</b>: {dataState[fips]['dailycases']} <br/> <b>Daily Deaths</b>: {dataState[fips]['dailydeaths']} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {dataState[fips]['mean7daycases'].toFixed(0)} <br/> <b> Daily Deaths</b>: {dataState[fips]['mean7daydeaths'].toFixed(0)} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {
