@@ -48,7 +48,7 @@ function ScatterChart(props) {
         data={_.filter(_.map(props.data, (d, k)=>{d.fips=k; return d;}), (d)=> (
                  d.fips.length===5 &&
                  d.fips.substring(0,2)===props.stateFips &&
-                 d[props.x] && d[props.y]))}
+                 d[props.x] >= 0 && d[props.y] >= 0))}
         sortKey={(d) => d.fips===(props.stateFips + props.countyFips)}
         style={{ data: { fill: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?countyColor:stateColor,
                  fillOpacity: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?1.0:0.7} }}
@@ -90,8 +90,8 @@ function BarChart(props) {
         barRatio={0.8}
         labels={({ datum }) => (Math.round(datum.value*100)/100)}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
-              {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
-              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
+              {key: 'state', 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
+              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
         labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
@@ -275,7 +275,7 @@ export default function CountyReport() {
               <Grid.Column>
                 <BarChart 
                   title="" 
-                  var="caserate7day" 
+                  var="caserate7dayfig" 
                   stateFips={stateFips}
                   countyFips={countyFips}
                   data={data} />
@@ -283,7 +283,7 @@ export default function CountyReport() {
               <Grid.Column>
                 <BarChart 
                   title="" 
-                  var="covidmortality7day" 
+                  var="covidmortality7dayfig" 
                   stateFips={stateFips}
                   countyFips={countyFips}
                   data={data} />
@@ -361,7 +361,7 @@ export default function CountyReport() {
           <Grid columns={3}>
             <Grid.Row>
               <Grid.Column>
-                <ScatterChart x="cases" y="deaths" 
+                <ScatterChart x="casesfig" y="deathsfig" 
                   showLegend={true}
                   varMap={varMap}
                   xlog={true} 
@@ -373,7 +373,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="caserate" y="covidmortality" 
+                <ScatterChart x="caseratefig" y="covidmortalityfig" 
                   varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
@@ -382,7 +382,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME1" y="covidmortality"
+                <ScatterChart x="RPL_THEME1" y="covidmortalityfig"
                  varMap={varMap} 
                   stateName={stateName}
                   countyName={countyName}
@@ -393,7 +393,7 @@ export default function CountyReport() {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME2" y="covidmortality"
+                <ScatterChart x="RPL_THEME2" y="covidmortalityfig"
                   showLegend={true}
                   varMap={varMap}
                   stateName={stateName}
@@ -403,7 +403,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME3" y="covidmortality"
+                <ScatterChart x="RPL_THEME3" y="covidmortalityfig"
                   varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
@@ -412,7 +412,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="RPL_THEME4" y="covidmortality"
+                <ScatterChart x="RPL_THEME4" y="covidmortalityfig"
                   varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
@@ -423,7 +423,7 @@ export default function CountyReport() {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>
-                <ScatterChart x="popden" y="covidmortality"
+                <ScatterChart x="popden" y="covidmortalityfig"
                   showLegend={true}
                   xlog={true}
                   varMap={varMap}
@@ -434,7 +434,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="hhincome" y="covidmortality"
+                <ScatterChart x="hhincome" y="covidmortalityfig"
                   varMap={varMap}
                   xlog={true}
                   rescaleX={true}
@@ -445,7 +445,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
               <Grid.Column>
-                <ScatterChart x="black" y="covidmortality"
+                <ScatterChart x="black" y="covidmortalityfig"
                   varMap={varMap}
                   stateName={stateName}
                   countyName={countyName}
@@ -469,9 +469,10 @@ export default function CountyReport() {
               {_.map(data[stateFips+countyFips], 
                 (v, k) => (<Table.Row key={k}>
                   <Table.Cell>{varMap[k]?varMap[k].name:k}</Table.Cell>
-                  <Table.Cell>{isNaN(v)?v:(Math.round(v*100)/100)}</Table.Cell>
+                  <Table.Cell>{isNaN(v)?v:(v<0)?0:(Math.round(v*100)/100)}</Table.Cell>
                   <Table.Cell>{isNaN(data[stateFips][k])?data[stateFips][k]:(Math.round(data[stateFips][k]*100)/100)}</Table.Cell>
                   <Table.Cell>{isNaN(data['_nation'][k])?data['_nation'][k]:(Math.round(data['_nation'][k]*100)/100)}</Table.Cell>
+
                 </Table.Row>
               ))}
             </Table.Body>

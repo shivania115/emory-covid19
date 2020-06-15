@@ -235,12 +235,13 @@ export default function CountyCompare() {
                       }}
                     />
 
-                    <svg width="350" height="110">
+                    <svg width="450" height="110">
                             {_.map(colorPalette, (color, i) => {
                               return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                             })} 
                             <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                            <text x={288} y={66} style={{fontSize: '1.2em'}}> NA </text>
+                            <text x={330} y={58} style={{fontSize: '1.2em'}}> None </text>
+                            <text x={330} y={74} style={{fontSize: '1.2em'}}> Reported </text>
                             <text x={0} y={36} style={{fontSize: '1.2em'}}> Low </text>
                             <text x={40 * (colorPalette.length - 1)} y={36} style={{fontSize: '1.2em'}}> High </text> 
                             {_.map(legendSplitA, (split, i) => {
@@ -248,6 +249,8 @@ export default function CountyCompare() {
                                 return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(2)} </text>
                               }else if (legendSplitA[i].toFixed(0) < 1) {
                                 return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(1)} </text>
+                              }else if (legendSplitA[i] > 999) {
+                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitA[i]/1000).toFixed(0)}K </text>
                               }
                               return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(0)} </text>                    
                             })}
@@ -287,12 +290,13 @@ export default function CountyCompare() {
                       }}
                     />
 
-                    <svg width="350" height="110">
+                    <svg width="450" height="110">
                             {_.map(colorPalette2, (color, i) => {
                               return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                             })} 
                             <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                            <text x={288} y={66} style={{fontSize: '1.2em'}}> NA </text>
+                            <text x={330} y={58} style={{fontSize: '1.2em'}}> None </text>
+                            <text x={330} y={74} style={{fontSize: '1.2em'}}> Reported </text>
                             <text x={0} y={36} style={{fontSize: '1.2em'}}>Low</text>
                             <text x={40 * (colorPalette2.length - 1)} y={36} style={{fontSize: '1.2em'}}>High</text> 
                             {_.map(legendSplitB, (split, i) => {

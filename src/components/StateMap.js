@@ -114,26 +114,26 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.covidmortality >= 0)),
-            d=> d['covidmortality']))
+                d.covidmortalityfig >= 0)),
+            d=> d['covidmortalityfig']))
           .range(colorPalette);
 
           let scaleMap = {}
           _.each(x, d=>{
-            scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
+            scaleMap[d['covidmortalityfig']] = cs(d['covidmortalityfig'])});
           setColorScale(scaleMap);
 
           var max = 0
           var min = 100
           var length = 0
           _.each(x, d=> { 
-            if(d['covidmortality'] !== null){
+            if(d['covidmortalityfig'] !== null){
               length += 1
             }
-            if (d['covidmortality'] > max) {
-              max = d['covidmortality']
-            } else if (d['covidmortality'] < min){
-              min = d['covidmortality']
+            if (d['covidmortalityfig'] > max) {
+              max = d['covidmortalityfig']
+            } else if (d['covidmortalityfig'] < min){
+              min = d['covidmortalityfig']
             }
 
 
@@ -147,8 +147,8 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.covidmortality >= 0)),
-            d=> d['covidmortality']))
+                d.covidmortalityfig >= 0)),
+            d=> d['covidmortalityfig']))
           .range(colorPalette);
 
           setLegendSplit(split.quantiles());
@@ -206,11 +206,11 @@ export default function StateMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}>
                     Health determinants impact COVID-19 outcomes. 
                     </Header.Subheader>
-                    <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
+                    <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="70">
-                  <text x={0} y={10} style={{fontSize: '0.8em'}}>COVID-19 Mortality</text>
+                <svg width="600" height="90">
+                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
                   <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
 
@@ -218,8 +218,9 @@ export default function StateMap(props) {
                     return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
-                  <rect x={140} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={142} y={55} style={{fontSize: '0.8em'}}>NA</text>
+                  <rect x={145} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={167} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
+                  <text x={167} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
@@ -229,6 +230,8 @@ export default function StateMap(props) {
                   })} 
                   <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
+
+                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
 
 
                 </svg>
@@ -259,9 +262,9 @@ export default function StateMap(props) {
                         }}
                         
                         fill={countyFips===geo.properties.COUNTYFP?countyColor:
-                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['covidmortality']) > 0)?
-                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortality']]: 
-                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortality'] === 0)?
+                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig']) > 0)?
+                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig']]: 
+                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig'] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                         />
                     )}
