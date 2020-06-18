@@ -13,7 +13,7 @@ export default function Notes(props){
           In order to predict how the epidemic will continue to unfold and prepare for the future, it is critical to understand differences in underlying risk factors. 
           There is no one-size-fits all approach to combat the epidemic, but accurate and meaningful data is a key component of a robust public health response that is informed by contextual factors and prioritizes health equity.
           <br/><br/>
-          The COVID-19 Health Equity Dashboard seeks to fill the gaps in county-level data about the virus and underlying social determinants of health. 
+          The COVID-19 Health Equity Dashboard (<a href="COVID19.emory.edu"> COVID19.emory.edu</a>) seeks to fill the gaps in county-level data about the virus and underlying social determinants of health. 
           Our goal is for this Dashboard to facilitate easy comparisons of counties with respect to COVID-19 outcomes and social determinants. 
           We hope this becomes a valuable resource for and critical component of tailored public health responses to COVID-19 across the wide range of environments that Americans inhabit.
         </Grid.Column>

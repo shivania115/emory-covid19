@@ -299,7 +299,8 @@ export default function USMap(props) {
                 <Grid.Row style={{paddingTop: 0}}>
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
-                    <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days.
+                    <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
+                    For a complete table of variable defintiion, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
                     </small>
                   </Grid.Row>
               </Grid.Column>

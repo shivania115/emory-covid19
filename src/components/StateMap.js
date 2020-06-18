@@ -370,7 +370,8 @@ export default function StateMap(props) {
                   <Header as='h2'>
                     <Header.Subheader style={{fontWeight: 300}}>
                     Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
-                    Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
+                    Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19. 
+                    The charts below show characteristics of the population at large in each county compared with the state and nation.
                     </Header.Subheader>
                   </Header>
                   <Grid.Row columns={2} style={{padding: 0}}>                    
