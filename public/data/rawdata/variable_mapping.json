@@ -1,8 +1,8 @@
 {
-    "casesfig": {
+    "cases": {
         "name": "Total COVID-19 Cases",
         "group": "outcomes"},
-    "deathsfig": {
+    "deaths": {
         "name": "Total COVID-19 Deaths",
         "group": "outcomes"},
     "dailycases": {
@@ -17,19 +17,18 @@
     "mean7daydeaths": {
         "name": "Average Daily Deaths",
         "group": "outcomes"},
-    "covidmortalityfig": {
+    "covidmortality": {
         "name": "Total Deaths per 100,000",
         "group": "outcomes"},
-    "caseratefig": {
+    "caserate": {
         "name": "Total Cases per 100,000",
         "group": "outcomes"},
-    "covidmortality7dayfig": {
+    "covidmortality7day": {
         "name": "Average Daily Deaths per 100,000",
         "group": "outcomes"},
-    "caserate7dayfig": {
+    "caserate7day": {
         "name": "Average Daily Cases per 100,000",
         "group": "outcomes"},
-
     "black": {
         "name": "% African American",
         "group": "exposure"},

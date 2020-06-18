@@ -44,17 +44,6 @@ export default function CountyCompare() {
   const [measureOptionsA, setMeasureOptionsA] = useState([]);
   const [measureOptionsB, setMeasureOptionsB] = useState([]);
 
-  const [legendSplitA, setLegendSplitA] = useState([]);
-  const [legendSplitB, setLegendSplitB] = useState([]);
-
-  const [legendMaxA, setLegendMaxA] = useState([]);
-  const [legendMaxB, setLegendMaxB] = useState([]);
-
-  const [legendMinA, setLegendMinA] = useState([]);
-  const [legendMinB, setLegendMinB] = useState([]);
-
-  const [name, setName] = useState([]);
-
 
 
   useEffect(()=>{
@@ -62,11 +51,11 @@ export default function CountyCompare() {
       .then(x => {
         setVarMap(x);
         setMeasureOptionsA(_.filter(_.map(x, d=> {
-          return {key: d.id, value: d.name, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status") && (d.group === "outcomes")));
+          return {key: d.name, value: d.name, text: d.name, group: d.group};
+        }), d => (d.key !== "Urban-Rural Status") && (d.group === "outcomes")));
         setMeasureOptionsB(_.filter(_.map(x, d=> {
-          return {key: d.id, value: d.name, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status") && (d.group !== "outcomes")));
+          return {key: d.name, value: d.name, text: d.name, group: d.group};
+        }), d => (d.key !== "Urban-Rural Status") && (d.group !== "outcomes")));
 
       });
   }, []);
@@ -112,31 +101,8 @@ export default function CountyCompare() {
       _.each(data[measureA], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleA(scaleMap);
+
       
-      var splitA = scaleQuantile()
-        .domain(_.map(data[measureA], d=>d))
-        .range(colorPalette);
-
-      setLegendSplitA(splitA.quantiles());
-
-      var maxA = 0
-      var minA = 0
-      _.each(data[measureA],d=>{
-        if (d > maxA) {
-          maxA = d
-        }else if (d < minA && d >= 0){
-            minA = d
-        }
-      });
-
-      if (maxA > 999) {
-        setLegendMaxA((maxA/1000).toFixed(0) + "K");
-      }else{
-        setLegendMaxA(maxA.toFixed(0));
-      }
-      setLegendMinA(minA.toFixed(0));
-
-      setName(measureA);
     }
   }, [measureA]);
 
@@ -149,29 +115,6 @@ export default function CountyCompare() {
       _.each(data[measureB], d=>{
         scaleMap[d] = cs(d)});
       setColorScaleB(scaleMap);
-
-      var splitB = scaleQuantile()
-        .domain(_.map(data[measureB], d=>d))
-        .range(colorPalette);
-
-      setLegendSplitB(splitB.quantiles());
-
-      var maxB = 0
-      var minB = 0
-      _.each(data[measureB],d=>{
-        if (d > maxB) {
-          maxB = d
-        }else if (d < minB && d >=0){
-          minB = d
-        }
-      });
-      if (maxB > 999) {
-        setLegendMaxB((maxB/1000).toFixed(0) + "K");
-      }else{
-        setLegendMaxB(maxB.toFixed(0));
-
-      }
-      setLegendMinB(minB.toFixed(0));
     }
   }, [measureB]);  
 
@@ -215,7 +158,7 @@ export default function CountyCompare() {
                 <Grid columns={2} centered>
                   <Grid.Column>
                   <svg width = "500" height="30">
-                       <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 Outcome Measure:  </text>
+                       <text x={0} y={15} style={{fontSize: '1.0em'}}>COVID-19 Outcome Measure:  </text>
                   </svg>
                     <Dropdown
                       style={{background: '#fff', 
@@ -235,27 +178,12 @@ export default function CountyCompare() {
                       }}
                     />
 
-                    <svg width="450" height="110">
+                    <svg width="350" height="110">
                             {_.map(colorPalette, (color, i) => {
                               return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                             })} 
-                            <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                            <text x={330} y={58} style={{fontSize: '1.2em'}}> None </text>
-                            <text x={330} y={74} style={{fontSize: '1.2em'}}> Reported </text>
                             <text x={0} y={36} style={{fontSize: '1.2em'}}> Low </text>
                             <text x={40 * (colorPalette.length - 1)} y={36} style={{fontSize: '1.2em'}}> High </text> 
-                            {_.map(legendSplitA, (split, i) => {
-                              if (legendSplitA[0].toFixed(0) == legendSplitA[1].toFixed(0) && legendSplitA[1].toFixed(0) == legendSplitA[2].toFixed(0) && legendSplitA[2].toFixed(0) == legendSplitA[3].toFixed(0) && legendSplitA[3].toFixed(0) == legendSplitA[4].toFixed(0) ) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(2) < 0? 0:legendSplitA[i].toFixed(2)} </text>
-                              }else if (legendSplitA[i].toFixed(0) < 1) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(1) < 0? 0:legendSplitA[i].toFixed(1)} </text>
-                              }else if (legendSplitA[i] > 999) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitA[i]/1000).toFixed(0) < 0? 0:(legendSplitA[i]/1000).toFixed(0)}K </text>
-                              }
-                              return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(0) < 0? 0:legendSplitA[i].toFixed(0)} </text>                    
-                            })}
-                            <text x={0} y={95} style={{fontSize: '1.0em'}}> {legendMinA} </text> 
-                            <text x={240} y={95} style={{fontSize: '1.0em'}}> {legendMaxA} </text> 
 
                     </svg>
 
@@ -267,7 +195,7 @@ export default function CountyCompare() {
                   <Grid.Column>
 
                   <svg width = "500" height="30">
-                      <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
+                      <text x={0} y={15} style={{fontSize: '1.0em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
                   </svg>
 
                     <Dropdown
@@ -290,29 +218,12 @@ export default function CountyCompare() {
                       }}
                     />
 
-                    <svg width="450" height="110">
+                    <svg width="350" height="110">
                             {_.map(colorPalette2, (color, i) => {
                               return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                             })} 
-                            <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                            <text x={330} y={58} style={{fontSize: '1.2em'}}> None </text>
-                            <text x={330} y={74} style={{fontSize: '1.2em'}}> Reported </text>
                             <text x={0} y={36} style={{fontSize: '1.2em'}}>Low</text>
-                            <text x={40 * (colorPalette2.length - 1)} y={36} style={{fontSize: '1.2em'}}>High</text> 
-                            {_.map(legendSplitB, (split, i) => {
-                              if (legendSplitB[0].toFixed(0) == legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) == legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) == legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) == legendSplitB[4].toFixed(0) ) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
-                              }else if (legendSplitB[i].toFixed(0) < 1) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
-                              }else if (legendSplitB[i] > 999) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
-                              }
-                              return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
-                            })}   
-                            <text x={0} y={95} style={{fontSize: '1.0em'}}> {legendMinB} </text> 
-                            <text x={240} y={95} style={{fontSize: '1.0em'}}> {legendMaxB} </text>
-
-                            
+                            <text x={40 * (colorPalette2.length - 1)} y={36} style={{fontSize: '1.2em'}}>High</text>    
 
                     </svg>
 
@@ -326,8 +237,6 @@ export default function CountyCompare() {
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
                   height={600} 
-                  strokeWidth = {0.1}
-                  stroke = 'black'
                   data-tip=""
                   offsetX={config.offsetX}
                   offsetY={config.offsetY}>
@@ -346,7 +255,7 @@ export default function CountyCompare() {
                           setTooltipContent("")
                         }}
                         fill={(measureA && colorScaleA && data[measureA][stateFips+geo.properties.COUNTYFP])?
-                                colorScaleA[data[measureA][stateFips+geo.properties.COUNTYFP]] : "#FFFFFF"}
+                                colorScaleA[data[measureA][stateFips+geo.properties.COUNTYFP]] : "#EEE"}
                       />
                     )}
                   </Geographies>
@@ -357,8 +266,6 @@ export default function CountyCompare() {
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
                   height={600} 
-                  strokeWidth = {0.1}
-                  stroke = 'black'
                   data-tip=""
                   offsetX={config.offsetX}
                   offsetY={config.offsetY}>
@@ -377,7 +284,7 @@ export default function CountyCompare() {
                           setTooltipContent("")
                         }}
                         fill = {(measureB && colorScaleB && data[measureB][stateFips+geo.properties.COUNTYFP])?
-                                colorScaleB[data[measureB][stateFips+geo.properties.COUNTYFP]] : "#FFFFFF"}
+                                colorScaleB[data[measureB][stateFips+geo.properties.COUNTYFP]] : "#EEE"}
                       />
                     )}
                   </Geographies>
