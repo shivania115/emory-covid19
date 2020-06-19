@@ -230,39 +230,7 @@ export default function StateMap(props) {
               <Grid.Column width={8}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
-                    Covid-19 Outcomes in:    
-
-                    <Dropdown
-                        icon=''
-
-                        style={{background: '#fff', 
-
-                                fontWeight: 400, 
-                                theme: '#000000',
-                                width: '200px',
-                                left: '10px',
-                                text: "Select",
-                                borderTop: 'none',
-                                borderLeft: '1px solid #FFFFFF',
-                                borderRight: 'none', 
-                                borderBottom: '0.5px solid #bdbfc1',
-                                borderRadius: 0,
-                                minHeight: '1.0em',
-                                paddingBottom: '0.0em'}}
-                        placeholder= {stateName}
-                        inline
-                        search
-                        select
-                        pointing = 'top'
-                        options={stateOptions}
-                        onChange={(e, { value }) => {
-                          history.push("/" + value + "");
-                          history.go(0);
-
-
-                        }}
-                        
-                      />
+                    Covid-19 Outcomes in {stateName}
                     <Header.Subheader style={{fontWeight: 300}}>
                     Health determinants impact COVID-19 outcomes. 
                     </Header.Subheader>
