@@ -80,7 +80,7 @@ export default function CountyCompare() {
 
   useEffect(()=>{
     
-    const configMatched = configs.find(s => s.fips === stateFips);
+    const configMatched = configs.find(s => s.fips === stateFips && s.fips !== "_nation");
     setConfig(configMatched);
 
     if (stateFips && varMap){

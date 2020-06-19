@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
+import stateOptions from "./stateOptions.json";
+
 import { VictoryChart, 
   VictoryContainer,
   VictoryGroup, 
@@ -21,10 +23,6 @@ import ReactTooltip from "react-tooltip";
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import fips2county from './fips2county.json'
-import stateOptions from "./stateOptions.json";
-
-
-
 import configs from "./state_config.json";
 
 const colorPalette = [
@@ -45,8 +43,12 @@ function BarChart(props) {
   const colors = {"nation": nationColor, 
                   "state": stateColor, 
                   "county": countyColor};
-  if (props.countyFips != "_nation" && props.stateFips != "_nation") {
+
+if (props.countyFips != "_nation" && props.stateFips != "_nation") {
   return (
+
+    
+
     <VictoryChart
       theme={VictoryTheme.material}
       width={280}
@@ -65,8 +67,8 @@ function BarChart(props) {
         barRatio={0.8}
         labels={({ datum }) => (Math.round(datum.value*100)/100)}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
-              {key: 'state', 'value': props.data[props.stateFips][props.var]>0?props.data[props.stateFips][props.var] : 0},
-              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0? props.data[props.stateFips+props.countyFips][props.var]:  0}]}
+              {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
+              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
         labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
@@ -78,10 +80,7 @@ function BarChart(props) {
       />
     </VictoryChart>);
   }
-
-  return (
-
-    
+    return (
 
     <VictoryChart
       theme={VictoryTheme.material}
@@ -116,7 +115,7 @@ function BarChart(props) {
 
 export default function StateMap(props) {
 
-  let {stateFips} = useParams();
+  let { stateFips } = useParams();
   const [config, setConfig] = useState();
   const [stateName, setStateName] = useState('');
   const [countyFips, setCountyFips] = useState('');
@@ -136,7 +135,7 @@ export default function StateMap(props) {
     const configMatched = configs.find(s => s.fips === stateFips);
 
     if (!configMatched){
-      history.push('/');
+      history.push('/_nation');
     }else{
 
       setConfig(configMatched);
@@ -152,26 +151,26 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.covidmortalityfig >= 0)),
-            d=> d['covidmortalityfig']))
+                d.covidmortality >= 0)),
+            d=> d['covidmortality']))
           .range(colorPalette);
 
           let scaleMap = {}
           _.each(x, d=>{
-            scaleMap[d['covidmortalityfig']] = cs(d['covidmortalityfig'])});
+            scaleMap[d['covidmortality']] = cs(d['covidmortality'])});
           setColorScale(scaleMap);
 
           var max = 0
           var min = 100
           var length = 0
           _.each(x, d=> { 
-            if(d['covidmortalityfig'] !== null){
+            if(d['covidmortality'] !== null){
               length += 1
             }
-            if (d['covidmortalityfig'] > max) {
-              max = d['covidmortalityfig']
-            } else if (d['covidmortalityfig'] < min){
-              min = d['covidmortalityfig']
+            if (d['covidmortality'] > max) {
+              max = d['covidmortality']
+            } else if (d['covidmortality'] < min){
+              min = d['covidmortality']
             }
 
 
@@ -185,8 +184,8 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.covidmortalityfig >= 0)),
-            d=> d['covidmortalityfig']))
+                d.covidmortality >= 0)),
+            d=> d['covidmortality']))
           .range(colorPalette);
 
           setLegendSplit(split.quantiles());
@@ -225,51 +224,47 @@ export default function StateMap(props) {
             <Breadcrumb.Divider />
           </Breadcrumb>
           <Divider hidden/>
+
+          <Header as='h3'>
+            <Header.Content style={{fontWeight: 400}}>
+              Side-by-Side View of Counties in&nbsp;
+              <Dropdown
+                icon=''
+                style={{background: '#fff', 
+                        fontWeight: 400, 
+                        width: '200px',
+                        borderTop: 'none',
+                        borderLeft: 'none',
+                        borderRight: 'none', 
+                        borderBottom: '1px solid #bdbfc1',
+                        borderRadius: 0,
+                        minHeight: '2.2em',
+                        paddingBottom: '0.2em'}}
+                placeholder='Select State'
+                inline
+                search
+                selection
+                options={stateOptions}
+                onChange={(e, { value }) => {
+                   stateFips =value;
+                }}
+              />
+            </Header.Content>
+          </Header>
+
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={8}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
-                    Covid-19 Outcomes in:    
-
-                    <Dropdown
-                        icon=''
-
-                        style={{background: '#fff', 
-
-                                fontWeight: 400, 
-                                theme: '#000000',
-                                width: '200px',
-                                left: '10px',
-                                text: "Select",
-                                borderTop: 'none',
-                                borderLeft: '1px solid #FFFFFF',
-                                borderRight: 'none', 
-                                borderBottom: '0.5px solid #bdbfc1',
-                                borderRadius: 0,
-                                minHeight: '1.0em',
-                                paddingBottom: '0.0em'}}
-                        placeholder= {stateName}
-                        inline
-                        search
-                        select
-                        pointing = 'top'
-                        options={stateOptions}
-                        onChange={(e, { value }) => {
-                          history.push("/" + value + "");
-                          history.go(0);
-
-
-                        }}
-                        
-                      />
+                    Covid-19 Outcomes in {stateName}
                     <Header.Subheader style={{fontWeight: 300}}>
                     Health determinants impact COVID-19 outcomes. 
                     </Header.Subheader>
-                    <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
+                    <Header.Subheader style={{fontWeight: 300}}>Click on a state below to drill down to your county data.</Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="90">
+                <svg width="600" height="70">
                   <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
                   <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
@@ -293,9 +288,9 @@ export default function StateMap(props) {
 
                   <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a county below for a detailed report. </text>
 
-
                 </svg>
-                <ComposableMap projection="geoAlbersUsa" 
+                <ComposableMap 
+                  projection="geoAlbersUsa" 
                   projectionConfig={{scale:`${config.scale}`}} 
                   width={500} 
                   height={550} 
@@ -322,9 +317,9 @@ export default function StateMap(props) {
                         }}
                         
                         fill={countyFips===geo.properties.COUNTYFP?countyColor:
-                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig']) > 0)?
-                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig']]: 
-                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig'] === 0)?
+                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['covidmortality']) > 0)?
+                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortality']]: 
+                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortality'] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                         />
                     )}
@@ -495,7 +490,7 @@ export default function StateMap(props) {
         }
         <Notes />
       </Container>
-      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report</ReactTooltip>
+      <ReactTooltip> <font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report</ReactTooltip>
     </div>
     );
   } else{

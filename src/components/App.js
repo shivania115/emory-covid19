@@ -7,6 +7,7 @@ import CountyReport from "./CountyReport";
 import CountyCompare from "./CountyCompare";
 import AboutUs from "./AboutUs";
 import DataSources from "./DataSources";
+import SelectState from "./SelectState";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -24,6 +25,10 @@ export default function App() {
         <Switch>
           <Route path='/compare-counties'>
             <CountyCompare />
+          </Route>
+
+          <Route path='/select-state'>
+            <SelectState />
           </Route>
 
           <Route path='/about-team'>

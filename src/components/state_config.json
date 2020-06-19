@@ -1,5 +1,14 @@
 [
   {
+    "fips": "_nation",
+    "name": "United States",
+    "nameShort": "US",
+    "offsetX": 0,
+    "offsetY": 0,
+    "scale": 600,
+    "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+  },
+  {
     "fips": "01",
     "name": "Alabama",
     "nameShort": "AL",
