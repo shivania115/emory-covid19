@@ -495,7 +495,7 @@ export default function StateMap(props) {
         }
         <Notes />
       </Container>
-      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report</ReactTooltip>
+      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>
     </div>
     );
   } else{
