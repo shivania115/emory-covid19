@@ -26,7 +26,7 @@ export default function Notes(props){
         </Grid.Column>
         <Grid.Column>          
           <small>
-            This dashboard is created using
+            This <a href="COVID19.emory.edu"> COVID-19 Health Equity Dashboard </a> is created using
             <List as='ol'>
               <List.Item as='li' value='-'><a href="https://www.react-simple-maps.io/">React Simple Maps</a> by <a href="https://www.zcreativelabs.com/">z creative labs</a></List.Item>
               <List.Item as='li' value='-'><a href="https://formidable.com/open-source/victory/">Victory</a> by <a href="https://formidable.com/">Formidable</a></List.Item>
