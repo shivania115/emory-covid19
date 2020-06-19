@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, Loader, Divider } from 'semantic-ui-react'
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -21,6 +21,8 @@ import ReactTooltip from "react-tooltip";
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import fips2county from './fips2county.json'
+import stateOptions from "./stateOptions.json";
+
 
 
 import configs from "./state_config.json";
@@ -43,6 +45,7 @@ function BarChart(props) {
   const colors = {"nation": nationColor, 
                   "state": stateColor, 
                   "county": countyColor};
+  if (props.countyFips != "_nation" && props.stateFips != "_nation") {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
@@ -62,8 +65,8 @@ function BarChart(props) {
         barRatio={0.8}
         labels={({ datum }) => (Math.round(datum.value*100)/100)}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
-              {key: 'state', 'value': props.data[props.stateFips][props.var] || 0},
-              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] || 0}]}
+              {key: 'state', 'value': props.data[props.stateFips][props.var]>0?props.data[props.stateFips][props.var] : 0},
+              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0? props.data[props.stateFips+props.countyFips][props.var]:  0}]}
         labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
@@ -74,11 +77,46 @@ function BarChart(props) {
         y="value"
       />
     </VictoryChart>);
+  }
+
+  return (
+
+    
+
+    <VictoryChart
+      theme={VictoryTheme.material}
+      width={280}
+      height={90}       
+      domainPadding={10}
+      scale={{y: props.ylog?'log':'linear'}}
+      minDomain={{y: props.ylog?1:0}}
+      padding={{left: 70, right: 30, top: 20, bottom: 30}}
+      containerComponent={<VictoryContainer responsive={false}/>}
+    >
+      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
+      <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
+      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
+      <VictoryBar
+        horizontal
+        barRatio={0.8}
+        labels={({ datum }) => (Math.round(datum.value*100)/100)}
+        data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0}]}
+        labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => colors[datum.key] }}/>}
+        style={{
+          data: {
+            fill: ({ datum }) => colors[datum.key]
+          }
+        }}
+        x="key"
+        y="value"
+      />
+    </VictoryChart>);
+  
 }
 
 export default function StateMap(props) {
 
-  let { stateFips } = useParams();
+  let {stateFips} = useParams();
   const [config, setConfig] = useState();
   const [stateName, setStateName] = useState('');
   const [countyFips, setCountyFips] = useState('');
@@ -132,7 +170,7 @@ export default function StateMap(props) {
             }
             if (d['covidmortalityfig'] > max) {
               max = d['covidmortalityfig']
-            } else if (d['covidmortalityfig'] < min){
+            } else if (d['covidmortalityfig'] < min && d['covidmortalityfig'] >= 0){
               min = d['covidmortalityfig']
             }
 
@@ -174,16 +212,6 @@ export default function StateMap(props) {
   }, [stateFips]);
 
   if (data && dataTS) {
-
-  var dt = dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"]
-
-  if (isNaN(dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["_"])) {
-    dt = {}
-
-  }
-  
-
-
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -255,7 +283,7 @@ export default function StateMap(props) {
                         onMouseEnter={()=>{
                           setCountyFips(geo.properties.COUNTYFP);
                           setCountyName(fips2county[stateFips+geo.properties.COUNTYFP]);
-                          setTooltipContent('Click for a detailed report');
+                          setTooltipContent("");
                         }}
                         onMouseLeave={()=>{
                           setTooltipContent("")
@@ -316,10 +344,10 @@ export default function StateMap(props) {
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
                             />
-                          <VictoryLine data={dataTS[stateFips]}
+                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='caseRateMA'
                             />
-                          <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                          <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips != "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='caseRateMA'
                             />
                         </VictoryGroup>
@@ -357,10 +385,10 @@ export default function StateMap(props) {
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'
                             />
-                          <VictoryLine data={dataTS[stateFips]}
+                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='mortalityMA'
                             />
-                          <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                          <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips != "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='mortalityMA'
                             />
                         </VictoryGroup>
@@ -435,7 +463,7 @@ export default function StateMap(props) {
         }
         <Notes />
       </Container>
-      <ReactTooltip>{tooltipContent}</ReactTooltip>
+      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>
     </div>
     );
   } else{

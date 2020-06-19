@@ -299,7 +299,8 @@ export default function USMap(props) {
                 <Grid.Row style={{paddingTop: 0}}>
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
-                    <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days.
+                    <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
+                    For a complete table of variable definition, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
                     </small>
                   </Grid.Row>
               </Grid.Column>
@@ -308,7 +309,7 @@ export default function USMap(props) {
                   <Header.Content>
                     A Snapshot of Health Disparities in <span style={{color: colorHighlight}}>{stateName}</span>
                     <Header.Subheader style={{fontWeight: 300}}>
-                      Counties with higher proportions of African American residents tend to have higher COVID-19 mortality. 
+                      Counties with higher proportions of African American residents tend to have higher rates of death from COVID-19. 
                     </Header.Subheader>
                     <Header.Subheader style={{fontWeight: 300}}>
                       Click on the map to explore your state and county.

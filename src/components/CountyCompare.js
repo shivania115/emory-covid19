@@ -267,7 +267,7 @@ export default function CountyCompare() {
                   <Grid.Column>
 
                   <svg width = "500" height="30">
-                      <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
+                      <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 County Population Characteristics:  </text>
                   </svg>
 
                     <Dropdown
