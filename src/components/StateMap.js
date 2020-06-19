@@ -170,7 +170,7 @@ export default function StateMap(props) {
             }
             if (d['covidmortalityfig'] > max) {
               max = d['covidmortalityfig']
-            } else if (d['covidmortalityfig'] < min){
+            } else if (d['covidmortalityfig'] < min && d['covidmortalityfig'] >= 0){
               min = d['covidmortalityfig']
             }
 
