@@ -57,7 +57,7 @@ export default function AboutUs(props){
             Funding
           </Header.Content>
         </Header>
-        <p>The COVID-19 Health Equity Dashboard was developed with funding from the Robert Wood Johnson Foundation and Emory University’s Woodruff Health Sciences. Development was also supported by the Georgia Center for Diabetes Translation Research.</p>
+        <p>The COVID-19 Health Equity Dashboard was developed with funding from the Robert Wood Johnson Foundation and Emory University’s Woodruff Health Sciences Center. Development was also supported by the Georgia Center for Diabetes Translation Research.</p>
         <Divider hidden/>
         <Header as='h2' style={{fontWeight: 400}}>
           <Header.Content>
