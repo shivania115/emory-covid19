@@ -212,6 +212,8 @@ export default function StateMap(props) {
   }, [stateFips]);
 
   if (data && dataTS) {
+    console.log(data);
+    console.log(dataTS);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -252,9 +254,9 @@ export default function StateMap(props) {
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
                   <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
