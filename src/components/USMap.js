@@ -37,14 +37,6 @@ const colorPalette = [
       ];
 const colorHighlight = '#f2a900';
 
-function getMax(arr, prop) {
-    var max;
-    for (var i=0 ; i<arr.length ; i++) {
-        if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
-            max = arr[i];
-    }
-    return max;
-}
 
 function MapLabels(props){
 
@@ -115,11 +107,14 @@ export default function USMap(props) {
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
 
+  const [metric, setMetric] = useState('covidmortalityfig');
+  const [metricName, setMetricName] = useState('COVID-19 Mortality per 100,000');
+
 
 
 
   useEffect(() => {
-
+    if (metric) {
     fetch('/data/data.json').then(res => res.json())
       .then(x => {
         
@@ -130,36 +125,35 @@ export default function USMap(props) {
           d => (d.Population > 10000 && 
               d.black > 5 && 
               d.fips.length === 5 && 
-              d.covidmortalityfig > 0)));
+              d['covidmortalityfig'] > 0)));
       
         const cs = scaleQuantile()
         .domain(_.map(_.filter(_.map(x, (d, k) => {
           d.fips = k
           return d}), 
           d => (
-              d.covidmortalityfig > 0)),
-          d=> d['covidmortalityfig']))
+              d[metric] > 0 &&
+              d.fips.length === 5)),
+          d=> d[metric]))
         .range(colorPalette);
         let scaleMap = {}
         _.each(x, d=>{
-          if(d['covidmortalityfig'] > 0){
-          scaleMap[d['covidmortalityfig']] = cs(d['covidmortalityfig'])}});
+          if(d[metric] > 0){
+          scaleMap[d[metric]] = cs(d[metric])}});
       
         setColorScale(scaleMap);
         var max = 0
         var min = 100
         var length = 0
         _.each(x, d=> { 
-          if(d['covidmortalityfig'] !== null){
+          if(d[metric] !== null){
             length += 1
           }
-          if (d['covidmortalityfig'] > max) {
-            max = d['covidmortalityfig']
-          } else if (d['covidmortalityfig'] < min && d['covidmortalityfig'] > 0){
-            min = d['covidmortalityfig']
+          if (d[metric] > max && d.fips.length === 5) {
+            max = d[metric]
+          } else if (d[metric] < min && d[metric] > 0){
+            min = d[metric]
           }
-
-
         });
 
         setLegendMax(max.toFixed(0));
@@ -170,8 +164,9 @@ export default function USMap(props) {
           d.fips = k
           return d}), 
           d => (
-              d.covidmortalityfig > 0)),
-          d=> d['covidmortalityfig']))
+              d[metric] > 0 &&
+              d.fips.length === 5)),
+          d=> d[metric]))
         .range(colorPalette);
 
         setLegendSplit(split.quantiles());
@@ -193,9 +188,9 @@ export default function USMap(props) {
           return c}),
           c => (c.fips.length === 2)));
       });
+    }
 
-
-  }, [])
+  }, [metric])
 
   if (data && dataFltrd && stateLabels && dataStateFltrd && dataState) {
 
@@ -224,7 +219,9 @@ export default function USMap(props) {
                   </Header.Content>
                 </Header>
                 <svg width="600" height="70">
-                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
+                  
+                  <text x={0} y={20} style={{fontSize: '1.0em'}}> {metricName} </text>
+
                   <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
 
@@ -238,18 +235,61 @@ export default function USMap(props) {
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
-                  <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
+                  <text x={0} y={70} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={120} y={70} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
 
                   <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
 
 
                 </svg>
+
+                <div>
+                  <button 
+                    style = {{
+                      position: "relative",
+                      left: "198px",
+                      color:"#633c70",
+                      border: "none",
+                      fontSize: "14px",
+                      cursor: "pointer",
+                      alignmentBaseline: "center",
+                      borderRadius: "2px",
+                      boxShadow: "0 2px #999",
+                  }}
+                    type="button"
+                    onClick={()=>{
+                                setMetric('casesfig');
+                                setMetricName('Total Cases');
+                              }}
+                    >Cases
+                  </button>
+                  <button
+                    style = {{
+                      position: "relative",
+                      left: "200px",
+                      color:"#633c70",
+                      border: "none",
+                      fontSize: "14px",
+                      cursor: "pointer",
+                      alignmentBaseline: "center",
+                      borderRadius: "2px",
+                      boxShadow: "0 2px #999",
+
+                  }}
+                    type="button"
+                    onClick={()=>{
+                                setMetric('covidmortalityfig');
+                                setMetricName('COVID-19 Mortality per 100,000');
+                              }}
+                    >Deaths per 100,000
+                  </button>
+                </div>
+
                 <ComposableMap 
                   projection="geoAlbersUsa" 
                   data-tip=""
@@ -284,9 +324,9 @@ export default function USMap(props) {
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
-                            ((colorScale && data[geo.id] && (data[geo.id]['covidmortalityfig']) > 0)?
-                                colorScale[data[geo.id]['covidmortalityfig']]: 
-                                (colorScale && data[geo.id] && data[geo.id]['covidmortalityfig'] === 0)?
+                            ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
+                                colorScale[data[geo.id][metric]]: 
+                                (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                             
                           />
@@ -296,13 +336,14 @@ export default function USMap(props) {
                     }
                   </Geographies>
                 </ComposableMap>
+                
                 <Grid.Row style={{paddingTop: 0}}>
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
                     <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
-                    For a complete table of variable definition, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
+                    For a complete table of variable defintion, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
                     </small>
-                  </Grid.Row>
+                </Grid.Row>
               </Grid.Column>
               <Grid.Column width={7}>
                 <Header as='h2' style={{fontWeight: 400}}>
