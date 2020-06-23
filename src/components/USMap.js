@@ -248,7 +248,7 @@ export default function USMap(props) {
 
                 </svg>
 
-                <div>
+                <div style={{paddingTop: 20}}>
                   <button 
                     style = {{
                       position: "relative",
