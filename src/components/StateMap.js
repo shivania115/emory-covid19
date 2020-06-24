@@ -49,15 +49,15 @@ function BarChart(props) {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={280}
+      width={180}
       height={90}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 70, right: 30, top: 20, bottom: 30}}
+      padding={{left: 45, right: 20, top: 20, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
+      <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: 12}}/>
       <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
       <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
       <VictoryBar
@@ -217,7 +217,7 @@ export default function StateMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '6em', minWidth: '960px'}}>
+        <Container style={{marginTop: '6em', minWidth: '1260px'}}>
           {config &&
           <div>
           <Breadcrumb>
@@ -227,10 +227,9 @@ export default function StateMap(props) {
             <Breadcrumb.Divider />
           </Breadcrumb>
           <Divider hidden/>
-          <Grid columns={16}>
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Header as='h2' style={{fontWeight: 400}}>
+
+          <div>
+             <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
                     Covid-19 Outcomes in {stateName}
                     <Header.Subheader style={{fontWeight: 300}}>
@@ -239,7 +238,16 @@ export default function StateMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="90">
+          </div>
+          <div style={{paddingTop: '15em'}}>
+          </div> 
+
+
+          <Grid columns={18}>
+            <Grid.Row>
+              <Grid.Column width={5}>
+                
+                <svg width="400" height="90">
                   <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
                   <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
@@ -261,14 +269,14 @@ export default function StateMap(props) {
                   <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
 
-                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a county below for a detailed report. </text>
+                  <text x={250} y={59} style={{fontSize: '0.5em'}}> Click on a county below for a detailed report. </text>
 
 
                 </svg>
                 <ComposableMap projection="geoAlbersUsa" 
-                  projectionConfig={{scale:`${config.scale}`}} 
-                  width={500} 
-                  height={550} 
+                  projectionConfig={{scale:`${config.scale*0.7}`}} 
+                  width={400} 
+                  height={500} 
                   strokeWidth = {0.1}
                   stroke = 'black'
                   data-tip=""
@@ -301,11 +309,11 @@ export default function StateMap(props) {
                   </Geographies>
                 </ComposableMap>
               </Grid.Column>
-              <Grid.Column width={8}>
-                <Header as='h2' style={{fontWeight: 400}}>
-                  <Header.Content>
-                    How Does <span style={{color: countyColor}}>{countyName}</span> Compare?
-                    <Header.Subheader style={{fontWeight: 300}}>
+              <Grid.Column width={5} style={{padding: 0, paddingLeft: 40}}>
+                <Header as='h2' style={{fontWeight: 400, width: 420}}>
+                  <Header.Content style={{fontSize: 20}}>
+                    How Does <span style={{color: countyColor, fontSize: 20}}>{countyName}</span> Compare?
+                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: 14}}>
                       The number of cases and deaths due to COVID-19 are dynamic. 
                       Cases are declining in many counties and rising in others. 
                       Trends in the case and hospitalization count in the past 14 days are being monitored to determine whether it is safe to reopen a county.
@@ -313,12 +321,11 @@ export default function StateMap(props) {
                   </Header.Content>
                 </Header>
                 <Grid>
-                  <Grid.Row columns={2} style={{padding: 0}}>
-                    <Grid.Column>
+                  <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
                       <VictoryChart theme={VictoryTheme.material}
-                        width={280}
+                        width={330}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
+                        padding={{left: 50, right: 30, top: 60, bottom: 10}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
                         <VictoryLegend
@@ -354,12 +361,12 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                    </Grid.Column>
-                    <Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
                       <VictoryChart theme={VictoryTheme.material}
-                        width={280}
+                        width={330}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
+                        padding={{left: 50, right: 30, top: 60, bottom: 10}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
                         <VictoryLegend
@@ -395,16 +402,22 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                    </Grid.Column>
                   </Grid.Row>
-                  <Header as='h2'>
-                    <Header.Subheader style={{fontWeight: 300}}>
+                </Grid>
+              </Grid.Column>
+              <Grid.Column width={6} style={{padding: 0, paddingLeft: 80}}>
+                <Header as='h2' style={{width:400}}>
+                  <Header.Content style={{fontSize: 20}}>
+                    <br/>
+                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: 14}}>
                     Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                     Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
                     </Header.Subheader>
-                  </Header>
-                  <Grid.Row columns={2} style={{padding: 0}}>                    
-                    <Grid.Column>
+                  </Header.Content>
+
+                </Header>
+                <Grid>
+                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
                       <BarChart 
                         title="% African American" 
                         var="black" 
@@ -417,6 +430,8 @@ export default function StateMap(props) {
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
+                  </Grid.Row>
+                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>
                       <BarChart 
                         title="% Uninsured" 
                         var="PCTUI" 
@@ -429,8 +444,8 @@ export default function StateMap(props) {
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} /> 
-                    </Grid.Column>
-                    <Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
                       <BarChart 
                         title="% Obese" 
                         var="obesity" 
@@ -443,6 +458,8 @@ export default function StateMap(props) {
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
+                  </Grid.Row>
+                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
                       <BarChart 
                         title="% in Group Quarters" 
                         var="groupquater" 
@@ -455,10 +472,10 @@ export default function StateMap(props) {
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
-                    </Grid.Column>
                   </Grid.Row>
                 </Grid>
               </Grid.Column>
+
             </Grid.Row>            
           </Grid>
           </div>
