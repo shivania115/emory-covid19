@@ -13,6 +13,7 @@ import { VictoryChart,
   VictoryLegend,
   VictoryLine,
   VictoryLabel,
+  VictoryArea
 } from 'victory';
 
 import { useParams, useHistory } from 'react-router-dom';
@@ -49,12 +50,12 @@ function BarChart(props) {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={180}
+      width={200}
       height={90}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 45, right: 20, top: 20, bottom: 20}}
+      padding={{left: 55, right: 20, top: 20, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: 12}}/>
@@ -110,7 +111,10 @@ function BarChart(props) {
         x="key"
         y="value"
       />
-    </VictoryChart>);
+    </VictoryChart>
+
+    
+    );
   
 }
 
@@ -239,8 +243,80 @@ export default function StateMap(props) {
                   </Header.Content>
                 </Header>
           </div>
-          <div style={{paddingTop: '15em'}}>
-          </div> 
+
+          <Grid columns={15}>
+
+          <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '1em', paddingBottom: "2.5em"}}>
+
+            <VictoryChart theme={VictoryTheme.material}
+                        width={252}
+                        height={180}       
+                        padding={{left: 50, right: 30, top: 60, bottom: -0.9}}
+                        containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Average Daily COVID-19 Cases" x={130} y={20} textAnchor="middle" style={{fontSize: 12}}/>
+                        
+                        <VictoryAxis
+                          tickValues={[
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
+                          style={{tickLabels: {fontSize: 10}}} 
+                          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                        
+                        <VictoryGroup 
+                          colorScale={[stateColor]}
+                        >
+
+                        <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                            x='t' y='cases'
+                            />
+
+                        </VictoryGroup>
+                        <VictoryArea
+                          style={{ data: { fill: "##C0C0C0" , fillOpacity: 0.1} }}
+                          data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          x= 't' y = 'cases'
+
+                        />
+            </VictoryChart>
+            
+
+            <VictoryChart theme={VictoryTheme.material}
+                        width={252}
+                        height={180}       
+                        padding={{left: 50, right: 30, top: 60, bottom: -0.9}}
+                        containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Average Daily COVID-19 Deaths" x={130} y={20} textAnchor="middle" style={{fontSize: 12}}/>
+                        
+                        <VictoryAxis
+                          tickValues={[
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
+                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
+                          style={{tickLabels: {fontSize: 10}}} 
+                          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                        
+                        <VictoryGroup 
+                          colorScale={[stateColor]}
+                        >
+
+                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                            x='t' y='deaths'
+                            />
+
+                        </VictoryGroup>
+
+                        <VictoryArea
+                          style={{ data: { fill: "##C0C0C0" , fillOpacity: 0.1} }}
+                          data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          x= 't' y = 'deaths'
+
+                        />
+            </VictoryChart>
+            </Grid.Row>
+          </Grid>
+
+
 
 
           <Grid columns={18}>
@@ -325,11 +401,11 @@ export default function StateMap(props) {
                       <VictoryChart theme={VictoryTheme.material}
                         width={330}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: 10}}
+                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
                         <VictoryLegend
-                          x={10} y={35}
+                          x={40} y={35}
                           orientation="horizontal"
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
@@ -366,11 +442,11 @@ export default function StateMap(props) {
                       <VictoryChart theme={VictoryTheme.material}
                         width={330}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: 10}}
+                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
                         <VictoryLegend
-                          x={10} y={35}
+                          x={40} y={35}
                           orientation="horizontal"
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
