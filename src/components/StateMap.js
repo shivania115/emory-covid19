@@ -289,7 +289,7 @@ export default function StateMap(props) {
             <VictoryChart theme={VictoryTheme.material}
                         width={252}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: -0.9}}
+                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         
                         <VictoryAxis
@@ -327,7 +327,7 @@ export default function StateMap(props) {
             <VictoryChart theme={VictoryTheme.material}
                         width={252}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: -0.9}}
+                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         
                         <VictoryAxis
