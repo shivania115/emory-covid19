@@ -290,7 +290,7 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Exposure Variables</Divider>
+          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>County Characteristics</Divider>
           <Grid>
             <Grid.Row columns={3}>                    
               <Grid.Column>
