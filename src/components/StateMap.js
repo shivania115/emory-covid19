@@ -141,6 +141,13 @@ export default function StateMap(props) {
   const [mortality, setMortality] = useState();
   const [percentChangeMortality, setPercentChangeMortality] = useState();
 
+  const [dataHospTestTS, setDataHospTestTS] = useState();
+  const [hospitalizationRate, setHospitalizationRate] = useState();
+  const [pctChangeHospitalizationRate, setPctChangeHospRate] = useState();
+  const [testingRate, setTestingRate] = useState();
+  const [pctChangeTestingRate, setPctChangeTestingRate] = useState();
+
+
   useEffect(()=>{
     
     const configMatched = configs.find(s => s.fips === stateFips);
@@ -212,6 +219,11 @@ export default function StateMap(props) {
           let t = 0;
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
+
+          let hospitalizationRate = 0.1;
+          let testingRate = 0.1;
+          let percentChangeHospitalizationRate = 0;
+          let percentChangeTestingRate = 0;
           _.each(x, (v, k)=>{
             if (k.length===5 && v.length > 0 && v[v.length-1].mortalityMA > mortalityMA){
               countyMost = k.substring(2, 5);
@@ -223,6 +235,12 @@ export default function StateMap(props) {
 
               percentChangeMortality = (v[v.length-1].mortalityMA - v[v.length-2].mortalityMA)/v[v.length-2].mortalityMA;
               mortality = v[v.length-1].mortality;
+
+              percentChangeHospitalizationRate = (v[v.length-1].hospitalizationRate - v[v.length-2].hospitalizationRate)/v[v.length-2].hospitalizationRate;
+              hospitalizationRate = v[v.length-1].hospitalizationRate;
+
+              percentChangeTestingRate = (v[v.length-1].testingRate - v[v.length-2].testingRate)/v[v.length-2].testingRate;
+              testingRate = v[v.length-1].testingRate;
             }
           });
 
@@ -243,6 +261,26 @@ export default function StateMap(props) {
 
           }
 
+          if ((percentChangeHospitalizationRate*100).toFixed(0) > 0) {
+            setPctChangeHospRate("+" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
+          }else if((percentChangeHospitalizationRate*100).toFixed(0) < 0){
+            setPctChangeHospRate((percentChangeHospitalizationRate*100).toFixed(0) + "%");
+          }else{
+            setPctChangeHospRate("" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
+          }
+
+          if ((percentChangeTestingRate*100).toFixed(0) > 0) {
+            setPctChangeTestingRate("+" + (percentChangeTestingRate*100).toFixed(0) + "%");
+          }else if ((percentChangeTestingRate*100).toFixed(0) < 0) {
+            setPctChangeTestingRate((percentChangeTestingRate*100).toFixed(0) + "%");
+          }else{
+            setPctChangeTestingRate("" + (percentChangeTestingRate*100).toFixed(0) + "%");
+
+          }
+
+          setHospitalizationRate(hospitalizationRate.toFixed(0));
+          setTestingRate(testingRate.toFixed(0));
+
           setCountyFips(countyMost);
           setCountyName(fips2county[stateFips+countyMost]);
           setCaseRate(caseRate.toFixed(0));
@@ -250,8 +288,11 @@ export default function StateMap(props) {
 
           setDataTS(x);
         });
+
+
     }
   }, [stateFips]);
+
 
   if (data && dataTS) {
     console.log(data);
@@ -363,9 +404,8 @@ export default function StateMap(props) {
             <VictoryChart theme={VictoryTheme.material}
                         width={252}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: -0.9}}
+                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Hospitalization Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -380,25 +420,28 @@ export default function StateMap(props) {
                         >
 
                           <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='deaths'
+                            x='t' y='hospitalizationRate'
                             />
 
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: "##C0C0C0" , fillOpacity: 0.1} }}
+                          style={{ data: { fill: pctChangeHospitalizationRate.includes("+")? "#FF0000": (pctChangeHospitalizationRate.includes("-")? "#00FF00" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'deaths'
+                          x= 't' y = 'hospitalizationRate'
 
                         />
+                        <VictoryLabel text="Hospitalization Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {hospitalizationRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {pctChangeHospitalizationRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
                         width={252}
                         height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: -0.9}}
+                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Testing Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -413,17 +456,21 @@ export default function StateMap(props) {
                         >
 
                           <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='deaths'
+                            x='t' y='testingRate'
                             />
 
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: "##C0C0C0" , fillOpacity: 0.1} }}
+                          style={{ data: { fill: pctChangeTestingRate.includes("+")? "#FF0000": (pctChangeTestingRate.includes("-")? "#00FF00" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'deaths'
+                          x= 't' y = 'testingRate'
 
                         />
+                        <VictoryLabel text="Testing Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {testingRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+
             </VictoryChart>
             </Grid.Row>
           </Grid>
