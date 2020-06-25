@@ -708,8 +708,8 @@ export default function StateMap(props) {
                         countyFips={countyFips}
                         data={data} />
                       <BarChart 
-                        title="% Male" 
-                        var="male" 
+                        title="% Hispanic" 
+                        var="hispanic" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
