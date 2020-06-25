@@ -244,6 +244,7 @@ export default function StateMap(props) {
             }
           });
 
+
           if ((percentChangeCase*100).toFixed(0) > 0) {
             setPercentChangeCases("+" + (percentChangeCase*100).toFixed(0) + "%");
           }else if((percentChangeCase*100).toFixed(0) < 0){
@@ -327,7 +328,8 @@ export default function StateMap(props) {
 
           <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '1em', paddingBottom: "2.5em"}}>
 
-            <VictoryChart theme={VictoryTheme.material}
+            <VictoryChart theme={VictoryTheme.material} 
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
                         padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
@@ -351,7 +353,7 @@ export default function StateMap(props) {
 
                         </VictoryGroup>
                         <VictoryArea
-                          style={{ data: {  fill: percentChangeCases.includes("+")? "#FF0000": percentChangeCases.includes("-")? "#00FF00" : "##C0C0C0" , fillOpacity: 0.1} }}
+                          style={{ data: {  fill: percentChangeCases.includes("+")? "#C0C0C0": percentChangeCases.includes("-")? "#C0C0C0" : "#C0C0C0" , fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'caseRateMA'
 
@@ -366,6 +368,7 @@ export default function StateMap(props) {
             
 
             <VictoryChart theme={VictoryTheme.material}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
                         padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
@@ -390,7 +393,7 @@ export default function StateMap(props) {
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: percentChangeMortality.includes("+")? "#FF0000": (percentChangeMortality.includes("-")? "#00FF00" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: percentChangeMortality.includes("+")? "#C0C0C0": (percentChangeMortality.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'mortalityMA'
 
@@ -402,6 +405,7 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
                         padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
@@ -426,7 +430,7 @@ export default function StateMap(props) {
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: pctChangeHospitalizationRate.includes("+")? "#FF0000": (pctChangeHospitalizationRate.includes("-")? "#00FF00" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: pctChangeHospitalizationRate.includes("+")? "#C0C0C0": (pctChangeHospitalizationRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'hospitalizationRate'
 
@@ -438,6 +442,7 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
                         padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
@@ -462,7 +467,7 @@ export default function StateMap(props) {
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: pctChangeTestingRate.includes("+")? "#FF0000": (pctChangeTestingRate.includes("-")? "#00FF00" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: pctChangeTestingRate.includes("+")? "#C0C0C0": (pctChangeTestingRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'testingRate'
 
@@ -483,7 +488,7 @@ export default function StateMap(props) {
               <Grid.Column width={5}>
                 
                 <svg width="400" height="90">
-                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
+                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Deaths per 100,000 </text>
                   <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
 
@@ -504,7 +509,8 @@ export default function StateMap(props) {
                   <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
                   <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
 
-                  <text x={250} y={59} style={{fontSize: '0.5em'}}> Click on a county below for a detailed report. </text>
+                  <text x={250} y={49} style={{fontSize: '0.8em'}}> Click on a county below </text>
+                  <text x={250} y={59} style={{fontSize: '0.8em'}}> for a detailed report. </text>
 
 
                 </svg>
@@ -557,7 +563,7 @@ export default function StateMap(props) {
                 </Header>
                 <Grid>
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
-                      <VictoryChart theme={VictoryTheme.material}
+                      <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
                         height={180}       
                         padding={{left: 50, right: 30, top: 60, bottom: 30}}

@@ -108,7 +108,7 @@ export default function USMap(props) {
   const [legendSplit, setLegendSplit] = useState([]);
 
   const [metric, setMetric] = useState('covidmortalityfig');
-  const [metricName, setMetricName] = useState('COVID-19 Mortality per 100,000');
+  const [metricName, setMetricName] = useState('COVID-19 Deaths per 100,000');
 
 
 
@@ -284,7 +284,7 @@ export default function USMap(props) {
                     type="button"
                     onClick={()=>{
                                 setMetric('covidmortalityfig');
-                                setMetricName('COVID-19 Mortality per 100,000');
+                                setMetricName('COVID-19 Deaths per 100,000');
                               }}
                     >Deaths per 100,000
                   </button>
@@ -383,7 +383,7 @@ export default function USMap(props) {
                       />
                       <VictoryAxis label={'% African American'}/>
                       <VictoryAxis dependentAxis 
-                        label={'COVID Mortality / 100k (log-scale)'} 
+                        label={'COVID-19 Deaths / 100k (log-scale)'} 
                         style={{ axisLabel: {padding: 40} }} 
                         tickCount={5}
                         tickFormat={(y) => (Math.round(y*100)/100)}/>
