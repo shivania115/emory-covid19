@@ -170,7 +170,13 @@ export default function USMap(props) {
           }
         });
 
-        setLegendMax(max.toFixed(0));
+        if (max > 999) {
+          max = (max/1000).toFixed(0) + "K";
+          setLegendMax(max);
+        }else{
+          setLegendMax(max.toFixed(0));
+
+        }
         setLegendMin(min.toFixed(0));
 
         var split = scaleQuantile()
