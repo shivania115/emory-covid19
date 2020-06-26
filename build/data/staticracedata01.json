@@ -1,0 +1,104 @@
+{
+  "01": [
+    {
+      "All Races Combined": [
+        {
+          "cases": "25615",
+          "deaths": "773",
+          "caseRate": "526.55",
+          "mortality": "15.89",
+          "racePopulation": "4864680",
+          "populationTot": "4864680",
+          "percentPop": "100"
+        }
+      ]
+    },
+    {
+      "African American": [
+        {
+          "cases": "10497",
+          "deaths": "350",
+          "caseRate": "816.42",
+          "mortality": "27.22",
+          "racePopulation": "1285737",
+          "populationTot": "4864680",
+          "percentPop": "26.43"
+        }
+      ]
+    },
+    {
+      "White": [
+        {
+          "cases": "8976",
+          "deaths": "375",
+          "caseRate": "280.79",
+          "mortality": "11.73",
+          "racePopulation": "3196730",
+          "populationTot": "4864680",
+          "percentPop": "65.71"
+        }
+      ]
+    },
+    {
+      "Other Race": [
+        {
+          "cases": "1352",
+          "deaths": "12",
+          "caseRate": "18019.46",
+          "mortality": "159.94",
+          "racePopulation": "7503",
+          "populationTot": "4864680",
+          "percentPop": "0.15"
+        }
+      ]
+    },
+    {
+      "Hispanic": [
+        {
+          "cases": "2488",
+          "deaths": "18",
+          "caseRate": "1224.73",
+          "mortality": "8.86",
+          "racePopulation": "203146",
+          "populationTot": "4864680",
+          "percentPop": "4.18"
+        }
+      ]
+    }
+  ],
+  "_nation": [],
+  "_": [
+    {
+      "race": "none",
+      "cases": 0,
+      "deaths": 0,
+      "caseRate": 0,
+      "mortality": 0,
+      "racePopulation": 0,
+      "populationTot": 0,
+      "percentPop": 0
+    },
+    {
+      "race": "none",
+      "cases": 0,
+      "deaths": 0,
+      "caseRate": 0,
+      "mortality": 0,
+      "racePopulation": 0,
+      "populationTot": 0,
+      "percentPop": 0
+    }
+  ],
+  "99999": [
+    {
+      "race": "none",
+      "cases": 0,
+      "deaths": 0,
+      "caseRate": 0,
+      "mortality": 0,
+      "racePopulation": 0,
+      "populationTot": 0,
+      "percentPop": 0
+    }
+  ]
+}
