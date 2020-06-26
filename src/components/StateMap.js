@@ -492,14 +492,13 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart
-                        tickValues={[2, 4, 6, 8]}
                         theme={VictoryTheme.material} 
                         width={252}
                         height={180}        
                         scale={{y: props.ylog?'log':'linear'}}
                         minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
-                        padding={{left: -1, right: 100, top: 80, bottom: -0.9}}
+                        padding={{left: -1, right: -100, top: 80, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}
                       >
                         <VictoryLabel text="Cases per 10K persons by race" x={115} y={50} textAnchor="middle" style={{fontSize: 18}}/>
@@ -507,17 +506,25 @@ export default function StateMap(props) {
                             style={{tickLabels: {fontSize: 10}}}
 
                          />
+                        <VictoryAxis dependentAxis 
+                            tickValues = {[0,
+                              dataRD[stateFips][0]['Total'][0]['cases'],
+                              dataRD[stateFips][1]['Black'][0]['cases'],
+                              dataRD[stateFips][2]['White'][0]['cases']
+                            
+                            
+                                  
+                                    ]}
 
-                        
+                        />
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*100)/100)}`}
-                          scale = {{y: [0, 100]}}
+                          labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*dataRD[stateFips][0]['Total'][0]['cases']))}`}
                           data={[
-                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['cases'] || 0},
-                            {key: "Black", 'value': dataRD[stateFips][1]['Black'][0]['cases'] || 0},
-                            {key: "Total", 'value': dataRD[stateFips][0]['Total'][0]['cases'] || 0}
+                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['cases']/dataRD[stateFips][0]['Total'][0]['cases'] || 0},
+                            {key: "Black", 'value': dataRD[stateFips][1]['Black'][0]['cases']/dataRD[stateFips][0]['Total'][0]['cases'] || 0},
+                            {key: "Total", 'value': dataRD[stateFips][0]['Total'][0]['cases']/dataRD[stateFips][0]['Total'][0]['cases'] || 0}
                                   
                                     ]}
                           labelComponent={<VictoryLabel dx={10} style={{fontSize: 20, fill: ({datum}) => '#000000' }}/>}
