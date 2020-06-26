@@ -347,7 +347,7 @@ export default function StateMap(props) {
 
           <Grid columns={15}>
 
-          <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '1em', paddingBottom: "2.5em"}}>
+          <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '1em', paddingBottom: "0"}}>
 
             <VictoryChart theme={VictoryTheme.material} 
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
@@ -380,9 +380,8 @@ export default function StateMap(props) {
 
                         />
 
-                        <VictoryLabel text="Daily Cases" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
                         <VictoryLabel text= {caseRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {percentChangeCases}  x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryLabel text= {percentChangeCases}  x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
 
                         
             </VictoryChart>
@@ -419,9 +418,8 @@ export default function StateMap(props) {
                           x= 't' y = 'mortalityMA'
 
                         />
-                        <VictoryLabel text="Daily Deaths" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
                         <VictoryLabel text= {mortality} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {percentChangeMortality} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryLabel text= {percentChangeMortality} x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
 
             </VictoryChart>
 
@@ -456,9 +454,8 @@ export default function StateMap(props) {
                           x= 't' y = 'hospitalizationRate'
 
                         />
-                        <VictoryLabel text="Hospitalization Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
                         <VictoryLabel text= {hospRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {pctChangeHospRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryLabel text= {pctChangeHospRate} x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
 
             </VictoryChart>
 
@@ -493,9 +490,8 @@ export default function StateMap(props) {
                           x= 't' y = 'testingRate'
 
                         />
-                        <VictoryLabel text="Testing Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
                         <VictoryLabel text= {testingRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
 
             </VictoryChart>
 
@@ -507,17 +503,19 @@ export default function StateMap(props) {
                         scale={{y: props.ylog?'log':'linear'}}
                         minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
-                        padding={{left: -1, right: -100, top: 80, bottom: -0.9}}
+                        padding={{left: 105, right: -100, top: 80, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}
                       >
-                        <VictoryLabel text="Cases per 10K persons by race" x={115} y={50} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryLabel text="Cases per 10K" x={115} y={40} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="persons by race" x={115} y={60} textAnchor="middle" style={{fontSize: 21}}/>
+
                         <VictoryAxis 
-                            style={{tickLabels: {fontSize: 10}}}
+                            style={{axis: {stroke: "transparent"}, tickLabels: {fontSize: 10}}}
 
                          />
                         <VictoryAxis dependentAxis 
                             tickValues = {[0,
-                              dataRD[stateFips][0]['Total'][0]['caseRate'],
+                              dataRD[stateFips][0]['All Races Combined'][0]['caseRate'],
                               dataRD[stateFips][1]['African American'][0]['caseRate'],
                               dataRD[stateFips][2]['White'][0]['caseRate']
                             
@@ -529,14 +527,14 @@ export default function StateMap(props) {
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*dataRD[stateFips][0]['Total'][0]['caseRate']))}`}
+                          labels={({ datum }) => (Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))}
                           data={[
-                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['Total'][0]['caseRate'] || 0},
-                            {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['Total'][0]['caseRate'] || 0},
-                            {key: "Total", 'value': dataRD[stateFips][0]['Total'][0]['caseRate']/dataRD[stateFips][0]['Total'][0]['caseRate'] || 0}
+                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "All Races Combined", 'value': dataRD[stateFips][0]['All Races Combined'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0}
                                   
                                     ]}
-                          labelComponent={<VictoryLabel dx={10} style={{fontSize: 20, fill: ({datum}) => '#000000' }}/>}
+                          labelComponent={<VictoryLabel dx = {0} style={{fontSize: 12, fill: ({datum}) => '#000000' }}/>}
                           style={{
                             data: {
                               fill: ({ datum }) => '#b2b3b3'
@@ -547,16 +545,77 @@ export default function StateMap(props) {
                         />
             </VictoryChart>
 
+
             </Grid.Row>
+
+            <Grid.Row columns={5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
+              <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
+                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Daily Cases </text>
+              </Grid.Column>
+              <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0}}>
+                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Daily Deaths </text>
+              </Grid.Column>
+              <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0}}>
+                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Hospitalization Rate </text>
+              </Grid.Column>
+              <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
+                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Testing Rate </text>
+              </Grid.Column>
+              <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
+                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Race Breakdown </text>
+              </Grid.Column>
+                  
+            </Grid.Row>
+
+            <Grid.Row columns = {5} style={{paddingBottom: 50, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
+              
+                <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
+                  <small style={{fontWeight: 300}}>
+                    <i>Daily cases</i>: Daily new COVID-19 cases <br/> 
+                    (7-day rolling average) <br/>
+                    <i>Data source</i>: New York Times <br/>
+                    </small>
+                </Grid.Column>
+                <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
+                  <small style={{fontWeight: 300}}>
+                    <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
+                    (7-day rolling average) <br/>
+                    <i>Data source</i>: New York Times <br/>
+                    </small>
+                </Grid.Column>
+                <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0}}>
+                  <small style={{fontWeight: 300}}>
+                    <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
+                    <i>Data source</i>: Johns Hopkins University <br/>
+                    </small>
+                </Grid.Column>
+                <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0}}>
+                  <small style={{fontWeight: 300}}>
+                    <i>Testing rate</i>: COVID-19 tests per <br/>
+                    100,000 population <br/>
+                    <i>Data Source</i>: Johns Hopkins University <br/>
+                    </small>
+                </Grid.Column>
+                <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
+                  <small style={{fontWeight: 300}}>
+                    <i>Rates</i>: Cases per 100,000, <br/> 
+                    among those with race information available <br/>
+                    <i>Data source</i>: <a href="https://covidtracking.com/race" target="_blank"> The COVID Racial Data Tracker </a> <br/> 
+                    
+                    </small>
+                </Grid.Column>
+              
+            </Grid.Row>
+
           </Grid>
 
-          <Grid.Row style={{paddingBottom: 10}}>
-            <small style={{fontWeight: 300}}>
-            <em>Daily Cases</em>  <br/>
-            <em>Daily Deaths</em>  <br/>
-            For a complete table of variable defintion, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
-            </small>
-          </Grid.Row>
+          <div>
+             <Header as='h2' style={{fontWeight: 300, paddingBottom: 10}}>
+                  <Header.Content>
+                    Covid-19 County Outcomes
+                  </Header.Content>
+                </Header>
+          </div>
 
 
           <Grid columns={16}>
