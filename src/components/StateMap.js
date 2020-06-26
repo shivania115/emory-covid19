@@ -142,8 +142,8 @@ export default function StateMap(props) {
   const [percentChangeMortality, setPercentChangeMortality] = useState();
 
   const [dataHospTestTS, setDataHospTestTS] = useState();
-  const [hospitalizationRate, setHospitalizationRate] = useState();
-  const [pctChangeHospitalizationRate, setPctChangeHospRate] = useState();
+  const [hospRate, setHospRate] = useState();
+  const [pctChangeHospRate, setPctChangeHospRate] = useState();
   const [testingRate, setTestingRate] = useState();
   const [pctChangeTestingRate, setPctChangeTestingRate] = useState();
 
@@ -220,7 +220,7 @@ export default function StateMap(props) {
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
 
-          let hospitalizationRate = 0.1;
+          let hospRate = 0.1;
           let testingRate = 0.1;
           let percentChangeHospitalizationRate = 0;
           let percentChangeTestingRate = 0;
@@ -237,7 +237,7 @@ export default function StateMap(props) {
               mortality = v[v.length-1].mortality;
 
               percentChangeHospitalizationRate = (v[v.length-1].hospitalizationRate - v[v.length-2].hospitalizationRate)/v[v.length-2].hospitalizationRate;
-              hospitalizationRate = v[v.length-1].hospitalizationRate;
+              hospRate = v[v.length-1].hospitalizationRate;
 
               percentChangeTestingRate = (v[v.length-1].testingRate - v[v.length-2].testingRate)/v[v.length-2].testingRate;
               testingRate = v[v.length-1].testingRate;
@@ -249,6 +249,8 @@ export default function StateMap(props) {
             setPercentChangeCases("+" + (percentChangeCase*100).toFixed(0) + "%");
           }else if((percentChangeCase*100).toFixed(0) < 0){
             setPercentChangeCases((percentChangeCase*100).toFixed(0) + "%");
+          }else if(isNaN((percentChangeCase*100).toFixed(0))){
+            setPercentChangeCases("None Reported");
           }else{
             setPercentChangeCases("" + (percentChangeCase*100).toFixed(0) + "%");
           }
@@ -257,6 +259,8 @@ export default function StateMap(props) {
             setPercentChangeMortality("+" + (percentChangeMortality*100).toFixed(0) + "%");
           }else if ((percentChangeMortality*100).toFixed(0) < 0) {
             setPercentChangeMortality((percentChangeMortality*100).toFixed(0) + "%");
+          }else if(isNaN((percentChangeMortality*100).toFixed(0))){
+            setPercentChangeMortality("None Reported");
           }else{
             setPercentChangeMortality("" + (percentChangeMortality*100).toFixed(0) + "%");
 
@@ -266,6 +270,8 @@ export default function StateMap(props) {
             setPctChangeHospRate("+" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
           }else if((percentChangeHospitalizationRate*100).toFixed(0) < 0){
             setPctChangeHospRate((percentChangeHospitalizationRate*100).toFixed(0) + "%");
+          }else if(isNaN((percentChangeHospitalizationRate*100).toFixed(0))){
+            setPctChangeHospRate("None Reported");
           }else{
             setPctChangeHospRate("" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
           }
@@ -274,12 +280,14 @@ export default function StateMap(props) {
             setPctChangeTestingRate("+" + (percentChangeTestingRate*100).toFixed(0) + "%");
           }else if ((percentChangeTestingRate*100).toFixed(0) < 0) {
             setPctChangeTestingRate((percentChangeTestingRate*100).toFixed(0) + "%");
+          }else if(isNaN((percentChangeTestingRate*100).toFixed(0))){
+            setPctChangeTestingRate("None Reported");
           }else{
             setPctChangeTestingRate("" + (percentChangeTestingRate*100).toFixed(0) + "%");
 
           }
 
-          setHospitalizationRate(hospitalizationRate.toFixed(0));
+          setHospRate(hospRate.toFixed(0));
           setTestingRate(testingRate.toFixed(0));
 
           setCountyFips(countyMost);
@@ -430,14 +438,14 @@ export default function StateMap(props) {
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: pctChangeHospitalizationRate.includes("+")? "#C0C0C0": (pctChangeHospitalizationRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: pctChangeHospRate.includes("+")? "#C0C0C0": (pctChangeHospRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'hospitalizationRate'
 
                         />
                         <VictoryLabel text="Hospitalization Rate" x={130} y={80} textAnchor="middle" style={{fontSize: 24}}/>
-                        <VictoryLabel text= {hospitalizationRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {pctChangeHospitalizationRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryLabel text= {hospRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {pctChangeHospRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
 
             </VictoryChart>
 
@@ -480,7 +488,13 @@ export default function StateMap(props) {
             </Grid.Row>
           </Grid>
 
-
+          <Grid.Row style={{paddingBottom: 10}}>
+            <small style={{fontWeight: 300}}>
+            <em>Daily Cases</em>  <br/>
+            <em>Daily Deaths</em>  <br/>
+            For a complete table of variable defintion, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
+            </small>
+          </Grid.Row>
 
 
           <Grid columns={18}>
@@ -666,16 +680,16 @@ export default function StateMap(props) {
                         countyFips={countyFips}
                         data={data} />
                       <BarChart 
-                        title="% in Poverty" 
-                        var="poverty" 
+                        title="% Hispanic or Latino" 
+                        var="hispanic"  
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
                   </Grid.Row>
                   <Grid.Row columns={2} style={{padding: 10, width: 400}}>
                       <BarChart 
-                        title="% Uninsured" 
-                        var="PCTUI" 
+                        title="% Obese" 
+                        var="obesity" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />  
@@ -688,28 +702,28 @@ export default function StateMap(props) {
                   </Grid.Row>
                   <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
                       <BarChart 
-                        title="% Obese" 
-                        var="obesity" 
+                        title="% in Poverty" 
+                        var="poverty"  
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
                       <BarChart 
-                        title="% Over 65 y/o" 
-                        var="age65over" 
+                        title="% Uninsured" 
+                        var="PCTUI" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
                   </Grid.Row>
                   <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
                       <BarChart 
-                        title="% in Group Quarters" 
-                        var="groupquater" 
+                        title="% Over 65 y/o" 
+                        var="age65over" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
                       <BarChart 
-                        title="% Hispanic" 
-                        var="hispanic" 
+                        title="% in Group Quarters" 
+                        var="groupquater" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         data={data} />
