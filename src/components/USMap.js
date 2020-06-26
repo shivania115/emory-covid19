@@ -276,25 +276,25 @@ export default function USMap(props) {
                 <svg width="350" height="80">
                   
 
-                  <text x={100} y={70} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={100+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
+                  <text x={60} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={60+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={100+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={60+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
-                  <rect x={245} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={267} y={50} style={{fontSize: '0.7em'}}> None </text>
-                  <text x={267} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                  <rect x={205} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={227} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={227} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text key = {i} x={120 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text key = {i} x={120 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={100} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={220} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                  <text x={60} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={180} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
                 </svg>
                 </Grid.Row>

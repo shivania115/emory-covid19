@@ -333,17 +333,12 @@ export default function StateMap(props) {
           </Breadcrumb>
           <Divider hidden/>
 
-          <div>
-             <Header as='h2' style={{fontWeight: 400}}>
-                  <Header.Content>
-                    Covid-19 Outcomes in {stateName}
-                    <Header.Subheader style={{fontWeight: 300}}>
+          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> Covid-19 Outcomes in {stateName} </Divider>
+                  <div>
+                    <Header.Subheader style={{textAlign: "center", fontWeight: 300}}>
                     Health determinants impact COVID-19 outcomes. 
                     </Header.Subheader>
-                    <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
-                  </Header.Content>
-                </Header>
-          </div>
+                  </div>
 
           <Grid columns={15}>
 
@@ -506,7 +501,7 @@ export default function StateMap(props) {
                         padding={{left: 105, right: -100, top: 80, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}
                       >
-                        <VictoryLabel text="Cases per 10K" x={115} y={40} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Cases per 100,000" x={115} y={40} textAnchor="middle" style={{fontSize: 21}}/>
                         <VictoryLabel text="persons by race" x={115} y={60} textAnchor="middle" style={{fontSize: 21}}/>
 
                         <VictoryAxis 
@@ -601,21 +596,15 @@ export default function StateMap(props) {
                     <i>Rates</i>: Cases per 100,000, <br/> 
                     among those with race information available <br/>
                     <i>Data source</i>: <a href="https://covidtracking.com/race" target="_blank"> The COVID Racial Data Tracker </a> <br/> 
-                    
+
                     </small>
                 </Grid.Column>
               
             </Grid.Row>
 
           </Grid>
+         <Divider horizontal style={{fontWeight: 300, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> COVID-19 County Outcomes </Divider>
 
-          <div>
-             <Header as='h2' style={{fontWeight: 300, paddingBottom: 10}}>
-                  <Header.Content>
-                    Covid-19 County Outcomes
-                  </Header.Content>
-                </Header>
-          </div>
 
 
           <Grid columns={16}>
