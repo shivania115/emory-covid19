@@ -492,21 +492,28 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart
+                        tickValues={[2, 4, 6, 8]}
                         theme={VictoryTheme.material} 
                         width={252}
                         height={180}        
+                        scale={{y: props.ylog?'log':'linear'}}
+                        minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
-                        scale={{ y: 'scale'}}
                         padding={{left: -1, right: 100, top: 80, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}
                       >
                         <VictoryLabel text="Cases per 10K persons by race" x={115} y={50} textAnchor="middle" style={{fontSize: 18}}/>
-                        <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
-                        <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 10}}}/>
+                        <VictoryAxis 
+                            style={{tickLabels: {fontSize: 10}}}
+
+                         />
+
+                        
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
                           labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*100)/100)}`}
+                          scale = {{y: [0, 100]}}
                           data={[
                             {key: "White", 'value': dataRD[stateFips][2]['White'][0]['cases'] || 0},
                             {key: "Black", 'value': dataRD[stateFips][1]['Black'][0]['cases'] || 0},
@@ -542,8 +549,8 @@ export default function StateMap(props) {
                 
                 <svg width="400" height="90">
                   <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Deaths per 100,000 </text>
-                  <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
+                  <text x={0} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
                     return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
@@ -555,12 +562,12 @@ export default function StateMap(props) {
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}> 0 </text>
-                  <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
+                  <text x={0} y={37} style={{fontSize: '0.8em'}}> {legendMin} </text>
+                  <text x={120} y={37} style={{fontSize: '0.8em'}}>{legendMax}</text>
 
                   <text x={250} y={49} style={{fontSize: '0.8em'}}> Click on a county below </text>
                   <text x={250} y={59} style={{fontSize: '0.8em'}}> for a detailed report. </text>

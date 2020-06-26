@@ -218,12 +218,12 @@ export default function USMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="70">
+                <svg width="600" height="73">
                   
                   <text x={0} y={20} style={{fontSize: '1.0em'}}> {metricName} </text>
 
-                  <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
+                  <text x={0} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
                     return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
@@ -235,12 +235,12 @@ export default function USMap(props) {
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text key = {i} x={20 + 20 * (i)} y={70} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={70} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={120} y={70} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                  <text x={0} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={120} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
 
                   <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
