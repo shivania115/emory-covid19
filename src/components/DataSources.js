@@ -78,6 +78,11 @@ export default function DataSources(props){
               <Table.Cell><i>% African American</i> is the percentage of residents in each county who self-identify as having African American ancestry. These data are from 2018. </Table.Cell>
             </Table.Row>
             <Table.Row>
+              <Table.Cell>% Hispanic or Latino</Table.Cell>
+              <Table.Cell>American Community Survey by the U.S. Census Bureau </Table.Cell>
+              <Table.Cell><i>% Hispanic or Latino</i> is the percentage of residents in each county who self-identified as Hispanic or Latino to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
+            </Table.Row>
+            <Table.Row>
               <Table.Cell>% Minority</Table.Cell>
               <Table.Cell>American Community Survey by the U.S. Census Bureau </Table.Cell>
               <Table.Cell><i>% Minority</i> is the percentage of residents in each county who self-identify as having ancestry other than non-Hispanic white. These data are from 2018. </Table.Cell>

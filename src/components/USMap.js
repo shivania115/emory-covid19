@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, List, Loader, Divider } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, List, Loader, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -37,14 +37,6 @@ const colorPalette = [
       ];
 const colorHighlight = '#f2a900';
 
-function getMax(arr, prop) {
-    var max;
-    for (var i=0 ; i<arr.length ; i++) {
-        if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
-            max = arr[i];
-    }
-    return max;
-}
 
 function MapLabels(props){
 
@@ -115,11 +107,28 @@ export default function USMap(props) {
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
 
+  const [metric, setMetric] = useState('mean7daycases');
+  const [metricOptions, setMetricOptions] = useState('mean7daycases');
+  const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
+
+  const [varMap, setVarMap] = useState({});
+
+
+  useEffect(()=>{
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => {
+        setVarMap(x);
+        setMetricOptions(_.filter(_.map(x, d=> {
+          return {key: d.id, value: d.variable, text: d.name, group: d.group};
+        }), d => (d.text !== "Urban-Rural Status") && (d.group === "outcomes")));
+      });
+  }, []);
+
 
 
 
   useEffect(() => {
-
+    if (metric) {
     fetch('/data/data.json').then(res => res.json())
       .then(x => {
         
@@ -130,39 +139,44 @@ export default function USMap(props) {
           d => (d.Population > 10000 && 
               d.black > 5 && 
               d.fips.length === 5 && 
-              d.covidmortalityfig > 0)));
+              d['covidmortalityfig'] > 0)));
       
         const cs = scaleQuantile()
         .domain(_.map(_.filter(_.map(x, (d, k) => {
           d.fips = k
           return d}), 
           d => (
-              d.covidmortalityfig > 0)),
-          d=> d['covidmortalityfig']))
+              d[metric] >= 0 &&
+              d.fips.length === 5)),
+          d=> d[metric]))
         .range(colorPalette);
         let scaleMap = {}
         _.each(x, d=>{
-          if(d['covidmortalityfig'] > 0){
-          scaleMap[d['covidmortalityfig']] = cs(d['covidmortalityfig'])}});
+          if(d[metric] > 0){
+          scaleMap[d[metric]] = cs(d[metric])}});
       
         setColorScale(scaleMap);
         var max = 0
         var min = 100
         var length = 0
         _.each(x, d=> { 
-          if(d['covidmortalityfig'] !== null){
+          if(d[metric] !== null){
             length += 1
           }
-          if (d['covidmortalityfig'] > max) {
-            max = d['covidmortalityfig']
-          } else if (d['covidmortalityfig'] < min && d['covidmortalityfig'] > 0){
-            min = d['covidmortalityfig']
+          if (d[metric] > max && d.fips.length === 5) {
+            max = d[metric]
+          } else if (d[metric] < min && d[metric] >= 0){
+            min = d[metric]
           }
-
-
         });
 
-        setLegendMax(max.toFixed(0));
+        if (max > 999) {
+          max = (max/1000).toFixed(0) + "K";
+          setLegendMax(max);
+        }else{
+          setLegendMax(max.toFixed(0));
+
+        }
         setLegendMin(min.toFixed(0));
 
         var split = scaleQuantile()
@@ -170,8 +184,9 @@ export default function USMap(props) {
           d.fips = k
           return d}), 
           d => (
-              d.covidmortalityfig > 0)),
-          d=> d['covidmortalityfig']))
+              d[metric] >= 0 &&
+              d.fips.length === 5)),
+          d=> d[metric]))
         .range(colorPalette);
 
         setLegendSplit(split.quantiles());
@@ -193,9 +208,9 @@ export default function USMap(props) {
           return c}),
           c => (c.fips.length === 2)));
       });
+    }
 
-
-  }, [])
+  }, [metric])
 
   if (data && dataFltrd && stateLabels && dataStateFltrd && dataState) {
 
@@ -223,33 +238,68 @@ export default function USMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="70">
-                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Mortality per 100,000 </text>
-                  <text x={0} y={35} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.8em'}}>High</text>
+                
+
+                <Grid.Row columns={2} style={{width: 650, padding: 0, paddingTop: 0, paddingBottom: 0}}>
+
+                      <Dropdown
+                        icon=''
+
+                        style={{background: '#fff', 
+                                fontSize: "1.2em",
+                                fontWeight: 400, 
+                                theme: '#000000',
+                                width: '300px',
+                                top: '12px',
+                                left: '0px',
+                                text: "Select",
+                                borderTop: 'none',
+                                borderLeft: '1px solid #FFFFFF',
+                                borderRight: 'none', 
+                                borderBottom: '0.5px solid #bdbfc1',
+                                borderRadius: 0,
+                                minHeight: '1.0em',
+                                paddingBottom: '0.0em'}}
+                        placeholder= "Average Daily COVID-19 Cases"
+                        inline
+                        search
+                        pointing = 'top'
+                        options={metricOptions}
+                        onChange={(e, { value }) => {
+                          setMetric(value);
+                          setMetricName(varMap[value]['name']);
+                        }}
+
+                        
+                      />
+
+                <svg width="350" height="80">
+                  
+
+                  <text x={60} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={60+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={60+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
-                  <rect x={145} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={167} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
-                  <text x={167} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                  <rect x={205} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={227} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={227} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text x={20 + 20 * (i)} y={70} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}>{legendMin}</text>
-                  <text x={120} y={70} style={{fontSize: '0.8em'}}>{legendMax}</text>
-
-
-                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
-
+                  <text x={60} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={180} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
                 </svg>
+                </Grid.Row>
+
+
                 <ComposableMap 
                   projection="geoAlbersUsa" 
                   data-tip=""
@@ -284,9 +334,9 @@ export default function USMap(props) {
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
-                            ((colorScale && data[geo.id] && (data[geo.id]['covidmortalityfig']) > 0)?
-                                colorScale[data[geo.id]['covidmortalityfig']]: 
-                                (colorScale && data[geo.id] && data[geo.id]['covidmortalityfig'] === 0)?
+                            ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
+                                colorScale[data[geo.id][metric]]: 
+                                (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                             
                           />
@@ -296,13 +346,14 @@ export default function USMap(props) {
                     }
                   </Geographies>
                 </ComposableMap>
+                
                 <Grid.Row style={{paddingTop: 0}}>
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
                     <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
-                    For a complete table of variable definition, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
+                    For a complete table of variable defintion, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
                     </small>
-                  </Grid.Row>
+                </Grid.Row>
               </Grid.Column>
               <Grid.Column width={7}>
                 <Header as='h2' style={{fontWeight: 400}}>
@@ -342,7 +393,7 @@ export default function USMap(props) {
                       />
                       <VictoryAxis label={'% African American'}/>
                       <VictoryAxis dependentAxis 
-                        label={'COVID Mortality / 100k (log-scale)'} 
+                        label={'COVID-19 Deaths / 100k (log-scale)'} 
                         style={{ axisLabel: {padding: 40} }} 
                         tickCount={5}
                         tickFormat={(y) => (Math.round(y*100)/100)}/>
