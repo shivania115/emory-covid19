@@ -120,7 +120,7 @@ export default function USMap(props) {
         setVarMap(x);
         setMetricOptions(_.filter(_.map(x, d=> {
           return {key: d.id, value: d.variable, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status") && (d.group === "outcomes")));
+        }), d => (d.text !== "Urban-Rural Status")));
       });
   }, []);
 
