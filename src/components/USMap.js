@@ -238,39 +238,14 @@ export default function USMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <svg width="600" height="73">
-                  
-                  <text x={0} y={20} style={{fontSize: '1.0em'}}> {metricName} </text>
+                <div style={{paddingTop: 10, paddingBottom: -10}}>
+                  <text x={0} y={20} style={{fontSize: '1.2em'}}> {metricName} </text>
 
-                  <text x={0} y={70} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
+                </div>
 
-                  {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                  })} 
+                <Grid.Row columns={2} style={{width: 600, padding: 0, paddingTop: 0, paddingBottom: 0}}>
 
-                  <rect x={145} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={167} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
-                  <text x={167} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-
-                  {_.map(legendSplit, (splitpoint, i) => {
-                    if(legendSplit[i] < 1){
-                      return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                    }
-                    return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                  })} 
-                  <text x={0} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={120} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
-
-
-                  <text x={250} y={59} style={{fontSize: '1.0em'}}> Click on a state below for county data. </text>
-
-
-                </svg>
-
-                <div style={{paddingTop: 20}}>
-                
-                  <Dropdown
+                      <Dropdown
                         icon=''
 
                         style={{background: '#fff', 
@@ -278,7 +253,8 @@ export default function USMap(props) {
                                 fontWeight: 400, 
                                 theme: '#000000',
                                 width: '250px',
-                                left: '150px',
+                                top: '12px',
+                                left: '0px',
                                 text: "Select",
                                 borderTop: 'none',
                                 borderLeft: '1px solid #FFFFFF',
@@ -299,7 +275,33 @@ export default function USMap(props) {
 
                         
                       />
-                </div>
+
+                <svg width="350" height="73">
+                  
+
+                  <text x={100} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={100+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={100+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+                  <rect x={245} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={267} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
+                  <text x={267} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+
+                  {_.map(legendSplit, (splitpoint, i) => {
+                    if(legendSplit[i] < 1){
+                      return <text key = {i} x={120 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                    }
+                    return <text key = {i} x={120 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={100} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={220} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
+
+                </svg>
+                </Grid.Row>
+
 
                 <ComposableMap 
                   projection="geoAlbersUsa" 
