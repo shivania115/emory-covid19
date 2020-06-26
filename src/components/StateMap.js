@@ -567,20 +567,20 @@ export default function StateMap(props) {
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
                     (7-day rolling average) <br/>
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0}}>
+                <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0, paddingRight: 0}}>
                   <small style={{fontWeight: 300}}>
                     <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
                     <i>Data source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
                   <small style={{fontWeight: 300}}>
                     <i>Testing rate</i>: COVID-19 tests per <br/>
                     100,000 population <br/>
