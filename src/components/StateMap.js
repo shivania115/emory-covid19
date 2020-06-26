@@ -334,11 +334,7 @@ export default function StateMap(props) {
           <Divider hidden/>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> Covid-19 Outcomes in {stateName} </Divider>
-                  <div>
-                    <Header.Subheader style={{textAlign: "center", fontWeight: 300}}>
-                    Health determinants impact COVID-19 outcomes. 
-                    </Header.Subheader>
-                  </div>
+
 
           <Grid columns={15}>
 
@@ -603,7 +599,7 @@ export default function StateMap(props) {
             </Grid.Row>
 
           </Grid>
-         <Divider horizontal style={{fontWeight: 300, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> COVID-19 County Outcomes </Divider>
+         <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> COVID-19 County Outcomes </Divider>
 
 
 
