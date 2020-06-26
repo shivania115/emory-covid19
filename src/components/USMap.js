@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, List, Loader, Divider } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, List, Loader, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -108,7 +108,21 @@ export default function USMap(props) {
   const [legendSplit, setLegendSplit] = useState([]);
 
   const [metric, setMetric] = useState('covidmortalityfig');
+  const [metricOptions, setMetricOptions] = useState('covidmortalityfig');
   const [metricName, setMetricName] = useState('COVID-19 Deaths per 100,000');
+
+  const [varMap, setVarMap] = useState({});
+
+
+  useEffect(()=>{
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => {
+        setVarMap(x);
+        setMetricOptions(_.filter(_.map(x, d=> {
+          return {key: d.id, value: d.variable, text: d.name, group: d.group};
+        }), d => (d.text !== "Urban-Rural Status") && (d.group === "outcomes")));
+      });
+  }, []);
 
 
 
@@ -249,45 +263,36 @@ export default function USMap(props) {
                 </svg>
 
                 <div style={{paddingTop: 20}}>
-                  <button 
-                    style = {{
-                      position: "relative",
-                      left: "198px",
-                      color:"#633c70",
-                      border: "none",
-                      fontSize: "14px",
-                      cursor: "pointer",
-                      alignmentBaseline: "center",
-                      borderRadius: "2px",
-                      boxShadow: "0 2px #999",
-                  }}
-                    type="button"
-                    onClick={()=>{
-                                setMetric('casesfig');
-                                setMetricName('Total Cases');
-                              }}
-                    >Cases
-                  </button>
-                  <button
-                    style = {{
-                      position: "relative",
-                      left: "200px",
-                      color:"#633c70",
-                      border: "none",
-                      fontSize: "14px",
-                      cursor: "pointer",
-                      alignmentBaseline: "center",
-                      borderRadius: "2px",
-                      boxShadow: "0 2px #999",
+                
+                  <Dropdown
+                        icon=''
 
-                  }}
-                    type="button"
-                    onClick={()=>{
-                                setMetric('covidmortalityfig');
-                                setMetricName('COVID-19 Deaths per 100,000');
-                              }}
-                    >Deaths per 100,000
-                  </button>
+                        style={{background: '#fff', 
+
+                                fontWeight: 400, 
+                                theme: '#000000',
+                                width: '250px',
+                                left: '150px',
+                                text: "Select",
+                                borderTop: 'none',
+                                borderLeft: '1px solid #FFFFFF',
+                                borderRight: 'none', 
+                                borderBottom: '0.5px solid #bdbfc1',
+                                borderRadius: 0,
+                                minHeight: '1.0em',
+                                paddingBottom: '0.0em'}}
+                        placeholder= "Select Outcome Metric"
+                        inline
+                        search
+                        pointing = 'top'
+                        options={metricOptions}
+                        onChange={(e, { value }) => {
+                          setMetric(value);
+                          setMetricName(varMap[value]['name']);
+                        }}
+
+                        
+                      />
                 </div>
 
                 <ComposableMap 
