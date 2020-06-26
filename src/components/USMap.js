@@ -107,9 +107,9 @@ export default function USMap(props) {
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
 
-  const [metric, setMetric] = useState('covidmortalityfig');
-  const [metricOptions, setMetricOptions] = useState('covidmortalityfig');
-  const [metricName, setMetricName] = useState('COVID-19 Deaths per 100,000');
+  const [metric, setMetric] = useState('mean7daycases');
+  const [metricOptions, setMetricOptions] = useState('mean7daycases');
+  const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
 
   const [varMap, setVarMap] = useState({});
 
@@ -146,7 +146,7 @@ export default function USMap(props) {
           d.fips = k
           return d}), 
           d => (
-              d[metric] > 0 &&
+              d[metric] >= 0 &&
               d.fips.length === 5)),
           d=> d[metric]))
         .range(colorPalette);
@@ -165,7 +165,7 @@ export default function USMap(props) {
           }
           if (d[metric] > max && d.fips.length === 5) {
             max = d[metric]
-          } else if (d[metric] < min && d[metric] > 0){
+          } else if (d[metric] < min && d[metric] >= 0){
             min = d[metric]
           }
         });
@@ -184,7 +184,7 @@ export default function USMap(props) {
           d.fips = k
           return d}), 
           d => (
-              d[metric] > 0 &&
+              d[metric] >= 0 &&
               d.fips.length === 5)),
           d=> d[metric]))
         .range(colorPalette);
@@ -238,21 +238,18 @@ export default function USMap(props) {
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
-                <div style={{paddingTop: 10, paddingBottom: -10}}>
-                  <text x={0} y={20} style={{fontSize: '1.2em'}}> {metricName} </text>
+                
 
-                </div>
-
-                <Grid.Row columns={2} style={{width: 600, padding: 0, paddingTop: 0, paddingBottom: 0}}>
+                <Grid.Row columns={2} style={{width: 650, padding: 0, paddingTop: 0, paddingBottom: 0}}>
 
                       <Dropdown
                         icon=''
 
                         style={{background: '#fff', 
-
+                                fontSize: "1.2em",
                                 fontWeight: 400, 
                                 theme: '#000000',
-                                width: '250px',
+                                width: '300px',
                                 top: '12px',
                                 left: '0px',
                                 text: "Select",
@@ -263,7 +260,7 @@ export default function USMap(props) {
                                 borderRadius: 0,
                                 minHeight: '1.0em',
                                 paddingBottom: '0.0em'}}
-                        placeholder= "Select Outcome Metric"
+                        placeholder= "Average Daily COVID-19 Cases"
                         inline
                         search
                         pointing = 'top'
@@ -276,7 +273,7 @@ export default function USMap(props) {
                         
                       />
 
-                <svg width="350" height="73">
+                <svg width="350" height="80">
                   
 
                   <text x={100} y={70} style={{fontSize: '0.8em'}}>Low</text>
@@ -287,7 +284,7 @@ export default function USMap(props) {
                   })} 
 
                   <rect x={245} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={267} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
+                  <text x={267} y={50} style={{fontSize: '0.7em'}}> None </text>
                   <text x={267} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {

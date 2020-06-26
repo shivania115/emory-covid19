@@ -170,32 +170,39 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.covidmortalityfig >= 0)),
-            d=> d['covidmortalityfig']))
+                d.mean7daycases >= 0 &&
+                d.fips.length === 5)),
+            d=> d['mean7daycases']))
           .range(colorPalette);
 
           let scaleMap = {}
           _.each(x, d=>{
-            scaleMap[d['covidmortalityfig']] = cs(d['covidmortalityfig'])});
+            scaleMap[d['mean7daycases']] = cs(d['mean7daycases'])});
           setColorScale(scaleMap);
 
           var max = 0
           var min = 100
           var length = 0
           _.each(x, d=> { 
-            if(d['covidmortalityfig'] !== null){
+            if(d['mean7daycases'] !== null){
               length += 1
             }
-            if (d['covidmortalityfig'] > max) {
-              max = d['covidmortalityfig']
-            } else if (d['covidmortalityfig'] < min && d['covidmortalityfig'] >= 0){
-              min = d['covidmortalityfig']
+            if (d['mean7daycases'] > max && d.fips.length === 5) {
+              max = d['mean7daycases']
+            } else if (d['mean7daycases'] < min && d['mean7daycases'] >= 0){
+              min = d['mean7daycases']
             }
 
 
           });
 
-          setLegendMax(max.toFixed(0));
+          if (max > 999) {
+            max = (max/1000).toFixed(0) + "K";
+            setLegendMax(max);
+          }else{
+            setLegendMax(max.toFixed(0));
+
+          }
           setLegendMin(min.toFixed(0));
 
           var split = scaleQuantile()
@@ -203,8 +210,9 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.covidmortalityfig >= 0)),
-            d=> d['covidmortalityfig']))
+                d.mean7daycases >= 0 &&
+                d.fips.length === 5)),
+            d=> d['mean7daycases']))
           .range(colorPalette);
 
           setLegendSplit(split.quantiles());
@@ -491,6 +499,7 @@ export default function StateMap(props) {
 
             </VictoryChart>
 
+
             <VictoryChart
                         theme={VictoryTheme.material} 
                         width={252}
@@ -508,9 +517,9 @@ export default function StateMap(props) {
                          />
                         <VictoryAxis dependentAxis 
                             tickValues = {[0,
-                              dataRD[stateFips][0]['Total'][0]['cases'],
-                              dataRD[stateFips][1]['Black'][0]['cases'],
-                              dataRD[stateFips][2]['White'][0]['cases']
+                              dataRD[stateFips][0]['Total'][0]['caseRate'],
+                              dataRD[stateFips][1]['African American'][0]['caseRate'],
+                              dataRD[stateFips][2]['White'][0]['caseRate']
                             
                             
                                   
@@ -520,11 +529,11 @@ export default function StateMap(props) {
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*dataRD[stateFips][0]['Total'][0]['cases']))}`}
+                          labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*dataRD[stateFips][0]['Total'][0]['caseRate']))}`}
                           data={[
-                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['cases']/dataRD[stateFips][0]['Total'][0]['cases'] || 0},
-                            {key: "Black", 'value': dataRD[stateFips][1]['Black'][0]['cases']/dataRD[stateFips][0]['Total'][0]['cases'] || 0},
-                            {key: "Total", 'value': dataRD[stateFips][0]['Total'][0]['cases']/dataRD[stateFips][0]['Total'][0]['cases'] || 0}
+                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['Total'][0]['caseRate'] || 0},
+                            {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['Total'][0]['caseRate'] || 0},
+                            {key: "Total", 'value': dataRD[stateFips][0]['Total'][0]['caseRate']/dataRD[stateFips][0]['Total'][0]['caseRate'] || 0}
                                   
                                     ]}
                           labelComponent={<VictoryLabel dx={10} style={{fontSize: 20, fill: ({datum}) => '#000000' }}/>}
@@ -555,7 +564,7 @@ export default function StateMap(props) {
               <Grid.Column width={5}>
                 
                 <svg width="400" height="90">
-                  <text x={0} y={20} style={{fontSize: '1.0em'}}>COVID-19 Deaths per 100,000 </text>
+                  <text x={0} y={20} style={{fontSize: '1.0em'}}>Average Daily COVID-19 Cases </text>
                   <text x={0} y={70} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
@@ -564,7 +573,7 @@ export default function StateMap(props) {
                   })} 
 
                   <rect x={145} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={167} y={50} style={{fontSize: '0.7em'}}> No Deaths </text>
+                  <text x={167} y={50} style={{fontSize: '0.7em'}}> None </text>
                   <text x={167} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {
@@ -608,9 +617,9 @@ export default function StateMap(props) {
                         }}
                         
                         fill={countyFips===geo.properties.COUNTYFP?countyColor:
-                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig']) > 0)?
-                                colorScale[data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig']]: 
-                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['covidmortalityfig'] === 0)?
+                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['mean7daycases']) > 0)?
+                                colorScale[data[stateFips+geo.properties.COUNTYFP]['mean7daycases']]: 
+                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['mean7daycases'] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                         />
                     )}
