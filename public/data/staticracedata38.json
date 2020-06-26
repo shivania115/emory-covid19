@@ -1,53 +1,75 @@
 {
   "38": [
     {
-      "cases": 3080,
-      "deaths": 74,
-      "caseRate": 409.47,
-      "mortality": 9.84,
-      "racePopulation": 752201.0,
-      "populationTot": 752201.0,
-      "percentPop": 100
+      "Total": [
+        {
+          "cases": "3080",
+          "deaths": "74",
+          "caseRate": "409.47",
+          "mortality": "9.84",
+          "racePopulation": "752201",
+          "populationTot": "752201",
+          "percentPop": "100"
+        }
+      ]
     },
     {
-      "cases": 0,
-      "deaths": 0,
-      "caseRate": 0,
-      "mortality": 0,
-      "racePopulation": 0,
-      "populationTot": 0,
-      "percentPop": 0
+      "Black": [
+        {
+          "cases": "NA",
+          "deaths": "NA",
+          "caseRate": "NA",
+          "mortality": "NA",
+          "racePopulation": "20113",
+          "populationTot": "752201",
+          "percentPop": "2.67"
+        }
+      ]
     },
     {
-      "cases": 0,
-      "deaths": 0,
-      "caseRate": 0,
-      "mortality": 0,
-      "racePopulation": 0,
-      "populationTot": 0,
-      "percentPop": 0
+      "White": [
+        {
+          "cases": "NA",
+          "deaths": "NA",
+          "caseRate": "NA",
+          "mortality": "NA",
+          "racePopulation": "639477",
+          "populationTot": "752201",
+          "percentPop": "85.01"
+        }
+      ]
     },
     {
-      "cases": 0,
-      "deaths": 0,
-      "caseRate": 0,
-      "mortality": 0,
-      "racePopulation": 0,
-      "populationTot": 0,
-      "percentPop": 0
+      "Other Race": [
+        {
+          "cases": "NA",
+          "deaths": "NA",
+          "caseRate": "NA",
+          "mortality": "NA",
+          "racePopulation": "972",
+          "populationTot": "752201",
+          "percentPop": "0.13"
+        }
+      ]
     },
     {
-      "cases": 0,
-      "deaths": 0,
-      "caseRate": 0,
-      "mortality": 0,
-      "racePopulation": 0,
-      "populationTot": 0,
-      "percentPop": 0
+      "Hispanic": [
+        {
+          "cases": "NA",
+          "deaths": "NA",
+          "caseRate": "NA",
+          "mortality": "NA",
+          "racePopulation": "26529",
+          "populationTot": "752201",
+          "percentPop": "3.53"
+        }
+      ]
     }
   ],
+  "_nation": [],
   "_": [
     {
+      "race": "none",
       "cases": 0,
       "deaths": 0,
       "caseRate": 0,
@@ -57,6 +79,7 @@
       "percentPop": 0
     },
     {
+      "race": "none",
       "cases": 0,
       "deaths": 0,
       "caseRate": 0,
@@ -68,6 +91,7 @@
   ],
   "99999": [
     {
+      "race": "none",
       "cases": 0,
       "deaths": 0,
       "caseRate": 0,

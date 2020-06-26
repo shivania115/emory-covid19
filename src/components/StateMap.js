@@ -128,6 +128,7 @@ export default function StateMap(props) {
   const history = useHistory();
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
+  const [dataRD, setDataRD] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
   const [colorScale, setColorScale] = useState();
 
@@ -298,14 +299,18 @@ export default function StateMap(props) {
           setDataTS(x);
         });
 
+  fetch('/data/staticracedata'+stateFips+'.json').then(res => res.json())
+        .then(x => {
+          setDataRD(x);
+        });
+
 
     }
   }, [stateFips]);
 
 
-  if (data && dataTS) {
-    console.log(data);
-    console.log(dataTS);
+  if (data && dataTS && dataRD) {
+    console.log(dataRD.stateFips);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -453,7 +458,7 @@ export default function StateMap(props) {
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
-                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
+                        padding={{left: 10, right: 20, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
                         
                         <VictoryAxis
@@ -485,6 +490,40 @@ export default function StateMap(props) {
                         <VictoryLabel text= {pctChangeTestingRate} x={130} y={130} textAnchor="middle" style={{fontSize: 18}}/>
 
             </VictoryChart>
+
+            <VictoryChart
+                        theme={VictoryTheme.material} 
+                        width={252}
+                        height={180}        
+                        domainPadding={10}
+                        scale={{ y: 'scale'}}
+                        padding={{left: -1, right: 100, top: 80, bottom: -0.9}}
+                        containerComponent={<VictoryContainer responsive={false}/>}
+                      >
+                        <VictoryLabel text="Cases per 10K persons by race" x={115} y={50} textAnchor="middle" style={{fontSize: 18}}/>
+                        <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
+                        <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 10}}}/>
+                        <VictoryBar
+                          horizontal
+                          barRatio={0.8}
+                          labels={({ datum }) => `${datum.key}:  ${(Math.round(datum.value*100)/100)}`}
+                          data={[
+                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['cases'] || 0},
+                            {key: "Black", 'value': dataRD[stateFips][1]['Black'][0]['cases'] || 0},
+                            {key: "Total", 'value': dataRD[stateFips][0]['Total'][0]['cases'] || 0}
+                                  
+                                    ]}
+                          labelComponent={<VictoryLabel dx={10} style={{fontSize: 20, fill: ({datum}) => '#000000' }}/>}
+                          style={{
+                            data: {
+                              fill: ({ datum }) => '#b2b3b3'
+                            }
+                          }}
+                          x="key"
+                          y="value"
+                        />
+            </VictoryChart>
+
             </Grid.Row>
           </Grid>
 
@@ -497,7 +536,7 @@ export default function StateMap(props) {
           </Grid.Row>
 
 
-          <Grid columns={18}>
+          <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={5}>
                 
