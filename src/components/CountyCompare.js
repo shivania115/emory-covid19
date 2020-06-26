@@ -245,14 +245,14 @@ export default function CountyCompare() {
                             <text x={0} y={36} style={{fontSize: '1.2em'}}> Low </text>
                             <text x={40 * (colorPalette.length - 1)} y={36} style={{fontSize: '1.2em'}}> High </text> 
                             {_.map(legendSplitA, (split, i) => {
-                              if (legendSplitA[0].toFixed(0) == legendSplitA[1].toFixed(0) && legendSplitA[1].toFixed(0) == legendSplitA[2].toFixed(0) && legendSplitA[2].toFixed(0) == legendSplitA[3].toFixed(0) && legendSplitA[3].toFixed(0) == legendSplitA[4].toFixed(0) ) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(2) < 0? 0:legendSplitA[i].toFixed(2)} </text>
+                              if (legendSplitA[0].toFixed(0) === legendSplitA[1].toFixed(0) && legendSplitA[1].toFixed(0) === legendSplitA[2].toFixed(0) && legendSplitA[2].toFixed(0) === legendSplitA[3].toFixed(0) && legendSplitA[3].toFixed(0) === legendSplitA[4].toFixed(0) ) {
+                                return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(2) < 0? 0:legendSplitA[i].toFixed(2)} </text>
                               }else if (legendSplitA[i].toFixed(0) < 1) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(1) < 0? 0:legendSplitA[i].toFixed(1)} </text>
+                                return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(1) < 0? 0:legendSplitA[i].toFixed(1)} </text>
                               }else if (legendSplitA[i] > 999) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitA[i]/1000).toFixed(0) < 0? 0:(legendSplitA[i]/1000).toFixed(0)}K </text>
+                                return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitA[i]/1000).toFixed(0) < 0? 0:(legendSplitA[i]/1000).toFixed(0)}K </text>
                               }
-                              return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(0) < 0? 0:legendSplitA[i].toFixed(0)} </text>                    
+                              return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(0) < 0? 0:legendSplitA[i].toFixed(0)} </text>                    
                             })}
                             <text x={0} y={95} style={{fontSize: '1.0em'}}> {legendMinA} </text> 
                             <text x={240} y={95} style={{fontSize: '1.0em'}}> {legendMaxA} </text> 
@@ -267,7 +267,7 @@ export default function CountyCompare() {
                   <Grid.Column>
 
                   <svg width = "500" height="30">
-                      <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 Social Determinants/County Characteristics:  </text>
+                      <text x={0} y={15} style={{fontSize: '1.4em'}}>COVID-19 County Population Characteristics:  </text>
                   </svg>
 
                     <Dropdown
@@ -300,14 +300,14 @@ export default function CountyCompare() {
                             <text x={0} y={36} style={{fontSize: '1.2em'}}>Low</text>
                             <text x={40 * (colorPalette2.length - 1)} y={36} style={{fontSize: '1.2em'}}>High</text> 
                             {_.map(legendSplitB, (split, i) => {
-                              if (legendSplitB[0].toFixed(0) == legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) == legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) == legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) == legendSplitB[4].toFixed(0) ) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
+                              if (legendSplitB[0].toFixed(0) === legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) === legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) === legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) === legendSplitB[4].toFixed(0) ) {
+                                return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
                               }else if (legendSplitB[i].toFixed(0) < 1) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
+                                return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
                               }else if (legendSplitB[i] > 999) {
-                                return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
+                                return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
                               }
-                              return <text x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
+                              return <text key = {i} x={40 + 40*i} y={95} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
                             })}   
                             <text x={0} y={95} style={{fontSize: '1.0em'}}> {legendMinB} </text> 
                             <text x={240} y={95} style={{fontSize: '1.0em'}}> {legendMaxB} </text>
