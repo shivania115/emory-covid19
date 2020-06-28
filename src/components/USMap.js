@@ -217,7 +217,7 @@ export default function USMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '6em', minWidth: '960px'}}>
+        <Container style={{marginTop: '6em', minWidth: '1260px'}}>
           <Breadcrumb>
             <Breadcrumb.Section active>United States</Breadcrumb.Section>
             <Breadcrumb.Divider />
@@ -234,13 +234,14 @@ export default function USMap(props) {
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
                     COVID-19 is affecting every community differently.<br/>
-                    Some areas are much harder-hit than others. What is happening where you live?
+                    Some areas are much harder-hit than others.<br/>
+                    What is happening where you live?
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
                 
 
-                <Grid.Row columns={2} style={{width: 650, padding: 0, paddingTop: 0, paddingBottom: 0}}>
+                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingBottom: 0}}>
 
                       <Dropdown
                         icon=''
@@ -273,7 +274,7 @@ export default function USMap(props) {
                         
                       />
 
-                <svg width="350" height="80">
+                <svg width="330" height="80">
                   
 
                   <text x={60} y={70} style={{fontSize: '0.8em'}}>Low</text>
@@ -355,9 +356,9 @@ export default function USMap(props) {
                     </small>
                 </Grid.Row>
               </Grid.Column>
-              <Grid.Column width={7}>
+              <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
-                  <Header.Content>
+                  <Header.Content style={{width : 550}}>
                     A Snapshot of Health Disparities in <span style={{color: colorHighlight}}>{stateName}</span>
                     <Header.Subheader style={{fontWeight: 300}}>
                       Counties with higher proportions of African American residents tend to have higher rates of death from COVID-19. 
@@ -373,7 +374,7 @@ export default function USMap(props) {
                       width={500}
                       height={400}
                       scale={{y: 'log'}}
-                      padding={{left: 100, right: 50, top: 50, bottom: 50}}>
+                      padding={{left: 65, right: 30, top: 50, bottom: 50}}>
                       <VictoryLegend
                         x={10} y={10}
                         orientation="horizontal"
@@ -399,7 +400,7 @@ export default function USMap(props) {
                         tickFormat={(y) => (Math.round(y*100)/100)}/>
                     </VictoryChart>
                   </Grid.Row>
-                  <Grid.Row style={{paddingTop: 0}}>
+                  <Grid.Row style={{paddingTop: 0, paddingLeft: 10}}>
                     <small style={{fontWeight: 300}}>
                     Data last updated: {date}, updated every week<br/>
                     The chart does not contain those counties with less than 10,000 population and less than 5% African American.

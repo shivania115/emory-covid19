@@ -8,7 +8,7 @@ export default function DataSources(props){
   return (
     <div>
       <AppBar menu='dataSources'/>
-      <Container style={{marginTop: '8em'}}>
+      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
         <Header as='h2' style={{fontWeight: 400}}>
           <Header.Content>
             Data Sources and Interpretation

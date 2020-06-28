@@ -558,7 +558,7 @@ export default function StateMap(props) {
                   
             </Grid.Row>
 
-            <Grid.Row columns = {5} style={{paddingBottom: 50, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
+            <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
               
                 <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
                   <small style={{fontWeight: 300}}>
@@ -596,6 +596,12 @@ export default function StateMap(props) {
                     </small>
                 </Grid.Column>
               
+            </Grid.Row>
+
+            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 10}}>
+                    <small style={{fontWeight: 300}}>
+                      All percent changes for a 24-Hour period
+                    </small>
             </Grid.Row>
 
           </Grid>
@@ -722,7 +728,7 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                  </Grid.Row>
+                    </Grid.Row>
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
                       <VictoryChart theme={VictoryTheme.material}
                         width={330}

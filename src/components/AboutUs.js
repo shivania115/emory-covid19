@@ -8,7 +8,7 @@ export default function AboutUs(props){
   return (
     <div>
       <AppBar menu='aboutUs'/>
-      <Container style={{marginTop: '8em'}}>
+      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
         <Header as='h1' style={{fontWeight: 400}}>
           <Header.Content>
             About Us

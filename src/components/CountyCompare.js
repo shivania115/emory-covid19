@@ -180,7 +180,7 @@ export default function CountyCompare() {
   return (
       <div>
         <AppBar menu='countyCompare'/>
-        <Container style={{marginTop: '8em'}}>
+        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
           <Header as='h3'>
             <Header.Content style={{fontWeight: 400}}>
               Side-by-Side View of Counties in&nbsp;

@@ -14,7 +14,7 @@ export default function AppBar(props) {
       <Menu borderless inverted fixed='top'
         style={{backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
                 backgroundSize: 'cover'}}>
-        <Container style={{minWidth: '1260px'}}>
+        <Container style={{minWidth: '1290px'}}>
           <Menu.Item as='a' header onClick={() => history.push('/')}>
             <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
            COVID-19 Health Equity<br/>Interactive Dashboard
