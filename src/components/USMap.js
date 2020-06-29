@@ -346,6 +346,51 @@ export default function USMap(props) {
                       </svg>
                     }
                   </Geographies>
+                  <Marker coordinates={[-74, 40.7]}>
+                    <circle r={4} fill="#F53" />
+                  </Marker>
+                  <Marker coordinates={[-72.5, 39.8]} fill="#777">
+                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
+                      NYC
+                    </text>
+                  </Marker>
+
+                  <Marker coordinates={[-118.2, 34.1]}>
+                    <circle r={4} fill="#F53" />
+                  </Marker>
+                  <Marker coordinates={[-119.2, 33.2]} fill="#777">
+                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
+                      LA
+                    </text>
+                  </Marker>
+
+                  <Marker coordinates={[-87.6, 41.9]}>
+                    <circle r={4} fill="#F53" />
+                  </Marker>
+                  <Marker coordinates={[-87.1, 42.2]} fill="#777">
+                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
+                      CHI
+                    </text>
+                  </Marker>
+
+                  <Marker coordinates={[-95.4, 29.8]}>
+                    <circle r={4} fill="#F53" />
+                  </Marker>
+                  <Marker coordinates={[-93.8, 28.8]} fill="#777">
+                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
+                      HOU
+                    </text>
+                  </Marker>
+
+                  <Marker coordinates={[-112.1, 33.4]}>
+                    <circle r={4} fill="#F53" />
+                  </Marker>
+                  <Marker coordinates={[-111.0, 32.5]} fill="#777">
+                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
+                      PHX
+                    </text>
+                  </Marker>
+
                 </ComposableMap>
                 
                 <Grid.Row style={{paddingTop: 0}}>
