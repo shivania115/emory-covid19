@@ -28,6 +28,15 @@ import stateOptions from "./stateOptions.json";
 
 import configs from "./state_config.json";
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+
+
 const colorPalette = [
         "#e1dce2",
         "#d3b6cd",
@@ -171,12 +180,18 @@ export default function StateMap(props) {
             return d}), 
             d => (
                 d.mean7daycases >= 0 &&
-                d.fips.length === 5)),
+                d.fips.substring(0,2) === stateFips)),
             d=> d['mean7daycases']))
           .range(colorPalette);
 
           let scaleMap = {}
-          _.each(x, d=>{
+          _.each(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d.mean7daycases >= 0 &&
+                d.fips.substring(0,2) === stateFips))
+                , d=>{
             scaleMap[d['mean7daycases']] = cs(d['mean7daycases'])});
           setColorScale(scaleMap);
 
@@ -184,12 +199,9 @@ export default function StateMap(props) {
           var min = 100
           var length = 0
           _.each(x, d=> { 
-            if(d['mean7daycases'] !== null){
-              length += 1
-            }
-            if (d['mean7daycases'] > max && d.fips.length === 5) {
+            if (d.fips.substring(0,2) === stateFips && d['mean7daycases'] > max && d.fips.length === 5) {
               max = d['mean7daycases']
-            } else if (d['mean7daycases'] < min && d['mean7daycases'] >= 0){
+            } else if (d.fips.substring(0,2) === stateFips && d.fips.length === 5 && d['mean7daycases'] < min && d['mean7daycases'] >= 0){
               min = d['mean7daycases']
             }
 
@@ -211,7 +223,7 @@ export default function StateMap(props) {
             return d}), 
             d => (
                 d.mean7daycases >= 0 &&
-                d.fips.length === 5)),
+                d.fips.substring(0,2) === stateFips)),
             d=> d['mean7daycases']))
           .range(colorPalette);
 
@@ -296,13 +308,15 @@ export default function StateMap(props) {
 
           }
 
-          setHospRate(hospRate.toFixed(0));
-          setTestingRate(testingRate.toFixed(0));
+          
+          setHospRate(numberWithCommas(hospRate.toFixed(0)));
+          setTestingRate(numberWithCommas(testingRate.toFixed(0)));
+          setCaseRate(numberWithCommas(caseRate.toFixed(0)));
+          setMortality(numberWithCommas(mortality.toFixed(0)));
 
           setCountyFips(countyMost);
           setCountyName(fips2county[stateFips+countyMost]);
-          setCaseRate(caseRate.toFixed(0));
-          setMortality(mortality.toFixed(0));
+          
 
           setDataTS(x);
         });
@@ -518,7 +532,7 @@ export default function StateMap(props) {
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => (Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))}
+                          labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate'])))}
                           data={[
                             {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
