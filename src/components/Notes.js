@@ -2,12 +2,15 @@ import React, {useState } from 'react'
 import { Grid, List, Divider, Image } from 'semantic-ui-react'
 import ReactDOM from 'react-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
+function myFunction() {
+  alert('Link is copied to clipboard!');
+  
+}
 
 export default function Notes(props){
 
 
-  const [state, setState] = useState('https://covid19.emory.edu/');
+  const [state, setState] = useState("https://covid19.emory.edu/");
  
   return (
 
@@ -25,6 +28,7 @@ export default function Notes(props){
           The COVID-19 Health Equity Dashboard (<a href="COVID19.emory.edu"> COVID19.emory.edu</a>) seeks to fill the gaps in county-level data about the virus and underlying social determinants of health. 
           Our goal is for this Dashboard to facilitate easy comparisons of counties with respect to COVID-19 outcomes and social determinants. 
           We hope this becomes a valuable resource for and critical component of tailored public health responses to COVID-19 across the wide range of environments that Americans inhabit.
+
         </Grid.Column>
       </Grid.Row>
       <Divider hidden/>
@@ -44,7 +48,6 @@ export default function Notes(props){
             </List>
           </small>
 
-				  
         </Grid.Column>
 
         <Grid.Column style={{paddingLeft: 0}}>
@@ -62,13 +65,13 @@ export default function Notes(props){
 			  	  <Grid.Column style ={{paddingLeft: 0, paddingRight: 0, right: -295}}>
 	            	<a href="https://web.whatsapp.com/send?text= Check out the Emory COVID-19 Health Equity Interactive Dashboard! https://covid19.emory.edu/" data-action="share/whatsapp/share" target="_blank"><Image width= "22px" src='/WhatsApp_Logo_1.png' /></a>
 			  	  </Grid.Column>
-				  <Grid.Column style ={{paddingLeft: 0, paddingRight: 0, right: -290}}>
+				  <Grid.Column style ={{paddingLeft: 9, paddingRight: 0, paddingTop: 4, right: -290}}>
 				      <div>
  
-              <CopyToClipboard text={state}
-                onClick={() => setState({copied: true})}>
-                <img src='/WhatsApp_Logo_1.png' style={{right: 0, paddingLeft: 0, paddingRight: 0, height: "20px", width: "20px" }}/>
+              <CopyToClipboard text={state}>
+                <img onClick={()=>myFunction()} src='/copy_icon.png' style={{height: "13px", width: "13px" }}/>
               </CopyToClipboard>
+              
             </div>
 				  	
 								
