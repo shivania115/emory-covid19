@@ -59,7 +59,7 @@
       "caseRate": 24.815645519,
       "mortality": 0.5424184813,
       "caseRateMA": 1.3366741146,
-      "mortalityMA": 0.0581162659,
+      "mortalityMA": 0.0387441772,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -71,7 +71,7 @@
       "deaths": 4,
       "caseRate": 25.629273241,
       "mortality": 0.5424184813,
-      "caseRateMA": 1.3560462032,
+      "caseRateMA": 1.3366741146,
       "mortalityMA": 0.0387441772,
       "tests": 0,
       "totalHospitalized": 0,
@@ -1047,8 +1047,11 @@
       "caseRate": 114.58590417,
       "mortality": 1.3560462032,
       "caseRateMA": 2.3827668999,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 86918,
+      "totalHospitalized": 0,
+      "testingRate": 11881.4290303399,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -1057,7 +1060,11 @@
       "caseRate": 116.48436886,
       "mortality": 1.3560462032,
       "caseRateMA": 2.4215110772,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 88051,
+      "totalHospitalized": 0,
+      "testingRate": 12036.3067207075,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -1066,7 +1073,11 @@
       "caseRate": 117.84041506,
       "mortality": 1.3560462032,
       "caseRateMA": 2.5377436089,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 90824,
+      "totalHospitalized": 0,
+      "testingRate": 12415.367475685,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -1075,7 +1086,11 @@
       "caseRate": 122.72218139,
       "mortality": 1.3560462032,
       "caseRateMA": 2.9833016471,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 92947,
+      "totalHospitalized": 0,
+      "testingRate": 12705.5751867623,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -1084,14 +1099,63 @@
       "caseRate": 125.56987842,
       "mortality": 1.3560462032,
       "caseRateMA": 2.9058132926,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
-      "tests": 86918,
+      "tests": 96096,
       "totalHospitalized": 0,
-      "testingRate": 11881.4290303399,
+      "testingRate": 13136.0340102113,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 971,
+      "deaths": 10,
+      "caseRate": 131.67208633,
+      "mortality": 1.3560462032,
+      "caseRateMA": 3.4094875966,
+      "mortalityMA": 0.0,
+      "tests": 99452,
+      "totalHospitalized": 0,
+      "testingRate": 13594.7891107177,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 1001,
+      "deaths": 12,
+      "caseRate": 135.74022494,
+      "mortality": 1.6272554438,
+      "caseRateMA": 3.4869759511,
+      "mortalityMA": 0.0387441772,
+      "tests": 101792,
+      "totalHospitalized": 0,
+      "testingRate": 13914.6600687586,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 1027,
+      "deaths": 12,
+      "caseRate": 139.26594507,
+      "mortality": 1.6272554438,
+      "caseRateMA": 3.5257201283,
+      "mortalityMA": 0.0387441772,
+      "tests": 105581,
+      "totalHospitalized": 0,
+      "testingRate": 14432.6049662017,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 1060,
+      "deaths": 12,
+      "caseRate": 143.74089754,
+      "mortality": 1.6272554438,
+      "caseRateMA": 3.8937898121,
+      "mortalityMA": 0.0387441772,
+      "tests": 108300,
+      "totalHospitalized": 0,
+      "testingRate": 14804.2840836859,
+      "hospitalizationRate": 0
     }
   ],
   "02013": [
@@ -1101,17 +1165,12 @@
       "deaths": 0,
       "caseRate": 28.449502134,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 121.92643772,
-      "mortalityMA": 4.0642145905
-=======
-      "caseRateMA": 211.33915871,
-      "mortalityMA": 0.0,
+      "caseRateMA": 174.76122739,
+      "mortalityMA": 8.1284291811,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591761600,
@@ -1119,17 +1178,12 @@
       "deaths": 0,
       "caseRate": 28.449502134,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 93.476935582,
-      "mortalityMA": 4.0642145905
-=======
-      "caseRateMA": 186.95387116,
-      "mortalityMA": 0.0,
+      "caseRateMA": 170.6970128,
+      "mortalityMA": 8.1284291811,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591848000,
@@ -1137,17 +1191,12 @@
       "deaths": 0,
       "caseRate": 28.449502134,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 93.476935582,
-      "mortalityMA": 4.0642145905
-=======
-      "caseRateMA": 166.63279821,
-      "mortalityMA": 0.0,
+      "caseRateMA": 105.66957935,
+      "mortalityMA": 4.0642145905,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591934400,
@@ -1155,17 +1204,12 @@
       "deaths": 0,
       "caseRate": 28.449502134,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 81.284291811,
-      "mortalityMA": 4.0642145905
-=======
-      "caseRateMA": 97.541150173,
-      "mortalityMA": 0.0,
+      "caseRateMA": 44.706360496,
+      "mortalityMA": 4.0642145905,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592020800,
@@ -1173,17 +1217,12 @@
       "deaths": 0,
       "caseRate": 28.449502134,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 73.15586263,
-      "mortalityMA": 4.0642145905
-=======
-      "caseRateMA": 32.513716724,
-      "mortalityMA": 0.0,
+      "caseRateMA": 20.321072953,
+      "mortalityMA": 4.0642145905,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592107200,
@@ -1191,17 +1230,12 @@
       "deaths": 0,
       "caseRate": 28.449502134,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 69.091648039,
-      "mortalityMA": 4.0642145905
-=======
-      "caseRateMA": 4.0642145905,
+      "caseRateMA": 12.192643772,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592193600,
@@ -1275,8 +1309,11 @@
       "caseRate": 56.899004267,
       "mortality": 0.0,
       "caseRateMA": 4.0642145905,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -1285,7 +1322,11 @@
       "caseRate": 56.899004267,
       "mortality": 0.0,
       "caseRateMA": 4.0642145905,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -1294,7 +1335,11 @@
       "caseRate": 56.899004267,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -1303,7 +1348,11 @@
       "caseRate": 56.899004267,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -1312,14 +1361,63 @@
       "caseRate": 56.899004267,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 56.899004267,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 56.899004267,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 56.899004267,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 56.899004267,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02016": [
@@ -1329,17 +1427,12 @@
       "deaths": 0,
       "caseRate": 52.420059409,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 7.4885799156,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 9.9847732208,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591329600,
@@ -1543,8 +1636,11 @@
       "caseRate": 69.893412546,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -1553,7 +1649,11 @@
       "caseRate": 69.893412546,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -1562,7 +1662,11 @@
       "caseRate": 69.893412546,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -1571,7 +1675,11 @@
       "caseRate": 69.893412546,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -1580,14 +1688,63 @@
       "caseRate": 69.893412546,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 69.893412546,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 69.893412546,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 69.893412546,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 69.893412546,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02020": [
@@ -2638,8 +2795,11 @@
       "caseRate": 130.00020581,
       "mortality": 2.0580507515,
       "caseRateMA": 1.9600483348,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -2648,7 +2808,11 @@
       "caseRate": 132.40126502,
       "mortality": 2.0580507515,
       "caseRateMA": 2.0090495432,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -2657,7 +2821,11 @@
       "caseRate": 133.43029039,
       "mortality": 2.0580507515,
       "caseRateMA": 2.1070519599,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -2666,7 +2834,11 @@
       "caseRate": 137.54639189,
       "mortality": 2.0580507515,
       "caseRateMA": 2.3030567934,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -2675,14 +2847,63 @@
       "caseRate": 140.63346802,
       "mortality": 2.0580507515,
       "caseRateMA": 2.5480628352,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 420,
+      "deaths": 6,
+      "caseRate": 144.06355261,
+      "mortality": 2.0580507515,
+      "caseRateMA": 2.8420700854,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 429,
+      "deaths": 6,
+      "caseRate": 147.15062873,
+      "mortality": 2.0580507515,
+      "caseRateMA": 2.8910712938,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 440,
+      "deaths": 6,
+      "caseRate": 150.92372178,
+      "mortality": 2.0580507515,
+      "caseRateMA": 2.9890737106,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 455,
+      "deaths": 6,
+      "caseRate": 156.06884866,
+      "mortality": 2.0580507515,
+      "caseRateMA": 3.3810833775,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02050": [
@@ -2692,17 +2913,12 @@
       "deaths": 0,
       "caseRate": 5.4896794027,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 38.427755819,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 27.448397014,
+      "caseRateMA": 52.544074283,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586318400,
@@ -2710,17 +2926,12 @@
       "deaths": 0,
       "caseRate": 5.4896794027,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 32.153836502,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 26.664157099,
+      "caseRateMA": 43.133195307,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586404800,
@@ -2728,17 +2939,12 @@
       "deaths": 0,
       "caseRate": 5.4896794027,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 25.09567727,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 20.390237782,
+      "caseRateMA": 36.075036075,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586491200,
@@ -2746,17 +2952,12 @@
       "deaths": 0,
       "caseRate": 5.4896794027,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 19.605997867,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 17.253278123,
+      "caseRateMA": 28.232636928,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586577600,
@@ -2764,17 +2965,12 @@
       "deaths": 0,
       "caseRate": 5.4896794027,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 17.253278123,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 14.116318464,
+      "caseRateMA": 21.174477696,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586664000,
@@ -2782,7 +2978,7 @@
       "deaths": 0,
       "caseRate": 5.4896794027,
       "mortality": 0.0,
-      "caseRateMA": 7.8423991467,
+      "caseRateMA": 12.547838635,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -3680,8 +3876,11 @@
       "caseRate": 38.427755819,
       "mortality": 0.0,
       "caseRateMA": 1.5684798293,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -3690,7 +3889,11 @@
       "caseRate": 38.427755819,
       "mortality": 0.0,
       "caseRateMA": 1.5684798293,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -3699,7 +3902,11 @@
       "caseRate": 38.427755819,
       "mortality": 0.0,
       "caseRateMA": 1.5684798293,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -3708,7 +3915,11 @@
       "caseRate": 43.917435222,
       "mortality": 0.0,
       "caseRateMA": 1.5684798293,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -3717,14 +3928,63 @@
       "caseRate": 43.917435222,
       "mortality": 0.0,
       "caseRateMA": 1.5684798293,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 9,
+      "deaths": 0,
+      "caseRate": 49.407114625,
+      "mortality": 0.0,
+      "caseRateMA": 2.352719744,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 10,
+      "deaths": 0,
+      "caseRate": 54.896794027,
+      "mortality": 0.0,
+      "caseRateMA": 2.352719744,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 11,
+      "deaths": 0,
+      "caseRate": 60.38647343,
+      "mortality": 0.0,
+      "caseRateMA": 3.1369596587,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 11,
+      "deaths": 0,
+      "caseRate": 60.38647343,
+      "mortality": 0.0,
+      "caseRateMA": 3.1369596587,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02060": [
@@ -3734,7 +3994,7 @@
       "deaths": 0,
       "caseRate": 114.02508552,
       "mortality": 0.0,
-      "caseRateMA": 48.867893794,
+      "caseRateMA": 81.446489656,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -3747,17 +4007,12 @@
       "deaths": 0,
       "caseRate": 114.02508552,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 32.578595863,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 48.867893794,
+      "caseRateMA": 65.157191725,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1590984000,
@@ -3765,7 +4020,7 @@
       "deaths": 0,
       "caseRate": 114.02508552,
       "mortality": 0.0,
-      "caseRateMA": 32.578595863,
+      "caseRateMA": 65.157191725,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -3778,7 +4033,7 @@
       "deaths": 0,
       "caseRate": 114.02508552,
       "mortality": 0.0,
-      "caseRateMA": 32.578595863,
+      "caseRateMA": 48.867893794,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -4013,8 +4268,11 @@
       "caseRate": 570.12542759,
       "mortality": 0.0,
       "caseRateMA": 48.867893794,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -4023,7 +4281,11 @@
       "caseRate": 570.12542759,
       "mortality": 0.0,
       "caseRateMA": 48.867893794,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -4032,7 +4294,11 @@
       "caseRate": 570.12542759,
       "mortality": 0.0,
       "caseRateMA": 48.867893794,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -4041,7 +4307,11 @@
       "caseRate": 570.12542759,
       "mortality": 0.0,
       "caseRateMA": 16.289297931,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -4050,14 +4320,117 @@
       "caseRate": 570.12542759,
       "mortality": 0.0,
       "caseRateMA": 16.289297931,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 5,
+      "deaths": 0,
+      "caseRate": 570.12542759,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 21,
+      "deaths": 0,
+      "caseRate": 2394.5267959,
+      "mortality": 0.0,
+      "caseRateMA": 260.6287669,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 21,
+      "deaths": 0,
+      "caseRate": 2394.5267959,
+      "mortality": 0.0,
+      "caseRateMA": 260.6287669,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 21,
+      "deaths": 0,
+      "caseRate": 2394.5267959,
+      "mortality": 0.0,
+      "caseRateMA": 260.6287669,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    }
+  ],
+  "02068": [
+    {
+      "t": 1593057600,
+      "cases": 1,
+      "deaths": 0,
+      "caseRate": 48.567265663,
+      "mortality": 0.0,
+      "caseRateMA": 117.94907375,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 1,
+      "deaths": 0,
+      "caseRate": 48.567265663,
+      "mortality": 0.0,
+      "caseRateMA": 117.94907375,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 1,
+      "deaths": 0,
+      "caseRate": 48.567265663,
+      "mortality": 0.0,
+      "caseRateMA": 117.94907375,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 1,
+      "deaths": 0,
+      "caseRate": 48.567265663,
+      "mortality": 0.0,
+      "caseRateMA": 117.94907375,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02070": [
@@ -4067,17 +4440,12 @@
       "deaths": 0,
       "caseRate": 20.0,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 2.8571428571,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.428571429,
+      "caseRateMA": 5.7142857143,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1590984000,
@@ -4085,17 +4453,12 @@
       "deaths": 0,
       "caseRate": 20.0,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 2.8571428571,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.428571429,
+      "caseRateMA": 5.7142857143,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591070400,
@@ -4103,17 +4466,12 @@
       "deaths": 0,
       "caseRate": 20.0,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 2.8571428571,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 5.7142857143,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591156800,
@@ -4121,17 +4479,12 @@
       "deaths": 0,
       "caseRate": 20.0,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 2.8571428571,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.7142857143,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591243200,
@@ -4348,8 +4701,11 @@
       "caseRate": 20.0,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -4358,7 +4714,11 @@
       "caseRate": 20.0,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -4367,7 +4727,11 @@
       "caseRate": 20.0,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -4376,7 +4740,11 @@
       "caseRate": 280.0,
       "mortality": 0.0,
       "caseRateMA": 37.142857143,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -4385,14 +4753,63 @@
       "caseRate": 280.0,
       "mortality": 0.0,
       "caseRateMA": 37.142857143,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 14,
+      "deaths": 0,
+      "caseRate": 280.0,
+      "mortality": 0.0,
+      "caseRateMA": 37.142857143,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 14,
+      "deaths": 0,
+      "caseRate": 280.0,
+      "mortality": 0.0,
+      "caseRateMA": 37.142857143,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 16,
+      "deaths": 0,
+      "caseRate": 320.0,
+      "mortality": 0.0,
+      "caseRateMA": 42.857142857,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 17,
+      "deaths": 0,
+      "caseRate": 340.0,
+      "mortality": 0.0,
+      "caseRateMA": 45.714285714,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02090": [
@@ -5443,8 +5860,11 @@
       "caseRate": 120.23724121,
       "mortality": 2.02079397,
       "caseRateMA": 3.6085606606,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -5453,7 +5873,11 @@
       "caseRate": 123.26843217,
       "mortality": 2.02079397,
       "caseRateMA": 3.4642182342,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -5462,7 +5886,11 @@
       "caseRate": 123.26843217,
       "mortality": 2.02079397,
       "caseRateMA": 3.4642182342,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -5471,7 +5899,11 @@
       "caseRate": 126.29962312,
       "mortality": 2.02079397,
       "caseRateMA": 3.8972455135,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -5480,14 +5912,63 @@
       "caseRate": 134.382799,
       "mortality": 2.02079397,
       "caseRateMA": 4.1859303663,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 140,
+      "deaths": 2,
+      "caseRate": 141.4555779,
+      "mortality": 2.02079397,
+      "caseRateMA": 4.3302727928,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 143,
+      "deaths": 2,
+      "caseRate": 144.48676885,
+      "mortality": 2.02079397,
+      "caseRateMA": 4.6189576456,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 145,
+      "deaths": 2,
+      "caseRate": 146.50756282,
+      "mortality": 2.02079397,
+      "caseRateMA": 3.7529030871,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 148,
+      "deaths": 2,
+      "caseRate": 149.53875378,
+      "mortality": 2.02079397,
+      "caseRateMA": 3.7529030871,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02100": [
@@ -5497,17 +5978,12 @@
       "deaths": 0,
       "caseRate": 40.420371867,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 138.58413212,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 127.03545444,
+      "caseRateMA": 155.90714863,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591761600,
@@ -5515,17 +5991,12 @@
       "deaths": 0,
       "caseRate": 40.420371867,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 132.80979328,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 127.03545444,
+      "caseRateMA": 138.58413212,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591848000,
@@ -5533,17 +6004,12 @@
       "deaths": 0,
       "caseRate": 40.420371867,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 86.615082573,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 127.03545444,
+      "caseRateMA": 92.389421411,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591934400,
@@ -5551,17 +6017,12 @@
       "deaths": 0,
       "caseRate": 40.420371867,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 69.292066058,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 92.389421411,
+      "caseRateMA": 51.969049544,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592020800,
@@ -5569,17 +6030,12 @@
       "deaths": 0,
       "caseRate": 40.420371867,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 69.292066058,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 57.743388382,
+      "caseRateMA": 34.646033029,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592107200,
@@ -5587,7 +6043,7 @@
       "deaths": 0,
       "caseRate": 40.420371867,
       "mortality": 0.0,
-      "caseRateMA": 51.969049544,
+      "caseRateMA": 23.097355353,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -5666,8 +6122,11 @@
       "caseRate": 80.840743735,
       "mortality": 0.0,
       "caseRateMA": 5.7743388382,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -5676,7 +6135,11 @@
       "caseRate": 80.840743735,
       "mortality": 0.0,
       "caseRateMA": 5.7743388382,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -5685,7 +6148,11 @@
       "caseRate": 202.10185934,
       "mortality": 0.0,
       "caseRateMA": 23.097355353,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -5694,7 +6161,11 @@
       "caseRate": 202.10185934,
       "mortality": 0.0,
       "caseRateMA": 23.097355353,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -5703,14 +6174,63 @@
       "caseRate": 202.10185934,
       "mortality": 0.0,
       "caseRateMA": 23.097355353,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 5,
+      "deaths": 0,
+      "caseRate": 202.10185934,
+      "mortality": 0.0,
+      "caseRateMA": 23.097355353,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 5,
+      "deaths": 0,
+      "caseRate": 202.10185934,
+      "mortality": 0.0,
+      "caseRateMA": 17.323016515,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 5,
+      "deaths": 0,
+      "caseRate": 202.10185934,
+      "mortality": 0.0,
+      "caseRateMA": 17.323016515,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 5,
+      "deaths": 0,
+      "caseRate": 202.10185934,
+      "mortality": 0.0,
+      "caseRateMA": 17.323016515,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02110": [
@@ -6761,8 +7281,11 @@
       "caseRate": 130.78815433,
       "mortality": 0.0,
       "caseRateMA": 0.8897153356,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -6771,7 +7294,11 @@
       "caseRate": 130.78815433,
       "mortality": 0.0,
       "caseRateMA": 0.8897153356,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -6780,7 +7307,11 @@
       "caseRate": 130.78815433,
       "mortality": 0.0,
       "caseRateMA": 0.8897153356,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -6789,7 +7320,11 @@
       "caseRate": 130.78815433,
       "mortality": 0.0,
       "caseRateMA": 0.8897153356,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -6798,14 +7333,63 @@
       "caseRate": 130.78815433,
       "mortality": 0.0,
       "caseRateMA": 0.4448576678,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 42,
+      "deaths": 0,
+      "caseRate": 130.78815433,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 45,
+      "deaths": 2,
+      "caseRate": 140.13016535,
+      "mortality": 6.228007349,
+      "caseRateMA": 1.3345730034,
+      "mortalityMA": 0.8897153356,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 47,
+      "deaths": 2,
+      "caseRate": 146.3581727,
+      "mortality": 6.228007349,
+      "caseRateMA": 2.2242883389,
+      "mortalityMA": 0.8897153356,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 48,
+      "deaths": 2,
+      "caseRate": 149.47217638,
+      "mortality": 6.228007349,
+      "caseRateMA": 2.6691460067,
+      "mortalityMA": 0.8897153356,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02122": [
@@ -7856,8 +8440,11 @@
       "caseRate": 215.26318487,
       "mortality": 1.7084379752,
       "caseRateMA": 2.6846882467,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -7866,7 +8453,11 @@
       "caseRate": 216.97162285,
       "mortality": 1.7084379752,
       "caseRateMA": 2.9287508146,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -7875,7 +8466,11 @@
       "caseRate": 216.97162285,
       "mortality": 1.7084379752,
       "caseRateMA": 2.6846882467,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -7884,7 +8479,11 @@
       "caseRate": 218.68006082,
       "mortality": 1.7084379752,
       "caseRateMA": 1.952500543,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -7893,14 +8492,63 @@
       "caseRate": 218.68006082,
       "mortality": 1.7084379752,
       "caseRateMA": 1.4643754073,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 134,
+      "deaths": 1,
+      "caseRate": 228.93068867,
+      "mortality": 1.7084379752,
+      "caseRateMA": 2.6846882467,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 136,
+      "deaths": 1,
+      "caseRate": 232.34756462,
+      "mortality": 1.7084379752,
+      "caseRateMA": 2.9287508146,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 138,
+      "deaths": 1,
+      "caseRate": 235.76444057,
+      "mortality": 1.7084379752,
+      "caseRateMA": 2.9287508146,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 141,
+      "deaths": 1,
+      "caseRate": 240.8897545,
+      "mortality": 1.7084379752,
+      "caseRateMA": 3.4168759503,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02130": [
@@ -8951,8 +9599,11 @@
       "caseRate": 179.62350912,
       "mortality": 0.0,
       "caseRateMA": 5.1321002607,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -8961,7 +9612,11 @@
       "caseRate": 179.62350912,
       "mortality": 0.0,
       "caseRateMA": 3.0792601564,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -8970,7 +9625,11 @@
       "caseRate": 179.62350912,
       "mortality": 0.0,
       "caseRateMA": 3.0792601564,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -8979,7 +9638,11 @@
       "caseRate": 193.99338985,
       "mortality": 0.0,
       "caseRateMA": 5.1321002607,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -8988,14 +9651,63 @@
       "caseRate": 201.17833022,
       "mortality": 0.0,
       "caseRateMA": 4.1056802086,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 28,
+      "deaths": 0,
+      "caseRate": 201.17833022,
+      "mortality": 0.0,
+      "caseRateMA": 3.0792601564,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 28,
+      "deaths": 0,
+      "caseRate": 201.17833022,
+      "mortality": 0.0,
+      "caseRateMA": 3.0792601564,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 28,
+      "deaths": 0,
+      "caseRate": 201.17833022,
+      "mortality": 0.0,
+      "caseRateMA": 3.0792601564,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 29,
+      "deaths": 0,
+      "caseRate": 208.36327058,
+      "mortality": 0.0,
+      "caseRateMA": 4.1056802086,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02150": [
@@ -9005,7 +9717,7 @@
       "deaths": 0,
       "caseRate": 7.4934432372,
       "mortality": 0.0,
-      "caseRateMA": 4.2819675641,
+      "caseRateMA": 5.3524594551,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -9018,7 +9730,7 @@
       "deaths": 0,
       "caseRate": 7.4934432372,
       "mortality": 0.0,
-      "caseRateMA": 4.2819675641,
+      "caseRateMA": 3.2114756731,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -9031,7 +9743,7 @@
       "deaths": 0,
       "caseRate": 7.4934432372,
       "mortality": 0.0,
-      "caseRateMA": 4.2819675641,
+      "caseRateMA": 2.140983782,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -9044,17 +9756,12 @@
       "deaths": 0,
       "caseRate": 7.4934432372,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 4.2819675641,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 2.140983782,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587355200,
@@ -9062,17 +9769,12 @@
       "deaths": 0,
       "caseRate": 7.4934432372,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 4.2819675641,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 1.070491891,
+      "caseRateMA": 2.140983782,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587441600,
@@ -9080,17 +9782,12 @@
       "deaths": 0,
       "caseRate": 7.4934432372,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 2.140983782,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 1.070491891,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587528000,
@@ -9866,8 +10563,11 @@
       "caseRate": 37.467216186,
       "mortality": 0.0,
       "caseRateMA": 1.070491891,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -9876,7 +10576,11 @@
       "caseRate": 37.467216186,
       "mortality": 0.0,
       "caseRateMA": 1.070491891,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -9885,7 +10589,11 @@
       "caseRate": 37.467216186,
       "mortality": 0.0,
       "caseRateMA": 1.070491891,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -9894,7 +10602,11 @@
       "caseRate": 44.960659423,
       "mortality": 0.0,
       "caseRateMA": 2.140983782,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -9903,14 +10615,63 @@
       "caseRate": 52.45410266,
       "mortality": 0.0,
       "caseRateMA": 2.140983782,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 52.45410266,
+      "mortality": 0.0,
+      "caseRateMA": 2.140983782,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 52.45410266,
+      "mortality": 0.0,
+      "caseRateMA": 2.140983782,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 52.45410266,
+      "mortality": 0.0,
+      "caseRateMA": 2.140983782,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 52.45410266,
+      "mortality": 0.0,
+      "caseRateMA": 2.140983782,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02164": [
@@ -9920,17 +10681,12 @@
       "deaths": 0,
       "caseRate": 63.011972275,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 27.005130975,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 18.00342065,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591416000,
@@ -9938,17 +10694,12 @@
       "deaths": 0,
       "caseRate": 63.011972275,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 27.005130975,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 18.00342065,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591502400,
@@ -9956,17 +10707,12 @@
       "deaths": 0,
       "caseRate": 63.011972275,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 27.005130975,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 18.00342065,
+      "caseRateMA": 9.001710325,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591588800,
@@ -9974,17 +10720,12 @@
       "deaths": 0,
       "caseRate": 63.011972275,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 27.005130975,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 9.001710325,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591675200,
@@ -9992,17 +10733,12 @@
       "deaths": 0,
       "caseRate": 63.011972275,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 27.005130975,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 9.001710325,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591761600,
@@ -10010,17 +10746,12 @@
       "deaths": 0,
       "caseRate": 63.011972275,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 18.00342065,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 9.001710325,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591848000,
@@ -10146,8 +10877,11 @@
       "caseRate": 126.02394455,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -10156,7 +10890,11 @@
       "caseRate": 126.02394455,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -10165,7 +10903,11 @@
       "caseRate": 126.02394455,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -10174,7 +10916,11 @@
       "caseRate": 126.02394455,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -10183,14 +10929,63 @@
       "caseRate": 126.02394455,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 126.02394455,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 189.03591682,
+      "mortality": 0.0,
+      "caseRateMA": 9.001710325,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 189.03591682,
+      "mortality": 0.0,
+      "caseRateMA": 9.001710325,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 189.03591682,
+      "mortality": 0.0,
+      "caseRateMA": 9.001710325,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02170": [
@@ -11241,8 +12036,11 @@
       "caseRate": 51.11049159,
       "mortality": 0.9292816653,
       "caseRateMA": 1.4602997597,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -11251,7 +12049,11 @@
       "caseRate": 52.039773255,
       "mortality": 0.9292816653,
       "caseRateMA": 1.4602997597,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -11260,7 +12062,11 @@
       "caseRate": 53.898336586,
       "mortality": 0.9292816653,
       "caseRateMA": 1.5930542833,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -11269,7 +12075,11 @@
       "caseRate": 55.756899916,
       "mortality": 0.9292816653,
       "caseRateMA": 1.7258088069,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -11278,14 +12088,63 @@
       "caseRate": 57.615463247,
       "mortality": 0.9292816653,
       "caseRateMA": 1.7258088069,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 65,
+      "deaths": 1,
+      "caseRate": 60.403308243,
+      "mortality": 0.9292816653,
+      "caseRateMA": 1.7258088069,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 70,
+      "deaths": 1,
+      "caseRate": 65.049716569,
+      "mortality": 0.9292816653,
+      "caseRateMA": 2.1240723778,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 73,
+      "deaths": 1,
+      "caseRate": 67.837561565,
+      "mortality": 0.9292816653,
+      "caseRateMA": 2.389581425,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 77,
+      "deaths": 1,
+      "caseRate": 71.554688226,
+      "mortality": 0.9292816653,
+      "caseRateMA": 2.7878449958,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02180": [
@@ -11295,7 +12154,7 @@
       "deaths": 0,
       "caseRate": 9.9920063949,
       "mortality": 0.0,
-      "caseRateMA": 15.701724335,
+      "caseRateMA": 28.5485897,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -11308,17 +12167,12 @@
       "deaths": 0,
       "caseRate": 9.9920063949,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 12.846865365,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 14.27429485,
+      "caseRateMA": 25.69373073,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587096000,
@@ -11326,17 +12180,12 @@
       "deaths": 0,
       "caseRate": 9.9920063949,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 11.41943588,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 12.846865365,
+      "caseRateMA": 22.83887176,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587182400,
@@ -11344,7 +12193,7 @@
       "deaths": 0,
       "caseRate": 9.9920063949,
       "mortality": 0.0,
-      "caseRateMA": 9.9920063949,
+      "caseRateMA": 18.556583305,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -11357,17 +12206,12 @@
       "deaths": 0,
       "caseRate": 9.9920063949,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 7.1371474249,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.7097179399,
+      "caseRateMA": 11.41943588,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587355200,
@@ -11375,17 +12219,12 @@
       "deaths": 0,
       "caseRate": 9.9920063949,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 4.282288455,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 2.85485897,
+      "caseRateMA": 7.1371474249,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587441600,
@@ -12174,8 +13013,11 @@
       "caseRate": 59.952038369,
       "mortality": 0.0,
       "caseRateMA": 1.427429485,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -12184,7 +13026,11 @@
       "caseRate": 59.952038369,
       "mortality": 0.0,
       "caseRateMA": 1.427429485,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -12193,7 +13039,11 @@
       "caseRate": 59.952038369,
       "mortality": 0.0,
       "caseRateMA": 1.427429485,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -12202,7 +13052,11 @@
       "caseRate": 69.944044764,
       "mortality": 0.0,
       "caseRateMA": 2.85485897,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -12211,14 +13065,63 @@
       "caseRate": 69.944044764,
       "mortality": 0.0,
       "caseRateMA": 1.427429485,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 69.944044764,
+      "mortality": 0.0,
+      "caseRateMA": 1.427429485,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 8,
+      "deaths": 0,
+      "caseRate": 79.936051159,
+      "mortality": 0.0,
+      "caseRateMA": 2.85485897,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 8,
+      "deaths": 0,
+      "caseRate": 79.936051159,
+      "mortality": 0.0,
+      "caseRateMA": 2.85485897,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 8,
+      "deaths": 0,
+      "caseRate": 79.936051159,
+      "mortality": 0.0,
+      "caseRateMA": 2.85485897,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02185": [
@@ -12228,7 +13131,7 @@
       "deaths": 0,
       "caseRate": 10.129659643,
       "mortality": 0.0,
-      "caseRateMA": 2.8941884696,
+      "caseRateMA": 4.3412827043,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -12267,17 +13170,12 @@
       "deaths": 0,
       "caseRate": 10.129659643,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 2.8941884696,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 1.4470942348,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1590984000,
@@ -12285,17 +13183,12 @@
       "deaths": 0,
       "caseRate": 10.129659643,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 2.8941884696,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 1.4470942348,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591070400,
@@ -12538,8 +13431,11 @@
       "caseRate": 30.38897893,
       "mortality": 0.0,
       "caseRateMA": 2.8941884696,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -12548,7 +13444,11 @@
       "caseRate": 30.38897893,
       "mortality": 0.0,
       "caseRateMA": 2.8941884696,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -12557,7 +13457,11 @@
       "caseRate": 40.518638574,
       "mortality": 0.0,
       "caseRateMA": 4.3412827043,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -12566,7 +13470,11 @@
       "caseRate": 40.518638574,
       "mortality": 0.0,
       "caseRateMA": 4.3412827043,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -12575,14 +13483,63 @@
       "caseRate": 40.518638574,
       "mortality": 0.0,
       "caseRateMA": 2.8941884696,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 40.518638574,
+      "mortality": 0.0,
+      "caseRateMA": 2.8941884696,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 40.518638574,
+      "mortality": 0.0,
+      "caseRateMA": 1.4470942348,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 40.518638574,
+      "mortality": 0.0,
+      "caseRateMA": 1.4470942348,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 40.518638574,
+      "mortality": 0.0,
+      "caseRateMA": 1.4470942348,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02188": [
@@ -12592,7 +13549,7 @@
       "deaths": 0,
       "caseRate": 13.036110025,
       "mortality": 0.0,
-      "caseRateMA": 5.5869042963,
+      "caseRateMA": 1.8623014321,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -12605,17 +13562,12 @@
       "deaths": 0,
       "caseRate": 13.036110025,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 3.7246028642,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.5869042963,
+      "caseRateMA": 1.8623014321,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1590120000,
@@ -12623,17 +13575,12 @@
       "deaths": 0,
       "caseRate": 13.036110025,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 3.7246028642,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.5869042963,
+      "caseRateMA": 1.8623014321,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1590206400,
@@ -12641,7 +13588,7 @@
       "deaths": 0,
       "caseRate": 26.07222005,
       "mortality": 0.0,
-      "caseRateMA": 5.5869042963,
+      "caseRateMA": 3.7246028642,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -12654,17 +13601,12 @@
       "deaths": 0,
       "caseRate": 26.07222005,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 3.7246028642,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.5869042963,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1590379200,
@@ -12946,8 +13888,11 @@
       "caseRate": 52.144440099,
       "mortality": 0.0,
       "caseRateMA": 3.7246028642,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592280000,
@@ -12956,7 +13901,11 @@
       "caseRate": 52.144440099,
       "mortality": 0.0,
       "caseRateMA": 1.8623014321,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592366400,
@@ -12965,7 +13914,11 @@
       "caseRate": 52.144440099,
       "mortality": 0.0,
       "caseRateMA": 1.8623014321,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592452800,
@@ -12974,7 +13927,11 @@
       "caseRate": 52.144440099,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592539200,
@@ -12983,14 +13940,11 @@
       "caseRate": 52.144440099,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592625600,
@@ -12998,17 +13952,12 @@
       "deaths": 0,
       "caseRate": 52.144440099,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 1.8623014321,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592712000,
@@ -13016,17 +13965,12 @@
       "deaths": 0,
       "caseRate": 52.144440099,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 1.8623014321,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592798400,
@@ -13056,6 +14000,58 @@
     },
     {
       "t": 1592971200,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 52.144440099,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593057600,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 52.144440099,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 52.144440099,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 52.144440099,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
       "cases": 4,
       "deaths": 0,
       "caseRate": 52.144440099,
@@ -14051,8 +15047,11 @@
       "caseRate": 93.138776777,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -14061,7 +15060,11 @@
       "caseRate": 93.138776777,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -14070,7 +15073,11 @@
       "caseRate": 93.138776777,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -14079,7 +15086,11 @@
       "caseRate": 124.1850357,
       "mortality": 0.0,
       "caseRateMA": 4.4351798465,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -14088,14 +15099,63 @@
       "caseRate": 124.1850357,
       "mortality": 0.0,
       "caseRateMA": 4.4351798465,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 124.1850357,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 124.1850357,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 124.1850357,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 4,
+      "deaths": 0,
+      "caseRate": 124.1850357,
+      "mortality": 0.0,
+      "caseRateMA": 4.4351798465,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02198": [
@@ -14105,17 +15165,12 @@
       "deaths": 0,
       "caseRate": 15.571473061,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 4.4489923032,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 2.2244961516,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586664000,
@@ -14123,17 +15178,12 @@
       "deaths": 0,
       "caseRate": 15.571473061,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 4.4489923032,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 2.2244961516,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586750400,
@@ -14141,17 +15191,12 @@
       "deaths": 0,
       "caseRate": 15.571473061,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 4.4489923032,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 2.2244961516,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586836800,
@@ -14159,17 +15204,12 @@
       "deaths": 0,
       "caseRate": 31.142946123,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 6.6734884549,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 4.4489923032,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586923200,
@@ -14177,17 +15217,12 @@
       "deaths": 0,
       "caseRate": 31.142946123,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 6.6734884549,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 4.4489923032,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587009600,
@@ -15041,8 +16076,11 @@
       "caseRate": 31.142946123,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -15051,7 +16089,11 @@
       "caseRate": 46.714419184,
       "mortality": 0.0,
       "caseRateMA": 2.2244961516,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -15060,7 +16102,11 @@
       "caseRate": 46.714419184,
       "mortality": 0.0,
       "caseRateMA": 2.2244961516,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -15069,7 +16115,11 @@
       "caseRate": 46.714419184,
       "mortality": 0.0,
       "caseRateMA": 2.2244961516,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -15078,14 +16128,63 @@
       "caseRate": 46.714419184,
       "mortality": 0.0,
       "caseRateMA": 2.2244961516,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 46.714419184,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 46.714419184,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 46.714419184,
+      "mortality": 0.0,
+      "caseRateMA": 2.2244961516,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 46.714419184,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02220": [
@@ -15095,17 +16194,12 @@
       "deaths": 0,
       "caseRate": 11.564704522,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 3.3042012919,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 1.652100646,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1587960000,
@@ -15113,17 +16207,12 @@
       "deaths": 0,
       "caseRate": 11.564704522,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 3.3042012919,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 1.652100646,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1588046400,
@@ -15131,17 +16220,12 @@
       "deaths": 0,
       "caseRate": 11.564704522,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 3.3042012919,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 1.652100646,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1588132800,
@@ -15826,8 +16910,11 @@
       "caseRate": 161.90586331,
       "mortality": 0.0,
       "caseRateMA": 6.6084025839,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -15836,7 +16923,11 @@
       "caseRate": 161.90586331,
       "mortality": 0.0,
       "caseRateMA": 6.6084025839,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -15845,7 +16936,11 @@
       "caseRate": 161.90586331,
       "mortality": 0.0,
       "caseRateMA": 6.6084025839,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -15854,7 +16949,11 @@
       "caseRate": 161.90586331,
       "mortality": 0.0,
       "caseRateMA": 6.6084025839,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -15863,14 +16962,63 @@
       "caseRate": 161.90586331,
       "mortality": 0.0,
       "caseRateMA": 4.9563019379,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 14,
+      "deaths": 0,
+      "caseRate": 161.90586331,
+      "mortality": 0.0,
+      "caseRateMA": 3.3042012919,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 15,
+      "deaths": 0,
+      "caseRate": 173.47056783,
+      "mortality": 0.0,
+      "caseRateMA": 4.9563019379,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 15,
+      "deaths": 0,
+      "caseRate": 173.47056783,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 15,
+      "deaths": 0,
+      "caseRate": 173.47056783,
+      "mortality": 0.0,
+      "caseRateMA": 1.652100646,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02240": [
@@ -15880,17 +17028,12 @@
       "deaths": 0,
       "caseRate": 14.455044811,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 6.1950192046,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 10.325032008,
+      "caseRateMA": 4.130012803,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1585972800,
@@ -15898,17 +17041,12 @@
       "deaths": 0,
       "caseRate": 14.455044811,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 6.1950192046,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 10.325032008,
+      "caseRateMA": 4.130012803,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586059200,
@@ -15916,17 +17054,12 @@
       "deaths": 0,
       "caseRate": 14.455044811,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 2.0650064015,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 10.325032008,
+      "caseRateMA": 4.130012803,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586145600,
@@ -15934,17 +17067,12 @@
       "deaths": 0,
       "caseRate": 14.455044811,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 2.0650064015,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 8.2600256061,
+      "caseRateMA": 4.130012803,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586232000,
@@ -15952,17 +17080,12 @@
       "deaths": 0,
       "caseRate": 14.455044811,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 2.0650064015,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 6.1950192046,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586318400,
@@ -15970,17 +17093,12 @@
       "deaths": 0,
       "caseRate": 14.455044811,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 2.0650064015,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 6.1950192046,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586404800,
@@ -16925,8 +18043,11 @@
       "caseRate": 101.18531367,
       "mortality": 0.0,
       "caseRateMA": 6.1950192046,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -16935,7 +18056,11 @@
       "caseRate": 101.18531367,
       "mortality": 0.0,
       "caseRateMA": 6.1950192046,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -16944,7 +18069,11 @@
       "caseRate": 101.18531367,
       "mortality": 0.0,
       "caseRateMA": 6.1950192046,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -16953,7 +18082,11 @@
       "caseRate": 101.18531367,
       "mortality": 0.0,
       "caseRateMA": 6.1950192046,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -16962,14 +18095,63 @@
       "caseRate": 101.18531367,
       "mortality": 0.0,
       "caseRateMA": 0.0,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 101.18531367,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 101.18531367,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 7,
+      "deaths": 0,
+      "caseRate": 101.18531367,
+      "mortality": 0.0,
+      "caseRateMA": 0.0,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 11,
+      "deaths": 0,
+      "caseRate": 159.00549292,
+      "mortality": 0.0,
+      "caseRateMA": 8.2600256061,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02261": [
@@ -16979,17 +18161,12 @@
       "deaths": 0,
       "caseRate": 10.912265386,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 21.824530773,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 20.265635717,
+      "caseRateMA": 26.501215938,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1588910400,
@@ -16997,17 +18174,12 @@
       "deaths": 0,
       "caseRate": 10.912265386,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 6.2355802207,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 20.265635717,
+      "caseRateMA": 26.501215938,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1588996800,
@@ -17015,17 +18187,12 @@
       "deaths": 0,
       "caseRate": 10.912265386,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 4.6766851656,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 20.265635717,
+      "caseRateMA": 26.501215938,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1589083200,
@@ -17033,17 +18200,12 @@
       "deaths": 0,
       "caseRate": 10.912265386,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 3.1177901104,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 20.265635717,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1589169600,
@@ -17051,17 +18213,12 @@
       "deaths": 0,
       "caseRate": 10.912265386,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 1.5588950552,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 18.706740662,
+      "caseRateMA": 3.1177901104,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1589256000,
@@ -17069,17 +18226,12 @@
       "deaths": 0,
       "caseRate": 10.912265386,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 1.5588950552,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 3.1177901104,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1589342400,
@@ -17582,8 +18734,11 @@
       "caseRate": 152.77171541,
       "mortality": 0.0,
       "caseRateMA": 1.5588950552,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -17592,7 +18747,11 @@
       "caseRate": 152.77171541,
       "mortality": 0.0,
       "caseRateMA": 1.5588950552,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -17601,7 +18760,11 @@
       "caseRate": 152.77171541,
       "mortality": 0.0,
       "caseRateMA": 1.5588950552,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -17610,7 +18773,11 @@
       "caseRate": 174.59624618,
       "mortality": 0.0,
       "caseRateMA": 4.6766851656,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -17619,14 +18786,63 @@
       "caseRate": 174.59624618,
       "mortality": 0.0,
       "caseRateMA": 4.6766851656,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 18,
+      "deaths": 0,
+      "caseRate": 196.42077695,
+      "mortality": 0.0,
+      "caseRateMA": 7.7944752759,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 18,
+      "deaths": 0,
+      "caseRate": 196.42077695,
+      "mortality": 0.0,
+      "caseRateMA": 6.2355802207,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 19,
+      "deaths": 0,
+      "caseRate": 207.33304234,
+      "mortality": 0.0,
+      "caseRateMA": 7.7944752759,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 20,
+      "deaths": 0,
+      "caseRate": 218.24530773,
+      "mortality": 0.0,
+      "caseRateMA": 9.3533703311,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02275": [
@@ -17636,17 +18852,12 @@
       "deaths": 0,
       "caseRate": 39.952057531,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 22.829747161,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.41487358,
+      "caseRateMA": 39.952057531,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591675200,
@@ -17654,17 +18865,12 @@
       "deaths": 0,
       "caseRate": 39.952057531,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 17.12231037,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.41487358,
+      "caseRateMA": 28.537183951,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591761600,
@@ -17672,17 +18878,12 @@
       "deaths": 0,
       "caseRate": 39.952057531,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 17.12231037,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.41487358,
+      "caseRateMA": 28.537183951,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591848000,
@@ -17690,17 +18891,12 @@
       "deaths": 0,
       "caseRate": 39.952057531,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 17.12231037,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.41487358,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1591934400,
@@ -17708,17 +18904,12 @@
       "deaths": 0,
       "caseRate": 39.952057531,
       "mortality": 0.0,
-<<<<<<< HEAD
       "caseRateMA": 17.12231037,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 11.41487358,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592020800,
@@ -17726,7 +18917,7 @@
       "deaths": 0,
       "caseRate": 79.904115062,
       "mortality": 0.0,
-      "caseRateMA": 11.41487358,
+      "caseRateMA": 17.12231037,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
@@ -17818,8 +19009,11 @@
       "caseRate": 119.85617259,
       "mortality": 0.0,
       "caseRateMA": 5.7074367901,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -17828,7 +19022,11 @@
       "caseRate": 119.85617259,
       "mortality": 0.0,
       "caseRateMA": 5.7074367901,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -17837,7 +19035,11 @@
       "caseRate": 119.85617259,
       "mortality": 0.0,
       "caseRateMA": 5.7074367901,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -17846,7 +19048,11 @@
       "caseRate": 239.71234519,
       "mortality": 0.0,
       "caseRateMA": 22.829747161,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -17855,14 +19061,63 @@
       "caseRate": 239.71234519,
       "mortality": 0.0,
       "caseRateMA": 17.12231037,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 6,
+      "deaths": 0,
+      "caseRate": 239.71234519,
+      "mortality": 0.0,
+      "caseRateMA": 17.12231037,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 8,
+      "deaths": 0,
+      "caseRate": 319.61646025,
+      "mortality": 0.0,
+      "caseRateMA": 28.537183951,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 8,
+      "deaths": 0,
+      "caseRate": 319.61646025,
+      "mortality": 0.0,
+      "caseRateMA": 28.537183951,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 8,
+      "deaths": 0,
+      "caseRate": 319.61646025,
+      "mortality": 0.0,
+      "caseRateMA": 28.537183951,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "02290": [
@@ -17872,17 +19127,12 @@
       "deaths": 0,
       "caseRate": 18.772292097,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 10.727024055,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.3635120277,
+      "caseRateMA": 16.090536083,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1585886400,
@@ -17890,17 +19140,12 @@
       "deaths": 0,
       "caseRate": 18.772292097,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 10.727024055,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.3635120277,
+      "caseRateMA": 8.0452680415,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1585972800,
@@ -17908,17 +19153,12 @@
       "deaths": 0,
       "caseRate": 18.772292097,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 10.727024055,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 5.3635120277,
+      "caseRateMA": 8.0452680415,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586059200,
@@ -17926,17 +19166,12 @@
       "deaths": 0,
       "caseRate": 18.772292097,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 10.727024055,
-      "mortalityMA": 0.0
-=======
-      "caseRateMA": 2.6817560138,
+      "caseRateMA": 8.0452680415,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586145600,
@@ -17944,17 +19179,12 @@
       "deaths": 0,
       "caseRate": 18.772292097,
       "mortality": 0.0,
-<<<<<<< HEAD
-      "caseRateMA": 10.727024055,
-      "mortalityMA": 0.0
-=======
       "caseRateMA": 2.6817560138,
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1586232000,
@@ -18925,8 +20155,11 @@
       "caseRate": 37.544584194,
       "mortality": 0.0,
       "caseRateMA": 2.6817560138,
-<<<<<<< HEAD
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592712000,
@@ -18935,7 +20168,11 @@
       "caseRate": 37.544584194,
       "mortality": 0.0,
       "caseRateMA": 2.6817560138,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592798400,
@@ -18944,7 +20181,11 @@
       "caseRate": 37.544584194,
       "mortality": 0.0,
       "caseRateMA": 2.6817560138,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592884800,
@@ -18953,7 +20194,11 @@
       "caseRate": 37.544584194,
       "mortality": 0.0,
       "caseRateMA": 2.6817560138,
-      "mortalityMA": 0.0
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     },
     {
       "t": 1592971200,
@@ -18962,25 +20207,74 @@
       "caseRate": 37.544584194,
       "mortality": 0.0,
       "caseRateMA": 2.6817560138,
-      "mortalityMA": 0.0
-=======
       "mortalityMA": 0.0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1593057600,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 37.544584194,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 2,
+      "deaths": 0,
+      "caseRate": 37.544584194,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 56.316876291,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 3,
+      "deaths": 0,
+      "caseRate": 56.316876291,
+      "mortality": 0.0,
+      "caseRateMA": 2.6817560138,
+      "mortalityMA": 0.0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "_nation": [
     {
       "t": 1585713600,
-      "cases": 215176,
-      "deaths": 5329,
-      "caseRate": 65.769382169,
-      "mortality": 1.628829598,
-      "caseRateMA": 6.4030560834,
-      "mortalityMA": 0.1871038476,
+      "cases": 215391,
+      "deaths": 5325,
+      "caseRate": 65.8351,
+      "mortality": 1.627607,
+      "caseRateMA": 6.410828,
+      "mortalityMA": 0.1864925,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -18988,12 +20282,12 @@
     },
     {
       "t": 1585800000,
-      "cases": 244636,
-      "deaths": 6558,
-      "caseRate": 74.773945869,
-      "mortality": 2.004478233,
-      "caseRateMA": 6.9458973981,
-      "mortalityMA": 0.2274064967,
+      "cases": 245108,
+      "deaths": 6541,
+      "caseRate": 74.91821,
+      "mortality": 1.999282,
+      "caseRateMA": 6.966202,
+      "mortalityMA": 0.2265332,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19001,12 +20295,12 @@
     },
     {
       "t": 1585886400,
-      "cases": 277279,
-      "deaths": 7918,
-      "caseRate": 84.751405912,
-      "mortality": 2.420167528,
-      "caseRateMA": 7.6170696832,
-      "mortalityMA": 0.2687134372,
+      "cases": 277426,
+      "deaths": 7932,
+      "caseRate": 84.79634,
+      "mortality": 2.424447,
+      "caseRateMA": 7.62065,
+      "mortalityMA": 0.2690628,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19014,12 +20308,12 @@
     },
     {
       "t": 1585972800,
-      "cases": 312519,
-      "deaths": 9486,
-      "caseRate": 95.522649115,
-      "mortality": 2.8994328329,
-      "caseRateMA": 8.2434418405,
-      "mortalityMA": 0.3140375431,
+      "cases": 312525,
+      "deaths": 9488,
+      "caseRate": 95.52448,
+      "mortality": 2.900044,
+      "caseRateMA": 8.233399,
+      "mortalityMA": 0.3138629,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19027,12 +20321,12 @@
     },
     {
       "t": 1586059200,
-      "cases": 337984,
-      "deaths": 10852,
-      "caseRate": 103.30612551,
-      "mortality": 3.3169560513,
-      "caseRateMA": 8.5398824523,
-      "mortalityMA": 0.3555191429,
+      "cases": 338141,
+      "deaths": 10856,
+      "caseRate": 103.3541,
+      "mortality": 3.318179,
+      "caseRateMA": 8.543245,
+      "mortalityMA": 0.3553445,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19040,12 +20334,12 @@
     },
     {
       "t": 1586145600,
-      "cases": 367599,
-      "deaths": 12360,
-      "caseRate": 112.35806556,
-      "mortality": 3.7778821226,
-      "caseRateMA": 8.8956635842,
-      "mortalityMA": 0.392765253,
+      "cases": 369056,
+      "deaths": 12382,
+      "caseRate": 112.8034,
+      "mortality": 3.784607,
+      "caseRateMA": 8.955703,
+      "mortalityMA": 0.3935949,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19053,12 +20347,12 @@
     },
     {
       "t": 1586232000,
-      "cases": 399388,
-      "deaths": 14614,
-      "caseRate": 122.07449718,
-      "mortality": 4.4668259983,
-      "caseRateMA": 9.2116660452,
-      "mortalityMA": 0.4503155147,
+      "cases": 399394,
+      "deaths": 14616,
+      "caseRate": 122.0763,
+      "mortality": 4.467437,
+      "caseRateMA": 9.210356,
+      "mortalityMA": 0.4502718,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19067,11 +20361,11 @@
     {
       "t": 1586318400,
       "cases": 431213,
-      "deaths": 16716,
-      "caseRate": 131.80193234,
-      "mortality": 5.1093104823,
-      "caseRateMA": 9.433221453,
-      "mortalityMA": 0.4972115549,
+      "deaths": 16701,
+      "caseRate": 131.8019,
+      "mortality": 5.104726,
+      "caseRateMA": 9.423834,
+      "mortalityMA": 0.4967312,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19081,10 +20375,10 @@
       "t": 1586404800,
       "cases": 465909,
       "deaths": 18821,
-      "caseRate": 142.40689983,
-      "mortality": 5.7527119279,
-      "caseRateMA": 9.6618505653,
-      "mortalityMA": 0.5354619564,
+      "caseRate": 142.4069,
+      "mortality": 5.752712,
+      "caseRateMA": 9.641241,
+      "mortalityMA": 0.5362043,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19092,12 +20386,12 @@
     },
     {
       "t": 1586491200,
-      "cases": 499379,
-      "deaths": 21081,
-      "caseRate": 152.63713564,
-      "mortality": 6.443489727,
-      "caseRateMA": 9.6979613896,
-      "mortalityMA": 0.5747603141,
+      "cases": 499381,
+      "deaths": 21084,
+      "caseRate": 152.6377,
+      "mortality": 6.444407,
+      "caseRateMA": 9.69163,
+      "mortalityMA": 0.57428,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19105,12 +20399,12 @@
     },
     {
       "t": 1586577600,
-      "cases": 531104,
-      "deaths": 23164,
-      "caseRate": 162.33400541,
-      "mortality": 7.080166787,
-      "caseRateMA": 9.5444794702,
-      "mortalityMA": 0.5972477077,
+      "cases": 531106,
+      "deaths": 23168,
+      "caseRate": 162.3346,
+      "mortality": 7.081389,
+      "caseRateMA": 9.544305,
+      "mortalityMA": 0.597335,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19118,12 +20412,12 @@
     },
     {
       "t": 1586664000,
-      "cases": 558247,
-      "deaths": 24847,
-      "caseRate": 170.63036904,
-      "mortality": 7.5945822896,
-      "caseRateMA": 9.617749075,
-      "mortalityMA": 0.6110894626,
+      "cases": 558249,
+      "deaths": 24849,
+      "caseRate": 170.631,
+      "mortality": 7.595194,
+      "caseRateMA": 9.610981,
+      "mortalityMA": 0.6110021,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19131,12 +20425,12 @@
     },
     {
       "t": 1586750400,
-      "cases": 584013,
-      "deaths": 26611,
-      "caseRate": 178.50584725,
-      "mortality": 8.1337557576,
-      "caseRateMA": 9.4496830984,
-      "mortalityMA": 0.6222676621,
+      "cases": 584018,
+      "deaths": 26613,
+      "caseRate": 178.5074,
+      "mortality": 8.134367,
+      "caseRateMA": 9.386282,
+      "mortalityMA": 0.6213944,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19144,12 +20438,12 @@
     },
     {
       "t": 1586836800,
-      "cases": 610703,
-      "deaths": 29317,
-      "caseRate": 186.66374967,
-      "mortality": 8.9608551932,
-      "caseRateMA": 9.2270360695,
-      "mortalityMA": 0.6420041707,
+      "cases": 610709,
+      "deaths": 29318,
+      "caseRate": 186.6656,
+      "mortality": 8.961161,
+      "caseRateMA": 9.227036,
+      "mortalityMA": 0.6419605,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19157,12 +20451,12 @@
     },
     {
       "t": 1586923200,
-      "cases": 640735,
-      "deaths": 32069,
-      "caseRate": 195.8431474,
-      "mortality": 9.8020147079,
-      "caseRateMA": 9.148745008,
-      "mortalityMA": 0.6703863179,
+      "cases": 640742,
+      "deaths": 32070,
+      "caseRate": 195.8453,
+      "mortality": 9.80232,
+      "caseRateMA": 9.149051,
+      "mortalityMA": 0.671085,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19170,12 +20464,12 @@
     },
     {
       "t": 1587009600,
-      "cases": 672348,
-      "deaths": 34417,
-      "caseRate": 205.50578393,
-      "mortality": 10.51969005,
-      "caseRateMA": 9.0141263003,
-      "mortalityMA": 0.6809968745,
+      "cases": 672355,
+      "deaths": 34418,
+      "caseRate": 205.5079,
+      "mortality": 10.52,
+      "caseRateMA": 9.014432,
+      "mortalityMA": 0.6810405,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19183,12 +20477,12 @@
     },
     {
       "t": 1587096000,
-      "cases": 703854,
-      "deaths": 36706,
-      "caseRate": 215.13571549,
-      "mortality": 11.219331812,
-      "caseRateMA": 8.9283685508,
-      "mortalityMA": 0.6822631549,
+      "cases": 703862,
+      "deaths": 36707,
+      "caseRate": 215.1382,
+      "mortality": 11.21964,
+      "caseRateMA": 8.928631,
+      "mortalityMA": 0.6821758,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19196,12 +20490,12 @@
     },
     {
       "t": 1587182400,
-      "cases": 732257,
+      "cases": 732262,
       "deaths": 38659,
-      "caseRate": 223.81720303,
-      "mortality": 11.816273865,
-      "caseRateMA": 8.783313946,
-      "mortalityMA": 0.6765867255,
+      "caseRate": 223.8187,
+      "mortality": 11.81627,
+      "caseRateMA": 8.783445,
+      "mortalityMA": 0.6764121,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19209,12 +20503,12 @@
     },
     {
       "t": 1587268800,
-      "cases": 757593,
+      "cases": 757596,
       "deaths": 40179,
-      "caseRate": 231.56125007,
-      "mortality": 12.280867783,
-      "caseRateMA": 8.7044115766,
-      "mortalityMA": 0.6694693563,
+      "caseRate": 231.5622,
+      "mortality": 12.28087,
+      "caseRateMA": 8.704455,
+      "mortalityMA": 0.669382,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19222,12 +20516,12 @@
     },
     {
       "t": 1587355200,
-      "cases": 784922,
+      "cases": 784926,
       "deaths": 42016,
-      "caseRate": 239.91446533,
-      "mortality": 12.842353986,
-      "caseRateMA": 8.7726597245,
-      "mortalityMA": 0.6726568897,
+      "caseRate": 239.9157,
+      "mortality": 12.84235,
+      "caseRateMA": 8.772616,
+      "mortalityMA": 0.6725696,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19235,12 +20529,12 @@
     },
     {
       "t": 1587441600,
-      "cases": 810415,
+      "cases": 810434,
       "deaths": 44688,
-      "caseRate": 247.70650003,
-      "mortality": 13.659061189,
-      "caseRateMA": 8.7203929088,
-      "mortalityMA": 0.6711722851,
+      "caseRate": 247.7123,
+      "mortality": 13.65906,
+      "caseRateMA": 8.720961,
+      "mortalityMA": 0.6711286,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19248,12 +20542,12 @@
     },
     {
       "t": 1587528000,
-      "cases": 839240,
+      "cases": 839266,
       "deaths": 47059,
-      "caseRate": 256.51697351,
-      "mortality": 14.38376657,
-      "caseRateMA": 8.6676894446,
-      "mortalityMA": 0.6545359803,
+      "caseRate": 256.5249,
+      "mortality": 14.38377,
+      "caseRateMA": 8.668519,
+      "mortalityMA": 0.6544923,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19261,12 +20555,12 @@
     },
     {
       "t": 1587614400,
-      "cases": 873025,
+      "cases": 873039,
       "deaths": 49228,
-      "caseRate": 266.8434903,
-      "mortality": 15.046729865,
-      "caseRateMA": 8.7625294812,
-      "mortalityMA": 0.6467199736,
+      "caseRate": 266.8478,
+      "mortality": 15.04673,
+      "caseRateMA": 8.762835,
+      "mortalityMA": 0.6466763,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19274,12 +20568,12 @@
     },
     {
       "t": 1587700800,
-      "cases": 909764,
+      "cases": 909777,
       "deaths": 51360,
-      "caseRate": 278.07290869,
-      "mortality": 15.698383966,
-      "caseRateMA": 8.9910275989,
-      "mortalityMA": 0.6398645934,
+      "caseRate": 278.0769,
+      "mortality": 15.69838,
+      "caseRateMA": 8.991246,
+      "mortalityMA": 0.6398209,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19287,12 +20581,12 @@
     },
     {
       "t": 1587787200,
-      "cases": 944161,
-      "deaths": 53322,
-      "caseRate": 288.58648566,
-      "mortality": 16.298076905,
-      "caseRateMA": 9.2527546614,
-      "mortalityMA": 0.640257577,
+      "cases": 944184,
+      "deaths": 53326,
+      "caseRate": 288.5935,
+      "mortality": 16.2993,
+      "caseRateMA": 9.253541,
+      "mortalityMA": 0.6404322,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19300,12 +20594,12 @@
     },
     {
       "t": 1587873600,
-      "cases": 970904,
+      "cases": 970919,
       "deaths": 54580,
-      "caseRate": 296.76058773,
-      "mortality": 16.682589502,
-      "caseRateMA": 9.314191094,
-      "mortalityMA": 0.6288173884,
+      "caseRate": 296.7652,
+      "mortality": 16.68259,
+      "caseRateMA": 9.314715,
+      "mortalityMA": 0.6288174,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19313,12 +20607,12 @@
     },
     {
       "t": 1587960000,
-      "cases": 994107,
+      "cases": 994110,
       "deaths": 56022,
-      "caseRate": 303.85267502,
-      "mortality": 17.123342417,
-      "caseRateMA": 9.1340299562,
-      "mortalityMA": 0.6115697759,
+      "caseRate": 303.8536,
+      "mortality": 17.12334,
+      "caseRateMA": 9.133986,
+      "mortalityMA": 0.6115698,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19326,12 +20620,12 @@
     },
     {
       "t": 1588046400,
-      "cases": 1018739,
+      "cases": 1018741,
       "deaths": 58416,
-      "caseRate": 311.38154172,
-      "mortality": 17.855077838,
-      "caseRateMA": 9.0964345273,
-      "mortalityMA": 0.5994309498,
+      "caseRate": 311.3822,
+      "mortality": 17.85508,
+      "caseRateMA": 9.095692,
+      "mortalityMA": 0.5994309,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19339,12 +20633,12 @@
     },
     {
       "t": 1588132800,
-      "cases": 1045296,
+      "cases": 1045298,
       "deaths": 60930,
-      "caseRate": 319.49879217,
-      "mortality": 18.623491726,
-      "caseRateMA": 8.9974026659,
-      "mortalityMA": 0.6056750222,
+      "caseRate": 319.4994,
+      "mortality": 18.62349,
+      "caseRateMA": 8.996355,
+      "mortalityMA": 0.605675,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19352,12 +20646,12 @@
     },
     {
       "t": 1588219200,
-      "cases": 1075635,
+      "cases": 1075637,
       "deaths": 63140,
-      "caseRate": 328.77202564,
-      "mortality": 19.29898683,
-      "caseRateMA": 8.8469336206,
-      "mortalityMA": 0.6074652807,
+      "caseRate": 328.7726,
+      "mortality": 19.29899,
+      "caseRateMA": 8.84641,
+      "mortalityMA": 0.6074653,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19365,12 +20659,12 @@
     },
     {
       "t": 1588305600,
-      "cases": 1109600,
+      "cases": 1109601,
       "deaths": 64902,
-      "caseRate": 339.15356013,
-      "mortality": 19.83754899,
-      "caseRateMA": 8.7258073492,
-      "mortalityMA": 0.5913092892,
+      "caseRate": 339.1539,
+      "mortality": 19.83755,
+      "caseRateMA": 8.725283,
+      "mortalityMA": 0.5913093,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19378,12 +20672,12 @@
     },
     {
       "t": 1588392000,
-      "cases": 1139074,
+      "cases": 1139075,
       "deaths": 66485,
-      "caseRate": 348.16240299,
-      "mortality": 20.321399104,
-      "caseRateMA": 8.5108453324,
-      "mortalityMA": 0.5747603141,
+      "caseRate": 348.1627,
+      "mortality": 20.3214,
+      "caseRateMA": 8.509885,
+      "mortalityMA": 0.5745857,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19391,12 +20685,12 @@
     },
     {
       "t": 1588478400,
-      "cases": 1165214,
+      "cases": 1165215,
       "deaths": 67816,
-      "caseRate": 356.15219576,
-      "mortality": 20.728224436,
-      "caseRateMA": 8.4845154327,
-      "mortalityMA": 0.5779478476,
+      "caseRate": 356.1525,
+      "mortality": 20.72822,
+      "caseRateMA": 8.483904,
+      "mortalityMA": 0.5779478,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19404,12 +20698,12 @@
     },
     {
       "t": 1588564800,
-      "cases": 1187175,
+      "cases": 1187176,
       "deaths": 68905,
-      "caseRate": 362.86466091,
-      "mortality": 21.061081526,
-      "caseRateMA": 8.4302836991,
-      "mortalityMA": 0.5625341584,
+      "caseRate": 362.865,
+      "mortality": 21.06108,
+      "caseRateMA": 8.430196,
+      "mortalityMA": 0.5625342,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19417,12 +20711,12 @@
     },
     {
       "t": 1588651200,
-      "cases": 1210880,
+      "cases": 1210881,
       "deaths": 71139,
-      "caseRate": 370.11018646,
-      "mortality": 21.743912323,
-      "caseRateMA": 8.3898063906,
-      "mortalityMA": 0.5555477837,
+      "caseRate": 370.1105,
+      "mortality": 21.74391,
+      "caseRateMA": 8.389763,
+      "mortalityMA": 0.5555478,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19430,12 +20724,12 @@
     },
     {
       "t": 1588737600,
-      "cases": 1235365,
+      "cases": 1235366,
       "deaths": 73847,
-      "caseRate": 377.59412204,
-      "mortality": 22.571623067,
-      "caseRateMA": 8.2993328382,
-      "mortalityMA": 0.564018763,
+      "caseRate": 377.5944,
+      "mortality": 22.57162,
+      "caseRateMA": 8.299289,
+      "mortalityMA": 0.5640188,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19443,12 +20737,12 @@
     },
     {
       "t": 1588824000,
-      "cases": 1263838,
+      "cases": 1263839,
       "deaths": 75805,
-      "caseRate": 386.29700534,
-      "mortality": 23.17009339,
-      "caseRateMA": 8.2178542431,
-      "mortalityMA": 0.5530152229,
+      "caseRate": 386.2973,
+      "mortality": 23.17009,
+      "caseRateMA": 8.217811,
+      "mortalityMA": 0.5530152,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19456,12 +20750,12 @@
     },
     {
       "t": 1588910400,
-      "cases": 1291509,
+      "cases": 1291482,
       "deaths": 77380,
-      "caseRate": 394.75475423,
-      "mortality": 23.651498272,
-      "caseRateMA": 7.9430277281,
-      "mortalityMA": 0.5448498974,
+      "caseRate": 394.7465,
+      "mortality": 23.6515,
+      "caseRateMA": 7.941805,
+      "mortalityMA": 0.5448499,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19469,12 +20763,12 @@
     },
     {
       "t": 1588996800,
-      "cases": 1316350,
+      "cases": 1316351,
       "deaths": 78834,
-      "caseRate": 402.34750259,
-      "mortality": 24.095919033,
-      "caseRateMA": 7.7407285155,
-      "mortalityMA": 0.5392171328,
+      "caseRate": 402.3478,
+      "mortality": 24.09592,
+      "caseRateMA": 7.740729,
+      "mortalityMA": 0.5392171,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19482,12 +20776,12 @@
     },
     {
       "t": 1589083200,
-      "cases": 1336667,
+      "cases": 1336668,
       "deaths": 79765,
-      "caseRate": 408.55747275,
-      "mortality": 24.380482808,
-      "caseRateMA": 7.486468141,
-      "mortalityMA": 0.5217511961,
+      "caseRate": 408.5578,
+      "mortality": 24.38048,
+      "caseRateMA": 7.486468,
+      "mortalityMA": 0.5217512,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19495,12 +20789,12 @@
     },
     {
       "t": 1589169600,
-      "cases": 1354285,
+      "cases": 1354286,
       "deaths": 80747,
-      "caseRate": 413.94248304,
-      "mortality": 24.680634931,
-      "caseRateMA": 7.2968317326,
-      "mortalityMA": 0.517079058,
+      "caseRate": 413.9428,
+      "mortality": 24.68063,
+      "caseRateMA": 7.296832,
+      "mortalityMA": 0.5170791,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19508,12 +20802,12 @@
     },
     {
       "t": 1589256000,
-      "cases": 1376584,
+      "cases": 1376585,
       "deaths": 82400,
-      "caseRate": 420.75825921,
-      "mortality": 25.185880817,
-      "caseRateMA": 7.2354389649,
-      "mortalityMA": 0.4917097848,
+      "caseRate": 420.7586,
+      "mortality": 25.18588,
+      "caseRateMA": 7.235439,
+      "mortalityMA": 0.4917098,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19521,12 +20815,12 @@
     },
     {
       "t": 1589342400,
-      "cases": 1397725,
+      "cases": 1397726,
       "deaths": 84168,
-      "caseRate": 427.22008817,
-      "mortality": 25.726276901,
-      "caseRateMA": 7.0894237335,
-      "mortalityMA": 0.4506648334,
+      "caseRate": 427.2204,
+      "mortality": 25.72628,
+      "caseRateMA": 7.089424,
+      "mortalityMA": 0.4506648,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19534,12 +20828,12 @@
     },
     {
       "t": 1589428800,
-      "cases": 1424686,
+      "cases": 1424687,
       "deaths": 85906,
-      "caseRate": 435.46082279,
-      "mortality": 26.257503368,
-      "caseRateMA": 7.0234024925,
-      "mortalityMA": 0.4410585682,
+      "caseRate": 435.4611,
+      "mortality": 26.2575,
+      "caseRateMA": 7.023402,
+      "mortalityMA": 0.4410586,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19547,12 +20841,12 @@
     },
     {
       "t": 1589515200,
-      "cases": 1450918,
+      "cases": 1450910,
       "deaths": 87499,
-      "caseRate": 443.47873572,
-      "mortality": 26.74441002,
-      "caseRateMA": 6.960568785,
-      "mortalityMA": 0.4418445353,
+      "caseRate": 443.4763,
+      "mortality": 26.74441,
+      "caseRateMA": 6.961398,
+      "mortalityMA": 0.4418445,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19560,12 +20854,12 @@
     },
     {
       "t": 1589601600,
-      "cases": 1474578,
+      "cases": 1474569,
       "deaths": 88724,
-      "caseRate": 450.71050684,
-      "mortality": 27.118836039,
-      "caseRateMA": 6.9090006067,
-      "mortalityMA": 0.4318452866,
+      "caseRate": 450.7078,
+      "mortality": 27.11884,
+      "caseRateMA": 6.908564,
+      "mortalityMA": 0.4318453,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19575,10 +20869,10 @@
       "t": 1589688000,
       "cases": 1493583,
       "deaths": 89568,
-      "caseRate": 456.51945909,
-      "mortality": 27.376807925,
-      "caseRateMA": 6.8517123341,
-      "mortalityMA": 0.4280464453,
+      "caseRate": 456.5195,
+      "mortality": 27.37681,
+      "caseRateMA": 6.851669,
+      "mortalityMA": 0.4280464,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19586,12 +20880,12 @@
     },
     {
       "t": 1589774400,
-      "cases": 1515412,
+      "cases": 1515403,
       "deaths": 90414,
-      "caseRate": 463.19157792,
-      "mortality": 27.635391119,
-      "caseRateMA": 7.0355849834,
-      "mortalityMA": 0.4221080268,
+      "caseRate": 463.1888,
+      "mortality": 27.63539,
+      "caseRateMA": 7.035148,
+      "mortalityMA": 0.422108,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19601,10 +20895,10 @@
       "t": 1589860800,
       "cases": 1536371,
       "deaths": 91934,
-      "caseRate": 469.59777788,
-      "mortality": 28.099985037,
-      "caseRateMA": 6.9770740953,
-      "mortalityMA": 0.4163006028,
+      "caseRate": 469.5978,
+      "mortality": 28.09999,
+      "caseRateMA": 6.97703,
+      "mortalityMA": 0.4163006,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19614,10 +20908,10 @@
       "t": 1589947200,
       "cases": 1559435,
       "deaths": 93411,
-      "caseRate": 476.64737927,
-      "mortality": 28.551435838,
-      "caseRateMA": 7.0610415863,
-      "mortalityMA": 0.4035941338,
+      "caseRate": 476.6474,
+      "mortality": 28.55144,
+      "caseRateMA": 7.060998,
+      "mortalityMA": 0.4035941,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19625,12 +20919,12 @@
     },
     {
       "t": 1590033600,
-      "cases": 1585073,
-      "deaths": 94721,
-      "caseRate": 484.48373379,
-      "mortality": 28.951842438,
-      "caseRateMA": 7.0032730004,
-      "mortalityMA": 0.3849055815,
+      "cases": 1585169,
+      "deaths": 94722,
+      "caseRate": 484.5131,
+      "mortality": 28.95215,
+      "caseRateMA": 7.007421,
+      "mortalityMA": 0.3849492,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19640,10 +20934,10 @@
       "t": 1590120000,
       "cases": 1608962,
       "deaths": 96010,
-      "caseRate": 491.78549965,
-      "mortality": 29.345830307,
-      "caseRateMA": 6.9009662758,
-      "mortalityMA": 0.3716314695,
+      "caseRate": 491.7855,
+      "mortality": 29.34583,
+      "caseRateMA": 6.901316,
+      "mortalityMA": 0.3716315,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19651,12 +20945,12 @@
     },
     {
       "t": 1590206400,
-      "cases": 1631165,
+      "cases": 1631230,
       "deaths": 97060,
-      "caseRate": 498.57193305,
-      "mortality": 29.666766895,
-      "caseRateMA": 6.8373466011,
-      "mortalityMA": 0.3639901222,
+      "caseRate": 498.5918,
+      "mortality": 29.66677,
+      "caseRateMA": 6.840578,
+      "mortalityMA": 0.3639901,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19666,10 +20960,10 @@
       "t": 1590292800,
       "cases": 1651261,
       "deaths": 97680,
-      "caseRate": 504.71435369,
-      "mortality": 29.856272309,
-      "caseRateMA": 6.8849849437,
-      "mortalityMA": 0.3542091976,
+      "caseRate": 504.7144,
+      "mortality": 29.85627,
+      "caseRateMA": 6.884985,
+      "mortalityMA": 0.3542092,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19679,10 +20973,10 @@
       "t": 1590379200,
       "cases": 1670361,
       "deaths": 98190,
-      "caseRate": 510.55234306,
-      "mortality": 30.012155794,
-      "caseRateMA": 6.7658235901,
-      "mortalityMA": 0.3395378107,
+      "caseRate": 510.5523,
+      "mortality": 30.01216,
+      "caseRateMA": 6.766217,
+      "mortalityMA": 0.3395378,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19692,10 +20986,10 @@
       "t": 1590465600,
       "cases": 1689250,
       "deaths": 98937,
-      "caseRate": 516.32583945,
-      "mortality": 30.240479253,
-      "caseRateMA": 6.6754373673,
-      "mortalityMA": 0.3057848879,
+      "caseRate": 516.3258,
+      "mortality": 30.24048,
+      "caseRateMA": 6.675437,
+      "mortalityMA": 0.3057849,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19705,10 +20999,10 @@
       "t": 1590552000,
       "cases": 1707989,
       "deaths": 100422,
-      "caseRate": 522.05348776,
-      "mortality": 30.694375284,
-      "caseRateMA": 6.486586926,
-      "mortalityMA": 0.3061342067,
+      "caseRate": 522.0535,
+      "mortality": 30.69438,
+      "caseRateMA": 6.486587,
+      "mortalityMA": 0.3061342,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19716,12 +21010,12 @@
     },
     {
       "t": 1590638400,
-      "cases": 1730457,
+      "cases": 1730458,
       "deaths": 101622,
-      "caseRate": 528.92091943,
-      "mortality": 31.061159956,
-      "caseRateMA": 6.3481693771,
-      "mortalityMA": 0.3013310741,
+      "caseRate": 528.9212,
+      "mortality": 31.06116,
+      "caseRateMA": 6.344021,
+      "mortalityMA": 0.3012874,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19731,10 +21025,10 @@
       "t": 1590724800,
       "cases": 1755003,
       "deaths": 102812,
-      "caseRate": 536.4234999,
-      "mortality": 31.42488809,
-      "caseRateMA": 6.3768571783,
-      "mortalityMA": 0.2970082547,
+      "caseRate": 536.4235,
+      "mortality": 31.42489,
+      "caseRateMA": 6.376857,
+      "mortalityMA": 0.2970083,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19744,10 +21038,10 @@
       "t": 1590811200,
       "cases": 1778401,
       "deaths": 103775,
-      "caseRate": 543.5751897,
-      "mortality": 31.719232789,
-      "caseRateMA": 6.4290366644,
-      "mortalityMA": 0.2932094135,
+      "caseRate": 543.5752,
+      "mortality": 31.71923,
+      "caseRateMA": 6.426198,
+      "mortalityMA": 0.2932094,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19757,10 +21051,10 @@
       "t": 1590897600,
       "cases": 1799035,
       "deaths": 104379,
-      "caseRate": 549.88205214,
-      "mortality": 31.903847741,
-      "caseRateMA": 6.4525283493,
-      "mortalityMA": 0.292510776,
+      "caseRate": 549.8821,
+      "mortality": 31.90385,
+      "caseRateMA": 6.452528,
+      "mortalityMA": 0.2925108,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19770,10 +21064,10 @@
       "t": 1590984000,
       "cases": 1820929,
       "deaths": 105113,
-      "caseRate": 556.57403848,
-      "mortality": 32.128197698,
-      "caseRateMA": 6.5745279176,
-      "mortalityMA": 0.3022917006,
+      "caseRate": 556.574,
+      "mortality": 32.1282,
+      "caseRateMA": 6.574528,
+      "mortalityMA": 0.3022917,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19783,10 +21077,10 @@
       "t": 1591070400,
       "cases": 1841714,
       "deaths": 106195,
-      "caseRate": 562.92705465,
-      "mortality": 32.458915211,
-      "caseRateMA": 6.6573164579,
-      "mortalityMA": 0.3169194226,
+      "caseRate": 562.9271,
+      "mortality": 32.45892,
+      "caseRateMA": 6.657316,
+      "mortalityMA": 0.3169194,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19796,10 +21090,10 @@
       "t": 1591156800,
       "cases": 1861695,
       "deaths": 107184,
-      "caseRate": 569.0343251,
-      "mortality": 32.761206912,
-      "caseRateMA": 6.7115481916,
-      "mortalityMA": 0.295261661,
+      "caseRate": 569.0343,
+      "mortality": 32.76121,
+      "caseRateMA": 6.711548,
+      "mortalityMA": 0.2952617,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19809,10 +21103,10 @@
       "t": 1591243200,
       "cases": 1883308,
       "deaths": 108192,
-      "caseRate": 575.6404227,
-      "mortality": 33.069306036,
-      "caseRateMA": 6.6742147517,
-      "mortalityMA": 0.2868780114,
+      "caseRate": 575.6404,
+      "mortality": 33.06931,
+      "caseRateMA": 6.674171,
+      "mortalityMA": 0.286878,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19822,10 +21116,10 @@
       "t": 1591329600,
       "cases": 1912002,
       "deaths": 109304,
-      "caseRate": 584.41085551,
-      "mortality": 33.409193166,
-      "caseRateMA": 6.855336516,
-      "mortalityMA": 0.2834721537,
+      "caseRate": 584.4109,
+      "mortality": 33.40919,
+      "caseRateMA": 6.855337,
+      "mortalityMA": 0.2834722,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19835,10 +21129,10 @@
       "t": 1591416000,
       "cases": 1934522,
       "deaths": 110032,
-      "caseRate": 591.29418119,
-      "mortality": 33.6317092,
-      "caseRateMA": 6.8169987848,
-      "mortalityMA": 0.2732109159,
+      "caseRate": 591.2942,
+      "mortality": 33.63171,
+      "caseRateMA": 6.816999,
+      "mortalityMA": 0.2732109,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19848,10 +21142,10 @@
       "t": 1591502400,
       "cases": 1953138,
       "deaths": 110422,
-      "caseRate": 596.98423407,
-      "mortality": 33.750914218,
-      "caseRateMA": 6.7288831338,
-      "mortalityMA": 0.2638666397,
+      "caseRate": 596.9842,
+      "mortality": 33.75091,
+      "caseRateMA": 6.728883,
+      "mortalityMA": 0.2638666,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19861,10 +21155,10 @@
       "t": 1591588800,
       "cases": 1971337,
       "deaths": 111144,
-      "caseRate": 602.54682928,
-      "mortality": 33.971596329,
-      "caseRateMA": 6.5675415429,
-      "mortalityMA": 0.2633426616,
+      "caseRate": 602.5468,
+      "mortality": 33.9716,
+      "caseRateMA": 6.567542,
+      "mortalityMA": 0.2633427,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19874,10 +21168,10 @@
       "t": 1591675200,
       "cases": 1990137,
       "deaths": 112174,
-      "caseRate": 608.29312248,
-      "mortality": 34.28641984,
-      "caseRateMA": 6.4808668317,
-      "mortalityMA": 0.2610720898,
+      "caseRate": 608.2931,
+      "mortality": 34.28642,
+      "caseRateMA": 6.480867,
+      "mortalityMA": 0.2610721,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19885,12 +21179,12 @@
     },
     {
       "t": 1591761600,
-      "cases": 2010977,
-      "deaths": 113097,
-      "caseRate": 614.66294961,
-      "mortality": 34.568538383,
-      "caseRateMA": 6.5183749309,
-      "mortalityMA": 0.2581902103,
+      "cases": 2013296,
+      "deaths": 113103,
+      "caseRate": 615.3718,
+      "mortality": 34.57037,
+      "caseRateMA": 6.619634,
+      "mortalityMA": 0.2584522,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19898,12 +21192,12 @@
     },
     {
       "t": 1591848000,
-      "cases": 2034134,
-      "deaths": 113974,
-      "caseRate": 621.74097682,
-      "mortality": 34.836596848,
-      "caseRateMA": 6.5857934468,
-      "mortalityMA": 0.252470116,
+      "cases": 2036496,
+      "deaths": 113980,
+      "caseRate": 622.4629,
+      "mortality": 34.83843,
+      "caseRateMA": 6.68893,
+      "mortalityMA": 0.2527321,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19911,12 +21205,12 @@
     },
     {
       "t": 1591934400,
-      "cases": 2059604,
-      "deaths": 114752,
-      "caseRate": 629.52598149,
-      "mortality": 35.074395577,
-      "caseRateMA": 6.4450179965,
-      "mortalityMA": 0.2378860588,
+      "cases": 2061992,
+      "deaths": 114758,
+      "caseRate": 630.2559,
+      "mortality": 35.07623,
+      "caseRateMA": 6.54929,
+      "mortalityMA": 0.238148,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19924,12 +21218,12 @@
     },
     {
       "t": 1592020800,
-      "cases": 2084939,
-      "deaths": 115445,
-      "caseRate": 637.26972288,
-      "mortality": 35.286213725,
-      "caseRateMA": 6.5679345265,
-      "mortalityMA": 0.2363577893,
+      "cases": 2087327,
+      "deaths": 115451,
+      "caseRate": 637.9996,
+      "mortality": 35.28805,
+      "caseRateMA": 6.672206,
+      "mortalityMA": 0.2366198,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19937,12 +21231,12 @@
     },
     {
       "t": 1592107200,
-      "cases": 2104007,
-      "deaths": 115762,
-      "caseRate": 643.09793132,
-      "mortality": 35.383106009,
-      "caseRateMA": 6.587671035,
-      "mortalityMA": 0.2331702558,
+      "cases": 2106456,
+      "deaths": 115768,
+      "caseRate": 643.8465,
+      "mortality": 35.38494,
+      "caseRateMA": 6.694606,
+      "mortalityMA": 0.2334322,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19950,12 +21244,12 @@
     },
     {
       "t": 1592193600,
-      "cases": 2124113,
-      "deaths": 116210,
-      "caseRate": 649.2434085,
-      "mortality": 35.520038954,
-      "caseRateMA": 6.6709398886,
-      "mortalityMA": 0.2212060891,
+      "cases": 2126571,
+      "deaths": 116216,
+      "caseRate": 649.9947,
+      "mortality": 35.52187,
+      "caseRateMA": 6.778268,
+      "mortalityMA": 0.2214681,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19963,12 +21257,12 @@
     },
     {
       "t": 1592280000,
-      "cases": 2148951,
-      "deaths": 116979,
-      "caseRate": 656.8352399,
-      "mortality": 35.755086798,
-      "caseRateMA": 6.9345882041,
-      "mortalityMA": 0.2098095654,
+      "cases": 2151452,
+      "deaths": 116985,
+      "caseRate": 657.5997,
+      "mortality": 35.75692,
+      "caseRateMA": 7.043794,
+      "mortalityMA": 0.2100716,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -19976,30 +21270,25 @@
     },
     {
       "t": 1592366400,
-      "cases": 2174569,
-      "deaths": 117740,
-      "caseRate": 664.66548134,
-      "mortality": 35.98768941,
-<<<<<<< HEAD
-      "caseRateMA": 7.1432188187,
-      "mortalityMA": 0.202735861
-=======
-      "caseRateMA": 7.1432624836,
-      "mortalityMA": 0.202735861,
+      "cases": 2177104,
+      "deaths": 117746,
+      "caseRate": 665.4403,
+      "mortality": 35.98952,
+      "caseRateMA": 7.15265,
+      "mortalityMA": 0.2027359,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
     },
     {
       "t": 1592452800,
-      "cases": 2202587,
-      "deaths": 118467,
-      "caseRate": 673.22929213,
-      "mortality": 36.209899791,
-      "caseRateMA": 7.3554736153,
-      "mortalityMA": 0.1961861347,
+      "cases": 2205155,
+      "deaths": 118473,
+      "caseRate": 674.0142,
+      "mortality": 36.21173,
+      "caseRateMA": 7.364469,
+      "mortalityMA": 0.1961861,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -20007,12 +21296,12 @@
     },
     {
       "t": 1592539200,
-      "cases": 2233395,
-      "deaths": 119165,
-      "caseRate": 682.64587728,
-      "mortality": 36.423246209,
-      "caseRateMA": 7.5885565414,
-      "mortalityMA": 0.1926929474,
+      "cases": 2235995,
+      "deaths": 119171,
+      "caseRate": 683.4406,
+      "mortality": 36.42508,
+      "caseRateMA": 7.597813,
+      "mortalityMA": 0.1926929,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
@@ -20020,56 +21309,120 @@
     },
     {
       "t": 1592625600,
-      "cases": 2265362,
-      "deaths": 119710,
-      "caseRate": 692.41671529,
-      "mortality": 36.58982758,
-      "caseRateMA": 7.878141773,
-<<<<<<< HEAD
-      "mortalityMA": 0.1862305508
-    },
-    {
-      "t": 1592712000,
-      "cases": 2291735,
-      "deaths": 119967,
-      "caseRate": 700.47772542,
-      "mortality": 36.668380631,
-      "caseRateMA": 8.1971134432,
-      "mortalityMA": 0.1836106603
-    },
-    {
-      "t": 1592798400,
-      "cases": 2322186,
-      "deaths": 120327,
-      "caseRate": 709.78519213,
-      "mortality": 36.778416033,
-      "caseRateMA": 8.6488262329,
-      "mortalityMA": 0.1797681542
-    },
-    {
-      "t": 1592884800,
-      "cases": 2357209,
-      "deaths": 121160,
-      "caseRate": 720.49010844,
-      "mortality": 37.033025726,
-      "caseRateMA": 9.0935526478,
-      "mortalityMA": 0.1825627041
-    },
-    {
-      "t": 1592971200,
-      "cases": 2394184,
-      "deaths": 121926,
-      "caseRate": 731.79166115,
-      "mortality": 37.267156608,
-      "caseRateMA": 9.5894542574,
-      "mortalityMA": 0.1827810283
-=======
-      "mortalityMA": 0.1862305508,
+      "cases": 2268019,
+      "deaths": 119717,
+      "caseRate": 693.2288,
+      "mortality": 36.59197,
+      "caseRateMA": 7.889888,
+      "mortalityMA": 0.1862742,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
       "hospitalizationRate": 0
->>>>>>> emory-covid19-star
+    },
+    {
+      "t": 1592712000,
+      "cases": 2294413,
+      "deaths": 119974,
+      "caseRate": 701.2963,
+      "mortality": 36.67052,
+      "caseRateMA": 8.207113,
+      "mortalityMA": 0.1836543,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1592798400,
+      "cases": 2324854,
+      "deaths": 120334,
+      "caseRate": 710.6007,
+      "mortality": 36.78056,
+      "caseRateMA": 8.657996,
+      "mortalityMA": 0.1798118,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1592884800,
+      "cases": 2359900,
+      "deaths": 121167,
+      "caseRate": 721.3126,
+      "mortality": 37.03517,
+      "caseRateMA": 9.101849,
+      "mortalityMA": 0.1826064,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1592971200,
+      "cases": 2396914,
+      "deaths": 121934,
+      "caseRate": 732.6261,
+      "mortality": 37.2696,
+      "caseRateMA": 9.597969,
+      "mortalityMA": 0.1828684,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593057600,
+      "cases": 2438070,
+      "deaths": 124400,
+      "caseRate": 745.2056,
+      "mortality": 38.02334,
+      "caseRateMA": 10.1702,
+      "mortalityMA": 0.2588015,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593144000,
+      "cases": 2483568,
+      "deaths": 125033,
+      "caseRate": 759.1122,
+      "mortality": 38.21682,
+      "caseRateMA": 10.81024,
+      "mortalityMA": 0.2559633,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593230400,
+      "cases": 2525928,
+      "deaths": 125545,
+      "caseRate": 772.0597,
+      "mortality": 38.37332,
+      "caseRateMA": 11.26156,
+      "mortalityMA": 0.2544787,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
+    },
+    {
+      "t": 1593316800,
+      "cases": 2564681,
+      "deaths": 125814,
+      "caseRate": 783.9047,
+      "mortality": 38.45554,
+      "caseRateMA": 11.80121,
+      "mortalityMA": 0.2550027,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0
     }
   ],
   "_": [

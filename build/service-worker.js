@@ -14,19 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "/precache-manifest.94b17b99d7c5f2c855a37c4433e7a88d.js"
-=======
-  "/precache-manifest.858901623581954b0e17b209b0bf1ad3.js"
->>>>>>> parent of fe52719... Merge pull request #30 from yubin-park/emory-covid19-star
-=======
-  "/precache-manifest.858901623581954b0e17b209b0bf1ad3.js"
->>>>>>> parent of fe52719... Merge pull request #30 from yubin-park/emory-covid19-star
-=======
-  "/precache-manifest.33b7d06950fa8c7437735f0362f7d718.js"
->>>>>>> emory-covid19-star
+  "/precache-manifest.b59246e87dcce5c21dddd6cc23358146.js"
 );
 
 self.addEventListener('message', (event) => {
