@@ -225,9 +225,8 @@ export default function USMap(props) {
           <Divider hidden />
           <Grid columns={16}>
           <div>
-            <a href="Dashboard user guide.pdf" target="_blank"> See Dashboard Guide (PDF) </a> 
-            <br></br>
-            <a href="https://youtu.be/PmI42rHnI6U" target="_blank"> See Dashboard Guide (YouTube) </a>
+            See Dashboard Guide (<a href="Dashboard user guide.pdf" target="_blank"> PDF </a> / <a href="https://youtu.be/PmI42rHnI6U" target="_blank"> YouTube </a>)
+            
           </div>
             <Grid.Row>
               <Grid.Column width={9}>
@@ -346,50 +345,7 @@ export default function USMap(props) {
                       </svg>
                     }
                   </Geographies>
-                  <Marker coordinates={[-74, 40.7]}>
-                    <circle r={4} fill="#F53" />
-                  </Marker>
-                  <Marker coordinates={[-72.5, 39.8]} fill="#777">
-                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
-                      NYC
-                    </text>
-                  </Marker>
-
-                  <Marker coordinates={[-118.2, 34.1]}>
-                    <circle r={4} fill="#F53" />
-                  </Marker>
-                  <Marker coordinates={[-119.2, 33.2]} fill="#777">
-                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
-                      LA
-                    </text>
-                  </Marker>
-
-                  <Marker coordinates={[-87.6, 41.9]}>
-                    <circle r={4} fill="#F53" />
-                  </Marker>
-                  <Marker coordinates={[-87.1, 42.2]} fill="#777">
-                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
-                      CHI
-                    </text>
-                  </Marker>
-
-                  <Marker coordinates={[-95.4, 29.8]}>
-                    <circle r={4} fill="#F53" />
-                  </Marker>
-                  <Marker coordinates={[-93.8, 28.8]} fill="#777">
-                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
-                      HOU
-                    </text>
-                  </Marker>
-
-                  <Marker coordinates={[-112.1, 33.4]}>
-                    <circle r={4} fill="#F53" />
-                  </Marker>
-                  <Marker coordinates={[-111.0, 32.5]} fill="#777">
-                    <text textAnchor="middle" fill="black" fontWeight = {600} fontSize = {10}>
-                      PHX
-                    </text>
-                  </Marker>
+                  
 
                 </ComposableMap>
                 
