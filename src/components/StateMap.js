@@ -28,6 +28,15 @@ import stateOptions from "./stateOptions.json";
 
 import configs from "./state_config.json";
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+
+
 const colorPalette = [
         "#e1dce2",
         "#d3b6cd",
@@ -176,7 +185,13 @@ export default function StateMap(props) {
           .range(colorPalette);
 
           let scaleMap = {}
-          _.each(x, d=>{
+          _.each(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d.mean7daycases >= 0 &&
+                d.fips.length === 5))
+                , d=>{
             scaleMap[d['mean7daycases']] = cs(d['mean7daycases'])});
           setColorScale(scaleMap);
 
@@ -184,12 +199,9 @@ export default function StateMap(props) {
           var min = 100
           var length = 0
           _.each(x, d=> { 
-            if(d['mean7daycases'] !== null){
-              length += 1
-            }
             if (d['mean7daycases'] > max && d.fips.length === 5) {
               max = d['mean7daycases']
-            } else if (d['mean7daycases'] < min && d['mean7daycases'] >= 0){
+            } else if (d.fips.length === 5 && d['mean7daycases'] < min && d['mean7daycases'] >= 0){
               min = d['mean7daycases']
             }
 
@@ -296,13 +308,17 @@ export default function StateMap(props) {
 
           }
 
-          setHospRate(hospRate.toFixed(0));
-          setTestingRate(testingRate.toFixed(0));
+          setPctChangeHospRate("Coming soon...");
+          setHospRate("");
+                    //setHospRate(numberWithCommas(hospRate.toFixed(0)));
+
+          setTestingRate(numberWithCommas(testingRate.toFixed(0)));
+          setCaseRate(numberWithCommas(caseRate.toFixed(0)));
+          setMortality(numberWithCommas(mortality.toFixed(0)));
 
           setCountyFips(countyMost);
           setCountyName(fips2county[stateFips+countyMost]);
-          setCaseRate(caseRate.toFixed(0));
-          setMortality(mortality.toFixed(0));
+          
 
           setDataTS(x);
         });
@@ -338,14 +354,15 @@ export default function StateMap(props) {
 
           <Grid columns={15}>
 
-          <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '1em', paddingBottom: "0"}}>
+          <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '2em', paddingBottom: "0"}}>
 
             <VictoryChart theme={VictoryTheme.material} 
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
-                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
+                        padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Daily Cases" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -382,8 +399,9 @@ export default function StateMap(props) {
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
-                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
+                        padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Daily Deaths" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -418,8 +436,9 @@ export default function StateMap(props) {
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
-                        padding={{left: 10, right: 10, top: 60, bottom: -0.9}}
+                        padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Hospitalization Rate" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -442,7 +461,7 @@ export default function StateMap(props) {
                         <VictoryArea
                           style={{ data: { fill: pctChangeHospRate.includes("+")? "#C0C0C0": (pctChangeHospRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'hospitalizationRate'
+                          x= 't' y = ''
 
                         />
                         <VictoryLabel text= {hospRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
@@ -454,8 +473,10 @@ export default function StateMap(props) {
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
                         width={252}
                         height={180}       
-                        padding={{left: 10, right: 20, top: 60, bottom: -0.9}}
+                        padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Testing Rate" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+
                         
                         <VictoryAxis
                           tickValues={[
@@ -494,11 +515,11 @@ export default function StateMap(props) {
                         scale={{y: props.ylog?'log':'linear'}}
                         minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
-                        padding={{left: 105, right: -100, top: 80, bottom: -0.9}}
+                        padding={{left: 115, right: 10, top: 80, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}
                       >
-                        <VictoryLabel text="Cases per 100,000" x={115} y={40} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text="persons by race" x={115} y={60} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Cases per 100,000" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="persons by race" x={115} y={30} textAnchor="middle" style={{fontSize: 21}}/>
 
                         <VictoryAxis 
                             style={{axis: {stroke: "transparent"}, tickLabels: {fontSize: 10}}}
@@ -518,7 +539,8 @@ export default function StateMap(props) {
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => (Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))}
+                          labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))) != 0?
+                                                  numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))): "Not Available"}
                           data={[
                             {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
@@ -539,26 +561,7 @@ export default function StateMap(props) {
 
             </Grid.Row>
 
-            <Grid.Row columns={5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
-              <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
-                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Daily Cases </text>
-              </Grid.Column>
-              <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0}}>
-                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Daily Deaths </text>
-              </Grid.Column>
-              <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0}}>
-                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Hospitalization Rate </text>
-              </Grid.Column>
-              <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
-                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Testing Rate </text>
-              </Grid.Column>
-              <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
-                  <text x={0} y={0} style={{fontSize: '0.8em'}}> Race Breakdown </text>
-              </Grid.Column>
-                  
-            </Grid.Row>
-
-            <Grid.Row columns = {5} style={{paddingBottom: 50, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
+            <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
               
                 <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
                   <small style={{fontWeight: 300}}>
@@ -587,7 +590,7 @@ export default function StateMap(props) {
                     <i>Data Source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{left: -15, padding: 0, paddingLeft: 0}}>
                   <small style={{fontWeight: 300}}>
                     <i>Rates</i>: Cases per 100,000, <br/> 
                     among those with race information available <br/>
@@ -596,6 +599,12 @@ export default function StateMap(props) {
                     </small>
                 </Grid.Column>
               
+            </Grid.Row>
+
+            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 10}}>
+                    <small style={{fontWeight: 300}}>
+                      All percent changes for a 24-Hour period
+                    </small>
             </Grid.Row>
 
           </Grid>
@@ -722,7 +731,7 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                  </Grid.Row>
+                    </Grid.Row>
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
                       <VictoryChart theme={VictoryTheme.material}
                         width={330}

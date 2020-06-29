@@ -14,6 +14,8 @@ import { VictoryChart,
   VictoryLine,
   VictoryLabel, 
   VictoryScatter,
+  VictoryTooltip,
+  VictoryVoronoiContainer
 } from 'victory';
 
 import { useParams, useHistory } from 'react-router-dom';
@@ -55,6 +57,9 @@ function ScatterChart(props) {
         size={4}
         x={props.x}
         y={props.y}
+        labels={({ datum }) => `${datum[props.y].toFixed(2)}`}
+        labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{fill: "white"}}/>}
+
       />
       <VictoryAxis label={props.varMap[props.x]?props.varMap[props.x].name:props.x}
         tickCount={4}
@@ -195,7 +200,9 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 60, top: 60, bottom: 30}}>
+                  padding={{left: 50, right: 60, top: 60, bottom: 30}}
+                  
+                  >
                   <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle"/>
                   <VictoryLegend
                     x={10} y={35}

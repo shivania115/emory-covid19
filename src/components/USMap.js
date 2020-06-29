@@ -24,6 +24,13 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
 
 //const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
@@ -217,7 +224,7 @@ export default function USMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '6em', minWidth: '960px'}}>
+        <Container style={{marginTop: '6em', minWidth: '1260px'}}>
           <Breadcrumb>
             <Breadcrumb.Section active>United States</Breadcrumb.Section>
             <Breadcrumb.Divider />
@@ -225,22 +232,22 @@ export default function USMap(props) {
           <Divider hidden />
           <Grid columns={16}>
           <div>
-            <a href="Dashboard user guide.pdf" target="_blank"> See Dashboard Guide (PDF) </a> 
-            <br></br>
-            <a href="https://youtu.be/PmI42rHnI6U" target="_blank"> See Dashboard Guide (YouTube) </a>
+            See Dashboard Guide (<a href="Dashboard user guide.pdf" target="_blank"> PDF </a> / <a href="https://youtu.be/PmI42rHnI6U" target="_blank"> YouTube </a>)
+            
           </div>
             <Grid.Row>
               <Grid.Column width={9}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content>
                     COVID-19 is affecting every community differently.<br/>
-                    Some areas are much harder-hit than others. What is happening where you live?
+                    Some areas are much harder-hit than others.<br/>
+                    What is happening where you live?
                     <Header.Subheader style={{fontWeight: 300}}></Header.Subheader>
                   </Header.Content>
                 </Header>
                 
 
-                <Grid.Row columns={2} style={{width: 650, padding: 0, paddingTop: 0, paddingBottom: 0}}>
+                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingBottom: 0}}>
 
                       <Dropdown
                         icon=''
@@ -273,7 +280,7 @@ export default function USMap(props) {
                         
                       />
 
-                <svg width="350" height="80">
+                <svg width="330" height="80">
                   
 
                   <text x={60} y={70} style={{fontSize: '0.8em'}}>Low</text>
@@ -345,6 +352,8 @@ export default function USMap(props) {
                       </svg>
                     }
                   </Geographies>
+                  
+
                 </ComposableMap>
                 
                 <Grid.Row style={{paddingTop: 0}}>
@@ -355,9 +364,9 @@ export default function USMap(props) {
                     </small>
                 </Grid.Row>
               </Grid.Column>
-              <Grid.Column width={7}>
+              <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
-                  <Header.Content>
+                  <Header.Content style={{width : 550}}>
                     A Snapshot of Health Disparities in <span style={{color: colorHighlight}}>{stateName}</span>
                     <Header.Subheader style={{fontWeight: 300}}>
                       Counties with higher proportions of African American residents tend to have higher rates of death from COVID-19. 
@@ -373,7 +382,7 @@ export default function USMap(props) {
                       width={500}
                       height={400}
                       scale={{y: 'log'}}
-                      padding={{left: 100, right: 50, top: 50, bottom: 50}}>
+                      padding={{left: 65, right: 30, top: 50, bottom: 50}}>
                       <VictoryLegend
                         x={10} y={10}
                         orientation="horizontal"
@@ -399,7 +408,7 @@ export default function USMap(props) {
                         tickFormat={(y) => (Math.round(y*100)/100)}/>
                     </VictoryChart>
                   </Grid.Row>
-                  <Grid.Row style={{paddingTop: 0}}>
+                  <Grid.Row style={{paddingTop: 0, paddingLeft: 10}}>
                     <small style={{fontWeight: 300}}>
                     Data last updated: {date}, updated every week<br/>
                     The chart does not contain those counties with less than 10,000 population and less than 5% African American.
@@ -411,7 +420,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {dataState[fips]['mean7daycases'].toFixed(0)} <br/> <b> Daily Deaths</b>: {dataState[fips]['mean7daydeaths'].toFixed(0)} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {
