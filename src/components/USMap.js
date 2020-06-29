@@ -24,6 +24,13 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
 
 //const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
@@ -413,7 +420,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {dataState[fips]['mean7daycases'].toFixed(0)} <br/> <b> Daily Deaths</b>: {dataState[fips]['mean7daydeaths'].toFixed(0)} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {

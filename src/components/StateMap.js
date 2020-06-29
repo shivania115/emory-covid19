@@ -539,7 +539,8 @@ export default function StateMap(props) {
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate'])))}
+                          labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))) != 0?
+                                                  numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))): "Not Available"}
                           data={[
                             {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
