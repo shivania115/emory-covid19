@@ -30,7 +30,7 @@ const colorPalette2 = [
         "#024174",  
       ];
 
-export default function CountyCompare() {
+export default function MapState() {
 
   const [stateFips, setStateFips] = useState();
   const [measureA, setMeasureA] = useState();
@@ -179,7 +179,7 @@ export default function CountyCompare() {
 
   return (
       <div>
-        <AppBar menu='countyCompare'/>
+        <AppBar menu='mapState'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
           <Header as='h3'>
             <Header.Content style={{fontWeight: 400}}>

@@ -4,7 +4,7 @@ import React from "react";
 import USMap from "./USMap";
 import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
-import CountyCompare from "./CountyCompare";
+import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
 import DataSources from "./DataSources";
 import 'semantic-ui-css/semantic.min.css'
@@ -22,8 +22,8 @@ export default function App() {
   return (
       <Router>
         <Switch>
-          <Route path='/compare-counties'>
-            <CountyCompare />
+          <Route path='/map-your-state'>
+            <MapYourState />
           </Route>
           <Route path='/about-team'>
             <AboutUs />
