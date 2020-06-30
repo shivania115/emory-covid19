@@ -13,7 +13,9 @@ import { VictoryChart,
   VictoryLegend,
   VictoryLine,
   VictoryLabel,
-  VictoryArea
+  VictoryArea,
+  VictoryTooltip,
+  VictoryVoronoiContainer
 } from 'victory';
 
 import { useParams, useHistory } from 'react-router-dom';
@@ -157,8 +159,25 @@ export default function StateMap(props) {
   const [testingRate, setTestingRate] = useState();
   const [pctChangeTestingRate, setPctChangeTestingRate] = useState();
 
+  const [metric, setMetric] = useState('mean7daycases');
+  const [metricOptions, setMetricOptions] = useState('mean7daycases');
+  const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
+
+  const [varMap, setVarMap] = useState({});
 
   useEffect(()=>{
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => {
+        setVarMap(x);
+        setMetricOptions(_.filter(_.map(x, d=> {
+          return {key: d.id, value: d.variable, text: d.name, group: d.group};
+        }), d => (d.text !== "Urban-Rural Status" && d.text !== "Population" && d.text !== "Population Density" && d.text !== "Household Income")));
+      });
+  }, []);
+
+  useEffect(()=>{
+    if (metric) {
+
     
     const configMatched = configs.find(s => s.fips === stateFips);
 
@@ -179,9 +198,9 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.mean7daycases >= 0 &&
+                d[metric] >= 0 &&
                 d.fips.length === 5)),
-            d=> d['mean7daycases']))
+            d=> d[metric]))
           .range(colorPalette);
 
           let scaleMap = {}
@@ -189,23 +208,21 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.mean7daycases >= 0 &&
+                d[metric] >= 0 &&
                 d.fips.length === 5))
                 , d=>{
-            scaleMap[d['mean7daycases']] = cs(d['mean7daycases'])});
-          setColorScale(scaleMap);
+            scaleMap[d[metric]] = cs(d[metric])});
 
+          setColorScale(scaleMap);
           var max = 0
           var min = 100
           var length = 0
           _.each(x, d=> { 
-            if (d['mean7daycases'] > max && d.fips.length === 5) {
-              max = d['mean7daycases']
-            } else if (d.fips.length === 5 && d['mean7daycases'] < min && d['mean7daycases'] >= 0){
-              min = d['mean7daycases']
+            if (d[metric] > max && d.fips.length === 5) {
+              max = d[metric]
+            } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+              min = d[metric]
             }
-
-
           });
 
           if (max > 999) {
@@ -222,9 +239,9 @@ export default function StateMap(props) {
             d.fips = k
             return d}), 
             d => (
-                d.mean7daycases >= 0 &&
+                d[metric] >= 0 &&
                 d.fips.length === 5)),
-            d=> d['mean7daycases']))
+            d=> d[metric]))
           .range(colorPalette);
 
           setLegendSplit(split.quantiles());
@@ -328,9 +345,9 @@ export default function StateMap(props) {
           setDataRD(x);
         });
 
-
+      }
     }
-  }, [stateFips]);
+  }, [stateFips, metric]);
 
 
   if (data && dataTS && dataRD) {
@@ -563,34 +580,34 @@ export default function StateMap(props) {
 
             <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
               
-                <Grid.Column width={252} style={{padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily cases</i>: Daily new COVID-19 cases <br/> 
                     (7-day rolling average) <br/>
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
                     (7-day rolling average) <br/>
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0, paddingRight: 0}}>
+                <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
                     <i>Data source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Testing rate</i>: COVID-19 tests per <br/>
                     100,000 population <br/>
                     <i>Data Source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -15, padding: 0, paddingLeft: 0}}>
+                <Grid.Column width={252} style={{left: -15, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Rates</i>: Cases per 100,000, <br/> 
                     among those with race information available <br/>
@@ -610,14 +627,45 @@ export default function StateMap(props) {
           </Grid>
          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> COVID-19 County Outcomes </Divider>
 
-
+                      
 
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={5}>
+
+                <Dropdown
+                        icon=''
+
+                        style={{background: '#fff', 
+                                fontSize: "1.2em",
+                                fontWeight: 400, 
+                                theme: '#000000',
+                                width: '350px',
+                                top: '12px',
+                                left: '0px',
+                                text: "Select",
+                                borderTop: 'none',
+                                borderLeft: '1px solid #FFFFFF',
+                                borderRight: 'none', 
+                                borderBottom: '0.5px solid #bdbfc1',
+                                borderRadius: 0,
+                                minHeight: '1.0em',
+                                paddingBottom: '0.0em',
+                                paddingRight: 0}}
+                        placeholder= "Average Daily COVID-19 Cases"
+                        inline
+                        search
+                        pointing = 'top'
+                        options={metricOptions}
+                        onChange={(e, { value }) => {
+                          setMetric(value);
+                          setMetricName(varMap[value]['name']);
+                        }}
+
+                        
+                      />
                 
                 <svg width="400" height="90">
-                  <text x={0} y={20} style={{fontSize: '1.0em'}}>Average Daily COVID-19 Cases </text>
                   <text x={0} y={70} style={{fontSize: '0.8em'}}>Low</text>
                   <text x={20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
@@ -631,15 +679,15 @@ export default function StateMap(props) {
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.8em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={20 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={0} y={37} style={{fontSize: '0.8em'}}> {legendMin} </text>
-                  <text x={120} y={37} style={{fontSize: '0.8em'}}>{legendMax}</text>
+                  <text x={0} y={37} style={{fontSize: '0.7em'}}> {legendMin} </text>
+                  <text x={120} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
-                  <text x={250} y={49} style={{fontSize: '0.8em'}}> Click on a county below </text>
-                  <text x={250} y={59} style={{fontSize: '0.8em'}}> for a detailed report. </text>
+                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Click on a county below </text>
+                  <text x={250} y={59} style={{fontSize: '0.7em'}}> for a detailed report. </text>
 
 
                 </svg>
@@ -657,10 +705,10 @@ export default function StateMap(props) {
                       <Geography 
                         key={geo.rsmKey} 
                         geography={geo} 
-                        onClick={()=>{
+                        onDoubleClick={()=>{
                           history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
                         }}
-                        onMouseEnter={()=>{
+                        onClick={()=>{
                           setCountyFips(geo.properties.COUNTYFP);
                           setCountyName(fips2county[stateFips+geo.properties.COUNTYFP]);
                           setTooltipContent("");
@@ -670,9 +718,9 @@ export default function StateMap(props) {
                         }}
                         
                         fill={countyFips===geo.properties.COUNTYFP?countyColor:
-                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP]['mean7daycases']) > 0)?
-                                colorScale[data[stateFips+geo.properties.COUNTYFP]['mean7daycases']]: 
-                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP]['mean7daycases'] === 0)?
+                            ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
+                                colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
+                                (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                         />
                     )}
@@ -691,15 +739,17 @@ export default function StateMap(props) {
                   </Header.Content>
                 </Header>
                 <Grid>
-                  <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
+                  <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 0}}>
+                     <text x={0} y={20} style={{fontSize: '1.0em', paddingLeft: 15, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
+
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
-                        height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
-                        containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
+                        height={160}       
+                        padding={{left: 50, right: 30, top: 24, bottom: 30}}
+                        containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/>}
+                        >
                         <VictoryLegend
-                          x={40} y={35}
+                          x={40} y={5}
                           orientation="horizontal"
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
@@ -722,25 +772,42 @@ export default function StateMap(props) {
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
+                            labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                            labelComponent={<VictoryTooltip/>}
+                            style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                            }}
                             />
                           <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='caseRateMA'
+                            labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                            labelComponent={<VictoryTooltip/>}
+                            style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                            }}
                             />
                           <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips != "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='caseRateMA'
+                            labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                            labelComponent={<VictoryTooltip/>}
+                            style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                            }}
                             />
                         </VictoryGroup>
                       </VictoryChart>
                     </Grid.Row>
-                  <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 20}}>
-                      <VictoryChart theme={VictoryTheme.material}
+                  <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 0}}>
+                      <text x={0} y={20} style={{fontSize: '1.0em', paddingLeft: 15, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
+
+                      <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
-                        height={180}       
-                        padding={{left: 50, right: 30, top: 60, bottom: 30}}
-                        containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle" style={{fontSize: 12}}/>
+                        height={160}       
+                        padding={{left: 50, right: 30, top: 24, bottom: 30}}
+                        containerComponent={<VictoryVoronoiContainer/>}
+                        >
                         <VictoryLegend
-                          x={40} y={35}
+                          x={40} y={5}
                           orientation="horizontal"
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
@@ -763,12 +830,27 @@ export default function StateMap(props) {
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'
+                            labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                            labelComponent={<VictoryTooltip/>}
+                            style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                            }}
                             />
                           <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='mortalityMA'
+                            labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                            labelComponent={<VictoryTooltip/>}
+                            style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                            }}
                             />
                           <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips != "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='mortalityMA'
+                            labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                            labelComponent={<VictoryTooltip />}
+                            style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                            }}
                             />
                         </VictoryGroup>
                       </VictoryChart>
@@ -787,7 +869,7 @@ export default function StateMap(props) {
 
                 </Header>
                 <Grid>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
+                  <Grid.Row columns={2} style={{padding: 10, width: 400, paddingBottom: 20}}>                    
                       <BarChart 
                         title="% African American" 
                         var="black" 
@@ -801,7 +883,7 @@ export default function StateMap(props) {
                         countyFips={countyFips}
                         data={data} />
                   </Grid.Row>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>
+                  <Grid.Row columns={2} style={{padding: 10, width: 400, paddingBottom: 20}}>
                       <BarChart 
                         title="% Obese" 
                         var="obesity" 
@@ -815,7 +897,7 @@ export default function StateMap(props) {
                         countyFips={countyFips}
                         data={data} /> 
                   </Grid.Row>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
+                  <Grid.Row columns={2} style={{padding: 10, width: 400, paddingBottom: 20}}>                    
                       <BarChart 
                         title="% in Poverty" 
                         var="poverty"  

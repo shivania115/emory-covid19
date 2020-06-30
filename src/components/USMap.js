@@ -157,9 +157,10 @@ export default function USMap(props) {
               d.fips.length === 5)),
           d=> d[metric]))
         .range(colorPalette);
+
         let scaleMap = {}
         _.each(x, d=>{
-          if(d[metric] > 0){
+          if(d[metric] >= 0){
           scaleMap[d[metric]] = cs(d[metric])}});
       
         setColorScale(scaleMap);
@@ -167,12 +168,9 @@ export default function USMap(props) {
         var min = 100
         var length = 0
         _.each(x, d=> { 
-          if(d[metric] !== null){
-            length += 1
-          }
           if (d[metric] > max && d.fips.length === 5) {
             max = d[metric]
-          } else if (d[metric] < min && d[metric] >= 0){
+          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
             min = d[metric]
           }
         });
@@ -323,7 +321,7 @@ export default function USMap(props) {
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
-                            onMouseEnter={()=>{
+                            onClick={()=>{
                               //console.log(geo); 
                               const stateFips = geo.id.substring(0,2);
                               const configMatched = configs.find(s => s.fips === stateFips);
@@ -337,9 +335,11 @@ export default function USMap(props) {
                             onMouseLeave={()=>{
                               setTooltipContent("")
                             }}
-                            onClick={()=>{
+                            onDoubleClick={()=>{
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
+
+                            
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
                             ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
                                 colorScale[data[geo.id][metric]]: 

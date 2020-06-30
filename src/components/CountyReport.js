@@ -197,13 +197,15 @@ export default function CountyReport() {
           <Grid columns={2} centered>
             <Grid.Row>
               <Grid.Column>
+                <text x={0} y={20} style={{fontSize: '1.0em', paddingBottom: 0, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
+
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
                   padding={{left: 50, right: 60, top: 60, bottom: 30}}
+                  containerComponent={<VictoryVoronoiContainer/>}
                   
                   >
-                  <VictoryLabel text="Average Daily COVID-19 Cases / 100,000" x={140} y={20} textAnchor="middle"/>
                   <VictoryLegend
                     x={10} y={35}
                     orientation="horizontal"
@@ -228,22 +230,42 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caseRateMA'
+                      labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                      labelComponent={<VictoryTooltip/>}
+                      style={{
+                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                      }}
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='caseRateMA'
+                      labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                      labelComponent={<VictoryTooltip/>}
+                      style={{
+                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                      }}
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='caseRateMA'
+                      labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                      labelComponent={<VictoryTooltip/>}
+                      style={{
+                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                      }}
+
                       />
                   </VictoryGroup>
                 </VictoryChart>
               </Grid.Column>
               <Grid.Column>
+                <text x={0} y={20} style={{fontSize: '1.0em', paddingBottom: 0, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
+
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 60, top: 60, bottom: 30}}>
-                  <VictoryLabel text="Average Daily COVID-19 Deaths / 100,000" x={140} y={20} textAnchor="middle"/>
+                  padding={{left: 50, right: 60, top: 60, bottom: 30}}
+                  containerComponent={<VictoryVoronoiContainer/>}
+                  
+                  >
                   <VictoryLegend
                     x={10} y={35}
                     orientation="horizontal"
@@ -267,12 +289,27 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='mortalityMA'
+                      labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                      labelComponent={<VictoryTooltip/>}
+                      style={{
+                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                      }}
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='mortalityMA'
+                      labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                      labelComponent={<VictoryTooltip/>}
+                      style={{
+                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                      }}
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='mortalityMA'
+                      labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                      labelComponent={<VictoryTooltip/>}
+                      style={{
+                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                      }}
                       />
                   </VictoryGroup>
                 </VictoryChart>
