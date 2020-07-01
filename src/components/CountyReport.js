@@ -230,7 +230,7 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -238,7 +238,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -246,7 +246,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -289,7 +289,7 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -297,7 +297,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -305,7 +305,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
