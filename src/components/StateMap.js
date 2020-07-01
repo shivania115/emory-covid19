@@ -171,7 +171,7 @@ export default function StateMap(props) {
         setVarMap(x);
         setMetricOptions(_.filter(_.map(x, d=> {
           return {key: d.id, value: d.variable, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status" && d.text !== "Population" && d.text !== "Population Density" && d.text !== "Household Income")));
+        }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
   }, []);
 
