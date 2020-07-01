@@ -251,7 +251,7 @@ export default function USMap(props) {
                         icon=''
 
                         style={{background: '#fff', 
-                                fontSize: "1.2em",
+                                fontSize: 16,
                                 fontWeight: 400, 
                                 theme: '#000000',
                                 width: '370px',

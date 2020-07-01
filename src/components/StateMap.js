@@ -636,11 +636,11 @@ export default function StateMap(props) {
                         icon=''
 
                         style={{background: '#fff', 
-                                fontSize: "1.2em",
+                                fontSize: 16,
                                 fontWeight: 400, 
                                 theme: '#000000',
                                 width: '370px',
-                                top: '12px',
+                                top: '0px',
                                 left: '0px',
                                 text: "Select",
                                 borderTop: 'none',
