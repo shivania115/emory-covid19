@@ -639,7 +639,7 @@ export default function StateMap(props) {
                                 fontSize: "1.2em",
                                 fontWeight: 400, 
                                 theme: '#000000',
-                                width: '350px',
+                                width: '370px',
                                 top: '12px',
                                 left: '0px',
                                 text: "Select",

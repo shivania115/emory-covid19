@@ -245,7 +245,7 @@ export default function USMap(props) {
                 </Header>
                 
 
-                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingBottom: 0}}>
+                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0}}>
 
                       <Dropdown
                         icon=''
@@ -254,13 +254,13 @@ export default function USMap(props) {
                                 fontSize: "1.2em",
                                 fontWeight: 400, 
                                 theme: '#000000',
-                                width: '300px',
+                                width: '370px',
                                 top: '12px',
                                 left: '0px',
                                 text: "Select",
                                 borderTop: 'none',
                                 borderLeft: '1px solid #FFFFFF',
-                                borderRight: 'none', 
+                                borderRight: '0px', 
                                 borderBottom: '0.5px solid #bdbfc1',
                                 borderRadius: 0,
                                 minHeight: '1.0em',
@@ -278,28 +278,28 @@ export default function USMap(props) {
                         
                       />
 
-                <svg width="330" height="80">
+                <svg width="260" height="80">
                   
 
-                  <text x={60} y={70} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={60+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
+                  <text x={50} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={60+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
-                  <rect x={205} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={227} y={50} style={{fontSize: '0.7em'}}> None </text>
-                  <text x={227} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={60} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={180} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                  <text x={50} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={170} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
                 </svg>
                 </Grid.Row>
@@ -308,7 +308,7 @@ export default function USMap(props) {
                 <ComposableMap 
                   projection="geoAlbersUsa" 
                   data-tip=""
-                  width={600} 
+                  width={630} 
                   height={380}
                   strokeWidth= {0.1}
                   stroke= 'black'

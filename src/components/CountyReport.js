@@ -29,6 +29,14 @@ const countyColor = '#f2a900';
 const stateColor = '#b2b3b3';
 const nationColor = '#d9d9d7';
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+
 function ScatterChart(props) {
 
   return (
@@ -206,7 +214,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label>Total Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.caseRate===null?'0':(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()}
+                    {covidMetric.caseRate===null?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -215,7 +223,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Total Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.mortality===null?'0':(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()}
+                    {covidMetric.mortality===null?'0':numberWithCommas(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -226,7 +234,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label>Total Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.caseRateMean===null?'0':(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()}
+                    {covidMetric.caseRateMean===null?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -235,7 +243,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Total Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.mortalityMean===null?'0':(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()}
+                    {covidMetric.mortalityMean===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -246,7 +254,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label>Total Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.caseRateMA===null?'0':(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()}
+                    {covidMetric.caseRateMA===null?'0':numberWithCommas(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -255,7 +263,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Total Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.mortalityMA===null?'0':(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()}
+                    {covidMetric.mortalityMA===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -266,7 +274,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label style={{paddingLeft:10}}> Death : Cases</Statistic.Label>
                   <Statistic.Value style={{paddingLeft:15}}>
-                    {covidMetric.caseRateMean===null || covidMetric.mortalityMean===null?'0':(parseFloat(covidMetric.mortalityMean/covidMetric.caseRateMean).toFixed(2)).toLocaleString()}
+                    {covidMetric.caseRateMean===null || covidMetric.mortalityMean===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean/covidMetric.caseRateMean).toFixed(2)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
