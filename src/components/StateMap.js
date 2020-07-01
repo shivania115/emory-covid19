@@ -57,7 +57,7 @@ function BarChart(props) {
   const colors = {"nation": nationColor, 
                   "state": stateColor, 
                   "county": countyColor};
-  if (props.countyFips != "_nation" && props.stateFips != "_nation") {
+  if (props.countyFips !== "_nation" && props.stateFips !== "_nation") {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
@@ -140,8 +140,8 @@ export default function StateMap(props) {
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [dataRD, setDataRD] = useState();
-  const [tooltipContent, setTooltipContent] = useState('');
   const [colorScale, setColorScale] = useState();
+  const [tooltipContent, setTooltipContent] = useState('');
 
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
@@ -216,7 +216,6 @@ export default function StateMap(props) {
           setColorScale(scaleMap);
           var max = 0
           var min = 100
-          var length = 0
           _.each(x, d=> { 
             if (d[metric] > max && d.fips.length === 5) {
               max = d[metric]
@@ -351,7 +350,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS && dataRD) {
-    console.log(dataRD.stateFips);
+    console.log(stateFips);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -393,14 +392,14 @@ export default function StateMap(props) {
                           colorScale={[stateColor]}
                         >
 
-                        <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                        <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='caseRateMA'
                             />
 
                         </VictoryGroup>
                         <VictoryArea
                           style={{ data: {  fill: percentChangeCases.includes("+")? "#C0C0C0": percentChangeCases.includes("-")? "#C0C0C0" : "#C0C0C0" , fillOpacity: 0.1} }}
-                          data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'caseRateMA'
 
                         />
@@ -432,7 +431,7 @@ export default function StateMap(props) {
                           colorScale={[stateColor]}
                         >
 
-                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='mortalityMA'
                             />
 
@@ -440,7 +439,7 @@ export default function StateMap(props) {
 
                         <VictoryArea
                           style={{ data: { fill: percentChangeMortality.includes("+")? "#C0C0C0": (percentChangeMortality.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
-                          data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'mortalityMA'
 
                         />
@@ -469,7 +468,7 @@ export default function StateMap(props) {
                           colorScale={[stateColor]}
                         >
 
-                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='hospitalizationRate'
                             />
 
@@ -477,7 +476,7 @@ export default function StateMap(props) {
 
                         <VictoryArea
                           style={{ data: { fill: pctChangeHospRate.includes("+")? "#C0C0C0": (pctChangeHospRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
-                          data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = ''
 
                         />
@@ -507,7 +506,7 @@ export default function StateMap(props) {
                           colorScale={[stateColor]}
                         >
 
-                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='testingRate'
                             />
 
@@ -515,7 +514,7 @@ export default function StateMap(props) {
 
                         <VictoryArea
                           style={{ data: { fill: pctChangeTestingRate.includes("+")? "#C0C0C0": (pctChangeTestingRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
-                          data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'testingRate'
 
                         />
@@ -543,7 +542,7 @@ export default function StateMap(props) {
 
                          />
                         <VictoryAxis dependentAxis 
-                            tickValues = {[0,
+                            tickValues = {[
                               dataRD[stateFips][0]['All Races Combined'][0]['caseRate'],
                               dataRD[stateFips][1]['African American'][0]['caseRate'],
                               dataRD[stateFips][2]['White'][0]['caseRate']
@@ -556,7 +555,7 @@ export default function StateMap(props) {
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
-                          labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))) != 0?
+                          labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))) !== 0?
                                                   numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))): "Not Available"}
                           data={[
                             {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
@@ -580,34 +579,34 @@ export default function StateMap(props) {
 
             <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
               
-                <Grid.Column width={252} style={{padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily cases</i>: Daily new COVID-19 cases <br/> 
                     (7-day rolling average) <br/>
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
                     (7-day rolling average) <br/>
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -7, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -7, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
                     <i>Data source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -10, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -10, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Testing rate</i>: COVID-19 tests per <br/>
                     100,000 population <br/>
                     <i>Data Source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column width={252} style={{left: -15, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -15, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Rates</i>: Cases per 100,000, <br/> 
                     among those with race information available <br/>
@@ -686,8 +685,8 @@ export default function StateMap(props) {
                   <text x={0} y={37} style={{fontSize: '0.7em'}}> {legendMin} </text>
                   <text x={120} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
-                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Click on a county below </text>
-                  <text x={250} y={59} style={{fontSize: '0.7em'}}> for a detailed report. </text>
+                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Double click on a county</text>
+                  <text x={250} y={59} style={{fontSize: '0.7em'}}> below for a detailed report. </text>
 
 
                 </svg>
@@ -772,23 +771,23 @@ export default function StateMap(props) {
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
+                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip/>}
                             style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
-                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='caseRateMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
+                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip/>}
                             style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
-                          <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips != "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                          <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='caseRateMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
+                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip/>}
                             style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -830,23 +829,23 @@ export default function StateMap(props) {
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
+                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip/>}
                             style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
-                          <VictoryLine data={stateFips != "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='mortalityMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
+                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip/>}
                             style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
-                          <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips != "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                          <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='mortalityMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
+                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip />}
                             style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -934,7 +933,7 @@ export default function StateMap(props) {
         }
         <Notes />
       </Container>
-      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>
+      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Double click for a detailed report. </ReactTooltip>
     </div>
     );
   } else{

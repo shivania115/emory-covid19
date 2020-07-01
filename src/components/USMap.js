@@ -127,7 +127,7 @@ export default function USMap(props) {
         setVarMap(x);
         setMetricOptions(_.filter(_.map(x, d=> {
           return {key: d.id, value: d.variable, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status" && d.text !== "Population" && d.text !== "Population Density" && d.text !== "Household Income")));
+        }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
   }, []);
 
@@ -420,7 +420,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Double click for county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {

@@ -58,7 +58,7 @@ function ScatterChart(props) {
         x={props.x}
         y={props.y}
         labels={({ datum }) => `${datum[props.y].toFixed(2)}`}
-        labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{fill: "white"}}/>}
+        labelComponent={<VictoryTooltip cornerRadius={4} />}
 
       />
       <VictoryAxis label={props.varMap[props.x]?props.varMap[props.x].name:props.x}
@@ -119,7 +119,10 @@ export default function CountyReport() {
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [tooltipContent, setTooltipContent] = useState('');
-  const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', t: 'n/a'});
+  const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', 
+                                                  caseRate: "N/A", mortality: "N/A", 
+                                                  caseRateMean: "N/A", mortalityMean: "N/A",
+                                                  caseRateMA: "N/A", mortalityMA: "N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
 
   useEffect(()=>{
@@ -155,7 +158,7 @@ export default function CountyReport() {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '960px'}}>
+        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
           {config &&
           <div>
           <Breadcrumb>
@@ -175,25 +178,105 @@ export default function CountyReport() {
             </Header.Content>
           </Header>
           <Grid style={{paddingTop: '2em'}}>
-            <Grid.Row>
-              <Grid.Column>
+            <Grid.Row columns={9} style = {{padding: 25}}>
+              <Grid.Column style={{width:140, padding: 0}}>
+                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Total to date </b></Statistic.Label>
+
                 <Statistic size='small'>
+                  <Statistic.Label>Total Cases</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.cases===null?'0':covidMetric.cases.toLocaleString()}
                   </Statistic.Value>
-                  <Statistic.Label>Total Cases</Statistic.Label>
                 </Statistic>
-                <Statistic style={{paddingLeft: '2em'}} size='small'>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, paddingLeft: 0}}>
+                <Statistic style={{paddingTop: '33px'}} size='small'>
+                  <Statistic.Label>Total Deaths</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.deaths===null?'0':covidMetric.deaths.toLocaleString()}
                   </Statistic.Value>
-                  <Statistic.Label>Total Deaths</Statistic.Label>
                 </Statistic>
-                <span style={{padding: '3em', color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
               </Grid.Column>
+
+
+              <Grid.Column style={{width: 140, left: -10}}>
+                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Total to date per 100,000 </b></Statistic.Label>
+
+                <Statistic size='small'>
+                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Value>
+                    {covidMetric.caseRate===null?'0':(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, left: -20}}>
+                <Statistic style={{paddingTop: '33px'}} size='small'>
+                  <Statistic.Label>Total Deaths</Statistic.Label>
+                  <Statistic.Value>
+                    {covidMetric.mortality===null?'0':(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, left: -10}}>
+                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Daily Average </b></Statistic.Label>
+
+                <Statistic size='small'>
+                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Value>
+                    {covidMetric.caseRateMean===null?'0':(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, left: -20}}>
+                <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
+                  <Statistic.Label>Total Deaths</Statistic.Label>
+                  <Statistic.Value>
+                    {covidMetric.mortalityMean===null?'0':(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, left: -10}} >
+                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Daily Average per 100,000 </b></Statistic.Label>
+
+                <Statistic size='small'>
+                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Value>
+                    {covidMetric.caseRateMA===null?'0':(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, left: -20}}>
+                <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
+                  <Statistic.Label>Total Deaths</Statistic.Label>
+                  <Statistic.Value>
+                    {covidMetric.mortalityMA===null?'0':(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+
+              <Grid.Column style={{width:140, left: -20}}>
+                <Statistic.Label style={{width:140, textAlign: "left"}}> <b> Case Fatality Ratio</b></Statistic.Label>
+
+                <Statistic size='small'>
+                  <Statistic.Label style={{paddingLeft:10}}> Death : Cases</Statistic.Label>
+                  <Statistic.Value style={{paddingLeft:15}}>
+                    {covidMetric.caseRateMean===null || covidMetric.mortalityMean===null?'0':(parseFloat(covidMetric.mortalityMean/covidMetric.caseRateMean).toFixed(2)).toLocaleString()}
+                  </Statistic.Value>
+                </Statistic>
+              </Grid.Column>
+              
+
+              <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+
             </Grid.Row>
           </Grid>
-          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>COVID-19 Outcome Variables</Divider>
+          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>COVID-19 Outcomes </Divider>
           <Grid columns={2} centered>
             <Grid.Row>
               <Grid.Column>
@@ -230,7 +313,7 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -238,7 +321,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -246,7 +329,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -289,7 +372,7 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -297,7 +380,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -305,7 +388,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()} : ${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -318,7 +401,7 @@ export default function CountyReport() {
             <Grid.Row columns={2}>
               <Grid.Column>
                 <BarChart 
-                  title="" 
+                  title="Average Daily COVID-19 Cases per 100,000" 
                   var="caserate7dayfig" 
                   stateFips={stateFips}
                   countyFips={countyFips}
@@ -326,7 +409,7 @@ export default function CountyReport() {
               </Grid.Column>
               <Grid.Column>
                 <BarChart 
-                  title="" 
+                  title="Average Daily COVID-19 Deaths per 100,000" 
                   var="covidmortality7dayfig" 
                   stateFips={stateFips}
                   countyFips={countyFips}
@@ -346,6 +429,30 @@ export default function CountyReport() {
                   countyFips={countyFips}
                   data={data} />
                 <BarChart 
+                  title="% Diabetes" 
+                  var="diabetes" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} /> 
+                <BarChart 
+                  title="% Over 65 y/o" 
+                  var="age65over" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+                  
+              </Grid.Column>
+              <Grid.Column>
+                <BarChart 
+                  title="% Hispanic or Latino" 
+                  var="hispanic" 
+                  width={350}
+                  stateFips={stateFips}
+                  countyFips={countyFips}
+                  data={data} />
+                <BarChart 
                   title="% in Poverty" 
                   var="poverty" 
                   width={350}                 
@@ -353,21 +460,15 @@ export default function CountyReport() {
                   countyFips={countyFips}
                   data={data} />
                 <BarChart 
-                  title="% Uninsured" 
-                  var="PCTUI" 
+                  title="% in Group Quarters" 
+                  var="groupquater" 
                   width={350}
                   stateFips={stateFips}
                   countyFips={countyFips}
-                  data={data} />  
+                  data={data} />
+                
               </Grid.Column>
               <Grid.Column>
-                <BarChart 
-                  title="% Diabetes" 
-                  var="diabetes" 
-                  width={350}
-                  stateFips={stateFips}
-                  countyFips={countyFips}
-                  data={data} /> 
                 <BarChart 
                   title="% Obese" 
                   var="obesity"
@@ -376,17 +477,8 @@ export default function CountyReport() {
                   countyFips={countyFips}
                   data={data} />
                 <BarChart 
-                  title="% Over 65 y/o" 
-                  var="age65over" 
-                  width={350}
-                  stateFips={stateFips}
-                  countyFips={countyFips}
-                  data={data} />
-              </Grid.Column>
-              <Grid.Column>
-                <BarChart 
-                  title="% in Group Quarters" 
-                  var="groupquater" 
+                  title="% Uninsured" 
+                  var="PCTUI" 
                   width={350}
                   stateFips={stateFips}
                   countyFips={countyFips}
@@ -398,6 +490,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   data={data} />
+                
               </Grid.Column>
             </Grid.Row>
           </Grid>
