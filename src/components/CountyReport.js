@@ -65,7 +65,7 @@ function ScatterChart(props) {
         size={4}
         x={props.x}
         y={props.y}
-        labels={({ datum }) => `${datum[props.y].toFixed(2)}`}
+        labels={({ datum }) => `${datum[props.y].toFixed(1)}`}
         labelComponent={<VictoryTooltip cornerRadius={4} />}
 
       />
@@ -92,7 +92,7 @@ function BarChart(props) {
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 60, right: 50, top: 40, bottom: 50}}
+      padding={{left: 150, right: 50, top: 40, bottom: 50}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={(props.width || 560)/2} y={30} textAnchor="middle"/>
@@ -101,14 +101,14 @@ function BarChart(props) {
       <VictoryBar
         horizontal
         barRatio={0.8}
-        labels={({ datum }) => (Math.round(datum.value*100)/100)}
+        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
               {key: 'state', 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
-              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
+              {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
         labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
-            fill: ({ datum }) => colors[datum.key]
+            fill: ({ datum }) => colors[datum.key]?colors[datum.key]:countyColor
           }
         }}
         x="key"
@@ -130,7 +130,8 @@ export default function CountyReport() {
   const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', 
                                                   caseRate: "N/A", mortality: "N/A", 
                                                   caseRateMean: "N/A", mortalityMean: "N/A",
-                                                  caseRateMA: "N/A", mortalityMA: "N/A", t: 'n/a'});
+                                                  caseRateMA: "N/A", mortalityMA: "N/A",
+                                                  cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
 
   useEffect(()=>{
@@ -166,7 +167,7 @@ export default function CountyReport() {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+        <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
           {config &&
           <div>
           <Breadcrumb>
@@ -185,22 +186,22 @@ export default function CountyReport() {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          <Grid style={{paddingTop: '2em'}}>
+          <Grid style={{paddingTop: '2em', width: "1260px"}}>
             <Grid.Row columns={9} style = {{padding: 25}}>
               <Grid.Column style={{width:140, padding: 0}}>
-                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Total to date </b></Statistic.Label>
+                <Statistic.Label style={{width:180, textAlign: "center"}}> <b> TOTAL TO DATE</b></Statistic.Label>
 
                 <Statistic size='small'>
-                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Label>Cases</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.cases===null?'0':covidMetric.cases.toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, paddingLeft: 0}}>
+              <Grid.Column style={{width:140, left: -40}}>
                 <Statistic style={{paddingTop: '33px'}} size='small'>
-                  <Statistic.Label>Total Deaths</Statistic.Label>
+                  <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.deaths===null?'0':covidMetric.deaths.toLocaleString()}
                   </Statistic.Value>
@@ -208,81 +209,82 @@ export default function CountyReport() {
               </Grid.Column>
 
 
-              <Grid.Column style={{width: 140, left: -10}}>
-                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Total to date per 100,000 </b></Statistic.Label>
+              <Grid.Column style={{width: 140, left: -40}}>
+                <Statistic.Label style={{width:190, textAlign: "center"}}> <b> TOTAL TO DATE PER 100,000 </b></Statistic.Label>
 
                 <Statistic size='small'>
-                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Label>Cases</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.caseRate===null?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, left: -20}}>
+              <Grid.Column style={{width:140, left: -64}}>
                 <Statistic style={{paddingTop: '33px'}} size='small'>
-                  <Statistic.Label>Total Deaths</Statistic.Label>
+                  <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.mortality===null?'0':numberWithCommas(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, left: -10}}>
-                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Daily Average </b></Statistic.Label>
+              <Grid.Column style={{width:140, left: -33}}>
+                <Statistic.Label style={{width:140, textAlign: "center"}}> <b> DAILY AVERAGE </b></Statistic.Label>
 
                 <Statistic size='small'>
-                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Label>Cases</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.caseRateMean===null?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, left: -20}}>
+              <Grid.Column style={{width:140, left: -84}}>
                 <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
-                  <Statistic.Label>Total Deaths</Statistic.Label>
+                  <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.mortalityMean===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, left: -10}} >
-                <Statistic.Label style={{width:240, textAlign: "center"}}> <b> Daily Average per 100,000 </b></Statistic.Label>
+              <Grid.Column style={{width:140, left: -70}} >
+                <Statistic.Label style={{width:190, textAlign: "center"}}> <b> DAILY AVERAGE PER 100,000 </b></Statistic.Label>
 
                 <Statistic size='small'>
-                  <Statistic.Label>Total Cases</Statistic.Label>
+                  <Statistic.Label style={{paddingLeft: 13}}>Cases</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.caseRateMA===null?'0':numberWithCommas(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, left: -20}}>
-                <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
-                  <Statistic.Label>Total Deaths</Statistic.Label>
+              <Grid.Column style={{width:140, left: -110}}>
+                <Statistic style={{paddingLeft: 8, paddingTop: '33px'}} size='small'>
+                  <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
                     {covidMetric.mortalityMA===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
 
-              <Grid.Column style={{width:140, left: -20}}>
-                <Statistic.Label style={{width:140, textAlign: "left"}}> <b> Case Fatality Ratio</b></Statistic.Label>
+              <Grid.Column style={{width:140, left: -40}}>
+                <Statistic.Label style={{width:160, textAlign: "left"}}> <b> CASE FATALITY RATIO </b></Statistic.Label>
 
                 <Statistic size='small'>
-                  <Statistic.Label style={{paddingLeft:10}}> Death : Cases</Statistic.Label>
+                  <Statistic.Label style={{paddingLeft:10, width:140}}> Death : Cases</Statistic.Label>
                   <Statistic.Value style={{paddingLeft:15}}>
-                    {covidMetric.caseRateMean===null || covidMetric.mortalityMean===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean/covidMetric.caseRateMean).toFixed(2)).toLocaleString()}
+                    {covidMetric.cfr===null?'0':numberWithCommas(parseFloat(covidMetric.cfr).toFixed(2)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
               
 
-              <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
 
             </Grid.Row>
+                          <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+
           </Grid>
           <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>COVID-19 Outcomes </Divider>
           <Grid columns={2} centered>
@@ -302,7 +304,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: "county"}
+                      {name: "nation"}, {name: "state"}, {name: countyName}
                       ]}
                   />
 
@@ -362,7 +364,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: "county"}
+                      {name: "nation"}, {name: "state"}, {name: countyName}
                       ]}
                   />
                   <VictoryAxis
@@ -413,6 +415,7 @@ export default function CountyReport() {
                   var="caserate7dayfig" 
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
               </Grid.Column>
               <Grid.Column>
@@ -421,10 +424,13 @@ export default function CountyReport() {
                   var="covidmortality7dayfig" 
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
+                      <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+
           <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>County Characteristics</Divider>
           <Grid>
             <Grid.Row columns={3}>                    
@@ -432,23 +438,26 @@ export default function CountyReport() {
                 <BarChart 
                   title="% African American" 
                   var="black" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 <BarChart 
                   title="% Diabetes" 
                   var="diabetes" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} /> 
                 <BarChart 
                   title="% Over 65 y/o" 
                   var="age65over" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                   
               </Grid.Column>
@@ -456,52 +465,62 @@ export default function CountyReport() {
                 <BarChart 
                   title="% Hispanic or Latino" 
                   var="hispanic" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 <BarChart 
                   title="% in Poverty" 
                   var="poverty" 
-                  width={350}                 
+                  width={400}                 
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 <BarChart 
                   title="% in Group Quarters" 
                   var="groupquater" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 
               </Grid.Column>
+
+
               <Grid.Column>
                 <BarChart 
                   title="% Obese" 
                   var="obesity"
-                  width={350} 
+                  width={400} 
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 <BarChart 
                   title="% Uninsured" 
                   var="PCTUI" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 <BarChart 
                   title="% Male" 
                   var="male" 
-                  width={350}
+                  width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
+                  countyName={countyName}
                   data={data} />
                 
               </Grid.Column>
             </Grid.Row>
+            <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
           </Grid>
+
           <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Bivariate Relationships of Outcomes and Exposure Variables</Divider>
           <Grid columns={3}>
             <Grid.Row>
@@ -599,6 +618,8 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
             </Grid.Row>
+                                      <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+
           </Grid>
           <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Data Table</Divider>
           <Table striped compact basic='very'>
@@ -611,16 +632,22 @@ export default function CountyReport() {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {_.map(data[stateFips+countyFips], 
-                (v, k) => (<Table.Row key={k}>
-                  <Table.Cell>{varMap[k]?varMap[k].name:k}</Table.Cell>
-                  <Table.Cell>{isNaN(v)?v:(v<0)?0:(Math.round(v*100)/100)}</Table.Cell>
-                  <Table.Cell>{isNaN(data[stateFips][k])?data[stateFips][k]:(Math.round(data[stateFips][k]*100)/100)}</Table.Cell>
-                  <Table.Cell>{isNaN(data['_nation'][k])?data['_nation'][k]:(Math.round(data['_nation'][k]*100)/100)}</Table.Cell>
-
-                </Table.Row>
-              ))}
-            </Table.Body>
+                  {_.map(data[stateFips + countyFips],
+                    (v, k) => {
+                      var rmList = ["casesfig", "deathsfig", "dailycases", "dailydeaths", "mean7daycases", "mean7daydeaths", "covidmortalityfig"
+                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips"];
+                      if (!rmList.includes(k)) {
+                        return (
+                          <Table.Row key={k}>
+                            <Table.Cell>{varMap[k] ? varMap[k].name : k}</Table.Cell>
+                            <Table.Cell>{isNaN(v) ? v : (Math.round(v * 100) / 100)}</Table.Cell>
+                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : (Math.round(data[stateFips][k] * 100) / 100)}</Table.Cell>
+                            <Table.Cell>{isNaN(data['_nation'][k]) ? data['_nation'][k] : (Math.round(data['_nation'][k] * 100) / 100)}</Table.Cell>
+                          </Table.Row>
+                        )
+                      }
+                    })}
+                </Table.Body>
           </Table>
           </div>
         }

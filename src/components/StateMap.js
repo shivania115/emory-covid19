@@ -704,10 +704,10 @@ export default function StateMap(props) {
                       <Geography 
                         key={geo.rsmKey} 
                         geography={geo} 
-                        onDoubleClick={()=>{
+                        onClick={()=>{
                           history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
                         }}
-                        onClick={()=>{
+                        onMouseEnter={()=>{
                           setCountyFips(geo.properties.COUNTYFP);
                           setCountyName(fips2county[stateFips+geo.properties.COUNTYFP]);
                           setTooltipContent("");

@@ -321,7 +321,7 @@ export default function USMap(props) {
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
-                            onClick={()=>{
+                            onMouseEnter={()=>{
                               //console.log(geo); 
                               const stateFips = geo.id.substring(0,2);
                               const configMatched = configs.find(s => s.fips === stateFips);
@@ -335,7 +335,7 @@ export default function USMap(props) {
                             onMouseLeave={()=>{
                               setTooltipContent("")
                             }}
-                            onDoubleClick={()=>{
+                            onClick={()=>{
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
 
