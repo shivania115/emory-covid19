@@ -6,12 +6,15 @@
       "deaths": 0,
       "caseRate": 0,
       "mortality": 0,
+      "caseRateMean": 0,
+      "mortalityMean": 0,
       "caseRateMA": 0,
       "mortalityMA": 0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0
     }
   ],
   "_nation": [
@@ -21,12 +24,15 @@
       "deaths": 5325,
       "caseRate": 65.8351,
       "mortality": 1.627607,
+      "caseRateMean": 20974.14,
+      "mortalityMean": 610.1429,
       "caseRateMA": 6.410828,
       "mortalityMA": 0.1864925,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.02472248
     },
     {
       "t": 1585800000,
@@ -34,12 +40,15 @@
       "deaths": 6541,
       "caseRate": 74.91821,
       "mortality": 1.999282,
+      "caseRateMean": 22791.14,
+      "mortalityMean": 741.1429,
       "caseRateMA": 6.966202,
       "mortalityMA": 0.2265332,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0266862
     },
     {
       "t": 1585886400,
@@ -47,12 +56,15 @@
       "deaths": 7932,
       "caseRate": 84.79634,
       "mortality": 2.424447,
+      "caseRateMean": 24932.29,
+      "mortalityMean": 880.2857,
       "caseRateMA": 7.62065,
       "mortalityMA": 0.2690628,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.02859141
     },
     {
       "t": 1585972800,
@@ -60,12 +72,15 @@
       "deaths": 9488,
       "caseRate": 95.52448,
       "mortality": 2.900044,
+      "caseRateMean": 26937.0,
+      "mortalityMean": 1026.857,
       "caseRateMA": 8.233399,
       "mortalityMA": 0.3138629,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.03035917
     },
     {
       "t": 1586059200,
@@ -73,12 +88,15 @@
       "deaths": 10856,
       "caseRate": 103.3541,
       "mortality": 3.318179,
+      "caseRateMean": 27950.71,
+      "mortalityMean": 1162.571,
       "caseRateMA": 8.543245,
       "mortalityMA": 0.3553445,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.03210495
     },
     {
       "t": 1586145600,
@@ -86,12 +104,15 @@
       "deaths": 12382,
       "caseRate": 112.8034,
       "mortality": 3.784607,
+      "caseRateMean": 29300.14,
+      "mortalityMean": 1287.714,
       "caseRateMA": 8.955703,
       "mortalityMA": 0.3935949,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.03355046
     },
     {
       "t": 1586232000,
@@ -99,12 +120,15 @@
       "deaths": 14616,
       "caseRate": 122.0763,
       "mortality": 4.467437,
+      "caseRateMean": 30133.29,
+      "mortalityMean": 1473.143,
       "caseRateMA": 9.210356,
       "mortalityMA": 0.4502718,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.03659544
     },
     {
       "t": 1586318400,
@@ -112,12 +136,15 @@
       "deaths": 16701,
       "caseRate": 131.8019,
       "mortality": 5.104726,
+      "caseRateMean": 30831.71,
+      "mortalityMean": 1625.143,
       "caseRateMA": 9.423834,
       "mortalityMA": 0.4967312,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.03873028
     },
     {
       "t": 1586404800,
@@ -125,12 +152,15 @@
       "deaths": 18821,
       "caseRate": 142.4069,
       "mortality": 5.752712,
+      "caseRateMean": 31543.0,
+      "mortalityMean": 1754.286,
       "caseRateMA": 9.641241,
       "mortalityMA": 0.5362043,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0403963
     },
     {
       "t": 1586491200,
@@ -138,12 +168,15 @@
       "deaths": 21084,
       "caseRate": 152.6377,
       "mortality": 6.444407,
+      "caseRateMean": 31707.86,
+      "mortalityMean": 1878.857,
       "caseRateMA": 9.69163,
       "mortalityMA": 0.57428,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.04222027
     },
     {
       "t": 1586577600,
@@ -151,12 +184,15 @@
       "deaths": 23168,
       "caseRate": 162.3346,
       "mortality": 7.081389,
+      "caseRateMean": 31225.86,
+      "mortalityMean": 1954.286,
       "caseRateMA": 9.544305,
       "mortalityMA": 0.597335,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.04362218
     },
     {
       "t": 1586664000,
@@ -164,12 +200,15 @@
       "deaths": 24849,
       "caseRate": 170.631,
       "mortality": 7.595194,
+      "caseRateMean": 31444.0,
+      "mortalityMean": 1999.0,
       "caseRateMA": 9.610981,
       "mortalityMA": 0.6110021,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0445124
     },
     {
       "t": 1586750400,
@@ -177,12 +216,15 @@
       "deaths": 26613,
       "caseRate": 178.5074,
       "mortality": 8.134367,
+      "caseRateMean": 30708.86,
+      "mortalityMean": 2033.0,
       "caseRateMA": 9.386282,
       "mortalityMA": 0.6213944,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0455688
     },
     {
       "t": 1586836800,
@@ -190,12 +232,15 @@
       "deaths": 29318,
       "caseRate": 186.6656,
       "mortality": 8.961161,
+      "caseRateMean": 30187.86,
+      "mortalityMean": 2100.286,
       "caseRateMA": 9.227036,
       "mortalityMA": 0.6419605,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0480065
     },
     {
       "t": 1586923200,
@@ -203,12 +248,15 @@
       "deaths": 32070,
       "caseRate": 195.8453,
       "mortality": 9.80232,
+      "caseRateMean": 29932.71,
+      "mortalityMean": 2195.571,
       "caseRateMA": 9.149051,
       "mortalityMA": 0.671085,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05005135
     },
     {
       "t": 1587009600,
@@ -216,12 +264,15 @@
       "deaths": 34418,
       "caseRate": 205.5079,
       "mortality": 10.52,
+      "caseRateMean": 29492.29,
+      "mortalityMean": 2228.143,
       "caseRateMA": 9.014432,
       "mortalityMA": 0.6810405,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05119022
     },
     {
       "t": 1587096000,
@@ -229,12 +280,15 @@
       "deaths": 36707,
       "caseRate": 215.1382,
       "mortality": 11.21964,
+      "caseRateMean": 29211.57,
+      "mortalityMean": 2231.857,
       "caseRateMA": 8.928631,
       "mortalityMA": 0.6821758,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05215085
     },
     {
       "t": 1587182400,
@@ -242,12 +296,15 @@
       "deaths": 38659,
       "caseRate": 223.8187,
       "mortality": 11.81627,
+      "caseRateMean": 28736.57,
+      "mortalityMean": 2213.0,
       "caseRateMA": 8.783445,
       "mortalityMA": 0.6764121,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05279395
     },
     {
       "t": 1587268800,
@@ -255,12 +312,15 @@
       "deaths": 40179,
       "caseRate": 231.5622,
       "mortality": 12.28087,
+      "caseRateMean": 28478.14,
+      "mortalityMean": 2190.0,
       "caseRateMA": 8.704455,
       "mortalityMA": 0.669382,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05303486
     },
     {
       "t": 1587355200,
@@ -268,12 +328,15 @@
       "deaths": 42016,
       "caseRate": 239.9157,
       "mortality": 12.84235,
+      "caseRateMean": 28701.14,
+      "mortalityMean": 2200.429,
       "caseRateMA": 8.772616,
       "mortalityMA": 0.6725696,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05352861
     },
     {
       "t": 1587441600,
@@ -281,12 +344,15 @@
       "deaths": 44688,
       "caseRate": 247.7123,
       "mortality": 13.65906,
+      "caseRateMean": 28532.14,
+      "mortalityMean": 2195.714,
       "caseRateMA": 8.720961,
       "mortalityMA": 0.6711286,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05514083
     },
     {
       "t": 1587528000,
@@ -294,12 +360,15 @@
       "deaths": 47059,
       "caseRate": 256.5249,
       "mortality": 14.38377,
+      "caseRateMean": 28360.57,
+      "mortalityMean": 2141.286,
       "caseRateMA": 8.668519,
       "mortalityMA": 0.6544923,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05607161
     },
     {
       "t": 1587614400,
@@ -307,12 +376,15 @@
       "deaths": 49228,
       "caseRate": 266.8478,
       "mortality": 15.04673,
+      "caseRateMean": 28669.14,
+      "mortalityMean": 2115.714,
       "caseRateMA": 8.762835,
       "mortalityMA": 0.6466763,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05638694
     },
     {
       "t": 1587700800,
@@ -320,12 +392,15 @@
       "deaths": 51360,
       "caseRate": 278.0769,
       "mortality": 15.69838,
+      "caseRateMean": 29416.43,
+      "mortalityMean": 2093.286,
       "caseRateMA": 8.991246,
       "mortalityMA": 0.6398209,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05645339
     },
     {
       "t": 1587787200,
@@ -333,12 +408,15 @@
       "deaths": 53326,
       "caseRate": 288.5935,
       "mortality": 16.2993,
+      "caseRateMean": 30274.57,
+      "mortalityMean": 2095.286,
       "caseRateMA": 9.253541,
       "mortalityMA": 0.6404322,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0564784
     },
     {
       "t": 1587873600,
@@ -346,12 +424,15 @@
       "deaths": 54580,
       "caseRate": 296.7652,
       "mortality": 16.68259,
+      "caseRateMean": 30474.71,
+      "mortalityMean": 2057.286,
       "caseRateMA": 9.314715,
       "mortalityMA": 0.6288174,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05621478
     },
     {
       "t": 1587960000,
@@ -359,12 +440,15 @@
       "deaths": 56022,
       "caseRate": 303.8536,
       "mortality": 17.12334,
+      "caseRateMean": 29883.43,
+      "mortalityMean": 2000.857,
       "caseRateMA": 9.133986,
       "mortalityMA": 0.6115698,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05635392
     },
     {
       "t": 1588046400,
@@ -372,12 +456,15 @@
       "deaths": 58416,
       "caseRate": 311.3822,
       "mortality": 17.85508,
+      "caseRateMean": 29758.14,
+      "mortalityMean": 1961.143,
       "caseRateMA": 9.095692,
       "mortalityMA": 0.5994309,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05734137
     },
     {
       "t": 1588132800,
@@ -385,12 +472,15 @@
       "deaths": 60930,
       "caseRate": 319.4994,
       "mortality": 18.62349,
+      "caseRateMean": 29433.14,
+      "mortalityMean": 1981.571,
       "caseRateMA": 8.996355,
       "mortalityMA": 0.605675,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0582896
     },
     {
       "t": 1588219200,
@@ -398,12 +488,15 @@
       "deaths": 63140,
       "caseRate": 328.7726,
       "mortality": 19.29899,
+      "caseRateMean": 28942.57,
+      "mortalityMean": 1987.429,
       "caseRateMA": 8.84641,
       "mortalityMA": 0.6074653,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0587001
     },
     {
       "t": 1588305600,
@@ -411,12 +504,15 @@
       "deaths": 64902,
       "caseRate": 339.1539,
       "mortality": 19.83755,
+      "caseRateMean": 28546.29,
+      "mortalityMean": 1934.571,
       "caseRateMA": 8.725283,
       "mortalityMA": 0.5913093,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0584913
     },
     {
       "t": 1588392000,
@@ -424,12 +520,15 @@
       "deaths": 66485,
       "caseRate": 348.1627,
       "mortality": 20.3214,
+      "caseRateMean": 27841.57,
+      "mortalityMean": 1879.857,
       "caseRateMA": 8.509885,
       "mortalityMA": 0.5745857,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05836754
     },
     {
       "t": 1588478400,
@@ -437,12 +536,15 @@
       "deaths": 67816,
       "caseRate": 356.1525,
       "mortality": 20.72822,
+      "caseRateMean": 27756.57,
+      "mortalityMean": 1890.857,
       "caseRateMA": 8.483904,
       "mortalityMA": 0.5779478,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05820042
     },
     {
       "t": 1588564800,
@@ -450,12 +552,15 @@
       "deaths": 68905,
       "caseRate": 362.865,
       "mortality": 21.06108,
+      "caseRateMean": 27580.86,
+      "mortalityMean": 1840.429,
       "caseRateMA": 8.430196,
       "mortalityMA": 0.5625342,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0580411
     },
     {
       "t": 1588651200,
@@ -463,12 +568,15 @@
       "deaths": 71139,
       "caseRate": 370.1105,
       "mortality": 21.74391,
+      "caseRateMean": 27448.57,
+      "mortalityMean": 1817.571,
       "caseRateMA": 8.389763,
       "mortalityMA": 0.5555478,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05874979
     },
     {
       "t": 1588737600,
@@ -476,12 +584,15 @@
       "deaths": 73847,
       "caseRate": 377.5944,
       "mortality": 22.57162,
+      "caseRateMean": 27152.57,
+      "mortalityMean": 1845.286,
       "caseRateMA": 8.299289,
       "mortalityMA": 0.5640188,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05977743
     },
     {
       "t": 1588824000,
@@ -489,12 +600,15 @@
       "deaths": 75805,
       "caseRate": 386.2973,
       "mortality": 23.17009,
+      "caseRateMean": 26886.0,
+      "mortalityMean": 1809.286,
       "caseRateMA": 8.217811,
       "mortalityMA": 0.5530152,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05997995
     },
     {
       "t": 1588910400,
@@ -502,12 +616,15 @@
       "deaths": 77380,
       "caseRate": 394.7465,
       "mortality": 23.6515,
+      "caseRateMean": 25983.0,
+      "mortalityMean": 1782.571,
       "caseRateMA": 7.941805,
       "mortalityMA": 0.5448499,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05991566
     },
     {
       "t": 1588996800,
@@ -515,12 +632,15 @@
       "deaths": 78834,
       "caseRate": 402.3478,
       "mortality": 24.09592,
+      "caseRateMean": 25325.14,
+      "mortalityMean": 1764.143,
       "caseRateMA": 7.740729,
       "mortalityMA": 0.5392171,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05988828
     },
     {
       "t": 1589083200,
@@ -528,12 +648,15 @@
       "deaths": 79765,
       "caseRate": 408.5578,
       "mortality": 24.38048,
+      "caseRateMean": 24493.29,
+      "mortalityMean": 1707.0,
       "caseRateMA": 7.486468,
       "mortalityMA": 0.5217512,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0596745
     },
     {
       "t": 1589169600,
@@ -541,12 +664,15 @@
       "deaths": 80747,
       "caseRate": 413.9428,
       "mortality": 24.68063,
+      "caseRateMean": 23872.86,
+      "mortalityMean": 1691.714,
       "caseRateMA": 7.296832,
       "mortalityMA": 0.5170791,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0596233
     },
     {
       "t": 1589256000,
@@ -554,12 +680,15 @@
       "deaths": 82400,
       "caseRate": 420.7586,
       "mortality": 25.18588,
+      "caseRateMean": 23672.0,
+      "mortalityMean": 1608.714,
       "caseRateMA": 7.235439,
       "mortalityMA": 0.4917098,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05985827
     },
     {
       "t": 1589342400,
@@ -567,12 +696,15 @@
       "deaths": 84168,
       "caseRate": 427.2204,
       "mortality": 25.72628,
+      "caseRateMean": 23194.29,
+      "mortalityMean": 1474.429,
       "caseRateMA": 7.089424,
       "mortalityMA": 0.4506648,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.06021781
     },
     {
       "t": 1589428800,
@@ -580,12 +712,15 @@
       "deaths": 85906,
       "caseRate": 435.4611,
       "mortality": 26.2575,
+      "caseRateMean": 22978.29,
+      "mortalityMean": 1443.0,
       "caseRateMA": 7.023402,
       "mortalityMA": 0.4410586,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.06029816
     },
     {
       "t": 1589515200,
@@ -593,12 +728,15 @@
       "deaths": 87499,
       "caseRate": 443.4763,
       "mortality": 26.74441,
+      "caseRateMean": 22775.43,
+      "mortalityMean": 1445.571,
       "caseRateMA": 6.961398,
       "mortalityMA": 0.4418445,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.06030629
     },
     {
       "t": 1589601600,
@@ -606,12 +744,15 @@
       "deaths": 88724,
       "caseRate": 450.7078,
       "mortality": 27.11884,
+      "caseRateMean": 22602.57,
+      "mortalityMean": 1412.857,
       "caseRateMA": 6.908564,
       "mortalityMA": 0.4318453,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.06016945
     },
     {
       "t": 1589688000,
@@ -619,12 +760,15 @@
       "deaths": 89568,
       "caseRate": 456.5195,
       "mortality": 27.37681,
+      "caseRateMean": 22416.43,
+      "mortalityMean": 1400.429,
       "caseRateMA": 6.851669,
       "mortalityMA": 0.4280464,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05996855
     },
     {
       "t": 1589774400,
@@ -632,12 +776,15 @@
       "deaths": 90414,
       "caseRate": 463.1888,
       "mortality": 27.63539,
+      "caseRateMean": 23016.71,
+      "mortalityMean": 1381.0,
       "caseRateMA": 7.035148,
       "mortalityMA": 0.422108,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05966334
     },
     {
       "t": 1589860800,
@@ -645,12 +792,15 @@
       "deaths": 91934,
       "caseRate": 469.5978,
       "mortality": 28.09999,
+      "caseRateMean": 22826.57,
+      "mortalityMean": 1362.0,
       "caseRateMA": 6.97703,
       "mortalityMA": 0.4163006,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05983841
     },
     {
       "t": 1589947200,
@@ -658,12 +808,15 @@
       "deaths": 93411,
       "caseRate": 476.6474,
       "mortality": 28.55144,
+      "caseRateMean": 23101.29,
+      "mortalityMean": 1320.429,
       "caseRateMA": 7.060998,
       "mortalityMA": 0.4035941,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05990054
     },
     {
       "t": 1590033600,
@@ -671,12 +824,15 @@
       "deaths": 94722,
       "caseRate": 484.5131,
       "mortality": 28.95215,
+      "caseRateMean": 22926.0,
+      "mortalityMean": 1259.429,
       "caseRateMA": 7.007421,
       "mortalityMA": 0.3849492,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05975514
     },
     {
       "t": 1590120000,
@@ -684,12 +840,15 @@
       "deaths": 96010,
       "caseRate": 491.7855,
       "mortality": 29.34583,
+      "caseRateMean": 22578.86,
+      "mortalityMean": 1215.857,
       "caseRateMA": 6.901316,
       "mortalityMA": 0.3716315,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05967201
     },
     {
       "t": 1590206400,
@@ -697,12 +856,15 @@
       "deaths": 97060,
       "caseRate": 498.5918,
       "mortality": 29.66677,
+      "caseRateMean": 22380.14,
+      "mortalityMean": 1190.857,
       "caseRateMA": 6.840578,
       "mortalityMA": 0.3639901,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05950111
     },
     {
       "t": 1590292800,
@@ -710,12 +872,15 @@
       "deaths": 97680,
       "caseRate": 504.7144,
       "mortality": 29.85627,
+      "caseRateMean": 22525.43,
+      "mortalityMean": 1158.857,
       "caseRateMA": 6.884985,
       "mortalityMA": 0.3542092,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05915479
     },
     {
       "t": 1590379200,
@@ -723,12 +888,15 @@
       "deaths": 98190,
       "caseRate": 510.5523,
       "mortality": 30.01216,
+      "caseRateMean": 22136.86,
+      "mortalityMean": 1110.857,
       "caseRateMA": 6.766217,
       "mortalityMA": 0.3395378,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0587837
     },
     {
       "t": 1590465600,
@@ -736,12 +904,15 @@
       "deaths": 98937,
       "caseRate": 516.3258,
       "mortality": 30.24048,
+      "caseRateMean": 21839.86,
+      "mortalityMean": 1000.429,
       "caseRateMA": 6.675437,
       "mortalityMA": 0.3057849,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0585686
     },
     {
       "t": 1590552000,
@@ -749,12 +920,15 @@
       "deaths": 100422,
       "caseRate": 522.0535,
       "mortality": 30.69438,
+      "caseRateMean": 21222.0,
+      "mortalityMean": 1001.571,
       "caseRateMA": 6.486587,
       "mortalityMA": 0.3061342,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05879546
     },
     {
       "t": 1590638400,
@@ -762,12 +936,15 @@
       "deaths": 101622,
       "caseRate": 528.9212,
       "mortality": 31.06116,
+      "caseRateMean": 20755.57,
+      "mortalityMean": 985.7143,
       "caseRateMA": 6.344021,
       "mortalityMA": 0.3012874,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05872549
     },
     {
       "t": 1590724800,
@@ -775,12 +952,15 @@
       "deaths": 102812,
       "caseRate": 536.4235,
       "mortality": 31.42489,
+      "caseRateMean": 20863.0,
+      "mortalityMean": 971.7143,
       "caseRateMA": 6.376857,
       "mortalityMA": 0.2970083,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05858224
     },
     {
       "t": 1590811200,
@@ -788,12 +968,15 @@
       "deaths": 103775,
       "caseRate": 543.5752,
       "mortality": 31.71923,
+      "caseRateMean": 21024.43,
+      "mortalityMean": 959.2857,
       "caseRateMA": 6.426198,
       "mortalityMA": 0.2932094,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05835298
     },
     {
       "t": 1590897600,
@@ -801,12 +984,15 @@
       "deaths": 104379,
       "caseRate": 549.8821,
       "mortality": 31.90385,
+      "caseRateMean": 21110.57,
+      "mortalityMean": 957.0,
       "caseRateMA": 6.452528,
       "mortalityMA": 0.2925108,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05801944
     },
     {
       "t": 1590984000,
@@ -814,12 +1000,15 @@
       "deaths": 105113,
       "caseRate": 556.574,
       "mortality": 32.1282,
+      "caseRateMean": 21509.71,
+      "mortalityMean": 989.0,
       "caseRateMA": 6.574528,
       "mortalityMA": 0.3022917,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05772493
     },
     {
       "t": 1591070400,
@@ -827,12 +1016,15 @@
       "deaths": 106195,
       "caseRate": 562.9271,
       "mortality": 32.45892,
+      "caseRateMean": 21780.57,
+      "mortalityMean": 1036.857,
       "caseRateMA": 6.657316,
       "mortalityMA": 0.3169194,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05766096
     },
     {
       "t": 1591156800,
@@ -840,12 +1032,15 @@
       "deaths": 107184,
       "caseRate": 569.0343,
       "mortality": 32.76121,
+      "caseRateMean": 21958.0,
+      "mortalityMean": 966.0,
       "caseRateMA": 6.711548,
       "mortalityMA": 0.2952617,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05757334
     },
     {
       "t": 1591243200,
@@ -853,12 +1048,15 @@
       "deaths": 108192,
       "caseRate": 575.6404,
       "mortality": 33.06931,
+      "caseRateMean": 21835.71,
+      "mortalityMean": 938.5714,
       "caseRateMA": 6.674171,
       "mortalityMA": 0.286878,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05744785
     },
     {
       "t": 1591329600,
@@ -866,12 +1064,15 @@
       "deaths": 109304,
       "caseRate": 584.4109,
       "mortality": 33.40919,
+      "caseRateMean": 22428.43,
+      "mortalityMean": 927.4286,
       "caseRateMA": 6.855337,
       "mortalityMA": 0.2834722,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0571673
     },
     {
       "t": 1591416000,
@@ -879,12 +1080,15 @@
       "deaths": 110032,
       "caseRate": 591.2942,
       "mortality": 33.63171,
+      "caseRateMean": 22303.0,
+      "mortalityMean": 893.8571,
       "caseRateMA": 6.816999,
       "mortalityMA": 0.2732109,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05687813
     },
     {
       "t": 1591502400,
@@ -892,12 +1096,15 @@
       "deaths": 110422,
       "caseRate": 596.9842,
       "mortality": 33.75091,
+      "caseRateMean": 22014.71,
+      "mortalityMean": 863.2857,
       "caseRateMA": 6.728883,
       "mortalityMA": 0.2638666,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05653569
     },
     {
       "t": 1591588800,
@@ -905,12 +1112,15 @@
       "deaths": 111144,
       "caseRate": 602.5468,
       "mortality": 33.9716,
+      "caseRateMean": 21486.86,
+      "mortalityMean": 861.5714,
       "caseRateMA": 6.567542,
       "mortalityMA": 0.2633427,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05638001
     },
     {
       "t": 1591675200,
@@ -918,12 +1128,15 @@
       "deaths": 112174,
       "caseRate": 608.2931,
       "mortality": 34.28642,
+      "caseRateMean": 21203.29,
+      "mortalityMean": 854.1429,
       "caseRateMA": 6.480867,
       "mortalityMA": 0.2610721,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05636496
     },
     {
       "t": 1591761600,
@@ -931,12 +1144,15 @@
       "deaths": 113103,
       "caseRate": 615.3718,
       "mortality": 34.57037,
+      "caseRateMean": 21657.29,
+      "mortalityMean": 845.5714,
       "caseRateMA": 6.619634,
       "mortalityMA": 0.2584522,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05617803
     },
     {
       "t": 1591848000,
@@ -944,12 +1160,15 @@
       "deaths": 113980,
       "caseRate": 622.4629,
       "mortality": 34.83843,
+      "caseRateMean": 21884.0,
+      "mortalityMean": 826.8571,
       "caseRateMA": 6.68893,
       "mortalityMA": 0.2527321,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05596868
     },
     {
       "t": 1591934400,
@@ -957,12 +1176,15 @@
       "deaths": 114758,
       "caseRate": 630.2559,
       "mortality": 35.07623,
+      "caseRateMean": 21427.14,
+      "mortalityMean": 779.1429,
       "caseRateMA": 6.54929,
       "mortalityMA": 0.238148,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05565395
     },
     {
       "t": 1592020800,
@@ -970,12 +1192,15 @@
       "deaths": 115451,
       "caseRate": 637.9996,
       "mortality": 35.28805,
+      "caseRateMean": 21829.29,
+      "mortalityMean": 774.1429,
       "caseRateMA": 6.672206,
       "mortalityMA": 0.2366198,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05531045
     },
     {
       "t": 1592107200,
@@ -983,12 +1208,15 @@
       "deaths": 115768,
       "caseRate": 643.8465,
       "mortality": 35.38494,
+      "caseRateMean": 21902.57,
+      "mortalityMean": 763.7143,
       "caseRateMA": 6.694606,
       "mortalityMA": 0.2334322,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05495866
     },
     {
       "t": 1592193600,
@@ -996,12 +1224,15 @@
       "deaths": 116216,
       "caseRate": 649.9947,
       "mortality": 35.52187,
+      "caseRateMean": 22176.29,
+      "mortalityMean": 724.5714,
       "caseRateMA": 6.778268,
       "mortalityMA": 0.2214681,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05464948
     },
     {
       "t": 1592280000,
@@ -1009,12 +1240,15 @@
       "deaths": 116985,
       "caseRate": 657.5997,
       "mortality": 35.75692,
+      "caseRateMean": 23045.0,
+      "mortalityMean": 687.2857,
       "caseRateMA": 7.043794,
       "mortalityMA": 0.2100716,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05437491
     },
     {
       "t": 1592366400,
@@ -1022,12 +1256,15 @@
       "deaths": 117746,
       "caseRate": 665.4403,
       "mortality": 35.98952,
+      "caseRateMean": 23401.14,
+      "mortalityMean": 663.2857,
       "caseRateMA": 7.15265,
       "mortalityMA": 0.2027359,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05408377
     },
     {
       "t": 1592452800,
@@ -1035,12 +1272,15 @@
       "deaths": 118473,
       "caseRate": 674.0142,
       "mortality": 36.21173,
+      "caseRateMean": 24094.14,
+      "mortalityMean": 641.8571,
       "caseRateMA": 7.364469,
       "mortalityMA": 0.1961861,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05372548
     },
     {
       "t": 1592539200,
@@ -1048,12 +1288,15 @@
       "deaths": 119171,
       "caseRate": 683.4406,
       "mortality": 36.42508,
+      "caseRateMean": 24857.57,
+      "mortalityMean": 630.4286,
       "caseRateMA": 7.597813,
       "mortalityMA": 0.1926929,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05329663
     },
     {
       "t": 1592625600,
@@ -1061,12 +1304,15 @@
       "deaths": 119717,
       "caseRate": 693.2288,
       "mortality": 36.59197,
+      "caseRateMean": 25813.14,
+      "mortalityMean": 609.4286,
       "caseRateMA": 7.889888,
       "mortalityMA": 0.1862742,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05278483
     },
     {
       "t": 1592712000,
@@ -1074,12 +1320,15 @@
       "deaths": 119974,
       "caseRate": 701.2963,
       "mortality": 36.67052,
+      "caseRateMean": 26851.0,
+      "mortalityMean": 600.8571,
       "caseRateMA": 8.207113,
       "mortalityMA": 0.1836543,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05228963
     },
     {
       "t": 1592798400,
@@ -1087,12 +1336,15 @@
       "deaths": 120334,
       "caseRate": 710.6007,
       "mortality": 36.78056,
+      "caseRateMean": 28326.14,
+      "mortalityMean": 588.2857,
       "caseRateMA": 8.657996,
       "mortalityMA": 0.1798118,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05175981
     },
     {
       "t": 1592884800,
@@ -1100,12 +1352,15 @@
       "deaths": 121167,
       "caseRate": 721.3126,
       "mortality": 37.03517,
+      "caseRateMean": 29778.29,
+      "mortalityMean": 597.4286,
       "caseRateMA": 9.101849,
       "mortalityMA": 0.1826064,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05134412
     },
     {
       "t": 1592971200,
@@ -1113,12 +1368,15 @@
       "deaths": 121934,
       "caseRate": 732.6261,
       "mortality": 37.2696,
+      "caseRateMean": 31401.43,
+      "mortalityMean": 598.2857,
       "caseRateMA": 9.597969,
       "mortalityMA": 0.1828684,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05087125
     },
     {
       "t": 1593057600,
@@ -1126,12 +1384,15 @@
       "deaths": 124400,
       "caseRate": 745.2056,
       "mortality": 38.02334,
+      "caseRateMean": 33273.57,
+      "mortalityMean": 846.7143,
       "caseRateMA": 10.1702,
       "mortalityMA": 0.2588015,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.05102397
     },
     {
       "t": 1593144000,
@@ -1139,38 +1400,95 @@
       "deaths": 125033,
       "caseRate": 759.1122,
       "mortality": 38.21682,
+      "caseRateMean": 35367.57,
+      "mortalityMean": 837.4286,
       "caseRateMA": 10.81024,
       "mortalityMA": 0.2559633,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.0503441
     },
     {
       "t": 1593230400,
       "cases": 2525928,
-      "deaths": 125545,
+      "deaths": 125544,
       "caseRate": 772.0597,
-      "mortality": 38.37332,
+      "mortality": 38.37301,
+      "caseRateMean": 36844.14,
+      "mortalityMean": 832.4286,
       "caseRateMA": 11.26156,
-      "mortalityMA": 0.2544787,
+      "mortalityMA": 0.254435,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.04970213
     },
     {
       "t": 1593316800,
-      "cases": 2564681,
+      "cases": 2565015,
       "deaths": 125814,
-      "caseRate": 783.9047,
+      "caseRate": 784.0068,
       "mortality": 38.45554,
-      "caseRateMA": 11.80121,
+      "caseRateMean": 38657.43,
+      "mortalityMean": 834.2857,
+      "caseRateMA": 11.81579,
       "mortalityMA": 0.2550027,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0.04905001
+    },
+    {
+      "t": 1593403200,
+      "cases": 2604915,
+      "deaths": 126161,
+      "caseRate": 796.2024,
+      "mortality": 38.5616,
+      "caseRateMean": 40008.71,
+      "mortalityMean": 832.4286,
+      "caseRateMA": 12.22882,
+      "mortalityMA": 0.254435,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0,
+      "cfr": 0.04843191
+    },
+    {
+      "t": 1593489600,
+      "cases": 2653280,
+      "deaths": 127461,
+      "caseRate": 810.9854,
+      "mortality": 38.95895,
+      "caseRateMean": 41911.43,
+      "mortalityMean": 899.1429,
+      "caseRateMA": 12.81039,
+      "mortalityMA": 0.2748265,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0,
+      "cfr": 0.04803903
+    },
+    {
+      "t": 1593576000,
+      "cases": 2703212,
+      "deaths": 128103,
+      "caseRate": 826.2473,
+      "mortality": 39.15518,
+      "caseRateMean": 43756.86,
+      "mortalityMean": 881.2857,
+      "caseRateMA": 13.37445,
+      "mortalityMA": 0.2693684,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "testingRate": 0,
+      "hospitalizationRate": 0,
+      "cfr": 0.04738918
     }
   ],
   "_": [
@@ -1180,12 +1498,15 @@
       "cases": 1,
       "caseRate": 0,
       "mortality": 0,
+      "caseRateMean": 0,
+      "mortalityMean": 0,
       "caseRateMA": 0,
       "mortalityMA": 0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0
     },
     {
       "t": 1588731173,
@@ -1193,12 +1514,15 @@
       "cases": 1,
       "caseRate": 0,
       "mortality": 0,
+      "caseRateMean": 0,
+      "mortalityMean": 0,
       "caseRateMA": 0,
       "mortalityMA": 0,
       "tests": 0,
       "totalHospitalized": 0,
       "testingRate": 0,
-      "hospitalizationRate": 0
+      "hospitalizationRate": 0,
+      "cfr": 0
     }
   ]
 }
