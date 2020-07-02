@@ -127,7 +127,7 @@ export default function USMap(props) {
         setVarMap(x);
         setMetricOptions(_.filter(_.map(x, d=> {
           return {key: d.id, value: d.variable, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status" && d.text !== "Population" && d.text !== "Population Density" && d.text !== "Household Income")));
+        }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
   }, []);
 
@@ -157,9 +157,10 @@ export default function USMap(props) {
               d.fips.length === 5)),
           d=> d[metric]))
         .range(colorPalette);
+
         let scaleMap = {}
         _.each(x, d=>{
-          if(d[metric] > 0){
+          if(d[metric] >= 0){
           scaleMap[d[metric]] = cs(d[metric])}});
       
         setColorScale(scaleMap);
@@ -167,12 +168,9 @@ export default function USMap(props) {
         var min = 100
         var length = 0
         _.each(x, d=> { 
-          if(d[metric] !== null){
-            length += 1
-          }
           if (d[metric] > max && d.fips.length === 5) {
             max = d[metric]
-          } else if (d[metric] < min && d[metric] >= 0){
+          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
             min = d[metric]
           }
         });
@@ -247,22 +245,22 @@ export default function USMap(props) {
                 </Header>
                 
 
-                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingBottom: 0}}>
+                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0}}>
 
                       <Dropdown
                         icon=''
 
                         style={{background: '#fff', 
-                                fontSize: "1.2em",
+                                fontSize: 16,
                                 fontWeight: 400, 
                                 theme: '#000000',
-                                width: '300px',
+                                width: '370px',
                                 top: '12px',
                                 left: '0px',
                                 text: "Select",
                                 borderTop: 'none',
                                 borderLeft: '1px solid #FFFFFF',
-                                borderRight: 'none', 
+                                borderRight: '0px', 
                                 borderBottom: '0.5px solid #bdbfc1',
                                 borderRadius: 0,
                                 minHeight: '1.0em',
@@ -280,28 +278,28 @@ export default function USMap(props) {
                         
                       />
 
-                <svg width="330" height="80">
+                <svg width="260" height="80">
                   
 
-                  <text x={60} y={70} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={60+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
+                  <text x={50} y={70} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={60+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
-                  <rect x={205} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={227} y={50} style={{fontSize: '0.7em'}}> None </text>
-                  <text x={227} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
-                      return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                     }
-                    return <text key = {i} x={80 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={60} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={180} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                  <text x={50} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={170} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
                 </svg>
                 </Grid.Row>
@@ -310,7 +308,7 @@ export default function USMap(props) {
                 <ComposableMap 
                   projection="geoAlbersUsa" 
                   data-tip=""
-                  width={600} 
+                  width={630} 
                   height={380}
                   strokeWidth= {0.1}
                   stroke= 'black'
@@ -340,6 +338,8 @@ export default function USMap(props) {
                             onClick={()=>{
                               history.push("/"+geo.id.substring(0,2)+"");
                             }}
+
+                            
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
                             ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
                                 colorScale[data[geo.id][metric]]: 
@@ -356,7 +356,7 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Grid.Row style={{paddingTop: 0}}>
+                <Grid.Row style={{paddingTop: "11px"}}>
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
                     <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
@@ -420,7 +420,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Click to see county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Double click for county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {

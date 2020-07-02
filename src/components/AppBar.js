@@ -14,7 +14,7 @@ export default function AppBar(props) {
       <Menu borderless inverted fixed='top'
         style={{backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
                 backgroundSize: 'cover'}}>
-        <Container style={{minWidth: '1290px'}}>
+        <Container style={{width: '1290px'}}>
           <Menu.Item as='a' header onClick={() => history.push('/')}>
             <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
            COVID-19 Health Equity<br/>Interactive Dashboard
@@ -27,10 +27,10 @@ export default function AppBar(props) {
             name='countyReport'/>
 
           <Menu.Item 
-            active={props.menu==='countyCompare'} 
-            onClick={() => history.push('/compare-counties')}
-            name='countyCompare'>
-            Compare Counties
+            active={props.menu==='mapState'} 
+            onClick={() => history.push('/map-your-state')}
+            name='mapState'>
+            Map Your State
           </Menu.Item>
           <Menu.Item 
             active={props.menu==='dataSources'} 
