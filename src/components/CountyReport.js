@@ -45,7 +45,7 @@ function ScatterChart(props) {
       height={300}
       scale={{x: props.xlog?'log':'linear', y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 80, right: 10, top: 50, bottom: 50}}>
+      padding={{left: 80, right: 20, top: 50, bottom: 50}}>
       {props.showLegend && <VictoryLegend
         x={10} y={10}
         orientation="horizontal"
@@ -96,8 +96,18 @@ function BarChart(props) {
       containerComponent={<VictoryContainer responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={(props.width || 560)/2} y={30} textAnchor="middle"/>
-      <VictoryAxis/>
-      <VictoryAxis dependentAxis/>
+      <VictoryAxis 
+        style={{
+          tickLabels: {fontSize: 14}
+        }}
+
+
+      />
+      <VictoryAxis dependentAxis
+        style={{
+          tickLabels: {fontSize: 14}
+        }}
+      />
       <VictoryBar
         horizontal
         barRatio={0.8}
@@ -429,7 +439,7 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-                      <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+          <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
 
           <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>County Characteristics</Divider>
           <Grid>
@@ -618,7 +628,7 @@ export default function CountyReport() {
                   data={data} />
               </Grid.Column>
             </Grid.Row>
-                                      <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+            <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
 
           </Grid>
           <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Data Table</Divider>
