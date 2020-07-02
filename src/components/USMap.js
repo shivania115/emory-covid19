@@ -356,7 +356,7 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Grid.Row style={{paddingTop: 0}}>
+                <Grid.Row style={{paddingTop: "11px"}}>
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
                     <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
