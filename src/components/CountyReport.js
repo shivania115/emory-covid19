@@ -43,7 +43,7 @@ function ScatterChart(props) {
     <VictoryChart
       width={400}
       height={300}
-      scale={{x: props.xlog?'log':'linear', y: props.ylog?'log':'linear'}}
+      scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 80, right: 20, top: 50, bottom: 50}}>
       {props.showLegend && <VictoryLegend
@@ -81,9 +81,11 @@ function ScatterChart(props) {
 }
 
 function BarChart(props) {
-  const colors = {"nation": nationColor, 
-                  "state": stateColor, 
-                  "county": countyColor};
+  const colors = {"USA": nationColor, 
+                  stateName: stateColor, 
+                  countyName: countyColor};
+  if (props.countyFips !== "_nation" && props.stateFips !== "_nation") {
+
   return (
     <VictoryChart
       theme={VictoryTheme.material}
@@ -92,39 +94,33 @@ function BarChart(props) {
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 150, right: 50, top: 40, bottom: 50}}
-      containerComponent={<VictoryContainer responsive={false}/>}
-    >
+      padding={{left: 165, right: 50, top: 40, bottom: 50}}
+      containerComponent={<VictoryContainer responsive={false}/>}>
       <VictoryLabel text={props.title} x={(props.width || 560)/2} y={30} textAnchor="middle"/>
-      <VictoryAxis 
-        style={{
-          tickLabels: {fontSize: 14}
-        }}
-
-
-      />
-      <VictoryAxis dependentAxis
-        style={{
-          tickLabels: {fontSize: 14}
-        }}
-      />
+      <VictoryAxis style={{tickLabels: {fontSize: 14}}}/>
+      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 14}}}/>
       <VictoryBar
         horizontal
         barRatio={0.8}
         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
-        data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
-              {key: 'state', 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
+        data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0},
+              {key: props.stateName, 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
               {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
-        labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => colors[datum.key] }}/>}
+        labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor }}/>}
         style={{
           data: {
-            fill: ({ datum }) => colors[datum.key]?colors[datum.key]:countyColor
+            fill: ({ datum }) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor
           }
         }}
         x="key"
         y="value"
       />
     </VictoryChart>);
+}
+
+
+
+
 }
 
 export default function CountyReport() {
@@ -310,11 +306,11 @@ export default function CountyReport() {
                   
                   >
                   <VictoryLegend
-                    x={10} y={35}
+                    x={40} y={25}
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: countyName}
+                            {name: "USA   "}, {name: stateName }, {name: countyName}
                       ]}
                   />
 
@@ -370,11 +366,11 @@ export default function CountyReport() {
                   
                   >
                   <VictoryLegend
-                    x={10} y={35}
+                    x={40} y={25}
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: countyName}
+                            {name: "USA   "}, {name: stateName }, {name: countyName}
                       ]}
                   />
                   <VictoryAxis
@@ -426,6 +422,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
               </Grid.Column>
               <Grid.Column>
@@ -435,6 +432,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
               </Grid.Column>
             </Grid.Row>
@@ -452,6 +450,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 <BarChart 
                   title="% Diabetes" 
@@ -460,6 +459,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} /> 
                 <BarChart 
                   title="% Over 65 y/o" 
@@ -468,6 +468,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                   
               </Grid.Column>
@@ -479,6 +480,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 <BarChart 
                   title="% in Poverty" 
@@ -487,6 +489,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 <BarChart 
                   title="% in Group Quarters" 
@@ -495,6 +498,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 
               </Grid.Column>
@@ -508,6 +512,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 <BarChart 
                   title="% Uninsured" 
@@ -516,6 +521,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 <BarChart 
                   title="% Male" 
@@ -524,6 +530,7 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   countyFips={countyFips}
                   countyName={countyName}
+                  stateName={stateName}
                   data={data} />
                 
               </Grid.Column>
