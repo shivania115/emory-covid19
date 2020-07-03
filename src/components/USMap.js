@@ -119,6 +119,7 @@ export default function USMap(props) {
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
 
   const [varMap, setVarMap] = useState({});
+  const [delayHandler, setDelayHandler] = useState();
 
 
   useEffect(()=>{
@@ -321,7 +322,8 @@ export default function USMap(props) {
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
-                            onMouseEnter={()=>{
+                            onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
+
                               //console.log(geo); 
                               const stateFips = geo.id.substring(0,2);
                               const configMatched = configs.find(s => s.fips === stateFips);
@@ -331,8 +333,13 @@ export default function USMap(props) {
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
                               //setTooltipContent()                            
+                            }, 300))
                             }}
+
+
+
                             onMouseLeave={()=>{
+                              clearTimeout(delayHandler);
                               setTooltipContent("")
                             }}
                             onClick={()=>{
@@ -420,7 +427,7 @@ export default function USMap(props) {
           </Grid>
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Double click for county-level data.</b> </ReactTooltip>
+        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Click for county-level data.</b> </ReactTooltip>
       </div>
       );
   } else {

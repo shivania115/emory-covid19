@@ -164,6 +164,8 @@ export default function StateMap(props) {
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
 
   const [varMap, setVarMap] = useState({});
+  const [delayHandler, setDelayHandler] = useState();
+
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -707,12 +709,15 @@ export default function StateMap(props) {
                         onClick={()=>{
                           history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
                         }}
-                        onMouseEnter={()=>{
-                          setCountyFips(geo.properties.COUNTYFP);
-                          setCountyName(fips2county[stateFips+geo.properties.COUNTYFP]);
-                          setTooltipContent("");
+                        onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
+                            setCountyFips(geo.properties.COUNTYFP);
+                            setCountyName(fips2county[stateFips + geo.properties.COUNTYFP]);
+                            // setTooltipContent('Click to see more county data');
+                          }, 300))
                         }}
                         onMouseLeave={()=>{
+                          clearTimeout(delayHandler);
+
                           setTooltipContent("")
                         }}
                         
@@ -933,7 +938,7 @@ export default function StateMap(props) {
         }
         <Notes />
       </Container>
-      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Double click for a detailed report. </ReactTooltip>
+      <ReactTooltip><font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>
     </div>
     );
   } else{
