@@ -114,7 +114,7 @@ function BarChart(props) {
         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
               {key: 'state', 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
-              {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
+              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
         labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
@@ -204,7 +204,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label>Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.cases===null?'0':covidMetric.cases.toLocaleString()}
+                    {covidMetric.cases===null || covidMetric.cases < 0?'0':covidMetric.cases.toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -213,7 +213,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.deaths===null?'0':covidMetric.deaths.toLocaleString()}
+                    {covidMetric.deaths===null || covidMetric.deaths < 0?'0':covidMetric.deaths.toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -225,7 +225,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label>Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.caseRate===null?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()}
+                    {covidMetric.caseRate===null || covidMetric.caseRate < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -234,7 +234,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.mortality===null?'0':numberWithCommas(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()}
+                    {covidMetric.mortality===null || covidMetric.mortality < 0?'0':numberWithCommas(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -245,7 +245,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label>Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.caseRateMean===null?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()}
+                    {covidMetric.caseRateMean===null || covidMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -254,7 +254,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingLeft: '0em', paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.mortalityMean===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()}
+                    {covidMetric.mortalityMean===null || covidMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -265,7 +265,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label style={{paddingLeft: 13}}>Cases</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.caseRateMA===null?'0':numberWithCommas(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()}
+                    {covidMetric.caseRateMA===null || covidMetric.caseRateMA < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -274,7 +274,7 @@ export default function CountyReport() {
                 <Statistic style={{paddingLeft: 8, paddingTop: '33px'}} size='small'>
                   <Statistic.Label>Deaths</Statistic.Label>
                   <Statistic.Value>
-                    {covidMetric.mortalityMA===null?'0':numberWithCommas(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()}
+                    {covidMetric.mortalityMA===null || covidMetric.mortalityMA < 0?'0':numberWithCommas(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -285,7 +285,7 @@ export default function CountyReport() {
                 <Statistic size='small'>
                   <Statistic.Label style={{paddingLeft:10, width:140}}> Death : Cases</Statistic.Label>
                   <Statistic.Value style={{paddingLeft:15}}>
-                    {covidMetric.cfr===null?'0':numberWithCommas(parseFloat(covidMetric.cfr).toFixed(2)).toLocaleString()}
+                    {covidMetric.cfr===null || covidMetric.cfr < 0?'0':numberWithCommas(parseFloat(covidMetric.cfr).toFixed(2)).toLocaleString()}
                   </Statistic.Value>
                 </Statistic>
               </Grid.Column>
@@ -314,7 +314,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: countyName}
+                      {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
                   />
 
@@ -374,7 +374,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: countyName}
+                      {name: "nation"}, {name: "state"}, {name: "county"}
                       ]}
                   />
                   <VictoryAxis
