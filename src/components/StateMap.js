@@ -103,8 +103,7 @@ function BarChart(props) {
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 120, right: 30, top: 20, bottom: 30}}
-      containerComponent={<VictoryContainer responsive={false}/>}
-    >
+      containerComponent={<VictoryContainer responsive={false}/>}>
       <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
       <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
       <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
@@ -687,7 +686,7 @@ export default function StateMap(props) {
                   <text x={0} y={37} style={{fontSize: '0.7em'}}> {legendMin} </text>
                   <text x={120} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
-                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Double click on a county</text>
+                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Click on a county</text>
                   <text x={250} y={59} style={{fontSize: '0.7em'}}> below for a detailed report. </text>
 
 
