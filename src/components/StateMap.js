@@ -54,35 +54,35 @@ const nationColor = '#d9d9d7';
 
 
 function BarChart(props) {
-  const colors = {"nation": nationColor, 
-                  "state": stateColor, 
-                  "county": countyColor};
+  const colors = {"USA": nationColor, 
+                  stateName: stateColor, 
+                  countyName: countyColor};
   if (props.countyFips !== "_nation" && props.stateFips !== "_nation") {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={200}
+      width={230}
       height={90}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 55, right: 20, top: 20, bottom: 20}}
+      padding={{left: 120, right: 30, top: 20, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: 12}}/>
+      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
       <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
       <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
       <VictoryBar
         horizontal
         barRatio={0.8}
-        labels={({ datum }) => (Math.round(datum.value*100)/100)}
-        data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
-              {key: 'state', 'value': props.data[props.stateFips][props.var]>0?props.data[props.stateFips][props.var] : 0},
-              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0? props.data[props.stateFips+props.countyFips][props.var]:  0}]}
-        labelComponent={<VictoryLabel dx={5} style={{ fontSize: 10, fill: ({datum}) => colors[datum.key] }}/>}
+        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+        data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0},
+              {key: props.stateName, 'value': props.data[props.stateFips][props.var]>0?props.data[props.stateFips][props.var] : 0},
+              {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0? props.data[props.stateFips+props.countyFips][props.var]:  0}]}
+        labelComponent={<VictoryLabel dx={5} style={{ fontSize: 10, fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor }}/>}
         style={{
           data: {
-            fill: ({ datum }) => colors[datum.key]
+            fill: ({ datum }) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor
           }
         }}
         x="key"
@@ -97,14 +97,13 @@ function BarChart(props) {
 
     <VictoryChart
       theme={VictoryTheme.material}
-      width={280}
+      width={230}
       height={90}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 70, right: 30, top: 20, bottom: 30}}
-      containerComponent={<VictoryContainer responsive={false}/>}
-    >
+      padding={{left: 120, right: 30, top: 20, bottom: 30}}
+      containerComponent={<VictoryContainer responsive={false}/>}>
       <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
       <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
       <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
@@ -112,11 +111,11 @@ function BarChart(props) {
         horizontal
         barRatio={0.8}
         labels={({ datum }) => (Math.round(datum.value*100)/100)}
-        data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0}]}
-        labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => colors[datum.key] }}/>}
+        data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0}]}
+        labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor}}/>}
         style={{
           data: {
-            fill: ({ datum }) => colors[datum.key]
+            fill: ({ datum }) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor
           }
         }}
         x="key"
@@ -687,7 +686,7 @@ export default function StateMap(props) {
                   <text x={0} y={37} style={{fontSize: '0.7em'}}> {legendMin} </text>
                   <text x={120} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
-                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Double click on a county</text>
+                  <text x={250} y={49} style={{fontSize: '0.7em'}}> Click on a county</text>
                   <text x={250} y={59} style={{fontSize: '0.7em'}}> below for a detailed report. </text>
 
 
@@ -731,11 +730,11 @@ export default function StateMap(props) {
                   </Geographies>
                 </ComposableMap>
               </Grid.Column>
-              <Grid.Column width={5} style={{padding: 0, paddingLeft: 40}}>
-                <Header as='h2' style={{fontWeight: 400, width: 420}}>
+              <Grid.Column width={5} style={{padding: 0, paddingLeft: 0}}>
+                <Header as='h2' style={{fontWeight: 400, width: 410}}>
                   <Header.Content style={{fontSize: 20}}>
                     How Does <span style={{color: countyColor, fontSize: 20}}>{countyName}</span> Compare?
-                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: 14}}>
+                    <Header.Subheader style={{fontWeight: 300, width: 390, fontSize: 14}}>
                       The number of cases and deaths due to COVID-19 are dynamic. 
                       Cases are declining in many counties and rising in others. 
                       Trends in the case and hospitalization count in the past 14 days are being monitored to determine whether it is safe to reopen a county.
@@ -749,15 +748,17 @@ export default function StateMap(props) {
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
                         height={160}       
-                        padding={{left: 50, right: 30, top: 24, bottom: 30}}
+                        padding={{left: 50, right: 40, top: 24, bottom: 30}}
                         containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/>}
                         >
                         <VictoryLegend
                           x={40} y={5}
+                          borderPadding={{ left: 0, right: 0 }}
+                          symbolSpacer={5}
                           orientation="horizontal"
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
-                            {name: "nation"}, {name: "state"}, {name: "county"}
+                            {name: "USA   "}, {name: stateName }, {name: countyName}
                             ]}
                         />
                         <VictoryAxis
@@ -807,15 +808,17 @@ export default function StateMap(props) {
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
                         height={160}       
-                        padding={{left: 50, right: 30, top: 24, bottom: 30}}
+                        padding={{left: 50, right: 40, top: 24, bottom: 30}}
                         containerComponent={<VictoryVoronoiContainer/>}
                         >
                         <VictoryLegend
                           x={40} y={5}
+                          borderPadding={{ left: 0, right: 0 }}
+                          symbolSpacer={5}
                           orientation="horizontal"
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
-                            {name: "nation"}, {name: "state"}, {name: "county"}
+                            {name: "USA   "}, {name: stateName }, {name: countyName}
                             ]}
                         />
                         <VictoryAxis
@@ -861,11 +864,11 @@ export default function StateMap(props) {
                   </Grid.Row>
                 </Grid>
               </Grid.Column>
-              <Grid.Column width={6} style={{padding: 0, paddingLeft: 80}}>
-                <Header as='h2' style={{width:400}}>
+              <Grid.Column width={6} style={{padding: 0, paddingLeft: 10}}>
+                <Header as='h2' style={{width:460}}>
                   <Header.Content style={{fontSize: 20}}>
                     <br/>
-                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: 14}}>
+                    <Header.Subheader style={{fontWeight: 300, width: 460, fontSize: 14}}>
                     Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                     Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
                     </Header.Subheader>
@@ -873,60 +876,76 @@ export default function StateMap(props) {
 
                 </Header>
                 <Grid>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400, paddingBottom: 20}}>                    
+                  <Grid.Row columns={2} style={{padding: 20, width: 460, paddingBottom: 20}}>                    
                       <BarChart 
                         title="% African American" 
                         var="black" 
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />
                       <BarChart 
                         title="% Hispanic or Latino" 
                         var="hispanic"  
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />
                   </Grid.Row>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400, paddingBottom: 20}}>
+                  <Grid.Row columns={2} style={{padding: 20, width: 460, paddingBottom: 20}}>
                       <BarChart 
                         title="% Obese" 
                         var="obesity" 
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />  
                       <BarChart 
                         title="% Diabetes" 
                         var="diabetes" 
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} /> 
                   </Grid.Row>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400, paddingBottom: 20}}>                    
+                  <Grid.Row columns={2} style={{padding: 20, width: 460, paddingBottom: 20}}>                    
                       <BarChart 
                         title="% in Poverty" 
                         var="poverty"  
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />
                       <BarChart 
                         title="% Uninsured" 
                         var="PCTUI" 
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />
                   </Grid.Row>
-                  <Grid.Row columns={2} style={{padding: 10, width: 400}}>                    
+                  <Grid.Row columns={2} style={{padding: 20, width: 460}}>                    
                       <BarChart 
                         title="% Over 65 y/o" 
                         var="age65over" 
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />
                       <BarChart 
                         title="% in Group Quarters" 
                         var="groupquater" 
                         stateFips={stateFips}
                         countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
                         data={data} />
                   </Grid.Row>
                 </Grid>
