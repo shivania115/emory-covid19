@@ -114,7 +114,7 @@ function BarChart(props) {
         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
         data={[{key: 'nation', 'value': props.data['_nation'][props.var] || 0},
               {key: 'state', 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
-              {key: 'county', 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
+              {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
         labelComponent={<VictoryLabel dx={5} style={{fill: ({datum}) => colors[datum.key] }}/>}
         style={{
           data: {
@@ -314,7 +314,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: "county"}
+                      {name: "nation"}, {name: "state"}, {name: countyName}
                       ]}
                   />
 
@@ -374,7 +374,7 @@ export default function CountyReport() {
                     orientation="horizontal"
                     colorScale={[nationColor, stateColor, countyColor]}
                     data ={[
-                      {name: "nation"}, {name: "state"}, {name: "county"}
+                      {name: "nation"}, {name: "state"}, {name: countyName}
                       ]}
                   />
                   <VictoryAxis
