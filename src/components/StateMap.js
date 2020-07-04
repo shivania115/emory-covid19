@@ -268,11 +268,11 @@ export default function StateMap(props) {
               mortalityMA = v[v.length-1].mortalityMA;
             }
             if (k.length===2 && v.length > 0 && v[v.length-1].t > t){
-              percentChangeCase = (v[v.length-1].caseRateMA - v[v.length-2].caseRateMA)/v[v.length-2].caseRateMA;
-              caseRate = v[v.length-1].caseRate;
+              percentChangeCase = (v[v.length-1].caseRateMean - v[v.length-2].caseRateMean)/v[v.length-2].caseRateMean;
+              caseRate = v[v.length-1].caseRateMean;
 
-              percentChangeMortality = (v[v.length-1].mortalityMA - v[v.length-2].mortalityMA)/v[v.length-2].mortalityMA;
-              mortality = v[v.length-1].mortality;
+              percentChangeMortality = (v[v.length-1].mortalityMean - v[v.length-2].mortalityMean)/v[v.length-2].mortalityMean;
+              mortality = v[v.length-1].mortalityMean;
 
               percentChangeHospitalizationRate = (v[v.length-1].hospitalizationRate - v[v.length-2].hospitalizationRate)/v[v.length-2].hospitalizationRate;
               hospRate = v[v.length-1].hospitalizationRate;
@@ -394,14 +394,14 @@ export default function StateMap(props) {
                         >
 
                         <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='caseRateMA'
+                            x='t' y='caseRateMean'
                             />
 
                         </VictoryGroup>
                         <VictoryArea
                           style={{ data: {  fill: percentChangeCases.includes("+")? "#C0C0C0": percentChangeCases.includes("-")? "#C0C0C0" : "#C0C0C0" , fillOpacity: 0.1} }}
                           data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'caseRateMA'
+                          x= 't' y = 'caseRateMean'
 
                         />
 
@@ -433,7 +433,7 @@ export default function StateMap(props) {
                         >
 
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='mortalityMA'
+                            x='t' y='mortalityMean'
                             />
 
                         </VictoryGroup>
@@ -441,7 +441,7 @@ export default function StateMap(props) {
                         <VictoryArea
                           style={{ data: { fill: percentChangeMortality.includes("+")? "#C0C0C0": (percentChangeMortality.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'mortalityMA'
+                          x= 't' y = 'mortalityMean'
 
                         />
                         <VictoryLabel text= {mortality} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
