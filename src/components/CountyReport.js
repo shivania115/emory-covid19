@@ -193,6 +193,40 @@ export default function CountyReport() {
             </Header.Content>
           </Header>
           <Grid style={{paddingTop: '2em', width: "1260px"}}>
+            <Grid.Row style={{ paddingTop: '2em', paddingLeft:20}}>
+              <Table celled fixed singleLine>
+                <Table.Header>
+                  <Table.Row textAlign = 'center'>
+                    <Table.HeaderCell colSpan='1' style={{width:150}}> </Table.HeaderCell>
+
+                    <Table.HeaderCell colSpan='1' style={{width:200}}> TOTAL TO DATE</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200}}> TOTAL TO DATE PER 100,000</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200}}> DAILY AVERAGE</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200}}> DAILY AVERAGE PER 100,000</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200}}> CASE FATALITY RATIO</Table.HeaderCell>
+                  </Table.Row>
+                  <Table.Row textAlign = 'center'>
+                    <Table.HeaderCell > Cases </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.cases===null || covidMetric.cases < 0?'0':covidMetric.cases.toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRate===null || covidMetric.caseRate < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRateMean===null || covidMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRateMA===null || covidMetric.caseRateMA < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell > Deaths : Cases </Table.HeaderCell>
+
+                  </Table.Row>
+                  <Table.Row textAlign = 'center'>
+                    <Table.HeaderCell > Deaths </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.deaths===null || covidMetric.deaths < 0?'0':covidMetric.deaths.toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.mortality===null || covidMetric.mortality < 0?'0':numberWithCommas(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.mortalityMean===null || covidMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.mortalityMA===null || covidMetric.mortalityMA < 0?'0':numberWithCommas(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.cfr===null || covidMetric.cfr < 0?'0':numberWithCommas(parseFloat(covidMetric.cfr).toFixed(2)).toLocaleString()} </Table.HeaderCell>
+
+                  </Table.Row>
+                </Table.Header>
+              </Table>
+            </Grid.Row>
+
             <Grid.Row columns={9} style = {{padding: 25}}>
               <Grid.Column style={{width:140, padding: 0}}>
                 <Statistic.Label style={{width:180, textAlign: "center"}}> <b> TOTAL TO DATE</b></Statistic.Label>
