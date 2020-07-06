@@ -211,7 +211,7 @@ export default function CountyReport() {
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRate===null || covidMetric.caseRate < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRateMean===null || covidMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRateMA===null || covidMetric.caseRateMA < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMA).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell > Deaths : Cases </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> Deaths : Cases </Table.HeaderCell>
 
                   </Table.Row>
                   <Table.Row textAlign = 'center'>
@@ -580,7 +580,7 @@ export default function CountyReport() {
           <Table striped compact basic='very'>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Variable Name</Table.HeaderCell>
+                <Table.HeaderCell>County Population Characteristics</Table.HeaderCell>
                 <Table.HeaderCell>{countyName}</Table.HeaderCell>
                 <Table.HeaderCell>{stateName}</Table.HeaderCell>
                 <Table.HeaderCell>United States</Table.HeaderCell>
@@ -604,6 +604,8 @@ export default function CountyReport() {
                     })}
                 </Table.Body>
           </Table>
+          <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+
           </div>
         }
         <Notes />

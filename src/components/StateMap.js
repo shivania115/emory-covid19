@@ -165,6 +165,8 @@ export default function StateMap(props) {
   const [varMap, setVarMap] = useState({});
   const [delayHandler, setDelayHandler] = useState();
 
+  const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
+
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -349,6 +351,12 @@ export default function StateMap(props) {
     }
   }, [stateFips, metric]);
 
+  useEffect(() => {
+    if (dataTS && dataTS[stateFips]){
+      setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
+    }
+  }, [dataTS]);
+
 
   if (data && dataTS && dataRD) {
     console.log(stateFips);
@@ -371,7 +379,7 @@ export default function StateMap(props) {
 
           <Grid columns={15}>
 
-          <Grid.Row columns={5} style={{width: 252, padding: 0, paddingTop: '2em', paddingBottom: "0"}}>
+          <Grid.Row columns={5} style={{width: 252, paddingLeft: 5, paddingTop: '2em', paddingBottom: "0"}}>
 
             <VictoryChart theme={VictoryTheme.material} 
                         minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
@@ -379,7 +387,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Daily Cases" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Daily Cases" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -405,8 +413,8 @@ export default function StateMap(props) {
 
                         />
 
-                        <VictoryLabel text= {caseRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {percentChangeCases}  x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {caseRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {percentChangeCases}  x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
 
                         
             </VictoryChart>
@@ -418,7 +426,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Daily Deaths" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Daily Deaths" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -444,8 +452,8 @@ export default function StateMap(props) {
                           x= 't' y = 'mortalityMean'
 
                         />
-                        <VictoryLabel text= {mortality} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {percentChangeMortality} x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {mortality} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {percentChangeMortality} x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
 
             </VictoryChart>
 
@@ -455,7 +463,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Hospitalization Rate" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Hospitalization Rate" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -481,8 +489,8 @@ export default function StateMap(props) {
                           x= 't' y = ''
 
                         />
-                        <VictoryLabel text= {hospRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {pctChangeHospRate} x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {hospRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {pctChangeHospRate} x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
 
             </VictoryChart>
 
@@ -492,7 +500,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Testing Rate" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Testing Rate" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
 
                         
                         <VictoryAxis
@@ -519,8 +527,8 @@ export default function StateMap(props) {
                           x= 't' y = 'testingRate'
 
                         />
-                        <VictoryLabel text= {testingRate} x={130} y={110} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={130} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text= {testingRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
 
             </VictoryChart>
 
@@ -535,8 +543,8 @@ export default function StateMap(props) {
                         padding={{left: 115, right: 10, top: 80, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}
                       >
-                        <VictoryLabel text="Cases per 100,000" x={115} y={10} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text="persons by race" x={115} y={30} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Cases per 100,000" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="persons by race" x={130} y={30} textAnchor="middle" style={{fontSize: 21}}/>
 
                         <VictoryAxis 
                             style={{axis: {stroke: "transparent"}, tickLabels: {fontSize: 10}}}
@@ -578,7 +586,7 @@ export default function StateMap(props) {
 
             </Grid.Row>
 
-            <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 10, paddingRight: 0}}>
+            <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 0, paddingLeft: 15, paddingRight: 0}}>
               
                 <Grid.Column style={{padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
@@ -594,20 +602,20 @@ export default function StateMap(props) {
                     <i>Data source</i>: New York Times <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column style={{left: -7, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
                     <i>Data source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column style={{left: -10, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -8, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Testing rate</i>: COVID-19 tests per <br/>
                     100,000 population <br/>
                     <i>Data Source</i>: Johns Hopkins University <br/>
                     </small>
                 </Grid.Column>
-                <Grid.Column style={{left: -15, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
+                <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Rates</i>: Cases per 100,000, <br/> 
                     among those with race information available <br/>
@@ -618,17 +626,17 @@ export default function StateMap(props) {
               
             </Grid.Row>
 
-            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 10}}>
+            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <small style={{fontWeight: 300}}>
                       All percent changes for a 24-Hour period
                     </small>
             </Grid.Row>
 
           </Grid>
+
+          <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+         
          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> COVID-19 County Outcomes </Divider>
-
-                      
-
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={5}>
@@ -749,7 +757,7 @@ export default function StateMap(props) {
                         width={330}
                         height={160}       
                         padding={{left: 50, right: 40, top: 24, bottom: 30}}
-                        containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/>}
+                        containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/> }
                         >
                         <VictoryLegend
                           x={40} y={5}
@@ -866,8 +874,8 @@ export default function StateMap(props) {
               </Grid.Column>
               <Grid.Column width={6} style={{padding: 0, paddingLeft: 10}}>
                 <Header as='h2' style={{width:460}}>
-                  <Header.Content style={{fontSize: 20}}>
-                    <br/>
+                  <Header.Content style={{fontSize: 20, fontWeight: 400}}>
+                    County Population Characteristics
                     <Header.Subheader style={{fontWeight: 300, width: 460, fontSize: 14}}>
                     Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                     Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
@@ -951,7 +959,9 @@ export default function StateMap(props) {
                 </Grid>
               </Grid.Column>
 
-            </Grid.Row>            
+            </Grid.Row>  
+            <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+          
           </Grid>
           </div>
         }
