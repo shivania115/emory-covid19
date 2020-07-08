@@ -27,7 +27,7 @@ import _ from 'lodash';
 
 const countyColor = '#f2a900';
 const stateColor = '#b2b3b3';
-const nationColor = '#d9d9d7';
+const nationColor = '#778899';
 
 function numberWithCommas(x) {
     x = x.toString();

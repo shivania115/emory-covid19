@@ -49,7 +49,7 @@ const colorPalette = [
       ];
 const countyColor = '#f2a900';
 const stateColor = '#b2b3b3';
-const nationColor = '#d9d9d7';
+const nationColor = '#778899';
 
 
 
@@ -155,8 +155,8 @@ export default function StateMap(props) {
   const [dataHospTestTS, setDataHospTestTS] = useState();
   const [hospRate, setHospRate] = useState();
   const [pctChangeHospRate, setPctChangeHospRate] = useState();
-  const [testingRate, setTestingRate] = useState();
-  const [pctChangeTestingRate, setPctChangeTestingRate] = useState();
+  const [positive, setPositive] = useState();
+  const [pctPositive, setPctPositive] = useState();
 
   const [metric, setMetric] = useState('mean7daycases');
   const [metricOptions, setMetricOptions] = useState('mean7daycases');
@@ -261,9 +261,10 @@ export default function StateMap(props) {
           let percentChangeMortality = 0;
 
           let hospRate = 0.1;
-          let testingRate = 0.1;
           let percentChangeHospitalizationRate = 0;
-          let percentChangeTestingRate = 0;
+
+          let positive = 0.1;
+          let percentPositive = 0;
           _.each(x, (v, k)=>{
             if (k.length===5 && v.length > 0 && v[v.length-1].mortalityMA > mortalityMA){
               countyMost = k.substring(2, 5);
@@ -279,8 +280,10 @@ export default function StateMap(props) {
               percentChangeHospitalizationRate = (v[v.length-1].hospitalizationRate - v[v.length-2].hospitalizationRate)/v[v.length-2].hospitalizationRate;
               hospRate = v[v.length-1].hospitalizationRate;
 
-              percentChangeTestingRate = (v[v.length-1].testingRate - v[v.length-2].testingRate)/v[v.length-2].testingRate;
-              testingRate = v[v.length-1].testingRate;
+              positive = v[v.length-1].positive;
+              percentPositive = v[v.length-1].percentPositive;
+
+
             }
           });
 
@@ -316,24 +319,24 @@ export default function StateMap(props) {
             setPctChangeHospRate("" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
           }
 
-          if ((percentChangeTestingRate*100).toFixed(0) > 0) {
-            setPctChangeTestingRate("+" + (percentChangeTestingRate*100).toFixed(0) + "%");
-          }else if ((percentChangeTestingRate*100).toFixed(0) < 0) {
-            setPctChangeTestingRate((percentChangeTestingRate*100).toFixed(0) + "%");
-          }else if(isNaN((percentChangeTestingRate*100).toFixed(0))){
-            setPctChangeTestingRate("None Reported");
+          if ((percentPositive).toFixed(0) > 0) {
+            setPctPositive("+" + (percentPositive).toFixed(0) + "%");
+          }else if((percentPositive).toFixed(0) < 0){
+            setPctPositive((percentPositive).toFixed(0) + "%");
+          }else if(isNaN((percentPositive).toFixed(0))){
+            setPctPositive("None Reported");
           }else{
-            setPctChangeTestingRate("" + (percentChangeTestingRate*100).toFixed(0) + "%");
-
+            setPctPositive("" + (percentPositive).toFixed(0) + "%");
           }
+
+          setCaseRate(numberWithCommas(caseRate.toFixed(0)));
+          setMortality(numberWithCommas(mortality.toFixed(0)));
 
           setPctChangeHospRate("Coming soon...");
           setHospRate("");
-                    //setHospRate(numberWithCommas(hospRate.toFixed(0)));
+          //setHospRate(numberWithCommas(hospRate.toFixed(0)));
 
-          setTestingRate(numberWithCommas(testingRate.toFixed(0)));
-          setCaseRate(numberWithCommas(caseRate.toFixed(0)));
-          setMortality(numberWithCommas(mortality.toFixed(0)));
+          setPositive(numberWithCommas(positive.toFixed(0)))
 
           setCountyFips(countyMost);
           setCountyName(fips2county[stateFips+countyMost]);
@@ -359,7 +362,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS && dataRD) {
-    console.log(stateFips);
+    console.log("yes");
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -500,7 +503,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Testing Rate" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
+                        <VictoryLabel text="Positive Cases" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
 
                         
                         <VictoryAxis
@@ -516,19 +519,19 @@ export default function StateMap(props) {
                         >
 
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='testingRate'
+                            x='t' y='positive'
                             />
 
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: pctChangeTestingRate.includes("+")? "#C0C0C0": (pctChangeTestingRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: pctPositive.includes("+")? "#C0C0C0": (pctPositive.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'testingRate'
+                          x= 't' y = 'positive'
 
                         />
-                        <VictoryLabel text= {testingRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
-                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={110} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                        <VictoryLabel text= {positive} x={130} y={85} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                        <VictoryLabel text= {pctPositive} x={130} y={110} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
 
             </VictoryChart>
 
@@ -541,7 +544,7 @@ export default function StateMap(props) {
                         minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
                         style={{labels:{ fontFamily: 'lato'}}}
-                        padding={{left: 115, right: 10, top: 80, bottom: -0.9}}
+                        padding={{left: 115, right: 10, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer style ={{fontFamily: 'lato'}} responsive={false}/>}
                       >
                         <VictoryLabel text="Cases per 100,000" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
@@ -553,14 +556,20 @@ export default function StateMap(props) {
                          />
                         <VictoryAxis dependentAxis 
                           style ={{fontFamily: 'lato'}}
-                            tickValues = {[
+                          tickValues = {
+                              data[stateFips]['natives'] >= 1?
+
+                              ([dataRD[stateFips][0]['All Races Combined'][0]['caseRate'], 
+                              dataRD[stateFips][1]['African American'][0]['caseRate'],
+                              dataRD[stateFips][2]['White'][0]['caseRate'],
+                              dataRD[stateFips][3]['American Natives'][0]['caseRate']])
+                              :
+                              ([
                               dataRD[stateFips][0]['All Races Combined'][0]['caseRate'],
                               dataRD[stateFips][1]['African American'][0]['caseRate'],
                               dataRD[stateFips][2]['White'][0]['caseRate']
-                            
-                            
                                   
-                                    ]}
+                                    ])}
 
                         />
                         <VictoryBar
@@ -569,12 +578,18 @@ export default function StateMap(props) {
 
                           labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))) !== 0?
                                                   numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))): "Not Available"}
-                          data={[
-                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                          data={
+
+                            data[stateFips]['natives'] >= 1? 
+                            [{key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "Native American", 'value': dataRD[stateFips][3]['American Natives'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "All Races Combined", 'value': dataRD[stateFips][0]['All Races Combined'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0}
+                            ]
+                            :[{key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "All Races Combined", 'value': dataRD[stateFips][0]['All Races Combined'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0}
-                                  
-                                    ]}
+                            ]}
                           labelComponent={<VictoryLabel dx = {0} style={{fontSize: 12, fontFamily: 'lato', fill: ({datum}) => '#000000' }}/>}
                           style={{
                             data: {
@@ -614,9 +629,9 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: -8, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Testing rate</i>: COVID-19 tests per <br/>
-                    100,000 population <br/>
-                    <i>Data Source</i>: Johns Hopkins University <br/>
+                    <i>Positive Cases</i>: Total COVID-19 cases tested<br/>
+                    positive<br/>
+                    <i>Data Source</i>: The COVID Tracking Project<br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
@@ -916,6 +931,24 @@ export default function StateMap(props) {
                   </Grid.Row>
                   <Grid.Row columns={2} style={{padding: 20, width: 460, paddingBottom: 20}}>
                       <BarChart 
+                        title="% Native American" 
+                        var="natives" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
+                        data={data} />  
+                      <BarChart 
+                        title="% Over 65 y/o" 
+                        var="age65over" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
+                        data={data} />
+                  </Grid.Row>
+                  <Grid.Row columns={2} style={{padding: 20, width: 460, paddingBottom: 20}}>
+                      <BarChart 
                         title="% Obese" 
                         var="obesity" 
                         stateFips={stateFips}
@@ -952,16 +985,16 @@ export default function StateMap(props) {
                   </Grid.Row>
                   <Grid.Row columns={2} style={{padding: 20, width: 460}}>                    
                       <BarChart 
-                        title="% Over 65 y/o" 
-                        var="age65over" 
+                        title="% in Group Quarters" 
+                        var="groupquater" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={countyName}
                         stateName={stateName}
                         data={data} />
                       <BarChart 
-                        title="% in Group Quarters" 
-                        var="groupquater" 
+                        title="% Male" 
+                        var="male" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={countyName}
