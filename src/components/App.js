@@ -7,6 +7,7 @@ import CountyReport from "./CountyReport";
 import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
 import DataSources from "./DataSources";
+import Privacy from "./Privacy";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -27,6 +28,9 @@ export default function App() {
           </Route>
           <Route path='/about-team'>
             <AboutUs />
+          </Route>
+          <Route path='/privacy'>
+            <Privacy />
           </Route>
           <Route path='/data-sources'>
             <DataSources />

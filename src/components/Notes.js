@@ -36,6 +36,9 @@ export default function Notes(props){
         <Grid.Column>          
           <Image size='small' src='/logo.png' />
           &copy; 2020 Emory University. All rights reserved.
+          <br/>
+          <a href="/privacy"> Privacy Statement</a> 
+
         </Grid.Column>
         <Grid.Column style={{paddingLeft: 130}}>          
           <small>
