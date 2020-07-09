@@ -26,27 +26,27 @@ export default function DataSources(props){
           <Table.Body>
             <Table.Row>
               <Table.Cell>Total COVID-19 Cases</Table.Cell>
-              <Table.Cell>The New York Times Coronavirus (Covid-19) Data in the United States </Table.Cell>
+              <Table.Cell> The <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
               <Table.Cell><i>Total COVID-19 Cases</i> is the number of people who have tested positive for COVID-19 in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total COVID-19 Deaths</Table.Cell>
-              <Table.Cell>The New York Times Coronavirus (Covid-19) Data in the United States  </Table.Cell>
+              <Table.Cell> The <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
               <Table.Cell><i>Total COVID-19 Deaths</i> is the number of people who have died of confirmed or presumed COVID-19 cases in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Average Daily COVID-19 Cases</Table.Cell>
-              <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States </Table.Cell>
+              <Table.Cell> Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
               <Table.Cell><i>Average Daily Cases</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Average Daily COVID-19 Deaths</Table.Cell>
-              <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States  </Table.Cell>
+              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
               <Table.Cell><i>Average Daily Deaths</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total COVID-19 Deaths per 100,000</Table.Cell>
-              <Table.Cell>Derived from the New York Times Coronavirus (Covid-19) Data in the United States and Bridged-race population estimates by The National Center for Health Statistics.</Table.Cell>
+              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank"> New York Times Coronavirus (Covid-19) Data </a> in the United States and Bridged-race population estimates by The National Center for Health Statistics.</Table.Cell>
               <Table.Cell><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. <br/>
                           If every county in the United States had 100,000 residents, this is how many would have died in each county from COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
@@ -81,6 +81,11 @@ export default function DataSources(props){
               <Table.Cell>% Hispanic or Latino</Table.Cell>
               <Table.Cell>American Community Survey by the U.S. Census Bureau </Table.Cell>
               <Table.Cell><i>% Hispanic or Latino</i> is the percentage of residents in each county who self-identified as Hispanic or Latino to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>% American Natives </Table.Cell>
+              <Table.Cell> American Community Survey by the U.S. Census Bureau </Table.Cell>
+              <Table.Cell><i>% American Natives </i> is the percentage of residents in each county who self-identified as American Indian and Alaska Native alone to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>% Minority</Table.Cell>

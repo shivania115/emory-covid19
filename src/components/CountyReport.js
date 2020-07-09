@@ -26,8 +26,8 @@ import configs from "./state_config.json";
 import _ from 'lodash';
 
 const countyColor = '#f2a900';
-const stateColor = '#b2b3b3';
-const nationColor = '#778899';
+const stateColor = '#778899';
+const nationColor = '#b2b3b3';
 
 function numberWithCommas(x) {
     x = x.toString();
