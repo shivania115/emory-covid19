@@ -278,7 +278,7 @@ export default function StateMap(props) {
 
               positive = v[v.length-1].positive;
               percentPositive = v[v.length-1].percentPositive;
-              percentBedsOccupied = v[v.length-2].pctBedsOccupied;
+              percentBedsOccupied = v[v.length-3].pctBedsOccupied;
 
 
             }
@@ -627,7 +627,8 @@ export default function StateMap(props) {
 
             <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <small style={{fontWeight: 300}}>
-                      All percent changes for a 24-Hour period
+                      All percent changes for a 24-Hour period <br/>
+                      Percent Occupied Beds updated weekly, last on 07/07/2020.
                     </small>
             </Grid.Row>
 
