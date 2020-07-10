@@ -616,8 +616,8 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Rates</i>: Cases per 100,000, <br/> 
-                    among those with race information available <br/>
+                    <i>Rates</i>: Cases per 100,000, among those with race <br/> 
+                    information available <br/>
                     <i>Data source</i>: <a href="https://covidtracking.com/race" target="_blank"> The COVID Racial Data Tracker </a> <br/> 
 
                     </small>
