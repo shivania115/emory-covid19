@@ -3,10 +3,10 @@
     {
       "All Races Combined": [
         {
-          "cases": "37919",
-          "deaths": "766",
-          "caseRate": "765.12",
-          "mortality": "15.46",
+          "cases": "48909",
+          "deaths": "884",
+          "caseRate": "986.88",
+          "mortality": "17.84",
           "racePopulation": "4955925",
           "populationTot": "4955925",
           "percentPop": "100"
@@ -16,10 +16,10 @@
     {
       "African American": [
         {
-          "cases": "9651",
-          "deaths": "324",
-          "caseRate": "726.54",
-          "mortality": "24.39",
+          "cases": "11738",
+          "deaths": "360",
+          "caseRate": "883.65",
+          "mortality": "27.1",
           "racePopulation": "1328352",
           "populationTot": "4955925",
           "percentPop": "26.8"
@@ -29,10 +29,10 @@
     {
       "White": [
         {
-          "cases": "13160",
-          "deaths": "331",
-          "caseRate": "416.86",
-          "mortality": "10.48",
+          "cases": "16874",
+          "deaths": "384",
+          "caseRate": "534.5",
+          "mortality": "12.16",
           "racePopulation": "3156973",
           "populationTot": "4955925",
           "percentPop": "63.7"
@@ -40,12 +40,25 @@
       ]
     },
     {
+      "American Natives": [
+        {
+          "cases": "NA",
+          "deaths": "NA",
+          "caseRate": "NA",
+          "mortality": "NA",
+          "racePopulation": "14187",
+          "populationTot": "4955925",
+          "percentPop": "0.29"
+        }
+      ]
+    },
+    {
       "Other Race": [
         {
-          "cases": "2924",
-          "deaths": "14",
-          "caseRate": "34063.37",
-          "mortality": "163.09",
+          "cases": "3301",
+          "deaths": "24",
+          "caseRate": "38455.27",
+          "mortality": "279.59",
           "racePopulation": "8584",
           "populationTot": "4955925",
           "percentPop": "0.17"
@@ -55,10 +68,10 @@
     {
       "Hispanic": [
         {
-          "cases": "4103",
-          "deaths": "28",
-          "caseRate": "1488.29",
-          "mortality": "10.16",
+          "cases": "4815",
+          "deaths": "31",
+          "caseRate": "1746.56",
+          "mortality": "11.24",
           "racePopulation": "275685",
           "populationTot": "4955925",
           "percentPop": "5.56"

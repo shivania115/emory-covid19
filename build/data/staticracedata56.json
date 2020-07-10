@@ -3,10 +3,10 @@
     {
       "All Races Combined": [
         {
-          "cases": "1203",
-          "deaths": "20",
-          "caseRate": "206.76",
-          "mortality": "3.44",
+          "cases": "1404",
+          "deaths": "21",
+          "caseRate": "241.31",
+          "mortality": "3.61",
           "racePopulation": "581836",
           "populationTot": "581836",
           "percentPop": "100"
@@ -16,9 +16,9 @@
     {
       "African American": [
         {
-          "cases": "14",
+          "cases": "18",
           "deaths": "0",
-          "caseRate": "271.9",
+          "caseRate": "349.58",
           "mortality": "0",
           "racePopulation": "5149",
           "populationTot": "581836",
@@ -29,10 +29,10 @@
     {
       "White": [
         {
-          "cases": "660",
-          "deaths": "8",
-          "caseRate": "134.82",
-          "mortality": "1.63",
+          "cases": "794",
+          "deaths": "9",
+          "caseRate": "162.19",
+          "mortality": "1.84",
           "racePopulation": "489559",
           "populationTot": "581836",
           "percentPop": "84.14"
@@ -40,11 +40,24 @@
       ]
     },
     {
+      "American Natives": [
+        {
+          "cases": "324",
+          "deaths": "9",
+          "caseRate": "2547.77",
+          "mortality": "70.77",
+          "racePopulation": "12717",
+          "populationTot": "581836",
+          "percentPop": "2.19"
+        }
+      ]
+    },
+    {
       "Other Race": [
         {
-          "cases": "46",
+          "cases": "60",
           "deaths": "0",
-          "caseRate": "20264.32",
+          "caseRate": "26431.72",
           "mortality": "0",
           "racePopulation": "227",
           "populationTot": "581836",
@@ -55,9 +68,9 @@
     {
       "Hispanic": [
         {
-          "cases": "182",
+          "cases": "212",
           "deaths": "1",
-          "caseRate": "319.49",
+          "caseRate": "372.15",
           "mortality": "1.76",
           "racePopulation": "56966",
           "populationTot": "581836",

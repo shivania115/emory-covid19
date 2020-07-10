@@ -24,6 +24,8 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 
+
+
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -61,6 +63,7 @@ function MapLabels(props){
 
   return (
     <svg>
+
       {props.geographies.map(geo => {
           const centroid = geoCentroid(geo);
           const cur = props.stateLabels.find(s => s.val === geo.id);
@@ -222,6 +225,7 @@ export default function USMap(props) {
 
   return (
       <div>
+
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '6em', minWidth: '1260px'}}>
           <Breadcrumb>
@@ -390,9 +394,11 @@ export default function USMap(props) {
                       height={400}
                       scale={{y: 'log'}}
                       padding={{left: 65, right: 30, top: 50, bottom: 50}}>
+
                       <VictoryLegend
                         x={10} y={10}
                         orientation="horizontal"
+                        style={{labels:{ fontFamily: 'lato'}}}
                         colorScale={["#bdbfc1", colorHighlight]}
                         data ={[
                           {name: ('Other counties in '+ 'US')}, {name: 'Counties in '+stateName}
@@ -400,17 +406,18 @@ export default function USMap(props) {
                       />
                       <VictoryScatter
                         sortKey={(d) => d.fips.substring(0,2)===fips}
-                        style={{ data: { fill: ({datum}) => datum.fips.substring(0,2)===fips?"#f2a900":"#bdbfc1",
+                        style={{ data: { fontFamily: 'lato',
+                                  fill: ({datum}) => datum.fips.substring(0,2)===fips?"#f2a900":"#bdbfc1",
                                  fillOpacity: ({datum}) => datum.fips.substring(0,2)===fips?1.0:0.5} }}
                         data={dataFltrd}
                         size={4}
                         x='black'
                         y='covidmortalityfig'
                       />
-                      <VictoryAxis label={'% African American'}/>
+                      <VictoryAxis label={'% African American'} style={{axisLabel: {fontFamily: 'lato'}, tickLabels: { fontFamily: 'lato'}}}/>
                       <VictoryAxis dependentAxis 
                         label={'COVID-19 Deaths / 100k (log-scale)'} 
-                        style={{ axisLabel: {padding: 40} }} 
+                        style={{ axisLabel: {padding: 40, fontFamily: 'lato'}, tickLabels: {fontFamily: 'lato'}}} 
                         tickCount={5}
                         tickFormat={(y) => (Math.round(y*100)/100)}/>
                     </VictoryChart>

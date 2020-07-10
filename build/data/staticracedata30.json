@@ -3,10 +3,10 @@
     {
       "All Races Combined": [
         {
-          "cases": "1016",
-          "deaths": "22",
-          "caseRate": "97.53",
-          "mortality": "2.11",
+          "cases": "1371",
+          "deaths": "23",
+          "caseRate": "131.61",
+          "mortality": "2.21",
           "racePopulation": "1041732",
           "populationTot": "1041732",
           "percentPop": "100"
@@ -16,9 +16,9 @@
     {
       "African American": [
         {
-          "cases": "5",
+          "cases": "6",
           "deaths": "NA",
-          "caseRate": "115",
+          "caseRate": "137.99",
           "mortality": "NA",
           "racePopulation": "4348",
           "populationTot": "1041732",
@@ -29,9 +29,9 @@
     {
       "White": [
         {
-          "cases": "740",
+          "cases": "955",
           "deaths": "14",
-          "caseRate": "82.32",
+          "caseRate": "106.23",
           "mortality": "1.56",
           "racePopulation": "898953",
           "populationTot": "1041732",
@@ -40,11 +40,24 @@
       ]
     },
     {
+      "American Natives": [
+        {
+          "cases": "151",
+          "deaths": "8",
+          "caseRate": "233.59",
+          "mortality": "12.38",
+          "racePopulation": "64643",
+          "populationTot": "1041732",
+          "percentPop": "6.21"
+        }
+      ]
+    },
+    {
       "Other Race": [
         {
-          "cases": "17",
+          "cases": "19",
           "deaths": "NA",
-          "caseRate": "3497.94",
+          "caseRate": "3909.47",
           "mortality": "NA",
           "racePopulation": "486",
           "populationTot": "1041732",
@@ -55,9 +68,9 @@
     {
       "Hispanic": [
         {
-          "cases": "75",
+          "cases": "84",
           "deaths": "NA",
-          "caseRate": "192.21",
+          "caseRate": "215.28",
           "mortality": "NA",
           "racePopulation": "39019",
           "populationTot": "1041732",

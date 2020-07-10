@@ -48,8 +48,8 @@ const colorPalette = [
         "#633c70", 
       ];
 const countyColor = '#f2a900';
-const stateColor = '#b2b3b3';
-const nationColor = '#d9d9d7';
+const stateColor = '#778899';
+const nationColor = '#b2b3b3';
 
 
 
@@ -69,9 +69,9 @@ function BarChart(props) {
       padding={{left: 120, right: 30, top: 20, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
-      <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
-      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
+      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+      <VictoryAxis style={{tickLabels: {fontSize: 10, fontFamily: 'lato'}}} />
+      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1,  fontFamily: 'lato'}}}/>
       <VictoryBar
         horizontal
         barRatio={0.8}
@@ -79,7 +79,7 @@ function BarChart(props) {
         data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0},
               {key: props.stateName, 'value': props.data[props.stateFips][props.var]>0?props.data[props.stateFips][props.var] : 0},
               {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0? props.data[props.stateFips+props.countyFips][props.var]:  0}]}
-        labelComponent={<VictoryLabel dx={5} style={{ fontSize: 10, fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor }}/>}
+        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: 10, fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor }}/>}
         style={{
           data: {
             fill: ({ datum }) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor
@@ -104,15 +104,15 @@ function BarChart(props) {
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 120, right: 30, top: 20, bottom: 30}}
       containerComponent={<VictoryContainer responsive={false}/>}>
-      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12}}/>
-      <VictoryAxis style={{tickLabels: {fontSize: 10}}} />
-      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1}}}/>
+      <VictoryLabel text={props.title} x={140} y={10} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+      <VictoryAxis style={{tickLabels: {fontSize: 10, fontFamily: 'lato'}}} />
+      <VictoryAxis dependentAxis style={{tickLabels: {fontSize: 8, padding: 1, fontFamily: 'lato'}}}/>
       <VictoryBar
         horizontal
         barRatio={0.8}
         labels={({ datum }) => (Math.round(datum.value*100)/100)}
         data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0}]}
-        labelComponent={<VictoryLabel dx={5} style={{fontSize: 10, fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor}}/>}
+        labelComponent={<VictoryLabel dx={5} style={{fontFamily: 'lato', fontSize: 10, fill: ({datum}) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor}}/>}
         style={{
           data: {
             fill: ({ datum }) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor
@@ -153,10 +153,10 @@ export default function StateMap(props) {
   const [percentChangeMortality, setPercentChangeMortality] = useState();
 
   const [dataHospTestTS, setDataHospTestTS] = useState();
-  const [hospRate, setHospRate] = useState();
-  const [pctChangeHospRate, setPctChangeHospRate] = useState();
-  const [testingRate, setTestingRate] = useState();
-  const [pctChangeTestingRate, setPctChangeTestingRate] = useState();
+  const [positive, setPositive] = useState();
+  const [pctPositive, setPctPositive] = useState();
+  const [pctBedsOccupied, setPctBedsOccupied] = useState();
+
 
   const [metric, setMetric] = useState('mean7daycases');
   const [metricOptions, setMetricOptions] = useState('mean7daycases');
@@ -260,10 +260,10 @@ export default function StateMap(props) {
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
 
-          let hospRate = 0.1;
-          let testingRate = 0.1;
-          let percentChangeHospitalizationRate = 0;
-          let percentChangeTestingRate = 0;
+          let percentBedsOccupied = 0;
+
+          let positive = 0.1;
+          let percentPositive = 0;
           _.each(x, (v, k)=>{
             if (k.length===5 && v.length > 0 && v[v.length-1].mortalityMA > mortalityMA){
               countyMost = k.substring(2, 5);
@@ -276,11 +276,11 @@ export default function StateMap(props) {
               percentChangeMortality = (v[v.length-1].mortalityMean - v[v.length-2].mortalityMean)/v[v.length-2].mortalityMean;
               mortality = v[v.length-1].mortalityMean;
 
-              percentChangeHospitalizationRate = (v[v.length-1].hospitalizationRate - v[v.length-2].hospitalizationRate)/v[v.length-2].hospitalizationRate;
-              hospRate = v[v.length-1].hospitalizationRate;
+              positive = v[v.length-1].positive;
+              percentPositive = v[v.length-1].percentPositive;
+              percentBedsOccupied = v[v.length-2].pctBedsOccupied;
 
-              percentChangeTestingRate = (v[v.length-1].testingRate - v[v.length-2].testingRate)/v[v.length-2].testingRate;
-              testingRate = v[v.length-1].testingRate;
+
             }
           });
 
@@ -306,34 +306,17 @@ export default function StateMap(props) {
 
           }
 
-          if ((percentChangeHospitalizationRate*100).toFixed(0) > 0) {
-            setPctChangeHospRate("+" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
-          }else if((percentChangeHospitalizationRate*100).toFixed(0) < 0){
-            setPctChangeHospRate((percentChangeHospitalizationRate*100).toFixed(0) + "%");
-          }else if(isNaN((percentChangeHospitalizationRate*100).toFixed(0))){
-            setPctChangeHospRate("None Reported");
-          }else{
-            setPctChangeHospRate("" + (percentChangeHospitalizationRate*100).toFixed(0) + "%");
-          }
+          
 
-          if ((percentChangeTestingRate*100).toFixed(0) > 0) {
-            setPctChangeTestingRate("+" + (percentChangeTestingRate*100).toFixed(0) + "%");
-          }else if ((percentChangeTestingRate*100).toFixed(0) < 0) {
-            setPctChangeTestingRate((percentChangeTestingRate*100).toFixed(0) + "%");
-          }else if(isNaN((percentChangeTestingRate*100).toFixed(0))){
-            setPctChangeTestingRate("None Reported");
-          }else{
-            setPctChangeTestingRate("" + (percentChangeTestingRate*100).toFixed(0) + "%");
+          
+          setPctPositive((percentPositive).toFixed(0) + "%");
+          setPctBedsOccupied((percentBedsOccupied).toFixed(0) + "%");
+          
 
-          }
-
-          setPctChangeHospRate("Coming soon...");
-          setHospRate("");
-                    //setHospRate(numberWithCommas(hospRate.toFixed(0)));
-
-          setTestingRate(numberWithCommas(testingRate.toFixed(0)));
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
           setMortality(numberWithCommas(mortality.toFixed(0)));
+
+          setPositive(numberWithCommas(positive.toFixed(0)))
 
           setCountyFips(countyMost);
           setCountyName(fips2county[stateFips+countyMost]);
@@ -359,7 +342,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS && dataRD) {
-    console.log(stateFips);
+    console.log("yes");
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -387,7 +370,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Daily Cases" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Daily Cases" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -413,8 +396,8 @@ export default function StateMap(props) {
 
                         />
 
-                        <VictoryLabel text= {caseRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
-                        <VictoryLabel text= {percentChangeCases}  x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {caseRate} x={130} y={75} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                        <VictoryLabel text= {percentChangeCases}  x={130} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
 
                         
             </VictoryChart>
@@ -426,7 +409,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Daily Deaths" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Daily Deaths" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -447,13 +430,50 @@ export default function StateMap(props) {
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: percentChangeMortality.includes("+")? "#C0C0C0": (percentChangeMortality.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: percentChangeMortality.includes("+")? "#C0C0C0": (percentChangeMortality.includes("-")? "#C0C0C0" : "#C0C0C0"), fillOpacity: 0.1} }}
                           data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                           x= 't' y = 'mortalityMean'
 
                         />
-                        <VictoryLabel text= {mortality} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
-                        <VictoryLabel text= {percentChangeMortality} x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {mortality} x={130} y={75} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                        <VictoryLabel text= {percentChangeMortality} x={130} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+
+            </VictoryChart>
+
+            <VictoryChart theme={VictoryTheme.material}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t }}
+                        width={252}
+                        height={180}       
+                        padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
+                        containerComponent={<VictoryContainer responsive={false}/>}>
+                        <VictoryLabel text="Percent Occupied Beds" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
+                        
+                        <VictoryAxis
+                          tickValues={[
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 2].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 2].t,
+                            dataTS["_nation"][dataTS["_nation"].length-2].t]}                        
+                          style={{tickLabels: {fontSize: 10}}} 
+                          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                        
+                        <VictoryGroup 
+                          colorScale={[stateColor]}
+                        >
+
+                          <VictoryLine data={stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
+                            x='t' y='pctBedsOccupied'
+                            />
+
+                        </VictoryGroup>
+
+                        <VictoryArea
+                          style={{ data: { fill: "#C0C0C0", fillOpacity: 0.1} }}
+                          data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
+                          x= 't' y = 'pctBedsOccupied'
+
+                        />
+                        <VictoryLabel text= {pctBedsOccupied} x={130} y={95} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
 
             </VictoryChart>
 
@@ -463,7 +483,8 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Hospitalization Rate" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Percent Positive" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
+
                         
                         <VictoryAxis
                           tickValues={[
@@ -478,57 +499,18 @@ export default function StateMap(props) {
                         >
 
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='hospitalizationRate'
+                            x='t' y='positive'
                             />
 
                         </VictoryGroup>
 
                         <VictoryArea
-                          style={{ data: { fill: pctChangeHospRate.includes("+")? "#C0C0C0": (pctChangeHospRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
+                          style={{ data: { fill: "#C0C0C0", fillOpacity: 0.1} }}
                           data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = ''
+                          x= 't' y = 'positive'
 
                         />
-                        <VictoryLabel text= {hospRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
-                        <VictoryLabel text= {pctChangeHospRate} x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
-
-            </VictoryChart>
-
-            <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
-                        width={252}
-                        height={180}       
-                        padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
-                        containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Testing Rate" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
-
-                        
-                        <VictoryAxis
-                          tickValues={[
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
-                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
-                          style={{tickLabels: {fontSize: 10}}} 
-                          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                        
-                        <VictoryGroup 
-                          colorScale={[stateColor]}
-                        >
-
-                          <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                            x='t' y='testingRate'
-                            />
-
-                        </VictoryGroup>
-
-                        <VictoryArea
-                          style={{ data: { fill: pctChangeTestingRate.includes("+")? "#C0C0C0": (pctChangeTestingRate.includes("-")? "#C0C0C0" : "##C0C0C0"), fillOpacity: 0.1} }}
-                          data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                          x= 't' y = 'testingRate'
-
-                        />
-                        <VictoryLabel text= {testingRate} x={130} y={85} textAnchor="middle" style={{fontSize: 24}}/>
-                        <VictoryLabel text= {pctChangeTestingRate} x={130} y={110} textAnchor="middle" style={{fontSize: 24}}/>
+                        <VictoryLabel text= {pctPositive} x={130} y={95} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
 
             </VictoryChart>
 
@@ -540,41 +522,57 @@ export default function StateMap(props) {
                         scale={{y: props.ylog?'log':'linear'}}
                         minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
-                        padding={{left: 115, right: 10, top: 80, bottom: -0.9}}
-                        containerComponent={<VictoryContainer responsive={false}/>}
+                        style={{labels:{ fontFamily: 'lato'}}}
+                        padding={{left: 115, right: 10, top: 60, bottom: -0.9}}
+                        containerComponent={<VictoryContainer style ={{fontFamily: 'lato'}} responsive={false}/>}
                       >
-                        <VictoryLabel text="Cases per 100,000" x={130} y={10} textAnchor="middle" style={{fontSize: 21}}/>
-                        <VictoryLabel text="persons by race" x={130} y={30} textAnchor="middle" style={{fontSize: 21}}/>
+                        <VictoryLabel text="Cases per 100,000" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
+                        <VictoryLabel text="persons by race" x={130} y={30} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
 
                         <VictoryAxis 
-                            style={{axis: {stroke: "transparent"}, tickLabels: {fontSize: 10}}}
+                            style={{axis: {stroke: "transparent"}, tickLabels: {fontSize: 10, fontFamily: 'lato'}}}
 
                          />
                         <VictoryAxis dependentAxis 
-                            tickValues = {[
+                          style ={{fontFamily: 'lato'}}
+                          tickValues = {
+                              data[stateFips]['natives'] >= 1?
+
+                              ([dataRD[stateFips][0]['All Races Combined'][0]['caseRate'], 
+                              dataRD[stateFips][1]['African American'][0]['caseRate'],
+                              dataRD[stateFips][2]['White'][0]['caseRate'],
+                              dataRD[stateFips][3]['American Natives'][0]['caseRate']])
+                              :
+                              ([
                               dataRD[stateFips][0]['All Races Combined'][0]['caseRate'],
                               dataRD[stateFips][1]['African American'][0]['caseRate'],
                               dataRD[stateFips][2]['White'][0]['caseRate']
-                            
-                            
                                   
-                                    ]}
+                                    ])}
 
                         />
                         <VictoryBar
                           horizontal
                           barRatio={0.8}
+
                           labels={({ datum }) => numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))) !== 0?
                                                   numberWithCommas((Math.round(datum.value*dataRD[stateFips][0]['All Races Combined'][0]['caseRate']))): "Not Available"}
-                          data={[
-                            {key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                          data={
+
+                            data[stateFips]['natives'] >= 1? 
+                            [{key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "Native American", 'value': dataRD[stateFips][3]['American Natives'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
+                            {key: "All Races Combined", 'value': dataRD[stateFips][0]['All Races Combined'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0}
+                            ]
+                            :[{key: "White", 'value': dataRD[stateFips][2]['White'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "African American", 'value': dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0},
                             {key: "All Races Combined", 'value': dataRD[stateFips][0]['All Races Combined'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] || 0}
-                                  
-                                    ]}
-                          labelComponent={<VictoryLabel dx = {0} style={{fontSize: 12, fill: ({datum}) => '#000000' }}/>}
+                            ]}
+                          labelComponent={<VictoryLabel dx = {0} style={{fontSize: 12, fontFamily: 'lato', fill: ({datum}) => '#000000' }}/>}
                           style={{
                             data: {
+                              fontFamily: 'lato',
                               fill: ({ datum }) => '#b2b3b3'
                             }
                           }}
@@ -590,29 +588,30 @@ export default function StateMap(props) {
               
                 <Grid.Column style={{padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Daily cases</i>: Daily new COVID-19 cases <br/> 
+                    <i>Daily Cases</i>: Daily new COVID-19 cases <br/> 
                     (7-day rolling average) <br/>
-                    <i>Data source</i>: New York Times <br/>
+                    <i>Data source</i>: <a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank"> New York Times </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
                     (7-day rolling average) <br/>
-                    <i>Data source</i>: New York Times <br/>
+                    <i>Data source</i>:<a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank"> New York Times </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
-                    <i>Data source</i>: Johns Hopkins University <br/>
+                    <i>Percent Occupied Beds</i>: Percentage of staffed <br/>
+                    inpatient beds occupied by COVID-19 patients. <br/>
+                    <i>Data source</i>:  <a href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank">CDC NHSN </a><br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -8, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Testing rate</i>: COVID-19 tests per <br/>
-                    100,000 population <br/>
-                    <i>Data Source</i>: Johns Hopkins University <br/>
+                    <i>Percent Positive</i>: Percentage of total tests for <br/>
+                     COVID-19 that resulted in a positive result. <br/>
+                    <i>Data Source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank"> The COVID Tracking Project </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
@@ -751,7 +750,7 @@ export default function StateMap(props) {
                 </Header>
                 <Grid>
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 0}}>
-                     <text x={0} y={20} style={{fontSize: '1.0em', paddingLeft: 15, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
+                     <text x={0} y={20} style={{fontSize: '16px', paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
@@ -764,6 +763,7 @@ export default function StateMap(props) {
                           borderPadding={{ left: 0, right: 0 }}
                           symbolSpacer={5}
                           orientation="horizontal"
+                          style={{labels:{ fontFamily: 'lato'}}}
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
                             {name: "USA   "}, {name: stateName }, {name: countyName}
@@ -774,7 +774,7 @@ export default function StateMap(props) {
                             dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
                             dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
-                          style={{tickLabels: {fontSize: 10}}} 
+                          style={{tickLabels: {fontSize: 10, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{tickLabels: {fontSize: 8, padding: 1}}} 
@@ -786,24 +786,27 @@ export default function StateMap(props) {
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
                             labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
-                            labelComponent={<VictoryTooltip flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                            labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
-                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                              
+                              data: {strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='caseRateMA'
                             labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
-                            labelComponent={<VictoryTooltip flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                            labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
+                              fontFamily: 'lato',
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
                           <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='caseRateMA'
                             labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
-                            labelComponent={<VictoryTooltip flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                            labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
+                              fontFamily: 'lato',
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
@@ -811,7 +814,7 @@ export default function StateMap(props) {
                       </VictoryChart>
                     </Grid.Row>
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 20, paddingBottom: 0}}>
-                      <text x={0} y={20} style={{fontSize: '1.0em', paddingLeft: 15, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
+                      <text x={0} y={20} style={{fontSize: '16px', paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
@@ -824,6 +827,7 @@ export default function StateMap(props) {
                           borderPadding={{ left: 0, right: 0 }}
                           symbolSpacer={5}
                           orientation="horizontal"
+                          style={{labels:{ fontFamily: 'lato'}}}
                           colorScale={[nationColor, stateColor, countyColor]}
                           data ={[
                             {name: "USA   "}, {name: stateName }, {name: countyName}
@@ -834,7 +838,7 @@ export default function StateMap(props) {
                             dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 1].t,
                             dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
-                          style={{tickLabels: {fontSize: 10}}} 
+                          style={{tickLabels: {fontSize: 10, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{tickLabels: {fontSize: 8, padding: 1}}} 
@@ -846,24 +850,27 @@ export default function StateMap(props) {
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'
                             labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
-                            labelComponent={<VictoryTooltip flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                            labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
+                              fontFamily: 'lato',
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='mortalityMA'
                             labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
-                            labelComponent={<VictoryTooltip flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                            labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
+                              fontFamily: 'lato',
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
                           <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='mortalityMA'
                             labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
-                            labelComponent={<VictoryTooltip flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                            labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
+                              fontFamily: 'lato',
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                             }}
                             />
@@ -896,6 +903,24 @@ export default function StateMap(props) {
                       <BarChart 
                         title="% Hispanic or Latino" 
                         var="hispanic"  
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
+                        data={data} />
+                  </Grid.Row>
+                  <Grid.Row columns={2} style={{padding: 20, width: 460, paddingBottom: 20}}>
+                      <BarChart 
+                        title="% Native American" 
+                        var="natives" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={countyName}
+                        stateName={stateName}
+                        data={data} />  
+                      <BarChart 
+                        title="% Over 65 y/o" 
+                        var="age65over" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={countyName}
@@ -940,16 +965,16 @@ export default function StateMap(props) {
                   </Grid.Row>
                   <Grid.Row columns={2} style={{padding: 20, width: 460}}>                    
                       <BarChart 
-                        title="% Over 65 y/o" 
-                        var="age65over" 
+                        title="% in Group Quarters" 
+                        var="groupquater" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={countyName}
                         stateName={stateName}
                         data={data} />
                       <BarChart 
-                        title="% in Group Quarters" 
-                        var="groupquater" 
+                        title="% Male" 
+                        var="male" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={countyName}
