@@ -410,7 +410,7 @@ export default function CountyReport() {
                   <Header.Content style={{fontSize: 20}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 505, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
-                      in {countyName} numbered <b>{countyCasesOutcome} case(s) per 100,0000 residents</b>. In comparison, the daily average in {stateName} was <b>{stateCasesOutcome}</b> case(s) per 100,000 and in the United States was <b>{nationCasesOutcome}</b> case(s) per 100,000.
+                      in {countyName} numbered <b>{countyCasesOutcome} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{stateCasesOutcome}</b> case(s) per 100,000 and in the United States was <b>{nationCasesOutcome}</b> case(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -420,7 +420,7 @@ export default function CountyReport() {
                   <Header.Content style={{fontSize: 20}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 505, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
-                      in {countyName} numbered <b>{countyDeathsOutcome} death(s) per 100,0000 residents</b>. In comparison, the daily average in {stateName} was <b>{stateDeathsOutcome}</b> death(s) per 100,000 and in the United States was <b>{nationDeathsOutcome}</b> death(s) per 100,000.
+                      in {countyName} numbered <b>{countyDeathsOutcome} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{stateDeathsOutcome}</b> death(s) per 100,000 and in the United States was <b>{nationDeathsOutcome}</b> death(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
