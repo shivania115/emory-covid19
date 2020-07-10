@@ -441,8 +441,8 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-15].t }}
-                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t }}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-18].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-3].t }}
                         width={252}
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
