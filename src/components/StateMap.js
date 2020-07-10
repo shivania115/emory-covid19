@@ -447,8 +447,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Percent of Beds Occupied" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
-                        <VictoryLabel text="Percent of Beds Occupied" x={130} y={25} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
+                        <VictoryLabel text="Percent Occupied Beds" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
                         
                         <VictoryAxis
                           tickValues={[
@@ -484,7 +483,7 @@ export default function StateMap(props) {
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer responsive={false}/>}>
-                        <VictoryLabel text="Positive Cases" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
+                        <VictoryLabel text="Percent Positive" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
 
                         
                         <VictoryAxis
@@ -589,29 +588,30 @@ export default function StateMap(props) {
               
                 <Grid.Column style={{padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Daily cases</i>: Daily new COVID-19 cases <br/> 
+                    <i>Daily Cases</i>: Daily new COVID-19 cases <br/> 
                     (7-day rolling average) <br/>
-                    <i>Data source</i>: New York Times <br/>
+                    <i>Data source</i>: <a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank"> New York Times </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
                     (7-day rolling average) <br/>
-                    <i>Data source</i>: New York Times <br/>
+                    <i>Data source</i>:<a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank"> New York Times </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Hospitalizations</i>: COVID-19 hospitalizations per 100,000 population<br/>
-                    <i>Data source</i>: Johns Hopkins University <br/>
+                    <i>Percent Occupied Beds</i>: Percentage of staffed <br/>
+                    inpatient beds occupied by COVID-19 patients. <br/>
+                    <i>Data source</i>:  <a href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank">CDC NHSN </a><br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -8, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Positive Cases</i>: Total number of positive cases<br/>
-                    among all who have been tested.<br/>
-                    <i>Data Source</i>: The COVID Tracking Project<br/>
+                    <i>Percent Positive</i>: Percentage of total tests for <br/>
+                     COVID-19 that resulted in a positive result. <br/>
+                    <i>Data Source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank"> The COVID Tracking Project </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>

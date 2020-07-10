@@ -24,6 +24,8 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 
+
+
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -61,6 +63,7 @@ function MapLabels(props){
 
   return (
     <svg>
+
       {props.geographies.map(geo => {
           const centroid = geoCentroid(geo);
           const cur = props.stateLabels.find(s => s.val === geo.id);
@@ -222,6 +225,7 @@ export default function USMap(props) {
 
   return (
       <div>
+
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '6em', minWidth: '1260px'}}>
           <Breadcrumb>
