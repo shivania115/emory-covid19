@@ -410,7 +410,7 @@ export default function CountyReport() {
                   <Header.Content style={{fontSize: 20}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 505, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
-                      in {countyName} numbered <b>{countyCasesOutcome} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{stateCasesOutcome}</b> case(s) per 100,000 and in the United States was <b>{nationCasesOutcome}</b> case(s) per 100,000.
+                      in {countyName} numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -420,7 +420,7 @@ export default function CountyReport() {
                   <Header.Content style={{fontSize: 20}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 505, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
-                      in {countyName} numbered <b>{countyDeathsOutcome} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{stateDeathsOutcome}</b> death(s) per 100,000 and in the United States was <b>{nationDeathsOutcome}</b> death(s) per 100,000.
+                      in {countyName} numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -647,9 +647,9 @@ export default function CountyReport() {
                         return (
                           <Table.Row key={k}>
                             <Table.Cell>{varMap[k] ? varMap[k].name : k}</Table.Cell>
-                            <Table.Cell>{isNaN(v) ? v : (Math.round(v * 100) / 100)}</Table.Cell>
-                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : (Math.round(data[stateFips][k] * 100) / 100)}</Table.Cell>
-                            <Table.Cell>{isNaN(data['_nation'][k]) ? data['_nation'][k] : (Math.round(data['_nation'][k] * 100) / 100)}</Table.Cell>
+                            <Table.Cell>{isNaN(v) ? v : numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" ? "" : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0))}</Table.Cell>
                           </Table.Row>
                         )
                       }
