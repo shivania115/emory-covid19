@@ -80,8 +80,8 @@ export default function DataSources(props){
             </Table.Row>
             <Table.Row>
               <Table.Cell>Percent Occupied Beds</Table.Cell>
-              <Table.Cell> <a href="https://www.cdc.gov/nhsn/datastat/index.html" target="_blank"> CDC National Healthcare Safety Network.  </a> </Table.Cell>
-              <Table.Cell><i>Percent Occupied Beds</i> is the percentage of staffed inpatient beds occupied by COVID-19 patients.
+              <Table.Cell> <a href="https://www.cdc.gov/nhsn/datastat/index.html" target="_blank"> CDC's National Healthcare Safety Network.  </a> </Table.Cell>
+              <Table.Cell><i>Percent Occupied Beds</i> is the state representative estimates for percentage of inpatient beds cccupied by COVID-19 patients.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -116,12 +116,12 @@ export default function DataSources(props){
             </Table.Row>
             <Table.Row>
               <Table.Cell>% Diabetes</Table.Cell>
-              <Table.Cell><a href="https://www.cdc.gov/diabetes/data/index.html" target="_blank">CDC Division of Diabetes Translation </a> </Table.Cell>
+              <Table.Cell><a href="https://www.cdc.gov/diabetes/data/index.html" target="_blank">CDC's Division of Diabetes Translation </a> </Table.Cell>
               <Table.Cell><i>% Diabetes</i> is the percentage of residents in each county who currently have a medical diagnosis of Type 2 Diabetes, previously called Adult Onset Diabetes. These data are from 2016. </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>% Obesity</Table.Cell>
-              <Table.Cell><a href="https://www.cdc.gov/diabetes/data/index.html" target="_blank">CDC Division of Diabetes Translation </a></Table.Cell>
+              <Table.Cell><a href="https://www.cdc.gov/diabetes/data/index.html" target="_blank">CDC's Division of Diabetes Translation </a></Table.Cell>
               <Table.Cell><i>% Obesity</i> is the percentage of residents in each county who have obesity, defined as having a Body Mass Index (weight in kilograms divided by the square of height in meters) above 30. These data are from 2016.  </Table.Cell>
             </Table.Row>
             <Table.Row>

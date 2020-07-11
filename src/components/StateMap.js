@@ -602,9 +602,9 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Percent Occupied Beds</i>: Percentage of staffed <br/>
-                    inpatient beds occupied by COVID-19 patients. <br/>
-                    <i>Data source</i>:  <a href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank">CDC NHSN </a><br/>
+                    <i>Percent Occupied Beds</i>: Percentage of inpatient <br/>
+                    beds occupied by COVID-19 patients. <br/>
+                    <i>Data source</i>:  <a href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank">CDC's NHSN </a><br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -8, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
