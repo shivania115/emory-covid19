@@ -235,7 +235,7 @@ export default function USMap(props) {
           <Divider hidden />
           <Grid columns={16}>
           <div>
-            See Dashboard Guide (<a href="Dashboard user guide.pdf" target="_blank"> PDF </a> / <a href="https://youtu.be/PmI42rHnI6U" target="_blank"> YouTube </a>)
+            See Dashboard Guide (<a href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
             
           </div>
             <Grid.Row>
@@ -326,7 +326,7 @@ export default function USMap(props) {
                           <Geography
                             key={geo.rsmKey}
                             geography={geo}
-                            onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
+                            onMouseEnter={()=>{
 
                               //console.log(geo); 
                               const stateFips = geo.id.substring(0,2);
@@ -337,13 +337,12 @@ export default function USMap(props) {
                               //setStateName(geo.id.substring(0,2));
                               //setStateName(geo.properties.name); 
                               //setTooltipContent()                            
-                            }, 300))
+                            
                             }}
 
 
 
                             onMouseLeave={()=>{
-                              clearTimeout(delayHandler);
                               setTooltipContent("")
                             }}
                             onClick={()=>{
@@ -371,7 +370,7 @@ export default function USMap(props) {
                     <small style={{fontWeight: 300}}>
                     <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
                     <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
-                    For a complete table of variable defintion, click <a href="https://covid19.emory.edu/data-sources" target="_blank"> here. </a>
+                    For a complete table of variable defintion, click <a href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                     </small>
                 </Grid.Row>
               </Grid.Column>
@@ -424,7 +423,7 @@ export default function USMap(props) {
                   </Grid.Row>
                   <Grid.Row style={{paddingTop: 0, paddingLeft: 10}}>
                     <small style={{fontWeight: 300}}>
-                    <a href="https://youtu.be/0eFjhnDQe6g" target="_blank"> COVID-19 in African American Communities: A Brief Overview </a> <br/>
+                    <a href="https://youtu.be/0eFjhnDQe6g" target="_blank" rel="noopener noreferrer"> COVID-19 in African American Communities: A Brief Overview </a> <br/>
                     Data last updated: {date}, updated every week<br/>
                     The chart does not contain those counties with less than 10,000 population and less than 5% African American.
                     </small>

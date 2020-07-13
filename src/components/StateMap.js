@@ -590,35 +590,35 @@ export default function StateMap(props) {
                   <small style={{fontWeight: 300}}>
                     <i>Daily Cases</i>: Daily new COVID-19 cases <br/> 
                     (7-day rolling average) <br/>
-                    <i>Data source</i>: <a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank"> New York Times </a> <br/>
+                    <i>Data source</i>: <a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
                     (7-day rolling average) <br/>
-                    <i>Data source</i>:<a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank"> New York Times </a> <br/>
+                    <i>Data source</i>:<a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, paddingRight: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Percent Occupied Beds</i>: Percentage of inpatient <br/>
                     beds occupied by COVID-19 patients. <br/>
-                    <i>Data source</i>:  <a href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank">CDC's NHSN </a><br/>
+                    <i>Data source</i>:  <a href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank" rel="noopener noreferrer">CDC's NHSN </a><br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -8, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Percent Positive</i>: Percentage of total tests for <br/>
                      COVID-19 that resulted in a positive result. <br/>
-                    <i>Data Source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank"> The COVID Tracking Project </a> <br/>
+                    <i>Data Source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
                     <i>Rates</i>: Cases per 100,000, among those with race <br/> 
                     information available <br/>
-                    <i>Data source</i>: <a href="https://covidtracking.com/race" target="_blank"> The COVID Racial Data Tracker </a> <br/> 
+                    <i>Data source</i>: <a href="https://covidtracking.com/race" target="_blank" rel="noopener noreferrer"> The COVID Racial Data Tracker </a> <br/> 
 
                     </small>
                 </Grid.Column>

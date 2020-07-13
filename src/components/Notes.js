@@ -60,13 +60,13 @@ export default function Notes(props){
 				</Grid.Row>
 				<Grid.Row columns = {15} style ={{ paddingTop: 0}}>
 				  <Grid.Column style ={{paddingLeft: 0, paddingRight: 0, right: -295}}>
-	            	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-text="Check out the Emory COVID-19 Health Equity Interactive Dashboard! " data-url="https://covid19.emory.edu/" data-show-count="false" target="_blank"><Image width= "24px" src='/Twitter_Logo_Blue.png' /> </a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+	            	<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-size="large" data-text="Check out the Emory COVID-19 Health Equity Interactive Dashboard! " data-url="https://covid19.emory.edu/" data-show-count="false" target="_blank" rel="noopener noreferrer"><Image width= "24px" src='/Twitter_Logo_Blue.png' /> </a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
 			  	  </Grid.Column>
 			  	  <Grid.Column style ={{paddingLeft: 0, paddingRight: 0, right: -299, bottom: -5}}>
-	            	<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovid19.emory.edu%2F&amp;src=sdkpreparse" data-href="https://covid19.emory.edu/" target="_blank"><Image width= "14px" src='/f_logo_RGB-Blue_512.png' /></a>
+	            	<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovid19.emory.edu%2F&amp;src=sdkpreparse" data-href="https://covid19.emory.edu/" target="_blank" rel="noopener noreferrer"><Image width= "14px" src='/f_logo_RGB-Blue_512.png' /></a>
 			  	  </Grid.Column>
 			  	  <Grid.Column style ={{paddingLeft: 0, paddingRight: 0, right: -295}}>
-	            	<a href="https://web.whatsapp.com/send?text= Check out the Emory COVID-19 Health Equity Interactive Dashboard! https://covid19.emory.edu/" data-action="share/whatsapp/share" target="_blank"><Image width= "22px" src='/WhatsApp_Logo_1.png' /></a>
+	            	<a href="https://web.whatsapp.com/send?text= Check out the Emory COVID-19 Health Equity Interactive Dashboard! https://covid19.emory.edu/" data-action="share/whatsapp/share" target="_blank" rel="noopener noreferrer"><Image width= "22px" src='/WhatsApp_Logo_1.png' /></a>
 			  	  </Grid.Column>
 				  <Grid.Column style ={{paddingLeft: 9, paddingRight: 0, paddingTop: 4, right: -290}}>
 				      <div>
