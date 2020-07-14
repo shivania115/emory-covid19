@@ -270,47 +270,28 @@ export default function StateMap(props) {
               mortalityMA = v[v.length-1].mortalityMA;
             }
             if (k.length===2 && v.length > 0 && v[v.length-1].t > t){
-              percentChangeCase = (v[v.length-1].caseRateMean - v[v.length-2].caseRateMean)/v[v.length-2].caseRateMean;
+              percentChangeCase = v[v.length-1].percent14dayDailyCases;
               caseRate = v[v.length-1].caseRateMean;
 
-              percentChangeMortality = (v[v.length-1].mortalityMean - v[v.length-2].mortalityMean)/v[v.length-2].mortalityMean;
+              percentChangeMortality = v[v.length-1].percent14dayDailyDeaths;
               mortality = v[v.length-1].mortalityMean;
 
               positive = v[v.length-1].positive;
               percentPositive = v[v.length-1].percentPositive;
-              percentBedsOccupied = v[v.length-3].pctBedsOccupied;
+              percentBedsOccupied = v[v.length-7].pctBedsOccupied;
 
 
             }
           });
 
 
-          if ((percentChangeCase*100).toFixed(0) > 0) {
-            setPercentChangeCases("+" + (percentChangeCase*100).toFixed(0) + "%");
-          }else if((percentChangeCase*100).toFixed(0) < 0){
-            setPercentChangeCases((percentChangeCase*100).toFixed(0) + "%");
-          }else if(isNaN((percentChangeCase*100).toFixed(0))){
-            setPercentChangeCases("None Reported");
-          }else{
-            setPercentChangeCases("" + (percentChangeCase*100).toFixed(0) + "%");
-          }
-
-          if ((percentChangeMortality*100).toFixed(0) > 0) {
-            setPercentChangeMortality("+" + (percentChangeMortality*100).toFixed(0) + "%");
-          }else if ((percentChangeMortality*100).toFixed(0) < 0) {
-            setPercentChangeMortality((percentChangeMortality*100).toFixed(0) + "%");
-          }else if(isNaN((percentChangeMortality*100).toFixed(0))){
-            setPercentChangeMortality("None Reported");
-          }else{
-            setPercentChangeMortality("" + (percentChangeMortality*100).toFixed(0) + "%");
-
-          }
-
           
-
+          setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
+    
+          setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
           
-          setPctPositive((percentPositive).toFixed(0) + "%");
-          setPctBedsOccupied((percentBedsOccupied).toFixed(0) + "%");
+          setPctPositive(percentPositive.toFixed(0) + "%");
+          setPctBedsOccupied(percentBedsOccupied.toFixed(0) + "%");
           
 
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
@@ -441,8 +422,8 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-18].t }}
-                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-3].t }}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-22].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-7].t }}
                         width={252}
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
@@ -451,9 +432,9 @@ export default function StateMap(props) {
                         
                         <VictoryAxis
                           tickValues={[
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 2].t,
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 2].t,
-                            dataTS["_nation"][dataTS["_nation"].length-2].t]}                        
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 7].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 7].t,
+                            dataTS["_nation"][dataTS["_nation"].length-7].t]}                        
                           style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         
@@ -627,7 +608,7 @@ export default function StateMap(props) {
 
             <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <small style={{fontWeight: 300}}>
-                      All percent changes for a 24-Hour period <br/>
+                      All percent changes for a 14-day period. <br/>
                       Percent Occupied Beds updated weekly, last on 07/07/2020.
                     </small>
             </Grid.Row>
