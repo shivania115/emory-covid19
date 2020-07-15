@@ -248,14 +248,14 @@ export default function CountyReport() {
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell colSpan='1' style={{width:150}}> </Table.HeaderCell>
 
-                    <Table.HeaderCell colSpan='1' style={{width:200}}> TOTAL TO DATE</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200}}> TOTAL TO DATE PER 100,000</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200}}> DAILY AVERAGE</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200}}> DAILY AVERAGE PER 100,000</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200}}> CASE FATALITY RATIO</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> TOTAL TO DATE</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> TOTAL TO DATE PER 100,000</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> DAILY AVERAGE</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> DAILY AVERAGE PER 100,000</Table.HeaderCell>
+                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> CASE FATALITY RATIO</Table.HeaderCell>
                   </Table.Row>
                   <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell > Cases </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> Cases </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.cases===null || covidMetric.cases < 0?'0':covidMetric.cases.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRate===null || covidMetric.caseRate < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.caseRateMean===null || covidMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(covidMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
@@ -264,12 +264,12 @@ export default function CountyReport() {
 
                   </Table.Row>
                   <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell > Deaths </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> Deaths </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.deaths===null || covidMetric.deaths < 0?'0':covidMetric.deaths.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.mortality===null || covidMetric.mortality < 0?'0':numberWithCommas(parseFloat(covidMetric.mortality).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.mortalityMean===null || covidMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(covidMetric.mortalityMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.mortalityMA===null || covidMetric.mortalityMA < 0?'0':numberWithCommas(parseFloat(covidMetric.mortalityMA).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.cfr===null || covidMetric.cfr < 0?'0':numberWithCommas(parseFloat(covidMetric.cfr).toFixed(2)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {covidMetric.cfr===null || covidMetric.cfr < 0?'0':numberWithCommas(parseFloat(covidMetric.cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
 
                   </Table.Row>
                 </Table.Header>
@@ -279,7 +279,7 @@ export default function CountyReport() {
             <span style={{ color: '#bdbfc1', paddingTop: 20}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
 
           </Grid>
-          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>COVID-19 Outcomes </Divider>
+          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: '1em', paddingTop: '1em'}}>COVID-19 Outcomes </Divider>
           <Grid columns={2} centered>
             <Grid.Row>
               <Grid.Column>
@@ -406,9 +406,9 @@ export default function CountyReport() {
             </Grid.Row>
             <Grid.Row columns={2} style={{paddingBottom: 50}}>
               <Grid.Column>
-                <Header as='h2' style={{fontWeight: 400, width: 500, paddingLeft: 55}}>
+                <Header as='h2' style={{fontWeight: 400, width: 530, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: 20}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 505, fontSize: 20}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 530, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
                       in {countyName} numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
                     </Header.Subheader>
@@ -416,9 +416,9 @@ export default function CountyReport() {
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Header as='h2' style={{fontWeight: 400, width: 500, paddingLeft: 55}}>
+                <Header as='h2' style={{fontWeight: 400, width: 530, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: 20}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 505, fontSize: 20}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 530, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
                       in {countyName} numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
                     </Header.Subheader>
@@ -429,7 +429,7 @@ export default function CountyReport() {
           </Grid>
           <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
 
-          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em'}}>County Characteristics</Divider>
+          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingTop: 14}}>County Characteristics</Divider>
           <Grid>
             <Grid.Row columns={3}>                    
               <Grid.Column>
@@ -528,7 +528,7 @@ export default function CountyReport() {
             <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
           </Grid>
 
-          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Bivariate Relationships of Outcomes and Exposure Variables</Divider>
+          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingTop: '1em'}}>Bivariate Relationships of Outcomes and Exposure Variables</Divider>
           <Grid columns={3}>
             <Grid.Row>
               <Grid.Column>
@@ -628,7 +628,7 @@ export default function CountyReport() {
             <span style={{color: '#bdbfc1'}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
 
           </Grid>
-          <Divider horizontal style={{fontWeight: 300, color: '#b1b3b3', fontSize: '1.2em', paddingTop: '1em'}}>Data Table</Divider>
+          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingTop: '1em'}}>Data Table</Divider>
           <Table striped compact basic='very'>
             <Table.Header>
               <Table.Row>
