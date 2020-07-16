@@ -33,6 +33,12 @@ export default function AppBar(props) {
             Map Your State
           </Menu.Item>
           <Menu.Item 
+            active={props.menu==='blog'} 
+            onClick={() => history.push('/blog')}
+            name='blog'>
+            Blog
+          </Menu.Item>
+          <Menu.Item 
             active={props.menu==='dataSources'} 
             onClick={() => history.push('/data-sources')}
             name='dataSources'>
