@@ -51,6 +51,10 @@ const countyColor = '#f2a900';
 const stateColor = '#778899';
 const nationColor = '#b2b3b3';
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 
 
 function BarChart(props) {
@@ -278,7 +282,7 @@ export default function StateMap(props) {
 
               positive = v[v.length-1].positive;
               percentPositive = v[v.length-1].percentPositive;
-              percentBedsOccupied = v[v.length-7].pctBedsOccupied;
+              percentBedsOccupied = v[v.length-9].pctBedsOccupied;
 
 
             }
@@ -424,8 +428,8 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-22].t }}
-                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-7].t }}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-24].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-9].t }}
                         width={252}
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
@@ -434,9 +438,9 @@ export default function StateMap(props) {
                         
                         <VictoryAxis
                           tickValues={[
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 7].t,
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 7].t,
-                            dataTS["_nation"][dataTS["_nation"].length-7].t]}                        
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 9].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 9].t,
+                            dataTS["_nation"][dataTS["_nation"].length-9].t]}                        
                           style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         
@@ -611,7 +615,7 @@ export default function StateMap(props) {
             <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <small style={{fontWeight: 300}}>
                       All percent changes for a 14-day period. <br/>
-                      Percent Occupied Beds updated weekly, last on 07/07/2020.
+                      Percent Occupied Beds updated on 07/07/2020.
                     </small>
             </Grid.Row>
 
@@ -759,7 +763,7 @@ export default function StateMap(props) {
                             dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
                           style={{tickLabels: {fontSize: 10, fontFamily: 'lato'}}} 
-                          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                          tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{tickLabels: {fontSize: 8, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
@@ -769,7 +773,7 @@ export default function StateMap(props) {
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='caseRateMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
+                            labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caseRateMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
                               
@@ -778,7 +782,7 @@ export default function StateMap(props) {
                             />
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='caseRateMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
+                            labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caseRateMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
                               fontFamily: 'lato',
@@ -787,7 +791,7 @@ export default function StateMap(props) {
                             />
                           <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='caseRateMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
+                            labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caseRateMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
                               fontFamily: 'lato',
@@ -823,7 +827,7 @@ export default function StateMap(props) {
                             dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 1].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
                           style={{tickLabels: {fontSize: 10, fontFamily: 'lato'}}} 
-                          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                          tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{tickLabels: {fontSize: 8, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
@@ -833,7 +837,7 @@ export default function StateMap(props) {
                         >
                           <VictoryLine data={dataTS["_nation"]}
                             x='t' y='mortalityMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
+                            labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.mortalityMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
                               fontFamily: 'lato',
@@ -842,7 +846,7 @@ export default function StateMap(props) {
                             />
                           <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
                             x='t' y='mortalityMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
+                            labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.mortalityMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
                               fontFamily: 'lato',
@@ -851,7 +855,7 @@ export default function StateMap(props) {
                             />
                           <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
                             x='t' y='mortalityMA'
-                            labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
+                            labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.mortalityMA.toFixed(1)}`}
                             labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                             style={{
                               fontFamily: 'lato',

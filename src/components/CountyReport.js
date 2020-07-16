@@ -29,6 +29,10 @@ const countyColor = '#f2a900';
 const stateColor = '#778899';
 const nationColor = '#b2b3b3';
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -303,7 +307,7 @@ export default function CountyReport() {
                   />
 
                   <VictoryAxis
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}
+                    tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
                       dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*3 - 1].t,
                       dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*2 - 1].t,
@@ -317,7 +321,7 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -325,7 +329,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -333,7 +337,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='caseRateMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.caseRateMA.toFixed(1)}`}
+                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caseRateMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -364,7 +368,7 @@ export default function CountyReport() {
                       ]}
                   />
                   <VictoryAxis
-                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}
+                    tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
                       dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*3 - 1].t,
                       dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/4)*2 - 1].t,
@@ -378,7 +382,7 @@ export default function CountyReport() {
                   >
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -386,7 +390,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -394,7 +398,7 @@ export default function CountyReport() {
                       />
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='mortalityMA'
-                      labels={({ datum }) => `${new Date(datum.t*1000).toLocaleDateString()}: ${datum.mortalityMA.toFixed(1)}`}
+                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.mortalityMA.toFixed(1)}`}
                       labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato'}} centerOffset={{ x: -50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -406,21 +410,21 @@ export default function CountyReport() {
             </Grid.Row>
             <Grid.Row columns={2} style={{paddingBottom: 50}}>
               <Grid.Column>
-                <Header as='h2' style={{fontWeight: 400, width: 530, paddingLeft: 55}}>
+                <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: 20}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 530, fontSize: 20}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
-                      in {countyName} numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
+                      in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Header as='h2' style={{fontWeight: 400, width: 530, paddingLeft: 55}}>
+                <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: 20}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 530, fontSize: 20}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: 20}}>
                       As of <b>{covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
-                      in {countyName} numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
+                      in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
                 </Header>

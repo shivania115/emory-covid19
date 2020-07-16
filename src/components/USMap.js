@@ -423,10 +423,11 @@ export default function USMap(props) {
                   </Grid.Row>
                   <Grid.Row style={{paddingTop: 0, paddingLeft: 10}}>
                     <small style={{fontWeight: 300}}>
+                    Data last updated: {date}, updated daily<br/>
+                    The chart does not contain those counties with less than 10,000 population and less than 5% African American. <br/>
                     <a href="https://youtu.be/0eFjhnDQe6g" target="_blank" rel="noopener noreferrer"> COVID-19 in African American Communities: A Brief Overview </a> <br/>
-                    <a href="https://youtu.be/U-Aqx7vQocY" target="_blank" rel="noopener noreferrer"> COVID-19 in Southwest Native American Communities: A Brief Overview </a> <br/>
-                    Data last updated: {date}, updated every week<br/>
-                    The chart does not contain those counties with less than 10,000 population and less than 5% African American.
+                    <a href="https://youtu.be/U-Aqx7vQocY" target="_blank" rel="noopener noreferrer"> COVID-19 in Southwest Native American Communities: A Brief Overview </a>
+                    
                     </small>
                   </Grid.Row>
                 </Grid>
