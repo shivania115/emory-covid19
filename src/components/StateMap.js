@@ -510,7 +510,9 @@ export default function StateMap(props) {
                         minDomain={{y: props.ylog?1:0}}
                         domainPadding={10}
                         style={{labels:{ fontFamily: 'lato'}}}
-                        padding={{left: 115, right: 10, top: 60, bottom: -0.9}}
+                        padding={{left: 115, right: dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] > 7 ? 115:
+                                                      dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] > 3 && dataRD[stateFips][1]['African American'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] < 4 ? 60:
+                                                        data[stateFips]['natives'] >= 1 && dataRD[stateFips][3]['American Natives'][0]['caseRate']/dataRD[stateFips][0]['All Races Combined'][0]['caseRate'] > 3 ? 80: 10, top: 60, bottom: -0.9}}
                         containerComponent={<VictoryContainer style ={{fontFamily: 'lato'}} responsive={false}/>}
                       >
                         <VictoryLabel text="Cases per 100,000" x={130} y={10} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
