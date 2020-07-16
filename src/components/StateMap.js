@@ -338,38 +338,7 @@ export default function StateMap(props) {
           </Breadcrumb>
           <Divider hidden/>
 
-                      <Dropdown
-                        icon=''
-                        style={{background: '#fff', 
-
-                                fontWeight: 400, 
-                                theme: '#000000',
-                                width: '100px',
-                                left: '0px',
-                                text: "Select",
-                                borderTop: 'none',
-                                borderLeft: '1px solid #FFFFFF',
-                                borderRight: 'none', 
-                                borderBottom: '0.5px solid #bdbfc1',
-                                borderRadius: 0,
-                                minHeight: '1.0em',
-                                paddingBottom: '0.0em'}}
-                        placeholder= {stateName}
-                        inline
-                        search
-                        selection
-                        pointing = 'top'
-                        options={stateOptions}
-                        onChange={(e, { value }) => {
-                          window.location.href = "/" + value;
-                          //history.replace("/"+value+"")
-                          //stateFips = value;
-                          //history.go(0);
-
-                        }}
-
-                        
-                      />
+                      
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '2.0em', paddingBottom: 10}}> Covid-19 Outcomes in {stateName} </Divider>
 
