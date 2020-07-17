@@ -34,7 +34,7 @@ export default function App() {
           </Route>
           <Route path='/data-sources'>
             <DataSources />
-          </Route>          
+          </Route>            
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  
