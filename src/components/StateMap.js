@@ -584,7 +584,7 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: -3, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
                   <small style={{fontWeight: 300}}>
-                    <i>Daily Deaths</i>: Daily new COVID-19 Death <br/> 
+                    <i>Daily Deaths</i>: Daily new COVID-19 deaths <br/> 
                     (7-day rolling average) <br/>
                     <i>Data source</i>:<a href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </small>
@@ -600,7 +600,7 @@ export default function StateMap(props) {
                   <small style={{fontWeight: 300}}>
                     <i>Percent Positive</i>: Percentage of total tests for <br/>
                      COVID-19 that resulted in a positive result. <br/>
-                    <i>Data Source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
+                    <i>Data source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
