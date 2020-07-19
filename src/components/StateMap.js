@@ -600,7 +600,7 @@ export default function StateMap(props) {
                   <small style={{fontWeight: 300}}>
                     <i>Percent Positive</i>: Percentage of total tests for <br/>
                      COVID-19 that resulted in a positive result. <br/>
-                    <i>Data Source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
+                    <i>Data source</i>: <a href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
                     </small>
                 </Grid.Column>
                 <Grid.Column style={{left: -13, padding: 0, paddingLeft: 0, lineHeight: '1em'}}>
