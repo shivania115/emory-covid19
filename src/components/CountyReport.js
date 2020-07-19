@@ -45,7 +45,7 @@ function ScatterChart(props) {
 
   return (
     <VictoryChart
-      width={400}
+      width={450}
       height={300}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
