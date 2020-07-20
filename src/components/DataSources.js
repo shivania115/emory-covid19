@@ -46,28 +46,28 @@ export default function DataSources(props){
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total COVID-19 Cases per 100,000</Table.Cell>
-              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics. </Table.Cell>
+              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
               <Table.Cell><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. <br/>
                         If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of cases in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total COVID-19 Deaths per 100,000</Table.Cell>
-              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics.</Table.Cell>
+              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
               <Table.Cell><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. <br/>
                           If every county in the United States had 100,000 residents, this is how many would have died in each county from COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Average Daily COVID-19 Cases per 100,000</Table.Cell>
-              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics. </Table.Cell>
+              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
               <Table.Cell><i>Average Daily Cases per 100,000</i> helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100,000 people. <br/>
                   If every county in the United States had 100,000 residents, this is how many would have tested positive for COVID-19 over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of cases in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Average Daily COVID-19 Deaths per 100,000</Table.Cell>
-              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics. </Table.Cell>
+              <Table.Cell>Derived from the <a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
               <Table.Cell><i>Average Daily Deaths per 100,000</i> helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people. 
                 <br/>If every county in the United States had 100,000 residents, this is how many would have died from COVID-19 over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
@@ -80,7 +80,7 @@ export default function DataSources(props){
             </Table.Row>
             <Table.Row>
               <Table.Cell>Percent Occupied Beds</Table.Cell>
-              <Table.Cell> CDC's<a href="https://www.cdc.gov/nhsn/datastat/index.html" target="_blank" rel="noopener noreferrer"> National Healthcare Safety Network.  </a> </Table.Cell>
+              <Table.Cell> CDC's<a href="https://www.cdc.gov/nhsn/datastat/index.html" target="_blank" rel="noopener noreferrer"> National Healthcare Safety Network  </a> </Table.Cell>
               <Table.Cell><i>Percent Occupied Beds</i> is the state representative estimates for percentage of inpatient beds cccupied by COVID-19 patients.
               </Table.Cell>
             </Table.Row>
