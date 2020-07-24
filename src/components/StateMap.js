@@ -282,7 +282,7 @@ export default function StateMap(props) {
 
               positive = v[v.length-1].positive;
               percentPositive = v[v.length-1].percentPositive;
-              percentBedsOccupied = v[v.length-14].pctBedsOccupied;
+              percentBedsOccupied = v[v.length-17].pctBedsOccupied;
 
 
             }
@@ -428,8 +428,8 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-29].t }}
-                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-14].t }}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-32].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-17].t }}
                         width={252}
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
@@ -438,9 +438,9 @@ export default function StateMap(props) {
                         
                         <VictoryAxis
                           tickValues={[
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 14].t,
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 14].t,
-                            dataTS["_nation"][dataTS["_nation"].length-14].t]}                        
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 17].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 17].t,
+                            dataTS["_nation"][dataTS["_nation"].length-17].t]}                        
                           style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         
