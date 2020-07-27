@@ -6,6 +6,7 @@ import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
 import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
+import MediaHub from "./MediaHub";
 import DataSources from "./DataSources";
 import Privacy from "./Privacy";
 import 'semantic-ui-css/semantic.min.css'
@@ -34,7 +35,10 @@ export default function App() {
           </Route>
           <Route path='/data-sources'>
             <DataSources />
-          </Route>            
+          </Route>    
+          <Route path='/mediahub'>
+            <MediaHub />
+          </Route>         
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  
