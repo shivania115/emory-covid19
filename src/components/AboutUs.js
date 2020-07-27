@@ -15,10 +15,8 @@ export default function AboutUs(props){
       <AppBar menu='aboutUs'/>
       <Container style={{marginTop: '8em', minWidth: '1260px'}}>
 
-        
-        <Grid columns={2}>
-          <Grid row = {2} style = {{marginLeft: -10, width: 690, paddingTop: 20}}>
-            <Header style={{fontWeight: 400, fontSize: "24pt", paddingBottom: 0}}>
+        <Grid row = {1} style = {{marginLeft: -10, paddingTop: 20}}>
+            <Header style={{fontWeight: 400, fontSize: "22pt", paddingBottom: 0}}>
                 About This Dashboard
                 <Header.Subheader style={{color: "#000000", paddingTop: 15, lineHeight: "22pt", fontSize: "12pt"}}>Early data about COVID-19 suggests that communities are affected very differently due to social determinants of health like population density, poverty, residential segregation, underlying chronic health conditions, and availability of medical services. 
                   In order to predict how the epidemic will continue to unfold and prepare for the future, it is critical to understand differences in underlying risk factors. 
@@ -30,19 +28,14 @@ export default function AboutUs(props){
                 </Header.Subheader>
             </Header>
 
-            <Header style={{fontWeight: 400, fontSize: "18pt", paddingTop: 45}}>
-                Funding
-              <Header.Content style = {{paddingTop: 10, lineHeight: "22pt", paddingBottom: 20, fontSize: "12pt"}}>
-                The COVID-19 Health Equity Dashboard was developed with funding from the Robert Wood Johnson Foundation and Emory University’s Woodruff Health Sciences Center. Development was also supported by the Georgia Center for Diabetes Translation Research.
-              </Header.Content>
-            </Header>
+            
           </Grid>
+        <Grid columns={2}>
+          <Grid columns={2} style = {{width : 600, marginLeft: -10}}>
 
-
-          <Grid columns={2} style = {{width : 600, marginLeft: 20}}>
             <Header as='h1' style={{fontWeight: 400, width: 600}}>
-              <Header.Content style = {{ fontSize: "18pt", paddingTop: 44, lineHeight: "22pt"}}>
-                About Team
+              <Header.Content style = {{ fontSize: "22pt", paddingTop: 44, lineHeight: "22pt"}}>
+                Team
                 <Header.Subheader style={{color: "#000000", paddingTop: 10, paddingBottom: 0, lineHeight: "24pt"}}>We are a group of epidemiologists, doctors, and software engineers from Emory University and University of Michigan.</Header.Subheader>
               </Header.Content>
             </Header>
@@ -78,8 +71,20 @@ export default function AboutUs(props){
 
               </List>
             </Grid.Column>
+          </Grid> 
 
-            <Header style={{fontWeight: 400, fontSize: "18pt", paddingBottom: 0}}>
+          
+          <Grid columns={1} style = {{width : 600, marginLeft: 80}}>
+            <Header style={{fontWeight: 400, fontSize: "22pt", paddingTop: 30}}>
+                Funding
+              <Header.Content style = {{paddingTop: 10, lineHeight: "22pt", paddingBottom: 20, fontSize: "12pt"}}>
+                The COVID-19 Health Equity Dashboard was developed with funding from the Robert Wood Johnson Foundation and Emory University’s Woodruff Health Sciences Center. Development was also supported by the Georgia Center for Diabetes Translation Research.
+              </Header.Content>
+            </Header>
+            <br/>
+            <br/>
+            <br/>
+            <Header style={{fontWeight: 400, fontSize: "22pt", paddingBottom: 0}}>
               Feedback
               <Header.Content style = {{paddingTop: 10, lineHeight: "22pt", fontSize: "12pt"}}>
                 We strive to make this a user-friendly resource for policy makers, public health actors, the public, researchers, 
@@ -87,11 +92,11 @@ export default function AboutUs(props){
                 <a href="mailto:covid19dashboard@emory.edu"> covid19dashboard@emory.edu</a>
               </Header.Content>
             </Header>
-          </Grid> 
-
-          
+          </Grid>
 
         </Grid>
+
+
         
 
         <div style={{paddingTop: '2em', fontWeight: 300}}>

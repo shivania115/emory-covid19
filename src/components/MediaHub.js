@@ -22,40 +22,35 @@ export default function DataSources(props){
 
       <Grid columns={3} style={{paddingLeft: 0}}>
         <Grid.Row columns={3} style={{width: 420, paddingRight: 0}}> 
-            <div style = {{paddingLeft: 15}}>
-              <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div style = {{paddingLeft: 40}}>
-              <iframe width="390" height="236" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div style = {{paddingLeft: 40}}>
-              <iframe width="390" height="236" src="https://www.youtube.com/embed/U-Aqx7vQocY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
-            </div>
+            
+            
+            
+            
         </Grid.Row>
         <Grid.Row columns={3} style={{width: 420, paddingBottom: 20}}> 
-            <div style = {{paddingLeft: 15}}>
-              <Header as='h2' style={{width:390, paddingLeft: 0}}>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    Dashboard Tutorial
-                    <Header.Subheader style={{fontWeight: 300, width: 390, fontSize: "14pt"}}>
-                    Date Published: June 5, 2020 <br/> <br/>
-                    Tutorial video walks you through the basics of the dashboard.
-                    </Header.Subheader>
-                  </Header.Content>
-              </Header>
+
+          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20, paddingTop: 0}}>
+            <div style = {{paddingLeft: 0, paddingBottom: 10}}>
+              <iframe width="390" height="236" src="https://www.youtube.com/embed/IEojaw9cND4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div style = {{paddingLeft: 40}}>
+            <div style = {{paddingLeft: 0}}>
               <Header as='h2' style={{width:390}}>
-                  <Header.Content style={{width:400, fontSize: "14pt", fontWeight: 400}}>
-                    COVID-19 in African American Communities
-                    <Header.Subheader style={{fontWeight: 300, width: 390, fontSize: "14pt"}}>
-                    Date Published: July 9, 2020 <br/><br/>
-                    13% of the United States population is African American, but 23% of reported COVID-19 deaths have occurred in African Americans. In Georgia, African Americans represent 32% of the state’s population but 47% of COVID-19 deaths.
+                  <Header.Content style={{width:420, fontSize: "14pt", fontWeight: 400}}>
+                    COVID-19 and Poverty-related Issues
+                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: "14pt"}}>
+                    Date Published: July 27, 2020 <br/><br/>
+                    Poverty, lack of health insurance, socioeconomic vulnerability, and housing insecurity may all contribute to higher risk of contracting COVID-19 and having severe outcomes. As the pandemic affects businesses and employment, the cycle of poverty may be reinforced by the progression of the pandemic and worsen unemployment, poverty, and related issues like insurance and housing.
                     </Header.Subheader>
                   </Header.Content>
               </Header>
             </div>
-            <div style = {{paddingLeft: 40}}>
+          </Grid.Column>
+
+          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20}}>
+            <div style = {{paddingLeft: 10, paddingBottom: 10}}>
+              <iframe width="390" height="236" src="https://www.youtube.com/embed/U-Aqx7vQocY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
+            </div>
+            <div style = {{paddingLeft: 10}}>
               <Header as='h2' style={{width:390}}>
                   <Header.Content style={{width:420, fontSize: "14pt", fontWeight: 400}}>
                     COVID-19 in SW Native American Communities
@@ -66,6 +61,41 @@ export default function DataSources(props){
                   </Header.Content>
               </Header>
             </div>
+          </Grid.Column>
+
+          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20}}>
+            <div style = {{paddingLeft: 20, paddingBottom: 10}}>
+              <iframe width="390" height="236" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div style = {{paddingLeft: 20}}>
+              <Header as='h2' style={{width:390}}>
+                  <Header.Content style={{width:400, fontSize: "14pt", fontWeight: 400}}>
+                    COVID-19 in African American Communities
+                    <Header.Subheader style={{fontWeight: 300, width: 390, fontSize: "14pt"}}>
+                    Date Published: July 9, 2020 <br/><br/>
+                    13% of the United States population is African American, but 23% of reported COVID-19 deaths have occurred in African Americans. In Georgia, African Americans represent 32% of the state’s population but 47% of COVID-19 deaths.
+                    </Header.Subheader>
+                  </Header.Content>
+              </Header>
+            </div>
+          </Grid.Column>
+
+          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20, paddingTop: 70}}>
+            <div style = {{paddingLeft: 0, paddingBottom: 10}}>
+              <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div style = {{paddingLeft: 0}}>
+              <Header as='h2' style={{width:390, paddingLeft: 0}}>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    Dashboard Tutorial
+                    <Header.Subheader style={{fontWeight: 300, width: 390, fontSize: "14pt"}}>
+                    Date Published: June 5, 2020 <br/> <br/>
+                    Tutorial video walks you through the basics of the dashboard.
+                    </Header.Subheader>
+                  </Header.Content>
+              </Header>
+            </div>
+          </Grid.Column>
 
 
         </Grid.Row>
