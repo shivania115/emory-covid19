@@ -45,7 +45,7 @@ export default function AppBar(props) {
           </Menu.Item>
           <Menu.Item 
             active={props.menu==='aboutUs'} 
-            content='About Us'
+            content='About'
             onClick={() => history.push('/about-team')}
             name='aboutUs'/>            
           <Menu.Menu position='right'>
