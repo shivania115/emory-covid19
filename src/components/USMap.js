@@ -25,7 +25,6 @@ import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 
 
-
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;

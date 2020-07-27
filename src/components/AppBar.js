@@ -25,12 +25,17 @@ export default function AppBar(props) {
             content='Home'
             onClick={() => history.push('/')}
             name='countyReport'/>
-
           <Menu.Item 
             active={props.menu==='mapState'} 
             onClick={() => history.push('/map-your-state')}
             name='mapState'>
             Map Your State
+          </Menu.Item>
+          <Menu.Item 
+            active={props.menu==='mediaHub'} 
+            onClick={() => history.push('/mediaHub')}
+            name='mediaHub'>
+            Media Hub
           </Menu.Item>
           <Menu.Item 
             active={props.menu==='dataSources'} 
@@ -40,7 +45,7 @@ export default function AppBar(props) {
           </Menu.Item>
           <Menu.Item 
             active={props.menu==='aboutUs'} 
-            content='About Us'
+            content='About'
             onClick={() => history.push('/about-team')}
             name='aboutUs'/>            
           <Menu.Menu position='right'>

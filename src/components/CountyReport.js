@@ -651,9 +651,16 @@ export default function CountyReport() {
                         return (
                           <Table.Row key={k}>
                             <Table.Cell>{varMap[k] ? varMap[k].name : k}</Table.Cell>
-                            <Table.Cell>{isNaN(v) ? v : numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
-                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" ? "" : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
-                            <Table.Cell>{isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(v) ? v : varMap[k].name === "Socioeconomic Vulnerability" || 
+                                                        varMap[k].name === "Household Composition Vulnerability" || 
+                                                        varMap[k].name === "Minority/Language Vulnerability" || 
+                                                        varMap[k].name === "Housing/Transportaion Vulnerability" ||
+                                                        varMap[k].name === "% Native American" || 
+                                                        varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(v).toFixed(1)): numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" ? "" : 
+                                                        varMap[k].name === "% Native American" || varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(1)) : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : 
+                                                        varMap[k].name === "% Native American" || varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(data['_nation'][k]).toFixed(1)) : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0))}</Table.Cell>
                           </Table.Row>
                         )
                       }
