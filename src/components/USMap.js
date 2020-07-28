@@ -178,7 +178,10 @@ export default function USMap(props) {
           }
         });
 
-        if (max > 999) {
+        if (max > 999999) {
+          max = (max/1000000).toFixed(0) + "M";
+          setLegendMax(max);
+        }else if (max > 999) {
           max = (max/1000).toFixed(0) + "K";
           setLegendMax(max);
         }else{
