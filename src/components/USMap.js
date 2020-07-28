@@ -299,6 +299,10 @@ export default function USMap(props) {
                   {_.map(legendSplit, (splitpoint, i) => {
                     if(legendSplit[i] < 1){
                       return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                    }else if(legendSplit[i] > 99999){
+                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplit[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
                     }
                     return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                   })} 
