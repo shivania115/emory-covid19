@@ -160,6 +160,8 @@ export default function StateMap(props) {
   const [positive, setPositive] = useState();
   const [pctPositive, setPctPositive] = useState();
   const [pctBedsOccupied, setPctBedsOccupied] = useState();
+  const [time, setTime] = useState();
+  const [index, setIndex] = useState();
 
 
   const [metric, setMetric] = useState('mean7daycases');
@@ -260,10 +262,10 @@ export default function StateMap(props) {
           let mortalityMA = 0;
           let caseRate = 0.1;
           let mortality = 0;
-          let t = 0;
+          let jstime = 0;
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
-
+          let index = 0;
           let percentBedsOccupied = 0;
 
           let positive = 0.1;
@@ -273,7 +275,7 @@ export default function StateMap(props) {
               countyMost = k.substring(2, 5);
               mortalityMA = v[v.length-1].mortalityMA;
             }
-            if (k.length===2 && v.length > 0 && v[v.length-1].t > t){
+            if (k.length===2 && v.length > 0){
               percentChangeCase = v[v.length-1].percent14dayDailyCases;
               caseRate = v[v.length-1].caseRateMean;
 
@@ -284,22 +286,32 @@ export default function StateMap(props) {
               percentPositive = v[v.length-1].percentPositive;
 
 
-              percentBedsOccupied = v[v.length-21].pctBedsOccupied;
-
-            
-
+              if(v[v.length-1].pctBedsOccupied === 0){
+                for (var i = v.length - 1; i >= 0; i--) {
+                  if (i ===0 ){
+                    index = 1;
+                    jstime = v[v.length-1].t;
+                    percentBedsOccupied = v[v.length-1].pctBedsOccupied;
+                  }else if (v[i].pctBedsOccupied === 0){
+                  }else{
+                    index = v.length - i;
+                    jstime = v[i].t;
+                    percentBedsOccupied = v[i].pctBedsOccupied;
+                    i = 0;
+                  }
+                }
+              }
             }
           });
 
 
           
           setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
-    
           setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
-          
           setPctPositive(percentPositive.toFixed(0) + "%");
           setPctBedsOccupied(percentBedsOccupied.toFixed(0) + "%");
-          
+          setTime(monthNames[new Date(jstime*1000).getMonth()] + " " +  new Date(jstime*1000).getDate());
+          setIndex(index);
 
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
           setMortality(numberWithCommas(mortality.toFixed(0)));
@@ -330,7 +342,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS && dataRD) {
-    console.log("yes");
+    console.log(time);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -431,8 +443,8 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-36].t }}
-                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-21].t }}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-(index+15)].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-index].t }}
                         width={252}
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
@@ -441,9 +453,9 @@ export default function StateMap(props) {
                         
                         <VictoryAxis
                           tickValues={[
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 21].t,
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 21].t,
-                            dataTS["_nation"][dataTS["_nation"].length - 21].t]}                        
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - index].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - index].t,
+                            dataTS["_nation"][dataTS["_nation"].length - index].t]}                        
                           style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         
