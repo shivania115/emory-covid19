@@ -284,7 +284,7 @@ export default function StateMap(props) {
               percentPositive = v[v.length-1].percentPositive;
 
 
-              percentBedsOccupied = v[v.length-20].pctBedsOccupied;
+              percentBedsOccupied = v[v.length-21].pctBedsOccupied;
 
             
 
@@ -431,8 +431,8 @@ export default function StateMap(props) {
             </VictoryChart>
 
             <VictoryChart theme={VictoryTheme.material}
-                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-35].t }}
-                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-20].t }}
+                        minDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-36].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-21].t }}
                         width={252}
                         height={180}       
                         padding={{left: 11, right: -1, top: 60, bottom: -0.9}}
@@ -441,9 +441,9 @@ export default function StateMap(props) {
                         
                         <VictoryAxis
                           tickValues={[
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 20].t,
-                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 20].t,
-                            dataTS["_nation"][dataTS["_nation"].length - 20].t]}                        
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3)*2 - 21].t,
+                            dataTS["_nation"][dataTS["_nation"].length - Math.round(dataTS["_nation"].length/3) - 21].t,
+                            dataTS["_nation"][dataTS["_nation"].length - 21].t]}                        
                           style={{tickLabels: {fontSize: 10}}} 
                           tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                         
