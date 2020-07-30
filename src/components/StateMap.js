@@ -346,7 +346,7 @@ export default function StateMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '6em', minWidth: '1260px'}}>
+        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
           {config &&
           <div>
           <Breadcrumb>
