@@ -182,7 +182,7 @@ export default function MapState() {
         <AppBar menu='mapState'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
           <Header as='h3'>
-            <Header.Content style={{fontWeight: 400}}>
+            <Header.Content style={{fontWeight: 400, paddingTop: 5}}>
               Side-by-Side View of Counties in&nbsp;
               <Dropdown
                 icon=''

@@ -9,13 +9,12 @@ export default function DataSources(props){
     <div>
       <AppBar menu='dataSources'/>
       <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <Header as='h2' style={{fontWeight: 400}}>
+        <Header as='h2' style={{fontWeight: 400, fontSize: "24pt", paddingTop: 15}}>
           <Header.Content>
             Data Sources and Interpretation
           </Header.Content>
         </Header>
-        <Divider hidden/>
-        <Table basic='very' style={{fontWeight: 400}}>
+        <Table basic='very' style={{fontWeight: 400, paddingTop:8}}>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell width={3}>Measure</Table.HeaderCell>
