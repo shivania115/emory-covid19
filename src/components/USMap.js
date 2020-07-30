@@ -206,7 +206,7 @@ export default function USMap(props) {
       });
 
     fetch('/data/date.json').then(res => res.json())
-      .then(x => setDate(x.date));
+      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => setStateLabels(x));
