@@ -87,6 +87,6 @@ export default function Notes(props){
       </Grid.Row>
     </Grid>
 
-
+    
     </div>);
 }

@@ -12,7 +12,7 @@ export default function DataSources(props){
         <Header as='h2' style={{fontWeight: 400, paddingLeft: 0}}>
           <Header.Content style = {{paddingTop: 20, fontSize: "24pt"}}>
             Media Hub
-            <Header.Subheader style={{fontWeight: 300, fontSize: "20pt", paddingTop: 10}}>
+            <Header.Subheader style={{fontWeight: 300, fontSize: "20pt", paddingTop: 22}}>
               Tune in for videos, podcasts, blogs, and more on COVID-19. 
             </Header.Subheader>
           </Header.Content>
