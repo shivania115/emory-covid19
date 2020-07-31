@@ -31,9 +31,25 @@ export default function DataSources(props){
 
           <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20, paddingTop: 0}}>
             <div style = {{paddingLeft: 0, paddingBottom: 10}}>
+              <iframe width="390" height="236" src="https://www.youtube.com/embed/b9jvwt0dUPQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            </div>
+            <div style = {{paddingLeft: 0}}>
+              <Header as='h2' style={{width:390}}>
+                  <Header.Content style={{width:420, fontSize: "14pt", fontWeight: 400}}>
+                    COVID-19 and Population Density
+                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: "14pt"}}>
+                    Date Published: July 30, 2020 <br/><br/>
+                    Because the virus SARS-COV-2 is transmitted through droplets, proximity to other individuals is one of the risk factors, so in places where it is harder to practice social distancing, like densely populated urban areas, we often see higher cases per capita. At the same time, there are some states where rural communities are actually the ones experiencing disproportionate infection rates, often because of local outbreaks and exacerbating underlying conditions. 
+                    </Header.Subheader>
+                  </Header.Content>
+              </Header>
+            </div>
+          </Grid.Column>
+
+          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20}}>
+            <div style = {{paddingLeft: 10, paddingBottom: 10}}>
               <iframe width="390" height="236" src="https://www.youtube.com/embed/IEojaw9cND4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div style = {{paddingLeft: 0}}>
+            <div style = {{paddingLeft: 10}}>
               <Header as='h2' style={{width:390}}>
                   <Header.Content style={{width:420, fontSize: "14pt", fontWeight: 400}}>
                     COVID-19 and Poverty-related Issues
@@ -63,11 +79,11 @@ export default function DataSources(props){
             </div>
           </Grid.Column>
 
-          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20}}>
-            <div style = {{paddingLeft: 20, paddingBottom: 10}}>
+          <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20, paddingTop:70}}>
+            <div style = {{paddingLeft: 0, paddingBottom: 10}}>
               <iframe width="390" height="236" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div style = {{paddingLeft: 20}}>
+            <div style = {{paddingLeft: 0}}>
               <Header as='h2' style={{width:390}}>
                   <Header.Content style={{width:400, fontSize: "14pt", fontWeight: 400}}>
                     COVID-19 in African American Communities
@@ -81,10 +97,10 @@ export default function DataSources(props){
           </Grid.Column>
 
           <Grid.Column rows = {2} style={{width: 420, paddingBottom: 20, paddingTop: 70}}>
-            <div style = {{paddingLeft: 0, paddingBottom: 10}}>
+            <div style = {{paddingLeft: 10, paddingBottom: 10}}>
               <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div style = {{paddingLeft: 0}}>
+            <div style = {{paddingLeft: 10}}>
               <Header as='h2' style={{width:390, paddingLeft: 0}}>
                   <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
                     Dashboard Tutorial
