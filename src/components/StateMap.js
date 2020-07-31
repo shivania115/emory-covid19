@@ -534,11 +534,11 @@ export default function StateMap(props) {
                         <VictoryLabel text="persons by race" x={130} y={30} textAnchor="middle" style={{fontSize: 21, fontFamily: 'lato'}}/>
 
                         <VictoryAxis 
-                            style={{axis: {stroke: "transparent"}, tickLabels: {fontSize: 10, fontFamily: 'lato'}}}
+                            style={{axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: 10, fontFamily: 'lato'}}}
 
                          />
                         <VictoryAxis dependentAxis 
-                          style ={{fontFamily: 'lato'}}
+                          style ={{axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, fontFamily: 'lato'}}
                           tickValues = {
                               data[stateFips]['natives'] >= 1?
 
