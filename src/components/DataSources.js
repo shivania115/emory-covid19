@@ -169,9 +169,9 @@ export default function DataSources(props){
               <Table.Cell><i>Population Density</i> is the total number of people who live in each county per square mile. </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Household Income</Table.Cell>
+              <Table.Cell>Mean Household Income</Table.Cell>
               <Table.Cell><a href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell><i>Household Income</i> measures the average total income per household in each county. These data are from 2018.</Table.Cell>
+              <Table.Cell><i>Mean Household Income</i> measures the average total income per household in each county. These data are from 2018.</Table.Cell>
             </Table.Row>            
           </Table.Body>
         </Table>
