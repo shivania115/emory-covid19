@@ -286,7 +286,7 @@ export default function StateMap(props) {
               percentPositive = v[v.length-1].percentPositive;
 
 
-              if(v[v.length-1].pctBedsOccupied === 0){
+              if(k.length===2 && v[v.length-1].pctBedsOccupied === 0){
                 for (var i = v.length - 1; i >= 0; i--) {
                   if (i ===0 ){
                     index = 1;
