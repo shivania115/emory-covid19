@@ -36,13 +36,14 @@ export default function AboutUs(props){
             <Header as='h1' style={{fontWeight: 400, width: 600}}>
               <Header.Content style = {{ fontSize: "24pt", paddingTop: 44, lineHeight: "22pt"}}>
                 Team
-                <Header.Subheader style={{color: "#000000", paddingTop: 10, paddingBottom: 0, lineHeight: "24pt"}}>We are a group of epidemiologists, doctors, and software engineers from Emory University and University of Michigan.</Header.Subheader>
+                <Header.Subheader style={{color: "#000000", paddingTop: 10, paddingBottom: 0, lineHeight: "24pt"}}>We are an interdisciplinary group of researchers, clinicians, and students with expertise in epidemiology, social determinants of health, infectious disease, chronic disease, and computer science.</Header.Subheader>
               </Header.Content>
             </Header>
             <Grid.Column>
               <List bulleted style = {{lineHeight: "18pt", fontSize: "12pt"}}>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "12pt"}}>Shivani A. Patel, PhD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "12pt"}}>K. M. Venkat Narayan, MD</List.Item>
+                <List.Item style = {{lineHeight: "18pt", fontSize: "12pt"}}>Robert F. Breiman, MD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "12pt"}}>Carlos Del Rio, MD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "12pt"}}>Mark Hutcheson, BS</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "12pt"}}>Yubin Park, PhD</List.Item>
