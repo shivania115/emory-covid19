@@ -10,6 +10,7 @@ import MediaHub from "./MediaHub";
 import DataSources from "./DataSources";
 import Privacy from "./Privacy";
 import Blog from "./Blog";
+import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -30,6 +31,9 @@ export default function App() {
           </Route>
           <Route path='/media-hub/blog/:blogTitle'>
             <Blog />
+          </Route>
+          <Route path='/media-hub/podcast/:podcastTitle'>
+            <Podcast />
           </Route>
           <Route path='/about-team'>
             <AboutUs />
