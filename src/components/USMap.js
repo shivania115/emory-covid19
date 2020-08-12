@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Dropdown, Breadcrumb, Header, List, Loader, Divider } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, List, Loader, Divider, Image } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -23,6 +23,7 @@ import Notes from './Notes';
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
+import ReactDOM from 'react-dom';
 
 
 function numberWithCommas(x) {
@@ -230,19 +231,19 @@ export default function USMap(props) {
 
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-          <Breadcrumb>
-            <Breadcrumb.Section active>United States</Breadcrumb.Section>
-            <Breadcrumb.Divider />
+          <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
+            <Breadcrumb.Section active >United States</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
           </Breadcrumb>
           <Divider hidden />
           <Grid columns={16}>
-          <div>
-            See Dashboard Guide (<a href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
-            
+          <div style={{fontSize: "14pt", paddingTop: 10, paddingBottom: 30}}>
+            See Dashboard Guide (<a style ={{color: "#397AB9"}}href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
+
           </div>
             <Grid.Row>
               <Grid.Column width={9}>
-                <Header as='h2' style={{fontWeight: 400}}>
+                <Header as='h2' style={{fontWeight: 400, fontSize: "18pt"}}>
                   <Header.Content>
                     COVID-19 is affecting every community differently.<br/>
                     Some areas are much harder-hit than others.<br/>
@@ -252,31 +253,31 @@ export default function USMap(props) {
                 </Header>
                 
 
-                <Grid.Row columns={2} style={{width: 630, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0}}>
+                <Grid.Row columns={2} style={{width: 680, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0}}>
 
                       <Dropdown
-                        icon=''
-
                         style={{background: '#fff', 
-                                fontSize: 16,
+                                fontSize: "14pt",
                                 fontWeight: 400, 
                                 theme: '#000000',
-                                width: '370px',
-                                top: '12px',
+                                width: '420px',
+                                top: '2px',
                                 left: '0px',
                                 text: "Select",
                                 borderTop: 'none',
-                                borderLeft: '1px solid #FFFFFF',
+                                borderLeft: '0px solid #FFFFFF',
                                 borderRight: '0px', 
                                 borderBottom: '0.5px solid #bdbfc1',
                                 borderRadius: 0,
                                 minHeight: '1.0em',
-                                paddingBottom: '0.0em'}}
-                        placeholder= "Average Daily COVID-19 Cases"
-                        inline
-                        search
+                                paddingRight: 0,
+                                paddingBottom: '0.5em'}}
+                        text= {metricName}
                         pointing = 'top'
+                        search 
+                        selection
                         options={metricOptions}
+                        
                         onChange={(e, { value }) => {
                           setMetric(value);
                           setMetricName(varMap[value]['name']);
@@ -287,30 +288,32 @@ export default function USMap(props) {
 
                 <svg width="260" height="80">
                   
+                  {_.map(legendSplit, (splitpoint, i) => {
+                    if(legendSplit[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                    }else if(legendSplit[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplit[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
-                  <text x={50} y={70} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={50+20 * (colorPalette.length - 1)} y={70} style={{fontSize: '0.8em'}}>High</text>
 
                   {_.map(colorPalette, (color, i) => {
                     return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
                   <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
                   <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
                   <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-
-                  {_.map(legendSplit, (splitpoint, i) => {
-                    if(legendSplit[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                    }else if(legendSplit[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplit[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
-                    }
-                    return <text key = {i} x={70 + 20 * (i)} y={37} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                  })} 
-                  <text x={50} y={37} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={170} y={37} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
                 </svg>
                 </Grid.Row>
@@ -372,22 +375,22 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Grid.Row style={{paddingTop: "11px"}}>
-                    <small style={{fontWeight: 300}}>
-                    <em>Daily Cases</em> is the average number of new positive cases for COVID-19 infection over the last seven days. <br/>
-                    <em>Daily Deaths</em> is the average number of new deaths due to confirmed or presumed COVID-19 infection over the last seven days. <br/>
-                    For a complete table of variable definition, click <a href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                    </small>
+                <Grid.Row style={{paddingTop: "59px", width: "660px"}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                    <b><em>Daily Cases</em></b> is the average number of new positive cases for <br/> COVID-19 infection over the last seven days. <br/>
+                    <b><em>Daily Deaths</em></b> is the average number of new deaths due to confirmed <br/>or presumed COVID-19 infection over the last seven days. <br/>
+                    For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                    </text>
                 </Grid.Row>
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
-                  <Header.Content style={{width : 550}}>
-                    A Snapshot of Health Disparities in <span style={{color: colorHighlight}}>{stateName}</span>
-                    <Header.Subheader style={{fontWeight: 300}}>
+                  <Header.Content style={{width : 550, fontSize: "18pt"}}>
+                    A Snapshot of Health Disparities in <b>{stateName}</b>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                       Counties with higher proportions of African American residents tend to have higher rates of death from COVID-19. 
                     </Header.Subheader>
-                    <Header.Subheader style={{fontWeight: 300}}>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                       Click on the map to explore your state and county.
                     </Header.Subheader>
                   </Header.Content>
@@ -398,12 +401,12 @@ export default function USMap(props) {
                       width={500}
                       height={400}
                       scale={{y: 'log'}}
-                      padding={{left: 65, right: 30, top: 50, bottom: 50}}>
+                      padding={{left: 65, right: 30, top: 50, bottom: 30}}>
 
                       <VictoryLegend
                         x={10} y={10}
                         orientation="horizontal"
-                        style={{labels:{ fontFamily: 'lato'}}}
+                        style={{labels:{ fontFamily: 'lato', size: "14pt"}}}
                         colorScale={["#bdbfc1", colorHighlight]}
                         data ={[
                           {name: ('Other counties in '+ 'US')}, {name: 'Counties in '+stateName}
@@ -419,27 +422,35 @@ export default function USMap(props) {
                         x='black'
                         y='covidmortalityfig'
                       />
-                      <VictoryAxis label={'% African American'} style={{axisLabel: {fontFamily: 'lato'}, tickLabels: { fontFamily: 'lato'}}}/>
+                      <VictoryAxis style={{fontSize: "14pt", axisLabel: {fontFamily: 'lato', marginTop: "50px"}, tickLabels: { fontFamily: 'lato'}}}/>
                       <VictoryAxis dependentAxis 
                         label={'COVID-19 Deaths / 100k (log-scale)'} 
-                        style={{ axisLabel: {padding: 40, fontFamily: 'lato'}, tickLabels: {fontFamily: 'lato'}}} 
+                        style={{ fontSize: "14pt", axisLabel: {padding: 40, fontFamily: 'lato'}, tickLabels: {fontFamily: 'lato'}}} 
                         tickCount={5}
                         tickFormat={(y) => (Math.round(y*100)/100)}/>
                     </VictoryChart>
                   </Grid.Row>
-                  <Grid.Row style={{paddingTop: 0, paddingLeft: 10}}>
-                    <small style={{fontWeight: 300}}>
-                    Data last updated: {date}, updated daily<br/>
-                    The chart does not contain those counties with less than 10,000 population and less than 5% African American. <br/>
-                    <a href="https://youtu.be/0eFjhnDQe6g" target="_blank" rel="noopener noreferrer"> COVID-19 in African American Communities: A Brief Overview </a> <br/>
-                    <a href="https://youtu.be/U-Aqx7vQocY" target="_blank" rel="noopener noreferrer"> COVID-19 in Southwest Native American Communities: A Brief Overview </a>
+
+                  <Grid.Row style={{left: 250, top: -30}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <b>% African American</b>
+                    </text>
+                  </Grid.Row>
+                  <Grid.Row style={{top: -30, paddingLeft: 0}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
+                      <b>Data last updated:</b> {date}, updated every week.<br/>
+                      The chart does not contain those counties with less than 10,000 population and less than 5% African American. <br/>
+                      <a style ={{color: "#397AB9", fontHeight: "18pt"}} href="https://youtu.be/0eFjhnDQe6g" target="_blank" rel="noopener noreferrer"> COVID-19 in African American Communities: A Brief Overview </a> <br/>
+                      <a style ={{color: "#397AB9", fontHeight: "18pt"}} href="https://youtu.be/U-Aqx7vQocY" target="_blank" rel="noopener noreferrer"> COVID-19 in Southwest Native American Communities: A Brief Overview </a>
                     
-                    </small>
+                    </text>
                   </Grid.Row>
                 </Grid>
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          
+
           <Notes />
         </Container>
         <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/> <b> Daily Cases</b>: {numberWithCommas(dataState[fips]['mean7daycases'].toFixed(0))} <br/> <b> Daily Deaths</b>: {numberWithCommas(dataState[fips]['mean7daydeaths'].toFixed(0))} <br/> <b>Click for county-level data.</b> </ReactTooltip>

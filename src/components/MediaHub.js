@@ -37,7 +37,7 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes'>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes </Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes'>Podcast: Dr. Carlos Del Rio on COVID-19 Equity and Outcomes </Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Published: August 10, 2020 <br/><br/>
                         Considering health equity and disparity, how will the pandemic progress? What is our current strategy? What can be and needs to be done to change the course of the pandemic? Listen to what Dr. Carlos Del Rio has to say. 
@@ -58,7 +58,7 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences">Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences">Blog: Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Published: August 7, 2020 <br/><br/>
                         With almost half of all college football players being African American, resuming the football season might put African American athletes at an occupational risk due to COVID-19. Our data highlights greater severity of COVID-19 outcomes in counties where Power Five schools are located. With that said, can a team sport like football co-exist with COVID-19?

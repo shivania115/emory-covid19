@@ -13,8 +13,9 @@ export default function AppBar(props) {
     <ErrorBoundary>
       <Menu borderless inverted fixed='top'
         style={{backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
-                backgroundSize: 'cover'}}>
-        <Container style={{width: '1290px'}}>
+                backgroundSize: 'cover',
+                fontSize: "14pt"}}>
+        <Container style={{width: '1305px'}}>
           <Menu.Item as='a' header onClick={() => history.push('/')}>
             <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
            COVID-19 Health Equity<br/>Interactive Dashboard
@@ -25,29 +26,41 @@ export default function AppBar(props) {
             content='Home'
             onClick={() => history.push('/')}
             name='countyReport'/>
+
+          <Menu.Item 
+            active={props.menu==='selectState'} 
+            onClick={() => history.push('/_nation')}
+            name='selectState'>
+            Find State
+          </Menu.Item>
+
           <Menu.Item 
             active={props.menu==='mapState'} 
-            onClick={() => history.push('/map-your-state')}
+            onClick={() => history.push('/map-state')}
             name='mapState'>
-            Map Your State
+            Map State
           </Menu.Item>
+
           <Menu.Item 
             active={props.menu==='mediaHub'} 
-            onClick={() => history.push('/mediaHub')}
+            onClick={() => history.push('/media-hub')}
             name='mediaHub'>
             Media Hub
           </Menu.Item>
+
           <Menu.Item 
             active={props.menu==='dataSources'} 
             onClick={() => history.push('/data-sources')}
             name='dataSources'>
             Data Sources &<br/>Interpretation
           </Menu.Item>
+
           <Menu.Item 
             active={props.menu==='aboutUs'} 
             content='About'
             onClick={() => history.push('/about-team')}
-            name='aboutUs'/>            
+            name='aboutUs'/>        
+
           <Menu.Menu position='right'>
             <Menu.Item as='a' header>
               <Image size='small' src='/logo_white.png' />
