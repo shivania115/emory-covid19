@@ -1,19 +1,26 @@
 import AppBar from './AppBar';
 import Notes from './Notes';
 import { useParams, useHistory } from 'react-router-dom';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { Container, Grid, List, Divider, Image, Header, Segment } from 'semantic-ui-react'
+import { Container, Grid, List, Divider, Image, Breadcrumb, Header, Segment } from 'semantic-ui-react'
+
 
 export default function AboutUs(props){
-
+  const history = useHistory();
   let {podcastTitle} = useParams();
 
   return (
     <div>
     <AppBar/>
     {podcastTitle == "Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"&&
-      <Container style={{marginTop: 128, minWidth: '1260px'}}>
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+      </Breadcrumb>
         <div width = {888}>
         
             <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>

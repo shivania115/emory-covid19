@@ -8,21 +8,21 @@ export default function AboutUs(props){
   return (
     <div>
     <AppBar/>
-      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <Header style={{fontSize: 28, fontWeight: 600}}>
+      <Container style={{marginTop: 128, minWidth: '1260px'}}>
+        <Header style={{fontSize: "24pt", fontWeight: 400}}>
           <Header.Content>
             Privacy Policy
-            <Header.Subheader style={{fontSize: 22, fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
+            <Header.Subheader style={{fontSize: "18pt", fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
             Website Privacy Statement
             </Header.Subheader>
-            <Header style={{fontSize: 14, fontWeight: 400}}>
+            <Header style={{fontSize: "14pt", fontWeight: 400, paddingTop: 0}}>
             Emory University’s COVID-19 Health Equity Dashboard (CHED) is committed to protecting your personal information and respecting your privacy. 
             In general, you can visit our website without telling us who you are or revealing information about yourself.  
             CHED uses various methods to collect certain other kinds of information including cookies, referrers, IP addresses, and system information.
             </Header>
           </Header.Content>
         </Header>
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
           <Header.Content>
             <b>Cookies: </b> Cookies are small snippets of data passed from a website to your PC as you browse the Internet that can be transferred
              back to the original site or domain with future requests from your browser. Cookies can be used in a variety of ways, including 
@@ -32,7 +32,7 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
           <Header.Content>
             <b>Referrers: </b> A referrer is the information passed along by a browser that references the Internet URL you linked from. 
             Our Internet server automatically gathers this information. CHED uses this information for site statistical analysis. 
@@ -40,7 +40,7 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
           <Header.Content>
             <b>IP Addresses: </b> Your computer uses IP addresses every time you connect to the Internet. 
             Computers on the network use your IP address to identify your computer so that data, such as the webpages you request, 
@@ -49,7 +49,7 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
           <Header.Content>
             <b>System Information: </b> System information includes time, type of browser being used, the operating system or platform, and CPU speed. 
             Your browser sends this information automatically when you are connected to a website. This information is used by CHED to 
@@ -58,7 +58,7 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
           <Header.Content>
             <b>Security: </b> While no system can provide guaranteed security, we take reasonable efforts to keep information 
             you provide to us secure, including encryption technology and physical security at the location of the server where 
@@ -66,7 +66,7 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
           <Header.Content>
             <b>Links to Other Sites: </b> The CHED website includes hyperlinks to sites maintained or controlled by others. 
             Any links to external websites is provided as a courtesy and are not an endorsement by CHED of the content or views of 
@@ -76,27 +76,27 @@ export default function AboutUs(props){
           </Header.Content>
         </Header>
 
-        <Header.Subheader style={{fontSize: 22, fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
+        <Header.Subheader style={{fontSize: "18pt", fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
             Website Disclaimer
         </Header.Subheader>
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
             CHED provides information as a service to users. This website does not constitute a legal contract between CHED and the user. 
             Content is subject to change without notice and CHED makes no guarantees, warranties, or representations, express or limited, 
             on the website’s operation, information, content, and materials.
         </Header>
 
-        <Header.Subheader style={{fontSize: 22, fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
+        <Header.Subheader style={{fontSize: "18pt", fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
             Liability
         </Header.Subheader>
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
             CHED is not liable for damages of any kind arising from the use of or reliance on any content, goods, or services available on 
             or through this website or any hyperlinked site or resource.
         </Header>
 
-        <Header.Subheader style={{fontSize: 22, fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
+        <Header.Subheader style={{fontSize: "18pt", fontWeight: 400, color: "#000000", paddingTop: "15px"}}>
             Contact Us
         </Header.Subheader>
-        <Header style={{fontSize: 14, fontWeight: 400}}>
+        <Header style={{fontSize: "14pt", fontWeight: 400}}>
             <a href="mailto:covid19dashboard@emory.edu"> covid19dashboard@emory.edu</a>
         </Header>
 

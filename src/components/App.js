@@ -11,6 +11,7 @@ import DataSources from "./DataSources";
 import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
+import NationalReport from "./NationalReport";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -26,7 +27,7 @@ export default function App() {
   return (
       <Router>
         <Switch>
-          <Route path='/map-your-state'>
+          <Route path='/map-state'>
             <MapYourState />
           </Route>
           <Route path='/media-hub/blog/:blogTitle'>
@@ -34,6 +35,9 @@ export default function App() {
           </Route>
           <Route path='/media-hub/podcast/:podcastTitle'>
             <Podcast />
+          </Route>
+          <Route path='/media-hub'>
+            <MediaHub />
           </Route>
           <Route path='/about-team'>
             <AboutUs />
@@ -43,10 +47,7 @@ export default function App() {
           </Route>
           <Route path='/data-sources'>
             <DataSources />
-          </Route>    
-          <Route path='/mediahub'>
-            <MediaHub />
-          </Route>         
+          </Route>       
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  

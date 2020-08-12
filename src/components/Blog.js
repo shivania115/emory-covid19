@@ -3,17 +3,23 @@ import Notes from './Notes';
 import { useParams, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 
-import { Container, Grid, List, Divider, Image, Header, Segment } from 'semantic-ui-react'
+import { Container, Grid, List, Divider, Image, Breadcrumb, Header, Segment } from 'semantic-ui-react'
 
 export default function AboutUs(props){
-
+  const history = useHistory();
   let {blogTitle} = useParams();
 
   return (
     <div>
     <AppBar/>
     {blogTitle == "Will_SARS-CoV-2_beat_the_Power_Five_Conferences"&&
-      <Container style={{marginTop: 128, minWidth: '1260px'}}>
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Blog</Breadcrumb.Section>
+      </Breadcrumb>
         <div width = {888}>
         
             <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
