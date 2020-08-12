@@ -517,7 +517,7 @@ export default function StateMap(props) {
 
                 <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t }}
-                            maxDomain = {{y: getMax(dataTS[stateFips], "mortalityMean").mortalityMean + 0.5}}                            
+                            maxDomain = {{y: getMax(dataTS[stateFips], "mortalityMean").mortalityMean + 0.8}}                            
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -560,7 +560,7 @@ export default function StateMap(props) {
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
-                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied").pctBedsOccupied*1.05}}
+                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied").pctBedsOccupied*1.1}}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
