@@ -69,8 +69,8 @@ const countyColor = '#f2a900';
 const stateColor = "#778899";
 const nationColor = '#b1b3b3';
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
 
 const nationName = "USA";

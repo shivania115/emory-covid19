@@ -29,8 +29,8 @@ const countyColor = '#f2a900';
 const stateColor = "#778899";
 const nationColor = '#b1b3b3';
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
 
 function numberWithCommas(x) {
@@ -46,10 +46,10 @@ function ScatterChart(props) {
   return (
     <VictoryChart
       width={450}
-      height={300}
+      height={350}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 80, right: 20, top: 50, bottom: 25}}>
+      padding={{left: 80, right: 20, top: 50, bottom: 35}}>
       {props.showLegend && <VictoryLegend
         x={10} y={10}
         orientation="horizontal"
@@ -73,16 +73,16 @@ function ScatterChart(props) {
         x={props.x}
         y={props.y}
         labels={({ datum }) => `${datum[props.y].toFixed(1)}`}
-        labelComponent={<VictoryTooltip style = {{fontFamily: 'lato', fontSize: "14pt"}} centerOffset={{ x: 20, y: 30 }} cornerRadius={4} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+        labelComponent={<VictoryTooltip style = {{fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 20, y: 30 }} cornerRadius={4} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
 
       />
-      <VictoryAxis label={props.varMap[props.x]?props.varMap[props.x].name:props.x}
+      <VictoryAxis 
         tickCount={4}
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
         tickFormat={(y) => (props.rescaleX?(Math.round(y/1000)+'k'):(Math.round(y*100)/100))} />
 
       <VictoryAxis dependentAxis label={props.varMap[props.y]?props.varMap[props.y].name:props.y} 
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, axisLabel: {padding: 40, fontFamily: 'lato', fontSize: "14pt"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, axisLabel: {padding: 40, fontFamily: 'lato', fontSize: "14pt"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
         tickCount={5}
         tickFormat={(y) => (Math.round(y*100)/100)} />
     </VictoryChart>);
@@ -105,9 +105,9 @@ function BarChart(props) {
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 165, right: 50, top: 40, bottom: 50}}
       containerComponent={<VictoryContainer responsive={false}/>}>
-      <VictoryLabel text={props.title} x={(props.width || 460)/2} y={30} textAnchor="middle" style={{fontSize: "14pt", fontFamily: 'lato'}}/>
-      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} />
-      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} />
+      <VictoryLabel text={props.title} x={(props.width || 460)/2} y={30} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato'}}/>
+      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "14px", fontFamily: 'lato'}}} />
+      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "14px", fontFamily: 'lato'}}} />
       <VictoryBar
         horizontal
         barRatio={0.8}
@@ -350,14 +350,14 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 60, top: 0, bottom: 30}}
+                  padding={{left: 50, right: 60, top: 0, bottom: 40}}
                   containerComponent={<VictoryVoronoiContainer/>}
                   
                   >
 
 
                   <VictoryAxis
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
                     tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
@@ -367,7 +367,7 @@ export default function CountyReport() {
                       dataTS["_nation"][91].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
                     tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                     />
@@ -377,7 +377,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='caserate7dayfig'
                       labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
                       }}
@@ -385,7 +385,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='caserate7dayfig'
                       labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
                       }}
@@ -393,7 +393,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='caserate7dayfig'
                       labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
                       }}
@@ -417,13 +417,13 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 60, top: 0, bottom: 30}}
+                  padding={{left: 50, right: 60, top: 0, bottom: 40}}
                   containerComponent={<VictoryVoronoiContainer/>}
                   
                   >
 
                   <VictoryAxis
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
                     tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
                       dataTS["_nation"][0].t,
@@ -432,7 +432,7 @@ export default function CountyReport() {
                       dataTS["_nation"][91].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
                     tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                     />
                   <VictoryGroup 
@@ -441,7 +441,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS["_nation"]}
                       x='t' y='covidmortality7dayfig'
                       labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
                       }}
@@ -449,7 +449,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS[stateFips]}
                       x='t' y='covidmortality7dayfig'
                       labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
                       }}
@@ -457,7 +457,7 @@ export default function CountyReport() {
                     <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                       x='t' y='covidmortality7dayfig'
                       labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                       style={{
                           data: { strokeWidth: ({ active }) => active ? 3 : 2},
                       }}
