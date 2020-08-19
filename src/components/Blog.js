@@ -115,7 +115,7 @@ export default function AboutUs(props){
                 </Header>
 
                                 <center>      <Image width='800' height='500' src='/blog images/power five/Figure 2.png' /> </center>
-                                <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}> Figure 2: COVID-19 outcomes in counties where each of the Power Five Conferences is located versus other counties where none are located. Data sources from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a></p>
+                                <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}> Figure 2: COVID-19 outcomes among counties where each of the Power Five Conference schools is located and counties where none are located. Data sources from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a></p>
 
                 <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
 
@@ -130,11 +130,11 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      Our data as of August 3, 2020 suggests that counties with the Power Five schools are more affected 
-                      by COVID-19. These counties have 23% higher COVID-19 cases per capita 
-                      and 18% higher COVID-19 deaths per capita than the rest of the country. Notably, the Atlantic Coast Conference 
+                      Our data as of August 16, 2020 suggests that counties with the Power Five schools are more affected 
+                      by COVID-19. These counties have 19% higher COVID-19 cases per capita 
+                      and 12% higher COVID-19 deaths per capita than the rest of the country. Notably, the Atlantic Coast Conference 
                       (ACC) and Southeastern Conference (SEC) schools are located in the counties most affected by COVID-19. Respectively, 
-                      these counties have approximately 27% and 52% more COVID-19 cases per capita than counties without the Power Five schools. 
+                      these counties have approximately 25% and 63% more COVID-19 cases per capita than counties without the Power Five schools. 
                       The Welch t-test demonstrates that these differences are indeed statistically significant. This raises 
                       the question of whether it would be safe to bring student-athletes back to counties that are already 
                       hard-hit by COVID-19.
