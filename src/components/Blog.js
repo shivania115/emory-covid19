@@ -115,7 +115,7 @@ export default function AboutUs(props){
                 </Header>
 
                                 <center>      <Image width='800' height='500' src='/blog images/power five/Figure 2.png' /> </center>
-                                <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}> Figure 2: COVID-19 outcomes among counties where schools in each of the Power Five Conference are located and counties where none are located. Data sources from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a></p>
+                                <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}> Figure 2: COVID-19 outcomes among counties where schools in each of the Power Five Conferences are located and counties where none are located. Data sources from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a></p>
 
                 <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
 
