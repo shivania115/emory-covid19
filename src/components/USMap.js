@@ -440,8 +440,6 @@ export default function USMap(props) {
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
                       <b>Data last updated:</b> {date}, updated every weekday.<br/>
                       The chart does not contain those counties with less than 10,000 population and less than 5% African American. <br/>
-                      <a style ={{color: "#397AB9", fontHeight: "18pt"}} href="https://youtu.be/0eFjhnDQe6g" target="_blank" rel="noopener noreferrer"> COVID-19 in African American Communities: A Brief Overview </a> <br/>
-                      <a style ={{color: "#397AB9", fontHeight: "18pt"}} href="https://youtu.be/U-Aqx7vQocY" target="_blank" rel="noopener noreferrer"> COVID-19 in Southwest Native American Communities: A Brief Overview </a>
                     
                     </text>
                   </Grid.Row>
