@@ -157,6 +157,27 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/2lWS3LGZUFU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2' style={{width:400, paddingLeft: 0}}>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      COVID-19 and Underlying Conditions
+                      <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: "14pt"}}>
+                        Date Published: July 1, 2020 <br/> <br/>
+                        Underlying conditions like having obesity or diabetes, and being over age 65, may make individuals more likely to develop severe COVID-19 infection and be at a higher risk of hospitalization and death.
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
                 <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </Grid.Row>
