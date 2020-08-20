@@ -60,7 +60,7 @@ export default function DataSources(props){
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
                       <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences">Blog: Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                        Date Published: August 7, 2020 <br/><br/>
+                        Date Edited: August 19, 2020 <br/><br/>
                         With almost half of all college football players being African American, resuming the football season might put African American athletes at an occupational risk due to COVID-19. Our data highlights greater severity of COVID-19 outcomes in counties where Power Five schools are located. With that said, can a team sport like football co-exist with COVID-19?
                       </Header.Subheader>
                     </Header.Content>
