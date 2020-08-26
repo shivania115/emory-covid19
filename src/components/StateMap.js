@@ -149,6 +149,7 @@ export default function StateMap(props) {
   const [pctBedsOccupied, setPctBedsOccupied] = useState();
   const [time, setTime] = useState();
   const [index, setIndex] = useState();
+  const [indexP, setIndexP] = useState();
 
 
   const [metric, setMetric] = useState('mean7daycases');
@@ -267,6 +268,7 @@ export default function StateMap(props) {
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
           let index = 0;
+          let indexP = 0;
           let percentBedsOccupied = 0;
 
           let positive = 0.1;
@@ -316,6 +318,22 @@ export default function StateMap(props) {
                   }
                 }
               }
+
+              if(k.length===2 && v[v.length-1].percentPositive === 0){
+                for (var i = v.length - 1; i >= 0; i--) {
+                  if (i ===0 ){
+                    indexP = 1;
+                    jstime = v[v.length-1].t;
+                    percentPositive = v[v.length-1].percentPositive;
+                  }else if (v[i].percentPositive === 0){
+                  }else{
+                    indexP = v.length - i;
+                    jstime = v[i].t;
+                    percentPositive = v[i].percentPositive;
+                    i = 0;
+                  }
+                }
+              }
             }
 
           });
@@ -337,6 +355,8 @@ export default function StateMap(props) {
           }
 
           setPctPositive(percentPositive.toFixed(0) + "%");
+          setIndexP(indexP);
+
           setPctBedsOccupied(percentBedsOccupied.toFixed(0) + "%");
           setTime(monthNames[new Date(jstime*1000).getMonth()] + " " +  new Date(jstime*1000).getDate());
           setIndex(index);
@@ -376,7 +396,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS) {
-    console.log(dataTS[stateFips].length-15);
+    console.log();
 
   return (
       <div>
@@ -559,8 +579,8 @@ export default function StateMap(props) {
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Percent Occupied Beds</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart theme={VictoryTheme.material}
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
-                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied").pctBedsOccupied*1.1}}
+                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-1-(index+15)].t }}
+                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-1-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied").pctBedsOccupied*1.1}}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -568,9 +588,9 @@ export default function StateMap(props) {
                             
                             <VictoryAxis
                               tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3)*2 - index].t,
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3) - index].t,
-                                dataTS[stateFips][dataTS[stateFips].length - index].t]}                        
+                                dataTS[stateFips][dataTS[stateFips].length-1-(index+15)].t ,
+                                dataTS[stateFips][dataTS[stateFips].length-1-(index+7)].t ,
+                                dataTS[stateFips][dataTS[stateFips].length-1-index].t]}                        
                               style={{tickLabels: {fontSize: 10}}} 
                               tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                             
@@ -599,8 +619,8 @@ export default function StateMap(props) {
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Percent Tested Positive</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart theme={VictoryTheme.material}
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t }}
-                            maxDomain = {{y: getMax(dataTS[stateFips], "positive").positive*1.05}}
+                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-1-(indexP + 15)].t }}
+                            maxDomain = {{x: dataTS[stateFips][dataTS[stateFips].length-1-indexP].t, y: getMax(dataTS[stateFips], "positive").positive*1.05}}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -609,9 +629,9 @@ export default function StateMap(props) {
                             
                             <VictoryAxis
                               tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3)*2 - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3) - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length-1].t]}                        
+                                dataTS[stateFips][dataTS[stateFips].length-1-(indexP + 15)].t, 
+                                dataTS[stateFips][dataTS[stateFips].length-1-(indexP + 7)].t,
+                                dataTS[stateFips][dataTS[stateFips].length-1-indexP].t]}                        
                               style={{tickLabels: {fontSize: 10}}} 
                               tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                             
