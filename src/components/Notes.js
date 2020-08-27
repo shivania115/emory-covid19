@@ -66,9 +66,9 @@ export default function Notes(props){
 
                   </Grid.Column>
                   <Grid.Column>
-                    <Image width='300' height='236' href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
-                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/> Dr. Carlos Del Rio speaks on COVID-19 health equity and the next steps.</text>
+                    <Image width='300' height='236' href = '/media-hub' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcasts </Header.Subheader>
+                    <text style = {{fontSize: "14pt"}}> <br/> Dr. Nneka Sederstrom and Dr. Judy Monroe on COVID-19 and equity. </text>
 
                   </Grid.Column>
                 </Grid.Row>

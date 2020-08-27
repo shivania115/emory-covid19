@@ -37,11 +37,11 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics'>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19</Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics'>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19</Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Published: August 27, 2020 <br/> 
                         Media Type: Podcast<br/><br/>
-                        Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in medicine to the forefront of clinical ethics and pandemic response conversations. We talk about how the process of change is accelerating as people are forced to have difficult but necessary reckonings with racism in medicine.                      </Header.Subheader>
+                        Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in medicine to the forefront of clinical ethics and pandemic response conversations. We talk about how the process of change is accelerating as people are forced to have difficult but necessary reckonings with racism in medicine. </Header.Subheader>
                     </Header.Content>
                 </Header>
               </div>
@@ -58,7 +58,7 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href = '/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC'>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness </Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC'>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness </Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Published: August 26, 2020 <br/> 
                         Media Type: Podcast<br/><br/>
@@ -80,7 +80,7 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes'>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes </Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes'>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes </Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Published: August 10, 2020 <br/> 
                         Media Type: Podcast<br/><br/>
@@ -102,7 +102,7 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences">Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences">Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Edited: August 19, 2020 <br/> 
                         Media Type: Blog<br/><br/>
