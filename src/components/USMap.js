@@ -238,7 +238,7 @@ export default function USMap(props) {
           <Divider hidden />
           <Grid columns={16}>
           <div style={{fontSize: "14pt", paddingTop: 10, paddingBottom: 30}}>
-            See Dashboard Guide (<a style ={{color: "#397AB9"}}href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
+            See Dashboard Guide (<a style ={{color: "#397AB9"}} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
 
           </div>
             <Grid.Row>
