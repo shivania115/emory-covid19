@@ -27,26 +27,7 @@ export default function DataSources(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/podcast images/Dr. Nneka Sederstrom.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics'>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19</Header.Content></div>
-                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                        Date Published: August 27, 2020 <br/> 
-                        Media Type: Podcast<br/><br/>
-                        Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in medicine to the forefront of clinical ethics and pandemic response conversations. We talk about how the process of change is accelerating as people are forced to have difficult but necessary reckonings with racism in medicine. </Header.Subheader>
-                    </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
+          
 
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
@@ -92,7 +73,7 @@ export default function DataSources(props){
             </Grid.Row>
           </Grid.Column>
           
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences' src='/blog images/power five/blog1cover.jpeg' />            
