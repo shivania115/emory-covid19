@@ -28,7 +28,7 @@ import configs from "./state_config.json";
 //const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
 const colorPalette = [
-        "#e1dce2",
+        "#e1dce2",                                                  
         "#d3b6cd",
         "#bf88b5", 
         "#af5194", 

@@ -38,7 +38,7 @@ export default function App() {
             <StateMap />
           </Route>
           <Route path='/'>
-            <USMap />
+            <StateMap />
           </Route>
           <Route path="*">
             <Redirect to='/'/>

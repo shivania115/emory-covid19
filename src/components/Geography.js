@@ -20,6 +20,7 @@ const Geography = ({
   function handleMouseEnter(evt) {
     setFocus(true)
     if (onMouseEnter) onMouseEnter(evt)
+    // console.log(onMouseEnter)
   }
 
   function handleMouseLeave(evt) {

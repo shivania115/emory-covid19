@@ -26,7 +26,7 @@ const makeProjection = ({
   const scl = projectionConfig.scale || null;
 
   let proj = projections[projection]().translate([width/2 + (offsetX)*scl/1000 ,
-                                              height/2 + (offsetY)*scl/1000]);
+                                              height/2 +(offsetY)*scl/1000]);
 
   const supported = [
     proj.center ? "center" : null,

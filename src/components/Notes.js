@@ -5,7 +5,7 @@ export default function Notes(props){
 
   return (
     <div style={{paddingTop: '2em', fontWeight: 300}}>
-    <Divider/>
+    {/* <Divider/>
     <Grid>
       <Grid.Row>
         <Grid.Column style={{fontSize: '1em', lineHeight: '1.5em'}}>
@@ -36,6 +36,6 @@ export default function Notes(props){
           </small>
         </Grid.Column>
       </Grid.Row>
-    </Grid>
+    </Grid> */}
     </div>);
 }
