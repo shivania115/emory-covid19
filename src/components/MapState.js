@@ -12,6 +12,7 @@ import configs from "./state_config.json";
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 
+const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
 
 const colorPalette = [
         "#e1dce2",
@@ -128,8 +129,7 @@ export default function MapState() {
           setData(coldata);
 
         });
-      setMeasureA(null);
-      setMeasureB(null);
+
       setColorScaleA(null);
       setColorScaleB(null);
     }
@@ -141,10 +141,10 @@ export default function MapState() {
       const cs = scaleQuantile()
         .domain(_.map(data[measureA], d=>d))
         .range(colorPalette);
-      let scaleMap = {}
+      let scaleMapA = {}
       _.each(data[measureA], d=>{
-        scaleMap[d] = cs(d)});
-      setColorScaleA(scaleMap);
+        scaleMapA[d] = cs(d)});
+      setColorScaleA(scaleMapA);
       
       var splitA = scaleQuantile()
         .domain(_.map(data[measureA], d=>d))
@@ -186,12 +186,12 @@ export default function MapState() {
           d=> d[measureA]))
         .range(colorPalette);
 
-        let scaleMap = {}
+        let scaleMapA = {}
         _.each(x, d=>{
           if(d[measureA] >= 0){
-          scaleMap[d[measureA]] = cs(d[measureA])}});
+          scaleMapA[d[measureA]] = cs(d[measureA])}});
       
-        setColorScaleA(scaleMap);
+        setColorScaleA(scaleMapA);
         var maxA = 0
         var minA = 100
         _.each(x, d=> { 
@@ -228,14 +228,14 @@ export default function MapState() {
   }, [measureA]);
 
   useEffect(() => {
-    if (measureB){
+    if (measureB && stateFips){
       const cs = scaleQuantile()
         .domain(_.map(data[measureB], d=>d))
         .range(colorPalette2);
-      let scaleMap = {}
+      let scaleMapB = {}
       _.each(data[measureB], d=>{
-        scaleMap[d] = cs(d)});
-      setColorScaleB(scaleMap);
+        scaleMapB[d] = cs(d)});
+      setColorScaleB(scaleMapB);
 
       var splitB = scaleQuantile()
         .domain(_.map(data[measureB], d=>d))
@@ -277,12 +277,12 @@ export default function MapState() {
           d=> d[measureB]))
         .range(colorPalette);
 
-        let scaleMap = {}
+        let scaleMapB = {}
         _.each(x, d=>{
           if(d[measureB] >= 0){
-          scaleMap[d[measureB]] = cs(d[measureB])}});
+          scaleMapB[d[measureB]] = cs(d[measureB])}});
       
-        setColorScaleB(scaleMap);
+        setColorScaleB(scaleMapB);
         var maxB = 0
         var minB = 100
         _.each(x, d=> { 
@@ -319,7 +319,6 @@ export default function MapState() {
   }, [measureB]);  
 
 
-  console.log();
   return (
       <div>
         <AppBar menu='mapState'/>
@@ -351,7 +350,7 @@ export default function MapState() {
             </Header.Content>
           </Header>
 
-          {config &&
+          
           <Grid columns={2} style={{paddingTop: '2em', minHeight: '400px'}}>
             <Grid.Row>
               <Grid.Column>
@@ -362,6 +361,7 @@ export default function MapState() {
                   </svg>
                     <Dropdown
                       style={{background: '#fff', 
+                              width: 460, 
                               fontWeight: 400, 
                               fontSize: "14pt",
                               borderTop: 'none',
@@ -375,10 +375,10 @@ export default function MapState() {
                       value={measureA}
                       options={measureOptionsA}
                       onChange={(e, { value }) => {
-                        setMeasureA(value)
+                        setMeasureA(value);
                       }}
                     />
-
+                    {measureA && legendSplitA &&
                     <svg width="450" height="110">
                             
                             {_.map(legendSplitA, (split, i) => {
@@ -409,7 +409,7 @@ export default function MapState() {
                             <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
 
                     </svg>
-
+                  }
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
@@ -423,6 +423,7 @@ export default function MapState() {
 
                     <Dropdown
                       style={{background: '#fff', 
+                              width: 460, 
                               fontWeight: 400, 
                               fontSize: "14pt",
                               borderTop: 'none',
@@ -438,10 +439,10 @@ export default function MapState() {
                       value={measureB}
                       options={measureOptionsB}
                       onChange={(e, { value }) => {
-                        setMeasureB(value)
+                        setMeasureB(value);
                       }}
                     />
-
+                    {measureB && legendSplitB &&
                     <svg width="450" height="110">
                             
                             {_.map(legendSplitB, (split, i) => {
@@ -473,7 +474,7 @@ export default function MapState() {
                             <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
 
                     </svg>
-
+                  }
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
@@ -481,15 +482,15 @@ export default function MapState() {
             <Grid.Row>
               <Grid.Column>
                 <ComposableMap projection="geoAlbersUsa" 
-                  projectionConfig={{scale:`${config.scale}`}} 
+                  projectionConfig={{scale: !config? 650:`${config.scale}`}} 
                   width={600} 
                   height={600} 
                   strokeWidth = {0.1}
                   stroke = 'black'
                   data-tip=""
-                  offsetX={config.offsetX}
-                  offsetY={config.offsetY}>
-                  <Geographies geography={config.url}>
+                  offsetX={!config? 50: config.offsetX}
+                  offsetY={!config? -120: config.offsetY}>
+                  <Geographies geography={!config? geoUrl: config.url}>
                     {({geographies}) => geographies.map(geo => 
                       <Geography 
                         key={geo.rsmKey} 
@@ -514,15 +515,15 @@ export default function MapState() {
               </Grid.Column>
               <Grid.Column>
                 <ComposableMap projection="geoAlbersUsa" 
-                  projectionConfig={{scale:`${config.scale}`}} 
+                  projectionConfig={{scale: !config? 650:`${config.scale}`}} 
                   width={600} 
                   height={600} 
                   strokeWidth = {0.1}
                   stroke = 'black'
                   data-tip=""
-                  offsetX={config.offsetX}
-                  offsetY={config.offsetY}>
-                  <Geographies geography={config.url}>
+                  offsetX={!config? 50: config.offsetX}
+                  offsetY={!config? -120: config.offsetY}>
+                  <Geographies geography={!config? geoUrl: config.url}>
                     {({geographies}) => geographies.map(geo => 
                       <Geography 
                         key={geo.rsmKey} 
@@ -548,7 +549,7 @@ export default function MapState() {
               </Grid.Column>
             </Grid.Row>  
           </Grid>
-          }
+          
           <Notes />
         </Container>
 

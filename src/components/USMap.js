@@ -377,8 +377,7 @@ export default function USMap(props) {
                 
                 <Grid.Row style={{paddingTop: "59px", width: "660px"}}>
                     <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                    <b><em>Daily Cases</em></b> is the average number of new positive cases for <br/> COVID-19 infection over the last seven days. <br/>
-                    <b><em>Daily Deaths</em></b> is the average number of new deaths due to confirmed <br/>or presumed COVID-19 infection over the last seven days. <br/>
+                    <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                     For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                     </text>
                 </Grid.Row>

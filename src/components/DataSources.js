@@ -47,30 +47,41 @@ export default function DataSources(props){
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases per 100,000</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. <br/>
-
-                        If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of cases in each county.
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. 
+                          <br/><br/>
+                          If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. 
+                          This measurement adjusts for different counties’ populations to provide a standardized point of comparison of 
+                          cases in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths per 100,000</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. <br/>
-                          If every county in the United States had 100,000 residents, this is how many would have died in each county from COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. 
+                            <br/><br/>
+                          If every county in the United States had 100,000 residents, this is how many would have died in each county from 
+                          COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison 
+                          of deaths in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Cases per 100,000</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Cases per 100,000</i> helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100,000 people. <br/>
-                  If every county in the United States had 100,000 residents, this is how many would have tested positive for COVID-19 over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of cases in each county.
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Cases per 100,000</i> helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100,000 people. 
+                          <br/><br/>
+                          If every county in the United States had 100,000 residents, this is how many would have tested positive for COVID-19 
+                          over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a 
+                          standardized point of comparison of cases in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Deaths per 100,000</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Deaths per 100,000</i> helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people. 
-                <br/>If every county in the United States had 100,000 residents, this is how many would have died from COVID-19 over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a standardized point of comparison of deaths in each county.
+                          <br/><br/>
+                          If every county in the United States had 100,000 residents, this is how many would have died from COVID-19 
+                          over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to 
+                          provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -146,6 +157,21 @@ export default function DataSources(props){
               <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>% Male</i> is the percentage of residents in each county who are male. These data are from 2018.</Table.Cell>
             </Table.Row>
+
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>COVID-19 Community Vulnerability Index (CCVI)</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://precisionforcovid.org/ccvi" target="_blank" rel="noopener noreferrer">Surgo Foundation </a> </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>The COVID-19 Community Vulnerability Index (CCVI)</i> can be used to identify the communities that may need the most support during the pandemic. CCVI scores range in value from 0 to 1, with higher scores indicating greater vulnerability.</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Residential Segregation</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.countyhealthrankings.org/explore-health-rankings/measures-data-sources/county-health-rankings-model/health-factors/social-and-economic-factors/family-social-support/residential-segregation-blackwhite" target="_blank" rel="noopener noreferrer">Robert Wood Johnson Foundation program </a> </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Residential Segregation</i> is an index of dissimilarity where higher values indicate greater degree of Black and White county residents living separately from one another in a geographic area. 
+                                                          <br/> <br/>
+                                                          The index score can be interpreted as the percentage of either Black or White residents that would have to move to different geographic areas to produce a distribution that matches that of the larger area.
+              </Table.Cell>
+            </Table.Row>
+
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Socioeconomic Vulnerability</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}> CDC’s <a style ={{color: "#397AB9"}} href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank" rel="noopener noreferrer">Social Vulnerability Index data 2018 database</a> </Table.Cell>
