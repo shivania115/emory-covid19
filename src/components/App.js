@@ -2,6 +2,7 @@
 import React from "react";
 // Components & Hooks
 import USMap from "./USMap";
+import USMapPilot from "./USMapPilot";
 import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
 import MapYourState from "./MapState";
@@ -11,7 +12,7 @@ import DataSources from "./DataSources";
 import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
-import NationalReport from "./NationalReport";
+import NationalReportPilot from "./NationalReportPilot";
 import 'semantic-ui-css/semantic.min.css'
 import {
   BrowserRouter as Router,
@@ -27,6 +28,12 @@ export default function App() {
   return (
       <Router>
         <Switch>
+          <Route path='/pilot-09-01-2020/landing-page'>
+            <USMapPilot />
+          </Route>
+          <Route path='/pilot-09-01-2020/national-report'>
+            <NationalReportPilot />
+          </Route>
           <Route path='/map-state'>
             <MapYourState />
           </Route>
