@@ -522,11 +522,11 @@ export default function USMap(props) {
                                                         x={145} y={30} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#af5194": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#487f84": ""
+                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
                                                          : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#af5194": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#487f84": ""
+                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
 
                                                       }}/>
 
