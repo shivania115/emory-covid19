@@ -634,7 +634,7 @@ export default function USMap(props) {
                                       height = {40 * (( !!raceData[fips]["Asian Alone"] && raceData[fips]["Asian Alone"][0]['caserateRace'] >= 0? 1: 0) + (!!raceData[fips]["American Natives Alone"] && raceData[fips]["American Natives Alone"][0]['caserateRace'] >= 0? 1: 0) + (!!raceData[fips]["African American Alone"] && raceData[fips]["African American Alone"][0]['caserateRace'] >= 0 ?1:0) + (!!raceData[fips]["White Alone"] && raceData[fips]["White Alone"][0]['caserateRace'] >= 0 ?1:0))}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
-                                      padding={{left: 80, right: 35, top: 12, bottom: 30}}
+                                      padding={{left: 80, right: 35, top: 12, bottom: -2}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
