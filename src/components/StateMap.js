@@ -424,7 +424,7 @@ export default function StateMap(props) {
           <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section link onClick={() => history.push('/')}>United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
-            <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
+            <Breadcrumb.Section active>{stateFips === "_nation" ? "The United States" :stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
           </Breadcrumb>
                 <div style ={{paddingTop: 26, paddingBottom: 6}}>
@@ -454,7 +454,7 @@ export default function StateMap(props) {
                                 borderRadius: 0,
                                 minHeight: '1.0em',
                                 paddingBottom: '0.5em'}}
-                        text= {"Selected State: " + stateName}
+                        text= {"Selected State: " + (stateFips === "_nation" ? "The United States": stateName)}
                         search
                         selection
                         pointing = 'top'
@@ -634,7 +634,7 @@ export default function StateMap(props) {
                               x= 't' y = 'pctBedsOccupied'
 
                             />
-                            <VictoryLabel text= {pctBedsOccupied} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? 0 :pctBedsOccupied} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
 
                 </VictoryChart>
               </div>
@@ -676,7 +676,7 @@ export default function StateMap(props) {
                               x= 't' y = 'positive'
 
                             />
-                            <VictoryLabel text= {pctPositive} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? 0 :pctPositive} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
 
                 </VictoryChart>
               </div>
