@@ -365,6 +365,7 @@ export default function CountyReport() {
                       dataTS["_nation"][30].t,
                       dataTS["_nation"][61].t,
                       dataTS["_nation"][91].t,
+                      dataTS["_nation"][122].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
@@ -430,6 +431,7 @@ export default function CountyReport() {
                       dataTS["_nation"][30].t,
                       dataTS["_nation"][61].t,
                       dataTS["_nation"][91].t,
+                      dataTS["_nation"][122].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 

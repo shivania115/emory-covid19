@@ -1181,6 +1181,7 @@ export default function StateMap(props) {
                             dataTS["_nation"][30].t,
                             dataTS["_nation"][61].t,
                             dataTS["_nation"][91].t,
+                            dataTS["_nation"][122].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
@@ -1247,6 +1248,7 @@ export default function StateMap(props) {
                             dataTS["_nation"][30].t,
                             dataTS["_nation"][61].t,
                             dataTS["_nation"][91].t,
+                            dataTS["_nation"][122].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}    
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
