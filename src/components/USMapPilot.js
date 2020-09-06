@@ -634,13 +634,13 @@ export default function USMap(props) {
                                       height = {40 * (( !!raceData[fips]["Asian Alone"] && raceData[fips]["Asian Alone"][0]['caserateRace'] >= 0? 1: 0) + (!!raceData[fips]["American Natives Alone"] && raceData[fips]["American Natives Alone"][0]['caserateRace'] >= 0? 1: 0) + (!!raceData[fips]["African American Alone"] && raceData[fips]["African American Alone"][0]['caserateRace'] >= 0 ?1:0) + (!!raceData[fips]["White Alone"] && raceData[fips]["White Alone"][0]['caserateRace'] >= 0 ?1:0))}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
-                                      padding={{left: 80, right: 35, top: 12, bottom: -2}}
+                                      padding={{left: 80, right: 35, top: 12, bottom: 1}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
                                       
                                       {"Asian Alone" in raceData[fips] && raceData[fips]["Asian Alone"][0]['caserateRace'] >= 0 &&
@@ -734,6 +734,14 @@ export default function USMap(props) {
                                       </VictoryGroup>
                         </VictoryChart>
                       }
+
+                      {stateFips && !raceData[fips]["Non-Hispanic African American"] && 
+
+                        <div style = {{marginTop: 5}}>
+                          <text x={0} y={20} style={{fontSize: '14pt', marginLeft: 60, fontWeight: 400}}> Cases per 100,000</text>
+                        </div>
+
+                      }
                     </Grid.Column>
                     <Grid.Column> 
                       {!!raceData[fips]["White Alone"] &&
@@ -753,13 +761,13 @@ export default function USMap(props) {
                                       height = {!!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ?  81 : 32 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
-                                      padding={{left: 110, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 13 : 10, bottom: -2}}
+                                      padding={{left: 110, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
 
@@ -903,6 +911,14 @@ export default function USMap(props) {
 
                         </VictoryChart>
                       }
+
+                      {stateFips && !!raceData[fips]["White Alone"] &&
+
+                        <div style = {{marginTop: 5}}>
+                          <text x={0} y={20} style={{fontSize: '14pt', marginLeft: 90, fontWeight: 400}}> Cases per 100,000</text>
+                        </div>
+
+                      }
                     </Grid.Column>
                   </Grid.Row>
                   }
@@ -922,13 +938,13 @@ export default function USMap(props) {
                                       height = {30 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
-                                      padding={{left: 110, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 12 : 10, bottom: -2}}
+                                      padding={{left: 110, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
                                         
@@ -1024,6 +1040,15 @@ export default function USMap(props) {
                                 
 
                         </VictoryChart>
+                      }
+
+
+                      {stateFips && !raceData[fips]["White Alone"] &&
+
+                        <div style = {{marginTop: 5}}>
+                          <text x={0} y={20} style={{fontSize: '14pt', marginLeft: 90, fontWeight: 400}}> Cases per 100,000</text>
+                        </div>
+
                       }
                     </Grid.Column>
                   </Grid.Row>}
