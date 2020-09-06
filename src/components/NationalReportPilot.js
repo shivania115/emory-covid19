@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Header, Grid, Loader, Divider} from 'semantic-ui-react'
+import React, { useEffect, useState, Component, createRef } from 'react'
+import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Segment, Sticky, Dropdown, Menu} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
@@ -16,7 +16,69 @@ import { VictoryChart,
   VictoryTooltip,
   VictoryVoronoiContainer
 } from 'victory';
+import { render } from 'react-dom';
 
+const options = [
+  { key: 1, text: 'Choice 1', value: 1 },
+  { key: 2, text: 'Choice 2', value: 2 },
+  { key: 3, text: 'Choice 3', value: 3 },
+]
+
+const style = <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css'/>
+
+const Placeholder = () => <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+
+class StickyExampleAdjacentContext extends Component {
+  state = {}
+
+  handleContextRef = contextRef => this.setState({ contextRef })
+
+  render() {
+    const { contextRef } = this.state
+
+    return (
+      <Grid centered style = {{width: 1230}}>
+        <Grid.Column >
+          <div ref={this.handleContextRef}>
+              <Rail position='right'>
+                <Sticky offset={130}>
+                  <br/><br/><br/><br/><br/><br/><br/><br/>
+                  
+                  <Popup position='left center' trigger={<Button style = {{borderRadius: "0px", paddingleft: -10, width: 78, textAlign: "left", fontSize: "14pt"}}>Jump to...</Button>} flowing hoverable>
+
+                    <Grid.Column row = {2}>
+                      <Grid.Column textAlign='right' >
+                        <div class="ui ordered list" style = {{fontSize: "14pt"}}>
+                          <a class="item" href= "#jump1">Return to the top</a> <br/>
+                          <a class="item" href= "#jump2">Cases/Deaths in the US Over Time</a> <br/>
+                          <a class="item" href= "#jump3">50% of Cases Comes From These States</a> <br/>
+                          <a class="item" href= "#jump4">Top 10 Counties with Most Cases/Deaths</a> <br/>
+                          <a class="item" href= "#jump5">Daily New Cases/Deaths per 100,000</a> <br/>
+                          <a class="item" href= "#jump6">Community Vulnerability Index</a> <br/>
+                          <a class="item" href= "#jump7">Residential Segregation Index</a> <br/>
+                          <a class="item" href= "#jump8">Cases by County Characteristics</a> <br/>
+                          <a class="item" href= "#jump9">Deaths by County Characteristics</a>
+                        </div> 
+                      </Grid.Column>
+                    </Grid.Column>
+                  </Popup>
+                </Sticky>
+              </Rail>
+          </div>
+        </Grid.Column>
+      </Grid>
+    )
+  }
+}
+
+const casesMagenta = [
+  "#99528c", 
+  "#633c70", 
+];
+const mortalityBlue = [
+  "#0270A1", 
+  "#024174",  
+];
 
 function numberWithCommas(x) {
     x = x.toString();
@@ -33,6 +95,7 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
 const nationColor = '#487f84';
 
 export default function ExtraFile(props) {
+
   const [data, setData] = useState();
   const [date, setDate] = useState('');
 
@@ -74,6 +137,7 @@ export default function ExtraFile(props) {
       fetch('/data/contristates.json').then(res => res.json())
         .then(x => {
           setStates50(x);
+
         });
 
       fetch('/data/topten.json').then(res => res.json())
@@ -155,22 +219,27 @@ export default function ExtraFile(props) {
   if (data && dataTS && varMap) {
     console.log();
 
-  return (
+    return (
       <div>
         <AppBar menu='nationalReport'/>
-        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+        <Container id="jump1" style={{marginTop: '8em', minWidth: '1260px'}}>
+        <div >
+          <br/><br/><br/><br/>
+        </div>
+        <div ><StickyExampleAdjacentContext/></div>
          <div>     	
           <Header as='h2' style={{color: '#487f84',textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "7em", paddingRight: "7em"}}>
             <Header.Content>
             <b> COVID-19 US Health Equity Report </b> 
              <Header.Subheader style={{fontWeight:300,fontSize:"20pt", paddingTop:16}}> 
-             <b>{date}</b>
+             <b>{monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}</b>
+              
              </Header.Subheader>
             </Header.Content>
           </Header>
         </div>
         <div style={{paddingTop:36,textAlign:'justify', fontSize:"14pt", lineHeight: "16pt",paddingBottom:30, paddingLeft: "7em", paddingRight: "7em"}}>
-        <text style={{fontFamily:'lato', fontSize: "14pt"}}>
+        <text id="jump2" style={{fontFamily:'lato', fontSize: "14pt"}}>
          The United States has reported {numberWithCommas(data['_nation']['casesfig'])} cases, the highest number of any country in the world. 
          The number of cases and deaths differ substantially across American communities. The COVID-19 US Health Equity 
          Report documents how COVID-19 cases and deaths are changing over time, geography, and demography. The report will 
@@ -212,7 +281,7 @@ export default function ExtraFile(props) {
                               tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                               />
                             <VictoryGroup 
-                                colorScale={[nationColor]}
+                                colorScale={[casesMagenta[1]]}
                             >
                                 <VictoryLine data={dataTS["_nation"]}
                                   x='t' y='caseRateMean'
@@ -230,7 +299,7 @@ export default function ExtraFile(props) {
                                 data={dataTS["_nation"]}
                                 style={{
                                   data: {
-                                    fill: nationColor
+                                    fill: casesMagenta[0]
                                   }
                                 }}
                                 x="t"
@@ -244,7 +313,14 @@ export default function ExtraFile(props) {
                         <Header as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
                             <Header.Content style={{fontSize: "14pt"}}>
                               <Header.Subheader style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                This figure shows the trend of daily COVID-19 cases in US. The bar height reflects the number of new cases per day and the line depicts 7-day moving average of daily cases in US. {numberWithCommas(dailyCases)} new COVID-19 cases were reported on {date}, with an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. We see a {percentChangeCases.includes("-")? "decreased of " + percentChangeCases.substring(1): "increased of " + percentChangeCases} in the average new cases since {dataTS['_nation'][dataTS['_nation'].length - 14].t==='n/a'?'N/A':(new Date(dataTS['_nation'][dataTS['_nation'].length - 14].t*1000).toLocaleDateString())}.
+                                This figure shows the trend of daily COVID-19 cases in US. The bar height reflects the number of 
+                                new cases per day and the line depicts 7-day moving average of daily cases in US. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
+                                an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
+                                We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
+                                the average new cases over the past 14-day period. 
+                                <br/>
+                                <br/>
+                                *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
 
                               </Header.Subheader>
                             </Header.Content>
@@ -291,7 +367,7 @@ export default function ExtraFile(props) {
                                 tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                                 />
                               <VictoryGroup 
-                                colorScale={[nationColor]}
+                                colorScale={[mortalityBlue[1]]}
                               >
                                 <VictoryLine data={dataTS["_nation"]}
                                   x='t' y='mortalityMean'
@@ -309,7 +385,7 @@ export default function ExtraFile(props) {
                                 data={dataTS["_nation"]}
                                 style={{
                                   data: {
-                                    fill: nationColor
+                                    fill: mortalityBlue[0]
                                   }
                                 }}
                                 x="t"
@@ -322,8 +398,16 @@ export default function ExtraFile(props) {
                       <Grid.Column style={{paddingTop:50, width: 1000}}>
                         <Header as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
                           <Header.Content style={{fontSize: "14pt"}}>
-                            <Header.Subheader style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                              This figure shows the trend of daily COVID-19 deaths in US. The bar height reflects the number of new deaths per day and the line depicts 7-day moving average of daily deaths in US. {dailyDeaths} new deaths associated with COVID-19 were reported on {date}, with an average of {mortalityMean} new deaths per day reported over the past 7 days We see an increase of approximately {percentChangeMortality.includes("-")? "decreased of " + percentChangeMortality.substring(1): "increased of " + percentChangeMortality} in the average new deaths since {dataTS['_nation'][dataTS['_nation'].length - 14].t==='n/a'?'N/A':(new Date(dataTS['_nation'][dataTS['_nation'].length - 14].t*1000).toLocaleDateString())}.
+                            <Header.Subheader id="jump3" style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                              This figure shows the trend of daily COVID-19 deaths in US. The bar height reflects the number of new deaths 
+                              per day and the line depicts 7-day moving average of daily deaths in US. There were {dailyDeaths} new deaths 
+                              associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
+                              an average of {mortalityMean} new deaths per day reported over the past 7 days. 
+                              We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
+                              <br/>
+                              <br/>
+                              *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
+                            
                             </Header.Subheader>
                           </Header.Content>
                         </Header>
@@ -337,24 +421,26 @@ export default function ExtraFile(props) {
         <div style={{paddingTop:'1em', paddingLeft: "7em", paddingRight: "7em"}}>
           <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: '#487f84'}}>
             <Header.Content>
-            Where are cases and deaths occurring?
+              Where are cases and deaths occurring?
               <Header.Subheader style={{color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 32, paddingRight: 30}}>
 
                 Cases and deaths attributed to COVID-19 are rapidly rising in some counties. Additionally, 
                 the geographic distribution of the hardest-hit counties is changing, with the virus shifting from 
-                the Northeast toward the Southeast and Southwest. As of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}, approximately 50% of new cases in the United States come from: <br/>
+                the Northeast toward the Southeast and Southwest.
+                Approximately 50% of new cases on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()} in 
+                the United States were attributed to {(states50[0]["statenames"].split(",")).length} states: <br/>
 
                 <br/>
-               <center> <b style = {{fontSize:"18pt"}}>{states50[0]["statenames"]}</b> </center>
+               <center> <b id="jump4" style = {{fontSize:"18pt"}}>{states50[0]["statenames"]}</b> </center>
               </Header.Subheader>
             </Header.Content>
           </Header>
         </div>
         <center><Divider style = {{width:1000}}/> </center>
         <div style={{paddingTop:'1em',paddingBottom:'1em', paddingLeft: "7em", paddingRight: "7em"}}>
-          <Header as='h2' style={{textAlign:'center',fontSize:"22pt", color: '#487f84', paddingTop: 17}}>
+          <Header as='h2' style={{textAlign:'center',fontSize:"22pt", color: '#487f84', paddingTop: 17, width: 1030, paddingLeft: 25}}>
             <Header.Content>
-              The 10 counties with most new cases and deaths per 100,000 residents since {dataTS['_nation'][dataTS['_nation'].length - 7].t==='n/a'?'N/A':(new Date(dataTS['_nation'][dataTS['_nation'].length - 7].t*1000).toLocaleDateString())}.
+              The 10 counties with most new cases and deaths per 100,000 residents <br/> since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 8].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 8].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 8].t*1000).getFullYear()}.
             </Header.Content>
           </Header>
           <Grid>
@@ -372,7 +458,7 @@ export default function ExtraFile(props) {
                     height={400}
                     domainPadding={20}
                     minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 250, right: 30, top: 20, bottom: -5}}
+                    padding={{left: 255, right: 35, top: 20, bottom: -5}}
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
@@ -399,7 +485,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: casesMagenta[1]
                         }
                       }}
                       x="key"
@@ -423,7 +509,7 @@ export default function ExtraFile(props) {
                     height={400}
                     domainPadding={20}
                     minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 250, right: 30, top: 20, bottom: -5}}
+                    padding={{left: 255, right: 35, top: 20, bottom: -5}}
                     style = {{fontSize: "14pt",fontWeight: 500, }}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
@@ -450,7 +536,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityBlue[1]
                         }
                       }}
                       x="key"
@@ -470,7 +556,7 @@ export default function ExtraFile(props) {
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
 					             This figure shows the ten counties with the greatest average new COVID-19 cases per 100,000 residents. 
-                       as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}.                   
+                       as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
 					           </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -478,9 +564,9 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 20}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
+                    <Header.Subheader id="jump5" style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
 					             This figure shows the ten counties with the greatest average new COVID-19 deaths per 100,000 residents.
-                       as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}.                   
+                       as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -532,7 +618,7 @@ export default function ExtraFile(props) {
                         height={400}       
                         padding={{left: 70, right:110, top: 20, bottom: 40}}
                         minDomain={{ x: dataTopCases[Object.keys(dataTopCases)[0]][13].t}}
-                        maxDomain = {{ y: 60}}
+                        maxDomain = {{ y: 1250}}
                         containerComponent={<VictoryVoronoiContainer/>}
                         >
 
@@ -610,7 +696,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopCases)[0].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={-5} dy={25} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={25} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopCases[Object.keys(dataTopCases)[0]][0].t, y: dataTopCases[Object.keys(dataTopCases)[0]][0].measure }]}
                           />
@@ -619,7 +705,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopCases)[1].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={0} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopCases[Object.keys(dataTopCases)[1]][0].t, y: dataTopCases[Object.keys(dataTopCases)[1]][0].measure }]}
                           />
@@ -628,7 +714,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopCases)[2].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={-5} dy={-3} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={-3} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopCases[Object.keys(dataTopCases)[2]][0].t, y: dataTopCases[Object.keys(dataTopCases)[2]][0].measure }]}
                           />
@@ -637,7 +723,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopCases)[3].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={0} dy={-5} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={-5} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopCases[Object.keys(dataTopCases)[3]][0].t, y: dataTopCases[Object.keys(dataTopCases)[3]][0].measure }]}
                           />
@@ -659,7 +745,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 30, paddingBottom: 50}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      This figure shows the 7-day average of new daily cases of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {dataTS['_nation'][dataTS['_nation'].length - 14].t==='n/a'?'N/A':(new Date(dataTS['_nation'][dataTS['_nation'].length - 14].t*1000).toLocaleDateString())}.         
+                      This figure shows the 7-day average of new daily cases of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.         
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -771,7 +857,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopMortality)[0].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={-10} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopMortality[Object.keys(dataTopMortality)[0]][0].t, y: dataTopMortality[Object.keys(dataTopMortality)[0]][0].measure }]}
                           />
@@ -780,7 +866,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopMortality)[1].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={-10} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopMortality[Object.keys(dataTopMortality)[1]][0].t, y: dataTopMortality[Object.keys(dataTopMortality)[1]][0].measure }]}
                           />
@@ -789,7 +875,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopMortality)[2].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={-10} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopMortality[Object.keys(dataTopMortality)[2]][0].t, y: dataTopMortality[Object.keys(dataTopMortality)[2]][0].measure }]}
                           />
@@ -807,7 +893,7 @@ export default function ExtraFile(props) {
                           size = {1}
                             labels={Object.keys(dataTopMortality)[4].match(/\S+/)}
                               labelComponent={
-                                <VictoryLabel dx={-10} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
+                                <VictoryLabel dx={5} dy={0} textAnchor="start" style = {{fontSize: "19px"}}/>
                               }
                             data={[{ x: dataTopMortality[Object.keys(dataTopMortality)[4]][0].t, y: dataTopMortality[Object.keys(dataTopMortality)[4]][0].measure }]}
                           />
@@ -824,21 +910,14 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 130}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-					            This figure shows the 7-day average of new daily deaths of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {dataTS['_nation'][dataTS['_nation'].length - 14].t==='n/a'?'N/A':(new Date(dataTS['_nation'][dataTS['_nation'].length - 14].t*1000).toLocaleDateString())}.				
+                    <Header.Subheader id="jump6" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+					            This figure shows the 7-day average of new daily deaths of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.				
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
               </Grid.Column>
             </Grid.Row>
         </Grid>  
-
-
-
-
-
-
-
 
         <center> <Divider style = {{width:1000}}/> </center>
         <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
@@ -855,7 +934,6 @@ export default function ExtraFile(props) {
 
                 <br/>
                 <br/>
-                (Note - Source: <a href = "https://precisionforcovid.org/ccvi">Surgo Foundation</a>)
 
               </Header.Subheader>
             </Header.Content>
@@ -897,7 +975,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: casesMagenta[1]
                         }
                       }}
                       x="key"
@@ -919,14 +997,14 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 30, paddingBottom: 50}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      US counties were grouped into 5 categories based on their CVI score.  As of {date}, we can see that counties in US with higher vulnerability index have higher COVID-19 cases per 100,000 residents as compared to counties in US with lower vulnerability index. 
+                      US counties were grouped into 5 categories based on their CVI score.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with higher vulnerability index have higher COVID-19 cases per 100,000 residents as compared to counties in US with lower vulnerability index. 
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
               </Grid.Column>
 
             <Grid.Column style={{paddingTop:10, paddingBottom:25}}>
-              <Header as='h2' style={{marginLeft: -25, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+              <Header as='h2' style={{marginLeft: 0, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                 <Header.Content>
                   Deaths per 100,000 residents by Community Vulnerability Index
                 </Header.Content>
@@ -960,7 +1038,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityBlue[1]
                         }
                       }}
                       x="key"
@@ -987,20 +1065,14 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 130}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      US counties were grouped into 5 categories based on their CVI score.  As of {date}, we can see that counties in US with higher vulnerability index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with lower vulnerability index. 
+                    <Header.Subheader id="jump7" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+                      US counties were grouped into 5 categories based on their CVI score.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with higher vulnerability index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with lower vulnerability index. 
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
               </Grid.Column>
             </Grid.Row>
         </Grid>  
-
-
-
-
-
-
 
         <center> <Divider style = {{width:1000}}/> </center>
         <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
@@ -1017,8 +1089,6 @@ export default function ExtraFile(props) {
 
                 <br/>
                 <br/>
-
-                (Note - Source: <a href = "https://www.countyhealthrankings.org/explore-health-rankings/measures-data-sources/county-health-rankings-model/health-factors/social-and-economic-factors/family-social-support/residential-segregation-blackwhite">Robert Wood Johnson Foundation program</a>)
 
               </Header.Subheader>
             </Header.Content>
@@ -1060,7 +1130,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: casesMagenta[1]
                         }
                       }}
                       x="key"
@@ -1082,7 +1152,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 30, paddingBottom: 50}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      US counties were grouped into 5 categories based on their residential segregation index.  As of {date}, we can see that counties in US with lower residential segregation index have higher COVID-19 cases per 100,000 residents as compared to counties in US with higher residential segregation index. 
+                      US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher COVID-19 cases per 100,000 residents as compared to counties in US with higher residential segregation index. 
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -1123,7 +1193,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityBlue[1]
                         }
                       }}
                       x="key"
@@ -1150,8 +1220,8 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 130}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      US counties were grouped into 5 categories based on their residential segregation index.  As of {date}, we can see that counties in US with lower residential segregation index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with higher residential segregation index. 
+                    <Header.Subheader id="jump8" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+                      US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with higher residential segregation index. 
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -1271,7 +1341,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityBlue[1]
                         }
                       }}
                       x="key"
@@ -1296,7 +1366,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 132}}>
                   <Header.Content style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-            					This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+            					This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are male. US counties were grouped into 5 categories based on the proportion of male residents. 
                       We can see that in counties with the highest proportion of male residents (highest 20%), the rate is <b>{(nationalBarChartCases['male'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000.
                       In counties with the lowest proportion of male residents (lowest 20%), the rate is <b>{(nationalBarChartCases['male'][0]['caserate7day']).toFixed(0)}</b> COVID-19 cases per 100,000.					
@@ -1308,7 +1378,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 33}}>
                   <Header.Content style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are over the age of 65. US counties were grouped into 5 categories based on the proportion of 
                       over the age of 65 residents. We can see that in counties with the highest proportion of residents over the age of 65 years (highest 20%),
                       the rate is <b>{(nationalBarChartCases['age65over'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In counties with the lowest proportion of residents over the age of 65 years (lowest 20%), 
@@ -1430,7 +1500,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 132}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are African American. US counties were grouped into 5 categories based on the proportion of 
                       African American residents. We can see that in counties with the highest proportion of African American residents (highest 20%), 
                       the rate is <b>{(nationalBarChartCases['black'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In counties with the lowest proportion of African American residents (lowest 20%),
@@ -1443,7 +1513,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 33}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are below the federal poverty line. US counties were grouped into 5 categories based on the proportion of 
                       residents in poverty. We can see that in counties with the highest proportion of residents in poverty (highest 20%),  
                       the rate is <b>{(nationalBarChartCases['poverty'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In counties with the lowest proportion of residents in poverty (lowest 20%), 
@@ -1565,7 +1635,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 132}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who have diabetes. US counties were grouped into 5 categories based on the proportion of 
                       residents with diabetes. We can see that in counties with the highest proportion of residents with diabetes (highest 20%),
                       the rate is <b>{(nationalBarChartCases['diabetes'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In counties with the lowest proportion of residents with diabetes (lowest 20%),
@@ -1578,7 +1648,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 33}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are Hispanic. US counties were grouped into 5 categories based on the proportion of 
                       Hispanic residents. We can see that in counties with the highest proportion of Hispanic residents (highest 20%),
                       the rate is <b>{(nationalBarChartCases['hispanic'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In counties with the lowest proportion of Hispanic residents (lowest 20%), 
@@ -1700,7 +1770,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 132}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who live in different types of metropolitan areas. US counties were grouped
                        into 6 categories based on metropolitan status. We can see that in small metro areas, 
                        the rate is <b>{(nationalBarChartCases['urbanrural'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In large central metros, 
@@ -1712,8 +1782,8 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 33}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                    <Header.Subheader id="jump9" style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by region of the US. US counties were grouped into 4 categories based on region. We can see that in the South, 
                       the rate is <b>{(nationalBarChartCases['region'][2]['caserate7day']).toFixed(0)}</b> cases per 100,000. In the Northeast, 
                       the rate is <b>{(nationalBarChartCases['region'][1]['caserate7day']).toFixed(0)}</b> COVID-19 cases per 100,000.					
@@ -1724,15 +1794,6 @@ export default function ExtraFile(props) {
             </Grid.Row>
           </Grid> 
         </div>
-
-
-
-
-
-
-
-
-
 
 
     <div>
@@ -1856,7 +1917,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 132}}>
                   <Header.Content style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are male. US counties were grouped into 5 categories based on the proportion of male residents. 
                       We can see that in counties with the highest proportion of male residents (highest 20%), the rate is <b>{(nationalBarChartMortality['male'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000.
                       In counties with the lowest proportion of male residents (lowest 20%), the rate is <b>{(nationalBarChartMortality['male'][0]['covidmortality7day']).toFixed(1)}</b> COVID-19 deaths per 100,000.         
@@ -1868,7 +1929,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 33}}>
                   <Header.Content style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are over the age of 65. US counties were grouped into 5 categories based on the proportion of 
                       over the age of 65 residents. We can see that in counties with the highest proportion of residents over the age of 65 years (highest 20%),
                       the rate is <b>{(nationalBarChartMortality['age65over'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In counties with the lowest proportion of residents over the age of 65 years (lowest 20%), 
@@ -1990,7 +2051,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 132}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are African American. US counties were grouped into 5 categories based on the proportion of 
                       African American residents. We can see that in counties with the highest proportion of African American residents (highest 20%), 
                       the rate is <b>{(nationalBarChartMortality['black'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In counties with the lowest proportion of African American residents (lowest 20%),
@@ -2003,7 +2064,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 33}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are below the federal poverty line. US counties were grouped into 5 categories based on the proportion of 
                       residents in poverty. We can see that in counties with the highest proportion of residents in poverty (highest 20%),  
                       the rate is <b>{(nationalBarChartMortality['poverty'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In counties with the lowest proportion of residents in poverty (lowest 20%), 
@@ -2125,7 +2186,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 132}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who have diabetes. US counties were grouped into 5 categories based on the proportion of 
                       residents with diabetes. We can see that in counties with the highest proportion of residents with diabetes (highest 20%),
                       the rate is <b>{(nationalBarChartMortality['diabetes'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In counties with the lowest proportion of residents with diabetes (lowest 20%),
@@ -2138,7 +2199,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 33}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who are Hispanic. US counties were grouped into 5 categories based on the proportion of 
                       Hispanic residents. We can see that in counties with the highest proportion of Hispanic residents (highest 20%),
                       the rate is <b>{(nationalBarChartMortality['hispanic'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In counties with the lowest proportion of Hispanic residents (lowest 20%), 
@@ -2260,7 +2321,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 132}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by proportion of county residents who live in different types of metropolitan areas. US counties were grouped
                        into 6 categories based on metropolitan status. We can see that in small metro areas, 
                        the rate is <b>{(nationalBarChartMortality['urbanrural'][4]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In large central metros, 
@@ -2273,7 +2334,7 @@ export default function ExtraFile(props) {
                 <Header as='h2' style={{fontWeight: 400, width: 450, paddingLeft: 33}}>
                   <Header.Content>
                     <Header.Subheader style={{color: '#000000', width: 450, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                      This figure shows total deaths of COVID-19 per 100,000 residents as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}. 
+                      This figure shows total deaths of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
                       Case rates are shown by region of the US. US counties were grouped into 4 categories based on region. We can see that in the South, 
                       the rate is <b>{(nationalBarChartMortality['region'][2]['covidmortality7day']).toFixed(1)}</b> deaths per 100,000. In the Northeast, 
                       the rate is <b>{(nationalBarChartMortality['region'][1]['covidmortality7day']).toFixed(1)}</b> COVID-19 deaths per 100,000.          
