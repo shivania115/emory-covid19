@@ -280,7 +280,7 @@ export default function USMap(props) {
             </Modal.Content>
 
             <Modal.Content image scrolling>
-              <Image width = {350} height = {120} src='/podcast images/Dr. Nneka Sederstrom.jpg' wrapped />
+              <Image width = {452} height = {225} src='/podcast images/Dr. Nneka Sederstrom.jpg' wrapped />
               <Modal.Description>
                 <p>
                   <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/><br/> <br/></b>
