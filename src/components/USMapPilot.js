@@ -280,13 +280,14 @@ export default function USMap(props) {
             </Modal.Content>
 
             <Modal.Content image scrolling>
-              <Image width = {350} height = {120} src='/podcast images/Dr. Nneka Sederstrom.jpg' wrapped />
+              <Image width = {452} height = {225} src='/podcast images/Dr. Nneka Sederstrom.jpg' wrapped />
               <Modal.Description>
                 <p>
                   <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/><br/> <br/></b>
 
-                  Dr. Nneka Sederstrom discusses how COVID-19 has brought issues of structural racism in medicine to the 
-                  forefront of clinical ethics and pandemic response conversations...
+                  Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
+                  medicine to the forefront of clinical ethics and pandemic response conversations. We 
+                  talk about how the process of change is accelerating as ...
                   <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">Click here for more</a>. 
                 </p>
               </Modal.Description>
