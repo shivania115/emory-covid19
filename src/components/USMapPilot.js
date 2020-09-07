@@ -265,7 +265,7 @@ export default function USMap(props) {
             <Modal.Header>Welcome to the COVID-19 Health Equity Interactive Dashboard! <br/> New updates since Sept. 1, 2020:</Modal.Header>
 
             <Modal.Content image scrolling>
-              <Image size='large' src='/modal images/national.png' wrapped />
+              <Image width = {430} height = {200}  src='/modal images/national.png' wrapped />
               <Modal.Description>
                 <p>
                   <b> National Report <br/><br/><br/> </b>
@@ -280,7 +280,20 @@ export default function USMap(props) {
             </Modal.Content>
 
             <Modal.Content image scrolling>
-              <Image size='large' src='/podcast images/JudyMonroe.jpg' wrapped />
+              <Image width = {350} height = {120} src='/podcast images/Dr. Nneka Sederstrom.jpg' wrapped />
+              <Modal.Description>
+                <p>
+                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/><br/> <br/></b>
+
+                  Dr. Nneka Sederstrom discusses how COVID-19 has brought issues of structural racism in medicine to the 
+                  forefront of clinical ethics and pandemic response conversations...
+                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">Click here for more</a>. 
+                </p>
+              </Modal.Description>
+            </Modal.Content>
+
+            <Modal.Content image scrolling>
+              <Image width = {452} height = {235}  src='/podcast images/JudyMonroe.jpg' wrapped />
               <Modal.Description>
                 <p>
                   <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/><br/> <br/></b>
@@ -293,7 +306,7 @@ export default function USMap(props) {
             </Modal.Content>
 
             <Modal.Content image scrolling>
-              <Image size='large' src='/podcast images/CarlosdelRio.jpg' wrapped />
+              <Image width = {438} height = {215}  src='/podcast images/CarlosdelRio.jpg' wrapped />
               <Modal.Description>
                 <p>
                   <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/> <br/><br/></b>

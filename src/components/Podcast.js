@@ -42,7 +42,7 @@ export default function AboutUs(props){
 
                       <p style={{textAlign:"left", fontWeight: 300}}>
 
-                      By Leanna Ehrlich on Aug. 27, 2020
+                      By Leanna Ehrlich on Sep. 7, 2020
 
                       <br/>
                       Contributors: K.M. Venkat Narayan, Shivani A. Patel
@@ -716,7 +716,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b>Dr. Carlos del Rio: [00:00:26]</b> It's just been so hard to see how how disproportionate impact this epidemic 
+                      <b>Dr. Carlos Del Rio: [00:00:26]</b> It's just been so hard to see how how disproportionate impact this epidemic 
                       has had in minority populations. We're not shocked we're not surprised because health equity in 
                       Health inequalities are...you know part of everyday everyday life right. The reality is is is 
                       it's been just a just really start to see how different the risk is to individuals how different 
@@ -734,7 +734,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b>Dr. Carlos del Rio: [00:01:57]</b> So I think if COVID tells us something is that we need to really 
+                      <b>Dr. Carlos Del Rio: [00:01:57]</b> So I think if COVID tells us something is that we need to really 
                       at the root address and and and eradicate and really begin to take seriously the racial disparities 
                       that have existed for such a long time.
 
@@ -749,7 +749,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b>Dr. Carlos del Rio: [00:02:20]</b> Well you know I think what we need to realize is that we have multiple 
+                      <b>Dr. Carlos Del Rio: [00:02:20]</b> Well you know I think what we need to realize is that we have multiple 
                       pandemics in this country. We have several pandemics and each community has to have a different approach. 
                       And we need to think about how do we involve the community. How do we really have a true community response. 
                       How do we truly have a community participation. How do we make sure the community that we work with community 
@@ -769,14 +769,14 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b>Dr. Carlos del Rio: [00:03:12]</b> So you know you're gonna go in there with a vaccine. 
+                      <b>Dr. Carlos Del Rio: [00:03:12]</b> So you know you're gonna go in there with a vaccine. 
                       It's gonna be difficult so we have to work with community to educate them and to make them understand why this is important.
 
                       <br/>
                       <br/>
                       <br/>
 
-                      <b>Dr. Carlos del Rio: [00:03:21]</b> And I think that one thing that to me is is very significant is how 
+                      <b>Dr. Carlos Del Rio: [00:03:21]</b> And I think that one thing that to me is is very significant is how 
                       you know a place like like Grady has which has responded to African-American populations and has done 
                       this for a long time. What we've seen here is we haven't seen a higher higher impact of the epidemic. 
                       I mean we have seen a higher mortality among minorities. Right. The the the outcomes have been the same. 
@@ -794,7 +794,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b> Dr. Carlos del Rio: [00:04:08]</b> They are. But you don't can't you can't ramp it up much more. 
+                      <b> Dr. Carlos Del Rio: [00:04:08]</b> They are. But you don't can't you can't ramp it up much more. 
                       The problem is you know the U.S. already is consuming 55 percent of the testing capacity of the world. 
                       So imagine if we all of a sudden consume even more. Wouldn't that be an inequity for the rest of the world. 
                       And it's just because we're not doing a good job controlling our epidemic that we need more and more testing. 
@@ -813,7 +813,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b> Dr. Carlos del Rio: [00:04:48]</b> But but that wouldn't require a national strategy which the president 
+                      <b> Dr. Carlos Del Rio: [00:04:48]</b> But but that wouldn't require a national strategy which the president 
                       from day one said it's gonna be a state strategy. And I think having a state strategy has been one of the 
                       biggest problems in our country because by having a state strategy we essentially have 50 strategies and 
                       we don't have any way to actually you know consolidate and synergize and help each other out.
@@ -829,7 +829,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b> Dr. Carlos del Rio: [00:05:21]</b> We need rapid turn around in testing and we need quick very efficient 
+                      <b> Dr. Carlos Del Rio: [00:05:21]</b> We need rapid turn around in testing and we need quick very efficient 
                       and well done contact tracing. We're not doing contact tracing the way it's supposed to be done where we're 
                       essentially are wasting what would be the benefits of contact tracing by not doing it the right way.
 

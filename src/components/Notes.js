@@ -66,9 +66,9 @@ export default function Notes(props){
 
                   </Grid.Column>
                   <Grid.Column>
-                    <Image width='300' height='236' href = '/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
+                    <Image width='300' height='236' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcasts </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/> Dr. Judy Monroe on leadership and community partnership. </text>
+                    <text style = {{fontSize: "14pt"}}> <br/> Dr. Nneka Sederstrom on COVID-19 bringing structural racism in medicine to the forefront of...</text>
 
                   </Grid.Column>
                 </Grid.Row>
