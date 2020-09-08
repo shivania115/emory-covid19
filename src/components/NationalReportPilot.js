@@ -71,13 +71,13 @@ class StickyExampleAdjacentContext extends Component {
   }
 }
 
-const casesMagenta = [
-  "#99528c", 
-  "#633c70", 
+const casesColor = [
+  "#72ABB1", 
+  "#487f84"
 ];
-const mortalityBlue = [
+const mortalityColor = [
   "#0270A1", 
-  "#024174",  
+  "#024174"
 ];
 
 function numberWithCommas(x) {
@@ -90,6 +90,9 @@ function numberWithCommas(x) {
 
 const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+];
+const fullMonthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
 
 const nationColor = '#487f84';
@@ -262,7 +265,7 @@ export default function ExtraFile(props) {
                               width={1030}
                               height={400}       
                               padding={{left: 70, right: 40, top: 18, bottom: 40}}
-                              containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/> }
+                              containerComponent={<VictoryVoronoiContainer /> }
                               >
 
                             <VictoryAxis
@@ -274,38 +277,43 @@ export default function ExtraFile(props) {
                                 dataTS["_nation"][122].t,
                                 dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
                                 style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
-                              tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
+                                tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                             <VictoryAxis dependentAxis tickCount={5}
                                 style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
 
                               tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                               />
-                            <VictoryGroup 
-                                colorScale={[casesMagenta[1]]}
-                            >
-                                <VictoryLine data={dataTS["_nation"]}
-                                  x='t' y='caseRateMean'
-                                  labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${numberWithCommas(datum.caseRateMean.toFixed(0))}`}
-                                  labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 20, y: 20 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                                  style={{
-                                     
-                                  data: {strokeWidth: ({ active }) => active ? 3 : 2},
-                                  }}
-                                />
-                            </VictoryGroup>
+
                             <VictoryGroup>
                               <VictoryBar
                                 barRatio={0.8}
                                 data={dataTS["_nation"]}
                                 style={{
                                   data: {
-                                    fill: casesMagenta[0]
+                                    fill: casesColor[0]
                                   }
                                 }}
                                 x="t"
                                 y="dailyCases"
                               />
                             </VictoryGroup>
+                            <VictoryGroup 
+                                colorScale={[casesColor[1]]}
+                            >
+                                <VictoryLine data={dataTS["_nation"]}
+                                  x='t' y='caseRateMean'
+                                  labels={({ datum }) => `${fullMonthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}` + ` \n New cases: ${numberWithCommas(datum.dailyCases.toFixed(0))} \n 7-day average: ${numberWithCommas(datum.caseRateMean.toFixed(0))}`}
+                                  labelComponent={
+                                  <VictoryTooltip 
+                                    style={{marginLeft: 100, fontWeight: 400, fontFamily: 'lato', fontSize: "19px", textAnchor: "start"}} centerOffset={{ x: 20, y: 20 }} flyoutStyle={{marginLeft: 100, borderRadius: "0px", fill: "#FFFFFF", fillOpacity: 1, stroke: "#A9A9A9", strokeWidth: 1 }}
+                                  />}
+                                  style={{
+                                    data: {strokeWidth: ({ active }) => active ? 3 : 2},
+                                  }}
+                                />
+                            </VictoryGroup>
+                            
+                            
                           </VictoryChart>
                       </Grid.Column>
 
@@ -367,7 +375,7 @@ export default function ExtraFile(props) {
                                 tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                                 />
                               <VictoryGroup 
-                                colorScale={[mortalityBlue[1]]}
+                                colorScale={[mortalityColor[1]]}
                               >
                                 <VictoryLine data={dataTS["_nation"]}
                                   x='t' y='mortalityMean'
@@ -385,7 +393,7 @@ export default function ExtraFile(props) {
                                 data={dataTS["_nation"]}
                                 style={{
                                   data: {
-                                    fill: mortalityBlue[0]
+                                    fill: mortalityColor[0]
                                   }
                                 }}
                                 x="t"
@@ -485,7 +493,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: casesMagenta[1]
+                          fill: casesColor[1]
                         }
                       }}
                       x="key"
@@ -536,7 +544,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: mortalityBlue[1]
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -975,7 +983,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: casesMagenta[1]
+                          fill: casesColor[1]
                         }
                       }}
                       x="key"
@@ -1038,7 +1046,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: mortalityBlue[1]
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -1130,7 +1138,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: casesMagenta[1]
+                          fill: casesColor[1]
                         }
                       }}
                       x="key"
@@ -1193,7 +1201,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: mortalityBlue[1]
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -1341,7 +1349,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: mortalityBlue[1]
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
