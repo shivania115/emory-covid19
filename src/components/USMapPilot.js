@@ -246,9 +246,21 @@ export default function USMap(props) {
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
         <div style={{height:150, overflow: "hidden"}}>
+          <div style = {{ paddingBottom: 8}}>
+          </div>
+          
           <div style={{height:150, overflowY:"hidden", overflowX: "auto"}}>
             <p style={{width: "200%"}}>
               <Grid>
+                <Grid.Column style={{width: 130, fontSize: "20pt", lineHeight: "24pt"}}>
+
+                  <b>The Latest on this Dashboard</b>
+                  
+                </Grid.Column>
+                <Grid.Column style={{width: 20}}>
+                  
+                </Grid.Column>
+
                 <Grid.Column style={{width: 240}}>
                   <Image width = {240} height = {130}  src='/modal images/national.png' />
                 </Grid.Column>
@@ -295,7 +307,6 @@ export default function USMap(props) {
             </p>
           </div>
         </div>
-          <Divider hidden />
           <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
