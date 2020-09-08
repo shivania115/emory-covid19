@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Modal, Button, Icon, GridColumn} from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Modal, Button, Icon} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -245,57 +245,6 @@ export default function USMap(props) {
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <div style={{height:150, overflow: "hidden"}}>
-          <div style={{height:150, overflowY:"hidden", overflowX: "auto"}}>
-            <p style={{width: "200%"}}>
-              <Grid>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/modal images/national.png' />
-                </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b> National Report <br/> <br/></b>
-
-                  The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
-                  How has the pandemic been trending? What are the most hard hit counties? 
-                  Who are the most vulnerable communities...
-                  <a href = "/national-report/pilot"> Click here for more</a>. 
-                  
-                </Grid.Column>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/podcast images/Dr. Nneka Sederstrom.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/> <br/></b>
-
-                  Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
-                  medicine to the forefront of clinical ethics and pandemic response conversations... 
-                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics"> Click here for more</a>. 
-                </Grid.Column>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/podcast images/JudyMonroe.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/> <br/></b>
-
-                  In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
-                  pandemics based on her experience as State Health...
-                  <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC"> Click here for more</a>. 
-                </Grid.Column>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/podcast images/CarlosdelRio.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/> <br/></b>
-
-                  Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
-                  What can be and needs to be done to change the course of the pandemic?
-                  <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"> Click here for more</a>. 
-                </Grid.Column>
-              </Grid>
-            </p>
-          </div>
-        </div>
-          <Divider hidden />
           <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
@@ -307,7 +256,76 @@ export default function USMap(props) {
 
           </div>
 
-            
+            <Modal
+              open = {open}
+              onClose={() => setOpen(false)}
+              onOpen={() => setOpen(true)}
+            >
+
+            <Modal.Header>Welcome to the COVID-19 Health Equity Interactive Dashboard! <br/> New updates since Sept. 1, 2020:</Modal.Header>
+
+            <Modal.Content image scrolling>
+              <Image width = {430} height = {200}  src='/modal images/national.png' wrapped />
+              <Modal.Description>
+                <p>
+                  <b> National Report <br/><br/><br/> </b>
+
+                  The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
+                  How has the pandemic been trending? What are the most hard hit counties? 
+                  Who are the most vulnerable communities?
+                  <a href = "/national-report/pilot"> Click here for more</a>. 
+
+                </p>
+              </Modal.Description>
+            </Modal.Content>
+
+            <Modal.Content image scrolling>
+              <Image width = {452} height = {225} src='/podcast images/Dr. Nneka Sederstrom.jpg' wrapped />
+              <Modal.Description>
+                <p>
+                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/><br/> <br/></b>
+
+                  Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
+                  medicine to the forefront of clinical ethics and pandemic response conversations. We 
+                  talk about how the process of change is accelerating as ...
+                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">Click here for more</a>. 
+                </p>
+              </Modal.Description>
+            </Modal.Content>
+
+            <Modal.Content image scrolling>
+              <Image width = {452} height = {235}  src='/podcast images/JudyMonroe.jpg' wrapped />
+              <Modal.Description>
+                <p>
+                  <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/><br/> <br/></b>
+
+                  In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
+                  pandemics based on her experience as State Health Commissioner of Indiana during the 2009 H1N1 pandemic...
+                  <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">Click here for more</a>. 
+                </p>
+              </Modal.Description>
+            </Modal.Content>
+
+            <Modal.Content image scrolling>
+              <Image width = {438} height = {215}  src='/podcast images/CarlosdelRio.jpg' wrapped />
+              <Modal.Description>
+                <p>
+                  <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/> <br/><br/></b>
+
+                  Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
+                  What can be and needs to be done to change the course of the pandemic? Listen to what Dr. Carlos Del Rio has to say. 
+                  <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"> Click here for more</a>. 
+                </p>
+              </Modal.Description>
+            </Modal.Content>
+
+            <Modal.Actions>
+              <Button onClick={() => setOpen(false)} primary>
+                Close <Icon name='chevron right' />
+              </Button>
+            </Modal.Actions>
+            </Modal>
+
             <Grid.Row>
               <Grid.Column width={9}>
                 <Header as='h2' style={{fontWeight: 400, fontSize: "18pt"}}>
