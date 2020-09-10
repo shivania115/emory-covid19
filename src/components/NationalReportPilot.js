@@ -995,7 +995,7 @@ export default function ExtraFile(props) {
                     <center>
                     <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                       <br/>
-                      <b>{varMap["covidmortality7dayfig"].name}</b>
+                      <b>{varMap["caserate7day"].name}</b>
                     </text>
                     </center>
                   </Header.Content>
