@@ -245,14 +245,14 @@ export default function USMap(props) {
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <div style={{height:150, overflow: "hidden"}}>
+        <div style={{height:110, overflow: "hidden"}}>
           <div style = {{ paddingBottom: 8}}>
           </div>
           
-          <div style={{height:150, overflowY:"hidden", overflowX: "auto"}}>
+          <div style={{height:110, overflowY:"hidden", overflowX: "auto"}}>
             <p style={{width: "200%"}}>
               <Grid>
-                <Grid.Column style={{width: 130, fontSize: "20pt", lineHeight: "24pt"}}>
+                <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
 
                   <b>The Latest on this Dashboard</b>
                   
@@ -261,11 +261,11 @@ export default function USMap(props) {
                   
                 </Grid.Column>
 
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/modal images/national.png' />
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {175} height = {95}  src='/modal images/national.png' />
                 </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b> National Report <br/> <br/></b>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b> National Report <br/> </b>
 
                   The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
                   How has the pandemic been trending? What are the most hard hit counties? 
@@ -273,34 +273,34 @@ export default function USMap(props) {
                   <a href = "/national-report/pilot"> Click here for more</a>. 
                   
                 </Grid.Column>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/podcast images/Dr. Nneka Sederstrom.jpg' />
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95}  src='/podcast images/Dr. Nneka Sederstrom.jpg' />
                 </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/> <br/></b>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/></b>
 
                   Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
-                  medicine to the forefront of clinical ethics and pandemic response conversations... 
+                  medicine to the forefront of clinical ethics and pandemic... 
                   <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics"> Click here for more</a>. 
                 </Grid.Column>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/podcast images/JudyMonroe.jpg' />
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95}  src='/podcast images/JudyMonroe.jpg' />
                 </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/> <br/></b>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/></b>
 
                   In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
-                  pandemics based on her experience as State Health...
+                  pandemics based on her experience as...
                   <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC"> Click here for more</a>. 
                 </Grid.Column>
-                <Grid.Column style={{width: 240}}>
-                  <Image width = {240} height = {130}  src='/podcast images/CarlosdelRio.jpg' />
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95}  src='/podcast images/CarlosdelRio.jpg' />
                 </Grid.Column>
-                <Grid.Column style={{width: 350}}>
-                  <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/> <br/></b>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/></b>
 
                   Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
-                  What can be and needs to be done to change the course of the pandemic?
+                  What can be and needs to be done to change the course of the pandemic? <br/>
                   <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"> Click here for more</a>. 
                 </Grid.Column>
               </Grid>
@@ -646,8 +646,8 @@ export default function USMap(props) {
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
-                                      <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
                                       
                                       {"Asian Alone" in raceData[fips] && raceData[fips]["Asian Alone"][0]['caserateRace'] >= 0 &&
@@ -742,13 +742,6 @@ export default function USMap(props) {
                         </VictoryChart>
                       }
 
-                      {stateFips && !raceData[fips]["Non-Hispanic African American"] && 
-
-                        <div style = {{marginTop: 5}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', marginLeft: 60, fontWeight: 400}}> Cases per 100,000</text>
-                        </div>
-
-                      }
                     </Grid.Column>
                     <Grid.Column> 
                       {!!raceData[fips]["White Alone"] &&
@@ -773,8 +766,8 @@ export default function USMap(props) {
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
-                                      <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
 
@@ -919,13 +912,7 @@ export default function USMap(props) {
                         </VictoryChart>
                       }
 
-                      {stateFips && !!raceData[fips]["White Alone"] &&
-
-                        <div style = {{marginTop: 5}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', marginLeft: 90, fontWeight: 400}}> Cases per 100,000</text>
-                        </div>
-
-                      }
+                      
                     </Grid.Column>
                   </Grid.Row>
                   }
@@ -935,7 +922,7 @@ export default function USMap(props) {
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: (20+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                       {!raceData[fips]["White Alone"] &&
                         <div style = {{marginTop: 50}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race/Ethnicity</text>
+                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race & Ethnicity</text>
                         </div>
                       }
                       {stateFips && !raceData[fips]["White Alone"] &&
@@ -950,8 +937,8 @@ export default function USMap(props) {
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
-                                      <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
                                         
@@ -1049,14 +1036,6 @@ export default function USMap(props) {
                         </VictoryChart>
                       }
 
-
-                      {stateFips && !raceData[fips]["White Alone"] &&
-
-                        <div style = {{marginTop: 5}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', marginLeft: 90, fontWeight: 400}}> Cases per 100,000</text>
-                        </div>
-
-                      }
                     </Grid.Column>
                   </Grid.Row>}
 
@@ -1066,7 +1045,7 @@ export default function USMap(props) {
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: 120}}> 
                       {Object.keys(raceData[fips]).length === 1 &&
                         <div style = {{marginTop: 50}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race/Ethnicity <br/> <br/> <br/> <br/> </text>
+                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race & Ethnicity <br/> <br/> <br/> <br/> </text>
                           <text x={100} y={20} style={{fontSize: '14pt', paddingLeft: 80, fontWeight: 400}}> None Reported</text>
                         </div>
                       }
@@ -1079,7 +1058,7 @@ export default function USMap(props) {
 
                   <Grid.Row style={{top: -30, paddingLeft: 0}}>
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
-                      {stateName} reports distribution of cases across non-Hispanic race categories, with {!!raceData[fips]["Race Missing"]? raceData[fips]["Race Missing"][0]["percentCases"] + "%":!!raceData[fips]["Ethnicity Missing"]? raceData[fips]["Ethnicity Missing"][0]["percentCases"] + "%" : !!raceData[fips]["Race & Ethnicity Missing"]? raceData[fips]["Race & Ethnicity Missing"][0]["percentCases"] + "%": "na%"} of cases of unknown {!!raceData[fips]["Race Missing"]? "race" :!!raceData[fips]["Ethnicity Missing"]? "ethnicity" : !!raceData[fips]["Race & Ethnicity Missing"]? "race/ethnicity": "race and ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more cases. Per capita is defined as per 100,000 population.
+                      {stateName} reports distribution of cases across non-Hispanic race categories, with {!!raceData[fips]["Race Missing"]? raceData[fips]["Race Missing"][0]["percentCases"] + "%":!!raceData[fips]["Ethnicity Missing"]? raceData[fips]["Ethnicity Missing"][0]["percentCases"] + "%" : !!raceData[fips]["Race & Ethnicity Missing"]? raceData[fips]["Race & Ethnicity Missing"][0]["percentCases"] + "%": "na%"} of cases of unknown {!!raceData[fips]["Race Missing"]? "race" :!!raceData[fips]["Ethnicity Missing"]? "ethnicity" : !!raceData[fips]["Race & Ethnicity Missing"]? "race & ethnicity": "race and ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more cases. Per capita is defined as per 100,000 population.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
