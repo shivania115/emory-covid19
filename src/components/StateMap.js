@@ -705,7 +705,7 @@ export default function StateMap(props) {
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
-                                      <VictoryAxis style={{ticks:{stroke: "#e5f2f7"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                      <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
                                       
@@ -820,7 +820,7 @@ export default function StateMap(props) {
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
 
-                                      <VictoryAxis style={{ticks:{stroke: "#e5f2f7"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                      <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
