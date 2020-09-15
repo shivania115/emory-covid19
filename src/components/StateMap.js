@@ -682,11 +682,13 @@ export default function StateMap(props) {
               </div>
             </Grid.Column>
             <Grid.Column rows = {2} style = {{width:235}}>
+              {stateFips !== "_nation" && 
               <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5}}> Cases by {("White Alone" in raceData[stateFips] || 
                                                                                                       "Asian Alone" in raceData[stateFips] || 
                                                                                                       "African American Alone" in raceData[stateFips] ||
                                                                                                       "American Natives Alone" in raceData[stateFips]) 
                                                                                                       && !raceData[stateFips]["Hispanic"]? "Race" : "Race & Ethnicity"}</center>
+               }
               {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 && 
                 <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/> <br/> None Reported</center>
               }
@@ -808,7 +810,8 @@ export default function StateMap(props) {
                   &nbsp;&nbsp;
                 </div>
               }
-              <Grid.Row>
+              <Grid.Row> 
+                {stateFips !== "_nation" &&
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
@@ -962,7 +965,8 @@ export default function StateMap(props) {
                                 
 
                         </VictoryChart>
-                    </Grid.Row>
+                     }
+                </Grid.Row>
               </div>
             </Grid.Column>
             </Grid.Row>
@@ -1007,7 +1011,8 @@ export default function StateMap(props) {
                 </Grid.Column>
               
             </Grid.Row>
-
+                     
+            {stateFips !== "_nation" &&
             <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                       Percent Occupied Beds updated on 07/07/2020.
@@ -1015,6 +1020,7 @@ export default function StateMap(props) {
                       {stateName} reports distribution of cases across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentCases"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentCases"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentCases"] + "%": "na%"} of cases of unknown {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more cases.
                     </text>
             </Grid.Row>
+            }
 
           </Grid>
         }
@@ -1161,6 +1167,7 @@ export default function StateMap(props) {
                   </Header.Content>
                 </Header>
                 <Grid>
+                  {stateFips !== "_nation" &&
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 19, paddingBottom: 0}}>
                      <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
 
@@ -1227,7 +1234,8 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                    </Grid.Row>
+                  </Grid.Row>}
+                  {stateFips !== "_nation" &&
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 30, paddingBottom: 0}}>
                       <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingTop: 10, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
 
@@ -1294,7 +1302,7 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                  </Grid.Row>
+                  </Grid.Row>}
                 </Grid>
               </Grid.Column>
               <Grid.Column width={5} style={{padding: 0, paddingLeft: 0}}>
