@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider} from 'semantic-ui-react'
-import Slider from '@material-ui/core/Slider';
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -21,13 +20,14 @@ import { VictoryChart,
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
-import _, { toArray } from 'lodash';
+import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import fips2county from './fips2county.json'
 import stateOptions from "./stateOptions.json";
+
+
+
 import configs from "./state_config.json";
-
-
 
 function getMax(arr, prop) {
     var max;
@@ -183,11 +183,6 @@ export default function StateMap(props) {
   const [countyOption, setCountyOption] = useState();
   
   const [delayHandler, setDelayHandler] = useState();
-  const [value, setValue] = useState([4,9]);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -403,8 +398,6 @@ export default function StateMap(props) {
           
 
           setDataTS(x);
-          
-
         });
 
       
@@ -416,13 +409,12 @@ export default function StateMap(props) {
   useEffect(() => {
     if (dataTS && dataTS[stateFips]){
       setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
-      
     }
   }, [dataTS]);
 
 
   if (data && dataTS) {
-    console.log(toArray(value));
+
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -1175,7 +1167,7 @@ export default function StateMap(props) {
                   </Header.Content>
                 </Header>
                 <Grid>
-                  {stateFips !== "_nation" && 
+                  {stateFips !== "_nation" &&
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 19, paddingBottom: 0}}>
                      <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
 
@@ -1192,8 +1184,7 @@ export default function StateMap(props) {
                         width={330}
                         height={160}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
-                        minDomain ={{x: value? dataTS["_nation"][0 + (Number(value[0]) - 4) * 30].t : dataTS["_nation"][0].t}}
-                        maxDomain = {{x: value ? dataTS["_nation"][dataTS["_nation"].length - 1 - ( 9 - Number(value[1])) * 30 ].t : dataTS["_nation"][dataTS["_nation"].length-1].t}}
+                        minDomain ={{x: dataTS["_nation"][0].t}}
                         containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/> }
                         >
                         
@@ -1243,20 +1234,7 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
-                      
                   </Grid.Row>}
-
-                  <div style={{ paddingTop: 0, width: 450 }}>
-                                    <Slider
-                                        value = {value}
-                                        onChange={handleChange}
-                                        //getAriaValueText={valuetext}
-                                        aria-labelledby="discrete-slider"
-                                        min = {4}
-                                        max = {9}
-                                        valueLabelDisplay="auto"
-                                    />
-                                    </div>
                   {stateFips !== "_nation" &&
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 30, paddingBottom: 0}}>
                       <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingTop: 10, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
