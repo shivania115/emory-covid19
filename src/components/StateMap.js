@@ -1012,12 +1012,43 @@ export default function StateMap(props) {
               
             </Grid.Row>
                      
-            {stateFips !== "_nation" &&
+            {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 &&
             <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                       Percent Occupied Beds updated on 07/07/2020.
                       <br/>
-                      {stateName} reports distribution of cases across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentCases"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentCases"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentCases"] + "%": "na%"} of cases of unknown {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more cases.
+                      {stateName} is not reporting cases by race or ethnicity.
+                    </text>
+            </Grid.Row>
+            }
+
+            {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && !!raceData[stateFips]["White Alone"] && (!raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] )
+                              &&
+            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                      Percent Occupied Beds updated on 07/07/2020.
+                      <br/>
+                      {stateName} reports cases by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more cases. Race data are known for {raceData[stateFips]["Race Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                    </text>
+            </Grid.Row>
+            }
+            {stateFips !== "_nation" && !!raceData[stateFips]["White Alone"] && !!raceData[stateFips]["White Alone"] && !(!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] )
+                              && 
+            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                      Percent Occupied Beds updated on 07/07/2020.
+                      <br/>
+                      {stateName} reports cases by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race data are known for {raceData[stateFips]["Race Missing"][0]["percentCases"] + "%"} of cases while ethnicity data are known for {raceData[stateFips]["Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                    </text>
+            </Grid.Row>
+            }
+            
+            {stateFips !== "_nation" && (!!raceData[stateFips]["Non-Hispanic African American"] || !!raceData[stateFips]["Non-Hispanic White"] )&&
+            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                      Percent Occupied Beds updated on 07/07/2020.
+                      <br/>
+                      {stateName} reports cases by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race and ethnicity data are known for {raceData[stateFips]["Race & Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
                     </text>
             </Grid.Row>
             }

@@ -1093,7 +1093,7 @@ export default function USMap(props) {
                   {stateFips && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && (!raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
-                      {stateName} reports cases by race. The chart shows race groups that constitutes at least 1% of of the state population and have 30 or more cases. Race data are missing for {raceData[fips]["Race Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                      {stateName} reports cases by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more cases. Race data are known for {raceData[fips]["Race Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
@@ -1103,7 +1103,7 @@ export default function USMap(props) {
                   {stateFips && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
-                      {stateName} reports cases by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race data are missing for {raceData[fips]["Race Missing"][0]["percentCases"] + "%"} of cases while ethnicity data are missing for {raceData[fips]["Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                      {stateName} reports cases by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race data are known for {raceData[fips]["Race Missing"][0]["percentCases"] + "%"} of cases while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
@@ -1112,7 +1112,7 @@ export default function USMap(props) {
 
                   {stateFips && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
-                      {stateName} reports cases by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race and ethnicity data are missing for {raceData[fips]["Race & Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                      {stateName} reports cases by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race and ethnicity data are known for {raceData[fips]["Race & Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
