@@ -1349,7 +1349,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: mortalityColor[1]
+                          fill: casesColor[1]
                         }
                       }}
                       x="key"
@@ -1852,7 +1852,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -1903,7 +1903,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -1986,7 +1986,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -2036,7 +2036,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -2120,7 +2120,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -2171,7 +2171,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -2257,7 +2257,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
@@ -2307,7 +2307,7 @@ export default function ExtraFile(props) {
                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                       style={{
                         data: {
-                          fill: "#487f84"
+                          fill: mortalityColor[1]
                         }
                       }}
                       x="key"
