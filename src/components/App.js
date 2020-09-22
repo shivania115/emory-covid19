@@ -2,7 +2,6 @@
 import React from "react";
 // Components & Hooks
 import USMap from "./USMap";
-import USMapPilot from "./USMapPilot";
 import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
 import MapYourState from "./MapState";
@@ -12,8 +11,11 @@ import DataSources from "./DataSources";
 import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
-import NationalReportPilot from "./NationalReportPilot";
 import 'semantic-ui-css/semantic.min.css'
+
+import USMapPilot from "./USMapPilot";
+import NationalReportPilot from "./NationalReportPilot";
+
 import {
   BrowserRouter as Router,
   Switch,

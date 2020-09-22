@@ -1025,7 +1025,7 @@ export default function StateMap(props) {
           </Grid>
         }
         { 
-          <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+          <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {stateFips === "_nation" || covidMetric.t === 'n/a' ? 'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
         }
 
         { 
@@ -1411,7 +1411,7 @@ export default function StateMap(props) {
               </Grid.Column>
 
             </Grid.Row>  
-            <span style={{color: '#73777B', fontSize: "14pt", paddingBottom: 40}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+            <span style={{color: '#73777B', fontSize: "14pt", paddingBottom: 40}}>Last updated on {stateFips === "_nation" || covidMetric.t === 'n/a' ? 'N/A' :(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
           
           </Grid>
           } 
