@@ -458,8 +458,8 @@ export default function USMap(props) {
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
-                  <Header.Content style={{width : 550, fontSize: "18pt"}}>
-                    A Snapshot of Health Disparities in <b>{stateName}</b>
+                  <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
+                    Current Cases and Deaths in <b>{stateName}</b>
                     
                   </Header.Content>
                 </Header>
@@ -507,7 +507,7 @@ export default function USMap(props) {
 
                                     />
 
-                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].caseRateMean).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].caseRateMean).toFixed(0))} x={80} y={30} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].caseRateMean).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].caseRateMean).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
@@ -516,7 +516,7 @@ export default function USMap(props) {
                                                         : 
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={30} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
@@ -526,7 +526,7 @@ export default function USMap(props) {
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
                                                         
 
-                                                        x={145} y={30} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
+                                                        x={145} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
@@ -537,9 +537,9 @@ export default function USMap(props) {
 
                                                       }}/>
 
-                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={50} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={60} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Cases"}  x={120} y={100} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Cases"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                                     
                         </VictoryChart>}
@@ -588,7 +588,7 @@ export default function USMap(props) {
                                     />
 
                                     
-                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].mortalityMean).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].mortalityMean).toFixed(0))} x={80} y={30} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].mortalityMean).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].mortalityMean).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
@@ -597,7 +597,7 @@ export default function USMap(props) {
                                                          : 
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
-                                                         "0%"} x={182} y={30} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+                                                         "0%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
 
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
@@ -606,7 +606,7 @@ export default function USMap(props) {
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
 
-                                                        x={146} y={30} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
+                                                        x={146} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
@@ -615,23 +615,30 @@ export default function USMap(props) {
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
                                                         (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
 
-                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={50} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={60} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Deaths"}  x={120} y={100} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Deaths"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                         </VictoryChart>}
                       </div>
                     
                     </Grid.Column>
+                    
                   </Grid.Row>
 
+                  <Header as='h2' style={{fontWeight: 400}}>
+                    <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
+                      A Snapshot of COVID-19 Race and Ethnicity Disparities in <b>{stateName}</b>
+                      
+                    </Header.Content>
+                  </Header>
                   
                   {!raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] &&
-                  <Grid.Row columns = {2} style = {{height: 298}}>
-                    <Grid.Column> 
+                  <Grid.Row columns = {2} style = {{height: 298, paddingBottom: 287}}>
+                    <Grid.Column > 
                       {!raceData[fips]["Non-Hispanic African American"] &&
-                        <div style = {{marginTop: 50}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race</text>
+                        <div style = {{marginTop: 10}}>
+                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Cases by Race</text>
                         </div>
                       }
                       {stateFips && !raceData[fips]["Non-Hispanic African American"] && 
@@ -647,7 +654,7 @@ export default function USMap(props) {
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
                                       
                                       {"Asian Alone" in raceData[fips] && raceData[fips]["Asian Alone"][0]['caserateRace'] >= 0 &&
@@ -664,7 +671,7 @@ export default function USMap(props) {
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                           style={{
                                             data: {
-                                              fill: "#487f84"
+                                              fill: "#004071"
                                             }
                                           }}
                                           x="key"
@@ -685,7 +692,7 @@ export default function USMap(props) {
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                           style={{
                                             data: {
-                                              fill: "#487f84"
+                                              fill: "#004071"
                                             }
                                           }}
                                           x="key"
@@ -707,7 +714,7 @@ export default function USMap(props) {
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                           style={{
                                             data: {
-                                              fill: "#487f84"
+                                              fill: "#004071"
                                             }
                                           }}
                                           x="key"
@@ -729,7 +736,7 @@ export default function USMap(props) {
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                           style={{
                                             data: {
-                                              fill: "#487f84"
+                                              fill: "#004071"
                                             }
                                           }}
                                           x="key"
@@ -741,15 +748,20 @@ export default function USMap(props) {
                                       </VictoryGroup>
                         </VictoryChart>
                       }
+                      {!raceData[fips]["Non-Hispanic African American"] &&
+                        <div style = {{marginTop: 10, textAlign: "center"}}>
+                          <text x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per 100,000 <br/> residents</text>
+                        </div>
+                      }
 
                     </Grid.Column>
                     <Grid.Column> 
                       {!!raceData[fips]["White Alone"] &&
-                        <div style = {{marginTop: 50}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Ethnicity</text>
+                        <div style = {{marginTop: 10}}>
+                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Cases by Ethnicity</text>
                           {(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
-                            <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> None Reported</text> </center>
+                            <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> Not Reported</text> </center>
 
                         }
                         </div>
@@ -767,7 +779,7 @@ export default function USMap(props) {
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
 
@@ -787,7 +799,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -809,7 +821,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -832,7 +844,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -854,7 +866,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -876,7 +888,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -897,7 +909,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -911,6 +923,12 @@ export default function USMap(props) {
 
                         </VictoryChart>
                       }
+                      {!!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
+                              && 
+                        <div style = {{marginTop: 10, textAlign: "center", width: 300}}>
+                          <text style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Cases per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</text>
+                        </div>
+                      }
 
                       
                     </Grid.Column>
@@ -919,9 +937,9 @@ export default function USMap(props) {
 
                   {(!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
                   <Grid.Row columns = {1}>
-                    <Grid.Column style = {{ marginLeft : 110, paddingBottom: (20+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
-                      {!raceData[fips]["White Alone"] &&
-                        <div style = {{marginTop: 50}}>
+                    <Grid.Column style = {{ marginLeft : 110, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
+                      {stateFips && !raceData[fips]["White Alone"] &&
+                        <div style = {{marginTop: 10}}>
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race & Ethnicity</text>
                         </div>
                       }
@@ -938,7 +956,7 @@ export default function USMap(props) {
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
                                         
@@ -956,7 +974,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -978,7 +996,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -1000,7 +1018,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -1021,7 +1039,7 @@ export default function USMap(props) {
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
                                             style={{
                                               data: {
-                                                fill: "#487f84"
+                                                fill: "#004071"
                                               }
                                             }}
                                             x="key"
@@ -1035,6 +1053,11 @@ export default function USMap(props) {
 
                         </VictoryChart>
                       }
+                      {stateFips && !raceData[fips]["White Alone"] &&
+                        <div style = {{marginTop: 10}}>
+                          <text style={{fontSize: '14pt', marginLeft: 90, fontWeight: 400}}> Cases per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;residents</text>
+                        </div>
+                      }
 
                     </Grid.Column>
                   </Grid.Row>}
@@ -1042,11 +1065,11 @@ export default function USMap(props) {
                   {Object.keys(raceData[fips]).length === 1 &&
 
                     <Grid.Row columns = {1}>
-                    <Grid.Column style = {{ marginLeft : 110, paddingBottom: 120}}> 
+                    <Grid.Column style = {{ marginLeft : 110, paddingBottom: 123}}> 
                       {Object.keys(raceData[fips]).length === 1 &&
                         <div style = {{marginTop: 50}}>
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race & Ethnicity <br/> <br/> <br/> <br/> </text>
-                          <text x={100} y={20} style={{fontSize: '14pt', paddingLeft: 80, fontWeight: 400}}> None Reported</text>
+                          <text style={{fontSize: '14pt', paddingLeft: 100, fontWeight: 400}}> Not Reported</text>
                         </div>
                       }
                       
@@ -1057,13 +1080,45 @@ export default function USMap(props) {
                   }
 
                   <Grid.Row style={{top: -30, paddingLeft: 0}}>
+                  
+                  {Object.keys(raceData[fips]).length === 1 &&
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
-                      {stateName} reports distribution of cases across non-Hispanic race categories, with {!!raceData[fips]["Race Missing"]? raceData[fips]["Race Missing"][0]["percentCases"] + "%":!!raceData[fips]["Ethnicity Missing"]? raceData[fips]["Ethnicity Missing"][0]["percentCases"] + "%" : !!raceData[fips]["Race & Ethnicity Missing"]? raceData[fips]["Race & Ethnicity Missing"][0]["percentCases"] + "%": "na%"} of cases of unknown {!!raceData[fips]["Race Missing"]? "race" :!!raceData[fips]["Ethnicity Missing"]? "ethnicity" : !!raceData[fips]["Race & Ethnicity Missing"]? "race & ethnicity": "race and ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more cases. Per capita is defined as per 100,000 population.
+                      {stateName} is not reporting cases by race or ethnicity.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
-                    </text>
+                    </text>}
+
+                  {stateFips && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && (!raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
+                              && 
+                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
+                      {stateName} reports cases by race. The chart shows race groups that constitutes at least 1% of of the state population and have 30 or more cases. Race data are missing for {raceData[fips]["Race Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                      <br/>
+                      <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                    
+                    </text>}
+
+                  {stateFips && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
+                              && 
+                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
+                      {stateName} reports cases by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race data are missing for {raceData[fips]["Race Missing"][0]["percentCases"] + "%"} of cases while ethnicity data are missing for {raceData[fips]["Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                      <br/>
+                      <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                    
+                    </text>}
+
+                  {stateFips && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
+                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
+                      {stateName} reports cases by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more cases. Race and ethnicity data are missing for {raceData[fips]["Race & Ethnicity Missing"][0]["percentCases"] + "%"} of cases in {stateName}.
+                      <br/>
+                      <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                    
+                    </text>}
+
                   </Grid.Row>
                 </Grid>
               </Grid.Column>
