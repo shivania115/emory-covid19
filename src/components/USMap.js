@@ -378,7 +378,7 @@ export default function USMap(props) {
                 <Grid.Row style={{paddingTop: "59px", width: "660px"}}>
                     <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                    For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                    For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                     </text>
                 </Grid.Row>
               </Grid.Column>

@@ -1180,9 +1180,9 @@ export default function StateMap(props) {
                 </ComposableMap>
 
                 <Grid.Row style={{paddingTop: "65px", width: "420px"}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt", width: "420px"}}>
                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                    For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                    For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                     </text>
                 </Grid.Row>
               </Grid.Column>
