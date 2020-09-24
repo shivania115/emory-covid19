@@ -245,11 +245,11 @@ export default function USMap(props) {
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <div style={{height:110, overflow: "hidden"}}>
+        <div style={{height:130, overflow: "hidden"}}>
           <div style = {{ paddingBottom: 8}}>
           </div>
           
-          <div style={{height:110, overflowY:"hidden", overflowX: "auto"}}>
+          <div style={{height:130, overflowY:"hidden", overflowX: "auto"}}>
             <p style={{width: "200%"}}>
               <Grid>
                 <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>

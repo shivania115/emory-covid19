@@ -560,7 +560,7 @@ export default function StateMap(props) {
 
                 <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t }}
-                            maxDomain = {{y: getMax(dataTS[stateFips], "mortalityMean").mortalityMean + 0.8}}                            
+                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "mortalityMean", (dataTS[stateFips].length-15)).mortalityMean*1.05}}                            
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -644,7 +644,7 @@ export default function StateMap(props) {
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(indexP + 15)].t }}
-                            maxDomain = {{x: dataTS[stateFips][dataTS[stateFips].length-indexP].t, y: getMax(dataTS[stateFips], "positive").positive*1.05}}
+                            maxDomain = {{x: dataTS[stateFips][dataTS[stateFips].length-indexP].t, y: getMaxRange(dataTS[stateFips], "positive", (dataTS[stateFips].length-15)).positive*1.05}}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -811,22 +811,26 @@ export default function StateMap(props) {
                 </div>
               }
               <Grid.Row> 
-                {stateFips !== "_nation" &&
+                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && (!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) 
+                && 
+                <center style= {{height: 64}}> <text style={{fontSize: '14pt', lineHeight: "14pt"}}> <br/>Ethnicity Not Reported</text> </center>
+                
+                
+                }
+                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && !(!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) &&
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
                                       height = {(!!raceData[stateFips]["African American Alone"] + !!raceData[stateFips]["American Natives Alone"] + !!raceData[stateFips]["Asian Alone"] + !!raceData[stateFips]["White Alone"] ) === 2? 88 : stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1 ? 64: 180}
                                       domainPadding={20}
-                                      minDomain={{y: props.ylog?1:0}}
                                       padding={{left: 90, right: 35, top: !!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["Non Hispanic"] ? 12 : 10, bottom: -2}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
-
+                  
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                                      
-                                        <VictoryGroup>
+                                      <VictoryGroup>
 
                                         {!!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["White Alone"] && raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] >= 0 &&
                                           <VictoryBar
