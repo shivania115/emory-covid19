@@ -313,7 +313,7 @@ export default function CountyReport() {
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.mortality===null || countyMetric.mortality < 0?'0':numberWithCommas(parseFloat(countyMetric.mortality).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.mortalityMean===null || countyMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(countyMetric.mortalityMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.covidmortality7dayfig===null || countyMetric.covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(countyMetric.covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> Deaths : Cases </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.cfr===null || countyMetric.cfr < 0?'0':numberWithCommas(parseFloat(countyMetric.cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
 
                   </Table.Row>
                   <Table.Row textAlign = 'center'>
