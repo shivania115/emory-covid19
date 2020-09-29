@@ -27,7 +27,30 @@ export default function DataSources(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='236' href = '/media-hub/blog/underlyingConditions' src='/blog images/underlying/underlying_1.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/underlyingConditions">Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Edited: September 28, 2020 <br/> 
+                        Media Type: Blog<br/><br/>
+                        Underlying conditions like having obesity or diabetes, and being over age 65, may make individuals more likely to develop severe COVID-19 infection and be at a higher risk of hospitalization and death. For example, 42% of US adults have obesity, which may lead to higher mortality among those with COVID-19. 
+
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/podcast images/Dr. Nneka Sederstrom.jpg' />            
@@ -71,7 +94,7 @@ export default function DataSources(props){
             </Grid.Row>
           </Grid.Column>
 
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='300' href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes' src='/podcast images/CarlosdelRio.jpg' />            
@@ -118,7 +141,7 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/b9jvwt0dUPQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/b9jvwt0dUPQ" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>            
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -140,7 +163,7 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/IEojaw9cND4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/IEojaw9cND4" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -162,7 +185,7 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop:70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/U-Aqx7vQocY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/U-Aqx7vQocY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>        
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -185,7 +208,7 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop:70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -207,7 +230,7 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/2lWS3LGZUFU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/2lWS3LGZUFU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -229,7 +252,7 @@ export default function DataSources(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>

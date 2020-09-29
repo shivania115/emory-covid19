@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Modal, Button, Icon, GridColumn} from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -120,7 +120,7 @@ function MapLabels(props){
 
 
 export default function USMap(props) {
-  const [open, setOpen] = React.useState(true)
+  // const [open, setOpen] = React.useState(true)
 
   const history = useHistory();
   const [tooltipContent, setTooltipContent] = useState('');
@@ -132,7 +132,7 @@ export default function USMap(props) {
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [dataFltrd, setDataFltrd] = useState();
-  const [dataState, setDataState] = useState();
+  // const [dataState, setDataState] = useState();
 
   const [stateName, setStateName] = useState('Georgia');
   const [fips, setFips] = useState('13');
@@ -148,10 +148,10 @@ export default function USMap(props) {
   const [metricOptions, setMetricOptions] = useState('mean7daycases');
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
 
-  const [caseRate, setCaseRate] = useState();
-  const [percentChangeCases, setPercentChangeCases] = useState();
-  const [mortality, setMortality] = useState();
-  const [percentChangeMortality, setPercentChangeMortality] = useState();
+  // const [caseRate, setCaseRate] = useState();
+  // const [percentChangeCases, setPercentChangeCases] = useState();
+  // const [mortality, setMortality] = useState();
+  // const [percentChangeMortality, setPercentChangeMortality] = useState();
 
   const [delayHandler, setDelayHandler] = useState();
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Dropdown, Breadcrumb, Header, List, Loader, Divider, Image } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -122,7 +122,7 @@ export default function USMap(props) {
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
 
   const [varMap, setVarMap] = useState({});
-  const [delayHandler, setDelayHandler] = useState();
+  // const [delayHandler, setDelayHandler] = useState();
 
 
   useEffect(()=>{
@@ -170,7 +170,6 @@ export default function USMap(props) {
         setColorScale(scaleMap);
         var max = 0
         var min = 100
-        var length = 0
         _.each(x, d=> { 
           if (d[metric] > max && d.fips.length === 5) {
             max = d[metric]
