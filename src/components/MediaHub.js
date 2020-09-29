@@ -37,7 +37,7 @@ export default function DataSources(props){
               <div>
                 <Header as='h2'>
                     <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/underlyingConditions">Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/underlyingConditions">COVID-19 and Underlying Conditions</Header.Content></div>
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Edited: September 28, 2020 <br/> 
                         Media Type: Blog<br/><br/>
