@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Component, createRef } from 'react'
-import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Segment, Sticky, Dropdown, Menu} from 'semantic-ui-react'
+import React, { useEffect, useState, Component} from 'react'
+import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Sticky} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
@@ -17,12 +17,6 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
-
-const options = [
-  { key: 1, text: 'Choice 1', value: 1 },
-  { key: 2, text: 'Choice 2', value: 2 },
-  { key: 3, text: 'Choice 3', value: 3 },
-]
 
 const style = <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css'/>
 
@@ -95,7 +89,7 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-const nationColor = '#487f84';
+//const nationColor = '#487f84';
 
 export default function ExtraFile(props) {
 
@@ -470,7 +464,7 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
                     <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
@@ -521,7 +515,7 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt",fontWeight: 500, }}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fontWeight: 500, fill: '#000000', fontSize: "20px"}, tickLabels: {fontWeight: 500, fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fontWeight: 500, fill: '#000000', fontSize: "20px"}, tickLabels: {fontWeight: 500, fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
                     <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fontWeight: 500, fill: '#000000', fontSize: "20px"}, tickLabels: {fontWeight: 500, fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
@@ -964,8 +958,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.75}
@@ -1027,8 +1021,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.75}
@@ -1119,8 +1113,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.75}
@@ -1182,8 +1176,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.75}
@@ -1276,8 +1270,8 @@ export default function ExtraFile(props) {
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
 
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1330,8 +1324,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1416,8 +1410,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1466,8 +1460,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1550,8 +1544,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1601,8 +1595,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1686,8 +1680,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.75}
@@ -1738,8 +1732,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1833,8 +1827,8 @@ export default function ExtraFile(props) {
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
 
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1884,8 +1878,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "transparent"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -1967,8 +1961,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -2017,8 +2011,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -2101,8 +2095,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -2152,8 +2146,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}
@@ -2237,8 +2231,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.75}
@@ -2289,8 +2283,8 @@ export default function ExtraFile(props) {
                     style = {{fontSize: "14pt"}}
                     containerComponent={<VictoryContainer responsive={false}/>}
                   >
-                    <VictoryAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                     <VictoryBar
                       horizontal
                       barRatio={0.7}

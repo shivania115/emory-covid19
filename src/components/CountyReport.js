@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, Loader, Statistic, Table, Divider } from 'semantic-ui-react'
+import { Container, Grid, Breadcrumb, Header, Loader, Table, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
-import Geographies from './Geographies';
-import Geography from './Geography';
-import ComposableMap from './ComposableMap';
+// import Geographies from './Geographies';
+// import Geography from './Geography';
+// import ComposableMap from './ComposableMap';
 import { VictoryChart, 
   VictoryContainer,
   VictoryGroup, 
@@ -141,7 +141,7 @@ export default function CountyReport() {
   const history = useHistory();
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
-  const [tooltipContent, setTooltipContent] = useState('');
+   const [tooltipContent, setTooltipContent] = useState('');
   const [countyMetric, setCountyMetric] = useState({cases: 'N/A', deaths: 'N/A', 
                                                   caseRate: "N/A", mortality: "N/A", 
                                                   caseRateMean: "N/A", mortalityMean: "N/A",
@@ -225,13 +225,13 @@ export default function CountyReport() {
     if (dataTS && dataTS[stateFips+countyFips]){
       setCountyMetric(_.takeRight(dataTS[stateFips+countyFips])[0]);
     }
-  })
+  }, [dataTS, stateFips, countyFips]);
 
   useEffect(() => {
     if (dataTS && dataTS[stateFips]){
       setStateMetric(_.takeRight(dataTS[stateFips])[0]);
     }
-  })
+  }, [dataTS, stateFips]);
 
 
   if (data && dataTS && varMap) {
@@ -350,7 +350,7 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 60, top: 0, bottom: 40}}
+                  padding={{left: 50, right: 60, top: 10, bottom: 40}}
                   containerComponent={<VictoryVoronoiContainer/>}
                   
                   >
@@ -366,6 +366,7 @@ export default function CountyReport() {
                       dataTS["_nation"][61].t,
                       dataTS["_nation"][91].t,
                       dataTS["_nation"][122].t,
+                      dataTS["_nation"][153].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
@@ -418,7 +419,7 @@ export default function CountyReport() {
                 <VictoryChart theme={VictoryTheme.material}
                   width={550}
                   height={300}       
-                  padding={{left: 50, right: 60, top: 0, bottom: 40}}
+                  padding={{left: 50, right: 60, top: 10, bottom: 40}}
                   containerComponent={<VictoryVoronoiContainer/>}
                   
                   >
@@ -432,6 +433,7 @@ export default function CountyReport() {
                       dataTS["_nation"][61].t,
                       dataTS["_nation"][91].t,
                       dataTS["_nation"][122].t,
+                      dataTS["_nation"][153].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 

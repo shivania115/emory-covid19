@@ -1216,7 +1216,7 @@ export default function StateMap(props) {
                       </svg>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                        width={330}
+                        width={335}
                         height={160}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
@@ -1230,8 +1230,9 @@ export default function StateMap(props) {
                             dataTS["_nation"][61].t,
                             dataTS["_nation"][91].t,
                             dataTS["_nation"][122].t,
+                            dataTS["_nation"][153].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 12, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
@@ -1285,7 +1286,7 @@ export default function StateMap(props) {
                       </svg>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                        width={330}
+                        width={335}
                         height={170}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
@@ -1298,8 +1299,9 @@ export default function StateMap(props) {
                             dataTS["_nation"][61].t,
                             dataTS["_nation"][91].t,
                             dataTS["_nation"][122].t,
+                            dataTS["_nation"][153].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}    
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 12, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 

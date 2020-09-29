@@ -12,6 +12,194 @@ export default function AboutUs(props){
   return (
     <div>
     <AppBar/>
+
+    {blogTitle == "underlyingConditions"&&
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Blog</Breadcrumb.Section>
+      </Breadcrumb>
+        <div width = {888}>
+        
+            <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+              <Header.Content>
+                COVID-19 and Underlying Conditions
+                <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+                This blog provides an update to our July 1st video, “COVID-19 and Underlying Conditions.” What do state maps look like now?
+
+
+
+                </Header.Subheader>
+                <div style = {{paddingTop: 10}}>
+                       <Image width='600' height='350' href = '/media-hub/blog/underlyingConditions' src='/blog images/underlying/underlying_1.png' />            
+
+                </div>
+
+                <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <p style={{textAlign:"left", fontWeight: 300}}>
+
+                      By Leanna Ehrlich, published on Sep. 28, 2020  &nbsp;&nbsp; |  &nbsp;&nbsp; 2-minute read
+
+                      <br/>
+                      Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                      <br/>
+                      From Emory University
+
+                      <br/>
+
+                      </p>
+
+                      <br/>
+
+                      <b> This topic was first covered in the July 1st video “COVID-19 and Underlying Conditions” </b>
+                      <br/>
+                      <br/>
+                        <iframe width="700" height="400" src="https://www.youtube.com/embed/2lWS3LGZUFU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                      <br/>
+                      <br/>
+                      <br/>
+                      COVID-19 is affecting every community differently. The COVID-19 Health Equity Dashboard compiles publicly 
+                      available data from across the United States to track COVID-19 infections and deaths across counties 
+                      while considering demographic, social, and economic context. 
+                
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      There are a lot of underlying conditions that may predispose certain people to develop severe COVID-19 
+                      infection and be at a higher risk of hospitalization and death. These include having underlying health 
+                      conditions like obesity and diabetes, and being over 65 years old. Since COVID-19 coronavirus epidemic 
+                      took off in the United States in 2020, data continue to show that people with underlying conditions are 
+                      disproportionately impacted by infection and death. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      42% of US adults have obesity, and data shows that especially among adults under age 60 and who are male, 
+                      obesity leads to higher mortality among those with COVID-19 [1]. Due to the impact of obesity on the 
+                      immune systems, individuals with obesity may also be more susceptible to COVID-19 infection in the first place. 
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Looking at county comparisons on the COVID-19 Health Equity Dashboard, we can find visual representations 
+                      of these statistics across many states.
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      To start visualizing, click on the tab “Map State.” By selecting a state and selecting “Total COVID-19 
+                      Cases per 100,000” under “COVID-19 Outcome Measure,” and then selecting “% Obesity” in “COVID-19 County 
+                      Population Characteristics,” you can map these relationships in any state. Cases per 100,000 (left) 
+                      track with obesity (right) in states like Alabama, Idaho, and Oregon.
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> ALABAMA: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/underlying/underlying_2.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> IDAHO: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/underlying/underlying_3.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> OREGON: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/underlying/underlying_4.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Diabetes is another risk factor for COVID-19 complications. Over 10% of the US population has Type II diabetes, 
+                      and data shows that having Type II diabetes increases the risk of having serious complications from COVID-19 - 
+                      including death while hospitalized, based on data from the UK [2].
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      In Arizona and New Mexico, deaths per 100,000 (left) track with the percent of county residents who have diabetes (right).
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> ARIZONA: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/underlying/underlying_5.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> NEW MEXICO: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/underlying/underlying_6.png' /> </center>
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                      Age is also a risk factor for COVID-19 due to older individuals having less robust immune systems and 
+                      higher prevalence of comorbidities. 
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      In the United States, 15% of the population is over age 65, but 80% of COVID-19 deaths have been in 
+                      people over age 65 [3]. Visually, however, this is hard to see in state maps, because older people 
+                      disproportionately live in rural parts of the country, and COVID-19 disproportionately affects urban 
+                      areas due to population density. The map on the left shows the US population density per county and 
+                      the right shows percent of the population over 65 years old.
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> ARIZONA: </b>
+
+                      <Grid>
+                        <Grid.Row columns = {2}>
+                          <Grid.Column>
+                            <Image width='390' height='280' src='/blog images/underlying/underlying_7.png' />
+                          </Grid.Column>
+                          <Grid.Column>
+                            <Image width='390' height='250' src='/blog images/underlying/underlying_8.png' />
+                          </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> References: </b>
+                      <br/>
+                      1. <a href="https://www.acpjournals.org/doi/10.7326/M20-3742"> https://www.acpjournals.org/doi/10.7326/M20-3742 </a>
+                      <br/>
+                      2. <a href="https://www.thelancet.com/journals/landia/article/PIIS2213-8587(20)30272-2/fulltext">https://www.thelancet.com/journals/landia/article/PIIS2213-8587(20)30272-2/fulltext </a>
+                      <br/>
+                      3. <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html#:~:text=In%20general%2C%20your%20risk%20of,aged%2065%20years%20and%20older"> https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html#:~:text=In%20general%2C%20your%20risk%20of,aged%2065%20years%20and%20older </a>
+
+
+                </Header>
+
+              </Header.Content>
+            </Header>
+  
+          
+        </div>
+        <Notes />
+
+      </Container>
+    }
+
+
     {blogTitle == "Will_SARS-CoV-2_beat_the_Power_Five_Conferences"&&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
 
