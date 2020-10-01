@@ -13,6 +13,351 @@ export default function AboutUs(props){
     <div>
     <AppBar/>
 
+
+    {blogTitle == "swNativeAmericanCommunities"&&
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Blog</Breadcrumb.Section>
+      </Breadcrumb>
+        <div width = {888}>
+        
+            <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+              <Header.Content>
+                COVID-19 in SW Native American Communities
+
+                <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+                This blog provides an update to our July 14th video, “COVID-19 in SW Native American Communities.” What do state maps look like now?
+
+                </Header.Subheader>
+                <div style = {{paddingTop: 10}}>
+                       <Image width='600' height='350' href = '/media-hub/blog/swNativeAmericanCommunities' src='/blog images/swna/Image 7.png' />            
+
+                </div>
+
+                <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <p style={{textAlign:"left", fontWeight: 300}}>
+
+                      By Leanna Ehrlich, published on October 1, 2020  &nbsp;&nbsp; |  &nbsp;&nbsp; 2-minute read
+
+                      <br/>
+                      Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                      <br/>
+                      From Emory University
+
+                      <br/>
+
+                      </p>
+
+                      <br/>
+
+                      <b> This topic was first covered in the July 14th video “COVID-19 in SW Native American Communities” </b>
+                      <br/>
+                      <br/>
+                        <iframe width="700" height="400" src="https://www.youtube.com/embed/U-Aqx7vQocY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      COVID-19 is affecting every community differently. The COVID-19 Health Equity Dashboard 
+                      compiles publicly available data from across the United States to track COVID-19 infections 
+                      and deaths across counties while considering demographic, social, and economic context.  
+
+                
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Since COVID-19 coronavirus epidemic took off in the United States in 2020, data continue 
+                      to show that Native Americans, particularly in the Southwest, are disproportionately 
+                      impacted by infection and death. Contributing factors may include high rates of poverty 
+                      and chronic disease, lack of critical infrastructure like running water, isolation from 
+                      health resources, crowded and multigenerational living conditions, and close-knit community 
+                      support systems.
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Despite many of these Native American communities being located in rural areas, 
+                      the low population density has not had a protective effect against infection as seen 
+                      elsewhere in the country. The COVID-19 fatality rate (meaning the percentage of people 
+                      who test positive who have died) in the state of Arizona is 2.5 percent [1], whereas in 
+                      Navajo Nation (located primarily in Arizona as well as the other Four Corners states), 
+                      it is 5.3 percent [2].
+
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Looking at county comparisons on the COVID-19 Health Equity Dashboard, we can find visual 
+                      representations of these statistics across many states.
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      To start visualizing, click on the tab “Map State.” By selecting a state and selecting 
+                      “Total COVID-19 Deaths per 100,000” under “COVID-19 Outcome Measure,” and then selecting 
+                      “% Native American” in “COVID-19 County Population Characteristics,” you can map these 
+                      relationships. Deaths per 100,000 (left) track with the Native American population (right) 
+                      in Arizona. So do poverty, diabetes, and socioeconomic vulnerability. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 8.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 9.png' /> </center>
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 10.png' /> </center>
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 11.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                      Cases per 100,000 track with minority/language vulnerability.
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 12.png' /> </center>
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Directly east, in New Mexico, we see a similar pattern, although the case and 
+                      death rate is lower overall. Deaths per 100,000 tracks with the Native American 
+                      population, and lack of insurance tracks with cases per 100,000.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 13.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/swna/Image 14.png' /> </center>
+
+
+                  
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Two articles in the New England Journal of Medicine explore this issue: 
+                      <a href = "https://www.nejm.org/doi/full/10.1056/NEJMp2012114?query=TOC" target="_blank" rel="noopener noreferrer">“Rural Matters — Coronavirus and the Navajo Nation,” </a>
+                      and <a href = "https://www.nejm.org/doi/full/10.1056/NEJMc2023540?query=TOC" target="_blank" rel="noopener noreferrer">“Contact Tracing for Native Americans in Rural Arizona.” </a>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      We encourage you to read more and think about the systemic issues that are 
+                      leading to severe COVID-19 outcomes in Native American communities. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+
+                      <b> References: </b>
+                      <br/>
+                      1. <a href="https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/" target="_blank" rel="noopener noreferrer"> https://www.azdhs.gov/preparedness/epidemiology-disease-control/infectious-disease-epidemiology/covid-19/dashboards/ </a>
+                      <br/>
+                      2. <a href="https://navajotimes.com/coronavirus-updates/covid-19-across-the-navajo-nation/" target="_blank" rel="noopener noreferrer">https://navajotimes.com/coronavirus-updates/covid-19-across-the-navajo-nation/ </a>
+
+
+                </Header>
+
+              </Header.Content>
+            </Header>
+  
+          
+        </div>
+        <Notes />
+
+      </Container>
+    }
+
+
+
+    {blogTitle == "africanAmericanCommunity"&&
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Blog</Breadcrumb.Section>
+      </Breadcrumb>
+        <div width = {888}>
+        
+            <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+              <Header.Content>
+                COVID-19 in African American Communities
+
+                <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+                This blog provides an update to our July 9th video, “COVID-19 in African American Communities.” What do state maps look like now?
+
+
+
+                </Header.Subheader>
+                <div style = {{paddingTop: 10}}>
+                       <Image width='600' height='350' href = '/media-hub/blog/africanAmericanCommunity' src='/blog images/aac/Image 1.png' />            
+
+                </div>
+
+                <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <p style={{textAlign:"left", fontWeight: 300}}>
+
+                      By Leanna Ehrlich, published on Sep. 30, 2020  &nbsp;&nbsp; |  &nbsp;&nbsp; 2-minute read
+
+                      <br/>
+                      Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                      <br/>
+                      From Emory University
+
+                      <br/>
+
+                      </p>
+
+                      <br/>
+
+                      <b> This topic was first covered in the July 9th video “COVID-19 in African American Communities” </b>
+                      <br/>
+                      <br/>
+                        <iframe width="700" height="400" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                      <br/>
+                      <br/>
+                      <br/>
+                      COVID-19 is affecting every community differently. The COVID-19 Health Equity Dashboard compiles publicly 
+                      available data from across the United States to track COVID-19 infections and deaths across 
+                      counties while considering demographic, social, and economic context.
+                
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Since COVID-19 coronavirus epidemic took off in the United States in 2020, data continue 
+                      to show that African Americans are disproportionately impacted by infection and death. 
+                      In the US, African Americans have contracted COVID-19 at 2.6 times the rate of white 
+                      non-Hispanic people, are hospitalized at 4.7 times the rate, and die at 2.1 times the 
+                      rate [1]. Per 100,000, 88 African Americans have died versus 40 white Americans. African 
+                      Americans have the highest rate of death of any racial or ethnic group in the United States [2]. 
+                      At a community-level, this manifests  as a striking visual correlation between the proportion 
+                      of a county that is African American and its per capita cases of COVID-19.
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <center>      <Image width='850' height='450' src='/blog images/aac/Image 2.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Looking at county comparisons on the COVID-19 Health Equity Dashboard, 
+                      we can find visual representations of these statistics across many states.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      To start visualizing, click on the tab “Map State.” By selecting a state and selecting 
+                      “Total COVID-19 Cases per 100,000” under “COVID-19 Outcome Measure,” and then selecting 
+                      “% African American” in “COVID-19 County Population Characteristics,” you can map these 
+                      relationships. Cases per 100,000 (left) track with the African American population (right) 
+                      in places like Florida, Mississippi, Tennessee, and Virginia.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+
+                      <b> FLORIDA: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/aac/Image 3.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> MISSISSIPPI: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/aac/Image 4.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> TENNESSEE: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/aac/Image 5.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> VIRGINIA: </b>
+                      <center>      <Image width='800' height='500' src='/blog images/aac/Image 6.png' /> </center>
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> References: </b>
+                      <br/>
+                      1. <a href="https://www.cdc.gov/coronavirus/2019-ncov/covid-data/investigations-discovery/hospitalization-death-by-race-ethnicity.html" target="_blank" rel="noopener noreferrer"> https://www.cdc.gov/coronavirus/2019-ncov/covid-data/investigations-discovery/hospitalization-death-by-race-ethnicity.html </a>
+                      <br/>
+                      2. <a href="https://www.apmresearchlab.org/covid/deaths-by-race#counts" target="_blank" rel="noopener noreferrer">https://www.apmresearchlab.org/covid/deaths-by-race#counts </a>
+
+
+                </Header>
+
+              </Header.Content>
+            </Header>
+  
+          
+        </div>
+        <Notes />
+
+      </Container>
+    }
+
+
+
+
+
+
     {blogTitle == "underlyingConditions"&&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
 
@@ -180,11 +525,11 @@ export default function AboutUs(props){
 
                       <b> References: </b>
                       <br/>
-                      1. <a href="https://www.acpjournals.org/doi/10.7326/M20-3742"> https://www.acpjournals.org/doi/10.7326/M20-3742 </a>
+                      1. <a href="https://www.acpjournals.org/doi/10.7326/M20-3742" target="_blank" rel="noopener noreferrer"> https://www.acpjournals.org/doi/10.7326/M20-3742 </a>
                       <br/>
-                      2. <a href="https://www.thelancet.com/journals/landia/article/PIIS2213-8587(20)30272-2/fulltext">https://www.thelancet.com/journals/landia/article/PIIS2213-8587(20)30272-2/fulltext </a>
+                      2. <a href="https://www.thelancet.com/journals/landia/article/PIIS2213-8587(20)30272-2/fulltext" target="_blank" rel="noopener noreferrer">https://www.thelancet.com/journals/landia/article/PIIS2213-8587(20)30272-2/fulltext </a>
                       <br/>
-                      3. <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html#:~:text=In%20general%2C%20your%20risk%20of,aged%2065%20years%20and%20older"> https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html#:~:text=In%20general%2C%20your%20risk%20of,aged%2065%20years%20and%20older </a>
+                      3. <a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html#:~:text=In%20general%2C%20your%20risk%20of,aged%2065%20years%20and%20older" target="_blank" rel="noopener noreferrer"> https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/older-adults.html#:~:text=In%20general%2C%20your%20risk%20of,aged%2065%20years%20and%20older </a>
 
 
                 </Header>
@@ -198,6 +543,13 @@ export default function AboutUs(props){
 
       </Container>
     }
+
+
+
+
+
+
+
 
 
     {blogTitle == "Will_SARS-CoV-2_beat_the_Power_Five_Conferences"&&
