@@ -27,6 +27,55 @@ export default function DataSources(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='236' href = '/media-hub/blog/swNativeAmericanCommunities' src='/blog images/swna/Image 7.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/swNativeAmericanCommunities">COVID-19 in SW Native American Communities</Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Edited: October 1, 2020 <br/> 
+                        Media Type: Blog<br/><br/>
+                        Since COVID-19 coronavirus epidemic took off in the United States in 2020, data continue to show that Native Americans, particularly in the Southwest, are disproportionately impacted by infection and death. Some of the contributing factors may include high rates of poverty and chronic disease, lack of critical infrastructure like running water, isolation from health resources, crowded and multigenerational living conditions, and close-knit community support systems. 
+
+
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+        </Grid.Column>
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='236' href = '/media-hub/blog/africanAmericanCommunity' src='/blog images/aac/Image 1.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/africanAmericanCommunity">COVID-19 in African American Communities</Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Edited: September 30, 2020 <br/> 
+                        Media Type: Blog<br/><br/>
+                        COVID-19 has disproportionately African Americans, with 2.6 times the infection rate of white non-Hispanic people, 4.7 times the hospitalization rate, and 2.1 times the death rate. African Americans have the highest rate of death of any racial or ethnic group in the United States.
+
+
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+
+
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
@@ -50,7 +99,7 @@ export default function DataSources(props){
             </Grid.Row>
           </Grid.Column>
 
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/podcast images/Dr. Nneka Sederstrom.jpg' />            
@@ -72,7 +121,7 @@ export default function DataSources(props){
             </Grid.Row>
           </Grid.Column>
 
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC' src='/podcast images/JudyMonroe.jpg' />            

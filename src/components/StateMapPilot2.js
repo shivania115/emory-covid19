@@ -15,7 +15,8 @@ import { VictoryChart,
   VictoryLabel,
   VictoryArea,
   VictoryTooltip,
-  VictoryVoronoiContainer
+  VictoryVoronoiContainer,
+  VictoryZoomContainer
 } from 'victory';
 
 import { useParams, useHistory } from 'react-router-dom';
@@ -1198,21 +1199,17 @@ export default function StateMap(props) {
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: value? dataTS["_nation"][0 + (Number(value[0]) - 4) * 30].t : dataTS["_nation"][0].t}}
                         maxDomain = {{x: value ? dataTS["_nation"][dataTS["_nation"].length - 1 - ( 9 - Number(value[1])) * 30 ].t : dataTS["_nation"][dataTS["_nation"].length-1].t}}
-                        containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/> }
+                        containerComponent={<VictoryZoomContainer zoomDomain={{x: [
+                          dataTS["_nation"][92].t,
+                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} zoomDimension="x" flyoutStyle={{fill: "white"}}/> }
                         >
                         
-                        <VictoryAxis
-                          tickValues={[
-                            dataTS["_nation"][0].t,
-                            dataTS["_nation"][30].t,
-                            dataTS["_nation"][61].t,
-                            dataTS["_nation"][91].t,
-                            dataTS["_nation"][122].t,
-                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
+                        <VictoryAxis tickCount={4}
+                               
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
-                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
+                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "#000000", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
@@ -1250,19 +1247,6 @@ export default function StateMap(props) {
                       
                   </Grid.Row>}
 
-                  <div style={{ paddingLeft: 70, width: 410 }}>
-                    <Slider
-                      value = {value}
-                      onChange={(event, v ) => {
-                        setValue(v);
-                      }}
-                      aria-labelledby="discrete-slider"
-                      min = {4}
-                      max = {9}
-                      valueLabelDisplay="auto"
-                      marks = {marks}
-                    />
-                  </div>
                   {stateFips !== "_nation" &&
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 30, paddingBottom: 0}}>
                       <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingTop: 10, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
