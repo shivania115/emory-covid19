@@ -14,7 +14,8 @@ import { VictoryChart,
   VictoryLabel,
   VictoryArea,
   VictoryTooltip,
-  VictoryVoronoiContainer
+  VictoryVoronoiContainer,
+  VictoryZoomContainer
 } from 'victory';
 
 import { useParams, useHistory } from 'react-router-dom';
@@ -71,7 +72,13 @@ const nationColor = '#b1b3b3';
 const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
-
+const marks = [
+  //{value: 1, label: 'Jan.'}, {value: 2, abel: 'Feb.'}, {value: 3, abel: 'Mar.'}, 
+  {value: 4, abel: 'Apr.'},
+  {value: 5, label: 'May'}, {value: 6, abel: 'Jun.'}, {value: 7, abel: 'Jul.'}, {value: 8, abel: 'Aug.'},
+  {value: 9, label: 'Sep.'},//, {value: 10, abel: 'Oct.'}, {value: 11, abel: 'Nov.'}, {value: 12, abel: 'Dec.'},
+  
+];
 
 function BarChart(props) {
   let colors = {"USA": nationColor, 
@@ -181,7 +188,8 @@ export default function StateMap(props) {
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases');
   const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
   const [countyOption, setCountyOption] = useState();
-  
+  const [value, setValue] = useState([4,9]);
+
   const [delayHandler, setDelayHandler] = useState();
 
   useEffect(()=>{
@@ -1191,18 +1199,22 @@ export default function StateMap(props) {
                 </Grid.Row>
               </Grid.Column>
               <Grid.Column width={6} style={{padding: 0, paddingLeft: 40}}>
-                <Header as='h2' style={{fontWeight: 400, width: 410}}>
+              <Header as='h2' style={{fontWeight: 400, width: 410}}>
                   <Header.Content style={{fontSize: 20}}>
                     Comparing <b>{stateFips === "_nation"? "":countyName}</b>
                     <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 410, fontSize: "14pt", lineHeight: "16pt"}}>
                       The number of cases and deaths due to COVID-19 are dynamic. 
                       Cases are declining in many counties and rising in others. 
-                      Trends in the case and death count in the past 14 days are being monitored to determine whether it is safe to reopen a county.
+                      Trends in the case and death count in the past 14 days are being monitored to 
+                      determine whether it is safe to reopen a county.
+                      <br/>
+                      <br/>
+                      <p style={{color: "#024174", fontWeight: 500}}> Click and drag or zoom on the graphs below.</p>
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
                 <Grid>
-                  {stateFips !== "_nation" &&
+                  {stateFips !== "_nation" && 
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 19, paddingBottom: 0}}>
                      <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
 
@@ -1216,26 +1228,22 @@ export default function StateMap(props) {
                       </svg>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                        width={335}
+                        width={330}
                         height={160}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
-                        minDomain ={{x: dataTS["_nation"][0].t}}
-                        containerComponent={<VictoryVoronoiContainer flyoutStyle={{fill: "white"}}/> }
+                        minDomain ={{x: value? dataTS["_nation"][0 + (Number(value[0]) - 4) * 30].t : dataTS["_nation"][0].t}}
+                        maxDomain = {{x: value ? dataTS["_nation"][dataTS["_nation"].length - 1 - ( 9 - Number(value[1])) * 30 ].t : dataTS["_nation"][dataTS["_nation"].length-1].t}}
+                        containerComponent={<VictoryZoomContainer zoomDomain={{x: [
+                          dataTS["_nation"][92].t,
+                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} zoomDimension="x" flyoutStyle={{fill: "white"}}/> }
                         >
                         
-                        <VictoryAxis
-                          tickValues={[
-                            dataTS["_nation"][0].t,
-                            dataTS["_nation"][30].t,
-                            dataTS["_nation"][61].t,
-                            dataTS["_nation"][91].t,
-                            dataTS["_nation"][122].t,
-                            dataTS["_nation"][153].t,
-                            dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 12, fontFamily: 'lato'}}} 
+                        <VictoryAxis tickCount={4}
+                               
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
-                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
+                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "#000000", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
@@ -1270,7 +1278,9 @@ export default function StateMap(props) {
                             />
                         </VictoryGroup>
                       </VictoryChart>
+                      
                   </Grid.Row>}
+
                   {stateFips !== "_nation" &&
                   <Grid.Row columns={1} style={{padding: 0, paddingTop: 30, paddingBottom: 0}}>
                       <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingTop: 10, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
@@ -1286,26 +1296,21 @@ export default function StateMap(props) {
                       </svg>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                        width={335}
+                        width={330}
                         height={170}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
-                        containerComponent={<VictoryVoronoiContainer/>}
+                        containerComponent={<VictoryZoomContainer zoomDomain={{x: [
+                          dataTS["_nation"][92].t,
+                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} zoomDimension="x" flyoutStyle={{fill: "white"}}/> }
                         >
-                        <VictoryAxis
-                          tickValues={[
-                            dataTS["_nation"][0].t,
-                            dataTS["_nation"][30].t,
-                            dataTS["_nation"][61].t,
-                            dataTS["_nation"][91].t,
-                            dataTS["_nation"][122].t,
-                            dataTS["_nation"][153].t,
-                            dataTS["_nation"][dataTS["_nation"].length-1].t]}    
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 12, fontFamily: 'lato'}}} 
+                        <VictoryAxis tickCount={4}
+                          
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
-                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
-                          tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
+                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "#000000", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
+                         tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
                           colorScale={[nationColor, stateColor, countyColor]}
