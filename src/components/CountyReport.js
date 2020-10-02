@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, Loader, Table, Divider } from 'semantic-ui-react'
+import { Container, Grid, Breadcrumb, Header, Loader, Table, Divider, Image } from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
 // import Geography from './Geography';
@@ -261,16 +261,17 @@ export default function CountyReport() {
               </div>
           <Grid style={{paddingTop: '2em', width: "1260px", paddingBottom: "2em"}}>
             <Grid.Row style={{paddingLeft:20}}>
+
               <Table celled fixed singleLine>
                 <Table.Header>
-                  <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell colSpan='1' style={{width:150}}> </Table.HeaderCell>
 
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> TOTAL TO DATE</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> TOTAL TO DATE PER 100,000</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> DAILY AVERAGE</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> DAILY AVERAGE PER 100,000</Table.HeaderCell>
-                  </Table.Row>
+                  <tr textAlign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                      <td colSpan='1' style={{width:150}}> </td>
+                      <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE</td>
+                      <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE PER 100,000</td>
+                      <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> DAILY AVERAGE</td>
+                      <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> DAILY AVERAGE PER 100,000</td>
+                  </tr>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyName.match(/[^\s]+/)} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.cases===null || countyMetric.cases < 0?'0':countyMetric.cases.toLocaleString()} </Table.HeaderCell>
@@ -298,15 +299,14 @@ export default function CountyReport() {
             <Grid.Row style={{paddingLeft:20}}>
               <Table celled fixed singleLine>
                 <Table.Header>
-                  <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell colSpan='1' style={{width:150}}> </Table.HeaderCell>
-
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> TOTAL TO DATE</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> TOTAL TO DATE PER 100,000</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> DAILY AVERAGE</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> DAILY AVERAGE PER 100,000</Table.HeaderCell>
-                    <Table.HeaderCell colSpan='1' style={{width:200, fontSize: '14px'}}> CASE FATALITY RATIO</Table.HeaderCell>
-                  </Table.Row>
+                  <tr textAlign = 'center' colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                    <td colSpan='1' style={{width:150}}> </td>
+                    <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE</td>
+                    <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE PER 100,000</td>
+                    <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> DAILY AVERAGE</td>
+                    <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> DAILY AVERAGE PER 100,000</td>
+                    <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> CASE FATALITY RATIO</td>
+                  </tr>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyName.match(/[^\s]+/)} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.deaths===null || countyMetric.deaths < 0?'0':countyMetric.deaths.toLocaleString()} </Table.HeaderCell>
