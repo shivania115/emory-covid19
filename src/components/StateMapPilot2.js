@@ -1175,7 +1175,11 @@ export default function StateMap(props) {
                     <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 410, fontSize: "14pt", lineHeight: "16pt"}}>
                       The number of cases and deaths due to COVID-19 are dynamic. 
                       Cases are declining in many counties and rising in others. 
-                      Trends in the case and death count in the past 14 days are being monitored to determine whether it is safe to reopen a county.
+                      Trends in the case and death count in the past 14 days are being monitored to 
+                      determine whether it is safe to reopen a county.
+                      <br/>
+                      <br/>
+                      <p style={{color: "#024174", fontWeight: 500}}> Click and drag or zoom on the graphs below.</p>
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -1266,21 +1270,17 @@ export default function StateMap(props) {
                         height={170}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
-                        containerComponent={<VictoryVoronoiContainer/>}
+                        containerComponent={<VictoryZoomContainer zoomDomain={{x: [
+                          dataTS["_nation"][92].t,
+                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} zoomDimension="x" flyoutStyle={{fill: "white"}}/> }
                         >
-                        <VictoryAxis
-                          tickValues={[
-                            dataTS["_nation"][0].t,
-                            dataTS["_nation"][30].t,
-                            dataTS["_nation"][61].t,
-                            dataTS["_nation"][91].t,
-                            dataTS["_nation"][122].t,
-                            dataTS["_nation"][dataTS["_nation"].length-1].t]}    
+                        <VictoryAxis tickCount={4}
+                          
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
                         <VictoryAxis dependentAxis tickCount={5}
-                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
-                          tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
+                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "#000000", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
+                         tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
                           colorScale={[nationColor, stateColor, countyColor]}
