@@ -506,8 +506,6 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b> ARIZONA: </b>
-
                       <Grid>
                         <Grid.Row columns = {2}>
                           <Grid.Column>
