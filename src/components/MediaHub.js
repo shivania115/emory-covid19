@@ -30,6 +30,31 @@ export default function DataSources(props){
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/blog images/pri/Image 15.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/povertyRelatedIssues">COVID-19 and Poverty-related issues</Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Edited: October 7, 2020 <br/> 
+                        Media Type: Blog<br/><br/>
+                        Since COVID-19 coronavirus pandemic took off in the United States in 2020, data show that poverty, lack of health insurance, socioeconomic vulnerability, and housing insecurity may all contribute to higher risk of contracting COVID-19 and having severe outcomes. As the pandemic affects businesses and employment, the cycle of poverty may be reinforced.
+
+
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+        </Grid.Column>
+
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/swNativeAmericanCommunities' src='/blog images/swna/Image 7.png' />            
               </div>
             </Grid.Row>
@@ -76,7 +101,7 @@ export default function DataSources(props){
           </Grid.Column>
 
 
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/underlyingConditions' src='/blog images/underlying/underlying_1.png' />            

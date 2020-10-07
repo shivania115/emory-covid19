@@ -14,6 +14,245 @@ export default function AboutUs(props){
     <AppBar/>
 
 
+    {blogTitle == "povertyRelatedIssues"&&
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Blog</Breadcrumb.Section>
+      </Breadcrumb>
+        <div width = {888}>
+        
+            <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+              <Header.Content>
+                COVID-19 and Poverty-related issues
+
+
+                <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+                This blog provides an update to our July 27th video, “COVID-19 and Poverty-related Issues.” What do state maps look like now?
+
+
+                </Header.Subheader>
+                <div style = {{paddingTop: 10}}>
+                       <Image width='600' height='350' href = '/media-hub/blog/povertyRelatedIssues' src='/blog images/pri/Image 15.png' />            
+
+                </div>
+
+                <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <p style={{textAlign:"left", fontWeight: 300}}>
+
+                      By Leanna Ehrlich, published on October 7, 2020  &nbsp;&nbsp; |  &nbsp;&nbsp; 2-minute read
+
+                      <br/>
+                      Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                      <br/>
+                      From Emory University
+
+                      <br/>
+
+                      </p>
+
+                      <br/>
+
+                      <b> This topic was first covered in the July 27th video “COVID-19 and Poverty-related Issues.” </b>
+                      <br/>
+                      <br/>
+                        <iframe width="700" height="400" src="https://www.youtube.com/embed/IEojaw9cND4" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      COVID-19 is affecting every community differently. The COVID-19 Health Equity 
+                      Dashboard compiles publicly available data from across the United States to 
+                      track COVID-19 infections and deaths across counties while considering demographic, social, and economic context.  
+
+
+                
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Since COVID-19 coronavirus pandemic took off in the United States in 2020, 
+                      data continue to show that poverty, lack of health insurance, socioeconomic 
+                      vulnerability, and housing insecurity may all contribute to higher risk of 
+                      contracting COVID-19 and having severe outcomes. In the United States, 
+                      approximately 12 percent of people are experiencing poverty, 8.5 percent do 
+                      not have health insurance; 10 to 15 percent experience housing insecurity, 
+                      and 8 percent are unemployed (up from a high of nearly 15% in April) [1, 2, 3, 4, 5]. 
+                      These issues are related. As the pandemic affects businesses and employment, the 
+                      cycle of poverty may be reinforced.
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Looking at county comparisons on the COVID-19 Health Equity Dashboard, 
+                      we can find visual representations of these statistics across many states.
+
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      To start visualizing, click on the tab “Map State.” By selecting a state and 
+                      selecting “Total COVID-19 Cases per 100,000” under “COVID-19 Outcome Measure,” 
+                      and then selecting “% Poverty” in “COVID-19 County Population Characteristics,” 
+                      you can map these relationships. Cases per 100,000 (left) track with poverty 
+                      (right) in Arizona, Alabama, and Georgia.
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> ARIZONA: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 16.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> ALABAMA: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 17.png' /> </center>
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> GEORGIA: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 18.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                      In New Jersey and Washington, the case rate roughly tracks with uninsured residents.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> NEW JERSEY: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 19.png' /> </center>
+
+                      
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> WASHINGTON: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 20.png' /> </center>
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      The composite index of socioeconomic vulnerability, which takes 
+                      into account poverty, unemployment, per capita income, and lacking 
+                      a high school diploma, tracks with case rates in Mississippi, Alabama, and California.
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> MISSISSIPPI: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 21.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> ALABMA: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 22.png' /> </center>
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> CALIFORNIA: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 23.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Housing and transportation vulnerability, a composite measurement that takes into 
+                      account dense living structures, mobile homes, households with no vehicle available, 
+                      and institutionalized group living, tracks with case rates in Florida and Oregon.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Two articles in the New England Journal of Medicine explore this issue: 
+                      <a href = "https://www.nejm.org/doi/full/10.1056/NEJMp2012114?query=TOC" target="_blank" rel="noopener noreferrer">“Rural Matters — Coronavirus and the Navajo Nation,” </a>
+                      and <a href = "https://www.nejm.org/doi/full/10.1056/NEJMc2023540?query=TOC" target="_blank" rel="noopener noreferrer">“Contact Tracing for Native Americans in Rural Arizona.” </a>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      We encourage you to read more and think about the systemic issues that are 
+                      leading to severe COVID-19 outcomes in Native American communities. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> FLORIDA: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 24.png' /> </center>
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> OREGON: </b>
+                      <center>      <Image width='850' height='450' src='/blog images/pri/Image 25.png' /> </center>
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b> References: </b>
+                      <br/>
+                      1. <a href="https://www.census.gov/library/publications/2019/demo/p60-266.html" target="_blank" rel="noopener noreferrer"> https://www.census.gov/library/publications/2019/demo/p60-266.html </a>
+                      <br/>
+                      2. <a href="https://www.census.gov/library/publications/2019/demo/p60-267.html" target="_blank" rel="noopener noreferrer"> https://www.census.gov/library/publications/2019/demo/p60-267.html </a>
+                      <br/>
+                      3. <a href="https://www.enterprisecommunity.org/opportunity360" target="_blank" rel="noopener noreferrer"> https://www.enterprisecommunity.org/opportunity360 </a>
+                      <br/>
+                      4. <a href="https://www.bls.gov/news.release/pdf/empsit.pdf" target="_blank" rel="noopener noreferrer"> https://www.bls.gov/news.release/pdf/empsit.pdf </a>
+                      <br/>
+                      5. <a href="https://www.bls.gov/charts/employment-situation/civilian-unemployment-rate.htm" target="_blank" rel="noopener noreferrer"> https://www.bls.gov/charts/employment-situation/civilian-unemployment-rate.htm </a>
+                      <br/>
+
+                </Header>
+
+              </Header.Content>
+            </Header>
+  
+          
+        </div>
+        <Notes />
+
+      </Container>
+    }
+
+
+
+
+
+
     {blogTitle == "swNativeAmericanCommunities"&&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
 
