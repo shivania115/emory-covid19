@@ -1169,7 +1169,7 @@ export default function StateMap(props) {
                             ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
                                 colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
                                 (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
-                                  '#e1dce2':'#FFFFFF')}
+                                  '#FFFFFF':'#FFFFFF')}
                         />
                     )}
                   </Geographies>
