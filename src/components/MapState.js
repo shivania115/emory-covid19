@@ -9,7 +9,7 @@ import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
 import stateOptions from "./stateOptions.json";
 import configs from "./state_config.json";
-import _ from 'lodash';
+import _, { split } from 'lodash';
 import { scaleQuantile } from "d3-scale";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
@@ -99,7 +99,9 @@ export default function MapState() {
                 if (!(varMap[k].name in coldata)){
                   coldata[varMap[k].name] = {};
                 }
-                coldata[varMap[k].name][d.fips] = v; 
+                if(v > 0){
+                  coldata[varMap[k].name][d.fips] = v; 
+                }
               }
             });
           });
@@ -110,26 +112,32 @@ export default function MapState() {
       setMeasureB(null);
       setColorScaleA(null);
       setColorScaleB(null);
-    } else if (varMap && stateFips === "_nation"){
+    } 
+    else if (varMap && stateFips === "_nation"){
       fetch('/data/data.json').then(res => res.json())
         .then(data => {
           let coldata = {};
           const dataFltrd = _.filter(_.map(data, (d, k)=>{d.fips=k; return d;}), (d)=> (
-                 d.fips.length===5 ));
+            d.fips.length===5 ));
           _.each(dataFltrd, (d) => {
             _.each(d, (v, k)=>{
               if (varMap[k]){
                 if (!(varMap[k].name in coldata)){
                   coldata[varMap[k].name] = {};
                 }
-                coldata[varMap[k].name][d.fips] = v; 
+                if(v > 0){
+                  coldata[varMap[k].name][d.fips] = v; 
+                }
+                
               }
             });
           });
           setData(coldata);
+          
 
         });
-
+      setMeasureA(null);
+      setMeasureB(null);
       setColorScaleA(null);
       setColorScaleB(null);
     }
@@ -152,13 +160,13 @@ export default function MapState() {
 
       setLegendSplitA(splitA.quantiles());
 
-      var maxA = 0
-      var minA = 0
+      var maxA = 1
+      var minA = 100
       _.each(data[measureA],d=>{
         if (d > maxA) {
           maxA = d
-        }else if (d < minA && d >= 0){
-            minA = d
+        }else if ( d < minA && d > 0){
+          minA = d
         }
       });
 
@@ -170,61 +178,7 @@ export default function MapState() {
       setLegendMinA(minA.toFixed(0));
 
       setName(measureA);
-    } else if (stateFips === "_nation") {
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-        
-        setData(x);
-      
-        const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[measureA] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[measureA]))
-        .range(colorPalette);
-
-        let scaleMapA = {}
-        _.each(x, d=>{
-          if(d[measureA] >= 0){
-          scaleMapA[d[measureA]] = cs(d[measureA])}});
-      
-        setColorScaleA(scaleMapA);
-        var maxA = 0
-        var minA = 100
-        _.each(x, d=> { 
-          if (d[measureA] > maxA && d.fips.length === 5) {
-            maxA = d[measureA]
-          } else if (d.fips.length === 5 && d[measureA] < minA && d[measureA] >= 0){
-            minA = d[measureA]
-          }
-        });
-
-        if (maxA > 999) {
-          maxA = (maxA/1000).toFixed(0) + "K";
-          setLegendMaxA(maxA);
-        }else{
-          setLegendMaxA(maxA.toFixed(0));
-
-        }
-        setLegendMinA(minA.toFixed(0));
-
-        var splitA = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[measureA] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[measureA]))
-        .range(colorPalette);
-
-        setLegendSplitA(splitA.quantiles());
-        })
-
-      };
+    } 
   }, [measureA]);
 
   useEffect(() => {
@@ -243,12 +197,12 @@ export default function MapState() {
 
       setLegendSplitB(splitB.quantiles());
 
-      var maxB = 0
-      var minB = 0
+      var maxB = 1
+      var minB = 100
       _.each(data[measureB],d=>{
         if (d > maxB) {
           maxB = d
-        }else if (d < minB && d >=0){
+        }else if (d < minB && d > 0){
           minB = d
         }
       });
@@ -261,63 +215,9 @@ export default function MapState() {
 
       }
       setLegendMinB(minB.toFixed(0));
-    }else if (stateFips === "_nation") {
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-        
-        setData(x);
-      
-        const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[measureB] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[measureB]))
-        .range(colorPalette);
-
-        let scaleMapB = {}
-        _.each(x, d=>{
-          if(d[measureB] >= 0){
-          scaleMapB[d[measureB]] = cs(d[measureB])}});
-      
-        setColorScaleB(scaleMapB);
-        var maxB = 0
-        var minB = 100
-        _.each(x, d=> { 
-          if (d[measureB] > maxB && d.fips.length === 5) {
-            maxB = d[measureB]
-          } else if (d.fips.length === 5 && d[measureB] < minB && d[measureB] >= 0){
-            minB = d[measureB]
-          }
-        });
-
-        if (maxB > 999) {
-          maxB = (maxB/1000).toFixed(0) + "K";
-          setLegendMaxB(maxB);
-        }else{
-          setLegendMaxB(maxB.toFixed(0));
-
-        }
-        setLegendMinB(minB.toFixed(0));
-
-        var splitB = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[measureB] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[measureB]))
-        .range(colorPalette);
-
-        setLegendSplitB(splitB.quantiles());
-        })
-
-      };
+    }
   }, [measureB]);  
-
+  
 
   return (
       <div>
@@ -505,7 +405,7 @@ export default function MapState() {
                           setTooltipContent("")
                         }}
                         fill={(measureA && colorScaleA && stateFips === "_nation" && data[measureA][geo.id] > 0)? colorScaleA[data[measureA][geo.id]]: 
-                                (measureA && colorScaleA && stateFips === "_nation" && data[measureA][geo.id] === 0)? '#e1dce2':
+                                (measureA && colorScaleA && stateFips === "_nation" && data[measureA][geo.id] === 0)? '#FFFFFF':
                                 (measureA && colorScaleA && data[measureA][stateFips+geo.properties.COUNTYFP])?
                                 colorScaleA[data[measureA][stateFips+geo.properties.COUNTYFP]] : "#FFFFFF"}
                       />
@@ -538,7 +438,7 @@ export default function MapState() {
                           setTooltipContent("")
                         }}
                         fill = {(measureB && colorScaleB && stateFips === "_nation" && data[measureB][geo.id] > 0)? colorScaleB[data[measureB][geo.id]]: 
-                                (measureB && colorScaleB && stateFips === "_nation" && data[measureB][geo.id] === 0)? '#e1dce2':
+                                (measureB && colorScaleB && stateFips === "_nation" && data[measureB][geo.id] === 0)? '#FFFFFF':
                                 (measureB && colorScaleB && data[measureB][stateFips+geo.properties.COUNTYFP])?
                                 colorScaleB[data[measureB][stateFips+geo.properties.COUNTYFP]] : "#FFFFFF"}
                       />
