@@ -10,7 +10,7 @@ function myFunction() {
 export default function Notes(props){
 
 
-  const [state, setState] = useState("https://covid19.emory.edu/");
+  const [state] = useState("https://covid19.emory.edu");
  
   return (
 
@@ -24,25 +24,25 @@ export default function Notes(props){
                   <Grid.Column>
                     <Image width='300' height='192' href = '' style = {{stroke:  "#000000"}} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' /> 
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> National Report </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}><br/>Coming soon...</text>
+                    <Header.Content style = {{fontSize: "14pt"}}><br/>Coming soon...</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
                     <Image width='300' height='236' href = '/_nation' src='/HomeIcons/Emory_Icons_SelectState_v1.jpg' />            
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Find State & County </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/>Click on icon to see how COVID-19 is impacting your state.</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to see how COVID-19 is impacting your state.</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
                     <Image width='300' height='236' href = '/map-state' src='/HomeIcons/Emory_Icons_MapState_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Map State </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/>Click on icon to visualize state-wide outcomes and characteristics.</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to visualize state-wide outcomes and characteristics.</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
                     <Image width='300' height='236' href = '/data-sources' src='/HomeIcons/Emory_Icons_DataSources_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Sources & Interpretation </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/>Click on icon for a complete list of measures' definitions and sources.</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon for a complete list of measures' definitions and sources.</Header.Content>
 
                   </Grid.Column>
                 </Grid.Row>
@@ -50,25 +50,25 @@ export default function Notes(props){
                   <Grid.Column>
                     <Image width='300' height='236' href = '/about-team' src='/HomeIcons/Emory_Icons_AboutUs_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> About This Dashboard </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/>Click on icon to learn about the goal of the dashboard and its team.</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to learn about the goal of the dashboard and its team.</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub' src='/HomeIcons/Emory_Icons_MediaHub_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Media Hub </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/>Click on icon for the latest video, podcast, and blog on COVID-19.</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon for the latest video, podcast, and blog on COVID-19.</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Blog </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/>Can a team sport like football co-exist with COVID-19? Click to read.</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Can a team sport like football co-exist with COVID-19? Click to read.</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcasts </Header.Subheader>
-                    <text style = {{fontSize: "14pt"}}> <br/> Dr. Nneka Sederstrom on COVID-19 bringing structural racism in medicine to the forefront of...</text>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Nneka Sederstrom on COVID-19 bringing structural racism in medicine to the forefront of...</Header.Content>
 
                   </Grid.Column>
                 </Grid.Row>
@@ -81,7 +81,7 @@ export default function Notes(props){
           In order to predict how the epidemic will continue to unfold and prepare for the future, it is critical to understand differences in underlying risk factors. 
           There is no one-size-fits all approach to combat the epidemic, but accurate and meaningful data is a key component of a robust public health response that is informed by contextual factors and prioritizes health equity.
           <br/><br/>
-          The COVID-19 Health Equity Dashboard (<a style ={{color: "#397AB9"}} href="COVID19.emory.edu"> COVID19.emory.edu</a>) seeks to fill the gaps in county-level data about the virus and underlying social determinants of health. 
+          The COVID-19 Health Equity Dashboard (<a style ={{color: "#397AB9"}} href="https://covid19.emory.edu"> COVID19.emory.edu</a>) seeks to fill the gaps in county-level data about the virus and underlying social determinants of health. 
           Our goal is to facilitate easy comparisons of counties with respect to COVID-19 outcomes and social determinants. 
           We hope this becomes a valuable resource for and critical component of tailored public health responses to COVID-19 across the wide range of environments that Americans inhabit.
 
@@ -98,7 +98,7 @@ export default function Notes(props){
         </Grid.Column>
         <Grid.Column style={{ left: 0, fontSize: "14pt", paddingRight: 0, width: "500px"}}>          
           <Header.Content style={{width: "500px", fontSize: "14pt"}}>
-            This <a style ={{color: "#397AB9"}} href="COVID19.emory.edu"> COVID-19 Health Equity Dashboard </a> is created using
+            This <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu"> COVID-19 Health Equity Dashboard </a> is created using
           </Header.Content>
             <List as='ol'>
               <List.Item as='li' value='-'><a style ={{color: "#397AB9"}} href="https://www.react-simple-maps.io/">React Simple Maps</a> by <a style ={{color: "#397AB9"}} href="https://www.zcreativelabs.com/">z creative labs</a></List.Item>

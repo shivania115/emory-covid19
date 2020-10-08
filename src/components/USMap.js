@@ -9,13 +9,13 @@ import Marker from './Marker';
 import Annotation from './Annotation';
 import ReactTooltip from "react-tooltip";
 import { VictoryChart, 
-  VictoryGroup, 
-  VictoryBar, 
-  VictoryTheme, 
+  // VictoryGroup, 
+  // VictoryBar, 
+  // VictoryTheme, 
   VictoryAxis, 
   VictoryLegend,
-  VictoryLine,  
-  VictoryLabel, 
+  // VictoryLine,  
+  // VictoryLabel, 
   VictoryScatter,
 } from 'victory';
 import { useHistory } from "react-router-dom";
@@ -157,14 +157,14 @@ export default function USMap(props) {
           d.fips = k
           return d}), 
           d => (
-              d[metric] >= 0 &&
+              d[metric] > 0 &&
               d.fips.length === 5)),
           d=> d[metric]))
         .range(colorPalette);
 
         let scaleMap = {}
         _.each(x, d=>{
-          if(d[metric] >= 0){
+          if(d[metric] > 0){
           scaleMap[d[metric]] = cs(d[metric])}});
       
         setColorScale(scaleMap);
@@ -173,7 +173,7 @@ export default function USMap(props) {
         _.each(x, d=> { 
           if (d[metric] > max && d.fips.length === 5) {
             max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+          } else if (d.fips.length === 5 && d[metric] < min && d[metric] > 0){
             min = d[metric]
           }
         });
@@ -190,17 +190,7 @@ export default function USMap(props) {
         }
         setLegendMin(min.toFixed(0));
 
-        var split = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
-
-        setLegendSplit(split.quantiles());
+        setLegendSplit(cs.quantiles());
 
 
       });
@@ -362,7 +352,7 @@ export default function USMap(props) {
                             ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
                                 colorScale[data[geo.id][metric]]: 
                                 (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
-                                  '#e1dce2':'#FFFFFF')}
+                                  '#FFFFFF':'#FFFFFF')}
                             
                           />
                         ))}
@@ -375,10 +365,10 @@ export default function USMap(props) {
                 </ComposableMap>
                 
                 <Grid.Row style={{paddingTop: "59px", width: "660px"}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                     For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                    </text>
+                    </Header.Content>
                 </Grid.Row>
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
@@ -430,16 +420,16 @@ export default function USMap(props) {
                   </Grid.Row>
 
                   <Grid.Row style={{left: 250, top: -30}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
                       <b>% African American</b>
-                    </text>
+                    </Header.Content>
                   </Grid.Row>
                   <Grid.Row style={{top: -30, paddingLeft: 0}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
                       <b>Data last updated:</b> {date}, updated every weekday.<br/>
                       The chart does not contain those counties with less than 10,000 population and less than 5% African American. <br/>
                     
-                    </text>
+                    </Header.Content>
                   </Grid.Row>
                 </Grid>
               </Grid.Column>

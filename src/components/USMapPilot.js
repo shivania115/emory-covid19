@@ -13,7 +13,7 @@ import { VictoryChart,
   VictoryBar, 
   VictoryTheme, 
   VictoryAxis, 
-  VictoryLegend,
+  // VictoryLegend,
   VictoryLine,  
   VictoryLabel, 
   VictoryArea,
@@ -25,9 +25,9 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 import ReactDOM from 'react-dom';
-function getKeyByValue(object, value) {
-  return Object.keys(object).find(key => object[key] === value);
-}
+// function getKeyByValue(object, value) {
+//   return Object.keys(object).find(key => object[key] === value);
+// }
 
 function getMax(arr, prop) {
     var max;

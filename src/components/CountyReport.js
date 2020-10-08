@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, Loader, Table, Divider, Image } from 'semantic-ui-react'
+import { Container, Grid, Breadcrumb, Header, Loader, Table, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
 // import Geography from './Geography';
@@ -250,9 +250,9 @@ export default function CountyReport() {
             <Breadcrumb.Section active>{countyName}</Breadcrumb.Section>
           </Breadcrumb>
           <div style={{fontWeight: 300, fontSize: "24pt", paddingTop: 30, paddingBottom: "14pt"}}>
-            <text>
+            <Header.Content>
               <b>{countyName}, {stateName}</b>
-            </text>
+            </Header.Content>
           </div>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingBottom: 20}}> SUMMARY OF COVID-19 IN {countyName}, {stateName} </Divider>
@@ -337,7 +337,7 @@ export default function CountyReport() {
             <Grid.Row>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
-                  <text x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </text>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
                           <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -406,7 +406,7 @@ export default function CountyReport() {
               </Grid.Column>
               <Grid.Column >
                 <div style = {{paddingBottom: 20}}>
-                  <text x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </text>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
                           <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -624,9 +624,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["casesfig"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
               <Grid.Column>
@@ -638,9 +638,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["caseratefig"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
               <Grid.Column>
@@ -652,9 +652,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["RPL_THEME1"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
             </Grid.Row>
@@ -669,9 +669,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["RPL_THEME2"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
               <Grid.Column>
@@ -683,9 +683,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["RPL_THEME3"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
               <Grid.Column>
@@ -697,9 +697,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["RPL_THEME4"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
             </Grid.Row>
@@ -715,9 +715,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["popden"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
               <Grid.Column>
@@ -731,9 +731,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["hhincome"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
               <Grid.Column>
@@ -745,9 +745,9 @@ export default function CountyReport() {
                   stateFips={stateFips}
                   data={data} />
                   <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <text style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
                       <b>{varMap["black"].name}</b>
-                    </text>
+                    </Header.Content>
                   </Header.Content>
               </Grid.Column>
             </Grid.Row>

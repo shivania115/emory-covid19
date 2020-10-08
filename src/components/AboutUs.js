@@ -1,6 +1,5 @@
 import React from 'react'
 import AppBar from './AppBar';
-import Notes from './Notes';
 import { Container, Grid, List, Divider, Image, Header } from 'semantic-ui-react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 function myFunction() {
