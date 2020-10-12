@@ -30,19 +30,20 @@ import stateOptions from "./stateOptions.json";
 import configs from "./state_config.json";
 
 function getMax(arr, prop) {
-    var max;
+    var max = 0;
     for (var i=0 ; i<arr.length ; i++) {
-        if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
-            max = arr[i];
+        if (max === 0 || parseInt(arr[i][prop]) > parseInt(max))
+            max = arr[i][prop];
     }
     return max;
 }
 
 function getMaxRange(arr, prop, range) {
-    var max;
+    var max = 0;
     for (var i=range ; i<arr.length ; i++) {
-        if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
-            max = arr[i];
+        if (max === 0 || parseInt(arr[i][prop]) > parseInt(max)){
+            max = arr[i][prop];
+        }
     }
     return max;
 }
@@ -361,11 +362,16 @@ export default function StateMap(props) {
 
           if (percentChangeCase.toFixed(0) > 0){
             setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
+          }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
+            setPercentChangeCases(percentChangeCase.toFixed(0).substring(1) + "%");
           }else{
             setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
           }
+
           if (percentChangeMortality.toFixed(0) > 0){
             setPercentChangeMortality("+" + percentChangeMortality.toFixed(0) + "%");
+          }else if(percentChangeMortality.toFixed(0).substring(1) === "0"){
+            setPercentChangeMortality(percentChangeMortality.toFixed(0).substring(1) + "%");
           }else{
             setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
           }
@@ -506,7 +512,7 @@ export default function StateMap(props) {
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart 
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t}}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "caseRateMean", (dataTS[stateFips].length-15)).caseRateMean*1.05}}                            
+                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "caseRateMean", dataTS[stateFips].length-15)*1.2}}                            
                             width={235}
                             height={180}    
                             parent= {{background: "#ccdee8"}}   
@@ -552,10 +558,10 @@ export default function StateMap(props) {
 
                 <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t }}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "mortalityMean", (dataTS[stateFips].length-15)).mortalityMean*1.05}}                            
+                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "mortalityMean", dataTS[stateFips].length-15)*3}}                            
                             width={235}
                             height={180}       
-                            padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
+                            padding={{left: 0, right: -1, top: 130, bottom: -0.9}}
                             containerComponent={<VictoryContainer responsive={false}/>}>
                             
                             <VictoryAxis
@@ -595,7 +601,7 @@ export default function StateMap(props) {
               <div style = {{width: 235, background: "#e5f2f7"}}>
               <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
-                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied").pctBedsOccupied*1.1}}
+                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied")*1.1}}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -636,7 +642,7 @@ export default function StateMap(props) {
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart theme={VictoryTheme.material}
                             minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(indexP + 15)].t }}
-                            maxDomain = {{x: dataTS[stateFips][dataTS[stateFips].length-indexP].t, y: getMaxRange(dataTS[stateFips], "positive", (dataTS[stateFips].length-15)).positive*1.05}}
+                            maxDomain = {{x: dataTS[stateFips][dataTS[stateFips].length-indexP].t, y: getMaxRange(dataTS[stateFips], "positive", dataTS[stateFips].length-15)*1.05}}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
