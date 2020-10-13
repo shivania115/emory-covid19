@@ -687,17 +687,18 @@ export default function StateMap(props) {
                                                                                                       "American Natives Alone" in raceData[stateFips]) 
                                                                                                       && !raceData[stateFips]["Hispanic"]? "Race" : "Race & Ethnicity"}</center>
                }
-              {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 && 
-                <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/> <br/> None Reported</center>
+              {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 || stateFips === "33" &&
+                <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 37, background: "#e5f2f7"}}> <br/> <br/> <br/> None Reported</center>
               }
               
-              <div style = {{width: 235, background: "#e5f2f7"}}>
+              <div style = {{background: "#e5f2f7"}}>
               <Grid.Row>
-                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1 && 
+                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1  && "White Alone" in raceData[stateFips] && 
+                
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
-                                      height = {(!!raceData[stateFips]["African American Alone"] + !!raceData[stateFips]["American Natives Alone"] + !!raceData[stateFips]["Asian Alone"] + !!raceData[stateFips]["White Alone"] ) === 2? 88 : 112}
+                                      height = {(!!raceData[stateFips]["African American Alone"] + !!raceData[stateFips]["American Natives Alone"] + !!raceData[stateFips]["Asian Alone"] + !!raceData[stateFips]["White Alone"] ) === 2? 112 : 112}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
                                       padding={{left: 90, right: 35, top: 0, bottom: -2}}
@@ -821,7 +822,7 @@ export default function StateMap(props) {
                                       width = {235}
                                       height = {(!!raceData[stateFips]["African American Alone"] + !!raceData[stateFips]["American Natives Alone"] + !!raceData[stateFips]["Asian Alone"] + !!raceData[stateFips]["White Alone"] ) === 2? 88 : stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1 ? 64: 180}
                                       domainPadding={20}
-                                      padding={{left: 90, right: 35, top: !!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["Non Hispanic"] ? 12 : 10, bottom: -2}}
+                                      padding={{left: 90, right: 35, top: 0, bottom: -2}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
