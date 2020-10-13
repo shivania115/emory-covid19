@@ -183,6 +183,8 @@ export default function StateMap(props) {
   const [countyOption, setCountyOption] = useState();
 
   const [delayHandler, setDelayHandler] = useState();
+  const [temp, setTemp] = useState();
+  
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -205,7 +207,10 @@ export default function StateMap(props) {
 
   useEffect(()=>{
     fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => setRaceData(x));
+      .then(x => {
+        setRaceData(x);
+        setTemp(x[stateFips]);
+      });
 
   }, []);
 
@@ -328,7 +333,7 @@ export default function StateMap(props) {
                 for (var i = v.length - 1; i >= 0; i--) {
                   if (i ===0 ){
                     index = 1;
-                    percentBedsOccupied = v[v.length-1].pctBedsOccupied;
+                    percentBedsOccupied = "None Reported";
                   }else if (v[i].pctBedsOccupied === 0){
                   }else{
                     index = v.length - i;
@@ -379,7 +384,12 @@ export default function StateMap(props) {
           setPctPositive(percentPositive.toFixed(0) + "%");
           setIndexP(indexP);
 
-          setPctBedsOccupied(percentBedsOccupied.toFixed(0) + "%");
+          if(typeof percentBedsOccupied === "string"){
+            setPctBedsOccupied(percentBedsOccupied);
+          }else{
+            setPctBedsOccupied(percentBedsOccupied.toFixed(0) + "%");
+          }
+            
           setIndex(index);
 
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
@@ -412,7 +422,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS) {
-
+    console.log(Object.keys(temp).length);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -632,7 +642,7 @@ export default function StateMap(props) {
                               x= 't' y = 'pctBedsOccupied'
 
                             />
-                            <VictoryLabel text= {stateFips === "_nation" ? 0 :pctBedsOccupied} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? 0 :pctBedsOccupied} x={115} y={60} textAnchor="middle" style={{fontSize: (pctBedsOccupied === "None Reported" )? 30: 50, fontFamily: 'lato'}}/>
 
                 </VictoryChart>
               </div>
@@ -720,7 +730,7 @@ export default function StateMap(props) {
                                           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                           data={[
 
-                                                 {key: "Asian", 'value': raceData[stateFips]["Asian Alone"][0]['caserateRace'], 'label': numberWithCommas(raceData[stateFips]["Asian Alone"][0]['caserateRace'])}
+                                                 {key: "Asian", 'value': raceData[stateFips]["Asian Alone"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Asian Alone"][0]['rateRatio'])}
 
                                           ]}
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -741,7 +751,7 @@ export default function StateMap(props) {
                                           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                           data={[
 
-                                                 {key: "American\n Natives", 'value': raceData[stateFips]["American Natives Alone"][0]['caserateRace'], 'label': numberWithCommas(raceData[stateFips]["American Natives Alone"][0]['caserateRace'])}
+                                                 {key: "American\n Natives", 'value': raceData[stateFips]["American Natives Alone"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["American Natives Alone"][0]['rateRatio'])}
 
                                           ]}
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -763,7 +773,7 @@ export default function StateMap(props) {
                                           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                           data={[
 
-                                                 {key: "African\n American", 'value': raceData[stateFips]["African American Alone"][0]['caserateRace'], 'label': numberWithCommas(raceData[stateFips]["African American Alone"][0]['caserateRace'])}
+                                                 {key: "African\n American", 'value': raceData[stateFips]["African American Alone"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["African American Alone"][0]['rateRatio'])}
 
                                           ]}
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -785,7 +795,7 @@ export default function StateMap(props) {
                                           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                           data={[
 
-                                                 {key: "White", 'value': raceData[stateFips]["White Alone"][0]['caserateRace'], 'label': numberWithCommas(raceData[stateFips]["White Alone"][0]['caserateRace'])}
+                                                 {key: "White", 'value': raceData[stateFips]["White Alone"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["White Alone"][0]['rateRatio'])}
 
                                           ]}
                                           labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -809,14 +819,19 @@ export default function StateMap(props) {
                   &nbsp;&nbsp;
                 </div>
               }
+              <div style = {{background: "#e5f2f7"}}>
               <Grid.Row> 
-                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && (!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) 
-                && 
-                <center style= {{height: 64}}> <text style={{fontSize: '14pt', lineHeight: "14pt"}}> <br/>Ethnicity Not Reported</text> </center>
+                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && !raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && 
+                !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && 
+                !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] || !(stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && raceData[stateFips]["Hispanic"][0]['rateRatio'] !== -9999) &&
+                  <center style= {{height: 64}}> <text style={{fontSize: '14pt', lineHeight: "14pt"}}> <br/>Ethnicity Not Reported</text> </center>
                 
                 
                 }
-                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && !(!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) &&
+
+
+
+                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && raceData[stateFips]["Hispanic"][0]['rateRatio'] !== -9999 && 
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
@@ -826,12 +841,11 @@ export default function StateMap(props) {
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
-                  
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
 
-                                        {!!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["White Alone"] && raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["White Alone"] && raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] >= 0 && raceData[stateFips]["Hispanic"][0]['rateRatio'] !== -9999 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -839,7 +853,7 @@ export default function StateMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "Hispanic", 'value': raceData[stateFips]["Hispanic"][0]['caserateEthnicity'], 'label': numberWithCommas(raceData[stateFips]["Hispanic"][0]['caserateEthnicity'])}
+                                                   {key: "Hispanic", 'value': raceData[stateFips]["Hispanic"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Hispanic"][0]['rateRatio'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -853,7 +867,7 @@ export default function StateMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[stateFips]["Non Hispanic"] && !!raceData[stateFips]["White Alone"] && raceData[stateFips]["Non Hispanic"][0]['caserateEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non Hispanic"] && !!raceData[stateFips]["White Alone"] && raceData[stateFips]["Non Hispanic"][0]['caserateEthnicity'] >= 0 && raceData[stateFips]["Non Hispanic"][0]['rateRatio'] !== -9999 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -861,7 +875,7 @@ export default function StateMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "Non\n Hispanic", 'value': raceData[stateFips]["Non Hispanic"][0]['caserateEthnicity'], 'label': numberWithCommas(raceData[stateFips]["Non Hispanic"][0]['caserateEthnicity'])}
+                                                   {key: "Non\n Hispanic", 'value': raceData[stateFips]["Non Hispanic"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Non Hispanic"][0]['rateRatio'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -876,7 +890,7 @@ export default function StateMap(props) {
                                         }
                                         
                                       
-                                        {!!raceData[stateFips]["Non-Hispanic African American"] && raceData[stateFips]["Non-Hispanic African American"][0]['caserateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic African American"] && raceData[stateFips]["Non-Hispanic African American"][0]['caserateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic African American"][0]['rateRatio'] !== -9999 && 
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -884,7 +898,7 @@ export default function StateMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "African\n American", 'value': raceData[stateFips]["Non-Hispanic African American"][0]['caserateRaceEthnicity'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic African American"][0]['caserateRaceEthnicity'])}
+                                                   {key: "African\n American", 'value': raceData[stateFips]["Non-Hispanic African American"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic African American"][0]['rateRatio'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -898,7 +912,7 @@ export default function StateMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[stateFips]["Non-Hispanic American Natives"] && raceData[stateFips]["Non-Hispanic American Natives"][0]['caserateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic American Natives"] && raceData[stateFips]["Non-Hispanic American Natives"][0]['caserateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic American Natives"][0]['rateRatio'] !== -9999 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -906,7 +920,7 @@ export default function StateMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "American\n Natives", 'value': raceData[stateFips]["Non-Hispanic American Natives"][0]['caserateRaceEthnicity'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic American Natives"][0]['caserateRaceEthnicity'])}
+                                                   {key: "American\n Natives", 'value': raceData[stateFips]["Non-Hispanic American Natives"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic American Natives"][0]['rateRatio'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -920,7 +934,7 @@ export default function StateMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[stateFips]["Non-Hispanic Asian"] && raceData[stateFips]["Non-Hispanic Asian"][0]['caserateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic Asian"] && raceData[stateFips]["Non-Hispanic Asian"][0]['caserateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic Asian"][0]['rateRatio'] !== -9999 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -928,7 +942,7 @@ export default function StateMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "Asian", 'value': raceData[stateFips]["Non-Hispanic Asian"][0]['caserateRaceEthnicity'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic Asian"][0]['caserateRaceEthnicity'])}
+                                                   {key: "Asian", 'value': raceData[stateFips]["Non-Hispanic Asian"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic Asian"][0]['rateRatio'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600 }}/>}
@@ -941,7 +955,7 @@ export default function StateMap(props) {
                                             y="value"
                                           />
                                         }
-                                        {!!raceData[stateFips]["Non-Hispanic White"] && raceData[stateFips]["Non-Hispanic White"][0]['caserateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic White"] && raceData[stateFips]["Non-Hispanic White"][0]['caserateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic White"][0]['rateRatio'] !== -9999 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -949,7 +963,7 @@ export default function StateMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "White", 'value': raceData[stateFips]["Non-Hispanic White"][0]['caserateRaceEthnicity'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic White"][0]['caserateRaceEthnicity'])}
+                                                   {key: "White", 'value': raceData[stateFips]["Non-Hispanic White"][0]['rateRatio'], 'label': numberWithCommas(raceData[stateFips]["Non-Hispanic White"][0]['rateRatio'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000", fontWeight: 600}}/>}
@@ -970,9 +984,11 @@ export default function StateMap(props) {
                         </VictoryChart>
                      }
                 </Grid.Row>
+                </div>
               </div>
             </Grid.Column>
             </Grid.Row>
+            
 
             <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 10, paddingLeft: 15, paddingRight: 0}}>
               
