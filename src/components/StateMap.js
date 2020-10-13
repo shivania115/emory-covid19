@@ -687,13 +687,14 @@ export default function StateMap(props) {
                                                                                                       "American Natives Alone" in raceData[stateFips]) 
                                                                                                       && !raceData[stateFips]["Hispanic"]? "Race" : "Race & Ethnicity"}</center>
                }
-              {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 && 
-                <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/> <br/> None Reported</center>
+              {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 || stateFips === "33" &&
+                <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 37}}> <br/> <br/> <br/> None Reported</center>
               }
               
               <div style = {{width: 235, background: "#e5f2f7"}}>
               <Grid.Row>
-                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1 && 
+                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1  && "White Alone" in raceData[stateFips] && 
+                
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
