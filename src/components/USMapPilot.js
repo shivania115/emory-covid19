@@ -785,7 +785,7 @@ export default function USMap(props) {
 
 
 
-                                        {!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['caserateEthnicity'] >=0 &&
+                                        {(!!raceData[fips]["Hispanic"] || (!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['caserateEthnicity'] >=0 ))&&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -959,6 +959,50 @@ export default function USMap(props) {
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
+
+                                        {(!!raceData[fips]["Hispanic"] || (!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['caserateEthnicity'] >=0 ))&&
+                                          <VictoryBar
+                                            barWidth= {10}
+                                            barRatio={0.1}
+                                            horizontal
+                                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                            data={[
+
+                                                   {key: "Hispanic", 'value': raceData[fips]["Hispanic"][0]['caserateEthnicity'], 'label': numberWithCommas(raceData[fips]["Hispanic"][0]['caserateEthnicity'])}
+
+                                            ]}
+                                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
+                                            style={{
+                                              data: {
+                                                fill: "#004071"
+                                              }
+                                            }}
+                                            x="key"
+                                            y="value"
+                                          />
+                                        }
+
+                                        {!!raceData[fips]["Non Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Non Hispanic"][0]['caserateEthnicity'] >= 0 &&
+                                          <VictoryBar
+                                            barWidth= {10}
+                                            barRatio={0.1}
+                                            horizontal
+                                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                            data={[
+
+                                                   {key: "Non Hispanic", 'value': raceData[fips]["Non Hispanic"][0]['caserateEthnicity'], 'label': numberWithCommas(raceData[fips]["Non Hispanic"][0]['caserateEthnicity'])}
+
+                                            ]}
+                                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
+                                            style={{
+                                              data: {
+                                                fill: "#004071"
+                                              }
+                                            }}
+                                            x="key"
+                                            y="value"
+                                          />
+                                        }
                                         
                                         {!!raceData[fips]["Non-Hispanic African American"] && raceData[fips]["Non-Hispanic African American"][0]['caserateRaceEthnicity'] >= 0 &&
                                           <VictoryBar
