@@ -412,7 +412,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS) {
-
+    console.log(raceData[stateFips]["Hispanic"][0]['caserateEthnicity']);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -831,7 +831,7 @@ export default function StateMap(props) {
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
 
-                                        {!!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["White Alone"] && raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] >= 0 &&
+                                        {(!!raceData[stateFips]["Hispanic"] || (!!raceData[stateFips]["Hispanic"] && !!raceData[stateFips]["White Alone"])) && raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] >= 0 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
