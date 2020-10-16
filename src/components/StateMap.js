@@ -697,7 +697,7 @@ export default function StateMap(props) {
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
-                                      height = {(!!raceData[stateFips]["African American Alone"] + !!raceData[stateFips]["American Natives Alone"] + !!raceData[stateFips]["Asian Alone"] + !!raceData[stateFips]["White Alone"] ) === 2? 112 : 112}
+                                      height = {(!!raceData[stateFips]["African American Alone"] + !!raceData[stateFips]["American Natives Alone"] + !!raceData[stateFips]["Asian Alone"] + !!raceData[stateFips]["White Alone"] ) === 2? 88 : 112}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
                                       padding={{left: 90, right: 35, top: 0, bottom: -2}}
