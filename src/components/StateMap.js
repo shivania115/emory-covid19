@@ -686,13 +686,17 @@ export default function StateMap(props) {
                                                                                                       "American Natives Alone" in raceData[stateFips]) 
                                                                                                       && !raceData[stateFips]["Hispanic"]? "Race" : "Race & Ethnicity"}</center>
                }
-              {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 || stateFips === "33" &&
+              {stateFips !== "_nation" && stateFips === "36" &&
                 <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 37, background: "#e5f2f7"}}> <br/> <br/> <br/> None Reported</center>
               }
+
+              {stateFips === "_nation" && 
+              <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5}}> Cases by Race Ethnicity</center>
+               }
               
               <div style = {{background: "#e5f2f7"}}>
               <Grid.Row>
-                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1  && "White Alone" in raceData[stateFips] && 
+                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && stateFips !== "36"  && "White Alone" in raceData[stateFips] && 
                 
                         <VictoryChart
                                       theme = {VictoryTheme.material}
@@ -803,19 +807,19 @@ export default function StateMap(props) {
                         </VictoryChart>
                       }
               </Grid.Row>
-              {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && Object.keys(raceData[stateFips]).length !== 1 &&
+              {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && stateFips !== "36" &&
                 <div style={{lineHeight: "4px", background: "#FFFFFF"}}>
                   &nbsp;&nbsp;
                 </div>
               }
               <Grid.Row> 
-                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && (!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) 
+                {stateFips !== "_nation" && stateFips !== "36" && (raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] < 0 || (!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ))
                 && 
                 <center style= {{height: 64}}> <text style={{fontSize: '14pt', lineHeight: "14pt"}}> <br/>Ethnicity Not Reported</text> </center>
                 
                 
                 }
-                {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length !== 1 && !(!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) &&
+                {stateFips !== "_nation" && stateFips !== "36" && !(raceData[stateFips]["Hispanic"][0]['caserateEthnicity'] < 0 || (!raceData[stateFips]["Hispanic"] && !raceData[stateFips]["Non Hispanic"] && !raceData[stateFips]["Non-Hispanic African American"] && !raceData[stateFips]["Non-Hispanic American Natives"] && !raceData[stateFips]["Non-Hispanic Asian"] && !raceData[stateFips]["Non-Hispanic White"] ) )&&
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
@@ -1014,7 +1018,7 @@ export default function StateMap(props) {
               
             </Grid.Row>
                      
-            {stateFips !== "_nation" && Object.keys(raceData[stateFips]).length === 1 &&
+            {stateFips !== "_nation" && stateFips === "36" &&
             <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
                     <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                       Percent Occupied Beds updated on 07/07/2020.
@@ -1225,7 +1229,7 @@ export default function StateMap(props) {
                         maxDomain = {{x: dataTS["_nation"][dataTS["_nation"].length-1].t}}
                         containerComponent={<VictoryZoomContainer zoomDomain={{x: [
                           dataTS["_nation"][92].t,
-                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} zoomDimension="x" flyoutStyle={{fill: "white"}}/> }
+                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} flyoutStyle={{fill: "white"}}/> }
                         >
                         
                         <VictoryAxis tickCount={4}

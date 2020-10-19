@@ -759,18 +759,18 @@ export default function USMap(props) {
                       {!!raceData[fips]["White Alone"] &&
                         <div style = {{marginTop: 10}}>
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Cases by Ethnicity</text>
-                          {(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
+                          {!(stateFips && !!raceData[fips]["White Alone"] && fips !== "36" && !(raceData[fips]["Hispanic"][0]['caserateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ))
                               && 
                             <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> Not Reported</text> </center>
 
                         }
                         </div>
                       }
-                      {stateFips && !!raceData[fips]["White Alone"] &&
+                      {stateFips && !!raceData[fips]["White Alone"] && fips !== "36" && !(raceData[fips]["Hispanic"][0]['caserateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {250}
-                                      height = {!!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ?  81 : 32 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
+                                      height = {!!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ?  81 : 3 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
                                       padding={{left: 110, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
@@ -923,8 +923,7 @@ export default function USMap(props) {
 
                         </VictoryChart>
                       }
-                      {!!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
-                              && 
+                      {!!raceData[fips]["White Alone"] && fips !== "36" && !(raceData[fips]["Hispanic"][0]['caserateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
                         <div style = {{marginTop: 10, textAlign: "center", width: 300}}>
                           <text style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Cases per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</text>
                         </div>
@@ -935,7 +934,7 @@ export default function USMap(props) {
                   </Grid.Row>
                   }
 
-                  {(!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
+                  {(!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && fips !== "36" &&
                   <Grid.Row columns = {1}>
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                       {stateFips && !raceData[fips]["White Alone"] &&
@@ -943,14 +942,14 @@ export default function USMap(props) {
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race & Ethnicity</text>
                         </div>
                       }
-                      {stateFips && !raceData[fips]["White Alone"] &&
+                      {stateFips && !raceData[fips]["White Alone"] && stateFips !== "36" &&
                         <VictoryChart
                                       theme = {VictoryTheme.material}
-                                      width = {300}
-                                      height = {30 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
+                                      width = {310}
+                                      height = {32 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
-                                      padding={{left: 110, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
+                                      padding={{left: 110, right: 45, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
@@ -1106,11 +1105,11 @@ export default function USMap(props) {
                     </Grid.Column>
                   </Grid.Row>}
 
-                  {Object.keys(raceData[fips]).length === 1 &&
+                  {stateFips === "36" &&
 
                     <Grid.Row columns = {1}>
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: 123}}> 
-                      {Object.keys(raceData[fips]).length === 1 &&
+                      {stateFips === "36" &&
                         <div style = {{marginTop: 50}}>
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Cases per capita by Race & Ethnicity <br/> <br/> <br/> <br/> </text>
                           <text style={{fontSize: '14pt', paddingLeft: 100, fontWeight: 400}}> Not Reported</text>
@@ -1123,7 +1122,7 @@ export default function USMap(props) {
 
                   }
 
-                  <Grid.Row style={{top: -30, paddingLeft: 0}}>
+                  <Grid.Row style={{top: fips === "36"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
                   
                   {Object.keys(raceData[fips]).length === 1 &&
                     <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 1, lineHeight: "18pt"}}>
