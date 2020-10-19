@@ -422,7 +422,6 @@ export default function StateMap(props) {
 
 
   if (data && dataTS) {
-    console.log(raceData[stateFips]["Hispanic"][0]['caserateEthnicity']);
   return (
       <div>
         <AppBar menu='countyReport'/>
