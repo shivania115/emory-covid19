@@ -687,7 +687,7 @@ export default function StateMap(props) {
                                                                                                       && !raceData[stateFips]["Hispanic"]? "Race" : "Race & Ethnicity"}</center>
                }
               {stateFips !== "_nation" && stateFips === "36" &&
-                <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 37, background: "#e5f2f7"}}> <br/> <br/> <br/> None Reported</center>
+                <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 48, background: "#e5f2f7"}}> <br/> <br/> <br/> <br/> None Reported <br/> <br/> <br/></center>
               }
 
               {stateFips === "_nation" && 
