@@ -34,7 +34,6 @@ function numberWithCommas(x) {
     return x;
 }
 
-//const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
 const colorPalette = [
         "#e1dce2",
@@ -338,8 +337,8 @@ export default function USMap(props) {
                             
                             }}
 
-
-
+                            
+                            
                             onMouseLeave={()=>{
                               setTooltipContent("")
                             }}
