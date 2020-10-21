@@ -1089,68 +1089,7 @@ export default function ExtraFile(props) {
               <div style = {{marginTop: 60}}>
                   <br/>
                   <br/>
-                  <svg width="260" height="80">
                   
-                  {_.map(legendSplit, (splitpoint, i) => {
-                    if(legendSplit[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                    }else if(legendSplit[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplit[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
-                    }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                  })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
-
-
-                  {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                  })} 
-
-
-                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
-
-
-                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-
-                </svg>
-
-          
-                  <ComposableMap 
-                    projection="geoAlbersUsa" 
-                    data-tip=""
-                    width={630} 
-                    height={380}
-                    strokeWidth= {0.1}
-                    stroke= 'black'
-                    projectionConfig={{scale: 750}}
-                    >
-                    <Geographies geography={geoUrl}>
-                      {({ geographies }) => 
-                        <svg>
-                          {geographies.map(geo => (
-                            <Geography
-                              key={geo.rsmKey}
-                              geography={geo}
-                              fill={
-                              ((colorCVI && data[geo.id] && (data[geo.id][CVI]) > 0)?
-                                  colorCVI[data[geo.id][CVI]]: 
-                                  (colorCVI && data[geo.id] && data[geo.id][CVI] === 0)?
-                                    '#FFFFFF':'#FFFFFF')}
-                              
-                            />
-                          ))}
-                        </svg>
-                      }
-                    </Geographies>
-                    
-
-                  </ComposableMap>
 
                 </div>
 

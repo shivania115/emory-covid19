@@ -700,7 +700,7 @@ export default function StateMap(props) {
             </Grid.Column>
             <Grid.Column rows = {2} style = {{width:235}}>
 
-              {stateFips === "_nation" || stateFips === "72" && 
+              {stateFips === "_nation" && 
                 <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, width: 238}}> Deaths by Race & Ethnicity</center>
 
 
