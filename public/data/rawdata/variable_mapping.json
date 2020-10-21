@@ -49,6 +49,7 @@
         "name": "Average Daily COVID-19 Deaths per 100,000",
         "definition": "helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people.",
         "group": "outcomes"},
+
         
     "black": {
         "variable": "black",
@@ -104,6 +105,13 @@
         "name": "% Male",
         "definition": "definition",
         "group": "exposure"},
+
+    "CVI": {
+        "variable": "CVI",
+        "name": "Community Vulnerability Index",
+        "definition": "definition",
+        "group": "exposure"},
+
     "RPL_THEME1": {
         "variable": "RPL_THEME1",
         "name": "Socioeconomic Vulnerability",
