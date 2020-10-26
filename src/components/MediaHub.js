@@ -30,6 +30,28 @@ export default function DataSources(props){
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='290' href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances' src='/podcast images/Vincent Macroni.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances'>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection</Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Published: October 26, 2020 <br/> 
+                        Media Type: Podcast<br/><br/>
+                        Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor that reduces inflammation and may reduce viral replication, and has played an important role in treating patients with severe Covid-19. We discuss the current state of research and considerations around underlying conditions and health equity. 
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/blog images/pri/Image 15.png' />            
               </div>
             </Grid.Row>
@@ -76,7 +98,7 @@ export default function DataSources(props){
             </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/africanAmericanCommunity' src='/blog images/aac/Image 1.png' />            

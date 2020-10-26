@@ -15,6 +15,195 @@ export default function AboutUs(props){
     <div>
     <AppBar/>
 
+//Dr. Vincent Marconi
+
+    {podcastTitle === "Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" &&
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+      <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+      </Breadcrumb>
+        <div width = {888}>
+        
+            <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+              <Header.Content>
+              Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection
+                <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+
+
+                </Header.Subheader>
+                <div style = {{paddingTop: 10}}>
+                <iframe src="https://anchor.fm/rsph-ched/embed/episodes/Innovations-in-Covid-19-Treatment-Dr--Vincent-Marconi-on-Anti-Viral-and-Anti-Inflammatory-Advances-Against-Covid-19-Infection-elj2vh" height="150px" width="800px" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <p style={{textAlign:"left", fontWeight: 300}}>
+
+                      By Leanna Ehrlich on Oct. 26, 2020
+
+                      <br/>
+                      Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                      <br/>
+                      From Emory University
+
+                      <br/>
+
+                      </p>
+
+                      <br/>
+                      <b>Transcript</b>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:00:00] </b> Welcome back to the equity and outcomes podcast series from the COVID-19 Health Equity dashboard. On this episode, we're talking to Dr. Vincent Marconi, a Professor of Medicine in the Division of Infectious Diseases at Emory School of Medicine, as well as the Professor of Global Health at the Rollins School of Public Health and the Emory Vaccine Center. Welcome to the podcast, Dr. Marconi. Today, we're going to be talking about potential new treatments in antivirals and anti-inflammatories to address COVID-19 infection. So first, could you tell us about the treatments you've been working on related to baricitinib?
+                        
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:00:34] </b> Thank you, Leanna. It's great to be here. Absolutely. So we've been working with this particular class of drugs called JAK-STAT inhibitors, since about 2012. And this [work] is in conjunction with Dr. Raymond Schinazi and Christina Gavegnano, who worked in the Laboratory of Biochemical Pharmacology. That work was with me, [and it] focused primarily on people with HIV. They had found in the lab, that JAK-STAT inhibitors reduced inflammation for in vitro models of HIV. They've also looked at other viruses as well, but I was specifically interested in the results that they found related to HIV, as most of my research and clinical work deals with HIV. And it has already been known that these drugs reduced inflammation for many kinds of both autoimmune and inflammatory conditions, as well as cancers. And so it made sense for us to explore this [class of drugs], both in preclinical and then in clinical models for people with HIV, because inflammation is a large component of the disease and the morbidity and mortality associated with people living with HIV, even if they [the patients are] able to stay on treatment, and really suppress the virus in their body, that this ongoing [inflammatory] process, because of immunologic imbalance that happens early in infection, seems to be a persistent problem for a large percentage of patients receiving treatment. 
+
+                      <br/>
+                      <br/>
+                      <br/> 
+
+                      <b>Leanna Ehrlich: [00:02:20] </b> So, how did you first come to the realization that these JAK-STAT inhibitors could be useful for treating patients with severe COVID? 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:02:28] </b> We had embarked on a large program of treating patients and doing clinical trials using JAK-STAT inhibitors. And so when COVID-19 emerged at the beginning of this year, and it showed many aspects of inflammation that were similar to what we had been looking at in people with HIV as well as [what] others had been looking at in people with these inflammatory conditions, it made sense to consider JAK-STAT inhibitors in particular, as one of the strategies to help with treating people having severe COVID-19 who are hospitalized, etc. And so when the publication by Stebbing, and his group from the United Kingdom came out in early February showing that an artificial intelligence – one of these sort of machine learning algorithms – to screen using computer modeling, large libraries of compounds, to identify those [drugs] that would be effective against SARS-COV-2, it was really startling to see that baricitinib, one of these JAK-STAT inhibitors that we've been looking at, seemed to be the most promising. And this was really not exclusively, or really, the point; the point of the model was not to identify anti-inflammatories, but actually looking for molecules and for compounds that would actually inhibit viral replication. So here, encouraged by both our preclinical and clinical work with these agents outside of COVID-19, but in an infectious disease, a viral disease in particular, showing reduction in inflammation, inflammatory biomarkers, plus this potential in silica model showing that there was a reduction in viral replication if these were to be used. We were very interested, as you might imagine, in pursuing this further.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:04:39] </b> That’s so interesting. So it sounds like the early artificial intelligence analysis suggesting the promise of baricitinib for SARS-COV-2 infection inspired you to pivot from your work with this drug in HIV to the direct investigation of how baricitinib may work for COVID-19 patients. Can you tell us more about how this went to trials?
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:04:58] </b> So, we approached [Eli] Lilly [and Company] pharmaceuticals, who makes baricitinib; and also through our contacts, here at Emory, who are working with the NIH. This [team] includes Dr. David Stevens, who is the head of the Infectious Disease Clinical Research Consortium; Dr. Nadine Rouphael, who is the director of the VTEU, and Dr. Aneesh Mehta, who is the NETEC director. We approached [each of] them with these ideas to see if it might be included in the NIH platform trial called ACTT. So we were sort of trying a couple of different routes. I submitted a protocol to Lilly outlining our proposal; we had several meetings with them. And as I said, these three individuals from Emory were approaching NIH. And so as this process was moving forward, we began to see large numbers of patients admitted to our hospitals with COVID-19. And were quite sick. And so one of my fellows, a mentee of mine, [Dr.] Boghuma Titanji, was working on clinical service with our division chair, Dr. Monica Farley, at the Atlanta VA; and they were seeing patients with severe COVID-19. One [of these patients] was a relatively young individual who was severely ill. And despite all of the possible therapies [for COVID-19], including those that are being used, still today, such as steroids, etc., this patient was doing quite poorly, and in fact, was ventilated; and, you know, was in critical, and even guarded, condition, and had shock and had renal failure, etc. And so in discussions with Dr. Schinazi, we decided to try baricitinib off-label for this one patient. And really, within 24 hours, this patient's fever decreased – deferversed, as we describe it – and then within 48 hours, his ventilation settings had gone down significantly, and eventually [he] came off the ventilator and all of his organ systems returned back to health fairly quickly; it was really impressive compared to a lot of the other patients we had seen who had done poorly.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:07:33] </b> Wow, that must have been an exciting moment.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:07:36] </b> So encouraged by these findings, we decided to treat additional patients. [We] ended up treating 15 patients, 12 of which did very well, [while] a couple of patients declined further healthcare interventions such as intubation; and unfortunately, without [intubation], they were not able to survive, and one patient did ultimately die (despite being on the ventilator), who declined to have aggressive measures as well. So out of those 15 patients, again, we felt we had strong enough data to say, at least from a safety perspective, these patients appeared to tolerate the treatment and may have – although without a placebo control to compare it – but may have had improvement beyond [just tolerating the treatment], which we were seeing in other patients who did not receive it. And so with these data, we were more, again, justified in our discussions with both the NIH and Lilly to pursue this further. This resulted in two large international trials of treating patients with baricitinib compared to placebos [sponsored by] the NIH and Lilly. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:08:58] </b> So what do these two new, larger trials look like? How are they being conducted?
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:09:04] </b> So ACTT-2 [Adaptive COVID-19 Treatment Trial 2] was a study randomized [placebo]-controlled trial of remdesivir plus baricitinib, versus a control arm of remdesivir alone. Remdesivir, as you may know, in ACTT-1 was shown to be beneficial for patients [hospitalized with COVID] in a placebo-controlled trial. So, that had been moved into clinical care guidelines under [an] emergency use authorization. And so [remdesivir] became the standard of care for ACTT-2. [The ACTT-2] results are now put together in a publication and are very favorable [for baricitinib]. I’m unable at this point to go into the details, but they should be submitted to a journal within, hopefully the next few days, to a week. So [we are all] looking forward to seeing those in print soon. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      The second study, COV-BARRIER, which Lilly pharmaceuticals is sponsoring, is currently about 50% enrolled, and so we'll have a second look at the same strategy coming up soon [in the next few months].
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:10:10] </b> Could you speak to any differences in race and ethnicity with distributing baricitinib and other inflammatory response drugs? Do you think there might be any differences in how these drugs work in people of different backgrounds or ethnicities or underlying medical conditions? And or might there be any issues to consider around distribution of the drugs? If and when they become more widely available? 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:10:29] </b> Yeah, this, Leanna is a critical question. Both for me personally, but obviously, I think for the wider community; both [those] affected by this disease, and the clinical community treating patients with this disease. And it clearly has been evident to the world, the disproportionate effects in this country at least, and elsewhere, of specific minority groups. In particular in the US, African Americans have been, from a mortality perspective, and also severity of disease, have been most heavily hit, by SARS-COV-2. It appears that a lot of this [difference] is related to aspects of underlying medical conditions, but also access to health care, etc. So trying to extrapolate how baricitinib could potentially either affect this positively or negatively is a critical question. For our small study of 15 patients it, again, it's really impossible for us to make any conclusions; I can say the vast majority of our patients at the Atlanta VA, who have been able to participate either in the single arm study or in our randomized controlled trials, have been African Americans and other minorities. So we feel confident that we'll be able to address this in the data we have now, and in ACTT2. That is being explored currently, but is not in the initial findings that we have [assembled] – the top line findings didn't get into those analyses at this point. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:12:11] </b> Well that seems promising from an equity standpoint, that you were already exploring the treatment in early versions among a diverse population. Where do you go from here?
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:12:22] </b> YFrom a biological perspective, you know, it all depends on both whether a drug can impact positively and reverse the disease, based on the biology[ical mechanism]; and so the biology, in this particular circumstance, is twofold. One, immunologically, patients who go on to severe disease are at a risk of not being able to, or predisposed to not being able to, control the virus. It is probably in part related to type I interferons; there may be some differences in antibody responses as well. Also, the innate immune system, natural killer cells, etc., macrophage response [may be playing a role]. So, it's possible that diabetes and other medical conditions, ([i.e.] hypertension and obesity) may have some impact on that initial immune response to clear the virus. And so, if the virus has not cleared initially, it triggers a cascade of multiple different arms involving both the ACE2 receptor and the clotting system to result in the pathology we see in severe COVID disease. So, that second piece, this triggering, probably in part, [happens] because the virus isn't cleared to it initially early; but [it] may also have to do with predispositions to inflammation. Again, these diseases such as diabetes, cardiovascular disease, obesity, [patients are] already inflamed, and primed for inflammation at baseline. So it may not be very difficult to trigger that cascade. And so the fact that inflammation is a predisposition, and then as a consequence of the virus, it would make sense that baricitinib, because it acts on this inflammation in particular, would have a beneficial effect for these individuals who are hardest hit. So I would anticipate it should be equal in response to people [of colors and those] who are not of color who are having severe COVID-19. But again, that remains to be seen. And we looked eagerly towards those results from both ACTT2 and COV-BARRIER.
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:14:44] </b> And how do you think your environment at Emory, at your workplace, has contributed to the success of these discoveries?
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:14:50] </b> It's incredible to see what we've been able to accomplish here at Emory, and certainly around the world. But in particular, I think the environment here at Emory has really facilitated multiple different discoveries across diagnoses: across prevention, therapeutics, vaccines, you know, community outreach and epidemiology. So, you know, I think has been favorable environment, as I said, and culture, to allow for these cross-disciplinary collaborations, and really transdisciplinary collaborations to help the community, you know, respond to this disease. We've reached across our partners at other universities here, across Georgia Tech and Morehouse. And I think our existing collaborations is what has facilitated [these partnerships]: these were not new relationships, but were pre-existing. And so [it] allowed us to pivot and respond again, in particular, to reach out to the communities most heavily affected by the disease, and reach into communities that can be disenfranchised and underserved. And I think that, again, bringing information and knowledge from the lab, from drug discovery programs, from our colleagues at the non-human Primate Research Center, all the way through to clinical trials and out into the community, shows really the dynamic opportunities and resources here at Emory.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:16:28] </b> Definitely, Emory and Atlanta are great places for innovation, research and building partnerships with communities and other institutions. So sounds like a good place to be.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:16:38] </b> I agree. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Leanna Ehrlich: [00:16:40] </b> Well, thank you so much for joining the podcast today. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      <b>Dr. Vincent Marconi: [00:16:43] </b> My pleasure. Thanks, Leanna.
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+                </Header>
+              </Header.Content>
+            </Header>
+  
+          
+        </div>
+        <Notes />
+
+      </Container>
+    }
+
+
+
+
+
+
+
+
+
+
+
     //Dr. Nneka Sederstrom
 
     {podcastTitle === "Dr._Nneka_Sederstrom_on_Racism_and_Ethics" &&
