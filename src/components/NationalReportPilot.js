@@ -138,7 +138,7 @@ export default function ExtraFile(props) {
   const [legendMinCVI, setLegendMinCVI] = useState([]);
   const [legendSplitCVI, setLegendSplitCVI] = useState([]);
 
-  const [resSeg, setResSeg] = useState("resSeg");
+  const [resSeg, setResSeg] = useState("RS_blackwhite");
   const [colorResSeg, setColorResSeg] = useState();
 
   const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
@@ -239,7 +239,7 @@ export default function ExtraFile(props) {
     }, []);
 
     useEffect(() => {
-      if (CVI) {
+      if (CVI && resSeg) {
       fetch('/data/data.json').then(res => res.json())
         .then(x => {
           
@@ -256,12 +256,12 @@ export default function ExtraFile(props) {
             d=> d[CVI]))
           .range(colorPalette);
   
-          let scaleMapii = {}
+          let scaleMap = {}
           _.each(x, d=>{
             if(d[CVI] > 0){
-            scaleMapii[d[CVI]] = cs(d[CVI])}});
+            scaleMap[d[CVI]] = cs(d[CVI])}});
         
-          setColorCVI(scaleMapii);
+          setColorCVI(scaleMap);
           var max = 0
           var min = 100
           _.each(x, d=> { 
@@ -296,24 +296,24 @@ export default function ExtraFile(props) {
             d.fips = k
             return d}), 
             d => (
-                d[CVI] > 0 &&
+                d[resSeg] > 0 &&
                 d.fips.length === 5)),
-            d=> d[CVI]))
+            d=> d[resSeg]))
           .range(colorPalette);
   
-          let scaleMap = {}
+          let scaleMapii = {}
           _.each(x, d=>{
-            if(d[CVI] > 0){
-            scaleMap[d[CVI]] = cs(d[CVI])}});
+            if(d[resSeg] > 0){
+            scaleMapii[d[resSeg]] = csii(d[resSeg])}});
         
-          setColorResSeg(scaleMap);
+          setColorResSeg(scaleMapii);
           var maxii = 0
           var minii = 100
           _.each(x, d=> { 
-            if (d[CVI] > maxii && d.fips.length === 5) {
-              maxii = d[CVI]
-            } else if (d.fips.length === 5 && d[CVI] < minii && d[CVI] > 0){
-              minii = d[CVI]
+            if (d[resSeg] > maxii && d.fips.length === 5) {
+              maxii = d[resSeg]
+            } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
+              minii = d[resSeg]
             }
           });
   
@@ -335,7 +335,7 @@ export default function ExtraFile(props) {
       
       }
   
-    }, [CVI])
+    }, [CVI, resSeg])
 
   useEffect(() => {
     if (dataTS){
