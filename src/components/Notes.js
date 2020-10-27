@@ -60,15 +60,15 @@ export default function Notes(props){
 
                   </Grid.Column>
                   <Grid.Column>
-                    <Image width='300' height='236' href = '/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
+                    <Image width='300' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Blog </Header.Subheader>
-                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Can a team sport like football co-exist with COVID-19? Click to read.</Header.Content>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>COVID-19 and Poverty-related issues (Update to July 27th)</Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>
-                    <Image width='300' height='236' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
+                    <Image width='300' height='236' href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcasts </Header.Subheader>
-                    <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Nneka Sederstrom on COVID-19 bringing structural racism in medicine to the forefront of...</Header.Content>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor that reduces ...</Header.Content>
 
                   </Grid.Column>
                 </Grid.Row>
