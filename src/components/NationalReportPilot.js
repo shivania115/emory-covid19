@@ -134,15 +134,25 @@ export default function ExtraFile(props) {
   const [CVI, setCVI] = useState("CVI");
   const [colorCVI, setColorCVI] = useState();
 
-  const [legendMax, setLegendMax] = useState([]);
-  const [legendMin, setLegendMin] = useState([]);
-  const [legendSplit, setLegendSplit] = useState([]);
+  const [legendMaxCVI, setLegendMaxCVI] = useState([]);
+  const [legendMinCVI, setLegendMinCVI] = useState([]);
+  const [legendSplitCVI, setLegendSplitCVI] = useState([]);
+
+  const [resSeg, setResSeg] = useState("RS_blackwhite");
+  const [colorResSeg, setColorResSeg] = useState();
+
+  const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
+  const [legendMinResSeg, setLegendMinResSeg] = useState([]);
+  const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
+
   const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', 
                                                   caseRate: "N/A", mortality: "N/A", 
                                                   caseRateMean: "N/A", mortalityMean: "N/A",
                                                   caseRateMA: "N/A", mortalityMA: "N/A",
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
+
+
   
 
 
@@ -229,12 +239,13 @@ export default function ExtraFile(props) {
     }, []);
 
     useEffect(() => {
-      if (CVI) {
+      if (CVI && resSeg) {
       fetch('/data/data.json').then(res => res.json())
         .then(x => {
           
           setData(x);
         
+          //CVI
           const cs = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
             d.fips = k
@@ -263,25 +274,68 @@ export default function ExtraFile(props) {
   
           if (max > 999999) {
             max = (max/1000000).toFixed(0) + "M";
-            setLegendMax(max);
+            setLegendMaxCVI(max);
           }else if (max > 999) {
             max = (max/1000).toFixed(0) + "K";
-            setLegendMax(max);
+            setLegendMaxCVI(max);
           }else{
-            setLegendMax(max.toFixed(0));
+            setLegendMaxCVI(max.toFixed(0));
   
           }
-          setLegendMin(min.toFixed(0));
+          setLegendMinCVI(min.toFixed(0));
   
-          setLegendSplit(cs.quantiles());
+          setLegendSplitCVI(cs.quantiles());
   
   
+
+
+        //ResSeg
+
+        const csii = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[resSeg] > 0 &&
+                d.fips.length === 5)),
+            d=> d[resSeg]))
+          .range(colorPalette);
+  
+          let scaleMapii = {}
+          _.each(x, d=>{
+            if(d[resSeg] > 0){
+            scaleMapii[d[resSeg]] = csii(d[resSeg])}});
+        
+          setColorResSeg(scaleMapii);
+          var maxii = 0
+          var minii = 100
+          _.each(x, d=> { 
+            if (d[resSeg] > maxii && d.fips.length === 5) {
+              maxii = d[resSeg]
+            } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
+              minii = d[resSeg]
+            }
+          });
+  
+          if (maxii > 999999) {
+            maxii = (max/1000000).toFixed(0) + "M";
+            setLegendMaxResSeg(maxii);
+          }else if (max > 999) {
+            maxii = (max/1000).toFixed(0) + "K";
+            setLegendMaxResSeg(maxii);
+          }else{
+            setLegendMaxResSeg(maxii.toFixed(0));
+  
+          }
+          setLegendMinResSeg(minii.toFixed(0));
+  
+          setLegendSplitResSeg(csii.quantiles());
         });
   
       
       }
   
-    }, [CVI])
+    }, [CVI, resSeg])
 
   useEffect(() => {
     if (dataTS){
@@ -1023,20 +1077,26 @@ export default function ExtraFile(props) {
                 
 
               <div >
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplit, (splitpoint, i) => {
-                    if(legendSplit[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                    }else if(legendSplit[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplit[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitCVI, (splitpoint, i) => {
+                    if(legendSplitCVI[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitCVI[i].toFixed(1)}</text>                    
+                    }else if(legendSplitCVI[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitCVI[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitCVI[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitCVI[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitCVI[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinCVI}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxCVI}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -1051,6 +1111,7 @@ export default function ExtraFile(props) {
                   <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
                   <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
                   <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
 
                 </svg>
 
@@ -1104,10 +1165,10 @@ export default function ExtraFile(props) {
                     <VictoryChart
                       theme={VictoryTheme.material}
                       width={530}
-                      height={220}
+                      height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 30, top: 30, bottom: -5}}
+                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1115,7 +1176,7 @@ export default function ExtraFile(props) {
                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                       <VictoryBar
                         horizontal
-                        barRatio={0.75}
+                        barRatio={0.80}
                         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartCases['CVI'][0]['label'], 'value': (nationalBarChartCases['CVI'][0]['caserate7day']/nationalBarChartCases['CVI'][0]['caserate7day'])*nationalBarChartCases['CVI'][0]['caserate7day'] || 0},
@@ -1146,7 +1207,7 @@ export default function ExtraFile(props) {
                       </text>
                       </center>
                     </Header.Content>
-                  <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 530, paddingLeft: 40, paddingTop: 30, paddingBottom: 50}}>
+                  <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 530, paddingLeft: 40, paddingTop: 10, paddingBottom: 15}}>
                     <Header.Content>
                       <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 530, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
                         US counties were grouped into 5 categories based on their CVI score.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with higher vulnerability index have higher COVID-19 cases per 100,000 residents as compared to counties in US with lower vulnerability index. 
@@ -1164,10 +1225,10 @@ export default function ExtraFile(props) {
                     <VictoryChart
                       theme={VictoryTheme.material}
                       width={530}
-                      height={220}
+                      height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 30, top: 30, bottom: -5}}
+                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1175,7 +1236,7 @@ export default function ExtraFile(props) {
                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                       <VictoryBar
                         horizontal
-                        barRatio={0.75}
+                        barRatio={0.80}
                         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                         data={[
                               {key: nationalBarChartMortality['CVI'][0]['label'], 'value': (nationalBarChartMortality['CVI'][0]['covidmortality7day']/nationalBarChartMortality['CVI'][0]['covidmortality7day'])*nationalBarChartMortality['CVI'][0]['covidmortality7day'] || 0},
@@ -1207,7 +1268,7 @@ export default function ExtraFile(props) {
                       </center>
                     </Header.Content>
 
-                    <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 530, paddingLeft: 40, paddingTop: 30}}>
+                    <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 530, paddingLeft: 40, paddingTop: 10}}>
                       <Header.Content>
                         <Header.Subheader id="jump7" style={{color: '#000000', lineHeight: "16pt", width: 530, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
                           US counties were grouped into 5 categories based on their CVI score. As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with higher vulnerability index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with lower vulnerability index. 
@@ -1225,6 +1286,7 @@ export default function ExtraFile(props) {
 
         <center> <Divider style = {{width:1000}}/> </center>
         <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
+          
           <Header as='h2' style={{textAlign:'center', color: '#487f84', fontSize: "22pt", paddingTop: 30}}>
             <Header.Content>
               COVID-19 by Residential Segregation Index 
@@ -1242,6 +1304,227 @@ export default function ExtraFile(props) {
               </Header.Subheader>
             </Header.Content>
           </Header>
+
+
+
+
+
+
+
+
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                    Cases by Residential segregation 
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['resSeg'][0]['label'], 'value': (nationalBarChartCases['resSeg'][0]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
+                              {key: nationalBarChartCases['resSeg'][1]['label'], 'value': (nationalBarChartCases['resSeg'][1]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
+                              {key: nationalBarChartCases['resSeg'][2]['label'], 'value': (nationalBarChartCases['resSeg'][2]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
+                              {key: nationalBarChartCases['resSeg'][3]['label'], 'value': (nationalBarChartCases['resSeg'][3]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
+                              {key: nationalBarChartCases['resSeg'][4]['label'], 'value': (nationalBarChartCases['resSeg'][4]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content>
+                      <center>
+                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <br/>
+                        <b>{varMap["caserate7dayfig"].name}</b>
+                      </text>
+                      </center>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 0, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                    Deaths by Residential segregation 
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['resSeg'][0]['label'], 'value': (nationalBarChartMortality['resSeg'][0]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][1]['label'], 'value': (nationalBarChartMortality['resSeg'][1]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][2]['label'], 'value': (nationalBarChartMortality['resSeg'][2]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][3]['label'], 'value': (nationalBarChartMortality['resSeg'][3]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][4]['label'], 'value': (nationalBarChartMortality['resSeg'][4]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content>
+                      <center>
+                        <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <br/>
+                          <b>{varMap["covidmortality7dayfig"].name}</b>
+                        </text>
+                      </center>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+
+                    <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 10}}>
+                      <Header.Content>
+                        <Header.Subheader id="jump7" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+                          US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with higher residential segregation index. 
+                          <br/>
+                          US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher COVID-19 cases per 100,000 residents as compared to counties in US with higher residential segregation index. 
+                        </Header.Subheader>
+                      </Header.Content>
+                    </Header>
+              </div>
+
+            </Grid.Row>
+          </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
           <Grid>
             <Grid.Row columns={1} style={{paddingTop: 8}}>
             <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
