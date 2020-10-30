@@ -1163,7 +1163,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 5, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 5, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1215,7 +1215,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 5, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 5, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1372,7 +1372,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1421,7 +1421,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1582,7 +1582,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1631,7 +1631,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1771,7 +1771,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1820,7 +1820,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -1960,7 +1960,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2009,7 +2009,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2050,7 +2050,7 @@ export default function ExtraFile(props) {
           </Grid>
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
-                <center> <b style= {{fontSize: "18pt"}}>Population in overty</b> </center> 
+                <center> <b style= {{fontSize: "18pt"}}>Population in poverty</b> </center> 
                 <br/>
                 <br/>         
 
@@ -2148,7 +2148,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2197,7 +2197,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2336,7 +2336,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2385,7 +2385,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2525,7 +2525,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2574,7 +2574,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2714,7 +2714,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2763,7 +2763,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2903,7 +2903,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2952,7 +2952,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
