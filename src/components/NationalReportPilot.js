@@ -751,7 +751,6 @@ export default function ExtraFile(props) {
                         height={400}       
                         padding={{left: 70, right:110, top: 20, bottom: 40}}
                         minDomain={{ x: dataTopCases[Object.keys(dataTopCases)[0]][13].t}}
-                        maxDomain = {{ y: 1250}}
                         containerComponent={<VictoryVoronoiContainer/>}
                         >
 
