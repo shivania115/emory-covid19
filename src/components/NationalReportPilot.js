@@ -1057,7 +1057,7 @@ export default function ExtraFile(props) {
           <Header as='h2' style={{textAlign:'center', color: '#487f84', fontSize: "22pt", paddingTop: 30}}>
             <Header.Content>
               COVID-19 by Community Vulnerability Index 
-              <Header.Subheader style={{color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 32, paddingRight: 27}}>
+              <Header.Subheader style={{color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:14, paddingLeft: 32, paddingRight: 27}}>
                
                 Some communities are limited in their ability to prevent, manage, and mitigate the spread of a pandemic disease, 
                 and its economic and social impacts, rendering them more vulnerable to COVID-19 than others. CVI incorporates 
@@ -1073,16 +1073,12 @@ export default function ExtraFile(props) {
           </Header>
           <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
-              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+              <Grid.Column style={{paddingTop:0,paddingBottom:18}}>
                 
 
               <div >
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
+                <br/>
+
                 <svg width="260" height="80">
                   
                   {_.map(legendSplitCVI, (splitpoint, i) => {
@@ -1159,7 +1155,7 @@ export default function ExtraFile(props) {
               <Grid.Column>
               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                   <Header.Content>
-                    Cases per 100,000 residents by Community Vulnerability Index
+                    Cases by Community Vulnerability Index
                   </Header.Content>
                 </Header>
                     <VictoryChart
@@ -1168,22 +1164,22 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
+                      padding={{left: 180, right: 40, top: 5, bottom: 2}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
                       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
                         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
-                              {key: nationalBarChartCases['CVI'][0]['label'], 'value': (nationalBarChartCases['CVI'][0]['caserate7day']/nationalBarChartCases['CVI'][0]['caserate7day'])*nationalBarChartCases['CVI'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['CVI'][1]['label'], 'value': (nationalBarChartCases['CVI'][1]['caserate7day']/nationalBarChartCases['CVI'][0]['caserate7day'])*nationalBarChartCases['CVI'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['CVI'][2]['label'], 'value': (nationalBarChartCases['CVI'][2]['caserate7day']/nationalBarChartCases['CVI'][0]['caserate7day'])*nationalBarChartCases['CVI'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['CVI'][3]['label'], 'value': (nationalBarChartCases['CVI'][3]['caserate7day']/nationalBarChartCases['CVI'][0]['caserate7day'])*nationalBarChartCases['CVI'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['CVI'][4]['label'], 'value': (nationalBarChartCases['CVI'][4]['caserate7day']/nationalBarChartCases['CVI'][0]['caserate7day'])*nationalBarChartCases['CVI'][0]['caserate7day'] || 0}
+                              {key: nationalBarChartCases['CVI'][0]['label'], 'value': (nationalBarChartCases['CVI'][0]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['CVI'][1]['label'], 'value': (nationalBarChartCases['CVI'][1]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['CVI'][2]['label'], 'value': (nationalBarChartCases['CVI'][2]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['CVI'][3]['label'], 'value': (nationalBarChartCases['CVI'][3]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['CVI'][4]['label'], 'value': (nationalBarChartCases['CVI'][4]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0}
 
 
 
@@ -1199,51 +1195,43 @@ export default function ExtraFile(props) {
                       />
                     </VictoryChart>
 
-                    <Header.Content>
-                      <center>
-                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <br/>
-                        <b>{varMap["caserate7dayfig"].name}</b>
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
                       </text>
-                      </center>
                     </Header.Content>
-                  <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 530, paddingLeft: 40, paddingTop: 10, paddingBottom: 15}}>
-                    <Header.Content>
-                      <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 530, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                        US counties were grouped into 5 categories based on their CVI score.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with higher vulnerability index have higher COVID-19 cases per 100,000 residents as compared to counties in US with lower vulnerability index. 
-                      </Header.Subheader>
-                    </Header.Content>
-                  </Header>
+                      
+                      <br/>
+                      <br/>
 
-
-
-                  <Header as='h2' style={{marginLeft: 0, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                  <Header.Content>
-                    Deaths per 100,000 residents by Community Vulnerability Index
-                  </Header.Content>
-                </Header>
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                      <Header.Content>
+                        Deaths by Community Vulnerability Index
+                      </Header.Content>
+                    </Header>
                     <VictoryChart
                       theme={VictoryTheme.material}
                       width={530}
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
+                      padding={{left: 180, right: 40, top: 5, bottom: 2}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
                       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
                         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                         data={[
-                              {key: nationalBarChartMortality['CVI'][0]['label'], 'value': (nationalBarChartMortality['CVI'][0]['covidmortality7day']/nationalBarChartMortality['CVI'][0]['covidmortality7day'])*nationalBarChartMortality['CVI'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['CVI'][1]['label'], 'value': (nationalBarChartMortality['CVI'][1]['covidmortality7day']/nationalBarChartMortality['CVI'][0]['covidmortality7day'])*nationalBarChartMortality['CVI'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['CVI'][2]['label'], 'value': (nationalBarChartMortality['CVI'][2]['covidmortality7day']/nationalBarChartMortality['CVI'][0]['covidmortality7day'])*nationalBarChartMortality['CVI'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['CVI'][3]['label'], 'value': (nationalBarChartMortality['CVI'][3]['covidmortality7day']/nationalBarChartMortality['CVI'][0]['covidmortality7day'])*nationalBarChartMortality['CVI'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['CVI'][4]['label'], 'value': (nationalBarChartMortality['CVI'][4]['covidmortality7day']/nationalBarChartMortality['CVI'][0]['covidmortality7day'])*nationalBarChartMortality['CVI'][0]['covidmortality7day'] || 0}
+                              {key: nationalBarChartMortality['CVI'][0]['label'], 'value': (nationalBarChartMortality['CVI'][0]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['CVI'][1]['label'], 'value': (nationalBarChartMortality['CVI'][1]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['CVI'][2]['label'], 'value': (nationalBarChartMortality['CVI'][2]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['CVI'][3]['label'], 'value': (nationalBarChartMortality['CVI'][3]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['CVI'][4]['label'], 'value': (nationalBarChartMortality['CVI'][4]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0}
 
 
 
@@ -1259,25 +1247,12 @@ export default function ExtraFile(props) {
                       />
                     </VictoryChart>
 
-                    <Header.Content>
-                      <center>
-                        <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                          <br/>
-                          <b>{varMap["covidmortality7dayfig"].name}</b>
+                    <Header.Content id="jump7" style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
                         </text>
-                      </center>
                     </Header.Content>
 
-                    <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 530, paddingLeft: 40, paddingTop: 10}}>
-                      <Header.Content>
-                        <Header.Subheader id="jump7" style={{color: '#000000', lineHeight: "16pt", width: 530, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                          US counties were grouped into 5 categories based on their CVI score. As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with higher vulnerability index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with lower vulnerability index. 
-                          <br/>
-                          <br/>
-                          <br/>
-                        </Header.Subheader>
-                      </Header.Content>
-                    </Header>
                 </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -1304,13 +1279,6 @@ export default function ExtraFile(props) {
               </Header.Subheader>
             </Header.Content>
           </Header>
-
-
-
-
-
-
-
 
 
           <Grid>
@@ -1405,22 +1373,22 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
                       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
                         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
-                              {key: nationalBarChartCases['resSeg'][0]['label'], 'value': (nationalBarChartCases['resSeg'][0]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['resSeg'][1]['label'], 'value': (nationalBarChartCases['resSeg'][1]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['resSeg'][2]['label'], 'value': (nationalBarChartCases['resSeg'][2]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['resSeg'][3]['label'], 'value': (nationalBarChartCases['resSeg'][3]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                              {key: nationalBarChartCases['resSeg'][4]['label'], 'value': (nationalBarChartCases['resSeg'][4]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0}
+                              {key: nationalBarChartCases['resSeg'][0]['label'], 'value': (nationalBarChartCases['resSeg'][0]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['resSeg'][1]['label'], 'value': (nationalBarChartCases['resSeg'][1]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['resSeg'][2]['label'], 'value': (nationalBarChartCases['resSeg'][2]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['resSeg'][3]['label'], 'value': (nationalBarChartCases['resSeg'][3]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['resSeg'][4]['label'], 'value': (nationalBarChartCases['resSeg'][4]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0}
 
 
 
@@ -1436,16 +1404,14 @@ export default function ExtraFile(props) {
                       />
                     </VictoryChart>
 
-                    <Header.Content>
-                      <center>
-                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <br/>
-                        <b>{varMap["caserate7dayfig"].name}</b>
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
                       </text>
-                      </center>
                     </Header.Content>
                   
-                  <Header as='h2' style={{marginLeft: 0, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                   <Header.Content>
                     Deaths by Residential segregation 
                   </Header.Content>
@@ -1456,22 +1422,22 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 30, top: 15, bottom: -5}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
                       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
                         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                         data={[
-                              {key: nationalBarChartMortality['resSeg'][0]['label'], 'value': (nationalBarChartMortality['resSeg'][0]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['resSeg'][1]['label'], 'value': (nationalBarChartMortality['resSeg'][1]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['resSeg'][2]['label'], 'value': (nationalBarChartMortality['resSeg'][2]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['resSeg'][3]['label'], 'value': (nationalBarChartMortality['resSeg'][3]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                              {key: nationalBarChartMortality['resSeg'][4]['label'], 'value': (nationalBarChartMortality['resSeg'][4]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0}
+                              {key: nationalBarChartMortality['resSeg'][0]['label'], 'value': (nationalBarChartMortality['resSeg'][0]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][1]['label'], 'value': (nationalBarChartMortality['resSeg'][1]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][2]['label'], 'value': (nationalBarChartMortality['resSeg'][2]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][3]['label'], 'value': (nationalBarChartMortality['resSeg'][3]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['resSeg'][4]['label'], 'value': (nationalBarChartMortality['resSeg'][4]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0}
 
 
 
@@ -1487,187 +1453,23 @@ export default function ExtraFile(props) {
                       />
                     </VictoryChart>
 
-                    <Header.Content>
-                      <center>
-                        <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                          <br/>
-                          <b>{varMap["covidmortality7dayfig"].name}</b>
+                    <Header.Content id="jump8" style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
                         </text>
-                      </center>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-              <div>
-
-                    <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 10}}>
-                      <Header.Content>
-                        <Header.Subheader id="jump7" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                          US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with higher residential segregation index. 
-                          <br/>
-                          US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher COVID-19 cases per 100,000 residents as compared to counties in US with higher residential segregation index. 
-                        </Header.Subheader>
-                      </Header.Content>
-                    </Header>
-              </div>
-
-            </Grid.Row>
-          </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-          <Grid>
-            <Grid.Row columns={1} style={{paddingTop: 8}}>
-            <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
-              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                <Header.Content>
-                  Cases per 100,000 residents by Residential segregation 
-                </Header.Content>
-              </Header>
-                  <VictoryChart
-                    theme={VictoryTheme.material}
-                    width={1030}
-                    height={220}
-                    domainPadding={20}
-                    minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 180, right: 30, top: 30, bottom: -5}}
-                    style = {{fontSize: "14pt"}}
-                    containerComponent={<VictoryContainer responsive={false}/>}
-                  >
-                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                    <VictoryBar
-                      horizontal
-                      barRatio={0.75}
-                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                      data={[
-                             {key: nationalBarChartCases['resSeg'][0]['label'], 'value': (nationalBarChartCases['resSeg'][0]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['resSeg'][1]['label'], 'value': (nationalBarChartCases['resSeg'][1]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['resSeg'][2]['label'], 'value': (nationalBarChartCases['resSeg'][2]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['resSeg'][3]['label'], 'value': (nationalBarChartCases['resSeg'][3]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['resSeg'][4]['label'], 'value': (nationalBarChartCases['resSeg'][4]['caserate7day']/nationalBarChartCases['resSeg'][0]['caserate7day'])*nationalBarChartCases['resSeg'][0]['caserate7day'] || 0}
-
-
-
-                      ]}
-                      labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                      style={{
-                        data: {
-                          fill: casesColor[1]
-                        }
-                      }}
-                      x="key"
-                      y="value"
-                    />
-                  </VictoryChart>
-
-                  <Header.Content>
-                    <center>
-                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <br/>
-                        <b>{varMap["caserate7dayfig"].name}</b>
-                      </text>
-                    </center>
-                  </Header.Content>
-
-            </Grid.Column>
-            <Grid.Column>
-                <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 30, paddingBottom: 50}}>
-                  <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher COVID-19 cases per 100,000 residents as compared to counties in US with higher residential segregation index. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </Grid.Column>
-
-            <Grid.Column style={{paddingTop:10, paddingBottom:25}}>
-              <Header as='h2' style={{marginLeft: -25, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                <Header.Content>
-                  Deaths per 100,000 residents by Residential segregation 
-                </Header.Content>
-              </Header>
-                  <VictoryChart
-                    theme={VictoryTheme.material}
-                    width={1030}
-                    height={220}
-                    domainPadding={20}
-                    minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 180, right: 30, top: 30, bottom: -5}}
-                    style = {{fontSize: "14pt"}}
-                    containerComponent={<VictoryContainer responsive={false}/>}
-                  >
-                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                    <VictoryBar
-                      horizontal
-                      barRatio={0.75}
-                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
-                      data={[
-                             {key: nationalBarChartMortality['resSeg'][0]['label'], 'value': (nationalBarChartMortality['resSeg'][0]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                             {key: nationalBarChartMortality['resSeg'][1]['label'], 'value': (nationalBarChartMortality['resSeg'][1]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                             {key: nationalBarChartMortality['resSeg'][2]['label'], 'value': (nationalBarChartMortality['resSeg'][2]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                             {key: nationalBarChartMortality['resSeg'][3]['label'], 'value': (nationalBarChartMortality['resSeg'][3]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0},
-                             {key: nationalBarChartMortality['resSeg'][4]['label'], 'value': (nationalBarChartMortality['resSeg'][4]['covidmortality7day']/nationalBarChartMortality['resSeg'][0]['covidmortality7day'])*nationalBarChartMortality['resSeg'][0]['covidmortality7day'] || 0}
-
-
-
-                      ]}
-                      labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                      style={{
-                        data: {
-                          fill: mortalityColor[1]
-                        }
-                      }}
-                      x="key"
-                      y="value"
-                    />
-                  </VictoryChart>
-
-                  <Header.Content>
-                    <center>
-                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <br/>
-                        <b>{varMap["covidmortality7dayfig"].name}</b>
-                      </text>
-                    </center>
-                  </Header.Content>
-
-            </Grid.Column>
-            </Grid.Row>
           </Grid>
         </div>
-        <Grid>
-            <Grid.Row columns={1} style={{paddingBottom: 47}}>
-              
-              <Grid.Column>
-                <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 130}}>
-                  <Header.Content>
-                    <Header.Subheader id="jump8" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      US counties were grouped into 5 categories based on their residential segregation index.  As of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, we can see that counties in US with lower residential segregation index have higher deaths associated with COVID-19 per 100,000 residents as compared to counties in US with higher residential segregation index. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </Grid.Column>
-            </Grid.Row>
-        </Grid>  
-
+        
 
         <center> <Divider style = {{width: 1000}}/> </center>
-        <div>
+        <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
           <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
             <Header.Content style={{fontSize:"22pt",color:'#487f84'}}>
             COVID-19 by County Characteristics
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em"}}>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
                 <br/>
                 <br/>
@@ -1680,252 +1482,1519 @@ export default function ExtraFile(props) {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          <Grid style = {{paddingLeft: "7em", paddingRight: "7em"}}>
-            <Grid.Row columns={2} style={{paddingTop: 11}}>
-            <Grid.Column style={{paddingTop:'1em',paddingBottom: 18}}>
-            	<Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-            		<Header.Content>
-            		COVID-19 cases by percentage of <br/> male population
-            		</Header.Content>
-            	</Header>
-
-                  <VictoryChart
-                    theme = {VictoryTheme.material}
-                    width = {500}
-                    height = {220}
-                    domainPadding={20}
-                    minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 160, right: 30, top: 30, bottom: -5}}
-                    style = {{fontSize: "14pt"}}
-                    containerComponent={<VictoryContainer responsive={false}/>}
-                  >
-
-                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                    <VictoryBar
-                      horizontal
-                      barRatio={0.7}
-                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                      data={[
-                             {key: nationalBarChartCases['male'][0]['label'], 'value': (nationalBarChartCases['male'][0]['caserate7day']/nationalBarChartCases['male'][0]['caserate7day'])*nationalBarChartCases['male'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['male'][1]['label'], 'value': (nationalBarChartCases['male'][1]['caserate7day']/nationalBarChartCases['male'][0]['caserate7day'])*nationalBarChartCases['male'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['male'][2]['label'], 'value': (nationalBarChartCases['male'][2]['caserate7day']/nationalBarChartCases['male'][0]['caserate7day'])*nationalBarChartCases['male'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['male'][3]['label'], 'value': (nationalBarChartCases['male'][3]['caserate7day']/nationalBarChartCases['male'][0]['caserate7day'])*nationalBarChartCases['male'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['male'][4]['label'], 'value': (nationalBarChartCases['male'][4]['caserate7day']/nationalBarChartCases['male'][0]['caserate7day'])*nationalBarChartCases['male'][0]['caserate7day'] || 0}
 
 
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Male Population</b> </center> 
+                <br/>
+                <br/>         
 
-                      ]}
-                      labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                      style={{
-                        data: {
-                          fill: casesColor[1]
-                        }
-                      }}
-                      x="key"
-                      y="value"
-                    />
-                  </VictoryChart>
+              </Header.Subheader>
 
-                  <Header.Content>
-                    <center>
-                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <br/>
-                        <b>{varMap["caserate7dayfig"].name}</b>
-                      </text>
-                    </center>
-                  </Header.Content>
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
 
-            </Grid.Column>
-            <Grid.Column style={{paddingTop:'1em',paddingBottom:18}}>
-            	<Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-            		<Header.Content>
-            		COVID-19 cases by percentage of <br/>population over the age 65 years
-            		</Header.Content>
-            	</Header>
-
-                  <VictoryChart
-                    theme={VictoryTheme.material}
-                    width={500}
-                    height={220}
-                    domainPadding={20}
-                    minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 160, right: 30, top: 30, bottom: -5}}
-                    style = {{fontSize: "14pt"}}
-                    containerComponent={<VictoryContainer responsive={false}/>}
-                  >
-                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                    <VictoryBar
-                      horizontal
-                      barRatio={0.7}
-                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                      data={[
-                             {key: nationalBarChartCases['age65over'][0]['label'], 'value': (nationalBarChartCases['age65over'][0]['caserate7day']/nationalBarChartCases['age65over'][0]['caserate7day'])*nationalBarChartCases['age65over'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['age65over'][1]['label'], 'value': (nationalBarChartCases['age65over'][1]['caserate7day']/nationalBarChartCases['age65over'][0]['caserate7day'])*nationalBarChartCases['age65over'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['age65over'][2]['label'], 'value': (nationalBarChartCases['age65over'][2]['caserate7day']/nationalBarChartCases['age65over'][0]['caserate7day'])*nationalBarChartCases['age65over'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['age65over'][3]['label'], 'value': (nationalBarChartCases['age65over'][3]['caserate7day']/nationalBarChartCases['age65over'][0]['caserate7day'])*nationalBarChartCases['age65over'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['age65over'][4]['label'], 'value': (nationalBarChartCases['age65over'][4]['caserate7day']/nationalBarChartCases['age65over'][0]['caserate7day'])*nationalBarChartCases['age65over'][0]['caserate7day'] || 0}
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
 
 
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
 
-                      ]}
-                      labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                      style={{
-                        data: {
-                          fill: casesColor[1]
-                        }
-                      }}
-                      x="key"
-                      y="value"
-                    />
-                  </VictoryChart>
 
-                  <Header.Content>
-                    <center>
-                      <text style={{fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <br/>
-                        <b>{varMap["caserate7dayfig"].name}</b>
-                      </text>
-                    </center>
-                  </Header.Content>
-            </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        <Grid>
-            <Grid.Row columns={2} style={{paddingBottom: 7}}>
-              <Grid.Column>
-                <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 132}}>
-                  <Header.Content style={{fontSize: "14pt"}}>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-            					This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
-                      Case rates are shown by proportion of county residents who are male. US counties were grouped into 5 categories based on the proportion of male residents. 
-                      We can see that in counties with the highest proportion of male residents (highest 20%), the rate is <b>{(nationalBarChartCases['male'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000.
-                      In counties with the lowest proportion of male residents (lowest 20%), the rate is <b>{(nationalBarChartCases['male'][0]['caserate7day']).toFixed(0)}</b> COVID-19 cases per 100,000.					
-					          </Header.Subheader>
-                  </Header.Content>
-                </Header>
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
               </Grid.Column>
               <Grid.Column>
-                <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 33}}>
-                  <Header.Content style={{fontSize: "14pt"}}>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-					            This figure shows total cases of COVID-19 per 100,000 residents as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}. 
-                      Case rates are shown by proportion of county residents who are over the age of 65. US counties were grouped into 5 categories based on the proportion of 
-                      over the age of 65 residents. We can see that in counties with the highest proportion of residents over the age of 65 years (highest 20%),
-                      the rate is <b>{(nationalBarChartCases['age65over'][4]['caserate7day']).toFixed(0)}</b> cases per 100,000. In counties with the lowest proportion of residents over the age of 65 years (lowest 20%), 
-                      the rate is <b>{(nationalBarChartCases['age65over'][0]['caserate7day']).toFixed(0)}</b> COVID-19 cases per 100,000.                 
-					          </Header.Subheader>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by percentage of <br/> male population
                   </Header.Content>
                 </Header>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid> 
-          <Grid style = {{paddingLeft: "7em", paddingRight: "7em"}}>
-            <Grid.Row columns={2} style={{paddingTop: '2em'}}>
-            <Grid.Column style={{paddingTop:10, paddingBottom:18}}>
-            	<Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-            		<Header.Content>
-            		COVID-19 cases by percentage of <br/>African American population
-            		</Header.Content>
-            	</Header>
-
-                  <VictoryChart
-                    theme={VictoryTheme.material}
-                    width={500}
-                    height={220}
-                    domainPadding={20}
-                    minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 160, right: 30, top: 30, bottom: -5}}
-                    style = {{fontSize: "14pt"}}
-                    containerComponent={<VictoryContainer responsive={false}/>}
-                  >
-                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                    <VictoryBar
-                      horizontal
-                      barRatio={0.7}
-                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                      data={[
-                             {key: nationalBarChartCases['black'][0]['label'], 'value': (nationalBarChartCases['black'][0]['caserate7day']/nationalBarChartCases['black'][0]['caserate7day'])*nationalBarChartCases['black'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['black'][1]['label'], 'value': (nationalBarChartCases['black'][1]['caserate7day']/nationalBarChartCases['black'][0]['caserate7day'])*nationalBarChartCases['black'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['black'][2]['label'], 'value': (nationalBarChartCases['black'][2]['caserate7day']/nationalBarChartCases['black'][0]['caserate7day'])*nationalBarChartCases['black'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['black'][3]['label'], 'value': (nationalBarChartCases['black'][3]['caserate7day']/nationalBarChartCases['black'][0]['caserate7day'])*nationalBarChartCases['black'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['black'][4]['label'], 'value': (nationalBarChartCases['black'][4]['caserate7day']/nationalBarChartCases['black'][0]['caserate7day'])*nationalBarChartCases['black'][0]['caserate7day'] || 0}
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['male'][0]['label'], 'value': (nationalBarChartCases['male'][0]['caserate']/nationalBarChartCases['male'][0]['caserate'])*nationalBarChartCases['male'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['male'][1]['label'], 'value': (nationalBarChartCases['male'][1]['caserate']/nationalBarChartCases['male'][0]['caserate'])*nationalBarChartCases['male'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['male'][2]['label'], 'value': (nationalBarChartCases['male'][2]['caserate']/nationalBarChartCases['male'][0]['caserate'])*nationalBarChartCases['male'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['male'][3]['label'], 'value': (nationalBarChartCases['male'][3]['caserate']/nationalBarChartCases['male'][0]['caserate'])*nationalBarChartCases['male'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['male'][4]['label'], 'value': (nationalBarChartCases['male'][4]['caserate']/nationalBarChartCases['male'][0]['caserate'])*nationalBarChartCases['male'][0]['caserate'] || 0}
 
 
 
-                      ]}
-                      labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                      style={{
-                        data: {
-                          fill: casesColor[1]
-                        }
-                      }}
-                      x="key"
-                      y="value"
-                    />
-                  </VictoryChart>
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
 
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                   <Header.Content>
-                    <text style={{fontWeight: 300, marginLeft: 100, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                      <b>{varMap["caserate7dayfig"].name}</b>
-                    </text>
+                  COVID-19 deaths by percentage of <br/> male population
                   </Header.Content>
-
-            </Grid.Column>
-            <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
-            	<Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-            		<Header.Content>
-            		COVID-19 cases by percentage of <br/>population in poverty
-            		</Header.Content>
-            	</Header>
-                  <VictoryChart
-                    theme={VictoryTheme.material}
-                    width={500}
-                    height={220}
-                    domainPadding={20}
-                    minDomain={{y: props.ylog?1:0}}
-                    padding={{left: 160, right: 30, top: 30, bottom: -5}}
-                    style = {{fontSize: "14pt"}}
-                    containerComponent={<VictoryContainer responsive={false}/>}
-                  >
-                    <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                    <VictoryAxis dependentAxis style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                    <VictoryBar
-                      horizontal
-                      barRatio={0.7}
-                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                      data={[
-                             {key: nationalBarChartCases['poverty'][0]['label'], 'value': (nationalBarChartCases['poverty'][0]['caserate7day']/nationalBarChartCases['poverty'][0]['caserate7day'])*nationalBarChartCases['poverty'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['poverty'][1]['label'], 'value': (nationalBarChartCases['poverty'][1]['caserate7day']/nationalBarChartCases['poverty'][0]['caserate7day'])*nationalBarChartCases['poverty'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['poverty'][2]['label'], 'value': (nationalBarChartCases['poverty'][2]['caserate7day']/nationalBarChartCases['poverty'][0]['caserate7day'])*nationalBarChartCases['poverty'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['poverty'][3]['label'], 'value': (nationalBarChartCases['poverty'][3]['caserate7day']/nationalBarChartCases['poverty'][0]['caserate7day'])*nationalBarChartCases['poverty'][0]['caserate7day'] || 0},
-                             {key: nationalBarChartCases['poverty'][4]['label'], 'value': (nationalBarChartCases['poverty'][4]['caserate7day']/nationalBarChartCases['poverty'][0]['caserate7day'])*nationalBarChartCases['poverty'][0]['caserate7day'] || 0}
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['male'][0]['label'], 'value': (nationalBarChartMortality['male'][0]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['male'][1]['label'], 'value': (nationalBarChartMortality['male'][1]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['male'][2]['label'], 'value': (nationalBarChartMortality['male'][2]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['male'][3]['label'], 'value': (nationalBarChartMortality['male'][3]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['male'][4]['label'], 'value': (nationalBarChartMortality['male'][4]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0}
 
 
 
-                      ]}
-                      labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                      style={{
-                        data: {
-                          fill: casesColor[1]
-                        }
-                      }}
-                      x="key"
-                      y="value"
-                    />
-                  </VictoryChart>
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
 
-                  <Header.Content>
-                    <text style={{fontWeight: 300, marginLeft: 100, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                      <b>{varMap["caserate7dayfig"].name}</b>
-                    </text>
-                  </Header.Content>
-
-            </Grid.Column>
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
             </Grid.Row>
           </Grid>
+
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Population over the age 65 years</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by percentage of <br/> population over the age 65 years
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['age65over'][0]['label'], 'value': (nationalBarChartCases['age65over'][0]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['age65over'][1]['label'], 'value': (nationalBarChartCases['age65over'][1]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['age65over'][2]['label'], 'value': (nationalBarChartCases['age65over'][2]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['age65over'][3]['label'], 'value': (nationalBarChartCases['age65over'][3]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['age65over'][4]['label'], 'value': (nationalBarChartCases['age65over'][4]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by percentage of <br/> population over the age 65 years
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['age65over'][0]['label'], 'value': (nationalBarChartMortality['age65over'][0]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['age65over'][1]['label'], 'value': (nationalBarChartMortality['age65over'][1]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['age65over'][2]['label'], 'value': (nationalBarChartMortality['age65over'][2]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['age65over'][3]['label'], 'value': (nationalBarChartMortality['age65over'][3]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['age65over'][4]['label'], 'value': (nationalBarChartMortality['age65over'][4]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>African American population</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by percentage of <br/> African American population
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['black'][0]['label'], 'value': (nationalBarChartCases['black'][0]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['black'][1]['label'], 'value': (nationalBarChartCases['black'][1]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['black'][2]['label'], 'value': (nationalBarChartCases['black'][2]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['black'][3]['label'], 'value': (nationalBarChartCases['black'][3]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['black'][4]['label'], 'value': (nationalBarChartCases['black'][4]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by percentage of <br/> African American population
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['black'][0]['label'], 'value': (nationalBarChartMortality['black'][0]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['black'][1]['label'], 'value': (nationalBarChartMortality['black'][1]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['black'][2]['label'], 'value': (nationalBarChartMortality['black'][2]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['black'][3]['label'], 'value': (nationalBarChartMortality['black'][3]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['black'][4]['label'], 'value': (nationalBarChartMortality['black'][4]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Population in overty</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by percentage of <br/> population in poverty
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['poverty'][0]['label'], 'value': (nationalBarChartCases['poverty'][0]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['poverty'][1]['label'], 'value': (nationalBarChartCases['poverty'][1]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['poverty'][2]['label'], 'value': (nationalBarChartCases['poverty'][2]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['poverty'][3]['label'], 'value': (nationalBarChartCases['poverty'][3]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['poverty'][4]['label'], 'value': (nationalBarChartCases['poverty'][4]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by percentage of <br/> population in poverty
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['poverty'][0]['label'], 'value': (nationalBarChartMortality['poverty'][0]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['poverty'][1]['label'], 'value': (nationalBarChartMortality['poverty'][1]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['poverty'][2]['label'], 'value': (nationalBarChartMortality['poverty'][2]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['poverty'][3]['label'], 'value': (nationalBarChartMortality['poverty'][3]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['poverty'][4]['label'], 'value': (nationalBarChartMortality['poverty'][4]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Population with diabetes</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by percentage of <br/> population with diabetes
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['diabetes'][0]['label'], 'value': (nationalBarChartCases['diabetes'][0]['caserate']/nationalBarChartCases['diabetes'][0]['caserate'])*nationalBarChartCases['diabetes'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['diabetes'][1]['label'], 'value': (nationalBarChartCases['diabetes'][1]['caserate']/nationalBarChartCases['diabetes'][0]['caserate'])*nationalBarChartCases['diabetes'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['diabetes'][2]['label'], 'value': (nationalBarChartCases['diabetes'][2]['caserate']/nationalBarChartCases['diabetes'][0]['caserate'])*nationalBarChartCases['diabetes'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['diabetes'][3]['label'], 'value': (nationalBarChartCases['diabetes'][3]['caserate']/nationalBarChartCases['diabetes'][0]['caserate'])*nationalBarChartCases['diabetes'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['diabetes'][4]['label'], 'value': (nationalBarChartCases['diabetes'][4]['caserate']/nationalBarChartCases['diabetes'][0]['caserate'])*nationalBarChartCases['diabetes'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by percentage of <br/> population with diabetes
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['diabetes'][0]['label'], 'value': (nationalBarChartMortality['diabetes'][0]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['diabetes'][1]['label'], 'value': (nationalBarChartMortality['diabetes'][1]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['diabetes'][2]['label'], 'value': (nationalBarChartMortality['diabetes'][2]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['diabetes'][3]['label'], 'value': (nationalBarChartMortality['diabetes'][3]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['diabetes'][4]['label'], 'value': (nationalBarChartMortality['diabetes'][4]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Hispanic Population</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by percentage of <br/> Hispanic population
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['hispanic'][0]['label'], 'value': (nationalBarChartCases['hispanic'][0]['caserate']/nationalBarChartCases['hispanic'][0]['caserate'])*nationalBarChartCases['hispanic'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['hispanic'][1]['label'], 'value': (nationalBarChartCases['hispanic'][1]['caserate']/nationalBarChartCases['hispanic'][0]['caserate'])*nationalBarChartCases['hispanic'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['hispanic'][2]['label'], 'value': (nationalBarChartCases['hispanic'][2]['caserate']/nationalBarChartCases['hispanic'][0]['caserate'])*nationalBarChartCases['hispanic'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['hispanic'][3]['label'], 'value': (nationalBarChartCases['hispanic'][3]['caserate']/nationalBarChartCases['hispanic'][0]['caserate'])*nationalBarChartCases['hispanic'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['hispanic'][4]['label'], 'value': (nationalBarChartCases['hispanic'][4]['caserate']/nationalBarChartCases['hispanic'][0]['caserate'])*nationalBarChartCases['hispanic'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by percentage of <br/> Hispanic population
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['hispanic'][0]['label'], 'value': (nationalBarChartMortality['hispanic'][0]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['hispanic'][1]['label'], 'value': (nationalBarChartMortality['hispanic'][1]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['hispanic'][2]['label'], 'value': (nationalBarChartMortality['hispanic'][2]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['hispanic'][3]['label'], 'value': (nationalBarChartMortality['hispanic'][3]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['hispanic'][4]['label'], 'value': (nationalBarChartMortality['hispanic'][4]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Metropolitan Status</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by Metropolitan Status
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['urbanrural'][0]['label'], 'value': (nationalBarChartCases['urbanrural'][0]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['urbanrural'][1]['label'], 'value': (nationalBarChartCases['urbanrural'][1]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['urbanrural'][2]['label'], 'value': (nationalBarChartCases['urbanrural'][2]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['urbanrural'][3]['label'], 'value': (nationalBarChartCases['urbanrural'][3]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['urbanrural'][4]['label'], 'value': (nationalBarChartCases['urbanrural'][4]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by Metropolitan Status
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['urbanrural'][0]['label'], 'value': (nationalBarChartMortality['urbanrural'][0]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['urbanrural'][1]['label'], 'value': (nationalBarChartMortality['urbanrural'][1]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['urbanrural'][2]['label'], 'value': (nationalBarChartMortality['urbanrural'][2]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['urbanrural'][3]['label'], 'value': (nationalBarChartMortality['urbanrural'][3]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['urbanrural'][4]['label'], 'value': (nationalBarChartMortality['urbanrural'][4]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+                <center> <b style= {{fontSize: "18pt"}}>Region</b> </center> 
+                <br/>
+                <br/>         
+
+              </Header.Subheader>
+
+
+          <Grid>
+            <Grid.Row columns={2} style={{paddingTop: 8}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                
+
+              <div >
+                
+                <svg width="260" height="80">
+                  
+                  {_.map(legendSplitResSeg, (splitpoint, i) => {
+                    if(legendSplitResSeg[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                    }else if(legendSplitResSeg[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitResSeg[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                    }
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                  })} 
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                  {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+
+
+                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                
+
+                </svg>
+
+          
+                  <ComposableMap 
+                    projection="geoAlbersUsa" 
+                    data-tip=""
+                    width={630} 
+                    height={380}
+                    strokeWidth= {0.1}
+                    stroke= 'black'
+                    projectionConfig={{scale: 750}}
+                    >
+                    <Geographies geography={geoUrl}>
+                      {({ geographies }) => 
+                        <svg>
+                          {geographies.map(geo => (
+                            <Geography
+                              key={geo.rsmKey}
+                              geography={geo}
+                              fill={
+                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
+                                  colorResSeg[data[geo.id][resSeg]]: 
+                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                                    '#FFFFFF':'#FFFFFF')}
+                              
+                            />
+                          ))}
+                        </svg>
+                      }
+                    </Geographies>
+                    
+
+                  </ComposableMap>
+              </div>
+              <div style = {{marginTop: 60}}>
+                  <br/>
+                  <br/>
+                  
+
+                </div>
+
+
+              </Grid.Column>
+              <Grid.Column>
+              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 cases by Region
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                        data={[
+                              {key: nationalBarChartCases['region'][0]['label'], 'value': (nationalBarChartCases['region'][0]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['region'][1]['label'], 'value': (nationalBarChartCases['region'][1]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['region'][2]['label'], 'value': (nationalBarChartCases['region'][2]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['region'][3]['label'], 'value': (nationalBarChartCases['region'][3]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
+                              // {key: nationalBarChartCases['region'][4]['label'], 'value': (nationalBarChartCases['region'][4]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: casesColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 540}}>
+                      
+                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b>{varMap["caseratefig"].name}</b>
+                      </text>
+                    </Header.Content>
+                  
+                  <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                  COVID-19 deaths by Region
+                  </Header.Content>
+                </Header>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      width={530}
+                      height={180}
+                      domainPadding={20}
+                      minDomain={{y: props.ylog?1:0}}
+                      padding={{left: 180, right: 40, top: 15, bottom: 2}}
+                      style = {{fontSize: "14pt"}}
+                      containerComponent={<VictoryContainer responsive={false}/>}
+                    >
+                      <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                      <VictoryBar
+                        horizontal
+                        barRatio={0.80}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        data={[
+                              {key: nationalBarChartMortality['region'][0]['label'], 'value': (nationalBarChartMortality['region'][0]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['region'][1]['label'], 'value': (nationalBarChartMortality['region'][1]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['region'][2]['label'], 'value': (nationalBarChartMortality['region'][2]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['region'][3]['label'], 'value': (nationalBarChartMortality['region'][3]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
+                              // {key: nationalBarChartMortality['region'][4]['label'], 'value': (nationalBarChartMortality['region'][4]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0}
+
+
+
+                        ]}
+                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                        style={{
+                          data: {
+                            fill: mortalityColor[1]
+                          }
+                        }}
+                        x="key"
+                        y="value"
+                      />
+                    </VictoryChart>
+
+                    <Header.Content style = {{width: 550}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b>{varMap["covidmortalityfig"].name}</b>
+                        </text>
+                    </Header.Content>
+                </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+
+          
         <Grid>
             <Grid.Row columns={2} style={{paddingBottom: 7}}>
               <Grid.Column>

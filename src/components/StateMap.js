@@ -712,13 +712,13 @@ export default function StateMap(props) {
                                                                                                       !!raceData[stateFips]["American Natives Alone"]
                                                                                                       && !raceData[stateFips]["Hispanic"]? "Race" : "Race & Ethnicity")}</center>
                }
-              {stateFips === "38" && 
+              {stateFips === "38" || stateFips === "02" &&
                 <div style = {{background: "#e5f2f7", paddingBottom: 61}}> <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/> <br/> None Reported <br/>  <br/> </center></div>
               }
               
               <div style = {{width: 235, background: "#e5f2f7"}}>
               <Grid.Row>
-                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && stateFips !== "38" && 
+                {stateFips !== "_nation" && !raceData[stateFips]["Non-Hispanic African American"] && stateFips !== "38" && stateFips !== "02" && 
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {235}
@@ -736,7 +736,7 @@ export default function StateMap(props) {
                                       
                                       
 
-                                      {"Asian Alone" in raceData[stateFips] && raceData[stateFips]["Asian Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"Asian Alone" in raceData[stateFips] && raceData[stateFips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[stateFips]["Asian Alone"][0]['deaths'] > 30 && raceData[stateFips]["Asian Alone"][0]['percentPop'] >= 1 &&
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -758,7 +758,7 @@ export default function StateMap(props) {
                                         />
                                       }
 
-                                      {"American Natives Alone" in raceData[stateFips] && raceData[stateFips]["American Natives Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"American Natives Alone" in raceData[stateFips] && raceData[stateFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateFips]["American Natives Alone"][0]['percentPop'] >= 1 &&
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -780,7 +780,7 @@ export default function StateMap(props) {
                                       }
 
 
-                                      {"African American Alone" in raceData[stateFips] && raceData[stateFips]["African American Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"African American Alone" in raceData[stateFips] && raceData[stateFips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[stateFips]["African American Alone"][0]['deaths'] > 30 && raceData[stateFips]["African American Alone"][0]['percentPop'] >= 1 &&
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -801,7 +801,7 @@ export default function StateMap(props) {
                                         />
                                       }
 
-                                      {"White Alone" in raceData[stateFips] && raceData[stateFips]["White Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"White Alone" in raceData[stateFips] && raceData[stateFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateFips]["White Alone"][0]['deaths'] > 30 && raceData[stateFips]["White Alone"][0]['percentPop'] >= 1 &&
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -859,7 +859,7 @@ export default function StateMap(props) {
                                       
                                         <VictoryGroup>
 
-                                        {!!raceData[stateFips]["Hispanic"]  && raceData[stateFips]["Hispanic"][0]['deathrateEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Hispanic"]  && raceData[stateFips]["Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateFips]["Hispanic"][0]['deaths'] > 30 && raceData[stateFips]["Hispanic"][0]['percentPop'] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -881,7 +881,7 @@ export default function StateMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[stateFips]["Non Hispanic"] && raceData[stateFips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non Hispanic"] && raceData[stateFips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateFips]["Non Hispanic"][0]['deaths'] > 30 && raceData[stateFips]["Non Hispanic"][0]['percentPop'] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -904,7 +904,7 @@ export default function StateMap(props) {
                                         }
                                         
                                       
-                                        {!!raceData[stateFips]["Non-Hispanic African American"] && raceData[stateFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic African American"] && raceData[stateFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[stateFips]["Non-Hispanic African American"][0]['percentPop'] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -926,7 +926,7 @@ export default function StateMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[stateFips]["Non-Hispanic American Natives"] && raceData[stateFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic American Natives"] && raceData[stateFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateFips]["Non-Hispanic American Natives"][0]['percentPop'] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -948,7 +948,7 @@ export default function StateMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[stateFips]["Non-Hispanic Asian"] && raceData[stateFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic Asian"] && raceData[stateFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[stateFips]["Non-Hispanic Asian"][0]['percentPop'] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -969,7 +969,7 @@ export default function StateMap(props) {
                                             y="value"
                                           />
                                         }
-                                        {!!raceData[stateFips]["Non-Hispanic White"] && raceData[stateFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[stateFips]["Non-Hispanic White"] && raceData[stateFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateFips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[stateFips]["Non-Hispanic White"][0]['percentPop'] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal

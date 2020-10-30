@@ -250,7 +250,7 @@ export default function USMap(props) {
           </div>
           
           <div style={{height:130, overflowY:"hidden", overflowX: "auto"}}>
-            <p style={{width: "200%"}}>
+            <p style={{width: "220%"}}>
               <Grid>
                 <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
 
@@ -261,8 +261,8 @@ export default function USMap(props) {
                   
                 </Grid.Column>
 
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {175} height = {95}  src='/modal images/national.png' />
+                {/* <Grid.Column style={{width: 190}}>
+                  <Image width = {175} height = {95} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
                   <b> National Report <br/> </b>
@@ -270,38 +270,50 @@ export default function USMap(props) {
                   The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
                   How has the pandemic been trending? What are the most hard hit counties? 
                   Who are the most vulnerable communities...
-                  <a href = "/national-report/pilot"> Click here for more</a>. 
+                  <a href = "/national-report/pilot">for more</a>. 
                   
-                </Grid.Column>
+                </Grid.Column> */}
+
                 <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95}  src='/podcast images/Dr. Nneka Sederstrom.jpg' />
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics" src='/podcast images/Vincent Macroni.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection <br/></b>
+
+                  Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor 
+                  that reduces...
+                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">for more</a>. 
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics" src='/podcast images/Dr. Nneka Sederstrom.jpg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
                   <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/></b>
 
                   Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
                   medicine to the forefront of clinical ethics and pandemic... 
-                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics"> Click here for more</a>. 
+                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">for more</a>. 
                 </Grid.Column>
                 <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95}  src='/podcast images/JudyMonroe.jpg' />
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC" src='/podcast images/JudyMonroe.jpg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
                   <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/></b>
 
                   In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
                   pandemics based on her experience as...
-                  <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC"> Click here for more</a>. 
+                  <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">for more</a>. 
                 </Grid.Column>
                 <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95}  src='/podcast images/CarlosdelRio.jpg' />
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes" src='/podcast images/CarlosdelRio.jpg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
                   <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/></b>
 
                   Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
                   What can be and needs to be done to change the course of the pandemic? <br/>
-                  <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"> Click here for more</a>. 
+                  <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes">for more</a>. 
                 </Grid.Column>
               </Grid>
             </p>
@@ -507,7 +519,7 @@ export default function USMap(props) {
 
                                     />
 
-                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].caseRateMean).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].caseRateMean).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
@@ -588,7 +600,7 @@ export default function USMap(props) {
                                     />
 
                                     
-                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].mortalityMean).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].mortalityMean).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
@@ -623,12 +635,14 @@ export default function USMap(props) {
                       </div>
                     
                     </Grid.Column>
-                    
+                    <text style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
+                      *14-day change trends use 7-day averages.
+                    </text>
                   </Grid.Row>
 
                   <Header as='h2' style={{fontWeight: 400}}>
                     <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
-                      A Snapshot of COVID-19 Race and Ethnicity Disparities in <b>{stateName}</b>
+                      Disparities in COVID-19 Mortality <b>{stateName}</b>
                       
                     </Header.Content>
                   </Header>
@@ -636,16 +650,19 @@ export default function USMap(props) {
                   {!raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && stateFips !== "38" &&
                   <Grid.Row columns = {2} style = {{height: 298, paddingBottom: 287}}>
                     <Grid.Column > 
-                      {!raceData[fips]["Non-Hispanic African American"] &&
+                      {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
                         <div style = {{marginTop: 10}}>
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Race</text>
                         </div>
                       }
-                      {stateFips && !raceData[fips]["Non-Hispanic African American"] && stateFips !== "38" &&
+                      {stateFips && !raceData[fips]["Non-Hispanic African American"] && stateFips !== "38"  && stateFips !== "02" &&
                         <VictoryChart
                                       theme = {VictoryTheme.material}
                                       width = {250}
-                                      height = {40 * (( !!raceData[fips]["Asian Alone"] && raceData[fips]["Asian Alone"][0]['deathrateRace'] >= 0? 1: 0) + (!!raceData[fips]["American Natives Alone"] && raceData[fips]["American Natives Alone"][0]['deathrateRace'] >= 0? 1: 0) + (!!raceData[fips]["African American Alone"] && raceData[fips]["African American Alone"][0]['deathrateRace'] >= 0 ?1:0) + (!!raceData[fips]["White Alone"] && raceData[fips]["White Alone"][0]['deathrateRace'] >= 0 ?1:0))}
+                                      height = {40 * (( !!raceData[fips]["Asian Alone"] && raceData[fips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["Asian Alone"][0]["deaths"] > 30 && raceData[fips]["Asian Alone"][0]["percentPop"] >= 1 ? 1: 0) + 
+                                      (!!raceData[fips]["American Natives Alone"] && raceData[fips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["American Natives Alone"][0]['deaths'] > 30 && raceData[fips]["American Natives Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
+                                      (!!raceData[fips]["African American Alone"] && raceData[fips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["African American Alone"][0]['deaths'] > 30 && raceData[fips]["African American Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
+                                      (!!raceData[fips]["White Alone"] && raceData[fips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["White Alone"][0]['deaths'] > 30 && raceData[fips]["White Alone"][0]["percentPop"] >= 1 ?1:0))}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
                                       padding={{left: 80, right: 35, top: 12, bottom: 1}}
@@ -657,7 +674,7 @@ export default function USMap(props) {
                                       <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
                                       
-                                      {"Asian Alone" in raceData[fips] && raceData[fips]["Asian Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"Asian Alone" in raceData[fips] && raceData[fips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["Asian Alone"][0]["deaths"] > 30 && raceData[fips]["Asian Alone"][0]["percentPop"] >= 1 && 
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -679,7 +696,7 @@ export default function USMap(props) {
                                         />
                                       }
 
-                                      {"American Natives Alone" in raceData[fips] && raceData[fips]["American Natives Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"American Natives Alone" in raceData[fips] && raceData[fips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["American Natives Alone"][0]['deaths'] > 30 && raceData[fips]["American Natives Alone"][0]["percentPop"] >= 1 &&
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -701,7 +718,7 @@ export default function USMap(props) {
                                       }
 
 
-                                      {"African American Alone" in raceData[fips] && raceData[fips]["African American Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"African American Alone" in raceData[fips] && raceData[fips]["African American Alone"][0]['deathrateRace'] >= 0  && raceData[fips]["African American Alone"][0]['deaths'] > 30 && raceData[fips]["African American Alone"][0]["percentPop"] >= 1 && 
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -722,7 +739,7 @@ export default function USMap(props) {
                                         />
                                       }
 
-                                      {"White Alone" in raceData[fips] && raceData[fips]["White Alone"][0]['deathrateRace'] >= 0 &&
+                                      {"White Alone" in raceData[fips] && raceData[fips]["White Alone"][0]['deathrateRace'] >= 0  && raceData[fips]["White Alone"][0]['deaths'] > 30 && raceData[fips]["White Alone"][0]["percentPop"] >= 1 && 
                                         <VictoryBar
                                           barWidth= {10}
                                           horizontal
@@ -748,9 +765,17 @@ export default function USMap(props) {
                                       </VictoryGroup>
                         </VictoryChart>
                       }
-                      {!raceData[fips]["Non-Hispanic African American"] && stateFips !== "38" &&
+                      {!raceData[fips]["Non-Hispanic African American"] && stateFips !== "38" && stateFips !== "02" &&
                         <div style = {{marginTop: 10, textAlign: "center"}}>
                           <text x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100,000 <br/> residents</text>
+                        </div>
+                      }
+
+                      {stateFips === "02" &&
+                        <div style = {{marginTop: 10}}>
+                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Race</text>
+
+                            <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> None Reported</text> </center>
                         </div>
                       }
 
@@ -785,7 +810,7 @@ export default function USMap(props) {
 
 
 
-                                        {(!!raceData[fips]["Hispanic"] || (!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['deathrateEthnicity'] >=0 ))&&
+                                        {(!!raceData[fips]["Hispanic"] || (!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['deathrateEthnicity'] >= 0  && raceData[fips]["Hispanic"][0]['deaths'] > 30 && raceData[fips]["Hispanic"][0]["percentPop"] >= 1))&&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -807,7 +832,7 @@ export default function USMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[fips]["Non Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0  && raceData[fips]["Non Hispanic"][0]['deaths'] > 30 && raceData[fips]["Non Hispanic"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -830,7 +855,7 @@ export default function USMap(props) {
                                         }
                                         
                                       
-                                        {!!raceData[fips]["Non-Hispanic African American"] && raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic African American"] && raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0  && raceData[fips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic African American"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -852,7 +877,7 @@ export default function USMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[fips]["Non-Hispanic American Natives"] && raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic American Natives"] && raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[fips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -874,7 +899,7 @@ export default function USMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[fips]["Non-Hispanic Asian"] && raceData[fips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic Asian"] && raceData[fips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0  && raceData[fips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic Asian"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -895,7 +920,7 @@ export default function USMap(props) {
                                             y="value"
                                           />
                                         }
-                                        {!!raceData[fips]["Non-Hispanic White"] && raceData[fips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && 
+                                        {!!raceData[fips]["Non-Hispanic White"] && raceData[fips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0  && raceData[fips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic White"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -939,7 +964,7 @@ export default function USMap(props) {
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                       {stateFips && !raceData[fips]["White Alone"] &&
                         <div style = {{marginTop: 10}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per capita by Race & Ethnicity</text>
+                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 50, fontWeight: 400}}> Deaths by Race & Ethnicity</text>
                         </div>
                       }
                       {stateFips && !raceData[fips]["White Alone"] && stateFips !== "38" &&
@@ -959,7 +984,7 @@ export default function USMap(props) {
                                       
                                         <VictoryGroup>
 
-                                        {(!!raceData[fips]["Hispanic"] || (!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['deathrateEthnicity'] >=0 ))&&
+                                        {(!!raceData[fips]["Hispanic"] || (!!raceData[fips]["Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Hispanic"][0]['deathrateEthnicity'] >= 0  && raceData[fips]["Hispanic"][0]['deaths'] > 30 && raceData[fips]["Hispanic"][0]["percentPop"] >= 1 ))&&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -981,7 +1006,7 @@ export default function USMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[fips]["Non Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non Hispanic"] && !!raceData[fips]["White Alone"] && raceData[fips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0  && raceData[fips]["Non Hispanic"][0]['deaths'] > 30 && raceData[fips]["Non Hispanic"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             barRatio={0.1}
@@ -1003,7 +1028,7 @@ export default function USMap(props) {
                                           />
                                         }
                                         
-                                        {!!raceData[fips]["Non-Hispanic African American"] && raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic African American"] && raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0  && raceData[fips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic African American"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -1025,7 +1050,7 @@ export default function USMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[fips]["Non-Hispanic American Natives"] && raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic American Natives"] && raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0  && raceData[fips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -1047,7 +1072,7 @@ export default function USMap(props) {
                                           />
                                         }
 
-                                        {!!raceData[fips]["Non-Hispanic Asian"] && raceData[fips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic Asian"] && raceData[fips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0  && raceData[fips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic Asian"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -1068,7 +1093,7 @@ export default function USMap(props) {
                                             y="value"
                                           />
                                         }
-                                        {!!raceData[fips]["Non-Hispanic White"] && raceData[fips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 &&
+                                        {!!raceData[fips]["Non-Hispanic White"] && raceData[fips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && raceData[fips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[fips]["Non-Hispanic White"][0]["percentPop"] >= 1 &&
                                           <VictoryBar
                                             barWidth= {10}
                                             horizontal
@@ -1098,7 +1123,10 @@ export default function USMap(props) {
                       }
                       {stateFips && !raceData[fips]["White Alone"] &&
                         <div style = {{marginTop: 10}}>
-                          <text style={{fontSize: '14pt', marginLeft: 90, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;residents</text>
+                          <text style={{fontSize: '14pt', marginLeft: 109, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;residents</text>
                         </div>
                       }
 
