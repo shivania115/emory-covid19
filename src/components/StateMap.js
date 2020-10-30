@@ -301,7 +301,7 @@ export default function StateMap(props) {
 
           let countyMost = '';
           let covidmortality7dayfig = 0;
-          let caseRate = 0.1;
+          let caseRate = 0;
           let mortality = 0;
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
@@ -319,10 +319,19 @@ export default function StateMap(props) {
             }
             if (k.length===2 || stateFips === "_nation"){
               percentChangeCase = v[v.length-1].percent14dayDailyCases;
-              caseRate = v[v.length-1].dailyCases;
+              if(stateFips === "_nation"){
+                caseRate = 0;
+              }else{
+                caseRate = v[v.length-1].dailyCases;
+              }
+              
 
               percentChangeMortality = v[v.length-1].percent14dayDailyDeaths;
-              mortality = v[v.length-1].dailyMortality;
+              if(stateFips === "_nation"){
+                mortality = 0;
+              }else{
+                mortality = v[v.length-1].dailyMortality;
+              }
 
               percentPositive = v[v.length-1].percentPositive;
 
@@ -368,9 +377,6 @@ export default function StateMap(props) {
               }
             }
 
-          });
-          _.each(x, (v, k)=>{
-            
           });
 
 
@@ -431,7 +437,8 @@ export default function StateMap(props) {
   }, [dataTS]);
 
 
-  if (data && dataTS) {
+  if (data && dataTS && metric) {
+    console.log(caseRate);
   return (
       <div>
         <AppBar menu='countyReport'/>
