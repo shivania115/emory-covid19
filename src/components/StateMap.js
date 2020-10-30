@@ -319,10 +319,10 @@ export default function StateMap(props) {
             }
             if (k.length===2 || stateFips === "_nation"){
               percentChangeCase = v[v.length-1].percent14dayDailyCases;
-              caseRate = v[v.length-1].caseRateMean;
+              caseRate = v[v.length-1].dailyCases;
 
               percentChangeMortality = v[v.length-1].percent14dayDailyDeaths;
-              mortality = v[v.length-1].mortalityMean;
+              mortality = v[v.length-1].dailyMortality;
 
               percentPositive = v[v.length-1].percentPositive;
 
