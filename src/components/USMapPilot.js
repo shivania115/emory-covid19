@@ -240,7 +240,7 @@ export default function USMap(props) {
   }, [metric])
 
   if (data && dataFltrd && stateLabels) {
-    console.log(Object.keys(raceData[fips]).length);
+    
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -775,7 +775,10 @@ export default function USMap(props) {
                         <div style = {{marginTop: 10}}>
                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Race</text>
 
-                            <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> None Reported</text> </center>
+                           <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> <br/> 
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;None Reported</text>
                         </div>
                       }
 
