@@ -438,7 +438,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS && metric) {
-    console.log(caseRate);
+    
   return (
       <div>
         <AppBar menu='countyReport'/>

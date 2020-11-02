@@ -240,7 +240,7 @@ export default function USMap(props) {
   }, [metric])
 
   if (data && dataFltrd && stateLabels) {
-    console.log(Object.keys(raceData[fips]).length);
+    
   return (
       <div>
         <AppBar menu='countyReport'/>
