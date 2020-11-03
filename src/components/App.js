@@ -13,7 +13,7 @@ import Blog from "./Blog";
 import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
 
-import USMapPilot from "./USMapPilot";
+// import USMapPilot from "./USMapPilot";
 import NationalReportPilot from "./NationalReportPilot";
 
 import {
@@ -30,9 +30,6 @@ export default function App() {
   return (
       <Router>
         <Switch>
-          <Route path='/pilot-09-01-2020/landing-page'>
-            <USMapPilot />
-          </Route>
           <Route path='/pilot-09-01-2020/national-report'>
             <NationalReportPilot />
           </Route>
