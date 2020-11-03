@@ -438,7 +438,7 @@ export default function StateMap(props) {
 
 
   if (data && dataTS && metric) {
-    
+
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -1018,14 +1018,14 @@ export default function StateMap(props) {
                 <Grid.Column style={{padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <text style={{fontWeight: 300, fontSize: "14pt"}}>
                     Daily new COVID-19 cases <br/>
-                    (7-day rolling average) <br/><br/><br/>
+                    <br/><br/><br/>
                     <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </text>
                 </Grid.Column>
                 <Grid.Column style={{left: 3, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <text style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Daily new COVID-19 deaths 
-                    (7-day rolling average) <br/><br/><br/>
+                    Daily new COVID-19 deaths <br/>
+                    <br/><br/><br/>
                     <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </text>
                 </Grid.Column>
