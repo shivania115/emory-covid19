@@ -138,6 +138,16 @@
         "name": "Housing/Transportaion Vulnerability",
         "definition": "definition",
         "group": "exposure"},
+    "urbanrural": {
+        "variable": "urbanrural",
+        "name": "Urban-Rural",
+        "definition": "definition",
+        "group": "exposure"},
+    "region": {
+        "variable": "region",
+        "name": "region",
+        "definition": "definition",
+        "group": "exposure"},
     "Population": {
         "variable": "Population",
         "name": "Population",
@@ -157,7 +167,12 @@
         "variable": "_013_Urbanization",
         "name": "Urban-Rural Status",
         "definition": "definition",
-        "group": "misc"}        
+        "group": "misc"},
+    "_013_Urbanization_Code": {
+        "variable": "_013_Urbanization_Code",
+        "name": "Urban-Rural Status Code",
+        "definition": "definition",
+        "group": "misc"}       
 }
 
 
