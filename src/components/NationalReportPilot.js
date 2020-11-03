@@ -89,6 +89,8 @@ const colorPalette = [
   "#99528c", 
   "#633c70", 
 ];
+
+
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -130,19 +132,66 @@ export default function ExtraFile(props) {
 
   const [dailyCases, setDailyCases] = useState();
   const [dailyDeaths, setDailyDeaths] = useState();
+
   const [CVI, setCVI] = useState("CVI");
   const [colorCVI, setColorCVI] = useState();
-
   const [legendMaxCVI, setLegendMaxCVI] = useState([]);
   const [legendMinCVI, setLegendMinCVI] = useState([]);
   const [legendSplitCVI, setLegendSplitCVI] = useState([]);
 
   const [resSeg, setResSeg] = useState("RS_blackwhite");
   const [colorResSeg, setColorResSeg] = useState();
-
   const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
   const [legendMinResSeg, setLegendMinResSeg] = useState([]);
   const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
+
+  const [male, setMale] = useState("male");
+  const [colorMale, setColorMale] = useState();
+  const [legendMaxMale, setLegendMaxMale] = useState([]);
+  const [legendMinMale, setLegendMinMale] = useState([]);
+  const [legendSplitMale, setLegendSplitMale] = useState([]);
+
+  const [age65, setAge65] = useState("age65over");
+  const [colorAge65, setColorAge65] = useState();
+  const [legendMaxAge65, setLegendMaxAge65] = useState([]);
+  const [legendMinAge65, setLegendMinAge65] = useState([]);
+  const [legendSplitAge65, setLegendSplitAge65] = useState([]);
+
+  const [black, setBlack] = useState("black");
+  const [colorBlack, setColorBlack] = useState();
+  const [legendMaxBlack, setLegendMaxBlack] = useState([]);
+  const [legendMinBlack, setLegendMinBlack] = useState([]);
+  const [legendSplitBlack, setLegendSplitBlack] = useState([]);
+
+  const [poverty, setPoverty] = useState("poverty");
+  const [colorPoverty, setColorPoverty] = useState();
+  const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
+  const [legendMinPoverty, setLegendMinPoverty] = useState([]);
+  const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
+
+  const [diabetes, setDiabetes] = useState("diabetes");
+  const [colorDiabetes, setColorDiabetes] = useState();
+  const [legendMaxDiabetes, setLegendMaxDiabetes] = useState([]);
+  const [legendMinDiabetes, setLegendMinDiabetes] = useState([]);
+  const [legendSplitDiabetes, setLegendSplitDiabetes] = useState([]);
+
+  const [hispanic, setHispanic] = useState("hispanic");
+  const [colorHispanic, setColorHispanic] = useState();
+  const [legendMaxHispanic, setLegendMaxHispanic] = useState([]);
+  const [legendMinHispanic, setLegendMinHispanic] = useState([]);
+  const [legendSplitHispanic, setLegendSplitHispanic] = useState([]);
+
+  const [urbrur, setUrbrur] = useState("_013_Urbanization_Code");
+  const [colorUrbrur, setColorUrbrur] = useState();
+  const [legendMaxUrbrur, setLegendMaxUrbrur] = useState([]);
+  const [legendMinUrbrur, setLegendMinUrbrur] = useState([]);
+  const [legendSplitUrbrur, setLegendSplitUrbrur] = useState([]);
+
+  const [region, setRegion] = useState("region");
+  const [colorRegion, setColorRegion] = useState();
+  const [legendMaxRegion, setLegendMaxRegion] = useState([]);
+  const [legendMinRegion, setLegendMinRegion] = useState([]);
+  const [legendSplitRegion, setLegendSplitRegion] = useState([]);
 
   const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', 
                                                   caseRate: "N/A", mortality: "N/A", 
@@ -150,11 +199,6 @@ export default function ExtraFile(props) {
                                                   caseRateMA: "N/A", mortalityMA: "N/A",
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
-
-
-  
-
-
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -284,13 +328,9 @@ export default function ExtraFile(props) {
           setLegendMinCVI(min.toFixed(0));
   
           setLegendSplitCVI(cs.quantiles());
-  
-  
 
-
-        //ResSeg
-
-        const csii = scaleQuantile()
+          //ResSeg
+          const csii = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
             d.fips = k
             return d}), 
@@ -315,20 +355,305 @@ export default function ExtraFile(props) {
               minii = d[resSeg]
             }
           });
-  
           if (maxii > 999999) {
-            maxii = (max/1000000).toFixed(0) + "M";
+            maxii = (maxii/1000000).toFixed(0) + "M";
             setLegendMaxResSeg(maxii);
           }else if (max > 999) {
-            maxii = (max/1000).toFixed(0) + "K";
+            maxii = (maxii/1000).toFixed(0) + "K";
             setLegendMaxResSeg(maxii);
           }else{
             setLegendMaxResSeg(maxii.toFixed(0));
-  
           }
           setLegendMinResSeg(minii.toFixed(0));
-  
           setLegendSplitResSeg(csii.quantiles());
+
+          
+          //male
+          const cs_male = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[male] > 0 &&
+                d.fips.length === 5)),
+            d=> d[male]))
+          .range(colorPalette);
+  
+          let scaleMap_male = {}
+          _.each(x, d=>{
+            if(d[male] > 0){
+              scaleMap_male[d[male]] = cs_male(d[male])}});
+        
+          setColorMale(scaleMap_male);
+          var max_male = 0
+          var min_male = 100
+          _.each(x, d=> { 
+            if (d[male] > max_male && d.fips.length === 5) {
+              max_male = d[male]
+            } else if (d.fips.length === 5 && d[male] < min_male && d[male] > 0){
+              min_male = d[male]
+            }
+          });
+          if (max_male > 999999) {
+            max_male = (max_male/1000000).toFixed(0) + "M";
+            setLegendMaxMale(max_male);
+          }else if (max_male > 999) {
+            max_male = (max_male/1000).toFixed(0) + "K";
+            setLegendMaxMale(max_male);
+          }else{
+            setLegendMaxMale(max_male.toFixed(0));
+          }
+          setLegendMinMale(min_male.toFixed(0));
+          setLegendSplitMale(cs_male.quantiles());
+
+          //age65over
+          const cs_age65 = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[age65] > 0 &&
+                d.fips.length === 5)),
+            d=> d[age65]))
+          .range(colorPalette);
+  
+          let scaleMap_age65 = {}
+          _.each(x, d=>{
+            if(d[age65] > 0){
+              scaleMap_age65[d[age65]] = cs_age65(d[age65])}});
+        
+          setColorAge65(scaleMap_age65);
+          var max_age65 = 0
+          var min_age65 = 100
+          _.each(x, d=> { 
+            if (d[age65] > max_age65 && d.fips.length === 5) {
+              max_age65 = d[age65]
+            } else if (d.fips.length === 5 && d[age65] < min_age65 && d[age65] > 0){
+              min_age65 = d[age65]
+            }
+          });
+          if (max_age65 > 999999) {
+            max_age65 = (max_age65/1000000).toFixed(0) + "M";
+            setLegendMaxAge65(max_age65);
+          }else if (max_age65 > 999) {
+            max_age65 = (max_age65/1000).toFixed(0) + "K";
+            setLegendMaxAge65(max_age65);
+          }else{
+            setLegendMaxAge65(max_age65.toFixed(0));
+          }
+          setLegendMinAge65(min_age65.toFixed(0));
+          setLegendSplitAge65(cs_age65.quantiles());
+
+
+          //black
+          const cs_black = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[black] > 0 &&
+                d.fips.length === 5)),
+            d=> d[black]))
+          .range(colorPalette);
+  
+          let scaleMap_black = {}
+          _.each(x, d=>{
+            if(d[black] > 0){
+              scaleMap_black[d[black]] = cs_black(d[black])}});
+        
+          setColorBlack(scaleMap_black);
+          var max_black = 0
+          var min_black = 100
+          _.each(x, d=> { 
+            if (d[black] > max_black && d.fips.length === 5) {
+              max_black = d[black]
+            } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
+              min_black = d[black]
+            }
+          });
+          if (max_black > 999999) {
+            max_black = (max_black/1000000).toFixed(0) + "M";
+            setLegendMaxBlack(max_black);
+          }else if (max_black > 999) {
+            max_black = (max_black/1000).toFixed(0) + "K";
+            setLegendMaxBlack(max_black);
+          }else{
+            setLegendMaxBlack(max_black.toFixed(0));
+          }
+          setLegendMinBlack(min_black.toFixed(0));
+          setLegendSplitBlack(cs_black.quantiles());
+
+
+          //poverty
+          const cs_poverty = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[poverty] > 0 &&
+                d.fips.length === 5)),
+            d=> d[poverty]))
+          .range(colorPalette);
+  
+          let scaleMap_poverty = {}
+          _.each(x, d=>{
+            if(d[poverty] > 0){
+              scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}});
+        
+          setColorPoverty(scaleMap_poverty);
+          var max_poverty = 0
+          var min_poverty = 100
+          _.each(x, d=> { 
+            if (d[poverty] > max_poverty && d.fips.length === 5) {
+              max_poverty = d[poverty]
+            } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
+              min_poverty = d[poverty]
+            }
+          });
+          if (max_poverty > 999999) {
+            max_poverty = (max_poverty/1000000).toFixed(0) + "M";
+            setLegendMaxPoverty(max_poverty);
+          }else if (max_poverty > 999) {
+            max_poverty = (max_poverty/1000).toFixed(0) + "K";
+            setLegendMaxPoverty(max_poverty);
+          }else{
+            setLegendMaxPoverty(max_poverty.toFixed(0));
+          }
+          setLegendMinPoverty(min_poverty.toFixed(0));
+          setLegendSplitPoverty(cs_poverty.quantiles());
+
+          //diabetes
+          const cs_diabetes = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[diabetes] > 0 &&
+                d.fips.length === 5)),
+            d=> d[diabetes]))
+          .range(colorPalette);
+  
+          let scaleMap_diabetes = {}
+          _.each(x, d=>{
+            if(d[diabetes] > 0){
+              scaleMap_diabetes[d[diabetes]] = cs_diabetes(d[diabetes])}});
+        
+          setColorDiabetes(scaleMap_diabetes);
+          var max_diabetes = 0
+          var min_diabetes = 100
+          _.each(x, d=> { 
+            if (d[diabetes] > max_diabetes && d.fips.length === 5) {
+              max_diabetes = d[diabetes]
+            } else if (d.fips.length === 5 && d[diabetes] < min_diabetes && d[diabetes] > 0){
+              min_diabetes = d[diabetes]
+            }
+          });
+          if (max_diabetes > 999999) {
+            max_diabetes = (max_diabetes/1000000).toFixed(0) + "M";
+            setLegendMaxDiabetes(max_diabetes);
+          }else if (max_diabetes > 999) {
+            max_diabetes = (max_diabetes/1000).toFixed(0) + "K";
+            setLegendMaxDiabetes(max_diabetes);
+          }else{
+            setLegendMaxDiabetes(max_diabetes.toFixed(0));
+          }
+          setLegendMinDiabetes(min_diabetes.toFixed(0));
+          setLegendSplitDiabetes(cs_diabetes.quantiles());
+
+          //hispanic
+          const cs_hispanic = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[hispanic] > 0 &&
+                d.fips.length === 5)),
+            d=> d[hispanic]))
+          .range(colorPalette);
+  
+          let scaleMap_hispanic = {}
+          _.each(x, d=>{
+            if(d[hispanic] > 0){
+              scaleMap_hispanic[d[hispanic]] = cs_hispanic(d[hispanic])}});
+        
+          setColorHispanic(scaleMap_hispanic);
+          var max_hispanic = 0
+          var min_hispanic = 100
+          _.each(x, d=> { 
+            if (d[hispanic] > max_hispanic && d.fips.length === 5) {
+              max_hispanic = d[hispanic]
+            } else if (d.fips.length === 5 && d[hispanic] < min_hispanic && d[hispanic] > 0){
+              min_hispanic = d[hispanic]
+            }
+          });
+          if (max_hispanic > 999999) {
+            max_hispanic = (max_hispanic/1000000).toFixed(0) + "M";
+            setLegendMaxHispanic(max_hispanic);
+          }else if (max_hispanic > 999) {
+            max_hispanic = (max_hispanic/1000).toFixed(0) + "K";
+            setLegendMaxHispanic(max_hispanic);
+          }else{
+            setLegendMaxHispanic(max_hispanic.toFixed(0));
+          }
+          setLegendMinHispanic(min_hispanic.toFixed(0));
+          setLegendSplitHispanic(cs_hispanic.quantiles());
+
+          //urbrur
+          const cs_urbrur = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[urbrur] > 0 &&
+                d.fips.length === 5)),
+            d=> d[urbrur]))
+          .range(colorPalette);
+  
+          let scaleMap_urbrur = {}
+          _.each(x, d=>{
+            if(d[urbrur] > 0){
+            scaleMap_urbrur[d[urbrur]] = cs_urbrur(d[urbrur])}});
+        
+          setColorUrbrur(scaleMap_urbrur);
+          setLegendSplitUrbrur(cs_urbrur.quantiles());
+
+          //region
+          const cs_region = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[region] > 0 &&
+                d.fips.length === 5)),
+            d=> d[region]))
+          .range(colorPalette);
+  
+          let scaleMap_region = {}
+          _.each(x, d=>{
+            if(d[region] > 0){
+            scaleMap_region[d[region]] = cs_region(d[region])}});
+        
+          setColorRegion(scaleMap_region);
+          var max_region = 0
+          var min_region = 100
+          _.each(x, d=> { 
+            if (d[region] > max_region && d.fips.length === 5) {
+              max_region = d[region]
+            } else if (d.fips.length === 5 && d[region] < min_region && d[region] > 0){
+              min_region = d[region]
+            }
+          });
+          if (max_region > 999999) {
+            max_region = (max_region/1000000).toFixed(0) + "M";
+            setLegendMaxRegion(max_region);
+          }else if (max > 999) {
+            max_region = (max/1000).toFixed(0) + "K";
+            setLegendMaxRegion(max_region);
+          }else{
+            setLegendMaxRegion(max_region.toFixed(0));
+          }
+          setLegendMinRegion(min_region.toFixed(0));
+          setLegendSplitRegion(cs_region.quantiles());
         });
   
       
@@ -1498,18 +1823,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitMale, (splitpoint, i) => {
+                    if(legendSplitMale[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitMale[i].toFixed(1)}</text>                    
+                    }else if(legendSplitMale[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitMale[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitMale[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitMale[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitMale[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinMale}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxMale}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -1546,9 +1871,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorMale && data[geo.id] && (data[geo.id][male]) > 0)?
+                                  colorMale[data[geo.id][male]]: 
+                                  (colorMale && data[geo.id] && data[geo.id][male] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -1687,18 +2012,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitAge65, (splitpoint, i) => {
+                    if(legendSplitAge65[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitAge65[i].toFixed(1)}</text>                    
+                    }else if(legendSplitAge65[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitAge65[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitAge65[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitAge65[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitAge65[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinAge65}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxAge65}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -1735,9 +2060,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorAge65 && data[geo.id] && (data[geo.id][age65]) > 0)?
+                                  colorAge65[data[geo.id][age65]]: 
+                                  (colorAge65 && data[geo.id] && data[geo.id][age65] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -1876,18 +2201,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitBlack, (splitpoint, i) => {
+                    if(legendSplitBlack[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitBlack[i].toFixed(1)}</text>                    
+                    }else if(legendSplitBlack[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitBlack[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitBlack[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitBlack[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitBlack[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinBlack}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxBlack}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -1924,9 +2249,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorBlack && data[geo.id] && (data[geo.id][black]) > 0)?
+                                  colorBlack[data[geo.id][black]]: 
+                                  (colorBlack && data[geo.id] && data[geo.id][black] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -2064,18 +2389,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitPoverty, (splitpoint, i) => {
+                    if(legendSplitPoverty[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitPoverty[i].toFixed(1)}</text>                    
+                    }else if(legendSplitPoverty[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitPoverty[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitPoverty[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitPoverty[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitPoverty[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinPoverty}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxPoverty}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -2112,9 +2437,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorPoverty && data[geo.id] && (data[geo.id][poverty]) > 0)?
+                                  colorPoverty[data[geo.id][poverty]]: 
+                                  (colorPoverty && data[geo.id] && data[geo.id][poverty] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -2252,18 +2577,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitDiabetes, (splitpoint, i) => {
+                    if(legendSplitDiabetes[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitDiabetes[i].toFixed(1)}</text>                    
+                    }else if(legendSplitDiabetes[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitDiabetes[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitDiabetes[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitDiabetes[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitDiabetes[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinDiabetes}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxDiabetes}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -2300,9 +2625,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorDiabetes && data[geo.id] && (data[geo.id][diabetes]) > 0)?
+                                  colorDiabetes[data[geo.id][diabetes]]: 
+                                  (colorDiabetes && data[geo.id] && data[geo.id][diabetes] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -2441,18 +2766,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {_.map(legendSplitHispanic, (splitpoint, i) => {
+                    if(legendSplitHispanic[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitHispanic[i].toFixed(1)}</text>                    
+                    }else if(legendSplitHispanic[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitHispanic[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitHispanic[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitHispanic[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitHispanic[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinHispanic}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxHispanic}</text>
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -2489,9 +2814,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorHispanic && data[geo.id] && (data[geo.id][hispanic]) > 0)?
+                                  colorHispanic[data[geo.id][hispanic]]: 
+                                  (colorHispanic && data[geo.id] && data[geo.id][hispanic] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -2623,39 +2948,30 @@ export default function ExtraFile(props) {
 
           <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
-              <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+              <Grid.Column style={{paddingTop:10,paddingBottom:0}}>
                 
 
               <div >
                 
-                <svg width="260" height="80">
-                  
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
-                    }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
-                  })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                <svg width="550" height="145">
+
+                  <text x={80} y={20} style={{fontSize: '0.8em'}}> Large Central Metro; Large Fringe Metro</text>                    
+                  <text x={80} y={40} style={{fontSize: '0.8em'}}> Medium Metro</text>                    
+                  <text x={80} y={60} style={{fontSize: '0.8em'}}> Small Metro</text>                    
+                  <text x={80} y={80} style={{fontSize: '0.8em'}}> Micropolitan (Nonmetro)</text>                    
+                  <text x={80} y={100} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
+                  <text x={80} y={120} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
+                  <text x={80} y={140} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
 
 
                   {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                    return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
 
-                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
-
-
-                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                  <rect x={200} y={120} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={222} y={130} style={{fontSize: '0.8em'}}> None </text>
+                  <text x={222} y={140} style={{fontSize: '0.8em'}}> Reported </text>
                 
 
                 </svg>
@@ -2678,9 +2994,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorUrbrur && data[geo.id] && (data[geo.id][urbrur]) > 0)?
+                                  colorUrbrur[data[geo.id][urbrur]]: 
+                                  (colorUrbrur && data[geo.id] && data[geo.id][urbrur] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
@@ -2692,7 +3008,7 @@ export default function ExtraFile(props) {
 
                   </ComposableMap>
               </div>
-              <div style = {{marginTop: 60}}>
+              <div style = {{marginTop: 30}}>
                   <br/>
                   <br/>
                   
@@ -2713,7 +3029,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                      padding={{left: 300, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2728,7 +3044,8 @@ export default function ExtraFile(props) {
                               {key: nationalBarChartCases['urbanrural'][1]['label'], 'value': (nationalBarChartCases['urbanrural'][1]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
                               {key: nationalBarChartCases['urbanrural'][2]['label'], 'value': (nationalBarChartCases['urbanrural'][2]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
                               {key: nationalBarChartCases['urbanrural'][3]['label'], 'value': (nationalBarChartCases['urbanrural'][3]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
-                              {key: nationalBarChartCases['urbanrural'][4]['label'], 'value': (nationalBarChartCases['urbanrural'][4]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0}
+                              {key: nationalBarChartCases['urbanrural'][4]['label'], 'value': (nationalBarChartCases['urbanrural'][4]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
+                              {key: nationalBarChartCases['urbanrural'][5]['label'], 'value': (nationalBarChartCases['urbanrural'][5]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0}
 
 
 
@@ -2762,7 +3079,7 @@ export default function ExtraFile(props) {
                       height={180}
                       domainPadding={20}
                       minDomain={{y: props.ylog?1:0}}
-                      padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                      padding={{left: 300, right: 40, top: 15, bottom: 1}}
                       style = {{fontSize: "14pt"}}
                       containerComponent={<VictoryContainer responsive={false}/>}
                     >
@@ -2794,7 +3111,7 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
                         </text>
                     </Header.Content>
@@ -2802,7 +3119,7 @@ export default function ExtraFile(props) {
             </Grid.Row>
           </Grid>
 
-          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>Region</b> </center> 
                 <br/>
                 <br/>         
@@ -2819,18 +3136,18 @@ export default function ExtraFile(props) {
                 
                 <svg width="260" height="80">
                   
-                  {_.map(legendSplitResSeg, (splitpoint, i) => {
-                    if(legendSplitResSeg[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
-                    }else if(legendSplitResSeg[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitResSeg[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                  {/* {_.map(legendSplitRegion, (splitpoint, i) => {
+                    if(legendSplitRegion[i] < 1){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitRegion[i].toFixed(1)}</text>                    
+                    }else if(legendSplitRegion[i] > 999999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitRegion[i]/1000000).toFixed(0) + "M"}</text>                    
+                    }else if(legendSplitRegion[i] > 999){
+                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitRegion[i]/1000).toFixed(0) + "K"}</text>                    
                     }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitRegion[i].toFixed(0)}</text>                    
                   })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinRegion}</text>
+                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxRegion}</text> */}
 
 
                   {_.map(colorPalette, (color, i) => {
@@ -2867,9 +3184,9 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                  colorResSeg[data[geo.id][resSeg]]: 
-                                  (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
+                              ((colorRegion && data[geo.id] && (data[geo.id][region]) > 0)?
+                                  colorRegion[data[geo.id][region]]: 
+                                  (colorRegion && data[geo.id] && data[geo.id][region] === 0)?
                                     '#FFFFFF':'#FFFFFF')}
                               
                             />
