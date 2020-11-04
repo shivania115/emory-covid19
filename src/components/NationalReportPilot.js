@@ -90,6 +90,16 @@ const colorPalette = [
   "#633c70", 
 ];
 
+const colorPalett = [
+  "#633c70", 
+  "#99528c", 
+  "#af5194", 
+  "#bf88b5", 
+  "#d3b6cd",
+  "#e1dce2",
+  
+];
+
 
 function numberWithCommas(x) {
     x = x.toString();
@@ -607,7 +617,7 @@ export default function ExtraFile(props) {
                 d[urbrur] > 0 &&
                 d.fips.length === 5)),
             d=> d[urbrur]))
-          .range(colorPalette);
+          .range(colorPalett);
   
           let scaleMap_urbrur = {}
           _.each(x, d=>{
@@ -2964,7 +2974,7 @@ export default function ExtraFile(props) {
                   <text x={80} y={140} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
 
 
-                  {_.map(colorPalette, (color, i) => {
+                  {_.map(colorPalett, (color, i) => {
                     return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
