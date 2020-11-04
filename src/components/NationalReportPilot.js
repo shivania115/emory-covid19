@@ -90,6 +90,16 @@ const colorPalette = [
   "#633c70", 
 ];
 
+const colorPalett = [
+  "#633c70", 
+  "#99528c", 
+  "#af5194", 
+  "#bf88b5", 
+  "#d3b6cd",
+  "#e1dce2",
+  
+];
+
 
 function numberWithCommas(x) {
     x = x.toString();
@@ -607,7 +617,7 @@ export default function ExtraFile(props) {
                 d[urbrur] > 0 &&
                 d.fips.length === 5)),
             d=> d[urbrur]))
-          .range(colorPalette);
+          .range(colorPalett);
   
           let scaleMap_urbrur = {}
           _.each(x, d=>{
@@ -823,19 +833,7 @@ export default function ExtraFile(props) {
                                 style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
                                 tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                                 />
-                              <VictoryGroup 
-                                colorScale={[mortalityColor[1]]}
-                              >
-                                <VictoryLine data={dataTS["_nation"]}
-                                  x='t' y='mortalityMean'
-                                  labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${numberWithCommas(datum.mortalityMean.toFixed(0))}`}
-                                  labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 20, y: 20 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                                  style={{
-                                    fontFamily: 'lato',
-                                    data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                                  }}
-                                  />
-                              </VictoryGroup>
+                            
                             <VictoryGroup>
                               <VictoryBar
                                 barRatio={0.8}
@@ -849,6 +847,23 @@ export default function ExtraFile(props) {
                                 y="dailyMortality"
                               />
                             </VictoryGroup>
+
+                            <VictoryGroup 
+                                colorScale={[mortalityColor[1]]}
+                              >
+                                <VictoryLine data={dataTS["_nation"]}
+                                  x='t' y='mortalityMean'
+                                  labels={({ datum }) => `${fullMonthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}` + ` \n New deaths: ${numberWithCommas(datum.dailyMortality.toFixed(0))} \n 7-day average: ${numberWithCommas(datum.mortalityMean.toFixed(0))}`}
+                                  labelComponent={
+                                    <VictoryTooltip 
+                                      style={{marginLeft: 100, fontWeight: 400, fontFamily: 'lato', fontSize: "19px", textAnchor: "start"}} centerOffset={{ x: 20, y: 20 }} flyoutStyle={{marginLeft: 100, borderRadius: "0px", fill: "#FFFFFF", fillOpacity: 1, stroke: "#A9A9A9", strokeWidth: 1 }}
+                                    />}
+                                    style={{
+                                    fontFamily: 'lato',
+                                    data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                                  }}
+                                  />
+                              </VictoryGroup>
                             </VictoryChart>
                       </Grid.Column>
 
@@ -1548,7 +1563,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['CVI'][0]['label'], 'value': (nationalBarChartMortality['CVI'][0]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['CVI'][1]['label'], 'value': (nationalBarChartMortality['CVI'][1]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
@@ -1754,7 +1769,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['resSeg'][0]['label'], 'value': (nationalBarChartMortality['resSeg'][0]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['resSeg'][1]['label'], 'value': (nationalBarChartMortality['resSeg'][1]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
@@ -1964,7 +1979,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['male'][0]['label'], 'value': (nationalBarChartMortality['male'][0]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['male'][1]['label'], 'value': (nationalBarChartMortality['male'][1]['covidmortality']/nationalBarChartMortality['male'][0]['covidmortality'])*nationalBarChartMortality['male'][0]['covidmortality'] || 0},
@@ -1994,6 +2009,9 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
+
+          <center> <Divider style={{width: 1000}}/> </center>
+
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>Population over the age 65 years</b> </center> 
@@ -2153,7 +2171,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['age65over'][0]['label'], 'value': (nationalBarChartMortality['age65over'][0]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['age65over'][1]['label'], 'value': (nationalBarChartMortality['age65over'][1]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
@@ -2183,6 +2201,8 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
+
+          <center> <Divider style={{width: 1000}}/> </center>
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>African American population</b> </center> 
@@ -2342,7 +2362,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['black'][0]['label'], 'value': (nationalBarChartMortality['black'][0]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['black'][1]['label'], 'value': (nationalBarChartMortality['black'][1]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
@@ -2372,6 +2392,9 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
+
+          <center> <Divider style={{width: 1000}}/> </center>
+
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>Population in poverty</b> </center> 
@@ -2530,7 +2553,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['poverty'][0]['label'], 'value': (nationalBarChartMortality['poverty'][0]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['poverty'][1]['label'], 'value': (nationalBarChartMortality['poverty'][1]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
@@ -2560,6 +2583,9 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
+
+          <center> <Divider style={{width: 1000}}/> </center>
+
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>Population with diabetes</b> </center> 
@@ -2718,7 +2744,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['diabetes'][0]['label'], 'value': (nationalBarChartMortality['diabetes'][0]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['diabetes'][1]['label'], 'value': (nationalBarChartMortality['diabetes'][1]['covidmortality']/nationalBarChartMortality['diabetes'][0]['covidmortality'])*nationalBarChartMortality['diabetes'][0]['covidmortality'] || 0},
@@ -2748,6 +2774,8 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
+
+          <center> <Divider style={{width: 1000}}/> </center>
 
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
@@ -2907,7 +2935,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['hispanic'][0]['label'], 'value': (nationalBarChartMortality['hispanic'][0]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['hispanic'][1]['label'], 'value': (nationalBarChartMortality['hispanic'][1]['covidmortality']/nationalBarChartMortality['hispanic'][0]['covidmortality'])*nationalBarChartMortality['hispanic'][0]['covidmortality'] || 0},
@@ -2938,6 +2966,8 @@ export default function ExtraFile(props) {
             </Grid.Row>
           </Grid>
 
+          <center> <Divider style={{width: 1000}}/> </center>
+
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>Metropolitan Status</b> </center> 
@@ -2964,7 +2994,7 @@ export default function ExtraFile(props) {
                   <text x={80} y={140} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
 
 
-                  {_.map(colorPalette, (color, i) => {
+                  {_.map(colorPalett, (color, i) => {
                     return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
@@ -3088,13 +3118,14 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['urbanrural'][0]['label'], 'value': (nationalBarChartMortality['urbanrural'][0]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['urbanrural'][1]['label'], 'value': (nationalBarChartMortality['urbanrural'][1]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['urbanrural'][2]['label'], 'value': (nationalBarChartMortality['urbanrural'][2]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['urbanrural'][3]['label'], 'value': (nationalBarChartMortality['urbanrural'][3]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                              {key: nationalBarChartMortality['urbanrural'][4]['label'], 'value': (nationalBarChartMortality['urbanrural'][4]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0}
+                              {key: nationalBarChartMortality['urbanrural'][4]['label'], 'value': (nationalBarChartMortality['urbanrural'][4]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['urbanrural'][5]['label'], 'value': (nationalBarChartMortality['urbanrural'][5]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0}
 
 
 
@@ -3118,6 +3149,9 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
+
+
+          <center> <Divider style={{width: 1000}}/> </center>
 
           <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>Region</b> </center> 
@@ -3277,7 +3311,7 @@ export default function ExtraFile(props) {
                       <VictoryBar
                         horizontal
                         barRatio={0.80}
-                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                         data={[
                               {key: nationalBarChartMortality['region'][0]['label'], 'value': (nationalBarChartMortality['region'][0]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['region'][1]['label'], 'value': (nationalBarChartMortality['region'][1]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
