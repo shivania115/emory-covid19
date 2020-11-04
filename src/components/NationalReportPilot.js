@@ -3094,7 +3094,8 @@ export default function ExtraFile(props) {
                               {key: nationalBarChartMortality['urbanrural'][1]['label'], 'value': (nationalBarChartMortality['urbanrural'][1]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['urbanrural'][2]['label'], 'value': (nationalBarChartMortality['urbanrural'][2]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
                               {key: nationalBarChartMortality['urbanrural'][3]['label'], 'value': (nationalBarChartMortality['urbanrural'][3]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                              {key: nationalBarChartMortality['urbanrural'][4]['label'], 'value': (nationalBarChartMortality['urbanrural'][4]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0}
+                              {key: nationalBarChartMortality['urbanrural'][4]['label'], 'value': (nationalBarChartMortality['urbanrural'][4]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
+                              {key: nationalBarChartMortality['urbanrural'][5]['label'], 'value': (nationalBarChartMortality['urbanrural'][5]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0}
 
 
 
