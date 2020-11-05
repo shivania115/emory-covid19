@@ -192,16 +192,11 @@ export default function ExtraFile(props) {
   const [legendSplitHispanic, setLegendSplitHispanic] = useState([]);
 
   const [urbrur, setUrbrur] = useState("_013_Urbanization_Code");
-  const [colorUrbrur, setColorUrbrur] = useState();
-  const [legendMaxUrbrur, setLegendMaxUrbrur] = useState([]);
-  const [legendMinUrbrur, setLegendMinUrbrur] = useState([]);
-  const [legendSplitUrbrur, setLegendSplitUrbrur] = useState([]);
+  const [dataUrb, setDataUrb] = useState();
 
-  const [region, setRegion] = useState("region");
+
+  const [region, setRegion] = useState("region_Code");
   const [colorRegion, setColorRegion] = useState();
-  const [legendMaxRegion, setLegendMaxRegion] = useState([]);
-  const [legendMinRegion, setLegendMinRegion] = useState([]);
-  const [legendSplitRegion, setLegendSplitRegion] = useState([]);
 
   const [covidMetric, setCovidMetric] = useState({cases: 'N/A', deaths: 'N/A', 
                                                   caseRate: "N/A", mortality: "N/A", 
@@ -312,7 +307,8 @@ export default function ExtraFile(props) {
           let scaleMap = {}
           _.each(x, d=>{
             if(d[CVI] > 0){
-            scaleMap[d[CVI]] = cs(d[CVI])}});
+            scaleMap[d[CVI]] = cs(d[CVI])}
+          });
         
           setColorCVI(scaleMap);
           var max = 0
@@ -353,7 +349,8 @@ export default function ExtraFile(props) {
           let scaleMapii = {}
           _.each(x, d=>{
             if(d[resSeg] > 0){
-            scaleMapii[d[resSeg]] = csii(d[resSeg])}});
+            scaleMapii[d[resSeg]] = csii(d[resSeg])}
+          });
         
           setColorResSeg(scaleMapii);
           var maxii = 0
@@ -392,7 +389,8 @@ export default function ExtraFile(props) {
           let scaleMap_male = {}
           _.each(x, d=>{
             if(d[male] > 0){
-              scaleMap_male[d[male]] = cs_male(d[male])}});
+              scaleMap_male[d[male]] = cs_male(d[male])}
+          });
         
           setColorMale(scaleMap_male);
           var max_male = 0
@@ -430,7 +428,8 @@ export default function ExtraFile(props) {
           let scaleMap_age65 = {}
           _.each(x, d=>{
             if(d[age65] > 0){
-              scaleMap_age65[d[age65]] = cs_age65(d[age65])}});
+              scaleMap_age65[d[age65]] = cs_age65(d[age65])}
+          });
         
           setColorAge65(scaleMap_age65);
           var max_age65 = 0
@@ -469,7 +468,8 @@ export default function ExtraFile(props) {
           let scaleMap_black = {}
           _.each(x, d=>{
             if(d[black] > 0){
-              scaleMap_black[d[black]] = cs_black(d[black])}});
+              scaleMap_black[d[black]] = cs_black(d[black])}
+          });
         
           setColorBlack(scaleMap_black);
           var max_black = 0
@@ -508,7 +508,8 @@ export default function ExtraFile(props) {
           let scaleMap_poverty = {}
           _.each(x, d=>{
             if(d[poverty] > 0){
-              scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}});
+              scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
+          });
         
           setColorPoverty(scaleMap_poverty);
           var max_poverty = 0
@@ -546,7 +547,8 @@ export default function ExtraFile(props) {
           let scaleMap_diabetes = {}
           _.each(x, d=>{
             if(d[diabetes] > 0){
-              scaleMap_diabetes[d[diabetes]] = cs_diabetes(d[diabetes])}});
+              scaleMap_diabetes[d[diabetes]] = cs_diabetes(d[diabetes])}
+          });
         
           setColorDiabetes(scaleMap_diabetes);
           var max_diabetes = 0
@@ -584,7 +586,8 @@ export default function ExtraFile(props) {
           let scaleMap_hispanic = {}
           _.each(x, d=>{
             if(d[hispanic] > 0){
-              scaleMap_hispanic[d[hispanic]] = cs_hispanic(d[hispanic])}});
+              scaleMap_hispanic[d[hispanic]] = cs_hispanic(d[hispanic])}
+          });
         
           setColorHispanic(scaleMap_hispanic);
           var max_hispanic = 0
@@ -609,61 +612,20 @@ export default function ExtraFile(props) {
           setLegendSplitHispanic(cs_hispanic.quantiles());
 
           //urbrur
-          const cs_urbrur = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          let tempDict = {};
+          _.map(_.filter(_.map(x, (d, k) => {
             d.fips = k
             return d}), 
             d => (
-                d[urbrur] > 0 &&
-                d.fips.length === 5)),
-            d=> d[urbrur]))
-          .range(colorPalett);
-  
-          let scaleMap_urbrur = {}
-          _.each(x, d=>{
-            if(d[urbrur] > 0){
-            scaleMap_urbrur[d[urbrur]] = cs_urbrur(d[urbrur])}});
-        
-          setColorUrbrur(scaleMap_urbrur);
-          setLegendSplitUrbrur(cs_urbrur.quantiles());
-
+                d[urbrur] !== "" &&
+                d.fips.length === 5)), i => {
+                  tempDict[i.fips] = i
+                  return tempDict;
+                });
+          setDataUrb(tempDict);
+            
           //region
-          const cs_region = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[region] > 0 &&
-                d.fips.length === 5)),
-            d=> d[region]))
-          .range(colorPalette);
-  
-          let scaleMap_region = {}
-          _.each(x, d=>{
-            if(d[region] > 0){
-            scaleMap_region[d[region]] = cs_region(d[region])}});
-        
-          setColorRegion(scaleMap_region);
-          var max_region = 0
-          var min_region = 100
-          _.each(x, d=> { 
-            if (d[region] > max_region && d.fips.length === 5) {
-              max_region = d[region]
-            } else if (d.fips.length === 5 && d[region] < min_region && d[region] > 0){
-              min_region = d[region]
-            }
-          });
-          if (max_region > 999999) {
-            max_region = (max_region/1000000).toFixed(0) + "M";
-            setLegendMaxRegion(max_region);
-          }else if (max > 999) {
-            max_region = (max/1000).toFixed(0) + "K";
-            setLegendMaxRegion(max_region);
-          }else{
-            setLegendMaxRegion(max_region.toFixed(0));
-          }
-          setLegendMinRegion(min_region.toFixed(0));
-          setLegendSplitRegion(cs_region.quantiles());
+
         });
   
       
@@ -679,8 +641,6 @@ export default function ExtraFile(props) {
 
 
   if (data && dataTS && varMap) {
-    console.log();
-
     return (
       <div>
         <AppBar menu='nationalReport'/>
@@ -734,6 +694,8 @@ export default function ExtraFile(props) {
                                 dataTS["_nation"][61].t,
                                 dataTS["_nation"][91].t,
                                 dataTS["_nation"][122].t,
+                                dataTS["_nation"][153].t,
+                                dataTS["_nation"][183].t,
                                 dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
                                 style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
                                 tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
@@ -826,6 +788,8 @@ export default function ExtraFile(props) {
                                   dataTS["_nation"][61].t,
                                   dataTS["_nation"][91].t,
                                   dataTS["_nation"][122].t,
+                                  dataTS["_nation"][153].t,
+                                  dataTS["_nation"][183].t,
                                   dataTS["_nation"][dataTS["_nation"].length-1].t]}                           
                                 style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
                                 tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
@@ -2985,23 +2949,22 @@ export default function ExtraFile(props) {
                 
                 <svg width="550" height="145">
 
-                  <text x={80} y={20} style={{fontSize: '0.8em'}}> Large Central Metro; Large Fringe Metro</text>                    
-                  <text x={80} y={40} style={{fontSize: '0.8em'}}> Medium Metro</text>                    
-                  <text x={80} y={60} style={{fontSize: '0.8em'}}> Small Metro</text>                    
-                  <text x={80} y={80} style={{fontSize: '0.8em'}}> Micropolitan (Nonmetro)</text>                    
-                  <text x={80} y={100} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
-                  <text x={80} y={120} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
-                  <text x={80} y={140} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
+                  <text x={80} y={35} style={{fontSize: '0.8em'}}> NonCore (Nonmetro)</text>                    
+                  <text x={80} y={55} style={{fontSize: '0.8em'}}> Micropolitan (Nonmetro)</text>                    
+                  <text x={80} y={75} style={{fontSize: '0.8em'}}> Small Metro</text>                    
+                  <text x={80} y={95} style={{fontSize: '0.8em'}}> Medium Metro</text>                    
+                  <text x={80} y={115} style={{fontSize: '0.8em'}}> Large Central Metro</text>                    
+                  <text x={80} y={135} style={{fontSize: '0.8em'}}> Large Fringe Metro</text>                    
 
 
-                  {_.map(colorPalett, (color, i) => {
+                  {_.map(colorPalette, (color, i) => {
                     return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
 
-                  <rect x={200} y={120} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={222} y={130} style={{fontSize: '0.8em'}}> None </text>
-                  <text x={222} y={140} style={{fontSize: '0.8em'}}> Reported </text>
+                  <rect x={230} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={252} y={30} style={{fontSize: '0.8em'}}> None </text>
+                  <text x={252} y={40} style={{fontSize: '0.8em'}}> Reported </text>
                 
 
                 </svg>
@@ -3024,10 +2987,19 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorUrbrur && data[geo.id] && (data[geo.id][urbrur]) > 0)?
-                                  colorUrbrur[data[geo.id][urbrur]]: 
-                                  (colorUrbrur && data[geo.id] && data[geo.id][urbrur] === 0)?
-                                    '#FFFFFF':'#FFFFFF')}
+                              (
+                                  (dataUrb[geo.id] && (dataUrb[geo.id][urbrur]) === "1")?
+                                  colorPalette[0]: 
+                                  (dataUrb[geo.id] && (dataUrb[geo.id][urbrur]) === "2")?
+                                  colorPalette[1]: 
+                                  (dataUrb[geo.id] && (dataUrb[geo.id][urbrur]) === "3")?
+                                  colorPalette[2]: 
+                                  (dataUrb[geo.id] && (dataUrb[geo.id][urbrur]) === "4")?
+                                  colorPalette[3]: 
+                                  (dataUrb[geo.id] && (dataUrb[geo.id][urbrur]) === "5")?
+                                  colorPalette[4]: 
+                                  (dataUrb[geo.id] && (dataUrb[geo.id][urbrur]) === "6")?
+                                  colorPalette[5]: "#FFFFFF")}
                               
                             />
                           ))}
@@ -3168,37 +3140,25 @@ export default function ExtraFile(props) {
 
               <div >
                 
-                <svg width="260" height="80">
-                  
-                  {/* {_.map(legendSplitRegion, (splitpoint, i) => {
-                    if(legendSplitRegion[i] < 1){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitRegion[i].toFixed(1)}</text>                    
-                    }else if(legendSplitRegion[i] > 999999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitRegion[i]/1000000).toFixed(0) + "M"}</text>                    
-                    }else if(legendSplitRegion[i] > 999){
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitRegion[i]/1000).toFixed(0) + "K"}</text>                    
-                    }
-                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitRegion[i].toFixed(0)}</text>                    
-                  })} 
-                  <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinRegion}</text>
-                  <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxRegion}</text> */}
+              <svg width="550" height="130">
+
+                  <text x={80} y={35} style={{fontSize: '0.8em'}}> South</text>                    
+                  <text x={80} y={55} style={{fontSize: '0.8em'}}> West</text>                    
+                  <text x={80} y={75} style={{fontSize: '0.8em'}}> Northeast</text>                    
+                  <text x={80} y={95} style={{fontSize: '0.8em'}}> Midwest</text>                    
 
 
-                  {_.map(colorPalette, (color, i) => {
-                    return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  {_.map(colorPalette.slice(2), (color, i) => {
+                      return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                   })} 
 
 
-                  <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                  <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                  <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                  <text x={152} y={30} style={{fontSize: '0.8em'}}> None </text>
+                  <text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text>
 
 
-                  <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                  <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                  <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-                
-
-                </svg>
+                  </svg>
 
           
                   <ComposableMap 
@@ -3218,10 +3178,14 @@ export default function ExtraFile(props) {
                               key={geo.rsmKey}
                               geography={geo}
                               fill={
-                              ((colorRegion && data[geo.id] && (data[geo.id][region]) > 0)?
-                                  colorRegion[data[geo.id][region]]: 
-                                  (colorRegion && data[geo.id] && data[geo.id][region] === 0)?
-                                    '#FFFFFF':'#FFFFFF')}
+                              ((data[geo.id] && (data[geo.id][region]) === 1)?
+                                  colorPalette[2]: 
+                                  (data[geo.id] && (data[geo.id][region]) === 2)?
+                                  colorPalette[3]:
+                                  (data[geo.id] && (data[geo.id][region]) === 3)?
+                                  colorPalette[4]:
+                                  (data[geo.id] && (data[geo.id][region]) === 4)?
+                                  colorPalette[5]:'#FFFFFF')}
                               
                             />
                           ))}
