@@ -1,480 +1,480 @@
 {
   "black": [
     {
-      "covidmortality7day": 0.961938981708976,
-      "covidmortality": 51.2933440525504,
+      "covidmortality7day": 0.959828783204567,
+      "covidmortality": 51.685808827638,
       "quintGroup": "[0,0.508]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.700119985605956,
-      "covidmortality": 43.0878259862014,
+      "covidmortality7day": 0.72387021609232,
+      "covidmortality": 43.6177030279494,
       "quintGroup": "(0.508,1.29]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.581508922495755,
-      "covidmortality": 48.2491750427805,
+      "covidmortality7day": 0.587106480112107,
+      "covidmortality": 48.623580582116,
       "quintGroup": "(1.29,4.01]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.458326376808948,
-      "covidmortality": 59.5320634707082,
+      "covidmortality7day": 0.455547690652747,
+      "covidmortality": 59.7356031575088,
       "quintGroup": "(4.01,14.2]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.650925667252201,
-      "covidmortality": 107.085122973183,
+      "covidmortality7day": 0.646281728312264,
+      "covidmortality": 107.252790259595,
       "quintGroup": "(14.2,87.4]",
       "label": "Highest 20%"
     }
   ],
   "male": [
     {
-      "covidmortality7day": 0.50521714273128,
-      "covidmortality": 87.5342429464937,
+      "covidmortality7day": 0.508837702282307,
+      "covidmortality": 87.7323301144409,
       "quintGroup": "[41.4,48.7]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.575849046822727,
-      "covidmortality": 60.6245072455646,
+      "covidmortality7day": 0.557286331762696,
+      "covidmortality": 60.9273914267622,
       "quintGroup": "(48.7,49.3]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.642123920331348,
-      "covidmortality": 51.5309972024069,
+      "covidmortality7day": 0.658104038984953,
+      "covidmortality": 51.9367214083367,
       "quintGroup": "(49.3,49.9]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.786870805213636,
-      "covidmortality": 50.6635013523436,
+      "covidmortality7day": 0.820040431091066,
+      "covidmortality": 51.1298965090911,
       "quintGroup": "(49.9,51]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.841570593998898,
-      "covidmortality": 59.0364455682339,
+      "covidmortality7day": 0.827149822972756,
+      "covidmortality": 59.330379968518,
       "quintGroup": "(51,79]",
       "label": "Highest 20%"
     }
   ],
   "poverty": [
     {
-      "covidmortality7day": 0.612674100816824,
-      "covidmortality": 46.9904940490192,
+      "covidmortality7day": 0.618273074710692,
+      "covidmortality": 47.3785066255318,
       "quintGroup": "[2.3,10.2]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.744619769865669,
-      "covidmortality": 49.1572179312334,
+      "covidmortality7day": 0.766243023307244,
+      "covidmortality": 49.5381331753509,
       "quintGroup": "(10.2,13.3]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.548809080025665,
-      "covidmortality": 50.906835703587,
+      "covidmortality7day": 0.534211274950548,
+      "covidmortality": 51.2390621006903,
       "quintGroup": "(13.3,16.1]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.62337886648066,
-      "covidmortality": 65.1061030985712,
+      "covidmortality7day": 0.622374959667925,
+      "covidmortality": 65.3565486555426,
       "quintGroup": "(16.1,20.2]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.824049792260472,
-      "covidmortality": 97.1607683533987,
+      "covidmortality7day": 0.832433915474173,
+      "covidmortality": 97.4780227814677,
       "quintGroup": "(20.2,55.1]",
       "label": "Highest 20%"
     }
   ],
   "age65over": [
     {
-      "covidmortality7day": 0.477626454594322,
-      "covidmortality": 64.6882995283571,
+      "covidmortality7day": 0.483064062614353,
+      "covidmortality": 64.9233690260774,
       "quintGroup": "[3.8,14.8]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.656467580729291,
-      "covidmortality": 72.43563776164,
+      "covidmortality7day": 0.64653306830063,
+      "covidmortality": 72.7459488634146,
       "quintGroup": "(14.8,17]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.640961328682759,
-      "covidmortality": 62.4349512266887,
+      "covidmortality7day": 0.65373972283558,
+      "covidmortality": 62.8029223929594,
       "quintGroup": "(17,19]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.769237421129937,
-      "covidmortality": 56.2402294772798,
+      "covidmortality7day": 0.76896018565674,
+      "covidmortality": 56.5341826972813,
       "quintGroup": "(19,21.5]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.806768001495133,
-      "covidmortality": 53.4569344628074,
+      "covidmortality7day": 0.818595916827316,
+      "covidmortality": 53.9173746713787,
       "quintGroup": "(21.5,55.6]",
       "label": "Highest 20%"
     }
   ],
   "minority": [
     {
-      "covidmortality7day": 0.788017746886385,
-      "covidmortality": 44.6656748232028,
+      "covidmortality7day": 0.811013219269327,
+      "covidmortality": 45.2179950937969,
       "quintGroup": "[0,6.29]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.819389267781221,
-      "covidmortality": 44.4805462706914,
+      "covidmortality7day": 0.824345773777152,
+      "covidmortality": 44.9611213279851,
       "quintGroup": "(6.29,12.1]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.564014047545597,
-      "covidmortality": 46.9070436992379,
+      "covidmortality7day": 0.558063812066981,
+      "covidmortality": 47.1465809340349,
       "quintGroup": "(12.1,22.8]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.522490906991223,
-      "covidmortality": 69.8620166633277,
+      "covidmortality7day": 0.517112394283386,
+      "covidmortality": 70.0561903134704,
       "quintGroup": "(22.8,39.9]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.657293476248889,
-      "covidmortality": 103.819940823243,
+      "covidmortality7day": 0.660473914478413,
+      "covidmortality": 104.019053835689,
       "quintGroup": "(39.9,99.3]",
       "label": "Highest 20%"
     }
   ],
   "groupquarter": [
     {
-      "covidmortality7day": 0.51112331509325,
-      "covidmortality": 53.4179873324937,
+      "covidmortality7day": 0.513204721223234,
+      "covidmortality": 53.6426353835626,
       "quintGroup": "[0,1.11]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.641713046913994,
-      "covidmortality": 63.2647030140075,
+      "covidmortality7day": 0.639338930912421,
+      "covidmortality": 63.5817306554802,
       "quintGroup": "(1.11,1.62]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.795200815458242,
-      "covidmortality": 62.934207580775,
+      "covidmortality7day": 0.817682360310204,
+      "covidmortality": 63.4610891860721,
       "quintGroup": "(1.62,2.52]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.640720517044811,
-      "covidmortality": 63.0903261486019,
+      "covidmortality7day": 0.652847609903774,
+      "covidmortality": 63.4460084749803,
       "quintGroup": "(2.52,4.65]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.763418062059277,
-      "covidmortality": 66.5058140163336,
+      "covidmortality7day": 0.748952112908176,
+      "covidmortality": 66.7497162990771,
       "quintGroup": "(4.65,55.7]",
       "label": "Highest 20%"
     }
   ],
   "diabetes": [
     {
-      "covidmortality7day": 0.618980893445899,
-      "covidmortality": 46.1653851460722,
+      "covidmortality7day": 0.616972629814669,
+      "covidmortality": 46.4338162282726,
       "quintGroup": "[1.5,7.2]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.639627946446958,
-      "covidmortality": 51.5646717632789,
+      "covidmortality7day": 0.661210385268487,
+      "covidmortality": 51.946963705805,
       "quintGroup": "(7.2,9]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.601378205518478,
-      "covidmortality": 59.3907727711002,
+      "covidmortality7day": 0.618129817100311,
+      "covidmortality": 59.8070727642525,
       "quintGroup": "(9,10.7]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.751582582954788,
-      "covidmortality": 67.0321678353509,
+      "covidmortality7day": 0.732399205033281,
+      "covidmortality": 67.2973334305597,
       "quintGroup": "(10.7,13.2]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.742506446478435,
-      "covidmortality": 85.4742604839958,
+      "covidmortality7day": 0.744934272567252,
+      "covidmortality": 85.8088414128631,
       "quintGroup": "(13.2,33]",
       "label": "Highest 20%"
     }
   ],
   "hispanic": [
     {
-      "covidmortality7day": 0.678224909577586,
-      "covidmortality": 59.6768169033469,
+      "covidmortality7day": 0.673724265722414,
+      "covidmortality": 59.9592370158992,
       "quintGroup": "[0,1.86]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.809350854740439,
-      "covidmortality": 62.7335640270411,
+      "covidmortality7day": 0.814495570680721,
+      "covidmortality": 63.2455340493078,
       "quintGroup": "(1.86,3.11]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.799882556330926,
-      "covidmortality": 62.3450319898035,
+      "covidmortality7day": 0.798999255458556,
+      "covidmortality": 62.6916885757793,
       "quintGroup": "(3.11,5.54]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.551157171012245,
-      "covidmortality": 54.615316829675,
+      "covidmortality7day": 0.569946205345055,
+      "covidmortality": 54.9290510174537,
       "quintGroup": "(5.54,12.3]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.512032375563766,
-      "covidmortality": 69.8960113765264,
+      "covidmortality7day": 0.51334927301962,
+      "covidmortality": 70.10835307524,
       "quintGroup": "(12.3,99.1]",
       "label": "Highest 20%"
     }
   ],
   "natives": [
     {
-      "covidmortality7day": 0.801030096812989,
-      "covidmortality": 75.5594683494275,
+      "covidmortality7day": 0.805322200151174,
+      "covidmortality": 75.8560202297942,
       "quintGroup": "[0,0.138]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.579037268463009,
-      "covidmortality": 64.9493164308509,
+      "covidmortality7day": 0.596007521310972,
+      "covidmortality": 65.2465215020389,
       "quintGroup": "(0.138,0.273]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.491693056075906,
-      "covidmortality": 59.1318651986391,
+      "covidmortality7day": 0.501470825526929,
+      "covidmortality": 59.4566190805017,
       "quintGroup": "(0.273,0.476]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.658321030689325,
-      "covidmortality": 56.8687878999071,
+      "covidmortality7day": 0.674846628341601,
+      "covidmortality": 57.3307993550283,
       "quintGroup": "(0.476,1.09]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.822165101119431,
-      "covidmortality": 52.5774533491569,
+      "covidmortality7day": 0.794272186017852,
+      "covidmortality": 52.8650620120573,
       "quintGroup": "(1.09,92.5]",
       "label": "Highest 20%"
     }
   ],
   "urbanrural": [
     {
-      "covidmortality7day": 0.203912517684127,
-      "covidmortality": 72.1913867240159,
+      "covidmortality7day": 0.215014274912698,
+      "covidmortality": 72.3695422147302,
       "quintGroup": "Large Central Metro",
       "label": "Large Central Metro"
     },
     {
-      "covidmortality7day": 0.32493734001087,
-      "covidmortality": 57.3436370689508,
+      "covidmortality7day": 0.327184039302989,
+      "covidmortality": 57.497622527731,
       "quintGroup": "Large Fringe Metro",
       "label": "Large Fringe Metro"
     },
     {
-      "covidmortality7day": 0.371855343673656,
-      "covidmortality": 56.6156668541349,
+      "covidmortality7day": 0.375605121930645,
+      "covidmortality": 56.860292684361,
       "quintGroup": "Medium Metro",
       "label": "Medium Metro"
     },
     {
-      "covidmortality7day": 0.624152765486271,
-      "covidmortality": 61.3202292135903,
+      "covidmortality7day": 0.619532034088924,
+      "covidmortality": 61.6335613176162,
       "quintGroup": "Micropolitan (Nonmetro)",
       "label": "Micropolitan (Nonmetro)"
     },
     {
-      "covidmortality7day": 0.910503704414297,
-      "covidmortality": 64.8929878697953,
+      "covidmortality7day": 0.912290369275696,
+      "covidmortality": 65.2895400737145,
       "quintGroup": "NonCore (Nonmetro)",
       "label": "NonCore (Nonmetro)"
     },
     {
-      "covidmortality7day": 0.650209689930812,
-      "covidmortality": 59.4201030981952,
+      "covidmortality7day": 0.677796521322409,
+      "covidmortality": 59.8689672256597,
       "quintGroup": "Small Metro",
       "label": "Small Metro"
     }
   ],
   "obesity": [
     {
-      "covidmortality7day": 0.469750138302034,
-      "covidmortality": 54.3617026784538,
+      "covidmortality7day": 0.456290910770423,
+      "covidmortality": 54.5406296174413,
       "quintGroup": "[12.3,28]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.782401074400476,
-      "covidmortality": 55.3383598641175,
+      "covidmortality7day": 0.791140259827619,
+      "covidmortality": 55.7623794305617,
       "quintGroup": "(28,31.5]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.625381811335377,
-      "covidmortality": 55.0341103549792,
+      "covidmortality7day": 0.635210047271855,
+      "covidmortality": 55.3932542824157,
       "quintGroup": "(31.5,34.4]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.72703601756049,
-      "covidmortality": 64.9399826677346,
+      "covidmortality7day": 0.734088110728484,
+      "covidmortality": 65.3393018046055,
       "quintGroup": "(34.4,37.5]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.749534837476282,
-      "covidmortality": 79.75648530102,
+      "covidmortality7day": 0.757368385675,
+      "covidmortality": 80.0626587102893,
       "quintGroup": "(37.5,57.9]",
       "label": "Highest 20%"
     }
   ],
   "hhincome": [
     {
-      "covidmortality7day": 0.863239362745912,
-      "covidmortality": 90.8176079827552,
+      "covidmortality7day": 0.866074632586792,
+      "covidmortality": 91.1348273689596,
       "quintGroup": "[3.36e+04,5.56e+04]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.724485152236107,
-      "covidmortality": 61.8048715228122,
+      "covidmortality7day": 0.722317266181319,
+      "covidmortality": 62.1891871601923,
       "quintGroup": "(5.56e+04,6.18e+04]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.705725161014398,
-      "covidmortality": 54.8482275815787,
+      "covidmortality7day": 0.716768678462441,
+      "covidmortality": 55.2066128021488,
       "quintGroup": "(6.18e+04,6.83e+04]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.657664579142429,
-      "covidmortality": 48.7305134637139,
+      "covidmortality7day": 0.682746100666088,
+      "covidmortality": 49.1559534588226,
       "quintGroup": "(6.83e+04,7.76e+04]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.400769863846299,
-      "covidmortality": 53.0109610921479,
+      "covidmortality7day": 0.383869657388819,
+      "covidmortality": 53.1942557047509,
       "quintGroup": "(7.76e+04,1.82e+05]",
       "label": "Highest 20%"
     }
   ],
   "region": [
     {
-      "covidmortality7day": 0.921874761047655,
-      "covidmortality": 51.4108985075135,
+      "covidmortality7day": 0.939510470227674,
+      "covidmortality": 51.9339848784487,
       "quintGroup": "Midwest",
       "label": "Midwest"
     },
     {
-      "covidmortality7day": 0.188645940267873,
-      "covidmortality": 56.8368567175973,
+      "covidmortality7day": 0.192560113450226,
+      "covidmortality": 56.9485379425371,
       "quintGroup": "Northeast",
       "label": "Northeast"
     },
     {
-      "covidmortality7day": 0.621931245422531,
-      "covidmortality": 79.1535488710033,
+      "covidmortality7day": 0.625258649007232,
+      "covidmortality": 79.4262070506372,
       "quintGroup": "South",
       "label": "South"
     },
     {
-      "covidmortality7day": 0.469811333172368,
-      "covidmortality": 34.0248309200787,
+      "covidmortality7day": 0.443913731177193,
+      "covidmortality": 34.2158133452761,
       "quintGroup": "West",
       "label": "West"
     }
   ],
   "CVI": [
     {
-      "covidmortality7day": 0.674406442094108,
-      "covidmortality": 43.4086769670815,
+      "covidmortality7day": 0.646152485735669,
+      "covidmortality": 43.6824540674295,
       "quintGroup": "[0,0.2]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.628674876547115,
-      "covidmortality": 46.9872208659263,
+      "covidmortality7day": 0.657928903894712,
+      "covidmortality": 47.4747731496729,
       "quintGroup": "(0.2,0.4]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.613060483524601,
-      "covidmortality": 53.0499396089527,
+      "covidmortality7day": 0.618045876028115,
+      "covidmortality": 53.4211410807115,
       "quintGroup": "(0.4,0.6]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.641218603044108,
-      "covidmortality": 64.3865628506621,
+      "covidmortality7day": 0.651993320591401,
+      "covidmortality": 64.6260825249866,
       "quintGroup": "(0.6,0.8]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.819216797293098,
-      "covidmortality": 101.457223971438,
+      "covidmortality7day": 0.822080030583146,
+      "covidmortality": 101.759060863751,
       "quintGroup": "(0.8,539]",
       "label": "Highest 20%"
     }
   ],
   "resSeg": [
     {
-      "covidmortality7day": 0.655511096438337,
-      "covidmortality": 89.6772715240536,
+      "covidmortality7day": 0.652993437988453,
+      "covidmortality": 89.8904672464432,
       "quintGroup": "[0,31]",
       "label": "Lowest 20%"
     },
     {
-      "covidmortality7day": 0.58298973683726,
-      "covidmortality": 75.3464630303476,
+      "covidmortality7day": 0.586997641030048,
+      "covidmortality": 75.6045051025639,
       "quintGroup": "(31,42]",
       "label": "Q2"
     },
     {
-      "covidmortality7day": 0.50994303590799,
-      "covidmortality": 62.2796129975516,
+      "covidmortality7day": 0.508139269505327,
+      "covidmortality": 62.5553687678622,
       "quintGroup": "(42,50]",
       "label": "Q3"
     },
     {
-      "covidmortality7day": 0.420210206324384,
-      "covidmortality": 60.6342067180229,
+      "covidmortality7day": 0.431584356106158,
+      "covidmortality": 60.966513961602,
       "quintGroup": "(50,60]",
       "label": "Q4"
     },
     {
-      "covidmortality7day": 0.526221875391979,
-      "covidmortality": 51.9477559703003,
+      "covidmortality7day": 0.540470834269786,
+      "covidmortality": 52.3099795089019,
       "quintGroup": "(60,90]",
       "label": "Highest 20%"
     }
