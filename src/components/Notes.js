@@ -59,27 +59,36 @@ export default function Notes(props){
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon for the latest video, podcast, and blog on COVID-19.</Header.Content>
 
                   </Grid.Column>
+                  
 
-                  {false && <Grid.Column>
+                  {true && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Blog </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>COVID-19 and Poverty-related issues (Update to July 27th)</Header.Content>
 
                   </Grid.Column>}
 
-                  <Grid.Column>
+                  {true && <Grid.Column>
+                    <Image width='300' height='236' href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast </Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor that reduces ...</Header.Content>
+
+                  </Grid.Column>}
+
+
+                  {false && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 1</Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Allison Chamberlain talks about blending public health academia and practice, how public health educ... </Header.Content>
 
-                  </Grid.Column>
+                  </Grid.Column>}
 
-                  <Grid.Column>
+                  {false && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 2</Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development and clinical trials...</Header.Content>
 
-                  </Grid.Column>
+                  </Grid.Column>}
                 </Grid.Row>
             </Grid>
     <Divider/>
