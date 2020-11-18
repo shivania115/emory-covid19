@@ -274,15 +274,39 @@ export default function USMap(props) {
                   
                 </Grid.Column> */}
 
+                {false && <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
+                </Grid.Column>}
+                {false && <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>“A teaching opportunity for many years to come”: Dr. Allison Chamberlain on public health education in the time of the COVID-19 pandemic <br/></b>
+
+                  Dr. Allison Chamberlain talks about blending public health academia and practice, 
+                  how public health educ... 
+                  <a href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">for more</a>. 
+                </Grid.Column>}
+
+                {false && <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution" src='/podcast images/Robert Breiman.png' />
+                </Grid.Column>}
+                {false && <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>“Information equity is a critical part of the whole picture”: Dr. Robert Breiman on COVID-19 vaccine development and distribution <br/></b>
+
+                  Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development 
+                  and clinical trials...
+                  <a href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution">for more</a>. 
+                </Grid.Column>}
+
+
+
                 <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics" src='/podcast images/Vincent Macroni.png' />
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" src='/podcast images/Vincent Macroni.png' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
                   <b>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection <br/></b>
 
                   Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor 
                   that reduces...
-                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">for more</a>. 
+                  <a href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances">for more</a>. 
                 </Grid.Column>
 
                 <Grid.Column style={{width: 190}}>

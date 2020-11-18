@@ -15,6 +15,475 @@ export default function AboutUs(props){
     <div>
     <AppBar/>
 
+    //Dr. Robert Breiman
+
+{podcastTitle === "Allison_Chamberlain_on_public_health_education_pandemic" &&
+  <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+  <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+        <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+        <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+        <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+  </Breadcrumb>
+    <div width = {888}>
+    
+        <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+          <Header.Content>
+          “A teaching opportunity for many years to come”: Dr. Allison Chamberlain on public health education in the time of the COVID-19 pandemic
+
+            <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+
+
+            </Header.Subheader>
+            <div style = {{paddingTop: 10}}>
+            <iframe src="https://anchor.fm/rsph-ched/embed/episodes/A-teaching-opportunity-for-many-years-to-come-Dr--Allison-Chamberlain-on-public-health-education-in-the-time-of-the-coronavirus-pandemic-emk7in" height="150px" width="800px" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+            <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                  <p style={{textAlign:"left", fontWeight: 300}}>
+
+                  By Leanna Ehrlich on Nov. 18, 2020
+
+                  <br/>
+                  Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                  <br/>
+                  From Emory University
+
+                  <br/>
+
+                  </p>
+
+                  <br/>
+                  <b>Transcript</b>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:00:00] </b> Welcome back to the COVID-19 Equity and Outcomes Podcast Series. Today we're talking to Dr. Allison Chamberlain, a Professor of Epidemiology at the Emory Rollins School of Public Health. So, welcome to the podcast, and thank you for being here. 
+                    
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:00:33] </b> Thanks, glad to be here.
+
+                  <br/>
+                  <br/>
+                  <br/> 
+
+
+                  <b>Leanna Ehrlich: [00:03:48] </b> Could you first tell our audience a little bit about your background directing the Emory Center for Public Health Preparedness and Research, and the Emory COVID-19 Response Collaborative, especially in these very recent challenging pandemic times?
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:04:14] </b> Certainly, yeah. I am acting director of this Emory Center for Public Health Preparedness and Research, which is an academic center that's been around since right after – since, I think, about 2001, 2002. Right after the 9/11 attacks, and the anthrax attacks. It was founded by a woman named Ruth Berkelman, a woman who was faculty at Emory for a number of years after she had a long career at the CDC. She was an infectious disease epidemiologist and physician, and she was the person who hired me, actually, at the Center for Public Health Preparedness and Research back in 2007, when I first came to Emory, as a staff person. 
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  I have been with the Center since then, so about 13 years; and see the Center of focus on a lot of different topics in public health preparedness, primarily around infectious disease preparedness and response. And the Center's mission really is to focus on how we can better learn from public health preparedness, infectious disease outbreaks, pandemics, things like that, to better prepare as a nation for what the future might hold with respect to these types of threats. So, we have done a lot of work on a variety of different topics ranging from Zika virus disease to, back all the way to H1N1, vaccine distribution, vaccine allocation and promotion; things that are a little bit more common, like Legionnaires disease, and how you can prepare or prevent Legionella overgrowth, for instance, in premise plumbing. And thinking through how as, you know, the public health field, we can better prepare ourselves and our residents, essentially, for threats that might be both common and less common, like pandemics or bioterror events.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  So I've had a long history with the Center, and it's been an exciting area to work in. By training, I'm an infectious disease epidemiologist, but have a background in public health preparedness that goes back to some work that I had done in Washington, DC prior to moving to Atlanta in 2007. So I have a kind of a background – I started out my career in in bio-defense policy and biosecurity which is really looking at how you how you prevent the misuse of legitimate life sciences research for nefarious purposes, like bioweapons. So, I've taken a number of twists and turns down paths that more or less always have something to do with infectious disease, epidemiology, and preparedness. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  In 2017, I ended up starting to work as an epidemiology consultant down at the Fulton County Board of Health, here in Atlanta, which is one of our local health departments. I took on that role, because I found myself really eager to get some experience working at a state or local public health level. I had never done that before. And I thought, if I'm going to be teaching – like the class that I teach now, that you're in, Leanna, about public health preparedness and practice – I wanted to get that experience working inside of the organizations that do public health preparedness, as part of their purview. And they're charged – they're the ones that are trying to work with communities, to make sure that they stay safe in the event of public health threats. And so I started working down there in 2017, with the Epidemiology Division, and trying to use my epidemiologic toolkit to help them analyze data that they didn't really have, necessarily, the time to dive in deeply to, but if they did, it could really help improve their programmatic services. So I ended up doing a lot of work down there on STDs, actually, and looking at risk factors for HIV seroconversion among women, risk factors for recurrent syphilis; but in my experience down there, really got intimately aware of how a local health department operates and what their successes are, what their challenges are, what their strengths are, what their weaknesses are. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  And that really set me up to be able to lead this this new initiative that we have now called the Emory COVID-19 Response Collaborative, that is really designed to help put our talented academic, faculty, staff and students into the service of our state and local public health department partners right now, during this COVID-19 crisis. As academics, we have a lot of skill sets, analytic skill sets, data collection skill sets, other types of things that we could really lend that expertise to, in this critical time, to our public health partners that are trying to combat COVID-19 here in Georgia. And so that is the premise behind the new Emory COVID-19 Response Collaborative. And it's been exciting to help sort of bridge the gap between academia and public health practice right now.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:06:25] </b> That's so great. There are so many resources at Rollins. So it's really cool that you're helping to harness all those skill sets to combat the pandemic locally, as well as people who are jointly appointed at CDC, and have all of this blend of academic and response experience. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:06:31] </b> Exactly.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:06:37] </b> So in addition, you talked about being a practitioner of epidemiology and public health preparedness, but of course, you also teach this class at Rollins on Public Health Preparedness and Practice, and I'm one of the students this semester. For me, this was a completely new topic – I had always studied mostly chronic disease and climate change. My interest in the topic was really spurred by the pandemic, which perhaps was true of some other students as well. So, I'm very curious about how you have been viewing this moment to prepare the next generation of public health students who will soon be entering the workforce, if they aren't already. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:07:33] </b> Yeah, this is a great question. You know, I think this is a remarkable time to be a student of public health. There are so many instances, in our history as public health students, all of us, where we already have data sets that we're going to analyze, and they're all from a previous epidemic, or pandemic, or outbreak, or something like that. But right now, we are in the midst of the largest pandemic that we've experienced in 100 years, and we are the ones that are collecting the data and being able, as a student of public health, to learn how hard it is to collect the data that we need to collect right now, to fully understand the epidemiology of this disease. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  What's unique about this point in time is that we have not experienced a disease on this scale during the digital age. So that that means that we're all connected in terms of communication by cell phones, and internet. And while some of that can really facilitate our ability to collect data, we're learning sometimes that's a big hindrance, when traditional activities, like contact tracing, for instance, are sort of grounded in, you know, the need for people to be answering their phones. And I think that's illustrated what are the pros and cons of technology during this type of pandemic right now. And we're really grappling as a public health enterprise with how to collect the data that we need to both understand, like I said, the epidemiology, but also to stop transmission. And when a lot of it has to do with people being responsive to requests from entities, public health departments that they may have never even had an interface with, they've never heard of them before, and giving sensitive data away over a cell phone number that they don't recognize sometimes, that's a challenge. That is a big challenge. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  But I think that in terms of being a student and thinking as an instructor myself, and training you all right now, just to be able to impart the gravity of what it's like to be inside the health department right now, what it's like to collect the data, giving you all opportunities to serve alongside of Public Health Department colleagues right now – I think it is just an invaluable point at which to start your career so that you learn exactly what it takes to stay the course with respect to all these different ebbs and flows of disease case counts and percent positivity and what that all means and how it relates to each other, with respect to understanding what we're going through. It's just an unprecedented time to have all of these inputs coming at you with respect to learning opportunities and examples like we've never seen before.
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:10:58] </b> Yes, this is it's truly amazing to be a public health student right now, and I certainly didn't anticipate any of that, when I started a year and a half ago. But it's been crazy to really be learning in real time. And like you said, have data and have case studies that are unfolding right now, not a pandemic from 100 years ago, or 50 years ago. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:11:23] </b> That’s right.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:15:40] </b> So I'm curious about how you think this pandemic will influence public health education long term. So just like thinking short term, you seem to have really redesigned a lot of our classes this semester, to focus in many cases on COVID, for our topic of the week, or just sort of take that angle in approaching whatever topic we're learning about. Do you think that is going to be a long-term change for this class, and what about other professors? Is COVID-19 really going to be what professors are teaching about, and what students are studying, for many years to come?
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:16:07] </b> I do. I think that between now and 100 years ago, when we first had the most similar pandemic, the 1918 Influenza, there have been a number of different seminal disease milestones, I would say, things that have really revealed themselves to be teaching opportunities, more so than others. And I can think of, for instance, the HIV epidemic, that that was a career-setting disease discovery. And understanding what the root cause of HIV and how it is transmitted, and how it can be stopped – I think that's a great example of how many of our examples in public health practice and teaching come from that type of time in our public health history. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  Other sort of instances, I can think of, understanding learning from the eradication of smallpox, or the burgeoning obesity epidemic, things like that, that we're really utilizing to teach our students key aspects of how health and society intersect. And I think that this pandemic right now is going to change public health teaching for many years to come. In similar ways, COVID has revealed so many, pulled the blanket away from so many underlying societal conditions that contribute to health and the disparities that exist, and that have contributed to where we're seeing ourselves right now, and how COVID is affecting different populations differently. I feel like that, in and of itself, is going to be a lesson that we're going to be continuing to dissect for years to come. So, I think that more so now than ever, for more concentrated disciplines within public health, like infectious disease epidemiology, we're going to be focusing so much more on some of these social inequities and underlying systemic and cultural issues that perhaps we hadn't really focused on so much in the domain of infectious disease epidemiology before.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  I think that it is going to be, again, going back to that whole sort of pandemic in a digital age, making a shift to think about more creative ways that we can engage people in embracing public health and outreach to communities that we might not have been as effective in reaching before. And figuring out how we can do our jobs better with respect to the most foundational aspects of epidemiology, in terms of case investigations and contact tracing – how can we maybe turn it on its head like we've never thought before, to try to empower people on their own, to give us close contacts and details about their illness, that perhaps deviates a little bit from the way we've done it in the past. So I think that, yes, absolutely, this whole experience that we've been experiencing now for the past eight or nine months of COVID is going to be going to remain such a teaching opportunity for many years to come.
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:16:58] </b> Yeah, I really like how you highlighted that. So many health disparities and social inequities are really having a harsh light shined on them by the pandemic. That's exactly what the COVID-19 Health Equity Dashboard is trying to visualize. And I also really agree that a paradigm shift might be needed in how we contact trace. As someone who, I was very briefly a contact tracer this summer just for about two months, it was very difficult at times, and this is the only pandemic or situation that I've ever contact traced in, but I can see how there are a lot of benefits to the digital age like being able to share information more easily, but also a lot of drawbacks and concerns about privacy and who is contacting you, and these issues probably had not come up very much before in any contact tracing efforts because you never needed to roll it out at this massive scale.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:17:08] </b> That's right. And I will also say that never, I think even more so now, because we can tend to feel comfortable hiding behind our electronics, I think one of the biggest things that I would like students of public health to begin realizing the importance of again, is the soft skills and being able to connect with people on a face to face or voice to voice manner, because I think we take that for granted. And we've actually lost touch with that a little bit. And when you're in a situation like a stressful disease pandemic situation, that human connection can really go a long way with respect to making people feel comfortable with each other, enough to share personal details about their illness, or who they may have come in contact with. And I think that as we pushed as a country to get a lot of contact tracers on board, we trained them in the sort of hard skills about the data collection, and what were the data variables that we needed to them to collect, and things like that. But the soft skills are what gets people comfortable with sharing that data. And I think that if we keep moving forward, or even if we had an opportunity to go back in time a little bit to train a little bit more intentionally, on how to build that rapport quickly and effectively with various types of people, that you might have to reach out to, to get sensitive information from – [I’m] just curious [what] a different place we might be in if we had put a little bit more emphasis on those types of skill sets from the beginning.
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:17:19] </b> Absolutely, that human communication seems like a really important skill to focus on in public health education moving forward. You don't just need data skills and hard skills, like you said, but you need communication skills, sort of like what doctors learn with bedside manner. And maybe this hasn't had to be so much a part of the public health toolkit in the past, but I can definitely vouch for it being very important when you're on the phone with someone contact tracing.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:17:34] </b> Exactly.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:19:42] </b> Well, thank you so much for joining today. These are all the questions that I had for you. But if you have any other thoughts on public health education, during and after this pandemic, I would be happy to hear them.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:20:09] </b> Yeah, I think anytime either now, or even into the future where public health students can get the opportunity to collaborate with or volunteer with a community group, whether that's a local health department or some other type of nonprofit or outreach group that is engaging with community – take that opportunity, because you learn so much about the application of your work, especially if you're in one of the harder disciplines within – harder meaning, I guess, kind of quantitative disciplines that don't naturally focus on some of these more behavioral aspects to public health. But if you're sort of an epidemiology focus, global epidemiology, or a biostats focus, that if you have opportunities to engage with the community, or a local health department to really sort of understand the intersection between people's behavior and their hesitancies and their concerns and the actual collection of the data that we ended up analyzing, you really can get a better sense of, I think your collective place in the fabric of public health practice, when you have that awareness of how you can interact with people to ultimately get the data that you want and need for understanding whatever disease you're trying to understand more.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:17:19] </b> Yes, you don't want to have waiting until after graduation to get involved in community work. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:17:34] </b> Definitely, exactly. Do it now. That's right. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:19:42] </b> Well, thank you again, Dr. Chamberlain, for joining us today, on the Equity and Outcomes podcast, and I'm very much looking forward to our last few weeks of class.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Allison Chamberlain : [00:20:09] </b> Thanks, Leanna.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+            </Header>
+          </Header.Content>
+        </Header>
+
+      
+    </div>
+    <Notes />
+
+  </Container>
+}
+
+
+
+
+
+
+
+
+
+//Dr. Robert Breiman
+
+{podcastTitle === "Robert_Breiman_on_COVID-19_vaccine_development_and_distribution" &&
+  <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+
+  <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+        <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+        <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+        <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+  </Breadcrumb>
+    <div width = {888}>
+    
+        <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+          <Header.Content>
+          “Information equity is a critical part of the whole picture”: Dr. Robert Breiman on COVID-19 vaccine development and distribution
+
+            <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+
+
+            </Header.Subheader>
+            <div style = {{paddingTop: 10}}>
+            <iframe src="https://anchor.fm/rsph-ched/embed/episodes/Information-equity-is-a-critical-part-of-the-whole-picture-Dr--Robert-Breiman-on-COVID-19-vaccine-development-and-distribution-emk23s" height="150px" width="800px" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+            <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                  <p style={{textAlign:"left", fontWeight: 300}}>
+
+                  By Leanna Ehrlich on Nov. 18, 2020
+
+                  <br/>
+                  Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                  <br/>
+                  From Emory University
+
+                  <br/>
+
+                  </p>
+
+                  <br/>
+                  <b>Transcript</b>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:00:00] </b> Welcome to the COVID-19 Equity and Outcomes podcast series. Today we’re talking to Dr. Robert Breiman, a Professor of Global Health, Environmental Health, and Infectious Diseases, at Emory’s Rollins School of Public Health and at the School of Medicine. Today we're going to be talking about progress in development of a SARS-CoV-2 vaccine, or multiple vaccines. So could you first give everyone an overview of how to your knowledge, vaccine development is progressing? How many different vaccines are in development? And where are they in the clinical trials phases? 
+                    
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:00:33] </b> Yeah, thanks, Leanna. Great to be here and talk about vaccines, my favorite topic. We are in an unparalleled time right now. If you think back on it, we all first started hearing about this virus in January, and the pandemic ended up being called in March. And, here we are, in the first week of November. And, we have a panoply of vaccines that are in development. I've been doing epidemiology, public health, and prevention for my whole career – more than 30 years. And most of the time, when we talk about vaccines coming along, we have a 10 to 15-year window. 
+
+                  <br/>
+                  <br/>
+                  <br/> 
+
+                  I remember when I was just starting out at CDC, and working on pneumococcal conjugate vaccines, back in 1987. And the word was, at that time, that the conjugate vaccines were two years away. And we thought, two years, that's a long time. But it wasn't till another 11 years – actually sorry, it wasn't until 13 years – until that vaccine actually became available in the United States and more like 20 years, in places where it's needed the most. So to have more than 100 vaccines in development [for SARS-CoV-2], this early, this quickly, is truly a testimony to technology advancements, and also to partnerships. And actually for, you know, to government, for stimulating, pushing, if you will, the vaccine development; and in helping to shoulder some of the risk – the financial risk – that allowed companies to move forward so aggressively.
+                  <br/>
+                  <br/>
+                  <br/> 
+
+                  And so there are there are five vaccines that are in in late staged evaluation clinical trials, in other words, either in phase three trials, or in the case of one vaccine, just about to move into a phase three trial. And, the other thing that is quite remarkable at this moment in time, is that the US government, and also other governments, have paid the vaccine companies to produce vaccine, so that it's waiting in the wings, in case the vaccines are safe and effective. If they're not, they'll just discard the vaccines. But if they are safe and effective, there won't be the usual many months or years to await production and having vaccines to actually give to people. So that's another amazing thing is that once these trials are done, and they go through rigorous regulatory review – which I always have to say, is crucial; you can't assume these vaccines are safe and effective. They have to be shown to be in the trials and then reviewed by regulatory experts and approved; and once you get to that point, there won't be much in the way to at least having vaccines that can start going into distribution.
+                  
+                  <br/>
+                  <br/>
+                  <br/> 
+
+                  <b>Leanna Ehrlich: [00:03:48] </b> That is really good to hear. I think a lot of people are anxious for the vaccines; and of course, a wait of many months after a discovery of the correct vaccine wouldn't be ideal, even if that's completely normal for basically any other vaccine. So to follow up on that, what do you see as an optimistic and then perhaps a more realistic timeline for vaccine distribution of the actual correct vaccine or vaccines that work, worldwide and within the US?
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:04:14] </b> So, the four vaccines that are in phase three trial trials now include two vaccines that are messenger RNA vaccines, that have to be kept in very cold storage – like at minus 80 degrees; and then can only be out of that frozen state for a short relatively short period of time. And then the other two vaccines, which are – the first two are produced by Pfizer, and a company, a new company, called Moderna; and then the other two that are in phase three trials, Johnson and Johnson and AstraZeneca vaccines, in trials in the United States, I mean – are produced on an adenovirus back bone, which doesn't require freezing, but does require very careful storage. And so the big issues are actually going to be how these vaccines, in large amounts, are brought to points of use, in ways that they can be easily used without a great deal of wastage. And it's going to really be a challenge, a major challenge, for immunization managers, to ensure that the vaccine that they receive, it’s stored properly, and is handled properly, so that it can be given relatively easily to the people who need it the most. And the other big challenge is that these products, at least at the moment, based on what is understood, cannot be mixed and matched –they can't be interchanged. And so the systems will also have to, once there's more than one vaccine on the table, be able to differentiate between people that have received vaccine A, or vaccine B, or C, and so on, and make sure that their second dose, which needs to be a month later, is with the same vaccine.
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:06:25] </b> Oh, that is complicated, because you're relying both on the people who you're giving the vaccine to, as well as health care systems, to keep track of that. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:06:31] </b> Yeah, I don't think there's from an immunization standpoint, I don't think we've ever had a challenge quite liked this one.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:06:37] </b> Yeah, that's really, really complex. So I've read some interesting pieces recently, about how vaccine distribution can, or will be, prioritized. And I think lots of people agree that prioritizing essential workers, especially those working in healthcare settings, seems like a very natural first step; they've already made many sacrifices and are definitely in a high-risk environment; and then maybe considering other essential workers like those in food services, or other emergency services. But then, I've also read some ideas about prioritizing different groups of people, people with underlying health conditions like diabetes, or asthma, or those in minority groups, ethnic or racial groups, because they may have a higher risk of severe outcomes of COVID-19. So I'm curious to hear your thoughts on equity surrounding vaccine distribution. Do you think that there is a certain prioritize scheme that should be used for deciding how and when vaccines are allocated, that would best promote equity, and also meet with public approval? 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:07:33] </b> So the vaccines, even with this advanced market commitment, and vaccines being produced in parallel to the trials, so that, you know, we can get to them quickly – there will just be a relative trickle of vaccines early on, once they do become safe and effective (I always feel like I have to emphasize that), vaccines are available. And therefore, immunization managers, people in charge of the programs, health care providers and so on, may have a certain amount of vaccine in their stock, will have to have some sort of prioritization for who gets the limited numbers of vaccines first. And there are two philosophies around that, around how to do this, and, the concepts, I should say, work side by side. One is to use a safe and effective vaccine to keep society, all the key societal functions, operating; and that includes making sure our health care workers, both physicians, nurses, others involved in providing hands on health care, are able to keep doing that. Because you can imagine how devastating that would be if we had a shortage produced by the pandemic of healthcare workers. And as you say, there also is focus on protecting those who are involved with essential functions, critical functions in our society, especially among workers, who are substantially higher risk of exposure while carrying out those functions. So you have that side of things where you're thinking about using vaccine to protect our critical resources, if you will, or critical human resources. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  And then you have the consideration of, there are certain people who are at disproportionate risk for illness, hospitalization, and death due to COVID. And so there would be interest in using limited quantities of vaccine to prevent illness and those that are at higher risk. And there has been a general move away of focusing use of vaccine based on racial characteristics, but more on social determinants of health. So that, the reason there is disproportionate risk among people of color in the United States for COVID is not necessarily related – or, there is no reason to think it's related, to any inherent qualities about them, about their physiology, and so on. But it's more related to structural imbalances in terms of the type of living and working conditions that exist that put certain populations at risk. So the focus is likely to be on those social determinants, if you will, rather than specifically on race.
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:10:58] </b> Okay, and then do you foresee any barriers in vaccine distribution and uptake, specifically related to health disparities and health equity? Just some ideas that came to mind might be getting vaccines to rural populations, especially if you're talking about a cold chain supply management, or other medically underserved populations; or maybe overcoming social issues related to vaccine hesitancy or distrust in public health figures?
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:11:23] </b> Yeah, I mean, there's been a lot of focus on how to distribute the vaccines so that they can be placed at locations that would enable vaccine to reach those that are normally hard to reach. So that might include communities that are far away from hospitals or research settings where the cold chain can be maintained. So, figuring out ways the vaccine can be moved to places where people would have greater access. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  There's also discussion of using sort of non-traditional places to get vaccinated. I mean, one thing that we always used to call non-traditional, one place, are pharmacies themselves. And those are no longer non-traditional, because as you know, pharmacies are often places where many people get their vaccines now. And so they will almost certainly be right in the midst of things when it comes to COVID vaccine distribution. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  But, other considerations that people are exploring is, can, for instance, houses of worship, serve as places that are both resources for trusted information about the vaccines, as well as places where people could actually go and get vaccine? And that might be a way to reach people, especially in communities that tend to be more marginalized. And then, there's also discussion of certain kinds of workplaces and actually offering vaccine directly there to people that are at increased risk. So there's a lot of strategies that are coming out that will require new ways of, you know, distributing vaccine. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  And so, you touched on something that I think is really important, which is many of the people that are at disproportionate risk for COVID because of exposures – because their working conditions don't allow them work from home, they're often in situations where they're more likely to be exposed to the virus; maybe their living conditions at home also put them at increased risk for transmission – many of those communities and those populations, may be not only an increased risk for COVID, but they may be at increased likelihood to not accept a new vaccine that's been pushed along at warp speed, promoted by the government, and so on. And, maybe less likely to trust such an offer, such a system. And so, there does need to be a thoughtful, context specific, culturally appropriate and relevant translation of the science, as it comes out, in a transparent and clear way. So that there is what we call “information equity”: so that regardless of the community, that people will understand, in ways that are appropriate for their context, what are the benefits and what are the risks associated with being immunized with a COVID vaccine; and to be able to ultimately make an informed decision about getting vaccinated. And I think that information equity is really a critical part of the whole picture to address that issue because, as Walter Orenstein says, you know, “vaccines don't save lives, vaccinations do.” So we can produce all these wonderful vaccines and have them distributed right where people are, but if they don't get into the arms of people who need them the most, they won't really, they won't clearly, have done their job. So it's really important to have this information effort, as well. 
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:15:40] </b> Absolutely, I have never heard it particularly phrased that way. But I think that's such an important perspective, like information equity is absolutely critical. And it'll be interesting to see what happens. I'm a public health student right now. So I know everything happening over the past year, and over the next year or two is going to become a case study that we'll all learn about for future public health practitioners. But of course, we also want everything to run smoothly, without too many hard-won lessons. So I guess we'll just have to wait and see how everything unfolds. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:16:07] </b> Yeah, it's kind of a scary thought that, you know, oftentimes, we look back on the 1918 flu pandemic with sort of a morbid curiosity, you know, “how could things have been so severe?” And how could people have, you know, dealt with these things in the ways that they did, or early on, and so on. But it's somewhat concerning to imagine that decades, maybe even a century from now, people will look back on this period with amazement and wonder, both in terms of, maybe what we didn't do, despite the fact that we could have; and also those great achievements that we've just touched upon, especially around hopefully, the availability of safe and effective vaccines and a strategy equitably administer them.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:16:58] </b> Yes, absolutely. I think that the vaccine development and the scientific progress during COVID is, within the US, probably the best part of our country's response. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:17:08] </b> Yes, I agree with that. It seems non-partisan, almost. Which these days is refreshing?
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:17:19] </b> Yes, absolutely. Almost everyone wants a vaccine, and hopefully it will be trusted and accepted. So I was wondering if you have any other outstanding issues that you can think of related to vaccines and health equity that come to your mind that we haven't talked about today already? 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:17:34] </b> Yeah, there's one issue I just would like to touch upon. And that many of us in public health are automatically focused on a prevention strategy, like immunization, as a way to save lives and prevent hospitalizations and, you know, prevent suffering. And, those are the right things to focus on. And in addition, because of the way our society is structured, and because of the social, the systemic social inequities that exist, that much of what makes our economy run is built on people that, you know, keep the trains moving, if you will, and, you know, keep the food moving and keep businesses and office places open. And those are the people that are at disproportionate risk for COVID. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  So, it's our premise, and we're working with a group in Boston, that is going to be modeling the actual magnitude of this; but it's our premise that an equitable use of a safe and effective prevention strategy, not only makes sense from a standard health standpoint, but it also will save huge amounts of money. It'll be economically rewarding in ways that haven't been considered as well. And it's this nexus, I think, of public health and economics, that I think is particularly important to consider, and helps to make people think, regardless of their perspective, of where they are in society, in a parallel way regarding – in a similar way regarding – the benefits of not just giving vaccine out, but giving it out in the most equitable way possible.
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Leanna Ehrlich: [00:19:42] </b> Yeah, absolutely. Thank you so much for joining the podcast today, Dr. Breiman, this was a really important conversation. We're getting pretty close to vaccine distribution. I mean, not next week, but it's definitely on the horizon of our future. I think a lot of people will find this information really useful as this sort of starts to become more and more the topic in the news related to the pandemic. So thank you for sharing your thoughts related to vaccine development and issues of equity. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Dr. Robert Breiman: [00:20:09] </b> Thank you. Pleasure to be here. 
+
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <b>Addendum:</b>  Since this podcast was recorded, Pfizer and BioNTech announced successful Phase 3 clinical trials of a COVID-19 vaccine that appears to be more than 90% effective. We reached out to Dr. Breiman to get his comment on the new development, and he said “I look forward with great enthusiasm to seeing the data from the trial of the BioNTech/Pfizer mRNA SARS-CoV2 on efficacy against a variety of outcomes and on safety. Findings from the vaccine trial on safety and efficacy for people in a variety of risk categories (like underlying diseases, advanced age, and race/ethnicities) will be very helpful. While the recent press briefing certainly suggests that this vaccine (and potentially other formulations) offer substantial promise, the jury will remain out until the complete data are presented and there is rigorous regulatory review.”
+
+                  <br/>
+                  <br/>
+                  <br/>
+            </Header>
+          </Header.Content>
+        </Header>
+
+      
+    </div>
+    <Notes />
+
+  </Container>
+}
+
+
+
+
+
+
+
+
+
+
+
 //Dr. Vincent Marconi
 
     {podcastTitle === "Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" &&

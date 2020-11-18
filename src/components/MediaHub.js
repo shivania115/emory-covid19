@@ -27,6 +27,51 @@ export default function DataSources(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
+        {false && <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='290' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/podcast images/Allison Chamberlain.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic'>“A teaching opportunity for many years to come”: Dr. Allison Chamberlain on public health education in the time of the COVID-19 pandemic</Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Published: Nov. 18, 2020 <br/> 
+                        Media Type: Podcast<br/><br/>
+                        Dr. Allison Chamberlain talks about blending public health academia and practice, and how institutions like Emory can step up during the pandemic to put the skills of their faculty to use. We also discuss how the COVID-19 pandemic may change public health education forever, thinking about the communication and other skills students will need to combat current and future public health threats. 
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+}
+        {false && <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='290' href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution' src='/podcast images/Robert Breiman.png' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                    <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                      <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution'>“Information equity is a critical part of the whole picture”: Dr. Robert Breiman on COVID-19 vaccine development and distribution</Header.Content></div>
+                      <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                        Date Published: Nov. 18, 2020 <br/> 
+                        Media Type: Podcast<br/><br/>
+                        Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development and clinical trials, and considerations for production and distribution related to logistics and equity. How might vaccines be allocated fairly, both in consideration of essential workers and those at higher risk of developing severe COVID-19 outcomes?
+                      </Header.Subheader>
+                    </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>}
+
+
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
