@@ -48,7 +48,7 @@ export default function DataSources(props){
               </div>
             </Grid.Row>
           </Grid.Column>
-}
+
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
