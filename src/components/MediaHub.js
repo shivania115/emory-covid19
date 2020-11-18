@@ -27,7 +27,7 @@ export default function DataSources(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
-        {false && <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/podcast images/Allison Chamberlain.png' />            
@@ -48,8 +48,8 @@ export default function DataSources(props){
               </div>
             </Grid.Row>
           </Grid.Column>
-}
-        {false && <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution' src='/podcast images/Robert Breiman.png' />            
@@ -69,7 +69,7 @@ export default function DataSources(props){
                 </Header>
               </div>
             </Grid.Row>
-          </Grid.Column>}
+          </Grid.Column>
 
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
@@ -94,7 +94,7 @@ export default function DataSources(props){
             </Grid.Row>
           </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/blog images/pri/Image 15.png' />            
@@ -119,7 +119,7 @@ export default function DataSources(props){
         </Grid.Column>
 
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='236' href = '/media-hub/blog/swNativeAmericanCommunities' src='/blog images/swna/Image 7.png' />            
