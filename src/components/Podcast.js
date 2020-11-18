@@ -65,20 +65,20 @@ export default function AboutUs(props){
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:00:33] </b> Thanks, glad to be here.
+                  <b>Dr. Allison Chamberlain : [00:00:14] </b> Thanks, glad to be here.
 
                   <br/>
                   <br/>
                   <br/> 
 
 
-                  <b>Leanna Ehrlich: [00:03:48] </b> Could you first tell our audience a little bit about your background directing the Emory Center for Public Health Preparedness and Research, and the Emory COVID-19 Response Collaborative, especially in these very recent challenging pandemic times?
+                  <b>Leanna Ehrlich: [00:00:17] </b> Could you first tell our audience a little bit about your background directing the Emory Center for Public Health Preparedness and Research, and the Emory COVID-19 Response Collaborative, especially in these very recent challenging pandemic times?
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:04:14] </b> Certainly, yeah. I am acting director of this Emory Center for Public Health Preparedness and Research, which is an academic center that's been around since right after – since, I think, about 2001, 2002. Right after the 9/11 attacks, and the anthrax attacks. It was founded by a woman named Ruth Berkelman, a woman who was faculty at Emory for a number of years after she had a long career at the CDC. She was an infectious disease epidemiologist and physician, and she was the person who hired me, actually, at the Center for Public Health Preparedness and Research back in 2007, when I first came to Emory, as a staff person. 
+                  <b>Dr. Allison Chamberlain : [00:00:31] </b> Certainly, yeah. I am acting director of this Emory Center for Public Health Preparedness and Research, which is an academic center that's been around since right after – since, I think, about 2001, 2002. Right after the 9/11 attacks, and the anthrax attacks. It was founded by a woman named Ruth Berkelman, a woman who was faculty at Emory for a number of years after she had a long career at the CDC. She was an infectious disease epidemiologist and physician, and she was the person who hired me, actually, at the Center for Public Health Preparedness and Research back in 2007, when I first came to Emory, as a staff person. 
 
 
                   <br/>
@@ -109,25 +109,25 @@ export default function AboutUs(props){
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:06:25] </b> That's so great. There are so many resources at Rollins. So it's really cool that you're helping to harness all those skill sets to combat the pandemic locally, as well as people who are jointly appointed at CDC, and have all of this blend of academic and response experience. 
+                  <b>Leanna Ehrlich: [00:05:50] </b> That's so great. There are so many resources at Rollins. So it's really cool that you're helping to harness all those skill sets to combat the pandemic locally, as well as people who are jointly appointed at CDC, and have all of this blend of academic and response experience. 
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:06:31] </b> Exactly.
+                  <b>Dr. Allison Chamberlain : [00:06:12] </b> Exactly.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:06:37] </b> So in addition, you talked about being a practitioner of epidemiology and public health preparedness, but of course, you also teach this class at Rollins on Public Health Preparedness and Practice, and I'm one of the students this semester. For me, this was a completely new topic – I had always studied mostly chronic disease and climate change. My interest in the topic was really spurred by the pandemic, which perhaps was true of some other students as well. So, I'm very curious about how you have been viewing this moment to prepare the next generation of public health students who will soon be entering the workforce, if they aren't already. 
+                  <b>Leanna Ehrlich: [00:06:15] </b> So in addition, you talked about being a practitioner of epidemiology and public health preparedness, but of course, you also teach this class at Rollins on Public Health Preparedness and Practice, and I'm one of the students this semester. For me, this was a completely new topic – I had always studied mostly chronic disease and climate change. My interest in the topic was really spurred by the pandemic, which perhaps was true of some other students as well. So, I'm very curious about how you have been viewing this moment to prepare the next generation of public health students who will soon be entering the workforce, if they aren't already. 
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:07:33] </b> Yeah, this is a great question. You know, I think this is a remarkable time to be a student of public health. There are so many instances, in our history as public health students, all of us, where we already have data sets that we're going to analyze, and they're all from a previous epidemic, or pandemic, or outbreak, or something like that. But right now, we are in the midst of the largest pandemic that we've experienced in 100 years, and we are the ones that are collecting the data and being able, as a student of public health, to learn how hard it is to collect the data that we need to collect right now, to fully understand the epidemiology of this disease. 
+                  <b>Dr. Allison Chamberlain : [00:06:47] </b> Yeah, this is a great question. You know, I think this is a remarkable time to be a student of public health. There are so many instances, in our history as public health students, all of us, where we already have data sets that we're going to analyze, and they're all from a previous epidemic, or pandemic, or outbreak, or something like that. But right now, we are in the midst of the largest pandemic that we've experienced in 100 years, and we are the ones that are collecting the data and being able, as a student of public health, to learn how hard it is to collect the data that we need to collect right now, to fully understand the epidemiology of this disease. 
 
                   <br/>
                   <br/>
@@ -146,25 +146,25 @@ export default function AboutUs(props){
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:10:58] </b> Yes, this is it's truly amazing to be a public health student right now, and I certainly didn't anticipate any of that, when I started a year and a half ago. But it's been crazy to really be learning in real time. And like you said, have data and have case studies that are unfolding right now, not a pandemic from 100 years ago, or 50 years ago. 
+                  <b>Leanna Ehrlich: [00:09:47] </b> Yes, this is it's truly amazing to be a public health student right now, and I certainly didn't anticipate any of that, when I started a year and a half ago. But it's been crazy to really be learning in real time. And like you said, have data and have case studies that are unfolding right now, not a pandemic from 100 years ago, or 50 years ago. 
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:11:23] </b> That’s right.
+                  <b>Dr. Allison Chamberlain : [00:10:10] </b> That’s right.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:15:40] </b> So I'm curious about how you think this pandemic will influence public health education long term. So just like thinking short term, you seem to have really redesigned a lot of our classes this semester, to focus in many cases on COVID, for our topic of the week, or just sort of take that angle in approaching whatever topic we're learning about. Do you think that is going to be a long-term change for this class, and what about other professors? Is COVID-19 really going to be what professors are teaching about, and what students are studying, for many years to come?
+                  <b>Leanna Ehrlich: [00:10:12] </b> So I'm curious about how you think this pandemic will influence public health education long term. So just like thinking short term, you seem to have really redesigned a lot of our classes this semester, to focus in many cases on COVID, for our topic of the week, or just sort of take that angle in approaching whatever topic we're learning about. Do you think that is going to be a long-term change for this class, and what about other professors? Is COVID-19 really going to be what professors are teaching about, and what students are studying, for many years to come?
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:16:07] </b> I do. I think that between now and 100 years ago, when we first had the most similar pandemic, the 1918 Influenza, there have been a number of different seminal disease milestones, I would say, things that have really revealed themselves to be teaching opportunities, more so than others. And I can think of, for instance, the HIV epidemic, that that was a career-setting disease discovery. And understanding what the root cause of HIV and how it is transmitted, and how it can be stopped – I think that's a great example of how many of our examples in public health practice and teaching come from that type of time in our public health history. 
+                  <b>Dr. Allison Chamberlain : [00:10:44] </b> I do. I think that between now and 100 years ago, when we first had the most similar pandemic, the 1918 Influenza, there have been a number of different seminal disease milestones, I would say, things that have really revealed themselves to be teaching opportunities, more so than others. And I can think of, for instance, the HIV epidemic, that that was a career-setting disease discovery. And understanding what the root cause of HIV and how it is transmitted, and how it can be stopped – I think that's a great example of how many of our examples in public health practice and teaching come from that type of time in our public health history. 
 
                   <br/>
                   <br/>
@@ -183,61 +183,61 @@ export default function AboutUs(props){
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:16:58] </b> Yeah, I really like how you highlighted that. So many health disparities and social inequities are really having a harsh light shined on them by the pandemic. That's exactly what the COVID-19 Health Equity Dashboard is trying to visualize. And I also really agree that a paradigm shift might be needed in how we contact trace. As someone who, I was very briefly a contact tracer this summer just for about two months, it was very difficult at times, and this is the only pandemic or situation that I've ever contact traced in, but I can see how there are a lot of benefits to the digital age like being able to share information more easily, but also a lot of drawbacks and concerns about privacy and who is contacting you, and these issues probably had not come up very much before in any contact tracing efforts because you never needed to roll it out at this massive scale.
+                  <b>Leanna Ehrlich: [00:14:08] </b> Yeah, I really like how you highlighted that. So many health disparities and social inequities are really having a harsh light shined on them by the pandemic. That's exactly what the COVID-19 Health Equity Dashboard is trying to visualize. And I also really agree that a paradigm shift might be needed in how we contact trace. As someone who, I was very briefly a contact tracer this summer just for about two months, it was very difficult at times, and this is the only pandemic or situation that I've ever contact traced in, but I can see how there are a lot of benefits to the digital age like being able to share information more easily, but also a lot of drawbacks and concerns about privacy and who is contacting you, and these issues probably had not come up very much before in any contact tracing efforts because you never needed to roll it out at this massive scale.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:17:08] </b> That's right. And I will also say that never, I think even more so now, because we can tend to feel comfortable hiding behind our electronics, I think one of the biggest things that I would like students of public health to begin realizing the importance of again, is the soft skills and being able to connect with people on a face to face or voice to voice manner, because I think we take that for granted. And we've actually lost touch with that a little bit. And when you're in a situation like a stressful disease pandemic situation, that human connection can really go a long way with respect to making people feel comfortable with each other, enough to share personal details about their illness, or who they may have come in contact with. And I think that as we pushed as a country to get a lot of contact tracers on board, we trained them in the sort of hard skills about the data collection, and what were the data variables that we needed to them to collect, and things like that. But the soft skills are what gets people comfortable with sharing that data. And I think that if we keep moving forward, or even if we had an opportunity to go back in time a little bit to train a little bit more intentionally, on how to build that rapport quickly and effectively with various types of people, that you might have to reach out to, to get sensitive information from – [I’m] just curious [what] a different place we might be in if we had put a little bit more emphasis on those types of skill sets from the beginning.
+                  <b>Dr. Allison Chamberlain : [00:14:57] </b> That's right. And I will also say that never, I think even more so now, because we can tend to feel comfortable hiding behind our electronics, I think one of the biggest things that I would like students of public health to begin realizing the importance of again, is the soft skills and being able to connect with people on a face to face or voice to voice manner, because I think we take that for granted. And we've actually lost touch with that a little bit. And when you're in a situation like a stressful disease pandemic situation, that human connection can really go a long way with respect to making people feel comfortable with each other, enough to share personal details about their illness, or who they may have come in contact with. And I think that as we pushed as a country to get a lot of contact tracers on board, we trained them in the sort of hard skills about the data collection, and what were the data variables that we needed to them to collect, and things like that. But the soft skills are what gets people comfortable with sharing that data. And I think that if we keep moving forward, or even if we had an opportunity to go back in time a little bit to train a little bit more intentionally, on how to build that rapport quickly and effectively with various types of people, that you might have to reach out to, to get sensitive information from – [I’m] just curious [what] a different place we might be in if we had put a little bit more emphasis on those types of skill sets from the beginning.
                   
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:17:19] </b> Absolutely, that human communication seems like a really important skill to focus on in public health education moving forward. You don't just need data skills and hard skills, like you said, but you need communication skills, sort of like what doctors learn with bedside manner. And maybe this hasn't had to be so much a part of the public health toolkit in the past, but I can definitely vouch for it being very important when you're on the phone with someone contact tracing.
+                  <b>Leanna Ehrlich: [00:16:32] </b> Absolutely, that human communication seems like a really important skill to focus on in public health education moving forward. You don't just need data skills and hard skills, like you said, but you need communication skills, sort of like what doctors learn with bedside manner. And maybe this hasn't had to be so much a part of the public health toolkit in the past, but I can definitely vouch for it being very important when you're on the phone with someone contact tracing.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:17:34] </b> Exactly.
+                  <b>Dr. Allison Chamberlain : [00:17:00] </b> Exactly.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:19:42] </b> Well, thank you so much for joining today. These are all the questions that I had for you. But if you have any other thoughts on public health education, during and after this pandemic, I would be happy to hear them.
+                  <b>Leanna Ehrlich: [00:17:02] </b> Well, thank you so much for joining today. These are all the questions that I had for you. But if you have any other thoughts on public health education, during and after this pandemic, I would be happy to hear them.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:20:09] </b> Yeah, I think anytime either now, or even into the future where public health students can get the opportunity to collaborate with or volunteer with a community group, whether that's a local health department or some other type of nonprofit or outreach group that is engaging with community – take that opportunity, because you learn so much about the application of your work, especially if you're in one of the harder disciplines within – harder meaning, I guess, kind of quantitative disciplines that don't naturally focus on some of these more behavioral aspects to public health. But if you're sort of an epidemiology focus, global epidemiology, or a biostats focus, that if you have opportunities to engage with the community, or a local health department to really sort of understand the intersection between people's behavior and their hesitancies and their concerns and the actual collection of the data that we ended up analyzing, you really can get a better sense of, I think your collective place in the fabric of public health practice, when you have that awareness of how you can interact with people to ultimately get the data that you want and need for understanding whatever disease you're trying to understand more.
+                  <b>Dr. Allison Chamberlain : [00:17:13] </b> Yeah, I think anytime either now, or even into the future where public health students can get the opportunity to collaborate with or volunteer with a community group, whether that's a local health department or some other type of nonprofit or outreach group that is engaging with community – take that opportunity, because you learn so much about the application of your work, especially if you're in one of the harder disciplines within – harder meaning, I guess, kind of quantitative disciplines that don't naturally focus on some of these more behavioral aspects to public health. But if you're sort of an epidemiology focus, global epidemiology, or a biostats focus, that if you have opportunities to engage with the community, or a local health department to really sort of understand the intersection between people's behavior and their hesitancies and their concerns and the actual collection of the data that we ended up analyzing, you really can get a better sense of, I think your collective place in the fabric of public health practice, when you have that awareness of how you can interact with people to ultimately get the data that you want and need for understanding whatever disease you're trying to understand more.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:17:19] </b> Yes, you don't want to have waiting until after graduation to get involved in community work. 
+                  <b>Leanna Ehrlich: [00:18:30] </b> Yes, you don't want to have waiting until after graduation to get involved in community work. 
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:17:34] </b> Definitely, exactly. Do it now. That's right. 
+                  <b>Dr. Allison Chamberlain : [00:18:37] </b> Definitely, exactly. Do it now. That's right. 
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Leanna Ehrlich: [00:19:42] </b> Well, thank you again, Dr. Chamberlain, for joining us today, on the Equity and Outcomes podcast, and I'm very much looking forward to our last few weeks of class.
+                  <b>Leanna Ehrlich: [00:18:43] </b> Well, thank you again, Dr. Chamberlain, for joining us today, on the Equity and Outcomes podcast, and I'm very much looking forward to our last few weeks of class.
 
                   <br/>
                   <br/>
                   <br/>
 
-                  <b>Dr. Allison Chamberlain : [00:20:09] </b> Thanks, Leanna.
+                  <b>Dr. Allison Chamberlain : [00:18:53] </b> Thanks, Leanna.
 
                   <br/>
                   <br/>
@@ -458,7 +458,7 @@ export default function AboutUs(props){
                   <br/>
                   <br/>
 
-                  <b>Addendum:</b>  Since this podcast was recorded, Pfizer and BioNTech announced successful Phase 3 clinical trials of a COVID-19 vaccine that appears to be more than 90% effective. We reached out to Dr. Breiman to get his comment on the new development, and he said “I look forward with great enthusiasm to seeing the data from the trial of the BioNTech/Pfizer mRNA SARS-CoV2 on efficacy against a variety of outcomes and on safety. Findings from the vaccine trial on safety and efficacy for people in a variety of risk categories (like underlying diseases, advanced age, and race/ethnicities) will be very helpful. While the recent press briefing certainly suggests that this vaccine (and potentially other formulations) offer substantial promise, the jury will remain out until the complete data are presented and there is rigorous regulatory review.”
+                  <b>Addendum:</b>  Since this podcast was recorded, <a href = "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-and-biontech-announce-vaccine-candidate-against"  target="_blank" rel="noopener noreferrer">Pfizer and BioNTech announced successful Phase 3 clinical trials</a> of a COVID-19 vaccine that appears to be more than 90% effective. We reached out to Dr. Breiman to get his comment on the new development, and he said “I look forward with great enthusiasm to seeing the data from the trial of the BioNTech/Pfizer mRNA SARS-CoV2 on efficacy against a variety of outcomes and on safety. Findings from the vaccine trial on safety and efficacy for people in a variety of risk categories (like underlying diseases, advanced age, and race/ethnicities) will be very helpful. While the recent press briefing certainly suggests that this vaccine (and potentially other formulations) offer substantial promise, the jury will remain out until the complete data are presented and there is rigorous regulatory review.”
 
                   <br/>
                   <br/>
