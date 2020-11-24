@@ -287,11 +287,9 @@ export default function ExtraFile(props) {
     }, []);
 
     useEffect(() => {
-      if (CVI && resSeg) {
       fetch('/data/data.json').then(res => res.json())
-        .then(x => {
-          
-          setData(x);
+      .then(x => {
+        setData(x);
         
           //CVI
           const cs = scaleQuantile()
@@ -335,6 +333,18 @@ export default function ExtraFile(props) {
   
           setLegendSplitCVI(cs.quantiles());
 
+      })
+
+    },[]);
+
+    //replace
+
+
+
+    useEffect(() => {
+      if(CVI){
+        fetch('/data/data.json').then(res => res.json())
+        .then(x => {
           //ResSeg
           const csii = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -345,7 +355,7 @@ export default function ExtraFile(props) {
                 d.fips.length === 5)),
             d=> d[resSeg]))
           .range(colorPalette);
-  
+
           let scaleMapii = {}
           _.each(x, d=>{
             if(d[resSeg] > 0){
@@ -365,7 +375,7 @@ export default function ExtraFile(props) {
           if (maxii > 999999) {
             maxii = (maxii/1000000).toFixed(0) + "M";
             setLegendMaxResSeg(maxii);
-          }else if (max > 999) {
+          }else if (maxii > 999) {
             maxii = (maxii/1000).toFixed(0) + "K";
             setLegendMaxResSeg(maxii);
           }else{
@@ -374,7 +384,21 @@ export default function ExtraFile(props) {
           setLegendMinResSeg(minii.toFixed(0));
           setLegendSplitResSeg(csii.quantiles());
 
-          
+        })
+      }
+
+    },[CVI]);
+
+
+
+//replace
+
+
+
+    useEffect(() => {
+      if(resSeg){
+        fetch('/data/data.json').then(res => res.json())
+        .then(x => {
           //male
           const cs_male = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -413,7 +437,20 @@ export default function ExtraFile(props) {
           }
           setLegendMinMale(min_male.toFixed(0));
           setLegendSplitMale(cs_male.quantiles());
+        })
+      }
 
+    },[resSeg]);
+
+
+    //replace
+
+
+
+    useEffect(() => {
+      if(male){
+        fetch('/data/data.json').then(res => res.json())
+        .then(x => {
           //age65over
           const cs_age65 = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -452,8 +489,19 @@ export default function ExtraFile(props) {
           }
           setLegendMinAge65(min_age65.toFixed(0));
           setLegendSplitAge65(cs_age65.quantiles());
+        })
+      }
+
+    },[male]);
 
 
+
+
+
+    useEffect(() => {
+      if(age65){
+        fetch('/data/data.json').then(res => res.json())
+        .then(x => {
           //black
           const cs_black = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -492,8 +540,17 @@ export default function ExtraFile(props) {
           }
           setLegendMinBlack(min_black.toFixed(0));
           setLegendSplitBlack(cs_black.quantiles());
+        })
+      }
+
+    },[age65]);
 
 
+
+    useEffect(() => {
+      if(black){
+        fetch('/data/data.json').then(res => res.json())
+        .then(x => {
           //poverty
           const cs_poverty = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -533,6 +590,16 @@ export default function ExtraFile(props) {
           setLegendMinPoverty(min_poverty.toFixed(0));
           setLegendSplitPoverty(cs_poverty.quantiles());
 
+        })
+      }
+
+    },[black]);
+
+
+    useEffect(() => {
+      if(poverty){
+        fetch('/data/data.json').then(res => res.json())
+        .then(x => {
           //diabetes
           const cs_diabetes = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -571,6 +638,17 @@ export default function ExtraFile(props) {
           }
           setLegendMinDiabetes(min_diabetes.toFixed(0));
           setLegendSplitDiabetes(cs_diabetes.quantiles());
+
+
+        })
+      }
+
+    },[poverty]);
+
+    useEffect(() => {
+      if (diabetes) {
+      fetch('/data/data.json').then(res => res.json())
+        .then(x => {
 
           //hispanic
           const cs_hispanic = scaleQuantile()
@@ -631,7 +709,7 @@ export default function ExtraFile(props) {
       
       }
   
-    }, [CVI, resSeg])
+    }, [diabetes])
 
   useEffect(() => {
     if (dataTS){
@@ -1355,7 +1433,7 @@ export default function ExtraFile(props) {
         </Grid>  
 
         <center> <Divider style = {{width:1000}}/> </center>
-        <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
+        {CVI && <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
           <Header as='h2' style={{textAlign:'center', color: '#487f84', fontSize: "22pt", paddingTop: 30}}>
             <Header.Content>
               COVID-19 by Community Vulnerability Index 
@@ -1558,11 +1636,11 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
-        </div>
+        </div>}
 
 
         <center> <Divider style = {{width:1000}}/> </center>
-        <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
+        {resSeg && <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
           
           <Header as='h2' style={{textAlign:'center', color: '#487f84', fontSize: "22pt", paddingTop: 30}}>
             <Header.Content>
@@ -1763,11 +1841,11 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
-        </div>
+        </div>}
         
 
         <center> <Divider style = {{width: 1000}}/> </center>
-        <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
+        {male && <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
           <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
             <Header.Content style={{fontSize:"22pt",color:'#487f84'}}>
             COVID-19 by County Characteristics
@@ -3305,7 +3383,7 @@ export default function ExtraFile(props) {
                 </Grid.Column>
             </Grid.Row>
           </Grid>
-        </div>
+        </div>}
         
         <Notes />
         </Container>
