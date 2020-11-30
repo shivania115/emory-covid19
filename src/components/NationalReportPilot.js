@@ -3379,7 +3379,7 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
                         </Header.Content>
                     </Header.Content>
