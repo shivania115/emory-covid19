@@ -239,7 +239,7 @@ export default function USMap(props) {
     }
   }, [metric])
 
-  if (data && dataFltrd && stateLabels) {
+  if (data && dataFltrd && stateLabels && allTS) {
     
   return (
       <div>

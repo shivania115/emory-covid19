@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import { Header, Grid, List, Divider, Image } from 'semantic-ui-react'
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 function myFunction() {
   alert('Link is copied to clipboard!');

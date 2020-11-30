@@ -361,12 +361,15 @@ export default function CountyReport() {
 
                     tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
+                      // dataTS["_nation"][30].t,
+                      // dataTS["_nation"][91].t,
+                      // dataTS["_nation"][153].t,
+                      // dataTS["_nation"][214].t,
+
                       dataTS["_nation"][0].t,
-                      dataTS["_nation"][30].t,
                       dataTS["_nation"][61].t,
-                      dataTS["_nation"][91].t,
                       dataTS["_nation"][122].t,
-                      dataTS["_nation"][153].t,
+                      dataTS["_nation"][183].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
@@ -428,12 +431,16 @@ export default function CountyReport() {
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
                     tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
+                      // dataTS["_nation"][30].t,
+                      // dataTS["_nation"][91].t,
+                      // dataTS["_nation"][153].t,
+                      // dataTS["_nation"][214].t,
+
                       dataTS["_nation"][0].t,
-                      dataTS["_nation"][30].t,
                       dataTS["_nation"][61].t,
-                      dataTS["_nation"][91].t,
                       dataTS["_nation"][122].t,
-                      dataTS["_nation"][153].t,
+                      dataTS["_nation"][183].t,
+
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
