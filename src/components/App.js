@@ -12,6 +12,8 @@ import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
+import {HEProvider, useHE} from './HEProvider';
+
 
 // import USMapPilot from "./USMapPilot";
 import NationalReportPilot from "./NationalReportPilot";
@@ -28,6 +30,7 @@ App.propTypes = {};
 export default function App() {
 
   return (
+    <HEProvider>
       <Router>
         <Switch>
           <Route path='/pilot-09-01-2020/national-report'>
@@ -68,6 +71,7 @@ export default function App() {
           </Route>
         </Switch>
       </Router>
+      </HEProvider>
   );
 }
 
