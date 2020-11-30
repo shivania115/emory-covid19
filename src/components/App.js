@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, {useEffect}from "react";
 // Components & Hooks
 import USMap from "./USMap";
 import StateMap from "./StateMap";
@@ -14,6 +14,7 @@ import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
 import {HEProvider, useHE} from './HEProvider';
 
+import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
 // import USMapPilot from "./USMapPilot";
 import NationalReportPilot from "./NationalReportPilot";
@@ -28,6 +29,24 @@ import {
 
 App.propTypes = {};
 export default function App() {
+
+  return (
+    <StitchAuthProvider>
+      <AppUI />
+    </StitchAuthProvider>
+  );
+}
+
+AppUI.propTypes = {};
+function AppUI() {
+  const {
+    isLoggedIn,
+    actions: { handleLogout, handleAnonymousLogin },
+  } = useStitchAuth();
+
+  useEffect(()=>{
+    handleAnonymousLogin();
+  }, []);
 
   return (
     <HEProvider>
