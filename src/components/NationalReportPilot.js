@@ -1221,7 +1221,7 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 20}}>
                   <Header.Content>
-                    <Accordion style = {{paddingTop: "19px"}}>
+                    <Accordion id="jump5" style = {{paddingTop: "19px"}}>
                         <Accordion.Title
                           active={accstate.activeIndex === 0}
                           index={0}
@@ -1232,7 +1232,7 @@ export default function ExtraFile(props) {
                           About this data
                         </Accordion.Title>
                           <Accordion.Content active={accstate.activeIndex === 0}>
-                            <Header.Subheader id="jump5" style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
+                            <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
                               This figure shows the ten counties with the greatest average new COVID-19 deaths per 100,000 residents.
                               as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
                             </Header.Subheader>
@@ -1596,7 +1596,7 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 130}}>
                   <Header.Content>
-                    <Accordion style = {{paddingTop: "19px"}}>
+                    <Accordion id="jump6" style = {{paddingTop: "19px"}}>
                           <Accordion.Title
                             active={accstate.activeIndex === 0}
                             index={0}
@@ -1607,7 +1607,7 @@ export default function ExtraFile(props) {
                             About this data
                           </Accordion.Title>
                             <Accordion.Content active={accstate.activeIndex === 0}>
-                              <Header.Subheader id="jump6" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+                              <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
                                 This figure shows the 7-day average of new daily deaths of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.				
                               </Header.Subheader>
                             </Accordion.Content>
