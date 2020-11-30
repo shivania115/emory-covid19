@@ -3235,7 +3235,7 @@ export default function ExtraFile(props) {
                 </svg>
 
           
-                  {/* <ComposableMap 
+                  <ComposableMap 
                     projection="geoAlbersUsa" 
                     data-tip=""
                     width={630} 
@@ -3273,7 +3273,7 @@ export default function ExtraFile(props) {
                     </Geographies>
                     
 
-                  </ComposableMap> */}
+                  </ComposableMap>
               </div>
               <div style = {{marginTop: 30}}>
                   <br/>
