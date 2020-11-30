@@ -1,13 +1,19 @@
-import React, { useEffect, useState, Component, createRef} from 'react'
-import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Sticky, Ref, Segment} from 'semantic-ui-react'
+import React, { useEffect, useState, Component, createRef, useContext, useMemo} from 'react'
+import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
-import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
+import PropTypes from "prop-types"
+import { MapContext } from "./MapProvider"
+// import useGeographies from "./useGeographies"
+import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
+import {HEProvider, useHE} from './HEProvider';
+
+import {getFeatures, prepareFeatures, isString } from "../utils"
 import Notes from './Notes';
 import _ from 'lodash';
 import { VictoryChart, 
@@ -23,7 +29,78 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
+
+var obj;
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+
+export function fetchGeographies(url) {
+  return fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        throw Error(res.statusText)
+      }
+      return res.json()
+    }).catch(error => {
+      console.log("There was a problem when fetching the data: ", error)
+    })
+}
+
+obj = fetchGeographies(geoUrl);
+// 
+
+export function useGeographies({ geography, parseGeographies }) {
+  const { path } = useContext(MapContext)
+  const [geographies, setGeographies] = useState()
+
+  useEffect(() => {
+    if (typeof window === `undefined`) return
+
+    if (isString(geography)) {
+      obj.then(geos => {
+        if (geos) setGeographies(getFeatures(geos, parseGeographies))
+      })
+    } else {
+      setGeographies(getFeatures(geography, parseGeographies))
+    }
+  }, [geography, parseGeographies])
+
+  const output = useMemo(() => {
+    return prepareFeatures(geographies, path)
+  }, [geographies, path])
+
+  return { geographies: output }
+}
+
+const Geographies = ({
+  geography,
+  children,
+  parseGeographies,
+  className = "",
+  ...restProps
+}) => {
+  const { path, projection } = useContext(MapContext)
+  const { geographies } = useGeographies({ geography, parseGeographies })
+
+  return (
+    <g className={`rsm-geographies ${className}`} {...restProps}>
+      {
+        geographies && geographies.length > 0 &&
+        children({ geographies, path, projection })
+      }
+    </g>
+  )
+}
+
+Geographies.propTypes = {
+  geography: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array,
+  ]),
+  children: PropTypes.func,
+  parseGeographies: PropTypes.func,
+  className: PropTypes.string,
+}
 
 const style = <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css'/>
 
@@ -143,55 +220,56 @@ export default function ExtraFile(props) {
   const [dailyCases, setDailyCases] = useState();
   const [dailyDeaths, setDailyDeaths] = useState();
 
-  const [CVI, setCVI] = useState("CVI");
+  const [bar, LoadBar] = useState(false);
+  const [CVI] = useState("CVI");
   const [colorCVI, setColorCVI] = useState();
   const [legendMaxCVI, setLegendMaxCVI] = useState([]);
   const [legendMinCVI, setLegendMinCVI] = useState([]);
   const [legendSplitCVI, setLegendSplitCVI] = useState([]);
 
-  const [resSeg, setResSeg] = useState("RS_blackwhite");
+  const [resSeg] = useState("RS_blackwhite");
   const [colorResSeg, setColorResSeg] = useState();
   const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
   const [legendMinResSeg, setLegendMinResSeg] = useState([]);
   const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
 
-  const [male, setMale] = useState("male");
+  const [male] = useState("male");
   const [colorMale, setColorMale] = useState();
   const [legendMaxMale, setLegendMaxMale] = useState([]);
   const [legendMinMale, setLegendMinMale] = useState([]);
   const [legendSplitMale, setLegendSplitMale] = useState([]);
 
-  const [age65, setAge65] = useState("age65over");
+  const [age65] = useState("age65over");
   const [colorAge65, setColorAge65] = useState();
   const [legendMaxAge65, setLegendMaxAge65] = useState([]);
   const [legendMinAge65, setLegendMinAge65] = useState([]);
   const [legendSplitAge65, setLegendSplitAge65] = useState([]);
 
-  const [black, setBlack] = useState("black");
+  const [black] = useState("black");
   const [colorBlack, setColorBlack] = useState();
   const [legendMaxBlack, setLegendMaxBlack] = useState([]);
   const [legendMinBlack, setLegendMinBlack] = useState([]);
   const [legendSplitBlack, setLegendSplitBlack] = useState([]);
 
-  const [poverty, setPoverty] = useState("poverty");
+  const [poverty] = useState("poverty");
   const [colorPoverty, setColorPoverty] = useState();
   const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
   const [legendMinPoverty, setLegendMinPoverty] = useState([]);
   const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
 
-  const [diabetes, setDiabetes] = useState("diabetes");
+  const [diabetes] = useState("diabetes");
   const [colorDiabetes, setColorDiabetes] = useState();
   const [legendMaxDiabetes, setLegendMaxDiabetes] = useState([]);
   const [legendMinDiabetes, setLegendMinDiabetes] = useState([]);
   const [legendSplitDiabetes, setLegendSplitDiabetes] = useState([]);
 
-  const [hispanic, setHispanic] = useState("hispanic");
+  const [hispanic] = useState("hispanic");
   const [colorHispanic, setColorHispanic] = useState();
   const [legendMaxHispanic, setLegendMaxHispanic] = useState([]);
   const [legendMinHispanic, setLegendMinHispanic] = useState([]);
   const [legendSplitHispanic, setLegendSplitHispanic] = useState([]);
 
-  const [urbrur, setUrbrur] = useState("_013_Urbanization_Code");
+  const [urbrur] = useState("_013_Urbanization_Code");
   const [dataUrb, setDataUrb] = useState();
 
 
@@ -204,6 +282,21 @@ export default function ExtraFile(props) {
                                                   caseRateMA: "N/A", mortalityMA: "N/A",
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
+
+  const [accstate, setAccstate] = useState({ activeIndex: 1 });
+
+  const dealClick = (e, titleProps) => {
+  const { index } = titleProps
+  const { activeIndex } = accstate
+  const newIndex = activeIndex === index ? -1 : index
+
+  setAccstate({ activeIndex: newIndex })
+  }
+
+
+  useEffect(()=>{
+    
+  }, []);
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -238,46 +331,10 @@ export default function ExtraFile(props) {
 
       fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
-      
 
       fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
         .then(x => setVarMap(x));
       
-      fetch('/data/timeseries_.json').then(res => res.json())
-        .then(x => {
-          let t = 0;
-
-          let percentChangeC = 0;
-          let percentChangeM = 0;
-          let cRateMean = 0;
-          let dailyC = 0;
-          let dailyD = 0;
-          let mMean = 0;
-
-          _.each(x, (v, k)=>{
-            if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
-
-                percentChangeC = v[v.length-1].percent14dayDailyCases;
-                percentChangeM = v[v.length-1].percent14dayDailyDeaths;
-                cRateMean = v[v.length-1].caseRateMean;
-                mMean = v[v.length-1].mortalityMean;
-                dailyC = v[v.length-1].dailyCases;
-                dailyD = v[v.length-1].dailyMortality;
-              }
-
-            });
-
-          setPercentChangeCases(percentChangeC.toFixed(0) + "%");
-          setMean7dayCases(cRateMean.toFixed(0));
-          setPercentChangeMortality(percentChangeM.toFixed(0) + "%");
-          setMortalityMean(mMean.toFixed(0));
-
-          setDailyCases(dailyC.toFixed(0));
-          setDailyDeaths(dailyD.toFixed(0));
-          setDataTS(x);
-        }
-      );
-
       fetch('/data/topTenCases.json').then(res => res.json())
         .then(x => setDataTopCases(x));
 
@@ -287,13 +344,68 @@ export default function ExtraFile(props) {
     }, []);
 
     useEffect(() => {
-      fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-        setData(x);
+
+      let seriesDict = {};
+      let newDict = {};
+      const fetchTimeSeries = async() => { 
+        const mainQ = {all: "all"};
+        const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+        const testQ = {full_fips: "_nation"};
+        const promTs = await CHED_series.find(testQ,{projection:{}}).toArray();
+        _.map(promStatic, i=> {
+          if(i.tag === "nationalraw"){
+            newDict[i[Object.keys(i)[3]]] = i.data;
+            // return newDict;
+          }
+        });
+        setData(newDict);       
+
         
+        _.map(promTs, i=> {
+            seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+        });
+        
+        let t = 0;
+        
+        let percentChangeC = 0;
+        let percentChangeM = 0;
+        let cRateMean = 0;
+        let dailyC = 0;
+        let dailyD = 0;
+        let mMean = 0;
+          
+        _.each(seriesDict, (v, k)=>{
+          if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
+
+              percentChangeC = v[v.length-1].percent14dayDailyCases;
+              percentChangeM = v[v.length-1].percent14dayDailyDeaths;
+              cRateMean = v[v.length-1].caseRateMean;
+              mMean = v[v.length-1].mortalityMean;
+              dailyC = v[v.length-1].dailyCases;
+              dailyD = v[v.length-1].dailyMortality;
+            }
+
+        });
+
+          setPercentChangeCases(percentChangeC.toFixed(0) + "%");
+          setMean7dayCases(cRateMean.toFixed(0));
+          setPercentChangeMortality(percentChangeM.toFixed(0) + "%");
+          setMortalityMean(mMean.toFixed(0));
+
+          setDailyCases(dailyC.toFixed(0));
+          setDailyDeaths(dailyD.toFixed(0));
+          setDataTS(seriesDict);
+      };
+
+      fetchTimeSeries();
+    }, []);
+
+    useEffect(() => {
+      
+          if(data){
           //CVI
           const cs = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -303,7 +415,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[CVI] > 0){
             scaleMap[d[CVI]] = cs(d[CVI])}
           });
@@ -311,7 +423,7 @@ export default function ExtraFile(props) {
           setColorCVI(scaleMap);
           var max = 0
           var min = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[CVI] > max && d.fips.length === 5) {
               max = d[CVI]
             } else if (d.fips.length === 5 && d[CVI] < min && d[CVI] > 0){
@@ -333,21 +445,22 @@ export default function ExtraFile(props) {
   
           setLegendSplitCVI(cs.quantiles());
 
-      })
 
-    },[]);
+        }
+
+
+
+    },[data]);
 
     //replace
 
 
 
     useEffect(() => {
-      if(CVI){
-        fetch('/data/data.json').then(res => res.json())
-        .then(x => {
+      if(data && CVI){
           //ResSeg
           const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -357,7 +470,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
 
           let scaleMapii = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[resSeg] > 0){
             scaleMapii[d[resSeg]] = csii(d[resSeg])}
           });
@@ -365,7 +478,7 @@ export default function ExtraFile(props) {
           setColorResSeg(scaleMapii);
           var maxii = 0
           var minii = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[resSeg] > maxii && d.fips.length === 5) {
               maxii = d[resSeg]
             } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
@@ -384,24 +497,20 @@ export default function ExtraFile(props) {
           setLegendMinResSeg(minii.toFixed(0));
           setLegendSplitResSeg(csii.quantiles());
 
-        })
+
       }
 
-    },[CVI]);
+    },[data, CVI]);
 
 
 
 //replace
 
-
-
     useEffect(() => {
-      if(resSeg){
-        fetch('/data/data.json').then(res => res.json())
-        .then(x => {
+      if(data && resSeg){
           //male
           const cs_male = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -411,7 +520,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap_male = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[male] > 0){
               scaleMap_male[d[male]] = cs_male(d[male])}
           });
@@ -419,7 +528,7 @@ export default function ExtraFile(props) {
           setColorMale(scaleMap_male);
           var max_male = 0
           var min_male = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[male] > max_male && d.fips.length === 5) {
               max_male = d[male]
             } else if (d.fips.length === 5 && d[male] < min_male && d[male] > 0){
@@ -437,10 +546,10 @@ export default function ExtraFile(props) {
           }
           setLegendMinMale(min_male.toFixed(0));
           setLegendSplitMale(cs_male.quantiles());
-        })
+
       }
 
-    },[resSeg]);
+    },[data, resSeg]);
 
 
     //replace
@@ -448,12 +557,11 @@ export default function ExtraFile(props) {
 
 
     useEffect(() => {
-      if(male){
-        fetch('/data/data.json').then(res => res.json())
-        .then(x => {
+      if(data && male){
+
           //age65over
           const cs_age65 = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -463,7 +571,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap_age65 = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[age65] > 0){
               scaleMap_age65[d[age65]] = cs_age65(d[age65])}
           });
@@ -471,7 +579,7 @@ export default function ExtraFile(props) {
           setColorAge65(scaleMap_age65);
           var max_age65 = 0
           var min_age65 = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[age65] > max_age65 && d.fips.length === 5) {
               max_age65 = d[age65]
             } else if (d.fips.length === 5 && d[age65] < min_age65 && d[age65] > 0){
@@ -489,22 +597,20 @@ export default function ExtraFile(props) {
           }
           setLegendMinAge65(min_age65.toFixed(0));
           setLegendSplitAge65(cs_age65.quantiles());
-        })
+
       }
 
-    },[male]);
+    },[data, male]);
 
 
 
 
 
     useEffect(() => {
-      if(age65){
-        fetch('/data/data.json').then(res => res.json())
-        .then(x => {
+      if(data && age65){
           //black
           const cs_black = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -514,7 +620,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap_black = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[black] > 0){
               scaleMap_black[d[black]] = cs_black(d[black])}
           });
@@ -522,7 +628,7 @@ export default function ExtraFile(props) {
           setColorBlack(scaleMap_black);
           var max_black = 0
           var min_black = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[black] > max_black && d.fips.length === 5) {
               max_black = d[black]
             } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
@@ -540,20 +646,17 @@ export default function ExtraFile(props) {
           }
           setLegendMinBlack(min_black.toFixed(0));
           setLegendSplitBlack(cs_black.quantiles());
-        })
       }
 
-    },[age65]);
+    },[data, age65]);
 
 
 
     useEffect(() => {
-      if(black){
-        fetch('/data/data.json').then(res => res.json())
-        .then(x => {
+      if(data && black){
           //poverty
           const cs_poverty = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -563,7 +666,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap_poverty = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[poverty] > 0){
               scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
           });
@@ -571,7 +674,7 @@ export default function ExtraFile(props) {
           setColorPoverty(scaleMap_poverty);
           var max_poverty = 0
           var min_poverty = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[poverty] > max_poverty && d.fips.length === 5) {
               max_poverty = d[poverty]
             } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
@@ -590,19 +693,16 @@ export default function ExtraFile(props) {
           setLegendMinPoverty(min_poverty.toFixed(0));
           setLegendSplitPoverty(cs_poverty.quantiles());
 
-        })
       }
 
-    },[black]);
+    },[data, black]);
 
 
     useEffect(() => {
-      if(poverty){
-        fetch('/data/data.json').then(res => res.json())
-        .then(x => {
+      if(data && poverty){
           //diabetes
           const cs_diabetes = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -612,7 +712,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap_diabetes = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[diabetes] > 0){
               scaleMap_diabetes[d[diabetes]] = cs_diabetes(d[diabetes])}
           });
@@ -620,7 +720,7 @@ export default function ExtraFile(props) {
           setColorDiabetes(scaleMap_diabetes);
           var max_diabetes = 0
           var min_diabetes = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[diabetes] > max_diabetes && d.fips.length === 5) {
               max_diabetes = d[diabetes]
             } else if (d.fips.length === 5 && d[diabetes] < min_diabetes && d[diabetes] > 0){
@@ -639,20 +739,15 @@ export default function ExtraFile(props) {
           setLegendMinDiabetes(min_diabetes.toFixed(0));
           setLegendSplitDiabetes(cs_diabetes.quantiles());
 
-
-        })
       }
 
-    },[poverty]);
+    },[data, poverty]);
 
     useEffect(() => {
-      if (diabetes) {
-      fetch('/data/data.json').then(res => res.json())
-        .then(x => {
-
+      if (diabetes && data) {
           //hispanic
           const cs_hispanic = scaleQuantile()
-          .domain(_.map(_.filter(_.map(x, (d, k) => {
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
@@ -662,7 +757,7 @@ export default function ExtraFile(props) {
           .range(colorPalette);
   
           let scaleMap_hispanic = {}
-          _.each(x, d=>{
+          _.each(data, d=>{
             if(d[hispanic] > 0){
               scaleMap_hispanic[d[hispanic]] = cs_hispanic(d[hispanic])}
           });
@@ -670,7 +765,7 @@ export default function ExtraFile(props) {
           setColorHispanic(scaleMap_hispanic);
           var max_hispanic = 0
           var min_hispanic = 100
-          _.each(x, d=> { 
+          _.each(data, d=> { 
             if (d[hispanic] > max_hispanic && d.fips.length === 5) {
               max_hispanic = d[hispanic]
             } else if (d.fips.length === 5 && d[hispanic] < min_hispanic && d[hispanic] > 0){
@@ -688,28 +783,29 @@ export default function ExtraFile(props) {
           }
           setLegendMinHispanic(min_hispanic.toFixed(0));
           setLegendSplitHispanic(cs_hispanic.quantiles());
+          
 
-          //urbrur
-          let tempDict = {};
-          _.map(_.filter(_.map(x, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[urbrur] !== "" &&
-                d.fips.length === 5)), i => {
-                  tempDict[i.fips] = i
-                  return tempDict;
-                });
-          setDataUrb(tempDict);
-            
-          //region
-
-        });
-  
-      
       }
   
-    }, [diabetes])
+    }, [diabetes, data])
+
+    useEffect(() => {
+      if(data && hispanic){
+        //urbrur
+        let tempDict = {};
+        _.map(_.filter(_.map(data, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[urbrur] !== "" &&
+              d.fips.length === 5)), i => {
+                tempDict[i.fips] = i
+                return tempDict;
+              });
+        setDataUrb(tempDict);
+      }
+
+    }, [data, hispanic])
 
   useEffect(() => {
     if (dataTS){
@@ -720,8 +816,9 @@ export default function ExtraFile(props) {
 
   if (data && dataTS && varMap) {
     return (
+    <HEProvider>
       <div>
-        <AppBar menu='nationalReport'/>
+        <AppBar menu='nationalReport' />
         <Container id="jump1" style={{marginTop: '8em', minWidth: '1260px'}}>
         <div >
           <br/><br/><br/><br/>
@@ -739,12 +836,12 @@ export default function ExtraFile(props) {
           </Header>
         </div>
         <div style={{paddingTop:36,textAlign:'justify', fontSize:"14pt", lineHeight: "16pt",paddingBottom:30, paddingLeft: "7em", paddingRight: "7em"}}>
-        <text id="jump2" style={{fontFamily:'lato', fontSize: "14pt"}}>
+        <Header.Content id="jump2" style={{fontFamily:'lato', fontSize: "14pt"}}>
          The United States has reported {numberWithCommas(data['_nation']['casesfig'])} cases, the highest number of any country in the world. 
          The number of cases and deaths differ substantially across American communities. The COVID-19 US Health Equity 
          Report documents how COVID-19 cases and deaths are changing over time, geography, and demography. The report will 
          be released each week to keep track of how COVID-19 is impacting US communities.
-        </text>
+        </Header.Content>
         </div>
         <center> <Divider style={{width: 1000}}/> </center>
         <div style={{paddingBottom:'2em', paddingLeft: "7em", paddingRight: "7em"}}>
@@ -756,7 +853,7 @@ export default function ExtraFile(props) {
             <Grid>
                 <Grid.Row column = {1}>
                       <Grid.Column style={{paddingTop:20, width: 1030, paddingLeft: 35}}>
-                            <center> <text x={0} y={20} style={{fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </text> </center>
+                            <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content> </center>
 
                             <VictoryChart theme={VictoryTheme.material}
                               width={1030}
@@ -817,21 +914,37 @@ export default function ExtraFile(props) {
                       </Grid.Column>
 
                       <Grid.Column style={{paddingTop:50, width: 1000}}>
-                        <Header as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
-                            <Header.Content style={{fontSize: "14pt"}}>
-                              <Header.Subheader style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                This figure shows the trend of daily COVID-19 cases in US. The bar height reflects the number of 
-                                new cases per day and the line depicts 7-day moving average of daily cases in US. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
-                                an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
-                                We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
-                                the average new cases over the past 14-day period. 
-                                <br/>
-                                <br/>
-                                *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
 
-                              </Header.Subheader>
-                            </Header.Content>
-                          </Header>
+                      <Accordion style = {{paddingTop: "19px"}}>
+                        <Accordion.Title
+                          active={accstate.activeIndex === 0}
+                          index={0}
+                          onClick={dealClick}
+                          style ={{color: "#397AB9", fontSize: 19, paddingLeft: 30}}
+
+                        >
+                        <Icon name='dropdown' />
+                          About this data
+                        </Accordion.Title>
+                          <Accordion.Content active={accstate.activeIndex === 0}>
+                          <Header as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
+                              <Header.Content style={{fontSize: "14pt"}}>
+                                <Header.Subheader style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                  This figure shows the trend of daily COVID-19 cases in US. The bar height reflects the number of 
+                                  new cases per day and the line depicts 7-day moving average of daily cases in US. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
+                                  an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
+                                  We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
+                                  the average new cases over the past 14-day period. 
+                                  <br/>
+                                  <br/>
+                                  *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
+
+                                </Header.Subheader>
+                              </Header.Content>
+                            </Header>
+                          </Accordion.Content>
+
+                        </Accordion> 
                       </Grid.Column>
 
                 </Grid.Row>
@@ -850,7 +963,7 @@ export default function ExtraFile(props) {
                 <Grid.Row column = {1} >
 
                       <Grid.Column style={{paddingTop:28, width: 1030, paddingLeft: 35}}>
-                            <center> <text x={0} y={20} style={{fontSize: '18pt', paddingLeft: 0, paddingBottom: 5, fontWeight: 600}}>Average Daily COVID-19 Deaths </text> </center>
+                            <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', paddingLeft: 0, paddingBottom: 5, fontWeight: 600}}>Average Daily COVID-19 Deaths </Header.Content> </center>
 
                             <VictoryChart theme={VictoryTheme.material} 
                               width={1030}
@@ -910,21 +1023,37 @@ export default function ExtraFile(props) {
                       </Grid.Column>
 
                       <Grid.Column style={{paddingTop:50, width: 1000}}>
-                        <Header as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
-                          <Header.Content style={{fontSize: "14pt"}}>
-                            <Header.Subheader id="jump3" style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                              This figure shows the trend of daily COVID-19 deaths in US. The bar height reflects the number of new deaths 
-                              per day and the line depicts 7-day moving average of daily deaths in US. There were {dailyDeaths} new deaths 
-                              associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
-                              an average of {mortalityMean} new deaths per day reported over the past 7 days. 
-                              We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
-                              <br/>
-                              <br/>
-                              *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
-                            
-                            </Header.Subheader>
-                          </Header.Content>
-                        </Header>
+
+
+                      <Accordion style = {{paddingTop: "19px"}}>
+                        <Accordion.Title
+                          active={accstate.activeIndex === 0}
+                          index={0}
+                          onClick={dealClick}
+                          style ={{color: "#397AB9", fontSize: 19, paddingLeft: 30}}
+                        >
+                        <Icon name='dropdown' />
+                          About this data
+                        </Accordion.Title>
+                          <Accordion.Content active={accstate.activeIndex === 0}>
+                            <Header as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
+                              <Header.Content style={{fontSize: "14pt"}}>
+                                <Header.Subheader id="jump3" style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                  This figure shows the trend of daily COVID-19 deaths in US. The bar height reflects the number of new deaths 
+                                  per day and the line depicts 7-day moving average of daily deaths in US. There were {dailyDeaths} new deaths 
+                                  associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
+                                  an average of {mortalityMean} new deaths per day reported over the past 7 days. 
+                                  We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
+                                  <br/>
+                                  <br/>
+                                  *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
+                                
+                                </Header.Subheader>
+                              </Header.Content>
+                            </Header>
+                        </Accordion.Content>
+
+                      </Accordion> 
                       </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -1068,20 +1197,49 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 132}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-					             This figure shows the ten counties with the greatest average new COVID-19 cases per 100,000 residents. 
-                       as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
-					           </Header.Subheader>
+                    <Accordion style = {{paddingTop: "19px"}}>
+                      <Accordion.Title
+                        active={accstate.activeIndex === 0}
+                        index={0}
+                        onClick={dealClick}
+                        style ={{color: "#397AB9"}}
+                      >
+                      <Icon name='dropdown' />
+                        About this data
+                      </Accordion.Title>
+                        <Accordion.Content active={accstate.activeIndex === 0}>
+                          <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
+                            This figure shows the ten counties with the greatest average new COVID-19 cases per 100,000 residents. 
+                            as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
+                          </Header.Subheader>
+                        </Accordion.Content>
+
+                    </Accordion> 
                   </Header.Content>
                 </Header>
               </Grid.Column>
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 450, paddingLeft: 20}}>
                   <Header.Content>
-                    <Header.Subheader id="jump5" style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
-					             This figure shows the ten counties with the greatest average new COVID-19 deaths per 100,000 residents.
-                       as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
-                    </Header.Subheader>
+                    <Accordion style = {{paddingTop: "19px"}}>
+                        <Accordion.Title
+                          active={accstate.activeIndex === 0}
+                          index={0}
+                          onClick={dealClick}
+                          style ={{color: "#397AB9"}}
+                        >
+                        <Icon name='dropdown' />
+                          About this data
+                        </Accordion.Title>
+                          <Accordion.Content active={accstate.activeIndex === 0}>
+                            <Header.Subheader id="jump5" style={{color: '#000000', lineHeight: "16pt", width: 450, fontSize: "14pt", textAlign:'justify'}}>
+                              This figure shows the ten counties with the greatest average new COVID-19 deaths per 100,000 residents.
+                              as of {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.                   
+                            </Header.Subheader>
+                          </Accordion.Content>
+
+                      </Accordion> 
+                    
                   </Header.Content>
                 </Header>
               </Grid.Column>
@@ -1257,9 +1415,24 @@ export default function ExtraFile(props) {
             <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 40, paddingTop: 30, paddingBottom: 50}}>
                   <Header.Content>
-                    <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-                      This figure shows the 7-day average of new daily cases of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.         
-                    </Header.Subheader>
+                    <Accordion style = {{paddingTop: "19px"}}>
+                        <Accordion.Title
+                          active={accstate.activeIndex === 0}
+                          index={0}
+                          onClick={dealClick}
+                          style ={{color: "#397AB9"}}
+                        >
+                        <Icon name='dropdown' />
+                          About this data
+                        </Accordion.Title>
+                          <Accordion.Content active={accstate.activeIndex === 0}>
+                            <Header.Subheader style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+                              This figure shows the 7-day average of new daily cases of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.         
+                            </Header.Subheader>
+                          </Accordion.Content>
+
+                    </Accordion> 
+                    
                   </Header.Content>
                 </Header>
               </Grid.Column>
@@ -1423,9 +1596,24 @@ export default function ExtraFile(props) {
               <Grid.Column>
                 <Header as='h2' style={{fontSize: "14pt", lineHeight: "16pt", width: 1030, paddingLeft: 130}}>
                   <Header.Content>
-                    <Header.Subheader id="jump6" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
-					            This figure shows the 7-day average of new daily deaths of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.				
-                    </Header.Subheader>
+                    <Accordion style = {{paddingTop: "19px"}}>
+                          <Accordion.Title
+                            active={accstate.activeIndex === 0}
+                            index={0}
+                            onClick={dealClick}
+                            style ={{color: "#397AB9"}}
+                          >
+                          <Icon name='dropdown' />
+                            About this data
+                          </Accordion.Title>
+                            <Accordion.Content active={accstate.activeIndex === 0}>
+                              <Header.Subheader id="jump6" style={{color: '#000000', lineHeight: "16pt", width: 1030, fontSize: "14pt", textAlign:'justify', paddingRight: 35}}>
+                                This figure shows the 7-day average of new daily deaths of COVID-19 per 100,000 residents in the five counties with the largest increase in daily cases since {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()}.				
+                              </Header.Subheader>
+                            </Accordion.Content>
+
+                      </Accordion> 
+                    
                   </Header.Content>
                 </Header>
               </Grid.Column>
@@ -1512,8 +1700,7 @@ export default function ExtraFile(props) {
                               ((colorCVI && data[geo.id] && (data[geo.id][CVI]) > 0)?
                                   colorCVI[data[geo.id][CVI]]: 
                                   (colorCVI && data[geo.id] && data[geo.id][CVI] === 0)?
-                                    '#FFFFFF':'#FFFFFF')}
-                              
+                                    '#FFFFFF':'#FFFFFF')}                              
                             />
                           ))}
                         </svg>
@@ -1577,9 +1764,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                       
                       <br/>
@@ -1628,9 +1815,9 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content id="jump7" style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
 
                 </Grid.Column>
@@ -1786,9 +1973,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -1834,9 +2021,9 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content id="jump8" style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
@@ -1845,11 +2032,11 @@ export default function ExtraFile(props) {
         
 
         <center> <Divider style = {{width: 1000}}/> </center>
-        {male && <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
+        {resSeg && <div style = {{ paddingLeft: "7em", paddingRight: "7em"}}>
           <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
             <Header.Content style={{fontSize:"22pt",color:'#487f84'}}>
             COVID-19 by County Characteristics
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "7em", paddingRight: "7em", paddingBottom: 40}}>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 32, paddingRight: 27, paddingBottom: 40}}>
                 <center> <b style= {{fontSize: "18pt"}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
                 <br/>
                 <br/>
@@ -1871,7 +2058,7 @@ export default function ExtraFile(props) {
 
               </Header.Subheader>
 
-          <Grid>
+          {resSeg && <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                 
@@ -1996,9 +2183,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -2044,13 +2231,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
           <center> <Divider style={{width: 1000}}/> </center>
 
@@ -2063,7 +2250,7 @@ export default function ExtraFile(props) {
               </Header.Subheader>
 
 
-          <Grid>
+          {male && <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                 
@@ -2188,9 +2375,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -2236,13 +2423,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
           <center> <Divider style={{width: 1000}}/> </center>
 
@@ -2254,7 +2441,7 @@ export default function ExtraFile(props) {
               </Header.Subheader>
 
 
-          <Grid>
+          {age65 && <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                 
@@ -2379,9 +2566,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -2427,13 +2614,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
           <center> <Divider style={{width: 1000}}/> </center>
 
@@ -2445,7 +2632,7 @@ export default function ExtraFile(props) {
 
               </Header.Subheader>
 
-          <Grid>
+          {black && <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                 
@@ -2570,9 +2757,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -2618,13 +2805,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
           <center> <Divider style={{width: 1000}}/> </center>
 
@@ -2636,7 +2823,7 @@ export default function ExtraFile(props) {
 
               </Header.Subheader>
 
-          <Grid>
+          {poverty && <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                 
@@ -2761,9 +2948,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -2809,13 +2996,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
           <center> <Divider style={{width: 1000}}/> </center>
 
@@ -2827,7 +3014,7 @@ export default function ExtraFile(props) {
 
               </Header.Subheader>
 
-          <Grid>
+          {diabetes && <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                 
@@ -2952,9 +3139,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -3000,13 +3187,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
           <center> <Divider style={{width: 1000}}/> </center>
 
@@ -3018,7 +3205,7 @@ export default function ExtraFile(props) {
 
               </Header.Subheader>
 
-          <Grid>
+          {hispanic&& <Grid>
             <Grid.Row columns={2} style={{paddingTop: 8}}>
               <Grid.Column style={{paddingTop:10,paddingBottom:0}}>
                 
@@ -3048,7 +3235,7 @@ export default function ExtraFile(props) {
                 </svg>
 
           
-                  <ComposableMap 
+                  {/* <ComposableMap 
                     projection="geoAlbersUsa" 
                     data-tip=""
                     width={630} 
@@ -3086,7 +3273,7 @@ export default function ExtraFile(props) {
                     </Geographies>
                     
 
-                  </ComposableMap>
+                  </ComposableMap> */}
               </div>
               <div style = {{marginTop: 30}}>
                   <br/>
@@ -3143,9 +3330,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -3192,13 +3379,13 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid>}
 
 
           <center> <Divider style={{width: 1000}}/> </center>
@@ -3328,9 +3515,9 @@ export default function ExtraFile(props) {
 
                     <Header.Content style = {{width: 540}}>
                       
-                      <text style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                         <b>{varMap["caseratefig"].name}</b>
-                      </text>
+                      </Header.Content>
                     </Header.Content>
                   
                   <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -3376,9 +3563,9 @@ export default function ExtraFile(props) {
                     </VictoryChart>
 
                     <Header.Content style = {{width: 550}}>
-                        <text style={{ paddingLeft: 175,fontWeight: 300, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                           <b>{varMap["covidmortalityfig"].name}</b>
-                        </text>
+                        </Header.Content>
                     </Header.Content>
                 </Grid.Column>
             </Grid.Row>
@@ -3388,7 +3575,7 @@ export default function ExtraFile(props) {
         <Notes />
         </Container>
     </div>
-
+  </HEProvider>
 
 
 
