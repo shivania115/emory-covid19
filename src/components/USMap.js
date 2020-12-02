@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image} from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Accordion, Icon} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -148,6 +148,16 @@ export default function USMap(props) {
   const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
 
+  const [accstate, setAccstate] = useState({ activeIndex: 1 });
+
+  const dealClick = (e, titleProps) => {
+  const { index } = titleProps
+  const { activeIndex } = accstate
+  const newIndex = activeIndex === index ? -1 : index
+
+  setAccstate({ activeIndex: newIndex })
+  }
+
   // const [caseRate, setCaseRate] = useState();
   // const [percentChangeCases, setPercentChangeCases] = useState();
   // const [mortality, setMortality] = useState();
@@ -250,7 +260,7 @@ export default function USMap(props) {
           </div>
           
           <div style={{height:130, overflowY:"hidden", overflowX: "auto"}}>
-            <p style={{width: "220%"}}>
+            <div style={{width: "220%"}}>
               <Grid>
                 <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
 
@@ -340,7 +350,7 @@ export default function USMap(props) {
                   <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes">for more</a>. 
                 </Grid.Column>
               </Grid>
-            </p>
+            </div>
           </div>
         </div>
           <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
@@ -350,7 +360,7 @@ export default function USMap(props) {
           <Divider hidden />
           <Grid columns={16}>
           <div style={{fontSize: "14pt", paddingTop: 10, paddingBottom: 30}}>
-            See Dashboard Guide (<a style ={{color: "#397AB9"}}href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
+            See Dashboard Guide (<a style ={{color: "#397AB9"}} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
 
           </div>
 
@@ -485,12 +495,26 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Grid.Row style={{paddingTop: "59px", width: "660px"}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                    <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                    For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                    </text>
-                </Grid.Row>
+                <Accordion style = {{paddingTop: "19px"}}>
+                  <Accordion.Title
+                    active={accstate.activeIndex === 0}
+                    index={0}
+                    onClick={dealClick}
+                    style ={{color: "#397AB9"}}
+                  >
+                  <Icon name='dropdown' />
+                    About this data
+                  </Accordion.Title>
+                    <Accordion.Content active={accstate.activeIndex === 0}>
+                      <Grid.Row style={{width: "660px"}}>
+                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                          For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                          </Header.Content>
+                      </Grid.Row>
+                    </Accordion.Content>
+
+                </Accordion> 
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
@@ -659,9 +683,9 @@ export default function USMap(props) {
                       </div>
                     
                     </Grid.Column>
-                    <text style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
-                      *14-day change trends use 7-day averages.
-                    </text>
+                      <Header.Content style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
+                        *14-day change trends use 7-day averages.
+                      </Header.Content>
                   </Grid.Row>
 
                   <Header as='h2' style={{fontWeight: 400}}>
@@ -990,8 +1014,8 @@ export default function USMap(props) {
                   <Grid.Row columns = {1}>
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                       {stateFips && !raceData[fips]["White Alone"] &&
-                        <div style = {{marginTop: 10}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 50, fontWeight: 400}}> Deaths by Race & Ethnicity</text>
+                        <div style = {{marginTop: 13}}>
+                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 50, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
                         </div>
                       }
                       {stateFips && !raceData[fips]["White Alone"] && stateFips !== "38" &&
@@ -1150,10 +1174,11 @@ export default function USMap(props) {
                       }
                       {stateFips && !raceData[fips]["White Alone"] &&
                         <div style = {{marginTop: 10}}>
-                          <text style={{fontSize: '14pt', marginLeft: 109, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;residents</text>
+                          <Header.Content style={{fontSize: '14pt', marginLeft: 109, fontWeight: 400}}> Deaths per 100,000 <br/> 
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          
+                          residents
+                          </Header.Content>
                         </div>
                       }
 
@@ -1209,13 +1234,13 @@ export default function USMap(props) {
                     </text>}
 
                   {stateFips !== "38"  && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
-                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[fips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
-                    </text>}
+                    </Header.Content>}
 
                   </Grid.Row>
                 </Grid>
