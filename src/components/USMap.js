@@ -495,12 +495,12 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Accordion style = {{paddingTop: "19px"}}>
+                <Accordion style = {{paddingTop: "13px"}}>
                   <Accordion.Title
                     active={accstate.activeIndex === 0}
                     index={0}
                     onClick={dealClick}
-                    style ={{color: "#397AB9"}}
+                    style ={{color: "#397AB9", fontSize: "14pt"}}
                   >
                   <Icon name='dropdown' />
                     About this data
