@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider} from 'semantic-ui-react'
-import Slider from '@material-ui/core/Slider';
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -74,19 +73,17 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
 
-const marks = [
-  //{value: 1, label: 'Jan.'}, {value: 2, abel: 'Feb.'}, {value: 3, abel: 'Mar.'}, 
-  {value: 4, abel: 'Apr.'},
-  {value: 5, label: 'May'}, {value: 6, abel: 'Jun.'}, {value: 7, abel: 'Jul.'}, {value: 8, abel: 'Aug.'},
-  {value: 9, label: 'Sep.'},//, {value: 10, abel: 'Oct.'}, {value: 11, abel: 'Nov.'}, {value: 12, abel: 'Dec.'},
+// const marks = [
+//   //{value: 1, label: 'Jan.'}, {value: 2, abel: 'Feb.'}, {value: 3, abel: 'Mar.'}, 
+//   {value: 4, abel: 'Apr.'},
+//   {value: 5, label: 'May'}, {value: 6, abel: 'Jun.'}, {value: 7, abel: 'Jul.'}, {value: 8, abel: 'Aug.'},
+//   {value: 9, label: 'Sep.'},//, {value: 10, abel: 'Oct.'}, {value: 11, abel: 'Nov.'}, {value: 12, abel: 'Dec.'},
   
-];
+// ];
 
 
 function BarChart(props) {
-  let colors = {"USA": nationColor, 
-                  stateName: stateColor, 
-                  "County": countyColor};
+  
   if (props.stateFips !== "_nation") {
   return (
     <VictoryChart
@@ -181,7 +178,9 @@ export default function StateMap(props) {
   const [mortality, setMortality] = useState();
   const [percentChangeMortality, setPercentChangeMortality] = useState();
   const [pctPositive, setPctPositive] = useState();
-  const [pctBedsOccupied, setPctBedsOccupied] = useState();
+  const [totalCases, setTotalCases] = useState();
+  const [hospDaily, setHospDaily] = useState();
+  const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
   const [index, setIndex] = useState();
   const [indexP, setIndexP] = useState();
 
@@ -193,8 +192,17 @@ export default function StateMap(props) {
   const [countyOption, setCountyOption] = useState();
 
   const [delayHandler, setDelayHandler] = useState();
-  const [temp, setTemp] = useState();
+
   
+  const [accstate, setAccstate] = useState({ activeIndex: 1 });
+
+  const dealClick = (e, titleProps) => {
+  const { index } = titleProps
+  const { activeIndex } = accstate
+  const newIndex = activeIndex === index ? -1 : index
+
+  setAccstate({ activeIndex: newIndex })
+  }
 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
@@ -211,7 +219,7 @@ export default function StateMap(props) {
       .then(x => {
         setCountyOption(_.filter(_.map(x, d=> {
           return {key: d.id, value: d.value, text: d.text, group: d.state};
-        }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough")));
+        }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
       });
   }, []);
 
@@ -219,7 +227,7 @@ export default function StateMap(props) {
     fetch('/data/racedataAll.json').then(res => res.json())
       .then(x => {
         setRaceData(x);
-        setTemp(x[stateFips]);
+        // setTemp(x[stateFips]);
       });
 
   }, []);
@@ -307,8 +315,9 @@ export default function StateMap(props) {
           let percentChangeMortality = 0;
           let index = 0;
           let indexP = 0;
-          let percentBedsOccupied = 0;
-
+          let hospD = 0;
+          let totCases = 0;
+          let percentChangeHospDaily = 0;
           let percentPositive = 0;
 
           _.each(x, (v, k)=>{
@@ -333,34 +342,22 @@ export default function StateMap(props) {
                 mortality = v[v.length-1].dailyMortality;
               }
 
+              if(stateFips === "_nation"){
+                totCases = 0;
+              }else{
+                totCases = v[v.length-1].cases;
+              }
+
+              percentChangeHospDaily = v[v.length-1].percent14dayhospDaily;
+              if(stateFips === "_nation"){
+                hospD = 0;
+              }else{
+                hospD = v[v.length-1].hospDaily;
+              }
+
               percentPositive = v[v.length-1].percentPositive;
 
-              if(v[v.length-1].pctBedsOccupied === 0){
-                for (var i = v.length - 1; i >= 0; i--) {
-                  if (v[i].pctBedsOccupied === 0){
-
-                }else{
-                  percentBedsOccupied = v[i].pctBedsOccupied;
-                  i = 0;
-                }
-              }
               
-
-            }
-
-              if((k.length===2 || stateFips === "_nation") && v[v.length-1].pctBedsOccupied === 0){
-                for (var i = v.length - 1; i >= 0; i--) {
-                  if (i ===0 ){
-                    index = 1;
-                    percentBedsOccupied = "None Reported";
-                  }else if (v[i].pctBedsOccupied === 0){
-                  }else{
-                    index = v.length - i;
-                    percentBedsOccupied = v[i].pctBedsOccupied;
-                    i = 0;
-                  }
-                }
-              }
 
               if(k.length===2 || stateFips === "_nation" && v[v.length-1].percentPositive === 0){
                 for (var i = v.length - 1; i >= 0; i--) {
@@ -397,19 +394,25 @@ export default function StateMap(props) {
             setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
           }
 
+          if (percentChangeHospDaily.toFixed(0) > 0){
+            setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
+          }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
+            setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
+          }else{
+            setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
+          }
+
           setPctPositive(percentPositive.toFixed(0) + "%");
           setIndexP(indexP);
 
-          if(typeof percentBedsOccupied === "string"){
-            setPctBedsOccupied(percentBedsOccupied);
-          }else{
-            setPctBedsOccupied(percentBedsOccupied.toFixed(0) + "%");
-          }
+          
             
           setIndex(index);
 
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
           setMortality(numberWithCommas(mortality.toFixed(0)));
+          setTotalCases(numberWithCommas(totCases.toFixed(0)));
+          setHospDaily(numberWithCommas(hospD.toFixed(0)));
 
           setCountyFips(countyMost);
 
@@ -623,11 +626,11 @@ export default function StateMap(props) {
               </div>
             </Grid.Column>
             <Grid.Column style = {{width:235}}>
-              <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Percent Occupied Beds</center>
+              <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Total Cases To Date</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
               <VictoryChart theme={VictoryTheme.material}
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
-                            maxDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-index].t , y: getMax(dataTS[stateFips], "pctBedsOccupied")*1.1}}
+                            // minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
+                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "cases", dataTS[stateFips].length-15)*1.5}}                            
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -635,10 +638,9 @@ export default function StateMap(props) {
                             
                             <VictoryAxis
                               tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length-(index+15)].t,
-                                dataTS[stateFips][dataTS[stateFips].length-(index+10)].t,
-                                dataTS[stateFips][dataTS[stateFips].length-(index+5)].t,
-                                dataTS[stateFips][dataTS[stateFips].length-(index)].t]}                
+                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3)*2 - 1].t,
+                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3) - 1].t,
+                                dataTS[stateFips][dataTS[stateFips].length-1].t]}              
                               style={{tickLabels: {fontSize: 10}}} 
                               tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                             
@@ -647,7 +649,7 @@ export default function StateMap(props) {
                             >
 
                               <VictoryLine data={dataTS[stateFips] ? dataTS[stateFips] : dataTS["_"]}
-                                x='t' y='pctBedsOccupied'
+                                x='t' y='cases'
                                 />
 
                             </VictoryGroup>
@@ -655,10 +657,13 @@ export default function StateMap(props) {
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
                               data={dataTS[stateFips]? dataTS[stateFips] : dataTS["_"]}
-                              x= 't' y = 'pctBedsOccupied'
+                              x= 't' y = 'cases'
 
                             />
-                            <VictoryLabel text= {stateFips === "_nation" ? 0 :pctBedsOccupied} x={115} y={60} textAnchor="middle" style={{fontSize: (pctBedsOccupied === "None Reported" && stateFips !== "_nation")? 30: 50, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? 0 : totalCases} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+                            {/* <VictoryLabel text= {stateFips === "_nation" ? "" : percentChangeHospDaily} x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/> */}
 
                 </VictoryChart>
               </div>
@@ -742,7 +747,7 @@ export default function StateMap(props) {
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       <VictoryGroup>
                                       
                                       
@@ -866,7 +871,7 @@ export default function StateMap(props) {
                                     >
 
                                       <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
-                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, axis: {labels: {fill: '#000000'}}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                      <VictoryAxis dependentAxis style={{ticks:{stroke: "#e5f2f7"}, axis: {stroke: "#000000"},grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                       
                                         <VictoryGroup>
 
@@ -1031,9 +1036,9 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <text style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Percentage of inpatient
-                    beds occupied by COVID-19 patients. <br/><br/>
-                    <i>Data source</i>:  <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/nhsn/datastat/index.html" target = "_blank" rel="noopener noreferrer">CDC's NHSN </a><br/>
+                    Total COVID-19 Cases <br/>
+                    <br/><br/><br/>
+                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </text>
                 </Grid.Column>
                 <Grid.Column style={{left: 9, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
@@ -1054,31 +1059,49 @@ export default function StateMap(props) {
               
             </Grid.Row>
 
-            {stateFips !== "_nation" && stateFips === "38" &&
-            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                      Percent Occupied Beds updated on 07/07/2020.
-                      <br/>
-                      {stateName} is not reporting deaths by race or ethnicity.
-                    </text>
-            </Grid.Row>
-            }
-                     
-            {stateFips !== "_nation" && stateFips !== "38" &&
-            <Grid.Row style={{paddingTop: 20, paddingBottom: 50, paddingLeft: 15}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                      Percent Occupied Beds updated on 07/07/2020.
-                      <br/>
-                      {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
-                    </text>
-            </Grid.Row>
-            }
+            <Accordion>
+                <Accordion.Title
+                  active={accstate.activeIndex === 0}
+                  index={0}
+                  onClick={dealClick}
+                  style ={{color: "#397AB9", fontSize: "14pt"}}
+                >
+                <Icon name='dropdown' />
+                  About this data
+                </Accordion.Title>
+                <Accordion.Content active={accstate.activeIndex === 0}>
+
+                  {stateFips !== "_nation" && stateFips === "38" &&
+                  <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                          <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                            Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                            <br/>
+                            {stateName} is not reporting deaths by race or ethnicity.
+                          </text>
+                  </Grid.Row>
+                  }
+                          
+                  {stateFips !== "_nation" && stateFips !== "38" &&
+                  <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                          <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                            Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                            <br/>
+                            {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
+                          </text>
+                  </Grid.Row>
+                  }
+
+                  { false && 
+                    <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+                  }
+
+              </Accordion.Content>
+
+            </Accordion>  
 
           </Grid>
         }
-        { 
-          <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
-        }
+        
 
         { 
          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 37, paddingBottom: 35}}> COVID-19 County Outcomes </Divider>
@@ -1199,13 +1222,30 @@ export default function StateMap(props) {
                     )}
                   </Geographies>
                 </ComposableMap>
+                <Accordion>
+                  <Accordion.Title
+                    active={accstate.activeIndex === 0}
+                    index={0}
+                    onClick={dealClick}
+                    style ={{color: "#397AB9", fontSize: "14pt"}}
+                  >
+                  <Icon name='dropdown'/>
+                    About this data
+                  </Accordion.Title>
+                    <Accordion.Content active={accstate.activeIndex === 0}>
+                    <Grid.Row style={{width: "420px"}}>
+                        <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                        For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                        <br/><br/>
+                        Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                        </text>
 
-                <Grid.Row style={{paddingTop: "65px", width: "420px"}}>
-                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                    <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                    For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                    </text>
-                </Grid.Row>
+
+                    </Grid.Row>
+                  </Accordion.Content>
+
+                </Accordion> 
               </Grid.Column>
               <Grid.Column width={6} style={{padding: 0, paddingLeft: 40}}>
                 <Header as='h2' style={{fontWeight: 400, width: 410}}>
@@ -1218,7 +1258,7 @@ export default function StateMap(props) {
                       determine whether it is safe to reopen a county.
                       <br/>
                       <br/>
-                      <p style={{color: "#024174", fontWeight: 500}}> Click and drag or zoom on the graphs below.</p>
+                      {/* <p style={{color: "#024174", fontWeight: 500}}> Click and drag or zoom on the graphs below.</p> */}
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -1242,17 +1282,25 @@ export default function StateMap(props) {
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
                         maxDomain = {{x: dataTS["_nation"][dataTS["_nation"].length-1].t}}
-                        containerComponent={<VictoryZoomContainer zoomDomain={{x: [
-                          dataTS["_nation"][92].t,
-                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} flyoutStyle={{fill: "white"}}/> }
+                        containerComponent={<VictoryVoronoiContainer flyoutStyle= {{fill: "white"}}/>}
                         >
                         
-                        <VictoryAxis tickCount={4}
+                        <VictoryAxis 
                                
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
-                          tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
+                          tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
+                          tickValues={[
+
+                            // dataTS["_nation"][30].t,
+                            // dataTS["_nation"][91].t,
+                            // dataTS["_nation"][153].t,
+                            dataTS["_nation"][0].t,
+                            dataTS["_nation"][61].t,
+                            dataTS["_nation"][122].t,
+                            dataTS["_nation"][183].t,
+                            dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                         <VictoryAxis dependentAxis tickCount={5}
-                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "#000000", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
+                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
                           tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
@@ -1309,16 +1357,23 @@ export default function StateMap(props) {
                         height={170}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
-                        containerComponent={<VictoryZoomContainer zoomDomain={{x: [
-                          dataTS["_nation"][92].t,
-                          dataTS["_nation"][dataTS["_nation"].length-1].t]}} flyoutStyle={{fill: "white"}}/> }
+                        containerComponent={<VictoryVoronoiContainer flyoutStyle= {{fill: "white"}}/> }
                         >
                         <VictoryAxis tickCount={4}
                           
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
-                          tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
+                          tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
+                          tickValues={[
+                            // dataTS["_nation"][30].t,
+                            // dataTS["_nation"][91].t,
+                            // dataTS["_nation"][153].t,
+                            dataTS["_nation"][0].t,
+                            dataTS["_nation"][61].t,
+                            dataTS["_nation"][122].t,
+                            dataTS["_nation"][183].t,
+                            dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                         <VictoryAxis dependentAxis tickCount={5}
-                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "#000000", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
+                         style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
                          tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                           />
                         <VictoryGroup 
@@ -1461,9 +1516,7 @@ export default function StateMap(props) {
                 </Grid>
               </Grid.Column>
 
-            </Grid.Row>  
-            <span style={{color: '#73777B', fontSize: "14pt", paddingBottom: 40}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
-          
+            </Grid.Row>            
           </Grid>
           } 
           </div>
