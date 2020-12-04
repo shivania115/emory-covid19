@@ -886,7 +886,7 @@ export default function ExtraFile(props) {
                                 data={dataTS["_nation"]}
                                 style={{
                                   data: {
-                                    fill: casesColor[0]
+                                    fill: casesColor[1]
                                   }
                                 }}
                                 x="t"
@@ -894,7 +894,7 @@ export default function ExtraFile(props) {
                               />
                             </VictoryGroup>
                             <VictoryGroup 
-                                colorScale={[casesColor[1]]}
+                                colorScale={[mortalityColor[1]]}
                             >
                                 <VictoryLine data={dataTS["_nation"]}
                                   x='t' y='caseRateMean'
@@ -995,7 +995,7 @@ export default function ExtraFile(props) {
                                 data={dataTS["_nation"]}
                                 style={{
                                   data: {
-                                    fill: mortalityColor[0]
+                                    fill: casesColor[1]
                                   }
                                 }}
                                 x="t"
