@@ -50,11 +50,17 @@ export default function AboutUs(props){
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Mark Hutcheson, BS</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Yubin Park, PhD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Daesung Choi, PhD</List.Item>
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Jing Zhang, PhD</List.Item>                
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Pooja Naik, B.Pharm</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Star Liu</List.Item>
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Star Liu</List.Item>               
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Leanna Ehrlich, BA</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Neil K. Mehta, PhD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Vince Marconi, MD</List.Item>                
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Joel P. Baumgart, PhD</List.Item> 
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Ke Sun</List.Item>                
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Sryia Naga Karra</List.Item>     
+           
+                               
               </List>
             </Grid.Column>
             <Grid.Column>
@@ -71,6 +77,12 @@ export default function AboutUs(props){
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Yi-Ann Co, PhD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Samaah Sullivan, MD</List.Item>
                 <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Mohammed K. Ali, MD</List.Item>
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Xinzhu Wang, BA</List.Item>
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Kaifu Xiao</List.Item>                
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Isha Gavas</List.Item>                
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Aditya Rao</List.Item>                
+                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Alka Rao</List.Item> 
+
 
               </List>
             </Grid.Column>

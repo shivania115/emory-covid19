@@ -394,13 +394,13 @@ export default function StateMap(props) {
             setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
           }
 
-          if (percentChangeHospDaily.toFixed(0) > 0){
-            setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
-          }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
-            setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
-          }else{
-            setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
-          }
+          // if (percentChangeHospDaily.toFixed(0) > 0){
+          //   setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
+          // }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
+          //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
+          // }else{
+          //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
+          // }
 
           setPctPositive(percentPositive.toFixed(0) + "%");
           setIndexP(indexP);
@@ -648,7 +648,7 @@ export default function StateMap(props) {
                               colorScale={[stateColor]}
                             >
 
-                              <VictoryLine data={dataTS[stateFips] ? dataTS[stateFips] : dataTS["_"]}
+                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
                                 x='t' y='cases'
                                 />
 
@@ -656,7 +656,7 @@ export default function StateMap(props) {
 
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips]? dataTS[stateFips] : dataTS["_"]}
+                              data={dataTS[stateFips] && stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
                               x= 't' y = 'cases'
 
                             />
