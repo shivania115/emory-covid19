@@ -1,480 +1,480 @@
 {
   "black": [
     {
-      "caserate7day": 69.2440583221372,
-      "caserate": 5104.73103722259,
-      "quintGroup": "[0,0.509]",
+      "caserate7day": 74.9315704199632,
+      "caserate": 5196.40352369563,
+      "quintGroup": "[0,0.508]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 68.4839883863998,
-      "caserate": 4758.37354308676,
-      "quintGroup": "(0.509,1.29]",
+      "caserate7day": 74.3739349245582,
+      "caserate": 4855.28990060598,
+      "quintGroup": "(0.508,1.29]",
       "label": "Q2"
     },
     {
-      "caserate7day": 64.6721977156818,
-      "caserate": 4685.97984173025,
-      "quintGroup": "(1.29,4.02]",
+      "caserate7day": 69.3106191715778,
+      "caserate": 4760.90860794759,
+      "quintGroup": "(1.29,4.01]",
       "label": "Q3"
     },
     {
-      "caserate7day": 55.3306437213969,
-      "caserate": 4491.89873382457,
-      "quintGroup": "(4.02,14.2]",
+      "caserate7day": 60.9939173977603,
+      "caserate": 4572.18652549166,
+      "quintGroup": "(4.01,14.2]",
       "label": "Q4"
     },
     {
-      "caserate7day": 38.6930059261874,
-      "caserate": 4875.02338438085,
+      "caserate7day": 42.5956052619904,
+      "caserate": 4930.6669537272,
       "quintGroup": "(14.2,87.4]",
       "label": "Highest 20%"
     }
   ],
   "male": [
     {
-      "caserate7day": 47.9069585493521,
-      "caserate": 4536.12042739403,
+      "caserate7day": 52.3016174076967,
+      "caserate": 4607.93898981342,
       "quintGroup": "[41.4,48.7]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 56.3696757184887,
-      "caserate": 4387.28043435274,
+      "caserate7day": 60.5315513422074,
+      "caserate": 4454.26246467835,
       "quintGroup": "(48.7,49.3]",
       "label": "Q2"
     },
     {
-      "caserate7day": 60.8504359351058,
-      "caserate": 4506.46308928834,
+      "caserate7day": 66.906551927905,
+      "caserate": 4591.08516578072,
       "quintGroup": "(49.3,49.9]",
       "label": "Q3"
     },
     {
-      "caserate7day": 67.9866841195223,
-      "caserate": 5063.77869880357,
-      "quintGroup": "(49.9,50.9]",
+      "caserate7day": 72.9548183582219,
+      "caserate": 5148.39636109771,
+      "quintGroup": "(49.9,51]",
       "label": "Q4"
     },
     {
-      "caserate7day": 63.289299344567,
-      "caserate": 5422.56012687294,
-      "quintGroup": "(50.9,79]",
+      "caserate7day": 69.4921350481997,
+      "caserate": 5513.71977258814,
+      "quintGroup": "(51,79]",
       "label": "Highest 20%"
     }
   ],
   "poverty": [
     {
-      "caserate7day": 64.0183988180082,
-      "caserate": 4823.73446008071,
+      "caserate7day": 68.163025327052,
+      "caserate": 4905.27691919133,
       "quintGroup": "[2.3,10.2]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 66.3670111250914,
-      "caserate": 4808.48812243811,
+      "caserate7day": 71.27477230138,
+      "caserate": 4890.69812233624,
       "quintGroup": "(10.2,13.3]",
       "label": "Q2"
     },
     {
-      "caserate7day": 59.2697465871952,
-      "caserate": 4436.43305642699,
+      "caserate7day": 65.0300606443465,
+      "caserate": 4515.64329526391,
       "quintGroup": "(13.3,16.1]",
       "label": "Q3"
     },
     {
-      "caserate7day": 54.9479901208871,
-      "caserate": 4609.86345579506,
+      "caserate7day": 59.7733567275717,
+      "caserate": 4685.84897343361,
       "quintGroup": "(16.1,20.2]",
       "label": "Q4"
     },
     {
-      "caserate7day": 51.833253885325,
-      "caserate": 5242.20689142192,
+      "caserate7day": 58.0005573137433,
+      "caserate": 5322.09320411742,
       "quintGroup": "(20.2,55.1]",
       "label": "Highest 20%"
     }
   ],
   "age65over": [
     {
-      "caserate7day": 56.893593121715,
-      "caserate": 5294.72049816197,
+      "caserate7day": 63.6086568088841,
+      "caserate": 5391.70360614434,
       "quintGroup": "[3.8,14.8]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 57.8867817647775,
-      "caserate": 5000.6337522615,
+      "caserate7day": 63.2792053268824,
+      "caserate": 5061.81549871701,
       "quintGroup": "(14.8,17]",
       "label": "Q2"
     },
     {
-      "caserate7day": 61.7682358087764,
-      "caserate": 4730.77693492297,
+      "caserate7day": 67.2703659540078,
+      "caserate": 4819.45635481984,
       "quintGroup": "(17,19]",
       "label": "Q3"
     },
     {
-      "caserate7day": 63.3276365276708,
-      "caserate": 4673.58912923047,
+      "caserate7day": 67.7822972670666,
+      "caserate": 4755.94786081219,
       "quintGroup": "(19,21.5]",
       "label": "Q4"
     },
     {
-      "caserate7day": 56.5633057205103,
-      "caserate": 4221.47912240395,
+      "caserate7day": 60.3022290947789,
+      "caserate": 4291.18457584812,
       "quintGroup": "(21.5,55.6]",
       "label": "Highest 20%"
     }
   ],
   "minority": [
     {
-      "caserate7day": 67.7154256749956,
-      "caserate": 4607.43278737116,
+      "caserate7day": 72.151206064428,
+      "caserate": 4696.74756686629,
       "quintGroup": "[0,6.29]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 68.2447505469391,
-      "caserate": 4913.62215682842,
+      "caserate7day": 72.8817263112,
+      "caserate": 4990.9363120421,
       "quintGroup": "(6.29,12.1]",
       "label": "Q2"
     },
     {
-      "caserate7day": 60.8855657172574,
-      "caserate": 4625.4457652307,
+      "caserate7day": 66.0619955972734,
+      "caserate": 4702.43295941668,
       "quintGroup": "(12.1,22.8]",
       "label": "Q3"
     },
     {
-      "caserate7day": 50.6000993646853,
-      "caserate": 4580.0514669868,
-      "quintGroup": "(22.8,40]",
+      "caserate7day": 55.5133851128636,
+      "caserate": 4642.35043106157,
+      "quintGroup": "(22.8,39.9]",
       "label": "Q4"
     },
     {
-      "caserate7day": 48.8494145499578,
-      "caserate": 5194.4828703191,
-      "quintGroup": "(40,99.3]",
+      "caserate7day": 55.5012232459021,
+      "caserate": 5287.88247583083,
+      "quintGroup": "(39.9,99.3]",
       "label": "Highest 20%"
     }
   ],
   "groupquarter": [
     {
-      "caserate7day": 51.6529363385817,
-      "caserate": 4085.75236949061,
+      "caserate7day": 55.8671418039505,
+      "caserate": 4154.59078388315,
       "quintGroup": "[0,1.11]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 61.6721101777986,
-      "caserate": 4821.08488994668,
+      "caserate7day": 67.5221423001428,
+      "caserate": 4902.62600234835,
       "quintGroup": "(1.11,1.62]",
       "label": "Q2"
     },
     {
-      "caserate7day": 62.604063141771,
-      "caserate": 4843.9407654353,
+      "caserate7day": 68.0499623591124,
+      "caserate": 4928.19984377879,
       "quintGroup": "(1.62,2.52]",
       "label": "Q3"
     },
     {
-      "caserate7day": 61.5071297077256,
-      "caserate": 4809.94577079995,
+      "caserate7day": 66.7508236701011,
+      "caserate": 4894.50164038038,
       "quintGroup": "(2.52,4.65]",
       "label": "Q4"
     },
     {
-      "caserate7day": 59.0545061101661,
-      "caserate": 5358.49558581739,
+      "caserate7day": 64.0917788261917,
+      "caserate": 5438.28265622187,
       "quintGroup": "(4.65,55.7]",
       "label": "Highest 20%"
     }
   ],
   "diabetes": [
     {
-      "caserate7day": 62.4493458568088,
-      "caserate": 4645.83529911519,
-      "quintGroup": "[1.5,7.22]",
+      "caserate7day": 66.5971832637723,
+      "caserate": 4730.40487902154,
+      "quintGroup": "[1.5,7.2]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 63.5706208731978,
-      "caserate": 4811.04507071273,
-      "quintGroup": "(7.22,9]",
+      "caserate7day": 69.8479639284544,
+      "caserate": 4895.63221759164,
+      "quintGroup": "(7.2,9]",
       "label": "Q2"
     },
     {
-      "caserate7day": 59.3803768016796,
-      "caserate": 4756.08268532862,
+      "caserate7day": 64.666668972377,
+      "caserate": 4835.4656015882,
       "quintGroup": "(9,10.7]",
       "label": "Q3"
     },
     {
-      "caserate7day": 57.2755388640565,
-      "caserate": 4721.67801252581,
+      "caserate7day": 62.5246550379014,
+      "caserate": 4797.62884107361,
       "quintGroup": "(10.7,13.2]",
       "label": "Q4"
     },
     {
-      "caserate7day": 53.6562532088986,
-      "caserate": 4984.80412343701,
+      "caserate7day": 58.4744629628746,
+      "caserate": 5059.10637028813,
       "quintGroup": "(13.2,33]",
       "label": "Highest 20%"
     }
   ],
   "hispanic": [
     {
-      "caserate7day": 61.2008985032466,
-      "caserate": 4542.74393811246,
+      "caserate7day": 66.8258965751071,
+      "caserate": 4634.02616417234,
       "quintGroup": "[0,1.86]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 64.0077628416281,
-      "caserate": 5162.42629892359,
+      "caserate7day": 67.9435130037034,
+      "caserate": 5229.40242926464,
       "quintGroup": "(1.86,3.11]",
       "label": "Q2"
     },
     {
-      "caserate7day": 59.3053142987721,
-      "caserate": 4938.8771248421,
-      "quintGroup": "(3.11,5.55]",
+      "caserate7day": 64.022672555113,
+      "caserate": 5022.68774073281,
+      "quintGroup": "(3.11,5.54]",
       "label": "Q3"
     },
     {
-      "caserate7day": 52.9512305246234,
-      "caserate": 4413.56657435849,
-      "quintGroup": "(5.55,12.4]",
+      "caserate7day": 58.3918143535664,
+      "caserate": 4487.13897224192,
+      "quintGroup": "(5.54,12.3]",
       "label": "Q4"
     },
     {
-      "caserate7day": 58.9731296018526,
-      "caserate": 4858.46621187326,
-      "quintGroup": "(12.4,99.1]",
+      "caserate7day": 65.0567757947983,
+      "caserate": 4941.8623071661,
+      "quintGroup": "(12.3,99.1]",
       "label": "Highest 20%"
     }
   ],
   "natives": [
     {
-      "caserate7day": 58.0987036051791,
-      "caserate": 4545.28599230908,
+      "caserate7day": 62.0925943954714,
+      "caserate": 4617.52025522452,
       "quintGroup": "[0,0.138]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 56.1973870846273,
-      "caserate": 4542.80339760737,
+      "caserate7day": 60.134181654964,
+      "caserate": 4621.62106832829,
       "quintGroup": "(0.138,0.273]",
       "label": "Q2"
     },
     {
-      "caserate7day": 55.8567066810226,
-      "caserate": 4688.20213343629,
+      "caserate7day": 60.134279026211,
+      "caserate": 4751.46229827542,
       "quintGroup": "(0.273,0.476]",
       "label": "Q3"
     },
     {
-      "caserate7day": 56.7656894132201,
-      "caserate": 4789.5093565077,
+      "caserate7day": 63.072990203224,
+      "caserate": 4880.07887367506,
       "quintGroup": "(0.476,1.09]",
       "label": "Q4"
     },
     {
-      "caserate7day": 69.5756062022674,
-      "caserate": 5353.25635299772,
+      "caserate7day": 76.8742849844446,
+      "caserate": 5447.80630288565,
       "quintGroup": "(1.09,92.5]",
       "label": "Highest 20%"
     }
   ],
   "urbanrural": [
     {
-      "caserate7day": 47.2659260748571,
-      "caserate": 4130.78984643651,
+      "caserate7day": 52.292767663254,
+      "caserate": 4189.55627700635,
       "quintGroup": "Large Central Metro",
       "label": "Large Central Metro"
     },
     {
-      "caserate7day": 50.2348103257307,
-      "caserate": 3814.46660694601,
+      "caserate7day": 53.8854831568516,
+      "caserate": 3874.70102970144,
       "quintGroup": "Large Fringe Metro",
       "label": "Large Fringe Metro"
     },
     {
-      "caserate7day": 50.6616456498642,
-      "caserate": 4241.36565257199,
+      "caserate7day": 55.929489729222,
+      "caserate": 4309.03895234573,
       "quintGroup": "Medium Metro",
       "label": "Medium Metro"
     },
     {
-      "caserate7day": 61.5895663409789,
-      "caserate": 5019.13217144824,
+      "caserate7day": 67.2950691735605,
+      "caserate": 5104.47449644281,
       "quintGroup": "Micropolitan (Nonmetro)",
       "label": "Micropolitan (Nonmetro)"
     },
     {
-      "caserate7day": 64.3285957490956,
-      "caserate": 5116.82070779643,
+      "caserate7day": 69.6504654586832,
+      "caserate": 5204.29782052279,
       "quintGroup": "NonCore (Nonmetro)",
       "label": "NonCore (Nonmetro)"
     },
     {
-      "caserate7day": 57.3995540938577,
-      "caserate": 4827.22691284765,
+      "caserate7day": 62.247413138523,
+      "caserate": 4903.59653717451,
       "quintGroup": "Small Metro",
       "label": "Small Metro"
     }
   ],
   "obesity": [
     {
-      "caserate7day": 51.9564987012601,
-      "caserate": 3985.89140395668,
+      "caserate7day": 56.7100847082546,
+      "caserate": 4062.65326727452,
       "quintGroup": "[12.3,28]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 63.6041565659096,
-      "caserate": 4731.88637057602,
+      "caserate7day": 68.8142163855695,
+      "caserate": 4815.98454294227,
       "quintGroup": "(28,31.5]",
       "label": "Q2"
     },
     {
-      "caserate7day": 60.4437397993335,
-      "caserate": 4844.49458131676,
-      "quintGroup": "(31.5,34.3]",
+      "caserate7day": 64.9873444583733,
+      "caserate": 4919.87281232676,
+      "quintGroup": "(31.5,34.4]",
       "label": "Q3"
     },
     {
-      "caserate7day": 63.9788693071127,
-      "caserate": 5231.04591556083,
-      "quintGroup": "(34.3,37.5]",
+      "caserate7day": 69.2003672007542,
+      "caserate": 5313.65606132977,
+      "quintGroup": "(34.4,37.5]",
       "label": "Q4"
     },
     {
-      "caserate7day": 56.3613564540936,
-      "caserate": 5122.45891474115,
+      "caserate7day": 62.4727497555995,
+      "caserate": 5203.01320265423,
       "quintGroup": "(37.5,57.9]",
       "label": "Highest 20%"
     }
   ],
   "hhincome": [
     {
-      "caserate7day": 54.0902906390243,
-      "caserate": 4985.83590661857,
+      "caserate7day": 59.3222210579501,
+      "caserate": 5062.73859481422,
       "quintGroup": "[3.36e+04,5.56e+04]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 59.3112115024049,
-      "caserate": 4732.28054491671,
+      "caserate7day": 64.0623690417901,
+      "caserate": 4808.81676307416,
       "quintGroup": "(5.56e+04,6.18e+04]",
       "label": "Q2"
     },
     {
-      "caserate7day": 65.2527135466017,
-      "caserate": 4922.50992751695,
+      "caserate7day": 70.7060857169357,
+      "caserate": 5021.61120517822,
       "quintGroup": "(6.18e+04,6.83e+04]",
       "label": "Q3"
     },
     {
-      "caserate7day": 66.3912008357236,
-      "caserate": 5224.42707689553,
-      "quintGroup": "(6.83e+04,7.77e+04]",
+      "caserate7day": 71.9878903664085,
+      "caserate": 5302.91302622422,
+      "quintGroup": "(6.83e+04,7.76e+04]",
       "label": "Q4"
     },
     {
-      "caserate7day": 51.3795487416408,
-      "caserate": 4050.6114246311,
-      "quintGroup": "(7.77e+04,1.82e+05]",
+      "caserate7day": 56.1417879949767,
+      "caserate": 4119.41048320888,
+      "quintGroup": "(7.76e+04,1.82e+05]",
       "label": "Highest 20%"
     }
   ],
   "region": [
     {
-      "caserate7day": 79.1292725637339,
-      "caserate": 6031.45030290169,
+      "caserate7day": 85.0797688437514,
+      "caserate": 6131.80407914296,
       "quintGroup": "Midwest",
       "label": "Midwest"
     },
     {
-      "caserate7day": 39.881346955614,
-      "caserate": 2213.64412134923,
+      "caserate7day": 44.1192065985968,
+      "caserate": 2279.29565651787,
       "quintGroup": "Northeast",
       "label": "Northeast"
     },
     {
-      "caserate7day": 47.2753994223363,
-      "caserate": 4513.29191541645,
+      "caserate7day": 51.9093013240791,
+      "caserate": 4576.13850325049,
       "quintGroup": "South",
       "label": "South"
     },
     {
-      "caserate7day": 60.3329231075545,
-      "caserate": 3966.79569135613,
+      "caserate7day": 65.66504775776,
+      "caserate": 4057.18042250479,
       "quintGroup": "West",
       "label": "West"
     }
   ],
   "CVI": [
     {
-      "caserate7day": 65.2984032625545,
-      "caserate": 5057.72093408368,
+      "caserate7day": 70.2065347109363,
+      "caserate": 5145.66551477314,
       "quintGroup": "[0,0.2]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 65.1159154882197,
-      "caserate": 4675.33936332684,
+      "caserate7day": 70.1172937397611,
+      "caserate": 4753.6272832087,
       "quintGroup": "(0.2,0.4]",
       "label": "Q2"
     },
     {
-      "caserate7day": 61.728270313699,
-      "caserate": 4525.30948381907,
+      "caserate7day": 66.6751084921669,
+      "caserate": 4604.44679507057,
       "quintGroup": "(0.4,0.6]",
       "label": "Q3"
     },
     {
-      "caserate7day": 55.8792200222433,
-      "caserate": 4531.70450347769,
+      "caserate7day": 60.0366367402924,
+      "caserate": 4605.7778856328,
       "quintGroup": "(0.6,0.8]",
       "label": "Q4"
     },
     {
-      "caserate7day": 48.7470473648619,
-      "caserate": 5147.0592224193,
+      "caserate7day": 55.4262366704549,
+      "caserate": 5225.77831347613,
       "quintGroup": "(0.8,539]",
       "label": "Highest 20%"
     }
   ],
   "resSeg": [
     {
-      "caserate7day": 40.2027982604323,
-      "caserate": 4566.59890733857,
+      "caserate7day": 43.5003044275376,
+      "caserate": 4622.34455436326,
       "quintGroup": "[0,31]",
       "label": "Lowest 20%"
     },
     {
-      "caserate7day": 49.2168919111026,
-      "caserate": 4727.74518781034,
+      "caserate7day": 54.4104892116293,
+      "caserate": 4793.95994899591,
       "quintGroup": "(31,42]",
       "label": "Q2"
     },
     {
-      "caserate7day": 54.7896000656184,
-      "caserate": 4769.11030073927,
+      "caserate7day": 60.1193965832971,
+      "caserate": 4841.27454574421,
       "quintGroup": "(42,50]",
       "label": "Q3"
     },
     {
-      "caserate7day": 54.6401459298182,
-      "caserate": 4400.28752405475,
+      "caserate7day": 59.2057845138665,
+      "caserate": 4470.15085946143,
       "quintGroup": "(50,60]",
       "label": "Q4"
     },
     {
-      "caserate7day": 63.5106467167714,
-      "caserate": 4576.26319669011,
+      "caserate7day": 69.5616678233767,
+      "caserate": 4665.1261098258,
       "quintGroup": "(60,90]",
       "label": "Highest 20%"
     }
