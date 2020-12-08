@@ -1077,6 +1077,9 @@ export default function StateMap(props) {
                             Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
                             <br/>
                             {stateName} is not reporting deaths by race or ethnicity.
+                            <br/>
+                            Race data last updated: {new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).toLocaleDateString()}, updated every 3 days. 
+
                           </text>
                   </Grid.Row>
                   }
@@ -1087,6 +1090,9 @@ export default function StateMap(props) {
                             Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
                             <br/>
                             {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
+                            <br/>
+                            Race data last updated: {new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).toLocaleDateString()}, updated every 3 days. 
+
                           </text>
                   </Grid.Row>
                   }
