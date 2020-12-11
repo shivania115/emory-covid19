@@ -82,7 +82,7 @@ function ScatterChart(props) {
         tickFormat={(y) => (props.rescaleX?(Math.round(y/1000)+'k'):(Math.round(y*100)/100))} />
 
       <VictoryAxis dependentAxis label={props.varMap[props.y]?props.varMap[props.y].name:props.y} 
-                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, axisLabel: {padding: 60, fontFamily: 'lato', fontSize: "14pt"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, axisLabel: {padding: 60, fontFamily: 'lato', fontSize: "19px"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
         tickCount={5}
         tickFormat={(y) => (Math.round(y*100)/100)} />
     </VictoryChart>);
@@ -115,7 +115,7 @@ function BarChart(props) {
         data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0},
               {key: props.stateName, 'value': props.data[props.stateFips][props.var] > 0? props.data[props.stateFips][props.var] : 0},
               {key: props.countyName, 'value': props.data[props.stateFips+props.countyFips][props.var] > 0 ? props.data[props.stateFips+props.countyFips][props.var] : 0}]}
-        labelComponent={<VictoryLabel dx={5} style={{fontFamily: 'lato', fill: "#000000", fontSize: 14}}/>}
+        labelComponent={<VictoryLabel dx={5} style={{fontFamily: 'lato', fill: "#000000", fontSize: "19px"}}/>}
         style={{
           data: {
             fill: ({ datum }) => datum.key === props.countyName?countyColor:datum.key === props.stateName?stateColor:nationColor
@@ -236,20 +236,20 @@ export default function CountyReport() {
 
   if (data && dataTS && varMap) {
 
-  return (
+    return (
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
           {config &&
           <div>
-          <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
+          <Breadcrumb style={{fontSize: "19px", paddingTop: "19px"}}>
             <Breadcrumb.Section style ={{color: "#397AB9"}} link onClick={() => history.push('/')}>United States</Breadcrumb.Section>
-            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Divider style={{fontSize: "19px"}}/>
             <Breadcrumb.Section style ={{color: "#397AB9"}} link onClick={() => history.push('/'+stateFips)}>{stateName}</Breadcrumb.Section>
-            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Divider style={{fontSize: "19px"}}/>
             <Breadcrumb.Section active>{countyName}</Breadcrumb.Section>
           </Breadcrumb>
-          <div style={{fontWeight: 300, fontSize: "24pt", paddingTop: 30, paddingBottom: "14pt"}}>
+          <div style={{fontWeight: 300, fontSize: "24pt", paddingTop: 30, paddingBottom: "19px"}}>
             <Header.Content>
               <b>{countyName}, {stateName}</b>
             </Header.Content>
@@ -257,7 +257,7 @@ export default function CountyReport() {
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingBottom: 20}}> SUMMARY OF COVID-19 IN {countyName}, {stateName} </Divider>
               <div>
-                <center style={{fontSize: "14pt", fontWeight: 400, textAlign: "center"}}> COVID-19 Cases in {countyName} </center >
+                <center style={{fontSize: "19px", fontWeight: 400, textAlign: "center"}}> COVID-19 Cases in {countyName} </center >
               </div>
           <Grid style={{paddingTop: '2em', width: "1260px", paddingBottom: "2em"}}>
             <Grid.Row style={{paddingLeft:20}}>
@@ -265,7 +265,7 @@ export default function CountyReport() {
               <Table celled fixed singleLine>
                 <Table.Header>
 
-                  <tr textAlign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                  <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
                       <td colSpan='1' style={{width:150}}> </td>
                       <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE</td>
                       <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE PER 100,000</td>
@@ -273,7 +273,7 @@ export default function CountyReport() {
                       <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> DAILY AVERAGE PER 100,000</td>
                   </tr>
                   <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyName.match(/[^\s]+/)} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName :countyName.match(/[^\s]+/)} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.cases===null || countyMetric.cases < 0?'0':countyMetric.cases.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caseRate===null || countyMetric.caseRate < 0?'0':numberWithCommas(parseFloat(countyMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caseRateMean===null || countyMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(countyMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
@@ -293,13 +293,13 @@ export default function CountyReport() {
             </Grid.Row>
           </Grid>
           <div>
-            <center style={{fontSize: "14pt", fontWeight: 400, textAlign: "center"}}> <br/>COVID-19 Deaths in {countyName} </center >
+            <center style={{fontSize: "19px", fontWeight: 400, textAlign: "center"}}> <br/>COVID-19 Deaths in {countyName} </center >
           </div>  
           <Grid style={{paddingTop: '2em', width: "1260px"}}>
             <Grid.Row style={{paddingLeft:20}}>
               <Table celled fixed singleLine>
                 <Table.Header>
-                  <tr textAlign = 'center' colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                  <tr textalign = 'center' colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
                     <td colSpan='1' style={{width:150}}> </td>
                     <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE</td>
                     <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE PER 100,000</td>
@@ -308,7 +308,7 @@ export default function CountyReport() {
                     <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> CASE FATALITY RATIO</td>
                   </tr>
                   <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyName.match(/[^\s]+/)} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName :countyName.match(/[^\s]+/)} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.deaths===null || countyMetric.deaths < 0?'0':countyMetric.deaths.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.mortality===null || countyMetric.mortality < 0?'0':numberWithCommas(parseFloat(countyMetric.mortality).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.mortalityMean===null || countyMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(countyMetric.mortalityMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
@@ -329,7 +329,7 @@ export default function CountyReport() {
               </Table>
             </Grid.Row>
 
-            <span style={{ color: '#73777B', paddingTop: 20, fontSize:"14pt"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+            <span style={{ color: '#73777B', paddingTop: 20, fontSize:"19px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
 
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 51, paddingBottom: 40}}>COVID-19 Outcomes </Divider>
@@ -480,8 +480,8 @@ export default function CountyReport() {
             <Grid.Row columns={2} style={{paddingBottom: 50}}>
               <Grid.Column>
                 <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55}}>
-                  <Header.Content style={{fontSize: "14pt"}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: "14pt", lineHeight: "16pt"}}>
+                  <Header.Content style={{fontSize: "19px"}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: "19px", lineHeight: "16pt"}}>
                       As of <b>{countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
                       in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
                     </Header.Subheader>
@@ -490,8 +490,8 @@ export default function CountyReport() {
               </Grid.Column>
               <Grid.Column>
                 <Header as='h2' style={{fontWeight: 400, width: 550, paddingLeft: 55}}>
-                  <Header.Content style={{fontSize: "14pt"}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 570, fontSize: "14pt", lineHeight: "16pt"}}>
+                  <Header.Content style={{fontSize: "19px"}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 570, fontSize: "19px", lineHeight: "16pt"}}>
                       As of <b>{countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
                       in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
                     </Header.Subheader>
@@ -500,14 +500,14 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <span style={{color: '#73777B', fontSize:"14pt"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+          <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 10}}>County Characteristics</Divider>
 
           <center style = {{marginLeft: 250, paddingBottom: 20, width: 750}}>
             <Header as='h2' style={{fontWeight: 400, width: 750}}>
-                  <Header.Content style={{fontSize: "14pt"}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 750, fontSize: "14pt", lineHeight: "16pt"}}>
+                  <Header.Content style={{fontSize: "19px"}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 750, fontSize: "19px", lineHeight: "16pt"}}>
                       Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                       Counties with large groups of vulnerable people may be disproportionately impacted by COVID-19. The table below shows {countyName}, {stateName}, 
                       and national statistics regarding the proportion of individuals falling into various high risk categories.
@@ -613,7 +613,7 @@ export default function CountyReport() {
                 
               </Grid.Column>
             </Grid.Row>
-            <span style={{color: '#73777B', fontSize:"14pt"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+            <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
           </Grid>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 54, paddingBottom: 25}}> County Characteristics and Outcomes</Divider>
@@ -630,8 +630,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["casesfig"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -644,8 +644,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["caseratefig"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -658,8 +658,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["RPL_THEME1"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -675,8 +675,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["RPL_THEME2"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -689,8 +689,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["RPL_THEME3"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -703,8 +703,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["RPL_THEME4"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -721,8 +721,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["popden"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -737,8 +737,8 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["hhincome"].name}</b>
                     </Header.Content>
                   </Header.Content>
@@ -751,18 +751,18 @@ export default function CountyReport() {
                   countyFips={countyFips} 
                   stateFips={stateFips}
                   data={data} />
-                  <Header.Content style={{marginLeft:"40%", marginTop: -8}}>
-                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "14pt"}}>
+                  <Header.Content style={{marginLeft:"40%", marginTop: -35}}>
+                    <Header.Content style={{fontWeight: 300, left: 50, paddingBottom:50, fontSize: "10pt", lineHeight: "19px"}}>
                       <b>{varMap["black"].name}</b>
                     </Header.Content>
                   </Header.Content>
               </Grid.Column>
             </Grid.Row>
-            <span style={{color: '#73777B', fontSize:"14pt", paddingTop: "30px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+            <span style={{color: '#73777B', fontSize:"19px", paddingTop: "30px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
 
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '20pt', paddingTop: 54, paddingBottom: 20}}>Data Table</Divider>
-          <Table striped compact basic='very' style={{fontSize: "14pt"}}>
+          <Table striped compact basic='very' style={{fontSize: "19px"}}>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>County Population Characteristics</Table.HeaderCell>
@@ -775,7 +775,7 @@ export default function CountyReport() {
                   {_.map(data[stateFips + countyFips],
                     (v, k) => {
                       var rmList = ["casesfig", "deathsfig", "dailycases", "dailydeaths", "mean7daycases", "mean7daydeaths", "covidmortalityfig"
-                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips"];
+                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips", "region_Code", "_013_Urbanization_Code"];
                       if (!rmList.includes(k)) {
                         return (
                           <Table.Row key={k}>
@@ -796,10 +796,10 @@ export default function CountyReport() {
                     })}
                 </Table.Body>
           </Table>
-          <a style ={{color: "#397AB9", fontSize: "14pt", marginLeft: 12}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> Data Sources and Definitions</a>
+          <a style ={{color: "#397AB9", fontSize: "19px", marginLeft: 12}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> Data Sources and Definitions</a>
 
           <Divider hidden/>
-          <span style={{color: '#73777B', fontSize:"14pt"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+          <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
 
           </div>
         }
