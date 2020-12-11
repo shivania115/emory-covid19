@@ -1256,7 +1256,7 @@ export default function StateMap(props) {
               <Grid.Column width={6} style={{padding: 0, paddingLeft: 40}}>
                 <Header as='h2' style={{fontWeight: 400, width: 410}}>
                   <Header.Content style={{fontSize: 20}}>
-                    Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":countyName}</b>
+                    Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)}</b>
                     <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 410, fontSize: "14pt", lineHeight: "16pt"}}>
                       The number of cases and deaths due to COVID-19 are dynamic. 
                       Cases are declining in many counties and rising in others. 
@@ -1420,7 +1420,7 @@ export default function StateMap(props) {
               <Grid.Column width={5} style={{padding: 0, paddingLeft: 0}}>
                 <Header as='h2' style={{width:410, paddingLeft: 0}}>
                   <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
-                    {stateFips === "_nation" || stateFips === "72"? "":barCountyName} Population Characteristics
+                    {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
                     <Header.Subheader style={{fontWeight: 350, width: 390, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
                     Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                     Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
