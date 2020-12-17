@@ -25,6 +25,9 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 import ReactDOM from 'react-dom';
+import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
+import {HEProvider, useHE} from './HEProvider';
+
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -69,56 +72,6 @@ const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 
 
-function MapLabels(props){
-
-  const offsets = {
-    VT: [50, -8],
-    NH: [34, 2],
-    MA: [30, -1],
-    RI: [28, 2],
-    CT: [35, 10],
-    NJ: [34, 1],
-    DE: [33, 0],
-    MD: [47, 10],
-    DC: [49, 21],
-  };
-
-  return (
-    <svg>
-
-      {props.geographies.map(geo => {
-          const centroid = geoCentroid(geo);
-          const cur = props.stateLabels.find(s => s.val === geo.id);
-          return (
-            <g key={geo.rsmKey + "-name"}>
-              {cur &&
-                centroid[0] > -160 &&
-                centroid[0] < -67 &&
-                (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                  <Marker coordinates={centroid}>
-                    <text y="2" fontSize={14} textAnchor="middle" fill="#eee">
-                      {cur.id}
-                    </text>
-                  </Marker>
-                ) : (
-                  <Annotation
-                    subject={centroid}
-                    dx={offsets[cur.id][0]}
-                    dy={offsets[cur.id][1]}
-                  >
-                    <text x={4} fontSize={14} alignmentBaseline="middle">
-                      {cur.id}
-                    </text>
-                  </Annotation>
-                ))}
-            </g>
-          );
-        })}
-    </svg>
-    );
-}
-
-
 export default function USMap(props) {
   // const [open, setOpen] = React.useState(true)
 
@@ -132,7 +85,7 @@ export default function USMap(props) {
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [dataFltrd, setDataFltrd] = useState();
-  // const [dataState, setDataState] = useState();
+  const [dataStateFltrd, setDataStateFltrd] = useState();
 
   const [stateName, setStateName] = useState('Georgia');
   const [fips, setFips] = useState('13');
@@ -168,9 +121,6 @@ export default function USMap(props) {
   useEffect(()=>{
     fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
-    
-    fetch('/data/allstates.json').then(res => res.json())
-      .then(x => setStateLabels(x));
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -192,66 +142,88 @@ export default function USMap(props) {
 
   }, []);
 
-  useEffect(() => {
-    if (metric) {
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-        
-        setData(x);
-        setDataFltrd(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (d.Population > 10000 && 
-              d.black > 5 && 
-              d.fips.length === 5 && 
-              d['covidmortalityfig'] > 0)));
-      
-        const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
+  useEffect(()=>{
+    let newDict = {};
+    let fltrdArray = [];
+    let stateArray = [];
+    let colorArray = [];
+    let scaleMap = {};
+    var max = 0;
+    var min = 100;
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          if(d[metric] >= 0){
-          scaleMap[d[metric]] = cs(d[metric])}});
-      
-        setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        _.each(x, d=> { 
-          if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-            min = d[metric]
-          }
-        });
+    const fetchNationalRaw = async() => {
+      const mainQ = {all: "all"};
+      const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+      //setData(newDict);      
+      // const testQ = {all: "all"};
+      // const promSeries = await CHED_series.find(testQ,{projection:{}}).toArray();
+      // setTempSeries(promSeries);
 
-        if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
-          setLegendMax(max);
-        }else if (max > 999) {
-          max = (max/1000).toFixed(0) + "K";
-          setLegendMax(max);
-        }else{
-          setLegendMax(max.toFixed(0));
-
+      _.map(promStatic, i=> {
+        if(i.tag === "nationalraw"){
+          newDict[i[Object.keys(i)[3]]] = i.data;
+          // return newDict;
         }
-        setLegendMin(min.toFixed(0));
-        setLegendSplit(cs.quantiles());
-
       });
-    }
-  }, [metric])
+      setData(newDict);       
+      
+      _.filter(newDict, i=> {
+        if(i.tag === "nationalraw"){
+          if(!!i.fips.match('[0-9]{2}')){
+            stateArray.push(i.data);
+          }}});
+      setDataStateFltrd(stateArray);
+  
+      setDataFltrd(_.filter(newDict, 
+        d => (d.Population > 10000 && 
+            d.black > 5 && 
+            d.fips.length === 5 && 
+            d['covidmortalityfig'] > 0)));
 
-  if (data && dataFltrd && stateLabels && allTS) {
+      const cs = scaleQuantile()
+      .domain(_.map(_.filter(newDict, 
+        d => (
+            d[metric] > 0 &&
+            d.fips.length === 5)),
+        d=> d[metric]))
+      .range(colorPalette);
+
+      let scaleMap = {}
+      _.each(newDict, d=>{
+        if(d[metric] > 0){
+        scaleMap[d[metric]] = cs(d[metric])}});
+  
+      setColorScale(scaleMap);
+      setLegendSplit(cs.quantiles());
+  
+      _.each(newDict, d=> { 
+        if (d[metric] > max && d.fips.length === 5) {
+          max = d[metric]
+        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+          min = d[metric]
+        }
+      });
+  
+      if (max > 999999) {
+        max = (max/1000000).toFixed(0) + "M";
+        setLegendMax(max);
+      }else if (max > 999) {
+        max = (max/1000).toFixed(0) + "K";
+        setLegendMax(max);
+      }else{
+        setLegendMax(max.toFixed(0));
+  
+      }
+      setLegendMin(min.toFixed(0));
+      //setFdb();
+    };
+    fetchNationalRaw();
+  }, [metric]);
+
+  if (data && dataFltrd && dataStateFltrd && allTS) {
     
   return (
+    <HEProvider>
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
@@ -487,7 +459,6 @@ export default function USMap(props) {
                             
                           />
                         ))}
-                        <MapLabels geographies={geographies} stateLabels={stateLabels} />
                       </svg>
                     }
                   </Geographies>
@@ -700,7 +671,7 @@ export default function USMap(props) {
                     <Grid.Column > 
                       {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
                         <div style = {{marginTop: 10}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Race</text>
+                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Race</Header.Content>
                         </div>
                       }
                       {stateFips && !raceData[fips]["Non-Hispanic African American"] && stateFips !== "38"  && stateFips !== "02" &&
@@ -815,7 +786,7 @@ export default function USMap(props) {
                       }
                       {!raceData[fips]["Non-Hispanic African American"] && stateFips !== "38" && stateFips !== "02" &&
                         <div style = {{marginTop: 10, textAlign: "center"}}>
-                          <text x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100,000 <br/> residents</text>
+                          <Header.Content x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100,000 <br/> residents</Header.Content>
                         </div>
                       }
 
@@ -834,7 +805,7 @@ export default function USMap(props) {
                     <Grid.Column> 
                       {!!raceData[fips]["White Alone"] && stateFips !== "38" &&
                         <div style = {{marginTop: 10}}>
-                          <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Ethnicity</text>
+                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Ethnicity</Header.Content>
                           {!(stateFips && !!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ))
                               && 
                             <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> None Reported</text> </center>
@@ -1001,7 +972,7 @@ export default function USMap(props) {
                       }
                       {!!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
                         <div style = {{marginTop: 10, textAlign: "center", width: 300}}>
-                          <text style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</text>
+                          <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
                         </div>
                       }
 
@@ -1205,33 +1176,33 @@ export default function USMap(props) {
                   <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
                   
                   {fips === "38" &&
-                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       {stateName} is not reporting deaths by race or ethnicity.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
-                    </text>}
+                    </Header.Content>}
 
                   {stateFips !== "38" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && (!raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
-                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
-                    </text>}
+                    </Header.Content>}
 
                   {stateFips !== "38"  && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
-                    <text style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
-                    </text>}
+                    </Header.Content>}
 
                   {stateFips !== "38"  && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
@@ -1253,6 +1224,7 @@ export default function USMap(props) {
         </Container>
         <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
       </div>
+    </HEProvider>
       );
   } else {
     return <Loader active inline='centered' />

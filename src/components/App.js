@@ -12,7 +12,7 @@ import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
-import {HEProvider, useHE} from './HEProvider';
+import {HEProvider} from './HEProvider';
 
 import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
@@ -46,7 +46,7 @@ function AppUI() {
 
   useEffect(()=>{
     handleAnonymousLogin();
-  }, []);
+  });
 
   return (
     <HEProvider>
