@@ -111,11 +111,6 @@ export default function USMap(props) {
   setAccstate({ activeIndex: newIndex })
   }
 
-  // const [caseRate, setCaseRate] = useState();
-  // const [percentChangeCases, setPercentChangeCases] = useState();
-  // const [mortality, setMortality] = useState();
-  // const [percentChangeMortality, setPercentChangeMortality] = useState();
-
   const [delayHandler, setDelayHandler] = useState();
 
   useEffect(()=>{
@@ -132,17 +127,6 @@ export default function USMap(props) {
   }, []);
 
   useEffect(()=>{
-    fetch('/data/timeseriesAll.json').then(res => res.json())
-      .then(x => setAllTS(x));
-  }, []);
-
-  useEffect(()=>{
-    fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => setRaceData(x));
-
-  }, []);
-
-  useEffect(()=>{
     let newDict = {};
     let fltrdArray = [];
     let stateArray = [];
@@ -154,19 +138,17 @@ export default function USMap(props) {
     const fetchNationalRaw = async() => {
       const mainQ = {all: "all"};
       const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
-      //setData(newDict);      
-      // const testQ = {all: "all"};
-      // const promSeries = await CHED_series.find(testQ,{projection:{}}).toArray();
-      // setTempSeries(promSeries);
 
       _.map(promStatic, i=> {
-        if(i.tag === "nationalraw"){
+        if(i.tag === "nationalraw"){ //nationalraw
           newDict[i[Object.keys(i)[3]]] = i.data;
-          // return newDict;
+        }else if(i.tag === "racedataAll"){ //race data
+          setRaceData(i.racedataAll);       
         }
       });
       setData(newDict);       
       
+      //create array of data that needs to be assigned colors to
       _.filter(newDict, i=> {
         if(i.tag === "nationalraw"){
           if(!!i.fips.match('[0-9]{2}')){
@@ -180,6 +162,7 @@ export default function USMap(props) {
             d.fips.length === 5 && 
             d['covidmortalityfig'] > 0)));
 
+      //assign each data point to a color scale
       const cs = scaleQuantile()
       .domain(_.map(_.filter(newDict, 
         d => (
@@ -195,7 +178,8 @@ export default function USMap(props) {
   
       setColorScale(scaleMap);
       setLegendSplit(cs.quantiles());
-  
+      
+      //find the largest value and set as legend max
       _.each(newDict, d=> { 
         if (d[metric] > max && d.fips.length === 5) {
           max = d[metric]
@@ -215,7 +199,11 @@ export default function USMap(props) {
   
       }
       setLegendMin(min.toFixed(0));
-      //setFdb();
+
+      //all states' time series data
+      const seriesQ = {tag: "stateonly"};
+      const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+      setAllTS(promSeries[0].timeseriesAll);
     };
     fetchNationalRaw();
   }, [metric]);

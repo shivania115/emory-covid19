@@ -204,6 +204,7 @@ export default function StateMap(props) {
   setAccstate({ activeIndex: newIndex })
   }
 
+  //variable list
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -214,6 +215,7 @@ export default function StateMap(props) {
       });
   }, []);
 
+  //fips code to county name 
   useEffect(()=>{
     fetch('/data/rawdata/f2c.json').then(res => res.json())
       .then(x => {
@@ -223,53 +225,42 @@ export default function StateMap(props) {
       });
   }, []);
 
-  useEffect(()=>{
-    fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => {
-        setRaceData(x);
-        // setTemp(x[stateFips]);
-      });
-
-  }, []);
-
-  useEffect(()=>{
+  useEffect(() => {
     if (metric) {
-
-    
       const configMatched = configs.find(s => s.fips === stateFips);
-  
       if (!configMatched){
         history.push('/_nation');
       }else{
+        setConfig(configMatched);
+        setStateName(configMatched.name);
+        let seriesDict = {};
         let newDict = {};
         let colorArray = [];
         let scaleMap = {};
         var max = 0;
         var min = 100;
-        
-        const fetchNationalRaw = async() => {
-          const mainQ = {all: "all"};
-          const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
-          //setData(newDict);      
-          // const testQ = {all: "all"};
-          // const promSeries = await CHED_series.find(testQ,{projection:{}}).toArray();
-          // setTempSeries(promSeries);
+        const fetchData = async() => { 
+          //all static data
+          const staticQ = {all: "all"};
+          const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
 
           _.map(promStatic, i=> {
-            if(i.tag === "nationalraw"){
+            if(i.tag === "nationalraw"){ //nationalraw
               newDict[i[Object.keys(i)[3]]] = i.data;
-              // return newDict;
+            }else if(i.tag === "racedataAll"){ //race data
+              setRaceData(i.racedataAll);       
             }
           });
           setData(newDict);       
 
+          //create array of data that needs to be assigned colors to
           _.filter(promStatic, i => {
               if(i.tag === "nationalraw" && !!i.data[metric] && !!i.fips.match('[0-9]{5}')){
                 colorArray.push(i.data);
               }
-            
           });
 
+          //assign each data point to a color scale
           const cs = scaleQuantile()
           .domain(_.map(colorArray, i =>
             i[metric]
@@ -283,6 +274,7 @@ export default function StateMap(props) {
           setColorScale(scaleMap);
           setLegendSplit(cs.quantiles());
 
+          //find the largest value and set as legend max
           _.each(newDict, d=> { 
             if (d[metric] > max && d.fips.length === 5) {
               max = d[metric]
@@ -301,25 +293,10 @@ export default function StateMap(props) {
             setLegendMax(max.toFixed(0));
           }
           setLegendMin(min.toFixed(0));
-        };
-        fetchNationalRaw();
-      }}
-  }, [metric]);
 
-
-  useEffect(() => {
-    if (metric) {
-      const configMatched = configs.find(s => s.fips === stateFips);
-      if (!configMatched){
-        history.push('/_nation');
-      }else{
-        setConfig(configMatched);
-        setStateName(configMatched.name);
-        let seriesDict = {};
-        const fetchTimeSeries = async() => { 
-          const mainQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
-          
-          const prom = await CHED_series.find(mainQ, {projection: {}}).toArray();
+          //Timeseries data
+          const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
+          const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
           _.map(prom, i=> {
             seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
             return seriesDict;
@@ -345,14 +322,14 @@ export default function StateMap(props) {
               covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
             }
             if (k.length===2 || stateFips === "_nation"){
+              //case rate
               percentChangeCase = v[v.length-1].percent14dayDailyCases;
               if(stateFips === "_nation"){
                 caseRate = 0;
               }else{
                 caseRate = v[v.length-1].dailyCases;
               }
-              
-
+              //mortality rate
               percentChangeMortality = v[v.length-1].percent14dayDailyDeaths;
               if(stateFips === "_nation"){
                 mortality = 0;
@@ -365,17 +342,15 @@ export default function StateMap(props) {
               }else{
                 totCases = v[v.length-1].cases;
               }
-
+              //hospitalization rate
               percentChangeHospDaily = v[v.length-1].percent14dayhospDaily;
               if(stateFips === "_nation"){
                 hospD = 0;
               }else{
                 hospD = v[v.length-1].hospDaily;
               }
-
+              //testing positive rate
               percentPositive = v[v.length-1].percentPositive;
-
-              
 
               if(k.length===2 || stateFips === "_nation" && v[v.length-1].percentPositive === 0){
                 for (var i = v.length - 1; i >= 0; i--) {
@@ -394,8 +369,7 @@ export default function StateMap(props) {
 
           });
 
-
-
+          //manipulate string
           if (percentChangeCase.toFixed(0) > 0){
             setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
           }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
@@ -420,41 +394,32 @@ export default function StateMap(props) {
           //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
           // }
 
+          //set values
           setPctPositive(percentPositive.toFixed(0) + "%");
           setIndexP(indexP);
-
-          
-            
           setIndex(index);
-
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
           setMortality(numberWithCommas(mortality.toFixed(0)));
           setTotalCases(numberWithCommas(totCases.toFixed(0)));
           setHospDaily(numberWithCommas(hospD.toFixed(0)));
-
           setCountyFips(countyMost);
-
           if(stateFips !== "_nation"){
             setCountyName(fips2county[stateFips+countyMost]);
             setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
-
           }
-          
-          
-
           setDataTS(seriesDict);
         };
-        fetchTimeSeries();
+        fetchData();
       }
     };
   }, [metric]);
 
+  //set date
   useEffect(() => {
     if (dataTS && dataTS[stateFips]){
       setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
     }
   }, [dataTS]);
-
 
   if (data && dataTS && metric) {
 
@@ -577,14 +542,14 @@ export default function StateMap(props) {
                               colorScale={[stateColor]}
                             >
 
-                            <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : 0}
+                            <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                                 x='t' y='caseRateMean'
                                 />
 
                             </VictoryGroup>
                             <VictoryArea
                               style={{ data: {fill: "#080808" , fillOpacity: 0.1} }}
-                              data={dataTS[stateFips]? dataTS[stateFips] : dataTS["_"]}
+                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                               x= 't' y = 'caseRateMean'
 
                             />
@@ -622,7 +587,7 @@ export default function StateMap(props) {
                               colorScale={[stateColor]}
                             >
 
-                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : 0}
+                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                                 x='t' y='mortalityMean'
                                 />
 
@@ -630,7 +595,7 @@ export default function StateMap(props) {
 
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips]? dataTS[stateFips] : dataTS["_"]}
+                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                               x= 't' y = 'mortalityMean'
 
                             />
@@ -665,7 +630,7 @@ export default function StateMap(props) {
                               colorScale={[stateColor]}
                             >
 
-                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
+                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                                 x='t' y='cases'
                                 />
 
@@ -673,7 +638,7 @@ export default function StateMap(props) {
 
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips] && stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
+                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                               x= 't' y = 'cases'
 
                             />
@@ -710,7 +675,7 @@ export default function StateMap(props) {
                               colorScale={[stateColor]}
                             >
 
-                              <VictoryLine data={dataTS[stateFips]? dataTS[stateFips] : dataTS["_"]}
+                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                                 x='t' y='positive'
                                 />
 
@@ -718,7 +683,7 @@ export default function StateMap(props) {
 
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips]? dataTS[stateFips] : dataTS["_"]}
+                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
                               x= 't' y = 'positive'
 
                             />

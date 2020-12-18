@@ -24,6 +24,8 @@ import ReactTooltip from "react-tooltip";
 import fips2county from './fips2county.json'
 import configs from "./state_config.json";
 import _ from 'lodash';
+import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
+import {HEProvider, useHE} from './HEProvider';
 
 const countyColor = '#f2a900';
 const stateColor = "#778899";
@@ -125,13 +127,8 @@ function BarChart(props) {
         y="value"
       />
     </VictoryChart>);
-}
-
-
-
-
-}
-
+    }
+  }
 export default function CountyReport() {
 
   let { stateFips, countyFips } = useParams();
@@ -155,7 +152,6 @@ export default function CountyReport() {
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
 
-
   const [countyCasesOutcome, setCountyCasesOutcome] = useState();
   const [countyDeathsOutcome, setCountyDeathsOutcome] = useState();
 
@@ -165,35 +161,54 @@ export default function CountyReport() {
   const [nationCasesOutcome, setNationCasesOutcome] = useState();
   const [nationDeathsOutcome, setNationDeathsOutcome] = useState();
 
-
-
   useEffect(()=>{
-
     const configMatched = configs.find(s => s.fips === stateFips);
     if(!configMatched || !fips2county[stateFips+countyFips]){
       history.push('/');
     }else{
-      setConfig(configMatched);
-      setStateName(configMatched.name);
-      setCountyName(fips2county[stateFips+countyFips]);
 
-      fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-        .then(x => setVarMap(x));
+        setConfig(configMatched);
+        setStateName(configMatched.name);
+        setCountyName(fips2county[stateFips+countyFips]);
 
-      fetch('/data/data.json').then(res => res.json())
-        .then(x => setData(x));
-      
-      fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
-        .then(x => {
-        let t = 0;
-        let countyCases = 0;
-        let stateCases = 0;
-        let nationCases = 0;
+        fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+          .then(x => setVarMap(x));
 
-        let countyDeaths = 0;
-        let stateDeaths = 0;
-        let nationDeaths = 0;
-        _.each(x, (v, k)=>{
+        //Fetch mongodb 
+        let newDict = {};
+        let seriesDict = {};
+
+        const fetchData = async() => {
+          //nationalraw
+          const staticQ = {all: "all"};
+          const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+
+          _.map(promStatic, i=> {
+            if(i.tag === "nationalraw"){
+              newDict[i[Object.keys(i)[3]]] = i.data;
+            }
+          });
+          setData(newDict);    
+          
+          //Timeseries
+          const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
+          const promSeries = await CHED_series.find(seriesQ, {projection: {}}).toArray();
+          _.map(promSeries, i=> {
+            seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+            return seriesDict;
+          });
+
+          let t = 0;
+          let countyCases = 0;
+          let stateCases = 0;
+          let nationCases = 0;
+
+          let countyDeaths = 0;
+          let stateDeaths = 0;
+          let nationDeaths = 0;
+
+
+          _.each(seriesDict, (v, k)=>{
             if (k === stateFips + countyFips && v.length > 0 ){
               countyCases = v[v.length-1].caserate7dayfig;
               countyDeaths = v[v.length-1].covidmortality7dayfig;
@@ -215,10 +230,10 @@ export default function CountyReport() {
           setStateDeathsOutcome(stateDeaths.toFixed(1));
           setNationDeathsOutcome(nationDeaths.toFixed(1));
 
-          setDataTS(x);
-        }
-      );
-    }
+          setDataTS(seriesDict);
+        };
+        fetchData();
+      }
   }, [stateFips]);
 
   useEffect(() => {
@@ -237,6 +252,7 @@ export default function CountyReport() {
   if (data && dataTS && varMap) {
 
     return (
+    <HEProvider>
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
@@ -807,6 +823,7 @@ export default function CountyReport() {
       </Container>
       <ReactTooltip>{tooltipContent}</ReactTooltip>
     </div>
+  </HEProvider>
     );
   } else{
     return <Loader active inline='centered' />
