@@ -227,38 +227,32 @@ export default function StateMap(props) {
     fetch('/data/racedataAll.json').then(res => res.json())
       .then(x => {
         setRaceData(x);
-        // setTemp(x[stateFips]);
       });
 
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (metric) {
-
-    
       const configMatched = configs.find(s => s.fips === stateFips);
-  
       if (!configMatched){
         history.push('/_nation');
       }else{
+        setConfig(configMatched);
+        setStateName(configMatched.name);
+        let seriesDict = {};
         let newDict = {};
         let colorArray = [];
         let scaleMap = {};
         var max = 0;
         var min = 100;
-        
-        const fetchNationalRaw = async() => {
-          const mainQ = {all: "all"};
-          const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
-          //setData(newDict);      
-          // const testQ = {all: "all"};
-          // const promSeries = await CHED_series.find(testQ,{projection:{}}).toArray();
-          // setTempSeries(promSeries);
+        const fetchData = async() => { 
+          //nationalraw
+          const staticQ = {all: "all"};
+          const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
 
           _.map(promStatic, i=> {
             if(i.tag === "nationalraw"){
               newDict[i[Object.keys(i)[3]]] = i.data;
-              // return newDict;
             }
           });
           setData(newDict);       
@@ -301,25 +295,10 @@ export default function StateMap(props) {
             setLegendMax(max.toFixed(0));
           }
           setLegendMin(min.toFixed(0));
-        };
-        fetchNationalRaw();
-      }}
-  }, [metric]);
 
-
-  useEffect(() => {
-    if (metric) {
-      const configMatched = configs.find(s => s.fips === stateFips);
-      if (!configMatched){
-        history.push('/_nation');
-      }else{
-        setConfig(configMatched);
-        setStateName(configMatched.name);
-        let seriesDict = {};
-        const fetchTimeSeries = async() => { 
-          const mainQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
-          
-          const prom = await CHED_series.find(mainQ, {projection: {}}).toArray();
+          //Timeseries
+          const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
+          const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
           _.map(prom, i=> {
             seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
             return seriesDict;
@@ -352,7 +331,6 @@ export default function StateMap(props) {
                 caseRate = v[v.length-1].dailyCases;
               }
               
-
               percentChangeMortality = v[v.length-1].percent14dayDailyDeaths;
               if(stateFips === "_nation"){
                 mortality = 0;
@@ -375,8 +353,6 @@ export default function StateMap(props) {
 
               percentPositive = v[v.length-1].percentPositive;
 
-              
-
               if(k.length===2 || stateFips === "_nation" && v[v.length-1].percentPositive === 0){
                 for (var i = v.length - 1; i >= 0; i--) {
                   if (i ===0 ){
@@ -393,8 +369,6 @@ export default function StateMap(props) {
             }
 
           });
-
-
 
           if (percentChangeCase.toFixed(0) > 0){
             setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
@@ -422,29 +396,19 @@ export default function StateMap(props) {
 
           setPctPositive(percentPositive.toFixed(0) + "%");
           setIndexP(indexP);
-
-          
-            
           setIndex(index);
-
           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
           setMortality(numberWithCommas(mortality.toFixed(0)));
           setTotalCases(numberWithCommas(totCases.toFixed(0)));
           setHospDaily(numberWithCommas(hospD.toFixed(0)));
-
           setCountyFips(countyMost);
-
           if(stateFips !== "_nation"){
             setCountyName(fips2county[stateFips+countyMost]);
             setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
-
           }
-          
-          
-
           setDataTS(seriesDict);
         };
-        fetchTimeSeries();
+        fetchData();
       }
     };
   }, [metric]);
@@ -454,7 +418,6 @@ export default function StateMap(props) {
       setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
     }
   }, [dataTS]);
-
 
   if (data && dataTS && metric) {
 
