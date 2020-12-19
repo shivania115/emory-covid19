@@ -152,6 +152,51 @@ function BarChart(props) {
   
 }
 
+function TopChart(params) {
+  return(
+    <VictoryChart 
+                            minDomain={{ x: params.data[params.sFips][params.data[params.sFips].length-15][params.xVar]}}
+                            maxDomain = {{y: getMaxRange(params.data[params.sFips], params.yVar, params.data[params.sFips].length-15)*params.resize}}                            
+                            width={235}
+                            height={180}    
+                            parent= {{background: "#ccdee8"}}   
+                            padding={{marginleft: 0, right: -1, top: 150, bottom: -0.9}}
+                            containerComponent={<VictoryContainer responsive={false}/>}>
+                            
+                            <VictoryAxis
+                              tickValues={[
+                                params.data[params.sFips][params.data[params.sFips].length - Math.round(params.data[params.sFips].length/3)*2 - 1][params.xVar],
+                                params.data[params.sFips][params.data[params.sFips].length - Math.round(params.data[params.sFips].length/3) - 1][params.xVar],
+                                params.data[params.sFips][params.data[params.sFips].length-1][params.xVar]]}                        
+                              style={{grid:{background: "#ccdee8"}, tickLabels: {background: "#ccdee8", fontSize: 10}}} 
+                              tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                            
+                            <VictoryGroup 
+                              colorScale={[stateColor]}
+                            >
+
+                            <VictoryLine data={params.data[params.sFips] && params.sFips !== "_nation"? params.data[params.sFips] : [0,0,0]}
+                                x={params.xVar} y= {params.yVar}
+                                />
+
+                            </VictoryGroup>
+                            <VictoryArea
+                              style={{ data: {fill: "#080808" , fillOpacity: 0.1} }}
+                              data={params.data[params.sFips] && params.sFips !== "_nation"? params.data[params.sFips] : [0,0,0]}
+                              x= {params.xVar} y = {params.yVar}
+
+                            />
+
+                            <VictoryLabel text= {params.sFips === "_nation" ? 0 : params.rate} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {params.sFips === "_nation" ? "" : params.percentChange}  x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {params.sFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {params.sFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+
+                            
+                </VictoryChart>
+  )
+}
+
 export default function StateMap(props) {
   
   const history = useHistory();
@@ -516,95 +561,36 @@ export default function StateMap(props) {
 
           <Grid columns={15}>
 
-          <Grid.Row columns={5} style={{width: 252, paddingRight: 0, paddingTop: '2em', paddingBottom: "0"}}>
+          
+            <Grid.Row columns={5} style={{width: 252, paddingRight: 0, paddingTop: '2em', paddingBottom: "0"}}>
             <Grid.Column style = {{width:235}}> 
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Cases</center>
 
               <div style = {{width: 235, background: "#e5f2f7"}}>
-                <VictoryChart 
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t}}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "caseRateMean", dataTS[stateFips].length-15)*1.2}}                            
-                            width={235}
-                            height={180}    
-                            parent= {{background: "#ccdee8"}}   
-                            padding={{marginleft: 0, right: -1, top: 150, bottom: -0.9}}
-                            containerComponent={<VictoryContainer responsive={false}/>}>
-                            
-                            <VictoryAxis
-                              tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3)*2 - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3) - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length-1].t]}                        
-                              style={{grid:{background: "#ccdee8"}, tickLabels: {background: "#ccdee8", fontSize: 10}}} 
-                              tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                            
-                            <VictoryGroup 
-                              colorScale={[stateColor]}
-                            >
-
-                            <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                                x='t' y='caseRateMean'
-                                />
-
-                            </VictoryGroup>
-                            <VictoryArea
-                              style={{ data: {fill: "#080808" , fillOpacity: 0.1} }}
-                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                              x= 't' y = 'caseRateMean'
-
-                            />
-
-                            <VictoryLabel text= {stateFips === "_nation" ? 0 : caseRate} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : percentChangeCases}  x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-
-                            
-                </VictoryChart>
+                <TopChart
+                  data = {dataTS} 
+                  sFips = {stateFips}
+                  xVar = "t" 
+                  yVar = "caseRateMean"
+                  rate = {caseRate}
+                  percentChange = {percentChangeCases}
+                  resize= {1.2}
+                />
               </div>
             </Grid.Column>
             <Grid.Column style = {{width:235}}> 
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
-
-                <VictoryChart theme={VictoryTheme.material}
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t }}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "mortalityMean", dataTS[stateFips].length-15)*3}}                            
-                            width={235}
-                            height={180}       
-                            padding={{left: 0, right: -1, top: 130, bottom: -0.9}}
-                            containerComponent={<VictoryContainer responsive={false}/>}>
-                            
-                            <VictoryAxis
-                              tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3)*2 - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3) - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length-1].t]}                        
-                              style={{tickLabels: {fontSize: 10}}} 
-                              tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                            
-                            <VictoryGroup 
-                              colorScale={[stateColor]}
-                            >
-
-                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                                x='t' y='mortalityMean'
-                                />
-
-                            </VictoryGroup>
-
-                            <VictoryArea
-                              style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                              x= 't' y = 'mortalityMean'
-
-                            />
-                            <VictoryLabel text= {stateFips === "_nation" ? 0 : mortality} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : percentChangeMortality} x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-
-                </VictoryChart>
+                <TopChart
+                  data = {dataTS} 
+                  sFips = {stateFips}
+                  xVar = "t" 
+                  yVar = "mortalityMean"
+                  rate = {mortality}
+                  percentChange = {percentChangeMortality}
+                  resize= {3}
+                />
+                
               </div>
             </Grid.Column>
             <Grid.Column style = {{width:235}}>
