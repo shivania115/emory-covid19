@@ -25,9 +25,6 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 import ReactDOM from 'react-dom';
-import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
-import {HEProvider, useHE} from './HEProvider';
-
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -72,6 +69,8 @@ const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 
 
+
+
 export default function USMap(props) {
   // const [open, setOpen] = React.useState(true)
 
@@ -85,7 +84,7 @@ export default function USMap(props) {
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [dataFltrd, setDataFltrd] = useState();
-  const [dataStateFltrd, setDataStateFltrd] = useState();
+  // const [dataState, setDataState] = useState();
 
   const [stateName, setStateName] = useState('Georgia');
   const [fips, setFips] = useState('13');
@@ -111,11 +110,19 @@ export default function USMap(props) {
   setAccstate({ activeIndex: newIndex })
   }
 
+  // const [caseRate, setCaseRate] = useState();
+  // const [percentChangeCases, setPercentChangeCases] = useState();
+  // const [mortality, setMortality] = useState();
+  // const [percentChangeMortality, setPercentChangeMortality] = useState();
+
   const [delayHandler, setDelayHandler] = useState();
 
   useEffect(()=>{
     fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+    
+    fetch('/data/allstates.json').then(res => res.json())
+      .then(x => setStateLabels(x));
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -127,91 +134,76 @@ export default function USMap(props) {
   }, []);
 
   useEffect(()=>{
-    let newDict = {};
-    let fltrdArray = [];
-    let stateArray = [];
-    let colorArray = [];
-    let scaleMap = {};
-    var max = 0;
-    var min = 100;
+    fetch('/data/timeseriesAll.json').then(res => res.json())
+      .then(x => setAllTS(x));
+  }, []);
 
-    const fetchNationalRaw = async() => {
-      const mainQ = {all: "all"};
-      const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+  useEffect(()=>{
+    fetch('/data/racedataAll.json').then(res => res.json())
+      .then(x => setRaceData(x));
 
-      _.map(promStatic, i=> {
-        if(i.tag === "nationalraw"){ //nationalraw
-          newDict[i[Object.keys(i)[3]]] = i.data;
-        }else if(i.tag === "racedataAll"){ //race data
-          setRaceData(i.racedataAll);       
-        }
-      });
-      setData(newDict);       
+  }, []);
+
+  useEffect(() => {
+    if (metric) {
+    fetch('/data/data.json').then(res => res.json())
+      .then(x => {
+        
+        setData(x);
+        setDataFltrd(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (d.Population > 10000 && 
+              d.black > 5 && 
+              d.fips.length === 5 && 
+              d['covidmortalityfig'] > 0)));
       
-      //create array of data that needs to be assigned colors to
-      _.filter(newDict, i=> {
-        if(i.tag === "nationalraw"){
-          if(!!i.fips.match('[0-9]{2}')){
-            stateArray.push(i.data);
-          }}});
-      setDataStateFltrd(stateArray);
-  
-      setDataFltrd(_.filter(newDict, 
-        d => (d.Population > 10000 && 
-            d.black > 5 && 
-            d.fips.length === 5 && 
-            d['covidmortalityfig'] > 0)));
+        const cs = scaleQuantile()
+        .domain(_.map(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[metric] >= 0 &&
+              d.fips.length === 5)),
+          d=> d[metric]))
+        .range(colorPalette);
 
-      //assign each data point to a color scale
-      const cs = scaleQuantile()
-      .domain(_.map(_.filter(newDict, 
-        d => (
-            d[metric] > 0 &&
-            d.fips.length === 5)),
-        d=> d[metric]))
-      .range(colorPalette);
-
-      let scaleMap = {}
-      _.each(newDict, d=>{
-        if(d[metric] > 0){
-        scaleMap[d[metric]] = cs(d[metric])}});
-  
-      setColorScale(scaleMap);
-      setLegendSplit(cs.quantiles());
+        let scaleMap = {}
+        _.each(x, d=>{
+          if(d[metric] >= 0){
+          scaleMap[d[metric]] = cs(d[metric])}});
       
-      //find the largest value and set as legend max
-      _.each(newDict, d=> { 
-        if (d[metric] > max && d.fips.length === 5) {
-          max = d[metric]
-        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-          min = d[metric]
+        setColorScale(scaleMap);
+        var max = 0
+        var min = 100
+        _.each(x, d=> { 
+          if (d[metric] > max && d.fips.length === 5) {
+            max = d[metric]
+          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+            min = d[metric]
+          }
+        });
+
+        if (max > 999999) {
+          max = (max/1000000).toFixed(0) + "M";
+          setLegendMax(max);
+        }else if (max > 999) {
+          max = (max/1000).toFixed(0) + "K";
+          setLegendMax(max);
+        }else{
+          setLegendMax(max.toFixed(0));
+
         }
+        setLegendMin(min.toFixed(0));
+        setLegendSplit(cs.quantiles());
+
       });
-  
-      if (max > 999999) {
-        max = (max/1000000).toFixed(0) + "M";
-        setLegendMax(max);
-      }else if (max > 999) {
-        max = (max/1000).toFixed(0) + "K";
-        setLegendMax(max);
-      }else{
-        setLegendMax(max.toFixed(0));
-  
-      }
-      setLegendMin(min.toFixed(0));
+    }
+  }, [metric])
 
-      //all states' time series data
-      const seriesQ = {tag: "stateonly"};
-      const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-      setAllTS(promSeries[0].timeseriesAll);
-    };
-    fetchNationalRaw();
-  }, [metric]);
-
-  if (data && dataFltrd && dataStateFltrd && allTS) {
+  if (data && dataFltrd && stateLabels && allTS) {
     
   return (
-    <HEProvider>
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
@@ -1212,7 +1204,6 @@ export default function USMap(props) {
         </Container>
         <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
       </div>
-    </HEProvider>
       );
   } else {
     return <Loader active inline='centered' />
