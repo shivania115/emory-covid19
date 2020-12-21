@@ -10,7 +10,9 @@ import configs from "./state_config.json";
 import PropTypes from "prop-types"
 import { MapContext } from "./MapProvider"
 // import useGeographies from "./useGeographies"
-import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
+import {CHED_static, CHED_series} from "../stitch/mongodb";
+import {useStitchAuth} from "./StitchAuth";
+
 import {HEProvider, useHE} from './HEProvider';
 
 import {getFeatures, prepareFeatures, isString } from "../utils"
@@ -271,6 +273,10 @@ export default function ExtraFile(props) {
 
   const [urbrur] = useState("_013_Urbanization_Code");
   const [dataUrb, setDataUrb] = useState();
+  const {
+    isLoggedIn,
+    actions: { handleAnonymousLogin },
+  } = useStitchAuth();  
 
 
   const [region, setRegion] = useState("region_Code");
@@ -343,6 +349,22 @@ export default function ExtraFile(props) {
 
     }, []);
 
+    useEffect(()=>{
+      if (isLoggedIn === true){
+        // fetchData();
+      } else {
+        handleAnonymousLogin();
+      }
+    },[isLoggedIn]);
+
+    // useEffect(() => {
+    //   fetch('/data/data.json').then(res => res.json())
+    //     .then(x => {
+    //       setData(x);  
+    //     });
+    //   })
+
+
     useEffect(() => {
 
       let seriesDict = {};
@@ -350,15 +372,16 @@ export default function ExtraFile(props) {
       const fetchTimeSeries = async() => { 
         const mainQ = {all: "all"};
         const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+
         const testQ = {full_fips: "_nation"};
         const promTs = await CHED_series.find(testQ,{projection:{}}).toArray();
-        _.map(promStatic, i=> {
+        promStatic.forEach ( i=> {
           if(i.tag === "nationalraw"){
             newDict[i[Object.keys(i)[3]]] = i.data;
             // return newDict;
           }
         });
-        setData(newDict);       
+        setData(newDict);  
 
         
         _.map(promTs, i=> {
