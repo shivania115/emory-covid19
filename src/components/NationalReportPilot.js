@@ -349,82 +349,68 @@ export default function ExtraFile(props) {
 
     }, []);
 
+
+
+    let seriesDict = {};
+    let newDict = {};
+
+    const fetchTimeSeries = async() => { 
+      const mainQ = {tag: "nationalraw"};
+      const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+
+      const testQ = {full_fips: "_nation"};
+      const promTs = await CHED_series.find(testQ,{projection:{}}).toArray();
+      promStatic.forEach ( i=> {
+        newDict[i[Object.keys(i)[3]]] = i.data;
+          
+      });
+      setData(newDict);  
+
+        
+      _.map(promTs, i=> {
+          seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+      });
+        
+      let t = 0;
+        
+      let percentChangeC = 0;
+      let percentChangeM = 0;
+      let cRateMean = 0;
+      let dailyC = 0;
+      let dailyD = 0;
+      let mMean = 0;
+          
+      _.each(seriesDict, (v, k)=>{
+        if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
+            percentChangeC = v[v.length-1].percent14dayDailyCases;
+            percentChangeM = v[v.length-1].percent14dayDailyDeaths;
+            cRateMean = v[v.length-1].caseRateMean;
+            mMean = v[v.length-1].mortalityMean;
+            dailyC = v[v.length-1].dailyCases;
+            dailyD = v[v.length-1].dailyMortality;
+          }
+
+        });
+
+        setPercentChangeCases(percentChangeC.toFixed(0) + "%");
+        setMean7dayCases(cRateMean.toFixed(0));
+        setPercentChangeMortality(percentChangeM.toFixed(0) + "%");
+        setMortalityMean(mMean.toFixed(0));
+
+        setDailyCases(dailyC.toFixed(0));
+        setDailyDeaths(dailyD.toFixed(0));
+        setDataTS(seriesDict);
+    };
+
     useEffect(()=>{
       if (isLoggedIn === true){
-        // fetchData();
+        fetchTimeSeries();
       } else {
         handleAnonymousLogin();
       }
     },[isLoggedIn]);
 
-    // useEffect(() => {
-    //   fetch('/data/data.json').then(res => res.json())
-    //     .then(x => {
-    //       setData(x);  
-    //     });
-    //   })
-
-
     useEffect(() => {
-
-      let seriesDict = {};
-      let newDict = {};
-      const fetchTimeSeries = async() => { 
-        const mainQ = {all: "all"};
-        const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
-
-        const testQ = {full_fips: "_nation"};
-        const promTs = await CHED_series.find(testQ,{projection:{}}).toArray();
-        promStatic.forEach ( i=> {
-          if(i.tag === "nationalraw"){
-            newDict[i[Object.keys(i)[3]]] = i.data;
-            // return newDict;
-          }
-        });
-        setData(newDict);  
-
-        
-        _.map(promTs, i=> {
-            seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-        });
-        
-        let t = 0;
-        
-        let percentChangeC = 0;
-        let percentChangeM = 0;
-        let cRateMean = 0;
-        let dailyC = 0;
-        let dailyD = 0;
-        let mMean = 0;
-          
-        _.each(seriesDict, (v, k)=>{
-          if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
-
-              percentChangeC = v[v.length-1].percent14dayDailyCases;
-              percentChangeM = v[v.length-1].percent14dayDailyDeaths;
-              cRateMean = v[v.length-1].caseRateMean;
-              mMean = v[v.length-1].mortalityMean;
-              dailyC = v[v.length-1].dailyCases;
-              dailyD = v[v.length-1].dailyMortality;
-            }
-
-        });
-
-          setPercentChangeCases(percentChangeC.toFixed(0) + "%");
-          setMean7dayCases(cRateMean.toFixed(0));
-          setPercentChangeMortality(percentChangeM.toFixed(0) + "%");
-          setMortalityMean(mMean.toFixed(0));
-
-          setDailyCases(dailyC.toFixed(0));
-          setDailyDeaths(dailyD.toFixed(0));
-          setDataTS(seriesDict);
-      };
-
-      fetchTimeSeries();
-    }, []);
-
-    useEffect(() => {
-      
           if(data){
           //CVI
           const cs = scaleQuantile()

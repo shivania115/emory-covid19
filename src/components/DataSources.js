@@ -85,6 +85,12 @@ export default function DataSources(props){
               </Table.Cell>
             </Table.Row>
             <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Daily Hospitalization</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Daily Hospitalization</i> is the number of new COVID-19 hospitalizations.
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Percent Positive</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> </Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Percent Positive</i> is the percentage of total tests for COVID-19 that resulted in a positive result.

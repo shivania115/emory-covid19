@@ -5,8 +5,6 @@ import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
-import Marker from './Marker';
-import Annotation from './Annotation';
 import ReactTooltip from "react-tooltip";
 import { VictoryChart, 
   VictoryGroup, 
@@ -25,6 +23,11 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 import ReactDOM from 'react-dom';
+import { CHED_static, CHED_series} from "../stitch/mongodb";
+import {HEProvider, useHE} from './HEProvider';
+import {useStitchAuth} from "./StitchAuth";
+
+
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -69,22 +72,20 @@ const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 
 
-
-
 export default function USMap(props) {
-  // const [open, setOpen] = React.useState(true)
+  const {
+    isLoggedIn,
+    actions: { handleAnonymousLogin },
+  } = useStitchAuth();  
 
   const history = useHistory();
   const [tooltipContent, setTooltipContent] = useState('');
   
-  const [stateLabels, setStateLabels] = useState();
   const [date, setDate] = useState('');
 
   const [data, setData] = useState();
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
-  const [dataFltrd, setDataFltrd] = useState();
-  // const [dataState, setDataState] = useState();
 
   const [stateName, setStateName] = useState('Georgia');
   const [fips, setFips] = useState('13');
@@ -110,19 +111,18 @@ export default function USMap(props) {
   setAccstate({ activeIndex: newIndex })
   }
 
-  // const [caseRate, setCaseRate] = useState();
-  // const [percentChangeCases, setPercentChangeCases] = useState();
-  // const [mortality, setMortality] = useState();
-  // const [percentChangeMortality, setPercentChangeMortality] = useState();
-
   const [delayHandler, setDelayHandler] = useState();
 
+    let newDict = {};
+    let fltrdArray = [];
+    let stateArray = [];
+    let colorArray = [];
+    let scaleMap = {};
+    var max = 0;
+    var min = 100;
   useEffect(()=>{
     fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
-    
-    fetch('/data/allstates.json').then(res => res.json())
-      .then(x => setStateLabels(x));
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -131,79 +131,74 @@ export default function USMap(props) {
           return {key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-  }, []);
+    if (isLoggedIn === true){
+      const fetchData = async() => {
+          const mainQ = {all: "all"};
+          const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
 
-  useEffect(()=>{
-    fetch('/data/timeseriesAll.json').then(res => res.json())
-      .then(x => setAllTS(x));
-  }, []);
-
-  useEffect(()=>{
-    fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => setRaceData(x));
-
-  }, []);
-
-  useEffect(() => {
-    if (metric) {
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-        
-        setData(x);
-        setDataFltrd(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (d.Population > 10000 && 
-              d.black > 5 && 
-              d.fips.length === 5 && 
-              d['covidmortalityfig'] > 0)));
+          promStatic.forEach( i => {
+            if(i.tag === "nationalraw"){ //nationalraw
+              newDict[i[Object.keys(i)[3]]] = i.data;
+            }else if(i.tag === "racedataAll"){ //race data
+              setRaceData(i.racedataAll);       
+            }
+          });
+          setData(newDict);       
       
-        const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
+          //assign each data point to a color scale
+          const cs = scaleQuantile()
+          .domain(_.map(_.filter(newDict, 
+            d => (
+                d[metric] > 0 &&
+                d.fips.length === 5)),
+            d=> d[metric]))
+          .range(colorPalette);
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          if(d[metric] >= 0){
-          scaleMap[d[metric]] = cs(d[metric])}});
+          let scaleMap = {}
+          _.each(newDict, d=>{
+            if(d[metric] > 0){
+            scaleMap[d[metric]] = cs(d[metric])}});
       
-        setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        _.each(x, d=> { 
-          if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-            min = d[metric]
+          setColorScale(scaleMap);
+          setLegendSplit(cs.quantiles());
+          
+          //find the largest value and set as legend max
+          _.each(newDict, d=> { 
+            if (d[metric] > max && d.fips.length === 5) {
+              max = d[metric]
+            } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+              min = d[metric]
+            }
+          });
+      
+          if (max > 999999) {
+            max = (max/1000000).toFixed(0) + "M";
+            setLegendMax(max);
+          }else if (max > 999) {
+            max = (max/1000).toFixed(0) + "K";
+            setLegendMax(max);
+          }else{
+            setLegendMax(max.toFixed(0));
+      
           }
-        });
+          setLegendMin(min.toFixed(0));
 
-        if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
-          setLegendMax(max);
-        }else if (max > 999) {
-          max = (max/1000).toFixed(0) + "K";
-          setLegendMax(max);
-        }else{
-          setLegendMax(max.toFixed(0));
-
-        }
-        setLegendMin(min.toFixed(0));
-        setLegendSplit(cs.quantiles());
-
-      });
+          //all states' time series data
+          const seriesQ = {tag: "stateonly"};
+          const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+          setAllTS(promSeries[0].timeseriesAll);
+        };
+      
+      fetchData();
+      } else {
+      handleAnonymousLogin();
     }
-  }, [metric])
+  },[isLoggedIn]);
 
-  if (data && dataFltrd && stateLabels && allTS) {
+  if (data && allTS) {
     
   return (
+    <HEProvider>
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
@@ -481,8 +476,8 @@ export default function USMap(props) {
                       <div>
                       {stateFips &&
                         <VictoryChart 
-                                    minDomain={{ x: stateFips? allTS[stateFips][stateFips][allTS[stateFips][stateFips].length-15].t : allTS["13"]["13"][allTS["13"]["13"].length-15].t}}
-                                    maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips][stateFips], "caseRateMean", (allTS[stateFips][stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"]["13"], "caseRateMean", (allTS["13"]["13"].length-15)).caseRateMean*1.05}}                            
+                                    minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"]["13"].length-15].t}}
+                                    maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
                                     width={235}
                                     height={180}
                                     padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
@@ -491,14 +486,14 @@ export default function USMap(props) {
                                     <VictoryAxis
                                       tickValues={stateFips ? 
                                         [
-                                        allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - Math.round(allTS[stateFips][stateFips].length/3)*2 - 1].t,
-                                        allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - Math.round(allTS[stateFips][stateFips].length/3) - 1].t,
-                                        allTS[stateFips][stateFips][allTS[stateFips][stateFips].length-1].t]
+                                        allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
+                                        allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
+                                        allTS[stateFips][allTS[stateFips].length-1].t]
                                         :
                                       [
-                                        allTS["13"]["13"][allTS["13"]["13"].length - Math.round(allTS["13"]["13"].length/3)*2 - 1].t,
-                                        allTS["13"]["13"][allTS["13"]["13"].length - Math.round(allTS["13"]["13"].length/3) - 1].t,
-                                        allTS["13"]["13"][allTS["13"]["13"].length-1].t]}                         
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3) - 1].t,
+                                        allTS["13"][allTS["13"].length-1].t]}                         
                                       style={{grid:{background: "#ccdee8"}, tickLabels: {fontSize: 10}}} 
                                       tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                                     
@@ -506,45 +501,45 @@ export default function USMap(props) {
                                       colorScale={[stateColor]}
                                     >
 
-                                    <VictoryLine data={stateFips && allTS[stateFips][stateFips] ? allTS[stateFips][stateFips] : allTS["13"]["13"]}
+                                    <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
                                         x='t' y='caseRateMean'
                                         />
 
                                     </VictoryGroup>
                                     <VictoryArea
                                       style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                      data={stateFips && allTS[stateFips][stateFips]? allTS[stateFips][stateFips] : allTS["13"]["13"]}
+                                      data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
                                       x= 't' y = 'caseRateMean'
 
                                     />
 
-                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
                                                         : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
                                                          : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
                                                         
 
                                                         x={145} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
                                                          : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
 
                                                       }}/>
 
@@ -560,8 +555,8 @@ export default function USMap(props) {
                       <div>
                       {stateFips && 
                         <VictoryChart theme={VictoryTheme.material}
-                                    minDomain={{ x: stateFips? allTS[stateFips][stateFips][allTS[stateFips][stateFips].length-15].t: allTS["13"]["13"][allTS["13"]["13"].length-15].t}}
-                                    maxDomain = {{y: stateFips? getMax(allTS[stateFips][stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"]["13"], "mortalityMean").mortalityMean + 0.8}}                            
+                                    minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
+                                    maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
                                     width={235}
                                     height={180}       
                                     padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -570,14 +565,14 @@ export default function USMap(props) {
                                     <VictoryAxis
                                       tickValues={stateFips ? 
                                         [
-                                        allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - Math.round(allTS[stateFips][stateFips].length/3)*2 - 1].t,
-                                        allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - Math.round(allTS[stateFips][stateFips].length/3) - 1].t,
-                                        allTS[stateFips][stateFips][allTS[stateFips][stateFips].length-1].t]
+                                        allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
+                                        allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
+                                        allTS[stateFips][allTS[stateFips].length-1].t]
                                         :
                                       [
-                                        allTS["13"]["13"][allTS["13"]["13"].length - Math.round(allTS["13"]["13"].length/3)*2 - 1].t,
-                                        allTS["13"]["13"][allTS["13"]["13"].length - Math.round(allTS["13"]["13"].length/3) - 1].t,
-                                        allTS["13"]["13"][allTS["13"]["13"].length-1].t]}                        
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3) - 1].t,
+                                        allTS["13"][allTS["13"].length-1].t]}                        
                                       style={{tickLabels: {fontSize: 10}}} 
                                       tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                                     
@@ -585,7 +580,7 @@ export default function USMap(props) {
                                       colorScale={[stateColor]}
                                     >
 
-                                      <VictoryLine data={stateFips && allTS[stateFips][stateFips] ? allTS[stateFips][stateFips] : allTS["13"]["13"]}
+                                      <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
                                         x='t' y='mortalityMean'
                                         />
 
@@ -593,38 +588,38 @@ export default function USMap(props) {
 
                                     <VictoryArea
                                       style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1} }}
-                                      data={stateFips && allTS[stateFips][stateFips]? allTS[stateFips][stateFips] : allTS["13"]["13"]}
+                                      data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
                                       x= 't' y = 'mortalityMean'
 
                                     />
 
                                     
-                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"]["13"][allTS["13"]["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
                                                         "0%"
                                                          : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
                                                          "0%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
 
                                     <VictoryLabel text= {stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
                                                          : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
 
                                                         x={146} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
-                                                        (allTS[stateFips][stateFips][allTS[stateFips][stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
                                                          : 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
-                                                        (allTS["13"]["13"][allTS["13"]["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
 
                                     <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
                                     <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
@@ -1204,6 +1199,7 @@ export default function USMap(props) {
         </Container>
         <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
       </div>
+    </HEProvider>
       );
   } else {
     return <Loader active inline='centered' />

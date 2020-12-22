@@ -1,5 +1,5 @@
 import { app } from "./app";
-import { groups, users } from "./mongodb";
+import { CHED_static, CHED_series } from "./mongodb";
 import {
   loginAnonymous,
   logoutCurrentUser,
@@ -7,5 +7,5 @@ import {
   getCurrentUser,
 } from "./authentication";
 
-export { app, groups, users };
+export { app, CHED_static, CHED_series };
 export { loginAnonymous, logoutCurrentUser, hasLoggedInUser, getCurrentUser };

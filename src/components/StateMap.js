@@ -27,6 +27,7 @@ import stateOptions from "./stateOptions.json";
 import configs from "./state_config.json";
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
+import {useStitchAuth} from "./StitchAuth";
 
 
 function getMax(arr, prop) {
@@ -72,15 +73,6 @@ const nationColor = '#b1b3b3';
 const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
-
-// const marks = [
-//   //{value: 1, label: 'Jan.'}, {value: 2, abel: 'Feb.'}, {value: 3, abel: 'Mar.'}, 
-//   {value: 4, abel: 'Apr.'},
-//   {value: 5, label: 'May'}, {value: 6, abel: 'Jun.'}, {value: 7, abel: 'Jul.'}, {value: 8, abel: 'Aug.'},
-//   {value: 9, label: 'Sep.'},//, {value: 10, abel: 'Oct.'}, {value: 11, abel: 'Nov.'}, {value: 12, abel: 'Dec.'},
-  
-// ];
-
 
 function BarChart(props) {
   
@@ -135,7 +127,7 @@ function BarChart(props) {
         horizontal
         barRatio={0.8}
         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
-        data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0}]}
+        data={[{key: 'USA', 'value':  [1]}]}
         labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "14px", fill: "#000000" }}/>}
         style={{
           data: {
@@ -154,9 +146,9 @@ function BarChart(props) {
 
 function TopChart(params) {
   return(
-    <VictoryChart 
-                            minDomain={{ x: params.data[params.sFips][params.data[params.sFips].length-15][params.xVar]}}
-                            maxDomain = {{y: getMaxRange(params.data[params.sFips], params.yVar, params.data[params.sFips].length-15)*params.resize}}                            
+                  <VictoryChart 
+                            minDomain={{ x: params.sFips !== "_nation"? params.data[params.data.length-15][params.xVar] : 0}}
+                            maxDomain = {{y: params.sFips !== "_nation"? getMaxRange(params.data, params.yVar, params.data.length-15)*params.resize: 0}}                            
                             width={235}
                             height={180}    
                             parent= {{background: "#ccdee8"}}   
@@ -164,10 +156,13 @@ function TopChart(params) {
                             containerComponent={<VictoryContainer responsive={false}/>}>
                             
                             <VictoryAxis
-                              tickValues={[
-                                params.data[params.sFips][params.data[params.sFips].length - Math.round(params.data[params.sFips].length/3)*2 - 1][params.xVar],
-                                params.data[params.sFips][params.data[params.sFips].length - Math.round(params.data[params.sFips].length/3) - 1][params.xVar],
-                                params.data[params.sFips][params.data[params.sFips].length-1][params.xVar]]}                        
+                              tickValues={params.sFips !== "_nation"? [
+                                params.data[params.data.length - Math.round(params.data.length/3)*2 - 1][params.xVar],
+                                params.data[params.data.length - Math.round(params.data.length/3) - 1][params.xVar],
+                                params.data[params.data.length-1][params.xVar]] 
+                                : 
+                                [0]
+                              }                        
                               style={{grid:{background: "#ccdee8"}, tickLabels: {background: "#ccdee8", fontSize: 10}}} 
                               tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                             
@@ -175,14 +170,14 @@ function TopChart(params) {
                               colorScale={[stateColor]}
                             >
 
-                            <VictoryLine data={params.data[params.sFips] && params.sFips !== "_nation"? params.data[params.sFips] : [0,0,0]}
+                            <VictoryLine data={params.data && params.sFips !== "_nation"? params.data : [0,0,0]}
                                 x={params.xVar} y= {params.yVar}
                                 />
 
                             </VictoryGroup>
                             <VictoryArea
                               style={{ data: {fill: "#080808" , fillOpacity: 0.1} }}
-                              data={params.data[params.sFips] && params.sFips !== "_nation"? params.data[params.sFips] : [0,0,0]}
+                              data={params.data && params.sFips !== "_nation"? params.data : [0,0,0]}
                               x= {params.xVar} y = {params.yVar}
 
                             />
@@ -198,13 +193,18 @@ function TopChart(params) {
 }
 
 export default function StateMap(props) {
-  
+  const {
+    isLoggedIn,
+    actions: { handleAnonymousLogin },
+  } = useStitchAuth();  
+
   const history = useHistory();
   let {stateFips} = useParams();
   const [tooltipContent, setTooltipContent] = useState('');
 
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
+  const [dataStateTS, setStateTS] = useState();
   const [raceData, setRaceData] = useState();
 
   const [config, setConfig] = useState();
@@ -223,11 +223,11 @@ export default function StateMap(props) {
   const [mortality, setMortality] = useState();
   const [percentChangeMortality, setPercentChangeMortality] = useState();
   const [pctPositive, setPctPositive] = useState();
-  const [totalCases, setTotalCases] = useState();
+  // const [totalCases, setTotalCases] = useState();
   const [hospDaily, setHospDaily] = useState();
   const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
-  const [index, setIndex] = useState();
-  const [indexP, setIndexP] = useState();
+  // const [index, setIndex] = useState();
+  // const [indexP, setIndexP] = useState();
 
   const [varMap, setVarMap] = useState({});
   const [metric, setMetric] = useState('caserate7dayfig');
@@ -249,7 +249,7 @@ export default function StateMap(props) {
   setAccstate({ activeIndex: newIndex })
   }
 
-  //variable list
+  //variable list & fips code to county name 
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -258,10 +258,7 @@ export default function StateMap(props) {
           return {key: d.id, value: d.variable, text: d.name, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-  }, []);
 
-  //fips code to county name 
-  useEffect(()=>{
     fetch('/data/rawdata/f2c.json').then(res => res.json())
       .then(x => {
         setCountyOption(_.filter(_.map(x, d=> {
@@ -270,194 +267,184 @@ export default function StateMap(props) {
       });
   }, []);
 
-  useEffect(() => {
+  useEffect(()=>{
     if (metric) {
       const configMatched = configs.find(s => s.fips === stateFips);
       if (!configMatched){
         history.push('/_nation');
       }else{
-        setConfig(configMatched);
-        setStateName(configMatched.name);
-        let seriesDict = {};
-        let newDict = {};
-        let colorArray = [];
-        let scaleMap = {};
-        var max = 0;
-        var min = 100;
-        const fetchData = async() => { 
-          //all static data
-          const staticQ = {all: "all"};
-          const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
-
-          _.map(promStatic, i=> {
-            if(i.tag === "nationalraw"){ //nationalraw
-              newDict[i[Object.keys(i)[3]]] = i.data;
-            }else if(i.tag === "racedataAll"){ //race data
-              setRaceData(i.racedataAll);       
-            }
-          });
-          setData(newDict);       
-
-          //create array of data that needs to be assigned colors to
-          _.filter(promStatic, i => {
-              if(i.tag === "nationalraw" && !!i.data[metric] && !!i.fips.match('[0-9]{5}')){
-                colorArray.push(i.data);
-              }
-          });
-
-          //assign each data point to a color scale
-          const cs = scaleQuantile()
-          .domain(_.map(colorArray, i =>
-            i[metric]
-          )).range(colorPalette);
-
-          _.each(newDict, d=> {
-            if(d[metric] >= 0){
-              scaleMap[d[metric]] = cs(d[metric])
-            };
-          })
-          setColorScale(scaleMap);
-          setLegendSplit(cs.quantiles());
-
-          //find the largest value and set as legend max
-          _.each(newDict, d=> { 
-            if (d[metric] > max && d.fips.length === 5) {
-              max = d[metric]
-            } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-              min = d[metric]
-            }
-          });
-
-          if (max > 999999) {
-            max = (max/1000000).toFixed(0) + "M";
-            setLegendMax(max);
-          }else if (max > 999) {
-            max = (max/1000).toFixed(0) + "K";
-            setLegendMax(max);
-          }else{
-            setLegendMax(max.toFixed(0));
-          }
-          setLegendMin(min.toFixed(0));
-
-          //Timeseries data
-          const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
-          const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
-          _.map(prom, i=> {
-            seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-            return seriesDict;
-          });
-          
-          let countyMost = '';
-          let covidmortality7dayfig = 0;
+        if (isLoggedIn === true){
+          let newDict = {};
+          let scaleMap = {};
+          var max = 0;
+          var min = 100;
           let caseRate = 0;
           let mortality = 0;
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
-          let index = 0;
-          let indexP = 0;
+          // let index = 0;
+          // let indexP = 1;
           let hospD = 0;
           let totCases = 0;
           let percentChangeHospDaily = 0;
-          let percentPositive = 0;
+          let percentPositive = 0;    
+          setConfig(configMatched);
+          setStateName(configMatched.name);
+          const fetchData = async() => { 
+            if(stateFips !== "_nation"){
+              //all static data
+              const staticQ = {all: "all"};
+              const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
 
-          _.each(seriesDict, (v, k)=>{
+              promStatic.forEach(i=> {
+                if(i.tag === "nationalraw"){ //nationalraw
+                  newDict[i[Object.keys(i)[3]]] = i.data;
+                }else if(i.tag === "racedataAll"){ //race data
+                  setRaceData(i.racedataAll);       
+                }
+              });
+              setData(newDict);       
 
-            if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
-              countyMost = k.substring(2, 5);
-              covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
-            }
-            if (k.length===2 || stateFips === "_nation"){
-              //case rate
-              percentChangeCase = v[v.length-1].percent14dayDailyCases;
-              if(stateFips === "_nation"){
-                caseRate = 0;
-              }else{
-                caseRate = v[v.length-1].dailyCases;
-              }
-              //mortality rate
-              percentChangeMortality = v[v.length-1].percent14dayDailyDeaths;
-              if(stateFips === "_nation"){
-                mortality = 0;
-              }else{
-                mortality = v[v.length-1].dailyMortality;
-              }
+              const cs = scaleQuantile()
+              .domain(_.map(_.filter(newDict, 
+                d => (
+                    d[metric] > 0 &&
+                    d.fips.length === 5)),
+                d=> d[metric]))
+              .range(colorPalette);
 
-              if(stateFips === "_nation"){
-                totCases = 0;
-              }else{
-                totCases = v[v.length-1].cases;
-              }
-              //hospitalization rate
-              percentChangeHospDaily = v[v.length-1].percent14dayhospDaily;
-              if(stateFips === "_nation"){
-                hospD = 0;
-              }else{
-                hospD = v[v.length-1].hospDaily;
-              }
-              //testing positive rate
-              percentPositive = v[v.length-1].percentPositive;
+              let scaleMap = {}
+              _.each(newDict, d=>{
+                if(d[metric] > 0){
+                scaleMap[d[metric]] = cs(d[metric])}});
+              setColorScale(scaleMap);
+              setLegendSplit(cs.quantiles());
 
-              if(k.length===2 || stateFips === "_nation" && v[v.length-1].percentPositive === 0){
-                for (var i = v.length - 1; i >= 0; i--) {
-                  if (i ===0 ){
-                    indexP = 1;
-                    percentPositive = v[v.length-1].percentPositive;
-                  }else if (v[i].percentPositive === 0){
-                  }else{
-                    indexP = v.length - i;
-                    percentPositive = v[i].percentPositive;
-                    i = 0;
-                  }
+              //find the largest value and set as legend max
+              _.each(newDict, d=> { 
+                if (d[metric] > max && d.fips.length === 5) {
+                  max = d[metric]
+                } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+                  min = d[metric]
+                }
+              });
+
+              if (max > 999999) {
+                max = (max/1000000).toFixed(0) + "M";
+                setLegendMax(max);
+              }else if (max > 999) {
+                max = (max/1000).toFixed(0) + "K";
+                setLegendMax(max);
+              }else{
+                setLegendMax(max.toFixed(0));
+              }
+              setLegendMin(min.toFixed(0));
+          
+              
+              const stateSeriesQ = {tag: "stateonly"};
+              const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+              let stateSeriesDict = promState[0].timeseriesAll['13'];
+              setStateTS(stateSeriesDict);
+
+                if(stateFips === "_nation"){
+                  caseRate = 0;
+                  mortality = 0;
+                  totCases = 0;
+                  hospD = 0;
+                }else{
+                  //case rate
+                  caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
+                  percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
+                  
+                  //mortality rate
+                  mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
+                  percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
+
+                  //hospitalization rate
+                  percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                  hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+
+                  //testing positive rate
+                  percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
+                  totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
+
                 }
               }
+              
+            //manipulate string
+            if (percentChangeCase.toFixed(0) > 0){
+              setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
+            }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
+              setPercentChangeCases(percentChangeCase.toFixed(0).substring(1) + "%");
+            }else{
+              setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
             }
 
-          });
+            if (percentChangeMortality.toFixed(0) > 0){
+              setPercentChangeMortality("+" + percentChangeMortality.toFixed(0) + "%");
+            }else if(percentChangeMortality.toFixed(0).substring(1) === "0"){
+              setPercentChangeMortality(percentChangeMortality.toFixed(0).substring(1) + "%");
+            }else{
+              setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
+            }
 
-          //manipulate string
-          if (percentChangeCase.toFixed(0) > 0){
-            setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
-          }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
-            setPercentChangeCases(percentChangeCase.toFixed(0).substring(1) + "%");
-          }else{
-            setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
-          }
+            if (percentChangeHospDaily.toFixed(0) > 0){
+              setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
+            }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
+              setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
+            }else{
+              setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
+            }
 
-          if (percentChangeMortality.toFixed(0) > 0){
-            setPercentChangeMortality("+" + percentChangeMortality.toFixed(0) + "%");
-          }else if(percentChangeMortality.toFixed(0).substring(1) === "0"){
-            setPercentChangeMortality(percentChangeMortality.toFixed(0).substring(1) + "%");
-          }else{
-            setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
-          }
+            //set values
+            setPctPositive(percentPositive.toFixed(0) + "%");
+            // setIndexP(indexP);
+            // setIndex(index);
+            setCaseRate(numberWithCommas(caseRate.toFixed(0)));
+            setMortality(numberWithCommas(mortality.toFixed(0)));
+            // setTotalCases(numberWithCommas(totCases.toFixed(0)));
+            setHospDaily(numberWithCommas(hospD.toFixed(0)));
 
-          // if (percentChangeHospDaily.toFixed(0) > 0){
-          //   setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
-          // }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
-          //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
-          // }else{
-          //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
-          // }
+              
 
-          //set values
-          setPctPositive(percentPositive.toFixed(0) + "%");
-          setIndexP(indexP);
-          setIndex(index);
-          setCaseRate(numberWithCommas(caseRate.toFixed(0)));
-          setMortality(numberWithCommas(mortality.toFixed(0)));
-          setTotalCases(numberWithCommas(totCases.toFixed(0)));
-          setHospDaily(numberWithCommas(hospD.toFixed(0)));
-          setCountyFips(countyMost);
-          if(stateFips !== "_nation"){
-            setCountyName(fips2county[stateFips+countyMost]);
-            setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
-          }
-          setDataTS(seriesDict);
-        };
-        fetchData();
+            let seriesDict = {};
+            let countyMost = '';
+            let covidmortality7dayfig = 0;
+            if( stateFips !== "_nation"){
+              //Timeseries data
+              const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
+              const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
+              _.map(prom, i=> {
+                seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+                return seriesDict;
+              });
+              _.each(seriesDict, (v, k)=>{
+
+                if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
+                  countyMost = k.substring(2, 5);
+                  covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
+                }
+              });
+            }
+            setCountyFips(countyMost);
+            if(stateFips !== "_nation"){
+              setCountyName(fips2county[stateFips+countyMost]);
+              setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
+            }
+            
+            setDataTS(seriesDict);
+          };
+          fetchData();
+        
+          
+        } else {
+          handleAnonymousLogin();
+        }
       }
-    };
-  }, [metric]);
+    }
+  },[isLoggedIn]);
+
 
   //set date
   useEffect(() => {
@@ -466,8 +453,8 @@ export default function StateMap(props) {
     }
   }, [dataTS]);
 
-  if (data && dataTS && metric) {
-
+  if (stateFips === "_nation" || (data && dataStateTS && metric)) {
+    // console.log( );
   return (
     <HEProvider>
       <div>
@@ -481,6 +468,14 @@ export default function StateMap(props) {
             <Breadcrumb.Section active>{stateFips === "_nation" ? "The United States" :stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
           </Breadcrumb>
+                {stateFips === "_nation"? <div style ={{paddingTop: 26, paddingBottom: 6}}>
+                  <Header.Content style={{paddingLeft: 0, fontFamily: "lato", fontSize: "14pt"}}>
+
+                    <p style= {{fontSize: "20pt"}}>Select your state and then select your county.</p>
+                    <b> Step 1.</b> Select your state.
+                  </Header.Content>
+                </div> 
+                :
                 <div style ={{paddingTop: 26, paddingBottom: 6}}>
                   <Header.Content style={{paddingLeft: 0, fontFamily: "lato", fontSize: "14pt"}}>
 
@@ -489,9 +484,10 @@ export default function StateMap(props) {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     Step 2. </b> Select your county. <br/><br/>
+                    Step 2. </b> Select your county. <br/><br/>
                   </Header.Content>
                 </div>
+                }
 
                       <Dropdown
                         style={{background: '#fff', 
@@ -521,7 +517,7 @@ export default function StateMap(props) {
                         
                       />
 
-                    <Dropdown
+                    {stateFips !== "_nation" && <Dropdown
                         style={{background: '#fff', 
                                 fontSize: "14pt",
                                 fontWeight: 400, 
@@ -548,9 +544,10 @@ export default function StateMap(props) {
                           
 
                         }}
+                      
 
                         
-                      />
+                      />}
                       
 
           { 
@@ -566,9 +563,10 @@ export default function StateMap(props) {
             <Grid.Column style = {{width:235}}> 
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Cases</center>
 
+              {stateFips &&
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <TopChart
-                  data = {dataTS} 
+                  data = {dataStateTS} 
                   sFips = {stateFips}
                   xVar = "t" 
                   yVar = "caseRateMean"
@@ -576,13 +574,13 @@ export default function StateMap(props) {
                   percentChange = {percentChangeCases}
                   resize= {1.2}
                 />
-              </div>
+              </div>}
             </Grid.Column>
             <Grid.Column style = {{width:235}}> 
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <TopChart
-                  data = {dataTS} 
+                  data = {dataStateTS} 
                   sFips = {stateFips}
                   xVar = "t" 
                   yVar = "mortalityMean"
@@ -593,55 +591,30 @@ export default function StateMap(props) {
                 
               </div>
             </Grid.Column>
-            <Grid.Column style = {{width:235}}>
-              <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Total Cases To Date</center>
+
+            <Grid.Column style = {{width:235}}> 
+              <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
-              <VictoryChart theme={VictoryTheme.material}
-                            // minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "cases", dataTS[stateFips].length-15)*1.5}}                            
-                            width={235}
-                            height={180}       
-                            padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
-                            containerComponent={<VictoryContainer responsive={false}/>}>
-                            
-                            <VictoryAxis
-                              tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3)*2 - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length - Math.round(dataTS[stateFips].length/3) - 1].t,
-                                dataTS[stateFips][dataTS[stateFips].length-1].t]}              
-                              style={{tickLabels: {fontSize: 10}}} 
-                              tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                            
-                            <VictoryGroup 
-                              colorScale={[stateColor]}
-                            >
-
-                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                                x='t' y='cases'
-                                />
-
-                            </VictoryGroup>
-
-                            <VictoryArea
-                              style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                              x= 't' y = 'cases'
-
-                            />
-                            <VictoryLabel text= {stateFips === "_nation" ? 0 : totalCases} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
-                            {/* <VictoryLabel text= {stateFips === "_nation" ? "" : percentChangeHospDaily} x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/> */}
-
-                </VictoryChart>
+                <TopChart
+                  data = {dataStateTS} 
+                  sFips = {stateFips}
+                  xVar = "t" 
+                  yVar = "hospDaily"
+                  rate = {hospDaily}
+                  percentChange = {percentChangeHospDaily}
+                  resize= {1.5}
+                />
+                
               </div>
             </Grid.Column>
+            
             <Grid.Column style = {{width:235}}>
               <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Percent Tested Positive</center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart theme={VictoryTheme.material}
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(indexP + 15)].t }}
-                            maxDomain = {{x: dataTS[stateFips][dataTS[stateFips].length-indexP].t, y: getMaxRange(dataTS[stateFips], "positive", dataTS[stateFips].length-15)*1.05}}
+                                               
+                            minDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- 15].t : 0 }}
+                            maxDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length-1].t : 0 , y: stateFips !== "_nation" ? getMaxRange(dataStateTS, "percentPositive", dataStateTS.length-15)*1.05 : 0 }}
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -649,11 +622,12 @@ export default function StateMap(props) {
 
                             
                             <VictoryAxis
-                              tickValues={[
-                                dataTS[stateFips][dataTS[stateFips].length-(indexP + 15)].t,
-                                dataTS[stateFips][dataTS[stateFips].length-(indexP + 10)].t,
-                                dataTS[stateFips][dataTS[stateFips].length-(indexP + 5)].t,
-                                dataTS[stateFips][dataTS[stateFips].length-(indexP)].t]}                        
+                              tickValues={stateFips !== "_nation" ? [
+                                dataStateTS[dataStateTS.length - Math.round(dataStateTS.length/3)*2 - 1].t,
+                                dataStateTS[dataStateTS.length - Math.round(dataStateTS.length/3) - 1].t,
+                                dataStateTS[dataStateTS.length-1].t]
+                              :
+                              [0]}                        
                               style={{tickLabels: {fontSize: 10}}} 
                               tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
                             
@@ -661,16 +635,16 @@ export default function StateMap(props) {
                               colorScale={[stateColor]}
                             >
 
-                              <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                                x='t' y='positive'
+                              <VictoryLine data={dataStateTS && stateFips !== "_nation"? dataStateTS : [0,0,0]}
+                                x='t' y='percentPositive'
                                 />
 
                             </VictoryGroup>
 
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
-                              data={dataTS[stateFips] && stateFips !== "_nation"? dataTS[stateFips] : [0,0,0]}
-                              x= 't' y = 'positive'
+                              data={dataStateTS && stateFips !== "_nation"? dataStateTS : [0,0,0]}
+                              x= 't' y = 'percentPositive'
 
                             />
                             <VictoryLabel text= {stateFips === "_nation" ? 0 :pctPositive} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
@@ -1004,9 +978,9 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Total COVID-19 Cases <br/>
-                    <br/><br/><br/>
-                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
+                    Daily new COVID-19 Hospitalization <br/>
+                    <br/><br/>
+                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
                     </Header.Content>
                 </Grid.Column>
                 <Grid.Column style={{left: 9, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
@@ -1081,7 +1055,7 @@ export default function StateMap(props) {
          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 37, paddingBottom: 35}}> COVID-19 County Outcomes </Divider>
           
         }
-        { 
+        
           <Grid columns={16}>
             <Grid.Row>
               <Grid.Column width={5}>
@@ -1104,10 +1078,10 @@ export default function StateMap(props) {
                                 minHeight: '1.0em',
                                 paddingBottom: '0.5em',
                                 paddingRight: 0}}
-                        text= {metricName}
+                        text= { stateFips !== "_nation" ? metricName : "Select Metric"}
                         search
                         pointing = 'top'
-                        options={metricOptions}
+                        options={stateFips !== "_nation" ? metricOptions : ""}
                         onChange={(e, { value }) => {
                           setMetric(value);
                           setMetricName(varMap[value]['name']);
@@ -1209,7 +1183,7 @@ export default function StateMap(props) {
                     <Accordion.Content active={accstate.activeIndex === 0}>
                     <Grid.Row style={{width: "420px"}}>
                         <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                        <b><em> {stateFips === "_nation"? "" : varMap[metric].name} </em></b> {stateFips === "_nation"? "" : varMap[metric].definition} <br/>
                         For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                         <br/><br/>
                         Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
@@ -1250,6 +1224,7 @@ export default function StateMap(props) {
                           <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
                       </svg>
 
+                      { dataTS && 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
                         height={160}       
@@ -1308,7 +1283,7 @@ export default function StateMap(props) {
                             }}
                             />
                         </VictoryGroup>
-                      </VictoryChart>
+                      </VictoryChart>}
                       
                   </Grid.Row>}
 
@@ -1326,6 +1301,7 @@ export default function StateMap(props) {
                           <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
                       </svg>
 
+                      { dataTS && 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                         width={330}
                         height={170}       
@@ -1381,7 +1357,7 @@ export default function StateMap(props) {
                             }}
                             />
                         </VictoryGroup>
-                      </VictoryChart>
+                      </VictoryChart>}
                   </Grid.Row>}
                 </Grid>
               </Grid.Column>
@@ -1492,7 +1468,7 @@ export default function StateMap(props) {
 
             </Grid.Row>            
           </Grid>
-          } 
+          
           </div>
         }
         <Notes />
