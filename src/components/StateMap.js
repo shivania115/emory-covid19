@@ -1036,9 +1036,9 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <text style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Total COVID-19 Cases <br/>
-                    <br/><br/><br/>
-                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
+                    Daily new COVID-19 hospitalizations <br/>
+                    <br/><br/>
+                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
                     </text>
                 </Grid.Column>
                 <Grid.Column style={{left: 9, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
