@@ -394,13 +394,13 @@ export default function StateMap(props) {
             setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
           }
 
-          // if (percentChangeHospDaily.toFixed(0) > 0){
-          //   setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
-          // }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
-          //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
-          // }else{
-          //   setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
-          // }
+          if (percentChangeHospDaily.toFixed(0) > 0){
+            setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
+          }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
+            setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
+          }else{
+            setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
+          }
 
           setPctPositive(percentPositive.toFixed(0) + "%");
           setIndexP(indexP);
@@ -626,11 +626,11 @@ export default function StateMap(props) {
               </div>
             </Grid.Column>
             <Grid.Column style = {{width:235}}>
-              <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Total Cases To Date</center>
+              <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Hospitalization </center>
               <div style = {{width: 235, background: "#e5f2f7"}}>
               <VictoryChart theme={VictoryTheme.material}
-                            // minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "cases", dataTS[stateFips].length-15)*1.5}}                            
+                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-(index+15)].t }}
+                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "hospDaily", dataTS[stateFips].length-15)*1.5}}                            
                             width={235}
                             height={180}       
                             padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -649,7 +649,7 @@ export default function StateMap(props) {
                             >
 
                               <VictoryLine data={dataTS[stateFips] && stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
-                                x='t' y='cases'
+                                x='t' y='hospDaily'
                                 />
 
                             </VictoryGroup>
@@ -657,13 +657,13 @@ export default function StateMap(props) {
                             <VictoryArea
                               style={{ data: { fill: "#080808", fillOpacity: 0.1} }}
                               data={dataTS[stateFips] && stateFips !== "_nation" ? dataTS[stateFips] : dataTS["_"]}
-                              x= 't' y = 'cases'
+                              x= 't' y = 'hospDaily'
 
                             />
-                            <VictoryLabel text= {stateFips === "_nation" ? 0 : totalCases} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
-                            {/* <VictoryLabel text= {stateFips === "_nation" ? "" : percentChangeHospDaily} x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? 0 : hospDaily} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+                            <VictoryLabel text= {stateFips === "_nation" ? "" : percentChangeHospDaily} x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
                             <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/> */}
+                            <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
 
                 </VictoryChart>
               </div>
@@ -1036,9 +1036,9 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <text style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Total COVID-19 Cases <br/>
-                    <br/><br/><br/>
-                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
+                    Daily new COVID-19 hospitalizations <br/>
+                    <br/><br/>
+                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
                     </text>
                 </Grid.Column>
                 <Grid.Column style={{left: 9, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
