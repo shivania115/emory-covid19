@@ -454,17 +454,26 @@ export default function StateMap(props) {
             <Breadcrumb.Section active>{stateFips === "_nation" ? "The United States" :stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
           </Breadcrumb>
+                {stateFips === "_nation" ? 
                 <div style ={{paddingTop: 26, paddingBottom: 6}}>
                   <Header.Content style={{paddingLeft: 0, fontFamily: "lato", fontSize: "14pt"}}>
 
                     <p style= {{fontSize: "20pt"}}>Select your state and then select your county.</p>
-                    <b> Step 1.</b> Select your state.<b> 
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     Step 2. </b> Select your county. <br/><br/>
+                    <b> Step 1.</b> Select your state.
                   </Header.Content>
-                </div>
+                </div> 
+                :
+                <div style ={{paddingTop: 26, paddingBottom: 6}}>
+                <Header.Content style={{paddingLeft: 0, fontFamily: "lato", fontSize: "14pt"}}>
+
+                  <p style= {{fontSize: "20pt"}}>Select your state and then select your county.</p>
+                  <b> Step 1.</b> Select your state.<b> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Step 2. </b> Select your county. <br/><br/>
+                </Header.Content>
+                </div>}
 
                       <Dropdown
                         style={{background: '#fff', 
@@ -494,7 +503,7 @@ export default function StateMap(props) {
                         
                       />
 
-                    <Dropdown
+                      {stateFips !== "_nation" && <Dropdown
                         style={{background: '#fff', 
                                 fontSize: "14pt",
                                 fontWeight: 400, 
@@ -523,7 +532,7 @@ export default function StateMap(props) {
                         }}
 
                         
-                      />
+                      />}
                       
 
           { 

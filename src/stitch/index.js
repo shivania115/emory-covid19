@@ -7,5 +7,5 @@ import {
   getCurrentUser,
 } from "./authentication";
 
-export { app, groups, users };
+export { app, CHED_static, CHED_series };
 export { loginAnonymous, logoutCurrentUser, hasLoggedInUser, getCurrentUser };
