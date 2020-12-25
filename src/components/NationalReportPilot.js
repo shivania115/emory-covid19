@@ -1584,7 +1584,7 @@ export default function ExtraFile(props) {
                   <br/>         
 
                 </Header.Subheader>
-              {/* <Grid>
+              <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8}}>
                   <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                     
@@ -2720,7 +2720,7 @@ export default function ExtraFile(props) {
                         </Header.Content>
                     </Grid.Column>
                 </Grid.Row> 
-              </Grid>}*/}
+              </Grid>}
               
             </div>}
             
