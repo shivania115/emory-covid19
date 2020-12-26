@@ -22,8 +22,6 @@ import Notes from './Notes';
 import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
-import stateOptions from "./stateOptions.json";
-
 import ReactDOM from 'react-dom';
 import { CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
@@ -89,10 +87,8 @@ export default function USMap(props) {
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
 
-  // const [stateName, setStateName] = useState('Georgia');
-  // const [fips, setFips] = useState('13');
-  const [stateName, setStateName] = useState('The United States');
-  const [fips, setFips] = useState('_nation');
+  const [stateName, setStateName] = useState('Georgia');
+  const [fips, setFips] = useState('13');
   const [stateFips, setStateFips] = useState();
   
   const [colorScale, setColorScale] = useState();
@@ -188,12 +184,9 @@ export default function USMap(props) {
           setLegendMin(min.toFixed(0));
 
           //all states' time series data
-          let tempDict = {};
-          const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
+          const seriesQ = {tag: "stateonly"};
           const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-          tempDict = promSeries[1].timeseriesAll;
-          tempDict["_nation"] = promSeries[0].timeseries_nation;
-          setAllTS(tempDict);
+          setAllTS(promSeries[0].timeseriesAll);
         };
       
       fetchData();
@@ -359,7 +352,7 @@ export default function USMap(props) {
                           setMetric(value);
                           setMetricName(varMap[value]['name']);
                         }}
-                      />                  
+                      />
 
                 <svg width="260" height="80">
                   
@@ -472,38 +465,7 @@ export default function USMap(props) {
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
-                    Current Cases and Deaths in &nbsp;&nbsp;
-                    <Dropdown
-                      style={{background: '#fff', 
-                              fontSize: "24px",
-                              fontWeight: 400, 
-                              theme: '#000000',
-                              width: '230px',
-                              top: '0px',
-                              left: '0px',
-                              text: "Select",
-                              borderTop: 'none',
-                              borderLeft: 'none',
-                              borderRight: 'none', 
-                              borderBottom: '0.5px solid #bdbfc1',
-                              borderRadius: 0,
-                              minHeight: '1.0em',
-                              paddingBottom: '0.5em'}}
-                      text= {stateName}
-                      search
-                      pointing = 'top'
-                      options={stateOptions}
-                      onChange={(e, { value}) => {
-                        
-                        setStateFips(value);
-                        setFips(value);
-                        const configMatched = configs.find(s => s.fips === value);
-                        setStateName(configMatched.name);           
-                        // setStateName(st[stateFips + value]);
-                        
-                                
-                      }}
-                    />    
+                    Current Cases and Deaths in <b>{stateName}</b>
                     
                   </Header.Content>
                 </Header>
@@ -512,10 +474,10 @@ export default function USMap(props) {
                     <Grid.Column> 
 
                       <div>
-                      { stateFips &&
+                      {stateFips &&
                         <VictoryChart 
                                     minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"]["13"].length-15].t}}
-                                    maxDomain = {{y: !stateFips ? getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean : getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05}}                            
+                                    maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
                                     width={235}
                                     height={180}
                                     padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
@@ -560,7 +522,7 @@ export default function USMap(props) {
                                                         : 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={stateFips === "_nation" ? 202 : 182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+                                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
                                     
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
@@ -570,7 +532,7 @@ export default function USMap(props) {
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
                                                         
 
-                                                        x={stateFips === "_nation" ? 165 : 145} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
+                                                        x={145} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
                                                         (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
@@ -581,9 +543,9 @@ export default function USMap(props) {
 
                                                       }}/>
 
-                                    <VictoryLabel text= {"14-day"}  x={stateFips === "_nation" ? 200 : 180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {"change"}  x={stateFips === "_nation" ? 200 : 180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {"Daily Cases"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Cases"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                                     
                         </VictoryChart>}
@@ -591,10 +553,10 @@ export default function USMap(props) {
                     </Grid.Column>
                     <Grid.Column> 
                       <div>
-                      { stateFips && 
+                      {stateFips && 
                         <VictoryChart theme={VictoryTheme.material}
                                     minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
-                                    maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean * 1.1: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
+                                    maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
                                     width={235}
                                     height={180}       
                                     padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -641,7 +603,7 @@ export default function USMap(props) {
                                                          : 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
-                                                         "0%"} x={stateFips === "_nation" ? 202 :182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+                                                         "0%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
 
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
@@ -650,7 +612,7 @@ export default function USMap(props) {
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
 
-                                                        x={stateFips === "_nation" ? 166 :146} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
+                                                        x={146} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
                                                         , fill: stateFips ? 
                                                         (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
@@ -659,9 +621,9 @@ export default function USMap(props) {
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
 
-                                    <VictoryLabel text= {"14-day"}  x={stateFips === "_nation" ? 200 : 180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {"change"}  x={stateFips === "_nation" ? 200 : 180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {"Daily Deaths"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                    <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Deaths"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                         </VictoryChart>}
                       </div>
@@ -674,12 +636,12 @@ export default function USMap(props) {
 
                   <Header as='h2' style={{fontWeight: 400}}>
                     <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
-                      Disparities in COVID-19 Mortality <b>{fips !== "_nation" ? stateName : "hi"}</b>
+                      Disparities in COVID-19 Mortality <b>{stateName}</b>
                       
                     </Header.Content>
                   </Header>
                   
-                  {fips !== "_nation" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && stateFips !== "38" &&
+                  {!raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && stateFips !== "38" &&
                   <Grid.Row columns = {2} style = {{height: 298, paddingBottom: 287}}>
                     <Grid.Column > 
                       {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
@@ -821,7 +783,7 @@ export default function USMap(props) {
                           <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 55, fontWeight: 400}}> Deaths by Ethnicity</Header.Content>
                           {!(stateFips && !!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ))
                               && 
-                            <center> <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> None Reported</Header.Content> </center>
+                            <center> <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> None Reported</text> </center>
 
                         }
                         </div>
@@ -983,7 +945,7 @@ export default function USMap(props) {
 
                         </VictoryChart>
                       }
-                      {fips !== "_nation" && !!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
+                      {!!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
                         <div style = {{marginTop: 10, textAlign: "center", width: 300}}>
                           <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
                         </div>
@@ -994,7 +956,7 @@ export default function USMap(props) {
                   </Grid.Row>
                   }
 
-                  {fips !== "_nation" && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && fips !== "38" &&
+                  {(!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && fips !== "38" &&
                   <Grid.Row columns = {1}>
                     <Grid.Column style = {{ marginLeft : 110, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                       {stateFips && !raceData[fips]["White Alone"] &&
@@ -1186,7 +1148,7 @@ export default function USMap(props) {
 
                   }
 
-                  {fips !== "_nation" && <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
+                  <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
                   
                   {fips === "38" &&
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
@@ -1226,7 +1188,7 @@ export default function USMap(props) {
                     
                     </Header.Content>}
 
-                  </Grid.Row>}
+                  </Grid.Row>
                 </Grid>
               </Grid.Column>
             </Grid.Row>
