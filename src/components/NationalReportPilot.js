@@ -316,6 +316,7 @@ function CaseChart(props){
   const [visible3, setVisible3] = useState(false);
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -337,14 +338,15 @@ function CaseChart(props){
   },[playCount])
 
 
-  var wait=2000;
-  useEffect (() => {
-    setTimeout(() => setVisible1(true), wait);
-    setTimeout(() => setVisible2(true), wait+1000);
-    setTimeout(() => setVisible3(true), wait+2000);
-    setTimeout(() => setVisible4(true), wait+3000);
-    setTimeout(() => setVisible5(true), wait+4000);
-  }, [])
+  var wait=4000;
+  // useEffect (() => {
+  //   setTimeout(() => setVisible1(true), wait);
+  //   setTimeout(() => setVisible2(true), wait+1000);
+  //   setTimeout(() => setVisible3(true), wait+2000);
+  //   setTimeout(() => setVisible4(true), wait+3000);
+  //   setTimeout(() => setVisible5(true), wait+4000);
+  //   setTimeout(() => setDisabled(false), wait+5000);
+  // }, [])
 
   // const handlePlay = () => {
   //   setPlayCount(playCount+1); 
@@ -369,8 +371,15 @@ function CaseChart(props){
       {/* <Legend /> */}
       <Bar name="New cases" dataKey='dailyCases' barSize={18} 
             isAnimationActive={animationBool} 
-            onAnimationStart={() => {setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); }} 
-            onAnimationEnd={()=>setAnimationBool(false)} 
+            onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+              setTimeout(()=>setVisible1(true), wait); 
+              setTimeout(()=>setVisible2(true), wait+1000); 
+              setTimeout(()=>setVisible3(true), wait+2000); 
+              setTimeout(()=>setVisible4(true), wait+3000); 
+              setTimeout(()=>setVisible5(true), wait+4000); 
+              setTimeout(()=>setDisabled(false),wait+4500)
+            }} 
+            onAnimationEnd={()=> {setAnimationBool(false);}} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
@@ -380,12 +389,7 @@ function CaseChart(props){
             stroke={lineColor} strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} active={true}/>
       </ComposedChart>
-      <Button content='Play' icon='play' floated="right" onClick={() => {setPlayCount(playCount+1);                                 
-                                                                          setTimeout(()=>setVisible1(true), wait); 
-                                                                          setTimeout(()=>setVisible2(true), wait+1000); 
-                                                                          setTimeout(()=>setVisible3(true), wait+2000); 
-                                                                          setTimeout(()=>setVisible4(true), wait+3000); 
-                                                                          setTimeout(()=>setVisible5(true), wait+4000); }}/>
+      <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       {/* </Grid.Row>    */}
 
       {/* <Grid.Row columns={5}>
@@ -405,7 +409,7 @@ function CaseChart(props){
       <Message compact style={{ width: '10rem', top:'-42rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-54rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,786 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-56rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,786 new cases <br />(7-day avg.) </Message>
       </Transition> 
       
       </Grid.Column>
@@ -421,6 +425,7 @@ function DeathChart(props){
   const [visible3, setVisible3] = useState(false);
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -442,14 +447,15 @@ function DeathChart(props){
   },[playCount])
 
 
-  var wait=2000;
-  useEffect (() => {
-    setTimeout(() => setVisible1(true), wait);
-    setTimeout(() => setVisible2(true), wait+1000);
-    setTimeout(() => setVisible3(true), wait+2000);
-    setTimeout(() => setVisible4(true), wait+3000);
-    setTimeout(() => setVisible5(true), wait+4000);
-  }, [])
+  var wait=4000;
+  // useEffect (() => {
+  //   setTimeout(() => setVisible1(true), wait);
+  //   setTimeout(() => setVisible2(true), wait+1000);
+  //   setTimeout(() => setVisible3(true), wait+2000);
+  //   setTimeout(() => setVisible4(true), wait+3000);
+  //   setTimeout(() => setVisible5(true), wait+4000);
+  //   setTimeout(() => setDisabled(false), wait+5000);
+  // }, [])
 
   // const handlePlay = () => {
   //   setPlayCount(playCount+1); 
@@ -474,7 +480,14 @@ function DeathChart(props){
       {/* <Legend /> */}
       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
             isAnimationActive={animationBool} 
-            onAnimationStart={() => {setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); }} 
+            onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+              setTimeout(()=>setVisible1(true), wait); 
+              setTimeout(()=>setVisible2(true), wait+1000); 
+              setTimeout(()=>setVisible3(true), wait+2000); 
+              setTimeout(()=>setVisible4(true), wait+3000); 
+              setTimeout(()=>setVisible5(true), wait+4000); 
+              setTimeout(()=>setDisabled(false),wait+2500)
+            }} 
             onAnimationEnd={()=>setAnimationBool(false)} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
@@ -485,18 +498,13 @@ function DeathChart(props){
             stroke={lineColor} strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} active={true}/>
       </ComposedChart>
-      <Button content='Play' icon='play' floated="right" onClick={() => {setPlayCount(playCount+1);                                 
-                                                                          setTimeout(()=>setVisible1(true), wait); 
-                                                                          setTimeout(()=>setVisible2(true), wait+1000); 
-                                                                          setTimeout(()=>setVisible3(true), wait+2000); 
-                                                                          setTimeout(()=>setVisible4(true), wait+3000); 
-                                                                          setTimeout(()=>setVisible5(true), wait+4000); }}/>
+      <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       {/* </Grid.Row>    */}
 
       {/* <Grid.Row columns={5}>
       <Grid.Column >                                                                    */}
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-30rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
+      <Message compact style={{ width: '10rem', top:'-30rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
       </Transition>
       {/* </Grid.Column> 
       <Grid.Column >              */}
@@ -1387,7 +1395,7 @@ export default function ExtraFile(props) {
                 </Header.Content>
               </Header>
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "14em", paddingRight: "2em", paddingBottom: 40}}>
+              {/* <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "14em", paddingRight: "2em", paddingBottom: 40}}>
                     <center> <b style= {{fontSize: "18pt"}}>Population over the age 65 years</b> </center> 
                     <br/>
                     <br/>         
@@ -1574,7 +1582,7 @@ export default function ExtraFile(props) {
                         </Header.Content>
                     </Grid.Column>
                 </Grid.Row>
-              </Grid>}
+              </Grid>} */}
 
 
               
