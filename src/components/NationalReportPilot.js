@@ -317,10 +317,6 @@ function CaseChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-<<<<<<< Updated upstream
-  const [wait, setWait] = useState(5000);
-=======
->>>>>>> Stashed changes
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -342,10 +338,7 @@ function CaseChart(props){
   },[playCount])
 
 
-<<<<<<< Updated upstream
-=======
   var wait=4000;
->>>>>>> Stashed changes
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -386,11 +379,7 @@ function CaseChart(props){
               setTimeout(()=>setVisible5(true), wait+4000); 
               setTimeout(()=>setDisabled(false),wait+4500)
             }} 
-<<<<<<< Updated upstream
-            onAnimationEnd={()=> {setAnimationBool(false); setWait(1500)}} 
-=======
             onAnimationEnd={()=> {setAnimationBool(false);}} 
->>>>>>> Stashed changes
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
@@ -437,10 +426,6 @@ function DeathChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-<<<<<<< Updated upstream
-  const [wait, setWait] = useState(5000);
-=======
->>>>>>> Stashed changes
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -462,10 +447,7 @@ function DeathChart(props){
   },[playCount])
 
 
-<<<<<<< Updated upstream
-=======
   var wait=4000;
->>>>>>> Stashed changes
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -504,15 +486,9 @@ function DeathChart(props){
               setTimeout(()=>setVisible3(true), wait+2000); 
               setTimeout(()=>setVisible4(true), wait+3000); 
               setTimeout(()=>setVisible5(true), wait+4000); 
-<<<<<<< Updated upstream
-              setTimeout(()=>setDisabled(false),wait+4500)
-            }} 
-            onAnimationEnd={()=> {setAnimationBool(false); setWait(1500); }}
-=======
               setTimeout(()=>setDisabled(false),wait+2500)
             }} 
             onAnimationEnd={()=>setAnimationBool(false)} 
->>>>>>> Stashed changes
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='mortalityMean' dot={false} 
