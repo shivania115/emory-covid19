@@ -317,7 +317,6 @@ function CaseChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [wait, setWait] = useState(5000);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -339,6 +338,7 @@ function CaseChart(props){
   },[playCount])
 
 
+  var wait=4000;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -379,15 +379,15 @@ function CaseChart(props){
               setTimeout(()=>setVisible5(true), wait+4000); 
               setTimeout(()=>setDisabled(false),wait+4500)
             }} 
-            onAnimationEnd={()=> {setAnimationBool(false); setWait(1500)}} 
+            onAnimationEnd={()=> {setAnimationBool(false);}} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={5500} 
-            // animationBegin={500} 
+            animationBegin={500} 
             stroke={lineColor} strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} active={true}/>
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       {/* </Grid.Row>    */}
@@ -426,7 +426,6 @@ function DeathChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [wait, setWait] = useState(5000);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -448,6 +447,7 @@ function DeathChart(props){
   },[playCount])
 
 
+  var wait=4000;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -486,17 +486,17 @@ function DeathChart(props){
               setTimeout(()=>setVisible3(true), wait+2000); 
               setTimeout(()=>setVisible4(true), wait+3000); 
               setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+4500)
+              setTimeout(()=>setDisabled(false),wait+2500)
             }} 
-            onAnimationEnd={()=> {setAnimationBool(false); setWait(1500); }}
+            onAnimationEnd={()=>setAnimationBool(false)} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={5500} 
-            // animationBegin={500} 
+            animationBegin={500} 
             stroke={lineColor} strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} active={true}/>
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       {/* </Grid.Row>    */}
