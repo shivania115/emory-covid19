@@ -1,0 +1,970 @@
+{
+  "caserate7day": [
+    {
+      "black": [
+        {
+          "var": "black",
+          "rate": 6687.64576,
+          "quintGroup": "[0,0.508]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "black",
+          "rate": 6404.236541,
+          "quintGroup": "(0.508,1.29]",
+          "label": "Q2"
+        },
+        {
+          "var": "black",
+          "rate": 6552.775199,
+          "quintGroup": "(1.29,4.01]",
+          "label": "Q3"
+        },
+        {
+          "var": "black",
+          "rate": 6293.318361,
+          "quintGroup": "(4.01,14.2]",
+          "label": "Q4"
+        },
+        {
+          "var": "black",
+          "rate": 6339.696342,
+          "quintGroup": "(14.2,87.4]",
+          "label": "Highest 20%"
+        }
+      ],
+      "male": [
+        {
+          "var": "male",
+          "rate": 6121.180605,
+          "quintGroup": "[41.4,48.7]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "male",
+          "rate": 6089.844152,
+          "quintGroup": "(48.7,49.3]",
+          "label": "Q2"
+        },
+        {
+          "var": "male",
+          "rate": 6186.176561,
+          "quintGroup": "(49.3,49.9]",
+          "label": "Q3"
+        },
+        {
+          "var": "male",
+          "rate": 6679.297254,
+          "quintGroup": "(49.9,51]",
+          "label": "Q4"
+        },
+        {
+          "var": "male",
+          "rate": 7200.71959,
+          "quintGroup": "(51,79]",
+          "label": "Highest 20%"
+        }
+      ],
+      "poverty": [
+        {
+          "var": "poverty",
+          "rate": 6382.870873,
+          "quintGroup": "[2.3,10.2]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "poverty",
+          "rate": 6443.146308,
+          "quintGroup": "(10.2,13.3]",
+          "label": "Q2"
+        },
+        {
+          "var": "poverty",
+          "rate": 6193.212997,
+          "quintGroup": "(13.3,16.1]",
+          "label": "Q3"
+        },
+        {
+          "var": "poverty",
+          "rate": 6335.973454,
+          "quintGroup": "(16.1,20.2]",
+          "label": "Q4"
+        },
+        {
+          "var": "poverty",
+          "rate": 6925.725684,
+          "quintGroup": "(20.2,55.1]",
+          "label": "Highest 20%"
+        }
+      ],
+      "age65over": [
+        {
+          "var": "age65over",
+          "rate": 6940.184962,
+          "quintGroup": "[3.8,14.8]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "age65over",
+          "rate": 6676.483072,
+          "quintGroup": "(14.8,17]",
+          "label": "Q2"
+        },
+        {
+          "var": "age65over",
+          "rate": 6581.127757,
+          "quintGroup": "(17,19]",
+          "label": "Q3"
+        },
+        {
+          "var": "age65over",
+          "rate": 6401.872126,
+          "quintGroup": "(19,21.5]",
+          "label": "Q4"
+        },
+        {
+          "var": "age65over",
+          "rate": 5682.60391,
+          "quintGroup": "(21.5,55.6]",
+          "label": "Highest 20%"
+        }
+      ],
+      "minority": [
+        {
+          "var": "minority",
+          "rate": 6220.8386,
+          "quintGroup": "[0,6.29]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "minority",
+          "rate": 6603.151735,
+          "quintGroup": "(6.29,12.1]",
+          "label": "Q2"
+        },
+        {
+          "var": "minority",
+          "rate": 6335.326785,
+          "quintGroup": "(12.1,22.8]",
+          "label": "Q3"
+        },
+        {
+          "var": "minority",
+          "rate": 6229.427378,
+          "quintGroup": "(22.8,39.9]",
+          "label": "Q4"
+        },
+        {
+          "var": "minority",
+          "rate": 6893.526693,
+          "quintGroup": "(39.9,99.3]",
+          "label": "Highest 20%"
+        }
+      ],
+      "groupquarter": [
+        {
+          "var": "groupquarter",
+          "rate": 5651.237736,
+          "quintGroup": "[0,1.11]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 6559.406859,
+          "quintGroup": "(1.11,1.62]",
+          "label": "Q2"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 6489.51984,
+          "quintGroup": "(1.62,2.52]",
+          "label": "Q3"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 6461.412936,
+          "quintGroup": "(2.52,4.65]",
+          "label": "Q4"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 7118.448796,
+          "quintGroup": "(4.65,55.7]",
+          "label": "Highest 20%"
+        }
+      ],
+      "diabetes": [
+        {
+          "var": "diabetes",
+          "rate": 6222.059247,
+          "quintGroup": "[1.5,7.2]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "diabetes",
+          "rate": 6396.084947,
+          "quintGroup": "(7.2,9]",
+          "label": "Q2"
+        },
+        {
+          "var": "diabetes",
+          "rate": 6450.880384,
+          "quintGroup": "(9,10.7]",
+          "label": "Q3"
+        },
+        {
+          "var": "diabetes",
+          "rate": 6443.161345,
+          "quintGroup": "(10.7,13.2]",
+          "label": "Q4"
+        },
+        {
+          "var": "diabetes",
+          "rate": 6771.014997,
+          "quintGroup": "(13.2,33]",
+          "label": "Highest 20%"
+        }
+      ],
+      "hispanic": [
+        {
+          "var": "hispanic",
+          "rate": 6192.670288,
+          "quintGroup": "[0,1.86]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "hispanic",
+          "rate": 6769.620455,
+          "quintGroup": "(1.86,3.11]",
+          "label": "Q2"
+        },
+        {
+          "var": "hispanic",
+          "rate": 6577.115168,
+          "quintGroup": "(3.11,5.54]",
+          "label": "Q3"
+        },
+        {
+          "var": "hispanic",
+          "rate": 5997.934677,
+          "quintGroup": "(5.54,12.3]",
+          "label": "Q4"
+        },
+        {
+          "var": "hispanic",
+          "rate": 6740.75782,
+          "quintGroup": "(12.3,99.1]",
+          "label": "Highest 20%"
+        }
+      ],
+      "natives": [
+        {
+          "var": "natives",
+          "rate": 6340.463931,
+          "quintGroup": "[0,0.138]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "natives",
+          "rate": 6200.654383,
+          "quintGroup": "(0.138,0.273]",
+          "label": "Q2"
+        },
+        {
+          "var": "natives",
+          "rate": 6267.560969,
+          "quintGroup": "(0.273,0.476]",
+          "label": "Q3"
+        },
+        {
+          "var": "natives",
+          "rate": 6408.399858,
+          "quintGroup": "(0.476,1.09]",
+          "label": "Q4"
+        },
+        {
+          "var": "natives",
+          "rate": 7062.40008,
+          "quintGroup": "(1.09,92.5]",
+          "label": "Highest 20%"
+        }
+      ],
+      "urbanrural": [
+        {
+          "var": "urbanrural",
+          "rate": 5657.831113,
+          "quintGroup": "Large Central Metro",
+          "label": "Large Central Metro"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 5378.700647,
+          "quintGroup": "Large Fringe Metro",
+          "label": "Large Fringe Metro"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 5838.07281,
+          "quintGroup": "Medium Metro",
+          "label": "Medium Metro"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 6762.417689,
+          "quintGroup": "Micropolitan (Nonmetro)",
+          "label": "Micropolitan (Nonmetro)"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 6832.296415,
+          "quintGroup": "NonCore (Nonmetro)",
+          "label": "NonCore (Nonmetro)"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 6440.61032,
+          "quintGroup": "Small Metro",
+          "label": "Small Metro"
+        }
+      ],
+      "obesity": [
+        {
+          "var": "obesity",
+          "rate": 5543.877307,
+          "quintGroup": "[12.3,28]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "obesity",
+          "rate": 6418.268448,
+          "quintGroup": "(28,31.5]",
+          "label": "Q2"
+        },
+        {
+          "var": "obesity",
+          "rate": 6516.662032,
+          "quintGroup": "(31.5,34.4]",
+          "label": "Q3"
+        },
+        {
+          "var": "obesity",
+          "rate": 6961.805829,
+          "quintGroup": "(34.4,37.5]",
+          "label": "Q4"
+        },
+        {
+          "var": "obesity",
+          "rate": 6838.659795,
+          "quintGroup": "(37.5,57.9]",
+          "label": "Highest 20%"
+        }
+      ],
+      "hhincome": [
+        {
+          "var": "hhincome",
+          "rate": 6708.873057,
+          "quintGroup": "[3.36e+04,5.56e+04]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "hhincome",
+          "rate": 6513.454803,
+          "quintGroup": "(5.56e+04,6.18e+04]",
+          "label": "Q2"
+        },
+        {
+          "var": "hhincome",
+          "rate": 6669.85553,
+          "quintGroup": "(6.18e+04,6.83e+04]",
+          "label": "Q3"
+        },
+        {
+          "var": "hhincome",
+          "rate": 6868.549908,
+          "quintGroup": "(6.83e+04,7.76e+04]",
+          "label": "Q4"
+        },
+        {
+          "var": "hhincome",
+          "rate": 5514.937843,
+          "quintGroup": "(7.76e+04,1.82e+05]",
+          "label": "Highest 20%"
+        }
+      ],
+      "region": [
+        {
+          "var": "region",
+          "rate": 7707.998913,
+          "quintGroup": "Midwest",
+          "label": "Midwest"
+        },
+        {
+          "var": "region",
+          "rate": 3685.697913,
+          "quintGroup": "Northeast",
+          "label": "Northeast"
+        },
+        {
+          "var": "region",
+          "rate": 6259.091883,
+          "quintGroup": "South",
+          "label": "South"
+        },
+        {
+          "var": "region",
+          "rate": 5494.847219,
+          "quintGroup": "West",
+          "label": "West"
+        }
+      ],
+      "CVI": [
+        {
+          "var": "CVI",
+          "rate": 6474.955926,
+          "quintGroup": "[0,0.2]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "CVI",
+          "rate": 6339.693907,
+          "quintGroup": "(0.2,0.4]",
+          "label": "Q2"
+        },
+        {
+          "var": "CVI",
+          "rate": 6261.391863,
+          "quintGroup": "(0.4,0.6]",
+          "label": "Q3"
+        },
+        {
+          "var": "CVI",
+          "rate": 6320.105431,
+          "quintGroup": "(0.6,0.8]",
+          "label": "Q4"
+        },
+        {
+          "var": "CVI",
+          "rate": 6910.319991,
+          "quintGroup": "(0.8,539]",
+          "label": "Highest 20%"
+        }
+      ],
+      "resSeg": [
+        {
+          "var": "resSeg",
+          "rate": 6103.458949,
+          "quintGroup": "[0,31]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "resSeg",
+          "rate": 6471.273235,
+          "quintGroup": "(31,42]",
+          "label": "Q2"
+        },
+        {
+          "var": "resSeg",
+          "rate": 6435.364725,
+          "quintGroup": "(42,50]",
+          "label": "Q3"
+        },
+        {
+          "var": "resSeg",
+          "rate": 6025.706622,
+          "quintGroup": "(50,60]",
+          "label": "Q4"
+        },
+        {
+          "var": "resSeg",
+          "rate": 6295.840376,
+          "quintGroup": "(60,90]",
+          "label": "Highest 20%"
+        }
+      ]
+    }
+  ],
+  "covidmortality7day": [
+    {
+      "black": [
+        {
+          "var": "black",
+          "rate": 114.7101084,
+          "quintGroup": "[0,0.508]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "black",
+          "rate": 104.43836,
+          "quintGroup": "(0.508,1.29]",
+          "label": "Q2"
+        },
+        {
+          "var": "black",
+          "rate": 98.41594575,
+          "quintGroup": "(1.29,4.01]",
+          "label": "Q3"
+        },
+        {
+          "var": "black",
+          "rate": 100.6136331,
+          "quintGroup": "(4.01,14.2]",
+          "label": "Q4"
+        },
+        {
+          "var": "black",
+          "rate": 139.297973,
+          "quintGroup": "(14.2,87.4]",
+          "label": "Highest 20%"
+        }
+      ],
+      "male": [
+        {
+          "var": "male",
+          "rate": 126.3815308,
+          "quintGroup": "[41.4,48.7]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "male",
+          "rate": 106.4505122,
+          "quintGroup": "(48.7,49.3]",
+          "label": "Q2"
+        },
+        {
+          "var": "male",
+          "rate": 99.26732491,
+          "quintGroup": "(49.3,49.9]",
+          "label": "Q3"
+        },
+        {
+          "var": "male",
+          "rate": 109.6627742,
+          "quintGroup": "(49.9,51]",
+          "label": "Q4"
+        },
+        {
+          "var": "male",
+          "rate": 115.752689,
+          "quintGroup": "(51,79]",
+          "label": "Highest 20%"
+        }
+      ],
+      "poverty": [
+        {
+          "var": "poverty",
+          "rate": 97.95998271,
+          "quintGroup": "[2.3,10.2]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "poverty",
+          "rate": 101.8957548,
+          "quintGroup": "(10.2,13.3]",
+          "label": "Q2"
+        },
+        {
+          "var": "poverty",
+          "rate": 102.8562751,
+          "quintGroup": "(13.3,16.1]",
+          "label": "Q3"
+        },
+        {
+          "var": "poverty",
+          "rate": 111.5222499,
+          "quintGroup": "(16.1,20.2]",
+          "label": "Q4"
+        },
+        {
+          "var": "poverty",
+          "rate": 143.3089675,
+          "quintGroup": "(20.2,55.1]",
+          "label": "Highest 20%"
+        }
+      ],
+      "age65over": [
+        {
+          "var": "age65over",
+          "rate": 98.38804969,
+          "quintGroup": "[3.8,14.8]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "age65over",
+          "rate": 114.7377053,
+          "quintGroup": "(14.8,17]",
+          "label": "Q2"
+        },
+        {
+          "var": "age65over",
+          "rate": 114.6628007,
+          "quintGroup": "(17,19]",
+          "label": "Q3"
+        },
+        {
+          "var": "age65over",
+          "rate": 114.9153824,
+          "quintGroup": "(19,21.5]",
+          "label": "Q4"
+        },
+        {
+          "var": "age65over",
+          "rate": 114.6244268,
+          "quintGroup": "(21.5,55.6]",
+          "label": "Highest 20%"
+        }
+      ],
+      "minority": [
+        {
+          "var": "minority",
+          "rate": 113.7874646,
+          "quintGroup": "[0,6.29]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "minority",
+          "rate": 99.63548535,
+          "quintGroup": "(6.29,12.1]",
+          "label": "Q2"
+        },
+        {
+          "var": "minority",
+          "rate": 92.88781015,
+          "quintGroup": "(12.1,22.8]",
+          "label": "Q3"
+        },
+        {
+          "var": "minority",
+          "rate": 107.8697927,
+          "quintGroup": "(22.8,39.9]",
+          "label": "Q4"
+        },
+        {
+          "var": "minority",
+          "rate": 143.5918826,
+          "quintGroup": "(39.9,99.3]",
+          "label": "Highest 20%"
+        }
+      ],
+      "groupquarter": [
+        {
+          "var": "groupquarter",
+          "rate": 90.03780745,
+          "quintGroup": "[0,1.11]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 112.8960916,
+          "quintGroup": "(1.11,1.62]",
+          "label": "Q2"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 121.680075,
+          "quintGroup": "(1.62,2.52]",
+          "label": "Q3"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 114.3504902,
+          "quintGroup": "(2.52,4.65]",
+          "label": "Q4"
+        },
+        {
+          "var": "groupquarter",
+          "rate": 118.514758,
+          "quintGroup": "(4.65,55.7]",
+          "label": "Highest 20%"
+        }
+      ],
+      "diabetes": [
+        {
+          "var": "diabetes",
+          "rate": 103.6646272,
+          "quintGroup": "[1.5,7.2]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "diabetes",
+          "rate": 98.996049,
+          "quintGroup": "(7.2,9]",
+          "label": "Q2"
+        },
+        {
+          "var": "diabetes",
+          "rate": 106.9025301,
+          "quintGroup": "(9,10.7]",
+          "label": "Q3"
+        },
+        {
+          "var": "diabetes",
+          "rate": 115.7159371,
+          "quintGroup": "(10.7,13.2]",
+          "label": "Q4"
+        },
+        {
+          "var": "diabetes",
+          "rate": 132.6197721,
+          "quintGroup": "(13.2,33]",
+          "label": "Highest 20%"
+        }
+      ],
+      "hispanic": [
+        {
+          "var": "hispanic",
+          "rate": 119.389933,
+          "quintGroup": "[0,1.86]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "hispanic",
+          "rate": 120.5573327,
+          "quintGroup": "(1.86,3.11]",
+          "label": "Q2"
+        },
+        {
+          "var": "hispanic",
+          "rate": 108.2921589,
+          "quintGroup": "(3.11,5.54]",
+          "label": "Q3"
+        },
+        {
+          "var": "hispanic",
+          "rate": 92.43609934,
+          "quintGroup": "(5.54,12.3]",
+          "label": "Q4"
+        },
+        {
+          "var": "hispanic",
+          "rate": 116.7133758,
+          "quintGroup": "(12.3,99.1]",
+          "label": "Highest 20%"
+        }
+      ],
+      "natives": [
+        {
+          "var": "natives",
+          "rate": 127.770792,
+          "quintGroup": "[0,0.138]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "natives",
+          "rate": 109.5410343,
+          "quintGroup": "(0.138,0.273]",
+          "label": "Q2"
+        },
+        {
+          "var": "natives",
+          "rate": 104.5082696,
+          "quintGroup": "(0.273,0.476]",
+          "label": "Q3"
+        },
+        {
+          "var": "natives",
+          "rate": 104.3840388,
+          "quintGroup": "(0.476,1.09]",
+          "label": "Q4"
+        },
+        {
+          "var": "natives",
+          "rate": 111.1411177,
+          "quintGroup": "(1.09,92.5]",
+          "label": "Highest 20%"
+        }
+      ],
+      "urbanrural": [
+        {
+          "var": "urbanrural",
+          "rate": 93.91174722,
+          "quintGroup": "Large Central Metro",
+          "label": "Large Central Metro"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 83.78286891,
+          "quintGroup": "Large Fringe Metro",
+          "label": "Large Fringe Metro"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 92.97076838,
+          "quintGroup": "Medium Metro",
+          "label": "Medium Metro"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 111.0261916,
+          "quintGroup": "Micropolitan (Nonmetro)",
+          "label": "Micropolitan (Nonmetro)"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 127.81495,
+          "quintGroup": "NonCore (Nonmetro)",
+          "label": "NonCore (Nonmetro)"
+        },
+        {
+          "var": "urbanrural",
+          "rate": 104.3747522,
+          "quintGroup": "Small Metro",
+          "label": "Small Metro"
+        }
+      ],
+      "obesity": [
+        {
+          "var": "obesity",
+          "rate": 96.88562666,
+          "quintGroup": "[12.3,28]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "obesity",
+          "rate": 107.4029303,
+          "quintGroup": "(28,31.5]",
+          "label": "Q2"
+        },
+        {
+          "var": "obesity",
+          "rate": 105.9199114,
+          "quintGroup": "(31.5,34.4]",
+          "label": "Q3"
+        },
+        {
+          "var": "obesity",
+          "rate": 118.3181288,
+          "quintGroup": "(34.4,37.5]",
+          "label": "Q4"
+        },
+        {
+          "var": "obesity",
+          "rate": 129.1280023,
+          "quintGroup": "(37.5,57.9]",
+          "label": "Highest 20%"
+        }
+      ],
+      "hhincome": [
+        {
+          "var": "hhincome",
+          "rate": 140.7773171,
+          "quintGroup": "[3.36e+04,5.56e+04]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "hhincome",
+          "rate": 116.312938,
+          "quintGroup": "(5.56e+04,6.18e+04]",
+          "label": "Q2"
+        },
+        {
+          "var": "hhincome",
+          "rate": 112.2801407,
+          "quintGroup": "(6.18e+04,6.83e+04]",
+          "label": "Q3"
+        },
+        {
+          "var": "hhincome",
+          "rate": 104.7700547,
+          "quintGroup": "(6.83e+04,7.76e+04]",
+          "label": "Q4"
+        },
+        {
+          "var": "hhincome",
+          "rate": 83.18894369,
+          "quintGroup": "(7.76e+04,1.82e+05]",
+          "label": "Highest 20%"
+        }
+      ],
+      "region": [
+        {
+          "var": "region",
+          "rate": 123.2509564,
+          "quintGroup": "Midwest",
+          "label": "Midwest"
+        },
+        {
+          "var": "region",
+          "rate": 92.14685587,
+          "quintGroup": "Northeast",
+          "label": "Northeast"
+        },
+        {
+          "var": "region",
+          "rate": 118.3209808,
+          "quintGroup": "South",
+          "label": "South"
+        },
+        {
+          "var": "region",
+          "rate": 71.94495716,
+          "quintGroup": "West",
+          "label": "West"
+        }
+      ],
+      "CVI": [
+        {
+          "var": "CVI",
+          "rate": 95.18981241,
+          "quintGroup": "[0,0.2]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "CVI",
+          "rate": 97.42314187,
+          "quintGroup": "(0.2,0.4]",
+          "label": "Q2"
+        },
+        {
+          "var": "CVI",
+          "rate": 104.4878831,
+          "quintGroup": "(0.4,0.6]",
+          "label": "Q3"
+        },
+        {
+          "var": "CVI",
+          "rate": 113.0252511,
+          "quintGroup": "(0.6,0.8]",
+          "label": "Q4"
+        },
+        {
+          "var": "CVI",
+          "rate": 148.5384235,
+          "quintGroup": "(0.8,539]",
+          "label": "Highest 20%"
+        }
+      ],
+      "resSeg": [
+        {
+          "var": "resSeg",
+          "rate": 124.889679,
+          "quintGroup": "[0,31]",
+          "label": "Lowest 20%"
+        },
+        {
+          "var": "resSeg",
+          "rate": 110.3507747,
+          "quintGroup": "(31,42]",
+          "label": "Q2"
+        },
+        {
+          "var": "resSeg",
+          "rate": 104.1389423,
+          "quintGroup": "(42,50]",
+          "label": "Q3"
+        },
+        {
+          "var": "resSeg",
+          "rate": 101.723503,
+          "quintGroup": "(50,60]",
+          "label": "Q4"
+        },
+        {
+          "var": "resSeg",
+          "rate": 98.96949351,
+          "quintGroup": "(60,90]",
+          "label": "Highest 20%"
+        }
+      ]
+    }
+  ]
+}

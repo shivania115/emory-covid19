@@ -1,0 +1,151 @@
+﻿value,quintgroup,rate,lbl,quintileVar,variable
+41.91157732,"[0,0.508]",6687.64576,Lowest 20%,black,caserate7day
+43.73568111,"(0.508,1.29]",6404.236541,Q2,black,caserate7day
+54.87373382,"(1.29,4.01]",6552.775199,Q3,black,caserate7day
+54.87898275,"(4.01,14.2]",6293.318361,Q4,black,caserate7day
+52.09358184,"(14.2,87.4]",6339.696342,Highest 20%,black,caserate7day
+52.60835998,"[41.4,48.7]",6121.180605,Lowest 20%,male,caserate7day
+51.51052139,"(48.7,49.3]",6089.844152,Q2,male,caserate7day
+48.6673574,"(49.3,49.9]",6186.176561,Q3,male,caserate7day
+44.62839766,"(49.9,51]",6679.297254,Q4,male,caserate7day
+50.09768697,"(51,79]",7200.71959,Highest 20%,male,caserate7day
+43.34297746,"[2.3,10.2]",6382.870873,Lowest 20%,poverty,caserate7day
+46.96070143,"(10.2,13.3]",6443.146308,Q2,poverty,caserate7day
+50.62730018,"(13.3,16.1]",6193.212997,Q3,poverty,caserate7day
+52.1099755,"(16.1,20.2]",6335.973454,Q4,poverty,caserate7day
+54.4348794,"(20.2,55.1]",6925.725684,Highest 20%,poverty,caserate7day
+49.07119278,"[3.8,14.8]",6940.184962,Lowest 20%,age65over,caserate7day
+52.41124302,"(14.8,17]",6676.483072,Q2,age65over,caserate7day
+54.96946642,"(17,19]",6581.127757,Q3,age65over,caserate7day
+51.26735013,"(19,21.5]",6401.872126,Q4,age65over,caserate7day
+39.78573735,"(21.5,55.6]",5682.60391,Highest 20%,age65over,caserate7day
+45.44570257,"[0,6.29]",6220.8386,Lowest 20%,minority,caserate7day
+46.92362351,"(6.29,12.1]",6603.151735,Q2,minority,caserate7day
+50.38490882,"(12.1,22.8]",6335.326785,Q3,minority,caserate7day
+52.48325867,"(22.8,39.9]",6229.427378,Q4,minority,caserate7day
+52.2868014,"(39.9,99.3]",6893.526693,Highest 20%,minority,caserate7day
+46.8294214,"[0,1.11]",5651.237736,Lowest 20%,groupquarter,caserate7day
+50.94039316,"(1.11,1.62]",6559.406859,Q2,groupquarter,caserate7day
+47.51054497,"(1.62,2.52]",6489.51984,Q3,groupquarter,caserate7day
+49.2561715,"(2.52,4.65]",6461.412936,Q4,groupquarter,caserate7day
+52.95703196,"(4.65,55.7]",7118.448796,Highest 20%,groupquarter,caserate7day
+41.48499501,"[1.5,7.2]",6222.059247,Lowest 20%,diabetes,caserate7day
+44.85156023,"(7.2,9]",6396.084947,Q2,diabetes,caserate7day
+50.52814645,"(9,10.7]",6450.880384,Q3,diabetes,caserate7day
+53.39619462,"(10.7,13.2]",6443.161345,Q4,diabetes,caserate7day
+57.37630622,"(13.2,33]",6771.014997,Highest 20%,diabetes,caserate7day
+49.19275759,"[0,1.86]",6192.670288,Lowest 20%,hispanic,caserate7day
+47.86032612,"(1.86,3.11]",6769.620455,Q2,hispanic,caserate7day
+48.94888921,"(3.11,5.54]",6577.115168,Q3,hispanic,caserate7day
+48.81931699,"(5.54,12.3]",5997.934677,Q4,hispanic,caserate7day
+52.68262907,"(12.3,99.1]",6740.75782,Highest 20%,hispanic,caserate7day
+55.15888589,"[0,0.138]",6340.463931,Lowest 20%,natives,caserate7day
+50.55344593,"(0.138,0.273]",6200.654383,Q2,natives,caserate7day
+49.1795305,"(0.273,0.476]",6267.560969,Q3,natives,caserate7day
+46.46021069,"(0.476,1.09]",6408.399858,Q4,natives,caserate7day
+46.10491187,"(1.09,92.5]",7062.40008,Highest 20%,natives,caserate7day
+52.66633761,Large Central Metro,5657.831113,Large Central Metro,urbanrural,caserate7day
+50.25362614,Large Fringe Metro,5378.700647,Large Fringe Metro,urbanrural,caserate7day
+52.13329392,Medium Metro,5838.07281,Medium Metro,urbanrural,caserate7day
+51.52897288,Micropolitan (Nonmetro),6762.417689,Micropolitan (Nonmetro),urbanrural,caserate7day
+47.24944076,NonCore (Nonmetro),6832.296415,NonCore (Nonmetro),urbanrural,caserate7day
+50.24558009,Small Metro,6440.61032,Small Metro,urbanrural,caserate7day
+45.36117362,"[12.3,28]",5543.877307,Lowest 20%,obesity,caserate7day
+49.53937367,"(28,31.5]",6418.268448,Q2,obesity,caserate7day
+49.63317879,"(31.5,34.4]",6516.662032,Q3,obesity,caserate7day
+50.55841946,"(34.4,37.5]",6961.805829,Q4,obesity,caserate7day
+52.45806636,"(37.5,57.9]",6838.659795,Highest 20%,obesity,caserate7day
+54.33139779,"[3.36e+04,5.56e+04]",6708.873057,Lowest 20%,hhincome,caserate7day
+51.68791128,"(5.56e+04,6.18e+04]",6513.454803,Q2,hhincome,caserate7day
+48.4255467,"(6.18e+04,6.83e+04]",6669.85553,Q3,hhincome,caserate7day
+47.04834827,"(6.83e+04,7.76e+04]",6868.549908,Q4,hhincome,caserate7day
+45.96308135,"(7.76e+04,1.82e+05]",5514.937843,Highest 20%,hhincome,caserate7day
+41.71759146,Midwest,7707.998913,Midwest,region,caserate7day
+51.71949574,Northeast,3685.697913,Northeast,region,caserate7day
+56.83076691,South,6259.091883,South,region,caserate7day
+43.47259794,West,5494.847219,West,region,caserate7day
+38.98670659,"[0,0.2]",6474.955926,Lowest 20%,CVI,caserate7day
+49.31492029,"(0.2,0.4]",6339.693907,Q2,CVI,caserate7day
+51.66354463,"(0.4,0.6]",6261.391863,Q3,CVI,caserate7day
+52.95875397,"(0.6,0.8]",6320.105431,Q4,CVI,caserate7day
+54.63617452,"(0.8,539]",6910.319991,Highest 20%,CVI,caserate7day
+51.9987632,"[0,31]",6103.458949,Lowest 20%,resSeg,caserate7day
+57.45322372,"(31,42]",6471.273235,Q2,resSeg,caserate7day
+51.43583131,"(42,50]",6435.364725,Q3,resSeg,caserate7day
+50.14997985,"(50,60]",6025.706622,Q4,resSeg,caserate7day
+48.77680606,"(60,90]",6295.840376,Highest 20%,resSeg,caserate7day
+0.957385036,"[0,0.508]",114.7101084,Lowest 20%,black,covidmortality7day
+1.105920703,"(0.508,1.29]",104.43836,Q2,black,covidmortality7day
+1.030453652,"(1.29,4.01]",98.41594575,Q3,black,covidmortality7day
+0.857151095,"(4.01,14.2]",100.6136331,Q4,black,covidmortality7day
+0.688923042,"(14.2,87.4]",139.297973,Highest 20%,black,covidmortality7day
+0.866975839,"[41.4,48.7]",126.3815308,Lowest 20%,male,covidmortality7day
+0.939036246,"(48.7,49.3]",106.4505122,Q2,male,covidmortality7day
+0.956826972,"(49.3,49.9]",99.26732491,Q3,male,covidmortality7day
+0.954699736,"(49.9,51]",109.6627742,Q4,male,covidmortality7day
+0.922740478,"(51,79]",115.752689,Highest 20%,male,covidmortality7day
+0.807942298,"[2.3,10.2]",97.95998271,Lowest 20%,poverty,covidmortality7day
+0.887596124,"(10.2,13.3]",101.8957548,Q2,poverty,covidmortality7day
+1.053529294,"(13.3,16.1]",102.8562751,Q3,poverty,covidmortality7day
+0.963097802,"(16.1,20.2]",111.5222499,Q4,poverty,covidmortality7day
+0.928406465,"(20.2,55.1]",143.3089675,Highest 20%,poverty,covidmortality7day
+0.61394638,"[3.8,14.8]",98.38804969,Lowest 20%,age65over,covidmortality7day
+0.863181377,"(14.8,17]",114.7377053,Q2,age65over,covidmortality7day
+1.007228753,"(17,19]",114.6628007,Q3,age65over,covidmortality7day
+1.041354032,"(19,21.5]",114.9153824,Q4,age65over,covidmortality7day
+1.11254822,"(21.5,55.6]",114.6244268,Highest 20%,age65over,covidmortality7day
+1.207954357,"[0,6.29]",113.7874646,Lowest 20%,minority,covidmortality7day
+0.980810426,"(6.29,12.1]",99.63548535,Q2,minority,covidmortality7day
+0.87292507,"(12.1,22.8]",92.88781015,Q3,minority,covidmortality7day
+0.800728455,"(22.8,39.9]",107.8697927,Q4,minority,covidmortality7day
+0.776113859,"(39.9,99.3]",143.5918826,Highest 20%,minority,covidmortality7day
+0.726585105,"[0,1.11]",90.03780745,Lowest 20%,groupquarter,covidmortality7day
+0.954650055,"(1.11,1.62]",112.8960916,Q2,groupquarter,covidmortality7day
+1.088862786,"(1.62,2.52]",121.680075,Q3,groupquarter,covidmortality7day
+0.936514884,"(2.52,4.65]",114.3504902,Q4,groupquarter,covidmortality7day
+0.934796095,"(4.65,55.7]",118.514758,Highest 20%,groupquarter,covidmortality7day
+1.027541888,"[1.5,7.2]",103.6646272,Lowest 20%,diabetes,covidmortality7day
+0.791651602,"(7.2,9]",98.996049,Q2,diabetes,covidmortality7day
+0.936726669,"(9,10.7]",106.9025301,Q3,diabetes,covidmortality7day
+0.945466409,"(10.7,13.2]",115.7159371,Q4,diabetes,covidmortality7day
+0.940307594,"(13.2,33]",132.6197721,Highest 20%,diabetes,covidmortality7day
+1.180211997,"[0,1.86]",119.389933,Lowest 20%,hispanic,covidmortality7day
+1.019252424,"(1.86,3.11]",120.5573327,Q2,hispanic,covidmortality7day
+0.79838052,"(3.11,5.54]",108.2921589,Q3,hispanic,covidmortality7day
+0.691005507,"(5.54,12.3]",92.43609934,Q4,hispanic,covidmortality7day
+0.951298167,"(12.3,99.1]",116.7133758,Highest 20%,hispanic,covidmortality7day
+1.093344653,"[0,0.138]",127.770792,Lowest 20%,natives,covidmortality7day
+0.830027589,"(0.138,0.273]",109.5410343,Q2,natives,covidmortality7day
+0.884445013,"(0.273,0.476]",104.5082696,Q3,natives,covidmortality7day
+0.855425426,"(0.476,1.09]",104.3840388,Q4,natives,covidmortality7day
+0.977245118,"(1.09,92.5]",111.1411177,Highest 20%,natives,covidmortality7day
+0.539787822,Large Central Metro,93.91174722,Large Central Metro,urbanrural,covidmortality7day
+0.597963495,Large Fringe Metro,83.78286891,Large Fringe Metro,urbanrural,covidmortality7day
+0.797731128,Medium Metro,92.97076838,Medium Metro,urbanrural,covidmortality7day
+0.951635171,Micropolitan (Nonmetro),111.0261916,Micropolitan (Nonmetro),urbanrural,covidmortality7day
+1.084058287,NonCore (Nonmetro),127.81495,NonCore (Nonmetro),urbanrural,covidmortality7day
+0.883088794,Small Metro,104.3747522,Small Metro,urbanrural,covidmortality7day
+0.8913622,"[12.3,28]",96.88562666,Lowest 20%,obesity,covidmortality7day
+0.918626159,"(28,31.5]",107.4029303,Q2,obesity,covidmortality7day
+0.910507909,"(31.5,34.4]",105.9199114,Q3,obesity,covidmortality7day
+0.894842145,"(34.4,37.5]",118.3181288,Q4,obesity,covidmortality7day
+1.028422319,"(37.5,57.9]",129.1280023,Highest 20%,obesity,covidmortality7day
+1.057400563,"[3.36e+04,5.56e+04]",140.7773171,Lowest 20%,hhincome,covidmortality7day
+1.061364765,"(5.56e+04,6.18e+04]",116.312938,Q2,hhincome,covidmortality7day
+0.955973732,"(6.18e+04,6.83e+04]",112.2801407,Q3,hhincome,covidmortality7day
+0.965785044,"(6.83e+04,7.76e+04]",104.7700547,Q4,hhincome,covidmortality7day
+0.599444073,"(7.76e+04,1.82e+05]",83.18894369,Highest 20%,hhincome,covidmortality7day
+1.158783233,Midwest,123.2509564,Midwest,region,covidmortality7day
+0.983742107,Northeast,92.14685587,Northeast,region,covidmortality7day
+0.828668009,South,118.3209808,South,region,covidmortality7day
+0.677608766,West,71.94495716,West,region,covidmortality7day
+0.827505724,"[0,0.2]",95.18981241,Lowest 20%,CVI,covidmortality7day
+0.933068882,"(0.2,0.4]",97.42314187,Q2,CVI,covidmortality7day
+0.964693434,"(0.4,0.6]",104.4878831,Q3,CVI,covidmortality7day
+1.020972567,"(0.6,0.8]",113.0252511,Q4,CVI,covidmortality7day
+0.913913113,"(0.8,539]",148.5384235,Highest 20%,CVI,covidmortality7day
+0.731725343,"[0,31]",124.889679,Lowest 20%,resSeg,covidmortality7day
+0.786660976,"(31,42]",110.3507747,Q2,resSeg,covidmortality7day
+0.865461819,"(42,50]",104.1389423,Q3,resSeg,covidmortality7day
+0.830377773,"(50,60]",101.723503,Q4,resSeg,covidmortality7day
+0.905494583,"(60,90]",98.96949351,Highest 20%,resSeg,covidmortality7day
