@@ -202,6 +202,46 @@ export default function USMap(props) {
     }
   },[isLoggedIn]);
 
+  useEffect(() =>{
+    const cs = scaleQuantile()
+  .domain(_.map(_.filter(data, 
+    d => (
+        d[metric] > 0 &&
+        d.fips.length === 5)),
+    d=> d[metric]))
+  .range(colorPalette);
+
+  let scaleMap = {}
+  _.each(data, d=>{
+    if(d[metric] > 0){
+    scaleMap[d[metric]] = cs(d[metric])}});
+
+  setColorScale(scaleMap);
+  setLegendSplit(cs.quantiles());
+  
+  //find the largest value and set as legend max
+  _.each(data, d=> { 
+    if (d[metric] > max && d.fips.length === 5) {
+      max = d[metric]
+    } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+      min = d[metric]
+    }
+  });
+
+  if (max > 999999) {
+    max = (max/1000000).toFixed(0) + "M";
+    setLegendMax(max);
+  }else if (max > 999) {
+    max = (max/1000).toFixed(0) + "K";
+    setLegendMax(max);
+  }else{
+    setLegendMax(max.toFixed(0));
+
+  }
+  setLegendMin(min.toFixed(0));
+
+  }, [metric]);
+
   if (data && allTS) {
     
   return (

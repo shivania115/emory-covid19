@@ -122,43 +122,7 @@ class StickyExampleAdjacentContext extends Component{
           <Ref innerRef={this.contextRef}>
             <Rail attached size='mini' >
                 <Sticky offset={180} position= "fixed" context={this.contextRef}>
-                {/* <div class="ui secondary vertical menu">
-                  
-                  <a class="item" href="#title">
-                  COVID-19 National Health Equity Report
-                  </a>
-                  <a class="item" href="#cases">
-                  Cases in the U.S. Over Time
-                  </a>
-                  <a class="item" href="#deaths">
-                  Deaths in the U.S. Over Time
-                  </a>
-                  <a class="item" href="#half">
-                  50% of Cases Comes From These States
-                  </a>
-                  <a class="item" href="#commu">
-                  COVID-19 Across the U.S. Communities
-                  </a>
-                  <a class="item" href="#cvi">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index
-                  </a>
-                  <a class="item" href="#poverty">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty
-                  </a>
-                  <a class="item" href="#metro">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Metropolitan Status
-                  </a>
-                  <a class="item" href="#region">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Region
-                  </a>
-                  <a class="item" href="#black">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent African American
-                  </a>
-                  <a class="item" href="#resseg">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index'
-                  </a>
 
-                </div> */}
                     <Menu
                         size='small'
                         compact
@@ -218,48 +182,6 @@ class StickyExampleAdjacentContext extends Component{
 
 }
 
-
-// class StickyExampleAdjacentContext extends Component {
-//   state = {}
-
-//   handleContextRef = contextRef => this.setState({ contextRef })
-
-//   render() {
-//     const { contextRef } = this.state
-
-//     return (
-//       <Grid centered style = {{width: 1230}}>
-//         <Grid.Column >
-//           <div ref={this.handleContextRef}>
-//               <Rail position='right'>
-//                 <Sticky offset={130}>
-//                   <br/><br/><br/><br/><br/><br/><br/><br/>
-                  
-//                   <Popup position='left center' trigger={<Button style = {{borderRadius: "0px", paddingleft: -10, width: 78, textAlign: "left", fontSize: "14pt"}}>Jump to...</Button>} flowing hoverable>
-
-//                     <Grid.Column row = {2}>
-//                       <Grid.Column textAlign='right' >
-//                         <div class="ui ordered list" style = {{fontSize: "14pt"}}>
-//                           <a class="item" href= "#jump1">Return to the top</a> <br/>
-//                           <a class="item" href= "#jump2">Cases/Deaths in the U.S. Over Time</a> <br/>
-//                           <a class="item" href= "#jump3">50% of Cases Comes From These States</a> <br/>
-//                           <a class="item" href= "#jump4">Top 10 Counties with Most Cases/Deaths</a> <br/>
-//                           <a class="item" href= "#jump5">Daily New Cases/Deaths per 100,000</a> <br/>
-//                           <a class="item" href= "#jump6">Community Vulnerability Index</a> <br/>
-//                           <a class="item" href= "#jump7">Residential Segregation Index</a> <br/>
-//                           <a class="item" href= "#jump8">County Characteristics</a> <br/>
-//                         </div> 
-//                       </Grid.Column>
-//                     </Grid.Column>
-//                   </Popup>
-//                 </Sticky>
-//               </Rail>
-//           </div>
-//         </Grid.Column>
-//       </Grid>
-//     )
-//   }
-// }
 
 
 

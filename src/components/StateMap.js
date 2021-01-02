@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon} from 'semantic-ui-react'
+import React, { useEffect, useState, PureComponent} from 'react'
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -28,6 +28,8 @@ import configs from "./state_config.json";
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
+import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea} from "recharts";
+
 
 
 function getMax(arr, prop) {
@@ -74,14 +76,79 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
 
+
+
+
+function CaseChart(props){
+  const [playCount, setPlayCount] = useState(0);
+  const data = props.data;
+  const sfps = props.stateFips;
+  const cfps = props.countyFips;
+  const ticks = props.ticks;
+  const variable = props.var;
+  const tickFormatter = props.tickFormatter;
+  const [animationBool, setAnimationBool] = useState(true);
+
+  const caseYTickFmt = (y) => {
+    return y<1000?y:(y/1000+'k');
+  };
+
+  useEffect(() =>{
+    setAnimationBool(true);
+  },[playCount])
+
+  return(
+    <div style={{paddingTop: 30, paddingBottom: 70}}>
+      <LineChart width={800} height={180} data = {data} >
+        {/* <CartesianGrid stroke='#f5f5f5'/> */}
+        <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
+        <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+        <Line data={data["_nation"]} name="Nation" type='monotone' dataKey={variable} dot={false} 
+              isAnimationActive={animationBool} 
+              onAnimationEnd={()=>setAnimationBool(false)} 
+              animationDuration={5500} 
+              animationBegin={500} 
+              stroke={nationColor} strokeWidth="2" />
+        <Line data={data[sfps]} name="State" type='monotone' dataKey={variable} dot={false} 
+              isAnimationActive={animationBool} 
+              onAnimationEnd={()=>setAnimationBool(false)}
+              animationDuration={5500} 
+              animationBegin={500} 
+              stroke={stateColor} strokeWidth="2" />
+        <Line data={data[sfps+cfps]} name="County" type='monotone' dataKey={variable} dot={false} 
+              isAnimationActive={animationBool} 
+              onAnimationEnd={()=>setAnimationBool(false)}
+              animationDuration={5500} 
+              animationBegin={500} 
+              stroke={countyColor} strokeWidth="2" />
+
+        
+        <Tooltip labelFormatter={tickFormatter} formatter={variable === "covidmortality7dayfig" ? (value) => numberWithCommas(value.toFixed(1)): (value) => numberWithCommas(value.toFixed(0))} active={true}/>
+      </LineChart>
+      {/* <LineChart width={500} height={300}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="t" type="category" allowDuplicatedCategory={false} />
+        <YAxis dataKey={variable} />
+        <Tooltip />
+        <Legend />
+        
+        <Line dataKey={variable} data={data["_nation"]} name = "nation" />
+        <Line dataKey={variable} data={data[sfps]} name = "nation1"/>
+        <Line dataKey={variable} data={data[sfps+cfps]} name = "nation2"/>
+      </LineChart> */}
+      <Button content='Play' icon='play' floated="right" onClick={() => {setPlayCount(playCount+1); }}/>
+    </div>
+  );
+}
+
 function BarChart(props) {
   
   if (props.stateFips !== "_nation") {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={190}
-      height={100}       
+      width={200}
+      height={110}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
@@ -146,49 +213,48 @@ function BarChart(props) {
 
 function TopChart(params) {
   return(
-                  <VictoryChart 
-                            minDomain={{ x: params.sFips !== "_nation"? params.data[params.data.length-15][params.xVar] : 0}}
-                            maxDomain = {{y: params.sFips !== "_nation"? getMaxRange(params.data, params.yVar, params.data.length-15)*params.resize: 0}}                            
-                            width={235}
-                            height={180}    
-                            parent= {{background: "#ccdee8"}}   
-                            padding={{marginleft: 0, right: -1, top: 150, bottom: -0.9}}
-                            containerComponent={<VictoryContainer responsive={false}/>}>
-                            
-                            <VictoryAxis
-                              tickValues={params.sFips !== "_nation"? [
-                                params.data[params.data.length - Math.round(params.data.length/3)*2 - 1][params.xVar],
-                                params.data[params.data.length - Math.round(params.data.length/3) - 1][params.xVar],
-                                params.data[params.data.length-1][params.xVar]] 
-                                : 
-                                [0]
-                              }                        
-                              style={{grid:{background: "#ccdee8"}, tickLabels: {background: "#ccdee8", fontSize: 10}}} 
-                              tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                            
-                            <VictoryGroup 
-                              colorScale={[stateColor]}
-                            >
+      <VictoryChart 
+        minDomain={{ x: params.sFips !== "_nation"? params.data[params.data.length-15][params.xVar] : 0}}
+        maxDomain = {{y: params.sFips !== "_nation"? getMaxRange(params.data, params.yVar, params.data.length-15)*params.resize: 0}}                            
+        width={235}
+        height={180}    
+        parent= {{background: "#ccdee8"}}   
+        padding={{marginleft: 0, right: -1, top: 150, bottom: -0.9}}
+        containerComponent={<VictoryContainer responsive={false}/>}>
+        
+        <VictoryAxis
+          tickValues={params.sFips !== "_nation"? [
+            params.data[params.data.length - Math.round(params.data.length/3)*2 - 1][params.xVar],
+            params.data[params.data.length - Math.round(params.data.length/3) - 1][params.xVar],
+            params.data[params.data.length-1][params.xVar]] 
+            : 
+            [0]
+          }                        
+          style={{grid:{background: "#ccdee8"}, tickLabels: {background: "#ccdee8", fontSize: 10}}} 
+          tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+        
+        <VictoryGroup 
+          colorScale={[stateColor]}
+        >
 
-                            <VictoryLine data={params.data && params.sFips !== "_nation"? params.data : [0,0,0]}
-                                x={params.xVar} y= {params.yVar}
-                                />
+        <VictoryLine data={params.data && params.sFips !== "_nation"? params.data : [0,0,0]}
+            x={params.xVar} y= {params.yVar}
+            />
 
-                            </VictoryGroup>
-                            <VictoryArea
-                              style={{ data: {fill: "#080808" , fillOpacity: 0.1} }}
-                              data={params.data && params.sFips !== "_nation"? params.data : [0,0,0]}
-                              x= {params.xVar} y = {params.yVar}
+        </VictoryGroup>
+        <VictoryArea
+          style={{ data: {fill: "#080808" , fillOpacity: 0.1} }}
+          data={params.data && params.sFips !== "_nation"? params.data : [0,0,0]}
+          x= {params.xVar} y = {params.yVar}
 
-                            />
+        />
 
-                            <VictoryLabel text= {params.sFips === "_nation" ? 0 : params.rate} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {params.sFips === "_nation" ? "" : params.percentChange}  x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {params.sFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
-                            <VictoryLabel text= {params.sFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+        <VictoryLabel text= {params.sFips === "_nation" ? 0 : params.rate} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
+        <VictoryLabel text= {params.sFips === "_nation" ? "" : params.percentChange}  x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
+        <VictoryLabel text= {params.sFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+        <VictoryLabel text= {params.sFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
 
-                            
-                </VictoryChart>
+    </VictoryChart>
   )
 }
 
@@ -235,6 +301,30 @@ export default function StateMap(props) {
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
   const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
   const [countyOption, setCountyOption] = useState();
+  const [selectedTrend, setSelectedTrend] = useState("");
+  
+
+  const [trendline, setTrendline] = useState('caserate7dayfig');
+  const trendOptions = [
+    {
+      key: 'caserate7dayfig',
+      text: 'Average Daily COVID-19 Cases /100,000',
+      value: 'caserate7dayfig',
+    },
+    {
+      key: 'covidmortality7dayfig',
+      text: 'Average Daily COVID-19 Deaths /100,000',
+      value: 'covidmortality7dayfig',
+    },
+  ]
+  const trendName = 
+    {
+      'caserate7dayfig': 'Average Daily COVID-19 Cases /100,000',
+      'covidmortality7dayfig': 'Average Daily COVID-19 Deaths /100,000'
+
+    }
+    
+
 
   const [delayHandler, setDelayHandler] = useState();
 
@@ -248,6 +338,34 @@ export default function StateMap(props) {
 
   setAccstate({ activeIndex: newIndex })
   }
+
+  const [caseTicks, setCaseTicks] = useState([]);
+
+  useEffect(() => {
+    if (dataTS && stateFips !== "_nation"){
+      setCaseTicks([
+          dataTS["_nation"][0].t,
+          dataTS["_nation"][30].t,
+          dataTS["_nation"][61].t,
+          dataTS["_nation"][91].t,
+          dataTS["_nation"][122].t,
+          dataTS["_nation"][153].t,
+          dataTS["_nation"][183].t,
+          dataTS["_nation"][214].t,
+          dataTS["_nation"][244].t,
+          dataTS["_nation"][dataTS["_nation"].length-1].t]);
+          //console.log("dataTS", dataTS["_nation"][0].t);
+    }
+  }, [dataTS]);
+
+  const caseTickFmt = (tick) => { 
+    return (
+      // <text>// </ text>
+        /* {tick} */
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
+      
+      );
+  };
 
   //variable list & fips code to county name 
   useEffect(()=>{
@@ -441,42 +559,44 @@ export default function StateMap(props) {
   },[isLoggedIn]);
 
   useEffect(() => {
-    let scaleMap = {};
-    var max = 0;
-    var min = 100;
-    const cs = scaleQuantile()
-    .domain(_.map(_.filter(data, 
-      d => (
-          d[metric] > 0 &&
-          d.fips.length === 5)),
-      d=> d[metric]))
-    .range(colorPalette);
+    if(stateFips !== "_nation"){
+      let scaleMap = {};
+      var max = 0;
+      var min = 100;
+      const cs = scaleQuantile()
+      .domain(_.map(_.filter(data, 
+        d => (
+            d[metric] > 0 &&
+            d.fips.length === 5)),
+        d=> d[metric]))
+      .range(colorPalette);
 
-    _.each(data, d=>{
-      if(d[metric] > 0){
-      scaleMap[d[metric]] = cs(d[metric])}});
-    setColorScale(scaleMap);
-    setLegendSplit(cs.quantiles());
+      _.each(data, d=>{
+        if(d[metric] > 0){
+        scaleMap[d[metric]] = cs(d[metric])}});
+      setColorScale(scaleMap);
+      setLegendSplit(cs.quantiles());
 
-    //find the largest value and set as legend max
-    _.each(data, d=> { 
-      if (d[metric] > max && d.fips.length === 5) {
-        max = d[metric]
-      } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-        min = d[metric]
+      //find the largest value and set as legend max
+      _.each(data, d=> { 
+        if (d[metric] > max && d.fips.length === 5) {
+          max = d[metric]
+        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+          min = d[metric]
+        }
+      });
+
+      if (max > 999999) {
+        max = (max/1000000).toFixed(0) + "M";
+        setLegendMax(max);
+      }else if (max > 999) {
+        max = (max/1000).toFixed(0) + "K";
+        setLegendMax(max);
+      }else{
+        setLegendMax(max.toFixed(0));
       }
-    });
-
-    if (max > 999999) {
-      max = (max/1000000).toFixed(0) + "M";
-      setLegendMax(max);
-    }else if (max > 999) {
-      max = (max/1000).toFixed(0) + "K";
-      setLegendMax(max);
-    }else{
-      setLegendMax(max.toFixed(0));
+      setLegendMin(min.toFixed(0));
     }
-    setLegendMin(min.toFixed(0));
 
   }, [metric, data]);
 
@@ -488,13 +608,14 @@ export default function StateMap(props) {
     }
   }, [dataTS]);
 
-  if (stateFips === "_nation" || (data && dataStateTS && metric)) {
+  if (stateFips === "_nation" || (data && dataStateTS && metric && trendOptions && trendline)) {
     // console.log( );
   return (
     <HEProvider>
       <div>
         <AppBar menu='countyReport'/>
           <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+
             {config &&
             <div>
               <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
@@ -699,7 +820,7 @@ export default function StateMap(props) {
                   }
 
                   {stateFips === "02" &&
-                  <div style = {{background: "#e5f2f7", paddingBottom: 13}}> <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/>None Reported <br/>  <br/> </center></div>
+                  <div style = {{background: "#e5f2f7", paddingBottom: 13, width: 235}}> <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/>None Reported <br/>  <br/> </center></div>
                   }
                   
                   <div style = {{width: 235, background: "#e5f2f7"}}>
@@ -1034,7 +1155,7 @@ export default function StateMap(props) {
                 <Accordion.Content active={accstate.activeIndex === 0}>
 
                   {stateFips !== "_nation" && stateFips === "38" &&
-                  <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                  <Grid.Row style={{paddingTop: 0, paddingBottom: 15, paddingLeft: 15}}>
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                       Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
                       <br/>
@@ -1238,6 +1359,105 @@ export default function StateMap(props) {
                   </Accordion> 
                 </Grid.Column>
                 <Grid.Column width={11} style={{padding: 0, paddingLeft: 40}}>
+
+                <Header as='h2' style={{width:800, paddingBottom: 10}}>
+                    <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
+                      {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
+                      <Header.Subheader style={{fontWeight: 350, width: 800, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
+                      Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
+                      Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
+                      </Header.Subheader>
+                    </Header.Content>
+
+                  </Header>
+                  <Grid>
+                    <Grid.Row>
+                      <BarChart 
+                        title="% African American" 
+                        var="black" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% Hispanic or Latino" 
+                        var="hispanic"  
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% Native American" 
+                        var="natives" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />  
+                      <BarChart 
+                        title="% Over 65 y/o" 
+                        var="age65over" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                    </Grid.Row>
+                    <Grid.Row style = {{paddingTop: 15}}>
+                      <BarChart 
+                        title="% Obese" 
+                        var="obesity" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />  
+                      {/* <BarChart 
+                        title="% Diabetes" 
+                        var="diabetes" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />  */}
+                      <BarChart 
+                        title="% in Poverty" 
+                        var="poverty"  
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% Uninsured" 
+                        var="PCTUI" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% in Group Quarters" 
+                        var="groupquater" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                        {/* <BarChart 
+                          title="% Male" 
+                          var="male" 
+                          stateFips={stateFips}
+                          countyFips={countyFips}
+                          countyName={barCountyName}
+                          stateName={stateName}
+                          data={data} /> */}
+                    </Grid.Row>
+                  </Grid>
+
+
                   <Header as='h2' style={{fontWeight: 400, width: 800}}>
                     <Header.Content style={{fontSize: 20}}>
                       Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
@@ -1254,9 +1474,35 @@ export default function StateMap(props) {
                   </Header>
                   <Grid>
                     {stateFips !== "_nation" && 
-                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 19, paddingBottom: 0, width: 1000}}>
-                      <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
-
+                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 1000}}>
+                      {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
+                      <Dropdown
+                        style={{background: '#fff', 
+                                fontSize: "19px",
+                                fontWeight: 400, 
+                                theme: '#000000',
+                                width: '400px',
+                                top: '0px',
+                                left: '15px',
+                                text: "Select",
+                                borderTop: 'none',
+                                borderLeft: 'none',
+                                borderRight: 'none', 
+                                borderBottom: '0.5px solid #bdbfc1',
+                                borderRadius: 0,
+                                minHeight: '1.0em',
+                                paddingBottom: '0.5em',
+                                paddingLeft: '1em'}}
+                        text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
+                        // pointing = 'top'
+                        options={trendOptions}
+                        onChange={(e, { value}) => {
+                          setTrendline(value);
+                          setSelectedTrend(trendName[value]);
+                          
+                                  
+                        }}
+                      />
                         <svg width = "370" height = "40">
                             <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
                             <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
@@ -1266,10 +1512,15 @@ export default function StateMap(props) {
                             <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
                         </svg>
 
+                        {dataTS && <
+                          CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
+                              ticks={caseTicks} tickFormatter={caseTickFmt} var = {trendline}/>
+                        }
+{/* 
                         { dataTS && 
                         <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
                           width={800}
-                          height={200}       
+                          height={180}       
                           padding={{left: 50, right: 60, top: 10, bottom: 30}}
                           minDomain ={{x: dataTS["_nation"][0].t}}
                           maxDomain = {{x: dataTS["_nation"][dataTS["_nation"].length-1].t}}
@@ -1282,13 +1533,15 @@ export default function StateMap(props) {
                             tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                             tickValues={[
 
-                              // dataTS["_nation"][30].t,
-                              // dataTS["_nation"][91].t,
-                              // dataTS["_nation"][153].t,
                               dataTS["_nation"][0].t,
+                              dataTS["_nation"][30].t,
                               dataTS["_nation"][61].t,
+                              dataTS["_nation"][91].t,
                               dataTS["_nation"][122].t,
+                              dataTS["_nation"][153].t,
                               dataTS["_nation"][183].t,
+                              dataTS["_nation"][214].t,
+                              dataTS["_nation"][244].t,
                               dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                           <VictoryAxis dependentAxis tickCount={5}
                           style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
@@ -1298,8 +1551,8 @@ export default function StateMap(props) {
                             colorScale={[nationColor, stateColor, countyColor]}
                           >
                             <VictoryLine data={dataTS["_nation"]}
-                              x='t' y='caserate7dayfig'
-                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
+                              x='t' y={trendline}
+                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum[trendline].toFixed(1)}`}
                               labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                               style={{
                                 
@@ -1307,8 +1560,8 @@ export default function StateMap(props) {
                               }}
                               />
                             <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                              x='t' y='caserate7dayfig'
-                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
+                              x='t' y={trendline}
+                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum[trendline].toFixed(1)}`}
                               labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                               style={{
                                 fontFamily: 'lato',
@@ -1316,8 +1569,8 @@ export default function StateMap(props) {
                               }}
                               />
                             <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
-                              x='t' y='caserate7dayfig'
-                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
+                              x='t' y={trendline}
+                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum[trendline].toFixed(1)}`}
                               labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                               style={{
                                 fontFamily: 'lato',
@@ -1325,188 +1578,17 @@ export default function StateMap(props) {
                               }}
                               />
                           </VictoryGroup>
-                        </VictoryChart>}
+                        </VictoryChart>} */}
                         
                     </Grid.Row>}
 
-                    {stateFips !== "_nation" &&
-                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 30, paddingBottom: 0, width: 1000}}>
-                        <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, paddingTop: 10, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
-
-                        <svg width = "370" height = "40">
-                            <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                            <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
-                            <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                          
-                            <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
-                            <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                            <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
-                        </svg>
-
-                        { dataTS && 
-                        <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                          width={800}
-                          height={200}       
-                          padding={{left: 50, right: 60, top: 10, bottom: 30}}
-                          minDomain ={{x: dataTS["_nation"][0].t}}
-                          containerComponent={<VictoryVoronoiContainer flyoutStyle= {{fill: "white"}}/> }
-                          >
-                          <VictoryAxis tickCount={4}
-                            
-                            style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
-                            tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
-                            tickValues={[
-                              // dataTS["_nation"][30].t,
-                              // dataTS["_nation"][91].t,
-                              // dataTS["_nation"][153].t,
-                              dataTS["_nation"][0].t,
-                              dataTS["_nation"][61].t,
-                              dataTS["_nation"][122].t,
-                              dataTS["_nation"][183].t,
-                              dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
-                          <VictoryAxis dependentAxis tickCount={5}
-                          style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
-                          tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                            />
-                          <VictoryGroup 
-                            colorScale={[nationColor, stateColor, countyColor]}
-                          >
-                            <VictoryLine data={dataTS["_nation"]}
-                              x='t' y='covidmortality7dayfig'
-                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                              labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                              style={{
-                                fontFamily: 'lato',
-                                data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                              }}
-                              />
-                            <VictoryLine data={stateFips !== "_nation"? dataTS[stateFips] : dataTS["_"]}
-                              x='t' y='covidmortality7dayfig'
-                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                              labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                              style={{
-                                fontFamily: 'lato',
-                                data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                              }}
-                              />
-                            <VictoryLine data={dataTS[stateFips+countyFips] && (stateFips !== "_nation")?dataTS[stateFips+countyFips]:dataTS["99999"]}
-                              x='t' y='covidmortality7dayfig'
-                              labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                              labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: 14}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                              style={{
-                                fontFamily: 'lato',
-                                data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                              }}
-                              />
-                          </VictoryGroup>
-                        </VictoryChart>}
-                    </Grid.Row>}
                   </Grid>
+
+                  
                 </Grid.Column>
-                {/* <Grid.Column width={5} style={{padding: 0, paddingLeft: 0}}>
-                  <Header as='h2' style={{width:410, paddingLeft: 0}}>
-                    <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
-                      {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
-                      <Header.Subheader style={{fontWeight: 350, width: 390, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
-                      Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
-                      Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
-                      </Header.Subheader>
-                    </Header.Content>
-
-                  </Header>
-                  <Grid>
-                    <Grid.Row columns={2} style={{padding: 20, width: 410, paddingBottom: 20}}>                    
-                        <BarChart 
-                          title="% African American" 
-                          var="black" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                        <BarChart 
-                          title="% Hispanic or Latino" 
-                          var="hispanic"  
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                    </Grid.Row>
-                    <Grid.Row columns={2} style={{padding: 20, width: 410, paddingBottom: 20}}>
-                        <BarChart 
-                          title="% Native American" 
-                          var="natives" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />  
-                        <BarChart 
-                          title="% Over 65 y/o" 
-                          var="age65over" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                    </Grid.Row>
-                    <Grid.Row columns={2} style={{padding: 20, width: 410, paddingBottom: 20}}>
-                        <BarChart 
-                          title="% Obese" 
-                          var="obesity" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />  
-                        <BarChart 
-                          title="% Diabetes" 
-                          var="diabetes" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} /> 
-                    </Grid.Row>
-                    <Grid.Row columns={2} style={{padding: 20, width: 410, paddingBottom: 20}}>                    
-                        <BarChart 
-                          title="% in Poverty" 
-                          var="poverty"  
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                        <BarChart 
-                          title="% Uninsured" 
-                          var="PCTUI" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                    </Grid.Row>
-                    <Grid.Row columns={2} style={{padding: 20, width: 410}}>                    
-                        <BarChart 
-                          title="% in Group Quarters" 
-                          var="groupquater" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                        <BarChart 
-                          title="% Male" 
-                          var="male" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} />
-                    </Grid.Row>
-                  </Grid>
-                </Grid.Column> */}
+                <Grid.Row>
+                  
+                </Grid.Row>
 
               </Grid.Row>            
             </Grid>
