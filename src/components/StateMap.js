@@ -738,7 +738,7 @@ export default function StateMap(props) {
               }
 
               {stateFips === "02" &&
-                <div style = {{background: "#e5f2f7", paddingBottom: 13}}> <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/>None Reported <br/>  <br/> </center></div>
+                <div style = {{background: "#e5f2f7", paddingBottom: 13, width: 235}}> <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> <br/> <br/> <br/>None Reported <br/>  <br/> </center></div>
               }
               
               <div style = {{width: 235, background: "#e5f2f7"}}>
