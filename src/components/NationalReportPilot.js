@@ -1877,7 +1877,7 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['CVI'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['CVI'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][1]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0},
@@ -2070,7 +2070,7 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['poverty'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['poverty'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][1]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
@@ -2261,7 +2261,7 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][1]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
@@ -2447,7 +2447,7 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['region'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][0]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['region'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][1]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
@@ -2639,7 +2639,7 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['black'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][0]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['black'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][1]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
@@ -2830,7 +2830,7 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][1]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},

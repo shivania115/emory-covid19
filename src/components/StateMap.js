@@ -1087,7 +1087,7 @@ export default function StateMap(props) {
                             <br/>
                             {stateName} is not reporting deaths by race or ethnicity.
                             <br/>
-                            Race data last updated: 12/30/2020, updated every 3 days. 
+                            Race data last updated: 01/03/2021, updated every 3 days. 
 
                           </text>
                   </Grid.Row>
@@ -1100,7 +1100,7 @@ export default function StateMap(props) {
                             <br/>
                             {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                             <br/>
-                            Race data last updated: 12/30/2020, updated every 3 days. 
+                            Race data last updated: 01/03/2021, updated every 3 days. 
 
                           </text>
                   </Grid.Row>
@@ -1292,7 +1292,7 @@ export default function StateMap(props) {
                       </svg>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                        width={330}
+                        width={340}
                         height={160}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
@@ -1306,13 +1306,15 @@ export default function StateMap(props) {
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                           tickValues={[
 
-                            // dataTS["_nation"][30].t,
-                            // dataTS["_nation"][91].t,
-                            // dataTS["_nation"][153].t,
-                            dataTS["_nation"][0].t,
-                            dataTS["_nation"][61].t,
-                            dataTS["_nation"][122].t,
-                            dataTS["_nation"][183].t,
+                            dataTS["_nation"][30].t,
+                            dataTS["_nation"][91].t,
+                            dataTS["_nation"][153].t,
+                            dataTS["_nation"][214].t,
+                            // dataTS["_nation"][0].t,
+                            // dataTS["_nation"][61].t,
+                            // dataTS["_nation"][122].t,
+                            // dataTS["_nation"][183].t,
+                            // dataTS["_nation"][244].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
@@ -1368,7 +1370,7 @@ export default function StateMap(props) {
                       </svg>
 
                       <VictoryChart theme={VictoryTheme.material} minDomain={{ y: 0 }}
-                        width={330}
+                        width={340}
                         height={170}       
                         padding={{left: 50, right: 60, top: 10, bottom: 30}}
                         minDomain ={{x: dataTS["_nation"][0].t}}
@@ -1379,13 +1381,15 @@ export default function StateMap(props) {
                           style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: 14, fontFamily: 'lato'}}} 
                           tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                           tickValues={[
-                            // dataTS["_nation"][30].t,
-                            // dataTS["_nation"][91].t,
-                            // dataTS["_nation"][153].t,
-                            dataTS["_nation"][0].t,
-                            dataTS["_nation"][61].t,
-                            dataTS["_nation"][122].t,
-                            dataTS["_nation"][183].t,
+                            dataTS["_nation"][30].t,
+                            dataTS["_nation"][91].t,
+                            dataTS["_nation"][153].t,
+                            dataTS["_nation"][214].t,
+                            // dataTS["_nation"][0].t,
+                            // dataTS["_nation"][61].t,
+                            // dataTS["_nation"][122].t,
+                            // dataTS["_nation"][183].t,
+                            // dataTS["_nation"][244].t,
                             dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                         <VictoryAxis dependentAxis tickCount={5}
                          style={{ticks: {stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000", fillOpacity: 1}, tickLabels: {fill: "#000000", fontSize: 14, padding: 1}}} 
