@@ -88,6 +88,7 @@ export default function USMap(props) {
   const [data, setData] = useState();
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
+  const [nationalDemog, setNationalDemog] = useState();
 
   // const [stateName, setStateName] = useState('Georgia');
   // const [fips, setFips] = useState('13');
@@ -127,6 +128,9 @@ export default function USMap(props) {
   useEffect(()=>{
     fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
+    fetch('/data/nationalDemogdata.json').then(res => res.json())
+        .then(x => setNationalDemog(x));
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -243,7 +247,7 @@ export default function USMap(props) {
   }, [metric]);
 
   if (data && allTS) {
-    
+    console.log(stateFips);
   return (
     <HEProvider>
       <div>
@@ -458,14 +462,17 @@ export default function USMap(props) {
                               const stateFip = geo.id.substring(0,2);
                               const configMatched = configs.find(s => s.fips === stateFip);
 
-                              setFips(stateFip);
+                              setFips(geo.id.substring(0,2));
                               setStateFips(geo.id.substring(0,2));
-                              setStateName(configMatched.name);           
+                              setStateName(configMatched.name);        
                             
                             }}
                             
                             onMouseLeave={()=>{
                               setTooltipContent("");
+                              setFips("_nation");
+                              setStateFips("_nation");
+                              setStateName("The United States");   
                             }}
 
                             onClick={()=>{
@@ -488,7 +495,7 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Accordion style = {{paddingTop: "13px"}}>
+                <Accordion style = {{paddingTop: 26}}>
                   <Accordion.Title
                     active={accstate.activeIndex === 0}
                     index={0}
@@ -714,10 +721,60 @@ export default function USMap(props) {
 
                   <Header as='h2' style={{fontWeight: 400}}>
                     <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
-                      Disparities in COVID-19 Mortality <b>{fips !== "_nation" ? stateName : "hi"}</b>
+                      Disparities in COVID-19 Mortality <b>{fips !== "_nation" ? stateName : "Nation"}</b>
                       
                     </Header.Content>
                   </Header>
+
+                  {stateFips === "_nation" && <div style = {{marginTop: 24}}>
+                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 170, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
+                  </div>}
+
+                  {fips == "_nation" && <div style={{paddingLeft: "6em", paddingRight: "2em"}}>
+
+                    <VictoryChart
+                              theme={VictoryTheme.material}
+                              width={400}
+                              height={160}
+                              domainPadding={20}
+                              minDomain={{y: props.ylog?1:0}}
+                              padding={{left: 150, right: 35, top: 12, bottom: 1}}
+                              style = {{fontSize: "14pt"}}
+                              containerComponent={<VictoryContainer responsive={false}/>}
+                            >
+                              <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                              <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                              <VictoryBar
+                                horizontal
+                                barRatio={0.45}
+                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                data={[
+                                  {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['deathrate']},
+                                  {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['deathrate']},
+                                  {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['deathrate']},
+                                  {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['deathrate']},
+                                  {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['deathrate']},
+                                  
+                                    
+
+
+                                ]}
+                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
+                                style={{
+                                  data: {
+                                    fill: "#004071"
+                                  }
+                                }}
+                                x="key"
+                                y="value"
+                              />
+                            </VictoryChart>
+                            <Header.Content style = {{width: 420}}>
+                                <Header.Content id="region" style={{ fontWeight: 300, paddingLeft: 100, paddingTop: 8, paddingBottom:28, fontSize: "19px", lineHeight: "18pt"}}>
+                                  <b>Deaths per 100,000 residents</b>
+                                </Header.Content>
+                            </Header.Content>
+                  </div>}
                   
                   {fips !== "_nation" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && stateFips !== "38" &&
                   <Grid.Row columns = {2} style = {{height: 298, paddingBottom: 287}}>
@@ -1036,20 +1093,21 @@ export default function USMap(props) {
 
                   {fips !== "_nation" && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && fips !== "38" &&
                   <Grid.Row columns = {1}>
-                    <Grid.Column style = {{ marginLeft : 110, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
+                    <Grid.Column style = {{ marginLeft : 20, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                       {stateFips && !raceData[fips]["White Alone"] &&
-                        <div style = {{marginTop: 13}}>
-                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 50, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
+                        <div style = {{marginTop:10}}>
+                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 150, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
                         </div>
                       }
                       {stateFips && !raceData[fips]["White Alone"] && stateFips !== "38" &&
+                      <div style={{paddingLeft: "0em", paddingRight: "0em", width: 550}}>
                         <VictoryChart
                                       theme = {VictoryTheme.material}
-                                      width = {310}
+                                      width = {400}
                                       height = {32 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
                                       domainPadding={20}
                                       minDomain={{y: props.ylog?1:0}}
-                                      padding={{left: 110, right: 45, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
+                                      padding={{left: 200, right: 35, top: !!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
                                       style = {{fontSize: "14pt"}}
                                       containerComponent={<VictoryContainer responsive={false}/>}
                                     >
@@ -1111,7 +1169,7 @@ export default function USMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "African\n American", 'value': raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'])}
+                                                   {key: "African American", 'value': raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[fips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
@@ -1133,7 +1191,7 @@ export default function USMap(props) {
                                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                             data={[
 
-                                                   {key: "American\n Natives", 'value': raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'])}
+                                                   {key: "American Natives", 'value': raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[fips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'])}
 
                                             ]}
                                             labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
@@ -1195,13 +1253,14 @@ export default function USMap(props) {
                                 
 
                         </VictoryChart>
+                        </div>
                       }
                       {stateFips && !raceData[fips]["White Alone"] &&
-                        <div style = {{marginTop: 10}}>
-                          <Header.Content style={{fontSize: '14pt', marginLeft: 109, fontWeight: 400}}> Deaths per 100,000 <br/> 
+                        <div style = {{marginTop: 10, width: 400, paddingBottom: 3}}>
+                          <Header.Content style={{fontSize: '19px', marginLeft: 150, fontWeight: 400}}> Deaths per 100,000 residents<br/> 
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           
-                          residents
+                          
                           </Header.Content>
                         </div>
                       }
@@ -1226,8 +1285,21 @@ export default function USMap(props) {
 
                   }
 
+                  {stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 53}}> 
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                      The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Hispanic'][0]['deathrate'] + "%"} of deaths in the nation.
+                      <br/>
+                      <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                    
+                    </Header.Content>
+                  </Grid.Row>}
+
                   {fips !== "_nation" && <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
                   
+
+                  
+
                   {fips === "38" &&
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       {stateName} is not reporting deaths by race or ethnicity.
@@ -1265,6 +1337,11 @@ export default function USMap(props) {
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
                     </Header.Content>}
+
+                    {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
+                        <div style = {{marginTop: 10}}>
+                        </div>
+                      }
 
                   </Grid.Row>}
                 </Grid>
