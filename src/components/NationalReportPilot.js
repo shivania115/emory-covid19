@@ -356,10 +356,9 @@ function CaseChart(props){
   //   setVisible2(false);
   // }
 
-  console.log("data", data["_nation"][0].t);
 
   return(
-    <Grid.Column class="dailyCase" style={{paddingTop:20, width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:20, width: 850, height: 500}}>
     <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content> </center>
 
     {/* <Grid.Row position='relative'> */}
@@ -534,6 +533,7 @@ export default function ExtraFile(props) {
   const [data, setData] = useState();
   const [date, setDate] = useState('');
   const [fips, setFips] = useState('13');
+  const [nationalDemog, setNationalDemog] = useState();
 
   const [dataTS, setDataTS] = useState();
   const [topTen, setTopTen] = useState();
@@ -541,8 +541,10 @@ export default function ExtraFile(props) {
 
   const [dataTopCases, setDataTopCases] = useState();
   const [dataTopMortality, setDataTopMortality] = useState();
-  const [nationalBarChartCases, setNationalBarChartCases] = useState();
-  const [nationalBarChartMortality, setNationalBarChartMortality] = useState();
+  // const [nationalBarChart['caserate7day'][0], setnationalBarChart['caserate7day'][0]] = useState();
+  // const [nationalBarChart['covidmortality7day'][0], setnationalBarChart['covidmortality7day'][0]] = useState();
+
+  const [nationalBarChart, setNationalBarChart] = useState();
 
   const [percentChangeCases, setPercentChangeCases] = useState();
 
@@ -566,18 +568,6 @@ export default function ExtraFile(props) {
   const [legendMinResSeg, setLegendMinResSeg] = useState([]);
   const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
 
-  const [male] = useState("male");
-  const [colorMale, setColorMale] = useState();
-  const [legendMaxMale, setLegendMaxMale] = useState([]);
-  const [legendMinMale, setLegendMinMale] = useState([]);
-  const [legendSplitMale, setLegendSplitMale] = useState([]);
-
-  const [age65] = useState("age65over");
-  const [colorAge65, setColorAge65] = useState();
-  const [legendMaxAge65, setLegendMaxAge65] = useState([]);
-  const [legendMinAge65, setLegendMinAge65] = useState([]);
-  const [legendSplitAge65, setLegendSplitAge65] = useState([]);
-
   const [black] = useState("black");
   const [colorBlack, setColorBlack] = useState();
   const [legendMaxBlack, setLegendMaxBlack] = useState([]);
@@ -589,19 +579,6 @@ export default function ExtraFile(props) {
   const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
   const [legendMinPoverty, setLegendMinPoverty] = useState([]);
   const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
-
-  const [diabetes] = useState("diabetes");
-  const [colorDiabetes, setColorDiabetes] = useState();
-  const [legendMaxDiabetes, setLegendMaxDiabetes] = useState([]);
-  const [legendMinDiabetes, setLegendMinDiabetes] = useState([]);
-  const [legendSplitDiabetes, setLegendSplitDiabetes] = useState([]);
-
-  const [hispanic] = useState("hispanic");
-  const [colorHispanic, setColorHispanic] = useState();
-  const [legendMaxHispanic, setLegendMaxHispanic] = useState([]);
-  const [legendMinHispanic, setLegendMinHispanic] = useState([]);
-  const [legendSplitHispanic, setLegendSplitHispanic] = useState([]);
-
 
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
@@ -662,14 +639,19 @@ export default function ExtraFile(props) {
           setTopTen(x);
         });
 
-      fetch('/data/nationalBarCases.json').then(res => res.json())
-        .then(x => {
-          setNationalBarChartCases(x);
-        });
+      // fetch('/data/nationalBarCases.json').then(res => res.json())
+      //   .then(x => {
+      //     setnationalBarChart['caserate7day'][0](x);
+      //   });
 
-      fetch('/data/nationalBarMortality.json').then(res => res.json())
+      // fetch('/data/nationalBarMortality.json').then(res => res.json())
+      //   .then(x => {
+      //     setnationalBarChart['covidmortality7day'][0](x);
+      //   });
+
+      fetch('/data/nationalBarChart.json').then(res => res.json())
         .then(x => {
-          setNationalBarChartMortality(x);
+          setNationalBarChart(x);
         });
 
       fetch('/data/date.json').then(res => res.json())
@@ -683,8 +665,11 @@ export default function ExtraFile(props) {
 
       fetch('/data/topTenMortality.json').then(res => res.json())
         .then(x => setDataTopMortality(x));
+      
+      fetch('/data/nationalDemogdata.json').then(res => res.json())
+        .then(x => setNationalDemog(x));
 
-    }, []);
+    },[]);
 
     useEffect(()=>{
       if (isLoggedIn === true){
@@ -1057,7 +1042,9 @@ export default function ExtraFile(props) {
 
 
   if (data && dataTS && varMap) {
-    return (
+
+    console.log(nationalBarChart['caserate7day'][0]['age65over'][0]['label']);
+  return (
     <HEProvider>
       <div>
         <AppBar menu='nationalReport' /> 
@@ -1080,7 +1067,7 @@ export default function ExtraFile(props) {
                                     </Waypoint> 
                                     </center>
             <div>     	
-              <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "10em", paddingRight: "4em"}}>
+              <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "10em", paddingRight: "6em"}}>
                 <Header.Content>
                 <b> COVID-19 National Health Equity Report </b> 
                 <Header.Subheader style={{fontWeight:300,fontSize:"20pt", paddingTop:16, color: mortalityColor[1]}}> 
@@ -1377,7 +1364,151 @@ export default function ExtraFile(props) {
               </Header>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center>
+            <div style={{paddingTop:'1em', paddingLeft: "9em", paddingRight: "7em"}}>
+              <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
+                <Header.Content>
+                  Who is impacted by COVID-19?
+                  <Header.Subheader style={{color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 32, paddingRight: 30}}>
+                  <center> <b style= {{fontSize: "18pt"}}>Cases and deaths by race, age, and sex </b> </center> 
+                  TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText
+                    
+                  </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </div>
+
+              {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
+              <div style={{paddingTop:'1em'}}>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "12em", paddingRight: "4em", paddingBottom: 20}}>
+                  <center> <b style= {{fontSize: "18pt"}}>Race</b> </center> 
+                  <br/>
+                  <br/>         
+
+                </Header.Subheader>
+                </div>
+                <div style={{paddingLeft: "14em", paddingRight: "2em"}}>
+
+                <VictoryChart
+                          theme={VictoryTheme.material}
+                          width={800}
+                          height={220}
+                          domainPadding={20}
+                          minDomain={{y: props.ylog?1:0}}
+                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          style = {{fontSize: "14pt"}}
+                          containerComponent={<VictoryContainer responsive={false}/>}
+                        >
+                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryBar
+                            horizontal
+                            barRatio={0.80}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            data={[
+                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['caserate']},
+                              {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['caserate']},
+                              {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['caserate']},
+                              {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['caserate']},
+                              {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['caserate']},
+                              
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: casesColor[1]
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                        </VictoryChart>
+                        <Header.Content style = {{paddingLeft: 300, width: 800}}>
+                            <Header.Content id="region" style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                              <b>{varMap["covidmortalityfig"].name}</b>
+                            </Header.Content>
+                        </Header.Content>
+              </div>
+              
+              <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
+
+              <div>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "12em", paddingRight: "4em", paddingBottom: 20}}>
+                  <center> <b style= {{fontSize: "18pt"}}>Age</b> </center> 
+                  <br/>
+                  <br/>         
+
+                </Header.Subheader>
+                            </div>              
+                            <div style={{paddingLeft: "14em", paddingRight: "2em"}}>
+
+              <VictoryChart
+                          theme={VictoryTheme.material}
+                          width={800}
+                          height={360}
+                          domainPadding={20}
+                          minDomain={{y: props.ylog?1:0}}
+                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          style = {{fontSize: "14pt"}}
+                          containerComponent={<VictoryContainer responsive={false}/>}
+                        >
+                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryBar
+                            horizontal
+                            barRatio={0.80}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            data={[
+                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['caserate']},
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: casesColor[1]
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                        </VictoryChart>
+                        <Header.Content style = {{paddingLeft: 300, width: 800}}>
+                            <Header.Content id="region" style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                              <b>{varMap["covidmortalityfig"].name}</b>
+                            </Header.Content>
+                        </Header.Content>
+                
+              </div>
+
+            
+
+
+            <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
             {resSeg && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
               <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 130}}>
@@ -1506,11 +1637,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['age65over'][0]['label'], 'value': (nationalBarChartCases['age65over'][0]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['age65over'][1]['label'], 'value': (nationalBarChartCases['age65over'][1]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['age65over'][2]['label'], 'value': (nationalBarChartCases['age65over'][2]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['age65over'][3]['label'], 'value': (nationalBarChartCases['age65over'][3]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['age65over'][4]['label'], 'value': (nationalBarChartCases['age65over'][4]['caserate']/nationalBarChartCases['age65over'][0]['caserate'])*nationalBarChartCases['age65over'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['age65over'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['age65over'][0]['caserate']/nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'])*nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['age65over'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['age65over'][1]['caserate']/nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'])*nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['age65over'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['age65over'][2]['caserate']/nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'])*nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['age65over'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['age65over'][3]['caserate']/nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'])*nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['age65over'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['age65over'][4]['caserate']/nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'])*nationalBarChart['caserate7day'][0]['age65over'][0]['caserate'] || 0}
 
 
 
@@ -1555,11 +1686,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartMortality['age65over'][0]['label'], 'value': (nationalBarChartMortality['age65over'][0]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['age65over'][1]['label'], 'value': (nationalBarChartMortality['age65over'][1]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['age65over'][2]['label'], 'value': (nationalBarChartMortality['age65over'][2]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['age65over'][3]['label'], 'value': (nationalBarChartMortality['age65over'][3]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['age65over'][4]['label'], 'value': (nationalBarChartMortality['age65over'][4]['covidmortality']/nationalBarChartMortality['age65over'][0]['covidmortality'])*nationalBarChartMortality['age65over'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['age65over'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure']/nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['age65over'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['age65over'][1]['measure']/nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['age65over'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['age65over'][2]['measure']/nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['age65over'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['age65over'][3]['measure']/nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['age65over'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['age65over'][4]['measure']/nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['age65over'][0]['measure'] || 0}
 
 
 
@@ -1696,11 +1827,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['CVI'][0]['label'], 'value': (nationalBarChartCases['CVI'][0]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['CVI'][1]['label'], 'value': (nationalBarChartCases['CVI'][1]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['CVI'][2]['label'], 'value': (nationalBarChartCases['CVI'][2]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['CVI'][3]['label'], 'value': (nationalBarChartCases['CVI'][3]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['CVI'][4]['label'], 'value': (nationalBarChartCases['CVI'][4]['caserate']/nationalBarChartCases['CVI'][0]['caserate'])*nationalBarChartCases['CVI'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['CVI'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][0]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['CVI'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][1]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['CVI'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][2]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['CVI'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][3]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['CVI'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][4]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0}
 
 
 
@@ -1746,13 +1877,13 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
-                                  {key: nationalBarChartMortality['CVI'][0]['label'], 'value': (nationalBarChartMortality['CVI'][0]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['CVI'][1]['label'], 'value': (nationalBarChartMortality['CVI'][1]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['CVI'][2]['label'], 'value': (nationalBarChartMortality['CVI'][2]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['CVI'][3]['label'], 'value': (nationalBarChartMortality['CVI'][3]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['CVI'][4]['label'], 'value': (nationalBarChartMortality['CVI'][4]['covidmortality']/nationalBarChartMortality['CVI'][0]['covidmortality'])*nationalBarChartMortality['CVI'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['CVI'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['CVI'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][1]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['CVI'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][2]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['CVI'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][3]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['CVI'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['CVI'][4]['measure']/nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['CVI'][0]['measure'] || 0}
 
 
 
@@ -1892,11 +2023,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['poverty'][0]['label'], 'value': (nationalBarChartCases['poverty'][0]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['poverty'][1]['label'], 'value': (nationalBarChartCases['poverty'][1]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['poverty'][2]['label'], 'value': (nationalBarChartCases['poverty'][2]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['poverty'][3]['label'], 'value': (nationalBarChartCases['poverty'][3]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['poverty'][4]['label'], 'value': (nationalBarChartCases['poverty'][4]['caserate']/nationalBarChartCases['poverty'][0]['caserate'])*nationalBarChartCases['poverty'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['poverty'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['poverty'][0]['measure']/nationalBarChart['caserate7day'][0]['poverty'][0]['measure'])*nationalBarChart['caserate7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['poverty'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['poverty'][1]['measure']/nationalBarChart['caserate7day'][0]['poverty'][0]['measure'])*nationalBarChart['caserate7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['poverty'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['poverty'][2]['measure']/nationalBarChart['caserate7day'][0]['poverty'][0]['measure'])*nationalBarChart['caserate7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['poverty'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['poverty'][3]['measure']/nationalBarChart['caserate7day'][0]['poverty'][0]['measure'])*nationalBarChart['caserate7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['poverty'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['poverty'][4]['measure']/nationalBarChart['caserate7day'][0]['poverty'][0]['measure'])*nationalBarChart['caserate7day'][0]['poverty'][0]['measure'] || 0}
 
 
 
@@ -1939,13 +2070,13 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
-                                  {key: nationalBarChartMortality['poverty'][0]['label'], 'value': (nationalBarChartMortality['poverty'][0]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['poverty'][1]['label'], 'value': (nationalBarChartMortality['poverty'][1]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['poverty'][2]['label'], 'value': (nationalBarChartMortality['poverty'][2]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['poverty'][3]['label'], 'value': (nationalBarChartMortality['poverty'][3]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['poverty'][4]['label'], 'value': (nationalBarChartMortality['poverty'][4]['covidmortality']/nationalBarChartMortality['poverty'][0]['covidmortality'])*nationalBarChartMortality['poverty'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['poverty'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['poverty'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][1]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['poverty'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][2]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['poverty'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][3]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['poverty'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][4]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0}
 
 
 
@@ -2082,12 +2213,12 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['urbanrural'][0]['label'], 'value': (nationalBarChartCases['urbanrural'][0]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['urbanrural'][1]['label'], 'value': (nationalBarChartCases['urbanrural'][1]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['urbanrural'][2]['label'], 'value': (nationalBarChartCases['urbanrural'][2]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['urbanrural'][3]['label'], 'value': (nationalBarChartCases['urbanrural'][3]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['urbanrural'][4]['label'], 'value': (nationalBarChartCases['urbanrural'][4]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['urbanrural'][5]['label'], 'value': (nationalBarChartCases['urbanrural'][5]['caserate']/nationalBarChartCases['urbanrural'][0]['caserate'])*nationalBarChartCases['urbanrural'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['urbanrural'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure']/nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['urbanrural'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['urbanrural'][1]['measure']/nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['urbanrural'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['urbanrural'][2]['measure']/nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['urbanrural'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['urbanrural'][3]['measure']/nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['urbanrural'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['urbanrural'][4]['measure']/nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['urbanrural'][5]['label'], 'value': (nationalBarChart['caserate7day'][0]['urbanrural'][5]['measure']/nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate7day'][0]['urbanrural'][0]['measure'] || 0}
 
 
 
@@ -2130,14 +2261,14 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
-                                  {key: nationalBarChartMortality['urbanrural'][0]['label'], 'value': (nationalBarChartMortality['urbanrural'][0]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['urbanrural'][1]['label'], 'value': (nationalBarChartMortality['urbanrural'][1]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['urbanrural'][2]['label'], 'value': (nationalBarChartMortality['urbanrural'][2]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['urbanrural'][3]['label'], 'value': (nationalBarChartMortality['urbanrural'][3]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['urbanrural'][4]['label'], 'value': (nationalBarChartMortality['urbanrural'][4]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['urbanrural'][5]['label'], 'value': (nationalBarChartMortality['urbanrural'][5]['covidmortality']/nationalBarChartMortality['urbanrural'][0]['covidmortality'])*nationalBarChartMortality['urbanrural'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][1]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][2]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][3]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][4]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][5]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][5]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0}
 
 
 
@@ -2269,11 +2400,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['region'][0]['label'], 'value': (nationalBarChartCases['region'][0]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['region'][1]['label'], 'value': (nationalBarChartCases['region'][1]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['region'][2]['label'], 'value': (nationalBarChartCases['region'][2]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['region'][3]['label'], 'value': (nationalBarChartCases['region'][3]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0},
-                                  // {key: nationalBarChartCases['region'][4]['label'], 'value': (nationalBarChartCases['region'][4]['caserate']/nationalBarChartCases['region'][0]['caserate'])*nationalBarChartCases['region'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['region'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['region'][0]['measure']/nationalBarChart['caserate7day'][0]['region'][0]['measure'])*nationalBarChart['caserate7day'][0]['region'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['region'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['region'][1]['measure']/nationalBarChart['caserate7day'][0]['region'][0]['measure'])*nationalBarChart['caserate7day'][0]['region'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['region'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['region'][2]['measure']/nationalBarChart['caserate7day'][0]['region'][0]['measure'])*nationalBarChart['caserate7day'][0]['region'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['region'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['region'][3]['measure']/nationalBarChart['caserate7day'][0]['region'][0]['measure'])*nationalBarChart['caserate7day'][0]['region'][0]['measure'] || 0},
+                                  // {key: nationalBarChart['caserate7day'][0]['region'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['region'][4]['measure']/nationalBarChart['caserate7day'][0]['region'][0]['measure'])*nationalBarChart['caserate7day'][0]['region'][0]['measure'] || 0}
 
 
 
@@ -2316,13 +2447,13 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
-                                  {key: nationalBarChartMortality['region'][0]['label'], 'value': (nationalBarChartMortality['region'][0]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['region'][1]['label'], 'value': (nationalBarChartMortality['region'][1]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['region'][2]['label'], 'value': (nationalBarChartMortality['region'][2]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['region'][3]['label'], 'value': (nationalBarChartMortality['region'][3]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0},
-                                  // {key: nationalBarChartMortality['region'][4]['label'], 'value': (nationalBarChartMortality['region'][4]['covidmortality']/nationalBarChartMortality['region'][0]['covidmortality'])*nationalBarChartMortality['region'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['region'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][0]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['region'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][1]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['region'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][2]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['region'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][3]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
+                                  // {key: nationalBarChart['covidmortality7day'][0]['region'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][4]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0}
 
 
 
@@ -2461,11 +2592,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['black'][0]['label'], 'value': (nationalBarChartCases['black'][0]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['black'][1]['label'], 'value': (nationalBarChartCases['black'][1]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['black'][2]['label'], 'value': (nationalBarChartCases['black'][2]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['black'][3]['label'], 'value': (nationalBarChartCases['black'][3]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['black'][4]['label'], 'value': (nationalBarChartCases['black'][4]['caserate']/nationalBarChartCases['black'][0]['caserate'])*nationalBarChartCases['black'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['black'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['black'][0]['measure']/nationalBarChart['caserate7day'][0]['black'][0]['measure'])*nationalBarChart['caserate7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['black'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['black'][1]['measure']/nationalBarChart['caserate7day'][0]['black'][0]['measure'])*nationalBarChart['caserate7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['black'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['black'][2]['measure']/nationalBarChart['caserate7day'][0]['black'][0]['measure'])*nationalBarChart['caserate7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['black'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['black'][3]['measure']/nationalBarChart['caserate7day'][0]['black'][0]['measure'])*nationalBarChart['caserate7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['black'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['black'][4]['measure']/nationalBarChart['caserate7day'][0]['black'][0]['measure'])*nationalBarChart['caserate7day'][0]['black'][0]['measure'] || 0}
 
 
 
@@ -2508,13 +2639,13 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
-                                  {key: nationalBarChartMortality['black'][0]['label'], 'value': (nationalBarChartMortality['black'][0]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['black'][1]['label'], 'value': (nationalBarChartMortality['black'][1]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['black'][2]['label'], 'value': (nationalBarChartMortality['black'][2]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['black'][3]['label'], 'value': (nationalBarChartMortality['black'][3]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['black'][4]['label'], 'value': (nationalBarChartMortality['black'][4]['covidmortality']/nationalBarChartMortality['black'][0]['covidmortality'])*nationalBarChartMortality['black'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['black'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][0]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['black'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][1]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['black'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][2]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['black'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][3]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['black'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][4]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0}
 
 
 
@@ -2652,11 +2783,11 @@ export default function ExtraFile(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChartCases['resSeg'][0]['label'], 'value': (nationalBarChartCases['resSeg'][0]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['resSeg'][1]['label'], 'value': (nationalBarChartCases['resSeg'][1]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['resSeg'][2]['label'], 'value': (nationalBarChartCases['resSeg'][2]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['resSeg'][3]['label'], 'value': (nationalBarChartCases['resSeg'][3]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0},
-                                  {key: nationalBarChartCases['resSeg'][4]['label'], 'value': (nationalBarChartCases['resSeg'][4]['caserate']/nationalBarChartCases['resSeg'][0]['caserate'])*nationalBarChartCases['resSeg'][0]['caserate'] || 0}
+                                  {key: nationalBarChart['caserate7day'][0]['resSeg'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['resSeg'][0]['measure']/nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'])*nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['resSeg'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['resSeg'][1]['measure']/nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'])*nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['resSeg'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['resSeg'][2]['measure']/nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'])*nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['resSeg'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['resSeg'][3]['measure']/nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'])*nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['resSeg'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['resSeg'][4]['measure']/nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'])*nationalBarChart['caserate7day'][0]['resSeg'][0]['measure'] || 0}
 
 
 
@@ -2699,13 +2830,13 @@ export default function ExtraFile(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
-                                  {key: nationalBarChartMortality['resSeg'][0]['label'], 'value': (nationalBarChartMortality['resSeg'][0]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['resSeg'][1]['label'], 'value': (nationalBarChartMortality['resSeg'][1]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['resSeg'][2]['label'], 'value': (nationalBarChartMortality['resSeg'][2]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['resSeg'][3]['label'], 'value': (nationalBarChartMortality['resSeg'][3]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0},
-                                  {key: nationalBarChartMortality['resSeg'][4]['label'], 'value': (nationalBarChartMortality['resSeg'][4]['covidmortality']/nationalBarChartMortality['resSeg'][0]['covidmortality'])*nationalBarChartMortality['resSeg'][0]['covidmortality'] || 0}
+                                  {key: nationalBarChart['covidmortality7day'][0]['resSeg'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['resSeg'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][1]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['resSeg'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][2]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['resSeg'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][3]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['resSeg'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][4]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0}
 
 
 
