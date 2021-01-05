@@ -338,7 +338,7 @@ function CaseChart(props){
   },[playCount])
 
 
-  var wait=4000;
+  var wait=2000;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -395,7 +395,7 @@ function CaseChart(props){
       {/* <Grid.Row columns={5}>
       <Grid.Column >                                                                    */}
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the US confirmed in Washinton State</Message>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washinton</Message>
       </Transition>
       {/* </Grid.Column> 
       <Grid.Column >              */}
@@ -403,13 +403,13 @@ function CaseChart(props){
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the US </Message>
+      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={visible4} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-42rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-41.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-56rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,786 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-56rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       
       </Grid.Column>
@@ -447,7 +447,7 @@ function DeathChart(props){
   },[playCount])
 
 
-  var wait=4000;
+  var wait=2000;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -504,15 +504,15 @@ function DeathChart(props){
       {/* <Grid.Row columns={5}>
       <Grid.Column >                                                                    */}
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
+      <Message compact style={{ width: '10rem', top:'-30rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in the U.S. </Message>
       </Transition>
       {/* </Grid.Column> 
       <Grid.Column >              */}
       <Transition visible={visible2} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-32rem', left:'18rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-31.5rem', left:'18rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-34rem', left:'36rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-34rem', left:'34rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
       </Transition> 
       {/* <Transition visible={visible4} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-42rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
