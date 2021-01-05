@@ -139,7 +139,7 @@ class StickyExampleAdjacentContext extends Component{
                   <a class="item" href="#commu">
                   COVID-19 Across the U.S. Communities
                   </a>
-                  <a class="item" href="#cvi">
+                  <a class="item" href="#ccvi">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index
                   </a>
                   <a class="item" href="#poverty">
@@ -173,7 +173,7 @@ class StickyExampleAdjacentContext extends Component{
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>50% of Cases Comes From These States</Header></Menu.Item>
                         <Menu.Item as='a' href="#commu" name='COVID-19 Across the U.S. Communities' active={props.activeCharacter == 'COVID-19 Across the U.S. Communities' || activeItem === 'COVID-19 Across the U.S. Communities'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>COVID-19 Across the U.S. Communities</Header></Menu.Item>
-                        <Menu.Item as='a' href="#cvi" name='COVID-19 by Community Vulnerability Index' active={props.activeCharacter == 'COVID-19 by Community Vulnerability Index' || activeItem === 'COVID-19 by Community Vulnerability Index'}
+                        <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index' active={props.activeCharacter == 'COVID-19 by Community Vulnerability Index' || activeItem === 'COVID-19 by Community Vulnerability Index'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index</Header></Menu.Item>
                         <Menu.Item as='a' href="#poverty" name='COVID-19 by Percent in Poverty' active={props.activeCharacter == 'COVID-19 by Percent in Poverty' || activeItem === 'COVID-19 by Percent in Poverty'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty</Header></Menu.Item>
@@ -200,7 +200,7 @@ class StickyExampleAdjacentContext extends Component{
                         <Menu.Item as='a' href="#deaths" name='Deaths in the U.S. Over Time'><Header as='h4'>Deaths in the U.S. Over Time</Header></Menu.Item>
                         <Menu.Item as='a' href="#half" name='50% of Cases Comes From These States'><Header as='h4'>50% of Cases Comes From These States</Header></Menu.Item>
                         <Menu.Item as='a' href="#commu" name='COVID-19 Across the U.S. Communities'><Header as='h4'>COVID-19 Across the U.S. Communities</Header></Menu.Item>
-                        <Menu.Item as='a' href="#cvi" name='COVID-19 by Community Vulnerability Index'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index</Header></Menu.Item>
+                        <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index</Header></Menu.Item>
                         <Menu.Item as='a' href="#poverty" name='COVID-19 by Percent in Poverty'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty</Header></Menu.Item>
                         <Menu.Item as='a' href="#metro" name='COVID-19 by Metropolitan Status'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Metropolitan Status</Header></Menu.Item>
                         <Menu.Item as='a' href="#region" name='COVID-19 by Region'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Region</Header></Menu.Item>
@@ -317,7 +317,6 @@ function CaseChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [wait, setWait] = useState(5000);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -339,6 +338,7 @@ function CaseChart(props){
   },[playCount])
 
 
+  var wait=4000;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -379,7 +379,7 @@ function CaseChart(props){
               setTimeout(()=>setVisible5(true), wait+4000); 
               setTimeout(()=>setDisabled(false),wait+4500)
             }} 
-            onAnimationEnd={()=> {setAnimationBool(false); setWait(1500)}} 
+            onAnimationEnd={()=> {setAnimationBool(false);}} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
@@ -426,7 +426,6 @@ function DeathChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [wait, setWait] = useState(5000);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -448,6 +447,7 @@ function DeathChart(props){
   },[playCount])
 
 
+  var wait=4000;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -486,9 +486,9 @@ function DeathChart(props){
               setTimeout(()=>setVisible3(true), wait+2000); 
               setTimeout(()=>setVisible4(true), wait+3000); 
               setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+4500)
+              setTimeout(()=>setDisabled(false),wait+2500)
             }} 
-            onAnimationEnd={()=> {setAnimationBool(false); setWait(1500); }}
+            onAnimationEnd={()=>setAnimationBool(false)} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
       <Line name="7-day average" id={playCount} type='monotone' dataKey='mortalityMean' dot={false} 
@@ -554,11 +554,11 @@ export default function ExtraFile(props) {
   const [dailyDeaths, setDailyDeaths] = useState();
 
   const [bar, LoadBar] = useState(false);
-  const [CVI] = useState("CVI");
-  const [colorCVI, setColorCVI] = useState();
-  const [legendMaxCVI, setLegendMaxCVI] = useState([]);
-  const [legendMinCVI, setLegendMinCVI] = useState([]);
-  const [legendSplitCVI, setLegendSplitCVI] = useState([]);
+  const [ccvi] = useState("ccvi");
+  const [colorccvi, setColorccvi] = useState();
+  const [legendMaxccvi, setLegendMaxccvi] = useState([]);
+  const [legendMinccvi, setLegendMinccvi] = useState([]);
+  const [legendSplitccvi, setLegendSplitccvi] = useState([]);
 
   const [resSeg] = useState("RS_blackwhite");
   const [colorResSeg, setColorResSeg] = useState();
@@ -763,47 +763,47 @@ export default function ExtraFile(props) {
     useEffect(() => {
       
           if(data){
-          //CVI
+          //ccvi
           const cs = scaleQuantile()
           .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
-                d[CVI] > 0 &&
+                d[ccvi] > 0 &&
                 d.fips.length === 5)),
-            d=> d[CVI]))
+            d=> d[ccvi]))
           .range(colorPalette);
   
           let scaleMap = {}
           _.each(data, d=>{
-            if(d[CVI] > 0){
-            scaleMap[d[CVI]] = cs(d[CVI])}
+            if(d[ccvi] > 0){
+            scaleMap[d[ccvi]] = cs(d[ccvi])}
           });
         
-          setColorCVI(scaleMap);
+          setColorccvi(scaleMap);
           var max = 0
           var min = 100
           _.each(data, d=> { 
-            if (d[CVI] > max && d.fips.length === 5) {
-              max = d[CVI]
-            } else if (d.fips.length === 5 && d[CVI] < min && d[CVI] > 0){
-              min = d[CVI]
+            if (d[ccvi] > max && d.fips.length === 5) {
+              max = d[ccvi]
+            } else if (d.fips.length === 5 && d[ccvi] < min && d[ccvi] > 0){
+              min = d[ccvi]
             }
           });
   
           if (max > 999999) {
             max = (max/1000000).toFixed(0) + "M";
-            setLegendMaxCVI(max);
+            setLegendMaxccvi(max);
           }else if (max > 999) {
             max = (max/1000).toFixed(0) + "K";
-            setLegendMaxCVI(max);
+            setLegendMaxccvi(max);
           }else{
-            setLegendMaxCVI(max.toFixed(0));
+            setLegendMaxccvi(max.toFixed(0));
   
           }
-          setLegendMinCVI(min.toFixed(0));
+          setLegendMinccvi(min.toFixed(0));
   
-          setLegendSplitCVI(cs.quantiles());
+          setLegendSplitccvi(cs.quantiles());
 
 
         }
@@ -814,7 +814,7 @@ export default function ExtraFile(props) {
 
     //replace
     useEffect(() => {
-      if(data && CVI){
+      if(data && ccvi){
           //poverty
           const cs_poverty = scaleQuantile()
           .domain(_.map(_.filter(_.map(data, (d, k) => {
@@ -856,7 +856,7 @@ export default function ExtraFile(props) {
 
       }
 
-    },[data, CVI]);
+    },[data, ccvi]);
 
     useEffect(() => {
       if(data && poverty){
@@ -1382,7 +1382,7 @@ export default function ExtraFile(props) {
               <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 130}}>
                 COVID-19 Across the U.S. Communities
-                  <Header.Subheader id = "cvi" style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 25, paddingBottom: 40}}>
+                  <Header.Subheader id = "ccvi" style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 25, paddingBottom: 40}}>
                     <center> <b style= {{fontSize: "18pt"}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
                     <br/>
                     <br/>
@@ -1602,18 +1602,18 @@ export default function ExtraFile(props) {
 
                     <svg width="260" height="80">
                       
-                      {_.map(legendSplitCVI, (splitpoint, i) => {
-                        if(legendSplitCVI[i] < 1){
-                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitCVI[i].toFixed(1)}</text>                    
-                        }else if(legendSplitCVI[i] > 999999){
-                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitCVI[i]/1000000).toFixed(0) + "M"}</text>                    
-                        }else if(legendSplitCVI[i] > 999){
-                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitCVI[i]/1000).toFixed(0) + "K"}</text>                    
+                      {_.map(legendSplitccvi, (splitpoint, i) => {
+                        if(legendSplitccvi[i] < 1){
+                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
+                        }else if(legendSplitccvi[i] > 999999){
+                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
+                        }else if(legendSplitccvi[i] > 999){
+                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
                         }
-                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitCVI[i].toFixed(0)}</text>                    
+                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
                       })} 
-                      <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinCVI}</text>
-                      <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxCVI}</text>
+                      <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinccvi}</text>
+                      <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxccvi}</text>
 
 
                       {_.map(colorPalette, (color, i) => {
@@ -1651,9 +1651,9 @@ export default function ExtraFile(props) {
                                   key={geo.rsmKey}
                                   geography={geo}
                                   fill={
-                                  ((colorCVI && data[geo.id] && (data[geo.id][CVI]) > 0)?
-                                      colorCVI[data[geo.id][CVI]]: 
-                                      (colorCVI && data[geo.id] && data[geo.id][CVI] === 0)?
+                                  ((colorccvi && data[geo.id] && (data[geo.id][ccvi]) > 0)?
+                                      colorccvi[data[geo.id][ccvi]]: 
+                                      (colorccvi && data[geo.id] && data[geo.id][ccvi] === 0)?
                                         '#FFFFFF':'#FFFFFF')}                              
                                 />
                               ))}
@@ -1788,7 +1788,7 @@ export default function ExtraFile(props) {
 
                   </Header.Subheader>
 
-              {CVI && <Grid>
+              {ccvi && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8}}>
                   <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
                     
