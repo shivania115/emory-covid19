@@ -1,0 +1,350 @@
+{
+  "Race": [
+    {
+      "Hispanic": [
+        {
+          "demogLabel": "Hispanic",
+          "popUS": 327167434,
+          "demogPop": 60572237,
+          "percentPop": 18.45,
+          "cases": 1649696,
+          "totalcases": 14717298,
+          "percentCases": 21.8,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 2723.52,
+          "deaths": 26048,
+          "totaldeaths": 244044,
+          "percentDeaths": 13.6,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 43.0
+        }
+      ],
+      "American Natives": [
+        {
+          "demogLabel": "American Natives",
+          "popUS": 327167434,
+          "demogPop": 2434908,
+          "percentPop": 0.74,
+          "cases": 96895,
+          "totalcases": 14717298,
+          "percentCases": 1.3,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 3979.41,
+          "deaths": 1853,
+          "totaldeaths": 244044,
+          "percentDeaths": 1.0,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 76.1
+        }
+      ],
+      "Asian": [
+        {
+          "demogLabel": "Asian",
+          "popUS": 327167434,
+          "demogPop": 18905879,
+          "percentPop": 5.76,
+          "cases": 250477,
+          "totalcases": 14717298,
+          "percentCases": 3.3,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 1324.86,
+          "deaths": 7886,
+          "totaldeaths": 244044,
+          "percentDeaths": 4.1,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 41.71
+        }
+      ],
+      "African American": [
+        {
+          "demogLabel": "African American",
+          "popUS": 327167434,
+          "demogPop": 41147488,
+          "percentPop": 12.54,
+          "cases": 964515,
+          "totalcases": 14717298,
+          "percentCases": 12.7,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 2344.04,
+          "deaths": 31847,
+          "totaldeaths": 244044,
+          "percentDeaths": 16.7,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 77.4
+        }
+      ],
+      "NHPI": [
+        {
+          "demogLabel": "NHPI",
+          "popUS": 327167434,
+          "demogPop": 595908,
+          "percentPop": 0.18,
+          "cases": 27796,
+          "totalcases": 14717298,
+          "percentCases": 0.4,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 4664.48,
+          "deaths": 416,
+          "totaldeaths": 244044,
+          "percentDeaths": 0.2,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 69.81
+        }
+      ],
+      "White": [
+        {
+          "demogLabel": "White",
+          "popUS": 327167434,
+          "demogPop": 197309822,
+          "percentPop": 60.11,
+          "cases": 4177715,
+          "totalcases": 14717298,
+          "percentCases": 55.1,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 2117.34,
+          "deaths": 115198,
+          "totaldeaths": 244044,
+          "percentDeaths": 60.4,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 58.38
+        }
+      ],
+      "Unknown Race": [
+        {
+          "demogLabel": "Unknown Race",
+          "popUS": -9999,
+          "demogPop": -9999,
+          "percentPop": -9999.0,
+          "cases": 7134288,
+          "totalcases": 14717298,
+          "percentCases": -9999.0,
+          "availableCases": 51,
+          "missingCases": 49,
+          "caserate": -9999.0,
+          "deaths": 53203,
+          "totaldeaths": 244044,
+          "percentDeaths": -9999.0,
+          "availableDeaths": 78,
+          "missingDeaths": 22,
+          "deathrate": -9999.0
+        }
+      ]
+    }
+  ],
+  "Age": [
+    {
+      "0 - 4 Years": [
+        {
+          "demogLabel": "0 - 4 Years",
+          "popUS": 327167434,
+          "demogPop": 19767670,
+          "percentPop": 6.04,
+          "cases": 268599,
+          "totalcases": 14717298,
+          "percentCases": 1.8,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 1358.78,
+          "deaths": 65,
+          "totaldeaths": 244044,
+          "percentDeaths": 0.0,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 0.33
+        }
+      ],
+      "5 - 17 Years": [
+        {
+          "demogLabel": "5 - 17 Years",
+          "popUS": 327167434,
+          "demogPop": 53661722,
+          "percentPop": 16.4,
+          "cases": 1278511,
+          "totalcases": 14717298,
+          "percentCases": 8.7,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 2382.54,
+          "deaths": 147,
+          "totaldeaths": 244044,
+          "percentDeaths": 0.1,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 0.27
+        }
+      ],
+      "18 - 29 Years": [
+        {
+          "demogLabel": "18 - 29 Years",
+          "popUS": 327167434,
+          "demogPop": 53715647,
+          "percentPop": 16.42,
+          "cases": 3338608,
+          "totalcases": 14717298,
+          "percentCases": 22.8,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 6215.34,
+          "deaths": 1266,
+          "totaldeaths": 244044,
+          "percentDeaths": 0.5,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 2.36
+        }
+      ],
+      "30 - 39 Years": [
+        {
+          "demogLabel": "30 - 39 Years",
+          "popUS": 327167434,
+          "demogPop": 43032400,
+          "percentPop": 13.15,
+          "cases": 2411294,
+          "totalcases": 14717298,
+          "percentCases": 16.5,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 5603.44,
+          "deaths": 2933,
+          "totaldeaths": 244044,
+          "percentDeaths": 1.2,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 6.82
+        }
+      ],
+      "40 - 49 Years": [
+        {
+          "demogLabel": "40 - 49 Years",
+          "popUS": 327167434,
+          "demogPop": 40635296,
+          "percentPop": 12.42,
+          "cases": 2207997,
+          "totalcases": 14717298,
+          "percentCases": 15.1,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 5433.69,
+          "deaths": 6993,
+          "totaldeaths": 244044,
+          "percentDeaths": 2.9,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 17.21
+        }
+      ],
+      "50 - 64 Years": [
+        {
+          "demogLabel": "50 - 64 Years",
+          "popUS": 327167434,
+          "demogPop": 63101264,
+          "percentPop": 19.29,
+          "cases": 3010445,
+          "totalcases": 14717298,
+          "percentCases": 20.6,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 4770.82,
+          "deaths": 35173,
+          "totaldeaths": 244044,
+          "percentDeaths": 14.4,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 55.74
+        }
+      ],
+      "65 - 74 Years": [
+        {
+          "demogLabel": "65 - 74 Years",
+          "popUS": 327167434,
+          "demogPop": 29542266,
+          "percentPop": 9.03,
+          "cases": 1129171,
+          "totalcases": 14717298,
+          "percentCases": 7.7,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 3822.22,
+          "deaths": 50633,
+          "totaldeaths": 244044,
+          "percentDeaths": 20.7,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 171.39
+        }
+      ],
+      "75 - 84 Years": [
+        {
+          "demogLabel": "75 - 84 Years",
+          "popUS": 327167434,
+          "demogPop": 14972513,
+          "percentPop": 4.58,
+          "cases": 605313,
+          "totalcases": 14717298,
+          "percentCases": 4.1,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 4042.83,
+          "deaths": 66644,
+          "totaldeaths": 244044,
+          "percentDeaths": 27.3,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 445.11
+        }
+      ],
+      "85+ Years": [
+        {
+          "demogLabel": "85+ Years",
+          "popUS": 327167434,
+          "demogPop": 6269017,
+          "percentPop": 1.92,
+          "cases": 377791,
+          "totalcases": 14717298,
+          "percentCases": 2.6,
+          "availableCases": -9999,
+          "missingCases": -9999,
+          "caserate": 6026.32,
+          "deaths": 80168,
+          "totaldeaths": 244044,
+          "percentDeaths": 32.9,
+          "availableDeaths": -9999,
+          "missingDeaths": -9999,
+          "deathrate": 1278.8
+        }
+      ],
+      "Unknown": [
+        {
+          "demogLabel": "Unknown",
+          "popUS": 327167434,
+          "demogPop": -9999,
+          "percentPop": -9999.0,
+          "cases": 89569,
+          "totalcases": 14717298,
+          "percentCases": -9999.0,
+          "availableCases": 99,
+          "missingCases": 1,
+          "caserate": -9999.0,
+          "deaths": 22,
+          "totaldeaths": 244044,
+          "percentDeaths": -9999.0,
+          "availableDeaths": 99,
+          "missingDeaths": 1,
+          "deathrate": -9999.0
+        }
+      ]
+    }
+  ]
+}
