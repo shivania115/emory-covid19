@@ -319,7 +319,7 @@ function CaseChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [highlightIndex, setHighlightIndex] = useState(-1);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -383,6 +383,7 @@ function CaseChart(props){
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+                                    setHighlightIndex([-1]);
               // setTimeout(()=>setVisible1(true), wait); 
               // setTimeout(()=>setVisible2(true), wait+1000); 
               // setTimeout(()=>setHighlightIndex(9), wait+1000);
@@ -398,23 +399,24 @@ function CaseChart(props){
             onAnimationEnd={()=> {setAnimationBool(false);
               setTimeout(()=>setVisible1(true), wait); 
               setTimeout(()=>setVisible2(true), wait+1000); 
-              setTimeout(()=>setHighlightIndex(9), wait+1000);
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
               setTimeout(()=>setVisible3(true), wait+2000);
-              setTimeout(()=>setHighlightIndex(71), wait+2000);  
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 71]), wait+2000);  
               setTimeout(()=>setVisible4(true), wait+3000); 
-              setTimeout(()=>setHighlightIndex(101), wait+3000);  
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
               setTimeout(()=>setVisible5(true), wait+4000);
-              setTimeout(()=>setHighlightIndex(260), wait+4000);  
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
               setTimeout(()=>setDisabled(false),wait+5000);
-              setTimeout(()=>setHighlightIndex(-1), wait+5000);
+              // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }} 
             animationDuration={5500} 
              barSize={2.1} >
              {/* fill={barColor} */}
             {
               data["_nation"].map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={index === highlightIndex ? "red" : barColor}/>
+                <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
+              // fill={index === highlightIndex ? "red" : barColor}
             }
       </ Bar>
       <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
@@ -457,6 +459,7 @@ function DeathChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -478,7 +481,7 @@ function DeathChart(props){
   },[playCount])
 
 
-  var wait=2000;
+  var wait=0;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -512,16 +515,34 @@ function DeathChart(props){
       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
             isAnimationActive={animationBool} 
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+              setHighlightIndex([-1]);
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setVisible3(true), wait+2000); 
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setVisible5(true), wait+4000); 
+              // setTimeout(()=>setDisabled(false),wait+2500)
+            }} 
+            onAnimationEnd={()=>{setAnimationBool(false);
               setTimeout(()=>setVisible1(true), wait); 
               setTimeout(()=>setVisible2(true), wait+1000); 
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 56]), wait+1000);
               setTimeout(()=>setVisible3(true), wait+2000); 
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 174]), wait+2000);
               setTimeout(()=>setVisible4(true), wait+3000); 
               setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+2500)
+              setTimeout(()=>setDisabled(false),wait+3000)
             }} 
-            onAnimationEnd={()=>setAnimationBool(false)} 
             animationDuration={5500} 
-            fill={barColor} barSize={2.1} />
+            barSize={2.1} >
+            {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+              ))
+              // fill={index === highlightIndex ? "red" : barColor}
+              // fill={barColor}
+            }
+      </ Bar>
       <Line name="7-day average" id={playCount} type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={5500} 
