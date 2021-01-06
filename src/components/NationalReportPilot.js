@@ -32,7 +32,9 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
-import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, Label, LabelList, ReferenceArea} from "recharts";
+import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, Label, LabelList, Cell} from "recharts";
+import Arrow from '@elsdoerfer/react-arrow';
+
 
 var obj;
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
@@ -317,6 +319,7 @@ function CaseChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -338,7 +341,7 @@ function CaseChart(props){
   },[playCount])
 
 
-  var wait=2000;
+  var wait=0;
   // useEffect (() => {
   //   setTimeout(() => setVisible1(true), wait);
   //   setTimeout(() => setVisible2(true), wait+1000);
@@ -369,16 +372,40 @@ function CaseChart(props){
       <Bar name="New cases" dataKey='dailyCases' barSize={18} 
             isAnimationActive={animationBool} 
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setHighlightIndex(9), wait+1000);
+              // setTimeout(()=>setVisible3(true), wait+2000);
+              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
+              // setTimeout(()=>setDisabled(false),wait+4500);
+              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
+            }} 
+            onAnimationEnd={()=> {setAnimationBool(false);
               setTimeout(()=>setVisible1(true), wait); 
               setTimeout(()=>setVisible2(true), wait+1000); 
-              setTimeout(()=>setVisible3(true), wait+2000); 
+              setTimeout(()=>setHighlightIndex(9), wait+1000);
+              setTimeout(()=>setVisible3(true), wait+2000);
+              setTimeout(()=>setHighlightIndex(71), wait+2000);  
               setTimeout(()=>setVisible4(true), wait+3000); 
-              setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+4500)
+              setTimeout(()=>setHighlightIndex(101), wait+3000);  
+              setTimeout(()=>setVisible5(true), wait+4000);
+              setTimeout(()=>setHighlightIndex(260), wait+4000);  
+              setTimeout(()=>setDisabled(false),wait+5000);
+              setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }} 
-            onAnimationEnd={()=> {setAnimationBool(false);}} 
             animationDuration={5500} 
-            fill={barColor} barSize={2.1} />
+             barSize={2.1} >
+             {/* fill={barColor} */}
+            {
+              data["_nation"].map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={index === highlightIndex ? "red" : barColor}/>
+              ))
+            }
+      </ Bar>
       <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={5500} 
