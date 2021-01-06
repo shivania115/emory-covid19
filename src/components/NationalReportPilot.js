@@ -359,6 +359,16 @@ function CaseChart(props){
   //   setVisible2(false);
   // }
 
+  const renderArrow = props => (
+    <Arrow
+      angle={45}
+      length={100}
+      style={{
+        width: '100px'
+      }}
+    />
+  )
+
 
   return(
     <Grid.Column style={{paddingTop:20, width: 850, height: 500}}>
@@ -371,6 +381,7 @@ function CaseChart(props){
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={18} 
             isAnimationActive={animationBool} 
+            animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
               // setTimeout(()=>setVisible1(true), wait); 
               // setTimeout(()=>setVisible2(true), wait+1000); 
@@ -428,9 +439,10 @@ function CaseChart(props){
       <Message compact style={{ width: '10rem', top:'-41.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-56rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-55.5rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       
+      {/* <renderArrow /> */}
       </Grid.Column>
   );
 }
