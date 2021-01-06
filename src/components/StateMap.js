@@ -28,7 +28,7 @@ import configs from "./state_config.json";
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
-import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea} from "recharts";
+import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
 
 
@@ -98,8 +98,8 @@ function CaseChart(props){
   },[playCount])
 
   return(
-    <div style={{paddingTop: 30, paddingBottom: 70}}>
-      <LineChart width={800} height={180} data = {data} >
+    <div style={{paddingTop: 30, paddingBottom: 70, width: 780}}>
+      <LineChart width={720} height={180} data = {data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
@@ -121,6 +121,8 @@ function CaseChart(props){
               animationDuration={5500} 
               animationBegin={500} 
               stroke={countyColor} strokeWidth="2" />
+        <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" />
+
 
         
         <Tooltip labelFormatter={tickFormatter} formatter={variable === "covidmortality7dayfig" ? (value) => numberWithCommas(value.toFixed(1)): (value) => numberWithCommas(value.toFixed(0))} active={true}/>
@@ -362,7 +364,8 @@ export default function StateMap(props) {
     return (
       // <text>// </ text>
         /* {tick} */
-        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
+        // monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
+        (new Date(tick*1000).getMonth()+1) + "/" +  new Date(tick*1000).getDate()
       
       );
   };
@@ -608,7 +611,7 @@ export default function StateMap(props) {
     }
   }, [dataTS]);
 
-  if (stateFips === "_nation" || (data && dataStateTS && metric && trendOptions && trendline)) {
+  if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
     // console.log( );
   return (
     <HEProvider>
@@ -711,9 +714,11 @@ export default function StateMap(props) {
               <Grid.Row columns={5} style={{width: 252, paddingRight: 0, paddingTop: '2em', paddingBottom: "0"}}>
                 <Grid.Column style = {{width:235}}> 
                   <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Cases</center>
-
-                  {stateFips &&
+                  
+                  
                   <div style = {{width: 235, background: "#e5f2f7"}}>
+
+                  {stateFips === "_nation" && 
                     <TopChart
                       data = {dataStateTS} 
                       sFips = {stateFips}
@@ -722,13 +727,37 @@ export default function StateMap(props) {
                       rate = {caseRate}
                       percentChange = {percentChangeCases}
                       resize= {1.2}
-                    />
+                    />}
+                  {stateFips && dataStateTS && stateFips !== "_nation" && 
+                    <TopChart
+                      data = {dataStateTS} 
+                      sFips = {stateFips}
+                      xVar = "t" 
+                      yVar = "caseRateMean"
+                      rate = {caseRate}
+                      percentChange = {percentChangeCases}
+                      resize= {1.2}
+                    />}
+                    
                   </div>
-                  }
+                  
                 </Grid.Column>
                 <Grid.Column style = {{width:235}}> 
                   <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
                   <div style = {{width: 235, background: "#e5f2f7"}}>
+
+                  {stateFips === "_nation" && 
+                    <TopChart
+                      data = {dataStateTS} 
+                      sFips = {stateFips}
+                      xVar = "t" 
+                      yVar = "caseRateMean"
+                      rate = {caseRate}
+                      percentChange = {percentChangeCases}
+                      resize= {1.2}
+                    />}
+                  {stateFips && dataStateTS && stateFips !== "_nation" && 
+
                     <TopChart
                       data = {dataStateTS} 
                       sFips = {stateFips}
@@ -738,13 +767,29 @@ export default function StateMap(props) {
                       percentChange = {percentChangeMortality}
                       resize= {3}
                     />
-                    
+                  }
+
                   </div>
+                  
                 </Grid.Column>
 
                 <Grid.Column style = {{width:235}}> 
-                  <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
+                  <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Hospitalizations</center>
+
                   <div style = {{width: 235, background: "#e5f2f7"}}>
+
+                  {stateFips === "_nation" && 
+                    <TopChart
+                      data = {dataStateTS} 
+                      sFips = {stateFips}
+                      xVar = "t" 
+                      yVar = "caseRateMean"
+                      rate = {caseRate}
+                      percentChange = {percentChangeCases}
+                      resize= {1.2}
+                    />}
+                  {stateFips && dataStateTS && stateFips !== "_nation" && 
+
                     <TopChart
                       data = {dataStateTS} 
                       sFips = {stateFips}
@@ -754,13 +799,29 @@ export default function StateMap(props) {
                       percentChange = {percentChangeHospDaily}
                       resize= {1.5}
                     />
+                  }
+
                     
                   </div>
+                  
                 </Grid.Column>
               
                 <Grid.Column style = {{width:235}}>
                   <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Percent Tested Positive</center>
+                  
                   <div style = {{width: 235, background: "#e5f2f7"}}>
+
+                  {stateFips === "_nation" && 
+                    <TopChart
+                      data = {dataStateTS} 
+                      sFips = {stateFips}
+                      xVar = "t" 
+                      yVar = "caseRateMean"
+                      rate = {caseRate}
+                      percentChange = {percentChangeCases}
+                      resize= {1.2}
+                    />}
+                  {stateFips && dataStateTS && stateFips !== "_nation" && 
                     <VictoryChart theme={VictoryTheme.material}
                                                   
                       minDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- 15].t : 0 }}
@@ -798,9 +859,24 @@ export default function StateMap(props) {
                       />
                       <VictoryLabel text= {stateFips === "_nation" ? 0 :pctPositive} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
                     </VictoryChart>
+                  }
                   </div>
+                  
                 </Grid.Column>
+
+                {stateFips && dataStateTS && stateFips !== "_nation" && 
                 <Grid.Column rows = {2} style = {{width:235}}>
+
+                    {stateFips === "_nation" && 
+                    <TopChart
+                      data = {dataStateTS} 
+                      sFips = {stateFips}
+                      xVar = "t" 
+                      yVar = "caseRateMean"
+                      rate = {caseRate}
+                      percentChange = {percentChangeCases}
+                      resize= {1.2}
+                    />}
 
                   {stateFips === "_nation" && 
                   <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, width: 238}}> Deaths by Race & Ethnicity</center>
@@ -1101,6 +1177,7 @@ export default function StateMap(props) {
                     </Grid.Row>
                   </div>
                 </Grid.Column>
+                }
               </Grid.Row>
 
               <Grid.Row columns = {5} style={{paddingBottom: 0, paddingTop: 10, paddingLeft: 15, paddingRight: 0}}>
@@ -1150,7 +1227,7 @@ export default function StateMap(props) {
                   onClick={dealClick}
                   style ={{color: "#397AB9", fontSize: "14pt"}}>
                   <Icon name='dropdown' />
-                    About this data
+                    About the data
                 </Accordion.Title>
                 <Accordion.Content active={accstate.activeIndex === 0}>
 
@@ -1201,13 +1278,13 @@ export default function StateMap(props) {
                             fontSize: "19px",
                             fontWeight: 400, 
                             theme: '#000000',
-                            width: '410px',
+                            width: '440px',
                             top: '0px',
                             left: '0px',
                             text: "Select",
-                            borderTop: 'none',
-                            borderLeft: 'none',
-                            borderRight: 'none', 
+                            borderTop: '0.5px solid #bdbfc1',
+                            borderLeft: '0.5px solid #bdbfc1',
+                            borderRight: '0.5px solid #bdbfc1', 
                             borderBottom: '0.5px solid #bdbfc1',
                             borderRadius: 0,
                             minHeight: '1.0em',
@@ -1215,6 +1292,7 @@ export default function StateMap(props) {
                             paddingRight: 0}}
                     text= { stateFips !== "_nation" ? metricName : "Select Metric"}
                     search
+                    selection
                     pointing = 'top'
                     options={stateFips !== "_nation" ? metricOptions : ""}
                     onChange={(e, { value }) => {
@@ -1230,19 +1308,20 @@ export default function StateMap(props) {
                             fontSize: "19px",
                             fontWeight: 400, 
                             theme: '#000000',
-                            width: '300px',
+                            width: '440px',
                             top: '0px',
                             left: '0px',
                             text: "Select",
-                            borderTop: 'none',
-                            borderLeft: 'none',
-                            borderRight: 'none', 
+                            borderTop: '0.5px solid #bdbfc1',
+                            borderLeft: '0.5px solid #bdbfc1',
+                            borderRight: '0.5px solid #bdbfc1', 
                             borderBottom: '0.5px solid #bdbfc1',
                             borderRadius: 0,
                             minHeight: '1.0em',
                             paddingBottom: '0.5em'}}
-                    text= { stateFips !== "_nation" ? countyName : "Select County/Census Area/Borough"}
+                    text= { countyName !== "" ? countyName : "Select County/Census Area/Borough"}
                     search
+                    selection
                     pointing = 'top'
                     options={countyOption}
                     onChange={(e, { value }) => {
@@ -1253,6 +1332,7 @@ export default function StateMap(props) {
                     }}
                   />
                   
+                  {dataTS && legendSplit && 
                   <svg width="400" height="90">
                     
                     {_.map(legendSplit, (splitpoint, i) => {
@@ -1287,7 +1367,7 @@ export default function StateMap(props) {
                     <text x={250} y={59} style={{fontSize: '0.7em'}}> below for a detailed report. </text>
 
 
-                  </svg>
+                  </svg>}
                   <ComposableMap projection="geoAlbersUsa" 
                     projectionConfig={{scale:`${config.scale*0.7}`}} 
                     width={400} 
@@ -1341,7 +1421,7 @@ export default function StateMap(props) {
                       style ={{color: "#397AB9", fontSize: "14pt"}}
                     >
                     <Icon name='dropdown'/>
-                      About this data
+                      About the data
                     </Accordion.Title>
                       <Accordion.Content active={accstate.activeIndex === 0}>
                       <Grid.Row style={{width: "420px"}}>
@@ -1358,12 +1438,12 @@ export default function StateMap(props) {
 
                   </Accordion> 
                 </Grid.Column>
-                <Grid.Column width={11} style={{padding: 0, paddingLeft: 40}}>
+                <Grid.Column width={11} style={{padding: 0, paddingLeft: 90, width: 750}}>
 
-                <Header as='h2' style={{width:800, paddingBottom: 10}}>
+                <Header as='h2' style={{width:750, paddingBottom: 10}}>
                     <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
                       {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
-                      <Header.Subheader style={{fontWeight: 350, width: 800, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
+                      <Header.Subheader style={{fontWeight: 350, width: 750, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
                       Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                       Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
                       </Header.Subheader>
@@ -1458,10 +1538,10 @@ export default function StateMap(props) {
                   </Grid>
 
 
-                  <Header as='h2' style={{fontWeight: 400, width: 800}}>
+                  <Header as='h2' style={{fontWeight: 400, width: 750}}>
                     <Header.Content style={{fontSize: 20}}>
                       Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
-                      <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
+                      <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 750, fontSize: "14pt", lineHeight: "16pt"}}>
                         The number of cases and deaths due to COVID-19 are dynamic. 
                         Cases are declining in many counties and rising in others. 
                         Trends in the case and death count in the past 14 days are being monitored to 
@@ -1474,7 +1554,7 @@ export default function StateMap(props) {
                   </Header>
                   <Grid>
                     {stateFips !== "_nation" && 
-                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 1000}}>
+                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 800}}>
                       {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
                       <Dropdown
                         style={{background: '#fff', 
@@ -1485,16 +1565,18 @@ export default function StateMap(props) {
                                 top: '0px',
                                 left: '15px',
                                 text: "Select",
-                                borderTop: 'none',
-                                borderLeft: 'none',
-                                borderRight: 'none', 
+                                borderTop: '0.5px solid #bdbfc1',
+                                borderLeft: '0.5px solid #bdbfc1',
+                                borderRight: '0.5px solid #bdbfc1', 
                                 borderBottom: '0.5px solid #bdbfc1',
                                 borderRadius: 0,
                                 minHeight: '1.0em',
                                 paddingBottom: '0.5em',
                                 paddingLeft: '1em'}}
                         text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
-                        // pointing = 'top'
+                        pointing = 'top'
+                        search
+                        selection
                         options={trendOptions}
                         onChange={(e, { value}) => {
                           setTrendline(value);

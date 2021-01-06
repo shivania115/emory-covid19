@@ -202,37 +202,7 @@ export default function CountyReport() {
               return seriesDict;
             });
 
-            let t = 0;
-            let countyCases = 0;
-            let stateCases = 0;
-            let nationCases = 0;
-
-            let countyDeaths = 0;
-            let stateDeaths = 0;
-            let nationDeaths = 0;
-
-
-            _.each(seriesDict, (v, k)=>{
-              if (k === stateFips + countyFips && v.length > 0 ){
-                countyCases = v[v.length-1].caserate7dayfig;
-                countyDeaths = v[v.length-1].covidmortality7dayfig;
-              }else if(k.length===2 && v.length > 0 && v[v.length-1].t > t){
-                stateCases = v[v.length-1].caserate7dayfig;
-                stateDeaths = v[v.length-1].covidmortality7dayfig;
-              }else if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
-                nationCases = v[v.length-1].caserate7dayfig;
-                nationDeaths = v[v.length-1].covidmortality7dayfig;
-              }
-
-            });
-
-            setCountyCasesOutcome(countyCases.toFixed(0));
-            setStateCasesOutcome(stateCases.toFixed(0));
-            setNationCasesOutcome(nationCases.toFixed(0));
-
-            setCountyDeathsOutcome(countyDeaths.toFixed(1));
-            setStateDeathsOutcome(stateDeaths.toFixed(1));
-            setNationDeathsOutcome(nationDeaths.toFixed(1));
+            
 
             setDataTS(seriesDict);
           };
@@ -244,19 +214,48 @@ export default function CountyReport() {
         }
       },[isLoggedIn]);
   useEffect(() => {
+
+    let t = 0;
+    let countyCases = 0;
+    let stateCases = 0;
+    let nationCases = 0;
+
+    let countyDeaths = 0;
+    let stateDeaths = 0;
+    let nationDeaths = 0;
+
+
+    _.each(dataTS, (v, k)=>{
+      if (k === stateFips + countyFips && v.length > 0 ){
+        countyCases = v[v.length-1].caserate7dayfig;
+        countyDeaths = v[v.length-1].covidmortality7dayfig;
+      }else if(k.length===2 && v.length > 0 && v[v.length-1].t > t){
+        stateCases = v[v.length-1].caserate7dayfig;
+        stateDeaths = v[v.length-1].covidmortality7dayfig;
+      }else if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
+        nationCases = v[v.length-1].caserate7dayfig;
+        nationDeaths = v[v.length-1].covidmortality7dayfig;
+      }
+
+    });
+
+    setCountyCasesOutcome(countyCases.toFixed(0));
+    setStateCasesOutcome(stateCases.toFixed(0));
+    setNationCasesOutcome(nationCases.toFixed(0));
+
+    setCountyDeathsOutcome(countyDeaths.toFixed(1));
+    setStateDeathsOutcome(stateDeaths.toFixed(1));
+    setNationDeathsOutcome(nationDeaths.toFixed(1));
     if (dataTS && dataTS[stateFips+countyFips]){
       setCountyMetric(_.takeRight(dataTS[stateFips+countyFips])[0]);
     }
-  }, [dataTS, stateFips, countyFips]);
-
-  useEffect(() => {
-    if (dataTS && dataTS[stateFips]){
+    if(dataTS && dataTS[stateFips]){
       setStateMetric(_.takeRight(dataTS[stateFips])[0]);
     }
-  }, [dataTS, stateFips]);
+  }, [dataTS]);
 
 
-  if (data && dataTS && varMap) {
+  if (data && varMap) {
     console.log(varMap);
     return (
     <HEProvider>
@@ -357,7 +356,7 @@ export default function CountyReport() {
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 51, paddingBottom: 40}}>COVID-19 Outcomes </Divider>
           <Grid columns={2} centered>
-            <Grid.Row>
+            {dataTS && <Grid.Row>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
                   <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
@@ -501,7 +500,7 @@ export default function CountyReport() {
                   </VictoryGroup>
                 </VictoryChart>
               </Grid.Column>
-            </Grid.Row>
+            </Grid.Row>}
             <Grid.Row columns={2} style={{paddingBottom: 50}}>
               <Grid.Column>
                 <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55}}>

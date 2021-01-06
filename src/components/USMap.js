@@ -495,7 +495,7 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 
-                <Accordion style = {{paddingTop: 26}}>
+                {stateFips && <Accordion style = {{paddingTop: 26}}>
                   <Accordion.Title
                     active={accstate.activeIndex === 0}
                     index={0}
@@ -503,7 +503,7 @@ export default function USMap(props) {
                     style ={{color: "#397AB9", fontSize: "14pt"}}
                   >
                   <Icon name='dropdown' />
-                    About this data
+                    About the data
                   </Accordion.Title>
                     <Accordion.Content active={accstate.activeIndex === 0}>
                       <Grid.Row style={{width: "660px"}}>
@@ -514,13 +514,13 @@ export default function USMap(props) {
                       </Grid.Row>
                     </Accordion.Content>
 
-                </Accordion> 
+                </Accordion> }
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>
                   <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
-                    Current Cases and Deaths in &nbsp;&nbsp;
-                    <Dropdown
+                    Current Cases and Deaths in {stateName}
+                    {/* <Dropdown
                       style={{background: '#fff', 
                               fontSize: "24px",
                               fontWeight: 400, 
@@ -550,7 +550,7 @@ export default function USMap(props) {
                         
                                 
                       }}
-                    />    
+                    />     */}
                     
                   </Header.Content>
                 </Header>
@@ -726,11 +726,11 @@ export default function USMap(props) {
                     </Header.Content>
                   </Header>
 
-                  {stateFips === "_nation" && <div style = {{marginTop: 24}}>
+                  {stateFips && stateFips === "_nation" && <div style = {{marginTop: 24}}>
                           <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 170, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
                   </div>}
 
-                  {fips == "_nation" && <div style={{paddingLeft: "6em", paddingRight: "2em"}}>
+                  {stateFips && fips == "_nation" && <div style={{paddingLeft: "6em", paddingRight: "2em"}}>
 
                     <VictoryChart
                               theme={VictoryTheme.material}
@@ -1285,9 +1285,9 @@ export default function USMap(props) {
 
                   }
 
-                  {stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 53}}> 
+                  {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 53}}> 
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
-                      The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Hispanic'][0]['deathrate'] + "%"} of deaths in the nation.
+                      The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
@@ -1295,7 +1295,7 @@ export default function USMap(props) {
                     </Header.Content>
                   </Grid.Row>}
 
-                  {fips !== "_nation" && <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
+                  {stateFips && fips !== "_nation" && <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
                   
 
                   
