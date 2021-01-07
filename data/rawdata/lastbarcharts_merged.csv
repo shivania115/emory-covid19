@@ -1,301 +1,301 @@
 "quintileVar","quintgroup","lbl","variable","measure"
-"black","[0,0.465]","Lowest 20%","caserate",7099.29211953181
-"black","(0.465,1.14]","Q2","caserate",6527.88364376359
-"black","(1.14,3.35]","Q3","caserate",6855.13541265158
-"black","(3.35,12.8]","Q4","caserate",6987.33960116193
-"black","(12.8,87.4]","Highest 20%","caserate",7039.07293894978
-"male","[41.4,48.7]","Lowest 20%","caserate",6679.15260698465
-"male","(48.7,49.4]","Q2","caserate",6475.82596564044
-"male","(49.4,50]","Q3","caserate",6517.33158875505
-"male","(50,50.9]","Q4","caserate",7038.07271373142
-"male","(50.9,79]","Highest 20%","caserate",7797.5341172415
-"poverty","[2.3,10]","Lowest 20%","caserate",6669.84300611955
-"poverty","(10,13]","Q2","caserate",6815.59542817272
-"poverty","(13,15.9]","Q3","caserate",6661.55182942501
-"poverty","(15.9,19.8]","Q4","caserate",6734.54662854395
-"poverty","(19.8,55.1]","Highest 20%","caserate",7630.83082574705
-"age65over","[3.8,15]","Lowest 20%","caserate",7576.83423970099
-"age65over","(15,17.2]","Q2","caserate",7093.01740668408
-"age65over","(17.2,19.2]","Q3","caserate",7105.37113290648
-"age65over","(19.2,21.8]","Q4","caserate",6791.07338121278
-"age65over","(21.8,55.6]","Highest 20%","caserate",5943.35245261782
-"minority","[0,6.08]","Lowest 20%","caserate",6498.15968957096
-"minority","(6.08,11.2]","Q2","caserate",6940.82929353874
-"minority","(11.2,20.5]","Q3","caserate",6793.61670542287
-"minority","(20.5,37.3]","Q4","caserate",6768.51409847106
-"minority","(37.3,99.3]","Highest 20%","caserate",7514.04856398424
-"groupquarter","[0,1.12]","Lowest 20%","caserate",6092.41775802839
-"groupquarter","(1.12,1.62]","Q2","caserate",6970.98308245301
-"groupquarter","(1.62,2.52]","Q3","caserate",6919.80143188863
-"groupquarter","(2.52,4.61]","Q4","caserate",6865.03019427166
-"groupquarter","(4.61,55.7]","Highest 20%","caserate",7661.24726431581
-"diabetes","[1.5,7.2]","Lowest 20%","caserate",6521.15445091917
-"diabetes","(7.2,8.9]","Q2","caserate",6584.02400039734
-"diabetes","(8.9,10.6]","Q3","caserate",6955.80031310763
-"diabetes","(10.6,13]","Q4","caserate",7010.14874134632
-"diabetes","(13,33]","Highest 20%","caserate",7453.67561817818
-"hispanic","[0,1.78]","Lowest 20%","caserate",6631.26902844103
-"hispanic","(1.78,2.98]","Q2","caserate",7215.25342135086
-"hispanic","(2.98,5.22]","Q3","caserate",7101.57880162765
-"hispanic","(5.22,10.7]","Q4","caserate",6464.11321840091
-"hispanic","(10.7,99.1]","Highest 20%","caserate",7095.48189316153
-"natives","[0,0.146]","Lowest 20%","caserate",6815.37510271228
-"natives","(0.146,0.281]","Q2","caserate",6644.56896635225
-"natives","(0.281,0.505]","Q3","caserate",6699.00838148332
-"natives","(0.505,1.24]","Q4","caserate",6739.84009613323
-"natives","(1.24,92.5]","Highest 20%","caserate",7609.61843799411
-"urbanrural","Large Central Metro","Large Central Metro","caserate",6238.68124513713
-"urbanrural","Large Fringe Metro","Large Fringe Metro","caserate",5851.67799883741
-"urbanrural","Medium Metro","Medium Metro","caserate",6221.58980240426
-"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","caserate",7103.45434787326
-"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","caserate",7344.14570248297
-"urbanrural","Small Metro","Small Metro","caserate",6842.49881749855
-"obesity","[12.3,27.8]","Lowest 20%","caserate",5811.35309642308
-"obesity","(27.8,31.4]","Q2","caserate",6738.1594412026
-"obesity","(31.4,34.3]","Q3","caserate",7004.08662310852
-"obesity","(34.3,37.4]","Q4","caserate",7457.42321162587
-"obesity","(37.4,57.9]","Highest 20%","caserate",7510.71152446984
-"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","caserate",7314.28338388927
-"hhincome","(5.57e+04,6.2e+04]","Q2","caserate",6957.53264928824
-"hhincome","(6.2e+04,6.86e+04]","Q3","caserate",7086.80816488309
-"hhincome","(6.86e+04,7.8e+04]","Q4","caserate",7286.85775332891
-"hhincome","(7.8e+04,1.82e+05]","Highest 20%","caserate",5855.02105198211
-"region","Midwest","Midwest","caserate",8161.36357830576
-"region","Northeast","Northeast","caserate",4052.80122402405
-"region","South","South","caserate",6897.78607339013
-"region","West","West","caserate",5954.0709382055
-"CVI","[0,0.175]","Lowest 20%","caserate",6921.00745059506
-"CVI","(0.175,0.355]","Q2","caserate",6587.37227280306
-"CVI","(0.355,0.555]","Q3","caserate",6462.75893633477
-"CVI","(0.555,0.769]","Q4","caserate",6984.22466155463
-"CVI","(0.769,1]","Highest 20%","caserate",7556.2759147532
-"resSeg","[0,32]","Lowest 20%","caserate",6796.34645963335
-"resSeg","(32,44]","Q2","caserate",7096.16709984666
-"resSeg","(44,52]","Q3","caserate",6775.29225531621
-"resSeg","(52,61]","Q4","caserate",6305.3707853775
-"resSeg","(61,90]","Highest 20%","caserate",6623.73315108602
-"black","[0,0.465]","Lowest 20%","caserate7day",46.8456869497598
-"black","(0.465,1.14]","Q2","caserate7day",52.0078480237522
-"black","(1.14,3.35]","Q3","caserate7day",64.8910610614579
-"black","(3.35,12.8]","Q4","caserate7day",67.570245982792
-"black","(12.8,87.4]","Highest 20%","caserate7day",70.6940135460759
-"male","[41.4,48.7]","Lowest 20%","caserate7day",67.4050446716547
-"male","(48.7,49.4]","Q2","caserate7day",63.6196411143279
-"male","(49.4,50]","Q3","caserate7day",59.2347864762188
-"male","(50,50.9]","Q4","caserate7day",53.6418478781098
-"male","(50.9,79]","Highest 20%","caserate7day",58.0507426138782
-"poverty","[2.3,10]","Lowest 20%","caserate7day",50.4987973885691
-"poverty","(10,13]","Q2","caserate7day",55.1498541117358
-"poverty","(13,15.9]","Q3","caserate7day",60.123055496316
-"poverty","(15.9,19.8]","Q4","caserate7day",65.5104581600473
-"poverty","(19.8,55.1]","Highest 20%","caserate7day",70.642244141167
-"age65over","[3.8,15]","Lowest 20%","caserate7day",61.0272071500327
-"age65over","(15,17.2]","Q2","caserate7day",65.7454499962278
-"age65over","(17.2,19.2]","Q3","caserate7day",67.1158018346383
-"age65over","(19.2,21.8]","Q4","caserate7day",60.3431095993141
-"age65over","(21.8,55.6]","Highest 20%","caserate7day",47.6638692523826
-"minority","[0,6.08]","Lowest 20%","caserate7day",54.1960470968213
-"minority","(6.08,11.2]","Q2","caserate7day",56.2937743732283
-"minority","(11.2,20.5]","Q3","caserate7day",59.2362707989299
-"minority","(20.5,37.3]","Q4","caserate7day",66.0333741592011
-"minority","(37.3,99.3]","Highest 20%","caserate7day",66.2016563217268
-"groupquarter","[0,1.12]","Lowest 20%","caserate7day",57.9292392803957
-"groupquarter","(1.12,1.62]","Q2","caserate7day",61.7942394778067
-"groupquarter","(1.62,2.52]","Q3","caserate7day",59.2004648680342
-"groupquarter","(2.52,4.61]","Q4","caserate7day",59.5411310314587
-"groupquarter","(4.61,55.7]","Highest 20%","caserate7day",63.4336852707667
-"diabetes","[1.5,7.2]","Lowest 20%","caserate7day",46.8748746177958
-"diabetes","(7.2,8.9]","Q2","caserate7day",54.1932105552158
-"diabetes","(8.9,10.6]","Q3","caserate7day",61.6031741785439
-"diabetes","(10.6,13]","Q4","caserate7day",67.4725643306364
-"diabetes","(13,33]","Highest 20%","caserate7day",72.6087890412231
-"hispanic","[0,1.78]","Lowest 20%","caserate7day",59.1184261449842
-"hispanic","(1.78,2.98]","Q2","caserate7day",60.0590267002161
-"hispanic","(2.98,5.22]","Q3","caserate7day",59.9578324209445
-"hispanic","(5.22,10.7]","Q4","caserate7day",60.6737516591127
-"hispanic","(10.7,99.1]","Highest 20%","caserate7day",62.096759248736
-"natives","[0,0.146]","Lowest 20%","caserate7day",66.4687599673516
-"natives","(0.146,0.281]","Q2","caserate7day",62.779840275537
-"natives","(0.281,0.505]","Q3","caserate7day",61.5644947383361
-"natives","(0.505,1.24]","Q4","caserate7day",57.7905019243419
-"natives","(1.24,92.5]","Highest 20%","caserate7day",53.2593606842164
-"urbanrural","Large Central Metro","Large Central Metro","caserate7day",63.3811911557958
-"urbanrural","Large Fringe Metro","Large Fringe Metro","caserate7day",62.8153263955908
-"urbanrural","Medium Metro","Medium Metro","caserate7day",66.2575055593278
-"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","caserate7day",61.278684625646
-"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","caserate7day",57.5537119518559
-"urbanrural","Small Metro","Small Metro","caserate7day",59.6694609069888
-"obesity","[12.3,27.8]","Lowest 20%","caserate7day",52.0580604924816
-"obesity","(27.8,31.4]","Q2","caserate7day",55.682433788967
-"obesity","(31.4,34.3]","Q3","caserate7day",60.8997963018145
-"obesity","(34.3,37.4]","Q4","caserate7day",64.1538371967671
-"obesity","(37.4,57.9]","Highest 20%","caserate7day",69.2277602337026
-"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","caserate7day",70.0931709432308
-"hhincome","(5.57e+04,6.2e+04]","Q2","caserate7day",64.4652736086282
-"hhincome","(6.2e+04,6.86e+04]","Q3","caserate7day",58.0646928187412
-"hhincome","(6.86e+04,7.8e+04]","Q4","caserate7day",55.56035583019
-"hhincome","(7.8e+04,1.82e+05]","Highest 20%","caserate7day",53.6309986819514
-"region","Midwest","Midwest","caserate7day",50.1826653308681
-"region","Northeast","Northeast","caserate7day",57.3904412820764
-"region","South","South","caserate7day",74.7781759750571
-"region","West","West","caserate7day",49.2070528235128
-"CVI","[0,0.175]","Lowest 20%","caserate7day",41.0004006720865
-"CVI","(0.175,0.355]","Q2","caserate7day",54.6824567685042
-"CVI","(0.355,0.555]","Q3","caserate7day",60.1036099863322
-"CVI","(0.555,0.769]","Q4","caserate7day",69.8108621327469
-"CVI","(0.769,1]","Highest 20%","caserate7day",76.4268383891962
-"resSeg","[0,32]","Lowest 20%","caserate7day",70.8932461739394
-"resSeg","(32,44]","Q2","caserate7day",71.6816267578116
-"resSeg","(44,52]","Q3","caserate7day",65.5229320987317
-"resSeg","(52,61]","Q4","caserate7day",61.1822515879207
-"resSeg","(61,90]","Highest 20%","caserate7day",58.8941246005292
-"black","[0,0.465]","Lowest 20%","covidmortality",124.336313133843
-"black","(0.465,1.14]","Q2","covidmortality",108.844729051651
-"black","(1.14,3.35]","Q3","covidmortality",101.247314681483
-"black","(3.35,12.8]","Q4","covidmortality",108.235997848359
-"black","(12.8,87.4]","Highest 20%","covidmortality",145.065147930475
-"male","[41.4,48.7]","Lowest 20%","covidmortality",133.938762007005
-"male","(48.7,49.4]","Q2","covidmortality",111.938836963274
-"male","(49.4,50]","Q3","covidmortality",104.370319912013
-"male","(50,50.9]","Q4","covidmortality",115.607004587213
-"male","(50.9,79]","Highest 20%","covidmortality",121.90613828457
-"poverty","[2.3,10]","Lowest 20%","covidmortality",105.997829393931
-"poverty","(10,13]","Q2","covidmortality",110.469143453883
-"poverty","(13,15.9]","Q3","covidmortality",104.674964899764
-"poverty","(15.9,19.8]","Q4","covidmortality",116.88767785256
-"poverty","(19.8,55.1]","Highest 20%","covidmortality",149.720593620971
-"age65over","[3.8,15]","Lowest 20%","covidmortality",106.725928415196
-"age65over","(15,17.2]","Q2","covidmortality",120.580669511509
-"age65over","(17.2,19.2]","Q3","covidmortality",120.39939345305
-"age65over","(19.2,21.8]","Q4","covidmortality",120.877155095291
-"age65over","(21.8,55.6]","Highest 20%","covidmortality",118.984618925961
-"minority","[0,6.08]","Lowest 20%","covidmortality",120.852899538909
-"minority","(6.08,11.2]","Q2","covidmortality",108.890386826255
-"minority","(11.2,20.5]","Q3","covidmortality",99.6170885161786
-"minority","(20.5,37.3]","Q4","covidmortality",111.205633600768
-"minority","(37.3,99.3]","Highest 20%","covidmortality",147.388554705372
-"groupquarter","[0,1.12]","Lowest 20%","covidmortality",90.9264722628752
-"groupquarter","(1.12,1.62]","Q2","covidmortality",121.140964390059
-"groupquarter","(1.62,2.52]","Q3","covidmortality",131.527491082627
-"groupquarter","(2.52,4.61]","Q4","covidmortality",119.151427379678
-"groupquarter","(4.61,55.7]","Highest 20%","covidmortality",124.882989312413
-"diabetes","[1.5,7.2]","Lowest 20%","covidmortality",107.398338264329
-"diabetes","(7.2,8.9]","Q2","covidmortality",102.301918928833
-"diabetes","(8.9,10.6]","Q3","covidmortality",112.94851290293
-"diabetes","(10.6,13]","Q4","covidmortality",123.558861470854
-"diabetes","(13,33]","Highest 20%","covidmortality",142.12329219627
-"hispanic","[0,1.78]","Lowest 20%","covidmortality",130.288230568006
-"hispanic","(1.78,2.98]","Q2","covidmortality",129.381962265108
-"hispanic","(2.98,5.22]","Q3","covidmortality",115.832892417473
-"hispanic","(5.22,10.7]","Q4","covidmortality",99.397077479759
-"hispanic","(10.7,99.1]","Highest 20%","covidmortality",112.584438210284
-"natives","[0,0.146]","Lowest 20%","covidmortality",130.838760987056
-"natives","(0.146,0.281]","Q2","covidmortality",117.409293201351
-"natives","(0.281,0.505]","Q3","covidmortality",110.658129200284
-"natives","(0.505,1.24]","Q4","covidmortality",106.73075348311
-"natives","(1.24,92.5]","Highest 20%","covidmortality",121.902403429986
-"urbanrural","Large Central Metro","Large Central Metro","covidmortality",107.408769383437
-"urbanrural","Large Fringe Metro","Large Fringe Metro","covidmortality",93.5437794945
-"urbanrural","Medium Metro","Medium Metro","covidmortality",97.6460090095689
-"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","covidmortality",112.836195071509
-"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","covidmortality",135.05271291117
-"urbanrural","Small Metro","Small Metro","covidmortality",110.506841254812
-"obesity","[12.3,27.8]","Lowest 20%","covidmortality",98.6535183159953
-"obesity","(27.8,31.4]","Q2","covidmortality",110.877232837
-"obesity","(31.4,34.3]","Q3","covidmortality",112.648487577849
-"obesity","(34.3,37.4]","Q4","covidmortality",126.818901746348
-"obesity","(37.4,57.9]","Highest 20%","covidmortality",138.874989831413
-"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","covidmortality",146.655402255226
-"hhincome","(5.57e+04,6.2e+04]","Q2","covidmortality",121.187851038908
-"hhincome","(6.2e+04,6.86e+04]","Q3","covidmortality",117.666849673953
-"hhincome","(6.86e+04,7.8e+04]","Q4","covidmortality",111.988665126563
-"hhincome","(7.8e+04,1.82e+05]","Highest 20%","covidmortality",89.8544638220864
-"region","Midwest","Midwest","covidmortality",135.043479258192
-"region","Northeast","Northeast","covidmortality",99.8697901137303
-"region","South","South","covidmortality",122.394880130581
-"region","West","West","covidmortality",81.9922259094946
-"CVI","[0,0.175]","Lowest 20%","covidmortality",112.978960969887
-"CVI","(0.175,0.355]","Q2","covidmortality",104.369093031055
-"CVI","(0.355,0.555]","Q3","covidmortality",105.194244180607
-"CVI","(0.555,0.769]","Q4","covidmortality",118.070614822793
-"CVI","(0.769,1]","Highest 20%","covidmortality",147.138014674576
-"resSeg","[0,32]","Lowest 20%","covidmortality",128.426082740739
-"resSeg","(32,44]","Q2","covidmortality",112.808870679036
-"resSeg","(44,52]","Q3","covidmortality",112.344321451323
-"resSeg","(52,61]","Q4","covidmortality",103.991154495708
-"resSeg","(61,90]","Highest 20%","covidmortality",104.172461654123
-"black","[0,0.465]","Lowest 20%","covidmortality7day",1.08522586051187
-"black","(0.465,1.14]","Q2","covidmortality7day",1.11252884476064
-"black","(1.14,3.35]","Q3","covidmortality7day",1.05169427599276
-"black","(3.35,12.8]","Q4","covidmortality7day",0.968136527342397
-"black","(12.8,87.4]","Highest 20%","covidmortality7day",0.910053832039818
-"male","[41.4,48.7]","Lowest 20%","covidmortality7day",1.11449155618126
-"male","(48.7,49.4]","Q2","covidmortality7day",0.986989457209549
-"male","(49.4,50]","Q3","covidmortality7day",1.00318644985809
-"male","(50,50.9]","Q4","covidmortality7day",1.01207972926539
-"male","(50.9,79]","Highest 20%","covidmortality7day",1.01281326183158
-"poverty","[2.3,10]","Lowest 20%","covidmortality7day",0.922072767729193
-"poverty","(10,13]","Q2","covidmortality7day",0.952084354545064
-"poverty","(13,15.9]","Q3","covidmortality7day",1.039328615672
-"poverty","(15.9,19.8]","Q4","covidmortality7day",1.03540078967354
-"poverty","(19.8,55.1]","Highest 20%","covidmortality7day",1.17884565777233
-"age65over","[3.8,15]","Lowest 20%","covidmortality7day",0.807228591862892
-"age65over","(15,17.2]","Q2","covidmortality7day",1.00588542697183
-"age65over","(17.2,19.2]","Q3","covidmortality7day",1.18652373118338
-"age65over","(19.2,21.8]","Q4","covidmortality7day",1.09949557323994
-"age65over","(21.8,55.6]","Highest 20%","covidmortality7day",1.0286117510246
-"minority","[0,6.08]","Lowest 20%","covidmortality7day",1.12748748010516
-"minority","(6.08,11.2]","Q2","covidmortality7day",1.06499368972322
-"minority","(11.2,20.5]","Q3","covidmortality7day",0.959183081102384
-"minority","(20.5,37.3]","Q4","covidmortality7day",0.875062608934989
-"minority","(37.3,99.3]","Highest 20%","covidmortality7day",1.10286477849154
-"groupquarter","[0,1.12]","Lowest 20%","covidmortality7day",0.714585825398901
-"groupquarter","(1.12,1.62]","Q2","covidmortality7day",1.04043978695037
-"groupquarter","(1.62,2.52]","Q3","covidmortality7day",1.26780015013119
-"groupquarter","(2.52,4.61]","Q4","covidmortality7day",1.03538144691915
-"groupquarter","(4.61,55.7]","Highest 20%","covidmortality7day",1.0704639458615
-"diabetes","[1.5,7.2]","Lowest 20%","covidmortality7day",0.957279683819561
-"diabetes","(7.2,8.9]","Q2","covidmortality7day",0.905187801747388
-"diabetes","(8.9,10.6]","Q3","covidmortality7day",1.08090176556652
-"diabetes","(10.6,13]","Q4","covidmortality7day",1.05346379843304
-"diabetes","(13,33]","Highest 20%","covidmortality7day",1.13171167078978
-"hispanic","[0,1.78]","Lowest 20%","covidmortality7day",1.18017875374258
-"hispanic","(1.78,2.98]","Q2","covidmortality7day",1.04817250107463
-"hispanic","(2.98,5.22]","Q3","covidmortality7day",0.962398336392045
-"hispanic","(5.22,10.7]","Q4","covidmortality7day",0.878959607328714
-"hispanic","(10.7,99.1]","Highest 20%","covidmortality7day",1.05892356711189
-"natives","[0,0.146]","Lowest 20%","covidmortality7day",1.11380493242345
-"natives","(0.146,0.281]","Q2","covidmortality7day",1.07971765647111
-"natives","(0.281,0.505]","Q3","covidmortality7day",0.931911440410528
-"natives","(0.505,1.24]","Q4","covidmortality7day",0.988333489202506
-"natives","(1.24,92.5]","Highest 20%","covidmortality7day",1.01411141139464
-"urbanrural","Large Central Metro","Large Central Metro","covidmortality7day",0.676705712954882
-"urbanrural","Large Fringe Metro","Large Fringe Metro","covidmortality7day",0.732390683332093
-"urbanrural","Medium Metro","Medium Metro","covidmortality7day",0.817803749414477
-"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","covidmortality7day",1.10349296118523
-"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","covidmortality7day",1.15401558166294
-"urbanrural","Small Metro","Small Metro","covidmortality7day",1.003297391597
-"obesity","[12.3,27.8]","Lowest 20%","covidmortality7day",0.980339358943375
-"obesity","(27.8,31.4]","Q2","covidmortality7day",0.970535033465232
-"obesity","(31.4,34.3]","Q3","covidmortality7day",1.00952552601378
-"obesity","(34.3,37.4]","Q4","covidmortality7day",1.10817161028845
-"obesity","(37.4,57.9]","Highest 20%","covidmortality7day",1.06196664843603
-"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","covidmortality7day",1.23574153060332
-"hhincome","(5.57e+04,6.2e+04]","Q2","covidmortality7day",1.05539280750306
-"hhincome","(6.2e+04,6.86e+04]","Q3","covidmortality7day",1.14255844140284
-"hhincome","(6.86e+04,7.8e+04]","Q4","covidmortality7day",1.01841004522136
-"hhincome","(7.8e+04,1.82e+05]","Highest 20%","covidmortality7day",0.671988610970215
-"region","Midwest","Midwest","covidmortality7day",1.15980091854015
-"region","Northeast","Northeast","covidmortality7day",1.12844900739925
-"region","South","South","covidmortality7day",0.945504654833337
-"region","West","West","covidmortality7day",0.895303595162663
-"CVI","[0,0.175]","Lowest 20%","covidmortality7day",0.941320932584955
-"CVI","(0.175,0.355]","Q2","covidmortality7day",1.05091104666539
-"CVI","(0.355,0.555]","Q3","covidmortality7day",1.0379621525338
-"CVI","(0.555,0.769]","Q4","covidmortality7day",1.05875282584705
-"CVI","(0.769,1]","Highest 20%","covidmortality7day",1.04009187970137
-"resSeg","[0,32]","Lowest 20%","covidmortality7day",0.975836115937236
-"resSeg","(32,44]","Q2","covidmortality7day",0.975939250932549
-"resSeg","(44,52]","Q3","covidmortality7day",0.951383142142089
-"resSeg","(52,61]","Q4","covidmortality7day",0.923437906511682
-"resSeg","(61,90]","Highest 20%","covidmortality7day",0.989370079679431
+"black","[0,0.465]","Lowest 20%","caserate",7167.81072445807
+"black","(0.465,1.14]","Q2","caserate",6597.9143765677
+"black","(1.14,3.35]","Q3","caserate",6948.18056394321
+"black","(3.35,12.8]","Q4","caserate",7090.6871039729
+"black","(12.8,87.4]","Highest 20%","caserate",7143.70357836584
+"male","[41.4,48.7]","Lowest 20%","caserate",6782.86279506852
+"male","(48.7,49.4]","Q2","caserate",6575.21517593521
+"male","(49.4,50]","Q3","caserate",6601.08057349467
+"male","(50,50.9]","Q4","caserate",7112.02877747472
+"male","(50.9,79]","Highest 20%","caserate",7876.22167794459
+"poverty","[2.3,10]","Lowest 20%","caserate",6759.4750485841
+"poverty","(10,13]","Q2","caserate",6897.93695544929
+"poverty","(13,15.9]","Q3","caserate",6745.01309175128
+"poverty","(15.9,19.8]","Q4","caserate",6826.06040329881
+"poverty","(19.8,55.1]","Highest 20%","caserate",7722.95147433713
+"age65over","[3.8,15]","Lowest 20%","caserate",7676.16118723817
+"age65over","(15,17.2]","Q2","caserate",7188.19628741367
+"age65over","(17.2,19.2]","Q3","caserate",7196.82348023431
+"age65over","(19.2,21.8]","Q4","caserate",6872.99516693494
+"age65over","(21.8,55.6]","Highest 20%","caserate",6014.89094365702
+"minority","[0,6.08]","Lowest 20%","caserate",6575.4158713499
+"minority","(6.08,11.2]","Q2","caserate",7023.76801645061
+"minority","(11.2,20.5]","Q3","caserate",6880.62087448144
+"minority","(20.5,37.3]","Q4","caserate",6855.58936605773
+"minority","(37.3,99.3]","Highest 20%","caserate",7619.36726764123
+"groupquarter","[0,1.12]","Lowest 20%","caserate",6171.12638119723
+"groupquarter","(1.12,1.62]","Q2","caserate",7062.46330098979
+"groupquarter","(1.62,2.52]","Q3","caserate",7008.4978303274
+"groupquarter","(2.52,4.61]","Q4","caserate",6955.29332105487
+"groupquarter","(4.61,55.7]","Highest 20%","caserate",7751.51013767739
+"diabetes","[1.5,7.2]","Lowest 20%","caserate",6592.60302173421
+"diabetes","(7.2,8.9]","Q2","caserate",6671.52488231101
+"diabetes","(8.9,10.6]","Q3","caserate",7046.89746467714
+"diabetes","(10.6,13]","Q4","caserate",7103.85455386053
+"diabetes","(13,33]","Highest 20%","caserate",7550.30315985432
+"hispanic","[0,1.78]","Lowest 20%","caserate",6709.91881876876
+"hispanic","(1.78,2.98]","Q2","caserate",7299.05343938499
+"hispanic","(2.98,5.22]","Q3","caserate",7193.98588841215
+"hispanic","(5.22,10.7]","Q4","caserate",6553.50542651923
+"hispanic","(10.7,99.1]","Highest 20%","caserate",7190.67568085608
+"natives","[0,0.146]","Lowest 20%","caserate",6922.02475093619
+"natives","(0.146,0.281]","Q2","caserate",6738.02487843051
+"natives","(0.281,0.505]","Q3","caserate",6788.81244421112
+"natives","(0.505,1.24]","Q4","caserate",6820.05450665818
+"natives","(1.24,92.5]","Highest 20%","caserate",7678.78526720916
+"urbanrural","Large Central Metro","Large Central Metro","caserate",6360.56405587321
+"urbanrural","Large Fringe Metro","Large Fringe Metro","caserate",5963.63709944148
+"urbanrural","Medium Metro","Medium Metro","caserate",6313.84599871016
+"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","caserate",7181.72028352138
+"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","caserate",7424.4618508164
+"urbanrural","Small Metro","Small Metro","caserate",6939.67329120605
+"obesity","[12.3,27.8]","Lowest 20%","caserate",5895.03369811756
+"obesity","(27.8,31.4]","Q2","caserate",6827.84501169021
+"obesity","(31.4,34.3]","Q3","caserate",7087.41769055635
+"obesity","(34.3,37.4]","Q4","caserate",7545.79255977923
+"obesity","(37.4,57.9]","Highest 20%","caserate",7605.02250372244
+"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","caserate",7402.16809538958
+"hhincome","(5.57e+04,6.2e+04]","Q2","caserate",7045.08236112512
+"hhincome","(6.2e+04,6.86e+04]","Q3","caserate",7170.06349553306
+"hhincome","(6.86e+04,7.8e+04]","Q4","caserate",7364.40144126722
+"hhincome","(7.8e+04,1.82e+05]","Highest 20%","caserate",5957.96376283694
+"region","Midwest","Midwest","caserate",8238.41372733747
+"region","Northeast","Northeast","caserate",4211.88118310272
+"region","South","South","caserate",6995.05950637706
+"region","West","West","caserate",6005.04719584341
+"CVI","[0,0.175]","Lowest 20%","caserate",6987.13656723067
+"CVI","(0.175,0.355]","Q2","caserate",6669.50884726471
+"CVI","(0.355,0.555]","Q3","caserate",6549.44452226773
+"CVI","(0.555,0.769]","Q4","caserate",7081.28287028508
+"CVI","(0.769,1]","Highest 20%","caserate",7663.78975602448
+"resSeg","[0,32]","Lowest 20%","caserate",6885.86734285569
+"resSeg","(32,44]","Q2","caserate",7193.6724630894
+"resSeg","(44,52]","Q3","caserate",6867.21920036866
+"resSeg","(52,61]","Q4","caserate",6418.79719237502
+"resSeg","(61,90]","Highest 20%","caserate",6702.34982194513
+"black","[0,0.465]","Lowest 20%","caserate7day",47.3304697969332
+"black","(0.465,1.14]","Q2","caserate7day",52.3791659639339
+"black","(1.14,3.35]","Q3","caserate7day",66.3369868165096
+"black","(3.35,12.8]","Q4","caserate7day",71.1687443880267
+"black","(12.8,87.4]","Highest 20%","caserate7day",72.7522671325638
+"male","[41.4,48.7]","Lowest 20%","caserate7day",70.4250172454769
+"male","(48.7,49.4]","Q2","caserate7day",66.6277058312732
+"male","(49.4,50]","Q3","caserate7day",60.2469501988968
+"male","(50,50.9]","Q4","caserate7day",54.6472780188793
+"male","(50.9,79]","Highest 20%","caserate7day",57.9600676941767
+"poverty","[2.3,10]","Lowest 20%","caserate7day",53.797306319091
+"poverty","(10,13]","Q2","caserate7day",56.6290703813708
+"poverty","(13,15.9]","Q3","caserate7day",62.0297150695768
+"poverty","(15.9,19.8]","Q4","caserate7day",66.4551900176577
+"poverty","(19.8,55.1]","Highest 20%","caserate7day",70.896860181013
+"age65over","[3.8,15]","Lowest 20%","caserate7day",63.7745031896728
+"age65over","(15,17.2]","Q2","caserate7day",67.5781190873394
+"age65over","(17.2,19.2]","Q3","caserate7day",67.8860828466238
+"age65over","(19.2,21.8]","Q4","caserate7day",60.9089469025459
+"age65over","(21.8,55.6]","Highest 20%","caserate7day",49.7013507965833
+"minority","[0,6.08]","Lowest 20%","caserate7day",55.6690085169784
+"minority","(6.08,11.2]","Q2","caserate7day",57.0360916057857
+"minority","(11.2,20.5]","Q3","caserate7day",60.3286668807943
+"minority","(20.5,37.3]","Q4","caserate7day",66.9603781299384
+"minority","(37.3,99.3]","Highest 20%","caserate7day",69.9423609165863
+"groupquarter","[0,1.12]","Lowest 20%","caserate7day",59.1203277405199
+"groupquarter","(1.12,1.62]","Q2","caserate7day",63.6374451076882
+"groupquarter","(1.62,2.52]","Q3","caserate7day",61.3792929426263
+"groupquarter","(2.52,4.61]","Q4","caserate7day",61.321725489289
+"groupquarter","(4.61,55.7]","Highest 20%","caserate7day",64.388496638805
+"diabetes","[1.5,7.2]","Lowest 20%","caserate7day",48.390638572827
+"diabetes","(7.2,8.9]","Q2","caserate7day",57.0714770807283
+"diabetes","(8.9,10.6]","Q3","caserate7day",63.2290935528905
+"diabetes","(10.6,13]","Q4","caserate7day",68.7500511501001
+"diabetes","(13,33]","Highest 20%","caserate7day",73.2770339349693
+"hispanic","[0,1.78]","Lowest 20%","caserate7day",60.0302567353561
+"hispanic","(1.78,2.98]","Q2","caserate7day",60.8060720624705
+"hispanic","(2.98,5.22]","Q3","caserate7day",60.8907846690419
+"hispanic","(5.22,10.7]","Q4","caserate7day",62.6050318853627
+"hispanic","(10.7,99.1]","Highest 20%","caserate7day",65.5422827947136
+"natives","[0,0.146]","Lowest 20%","caserate7day",69.5151733333363
+"natives","(0.146,0.281]","Q2","caserate7day",65.3650942541973
+"natives","(0.281,0.505]","Q3","caserate7day",63.6874422777804
+"natives","(0.505,1.24]","Q4","caserate7day",57.9364222171127
+"natives","(1.24,92.5]","Highest 20%","caserate7day",53.3029931651443
+"urbanrural","Large Central Metro","Large Central Metro","caserate7day",71.0439482751389
+"urbanrural","Large Fringe Metro","Large Fringe Metro","caserate7day",68.0399440142192
+"urbanrural","Medium Metro","Medium Metro","caserate7day",68.0637955331992
+"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","caserate7day",61.1958250672895
+"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","caserate7day",58.1284349509807
+"urbanrural","Small Metro","Small Metro","caserate7day",62.9034608577336
+"obesity","[12.3,27.8]","Lowest 20%","caserate7day",55.184383973435
+"obesity","(27.8,31.4]","Q2","caserate7day",58.5992016641267
+"obesity","(31.4,34.3]","Q3","caserate7day",61.7457451849102
+"obesity","(34.3,37.4]","Q4","caserate7day",64.8765266178684
+"obesity","(37.4,57.9]","Highest 20%","caserate7day",69.532575420371
+"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","caserate7day",69.9302198566251
+"hhincome","(5.57e+04,6.2e+04]","Q2","caserate7day",65.1157042874654
+"hhincome","(6.2e+04,6.86e+04]","Q3","caserate7day",58.9322616296621
+"hhincome","(6.86e+04,7.8e+04]","Q4","caserate7day",56.4553839051628
+"hhincome","(7.8e+04,1.82e+05]","Highest 20%","caserate7day",59.3048537340818
+"region","Midwest","Midwest","caserate7day",50.9076696434751
+"region","Northeast","Northeast","caserate7day",70.1369340521407
+"region","South","South","caserate7day",75.6053299849832
+"region","West","West","caserate7day",48.4307073339578
+"CVI","[0,0.175]","Lowest 20%","caserate7day",41.8100931892861
+"CVI","(0.175,0.355]","Q2","caserate7day",56.2274967184821
+"CVI","(0.355,0.555]","Q3","caserate7day",61.994539884888
+"CVI","(0.555,0.769]","Q4","caserate7day",71.5563890763116
+"CVI","(0.769,1]","Highest 20%","caserate7day",78.3859771956765
+"resSeg","[0,32]","Lowest 20%","caserate7day",71.9194621334114
+"resSeg","(32,44]","Q2","caserate7day",73.1958532870756
+"resSeg","(44,52]","Q3","caserate7day",67.0182558209082
+"resSeg","(52,61]","Q4","caserate7day",66.5968626448645
+"resSeg","(61,90]","Highest 20%","caserate7day",59.8289975528756
+"black","[0,0.465]","Lowest 20%","covidmortality",125.778302390119
+"black","(0.465,1.14]","Q2","covidmortality",110.05535971673
+"black","(1.14,3.35]","Q3","covidmortality",103.003555889799
+"black","(3.35,12.8]","Q4","covidmortality",109.85074442306
+"black","(12.8,87.4]","Highest 20%","covidmortality",146.387968878775
+"male","[41.4,48.7]","Lowest 20%","covidmortality",135.657969499004
+"male","(48.7,49.4]","Q2","covidmortality",113.680108782032
+"male","(49.4,50]","Q3","covidmortality",105.687894941863
+"male","(50,50.9]","Q4","covidmortality",116.977530880622
+"male","(50.9,79]","Highest 20%","covidmortality",123.104957696624
+"poverty","[2.3,10]","Lowest 20%","covidmortality",107.336325573262
+"poverty","(10,13]","Q2","covidmortality",111.846601548415
+"poverty","(13,15.9]","Q3","covidmortality",106.174429901429
+"poverty","(15.9,19.8]","Q4","covidmortality",118.245808228939
+"poverty","(19.8,55.1]","Highest 20%","covidmortality",151.497676209352
+"age65over","[3.8,15]","Lowest 20%","covidmortality",107.927576154359
+"age65over","(15,17.2]","Q2","covidmortality",121.87095508772
+"age65over","(17.2,19.2]","Q3","covidmortality",122.111749957207
+"age65over","(19.2,21.8]","Q4","covidmortality",122.765974633398
+"age65over","(21.8,55.6]","Highest 20%","covidmortality",120.235850896284
+"minority","[0,6.08]","Lowest 20%","covidmortality",122.298888308237
+"minority","(6.08,11.2]","Q2","covidmortality",110.469442561817
+"minority","(11.2,20.5]","Q3","covidmortality",101.23638926542
+"minority","(20.5,37.3]","Q4","covidmortality",112.444108516633
+"minority","(37.3,99.3]","Highest 20%","covidmortality",148.852106797022
+"groupquarter","[0,1.12]","Lowest 20%","covidmortality",92.0767682917794
+"groupquarter","(1.12,1.62]","Q2","covidmortality",122.514280167306
+"groupquarter","(1.62,2.52]","Q3","covidmortality",133.132074253479
+"groupquarter","(2.52,4.61]","Q4","covidmortality",120.739418059086
+"groupquarter","(4.61,55.7]","Highest 20%","covidmortality",126.513520730198
+"diabetes","[1.5,7.2]","Lowest 20%","covidmortality",108.550762854436
+"diabetes","(7.2,8.9]","Q2","covidmortality",103.628283755631
+"diabetes","(8.9,10.6]","Q3","covidmortality",114.331605946104
+"diabetes","(10.6,13]","Q4","covidmortality",125.235579940321
+"diabetes","(13,33]","Highest 20%","covidmortality",143.95842614229
+"hispanic","[0,1.78]","Lowest 20%","covidmortality",132.011159584475
+"hispanic","(1.78,2.98]","Q2","covidmortality",130.92145588196
+"hispanic","(2.98,5.22]","Q3","covidmortality",117.315068645422
+"hispanic","(5.22,10.7]","Q4","covidmortality",100.731852815809
+"hispanic","(10.7,99.1]","Highest 20%","covidmortality",113.848744063419
+"natives","[0,0.146]","Lowest 20%","covidmortality",132.729120289574
+"natives","(0.146,0.281]","Q2","covidmortality",118.831033115349
+"natives","(0.281,0.505]","Q3","covidmortality",111.976595859597
+"natives","(0.505,1.24]","Q4","covidmortality",108.132738467124
+"natives","(1.24,92.5]","Highest 20%","covidmortality",123.213876825946
+"urbanrural","Large Central Metro","Large Central Metro","covidmortality",108.810987364423
+"urbanrural","Large Fringe Metro","Large Fringe Metro","covidmortality",94.7367320481331
+"urbanrural","Medium Metro","Medium Metro","covidmortality",98.9053465400795
+"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","covidmortality",114.284172372955
+"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","covidmortality",136.602451195702
+"urbanrural","Small Metro","Small Metro","covidmortality",112.22692802295
+"obesity","[12.3,27.8]","Lowest 20%","covidmortality",99.891389125672
+"obesity","(27.8,31.4]","Q2","covidmortality",112.283630522361
+"obesity","(31.4,34.3]","Q3","covidmortality",114.108399724424
+"obesity","(34.3,37.4]","Q4","covidmortality",128.546679898745
+"obesity","(37.4,57.9]","Highest 20%","covidmortality",140.394410838602
+"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","covidmortality",148.400697147013
+"hhincome","(5.57e+04,6.2e+04]","Q2","covidmortality",122.81290875557
+"hhincome","(6.2e+04,6.86e+04]","Q3","covidmortality",119.441065544985
+"hhincome","(6.86e+04,7.8e+04]","Q4","covidmortality",113.090071001564
+"hhincome","(7.8e+04,1.82e+05]","Highest 20%","covidmortality",90.9546815622593
+"region","Midwest","Midwest","covidmortality",136.551362855559
+"region","Northeast","Northeast","covidmortality",102.093857892038
+"region","South","South","covidmortality",123.950840662842
+"region","West","West","covidmortality",82.804673607876
+"CVI","[0,0.175]","Lowest 20%","covidmortality",114.428830026704
+"CVI","(0.175,0.355]","Q2","covidmortality",105.585029793196
+"CVI","(0.355,0.555]","Q3","covidmortality",106.675536052614
+"CVI","(0.555,0.769]","Q4","covidmortality",119.648436185599
+"CVI","(0.769,1]","Highest 20%","covidmortality",148.760438478974
+"resSeg","[0,32]","Lowest 20%","covidmortality",129.755134362108
+"resSeg","(32,44]","Q2","covidmortality",114.207814936945
+"resSeg","(44,52]","Q3","covidmortality",113.845485036768
+"resSeg","(52,61]","Q4","covidmortality",105.499722118299
+"resSeg","(61,90]","Highest 20%","covidmortality",105.60317436681
+"black","[0,0.465]","Lowest 20%","covidmortality7day",1.10160282322906
+"black","(0.465,1.14]","Q2","covidmortality7day",1.06555774171439
+"black","(1.14,3.35]","Q3","covidmortality7day",1.05626488918359
+"black","(3.35,12.8]","Q4","covidmortality7day",1.01597156872941
+"black","(12.8,87.4]","Highest 20%","covidmortality7day",0.948740674967252
+"male","[41.4,48.7]","Lowest 20%","covidmortality7day",1.16018277207366
+"male","(48.7,49.4]","Q2","covidmortality7day",1.03928756279952
+"male","(49.4,50]","Q3","covidmortality7day",0.989090854103592
+"male","(50,50.9]","Q4","covidmortality7day",1.04458656912127
+"male","(50.9,79]","Highest 20%","covidmortality7day",0.956592100432632
+"poverty","[2.3,10]","Lowest 20%","covidmortality7day",0.91847326256813
+"poverty","(10,13]","Q2","covidmortality7day",0.982467235023425
+"poverty","(13,15.9]","Q3","covidmortality7day",1.03495678718644
+"poverty","(15.9,19.8]","Q4","covidmortality7day",1.04212541094676
+"poverty","(19.8,55.1]","Highest 20%","covidmortality7day",1.21153858660967
+"age65over","[3.8,15]","Lowest 20%","covidmortality7day",0.81701270635084
+"age65over","(15,17.2]","Q2","covidmortality7day",0.983831645694063
+"age65over","(17.2,19.2]","Q3","covidmortality7day",1.22221277457325
+"age65over","(19.2,21.8]","Q4","covidmortality7day",1.14643315657746
+"age65over","(21.8,55.6]","Highest 20%","covidmortality7day",1.01826309823765
+"minority","[0,6.08]","Lowest 20%","covidmortality7day",1.11724890647213
+"minority","(6.08,11.2]","Q2","covidmortality7day",1.06794085432947
+"minority","(11.2,20.5]","Q3","covidmortality7day",1.01478742701874
+"minority","(20.5,37.3]","Q4","covidmortality7day",0.872488076332765
+"minority","(37.3,99.3]","Highest 20%","covidmortality7day",1.11741363653057
+"groupquarter","[0,1.12]","Lowest 20%","covidmortality7day",0.755985826119692
+"groupquarter","(1.12,1.62]","Q2","covidmortality7day",1.03356736713104
+"groupquarter","(1.62,2.52]","Q3","covidmortality7day",1.24511852797966
+"groupquarter","(2.52,4.61]","Q4","covidmortality7day",1.03253456231172
+"groupquarter","(4.61,55.7]","Highest 20%","covidmortality7day",1.12155382589663
+"diabetes","[1.5,7.2]","Lowest 20%","covidmortality7day",0.931726414036758
+"diabetes","(7.2,8.9]","Q2","covidmortality7day",0.892757854494554
+"diabetes","(8.9,10.6]","Q3","covidmortality7day",1.07971331802258
+"diabetes","(10.6,13]","Q4","covidmortality7day",1.14840077727318
+"diabetes","(13,33]","Highest 20%","covidmortality7day",1.14138850318949
+"hispanic","[0,1.78]","Lowest 20%","covidmortality7day",1.1828261577401
+"hispanic","(1.78,2.98]","Q2","covidmortality7day",1.07231519540046
+"hispanic","(2.98,5.22]","Q3","covidmortality7day",1.02987328660622
+"hispanic","(5.22,10.7]","Q4","covidmortality7day",0.881400423478084
+"hispanic","(10.7,99.1]","Highest 20%","covidmortality7day",1.02181098008622
+"natives","[0,0.146]","Lowest 20%","covidmortality7day",1.18858650050228
+"natives","(0.146,0.281]","Q2","covidmortality7day",1.0220121956981
+"natives","(0.281,0.505]","Q3","covidmortality7day",0.942513724529284
+"natives","(0.505,1.24]","Q4","covidmortality7day",1.00896778670524
+"natives","(1.24,92.5]","Highest 20%","covidmortality7day",1.02587151074107
+"urbanrural","Large Central Metro","Large Central Metro","covidmortality7day",0.715612034643969
+"urbanrural","Large Fringe Metro","Large Fringe Metro","covidmortality7day",0.741440689322392
+"urbanrural","Medium Metro","Medium Metro","covidmortality7day",0.850341944080486
+"urbanrural","Micropolitan (Nonmetro)","Micropolitan (Nonmetro)","covidmortality7day",1.0967215976136
+"urbanrural","NonCore (Nonmetro)","NonCore (Nonmetro)","covidmortality7day",1.14801783213696
+"urbanrural","Small Metro","Small Metro","covidmortality7day",1.08718219481086
+"obesity","[12.3,27.8]","Lowest 20%","covidmortality7day",0.901221620311821
+"obesity","(27.8,31.4]","Q2","covidmortality7day",1.00188068789561
+"obesity","(31.4,34.3]","Q3","covidmortality7day",1.04876321286153
+"obesity","(34.3,37.4]","Q4","covidmortality7day",1.17043047293276
+"obesity","(37.4,57.9]","Highest 20%","covidmortality7day",1.06935404845278
+"hhincome","[3.36e+04,5.57e+04]","Lowest 20%","covidmortality7day",1.24037440865591
+"hhincome","(5.57e+04,6.2e+04]","Q2","covidmortality7day",1.08419063623859
+"hhincome","(6.2e+04,6.86e+04]","Q3","covidmortality7day",1.17865598288443
+"hhincome","(6.86e+04,7.8e+04]","Q4","covidmortality7day",0.97230908307227
+"hhincome","(7.8e+04,1.82e+05]","Highest 20%","covidmortality7day",0.710490623920967
+"region","Midwest","Midwest","covidmortality7day",1.17095633506062
+"region","Northeast","Northeast","covidmortality7day",1.16658333532608
+"region","South","South","covidmortality7day",0.97988508456549
+"region","West","West","covidmortality7day",0.845500615937086
+"CVI","[0,0.175]","Lowest 20%","covidmortality7day",0.978101778173551
+"CVI","(0.175,0.355]","Q2","covidmortality7day",1.02437677804322
+"CVI","(0.355,0.555]","Q3","covidmortality7day",1.05460234271558
+"CVI","(0.555,0.769]","Q4","covidmortality7day",1.04101196746427
+"CVI","(0.769,1]","Highest 20%","covidmortality7day",1.09108157245609
+"resSeg","[0,32]","Lowest 20%","covidmortality7day",1.01256869045428
+"resSeg","(32,44]","Q2","covidmortality7day",0.973872132262022
+"resSeg","(44,52]","Q3","covidmortality7day",0.976953066518662
+"resSeg","(52,61]","Q4","covidmortality7day",0.946579115117032
+"resSeg","(61,90]","Highest 20%","covidmortality7day",1.01819835612155
