@@ -317,11 +317,11 @@ export default function USMap(props) {
                   <ComposableMap 
                     projection="geoAlbersUsa" 
                     data-tip=""
-                    width={630} 
+                    width={400} 
                     height={380}
                     strokeWidth= {0.1}
                     stroke= 'black'
-                    projectionConfig={{scale: 750}}
+                    projectionConfig={{scale: 550}}
 
 
                     >
@@ -389,9 +389,14 @@ export default function USMap(props) {
 
                   </Accordion> 
                 </Grid.Column>
-                {/* <Grid.Column width={7} style ={{paddingLeft: 0}}>
+
+
+
+
+
+                {/* <Grid.Column width={6} style ={{paddingLeft: 0}}>
                   <Header as='h2' style={{fontWeight: 400}}>
-                    <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
+                    <Header.Content style={{width : 400, fontSize: "18pt", textAlign: "center"}}>
                       Current Cases and Deaths in <b>{stateName}</b>
                       
                     </Header.Content>
@@ -405,7 +410,7 @@ export default function USMap(props) {
                           <VictoryChart 
                                       minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
                                       maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
-                                      width={235}
+                                      width={200}
                                       height={180}
                                       padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
                                       containerComponent={<VictoryContainer responsive={false}/>}>
@@ -484,7 +489,7 @@ export default function USMap(props) {
                           <VictoryChart theme={VictoryTheme.material}
                                       minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
                                       maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
-                                      width={235}
+                                      width={200}
                                       height={180}       
                                       padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
                                       containerComponent={<VictoryContainer responsive={false}/>}>
@@ -562,7 +567,7 @@ export default function USMap(props) {
                     </Grid.Row>
 
                     <Header as='h2' style={{fontWeight: 400}}>
-                      <Header.Content style={{width : 550, fontSize: "18pt", textAlign: "center"}}>
+                      <Header.Content style={{width : 400, fontSize: "18pt", textAlign: "center"}}>
                         Disparities in COVID-19 Mortality <b>{stateName}</b>
                         
                       </Header.Content>
@@ -579,7 +584,7 @@ export default function USMap(props) {
                         {stateFips && !raceData[fips]["Non-Hispanic African American"] && stateFips !== "38"  && stateFips !== "02" &&
                           <VictoryChart
                                         theme = {VictoryTheme.material}
-                                        width = {250}
+                                        width = {180}
                                         height = {40 * (( !!raceData[fips]["Asian Alone"] && raceData[fips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["Asian Alone"][0]["deaths"] > 30 && raceData[fips]["Asian Alone"][0]["percentPop"] >= 1 ? 1: 0) + 
                                         (!!raceData[fips]["American Natives Alone"] && raceData[fips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["American Natives Alone"][0]['deaths'] > 30 && raceData[fips]["American Natives Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
                                         (!!raceData[fips]["African American Alone"] && raceData[fips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[fips]["African American Alone"][0]['deaths'] > 30 && raceData[fips]["African American Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
@@ -718,7 +723,7 @@ export default function USMap(props) {
                         {stateFips && !!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
                           <VictoryChart
                                         theme = {VictoryTheme.material}
-                                        width = {250}
+                                        width = {180}
                                         height = {!!raceData[fips]["Hispanic"] && !!raceData[fips]["Non Hispanic"] ?  81 : 3 * (!!raceData[fips]["Hispanic"] + !!raceData[fips]["Non Hispanic"] + !!raceData[fips]["Non-Hispanic African American"] + !!raceData[fips]["Non-Hispanic American Natives"] + !!raceData[fips]["Non-Hispanic Asian"] + !!raceData[fips]["Non-Hispanic White"] )}
                                         domainPadding={20}
                                         minDomain={{y: props.ylog?1:0}}
