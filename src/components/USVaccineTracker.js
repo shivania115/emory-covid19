@@ -76,6 +76,12 @@ const VaxColor = [
   "#337fb5"
 ];
 
+function goToAnchor(anchor) {
+  var loc = document.location.toString().split('#')[0];
+  document.location = loc + '#' + anchor;
+  return false;
+}
+
 
 class StickyExampleAdjacentContext extends Component{
   
@@ -95,7 +101,7 @@ class StickyExampleAdjacentContext extends Component{
                         pointing secondary vertical>
                         
                         <Menu.Item as='a' href="/Vaccine-Tracker" name='Vaccination Tracker'><Header as='h4'>Vaccination Tracker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
-                        <Menu.Item as='a' href="#faq" name='Select Your State'><Header as='h4'>Select Your State</Header></Menu.Item>
+                        <Menu.Item as='a' href="#select" name='Select Your State'><Header as='h4'>Select Your State</Header></Menu.Item>
                         <Menu.Item as='a' href="#faq" name='Vaccination FAQs'><Header as='h4'>Vaccination FAQs</Header></Menu.Item>
                         <Menu.Item as='a' href="#ccvi" name='Subheader'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subheader</Header></Menu.Item>
                         <Menu.Item as='a' href="#poverty" name='Subheader'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subheader</Header></Menu.Item>
@@ -131,9 +137,11 @@ export default function USMap(props) {
   const [dataFltrd, setDataFltrd] = useState();
   // const [dataState, setDataState] = useState();
 
-  const [stateName, setStateName] = useState('Georgia');
+  const [stateName, setStateName] = useState('The United States');
+  const [stateMapName, setStateMapName] = useState('State');
   const [fips, setFips] = useState('13');
   const [stateFips, setStateFips] = useState();
+  const [stateMapFips, setStateMapFips] = useState("_nation");
   const [config, setConfig] = useState();
   const [countyFips, setCountyFips] = useState('');
 
@@ -141,6 +149,11 @@ export default function USMap(props) {
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
+
+  const [colorScaleState, setColorScaleState] = useState();
+  const [legendMaxState, setLegendMaxState] = useState([]);
+  const [legendMinState, setLegendMinState] = useState([]);
+  const [legendSplitState, setLegendSplitState] = useState([]);
 
   const [varMap, setVarMap] = useState({});
   const [metric, setMetric] = useState('caserate7dayfig');
@@ -156,12 +169,6 @@ export default function USMap(props) {
 
   setAccstate({ activeIndex: newIndex })
   }
-
-  // const [caseRate, setCaseRate] = useState();
-  // const [percentChangeCases, setPercentChangeCases] = useState();
-  // const [mortality, setMortality] = useState();
-  // const [percentChangeMortality, setPercentChangeMortality] = useState();
-
   const [delayHandler, setDelayHandler] = useState();
 
   useEffect(()=>{
@@ -246,7 +253,7 @@ export default function USMap(props) {
 
       });
     }
-  }, [metric]);
+  }, []);
 
 
 
@@ -254,7 +261,7 @@ export default function USMap(props) {
     if (metric) {
 
     
-    const configMatched = configs.find(s => s.fips === fips);
+    const configMatched = configs.find(s => s.fips === stateMapFips);
 
     if (!configMatched){
       
@@ -262,11 +269,11 @@ export default function USMap(props) {
 
       setConfig(configMatched);
 
-      setStateName(configMatched.name);
+      setStateMapName(configMatched.name);
 
       fetch('/data/data.json').then(res => res.json())
         .then(x => {
-          setData(x);
+          
 
           const cs = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -288,7 +295,7 @@ export default function USMap(props) {
                 , d=>{
             scaleMap[d[metric]] = cs(d[metric])});
 
-          setColorScale(scaleMap);
+          setColorScaleState(scaleMap);
           var max = 0
           var min = 100
           _.each(x, d=> { 
@@ -301,12 +308,12 @@ export default function USMap(props) {
 
           if (max > 999) {
             max = (max/1000).toFixed(0) + "K";
-            setLegendMax(max);
+            setLegendMaxState(max);
           }else{
-            setLegendMax(max.toFixed(0));
+            setLegendMaxState(max.toFixed(0));
 
           }
-          setLegendMin(min.toFixed(0));
+          setLegendMinState(min.toFixed(0));
 
           var split = scaleQuantile()
           .domain(_.map(_.filter(_.map(x, (d, k) => {
@@ -318,7 +325,7 @@ export default function USMap(props) {
             d=> d[metric]))
           .range(colorPalette);
 
-          setLegendSplit(split.quantiles());
+          setLegendSplitState(split.quantiles());
         });
       }
     }
@@ -326,7 +333,7 @@ export default function USMap(props) {
 
             
           
-  }, [metric, fips]);
+  }, [stateMapFips]);
 
 
   if (data && dataFltrd && stateLabels && allTS) {
@@ -395,7 +402,7 @@ export default function USMap(props) {
                     <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
                     <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
-                    <text x={300} y={59} style={{fontSize: '0.7em'}}> Click on a state</text>
+                    <text x={300} y={59} style={{fontSize: '1em'}}> Click on a state</text>
 
 
                   </svg>
@@ -426,12 +433,20 @@ export default function USMap(props) {
                                 const stateFip = geo.id.substring(0,2);
                                 const configMatched = configs.find(s => s.fips === stateFip);
 
-                                setFips(stateFip);
+                                // if(clicked === true){
+                                //   setDelayHandler(setTimeout(() => {
+                                //     setFips(stateFip);
+                                      
+                                //     }, 3000))
+                                  
+                                // }else{
+                                  setFips(stateFip);
+                                // }
                                 
                                 // setStateFips(geo.id.substring(0,2));
-                                // setStateName(configMatched.name); 
+                                setStateName(configMatched.name); 
                                 
-                                setShowState(false);
+                                // setShowState(false);
                               
                               }}
                               
@@ -450,9 +465,11 @@ export default function USMap(props) {
 
                               onClick={()=>{
                                 // history.push("/Vaccine-Tracker/"+geo.id.substring(0,2)+"");
-                                // setClicked(true);
-                                // setShowState(true);
-
+                              setStateMapFips(geo.id.substring(0,2));
+                              setClicked(true);
+                              setShowState(true);
+                              // history.push('/Vaccine-Tracker#select');
+                              goToAnchor('select')
                               }}
 
                               
@@ -836,7 +853,7 @@ export default function USMap(props) {
                         </div>
                       
                       </Grid.Column>
-                        <Header.Content style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content id = "select" style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
                           *14-day change trends use 7-day averages.
                         </Header.Content>
                     </Grid.Row>
@@ -844,7 +861,12 @@ export default function USMap(props) {
                 </Grid.Column>
               </Grid.Row> 
 
-
+              <Header as='h2' style={{fontWeight: 400, paddingTop: 30}}>
+                    <Header.Content style={{width : 900, fontSize: "18pt"}}>
+                      Select Your State
+                      
+                    </Header.Content>
+                  </Header>
 
               <Grid.Row>
               <Dropdown
@@ -862,14 +884,14 @@ export default function USMap(props) {
                                 borderRadius: 0,
                                 minHeight: '1.0em',
                                 paddingBottom: '0.5em'}}
-                        text= {fips === "_nation" || showState === false ? "Select your state": stateName}
+                        text= {fips === "_nation" || showState === false ? "Select your state": stateMapName}
                         search
                         selection
                         pointing = 'top'
                         options={stateOptions}
                         onChange={(e, { value }) => {
                           // window.location.href = "/" + value;
-                          setFips(value);
+                          setStateMapFips(value);
                           if( value === "_nation"){
                             setShowState(false);
                           }else{
@@ -884,10 +906,10 @@ export default function USMap(props) {
                       />
 
               </Grid.Row>
-
+              
               <Grid.Row columns = {2} style = {{width: 1000}}>
               <Grid.Column style = {{width: 550, paddingLeft: 50}}>
-                  <div style = {{width: 400, height: 500}}>
+                  <div style = {{width: 400}}>
                   { showState &&
                   <ComposableMap projection="geoAlbersUsa" 
                   projectionConfig={{scale:`${config.scale*0.7}`}} 
@@ -908,15 +930,15 @@ export default function USMap(props) {
                           //   history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
                           // }
                         }}
-                        onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
-                          if(fips !== "_nation"){
-                              setCountyFips(geo.properties.COUNTYFP);
-                              // setCountyName(fips2county[fips + geo.properties.COUNTYFP]);
-                              // setBarCountyName((fips2county[fips + geo.properties.COUNTYFP]).match(/\S+/)[0]);
-                            }
-                          }, 300))
+                        onMouseEnter={()=>{
+                          
+                          setCountyFips(geo.properties.COUNTYFP);
+                              
+                          
                           
                         }}
+
+                        
                         onMouseLeave={()=>{
                           if(fips !== "_nation"){
                             clearTimeout(delayHandler);
@@ -925,10 +947,10 @@ export default function USMap(props) {
                           }
                         }}
                         
-                        fill={(fips === "_nation" || fips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
-                            ((colorScale && data[fips+geo.properties.COUNTYFP] && (data[fips+geo.properties.COUNTYFP][metric]) > 0)?
-                                colorScale[data[fips+geo.properties.COUNTYFP][metric]]: 
-                                (colorScale && data[fips+geo.properties.COUNTYFP] && data[fips+geo.properties.COUNTYFP][metric] === 0)?
+                        fill={(stateMapFips === "_nation" || stateMapFips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
+                            ((colorScaleState && data[stateMapFips+geo.properties.COUNTYFP] && (data[stateMapFips+geo.properties.COUNTYFP][metric]) > 0)?
+                                colorScaleState[data[stateMapFips+geo.properties.COUNTYFP][metric]]: 
+                                (colorScaleState && data[stateMapFips+geo.properties.COUNTYFP] && data[stateMapFips+geo.properties.COUNTYFP][metric] === 0)?
                                   '#e1dce2':'#FFFFFF')}
                         />
                     )}
@@ -941,10 +963,10 @@ export default function USMap(props) {
 
 
 
-                <Grid.Column style ={{width: 500, paddingLeft: 80}}>
+                {showState && <Grid.Column style ={{width: 500, paddingLeft: 80}}>
                   <Header as='h2' style={{fontWeight: 400}}>
                     <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
-                      Current Cases and Deaths in <b>{stateName}</b>
+                      Current Cases and Deaths in <b>{stateMapName}</b>
                       
                     </Header.Content>
                   </Header>
@@ -953,21 +975,21 @@ export default function USMap(props) {
                       <Grid.Column style = {{width: 230}}> 
 
                         <div>
-                        {stateFips &&
+                        {stateMapFips &&
                           <VictoryChart 
-                                      minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
-                                      maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
+                                      minDomain={{ x: stateMapFips? allTS[stateMapFips][allTS[stateMapFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
+                                      maxDomain = {{y: stateMapFips? getMaxRange(allTS[stateMapFips], "caseRateMean", (allTS[stateMapFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
                                       width={220}
                                       height={180}
                                       padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
                                       containerComponent={<VictoryContainer responsive={false}/>}>
                                       
                                       <VictoryAxis
-                                        tickValues={stateFips ? 
+                                        tickValues={stateMapFips ? 
                                           [
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length-1].t]
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3)*2 - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3) - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length-1].t]
                                           :
                                         [
                                           allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
@@ -980,32 +1002,32 @@ export default function USMap(props) {
                                         colorScale={[stateColor]}
                                       >
 
-                                      <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
+                                      <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
                                           x='t' y='caseRateMean'
                                           />
 
                                       </VictoryGroup>
                                       <VictoryArea
                                         style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                        data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
+                                        data={stateMapFips && allTS[stateMapFips]? allTS[stateMapFips] : allTS["13"]}
                                         x= 't' y = 'caseRateMean'
 
                                       />
 
-                                      <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                       
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
                                       
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
@@ -1013,18 +1035,18 @@ export default function USMap(props) {
 
                                                           x={145} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
-                                                          , fill: stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
+                                                          , fill: stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
 
                                                         }}/>
 
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Cases"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Daily Cases"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                                       
                           </VictoryChart>}
@@ -1032,21 +1054,21 @@ export default function USMap(props) {
                       </Grid.Column>
                       <Grid.Column style = {{width: 230, paddingLeft: 80}}> 
                         <div>
-                        {stateFips && 
+                        {stateMapFips && 
                           <VictoryChart theme={VictoryTheme.material}
-                                      minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
-                                      maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
+                                      minDomain={{ x: stateMapFips? allTS[stateMapFips][allTS[stateMapFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
+                                      maxDomain = {{y: stateMapFips? getMax(allTS[stateMapFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
                                       width={220}
                                       height={180}       
                                       padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
                                       containerComponent={<VictoryContainer responsive={false}/>}>
                                       
                                       <VictoryAxis
-                                        tickValues={stateFips ? 
+                                        tickValues={stateMapFips ? 
                                           [
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length-1].t]
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3)*2 - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3) - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length-1].t]
                                           :
                                         [
                                           allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
@@ -1059,7 +1081,7 @@ export default function USMap(props) {
                                         colorScale={[stateColor]}
                                       >
 
-                                        <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
+                                        <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
                                           x='t' y='mortalityMean'
                                           />
 
@@ -1067,42 +1089,42 @@ export default function USMap(props) {
 
                                       <VictoryArea
                                         style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1} }}
-                                        data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
+                                        data={stateMapFips && allTS[stateMapFips]? allTS[stateMapFips] : allTS["13"]}
                                         x= 't' y = 'mortalityMean'
 
                                       />
 
                                       
-                                      <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                       
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
                                                           "0%"
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
                                                           "0%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
 
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
 
                                                           x={146} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
-                                                          , fill: stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
+                                                          , fill: stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
 
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Deaths"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Daily Deaths"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                           </VictoryChart>}
                         </div>
@@ -1116,7 +1138,7 @@ export default function USMap(props) {
 
                     <Header as='h2' style={{fontWeight: 400}}>
                     <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
-                      Vaccination Status in <b>{stateName}</b>
+                      Vaccination Status in <b>{stateMapName}</b>
                       
                     </Header.Content>
                   </Header>
@@ -1125,21 +1147,21 @@ export default function USMap(props) {
                       <Grid.Column style = {{width: 230}}> 
 
                         <div>
-                        {stateFips &&
+                        {stateMapFips &&
                           <VictoryChart 
-                                      minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
-                                      maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
+                                      minDomain={{ x: stateMapFips? allTS[stateMapFips][allTS[stateMapFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
+                                      maxDomain = {{y: stateMapFips? getMaxRange(allTS[stateMapFips], "caseRateMean", (allTS[stateMapFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
                                       width={220}
                                       height={180}
                                       padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
                                       containerComponent={<VictoryContainer responsive={false}/>}>
                                       
                                       <VictoryAxis
-                                        tickValues={stateFips ? 
+                                        tickValues={stateMapFips ? 
                                           [
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length-1].t]
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3)*2 - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3) - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length-1].t]
                                           :
                                         [
                                           allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
@@ -1152,32 +1174,32 @@ export default function USMap(props) {
                                         colorScale={[stateColor]}
                                       >
 
-                                      <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
+                                      <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
                                           x='t' y='caseRateMean'
                                           />
 
                                       </VictoryGroup>
                                       <VictoryArea
                                         style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                        data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
+                                        data={stateMapFips && allTS[stateMapFips]? allTS[stateMapFips] : allTS["13"]}
                                         x= 't' y = 'caseRateMean'
 
                                       />
 
-                                      <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                       
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
                                       
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
@@ -1185,18 +1207,18 @@ export default function USMap(props) {
 
                                                           x={145} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
-                                                          , fill: stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
+                                                          , fill: stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
 
                                                         }}/>
 
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "Daily Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Daily Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                                       
                           </VictoryChart>}
@@ -1204,21 +1226,21 @@ export default function USMap(props) {
                       </Grid.Column>
                       <Grid.Column style = {{width: 230, paddingLeft: 80}}> 
                         <div>
-                        {stateFips && 
+                        {stateMapFips && 
                           <VictoryChart theme={VictoryTheme.material}
-                                      minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
-                                      maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
+                                      minDomain={{ x: stateMapFips? allTS[stateMapFips][allTS[stateMapFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
+                                      maxDomain = {{y: stateMapFips? getMax(allTS[stateMapFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
                                       width={220}
                                       height={180}       
                                       padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
                                       containerComponent={<VictoryContainer responsive={false}/>}>
                                       
                                       <VictoryAxis
-                                        tickValues={stateFips ? 
+                                        tickValues={stateMapFips ? 
                                           [
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length-1].t]
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3)*2 - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length/3) - 1].t,
+                                          allTS[stateMapFips][allTS[stateMapFips].length-1].t]
                                           :
                                         [
                                           allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
@@ -1231,7 +1253,7 @@ export default function USMap(props) {
                                         colorScale={[stateColor]}
                                       >
 
-                                        <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
+                                        <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
                                           x='t' y='mortalityMean'
                                           />
 
@@ -1239,53 +1261,53 @@ export default function USMap(props) {
 
                                       <VictoryArea
                                         style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1} }}
-                                        data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
+                                        data={stateMapFips && allTS[stateMapFips]? allTS[stateMapFips] : allTS["13"]}
                                         x= 't' y = 'mortalityMean'
 
                                       />
 
                                       
-                                      <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
                                       
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
                                                           "0%"
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
                                                           "0%"} x={182} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
 
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
+                                      <VictoryLabel text= {stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
 
                                                           x={146} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
 
-                                                          , fill: stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
+                                                          , fill: stateMapFips ? 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
+                                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
                                                           : 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
                                                           (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
 
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateFips === "_nation" ? "" : "Total Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Total Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                           </VictoryChart>}
                         </div>
                       
                       </Grid.Column>
-                        <Header.Content style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
+                        <Header.Content id = "faq" style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
                           *14-day change trends use 7-day averages.
                         </Header.Content>
                     </Grid.Row>
                   </Grid>
-                </Grid.Column>
+                </Grid.Column>}
               </Grid.Row> 
 
               
