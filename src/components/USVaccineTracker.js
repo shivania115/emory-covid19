@@ -7,6 +7,7 @@ import Geography from './Geography';
 import ComposableMap from './ComposableMap';
 import Marker from './Marker';
 import Annotation from './Annotation';
+import { Waypoint } from 'react-waypoint'
 import ReactTooltip from "react-tooltip";
 import { VictoryChart, 
   VictoryGroup, 
@@ -83,41 +84,84 @@ function goToAnchor(anchor) {
   document.location = loc + '#' + anchor;
   return false;
 }
+const contextRef = createRef()
+const nameList = ['Vaccination Tracker', 'Select Your State', 
+'Vaccination FAQs', 'Subheader', 'Subheader'];
+var scrollCount = 0;
 
-
-class StickyExampleAdjacentContext extends Component{
-  
-  contextRef = createRef();
-  
-  render(){
-
+function StickyExampleAdjacentContext(props) {
+    const contextRef = createRef();
+    const [sTate, setsTate] = useState({ activeItem: nameList[0] })
+    const { activeItem } = sTate
+    useEffect(() => {
+        setsTate(nameList[scrollCount])
+    }, [scrollCount])
+    
     return (
 
         <div >
-          <Ref innerRef={this.contextRef}>
+          <Ref innerRef={contextRef}>
             <Rail attached size='mini' >
-                <Sticky offset={180} position= "fixed" context={this.contextRef}>
+                <Sticky offset={180} position= "fixed" context={contextRef}>
                     <Menu
                         size='small'
                         compact
                         pointing secondary vertical>
-                        
-                        <Menu.Item as='a' href="/Vaccine-Tracker" name='Vaccination Tracker'><Header as='h4'>Vaccination Tracker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
-                        <Menu.Item as='a' href="#select" name='Select Your State'><Header as='h4'>Select Your State</Header></Menu.Item>
-                        <Menu.Item as='a' href="#faq" name='Vaccination FAQs'><Header as='h4'>Vaccination FAQs</Header></Menu.Item>
-                        <Menu.Item as='a' href="#ccvi" name='Subheader'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subheader</Header></Menu.Item>
-                        <Menu.Item as='a' href="#poverty" name='Subheader'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subheader</Header></Menu.Item>
-                         
-                        
+                        <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Header></Menu.Item>
+                        <Menu.Item as='a' href="#select" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
+                        <Menu.Item as='a' href="#faq" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
+                        <Menu.Item as='a' href="#commu" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by {nameList[3]}</Header></Menu.Item>
+                        <Menu.Item as='a' href="#commu" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by {nameList[4]}</Header></Menu.Item>
                     </Menu>
                 </Sticky>
             </Rail>
           </Ref> 
         </div>
     )
-  }
+  // }
 
 }
+
+
+
+// class StickyExampleAdjacentContext extends Component{
+  
+//   contextRef = createRef();
+  
+//   render(){
+
+//     return (
+
+//         <div >
+//           <Ref innerRef={this.contextRef}>
+//             <Rail attached size='mini' >
+//                 <Sticky offset={180} position= "fixed" context={this.contextRef}>
+//                     <Menu
+//                         size='small'
+//                         compact
+//                         pointing secondary vertical>
+                        
+//                         <Menu.Item as='a' href="#" name='Vaccination Tracker'><Header as='h4'>Vaccination Tracker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
+//                         <Menu.Item as='a' href="#select" name='Select Your State'><Header as='h4'>Select Your State</Header></Menu.Item>
+//                         <Menu.Item as='a' href="#faq" name='Vaccination FAQs'><Header as='h4'>Vaccination FAQs</Header></Menu.Item>
+//                         <Menu.Item as='a' href="#ccvi" name='Subheader'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subheader</Header></Menu.Item>
+//                         <Menu.Item as='a' href="#poverty" name='Subheader'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subheader</Header></Menu.Item>
+                         
+                        
+//                     </Menu>
+//                 </Sticky>
+//             </Rail>
+//           </Ref> 
+//         </div>
+//     )
+//   }
+
+// }
 
 
 export default function USMap(props) {
@@ -357,10 +401,17 @@ export default function USMap(props) {
                 </Ref>
               </Grid.Column>
             <Grid.Column style = {{paddingLeft: 150, width: 1000}}>
+            <center> <Waypoint
+                                        onEnter={() => {
+                                            setActiveCharacter('Vaccination Tracker')
+                                            console.log(activeCharacter)
+                                        }}>
+                                    </Waypoint> 
+                                    </center>
             {/* <Grid columns={14}> */}
             <div>     	
                   <Header as='h2' style={{color: VaxColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "7em", paddingBottom: 50}}>
-                    <Header.Content>
+                    <Header.Content >
                     <b> Vaccination Tracker </b> 
                     
                     </Header.Content>

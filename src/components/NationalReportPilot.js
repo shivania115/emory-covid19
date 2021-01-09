@@ -122,21 +122,12 @@ const nameList = ['COVID-19 National Health Equity Report', 'Cases in the U.S. O
  'COVID-19 by Region', 'COVID-19 by Percent African American', 'COVID-19 by Residential Segregation Index'];
 var scrollCount = 0;
 
-function MenuActive(){
-  const [sTate, setsTate] = useState({ activeItem: 'Interactive Map' });
-  const { activeItem } = sTate;
-  useEffect(() => {
-    setsTate(nameList[scrollCount])
-  }, [scrollCount]);
-
-}
 function StickyExampleAdjacentContext(props) {
     const contextRef = createRef();
     const [sTate, setsTate] = useState({ activeItem: 'Interactive Map' })
     const { activeItem } = sTate
     useEffect(() => {
         setsTate(nameList[scrollCount])
-        console.log('name changed!!!!!!!!')
     }, [scrollCount])
     
     return (
@@ -149,7 +140,7 @@ function StickyExampleAdjacentContext(props) {
                         size='small'
                         compact
                         pointing secondary vertical>
-                        <Menu.Item as='a' href="#title" name='COVID-19 National Health Equity Report' active={props.activeCharacter == 'COVID-19 National Health Equity Report' || activeItem === 'COVID-19 National Health Equity Report'}
+                        <Menu.Item as='a' href="#" name='COVID-19 National Health Equity Report' active={props.activeCharacter == 'COVID-19 National Health Equity Report' || activeItem === 'COVID-19 National Health Equity Report'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>COVID-19 National Health Equity Report</Header></Menu.Item>
                         <Menu.Item as='a' href="#cases" name='Cases in the U.S. Over Time' active={props.activeCharacter == 'Cases in the U.S. Over Time' || activeItem === 'Cases in the U.S. Over Time'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Cases in the U.S. Over Time</Header></Menu.Item>
