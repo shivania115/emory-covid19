@@ -258,7 +258,7 @@ export default function USMap(props) {
           </div>
           
           <div style={{height:130, overflowY:"hidden", overflowX: "auto"}}>
-            <div style={{width: "220%"}}>
+            <div style={{width: "260%"}}>
               <Grid>
                 <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
 
