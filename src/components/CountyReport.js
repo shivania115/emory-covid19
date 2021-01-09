@@ -24,9 +24,6 @@ import ReactTooltip from "react-tooltip";
 import fips2county from './fips2county.json'
 import configs from "./state_config.json";
 import _ from 'lodash';
-import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
-import {HEProvider, useHE} from './HEProvider';
-import {useStitchAuth} from "./StitchAuth";
 
 const countyColor = '#f2a900';
 const stateColor = "#778899";
@@ -128,13 +125,14 @@ function BarChart(props) {
         y="value"
       />
     </VictoryChart>);
-    }
-  }
+}
+
+
+
+
+}
+
 export default function CountyReport() {
-  const {
-    isLoggedIn,
-    actions: { handleAnonymousLogin },
-  } = useStitchAuth();  
 
   let { stateFips, countyFips } = useParams();
   const [config, setConfig] = useState();
@@ -157,6 +155,7 @@ export default function CountyReport() {
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
 
+
   const [countyCasesOutcome, setCountyCasesOutcome] = useState();
   const [countyDeathsOutcome, setCountyDeathsOutcome] = useState();
 
@@ -166,83 +165,62 @@ export default function CountyReport() {
   const [nationCasesOutcome, setNationCasesOutcome] = useState();
   const [nationDeathsOutcome, setNationDeathsOutcome] = useState();
 
+
+
   useEffect(()=>{
-    if (isLoggedIn === true){
-      const configMatched = configs.find(s => s.fips === stateFips);
-      if(!configMatched || !fips2county[stateFips+countyFips]){
-        history.push('/');
-      }else{
 
-          setConfig(configMatched);
-          setStateName(configMatched.name);
-          setCountyName(fips2county[stateFips+countyFips]);
+    const configMatched = configs.find(s => s.fips === stateFips);
+    if(!configMatched || !fips2county[stateFips+countyFips]){
+      history.push('/');
+    }else{
+      setConfig(configMatched);
+      setStateName(configMatched.name);
+      setCountyName(fips2county[stateFips+countyFips]);
 
-          fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-            .then(x => setVarMap(x));
+      fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+        .then(x => setVarMap(x));
 
-          //Fetch mongodb 
-          let newDict = {};
-          let seriesDict = {};
+      fetch('/data/data.json').then(res => res.json())
+        .then(x => setData(x));
+      
+      fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
+        .then(x => {
+        let t = 0;
+        let countyCases = 0;
+        let stateCases = 0;
+        let nationCases = 0;
 
-          const fetchData = async() => {
-            //nationalraw
-            const staticQ = {tag: "nationalraw"};
-            const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+        let countyDeaths = 0;
+        let stateDeaths = 0;
+        let nationDeaths = 0;
+        _.each(x, (v, k)=>{
+            if (k === stateFips + countyFips && v.length > 0 ){
+              countyCases = v[v.length-1].caserate7dayfig;
+              countyDeaths = v[v.length-1].covidmortality7dayfig;
+            }else if(k.length===2 && v.length > 0 && v[v.length-1].t > t){
+              stateCases = v[v.length-1].caserate7dayfig;
+              stateDeaths = v[v.length-1].covidmortality7dayfig;
+            }else if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
+              nationCases = v[v.length-1].caserate7dayfig;
+              nationDeaths = v[v.length-1].covidmortality7dayfig;
+            }
 
-            promStatic.forEach(i=> {
-                newDict[i[Object.keys(i)[3]]] = i.data;
-            });
-            setData(newDict);    
-            
-            //Timeseries
-            const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
-            const promSeries = await CHED_series.find(seriesQ, {projection: {}}).toArray();
-            _.map(promSeries, i=> {
-              seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-              return seriesDict;
-            });
+          });
 
-            let t = 0;
-            let countyCases = 0;
-            let stateCases = 0;
-            let nationCases = 0;
+          setCountyCasesOutcome(countyCases.toFixed(0));
+          setStateCasesOutcome(stateCases.toFixed(0));
+          setNationCasesOutcome(nationCases.toFixed(0));
 
-            let countyDeaths = 0;
-            let stateDeaths = 0;
-            let nationDeaths = 0;
+          setCountyDeathsOutcome(countyDeaths.toFixed(1));
+          setStateDeathsOutcome(stateDeaths.toFixed(1));
+          setNationDeathsOutcome(nationDeaths.toFixed(1));
 
-
-            _.each(seriesDict, (v, k)=>{
-              if (k === stateFips + countyFips && v.length > 0 ){
-                countyCases = v[v.length-1].caserate7dayfig;
-                countyDeaths = v[v.length-1].covidmortality7dayfig;
-              }else if(k.length===2 && v.length > 0 && v[v.length-1].t > t){
-                stateCases = v[v.length-1].caserate7dayfig;
-                stateDeaths = v[v.length-1].covidmortality7dayfig;
-              }else if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
-                nationCases = v[v.length-1].caserate7dayfig;
-                nationDeaths = v[v.length-1].covidmortality7dayfig;
-              }
-
-            });
-
-            setCountyCasesOutcome(countyCases.toFixed(0));
-            setStateCasesOutcome(stateCases.toFixed(0));
-            setNationCasesOutcome(nationCases.toFixed(0));
-
-            setCountyDeathsOutcome(countyDeaths.toFixed(1));
-            setStateDeathsOutcome(stateDeaths.toFixed(1));
-            setNationDeathsOutcome(nationDeaths.toFixed(1));
-
-            setDataTS(seriesDict);
-          };
-          fetchData();
-        
-          }
-        }else {
-          handleAnonymousLogin();
+          setDataTS(x);
         }
-      },[isLoggedIn]);
+      );
+    }
+  }, [stateFips]);
+
   useEffect(() => {
     if (dataTS && dataTS[stateFips+countyFips]){
       setCountyMetric(_.takeRight(dataTS[stateFips+countyFips])[0]);
@@ -257,9 +235,8 @@ export default function CountyReport() {
 
 
   if (data && dataTS && varMap) {
-    console.log(varMap);
-    return (
-    <HEProvider>
+
+  return (
       <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
@@ -296,7 +273,7 @@ export default function CountyReport() {
                       <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> DAILY AVERAGE PER 100,000</td>
                   </tr>
                   <Table.Row textAlign = 'center'>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName :countyName.match(/[^\s]+/)} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName : countyName.match(/[^\s]+/)} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.cases===null || countyMetric.cases < 0?'0':countyMetric.cases.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caseRate===null || countyMetric.caseRate < 0?'0':numberWithCommas(parseFloat(countyMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caseRateMean===null || countyMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(countyMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
@@ -384,15 +361,16 @@ export default function CountyReport() {
 
                     tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
-                      // dataTS["_nation"][30].t,
-                      // dataTS["_nation"][91].t,
-                      // dataTS["_nation"][153].t,
-                      // dataTS["_nation"][214].t,
+                      dataTS["_nation"][30].t,
+                      dataTS["_nation"][91].t,
+                      dataTS["_nation"][153].t,
+                      dataTS["_nation"][214].t,
 
-                      dataTS["_nation"][0].t,
-                      dataTS["_nation"][61].t,
-                      dataTS["_nation"][122].t,
-                      dataTS["_nation"][183].t,
+                      // dataTS["_nation"][0].t,
+                      // dataTS["_nation"][61].t,
+                      // dataTS["_nation"][122].t,
+                      // dataTS["_nation"][183].t,
+                      // dataTS["_nation"][244].t,
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
@@ -454,15 +432,16 @@ export default function CountyReport() {
                     style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
                     tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                     tickValues={[
-                      // dataTS["_nation"][30].t,
-                      // dataTS["_nation"][91].t,
-                      // dataTS["_nation"][153].t,
-                      // dataTS["_nation"][214].t,
+                      dataTS["_nation"][30].t,
+                      dataTS["_nation"][91].t,
+                      dataTS["_nation"][153].t,
+                      dataTS["_nation"][214].t,
 
-                      dataTS["_nation"][0].t,
-                      dataTS["_nation"][61].t,
-                      dataTS["_nation"][122].t,
-                      dataTS["_nation"][183].t,
+                      // dataTS["_nation"][0].t,
+                      // dataTS["_nation"][61].t,
+                      // dataTS["_nation"][122].t,
+                      // dataTS["_nation"][183].t,
+                      // dataTS["_nation"][244].t,
 
                       dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                   <VictoryAxis dependentAxis tickCount={5}
@@ -831,7 +810,6 @@ export default function CountyReport() {
       </Container>
       <ReactTooltip>{tooltipContent}</ReactTooltip>
     </div>
-  </HEProvider>
     );
   } else{
     return <Loader active inline='centered' />
