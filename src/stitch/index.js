@@ -1,5 +1,5 @@
 import { app } from "./app";
-import { CHED_static, CHED_series } from "./mongodb";
+import { groups, users } from "./mongodb";
 import {
   loginAnonymous,
   logoutCurrentUser,
