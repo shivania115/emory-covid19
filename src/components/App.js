@@ -13,6 +13,8 @@ import Blog from "./Blog";
 import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
 import {HEProvider} from './HEProvider';
+import USVaccineTracker from "./USVaccineTracker";
+import StateVaccineTracker from "./StateVaccineTracker";
 
 import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
@@ -54,6 +56,12 @@ function AppUI() {
         <Switch>
           <Route path='/pilot-09-01-2020/national-report'>
             <NationalReportPilot />
+          </Route>
+          <Route path='/Vaccine-Tracker/:stateFips'>
+            <StateVaccineTracker />
+            </Route>
+          <Route path='/Vaccine-Tracker'>
+            <USVaccineTracker />
           </Route>
           <Route path='/map-state'>
             <MapYourState />
