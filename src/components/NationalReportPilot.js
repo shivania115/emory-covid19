@@ -1,7 +1,7 @@
-import React, { useEffect, useState, Component, createRef, useContext, useMemo} from 'react'
+import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
 import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
@@ -110,60 +110,37 @@ const style = <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic
 
 const Placeholder = () => <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
 
-class StickyExampleAdjacentContext extends Component{
-  
-  contextRef = createRef();
-  
-  render(){
+function goToAnchor(anchor) {
+  var loc = document.location.toString().split('#')[0];
+  document.location = loc + '#' + anchor;
+  return false;
+}
+const contextRef = createRef()
+const nameList = ['COVID-19 National Health Equity Report', 'Cases in the U.S. Over Time', 
+'Deaths in the U.S. Over Time', '50% of Cases Comes From These States', 'COVID-19 Across the U.S. Communities',
+ 'COVID-19 by Community Vulnerability Index', 'COVID-19 by Percent in Poverty', 'COVID-19 by Metropolitan Status', 
+ 'COVID-19 by Region', 'COVID-19 by Percent African American', 'COVID-19 by Residential Segregation Index'];
+var scrollCount = 0;
 
+function StickyExampleAdjacentContext(props) {
+    const contextRef = createRef();
+    const [sTate, setsTate] = useState({ activeItem: 'Interactive Map' })
+    const { activeItem } = sTate
+    useEffect(() => {
+        setsTate(nameList[scrollCount])
+    }, [scrollCount])
+    
     return (
 
         <div >
-          <Ref innerRef={this.contextRef}>
+          <Ref innerRef={contextRef}>
             <Rail attached size='mini' >
-                <Sticky offset={180} position= "fixed" context={this.contextRef}>
-                {/* <div class="ui secondary vertical menu">
-                  
-                  <a class="item" href="#title">
-                  COVID-19 National Health Equity Report
-                  </a>
-                  <a class="item" href="#cases">
-                  Cases in the U.S. Over Time
-                  </a>
-                  <a class="item" href="#deaths">
-                  Deaths in the U.S. Over Time
-                  </a>
-                  <a class="item" href="#half">
-                  50% of Cases Comes From These States
-                  </a>
-                  <a class="item" href="#commu">
-                  COVID-19 Across the U.S. Communities
-                  </a>
-                  <a class="item" href="#ccvi">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index
-                  </a>
-                  <a class="item" href="#poverty">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty
-                  </a>
-                  <a class="item" href="#metro">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Metropolitan Status
-                  </a>
-                  <a class="item" href="#region">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Region
-                  </a>
-                  <a class="item" href="#black">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent African American
-                  </a>
-                  <a class="item" href="#resseg">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index'
-                  </a>
-
-                </div> */}
+                <Sticky offset={180} position= "fixed" context={contextRef}>
                     <Menu
                         size='small'
                         compact
                         pointing secondary vertical>
-                        {/* <Menu.Item as='a' href="#title" name='COVID-19 National Health Equity Report' active={props.activeCharacter == 'COVID-19 National Health Equity Report' || activeItem === 'COVID-19 National Health Equity Report'}
+                        <Menu.Item as='a' href="#" name='COVID-19 National Health Equity Report' active={props.activeCharacter == 'COVID-19 National Health Equity Report' || activeItem === 'COVID-19 National Health Equity Report'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>COVID-19 National Health Equity Report</Header></Menu.Item>
                         <Menu.Item as='a' href="#cases" name='Cases in the U.S. Over Time' active={props.activeCharacter == 'Cases in the U.S. Over Time' || activeItem === 'Cases in the U.S. Over Time'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Cases in the U.S. Over Time</Header></Menu.Item>
@@ -185,81 +162,15 @@ class StickyExampleAdjacentContext extends Component{
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent African American </Header></Menu.Item>
                         <Menu.Item as='a' href="#resseg" name='COVID-19 by Residential Segregation Index' active={props.activeCharacter == 'COVID-19 by Residential Segregation Index' || activeItem === 'COVID-19 by Residential Segregation Index'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index</Header></Menu.Item>
-                          */}
-
-                        <Menu.Item as='a' href="#title" name='COVID-19 National Health Equity Report'><Header as='h4'>COVID-19 National 
-                                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                &nbsp;&nbsp;
-                                                                                                                Health Equity Report</Header></Menu.Item>
-                        <Menu.Item as='a' href="#cases" name='Cases in the U.S. Over Time'><Header as='h4'>Cases in the U.S. Over Time</Header></Menu.Item>
-                        <Menu.Item as='a' href="#deaths" name='Deaths in the U.S. Over Time'><Header as='h4'>Deaths in the U.S. Over Time</Header></Menu.Item>
-                        <Menu.Item as='a' href="#half" name='50% of Cases Comes From These States'><Header as='h4'>50% of Cases Comes From These States</Header></Menu.Item>
-                        <Menu.Item as='a' href="#commu" name='COVID-19 Across the U.S. Communities'><Header as='h4'>COVID-19 Across the U.S. Communities</Header></Menu.Item>
-                        <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index</Header></Menu.Item>
-                        <Menu.Item as='a' href="#poverty" name='COVID-19 by Percent in Poverty'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty</Header></Menu.Item>
-                        <Menu.Item as='a' href="#metro" name='COVID-19 by Metropolitan Status'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Metropolitan Status</Header></Menu.Item>
-                        <Menu.Item as='a' href="#region" name='COVID-19 by Region'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Region</Header></Menu.Item>
-                        <Menu.Item as='a' href="#black" name='COVID-19 by Percent African American'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent African American </Header></Menu.Item>
-                        <Menu.Item as='a' href="#resseg" name='COVID-19 by Residential Segregation Index'><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index</Header></Menu.Item>
-                         
-                        
                     </Menu>
                 </Sticky>
             </Rail>
           </Ref> 
         </div>
     )
-  }
+  // }
 
 }
-
-
-// class StickyExampleAdjacentContext extends Component {
-//   state = {}
-
-//   handleContextRef = contextRef => this.setState({ contextRef })
-
-//   render() {
-//     const { contextRef } = this.state
-
-//     return (
-//       <Grid centered style = {{width: 1230}}>
-//         <Grid.Column >
-//           <div ref={this.handleContextRef}>
-//               <Rail position='right'>
-//                 <Sticky offset={130}>
-//                   <br/><br/><br/><br/><br/><br/><br/><br/>
-                  
-//                   <Popup position='left center' trigger={<Button style = {{borderRadius: "0px", paddingleft: -10, width: 78, textAlign: "left", fontSize: "14pt"}}>Jump to...</Button>} flowing hoverable>
-
-//                     <Grid.Column row = {2}>
-//                       <Grid.Column textAlign='right' >
-//                         <div class="ui ordered list" style = {{fontSize: "14pt"}}>
-//                           <a class="item" href= "#jump1">Return to the top</a> <br/>
-//                           <a class="item" href= "#jump2">Cases/Deaths in the U.S. Over Time</a> <br/>
-//                           <a class="item" href= "#jump3">50% of Cases Comes From These States</a> <br/>
-//                           <a class="item" href= "#jump4">Top 10 Counties with Most Cases/Deaths</a> <br/>
-//                           <a class="item" href= "#jump5">Daily New Cases/Deaths per 100,000</a> <br/>
-//                           <a class="item" href= "#jump6">Community Vulnerability Index</a> <br/>
-//                           <a class="item" href= "#jump7">Residential Segregation Index</a> <br/>
-//                           <a class="item" href= "#jump8">County Characteristics</a> <br/>
-//                         </div> 
-//                       </Grid.Column>
-//                     </Grid.Column>
-//                   </Popup>
-//                 </Sticky>
-//               </Rail>
-//           </div>
-//         </Grid.Column>
-//       </Grid>
-//     )
-//   }
-// }
 
 
 
@@ -528,7 +439,7 @@ function DeathChart(props){
 
 
 export default function ExtraFile(props) {
-  
+  const characterRef = createRef();
   const [activeCharacter, setActiveCharacter] = useState('');
   const [data, setData] = useState();
   const [date, setDate] = useState('');
@@ -1048,7 +959,7 @@ export default function ExtraFile(props) {
     <HEProvider>
       <div>
         <AppBar menu='nationalReport' /> 
-        <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}}>
+        <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} ref={characterRef}>
         <div >
           <br/><br/><br/><br/>
         </div>
@@ -1094,75 +1005,8 @@ export default function ExtraFile(props) {
               </Header>
                 <Grid>
                     <Grid.Row column = {1}>
-
                     <CaseChart data={dataTS} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
                               ticks={caseTicks} tickFormatter={caseTickFmt} />
-
-                          {/* <Grid.Column style={{paddingTop:20, width: 1030, paddingLeft: 35}}>
-                                <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content> </center>
-
-                                <VictoryChart theme={VictoryTheme.material}
-                                  width={1030}
-                                  height={400}       
-                                  padding={{left: 70, right: 40, top: 18, bottom: 40}}
-                                  containerComponent={<VictoryVoronoiContainer /> }
-                                  >
-
-                                <VictoryAxis
-                                  tickValues={[
-                                    dataTS["_nation"][0].t,
-                                    dataTS["_nation"][30].t,
-                                    dataTS["_nation"][61].t,
-                                    dataTS["_nation"][91].t,
-                                    dataTS["_nation"][122].t,
-                                    dataTS["_nation"][153].t,
-                                    dataTS["_nation"][183].t,
-                                    dataTS["_nation"][214].t,
-                                    dataTS["_nation"][244].t,
-                                    dataTS["_nation"][dataTS["_nation"].length-1].t]}                        
-                                    style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
-                                    tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
-                                <VictoryAxis dependentAxis tickCount={5}
-                                    style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
-
-                                  tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                                  />
-
-                                <VictoryGroup>
-                                  <VictoryBar
-                                    barRatio={0.8}
-                                    data={dataTS["_nation"]}
-                                    style={{
-                                      data: {
-                                        fill: casesColor[1]
-                                      }
-                                    }}
-                                    x="t"
-                                    y="dailyCases"
-                                  />
-                                </VictoryGroup>
-                                <VictoryGroup 
-                                    colorScale={[mortalityColor[1]]}
-                                >
-                                    <VictoryLine data={dataTS["_nation"]}
-                                      x='t' y='caseRateMean'
-                                      labels={({ datum }) => `${fullMonthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}` + ` \n New cases: ${numberWithCommas(datum.dailyCases.toFixed(0))} \n 7-day average: ${numberWithCommas(datum.caseRateMean.toFixed(0))}`}
-                                      labelComponent={
-                                      <VictoryTooltip 
-                                        style={{marginLeft: 100, fontWeight: 400, fontFamily: 'lato', fontSize: "19px", textAnchor: "start"}} centerOffset={{ x: 20, y: 20 }} flyoutStyle={{marginLeft: 100, borderRadius: "0px", fill: "#FFFFFF", fillOpacity: 1, stroke: "#A9A9A9", strokeWidth: 1 }}
-                                      />}
-                                      style={{
-                                        data: {strokeWidth: ({ active }) => active ? 3 : 2},
-                                      }}
-                                    />
-                                </VictoryGroup>
-                                
-                                
-                              </VictoryChart>
-                          </Grid.Column>
-
-                          <Grid.Column style={{paddingTop:50, width: 1000}}>
-
                           <Accordion style = {{paddingTop: "19px"}}>
                             <Accordion.Title
                               active={accstate.activeIndex === 0}
@@ -1172,40 +1016,7 @@ export default function ExtraFile(props) {
 
                             >
                             <Icon id = "deaths" name='dropdown' />
-                              About this data
-                            </Accordion.Title>
-                              <Accordion.Content active={accstate.activeIndex === 0}>
-                              <Header  as='h2' style={{fontWeight: 400, width: 1000, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
-                                  <Header.Content style={{fontSize: "14pt"}}>
-                                    <Header.Subheader style={{color: '#000000', width: 1000, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                      This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
-                                      new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
-                                      an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
-                                      We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
-                                      the average new cases over the past 14-day period. 
-                                      <br/>
-                                      <br/>
-                                      *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
-
-                                    </Header.Subheader>
-                                  </Header.Content>
-                                </Header>
-                              </Accordion.Content>
-
-                            </Accordion> 
-                          </Grid.Column> */}
-                          {/* <Grid.Column style={{width:930}} > */}
-                          {/* <div  > */}
-                          <Accordion style = {{paddingTop: "19px"}}>
-                            <Accordion.Title
-                              active={accstate.activeIndex === 0}
-                              index={0}
-                              onClick={dealClick}
-                              style ={{color: "#397AB9", fontSize: 19, paddingLeft: 30}}
-
-                            >
-                            <Icon id = "deaths" name='dropdown' />
-                              About this data
+                              About the data
                             </Accordion.Title>
                               <Accordion.Content active={accstate.activeIndex === 0}>
                               <Header  as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingRight: 30, paddingBottom: 20}}>
@@ -1244,71 +1055,6 @@ export default function ExtraFile(props) {
                     <Grid.Row column = {1} >
                       <DeathChart data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
                           ticks={caseTicks} tickFormatter={caseTickFmt} />
-                          {/* <Grid.Column style={{paddingTop:28, width: 1030, paddingLeft: 35}}>
-                                <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', paddingLeft: 0, paddingBottom: 5, fontWeight: 600}}>Average Daily COVID-19 Deaths </Header.Content> </center>
-
-                                <VictoryChart theme={VictoryTheme.material} 
-                                  width={1030}
-                                  height={400}       
-                                  padding={{left: 70, right: 40, top: 24, bottom: 40}}
-                                  containerComponent={<VictoryVoronoiContainer/>}
-                                  >
-
-                                  <VictoryAxis
-                                    tickValues={[
-                                      dataTS["_nation"][0].t,
-                                      dataTS["_nation"][30].t,
-                                      dataTS["_nation"][61].t,
-                                      dataTS["_nation"][91].t,
-                                      dataTS["_nation"][122].t,
-                                      dataTS["_nation"][153].t,
-                                      dataTS["_nation"][183].t,
-                                      dataTS["_nation"][214].t,
-                                      dataTS["_nation"][244].t,
-                                      dataTS["_nation"][dataTS["_nation"].length-1].t]}                           
-                                    style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
-                                    tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}/>
-                                  <VictoryAxis dependentAxis tickCount={5}
-                                    style={{ticks:{stroke: "#FFFFFF"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}, labels: {fontSize: "14pt", fontFamily: 'lato'}}} 
-                                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                                    />
-                                
-                                <VictoryGroup>
-                                  <VictoryBar
-                                    barRatio={0.8}
-                                    data={dataTS["_nation"]}
-                                    style={{
-                                      data: {
-                                        fill: casesColor[1]
-                                      }
-                                    }}
-                                    x="t"
-                                    y="dailyMortality"
-                                  />
-                                </VictoryGroup>
-
-                                <VictoryGroup 
-                                    colorScale={[mortalityColor[1]]}
-                                  >
-                                    <VictoryLine data={dataTS["_nation"]}
-                                      x='t' y='mortalityMean'
-                                      labels={({ datum }) => `${fullMonthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}` + ` \n New deaths: ${numberWithCommas(datum.dailyMortality.toFixed(0))} \n 7-day average: ${numberWithCommas(datum.mortalityMean.toFixed(0))}`}
-                                      labelComponent={
-                                        <VictoryTooltip 
-                                          style={{marginLeft: 100, fontWeight: 400, fontFamily: 'lato', fontSize: "19px", textAnchor: "start"}} centerOffset={{ x: 20, y: 20 }} flyoutStyle={{marginLeft: 100, borderRadius: "0px", fill: "#FFFFFF", fillOpacity: 1, stroke: "#A9A9A9", strokeWidth: 1 }}
-                                        />}
-                                        style={{
-                                        fontFamily: 'lato',
-                                        data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                                      }}
-                                      />
-                                  </VictoryGroup>
-                                </VictoryChart>
-                          </Grid.Column>
-
-                          <Grid.Column style={{paddingTop:50, width: 1000}}> */}
-
-
                           <Accordion style = {{paddingTop: "19px"}}>
                             <Accordion.Title
                               active={accstate.activeIndex === 0}
@@ -1317,7 +1063,7 @@ export default function ExtraFile(props) {
                               style ={{color: "#397AB9", fontSize: 19, paddingLeft: 30}}
                             >
                             <Icon id="half" name='dropdown' />
-                              About this data
+                              About the data
                             </Accordion.Title>
                               <Accordion.Content active={accstate.activeIndex === 0}>
                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
@@ -1364,18 +1110,6 @@ export default function ExtraFile(props) {
               </Header>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center>
             <div style={{paddingTop:'1em', paddingLeft: "9em", paddingRight: "7em"}}>
               <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
@@ -1393,19 +1127,24 @@ export default function ExtraFile(props) {
               {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
               <div style={{paddingTop:'1em'}}>
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "12em", paddingRight: "4em", paddingBottom: 20}}>
-                  <center> <b style= {{fontSize: "18pt"}}>Race</b> </center> 
+                  <center> <b style= {{fontSize: "18pt"}}>Cases by race</b> </center> 
                   <br/>
                   <br/>         
 
                 </Header.Subheader>
                 </div>
                 <div style={{paddingLeft: "14em", paddingRight: "2em"}}>
-
+                <svg width = "800" height = "40">
+                            <rect x = {240} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
+                            <text x = {265} y = {30} style = {{ fontSize: "19px"}}> Percent of Cases</text>
+                            <rect x = {450} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
+                            <text x = {475} y = {30} style = {{ fontSize: "19px"}}> Percent of Population </text>
+                        </svg>
                 <VictoryChart
                           theme={VictoryTheme.material}
                           width={800}
-                          height={220}
-                          domainPadding={20}
+                          height={300}
+                          domainPadding={25}
                           minDomain={{y: props.ylog?1:0}}
                           padding={{left: 180, right: 40, top: 15, bottom: 1}}
                           style = {{fontSize: "14pt"}}
@@ -1413,16 +1152,18 @@ export default function ExtraFile(props) {
                         >
                           <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
                           <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryGroup offset={25}>
+
                           <VictoryBar
                             horizontal
-                            barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['caserate']},
-                              {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['caserate']},
-                              {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['caserate']},
-                              {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['caserate']},
-                              {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['caserate']},
+                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentCases']},
+                              {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentCases']},
+                              {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentCases']},
+                              {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentCases']},
+                              {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentCases']},
                               
                                  
 
@@ -1437,10 +1178,124 @@ export default function ExtraFile(props) {
                             x="key"
                             y="value"
                           />
+                          
+                          <VictoryBar
+                            horizontal
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                            data={[
+                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentPop']},
+                              
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: "#D3D3D3"
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                          </VictoryGroup>
                         </VictoryChart>
                         <Header.Content style = {{paddingLeft: 300, width: 800}}>
                             <Header.Content id="region" style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>{varMap["covidmortalityfig"].name}</b>
+                              <b>Percentage of COVID-19 Cases and Population</b>
+                            </Header.Content>
+                        </Header.Content>
+              </div>
+
+              <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
+              <div style={{paddingTop:'1em'}}>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "12em", paddingRight: "4em", paddingBottom: 20}}>
+                  <center> <b style= {{fontSize: "18pt"}}>Deaths by race</b> </center> 
+                  <br/>
+                  <br/>         
+
+                </Header.Subheader>
+                </div>
+                <div style={{paddingLeft: "14em", paddingRight: "2em"}}>
+                <svg width = "800" height = "40">
+                            <rect x = {240} y = {12} width = "20" height = "20" style = {{fill: mortalityColor[1], strokeWidth:1, stroke: mortalityColor[1]}}/>
+                            <text x = {265} y = {30} style = {{ fontSize: "19px"}}> Percent of Deaths</text>
+                            <rect x = {450} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
+                            <text x = {475} y = {30} style = {{ fontSize: "19px"}}> Percent of Population </text>
+                        </svg>
+                <VictoryChart
+                          theme={VictoryTheme.material}
+                          width={800}
+                          height={300}
+                          domainPadding={23}
+                          minDomain={{y: props.ylog?1:0}}
+                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          style = {{fontSize: "14pt"}}
+                          containerComponent={<VictoryContainer responsive={false}/>}
+                        >
+                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryGroup offset={23}>
+
+                          <VictoryBar
+                            horizontal
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                            data={[
+                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentDeaths']},
+                              {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentDeaths']},
+                              {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentDeaths']},
+                              {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentDeaths']},
+                              {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentDeaths']},
+                              
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: mortalityColor[1]
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                          
+                          <VictoryBar
+                            horizontal
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                            data={[
+                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentPop']},
+                              {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentPop']},
+                              
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: "#D3D3D3"
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                          </VictoryGroup>
+                        </VictoryChart>
+                        <Header.Content style = {{paddingLeft: 300, width: 800}}>
+                            <Header.Content id="region" style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <b>Percentage of COVID-19 Deaths and Population</b>
                             </Header.Content>
                         </Header.Content>
               </div>
@@ -1449,19 +1304,25 @@ export default function ExtraFile(props) {
 
               <div>
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "12em", paddingRight: "4em", paddingBottom: 20}}>
-                  <center> <b style= {{fontSize: "18pt"}}>Age</b> </center> 
+                  <center> <b style= {{fontSize: "18pt"}}>Cases by Age</b> </center> 
                   <br/>
                   <br/>         
 
                 </Header.Subheader>
                             </div>              
                             <div style={{paddingLeft: "14em", paddingRight: "2em"}}>
+                    <svg width = "800" height = "40">
+                            <rect x = {240} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
+                            <text x = {265} y = {30} style = {{ fontSize: "19px"}}> Percent of Cases</text>
+                            <rect x = {450} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
+                            <text x = {475} y = {30} style = {{ fontSize: "19px"}}> Percent of Population </text>
+                        </svg>
 
               <VictoryChart
                           theme={VictoryTheme.material}
                           width={800}
-                          height={360}
-                          domainPadding={20}
+                          height={550}
+                          domainPadding={25}
                           minDomain={{y: props.ylog?1:0}}
                           padding={{left: 180, right: 40, top: 15, bottom: 1}}
                           style = {{fontSize: "14pt"}}
@@ -1469,20 +1330,21 @@ export default function ExtraFile(props) {
                         >
                           <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
                           <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryGroup offset={23}>
                           <VictoryBar
                             horizontal
-                            barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['caserate']},
-                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['caserate']},
+                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentCases']},
                                  
 
 
@@ -1496,10 +1358,137 @@ export default function ExtraFile(props) {
                             x="key"
                             y="value"
                           />
+
+                          <VictoryBar
+                            horizontal
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                            data={[
+                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentPop']},
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: "#D3D3D3"
+                              }
+                            }}
+                            x="key" 
+                            y="value"
+                          />
+
+                          </VictoryGroup>
                         </VictoryChart>
                         <Header.Content style = {{paddingLeft: 300, width: 800}}>
                             <Header.Content id="region" style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>{varMap["covidmortalityfig"].name}</b>
+                              <b>Percent of COVID-19 Cases and Population</b>
+                            </Header.Content>
+                        </Header.Content>
+                
+              </div>
+
+              <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
+
+              <div>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "12em", paddingRight: "4em", paddingBottom: 20}}>
+                  <center> <b style= {{fontSize: "18pt"}}>Deaths by Age</b> </center> 
+                  <br/>
+                  <br/>         
+
+                </Header.Subheader>
+                            </div>              
+                            <div style={{paddingLeft: "14em", paddingRight: "2em"}}>
+                    <svg width = "800" height = "40">
+                            <rect x = {240} y = {12} width = "20" height = "20" style = {{fill: mortalityColor[1], strokeWidth:1, stroke: mortalityColor[1]}}/>
+                            <text x = {265} y = {30} style = {{ fontSize: "19px"}}> Percent of Deaths</text>
+                            <rect x = {450} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
+                            <text x = {475} y = {30} style = {{ fontSize: "19px"}}> Percent of Population </text>
+                        </svg>
+
+              <VictoryChart
+                          theme={VictoryTheme.material}
+                          width={800}
+                          height={550}
+                          domainPadding={25}
+                          minDomain={{y: props.ylog?1:0}}
+                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          style = {{fontSize: "14pt"}}
+                          containerComponent={<VictoryContainer responsive={false}/>}
+                        >
+                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryGroup offset={23}>
+                          <VictoryBar
+                            horizontal
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                            data={[
+                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentDeaths']},
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: mortalityColor[1]
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+
+                          <VictoryBar
+                            horizontal
+                            barWidth={20}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                            data={[
+                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentPop']},
+                                 
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: "#D3D3D3"
+                              }
+                            }}
+                            x="key" 
+                            y="value"
+                          />
+
+                          </VictoryGroup>
+                        </VictoryChart>
+                        <Header.Content style = {{paddingLeft: 300, width: 800}}>
+                            <Header.Content id="region" style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                              <b>Percent of COVID-19 Deaths and Population</b>
                             </Header.Content>
                         </Header.Content>
                 
@@ -1767,11 +1756,11 @@ export default function ExtraFile(props) {
                       <ComposableMap 
                         projection="geoAlbersUsa" 
                         data-tip=""
-                        width={500} 
+                        width={520} 
                         height={300}
                         strokeWidth= {0.1}
                         stroke= 'black'
-                        projectionConfig={{scale: 600}}
+                        projectionConfig={{scale: 580}}
                         style = {{paddingLeft: 50}}
                         >
                         <Geographies geography={geoUrl}>
@@ -1962,11 +1951,11 @@ export default function ExtraFile(props) {
                       <ComposableMap 
                         projection="geoAlbersUsa" 
                         data-tip=""
-                        width={500} 
+                        width={520} 
                         height={300}
                         strokeWidth= {0.1}
                         stroke= 'black'
-                        projectionConfig={{scale: 600}}
+                        projectionConfig={{scale: 580}}
                         style = {{paddingLeft: 50}}
                         >
                         <Geographies geography={geoUrl}>
@@ -2143,11 +2132,11 @@ export default function ExtraFile(props) {
                       <ComposableMap 
                         projection="geoAlbersUsa" 
                         data-tip=""
-                        width={500} 
+                        width={520} 
                         height={300}
                         strokeWidth= {0.1}
                         stroke= 'black'
-                        projectionConfig={{scale: 600}}
+                        projectionConfig={{scale: 580}}
                         style = {{paddingLeft: 50}}
                         >
                         <Geographies geography={geoUrl}>
@@ -2335,11 +2324,11 @@ export default function ExtraFile(props) {
                       <ComposableMap 
                         projection="geoAlbersUsa" 
                         data-tip=""
-                        width={500} 
+                        width={520} 
                         height={300}
                         strokeWidth= {0.1}
                         stroke= 'black'
-                        projectionConfig={{scale: 600}}
+                        projectionConfig={{scale: 580}}
                         style = {{paddingLeft: 50}}
                         >
                         <Geographies geography={geoUrl}>
@@ -2531,11 +2520,11 @@ export default function ExtraFile(props) {
                       <ComposableMap 
                         projection="geoAlbersUsa" 
                         data-tip=""
-                        width={500} 
+                        width={520} 
                         height={300}
                         strokeWidth= {0.1}
                         stroke= 'black'
-                        projectionConfig={{scale: 600}}
+                        projectionConfig={{scale: 580}}
                         style = {{paddingLeft: 50}}
                         >
                         <Geographies geography={geoUrl}>
@@ -2722,11 +2711,11 @@ export default function ExtraFile(props) {
                       <ComposableMap 
                         projection="geoAlbersUsa" 
                         data-tip=""
-                        width={500} 
+                        width={520} 
                         height={300}
                         strokeWidth= {0.1}
                         stroke= 'black'
-                        projectionConfig={{scale: 600}}
+                        projectionConfig={{scale: 580}}
                         style = {{paddingLeft: 50}}
                         >
                         <Geographies geography={geoUrl}>
