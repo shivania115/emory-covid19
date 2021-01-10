@@ -557,7 +557,7 @@ function CaseChart14(props){
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' barSize={18} 
+      <Bar name="New cases" dataKey='dailyCases' 
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); 
