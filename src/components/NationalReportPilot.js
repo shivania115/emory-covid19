@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
-import { Container, Header, Grid, Loader, Divider, Popup, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
+import { Container, Header, Grid, Loader, Divider, Button, Image, Rail, Sticky, Ref, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
@@ -32,7 +32,7 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
-import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea} from "recharts";
+import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell} from "recharts";
 
 var obj;
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
@@ -220,7 +220,72 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
 
 //const nationColor = '#487f84';
 
-function CaseChart(props){
+
+function CaseSection(props){
+  const [activeItem, setActiveItem] = useState('All');
+  const data = props.data;
+  const [dataPassed, setDataPassed] = useState(data["_nation"]);
+  const [caseTicks, setCaseTicks] = useState([]);
+
+useEffect(()=>{
+  if(activeItem==='All') {
+    setCaseTicks([data["_nation"][0].t,
+    data["_nation"][30].t,
+    data["_nation"][61].t,
+    data["_nation"][91].t,
+    data["_nation"][122].t,
+    data["_nation"][153].t,
+    data["_nation"][183].t,
+    data["_nation"][214].t,
+    data["_nation"][244].t,
+    data["_nation"][data["_nation"].length-1].t]);
+    setDataPassed(data["_nation"]);
+  } else if(activeItem==='90 Days'){
+    setCaseTicks([data["_nation"][214].t,
+    data["_nation"][244].t,
+    data["_nation"][data["_nation"].length-1].t]);
+    setDataPassed(data["_nation"].slice(-90));
+  } else{
+    setCaseTicks([
+      data["_nation"][data["_nation"].length-15].t,
+      data["_nation"][data["_nation"].length-1].t]);
+    setDataPassed(data["_nation"].slice(-14));
+  }
+}, [activeItem]);
+
+console.log("data", data["_nation"]);
+console.log("data slice", data["_nation"].slice(-90));
+
+  return(
+  <Grid.Row style={{paddingLeft: '3rem', paddingBottom: '0rem', height:'39rem'}}>  
+  <Grid.Column style={{paddingTop: '1rem', paddingLeft: '22rem'}}>
+    <Menu pointing secondary widths={3} style={{width: '16rem'}}> 
+    <Menu.Item name='All' active={activeItem==='All'} onClick={()=>setActiveItem('All')}/>
+    {/* active={activeItem==='all'} onClick={setActiveItem('all')} defaultActiveIndex='All'*/}
+    <Menu.Item name='90 Days' active={activeItem==='90 Days'} onClick={()=>setActiveItem('90 Days')}/>
+    <Menu.Item name='14 Days' active={activeItem==='14 Days'} onClick={()=>setActiveItem('14 Days')}/>
+    </ Menu>
+    </Grid.Column>
+    {/* <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter}/> */}
+    {(()=>{
+    if (activeItem==='All'){
+   return <CaseChartAll data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+  } else if(activeItem==='90 Days'){
+    return <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+    } else {
+      return <CaseChart14 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+    }
+  }
+    )()}
+  </ Grid.Row>
+  )
+}
+
+function CaseChartAll(props){
   const [playCount, setPlayCount] = useState(0);
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
@@ -228,12 +293,12 @@ function CaseChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
-  const ticks = props.ticks;
+  const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
-  // const playCount = props.playCount;
 
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
@@ -244,89 +309,324 @@ function CaseChart(props){
 
   useEffect(() =>{
     setAnimationBool(playCount>-1);
-    // console.log("change ",playCount);
-    console.log("animation ", animationBool);
   },[playCount])
 
+  useEffect(() =>{
+    setHighlightIndex([-1]);
+    console.log("highlightIndex", highlightIndex);
+  },[props.history])
 
-  var wait=4000;
-  // useEffect (() => {
-  //   setTimeout(() => setVisible1(true), wait);
-  //   setTimeout(() => setVisible2(true), wait+1000);
-  //   setTimeout(() => setVisible3(true), wait+2000);
-  //   setTimeout(() => setVisible4(true), wait+3000);
-  //   setTimeout(() => setVisible5(true), wait+4000);
-  //   setTimeout(() => setDisabled(false), wait+5000);
-  // }, [])
-
-  // const handlePlay = () => {
-  //   setPlayCount(playCount+1); 
-  //   setTimeout(()=>setVisible1(true), 5000); 
-  //   setTimeout(()=>setVisible2(true), 6000); 
-  //   setVisible1(false);
-  //   setVisible2(false);
-  // }
-
+  var wait=0;
+  console.log("animationBool", animationBool);
 
   return(
-    <Grid.Column style={{paddingTop:20, width: 850, height: 500}}>
-    <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content> </center>
+    <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
 
-    {/* <Grid.Row position='relative'> */}
-      <ComposedChart width={830} height={420} data={data["_nation"]}
+      <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      {/* <Legend /> */}
       <Bar name="New cases" dataKey='dailyCases' barSize={18} 
             isAnimationActive={animationBool} 
+            animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+                                    setHighlightIndex([-1]);
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setHighlightIndex(9), wait+1000);
+              // setTimeout(()=>setVisible3(true), wait+2000);
+              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
+              // setTimeout(()=>setDisabled(false),wait+4500);
+              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
+            }} 
+            onAnimationEnd={()=> {
+              setAnimationBool(false);
               setTimeout(()=>setVisible1(true), wait); 
               setTimeout(()=>setVisible2(true), wait+1000); 
-              setTimeout(()=>setVisible3(true), wait+2000); 
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
+              setTimeout(()=>setVisible3(true), wait+2000);
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 71]), wait+2000);  
               setTimeout(()=>setVisible4(true), wait+3000); 
-              setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+4500)
-            }} 
-            onAnimationEnd={()=> {setAnimationBool(false);}} 
-            animationDuration={5500} 
-            fill={barColor} barSize={2.1} />
-      <Line name="7-day average" id={playCount} type='monotone' dataKey='caseRateMean' dot={false} 
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
+              setTimeout(()=>setVisible5(true), wait+4000);
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
+              setTimeout(()=>setDisabled(false),wait+5000);
+              // setTimeout(()=>setHighlightIndex(-1), wait+5000);
+            }}
+            animationDuration={3500} 
+             barSize={2} >
+             {/* fill={barColor} */}
+            {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+              ))
+              // fill={index === highlightIndex ? "red" : barColor}
+            }
+      </ Bar>
+      <Line name="7-day average" id='all-line' type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={animationBool} 
-            animationDuration={5500} 
-            // animationBegin={500} 
+            animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      {/* </Grid.Row>    */}
-
-      {/* <Grid.Row columns={5}>
-      <Grid.Column >                                                                    */}
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the US confirmed in Washinton State</Message>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
-      {/* </Grid.Column> 
-      <Grid.Column >              */}
       <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the US </Message>
+      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={visible4} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-42rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-41.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-56rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,786 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-55.5rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       
+      {/* <renderArrow /> */}
+      </Grid.Column>
+  );
+}
+
+function CaseChart90(props){
+  const [playCount, setPlayCount] = useState(0);
+  // const [visible1, setVisible1] = useState(false);
+  // const [visible2, setVisible2] = useState(false);
+  // const [visible3, setVisible3] = useState(false);
+  // const [visible4, setVisible4] = useState(false);
+  // const [visible5, setVisible5] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
+  const data = props.data;
+  const barColor = props.barColor;
+  const lineColor = props.lineColor;
+  const ticks = props.tick;
+  const tickFormatter = props.tickFormatter;
+
+  // const ytickFormatter = props.ytickFormatter;
+  const [animationBool, setAnimationBool] = useState(true);
+
+  const caseYTickFmt = (y) => {
+    return y<1000?y:(y/1000+'k');
+  };
+
+  useEffect(() =>{
+    setAnimationBool(playCount>-1);
+  },[playCount])
+
+  useEffect(() =>{
+    setHighlightIndex([-1]);
+    console.log("highlightIndex", highlightIndex);
+  },[props.history])
+
+  var wait=0;
+  console.log("animationBool", animationBool);
+
+  return(
+    <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
+
+      <ComposedChart width={830} height={420} data={data}
+        margin={{top: 30, right: 60, bottom: 20, left: 30}}>
+      <CartesianGrid stroke='#f5f5f5'/>
+      <XAxis dataKey="t" type="number" domain={[data[data.length-91].t,'dataMax']} padding={{ left: 3, right: 3 }}
+      ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
+      {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
+      <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+      <Bar name="New cases" dataKey='dailyCases' barSize={18} 
+            isAnimationActive={animationBool} 
+            animationEasing='ease'
+            onAnimationStart={() => {setDisabled(true); 
+              // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+                                    setHighlightIndex([-1]);
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setHighlightIndex(9), wait+1000);
+              // setTimeout(()=>setVisible3(true), wait+2000);
+              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
+              // setTimeout(()=>setDisabled(false),wait+4500);
+              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
+            }} 
+            onAnimationEnd={()=> {
+              setAnimationBool(false);
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
+              // setTimeout(()=>setVisible3(true), wait+2000);
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 71]), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
+              setTimeout(()=>setDisabled(false),wait);
+              // setTimeout(()=>setHighlightIndex(-1), wait+5000);
+            }}
+            animationDuration={3500} 
+             barSize={3} >
+             {/* fill={barColor} */}
+            {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+              ))
+              // fill={index === highlightIndex ? "red" : barColor}
+            }
+      </ Bar>
+      <Line name="7-day average" id='90-line' type='monotone' dataKey='caseRateMean' dot={false} 
+            isAnimationActive={animationBool} 
+            animationDuration={3500} 
+            stroke={lineColor} strokeWidth="2" />
+      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      {/* <Brush dataKey='t'/> */}
+      </ComposedChart>
+      <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
+      {/* <Transition visible={visible1} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      </Transition>
+      <Transition visible={visible2} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      </Transition> 
+      <Transition visible={visible3} animation='scale' duration={300}>
+      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      </Transition> 
+      <Transition visible={visible4} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-41.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      </Transition> 
+      <Transition visible={visible5} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-55.5rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      </Transition>  */}
+      
+      {/* <renderArrow /> */}
       </Grid.Column>
   );
 }
 
 
+function CaseChart14(props){
+  const [playCount, setPlayCount] = useState(0);
+  // const [visible1, setVisible1] = useState(false);
+  // const [visible2, setVisible2] = useState(false);
+  // const [visible3, setVisible3] = useState(false);
+  // const [visible4, setVisible4] = useState(false);
+  // const [visible5, setVisible5] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
+  const data = props.data;
+  const barColor = props.barColor;
+  const lineColor = props.lineColor;
+  const ticks = props.tick;
+  const tickFormatter = props.tickFormatter;
+
+  // const ytickFormatter = props.ytickFormatter;
+  const [animationBool, setAnimationBool] = useState(true);
+
+  const caseYTickFmt = (y) => {
+    return y<1000?y:(y/1000+'k');
+  };
+
+  useEffect(() =>{
+    setAnimationBool(playCount>-1);
+  },[playCount])
+
+  useEffect(() =>{
+    setHighlightIndex([-1]);
+    console.log("highlightIndex", highlightIndex);
+  },[props.history])
+
+  var wait=0;
+  console.log("animationBool", animationBool);
+
+  return(
+    <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
+
+      <ComposedChart width={830} height={420} data={data}
+        margin={{top: 30, right: 60, bottom: 20, left: 30}}>
+      <CartesianGrid stroke='#f5f5f5'/>
+      <XAxis dataKey="t" type="number" domain={[data[data.length-15].t,'dataMax']} padding={{ left: 5, right: 5 }}
+      ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
+      {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
+      <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+      <Bar name="New cases" dataKey='dailyCases' barSize={18} 
+            isAnimationActive={animationBool} 
+            animationEasing='ease'
+            onAnimationStart={() => {setDisabled(true); 
+              // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+                                    setHighlightIndex([-1]);
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setHighlightIndex(9), wait+1000);
+              // setTimeout(()=>setVisible3(true), wait+2000);
+              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
+              // setTimeout(()=>setDisabled(false),wait+4500);
+              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
+            }} 
+            onAnimationEnd={()=> {
+              setAnimationBool(false);
+              // setTimeout(()=>setVisible1(true), wait); 
+              // setTimeout(()=>setVisible2(true), wait+1000); 
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
+              // setTimeout(()=>setVisible3(true), wait+2000);
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 71]), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
+              setTimeout(()=>setDisabled(false),wait);
+              // setTimeout(()=>setHighlightIndex(-1), wait+5000);
+            }}
+            animationDuration={3500} 
+             barSize={10} >
+             {/* fill={barColor} */}
+            {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+              ))
+              // fill={index === highlightIndex ? "red" : barColor}
+            }
+      </ Bar>
+      <Line name="7-day average" id='14-line' type='monotone' dataKey='caseRateMean' dot={false} 
+            isAnimationActive={animationBool} 
+            animationDuration={3500} 
+            stroke={lineColor} strokeWidth="2" />
+      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      {/* <Brush dataKey='t'/> */}
+      </ComposedChart>
+      <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
+      {/* <Transition visible={visible1} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      </Transition>
+      <Transition visible={visible2} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      </Transition> 
+      <Transition visible={visible3} animation='scale' duration={300}>
+      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      </Transition> 
+      <Transition visible={visible4} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-41.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      </Transition> 
+      <Transition visible={visible5} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-55.5rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      </Transition>  */}
+      
+      {/* <renderArrow /> */}
+      </Grid.Column>
+  );
+}
 
 function DeathChart(props){
   const [playCount, setPlayCount] = useState(0);
@@ -978,7 +1278,7 @@ export default function ExtraFile(props) {
                                     </Waypoint> 
                                     </center>
             <div>     	
-              <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "10em", paddingRight: "6em"}}>
+              <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "17rem", paddingRight: "6rem"}}>
                 <Header.Content>
                 <b> COVID-19 National Health Equity Report </b> 
                 <Header.Subheader style={{fontWeight:300,fontSize:"20pt", paddingTop:16, color: mortalityColor[1]}}> 
@@ -997,7 +1297,7 @@ export default function ExtraFile(props) {
             </Header.Content>
             </div>
             <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
-            <div style={{paddingBottom:'2em', paddingLeft: "15em", paddingRight: "1em"}}>
+            <div style={{paddingBottom:'2em', paddingLeft: "12rem", paddingRight: "1rem"}}>
               <Header as='h2' style={{color: mortalityColor[1], textAlign:'center',fontSize:"22pt", paddingTop: 30}}>
                 <Header.Content>
                   How have cases in the U.S. changed over time?
@@ -1005,9 +1305,21 @@ export default function ExtraFile(props) {
               </Header>
                 <Grid>
                     <Grid.Row column = {1}>
-                    <CaseChart data={dataTS} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                              ticks={caseTicks} tickFormatter={caseTickFmt} />
-                          <Accordion style = {{paddingTop: "19px"}}>
+                    <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
+                    <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content>
+                    </ Grid.Row>
+                    {/* <Grid.Row style={{textAlign:'center', paddingLeft: '22rem', paddingRight: '22rem'}}>                
+                    <Menu pointing secondary widths={3}> 
+                    <Menu.Item name='All' />
+                    active={activeItem==='all'} onClick={setActiveItem('all')}
+                    <Menu.Item name='90 Days' />
+                    <Menu.Item name='14 Days' />
+                    </ Menu>
+                    </ Grid.Row>
+                    <Grid.Row columns={1}> */}
+                    <CaseSection data={dataTS} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                               tickFormatter={caseTickFmt} />
+                          {/* <Accordion style = {{paddingTop: "19px"}}>
                             <Accordion.Title
                               active={accstate.activeIndex === 0}
                               index={0}
@@ -1036,7 +1348,7 @@ export default function ExtraFile(props) {
                                 </Header>
                               </Accordion.Content>
 
-                            </Accordion> 
+                            </Accordion>  */}
                           {/* </div> */}
                         {/* </ Grid.Column> */}
                     </Grid.Row>
