@@ -1516,7 +1516,7 @@ export default function ExtraFile(props) {
 
                             >
                             <Icon id = "deaths" name='dropdown' />
-                              About this data
+                              About the data
                             </Accordion.Title>
                               <Accordion.Content active={accstate.activeIndex === 0}>
                               <Header  as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingRight: 30, paddingBottom: 20}}>
@@ -1629,7 +1629,7 @@ export default function ExtraFile(props) {
                               style ={{color: "#397AB9", fontSize: 19, paddingLeft: 30}}
                             >
                             <Icon id="half" name='dropdown' />
-                              About this data
+                              About the data
                             </Accordion.Title>
                               <Accordion.Content active={accstate.activeIndex === 0}>
                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
