@@ -75,20 +75,21 @@ export default function Notes(props){
 
                   </Grid.Column>}
 
+                  {true && <Grid.Column>
+                    <Image width='300' height='236' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 1</Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/> Katie Kirkpatrick discusses the ramifications of COVID-19 in the business community...</Header.Content>
+
+                  </Grid.Column>}
 
                   {true && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
-                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 1</Header.Subheader>
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 2</Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Allison Chamberlain talks about blending public health academia and practice, how public health educ... </Header.Content>
 
                   </Grid.Column>}
 
-                  {true && <Grid.Column>
-                    <Image width='300' height='236' href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
-                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 2</Header.Subheader>
-                    <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development and clinical trials...</Header.Content>
-
-                  </Grid.Column>}
+                  
                 </Grid.Row>
             </Grid>
     <Divider/>
