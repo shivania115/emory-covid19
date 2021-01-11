@@ -100,16 +100,6 @@ export default function USMap(props) {
   const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
   const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
 
-  const [accstate, setAccstate] = useState({ activeIndex: 1 });
-
-  const dealClick = (e, titleProps) => {
-  const { index } = titleProps
-  const { activeIndex } = accstate
-  const newIndex = activeIndex === index ? -1 : index
-
-  setAccstate({ activeIndex: newIndex })
-  }
-
   // const [caseRate, setCaseRate] = useState();
   // const [percentChangeCases, setPercentChangeCases] = useState();
   // const [mortality, setMortality] = useState();
@@ -445,27 +435,30 @@ export default function USMap(props) {
                   
 
                 </ComposableMap>
-                
-                <Accordion style = {{paddingTop: "13px"}}>
-                  <Accordion.Title
-                    active={accstate.activeIndex === 0}
-                    index={0}
-                    onClick={dealClick}
-                    style ={{color: "#397AB9", fontSize: "14pt"}}
-                  >
-                  <Icon name='dropdown' />
-                    About this data
-                  </Accordion.Title>
-                    <Accordion.Content active={accstate.activeIndex === 0}>
-                      <Grid.Row style={{width: "660px"}}>
-                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                          <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                          For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                          </Header.Content>
-                      </Grid.Row>
-                    </Accordion.Content>
 
-                </Accordion> 
+                <Accordion style = {{paddingTop: "18px"}}defaultActiveIndex={1} panels={[
+                  {
+                      key: 'acquire-dog',
+                      title: {
+                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                          icon: 'dropdown',
+                      },
+                      content: {
+                          content: (
+                            <Grid.Row style={{width: "660px"}}>
+                                <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                                For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                </Header.Content>
+                            </Grid.Row>
+                          ),
+                        },
+                    }
+                ]
+
+                } />
+                
+
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>

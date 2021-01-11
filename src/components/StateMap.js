@@ -193,17 +193,6 @@ export default function StateMap(props) {
 
   const [delayHandler, setDelayHandler] = useState();
 
-  
-  const [accstate, setAccstate] = useState({ activeIndex: 1 });
-
-  const dealClick = (e, titleProps) => {
-  const { index } = titleProps
-  const { activeIndex } = accstate
-  const newIndex = activeIndex === index ? -1 : index
-
-  setAccstate({ activeIndex: newIndex })
-  }
-
   useEffect(()=>{
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -1068,51 +1057,52 @@ export default function StateMap(props) {
               
             </Grid.Row>
 
-            <Accordion>
-                <Accordion.Title
-                  active={accstate.activeIndex === 0}
-                  index={0}
-                  onClick={dealClick}
-                  style ={{color: "#397AB9", fontSize: "14pt"}}
-                >
-                <Icon name='dropdown' />
-                  About this data
-                </Accordion.Title>
-                <Accordion.Content active={accstate.activeIndex === 0}>
+            <Accordion defaultActiveIndex={1} panels={[
+              {
+                  key: 'acquire-dog',
+                  title: {
+                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                      icon: 'dropdown',
+                  },
+                  content: {
+                      content: (
+                        <div>
+                          {stateFips !== "_nation" && stateFips === "38" &&
+                          <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                                  <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                                    Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    <br/>
+                                    {stateName} is not reporting deaths by race or ethnicity.
+                                    <br/>
+                                    Race data last updated: 01/06/2021, updated every 3 days. 
 
-                  {stateFips !== "_nation" && stateFips === "38" &&
-                  <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
-                          <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                            Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
-                            <br/>
-                            {stateName} is not reporting deaths by race or ethnicity.
-                            <br/>
-                            Race data last updated: 01/06/2021, updated every 3 days. 
+                                  </text>
+                          </Grid.Row>
+                          }
+                                  
+                          {stateFips !== "_nation" && stateFips !== "38" &&
+                          <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                                  <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                                    Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    <br/>
+                                    {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
+                                    <br/>
+                                    Race data last updated: 01/06/2021, updated every 3 days. 
 
-                          </text>
-                  </Grid.Row>
-                  }
-                          
-                  {stateFips !== "_nation" && stateFips !== "38" &&
-                  <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
-                          <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                            Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
-                            <br/>
-                            {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
-                            <br/>
-                            Race data last updated: 01/06/2021, updated every 3 days. 
+                                  </text>
+                          </Grid.Row>
+                          }
 
-                          </text>
-                  </Grid.Row>
-                  }
+                          { false && 
+                            <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+                          }
+                        </div>
+                      ),
+                    },
+                }
+            ]
 
-                  { false && 
-                    <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
-                  }
-
-              </Accordion.Content>
-
-            </Accordion>  
+            } />
 
           </Grid>
         }
@@ -1237,30 +1227,32 @@ export default function StateMap(props) {
                     )}
                   </Geographies>
                 </ComposableMap>
-                <Accordion>
-                  <Accordion.Title
-                    active={accstate.activeIndex === 0}
-                    index={0}
-                    onClick={dealClick}
-                    style ={{color: "#397AB9", fontSize: "14pt"}}
-                  >
-                  <Icon name='dropdown'/>
-                    About this data
-                  </Accordion.Title>
-                    <Accordion.Content active={accstate.activeIndex === 0}>
-                    <Grid.Row style={{width: "420px"}}>
-                        <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                        For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                        <br/><br/>
-                        Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
-                        </text>
+                <Accordion defaultActiveIndex={1} panels={[
+                  {
+                      key: 'acquire-dog',
+                      title: {
+                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                          icon: 'dropdown',
+                      },
+                      content: {
+                          content: (
+                            <Grid.Row style={{width: "420px"}}>
+                                <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                                For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                <br/><br/>
+                                Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                </text>
 
 
-                    </Grid.Row>
-                  </Accordion.Content>
+                            </Grid.Row>
+                          ),
+                        },
+                    }
+                ]
 
-                </Accordion> 
+                } />
+                
               </Grid.Column>
               <Grid.Column width={6} style={{padding: 0, paddingLeft: 40}}>
                 <Header as='h2' style={{fontWeight: 400, width: 410}}>
