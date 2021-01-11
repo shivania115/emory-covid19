@@ -14,7 +14,6 @@ export default function AboutUs(props){
 
     <div>
     <AppBar/>
-    //Katie Kirkpatrick
 
     {podcastTitle === "Katie_Kirkpatrick_on_economic_responses" &&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
@@ -230,7 +229,6 @@ export default function AboutUs(props){
       </Container>
     }
 
-    //Dr. Allison Chamberlain
 
     {podcastTitle === "Allison_Chamberlain_on_public_health_education_pandemic" &&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
@@ -477,7 +475,6 @@ export default function AboutUs(props){
 
 
 
-    //Dr. Robert Breiman
 
     {podcastTitle === "Robert_Breiman_on_COVID-19_vaccine_development_and_distribution" &&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
@@ -699,7 +696,6 @@ export default function AboutUs(props){
 
 
 
-    //Dr. Vincent Marconi
 
         {podcastTitle === "Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" &&
           <Container style={{marginTop: "8em", minWidth: '1260px'}}>
@@ -888,7 +884,6 @@ export default function AboutUs(props){
 
 
 
-        //Dr. Nneka Sederstrom
 
         {podcastTitle === "Dr._Nneka_Sederstrom_on_Racism_and_Ethics" &&
           <Container style={{marginTop: "8em", minWidth: '1260px'}}>
@@ -1208,7 +1203,6 @@ export default function AboutUs(props){
 
 
 
-        //Dr. Judy Monroe
         {podcastTitle === "Dr.Judy_Monroe_on_Lesson_Learned_&_CDC" &&
           <Container style={{marginTop: "8em", minWidth: '1260px'}}>
 
@@ -1537,7 +1531,6 @@ export default function AboutUs(props){
 
 
 
-        ////Dr. Carlos Del Rio
         {podcastTitle == "Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"&&
           <Container style={{marginTop: "8em", minWidth: '1260px'}}>
 
