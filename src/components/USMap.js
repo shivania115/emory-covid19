@@ -436,7 +436,7 @@ export default function USMap(props) {
 
                 </ComposableMap>
 
-                <Accordion style = {{paddingTop: "18px"}}defaultActiveIndex={1} panels={[
+                <Accordion style = {{paddingTop: 17}}defaultActiveIndex={1} panels={[
                   {
                       key: 'acquire-dog',
                       title: {
