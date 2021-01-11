@@ -227,6 +227,16 @@ export default function USMap(props) {
                 </Grid.Column> */}
 
                 <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>“You can't have good public health, but not have equity and economic growth”: A conversation with Katie Kirkpatrick about economic responses to the COVID-19 pandemic.<br/></b>
+
+                  Katie Kirkpatrick discusses the ramifications of COVID-19 in the business community...  
+                  <a href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">for more</a>. 
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
                   <Image width = {165} height = {95} href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
@@ -281,7 +291,7 @@ export default function USMap(props) {
                   pandemics based on her experience as...
                   <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">for more</a>. 
                 </Grid.Column>
-                <Grid.Column style={{width: 190}}>
+                {/* <Grid.Column style={{width: 190}}>
                   <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes" src='/podcast images/CarlosdelRio.jpg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
@@ -290,7 +300,7 @@ export default function USMap(props) {
                   Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
                   What can be and needs to be done to change the course of the pandemic? <br/>
                   <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes">for more</a>. 
-                </Grid.Column>
+                </Grid.Column> */}
               </Grid>
             </div>
           </div>
@@ -436,7 +446,7 @@ export default function USMap(props) {
 
                 </ComposableMap>
 
-                <Accordion style = {{paddingTop: "18px"}}defaultActiveIndex={1} panels={[
+                <Accordion style = {{paddingTop: 17}}defaultActiveIndex={1} panels={[
                   {
                       key: 'acquire-dog',
                       title: {

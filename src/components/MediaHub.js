@@ -27,7 +27,7 @@ export default function DataSources(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
-        {/* <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/podcast images/Katie Kirkpatrick.jpeg' />            
@@ -47,7 +47,7 @@ export default function DataSources(props){
                 </Header>
               </div>
             </Grid.Row>
-          </Grid.Column> */}
+          </Grid.Column>
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
@@ -93,7 +93,7 @@ export default function DataSources(props){
             </Grid.Row>
           </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances' src='/podcast images/Vincent Macroni.png' />            
