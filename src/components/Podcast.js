@@ -68,7 +68,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/> 
 
-                      <b>Leanna Ehrlich: [00:00:28] </b> Can you please first tell our listeners a little bit about your professional background and your work at the metro Atlanta Chamber?
+                      <b>Leanna Ehrlich: [00:00:28] </b> Can you please first tell our listeners a little bit about your professional background and your work at the Metro Atlanta Chamber?
 
                       <br/>
                       <br/>
