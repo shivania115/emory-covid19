@@ -56,7 +56,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b>Leanna Ehrlich: [00:00:03] </b> Welcome back to the COVID-19 Equity and Outcomes podcast. Today we're talking to Katie Kirkpatrick, the President and CEO of the Metro Atlanta Chamber of Commerce. We'll be hearing about what it's been like to run the Chamber of Commerce during the pandemic, and what sorts of considerations have had to be made for economic development and support during these challenging times. Welcome, Ms. Kirkpatrick.
+                      <b>Leanna Ehrlich: [00:00:03] </b> Welcome back to the COVID-19 Equity and Outcomes podcast. Today we're talking to Katie Kirkpatrick, the President and CEO of the Metro Atlanta Chamber. We'll be hearing about what it's been like to run the Metro Atlanta Chamber during the pandemic, and what sorts of considerations have had to be made for economic development and support during these challenging times. Welcome, Ms. Kirkpatrick.
                         
                       <br/>
                       <br/>
@@ -68,7 +68,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/> 
 
-                      <b>Leanna Ehrlich: [00:00:28] </b> Can you please first tell our listeners a little bit about your professional background and your work at the metro Atlanta Chamber of Commerce?
+                      <b>Leanna Ehrlich: [00:00:28] </b> Can you please first tell our listeners a little bit about your professional background and your work at the Metro Atlanta Chamber?
 
                       <br/>
                       <br/>

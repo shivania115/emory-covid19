@@ -17,7 +17,7 @@ import { VictoryChart,
   VictoryVoronoiContainer,
   VictoryZoomContainer
 } from 'victory';
-
+import racedatadate from "./Pre-Processed Data/racedatadate.json";
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
@@ -1074,7 +1074,7 @@ export default function StateMap(props) {
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
-                                    Race data last updated: 01/06/2021, updated every 3 days. 
+                                    Race data last updated: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}, updated every 3 days. 
 
                                   </text>
                           </Grid.Row>
@@ -1087,7 +1087,7 @@ export default function StateMap(props) {
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
-                                    Race data last updated: 01/06/2021, updated every 3 days. 
+                                    Race data last updated: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}, updated every 3 days. 
 
                                   </text>
                           </Grid.Row>

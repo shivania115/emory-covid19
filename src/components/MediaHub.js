@@ -41,7 +41,7 @@ export default function DataSources(props){
                       <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                         Date Published: Jan. 11, 2021 <br/> 
                         Media Type: Podcast<br/><br/>
-                        Katie Kirkpatrick, the president and CEO of the Metro Atlanta Chamber of Commerce, talks about the ramifications of COVID-19 in the business community, from issues ranging to supply chain management to staff and customer safety, to the new MAC initiative, the Task Force to Restore Georgia's Economy. 
+                        Katie Kirkpatrick, the president and CEO of the Metro Atlanta Chamber, talks about the ramifications of COVID-19 in the business community, from issues ranging to supply chain management to staff and customer safety, to the new MAC initiative, the Task Force to Restore Georgia's Economy. 
                       </Header.Subheader>
                     </Header.Content>
                 </Header>
