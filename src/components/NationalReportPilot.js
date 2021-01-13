@@ -1495,7 +1495,30 @@ export default function ExtraFile(props) {
 
               {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
               <Grid>
-                <Grid.Row columns = {2} style = {{width: 1000}}>
+                
+                <Grid.Row columns = {1} style = {{width: 1000}}>
+                  <Grid.Column style = {{width: 450, paddingLeft: 185}}>
+                    <div style={{paddingTop:'0em'}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by race</b> </center> 
+                        <br/>
+                        <br/>         
+                      </Header.Subheader>
+                    </div>
+                  </Grid.Column>
+                  
+                </Grid.Row>
+                <Grid.Row style = {{width: 1000, paddingLeft: 300, paddingTop:'1em'}}>
+                  <svg width = "1000" height = "40">
+                    <rect x = {40} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
+                    <text x = {65} y = {30} style = {{ fontSize: "19px"}}> Percent of Cases</text>
+                    <rect x = {250} y = {12} width = "20" height = "20" style = {{fill: mortalityColor[1], strokeWidth:1, stroke: mortalityColor[1]}}/>
+                    <text x = {275} y = {30} style = {{ fontSize: "19px"}}> Percent of Deaths </text>
+                    <rect x = {455} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
+                    <text x = {480} y = {30} style = {{ fontSize: "19px"}}> Percent of Population</text>
+                  </svg>
+                </Grid.Row>
+                {/* <Grid.Row columns = {2} style = {{width: 1000}}>
                   <Grid.Column style = {{width: 450, paddingLeft: 300}}>
                     <div style={{paddingTop:'1em'}}>
                       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: 0}}>
@@ -1514,19 +1537,144 @@ export default function ExtraFile(props) {
                         </Header.Subheader>
                       </div>
                   </Grid.Column>
-                </Grid.Row>
+                </Grid.Row> */}
                 {/* <div style={{paddingLeft: "6em", paddingRight: "0em"}}></div> */}
-                <Grid.Row style = {{width: 1000, paddingLeft: 350}}>
-                  <svg width = "1000" height = "40">
-                    <rect x = {40} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
-                    <text x = {65} y = {30} style = {{ fontSize: "19px"}}> Percent of Cases</text>
-                    <rect x = {250} y = {12} width = "20" height = "20" style = {{fill: mortalityColor[1], strokeWidth:1, stroke: mortalityColor[1]}}/>
-                    <text x = {275} y = {30} style = {{ fontSize: "19px"}}> Percent of Deaths </text>
-                    <rect x = {455} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
-                    <text x = {480} y = {30} style = {{ fontSize: "19px"}}> Percent of Population</text>
-                  </svg>
+
+                <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 0}}>
+                  <Grid.Column style = {{width: 1000, paddingLeft: 130}}>
+                      <div style={{paddingLeft: "0em", paddingRight: "0em"}}>
+                      <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={1000}
+                                height={500}
+                                domainPadding={{x:80}}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 200, right: 80, top: 30, bottom: 50}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis 
+                                  label="Percentage of COVID-19 Cases, Deaths, and Population" 
+                                  style={{ticks:{stroke: "#000000"}, 
+                                    axis: {stroke: "#000000"}, 
+                                    axisLabel: {padding: 60, fontFamily: 'lato', fontSize: "19px", fill: '#000000'},
+                                    grid: {stroke: "transparent"}, 
+                                    tickLabels: {fontSize: "20px", 
+                                    fill: '#000000', padding: 10, fontFamily: 'lato'}
+                                  }}
+                                />
+                                <VictoryGroup offset={45}>
+
+                                <VictoryBar
+                                  
+                                  barWidth={35}
+                                  labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                                  data={[
+                                    {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentCases']},
+                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentCases']},
+                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentCases']},
+                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentCases']},
+                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentCases']},
+                                    
+                                      
+
+
+                                  ]}
+                                  labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                  style={{
+                                    data: {
+                                      fill: casesColor[1]
+                                    }
+                                  }}
+                                  x="key"
+                                  y="value"
+                                />
+
+                                <VictoryBar
+                                  
+                                  barWidth={35}
+                                  labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                                  data={[
+                                    {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentDeaths']},
+                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentDeaths']},
+                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentDeaths']},
+                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentDeaths']},
+                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentDeaths']},
+                                    
+                                      
+
+
+                                  ]}
+                                  labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                  style={{
+                                    data: {
+                                      fill: mortalityColor[1]
+                                    }
+                                  }}
+                                  x="key"
+                                  y="value"
+                                />
+                                
+                                <VictoryBar
+                                  
+                                  barWidth={35}
+                                  labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                                  data={[
+                                    {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentPop']},
+                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentPop']},
+                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentPop']},
+                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentPop']},
+                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentPop']},
+                                    
+                                      
+
+
+                                  ]}
+                                  labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                  style={{
+                                    data: {
+                                      fill: "#D3D3D3"
+                                    }
+                                  }}
+                                  x="key"
+                                  y="value"
+                                />
+                                </VictoryGroup>
+                              </VictoryChart>
+
+                              {/* <Header.Content style = {{width: 1000}}>
+                                  <Header.Content style={{textOrientation: "sideways", fontWeight: 300, paddingLeft: 400, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  <b>Percentage of COVID-19 Deaths and Population</b>
+                                  </Header.Content>
+                              </Header.Content> */}
+                    </div>
+                    <Accordion style = {{paddingTop: 20, paddingLeft: 100, paddingBottom: 50}} defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                      <Header.Content  style={{fontSize: "14pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                          Race groups are non-Hispanic
+                                        </Header.Subheader>
+                                      </Header.Content>
+                                    </Header>
+                                ),
+                              },
+                          }
+                      ]
+
+                      } />
+                  </Grid.Column>
                 </Grid.Row>
-                <Grid.Row columns = {2} style = {{width: 1000}}>
+                
+                {/* <Grid.Row columns = {2} style = {{width: 1000, paddingTop: 0}}>
                   <Grid.Column style = {{width: 450, paddingLeft: 100}}>
                   <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
 
@@ -1603,7 +1751,6 @@ export default function ExtraFile(props) {
                     </div>
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
-                    {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center> */}
                     
                       <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
                       
@@ -1636,7 +1783,7 @@ export default function ExtraFile(props) {
 
 
                                   ]}
-                                  labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                  labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                   style={{
                                     data: {
                                       fill: mortalityColor[1]
@@ -1661,7 +1808,7 @@ export default function ExtraFile(props) {
 
 
                                   ]}
-                                  labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                  labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                   style={{
                                     data: {
                                       fill: "#D3D3D3"
@@ -1679,29 +1826,12 @@ export default function ExtraFile(props) {
                               </Header.Content>
                     </div>
                   </Grid.Column>
-                </Grid.Row>
+                </Grid.Row> */}
               </Grid>
 
               <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 0}}/> </center>
 
               <Grid style = {{paddingTop: 0, paddingBottom: 0}}>
-                <Grid.Row columns = {2} style = {{width: 1000}}>
-                  <Grid.Column style = {{width: 450, paddingLeft: 300}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Cases by Age</b> </center> 
-                        <br/>
-                        <br/>         
-                      </Header.Subheader>
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 450, paddingLeft: 145}}>
-                        <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: 0}}>
-                          <center> <b style= {{fontSize: "18pt"}}>Deaths by Age</b> </center> 
-                          <br/>
-                          <br/>         
-                        </Header.Subheader>
-                  </Grid.Column>
-                </Grid.Row>
-                {/* <div style={{paddingLeft: "6em", paddingRight: "0em"}}></div> */}
                 <Grid.Row style = {{width: 1000, paddingLeft: 350}}>
                   <svg width = "1000" height = "40">
                     <rect x = {40} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
@@ -1712,6 +1842,24 @@ export default function ExtraFile(props) {
                     <text x = {480} y = {30} style = {{ fontSize: "19px"}}> Percent of Population</text>
                   </svg>
                 </Grid.Row>
+                <Grid.Row columns = {2} style = {{width: 1000}}>
+                  <Grid.Column style = {{width: 450, paddingLeft: 300}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
+                        <center> <b style= {{fontSize: "18pt"}}>Cases by Age</b> </center> 
+                        <br/>
+                        <br/>         
+                      </Header.Subheader>
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 450, paddingLeft: 145}}>
+                        <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
+                          <center> <b style= {{fontSize: "18pt"}}>Deaths by Age</b> </center> 
+                          <br/>
+                          <br/>         
+                        </Header.Subheader>
+                  </Grid.Column>
+                </Grid.Row>
+                {/* <div style={{paddingLeft: "6em", paddingRight: "0em"}}></div> */}
+                
                 <Grid.Row columns = {2} style = {{width: 1000}}>
                   <Grid.Column style = {{width: 450, paddingLeft: 100}}>
                   <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
@@ -1747,7 +1895,7 @@ export default function ExtraFile(props) {
 
 
                             ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                             style={{
                               data: {
                                 fill: casesColor[1]
@@ -1775,7 +1923,7 @@ export default function ExtraFile(props) {
 
 
                             ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                             style={{
                               data: {
                                 fill: "#D3D3D3"
@@ -1830,7 +1978,7 @@ export default function ExtraFile(props) {
 
 
                             ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                             style={{
                               data: {
                                 fill: mortalityColor[1]
@@ -1858,7 +2006,7 @@ export default function ExtraFile(props) {
 
 
                             ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                             style={{
                               data: {
                                 fill: "#D3D3D3"
