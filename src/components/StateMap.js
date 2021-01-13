@@ -101,7 +101,7 @@ function CaseChart(props){
   },[playCount])
 
   return(
-    <div style={{paddingTop: 30, paddingBottom: 70, width: 780}}>
+    <div style={{paddingTop: 5, paddingBottom: 70, width: 780}}>
       <LineChart width={720} height={180} data = {data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
@@ -1393,7 +1393,8 @@ export default function StateMap(props) {
                       },
                       content: {
                           content: (
-                            <Grid.Row style={{width: "420px"}}>
+                            <div>
+                            {stateFips !== "_nation" && <Grid.Row style={{width: "420px"}}>
                                 <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
                                 <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                 For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
@@ -1402,7 +1403,8 @@ export default function StateMap(props) {
                                 </text>
 
 
-                            </Grid.Row>
+                            </Grid.Row>}
+                            </div>
                           ),
                         },
                     }
@@ -1527,49 +1529,55 @@ export default function StateMap(props) {
                   <Grid>
                     {stateFips !== "_nation" && 
                     <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 800}}>
-                      {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
-                      <Dropdown
-                        style={{background: '#fff', 
-                                fontSize: "19px",
-                                fontWeight: 400, 
-                                theme: '#000000',
-                                width: '450px',
-                                top: '0px',
-                                left: '15px',
-                                text: "Select",
-                                borderTop: '0.5px solid #bdbfc1',
-                                borderLeft: '0.5px solid #bdbfc1',
-                                borderRight: '0.5px solid #bdbfc1', 
-                                borderBottom: '0.5px solid #bdbfc1',
-                                borderRadius: 0,
-                                minHeight: '1.0em',
-                                paddingBottom: '0.5em',
-                                paddingLeft: '1em'}}
-                        text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
-                        pointing = 'top'
-                        search
-                        selection
-                        options={trendOptions}
-                        onChange={(e, { value}) => {
-                          setTrendline(value);
-                          setSelectedTrend(trendName[value]);
-                          
-                                  
-                        }}
-                      />
-                        <svg width = "370" height = "40">
-                            <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                            <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
-                            <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                            <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
-                            <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                            <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
-                        </svg>
-
-                        {dataTS && <
-                          CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
-                              ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {trendline}/>
-                        }                        
+                      <Grid.Column>
+                        {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
+                        <Dropdown
+                          style={{background: '#fff', 
+                                  fontSize: "19px",
+                                  fontWeight: 400, 
+                                  theme: '#000000',
+                                  width: '450px',
+                                  top: '0px',
+                                  left: '15px',
+                                  text: "Select",
+                                  borderTop: '0.5px solid #bdbfc1',
+                                  borderLeft: '0.5px solid #bdbfc1',
+                                  borderRight: '0.5px solid #bdbfc1', 
+                                  borderBottom: '0.5px solid #bdbfc1',
+                                  borderRadius: 0,
+                                  minHeight: '1.0em',
+                                  paddingBottom: '0.5em',
+                                  paddingLeft: '1em'}}
+                          text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
+                          pointing = 'top'
+                          search
+                          selection
+                          options={trendOptions}
+                          onChange={(e, { value}) => {
+                            setTrendline(value);
+                            setSelectedTrend(trendName[value]);
+                            
+                                    
+                          }}
+                        />
+                        <div style = {{paddingTop: 10}}>
+                          <svg width = "500" height = "40">
+                              <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                              <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
+                              <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                              <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
+                              <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                              <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
+                          </svg>
+                        </div>
+                        <div style = {{width: 1000, height: 180}}>
+                          {dataTS && <
+                            CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
+                                ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {trendline}/>
+                          }  
+                        </div>
+                                                
+                      </Grid.Column>
                         
                     </Grid.Row>}
 
