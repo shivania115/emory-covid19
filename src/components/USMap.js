@@ -721,7 +721,7 @@ export default function USMap(props) {
                           <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 170, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
                   </div>}
 
-                  {stateFips && fips == "_nation" && <div style={{paddingLeft: "6em", paddingRight: "2em"}}>
+                  {stateFips && fips === "_nation" && <div style={{paddingLeft: "6em", paddingRight: "2em"}}>
 
                     <VictoryChart
                               theme={VictoryTheme.material}

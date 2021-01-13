@@ -547,221 +547,241 @@ export default function USMap(props) {
 
                   </ComposableMap>
                   
-                  <Accordion style = {{paddingTop: "13px"}}>
-                    <Accordion.Title
-                      active={accstate.activeIndex === 0}
-                      index={0}
-                      onClick={dealClick}
-                      style ={{color: "#397AB9", fontSize: "14pt"}}
-                    >
-                    <Icon name='dropdown' />
-                      About this data
-                    </Accordion.Title>
-                      <Accordion.Content active={accstate.activeIndex === 0}>
-                        <Grid.Row style={{width: 450}}>
-                            <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                            For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                            </Header.Content>
-                        </Grid.Row>
-                      </Accordion.Content>
+                  {stateFips && <Accordion style = {{paddingTop: 190}}defaultActiveIndex={1} panels={[
+                  {
+                      key: 'acquire-dog',
+                      title: {
+                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                          icon: 'dropdown',
+                      },
+                      content: {
+                          content: (
+                            <Grid.Row style={{width: 450}}>
+                                <Header.Content style={{fontWeight: 300, paddingTop: 7, fontSize: "14pt", lineHeight: "18pt"}}>
+                                <b><em> First Doses Administered </em></b> is the number of individuals who have 
+                                      received the first dose of a COVID-19 vaccine. Individuals must receive two doses 
+                                      of the current COVID-19 vaccines (Pfizer, Moderna) to become fully vaccinated. <br/>
+                                      <br/>
+                                For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                </Header.Content>
+                            </Grid.Row>
+                          ),
+                        },
+                    }
+                ]
 
-                  </Accordion> 
+                } /> }
                 </Grid.Column>
 
-
-
-
-
                 <Grid.Column style ={{width: 500, paddingLeft: 80}}>
-                <Header as='h2' style={{fontWeight: 400}}>
-                      <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
-                        Vaccination Status in <b>{stateName}</b>
-                        
-                      </Header.Content>
-                    </Header>
-                  <Grid>
-                
-                    
-
-                    <Grid.Row columns = {2}>
-                      <Grid.Column style = {{width: 230, paddingLeft: 20}}> 
-
-                        <div>
-                        {stateFips &&
-                          <VictoryChart 
-                                      minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
-                                      maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
-                                      width={220}
-                                      height={180}
-                                      padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
-                                      containerComponent={<VictoryContainer responsive={false}/>}>
-                                      
-                                      <VictoryAxis
-                                        tickValues={stateFips ? 
-                                          [
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length-1].t]
-                                          :
-                                        [
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3) - 1].t,
-                                          allTS["13"][allTS["13"].length-1].t]}                         
-                                        style={{grid:{background: "#ccdee8"}, tickLabels: {fontSize: 10}}} 
-                                        tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                                      
-                                      <VictoryGroup 
-                                        colorScale={[stateColor]}
-                                      >
-
-                                      <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
-                                          x='t' y='caseRateMean'
-                                          />
-
-                                      </VictoryGroup>
-                                      <VictoryArea
-                                        style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                        data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
-                                        x= 't' y = 'caseRateMean'
-
-                                      />
-
-                                      <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
-                                      
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
-                                                          : 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
-                                      
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
-                                                          : 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
-                                                          
-
-                                                          x={160} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
-
-                                                          , fill: stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
-                                                          : 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
-
-                                                        }}/>
-
-                                      <VictoryLabel text= {"14-day"}  x={197} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {"change"}  x={197} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {"Daily Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
-
-                                      
-                          </VictoryChart>}
-                        </div>
-                      </Grid.Column>
-                      <Grid.Column style = {{width: 230, paddingLeft: 100}}> 
-                        <div>
-                        {stateFips && 
-                          <VictoryChart theme={VictoryTheme.material}
-                                      minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
-                                      maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
-                                      width={220}
-                                      height={180}       
-                                      padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
-                                      containerComponent={<VictoryContainer responsive={false}/>}>
-                                      
-                                      <VictoryAxis
-                                        tickValues={stateFips ? 
-                                          [
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
-                                          allTS[stateFips][allTS[stateFips].length-1].t]
-                                          :
-                                        [
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3) - 1].t,
-                                          allTS["13"][allTS["13"].length-1].t]}                        
-                                        style={{tickLabels: {fontSize: 10}}} 
-                                        tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
-                                      
-                                      <VictoryGroup 
-                                        colorScale={[stateColor]}
-                                      >
-
-                                        <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
-                                          x='t' y='mortalityMean'
-                                          />
-
-                                      </VictoryGroup>
-
-                                      <VictoryArea
-                                        style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1} }}
-                                        data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
-                                        x= 't' y = 'mortalityMean'
-
-                                      />
-
-                                      
-                                      <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
-                                      
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
-                                                          "0%"
-                                                          : 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
-                                                          "0%"} x={197} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
-
-                                      <VictoryLabel text= {stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
-                                                          : 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
-
-                                                          x={160} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
-
-                                                          , fill: stateFips ? 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
-                                                          : 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
-                                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
-
-                                      <VictoryLabel text= {"14-day"}  x={197} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {"change"}  x={197} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {"Total Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
-
-                          </VictoryChart>}
-                        </div>
-                      
-                      </Grid.Column>
-                        <Header.Content id = "select" style={{fontWeight: 300, paddingLeft: 15,fontSize: "14pt", lineHeight: "18pt"}}>
-                          *14-day change trends use 7-day averages.
-                        </Header.Content>
-                    </Grid.Row>
-
-                    <Grid.Row>
-                      <Grid.Column>
-                      <Header as='h2' style={{fontWeight: 400}}>
+                  <Header as='h2' style={{fontWeight: 400}}>
                     <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
-                      Disparities in COVID-19 Mortality <br/> <b>{fips !== "_nation" ? stateName : "Nation"}</b>
+                      Vaccination Status in <b>{stateName}</b>
                       
                     </Header.Content>
                   </Header>
+                <Grid>
+                
+                    
 
-                  {stateFips && stateFips === "_nation" && <div style = {{marginTop: 13}}>
-                          <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 150, fontWeight: 400, width: 400}}> Deaths by Race & Ethnicity</Header.Content>
-                  </div>}
+                <Grid.Row columns = {2}>
+                  <Grid.Column style = {{width: 230, paddingLeft: 20}}> 
 
-                  {stateFips && fips == "_nation" && <div style={{paddingLeft: "0em", paddingRight: "2em"}}>
+                    <div>
+                    {stateFips &&
+                      <VictoryChart 
+                                  minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"].length-15].t}}
+                                  maxDomain = {{y: stateFips? getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean*1.05}}                            
+                                  width={220}
+                                  height={180}
+                                  padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}>
+                                  
+                                  <VictoryAxis
+                                    tickValues={stateFips ? 
+                                      [
+                                      allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
+                                      allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
+                                      allTS[stateFips][allTS[stateFips].length-1].t]
+                                      :
+                                    [
+                                      allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
+                                      allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3) - 1].t,
+                                      allTS["13"][allTS["13"].length-1].t]}                         
+                                    style={{grid:{background: "#ccdee8"}, tickLabels: {fontSize: 10}}} 
+                                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                                  
+                                  <VictoryGroup 
+                                    colorScale={[stateColor]}
+                                  >
+
+                                  <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
+                                      x='t' y='caseRateMean'
+                                      />
+
+                                  </VictoryGroup>
+                                  <VictoryArea
+                                    style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
+                                    data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
+                                    x= 't' y = 'caseRateMean'
+
+                                  />
+
+                                  <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                  
+                                  <VictoryLabel text= {stateFips ? 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                                      : 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+                                  
+                                  <VictoryLabel text= {stateFips ? 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""
+                                                      : 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "↑": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "↓": ""} 
+                                                      
+
+                                                      x={160} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
+
+                                                      , fill: stateFips ? 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
+                                                      : 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? "#FF0000": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? "#32CD32": ""
+
+                                                    }}/>
+
+                                  <VictoryLabel text= {"14-day"}  x={197} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                  <VictoryLabel text= {"change"}  x={197} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                  <VictoryLabel text= {"Vaccines Allocated"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+
+                                  
+                      </VictoryChart>}
+                    </div>
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 230, paddingLeft: 100}}> 
+                    <div>
+                    {stateFips && 
+                      <VictoryChart theme={VictoryTheme.material}
+                                  minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
+                                  maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean + 0.8: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
+                                  width={220}
+                                  height={180}       
+                                  padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}>
+                                  
+                                  <VictoryAxis
+                                    tickValues={stateFips ? 
+                                      [
+                                      allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3)*2 - 1].t,
+                                      allTS[stateFips][allTS[stateFips].length - Math.round(allTS[stateFips].length/3) - 1].t,
+                                      allTS[stateFips][allTS[stateFips].length-1].t]
+                                      :
+                                    [
+                                      allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3)*2 - 1].t,
+                                      allTS["13"][allTS["13"].length - Math.round(allTS["13"].length/3) - 1].t,
+                                      allTS["13"][allTS["13"].length-1].t]}                        
+                                    style={{tickLabels: {fontSize: 10}}} 
+                                    tickFormat={(t)=> new Date(t*1000).toLocaleDateString()}/>
+                                  
+                                  <VictoryGroup 
+                                    colorScale={[stateColor]}
+                                  >
+
+                                    <VictoryLine data={stateFips && allTS[stateFips] ? allTS[stateFips] : allTS["13"]}
+                                      x='t' y='mortalityMean'
+                                      />
+
+                                  </VictoryGroup>
+
+                                  <VictoryArea
+                                    style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1} }}
+                                    data={stateFips && allTS[stateFips]? allTS[stateFips] : allTS["13"]}
+                                    x= 't' y = 'mortalityMean'
+
+                                  />
+
+                                  
+                                  <VictoryLabel text= {stateFips ? numberWithCommas((allTS[stateFips][allTS[stateFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{fontSize: 40, fontFamily: 'lato', fill: "#004071"}}/>
+                                  
+                                  <VictoryLabel text= {stateFips ? 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
+                                                      "0%"
+                                                      : 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%": 
+                                                      "0%"} x={197} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato', fill: "#004071"}}/>
+
+                                  <VictoryLabel text= {stateFips ? 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "↓": ""
+                                                      : 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "↑": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"↓": ""} 
+
+                                                      x={160} y={80} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'
+
+                                                      , fill: stateFips ? 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
+                                                      (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyDeaths).toFixed(0)< 0? "#32CD32": ""
+                                                      : 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0? "#FF0000": 
+                                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)< 0?"#32CD32": ""}}/>
+
+                                  <VictoryLabel text= {"14-day"}  x={197} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                  <VictoryLabel text= {"change"}  x={197} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
+                                  <VictoryLabel text= {"First Doses Administered"}  x={105} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+
+                      </VictoryChart>}
+                    </div>
+                  
+                  </Grid.Column>
+                  
+                  {stateFips && <Accordion style = {{paddingTop: 10, paddingLeft: 20}}defaultActiveIndex={1} panels={[
+                          {
+                              key: 'acquire-dog',
+                              title: {
+                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                  icon: 'dropdown',
+                              },
+                              content: {
+                                  content: (
+                                    <Header.Content id = "select" style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 500}}>
+                                      <b><em> Total Vaccine Doses Allocated </em></b> is the number of vaccine doses 
+                                      that each state will receive from the Federal Government. <br/>
+                                      <b><em> First Doses Administered </em></b> is the number of individuals who have 
+                                      received the first dose of a COVID-19 vaccine. Individuals must receive two doses 
+                                      of the current COVID-19 vaccines (Pfizer, Moderna) to become fully vaccinated. <br/>
+                                      *14-day change trends use 7-day averages.
+                                    </Header.Content>
+                                  ),
+                                },
+                            }
+                        ]
+                        } /> }
+                </Grid.Row>
+
+                <Grid.Row>
+                  <Grid.Column>
+                    <Header as='h2' style={{fontWeight: 400, paddingTop: 10}}>
+                      <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
+                        Disparities in COVID-19 Mortality <br/> <b>{fips !== "_nation" ? stateName : "Nation"}</b>
+                        
+                      </Header.Content>
+                    </Header>
+
+                    {stateFips && stateFips === "_nation" && <div style = {{marginTop: 13}}>
+                            <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 150, fontWeight: 400, width: 400}}> Deaths by Race & Ethnicity</Header.Content>
+                    </div>}
+
+                    {stateFips && fips === "_nation" && <div style={{paddingLeft: "0em", paddingRight: "2em"}}>
 
                     <VictoryChart
                               theme={VictoryTheme.material}
@@ -801,16 +821,16 @@ export default function USMap(props) {
                               />
                             </VictoryChart>
                             <Header.Content style = {{width: 420}}>
-                                <Header.Content id="region" style={{ fontWeight: 300, paddingLeft: 150, paddingTop: 8, paddingBottom:40, fontSize: "19px", lineHeight: "18pt"}}>
+                                <Header.Content id="region" style={{ fontWeight: 300, paddingLeft: 150, paddingTop: 8, paddingBottom:34, fontSize: "19px", lineHeight: "18pt"}}>
                                   <b>Deaths per 100,000 residents</b>
                                 </Header.Content>
                             </Header.Content>
                   </div>}
                   
-                  {fips !== "_nation" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && stateFips !== "38" &&
-                  <Grid>
-                    <Grid.Row columns = {2} style = {{height: 298, paddingBottom: 287}}>
-                      <Grid.Column style = {{paddingLeft: 20}}> 
+                        {fips !== "_nation" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && stateFips !== "38" &&
+                        <Grid>
+                          <Grid.Row columns = {2} style = {{height: 273, paddingBottom: 0}}>
+                            <Grid.Column style = {{paddingLeft: 20}}> 
                               {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
                                 <div style = {{marginTop: 10, width: 250}}>
                                   <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths by Race</Header.Content>
@@ -938,8 +958,7 @@ export default function USMap(props) {
 
                                   <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 0, fontWeight: 400}}> <br/> <br/> <br/> 
                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  &nbsp;&nbsp;None Reported</text>
+                                  &nbsp;&nbsp;&nbsp;&nbsp;None Reported</text>
                                 </div>
                               }
 
@@ -1126,7 +1145,7 @@ export default function USMap(props) {
 
                         {fips !== "_nation" && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && fips !== "38" &&
                         <Grid.Row columns = {1}>
-                          <Grid.Column style = {{ marginLeft : 0, paddingBottom: (13+ 30 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
+                          <Grid.Column style = {{ marginLeft : 0, paddingBottom: (13+ 2 * (!raceData[fips]["Hispanic"] + !raceData[fips]["Non Hispanic"] + !raceData[fips]["Non-Hispanic African American"] + !raceData[fips]["Non-Hispanic American Natives"] + !raceData[fips]["Non-Hispanic Asian"] + !raceData[fips]["Non-Hispanic White"] ))}}> 
                             {stateFips && !raceData[fips]["White Alone"] &&
                               <div style = {{marginTop:10, width: 400}}>
                                 <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 150, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
@@ -1302,81 +1321,95 @@ export default function USMap(props) {
                         </Grid.Row>}
 
                         {stateFips === "38" &&
-
                           <Grid.Row columns = {1}>
-                          <Grid.Column style = {{ marginLeft : 110, paddingBottom: 123}}> 
-                            {stateFips === "38" &&
+                          <Grid.Column style = {{ marginLeft : 0, paddingTop: 8, paddingBottom: 87, width: 500}}> 
                               <div style = {{marginTop: 50}}>
-                                <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400, width: 400}}> Deaths per capita by Race & Ethnicity <br/> <br/> <br/> <br/> </text>
-                                <text style={{fontSize: '14pt', paddingLeft: 80, fontWeight: 400}}> None Reported</text>
-                              </div>
-                            }
-                            
+                                <text x={0} y={20} style={{fontSize: '14pt', paddingLeft: 90, fontWeight: 400}}> Deaths per capita by Race & Ethnicity <br/> <br/> <br/> <br/> </text>
+                                <text style={{fontSize: '14pt', paddingLeft: 190, fontWeight: 400}}> None Reported</text>
+                              </div>                            
                           </Grid.Column>
                         </Grid.Row>
-
-
                         }
 
-                        {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 53}}> 
-                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
-                            The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
-                            <br/>
-                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
-                          
-                          </Header.Content>
-                        </Grid.Row>}
+                        {stateFips && <Accordion style = {{paddingTop: 10}}defaultActiveIndex={1} panels={[
+                          {
+                              key: 'acquire-dog',
+                              title: {
+                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                  icon: 'dropdown',
+                              },
+                              content: {
+                                  content: (
+                                    <div>
+                                      {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 53}}> 
+                                        <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
+                                          The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                          <br/>
+                                          <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                          <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                        
+                                        </Header.Content>
+                                      </Grid.Row>}
 
-                        {stateFips && fips !== "_nation" && <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
-                        
+                                      {stateFips && fips !== "_nation" && <Grid.Row style={{top: fips === "38"? -30 : stateFips && !raceData[fips]["White Alone"] ? -40 : -30, paddingLeft: 0}}>
+                                      
 
-                        
+                                      
 
-                        {fips === "38" &&
-                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
-                            {stateName} is not reporting deaths by race or ethnicity.
-                            <br/>
-                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
-                          
-                          </Header.Content>}
+                                      {fips === "38" &&
+                                        <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
+                                          {stateName} is not reporting deaths by race or ethnicity.
+                                          <br/>
+                                          <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                          <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                        
+                                        </Header.Content>}
 
-                        {stateFips !== "38" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && (!raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
-                                    && 
-                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
-                            {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
-                            <br/>
-                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
-                          
-                          </Header.Content>}
+                                      {stateFips !== "38" && !raceData[fips]["Non-Hispanic African American"] && !!raceData[fips]["White Alone"] && (!raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
+                                                  && 
+                                        <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
+                                          {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
+                                          <br/>
+                                          <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                          <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                        
+                                        </Header.Content>}
 
-                        {stateFips !== "38"  && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
-                                    && 
-                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
-                            {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
-                            <br/>
-                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
-                          
-                          </Header.Content>}
+                                      {stateFips !== "38"  && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
+                                                  && 
+                                        <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
+                                          {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
+                                          <br/>
+                                          <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                          <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                        
+                                        </Header.Content>}
 
-                        {stateFips !== "38"  && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
-                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
-                            {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[fips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
-                            <br/>
-                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
-                          
-                          </Header.Content>}
+                                      {stateFips !== "38"  && (!!raceData[fips]["Non-Hispanic African American"] || !!raceData[fips]["Non-Hispanic White"] ) && 
+                                        <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 500}}>
+                                          {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[fips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
+                                          <br/>
+                                          <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                          <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                        
+                                        </Header.Content>}
 
-                          {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
-                              <div style = {{marginTop: 10}}>
-                              </div>
+                                        {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
+                                            <div style = {{marginTop: 10}}>
+                                            </div>
+                                          }
+
+                                      </Grid.Row>}
+
+                                    </div>
+                                  ),
+                                },
                             }
+                        ]
 
-                        </Grid.Row>}
+                        } /> }
+                        
+                        
 
 
                       </Grid.Column>
@@ -1742,7 +1775,7 @@ export default function USMap(props) {
 
                                       <VictoryLabel text= {stateMapFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
                                       <VictoryLabel text= {stateMapFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Daily Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Vaccines Allocated"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                                       
                           </VictoryChart>}
@@ -1820,7 +1853,7 @@ export default function USMap(props) {
 
                                       <VictoryLabel text= {stateMapFips === "_nation" ? "" : "14-day"}  x={180} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
                                       <VictoryLabel text= {stateMapFips === "_nation" ? "" : "change"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "Total Vaccination"}  x={120} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
+                                      <VictoryLabel text= {stateMapFips === "_nation" ? "" : "First Doses Administered "}  x={105} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato', fill: "#004071"}}/>
 
                           </VictoryChart>}
                         </div>
