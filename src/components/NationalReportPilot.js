@@ -177,6 +177,9 @@ function StickyExampleAdjacentContext(props) {
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent African American </Header></Menu.Item>
                         <Menu.Item as='a' href="#resseg" name='COVID-19 by Residential Segregation Index' active={props.activeCharacter == 'COVID-19 by Residential Segregation Index' || activeItem === 'COVID-19 by Residential Segregation Index'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index</Header></Menu.Item>
+                        <Menu.Item as='a' href="#comorb" name='COVID-19 by Underlying Comorbidity' active={props.activeCharacter == 'COVID-19 by Underlying Comorbidity' || activeItem === 'COVID-19 by Underlying Comorbidity'}
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Underlying Comorbidity</Header></Menu.Item>
+                    
                     </Menu>
                 </Sticky>
             </Rail>
@@ -753,7 +756,7 @@ function DeathChart(props){
 
 
 
-export default function ExtraFile(props) {
+export default function NationalReport(props) {
   const characterRef = createRef();
   const [activeCharacter, setActiveCharacter] = useState('');
   const [data, setData] = useState();
@@ -805,6 +808,12 @@ export default function ExtraFile(props) {
   const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
   const [legendMinPoverty, setLegendMinPoverty] = useState([]);
   const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
+
+  const [Comorb] = useState("anyconditionPrevalence");
+  const [colorComorb, setColorComorb] = useState();
+  const [legendMaxComorb, setLegendMaxComorb] = useState([]);
+  const [legendMinComorb, setLegendMinComorb] = useState([]);
+  const [legendSplitComorb, setLegendSplitComorb] = useState([]);
 
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
@@ -1229,6 +1238,52 @@ export default function ExtraFile(props) {
 
     },[data, black]);
 
+    useEffect(() => {
+      if(data && resSeg){
+          //comorb
+          const csii = scaleQuantile()
+          .domain(_.map(_.filter(_.map(data, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[Comorb] > 0 &&
+                d.fips.length === 5)),
+            d=> d[Comorb]))
+          .range(colorPalette);
+
+          let scaleMapii = {}
+          _.each(data, d=>{
+            if(d[Comorb] > 0){
+            scaleMapii[d[Comorb]] = csii(d[Comorb])}
+          });
+        
+          setColorComorb(scaleMapii);
+          var maxii = 0
+          var minii = 100
+          _.each(data, d=> { 
+            if (d[Comorb] > maxii && d.fips.length === 5) {
+              maxii = d[Comorb]
+            } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
+              minii = d[Comorb]
+            }
+          });
+          if (maxii > 999999) {
+            maxii = (maxii/1000000).toFixed(0) + "M";
+            setLegendMaxComorb(maxii);
+          }else if (maxii > 999) {
+            maxii = (maxii/1000).toFixed(0) + "K";
+            setLegendMaxComorb(maxii);
+          }else{
+            setLegendMaxComorb(maxii.toFixed(0));
+          }
+          setLegendMinComorb(minii.toFixed(0));
+          setLegendSplitComorb(csii.quantiles());
+
+
+      }
+
+    },[data, resSeg]);
+
   useEffect(() => {
     if (dataTS){
       setCovidMetric(_.takeRight(dataTS['_nation'])[0]);
@@ -1484,8 +1539,9 @@ export default function ExtraFile(props) {
                   While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
                   affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0)} cases per 100,000 individuals, 
                   around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate. 
-                  Deaths are highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({(demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0)}), 
-                  followed by {Object.keys(demog_descriptives['Age'][0])[0]} age group ({(demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0)}). Those in {Object.keys(demog_descriptives['Age'][0])[3]} and {Object.keys(demog_descriptives['Age'][0])[2]} age group are, however, 
+                  Deaths are highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({(demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0)} deaths per 100,000), 
+                  followed by {Object.keys(demog_descriptives['Age'][0])[1]} age group ({(demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0)} deaths per 100,000). 
+                  Those {(Object.keys(demog_descriptives['Age'][0])[3] === "0 - 4" && Object.keys(demog_descriptives['Age'][0])[2] === "5 - 17") ? " under 18 ": "in " + (Object.keys(demog_descriptives['Age'][0])[3] + " and " + Object.keys(demog_descriptives['Age'][0])[2] + " age group ")} are, however, 
                   experiencing the lowest mortality from COVID-19.
                     
                   </Header.Subheader>
@@ -1497,7 +1553,7 @@ export default function ExtraFile(props) {
               <Grid>
                 
                 <Grid.Row columns = {1} style = {{width: 1000}}>
-                  <Grid.Column style = {{width: 450, paddingLeft: 185}}>
+                  <Grid.Column style = {{width: 450, paddingLeft: 180}}>
                     <div style={{paddingTop:'0em'}}>
                       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: 0}}>
                         <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by race</b> </center> 
@@ -1882,15 +1938,15 @@ export default function ExtraFile(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentCases']},
+                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentCases']},
                                  
 
 
@@ -1910,15 +1966,15 @@ export default function ExtraFile(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentPop']},
                                  
 
 
@@ -1965,15 +2021,15 @@ export default function ExtraFile(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentDeaths']},
+                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentDeaths']},
                                  
 
 
@@ -1993,15 +2049,15 @@ export default function ExtraFile(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['5 - 17 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['18 - 29 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['30 - 39 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['40 - 49 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['50 - 64 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['65 - 74 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['75 - 84 Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84 Years'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['85+ Years'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+ Years'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentPop']},
+                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentPop']},
                                  
 
 
@@ -3333,6 +3389,227 @@ export default function ExtraFile(props) {
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][2]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][3]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][4]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0}
+
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: mortalityColor[1]
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                        </VictoryChart>
+
+                        <Header.Content style = {{width: 550}}>
+                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                              <b>COVID-19 Deaths per 100,000</b>
+                            </Header.Content>
+                        </Header.Content>
+                    </Grid.Column>
+                </Grid.Row> 
+              </Grid>}
+
+              <div id="comorb" style = {{height: 45}}> </div>
+
+              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Underlying Comorbidity</b> </center> 
+                    <br/>
+                    <br/>         
+
+                  </Header.Subheader>
+
+              {black && <Grid>
+                <Grid.Row columns={2} style={{paddingTop: 8}}>
+                  <Grid.Column style={{paddingTop:10,paddingBottom:18}}>
+                    
+
+                  <div >
+                    
+                    <svg width="260" height="80">
+                      
+                      {_.map(legendSplitResSeg, (splitpoint, i) => {
+                        if(legendSplitResSeg[i] < 1){
+                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                        }else if(legendSplitResSeg[i] > 999999){
+                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                        }else if(legendSplitResSeg[i] > 999){
+                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                        }
+                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                      })} 
+                      <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
+                      <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+
+
+                      {_.map(colorPalette, (color, i) => {
+                        return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                      })} 
+
+
+                      <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                      <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+                      <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                      <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                      <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                    
+
+                    </svg>
+
+                    <br/><br/><br/>
+                      <ComposableMap 
+                        projection="geoAlbersUsa" 
+                        data-tip=""
+                        width={520} 
+                        height={300}
+                        strokeWidth= {0.1}
+                        stroke= 'black'
+                        projectionConfig={{scale: 580}}
+                        style = {{paddingLeft: 50}}
+                        >
+                        <Geographies geography={geoUrl}>
+                          {({ geographies }) => 
+                            <svg>
+                              {geographies.map(geo => (
+                                <Geography
+                                  key={geo.rsmKey}
+                                  geography={geo}
+                                  fill={
+                                  ((colorComorb && data[geo.id] && (data[geo.id][Comorb]) > 0)?
+                                      colorComorb[data[geo.id][Comorb]]: 
+                                      (colorComorb && data[geo.id] && data[geo.id][Comorb] === 0)?
+                                        '#FFFFFF':'#FFFFFF')}
+                                  
+                                />
+                              ))}
+                            </svg>
+                          }
+                        </Geographies>
+                        
+
+                      </ComposableMap>
+                  </div>
+                  <Accordion style = {{paddingTop: 118, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                      <Header.Content  style={{fontSize: "14pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
+                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        that occurred in each group of counties ranked by residential segregation. The 
+                                        ranking classified counties into five groups designed to be of equal size, so that 
+                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
+                                        county characteristic, and the highest quintile contains counties with values in 
+                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
+                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
+                                        in the 60%-80% range.
+                                        </Header.Subheader>
+                                      </Header.Content>
+                                    </Header>
+                                ),
+                              },
+                          }
+                      ]
+
+                      } />
+
+                  </Grid.Column>
+                  <Grid.Column>
+                  <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                      <Header.Content>
+                        Cases by Underlying Comorbidity
+                      </Header.Content>
+                    </Header>
+                        <VictoryChart
+                          theme={VictoryTheme.material}
+                          width={530}
+                          height={180}
+                          domainPadding={20}
+                          minDomain={{y: props.ylog?1:0}}
+                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          style = {{fontSize: "14pt"}}
+                          containerComponent={<VictoryContainer responsive={false}/>}
+                        >
+                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryBar
+                            horizontal
+                            barRatio={0.80}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            data={[
+                                  {key: nationalBarChart['caserate7day'][0]['any condition'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['any condition'][0]['measure']/nationalBarChart['caserate7day'][0]['any condition'][0]['measure'])*nationalBarChart['caserate7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['any condition'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['any condition'][1]['measure']/nationalBarChart['caserate7day'][0]['any condition'][0]['measure'])*nationalBarChart['caserate7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['any condition'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['any condition'][2]['measure']/nationalBarChart['caserate7day'][0]['any condition'][0]['measure'])*nationalBarChart['caserate7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['any condition'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['any condition'][3]['measure']/nationalBarChart['caserate7day'][0]['any condition'][0]['measure'])*nationalBarChart['caserate7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['caserate7day'][0]['any condition'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['any condition'][4]['measure']/nationalBarChart['caserate7day'][0]['any condition'][0]['measure'])*nationalBarChart['caserate7day'][0]['any condition'][0]['measure'] || 0}
+
+
+
+                            ]}
+                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                            style={{
+                              data: {
+                                fill: casesColor[1]
+                              }
+                            }}
+                            x="key"
+                            y="value"
+                          />
+                        </VictoryChart>
+
+                        <Header.Content style = {{width: 540}}>
+                          
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <b>COVID-19 Cases per 100,000</b>
+                          </Header.Content>
+                        </Header.Content>
+                          
+                          <br/>
+                          <br/>
+
+                      <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                          <Header.Content>
+                        Deaths by Underlying Comorbidity
+                      </Header.Content>
+                    </Header>
+                        <VictoryChart
+                          theme={VictoryTheme.material}
+                          width={530}
+                          height={180}
+                          domainPadding={20}
+                          minDomain={{y: props.ylog?1:0}}
+                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          style = {{fontSize: "14pt"}}
+                          containerComponent={<VictoryContainer responsive={false}/>}
+                        >
+                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          <VictoryBar
+                            horizontal
+                            barRatio={0.80}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            data={[
+                                  {key: nationalBarChart['covidmortality7day'][0]['any condition'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure']/nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['any condition'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['any condition'][1]['measure']/nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['any condition'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['any condition'][2]['measure']/nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['any condition'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['any condition'][3]['measure']/nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'] || 0},
+                                  {key: nationalBarChart['covidmortality7day'][0]['any condition'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['any condition'][4]['measure']/nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['any condition'][0]['measure'] || 0}
 
 
 
