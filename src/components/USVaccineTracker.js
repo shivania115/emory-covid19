@@ -710,10 +710,10 @@ export default function USMap(props) {
                       } /> }
               </Grid.Row>
               <Grid.Row columns = {2} style = {{width: 1000}}>
-                <Grid.Column style = {{width: 550, paddingLeft: 50}}>
+                <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                 
                   
-                  <Grid.Row columns={2} style={{width: 550, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0}}>
+                  <Grid.Row columns={2} style={{width: 550, paddingLeft: 0, paddingRight: 0, paddingBottom: 0}}>
 
                         
 
@@ -721,32 +721,32 @@ export default function USMap(props) {
                     
                     {_.map(legendSplit, (splitpoint, i) => {
                       if(legendSplit[i] < 1){
-                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                        return <text key = {i} x={50 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                       }else if(legendSplit[i] > 999999){
-                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+                        return <text key = {i} x={50 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
                       }else if(legendSplit[i] > 999){
-                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+                        return <text key = {i} x={50 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
                       }
-                      return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                      return <text key = {i} x={50 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                     })} 
-                    <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                    <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                    <text x={30} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                    <text x={150} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
 
                     {_.map(colorPalette, (color, i) => {
-                      return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                      return <rect key={i} x={30+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                     })} 
 
 
-                    <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                    <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                    <text x={30} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                    <text x={30+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
 
-                    <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                    <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                    <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                    <rect x={175} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                    <text x={197} y={50} style={{fontSize: '0.7em'}}> None </text>
+                    <text x={197} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
-                    <text x={300} y={59} style={{fontSize: '1em'}}> Click on a state</text>
+                    <text x={280} y={59} style={{fontSize: '1em'}}> Click on a state</text>
 
 
                   </svg>
@@ -756,11 +756,12 @@ export default function USMap(props) {
                   <ComposableMap 
                     projection="geoAlbersUsa" 
                     data-tip=""
-                    width={450} 
-                    height={360}
+                    width={550} 
+                    height={400}
                     strokeWidth= {0.1}
                     stroke= 'black'
-                    projectionConfig={{scale: 435}}
+                    offsetX = {-80}
+                    projectionConfig={{scale: 550}}
 
 
                     >
@@ -834,7 +835,7 @@ export default function USMap(props) {
 
                   </ComposableMap>
                   
-                  {stateFips && <Accordion style = {{paddingTop: 180}}defaultActiveIndex={1} panels={[
+                  {stateFips && <Accordion style = {{paddingTop: 140}}defaultActiveIndex={1} panels={[
                   {
                       key: 'acquire-dog',
                       title: {
