@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
-import { Container, Header, Grid, Loader, Divider, Button, Image, Rail, Sticky, Ref, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
+import { Container, Header, Grid, Loader, Divider, Button, Dropdown, Image, Rail, Sticky, Ref, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
@@ -271,8 +271,6 @@ useEffect(()=>{
   }
 }, [activeItem]);
 
-console.log("data", data["_nation"]);
-console.log("data slice", data["_nation"].slice(-90));
 
   return(
   <Grid.Row style={{paddingLeft: '3rem', paddingBottom: '0rem', height:'39rem'}}>  
@@ -335,7 +333,6 @@ function CaseChartAll(props){
   },[props.history])
 
   var wait=0;
-  console.log("animationBool", animationBool);
 
   return(
     <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
@@ -389,7 +386,7 @@ function CaseChartAll(props){
       <Line name="7-day average" id='all-line' type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={3500} 
-            stroke={lineColor} strokeWidth="2" />
+            strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       {/* <Brush dataKey='t'/> */}
       </ComposedChart>
@@ -719,11 +716,11 @@ function DeathChart(props){
             onAnimationEnd={()=>setAnimationBool(false)} 
             animationDuration={5500} 
             fill={barColor} barSize={2.1} />
-      <Line name="7-day average" id={playCount} type='monotone' dataKey='mortalityMean' dot={false} 
+      <Line name="7-day average" type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={5500} 
             // animationBegin={500} 
-            stroke={lineColor} strokeWidth="2" />
+            strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
@@ -754,6 +751,241 @@ function DeathChart(props){
 }
 
 
+// function HeatMap(props){
+
+  
+//   const metric = props.metric;
+//   const data = props.data;
+//   const legendSplit = props.legendSplit;
+//   const legendMax = props.legendMax;
+//   const legendMin = props.legendMin;
+//   const colorPalette = props.colorPalette;
+//   const color = props.color;
+
+  
+  
+  
+//   return(
+//     <div>
+//       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+//         <center> <b style= {{fontSize: "18pt"}}>{props.options[metric]}</b> </center> 
+//         <br/>
+//         <br/>         
+
+//       </Header.Subheader>
+//       <Grid>
+//         <Grid.Row columns={2} style={{paddingTop: 8}}>
+//           <Grid.Column style={{paddingTop:10,paddingBottom:0}}>
+            
+
+//           <div >
+//             <br/>
+
+//             <svg width="260" height="80">
+              
+//               {_.map(legendSplit, (splitpoint, i) => {
+//                 if(legendSplit[i] < 1){
+//                   return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+//                 }else if(legendSplit[i] > 999999){
+//                   return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+//                 }else if(legendSplit[i] > 999){
+//                   return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+//                 }
+//                 return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+//               })} 
+//               <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
+//               <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
+
+
+//               {_.map(colorPalette, (color, i) => {
+//                 return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+//               })} 
+
+
+//               <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
+//               <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+//               <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+//               <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+//               <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+            
+
+//             </svg>
+
+//             <br/><br/><br/>
+//               <ComposableMap 
+//                 projection="geoAlbersUsa" 
+//                 data-tip=""
+//                 width={520} 
+//                 height={300}
+//                 strokeWidth= {0.1}
+//                 stroke= 'black'
+//                 projectionConfig={{scale: 580}}
+//                 style = {{paddingLeft: 50}}
+//                 >
+//                 <Geographies geography={geoUrl}>
+//                   {({ geographies }) => 
+//                     <svg>
+//                       {geographies.map(geo => (
+//                         <Geography
+//                           key={geo.rsmKey}
+//                           geography={geo}
+//                           fill={
+//                           ((color && data[geo.id] && (data[geo.id][metric]) > 0)?
+//                             color[data[geo.id][metric]]: 
+//                               (color && data[geo.id] && data[geo.id][metric] === 0)?
+//                                 '#FFFFFF':'#FFFFFF')}                              
+//                         />
+//                       ))}
+//                     </svg>
+//                   }
+//                 </Geographies>
+                
+
+//               </ComposableMap>
+//           </div>
+//           <Accordion style = {{paddingTop: 100, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+//                 {
+//                     key: 'acquire-dog',
+//                     title: {
+//                         content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+//                         icon: 'dropdown',
+//                     },
+//                     content: {
+//                         content: (
+//                             <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+//                               <Header.Content  style={{fontSize: "14pt"}}>
+//                                 <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+//                                 This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
+//                                 residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
+//                                 The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
+//                                 100,000 that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
+//                                 five groups designed to be of equal size, so that the lowest quintile contains the counties with values 
+//                                 in the 0%-20% range for this county characteristic, and the highest quintile contains counties with 
+//                                 values in the 80%-100% range for this county characteristic. Q2 indicates counties in the 20%-40% 
+//                                 range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties in the 60%-80% range.
+//                                 </Header.Subheader>
+//                               </Header.Content>
+//                             </Header>
+//                         ),
+//                       },
+//                   }
+//               ]
+
+//               } />
+
+
+//           </Grid.Column>
+//           <Grid.Column>
+//           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+//               <Header.Content>
+//                 Cases by {props.options[metric]}
+//               </Header.Content>
+//             </Header>
+//                 <VictoryChart
+//                   theme={VictoryTheme.material}
+//                   width={530}
+//                   height={180}
+//                   domainPadding={20}
+//                   minDomain={{y: props.ylog?1:0}}
+//                   padding={{left: 180, right: 40, top: 5, bottom: 1}}
+//                   style = {{fontSize: "14pt"}}
+//                   containerComponent={<VictoryContainer responsive={false}/>}
+//                 >
+//                   <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+//                   <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+//                   <VictoryBar
+//                     horizontal
+//                     barRatio={0.80}
+//                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+//                     data={[
+//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+
+
+
+//                     ]}
+//                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+//                     style={{
+//                       data: {
+//                         fill: casesColor[1]
+//                       }
+//                     }}
+//                     x="key"
+//                     y="value"
+//                   />
+//                 </VictoryChart>
+
+//                 <Header.Content style = {{width: 540}}>
+                  
+//                   <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+//                     <b>COVID-19 Cases per 100,000</b>
+//                   </Header.Content>
+//                 </Header.Content>
+                  
+//                   <br/>
+//                   <br/>
+
+//               <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+//                   <Header.Content>
+//                     Deaths by {props.options[metric]}
+//                   </Header.Content>
+//                 </Header>
+//                 <VictoryChart
+//                   theme={VictoryTheme.material}
+//                   width={530}
+//                   height={180}
+//                   domainPadding={20}
+//                   minDomain={{y: props.ylog?1:0}}
+//                   padding={{left: 180, right: 40, top: 5, bottom: 1}}
+//                   style = {{fontSize: "14pt"}}
+//                   containerComponent={<VictoryContainer responsive={false}/>}
+//                 >
+//                   <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+//                   <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+//                   <VictoryBar
+//                     horizontal
+//                     barRatio={0.80}
+//                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+//                     data={[
+//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+
+
+
+//                     ]}
+//                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+//                     style={{
+//                       data: {
+//                         fill: mortalityColor[1]
+//                       }
+//                     }}
+//                     x="key"
+//                     y="value"
+//                   />
+//                 </VictoryChart>
+
+//                 <Header.Content style = {{width: 550}}>
+//                     <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+//                       <b>COVID-19 Deaths per 100,000</b>
+//                     </Header.Content>
+//                 </Header.Content>
+
+//             </Grid.Column>
+//         </Grid.Row>
+//       </Grid>
+//     </div>
+
+//   )
+
+// }
 
 
 export default function NationalReport(props) {
@@ -785,35 +1017,43 @@ export default function NationalReport(props) {
   const [dailyDeaths, setDailyDeaths] = useState();
 
   const [bar, LoadBar] = useState(false);
+
   const [ccvi] = useState("ccvi");
   const [colorccvi, setColorccvi] = useState();
   const [legendMaxccvi, setLegendMaxccvi] = useState([]);
   const [legendMinccvi, setLegendMinccvi] = useState([]);
   const [legendSplitccvi, setLegendSplitccvi] = useState([]);
 
-  const [resSeg] = useState("RS_blackwhite");
-  const [colorResSeg, setColorResSeg] = useState();
-  const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
-  const [legendMinResSeg, setLegendMinResSeg] = useState([]);
-  const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
+  const [metric, setMetric] = useState("ccvi");
+  const [colorMetric, setColorMetric] = useState();
+  const [legendMaxMetric, setLegendMaxMetric] = useState([]);
+  const [legendMinMetric, setLegendMinMetric] = useState([]);
+  const [legendSplitMetric, setLegendSplitMetric] = useState([]);
 
-  const [black] = useState("black");
-  const [colorBlack, setColorBlack] = useState();
-  const [legendMaxBlack, setLegendMaxBlack] = useState([]);
-  const [legendMinBlack, setLegendMinBlack] = useState([]);
-  const [legendSplitBlack, setLegendSplitBlack] = useState([]);
 
-  const [poverty] = useState("poverty");
-  const [colorPoverty, setColorPoverty] = useState();
-  const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
-  const [legendMinPoverty, setLegendMinPoverty] = useState([]);
-  const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
+  // const [resSeg] = useState("RS_blackwhite");
+  // const [colorResSeg, setColorResSeg] = useState();
+  // const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
+  // const [legendMinResSeg, setLegendMinResSeg] = useState([]);
+  // const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
 
-  const [Comorb] = useState("anyconditionPrevalence");
-  const [colorComorb, setColorComorb] = useState();
-  const [legendMaxComorb, setLegendMaxComorb] = useState([]);
-  const [legendMinComorb, setLegendMinComorb] = useState([]);
-  const [legendSplitComorb, setLegendSplitComorb] = useState([]);
+  // const [black] = useState("black");
+  // const [colorBlack, setColorBlack] = useState();
+  // const [legendMaxBlack, setLegendMaxBlack] = useState([]);
+  // const [legendMinBlack, setLegendMinBlack] = useState([]);
+  // const [legendSplitBlack, setLegendSplitBlack] = useState([]);
+
+  // const [poverty] = useState("poverty");
+  // const [colorPoverty, setColorPoverty] = useState();
+  // const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
+  // const [legendMinPoverty, setLegendMinPoverty] = useState([]);
+  // const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
+
+  // const [Comorb] = useState("anyconditionPrevalence");
+  // const [colorComorb, setColorComorb] = useState();
+  // const [legendMaxComorb, setLegendMaxComorb] = useState([]);
+  // const [legendMinComorb, setLegendMinComorb] = useState([]);
+  // const [legendSplitComorb, setLegendSplitComorb] = useState([]);
 
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
@@ -837,27 +1077,22 @@ export default function NationalReport(props) {
                                                   caseRateMA: "N/A", mortalityMA: "N/A",
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
-
-  const [accstate, setAccstate] = useState({ activeIndex: 1 });
-
-  const dealClick = (e, titleProps) => {
-  const { index } = titleProps
-  const { activeIndex } = accstate
-  const newIndex = activeIndex === index ? -1 : index
-
-  setAccstate({ activeIndex: newIndex })
-  }
-
+  const [metricName, setMetricName] = useState('COVID-19 Community Vulnerability Index');
+  const [metricOptions, setMetricOptions] = useState();
 
   useEffect(()=>{
-    
-  }, []);
 
-  useEffect(()=>{
-    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-      .then(x => {
-        setVarMap(x);
-      });
+
+  fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+    .then(x => {
+      setVarMap(x);
+      setMetricOptions(_.filter(_.map(x, d=> {
+        return {key: d.id, value: d.variable, text: d.name, group: d.group};
+      }), d => (
+        d.value === "ccvi" || d.value === "poverty" || d.value === "urbanrural" || 
+        d.value === "region" || d.value === "black" || d.value === "resSeg" 
+      )));
+    });
   }, []);
 
 
@@ -874,16 +1109,6 @@ export default function NationalReport(props) {
           setTopTen(x);
         });
 
-      // fetch('/data/nationalBarCases.json').then(res => res.json())
-      //   .then(x => {
-      //     setnationalBarChart['caserate7day'][0](x);
-      //   });
-
-      // fetch('/data/nationalBarMortality.json').then(res => res.json())
-      //   .then(x => {
-      //     setnationalBarChart['covidmortality7day'][0](x);
-      //   });
-
       fetch('/data/nationalBarChart.json').then(res => res.json())
         .then(x => {
           setNationalBarChart(x);
@@ -892,8 +1117,8 @@ export default function NationalReport(props) {
       fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
-      fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-        .then(x => setVarMap(x));
+      // fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      //   .then(x => setVarMap(x));
       
       fetch('/data/topTenCases.json').then(res => res.json())
         .then(x => setDataTopCases(x));
@@ -981,308 +1206,308 @@ export default function NationalReport(props) {
     }, []);
 
     useEffect(() => {
-      
-          if(data){
-          //ccvi
+        // === "resSeg" ? "RS_blackwhite" : metric === "urbanrural" ? "_013_Urbanization_Code" : metric
+          if(data && metric){
+          //metric
           const cs = scaleQuantile()
           .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
-                d[ccvi] > 0 &&
+                d[metric] > 0 &&
                 d.fips.length === 5)),
-            d=> d[ccvi]))
+            d=> d[metric]))
           .range(colorPalette);
   
           let scaleMap = {}
           _.each(data, d=>{
-            if(d[ccvi] > 0){
-            scaleMap[d[ccvi]] = cs(d[ccvi])}
+            if(d[metric] > 0){
+            scaleMap[d[metric]] = cs(d[metric])}
           });
         
-          setColorccvi(scaleMap);
+          setColorMetric(scaleMap);
           var max = 0
           var min = 100
           _.each(data, d=> { 
-            if (d[ccvi] > max && d.fips.length === 5) {
-              max = d[ccvi]
-            } else if (d.fips.length === 5 && d[ccvi] < min && d[ccvi] > 0){
-              min = d[ccvi]
+            if (d[metric] > max && d.fips.length === 5) {
+              max = d[metric]
+            } else if (d.fips.length === 5 && d[metric] < min && d[metric] > 0){
+              min = d[metric]
             }
           });
   
           if (max > 999999) {
             max = (max/1000000).toFixed(0) + "M";
-            setLegendMaxccvi(max);
+            setLegendMaxMetric(max);
           }else if (max > 999) {
             max = (max/1000).toFixed(0) + "K";
-            setLegendMaxccvi(max);
+            setLegendMaxMetric(max);
           }else{
-            setLegendMaxccvi(max.toFixed(0));
+            setLegendMaxMetric(max.toFixed(0));
   
           }
-          setLegendMinccvi(min.toFixed(0));
+          setLegendMinMetric(min.toFixed(0));
   
-          setLegendSplitccvi(cs.quantiles());
+          setLegendSplitMetric(cs.quantiles());
 
 
         }
 
 
 
-    },[data]);
+    },[data, metric]);
 
-    //replace
-    useEffect(() => {
-      if(data && ccvi){
-          //poverty
-          const cs_poverty = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[poverty] > 0 &&
-                d.fips.length === 5)),
-            d=> d[poverty]))
-          .range(colorPalette);
+//     //replace
+//     useEffect(() => {
+//       if(data && ccvi){
+//           //poverty
+//           const cs_poverty = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[poverty] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[poverty]))
+//           .range(colorPalette);
   
-          let scaleMap_poverty = {}
-          _.each(data, d=>{
-            if(d[poverty] > 0){
-              scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
-          });
+//           let scaleMap_poverty = {}
+//           _.each(data, d=>{
+//             if(d[poverty] > 0){
+//               scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
+//           });
         
-          setColorPoverty(scaleMap_poverty);
-          var max_poverty = 0
-          var min_poverty = 100
-          _.each(data, d=> { 
-            if (d[poverty] > max_poverty && d.fips.length === 5) {
-              max_poverty = d[poverty]
-            } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
-              min_poverty = d[poverty]
-            }
-          });
-          if (max_poverty > 999999) {
-            max_poverty = (max_poverty/1000000).toFixed(0) + "M";
-            setLegendMaxPoverty(max_poverty);
-          }else if (max_poverty > 999) {
-            max_poverty = (max_poverty/1000).toFixed(0) + "K";
-            setLegendMaxPoverty(max_poverty);
-          }else{
-            setLegendMaxPoverty(max_poverty.toFixed(0));
-          }
-          setLegendMinPoverty(min_poverty.toFixed(0));
-          setLegendSplitPoverty(cs_poverty.quantiles());
+//           setColorPoverty(scaleMap_poverty);
+//           var max_poverty = 0
+//           var min_poverty = 100
+//           _.each(data, d=> { 
+//             if (d[poverty] > max_poverty && d.fips.length === 5) {
+//               max_poverty = d[poverty]
+//             } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
+//               min_poverty = d[poverty]
+//             }
+//           });
+//           if (max_poverty > 999999) {
+//             max_poverty = (max_poverty/1000000).toFixed(0) + "M";
+//             setLegendMaxPoverty(max_poverty);
+//           }else if (max_poverty > 999) {
+//             max_poverty = (max_poverty/1000).toFixed(0) + "K";
+//             setLegendMaxPoverty(max_poverty);
+//           }else{
+//             setLegendMaxPoverty(max_poverty.toFixed(0));
+//           }
+//           setLegendMinPoverty(min_poverty.toFixed(0));
+//           setLegendSplitPoverty(cs_poverty.quantiles());
 
-      }
+//       }
 
-    },[data, ccvi]);
+//     },[data, ccvi]);
 
-    useEffect(() => {
-      if(data && poverty){
-        //urbrur
-        let tempDict = {};
-        _.map(_.filter(_.map(data, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[urbrur] !== "" &&
-              d.fips.length === 5)), i => {
-                tempDict[i.fips] = i
-                return tempDict;
-              });
-        setDataUrb(tempDict);
-      }
+//     useEffect(() => {
+//       if(data && poverty){
+//         //urbrur
+//         let tempDict = {};
+//         _.map(_.filter(_.map(data, (d, k) => {
+//           d.fips = k
+//           return d}), 
+//           d => (
+//               d[urbrur] !== "" &&
+//               d.fips.length === 5)), i => {
+//                 tempDict[i.fips] = i
+//                 return tempDict;
+//               });
+//         setDataUrb(tempDict);
+//       }
 
-    }, [data, poverty])
+//     }, [data, poverty])
 
-//replace
+// //replace
 
 
-    //replace
-    // useEffect(() => {
-    //   if(data && male){
+//     //replace
+//     // useEffect(() => {
+//     //   if(data && male){
 
-    //       //age65over
-    //       const cs_age65 = scaleQuantile()
-    //       .domain(_.map(_.filter(_.map(data, (d, k) => {
-    //         d.fips = k
-    //         return d}), 
-    //         d => (
-    //             d[age65] > 0 &&
-    //             d.fips.length === 5)),
-    //         d=> d[age65]))
-    //       .range(colorPalette);
+//     //       //age65over
+//     //       const cs_age65 = scaleQuantile()
+//     //       .domain(_.map(_.filter(_.map(data, (d, k) => {
+//     //         d.fips = k
+//     //         return d}), 
+//     //         d => (
+//     //             d[age65] > 0 &&
+//     //             d.fips.length === 5)),
+//     //         d=> d[age65]))
+//     //       .range(colorPalette);
   
-    //       let scaleMap_age65 = {}
-    //       _.each(data, d=>{
-    //         if(d[age65] > 0){
-    //           scaleMap_age65[d[age65]] = cs_age65(d[age65])}
-    //       });
+//     //       let scaleMap_age65 = {}
+//     //       _.each(data, d=>{
+//     //         if(d[age65] > 0){
+//     //           scaleMap_age65[d[age65]] = cs_age65(d[age65])}
+//     //       });
         
-    //       setColorAge65(scaleMap_age65);
-    //       var max_age65 = 0
-    //       var min_age65 = 100
-    //       _.each(data, d=> { 
-    //         if (d[age65] > max_age65 && d.fips.length === 5) {
-    //           max_age65 = d[age65]
-    //         } else if (d.fips.length === 5 && d[age65] < min_age65 && d[age65] > 0){
-    //           min_age65 = d[age65]
-    //         }
-    //       });
-    //       if (max_age65 > 999999) {
-    //         max_age65 = (max_age65/1000000).toFixed(0) + "M";
-    //         setLegendMaxAge65(max_age65);
-    //       }else if (max_age65 > 999) {
-    //         max_age65 = (max_age65/1000).toFixed(0) + "K";
-    //         setLegendMaxAge65(max_age65);
-    //       }else{
-    //         setLegendMaxAge65(max_age65.toFixed(0));
-    //       }
-    //       setLegendMinAge65(min_age65.toFixed(0));
-    //       setLegendSplitAge65(cs_age65.quantiles());
+//     //       setColorAge65(scaleMap_age65);
+//     //       var max_age65 = 0
+//     //       var min_age65 = 100
+//     //       _.each(data, d=> { 
+//     //         if (d[age65] > max_age65 && d.fips.length === 5) {
+//     //           max_age65 = d[age65]
+//     //         } else if (d.fips.length === 5 && d[age65] < min_age65 && d[age65] > 0){
+//     //           min_age65 = d[age65]
+//     //         }
+//     //       });
+//     //       if (max_age65 > 999999) {
+//     //         max_age65 = (max_age65/1000000).toFixed(0) + "M";
+//     //         setLegendMaxAge65(max_age65);
+//     //       }else if (max_age65 > 999) {
+//     //         max_age65 = (max_age65/1000).toFixed(0) + "K";
+//     //         setLegendMaxAge65(max_age65);
+//     //       }else{
+//     //         setLegendMaxAge65(max_age65.toFixed(0));
+//     //       }
+//     //       setLegendMinAge65(min_age65.toFixed(0));
+//     //       setLegendSplitAge65(cs_age65.quantiles());
 
-    //   }
+//     //   }
 
-    // },[data, male]);
+//     // },[data, male]);
     
 
     
-    useEffect(() => {
-      if(data && urbrur){
-          //black
-          const cs_black = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[black] > 0 &&
-                d.fips.length === 5)),
-            d=> d[black]))
-          .range(colorPalette);
+//     useEffect(() => {
+//       if(data && urbrur){
+//           //black
+//           const cs_black = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[black] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[black]))
+//           .range(colorPalette);
   
-          let scaleMap_black = {}
-          _.each(data, d=>{
-            if(d[black] > 0){
-              scaleMap_black[d[black]] = cs_black(d[black])}
-          });
+//           let scaleMap_black = {}
+//           _.each(data, d=>{
+//             if(d[black] > 0){
+//               scaleMap_black[d[black]] = cs_black(d[black])}
+//           });
         
-          setColorBlack(scaleMap_black);
-          var max_black = 0
-          var min_black = 100
-          _.each(data, d=> { 
-            if (d[black] > max_black && d.fips.length === 5) {
-              max_black = d[black]
-            } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
-              min_black = d[black]
-            }
-          });
-          if (max_black > 999999) {
-            max_black = (max_black/1000000).toFixed(0) + "M";
-            setLegendMaxBlack(max_black);
-          }else if (max_black > 999) {
-            max_black = (max_black/1000).toFixed(0) + "K";
-            setLegendMaxBlack(max_black);
-          }else{
-            setLegendMaxBlack(max_black.toFixed(0));
-          }
-          setLegendMinBlack(min_black.toFixed(0));
-          setLegendSplitBlack(cs_black.quantiles());
-      }
+//           setColorBlack(scaleMap_black);
+//           var max_black = 0
+//           var min_black = 100
+//           _.each(data, d=> { 
+//             if (d[black] > max_black && d.fips.length === 5) {
+//               max_black = d[black]
+//             } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
+//               min_black = d[black]
+//             }
+//           });
+//           if (max_black > 999999) {
+//             max_black = (max_black/1000000).toFixed(0) + "M";
+//             setLegendMaxBlack(max_black);
+//           }else if (max_black > 999) {
+//             max_black = (max_black/1000).toFixed(0) + "K";
+//             setLegendMaxBlack(max_black);
+//           }else{
+//             setLegendMaxBlack(max_black.toFixed(0));
+//           }
+//           setLegendMinBlack(min_black.toFixed(0));
+//           setLegendSplitBlack(cs_black.quantiles());
+//       }
 
-    },[data, urbrur]);
+//     },[data, urbrur]);
 
-    useEffect(() => {
-      if(data && black){
-          //ResSeg
-          const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[resSeg] > 0 &&
-                d.fips.length === 5)),
-            d=> d[resSeg]))
-          .range(colorPalette);
+//     useEffect(() => {
+//       if(data && black){
+//           //ResSeg
+//           const csii = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[resSeg] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[resSeg]))
+//           .range(colorPalette);
 
-          let scaleMapii = {}
-          _.each(data, d=>{
-            if(d[resSeg] > 0){
-            scaleMapii[d[resSeg]] = csii(d[resSeg])}
-          });
+//           let scaleMapii = {}
+//           _.each(data, d=>{
+//             if(d[resSeg] > 0){
+//             scaleMapii[d[resSeg]] = csii(d[resSeg])}
+//           });
         
-          setColorResSeg(scaleMapii);
-          var maxii = 0
-          var minii = 100
-          _.each(data, d=> { 
-            if (d[resSeg] > maxii && d.fips.length === 5) {
-              maxii = d[resSeg]
-            } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
-              minii = d[resSeg]
-            }
-          });
-          if (maxii > 999999) {
-            maxii = (maxii/1000000).toFixed(0) + "M";
-            setLegendMaxResSeg(maxii);
-          }else if (maxii > 999) {
-            maxii = (maxii/1000).toFixed(0) + "K";
-            setLegendMaxResSeg(maxii);
-          }else{
-            setLegendMaxResSeg(maxii.toFixed(0));
-          }
-          setLegendMinResSeg(minii.toFixed(0));
-          setLegendSplitResSeg(csii.quantiles());
+//           setColorResSeg(scaleMapii);
+//           var maxii = 0
+//           var minii = 100
+//           _.each(data, d=> { 
+//             if (d[resSeg] > maxii && d.fips.length === 5) {
+//               maxii = d[resSeg]
+//             } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
+//               minii = d[resSeg]
+//             }
+//           });
+//           if (maxii > 999999) {
+//             maxii = (maxii/1000000).toFixed(0) + "M";
+//             setLegendMaxResSeg(maxii);
+//           }else if (maxii > 999) {
+//             maxii = (maxii/1000).toFixed(0) + "K";
+//             setLegendMaxResSeg(maxii);
+//           }else{
+//             setLegendMaxResSeg(maxii.toFixed(0));
+//           }
+//           setLegendMinResSeg(minii.toFixed(0));
+//           setLegendSplitResSeg(csii.quantiles());
 
 
-      }
+//       }
 
-    },[data, black]);
+//     },[data, black]);
 
-    useEffect(() => {
-      if(data && resSeg){
-          //comorb
-          const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[Comorb] > 0 &&
-                d.fips.length === 5)),
-            d=> d[Comorb]))
-          .range(colorPalette);
+//     useEffect(() => {
+//       if(data && resSeg){
+//           //comorb
+//           const csii = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[Comorb] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[Comorb]))
+//           .range(colorPalette);
 
-          let scaleMapii = {}
-          _.each(data, d=>{
-            if(d[Comorb] > 0){
-            scaleMapii[d[Comorb]] = csii(d[Comorb])}
-          });
+//           let scaleMapii = {}
+//           _.each(data, d=>{
+//             if(d[Comorb] > 0){
+//             scaleMapii[d[Comorb]] = csii(d[Comorb])}
+//           });
         
-          setColorComorb(scaleMapii);
-          var maxii = 0
-          var minii = 100
-          _.each(data, d=> { 
-            if (d[Comorb] > maxii && d.fips.length === 5) {
-              maxii = d[Comorb]
-            } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
-              minii = d[Comorb]
-            }
-          });
-          if (maxii > 999999) {
-            maxii = (maxii/1000000).toFixed(0) + "M";
-            setLegendMaxComorb(maxii);
-          }else if (maxii > 999) {
-            maxii = (maxii/1000).toFixed(0) + "K";
-            setLegendMaxComorb(maxii);
-          }else{
-            setLegendMaxComorb(maxii.toFixed(0));
-          }
-          setLegendMinComorb(minii.toFixed(0));
-          setLegendSplitComorb(csii.quantiles());
+//           setColorComorb(scaleMapii);
+//           var maxii = 0
+//           var minii = 100
+//           _.each(data, d=> { 
+//             if (d[Comorb] > maxii && d.fips.length === 5) {
+//               maxii = d[Comorb]
+//             } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
+//               minii = d[Comorb]
+//             }
+//           });
+//           if (maxii > 999999) {
+//             maxii = (maxii/1000000).toFixed(0) + "M";
+//             setLegendMaxComorb(maxii);
+//           }else if (maxii > 999) {
+//             maxii = (maxii/1000).toFixed(0) + "K";
+//             setLegendMaxComorb(maxii);
+//           }else{
+//             setLegendMaxComorb(maxii.toFixed(0));
+//           }
+//           setLegendMinComorb(minii.toFixed(0));
+//           setLegendSplitComorb(csii.quantiles());
 
 
-      }
+//       }
 
-    },[data, resSeg]);
+//     },[data, resSeg]);
 
   useEffect(() => {
     if (dataTS){
@@ -1324,12 +1549,11 @@ export default function NationalReport(props) {
 
   if (data && dataTS && varMap) {
 
-    console.log(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]);
   return (
     <HEProvider>
       <div>
         <AppBar menu='nationalReport' /> 
-        <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} ref={characterRef}>
+        <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} >
         <div >
           <br/><br/><br/><br/>
         </div>
@@ -2087,7 +2311,7 @@ export default function NationalReport(props) {
               <div id="commu" style = {{height: 45}}> </div>
 
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
-            {resSeg && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
+            {true && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
               <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 130}}>
                 COVID-19 Across U.S. Communities
@@ -2105,10 +2329,269 @@ export default function NationalReport(props) {
               </Header>
 
     
-              <div id="ccvi" style = {{height: 85}}> </div>
+              {/* <div id="ccvi" style = {{height: 85}}> </div> */}
+              <div id="ccvi" style = {{height: 45}}> </div>
 
+              {/* <div style = {{paddingLeft: 50}}>
+                <button class="ui black basic button" style = {{width: 120}} onClick={()=>
+                                                        setMetric('ccvi')}>Community Vulnerability Index</button>
+                <button class="ui black basic button" style = {{width: 120}} onClick={()=>
+                                                        setMetric('poverty')}>by Percent in Poverty</button>
+                
+                                                        
               
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+
+              </div> */}
+
+
+<div>
+      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+        <center> <b style= {{fontSize: "18pt"}}>{metricOptions[metric]}</b> </center> 
+        <br/>
+        <br/>         
+
+      </Header.Subheader>
+        <div style = {{paddingLeft: 70}}>
+          <Dropdown
+
+                        style={{background: '#fff', 
+                                fontSize: "19px",
+                                fontWeight: 400, 
+                                theme: '#000000',
+                                width: '440px',
+                                top: '0px',
+                                left: '0px',
+                                text: "Select",
+                                borderTop: '0.5px solid #bdbfc1',
+                                borderLeft: '0.5px solid #bdbfc1',
+                                borderRight: '0.5px solid #bdbfc1', 
+                                borderBottom: '0.5px solid #bdbfc1',
+                                borderRadius: 0,
+                                minHeight: '1.0em',
+                                paddingBottom: '0.5em',
+                                paddingRight: 0}}
+                        text= { "By " + metricName }
+                        search
+                        selection
+                        pointing = 'top'
+                        options={metricOptions}
+                        onChange={(e, { value }) => {
+                          setMetric(value);
+                          setMetricName(varMap[value]['name']);
+                        }}
+                      />
+          </div>
+      <Grid>
+        <Grid.Row columns={2} style={{paddingTop: 8}}>
+          <Grid.Column style={{paddingTop:0,paddingBottom:0}}>
+            
+
+          <div >
+            <br/>
+
+            <svg width="400" height="80">
+              
+              {_.map(legendSplitMetric, (splitpoint, i) => {
+                if(legendSplitMetric[i] < 1){
+                  return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitMetric[i].toFixed(1)}</text>                    
+                }else if(legendSplitMetric[i] > 999999){
+                  return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitMetric[i]/1000000).toFixed(0) + "M"}</text>                    
+                }else if(legendSplitMetric[i] > 999){
+                  return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitMetric[i]/1000).toFixed(0) + "K"}</text>                    
+                }
+                return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitMetric[i].toFixed(0)}</text>                    
+              })} 
+              <text x={70} y={35} style={{fontSize: '0.7em'}}>{legendMinMetric}</text>
+              <text x={190} y={35} style={{fontSize: '0.7em'}}>{legendMaxMetric}</text>
+
+
+              {_.map(colorPalette, (color, i) => {
+                return <rect key={i} x={70+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+              })} 
+
+
+              <text x={70} y={74} style={{fontSize: '0.8em'}}>Low</text>
+              <text x={70+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+              <rect x={215} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+              <text x={237} y={50} style={{fontSize: '0.7em'}}> None </text>
+              <text x={237} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+            
+
+            </svg>
+
+            <br/><br/><br/>
+              <ComposableMap 
+                projection="geoAlbersUsa" 
+                data-tip=""
+                width={520} 
+                height={300}
+                strokeWidth= {0.1}
+                stroke= 'black'
+                projectionConfig={{scale: 580}}
+                style = {{paddingLeft: 50}}
+                >
+                <Geographies geography={geoUrl}>
+                  {({ geographies }) => 
+                    <svg>
+                      {geographies.map(geo => (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          fill={
+                          ((colorMetric && data[geo.id] && (data[geo.id][metric]) > 0)?
+                          colorMetric[data[geo.id][metric]]: 
+                              (colorMetric && data[geo.id] && data[geo.id][metric] === 0)?
+                                '#FFFFFF':'#FFFFFF')}                              
+                        />
+                      ))}
+                    </svg>
+                  }
+                </Geographies>
+                
+
+              </ComposableMap>
+          </div>
+          <Accordion style = {{paddingTop: 150, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                {
+                    key: 'acquire-dog',
+                    title: {
+                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                        icon: 'dropdown',
+                    },
+                    content: {
+                        content: (
+                            <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                              <Header.Content  style={{fontSize: "14pt"}}>
+                                <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
+                                residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
+                                The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
+                                100,000 that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
+                                five groups designed to be of equal size, so that the lowest quintile contains the counties with values 
+                                in the 0%-20% range for this county characteristic, and the highest quintile contains counties with 
+                                values in the 80%-100% range for this county characteristic. Q2 indicates counties in the 20%-40% 
+                                range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties in the 60%-80% range.
+                                </Header.Subheader>
+                              </Header.Content>
+                            </Header>
+                        ),
+                      },
+                  }
+              ]
+
+              } />
+
+
+          </Grid.Column>
+          <Grid.Column>
+          <Header as='h2' style={{paddingLeft: 80, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+              <Header.Content>
+                Cases by {varMap[metric]['name']}
+              </Header.Content>
+            </Header>
+                <VictoryChart
+                  theme={VictoryTheme.material}
+                  width={530}
+                  height={180}
+                  domainPadding={20}
+                  minDomain={{y: props.ylog?1:0}}
+                  padding={{left: 180, right: 40, top: 5, bottom: 1}}
+                  style = {{fontSize: "14pt"}}
+                  containerComponent={<VictoryContainer responsive={false}/>}
+                >
+                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                  <VictoryBar
+                    horizontal
+                    barRatio={0.80}
+                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                    data={[
+                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+
+
+
+                    ]}
+                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                    style={{
+                      data: {
+                        fill: casesColor[1]
+                      }
+                    }}
+                    x="key"
+                    y="value"
+                  />
+                </VictoryChart>
+
+                <Header.Content style = {{width: 540}}>
+                  
+                  <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                    <b>COVID-19 Cases per 100,000</b>
+                  </Header.Content>
+                </Header.Content>
+                  
+                  <br/>
+                  <br/>
+
+              <Header as='h2' style={{marginLeft: 80, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                    Deaths by {varMap[metric]['name']}
+                  </Header.Content>
+                </Header>
+                <VictoryChart
+                  theme={VictoryTheme.material}
+                  width={530}
+                  height={180}
+                  domainPadding={20}
+                  minDomain={{y: props.ylog?1:0}}
+                  padding={{left: 180, right: 40, top: 5, bottom: 1}}
+                  style = {{fontSize: "14pt"}}
+                  containerComponent={<VictoryContainer responsive={false}/>}
+                >
+                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                  <VictoryBar
+                    horizontal
+                    barRatio={0.80}
+                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                    data={[
+                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+
+
+
+                    ]}
+                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                    style={{
+                      data: {
+                        fill: mortalityColor[1]
+                      }
+                    }}
+                    x="key"
+                    y="value"
+                  />
+                </VictoryChart>
+
+                <Header.Content style = {{width: 550}}>
+                    <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <b>COVID-19 Deaths per 100,000</b>
+                    </Header.Content>
+                </Header.Content>
+
+            </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div>
+
+              {/* <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
                   <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Community Vulnerability Index </b> </center> 
                   <br/>
                   <br/>         
@@ -3632,7 +4115,7 @@ export default function NationalReport(props) {
                         </Header.Content>
                     </Grid.Column>
                 </Grid.Row> 
-              </Grid>}
+              </Grid>} */}
               
             </div>}
             
