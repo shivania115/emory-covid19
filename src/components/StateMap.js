@@ -609,7 +609,7 @@ export default function StateMap(props) {
     }
   }, [dataTS]);
 
-  if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
+  if ((data && metric && trendOptions && trendline && dataTS)) {
     // console.log( );
   return (
     <HEProvider>
@@ -715,8 +715,8 @@ export default function StateMap(props) {
 
               <div style = {{width: 235, background: "#e5f2f7"}}>
                 <VictoryChart 
-                            minDomain={{ x: dataTS[stateFips][dataTS[stateFips].length-15].t}}
-                            maxDomain = {{y: getMaxRange(dataTS[stateFips], "caseRateMean", dataTS[stateFips].length-15)*1.2}}                            
+                            minDomain={{ x: stateFips === "_nation" ? 0 : dataTS[stateFips][dataTS[stateFips].length-15].t}}
+                            maxDomain = {{y: stateFips === "_nation" ? 0 : getMaxRange(dataTS[stateFips], "caseRateMean", dataTS[stateFips].length-15)*1.2}}                            
                             width={235}
                             height={180}    
                             parent= {{background: "#ccdee8"}}   
@@ -1287,8 +1287,8 @@ export default function StateMap(props) {
             }
           
             <Grid columns={16}>
-              <Grid.Row>
-                <Grid.Column width={5}>
+              <Grid.Row style = {{width: 1260}}>
+                <Grid.Column style = {{width: 460}}>
                   <Dropdown
 
                     style={{background: '#fff', 
@@ -1458,7 +1458,7 @@ export default function StateMap(props) {
 
                 } />
                 </Grid.Column>
-                <Grid.Column width={11} style={{padding: 0, paddingLeft: 90, width: 750}}>
+                <Grid.Column style={{padding: 0, paddingLeft: 20, width: 800}}>
 
                 <Header as='h2' style={{width:750, paddingBottom: 10}}>
                     <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
