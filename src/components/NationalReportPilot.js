@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
-import { Container, Header, Grid, Loader, Divider, Button, Dropdown, Image, Rail, Sticky, Ref, Accordion, Icon, Menu, Message, Transition,TransitionablePortal} from 'semantic-ui-react'
+import { Container, Header, Grid, Loader, Divider, Button, Dropdown, Image, Rail, Sticky, Ref, Accordion, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
@@ -427,9 +427,10 @@ function CaseChartAll(props){
         start='Jan'
         end='message2'
       /> */}
-      {visible2 ? <ArrowSvg start={{ x: 200, y: 365 }} end={{ x: 160, y: 460 }}/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 280, y: 445 }} end={{ x: 295, y: 470 }}/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 390, y: 400 }} end={{ x: 390, y: 420 }}/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 200, y: 365 }} end={{ x: 160, y: 458 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 280, y: 447 }} end={{ x: 295, y: 470 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 400, y: 405 }} end={{ x: 392, y: 420 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 710, y: 220 }} end={{ x: 725, y: 235 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
