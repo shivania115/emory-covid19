@@ -263,11 +263,13 @@ useEffect(()=>{
   } else if(activeItem==='90 Days'){
     setCaseTicks([data["_nation"][214].t,
     data["_nation"][244].t,
+    data["_nation"][275].t,
     data["_nation"][data["_nation"].length-1].t]);
     setDataPassed(data["_nation"].slice(-90));
   } else{
     setCaseTicks([
-      data["_nation"][data["_nation"].length-15].t,
+      data["_nation"][data["_nation"].length-14].t,
+      data["_nation"][data["_nation"].length-7].t,
       data["_nation"][data["_nation"].length-1].t]);
     setDataPassed(data["_nation"].slice(-14));
   }
@@ -288,13 +290,10 @@ useEffect(()=>{
               tick={caseTicks} tickFormatter={props.tickFormatter}/> */}
     {(()=>{
     if (activeItem==='All'){
-   return (
-   <Grid.Row><CaseChartAll data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+      return <CaseChartAll data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
-          </Grid.Row>)
-          // <Arrow1/>
-  } else if(activeItem==='90 Days'){
-    return <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+    } else if(activeItem==='90 Days'){
+      return <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
     } else {
       return <CaseChart14 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
@@ -365,7 +364,7 @@ function CaseChartAll(props){
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' barSize={18}
+      <Bar name="New cases" dataKey='dailyCases' barSize={10}
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
@@ -437,13 +436,14 @@ function CaseChartAll(props){
 
 function CaseChart90(props){
   const [playCount, setPlayCount] = useState(0);
-  // const [visible1, setVisible1] = useState(false);
+  const [visible1, setVisible1] = useState(false);
   // const [visible2, setVisible2] = useState(false);
   // const [visible3, setVisible3] = useState(false);
   // const [visible4, setVisible4] = useState(false);
   // const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [highlightIndex, setHighlightIndex] = useState([-1]);
+  const [totalCase, setTotalCase] = useState(0);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
@@ -458,16 +458,26 @@ function CaseChart90(props){
   };
 
   useEffect(() =>{
+    var sum = 0;
+    for(var i=data.length-90; i<data.length; i++) { 
+      sum += data[i]['dailyCases']; 
+      console.log(i);
+    }
+    setTotalCase(sum);
+  },[])
+
+  useEffect(() =>{
     setAnimationBool(playCount>-1);
   },[playCount])
 
   useEffect(() =>{
     setHighlightIndex([-1]);
-    console.log("highlightIndex", highlightIndex);
+    //console.log("highlightIndex", highlightIndex);
   },[props.history])
 
   var wait=0;
   console.log("animationBool", animationBool);
+  
 
   return(
     <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
@@ -475,7 +485,7 @@ function CaseChart90(props){
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" type="number" domain={[data[data.length-91].t,'dataMax']} padding={{ left: 3, right: 3 }}
+      <XAxis dataKey="t" type="number" domain={[data[data.length-90].t,'dataMax']} padding={{ left: 3, right: 3 }}
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
@@ -485,21 +495,10 @@ function CaseChart90(props){
             onAnimationStart={() => {setDisabled(true); 
               // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
                                     setHighlightIndex([-1]);
-              // setTimeout(()=>setVisible1(true), wait); 
-              // setTimeout(()=>setVisible2(true), wait+1000); 
-              // setTimeout(()=>setHighlightIndex(9), wait+1000);
-              // setTimeout(()=>setVisible3(true), wait+2000);
-              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
-              // setTimeout(()=>setVisible4(true), wait+3000); 
-              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
-              // setTimeout(()=>setVisible5(true), wait+4000);
-              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
-              // setTimeout(()=>setDisabled(false),wait+4500);
-              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
             }} 
             onAnimationEnd={()=> {
               setAnimationBool(false);
-              // setTimeout(()=>setVisible1(true), wait); 
+              setTimeout(()=>setVisible1(true), wait); 
               // setTimeout(()=>setVisible2(true), wait+1000); 
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
               // setTimeout(()=>setVisible3(true), wait+2000);
@@ -526,13 +525,12 @@ function CaseChart90(props){
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-      {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      {/* <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Transition visible={visible1} animation='scale' duration={200}>
+      <Message compact style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
-      <Transition visible={visible2} animation='scale' duration={300}>
+      {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
@@ -553,7 +551,8 @@ function CaseChart90(props){
 
 function CaseChart14(props){
   const [playCount, setPlayCount] = useState(0);
-  // const [visible1, setVisible1] = useState(false);
+  const [totalCase, setTotalCase] = useState(0);
+  const [visible1, setVisible1] = useState(false);
   // const [visible2, setVisible2] = useState(false);
   // const [visible3, setVisible3] = useState(false);
   // const [visible4, setVisible4] = useState(false);
@@ -574,6 +573,15 @@ function CaseChart14(props){
   };
 
   useEffect(() =>{
+    var sum = 0;
+    for(var i=data.length-14; i<data.length; i++) { 
+      sum += data[i]['dailyCases']; 
+      console.log(i);
+    }
+    setTotalCase(sum);
+  },[])
+
+  useEffect(() =>{
     setAnimationBool(playCount>-1);
   },[playCount])
 
@@ -591,7 +599,7 @@ function CaseChart14(props){
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" type="number" domain={[data[data.length-15].t,'dataMax']} padding={{ left: 5, right: 5 }}
+      <XAxis dataKey="t" type="number" domain={[data[data.length-14].t,'dataMax']} padding={{ left: 5, right: 5 }}
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
@@ -600,22 +608,11 @@ function CaseChart14(props){
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); 
               // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
-                                    setHighlightIndex([-1]);
-              // setTimeout(()=>setVisible1(true), wait); 
-              // setTimeout(()=>setVisible2(true), wait+1000); 
-              // setTimeout(()=>setHighlightIndex(9), wait+1000);
-              // setTimeout(()=>setVisible3(true), wait+2000);
-              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
-              // setTimeout(()=>setVisible4(true), wait+3000); 
-              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
-              // setTimeout(()=>setVisible5(true), wait+4000);
-              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
-              // setTimeout(()=>setDisabled(false),wait+4500);
-              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
+                                    setHighlightIndex([-1]); 
             }} 
             onAnimationEnd={()=> {
               setAnimationBool(false);
-              // setTimeout(()=>setVisible1(true), wait); 
+              setTimeout(()=>setVisible1(true), wait); 
               // setTimeout(()=>setVisible2(true), wait+1000); 
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
               // setTimeout(()=>setVisible3(true), wait+2000);
@@ -645,10 +642,10 @@ function CaseChart14(props){
       {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      {/* <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Transition visible={visible1} animation='scale' duration={300}>
+      <Message compact style={{ width: '18rem', top:'-30rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
-      <Transition visible={visible2} animation='scale' duration={300}>
+      {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
