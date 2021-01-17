@@ -528,7 +528,7 @@ function CaseChart90(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 90 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -643,7 +643,7 @@ function CaseChart14(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '18rem', top:'-30rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top:'-30rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
