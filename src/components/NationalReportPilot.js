@@ -244,36 +244,46 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
 function CaseSection(props){
   const [activeItem, setActiveItem] = useState('All');
   const data = props.data;
-  const [dataPassed, setDataPassed] = useState(data["_nation"]);
+  const chart = props.chart;
+  const [barName, setBarName] = useState('dailyCases');
+  const [lineName, setLineName] = useState('caseRateMean');
   const [caseTicks, setCaseTicks] = useState([]);
 
 useEffect(()=>{
+  if(chart === 'case'){
+    setBarName('dailyCases');
+    setLineName('caseRateMean');
+  } else {
+    setBarName('dailyMortality');
+    setLineName('mortalityMean');
+  }
+
   if(activeItem==='All') {
-    setCaseTicks([data["_nation"][0].t,
-    data["_nation"][30].t,
-    data["_nation"][61].t,
-    data["_nation"][91].t,
-    data["_nation"][122].t,
-    data["_nation"][153].t,
-    data["_nation"][183].t,
-    data["_nation"][214].t,
-    data["_nation"][244].t,
-    data["_nation"][data["_nation"].length-1].t]);
-    setDataPassed(data["_nation"]);
+    setCaseTicks([data[0].t,
+    data[30].t,
+    data[61].t,
+    data[91].t,
+    data[122].t,
+    data[153].t,
+    data[183].t,
+    data[214].t,
+    data[244].t,
+    data[data.length-1].t]);
+    // setDataPassed(data);
   } else if(activeItem==='90 Days'){
-    setCaseTicks([data["_nation"][214].t,
-    data["_nation"][244].t,
-    data["_nation"][275].t,
-    data["_nation"][data["_nation"].length-1].t]);
-    setDataPassed(data["_nation"].slice(-90));
+    setCaseTicks([data[214].t,
+    data[244].t,
+    data[275].t,
+    data[data.length-1].t]);
+    // setDataPassed(data.slice(-90));
   } else{
     setCaseTicks([
-      data["_nation"][data["_nation"].length-14].t,
-      data["_nation"][data["_nation"].length-7].t,
-      data["_nation"][data["_nation"].length-1].t]);
-    setDataPassed(data["_nation"].slice(-14));
+      data[data.length-14].t,
+      data[data.length-7].t,
+      data[data.length-1].t]);
+    // setDataPassed(data.slice(-14));
   }
-}, [activeItem]);
+}, [activeItem, chart]);
 
 
   return(
@@ -286,18 +296,22 @@ useEffect(()=>{
     <Menu.Item name='14 Days' active={activeItem==='14 Days'} onClick={()=>setActiveItem('14 Days')}/>
     </ Menu>
     </Grid.Column>
-    {/* <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
-              tick={caseTicks} tickFormatter={props.tickFormatter}/> */}
+
     {(()=>{
-    if (activeItem==='All'){
-      return <CaseChartAll data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+    if (activeItem==='All' && chart==='case'){
+      return <CaseChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+    } else if(activeItem==='All' && chart==='death'){
+      return <DeathChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
     } else if(activeItem==='90 Days'){
-      return <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
-              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+      return <CaseChart90 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem} 
+              barName={barName} lineName={lineName}/>
     } else {
-      return <CaseChart14 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
-              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+      return <CaseChart14 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}
+              barName={barName} lineName={lineName}/>
     }
   }
     )()}
@@ -305,19 +319,6 @@ useEffect(()=>{
   )
 }
 
-function Arrow1(props){
-  const [hide, setHide] = useState(true)
-  useEffect(() =>{
-    setTimeout(()=>setHide(false), 3000)
-  }, [])
-
-if(hide===false){
-  return(<ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/>);
-} else {
-  return null;
-}
-
-}
 
 
 function CaseChartAll(props){
@@ -337,7 +338,7 @@ function CaseChartAll(props){
 
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
-  const box1Ref = useRef(null);
+
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
   };
@@ -385,8 +386,7 @@ function CaseChartAll(props){
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
-             barSize={2} >
-             {/* fill={barColor} */}
+             barSize={2} fill={barColor} >
             {
               data.map((entry, index) => (
                 <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
@@ -422,10 +422,6 @@ function CaseChartAll(props){
       <Transition visible={visible5} animation='scale' duration={200}>
       <Message compact style={{ width: '10rem', top:'-53rem', left:'37.5rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
-      {/* <Xarrow
-        start='Jan'
-        end='message2'
-      /> */}
       {visible2 ? <ArrowSvg start={{ x: 200, y: 365 }} end={{ x: 160, y: 458 }} strokeWidth='0.8'/> : null}
       {visible3 ? <ArrowSvg start={{ x: 280, y: 447 }} end={{ x: 295, y: 470 }} strokeWidth='0.8'/> : null}
       {visible4 ? <ArrowSvg start={{ x: 400, y: 405 }} end={{ x: 392, y: 420 }} strokeWidth='0.8'/> : null}
@@ -449,8 +445,9 @@ function CaseChart90(props){
   const lineColor = props.lineColor;
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
+  const barName = props.barName;
+  const lineName = props.lineName;
 
-  // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
 
   const caseYTickFmt = (y) => {
@@ -460,7 +457,7 @@ function CaseChart90(props){
   useEffect(() =>{
     var sum = 0;
     for(var i=data.length-90; i<data.length; i++) { 
-      sum += data[i]['dailyCases']; 
+      sum += data[i][barName]; 
       console.log(i);
     }
     setTotalCase(sum);
@@ -489,7 +486,7 @@ function CaseChart90(props){
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' barSize={18} 
+      <Bar name="New cases" dataKey={barName} barSize={18} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); 
@@ -511,16 +508,15 @@ function CaseChart90(props){
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
-             barSize={3} >
-             {/* fill={barColor} */}
+            fill={barColor}
+            barSize={3} >
             {
               data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
-              // fill={index === highlightIndex ? "red" : barColor}
             }
       </ Bar>
-      <Line name="7-day average" id='90-line' type='monotone' dataKey='caseRateMean' dot={false} 
+      <Line name="7-day average" id='90-line' type='monotone' dataKey={lineName} dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
@@ -564,6 +560,8 @@ function CaseChart14(props){
   const lineColor = props.lineColor;
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
+  const barName = props.barName;
+  const lineName = props.lineName;
 
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
@@ -575,7 +573,7 @@ function CaseChart14(props){
   useEffect(() =>{
     var sum = 0;
     for(var i=data.length-14; i<data.length; i++) { 
-      sum += data[i]['dailyCases']; 
+      sum += data[i][barName]; 
       console.log(i);
     }
     setTotalCase(sum);
@@ -603,7 +601,7 @@ function CaseChart14(props){
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' 
+      <Bar name="New cases" dataKey={barName} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); 
@@ -625,8 +623,7 @@ function CaseChart14(props){
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
-             barSize={10} >
-             {/* fill={barColor} */}
+            barSize={10} fill={barColor}>
             {
               data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
@@ -634,7 +631,7 @@ function CaseChart14(props){
               // fill={index === highlightIndex ? "red" : barColor}
             }
       </ Bar>
-      <Line name="7-day average" id='14-line' type='monotone' dataKey='caseRateMean' dot={false} 
+      <Line name="7-day average" id='14-line' type='monotone' dataKey={lineName} dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
@@ -663,7 +660,7 @@ function CaseChart14(props){
   );
 }
 
-function DeathChart(props){
+function DeathChartAll(props){
   const [playCount, setPlayCount] = useState(0);
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
@@ -671,12 +668,12 @@ function DeathChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
-  const ticks = props.ticks;
+  const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
-  // const playCount = props.playCount;
 
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
@@ -692,25 +689,7 @@ function DeathChart(props){
   },[playCount])
 
 
-  var wait=4000;
-  // useEffect (() => {
-  //   setTimeout(() => setVisible1(true), wait);
-  //   setTimeout(() => setVisible2(true), wait+1000);
-  //   setTimeout(() => setVisible3(true), wait+2000);
-  //   setTimeout(() => setVisible4(true), wait+3000);
-  //   setTimeout(() => setVisible5(true), wait+4000);
-  //   setTimeout(() => setDisabled(false), wait+5000);
-  // }, [])
-
-  // const handlePlay = () => {
-  //   setPlayCount(playCount+1); 
-  //   setTimeout(()=>setVisible1(true), 5000); 
-  //   setTimeout(()=>setVisible2(true), 6000); 
-  //   setVisible1(false);
-  //   setVisible2(false);
-  // }
-
-  // console.log("data", data["_nation"][0].t);
+  var wait=0;
 
   return(
     <Grid.Column style={{paddingTop:28, width: 850, height: 500}}>
@@ -722,24 +701,38 @@ function DeathChart(props){
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      {/* <Legend /> */}
       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
             isAnimationActive={animationBool} 
+            animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+                                    setHighlightIndex([-1]);
+            }} 
+            onAnimationEnd={()=> {
+              setAnimationBool(false);
               setTimeout(()=>setVisible1(true), wait); 
               setTimeout(()=>setVisible2(true), wait+1000); 
-              setTimeout(()=>setVisible3(true), wait+2000); 
-              setTimeout(()=>setVisible4(true), wait+3000); 
-              setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+2500)
-            }} 
-            onAnimationEnd={()=>setAnimationBool(false)} 
-            animationDuration={5500} 
-            fill={barColor} barSize={2.1} />
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 56]), wait+1000);
+              setTimeout(()=>setVisible3(true), wait+2000);
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 174]), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
+              setTimeout(()=>setDisabled(false),wait+2500);
+              // setTimeout(()=>setHighlightIndex(-1), wait+5000);
+            }}
+            animationDuration={3500} 
+            barSize={2} fill={barColor}>
+            {
+              data.map((entry, index) => (
+                <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+              ))
+            }
+      </ Bar>
       <Line name="7-day average" type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
-            animationDuration={5500} 
-            // animationBegin={500} 
+            animationDuration={3500} 
+            stroke={lineColor}
             strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
@@ -769,6 +762,7 @@ function DeathChart(props){
       </Grid.Column>
   );
 }
+
 
 
 // function HeatMap(props){
@@ -1558,10 +1552,7 @@ export default function NationalReport(props) {
 
   const caseTickFmt = (tick) => { 
     return (
-      // <text>// </ text>
-        /* {tick} */
         monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
-      
       );
   };
 
@@ -1632,8 +1623,8 @@ export default function NationalReport(props) {
                     </ Menu>
                     </ Grid.Row>
                     <Grid.Row columns={1}> */}
-                    <CaseSection data={dataTS} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                               tickFormatter={caseTickFmt} />
+                    <CaseSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                               tickFormatter={caseTickFmt} chart='case'/>
                           {/* <Accordion style = {{paddingTop: "19px"}}>
                             <Accordion.Title
                               active={accstate.activeIndex === 0}
@@ -1682,8 +1673,10 @@ export default function NationalReport(props) {
 
                 <Grid>
                     <Grid.Row column = {1} >
-                      <DeathChart data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                          ticks={caseTicks} tickFormatter={caseTickFmt} />
+                      {/* <DeathChartAll data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                          ticks={caseTicks} tickFormatter={caseTickFmt} /> */}
+                      <CaseSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                               tickFormatter={caseTickFmt} chart='death'/>
 
                       <Accordion style = {{paddingTop: "19px"}} defaultActiveIndex={1} panels={[
                         {
