@@ -35,7 +35,6 @@ import { VictoryChart,
 import { render } from 'react-dom';
 import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell} from "recharts";
 import {ArrowSvg} from 'react-simple-arrows';
-import Xarrow from "react-xarrows"
 
 var obj, stobj;
 
@@ -354,8 +353,8 @@ function CaseChartAll(props){
 
   var wait=0;
 
-  console.log("highlightIndex", highlightIndex);
-  
+  console.log("data[0].t", data[0].t);
+  console.log("data[data.length-1].t", data[data.length-1].t);
   
   return(
     <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
@@ -363,7 +362,7 @@ function CaseChartAll(props){
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      <XAxis dataKey="t" ticks={ticks} domain={[1585713600, 1610859600]} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
             isAnimationActive={animationBool} 
@@ -418,12 +417,12 @@ function CaseChartAll(props){
       <Message compact style={{ width: '10rem', top:'-36rem', left:'23rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'37.5rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'37rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       {visible2 ? <ArrowSvg start={{ x: 200, y: 360 }} end={{ x: 160, y: 453 }} strokeWidth='0.8'/> : null}
       {visible3 ? <ArrowSvg start={{ x: 280, y: 442 }} end={{ x: 295, y: 467 }} strokeWidth='0.8'/> : null}
       {visible4 ? <ArrowSvg start={{ x: 400, y: 400 }} end={{ x: 392, y: 417 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 710, y: 217 }} end={{ x: 725, y: 232 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 703, y: 217 }} end={{ x: 718, y: 232 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -638,7 +637,7 @@ function CaseChart14(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '17rem', top:'-30rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top:'-28rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
