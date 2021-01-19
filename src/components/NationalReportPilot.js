@@ -241,7 +241,7 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
 //const nationColor = '#487f84';
 
 
-function CaseSection(props){
+function ChartSection(props){
   const [activeItem, setActiveItem] = useState('All');
   const data = props.data;
   const chart = props.chart;
@@ -697,14 +697,14 @@ function DeathChartAll(props){
       <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
         {/* <Transition visible={visible1} animation='scale' duration={300}>          */}
         {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
-        <List.Content><List.Header>Feb. 6: </List.Header>First death in US </List.Content>
+        <List.Content><List.Header style={{paddingBottom:'0.3rem'}}>Feb. 6: </List.Header>First death in US </List.Content>
         {/* </Message> */}
       </List.Item>
       
       <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
         {/* <Transition visible={visible2} animation='scale' duration={300}> */}
         {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
-        <List.Content><List.Header>May. 27: </List.Header>Coronavirus deaths in the U.S. passed 100,000 </List.Content>
+        <List.Content><List.Header style={{paddingBottom:'0.3rem'}}>May. 27: </List.Header>Coronavirus deaths in the U.S. passed 100,000 </List.Content>
         {/* </Message> */}
       {/* </Transition> */}
       </List.Item>
@@ -712,7 +712,7 @@ function DeathChartAll(props){
       <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
         {/* <Transition visible={visible3} animation='scale' duration={300}> */}
         {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
-        <List.Content><List.Header>Sep. 22: </List.Header>Coronavirus deaths in the U.S. passed 200,000 </List.Content>
+        <List.Content><List.Header style={{paddingBottom:'0.3rem'}}>Sep. 22: </List.Header>Coronavirus deaths in the U.S. passed 200,000 </List.Content>
         {/* </Message> */}
       {/* </Transition> */}
       </List.Item>
@@ -741,7 +741,7 @@ function DeathChartAll(props){
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
               // setTimeout(()=>setVisible5(true), wait+4000);
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
-              setTimeout(()=>setDisabled(false),wait+2500);
+              setTimeout(()=>setDisabled(false),wait+500);
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
@@ -1635,7 +1635,7 @@ export default function NationalReport(props) {
                     </ Menu>
                     </ Grid.Row>
                     <Grid.Row columns={1}> */}
-                    <CaseSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                    <ChartSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
                                tickFormatter={caseTickFmt} chart='case'/>
                     <Grid.Row>
                           <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
@@ -1691,7 +1691,7 @@ export default function NationalReport(props) {
                     </Grid.Row>
                       {/* <DeathChartAll data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
                           ticks={caseTicks} tickFormatter={caseTickFmt} /> */}
-                      <CaseSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                      <ChartSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
                                tickFormatter={caseTickFmt} chart='death'/>
                       <Grid.Row>
                       <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
