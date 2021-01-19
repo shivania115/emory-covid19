@@ -68,8 +68,10 @@ export default function MapState() {
         }), d => (d.text !== "Urban-Rural Status") && (d.group === "outcomes")));
         setMeasureOptionsB(_.filter(_.map(x, d=> {
           return {key: d.id, value: d.name, text: d.name, group: d.group};
-        }), d => (d.text !== "Urban-Rural Status") && (d.text !== "Urban-Rural") && (d.text !== "region") && (d.text !== "COVID-19 Community Vulnerability Index") 
-              && (d.text !== "Urban-Rural Status Code") && (d.text !== "Region Status Code")&& (d.group !== "outcomes")));
+        }), d => (d.text !== "region") 
+                && (d.text !== "Any Condition Prevalence2") && (d.text !== "Diabetes Prevalence") && (d.text !== "Heart Disease") 
+                && (d.text !== "Chronic Obstructive Pulmonary Disease") && (d.text !== "Chronic Kidney Disease")
+              && (d.text !== "Urban-Rural Status Name") && (d.text !== "Region Status Code") && (d.group !== "outcomes")));
 
       });
   }, []);

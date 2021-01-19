@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
-import { Container, Header, Grid, Loader, Divider, Button, Image, Rail, Sticky, Ref, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
+import { Container, Header, Grid, Loader, Divider, Button, Dropdown, Image, Rail, Sticky, Ref, Accordion, Menu, Message, Transition, List} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
@@ -34,6 +34,8 @@ import { VictoryChart,
 } from 'victory';
 import { render } from 'react-dom';
 import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell} from "recharts";
+import {ArrowSvg} from 'react-simple-arrows';
+import Xarrow from "react-xarrows"
 
 var obj, stobj;
 
@@ -165,7 +167,7 @@ function StickyExampleAdjacentContext(props) {
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>50% of Cases Comes From These States</Header></Menu.Item>
                         <Menu.Item as='a' href="#commu" name='COVID-19 Across U.S. Communities' active={props.activeCharacter == 'COVID-19 Across U.S. Communities' || activeItem === 'COVID-19 Across U.S. Communities'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>COVID-19 Across U.S. Communities</Header></Menu.Item>
-                        <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index' active={props.activeCharacter == 'COVID-19 by Community Vulnerability Index' || activeItem === 'COVID-19 by Community Vulnerability Index'}
+                        {/* <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index' active={props.activeCharacter == 'COVID-19 by Community Vulnerability Index' || activeItem === 'COVID-19 by Community Vulnerability Index'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index</Header></Menu.Item>
                         <Menu.Item as='a' href="#poverty" name='COVID-19 by Percent in Poverty' active={props.activeCharacter == 'COVID-19 by Percent in Poverty' || activeItem === 'COVID-19 by Percent in Poverty'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty</Header></Menu.Item>
@@ -179,7 +181,7 @@ function StickyExampleAdjacentContext(props) {
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index</Header></Menu.Item>
                         <Menu.Item as='a' href="#comorb" name='COVID-19 by Underlying Comorbidity' active={props.activeCharacter == 'COVID-19 by Underlying Comorbidity' || activeItem === 'COVID-19 by Underlying Comorbidity'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Underlying Comorbidity</Header></Menu.Item>
-                    
+                     */}
                     </Menu>
                 </Sticky>
             </Rail>
@@ -242,66 +244,82 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
 function CaseSection(props){
   const [activeItem, setActiveItem] = useState('All');
   const data = props.data;
-  const [dataPassed, setDataPassed] = useState(data["_nation"]);
+  const chart = props.chart;
+  const [barName, setBarName] = useState('dailyCases');
+  const [lineName, setLineName] = useState('caseRateMean');
   const [caseTicks, setCaseTicks] = useState([]);
 
 useEffect(()=>{
+  if(chart === 'case'){
+    setBarName('dailyCases');
+    setLineName('caseRateMean');
+  } else {
+    setBarName('dailyMortality');
+    setLineName('mortalityMean');
+  }
+
   if(activeItem==='All') {
-    setCaseTicks([data["_nation"][0].t,
-    data["_nation"][30].t,
-    data["_nation"][61].t,
-    data["_nation"][91].t,
-    data["_nation"][122].t,
-    data["_nation"][153].t,
-    data["_nation"][183].t,
-    data["_nation"][214].t,
-    data["_nation"][244].t,
-    data["_nation"][data["_nation"].length-1].t]);
-    setDataPassed(data["_nation"]);
+    setCaseTicks([data[0].t,
+    data[30].t,
+    data[61].t,
+    data[91].t,
+    data[122].t,
+    data[153].t,
+    data[183].t,
+    data[214].t,
+    data[244].t,
+    data[data.length-1].t]);
+    // setDataPassed(data);
   } else if(activeItem==='90 Days'){
-    setCaseTicks([data["_nation"][214].t,
-    data["_nation"][244].t,
-    data["_nation"][data["_nation"].length-1].t]);
-    setDataPassed(data["_nation"].slice(-90));
+    setCaseTicks([data[214].t,
+    data[244].t,
+    data[275].t,
+    data[data.length-1].t]);
+    // setDataPassed(data.slice(-90));
   } else{
     setCaseTicks([
-      data["_nation"][data["_nation"].length-15].t,
-      data["_nation"][data["_nation"].length-1].t]);
-    setDataPassed(data["_nation"].slice(-14));
+      data[data.length-14].t,
+      data[data.length-7].t,
+      data[data.length-1].t]);
+    // setDataPassed(data.slice(-14));
   }
-}, [activeItem]);
+}, [activeItem, chart]);
 
-console.log("data", data["_nation"]);
-console.log("data slice", data["_nation"].slice(-90));
 
   return(
-  <Grid.Row style={{paddingLeft: '3rem', paddingBottom: '0rem', height:'39rem'}}>  
-  <Grid.Column style={{paddingTop: '1rem', paddingLeft: '22rem'}}>
+  <Grid.Row style={{paddingLeft: '2rem', paddingBottom: '0rem'}}>  
+  <Grid.Row style={{paddingTop: '1rem', paddingLeft: '23rem'}}>
     <Menu pointing secondary widths={3} style={{width: '16rem'}}> 
     <Menu.Item name='All' active={activeItem==='All'} onClick={()=>setActiveItem('All')}/>
     {/* active={activeItem==='all'} onClick={setActiveItem('all')} defaultActiveIndex='All'*/}
     <Menu.Item name='90 Days' active={activeItem==='90 Days'} onClick={()=>setActiveItem('90 Days')}/>
     <Menu.Item name='14 Days' active={activeItem==='14 Days'} onClick={()=>setActiveItem('14 Days')}/>
     </ Menu>
-    </Grid.Column>
-    {/* <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
-              tick={caseTicks} tickFormatter={props.tickFormatter}/> */}
+    </Grid.Row>
+
     {(()=>{
-    if (activeItem==='All'){
-   return <CaseChartAll data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+    if (activeItem==='All' && chart==='case'){
+      return <CaseChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
-  } else if(activeItem==='90 Days'){
-    return <CaseChart90 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
+    } else if(activeItem==='All' && chart==='death'){
+      return <DeathChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+    } else if(activeItem==='90 Days'){
+      return <CaseChart90 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem} 
+              barName={barName} lineName={lineName}/>
     } else {
-      return <CaseChart14 data={data["_nation"]} barColor={props.barColor} lineColor={props.lineColor} 
-              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+      return <CaseChart14 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}
+              barName={barName} lineName={lineName}/>
     }
   }
     )()}
   </ Grid.Row>
   )
 }
+
+
 
 function CaseChartAll(props){
   const [playCount, setPlayCount] = useState(0);
@@ -331,36 +349,27 @@ function CaseChartAll(props){
 
   useEffect(() =>{
     setHighlightIndex([-1]);
-    console.log("highlightIndex", highlightIndex);
+    
   },[props.history])
 
   var wait=0;
-  console.log("animationBool", animationBool);
 
+  console.log("highlightIndex", highlightIndex);
+  
+  
   return(
-    <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
 
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' barSize={18} 
+      <Bar name="New cases" dataKey='dailyCases' barSize={10}
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
                                     setHighlightIndex([-1]);
-              // setTimeout(()=>setVisible1(true), wait); 
-              // setTimeout(()=>setVisible2(true), wait+1000); 
-              // setTimeout(()=>setHighlightIndex(9), wait+1000);
-              // setTimeout(()=>setVisible3(true), wait+2000);
-              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
-              // setTimeout(()=>setVisible4(true), wait+3000); 
-              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
-              // setTimeout(()=>setVisible5(true), wait+4000);
-              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
-              // setTimeout(()=>setDisabled(false),wait+4500);
-              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
             }} 
             onAnimationEnd={()=> {
               setAnimationBool(false);
@@ -377,60 +386,66 @@ function CaseChartAll(props){
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
-             barSize={2} >
-             {/* fill={barColor} */}
+             barSize={2} fill={barColor} >
             {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+                <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
+              
               // fill={index === highlightIndex ? "red" : barColor}
             }
       </ Bar>
       <Line name="7-day average" id='all-line' type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={3500} 
-            stroke={lineColor} strokeWidth="2" />
+            stroke={lineColor}
+            strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-      {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Transition visible={visible1} animation='scale' duration={200}>
+      <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
-      <Transition visible={visible2} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Transition visible={visible2} animation='scale' duration={200}>
+      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      {/* <Arrow1/> */}
       </Transition> 
-      <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-32rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
+      <Transition visible={visible3} animation='scale' duration={200}>
+      <Message compact style={{ width: '8rem', top:'-26rem', left:'13.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
-      <Transition visible={visible4} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-41.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Transition visible={visible4} animation='scale' duration={200}>
+      <Message compact style={{ width: '10rem', top:'-36rem', left:'23rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
-      <Transition visible={visible5} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-55.5rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Transition visible={visible5} animation='scale' duration={200}>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'37.5rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
-      
-      {/* <renderArrow /> */}
+      {visible2 ? <ArrowSvg start={{ x: 200, y: 360 }} end={{ x: 160, y: 453 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 280, y: 442 }} end={{ x: 295, y: 467 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 400, y: 400 }} end={{ x: 392, y: 417 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 710, y: 217 }} end={{ x: 725, y: 232 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
 
 function CaseChart90(props){
   const [playCount, setPlayCount] = useState(0);
-  // const [visible1, setVisible1] = useState(false);
+  const [visible1, setVisible1] = useState(false);
   // const [visible2, setVisible2] = useState(false);
   // const [visible3, setVisible3] = useState(false);
   // const [visible4, setVisible4] = useState(false);
   // const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [highlightIndex, setHighlightIndex] = useState([-1]);
+  const [totalCase, setTotalCase] = useState(0);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
+  const barName = props.barName;
+  const lineName = props.lineName;
 
-  // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
 
   const caseYTickFmt = (y) => {
@@ -438,48 +453,47 @@ function CaseChart90(props){
   };
 
   useEffect(() =>{
+    var sum = 0;
+    for(var i=data.length-90; i<data.length; i++) { 
+      sum += data[i][barName]; 
+      console.log(i);
+    }
+    setTotalCase(sum);
+  },[])
+
+  useEffect(() =>{
     setAnimationBool(playCount>-1);
   },[playCount])
 
   useEffect(() =>{
     setHighlightIndex([-1]);
-    console.log("highlightIndex", highlightIndex);
+    //console.log("highlightIndex", highlightIndex);
   },[props.history])
 
   var wait=0;
   console.log("animationBool", animationBool);
+  
 
   return(
-    <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
 
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" type="number" domain={[data[data.length-91].t,'dataMax']} padding={{ left: 3, right: 3 }}
+      <XAxis dataKey="t" type="number" domain={[data[data.length-90].t,'dataMax']} padding={{ left: 3, right: 3 }}
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' barSize={18} 
+      <Bar name="New cases" dataKey={barName} barSize={18} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); 
               // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
                                     setHighlightIndex([-1]);
-              // setTimeout(()=>setVisible1(true), wait); 
-              // setTimeout(()=>setVisible2(true), wait+1000); 
-              // setTimeout(()=>setHighlightIndex(9), wait+1000);
-              // setTimeout(()=>setVisible3(true), wait+2000);
-              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
-              // setTimeout(()=>setVisible4(true), wait+3000); 
-              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
-              // setTimeout(()=>setVisible5(true), wait+4000);
-              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
-              // setTimeout(()=>setDisabled(false),wait+4500);
-              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
             }} 
             onAnimationEnd={()=> {
               setAnimationBool(false);
-              // setTimeout(()=>setVisible1(true), wait); 
+              setTimeout(()=>setVisible1(true), wait); 
               // setTimeout(()=>setVisible2(true), wait+1000); 
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
               // setTimeout(()=>setVisible3(true), wait+2000);
@@ -492,27 +506,25 @@ function CaseChart90(props){
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
-             barSize={3} >
-             {/* fill={barColor} */}
+            fill={barColor}
+            barSize={3} >
             {
               data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
-              // fill={index === highlightIndex ? "red" : barColor}
             }
       </ Bar>
-      <Line name="7-day average" id='90-line' type='monotone' dataKey='caseRateMean' dot={false} 
+      <Line name="7-day average" id='90-line' type='monotone' dataKey={lineName} dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-      {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      {/* <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Transition visible={visible1} animation='scale' duration={200}>
+      <Message compact style={{ width: '17rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
-      <Transition visible={visible2} animation='scale' duration={300}>
+      {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
@@ -533,7 +545,8 @@ function CaseChart90(props){
 
 function CaseChart14(props){
   const [playCount, setPlayCount] = useState(0);
-  // const [visible1, setVisible1] = useState(false);
+  const [totalCase, setTotalCase] = useState(0);
+  const [visible1, setVisible1] = useState(false);
   // const [visible2, setVisible2] = useState(false);
   // const [visible3, setVisible3] = useState(false);
   // const [visible4, setVisible4] = useState(false);
@@ -545,6 +558,8 @@ function CaseChart14(props){
   const lineColor = props.lineColor;
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
+  const barName = props.barName;
+  const lineName = props.lineName;
 
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
@@ -552,6 +567,15 @@ function CaseChart14(props){
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
   };
+
+  useEffect(() =>{
+    var sum = 0;
+    for(var i=data.length-14; i<data.length; i++) { 
+      sum += data[i][barName]; 
+      console.log(i);
+    }
+    setTotalCase(sum);
+  },[])
 
   useEffect(() =>{
     setAnimationBool(playCount>-1);
@@ -566,36 +590,25 @@ function CaseChart14(props){
   console.log("animationBool", animationBool);
 
   return(
-    <Grid.Column style={{paddingTop:20, paddingleft: '5rem', width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
 
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" type="number" domain={[data[data.length-15].t,'dataMax']} padding={{ left: 5, right: 5 }}
+      <XAxis dataKey="t" type="number" domain={[data[data.length-14].t,'dataMax']} padding={{ left: 5, right: 5 }}
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      <Bar name="New cases" dataKey='dailyCases' 
+      <Bar name="New cases" dataKey={barName} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); 
               // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
-                                    setHighlightIndex([-1]);
-              // setTimeout(()=>setVisible1(true), wait); 
-              // setTimeout(()=>setVisible2(true), wait+1000); 
-              // setTimeout(()=>setHighlightIndex(9), wait+1000);
-              // setTimeout(()=>setVisible3(true), wait+2000);
-              // setTimeout(()=>setHighlightIndex(71), wait+2000);  
-              // setTimeout(()=>setVisible4(true), wait+3000); 
-              // setTimeout(()=>setHighlightIndex(101), wait+3000);  
-              // setTimeout(()=>setVisible5(true), wait+4000);
-              // setTimeout(()=>setHighlightIndex(260), wait+4000);  
-              // setTimeout(()=>setDisabled(false),wait+4500);
-              // setTimeout(()=>setHighlightIndex(-1), wait+4500); 
+                                    setHighlightIndex([-1]); 
             }} 
             onAnimationEnd={()=> {
               setAnimationBool(false);
-              // setTimeout(()=>setVisible1(true), wait); 
+              setTimeout(()=>setVisible1(true), wait); 
               // setTimeout(()=>setVisible2(true), wait+1000); 
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
               // setTimeout(()=>setVisible3(true), wait+2000);
@@ -608,8 +621,7 @@ function CaseChart14(props){
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
-             barSize={10} >
-             {/* fill={barColor} */}
+            barSize={10} fill={barColor}>
             {
               data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
@@ -617,7 +629,7 @@ function CaseChart14(props){
               // fill={index === highlightIndex ? "red" : barColor}
             }
       </ Bar>
-      <Line name="7-day average" id='14-line' type='monotone' dataKey='caseRateMean' dot={false} 
+      <Line name="7-day average" id='14-line' type='monotone' dataKey={lineName} dot={false} 
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
@@ -625,10 +637,10 @@ function CaseChart14(props){
       {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      {/* <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Transition visible={visible1} animation='scale' duration={300}>
+      <Message compact style={{ width: '17rem', top:'-30rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
-      <Transition visible={visible2} animation='scale' duration={300}>
+      {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
@@ -646,7 +658,7 @@ function CaseChart14(props){
   );
 }
 
-function DeathChart(props){
+function DeathChartAll(props){
   const [playCount, setPlayCount] = useState(0);
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
@@ -654,12 +666,12 @@ function DeathChart(props){
   const [visible4, setVisible4] = useState(false);
   const [visible5, setVisible5] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [highlightIndex, setHighlightIndex] = useState([-1]);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
-  const ticks = props.ticks;
+  const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
-  // const playCount = props.playCount;
 
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
@@ -675,85 +687,93 @@ function DeathChart(props){
   },[playCount])
 
 
-  var wait=4000;
-  // useEffect (() => {
-  //   setTimeout(() => setVisible1(true), wait);
-  //   setTimeout(() => setVisible2(true), wait+1000);
-  //   setTimeout(() => setVisible3(true), wait+2000);
-  //   setTimeout(() => setVisible4(true), wait+3000);
-  //   setTimeout(() => setVisible5(true), wait+4000);
-  //   setTimeout(() => setDisabled(false), wait+5000);
-  // }, [])
-
-  // const handlePlay = () => {
-  //   setPlayCount(playCount+1); 
-  //   setTimeout(()=>setVisible1(true), 5000); 
-  //   setTimeout(()=>setVisible2(true), 6000); 
-  //   setVisible1(false);
-  //   setVisible2(false);
-  // }
-
-  // console.log("data", data["_nation"][0].t);
+  var wait=0;
 
   return(
-    <Grid.Column style={{paddingTop:28, width: 850, height: 500}}>
-    <center> <Header.Content x={0} y={20} style={{fontSize: '18pt', paddingLeft: 0, paddingBottom: 5, fontWeight: 600}}>Average Daily COVID-19 Deaths </Header.Content> </center>
-
-    {/* <Grid.Row position='relative'> */}
-      <ComposedChart width={830} height={420} data={data}
+    <Grid columns={2} height={500} >
+      {/* width: 850 height: 500*/}
+    <Grid.Column width={1} >
+    <List divided style={{paddingTop: '3rem', width:'8rem'}}>                 
+      <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
+        {/* <Transition visible={visible1} animation='scale' duration={300}>          */}
+        {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
+        <List.Content><List.Header>Feb. 6: </List.Header>First death in US </List.Content>
+        {/* </Message> */}
+      </List.Item>
+      
+      <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
+        {/* <Transition visible={visible2} animation='scale' duration={300}> */}
+        {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
+        <List.Content><List.Header>May. 27: </List.Header>Coronavirus deaths in the U.S. passed 100,000 </List.Content>
+        {/* </Message> */}
+      {/* </Transition> */}
+      </List.Item>
+      
+      <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
+        {/* <Transition visible={visible3} animation='scale' duration={300}> */}
+        {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
+        <List.Content><List.Header>Sep. 22: </List.Header>Coronavirus deaths in the U.S. passed 200,000 </List.Content>
+        {/* </Message> */}
+      {/* </Transition> */}
+      </List.Item>
+      </List>
+      </Grid.Column>
+    <Grid.Column width={14} style={{paddingLeft:'3rem', paddingTop:'2rem'}}>
+      <ComposedChart height={400} width={800} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-      {/* <Legend /> */}
       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
             isAnimationActive={animationBool} 
+            animationEasing='ease'
             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+                                    setHighlightIndex([-1]);
+            }} 
+            onAnimationEnd={()=> {
+              setAnimationBool(false);
               setTimeout(()=>setVisible1(true), wait); 
               setTimeout(()=>setVisible2(true), wait+1000); 
-              setTimeout(()=>setVisible3(true), wait+2000); 
-              setTimeout(()=>setVisible4(true), wait+3000); 
-              setTimeout(()=>setVisible5(true), wait+4000); 
-              setTimeout(()=>setDisabled(false),wait+2500)
-            }} 
-            onAnimationEnd={()=>setAnimationBool(false)} 
-            animationDuration={5500} 
-            fill={barColor} barSize={2.1} />
-      <Line name="7-day average" id={playCount} type='monotone' dataKey='mortalityMean' dot={false} 
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 56]), wait+1000);
+              setTimeout(()=>setVisible3(true), wait+2000);
+              setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 174]), wait+2000);  
+              // setTimeout(()=>setVisible4(true), wait+3000); 
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
+              // setTimeout(()=>setVisible5(true), wait+4000);
+              // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
+              setTimeout(()=>setDisabled(false),wait+2500);
+              // setTimeout(()=>setHighlightIndex(-1), wait+5000);
+            }}
+            animationDuration={3500} 
+            barSize={2} fill={barColor}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
+              ))
+            } */}
+      </ Bar>
+      <Line name="7-day average" type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
-            animationDuration={5500} 
-            // animationBegin={500} 
-            stroke={lineColor} strokeWidth="2" />
+            animationDuration={3500} 
+            stroke={lineColor}
+            strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      {/* </Grid.Row>    */}
-
-      {/* <Grid.Row columns={5}>
-      <Grid.Column >                                                                    */}
-      <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
-      </Transition>
-      {/* </Grid.Column> 
-      <Grid.Column >              */}
-      <Transition visible={visible2} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-32rem', left:'18rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
-      </Transition> 
-      <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-34rem', left:'36rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
-      </Transition> 
+      </Grid.Column>   
+      {/* <Grid.Row> */}
+      {/* <Grid.Column> */}
+      
       {/* <Transition visible={visible4} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-42rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-52rem', left:'45rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,786 new cases <br />(7-day avg.) </Message>
       </Transition>  */}
-      
-      </Grid.Column>
+      {/* </Grid.Column> */}
+      </Grid>
   );
 }
-
-
 
 
 export default function NationalReport(props) {
@@ -785,35 +805,43 @@ export default function NationalReport(props) {
   const [dailyDeaths, setDailyDeaths] = useState();
 
   const [bar, LoadBar] = useState(false);
+
   const [ccvi] = useState("ccvi");
   const [colorccvi, setColorccvi] = useState();
   const [legendMaxccvi, setLegendMaxccvi] = useState([]);
   const [legendMinccvi, setLegendMinccvi] = useState([]);
   const [legendSplitccvi, setLegendSplitccvi] = useState([]);
 
-  const [resSeg] = useState("RS_blackwhite");
-  const [colorResSeg, setColorResSeg] = useState();
-  const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
-  const [legendMinResSeg, setLegendMinResSeg] = useState([]);
-  const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
+  const [metric, setMetric] = useState("ccvi");
+  const [colorMetric, setColorMetric] = useState();
+  const [legendMaxMetric, setLegendMaxMetric] = useState([]);
+  const [legendMinMetric, setLegendMinMetric] = useState([]);
+  const [legendSplitMetric, setLegendSplitMetric] = useState([]);
 
-  const [black] = useState("black");
-  const [colorBlack, setColorBlack] = useState();
-  const [legendMaxBlack, setLegendMaxBlack] = useState([]);
-  const [legendMinBlack, setLegendMinBlack] = useState([]);
-  const [legendSplitBlack, setLegendSplitBlack] = useState([]);
 
-  const [poverty] = useState("poverty");
-  const [colorPoverty, setColorPoverty] = useState();
-  const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
-  const [legendMinPoverty, setLegendMinPoverty] = useState([]);
-  const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
+  // const [resSeg] = useState("RS_blackwhite");
+  // const [colorResSeg, setColorResSeg] = useState();
+  // const [legendMaxResSeg, setLegendMaxResSeg] = useState([]);
+  // const [legendMinResSeg, setLegendMinResSeg] = useState([]);
+  // const [legendSplitResSeg, setLegendSplitResSeg] = useState([]);
 
-  const [Comorb] = useState("anyconditionPrevalence");
-  const [colorComorb, setColorComorb] = useState();
-  const [legendMaxComorb, setLegendMaxComorb] = useState([]);
-  const [legendMinComorb, setLegendMinComorb] = useState([]);
-  const [legendSplitComorb, setLegendSplitComorb] = useState([]);
+  // const [black] = useState("black");
+  // const [colorBlack, setColorBlack] = useState();
+  // const [legendMaxBlack, setLegendMaxBlack] = useState([]);
+  // const [legendMinBlack, setLegendMinBlack] = useState([]);
+  // const [legendSplitBlack, setLegendSplitBlack] = useState([]);
+
+  // const [poverty] = useState("poverty");
+  // const [colorPoverty, setColorPoverty] = useState();
+  // const [legendMaxPoverty, setLegendMaxPoverty] = useState([]);
+  // const [legendMinPoverty, setLegendMinPoverty] = useState([]);
+  // const [legendSplitPoverty, setLegendSplitPoverty] = useState([]);
+
+  // const [Comorb] = useState("anyconditionPrevalence");
+  // const [colorComorb, setColorComorb] = useState();
+  // const [legendMaxComorb, setLegendMaxComorb] = useState([]);
+  // const [legendMinComorb, setLegendMinComorb] = useState([]);
+  // const [legendSplitComorb, setLegendSplitComorb] = useState([]);
 
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
@@ -837,27 +865,22 @@ export default function NationalReport(props) {
                                                   caseRateMA: "N/A", mortalityMA: "N/A",
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
-
-  const [accstate, setAccstate] = useState({ activeIndex: 1 });
-
-  const dealClick = (e, titleProps) => {
-  const { index } = titleProps
-  const { activeIndex } = accstate
-  const newIndex = activeIndex === index ? -1 : index
-
-  setAccstate({ activeIndex: newIndex })
-  }
-
+  const [metricName, setMetricName] = useState('COVID-19 Community Vulnerability Index');
+  const [metricOptions, setMetricOptions] = useState();
 
   useEffect(()=>{
-    
-  }, []);
 
-  useEffect(()=>{
-    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-      .then(x => {
-        setVarMap(x);
-      });
+
+  fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+    .then(x => {
+      setVarMap(x);
+      setMetricOptions(_.filter(_.map(x, d=> {
+        return {key: d.id, value: d.variable, text: d.name, group: d.group};
+      }), d => (
+        d.value === "ccvi" || d.value === "poverty" || d.value === "urbanrural" || 
+        d.value === "region" || d.value === "black" || d.value === "resSeg" 
+      )));
+    });
   }, []);
 
 
@@ -874,16 +897,6 @@ export default function NationalReport(props) {
           setTopTen(x);
         });
 
-      // fetch('/data/nationalBarCases.json').then(res => res.json())
-      //   .then(x => {
-      //     setnationalBarChart['caserate7day'][0](x);
-      //   });
-
-      // fetch('/data/nationalBarMortality.json').then(res => res.json())
-      //   .then(x => {
-      //     setnationalBarChart['covidmortality7day'][0](x);
-      //   });
-
       fetch('/data/nationalBarChart.json').then(res => res.json())
         .then(x => {
           setNationalBarChart(x);
@@ -892,8 +905,8 @@ export default function NationalReport(props) {
       fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
-      fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-        .then(x => setVarMap(x));
+      // fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      //   .then(x => setVarMap(x));
       
       fetch('/data/topTenCases.json').then(res => res.json())
         .then(x => setDataTopCases(x));
@@ -981,308 +994,308 @@ export default function NationalReport(props) {
     }, []);
 
     useEffect(() => {
-      
-          if(data){
-          //ccvi
+        // === "resSeg" ? "RS_blackwhite" : metric === "urbanrural" ? "_013_Urbanization_Code" : metric
+          if(data && metric){
+          //metric
           const cs = scaleQuantile()
           .domain(_.map(_.filter(_.map(data, (d, k) => {
             d.fips = k
             return d}), 
             d => (
-                d[ccvi] > 0 &&
+                d[metric] > 0 &&
                 d.fips.length === 5)),
-            d=> d[ccvi]))
+            d=> d[metric]))
           .range(colorPalette);
   
           let scaleMap = {}
           _.each(data, d=>{
-            if(d[ccvi] > 0){
-            scaleMap[d[ccvi]] = cs(d[ccvi])}
+            if(d[metric] > 0){
+            scaleMap[d[metric]] = cs(d[metric])}
           });
         
-          setColorccvi(scaleMap);
+          setColorMetric(scaleMap);
           var max = 0
           var min = 100
           _.each(data, d=> { 
-            if (d[ccvi] > max && d.fips.length === 5) {
-              max = d[ccvi]
-            } else if (d.fips.length === 5 && d[ccvi] < min && d[ccvi] > 0){
-              min = d[ccvi]
+            if (d[metric] > max && d.fips.length === 5) {
+              max = d[metric]
+            } else if (d.fips.length === 5 && d[metric] < min && d[metric] > 0){
+              min = d[metric]
             }
           });
   
           if (max > 999999) {
             max = (max/1000000).toFixed(0) + "M";
-            setLegendMaxccvi(max);
+            setLegendMaxMetric(max);
           }else if (max > 999) {
             max = (max/1000).toFixed(0) + "K";
-            setLegendMaxccvi(max);
+            setLegendMaxMetric(max);
           }else{
-            setLegendMaxccvi(max.toFixed(0));
+            setLegendMaxMetric(max.toFixed(0));
   
           }
-          setLegendMinccvi(min.toFixed(0));
+          setLegendMinMetric(min.toFixed(0));
   
-          setLegendSplitccvi(cs.quantiles());
+          setLegendSplitMetric(cs.quantiles());
 
 
         }
 
 
 
-    },[data]);
+    },[data, metric]);
 
-    //replace
-    useEffect(() => {
-      if(data && ccvi){
-          //poverty
-          const cs_poverty = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[poverty] > 0 &&
-                d.fips.length === 5)),
-            d=> d[poverty]))
-          .range(colorPalette);
+//     //replace
+//     useEffect(() => {
+//       if(data && ccvi){
+//           //poverty
+//           const cs_poverty = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[poverty] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[poverty]))
+//           .range(colorPalette);
   
-          let scaleMap_poverty = {}
-          _.each(data, d=>{
-            if(d[poverty] > 0){
-              scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
-          });
+//           let scaleMap_poverty = {}
+//           _.each(data, d=>{
+//             if(d[poverty] > 0){
+//               scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
+//           });
         
-          setColorPoverty(scaleMap_poverty);
-          var max_poverty = 0
-          var min_poverty = 100
-          _.each(data, d=> { 
-            if (d[poverty] > max_poverty && d.fips.length === 5) {
-              max_poverty = d[poverty]
-            } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
-              min_poverty = d[poverty]
-            }
-          });
-          if (max_poverty > 999999) {
-            max_poverty = (max_poverty/1000000).toFixed(0) + "M";
-            setLegendMaxPoverty(max_poverty);
-          }else if (max_poverty > 999) {
-            max_poverty = (max_poverty/1000).toFixed(0) + "K";
-            setLegendMaxPoverty(max_poverty);
-          }else{
-            setLegendMaxPoverty(max_poverty.toFixed(0));
-          }
-          setLegendMinPoverty(min_poverty.toFixed(0));
-          setLegendSplitPoverty(cs_poverty.quantiles());
+//           setColorPoverty(scaleMap_poverty);
+//           var max_poverty = 0
+//           var min_poverty = 100
+//           _.each(data, d=> { 
+//             if (d[poverty] > max_poverty && d.fips.length === 5) {
+//               max_poverty = d[poverty]
+//             } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
+//               min_poverty = d[poverty]
+//             }
+//           });
+//           if (max_poverty > 999999) {
+//             max_poverty = (max_poverty/1000000).toFixed(0) + "M";
+//             setLegendMaxPoverty(max_poverty);
+//           }else if (max_poverty > 999) {
+//             max_poverty = (max_poverty/1000).toFixed(0) + "K";
+//             setLegendMaxPoverty(max_poverty);
+//           }else{
+//             setLegendMaxPoverty(max_poverty.toFixed(0));
+//           }
+//           setLegendMinPoverty(min_poverty.toFixed(0));
+//           setLegendSplitPoverty(cs_poverty.quantiles());
 
-      }
+//       }
 
-    },[data, ccvi]);
+//     },[data, ccvi]);
 
-    useEffect(() => {
-      if(data && poverty){
-        //urbrur
-        let tempDict = {};
-        _.map(_.filter(_.map(data, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[urbrur] !== "" &&
-              d.fips.length === 5)), i => {
-                tempDict[i.fips] = i
-                return tempDict;
-              });
-        setDataUrb(tempDict);
-      }
+//     useEffect(() => {
+//       if(data && poverty){
+//         //urbrur
+//         let tempDict = {};
+//         _.map(_.filter(_.map(data, (d, k) => {
+//           d.fips = k
+//           return d}), 
+//           d => (
+//               d[urbrur] !== "" &&
+//               d.fips.length === 5)), i => {
+//                 tempDict[i.fips] = i
+//                 return tempDict;
+//               });
+//         setDataUrb(tempDict);
+//       }
 
-    }, [data, poverty])
+//     }, [data, poverty])
 
-//replace
+// //replace
 
 
-    //replace
-    // useEffect(() => {
-    //   if(data && male){
+//     //replace
+//     // useEffect(() => {
+//     //   if(data && male){
 
-    //       //age65over
-    //       const cs_age65 = scaleQuantile()
-    //       .domain(_.map(_.filter(_.map(data, (d, k) => {
-    //         d.fips = k
-    //         return d}), 
-    //         d => (
-    //             d[age65] > 0 &&
-    //             d.fips.length === 5)),
-    //         d=> d[age65]))
-    //       .range(colorPalette);
+//     //       //age65over
+//     //       const cs_age65 = scaleQuantile()
+//     //       .domain(_.map(_.filter(_.map(data, (d, k) => {
+//     //         d.fips = k
+//     //         return d}), 
+//     //         d => (
+//     //             d[age65] > 0 &&
+//     //             d.fips.length === 5)),
+//     //         d=> d[age65]))
+//     //       .range(colorPalette);
   
-    //       let scaleMap_age65 = {}
-    //       _.each(data, d=>{
-    //         if(d[age65] > 0){
-    //           scaleMap_age65[d[age65]] = cs_age65(d[age65])}
-    //       });
+//     //       let scaleMap_age65 = {}
+//     //       _.each(data, d=>{
+//     //         if(d[age65] > 0){
+//     //           scaleMap_age65[d[age65]] = cs_age65(d[age65])}
+//     //       });
         
-    //       setColorAge65(scaleMap_age65);
-    //       var max_age65 = 0
-    //       var min_age65 = 100
-    //       _.each(data, d=> { 
-    //         if (d[age65] > max_age65 && d.fips.length === 5) {
-    //           max_age65 = d[age65]
-    //         } else if (d.fips.length === 5 && d[age65] < min_age65 && d[age65] > 0){
-    //           min_age65 = d[age65]
-    //         }
-    //       });
-    //       if (max_age65 > 999999) {
-    //         max_age65 = (max_age65/1000000).toFixed(0) + "M";
-    //         setLegendMaxAge65(max_age65);
-    //       }else if (max_age65 > 999) {
-    //         max_age65 = (max_age65/1000).toFixed(0) + "K";
-    //         setLegendMaxAge65(max_age65);
-    //       }else{
-    //         setLegendMaxAge65(max_age65.toFixed(0));
-    //       }
-    //       setLegendMinAge65(min_age65.toFixed(0));
-    //       setLegendSplitAge65(cs_age65.quantiles());
+//     //       setColorAge65(scaleMap_age65);
+//     //       var max_age65 = 0
+//     //       var min_age65 = 100
+//     //       _.each(data, d=> { 
+//     //         if (d[age65] > max_age65 && d.fips.length === 5) {
+//     //           max_age65 = d[age65]
+//     //         } else if (d.fips.length === 5 && d[age65] < min_age65 && d[age65] > 0){
+//     //           min_age65 = d[age65]
+//     //         }
+//     //       });
+//     //       if (max_age65 > 999999) {
+//     //         max_age65 = (max_age65/1000000).toFixed(0) + "M";
+//     //         setLegendMaxAge65(max_age65);
+//     //       }else if (max_age65 > 999) {
+//     //         max_age65 = (max_age65/1000).toFixed(0) + "K";
+//     //         setLegendMaxAge65(max_age65);
+//     //       }else{
+//     //         setLegendMaxAge65(max_age65.toFixed(0));
+//     //       }
+//     //       setLegendMinAge65(min_age65.toFixed(0));
+//     //       setLegendSplitAge65(cs_age65.quantiles());
 
-    //   }
+//     //   }
 
-    // },[data, male]);
+//     // },[data, male]);
     
 
     
-    useEffect(() => {
-      if(data && urbrur){
-          //black
-          const cs_black = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[black] > 0 &&
-                d.fips.length === 5)),
-            d=> d[black]))
-          .range(colorPalette);
+//     useEffect(() => {
+//       if(data && urbrur){
+//           //black
+//           const cs_black = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[black] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[black]))
+//           .range(colorPalette);
   
-          let scaleMap_black = {}
-          _.each(data, d=>{
-            if(d[black] > 0){
-              scaleMap_black[d[black]] = cs_black(d[black])}
-          });
+//           let scaleMap_black = {}
+//           _.each(data, d=>{
+//             if(d[black] > 0){
+//               scaleMap_black[d[black]] = cs_black(d[black])}
+//           });
         
-          setColorBlack(scaleMap_black);
-          var max_black = 0
-          var min_black = 100
-          _.each(data, d=> { 
-            if (d[black] > max_black && d.fips.length === 5) {
-              max_black = d[black]
-            } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
-              min_black = d[black]
-            }
-          });
-          if (max_black > 999999) {
-            max_black = (max_black/1000000).toFixed(0) + "M";
-            setLegendMaxBlack(max_black);
-          }else if (max_black > 999) {
-            max_black = (max_black/1000).toFixed(0) + "K";
-            setLegendMaxBlack(max_black);
-          }else{
-            setLegendMaxBlack(max_black.toFixed(0));
-          }
-          setLegendMinBlack(min_black.toFixed(0));
-          setLegendSplitBlack(cs_black.quantiles());
-      }
+//           setColorBlack(scaleMap_black);
+//           var max_black = 0
+//           var min_black = 100
+//           _.each(data, d=> { 
+//             if (d[black] > max_black && d.fips.length === 5) {
+//               max_black = d[black]
+//             } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
+//               min_black = d[black]
+//             }
+//           });
+//           if (max_black > 999999) {
+//             max_black = (max_black/1000000).toFixed(0) + "M";
+//             setLegendMaxBlack(max_black);
+//           }else if (max_black > 999) {
+//             max_black = (max_black/1000).toFixed(0) + "K";
+//             setLegendMaxBlack(max_black);
+//           }else{
+//             setLegendMaxBlack(max_black.toFixed(0));
+//           }
+//           setLegendMinBlack(min_black.toFixed(0));
+//           setLegendSplitBlack(cs_black.quantiles());
+//       }
 
-    },[data, urbrur]);
+//     },[data, urbrur]);
 
-    useEffect(() => {
-      if(data && black){
-          //ResSeg
-          const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[resSeg] > 0 &&
-                d.fips.length === 5)),
-            d=> d[resSeg]))
-          .range(colorPalette);
+//     useEffect(() => {
+//       if(data && black){
+//           //ResSeg
+//           const csii = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[resSeg] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[resSeg]))
+//           .range(colorPalette);
 
-          let scaleMapii = {}
-          _.each(data, d=>{
-            if(d[resSeg] > 0){
-            scaleMapii[d[resSeg]] = csii(d[resSeg])}
-          });
+//           let scaleMapii = {}
+//           _.each(data, d=>{
+//             if(d[resSeg] > 0){
+//             scaleMapii[d[resSeg]] = csii(d[resSeg])}
+//           });
         
-          setColorResSeg(scaleMapii);
-          var maxii = 0
-          var minii = 100
-          _.each(data, d=> { 
-            if (d[resSeg] > maxii && d.fips.length === 5) {
-              maxii = d[resSeg]
-            } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
-              minii = d[resSeg]
-            }
-          });
-          if (maxii > 999999) {
-            maxii = (maxii/1000000).toFixed(0) + "M";
-            setLegendMaxResSeg(maxii);
-          }else if (maxii > 999) {
-            maxii = (maxii/1000).toFixed(0) + "K";
-            setLegendMaxResSeg(maxii);
-          }else{
-            setLegendMaxResSeg(maxii.toFixed(0));
-          }
-          setLegendMinResSeg(minii.toFixed(0));
-          setLegendSplitResSeg(csii.quantiles());
+//           setColorResSeg(scaleMapii);
+//           var maxii = 0
+//           var minii = 100
+//           _.each(data, d=> { 
+//             if (d[resSeg] > maxii && d.fips.length === 5) {
+//               maxii = d[resSeg]
+//             } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
+//               minii = d[resSeg]
+//             }
+//           });
+//           if (maxii > 999999) {
+//             maxii = (maxii/1000000).toFixed(0) + "M";
+//             setLegendMaxResSeg(maxii);
+//           }else if (maxii > 999) {
+//             maxii = (maxii/1000).toFixed(0) + "K";
+//             setLegendMaxResSeg(maxii);
+//           }else{
+//             setLegendMaxResSeg(maxii.toFixed(0));
+//           }
+//           setLegendMinResSeg(minii.toFixed(0));
+//           setLegendSplitResSeg(csii.quantiles());
 
 
-      }
+//       }
 
-    },[data, black]);
+//     },[data, black]);
 
-    useEffect(() => {
-      if(data && resSeg){
-          //comorb
-          const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[Comorb] > 0 &&
-                d.fips.length === 5)),
-            d=> d[Comorb]))
-          .range(colorPalette);
+//     useEffect(() => {
+//       if(data && resSeg){
+//           //comorb
+//           const csii = scaleQuantile()
+//           .domain(_.map(_.filter(_.map(data, (d, k) => {
+//             d.fips = k
+//             return d}), 
+//             d => (
+//                 d[Comorb] > 0 &&
+//                 d.fips.length === 5)),
+//             d=> d[Comorb]))
+//           .range(colorPalette);
 
-          let scaleMapii = {}
-          _.each(data, d=>{
-            if(d[Comorb] > 0){
-            scaleMapii[d[Comorb]] = csii(d[Comorb])}
-          });
+//           let scaleMapii = {}
+//           _.each(data, d=>{
+//             if(d[Comorb] > 0){
+//             scaleMapii[d[Comorb]] = csii(d[Comorb])}
+//           });
         
-          setColorComorb(scaleMapii);
-          var maxii = 0
-          var minii = 100
-          _.each(data, d=> { 
-            if (d[Comorb] > maxii && d.fips.length === 5) {
-              maxii = d[Comorb]
-            } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
-              minii = d[Comorb]
-            }
-          });
-          if (maxii > 999999) {
-            maxii = (maxii/1000000).toFixed(0) + "M";
-            setLegendMaxComorb(maxii);
-          }else if (maxii > 999) {
-            maxii = (maxii/1000).toFixed(0) + "K";
-            setLegendMaxComorb(maxii);
-          }else{
-            setLegendMaxComorb(maxii.toFixed(0));
-          }
-          setLegendMinComorb(minii.toFixed(0));
-          setLegendSplitComorb(csii.quantiles());
+//           setColorComorb(scaleMapii);
+//           var maxii = 0
+//           var minii = 100
+//           _.each(data, d=> { 
+//             if (d[Comorb] > maxii && d.fips.length === 5) {
+//               maxii = d[Comorb]
+//             } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
+//               minii = d[Comorb]
+//             }
+//           });
+//           if (maxii > 999999) {
+//             maxii = (maxii/1000000).toFixed(0) + "M";
+//             setLegendMaxComorb(maxii);
+//           }else if (maxii > 999) {
+//             maxii = (maxii/1000).toFixed(0) + "K";
+//             setLegendMaxComorb(maxii);
+//           }else{
+//             setLegendMaxComorb(maxii.toFixed(0));
+//           }
+//           setLegendMinComorb(minii.toFixed(0));
+//           setLegendSplitComorb(csii.quantiles());
 
 
-      }
+//       }
 
-    },[data, resSeg]);
+//     },[data, resSeg]);
 
   useEffect(() => {
     if (dataTS){
@@ -1313,10 +1326,7 @@ export default function NationalReport(props) {
 
   const caseTickFmt = (tick) => { 
     return (
-      // <text>// </ text>
-        /* {tick} */
         monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
-      
       );
   };
 
@@ -1324,12 +1334,11 @@ export default function NationalReport(props) {
 
   if (data && dataTS && varMap) {
 
-    console.log(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]);
   return (
     <HEProvider>
       <div>
         <AppBar menu='nationalReport' /> 
-        <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} ref={characterRef}>
+        <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} >
         <div >
           <br/><br/><br/><br/>
         </div>
@@ -1368,14 +1377,14 @@ export default function NationalReport(props) {
             </div>
             <div id="cases" style = {{height: 45}}> </div>
             <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
-            <div style={{paddingBottom:'2em', paddingLeft: "12rem", paddingRight: "1rem"}}>
+            <div style={{paddingBottom:'0em', paddingLeft: "12rem", paddingRight: "1rem"}}>
               <Header as='h2' style={{color: mortalityColor[1], textAlign:'center',fontSize:"22pt", paddingTop: 30}}>
                 <Header.Content>
                   How have cases in the U.S. changed over time?
                 </Header.Content>
               </Header>
                 <Grid>
-                    <Grid.Row column = {1}>
+                    <Grid.Row>
                     <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
                     <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content>
                     </ Grid.Row>
@@ -1388,23 +1397,21 @@ export default function NationalReport(props) {
                     </ Menu>
                     </ Grid.Row>
                     <Grid.Row columns={1}> */}
-                    <CaseSection data={dataTS} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                               tickFormatter={caseTickFmt} />
-                          {/* <Accordion style = {{paddingTop: "19px"}}>
-                            <Accordion.Title
-                              active={accstate.activeIndex === 0}
-                              index={0}
-                              onClick={dealClick}
-                              style ={{color: "#397AB9", fontSize: 19, paddingLeft: 30}}
-
-                            >
-                            <Icon id = "deaths" name='dropdown' />
-                              About the data
-                            </Accordion.Title>
-                              <Accordion.Content active={accstate.activeIndex === 0}>
-                              <Header  as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingRight: 30, paddingBottom: 20}}>
-                                  <Header.Content style={{fontSize: "14pt"}}>
-                                    <Header.Subheader style={{color: '#000000', width: 800, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                    <CaseSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                               tickFormatter={caseTickFmt} chart='case'/>
+                    <Grid.Row>
+                          <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
+                                  <Header.Content  style={{fontSize: "14pt"}}>
+                                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:'4rem'}}>
                                       This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
                                       new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
                                       an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
@@ -1417,9 +1424,12 @@ export default function NationalReport(props) {
                                     </Header.Subheader>
                                   </Header.Content>
                                 </Header>
-                              </Accordion.Content>
-
-                            </Accordion>  */}
+                              ),
+                            },
+                        }
+                    ]
+                  } />
+                  </Grid.Row>
                           {/* </div> */}
                         {/* </ Grid.Column> */}
                     </Grid.Row>
@@ -1429,7 +1439,7 @@ export default function NationalReport(props) {
             <div id="deaths" style = {{height: 45}}> </div>
 
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center>
-            <div style={{paddingBottom:'2em', paddingLeft: "15em", paddingRight: "1em"}}>
+            <div style={{paddingBottom:'0em', paddingLeft: "12rem", paddingRight: "1em"}}>
               <Header as='h2' style={{color: mortalityColor[1], textAlign:'center', fontSize:"22pt", paddingTop: 30}}>
                 <Header.Content>
                   How have deaths in the U.S. changed over time? 
@@ -1437,11 +1447,16 @@ export default function NationalReport(props) {
               </Header>
 
                 <Grid>
-                    <Grid.Row column = {1} >
-                      <DeathChart data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                          ticks={caseTicks} tickFormatter={caseTickFmt} />
-
-                      <Accordion style = {{paddingTop: "19px"}} defaultActiveIndex={1} panels={[
+                  <Grid.Row >
+                  <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
+                    <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Deaths </Header.Content>
+                    </Grid.Row>
+                      {/* <DeathChartAll data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                          ticks={caseTicks} tickFormatter={caseTickFmt} /> */}
+                      <CaseSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                               tickFormatter={caseTickFmt} chart='death'/>
+                      <Grid.Row>
+                      <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -1450,9 +1465,9 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
+                                  <Header.Content  style={{fontSize: "14pt"}}>
+                                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:'4rem'}}>
                                           This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
                                           per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
                                           associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
@@ -1471,6 +1486,7 @@ export default function NationalReport(props) {
                       ]
 
                       } />
+                      </Grid.Row>
                           {/* <Accordion style = {{paddingTop: "19px"}}>
                             <Accordion.Title
                               active={accstate.activeIndex === 0}
@@ -2087,7 +2103,7 @@ export default function NationalReport(props) {
               <div id="commu" style = {{height: 45}}> </div>
 
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
-            {resSeg && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
+            {true && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
               <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 130}}>
                 COVID-19 Across U.S. Communities
@@ -2105,10 +2121,281 @@ export default function NationalReport(props) {
               </Header>
 
     
-              <div id="ccvi" style = {{height: 85}}> </div>
+              {/* <div id="ccvi" style = {{height: 85}}> </div> */}
+              <div id="ccvi" style = {{height: 45}}> </div>
 
+              {/* <div style = {{paddingLeft: 50}}>
+                <button class="ui black basic button" style = {{width: 120}} onClick={()=>
+                                                        setMetric('ccvi')}>Community Vulnerability Index</button>
+                <button class="ui black basic button" style = {{width: 120}} onClick={()=>
+                                                        setMetric('poverty')}>by Percent in Poverty</button>
+                
+                                                        
               
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+
+              </div> */}
+
+
+<div>
+      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+        <center> <b style= {{fontSize: "18pt"}}>{metricOptions[metric]}</b> </center> 
+        <br/>
+        <br/>         
+
+      </Header.Subheader>
+        <div style = {{paddingLeft: 70}}>
+          <Dropdown
+
+                        style={{background: '#fff', 
+                                fontSize: "19px",
+                                fontWeight: 400, 
+                                theme: '#000000',
+                                width: '440px',
+                                top: '0px',
+                                left: '0px',
+                                text: "Select",
+                                borderTop: '0.5px solid #bdbfc1',
+                                borderLeft: '0.5px solid #bdbfc1',
+                                borderRight: '0.5px solid #bdbfc1', 
+                                borderBottom: '0.5px solid #bdbfc1',
+                                borderRadius: 0,
+                                minHeight: '1.0em',
+                                paddingBottom: '0.5em',
+                                paddingRight: 0}}
+                        text= { "By " + metricName }
+                        search
+                        selection
+                        pointing = 'top'
+                        options={metricOptions}
+                        onChange={(e, { value }) => {
+                          setMetric(value);
+                          setMetricName(varMap[value]['name']);
+                        }}
+                      />
+          </div>
+      <Grid>
+        <Grid.Row columns={2} style={{paddingTop: 8}}>
+          <Grid.Column style={{paddingTop:0,paddingBottom:0}}>
+            
+
+          <div >
+            <br/>
+
+            <svg width="400" height="80">
+              
+              {_.map(legendSplitMetric, (splitpoint, i) => {
+                if(legendSplitMetric[i] < 1){
+                  return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitMetric[i].toFixed(1)}</text>                    
+                }else if(legendSplitMetric[i] > 999999){
+                  return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitMetric[i]/1000000).toFixed(0) + "M"}</text>                    
+                }else if(legendSplitMetric[i] > 999){
+                  return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitMetric[i]/1000).toFixed(0) + "K"}</text>                    
+                }
+                return <text key = {i} x={90 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitMetric[i].toFixed(0)}</text>                    
+              })} 
+              <text x={70} y={35} style={{fontSize: '0.7em'}}>{legendMinMetric}</text>
+              <text x={190} y={35} style={{fontSize: '0.7em'}}>{legendMaxMetric}</text>
+
+
+              {_.map(colorPalette, (color, i) => {
+                return <rect key={i} x={70+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+              })} 
+
+
+              <text x={70} y={74} style={{fontSize: '0.8em'}}>Low</text>
+              <text x={70+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+
+              <rect x={215} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+              <text x={237} y={50} style={{fontSize: '0.7em'}}> None </text>
+              <text x={237} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+            
+
+            </svg>
+
+            <br/><br/><br/>
+              <ComposableMap 
+                projection="geoAlbersUsa" 
+                data-tip=""
+                width={520} 
+                height={300}
+                strokeWidth= {0.1}
+                stroke= 'black'
+                projectionConfig={{scale: 580}}
+                style = {{paddingLeft: 50}}
+                >
+                <Geographies geography={geoUrl} stateBoundary = {metric === "region" ? true : false}>
+                  {({ geographies }) => 
+                    <svg>
+                      {geographies.map(geo => (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          fill={
+                          ((colorMetric && data[geo.id] && (data[geo.id][metric]) > 0)?
+                          colorMetric[data[geo.id][metric]]: 
+                              (colorMetric && data[geo.id] && data[geo.id][metric] === 0)?
+                                '#FFFFFF':'#FFFFFF')}                              
+                        />
+                      ))}
+                    </svg>
+                  }
+                </Geographies>
+                
+
+              </ComposableMap>
+          </div>
+          <Accordion style = {{paddingTop: 150, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                {
+                    key: 'acquire-dog',
+                    title: {
+                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                        icon: 'dropdown',
+                    },
+                    content: {
+                        content: (
+                            <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                              <Header.Content  style={{fontSize: "14pt"}}>
+                                <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
+                                residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
+                                The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
+                                100,000 that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
+                                five groups designed to be of equal size, so that the lowest quintile contains the counties with values 
+                                in the 0%-20% range for this county characteristic, and the highest quintile contains counties with 
+                                values in the 80%-100% range for this county characteristic. Q2 indicates counties in the 20%-40% 
+                                range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties in the 60%-80% range.
+                                </Header.Subheader>
+                              </Header.Content>
+                            </Header>
+                        ),
+                      },
+                  }
+              ]
+
+              } />
+
+
+          </Grid.Column>
+          <Grid.Column>
+          <Header as='h2' style={{paddingLeft: 80, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+              <Header.Content>
+                Cases by {varMap[metric]['name']}
+              </Header.Content>
+            </Header>
+                <VictoryChart
+                  theme={VictoryTheme.material}
+                  width={530}
+                  height={180}
+                  domainPadding={20}
+                  minDomain={{y: props.ylog?1:0}}
+                  padding={{left: metric !== "urbanrural" ? 180 : 250, right: 40, top: 5, bottom: 1}}
+                  style = {{fontSize: "14pt"}}
+                  containerComponent={<VictoryContainer responsive={false}/>}
+                >
+                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                  <VictoryBar
+                    horizontal
+                    barRatio={0.80}
+                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                    data={metric !== "region" ? 
+                    [
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+                    ]
+                    :
+                    [
+                      {key: nationalBarChart['caserate7day'][0][metric][0]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][0]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0}, 
+                      {key: nationalBarChart['caserate7day'][0][metric][1]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][1]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric][2]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][2]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric][3]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][3]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0},
+                    ]}
+                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                    style={{
+                      data: {
+                        fill: casesColor[1]
+                      }
+                    }}
+                    x="key"
+                    y="value"
+                  />
+                </VictoryChart>
+
+                <Header.Content style = {{width: 540}}>
+                  
+                  <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                    <b>COVID-19 Cases per 100,000</b>
+                  </Header.Content>
+                </Header.Content>
+                  
+                  <br/>
+                  <br/>
+
+              <Header as='h2' style={{marginLeft: 80, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                  <Header.Content>
+                    Deaths by {varMap[metric]['name']}
+                  </Header.Content>
+                </Header>
+                <VictoryChart
+                  theme={VictoryTheme.material}
+                  width={530}
+                  height={180}
+                  domainPadding={20}
+                  minDomain={{y: props.ylog?1:0}}
+                  padding={{left: metric !== "urbanrural" ? 180 : 250, right: 40, top: 5, bottom: 1}}
+                  style = {{fontSize: "14pt"}}
+                  containerComponent={<VictoryContainer responsive={false}/>}
+                >
+                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                  <VictoryBar
+                    horizontal
+                    barRatio={0.80}
+                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                    data={ metric !== "region" ? 
+                    [
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}, 
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+                    ]
+                    :
+                    [
+                      {key: nationalBarChart['covidmortality7day'][0][metric][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][0]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0}, 
+                      {key: nationalBarChart['covidmortality7day'][0][metric][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][1]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][2]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][3]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0},
+                    ]
+                  
+                  }
+                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                    style={{
+                      data: {
+                        fill: mortalityColor[1]
+                      }
+                    }}
+                    x="key"
+                    y="value"
+                  />
+                </VictoryChart>
+
+                <Header.Content style = {{width: 550}}>
+                    <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                      <b>COVID-19 Deaths per 100,000</b>
+                    </Header.Content>
+                </Header.Content>
+
+            </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div>
+
+              {/* <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
                   <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Community Vulnerability Index </b> </center> 
                   <br/>
                   <br/>         
@@ -3632,7 +3919,7 @@ export default function NationalReport(props) {
                         </Header.Content>
                     </Grid.Column>
                 </Grid.Row> 
-              </Grid>}
+              </Grid>} */}
               
             </div>}
             

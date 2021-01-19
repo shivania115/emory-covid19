@@ -53,56 +53,47 @@
         
     "black": {
         "variable": "black",
-        "name": "% African American",
+        "name": "Percent African American",
         "definition": "definition",
         "group": "exposure"},
     "hispanic": {
         "variable": "hispanic",
-        "name": "% Hispanic or Latino",
+        "name": "Percent Hispanic or Latino",
         "definition": "definition",
         "group": "exposure"},
     "natives": {
         "variable": "natives",
-        "name": "% Native American",
+        "name": "Percent Native American",
         "definition": "definition",
         "group": "exposure"},
     "minority": {
         "variable": "minority",
-        "name": "% Minority",
+        "name": "Percent Minority",
         "definition": "definition",
         "group": "exposure"},
     "poverty": {
         "variable": "poverty",
-        "name": "% in Poverty",
+        "name": "Percent in Poverty",
         "definition": "definition",
         "group": "exposure"},
     "PCTUI": {
         "variable": "PCTUI",
-        "name": "% Uninsured",
+        "name": "Percent Uninsured",
         "definition": "definition",
         "group": "exposure"},
-    "diabetes": {
-        "variable": "diabetes",
-        "name": "% Diabetes",
-        "definition": "definition",
-        "group": "exposure"},
-    "obesity": {
-        "variable": "obesity",
-        "name": "% Obesity",
-        "definition": "definition",
-        "group": "exposure"},
+
     "age65over": {
         "variable": "age65over",
-        "name": "% over 65 y/o",
+        "name": "Percent over 65 y/o",
         "definition": "definition",
         "group": "exposure"},
     "groupquater": {
         "variable": "groupquater",
-        "name": "% in Group Quarters",
+        "name": "Percent in Group Quarters",
         "group": "exposure"},
     "male": {
         "variable": "male",
-        "name": "% Male",
+        "name": "Percent Male",
         "definition": "definition",
         "group": "exposure"},
 
@@ -111,18 +102,47 @@
         "name": "COVID-19 Community Vulnerability Index",
         "definition": "definition",
         "group": "exposure"},
-
-    "RS_blackwhite": {
-        "variable": "RS_blackwhite",
-        "name": "Residential Segregation",
+    "resSeg": {
+        "variable": "resSeg",
+        "name": "Residential Segregation Index",
         "definition": "definition",
         "group": "exposure"},
 
     "anyconditionPrevalence": {
         "variable": "anyconditionPrevalence",
-        "name": "anyconditionPrevalence",
+        "name": "Any Condition Prevalence",
         "definition": "definition",
-        "group": "misc"},
+        "group": "exposure"},
+
+    "any condition": {
+        "variable": "any condition",
+        "name": "Any Condition Prevalence2",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "diabetes": {
+        "variable": "diabetes",
+        "name": "Diabetes Prevalence",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "heartdisease": {
+        "variable": "heartdisease",
+        "name": "Heart Disease",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "COPD": {
+        "variable": "COPD",
+        "name": "Chronic Obstructive Pulmonary Disease",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "CKD": {
+        "variable": "CKD",
+        "name": "Chronic Kidney Disease",
+        "definition": "definition",
+        "group": "exposure"},
 
     "RPL_THEME1": {
         "variable": "RPL_THEME1",
@@ -144,9 +164,10 @@
         "name": "Housing/Transportaion Vulnerability",
         "definition": "definition",
         "group": "exposure"},
+
     "urbanrural": {
         "variable": "urbanrural",
-        "name": "Urban-Rural",
+        "name": "Urban-Rural Status",
         "definition": "definition",
         "group": "exposure"},
     "region": {
@@ -169,14 +190,9 @@
         "name": "Household Income",
         "definition": "definition",
         "group": "misc"},
-    "_013_Urbanization": {
-        "variable": "_013_Urbanization",
-        "name": "Urban-Rural Status",
-        "definition": "definition",
-        "group": "misc"},
-    "_013_Urbanization_Code": {
-        "variable": "_013_Urbanization_Code",
-        "name": "Urban-Rural Status Code",
+    "urbanrural_text": {
+        "variable": "urbanrural_text",
+        "name": "Urban-Rural Status Name",
         "definition": "definition",
         "group": "misc"},
     "region_Code": {

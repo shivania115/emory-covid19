@@ -152,12 +152,12 @@ function BarChart(props) {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={200}
+      width={190}
       height={110}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
-      padding={{left: 105, right: 30, top: 30, bottom: 20}}
+      padding={{left: 95, right: 30, top: 30, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/>
@@ -1240,9 +1240,9 @@ export default function StateMap(props) {
             <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 37, paddingBottom: 35}}> COVID-19 County Outcomes </Divider>
             }
           
-            <Grid columns={16}>
-              <Grid.Row>
-                <Grid.Column width={5}>
+            <Grid>
+              <Grid.Row style = {{width: 1260}}>
+                <Grid.Column style = {{width: 450}}>
                   <Dropdown
 
                     style={{background: '#fff', 
@@ -1412,12 +1412,12 @@ export default function StateMap(props) {
 
                 } />
                 </Grid.Column>
-                <Grid.Column width={11} style={{padding: 0, paddingLeft: 90, width: 750}}>
+                <Grid.Column style={{padding: 0, paddingLeft: 40, width: 810}}>
 
-                <Header as='h2' style={{width:750, paddingBottom: 10}}>
+                <Header as='h2' style={{width:800, paddingBottom: 10}}>
                     <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
                       {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
-                      <Header.Subheader style={{fontWeight: 350, width: 750, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
+                      <Header.Subheader style={{fontWeight: 350, width: 800, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
                       Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                       Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
                       </Header.Subheader>
@@ -1512,10 +1512,10 @@ export default function StateMap(props) {
                   </Grid>
 
 
-                  <Header as='h2' style={{fontWeight: 400, width: 750}}>
+                  <Header as='h2' style={{fontWeight: 400, width: 800}}>
                     <Header.Content style={{fontSize: 20}}>
                       Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
-                      <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 750, fontSize: "14pt", lineHeight: "16pt"}}>
+                      <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
                         The number of cases and deaths due to COVID-19 are dynamic. 
                         Cases are declining in many counties and rising in others. 
                         Trends in the case and death count in the past 14 days are being monitored to 
