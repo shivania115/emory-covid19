@@ -166,7 +166,7 @@ function StickyExampleAdjacentContext(props) {
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>50% of Cases Comes From These States</Header></Menu.Item>
                         <Menu.Item as='a' href="#commu" name='COVID-19 Across U.S. Communities' active={props.activeCharacter == 'COVID-19 Across U.S. Communities' || activeItem === 'COVID-19 Across U.S. Communities'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>COVID-19 Across U.S. Communities</Header></Menu.Item>
-                        <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index' active={props.activeCharacter == 'COVID-19 by Community Vulnerability Index' || activeItem === 'COVID-19 by Community Vulnerability Index'}
+                        {/* <Menu.Item as='a' href="#ccvi" name='COVID-19 by Community Vulnerability Index' active={props.activeCharacter == 'COVID-19 by Community Vulnerability Index' || activeItem === 'COVID-19 by Community Vulnerability Index'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Community Vulnerability Index</Header></Menu.Item>
                         <Menu.Item as='a' href="#poverty" name='COVID-19 by Percent in Poverty' active={props.activeCharacter == 'COVID-19 by Percent in Poverty' || activeItem === 'COVID-19 by Percent in Poverty'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent in Poverty</Header></Menu.Item>
@@ -180,7 +180,7 @@ function StickyExampleAdjacentContext(props) {
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Residential Segregation Index</Header></Menu.Item>
                         <Menu.Item as='a' href="#comorb" name='COVID-19 by Underlying Comorbidity' active={props.activeCharacter == 'COVID-19 by Underlying Comorbidity' || activeItem === 'COVID-19 by Underlying Comorbidity'}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Underlying Comorbidity</Header></Menu.Item>
-                    
+                     */}
                     </Menu>
                 </Sticky>
             </Rail>
@@ -773,244 +773,6 @@ function DeathChartAll(props){
       </Grid>
   );
 }
-
-
-
-// function HeatMap(props){
-
-  
-//   const metric = props.metric;
-//   const data = props.data;
-//   const legendSplit = props.legendSplit;
-//   const legendMax = props.legendMax;
-//   const legendMin = props.legendMin;
-//   const colorPalette = props.colorPalette;
-//   const color = props.color;
-
-  
-  
-  
-//   return(
-//     <div>
-//       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-//         <center> <b style= {{fontSize: "18pt"}}>{props.options[metric]}</b> </center> 
-//         <br/>
-//         <br/>         
-
-//       </Header.Subheader>
-//       <Grid>
-//         <Grid.Row columns={2} style={{paddingTop: 8}}>
-//           <Grid.Column style={{paddingTop:10,paddingBottom:0}}>
-            
-
-//           <div >
-//             <br/>
-
-//             <svg width="260" height="80">
-              
-//               {_.map(legendSplit, (splitpoint, i) => {
-//                 if(legendSplit[i] < 1){
-//                   return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-//                 }else if(legendSplit[i] > 999999){
-//                   return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-//                 }else if(legendSplit[i] > 999){
-//                   return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
-//                 }
-//                 return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-//               })} 
-//               <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-//               <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
-
-
-//               {_.map(colorPalette, (color, i) => {
-//                 return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-//               })} 
-
-
-//               <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-//               <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
-
-
-//               <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-//               <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-//               <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-            
-
-//             </svg>
-
-//             <br/><br/><br/>
-//               <ComposableMap 
-//                 projection="geoAlbersUsa" 
-//                 data-tip=""
-//                 width={520} 
-//                 height={300}
-//                 strokeWidth= {0.1}
-//                 stroke= 'black'
-//                 projectionConfig={{scale: 580}}
-//                 style = {{paddingLeft: 50}}
-//                 >
-//                 <Geographies geography={geoUrl}>
-//                   {({ geographies }) => 
-//                     <svg>
-//                       {geographies.map(geo => (
-//                         <Geography
-//                           key={geo.rsmKey}
-//                           geography={geo}
-//                           fill={
-//                           ((color && data[geo.id] && (data[geo.id][metric]) > 0)?
-//                             color[data[geo.id][metric]]: 
-//                               (color && data[geo.id] && data[geo.id][metric] === 0)?
-//                                 '#FFFFFF':'#FFFFFF')}                              
-//                         />
-//                       ))}
-//                     </svg>
-//                   }
-//                 </Geographies>
-                
-
-//               </ComposableMap>
-//           </div>
-//           <Accordion style = {{paddingTop: 100, paddingLeft: 100}} defaultActiveIndex={1} panels={[
-//                 {
-//                     key: 'acquire-dog',
-//                     title: {
-//                         content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-//                         icon: 'dropdown',
-//                     },
-//                     content: {
-//                         content: (
-//                             <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
-//                               <Header.Content  style={{fontSize: "14pt"}}>
-//                                 <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-//                                 This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
-//                                 residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
-//                                 The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
-//                                 100,000 that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
-//                                 five groups designed to be of equal size, so that the lowest quintile contains the counties with values 
-//                                 in the 0%-20% range for this county characteristic, and the highest quintile contains counties with 
-//                                 values in the 80%-100% range for this county characteristic. Q2 indicates counties in the 20%-40% 
-//                                 range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties in the 60%-80% range.
-//                                 </Header.Subheader>
-//                               </Header.Content>
-//                             </Header>
-//                         ),
-//                       },
-//                   }
-//               ]
-
-//               } />
-
-
-//           </Grid.Column>
-//           <Grid.Column>
-//           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-//               <Header.Content>
-//                 Cases by {props.options[metric]}
-//               </Header.Content>
-//             </Header>
-//                 <VictoryChart
-//                   theme={VictoryTheme.material}
-//                   width={530}
-//                   height={180}
-//                   domainPadding={20}
-//                   minDomain={{y: props.ylog?1:0}}
-//                   padding={{left: 180, right: 40, top: 5, bottom: 1}}
-//                   style = {{fontSize: "14pt"}}
-//                   containerComponent={<VictoryContainer responsive={false}/>}
-//                 >
-//                   <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-//                   <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-//                   <VictoryBar
-//                     horizontal
-//                     barRatio={0.80}
-//                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-//                     data={[
-//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
-
-
-
-//                     ]}
-//                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-//                     style={{
-//                       data: {
-//                         fill: casesColor[1]
-//                       }
-//                     }}
-//                     x="key"
-//                     y="value"
-//                   />
-//                 </VictoryChart>
-
-//                 <Header.Content style = {{width: 540}}>
-                  
-//                   <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-//                     <b>COVID-19 Cases per 100,000</b>
-//                   </Header.Content>
-//                 </Header.Content>
-                  
-//                   <br/>
-//                   <br/>
-
-//               <Header as='h2' style={{marginLeft: 13, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-//                   <Header.Content>
-//                     Deaths by {props.options[metric]}
-//                   </Header.Content>
-//                 </Header>
-//                 <VictoryChart
-//                   theme={VictoryTheme.material}
-//                   width={530}
-//                   height={180}
-//                   domainPadding={20}
-//                   minDomain={{y: props.ylog?1:0}}
-//                   padding={{left: 180, right: 40, top: 5, bottom: 1}}
-//                   style = {{fontSize: "14pt"}}
-//                   containerComponent={<VictoryContainer responsive={false}/>}
-//                 >
-//                   <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-//                   <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-//                   <VictoryBar
-//                     horizontal
-//                     barRatio={0.80}
-//                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-//                     data={[
-//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-//                           {key: data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*data['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
-
-
-
-//                     ]}
-//                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-//                     style={{
-//                       data: {
-//                         fill: mortalityColor[1]
-//                       }
-//                     }}
-//                     x="key"
-//                     y="value"
-//                   />
-//                 </VictoryChart>
-
-//                 <Header.Content style = {{width: 550}}>
-//                     <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-//                       <b>COVID-19 Deaths per 100,000</b>
-//                     </Header.Content>
-//                 </Header.Content>
-
-//             </Grid.Column>
-//         </Grid.Row>
-//       </Grid>
-//     </div>
-
-//   )
-
-// }
 
 
 export default function NationalReport(props) {
@@ -2461,7 +2223,7 @@ export default function NationalReport(props) {
                 projectionConfig={{scale: 580}}
                 style = {{paddingLeft: 50}}
                 >
-                <Geographies geography={geoUrl}>
+                <Geographies geography={geoUrl} stateBoundary = {metric === "region" ? true : false}>
                   {({ geographies }) => 
                     <svg>
                       {geographies.map(geo => (
@@ -2526,7 +2288,7 @@ export default function NationalReport(props) {
                   height={180}
                   domainPadding={20}
                   minDomain={{y: props.ylog?1:0}}
-                  padding={{left: 180, right: 40, top: 5, bottom: 1}}
+                  padding={{left: metric !== "urbanrural" ? 180 : 250, right: 40, top: 5, bottom: 1}}
                   style = {{fontSize: "14pt"}}
                   containerComponent={<VictoryContainer responsive={false}/>}
                 >
@@ -2536,15 +2298,20 @@ export default function NationalReport(props) {
                     horizontal
                     barRatio={0.80}
                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                    data={[
-                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
-
-
-
+                    data={metric !== "region" ? 
+                    [
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+                    ]
+                    :
+                    [
+                      {key: nationalBarChart['caserate7day'][0][metric][0]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][0]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0}, 
+                      {key: nationalBarChart['caserate7day'][0][metric][1]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][1]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric][2]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][2]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['caserate7day'][0][metric][3]['label'], 'value': (nationalBarChart['caserate7day'][0][metric][3]['measure']/nationalBarChart['caserate7day'][0][metric][0]['measure'])*nationalBarChart['caserate7day'][0][metric][0]['measure'] || 0},
                     ]}
                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                     style={{
@@ -2578,7 +2345,7 @@ export default function NationalReport(props) {
                   height={180}
                   domainPadding={20}
                   minDomain={{y: props.ylog?1:0}}
-                  padding={{left: 180, right: 40, top: 5, bottom: 1}}
+                  padding={{left: metric !== "urbanrural" ? 180 : 250, right: 40, top: 5, bottom: 1}}
                   style = {{fontSize: "14pt"}}
                   containerComponent={<VictoryContainer responsive={false}/>}
                 >
@@ -2588,16 +2355,23 @@ export default function NationalReport(props) {
                     horizontal
                     barRatio={0.80}
                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                    data={[
-                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
-                          {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
-
-
-
-                    ]}
+                    data={ metric !== "region" ? 
+                    [
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}, 
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][1]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][2]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][3]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][4]['measure']/nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric === "ccvi"? "CVI" : metric][0]['measure'] || 0}
+                    ]
+                    :
+                    [
+                      {key: nationalBarChart['covidmortality7day'][0][metric][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][0]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0}, 
+                      {key: nationalBarChart['covidmortality7day'][0][metric][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][1]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][2]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0},
+                      {key: nationalBarChart['covidmortality7day'][0][metric][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0][metric][3]['measure']/nationalBarChart['covidmortality7day'][0][metric][0]['measure'])*nationalBarChart['covidmortality7day'][0][metric][0]['measure'] || 0},
+                    ]
+                  
+                  }
                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                     style={{
                       data: {

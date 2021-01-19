@@ -81,16 +81,7 @@
         "name": "Percent Uninsured",
         "definition": "definition",
         "group": "exposure"},
-    "diabetes": {
-        "variable": "diabetes",
-        "name": "Percent Diabetes",
-        "definition": "definition",
-        "group": "exposure"},
-    "obesity": {
-        "variable": "obesity",
-        "name": "Percent Obesity",
-        "definition": "definition",
-        "group": "exposure"},
+
     "age65over": {
         "variable": "age65over",
         "name": "Percent over 65 y/o",
@@ -117,15 +108,39 @@
         "definition": "definition",
         "group": "exposure"},
 
-    "resSeg": {
-        "variable": "resSeg",
-        "name": "Residential Segregation",
-        "definition": "definition",
-        "group": "exposure"},
-
     "anyconditionPrevalence": {
         "variable": "anyconditionPrevalence",
         "name": "Any Condition Prevalence",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "any condition": {
+        "variable": "any condition",
+        "name": "Any Condition Prevalence2",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "diabetes": {
+        "variable": "diabetes",
+        "name": "Diabetes Prevalence",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "heartdisease": {
+        "variable": "heartdisease",
+        "name": "Heart Disease",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "COPD": {
+        "variable": "COPD",
+        "name": "Chronic Obstructive Pulmonary Disease",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "CKD": {
+        "variable": "CKD",
+        "name": "Chronic Kidney Disease",
         "definition": "definition",
         "group": "exposure"},
 
@@ -149,6 +164,7 @@
         "name": "Housing/Transportaion Vulnerability",
         "definition": "definition",
         "group": "exposure"},
+
     "urbanrural": {
         "variable": "urbanrural",
         "name": "Urban-Rural Status",
