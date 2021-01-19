@@ -35,6 +35,7 @@ import { VictoryChart,
 import { render } from 'react-dom';
 import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell} from "recharts";
 import {ArrowSvg} from 'react-simple-arrows';
+import { CSSTransition } from 'react-transition-group';
 
 var obj, stobj;
 
@@ -469,7 +470,15 @@ function CaseChartAll1(props){
   
   return(
     <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500, position:'relative'}}>
-
+        {/* <CSSTransition
+                  in={true}
+                  timeout={400}
+                  classNames="list-transition"
+                  unmountOnExit
+                  appear
+                  // onEntered={this.listSwitch}
+                  // onExit={this.listSwitch}
+                > */}
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
@@ -497,7 +506,7 @@ function CaseChartAll1(props){
             //   // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             // }}
             animationDuration={3500} 
-             barSize={2} fill='grey' > 
+            barSize={2} fill='grey' > 
              {/* barColor */}
             {
               data.map((entry, index) => (
@@ -536,6 +545,7 @@ function CaseChartAll1(props){
             strokeWidth="2" />
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
+      {/* </CSSTransition> */}
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={200}>
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
@@ -789,7 +799,7 @@ function CaseChart90(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact style={{ width: '17rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 90 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -905,7 +915,7 @@ function CaseChart14(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '17rem', top:'-28rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed Cases in Past 14 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top:'-29rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 14 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
