@@ -108,15 +108,9 @@
         "definition": "definition",
         "group": "exposure"},
 
-    "anyconditionPrevalence": {
-        "variable": "anyconditionPrevalence",
+    "anycondition": {
+        "variable": "anycondition",
         "name": "Any Condition Prevalence",
-        "definition": "definition",
-        "group": "exposure"},
-
-    "any condition": {
-        "variable": "any condition",
-        "name": "Any Condition Prevalence2",
         "definition": "definition",
         "group": "exposure"},
 
@@ -128,19 +122,19 @@
 
     "heartdisease": {
         "variable": "heartdisease",
-        "name": "Heart Disease",
+        "name": "Heart Disease Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
-    "COPD": {
-        "variable": "COPD",
-        "name": "Chronic Obstructive Pulmonary Disease",
+    "copd": {
+        "variable": "copd",
+        "name": "Chronic Obstructive Pulmonary Disease Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
-    "CKD": {
-        "variable": "CKD",
-        "name": "Chronic Kidney Disease",
+    "ckd": {
+        "variable": "ckd",
+        "name": "Chronic Kidney Disease Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
@@ -167,12 +161,12 @@
 
     "urbanrural": {
         "variable": "urbanrural",
-        "name": "Urban-Rural Status",
+        "name": "Urban-Rural",
         "definition": "definition",
         "group": "exposure"},
     "region": {
         "variable": "region",
-        "name": "region",
+        "name": "Region",
         "definition": "definition",
         "group": "exposure"},
     "Population": {
@@ -192,14 +186,14 @@
         "group": "misc"},
     "urbanrural_text": {
         "variable": "urbanrural_text",
-        "name": "Urban-Rural Status Name",
+        "name": "Urban-Rural",
         "definition": "definition",
-        "group": "misc"},
-    "region_Code": {
-        "variable": "region_Code",
-        "name": "Region Status Code",
+        "group": "text"},
+    "region_text": {
+        "variable": "region_text",
+        "name": "Region",
         "definition": "definition",
-        "group": "misc"}       
+        "group": "text"}       
 }
 
 

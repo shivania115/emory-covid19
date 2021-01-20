@@ -1,0 +1,70 @@
+{
+    "Population": {
+        "variable": "Population",
+        "name": "Population",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Doses_Distributed": {
+        "variable": "Doses_Distributed",
+        "name": "Doses Distributed",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Doses_Administered": {
+        "variable": "Doses_Administered",
+        "name": "Doses Administered",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Dist_Per_100K": {
+        "variable": "Dist_Per_100K",
+        "name": "Distributed Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Admin_Per_100K": {
+        "variable": "Admin_Per_100K",
+        "name": "Administered Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Dose1": {
+        "variable": "Administered_Dose1",
+        "name": "Dose 1 Administered",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Dose1_Per_100K": {
+        "variable": "Administered_Dose1_Per_100K",
+        "name": "Dose 1 Administered Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Dose2": {
+        "variable": "Administered_Dose1",
+        "name": "Dose 2 Administered",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Dose2_Per_100K": {
+        "variable": "Administered_Dose2_Per_100K",
+        "name": "Dose 2 Administered Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Moderna": {
+        "variable": "Administered_Moderna",
+        "name": "Moderna Vaccine Administered",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Pfizer": {
+        "variable": "Administered_Pfizer",
+        "name": "Pfizer Vaccine Administered",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Unk_Manuf": {
+        "variable": "Administered_Unk_Manuf",
+        "name": "Vaccine Administered by Unknown Manufacturer",
+        "definition": "definition",
+        "group": "outcomes"},
+    "percentVaccinated": {
+        "variable": "percentVaccinated",
+        "name": "Percent of Population Vaccinated",
+        "definition": "definition",
+        "group": "outcomes"}
+    
+}
+
+
