@@ -302,10 +302,10 @@ useEffect(()=>{
       return (<Grid.Column>
               <CaseChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
-              <CaseChartAll1 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+              {/* <CaseChartAll1 data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
               <CaseChartAll2 data={data} barColor={props.barColor} lineColor={props.lineColor} 
-              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/>
+              tick={caseTicks} tickFormatter={props.tickFormatter} history={activeItem}/> */}
               </Grid.Column>)
     } else if(activeItem==='All' && chart==='death'){
       return <DeathChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
@@ -752,7 +752,7 @@ function CaseChart90(props){
   
 
   return(
-    <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:'2rem', paddingLeft: '1rem', width: 850, height: 500}}>
 
       <ComposedChart width={830} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
@@ -760,7 +760,7 @@ function CaseChart90(props){
       <XAxis dataKey="t" type="number" domain={[data[data.length-90].t,'dataMax']} padding={{ left: 3, right: 3 }}
       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
-      <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+      <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={['auto','dataMax']}/>
       <Bar name="New cases" dataKey={barName} barSize={18} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
@@ -799,7 +799,7 @@ function CaseChart90(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact style={{ width: '17rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top: barName==='dailyCases' ? '-32rem' : '-28rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -915,7 +915,7 @@ function CaseChart14(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: '17rem', top:'-29rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Newly Confirmed {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 14 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top:'-29rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 14 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -967,36 +967,10 @@ function DeathChartAll(props){
   var wait=0;
 
   return(
-    <Grid columns={2} height={500} >
-      {/* width: 850 height: 500*/}
-    <Grid.Column width={1} >
-    <List divided style={{paddingTop: '3rem', width:'8rem'}}>                 
-      <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
-        {/* <Transition visible={visible1} animation='scale' duration={300}>          */}
-        {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
-        <List.Content><List.Header style={{paddingBottom:'0.3rem'}}>Feb. 6: </List.Header>First death in US </List.Content>
-        {/* </Message> */}
-      </List.Item>
-      
-      <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
-        {/* <Transition visible={visible2} animation='scale' duration={300}> */}
-        {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
-        <List.Content><List.Header style={{paddingBottom:'0.3rem'}}>May. 27: </List.Header>Coronavirus deaths in the U.S. passed 100,000 </List.Content>
-        {/* </Message> */}
-      {/* </Transition> */}
-      </List.Item>
-      
-      <List.Item style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
-        {/* <Transition visible={visible3} animation='scale' duration={300}> */}
-        {/* <Message compact style={{ width: '10rem', height:'6rem', padding: '1rem', fontSize: '0.8rem'}}>  */}
-        <List.Content><List.Header style={{paddingBottom:'0.3rem'}}>Sep. 22: </List.Header>Coronavirus deaths in the U.S. passed 200,000 </List.Content>
-        {/* </Message> */}
-      {/* </Transition> */}
-      </List.Item>
-      </List>
-      </Grid.Column>
-    <Grid.Column width={14} style={{paddingLeft:'3rem', paddingTop:'2rem'}}>
-      <ComposedChart height={400} width={800} data={data}
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
+
+
+      <ComposedChart height={420} width={850} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
@@ -1018,16 +992,16 @@ function DeathChartAll(props){
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
               // setTimeout(()=>setVisible5(true), wait+4000);
               // setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
-              setTimeout(()=>setDisabled(false),wait+500);
+              setTimeout(()=>setDisabled(false),wait+3000);
               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
             }}
             animationDuration={3500} 
             barSize={2} fill={barColor}>
-            {/* {
+            {
               data.map((entry, index) => (
                 <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
-            } */}
+            }
       </ Bar>
       <Line name="7-day average" type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
@@ -1037,18 +1011,20 @@ function DeathChartAll(props){
       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
-      </Grid.Column>   
-      {/* <Grid.Row> */}
-      {/* <Grid.Column> */}
-      
-      {/* <Transition visible={visible4} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-42rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Transition visible={visible1} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
+      </Transition>
+      <Transition visible={visible2} animation='scale' duration={300}>
+      <Message compact style={{ width: '10rem', top:'-27rem', left:'14rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
       </Transition> 
-      <Transition visible={visible5} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-52rem', left:'45rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,786 new cases <br />(7-day avg.) </Message>
-      </Transition>  */}
-      {/* </Grid.Column> */}
-      </Grid>
+      <Transition visible={visible3} animation='scale' duration={300}>
+      <Message compact style={{ width: '8rem', top:'-30rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      </Transition> 
+      {visible2 ? <ArrowSvg start={{ x: 295, y: 343 }} end={{ x: 271, y: 406 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 535, y: 404 }} end={{ x: 546, y: 430 }} strokeWidth='0.8'/> : null}
+      
+      </Grid.Column>   
+
   );
 }
 
