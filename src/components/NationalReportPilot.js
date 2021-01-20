@@ -764,8 +764,8 @@ function CaseChart90(props){
       <Bar name="New cases" dataKey={barName} barSize={18} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
-            onAnimationStart={() => {setDisabled(true); 
-              // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+            onAnimationStart={() => {setDisabled(true); setVisible1(false);
+              //  setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
                                     setHighlightIndex([-1]);
             }} 
             onAnimationEnd={()=> {
@@ -799,7 +799,7 @@ function CaseChart90(props){
       </ComposedChart>
       <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/>
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact style={{ width: '17rem', top: barName==='dailyCases' ? '-32rem' : '-28rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '17rem', top: barName==='dailyCases' ? '-32rem' : '-29rem', left:'38rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -879,8 +879,8 @@ function CaseChart14(props){
       <Bar name="New cases" dataKey={barName} 
             isAnimationActive={animationBool} 
             animationEasing='ease'
-            onAnimationStart={() => {setDisabled(true); 
-              // setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
+            onAnimationStart={() => {setDisabled(true); setVisible1(false);
+              //  setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
                                     setHighlightIndex([-1]); 
             }} 
             onAnimationEnd={()=> {
