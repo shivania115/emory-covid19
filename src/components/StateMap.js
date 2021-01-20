@@ -153,14 +153,18 @@ function BarChart(props) {
     <VictoryChart
       theme={VictoryTheme.material}
       width={190}
-      height={110}       
+      height={115}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 95, right: 30, top: 30, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/>
+      {props.title !== "Community Vulnerability Index" && props.title !== "Any Condition" && <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Community Vulnerability Index" && <VictoryLabel text="Vulnerability Index" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Prevalence of Any" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Condition / 100,000" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "16px", fontFamily: 'lato'}}}  />
       <VictoryAxis tickCount={3} dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", padding: 1, fontSize: "12px", fontFamily: 'lato'}}} />
       <VictoryBar
@@ -1451,8 +1455,8 @@ export default function StateMap(props) {
                         stateName={stateName}
                         data={data} />  
                       <BarChart 
-                        title="% Over 65 y/o" 
-                        var="age65over" 
+                        title="Community Vulnerability Index" 
+                        var="ccvi" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={barCountyName}
@@ -1461,8 +1465,8 @@ export default function StateMap(props) {
                     </Grid.Row>
                     <Grid.Row style = {{paddingTop: 15}}>
                       <BarChart 
-                        title="% Obese" 
-                        var="obesity" 
+                        title="Any Condition" 
+                        var="anycondition" 
                         stateFips={stateFips}
                         countyFips={countyFips}
                         countyName={barCountyName}
@@ -1509,6 +1513,15 @@ export default function StateMap(props) {
                           stateName={stateName}
                           data={data} /> */}
                     </Grid.Row>
+                    <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                                            <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                                            *The state and national level measure of any chronic condition prevalence is computed with the average of all the counties and states.
+                                            <br/>
+                                            *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
+
+
+                                            </text>
+                                    </Grid.Row>
                   </Grid>
 
 

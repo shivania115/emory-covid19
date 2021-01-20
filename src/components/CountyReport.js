@@ -533,8 +533,8 @@ export default function CountyReport() {
                   stateName={stateName}
                   data={data} />
                 <BarChart 
-                  title="% Diabetes" 
-                  var="diabetes" 
+                  title="Community Vulnerability Index" 
+                  var="ccvi" 
                   width={400}
                   stateFips={stateFips}
                   countyFips={countyFips}
@@ -586,8 +586,8 @@ export default function CountyReport() {
 
               <Grid.Column>
                 <BarChart 
-                  title="% Obese" 
-                  var="obesity"
+                  title="Any Condition" 
+                  var="anycondition"
                   width={400} 
                   stateFips={stateFips}
                   countyFips={countyFips}
@@ -615,7 +615,17 @@ export default function CountyReport() {
                 
               </Grid.Column>
             </Grid.Row>
-            <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+            <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                                            <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                                            *The state and national level measure of any chronic condition prevalence is computed with the average of all the counties and states.
+                                            <br/>
+                                            *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
+
+
+                                            </text>
+                                            <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</span>
+
+                                    </Grid.Row>
           </Grid>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 54, paddingBottom: 25}}> County Characteristics and Outcomes</Divider>
@@ -777,19 +787,21 @@ export default function CountyReport() {
                   {_.map(data[stateFips + countyFips],
                     (v, k) => {
                       var rmList = ["casesfig", "deathsfig", "dailycases", "dailydeaths", "mean7daycases", "mean7daydeaths", "covidmortalityfig"
-                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips", "region_Code", "_013_Urbanization_Code"];
+                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips", "region", "urbanrural"];
                       if (!rmList.includes(k)) {
                         return (
                           <Table.Row key={k}>
-                            <Table.Cell>{varMap[k] ? varMap[k].name : k}</Table.Cell>
+                            <Table.Cell>{varMap[k] ? varMap[k].name: k}</Table.Cell>
                             <Table.Cell>{isNaN(v) ? v : varMap[k].name === "Socioeconomic Vulnerability" || 
                                                         varMap[k].name === "Household Composition Vulnerability" || 
                                                         varMap[k].name === "Minority/Language Vulnerability" || 
                                                         varMap[k].name === "Housing/Transportaion Vulnerability" ||
                                                         varMap[k].name === "% Native American" || 
                                                         varMap[k].name === "% in Group Quarters" ||
-                                                        varMap[k].name === "COVID-19 Community Vulnerability Index"? numberWithCommas(parseFloat(v).toFixed(1)): numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
-                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" ? "" : 
+                                                        varMap[k].name === "COVID-19 Community Vulnerability Index"? 
+                                                        numberWithCommas(parseFloat(v).toFixed(1)): k === "urbanrural_text" ? 
+                                                        v : numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : (numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" || k === "region_text") ? "" : 
                                                         varMap[k].name === "% Native American" || varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(1)) : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
                             <Table.Cell>{isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : 
                                                         varMap[k].name === "% Native American" || varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(data['_nation'][k]).toFixed(1)) : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0))}</Table.Cell>

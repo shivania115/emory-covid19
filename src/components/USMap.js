@@ -1285,8 +1285,7 @@ export default function USMap(props) {
 
 
                   }
-
-                  {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 53}}> 
+                  {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 54}}> 
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
@@ -1322,7 +1321,7 @@ export default function USMap(props) {
 
                   {stateFips !== "38"  && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
-                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", paddingBottom: 10}}>
                       {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
@@ -1340,7 +1339,7 @@ export default function USMap(props) {
                     </Header.Content>}
 
                     {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
-                        <div style = {{marginTop: 10}}>
+                        <div style = {{marginTop: 0}}>
                         </div>
                       }
 
