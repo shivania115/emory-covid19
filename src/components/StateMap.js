@@ -1515,7 +1515,7 @@ export default function StateMap(props) {
                     </Grid.Row>
                     <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                             <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                            *The state and national level measure of any chronic condition prevalence is computed with the average of all the counties and states.
+                                            *The state and national level measure of any chronic condition prevalence (per 100,000) is computed with the average of all the counties and states.
                                             <br/>
                                             *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
 

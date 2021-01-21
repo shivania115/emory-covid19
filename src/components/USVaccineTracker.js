@@ -178,6 +178,7 @@ export default function USMap(props) {
   const [date, setDate] = useState('');
 
   const [data, setData] = useState();
+  const [vaccineData, setVaccineData] = useState();
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [dataFltrd, setDataFltrd] = useState();
@@ -245,63 +246,68 @@ export default function USMap(props) {
   useEffect(()=>{
     fetch('/data/racedataAll.json').then(res => res.json())
       .then(x => setRaceData(x));
+    fetch('/data/vaccineData.json').then(res => res.json())
+      .then(x => {
+        setVaccineData(x);
 
+    });
   }, []);
 
   useEffect(() => {
     if (metric) {
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
+      
+      fetch('/data/data.json').then(res => res.json())
+        .then(x => {
+          
+          setData(x);
+          setDataFltrd(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (d.Population > 10000 && 
+                d.black > 5 && 
+                d.fips.length === 5 && 
+                d['covidmortalityfig'] > 0)));
         
-        setData(x);
-        setDataFltrd(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (d.Population > 10000 && 
-              d.black > 5 && 
-              d.fips.length === 5 && 
-              d['covidmortalityfig'] > 0)));
-      
-        const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
+          const cs = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d[metric] >= 0 &&
+                d.fips.length === 5)),
+            d=> d[metric]))
+          .range(colorPalette);
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          if(d[metric] >= 0){
-          scaleMap[d[metric]] = cs(d[metric])}});
-      
-        setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        _.each(x, d=> { 
-          if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-            min = d[metric]
+          let scaleMap = {}
+          _.each(x, d=>{
+            if(d[metric] >= 0){
+            scaleMap[d[metric]] = cs(d[metric])}});
+        
+          setColorScale(scaleMap);
+          var max = 0
+          var min = 100
+          _.each(x, d=> { 
+            if (d[metric] > max && d.fips.length === 5) {
+              max = d[metric]
+            } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+              min = d[metric]
+            }
+          });
+
+          if (max > 999999) {
+            max = (max/1000000).toFixed(0) + "M";
+            setLegendMax(max);
+          }else if (max > 999) {
+            max = (max/1000).toFixed(0) + "K";
+            setLegendMax(max);
+          }else{
+            setLegendMax(max.toFixed(0));
+
           }
+          setLegendMin(min.toFixed(0));
+          setLegendSplit(cs.quantiles());
+
         });
-
-        if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
-          setLegendMax(max);
-        }else if (max > 999) {
-          max = (max/1000).toFixed(0) + "K";
-          setLegendMax(max);
-        }else{
-          setLegendMax(max.toFixed(0));
-
-        }
-        setLegendMin(min.toFixed(0));
-        setLegendSplit(cs.quantiles());
-
-      });
     }
   }, []);
 
@@ -386,8 +392,8 @@ export default function USMap(props) {
   }, [stateMapFips]);
 
 
-  if (data && dataFltrd && stateLabels && allTS) {
-    
+  if (data && dataFltrd && stateLabels && allTS && vaccineData) {
+    // console.log(vaccineData["13"]);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -662,12 +668,10 @@ export default function USMap(props) {
                     <Header>
                       <p style={{fontSize: "19px", fontFamily: 'lato', color: "#004071"}}> Percent Vaccinated</p>
                       <Header.Content style = {{paddingBottom: 5}}>
-                        <Progress style = {{width: 200}} percent={20} size='medium' color='green' progress/>
+                        <Progress style = {{width: 200}} percent={stateFips === "_nation"? 0 : ((vaccineData[fips]["percentVaccinated"]).toFixed(0))} size='medium' color='green' progress/>
                       </Header.Content>
                       <p style={{fontSize: "19px", fontFamily: 'lato', color: "#004071"}}>Number Vaccinated</p>
-                      <Header.Content style = {{paddingTop: 0}}>
-                      <Progress style = {{width: 200}} size='medium' color='green' progress='value' value={5000} total={10000} />
-                      </Header.Content>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData[fips]["Administered_Dose1"])}</p>
                     </Header>
                   </div>
                 </Grid.Column>
@@ -1239,7 +1243,7 @@ export default function USMap(props) {
                                   <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400, width: 250}}> Deaths by Ethnicity</Header.Content>
                                   {!(stateFips && !!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ))
                                       && 
-                                    <center> <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 60, fontWeight: 400, width: 250}}> <br/> <br/> None Reported</Header.Content> </center>
+                                    <center> <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 20, fontWeight: 400, width: 250}}> <br/> <br/> None Reported</Header.Content> </center>
 
                                 }
                                 </div>
@@ -1735,7 +1739,7 @@ export default function USMap(props) {
               </Grid.Row>
               
               <Grid.Row columns = {2} style = {{width: 1000}}>
-              <Grid.Column style = {{width: 550, paddingLeft: 50}}>
+              <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                   <div style = {{width: 400}}>
                   { showState &&
                   <ComposableMap projection="geoAlbersUsa" 
