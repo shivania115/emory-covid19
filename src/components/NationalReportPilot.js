@@ -2741,8 +2741,9 @@ export default function NationalReport(props) {
 
                 </Header.Subheader>
               <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -2847,7 +2848,7 @@ export default function NationalReport(props) {
 
 
                   </Grid.Column>
-                  <Grid.Column>
+                  <Grid.Column style = {{paddingLeft: 0}}>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                       <Header.Content style = {{paddingLeft: 60, width: 500}}>
                       COVID-19 Cases by <br/> Community Vulnerability Index
@@ -2964,8 +2965,9 @@ export default function NationalReport(props) {
                   </Header.Subheader>
 
               {ccvi && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -3186,8 +3188,9 @@ export default function NationalReport(props) {
                   </Header.Subheader>
 
               {poverty && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -3411,8 +3414,9 @@ export default function NationalReport(props) {
 
 
                   {urbrur && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -3616,8 +3620,9 @@ export default function NationalReport(props) {
 
 
               {region && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -3838,8 +3843,9 @@ export default function NationalReport(props) {
                   </Header.Subheader>
 
               {black && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -4060,8 +4066,9 @@ export default function NationalReport(props) {
                   </Header.Subheader>
 
               {black && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
@@ -4283,8 +4290,9 @@ export default function NationalReport(props) {
                   </Header.Subheader>
 
               {black && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8}}>
-                  <Grid.Column style={{paddingTop:10,paddingLeft:50}}>
+                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+
                     
 
                   <div >
