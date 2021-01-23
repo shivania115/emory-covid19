@@ -430,7 +430,7 @@ export default function StateMap(props) {
           
               const stateSeriesQ = {tag: "stateonly"};
               const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
-              let stateSeriesDict = promState[0].timeseriesAll['13'];
+              let stateSeriesDict = promState[0].timeseriesAll[stateFips];
               setStateTS(stateSeriesDict);
 
                 if(stateFips === "_nation"){
@@ -1480,8 +1480,7 @@ export default function StateMap(props) {
                           </svg>
                         </div>
                         <div style = {{width: 1000, height: 180}}>
-                          {dataTS && <
-                            CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
+                          {dataTS && <CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
                                 ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {trendline}/>
                           }  
                         </div>
@@ -1588,14 +1587,14 @@ export default function StateMap(props) {
                           data={data} /> */}
                     </Grid.Row>
                     <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
-                                            <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                            *The state and national level measure of any chronic condition prevalence (per 100,000) is computed with the average of all the counties and states.
-                                            <br/>
-                                            *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
+                      <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                      *The state and national level measure of any chronic condition prevalence (per 100,000) is computed with the average of all the counties and states.
+                      <br/>
+                      *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
 
 
-                                            </text>
-                                    </Grid.Row>
+                      </text>
+                    </Grid.Row>
                   </Grid>
 
                   
