@@ -1418,9 +1418,83 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{padding: 0, paddingLeft: 40, width: 810}}>
 
-                <Header as='h2' style={{width:800, paddingBottom: 10}}>
+                
+
+
+                  <Header as='h2' style={{fontWeight: 400, width: 800}}>
+                    <Header.Content style={{fontSize: 20}}>
+                      Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
+                      <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
+                        The number of cases and deaths due to COVID-19 are dynamic. 
+                        Cases are declining in many counties and rising in others. 
+                        Trends in the case and death count in the past 14 days are being monitored to 
+                        determine whether it is safe to reopen a county.
+                        <br/>
+                        <br/>
+                        {/* <p style={{color: "#024174", fontWeight: 500}}> Click and drag or zoom on the graphs below.</p> */}
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                  <Grid>
+                    {stateFips !== "_nation" && 
+                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 800}}>
+                      <Grid.Column>
+                        {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
+                        <Dropdown
+                          style={{background: '#fff', 
+                                  fontSize: "19px",
+                                  fontWeight: 400, 
+                                  theme: '#000000',
+                                  width: '450px',
+                                  top: '0px',
+                                  left: '15px',
+                                  text: "Select",
+                                  borderTop: '0.5px solid #bdbfc1',
+                                  borderLeft: '0.5px solid #bdbfc1',
+                                  borderRight: '0.5px solid #bdbfc1', 
+                                  borderBottom: '0.5px solid #bdbfc1',
+                                  borderRadius: 0,
+                                  minHeight: '1.0em',
+                                  paddingBottom: '0.5em',
+                                  paddingLeft: '1em'}}
+                          text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
+                          pointing = 'top'
+                          search
+                          selection
+                          options={trendOptions}
+                          onChange={(e, { value}) => {
+                            setTrendline(value);
+                            setSelectedTrend(trendName[value]);
+                            
+                                    
+                          }}
+                        />
+                        <div style = {{paddingTop: 10}}>
+                          <svg width = "500" height = "40">
+                              <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                              <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
+                              <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                              <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
+                              <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                              <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
+                          </svg>
+                        </div>
+                        <div style = {{width: 1000, height: 180}}>
+                          {dataTS && <
+                            CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
+                                ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {trendline}/>
+                          }  
+                        </div>
+                                                
+                      </Grid.Column>
+                        
+                    </Grid.Row>}
+
+                  </Grid>
+
+                  <Header as='h2' style={{width:800, paddingBottom: 10}}>
                     <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
-                      {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
+                      {stateFips === "_nation" || stateFips === "72"? "":countyName} Population Characteristics
                       <Header.Subheader style={{fontWeight: 350, width: 800, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
                       Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
                       Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
@@ -1522,78 +1596,6 @@ export default function StateMap(props) {
 
                                             </text>
                                     </Grid.Row>
-                  </Grid>
-
-
-                  <Header as='h2' style={{fontWeight: 400, width: 800}}>
-                    <Header.Content style={{fontSize: 20}}>
-                      Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
-                      <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
-                        The number of cases and deaths due to COVID-19 are dynamic. 
-                        Cases are declining in many counties and rising in others. 
-                        Trends in the case and death count in the past 14 days are being monitored to 
-                        determine whether it is safe to reopen a county.
-                        <br/>
-                        <br/>
-                        {/* <p style={{color: "#024174", fontWeight: 500}}> Click and drag or zoom on the graphs below.</p> */}
-                      </Header.Subheader>
-                    </Header.Content>
-                  </Header>
-                  <Grid>
-                    {stateFips !== "_nation" && 
-                    <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 800}}>
-                      <Grid.Column>
-                        {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
-                        <Dropdown
-                          style={{background: '#fff', 
-                                  fontSize: "19px",
-                                  fontWeight: 400, 
-                                  theme: '#000000',
-                                  width: '450px',
-                                  top: '0px',
-                                  left: '15px',
-                                  text: "Select",
-                                  borderTop: '0.5px solid #bdbfc1',
-                                  borderLeft: '0.5px solid #bdbfc1',
-                                  borderRight: '0.5px solid #bdbfc1', 
-                                  borderBottom: '0.5px solid #bdbfc1',
-                                  borderRadius: 0,
-                                  minHeight: '1.0em',
-                                  paddingBottom: '0.5em',
-                                  paddingLeft: '1em'}}
-                          text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
-                          pointing = 'top'
-                          search
-                          selection
-                          options={trendOptions}
-                          onChange={(e, { value}) => {
-                            setTrendline(value);
-                            setSelectedTrend(trendName[value]);
-                            
-                                    
-                          }}
-                        />
-                        <div style = {{paddingTop: 10}}>
-                          <svg width = "500" height = "40">
-                              <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                              <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
-                              <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                              <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
-                              <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                              <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
-                          </svg>
-                        </div>
-                        <div style = {{width: 1000, height: 180}}>
-                          {dataTS && <
-                            CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
-                                ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {trendline}/>
-                          }  
-                        </div>
-                                                
-                      </Grid.Column>
-                        
-                    </Grid.Row>}
-
                   </Grid>
 
                   
