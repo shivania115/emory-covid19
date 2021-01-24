@@ -583,7 +583,7 @@ export default function StateMap(props) {
   }, [dataTS]);
 
   if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
-    // console.log( );
+    console.log( dataTS);
   return (
     <HEProvider>
       <div>
