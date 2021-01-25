@@ -624,190 +624,201 @@ export default function USMap(props) {
 
               <Grid>
 
-                <Grid.Row columns = {2} style = {{width: 1000}}>
+                <Grid.Row columns = {2} style = {{width: 1260}}>
 
-                  <Grid.Column style = {{width: 800, paddingLeft: 20}}>
-                  
-                    
-                    <Grid.Row columns={2} style={{width: 800, paddingLeft: 0, paddingRight: 0, paddingBottom: 0}}>
+                  <Grid.Column style = {{width: 1000, paddingLeft: 30}}>
 
-                          
-                      <div style = {{paddingBottom: 0}}>
-                        <Header.Content style = {{paddingLeft: 20, fontSize: "1.5em"}}>
-                          Click on a state.
-                        </Header.Content>
-                        <svg width="460" height="80" >
-                          {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
-                          
-                          {_.map(legendSplit, (splitpoint, i) => {
-                            if(legendSplit[i] < 1){
-                              return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                            }else if(legendSplit[i] > 999999){
-                              return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-                            }else if(legendSplit[i] > 999){
-                              return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
-                            }
-                            return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                          })} 
-                          <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                          <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
-
-
-                          {_.map(colorPalette, (color, i) => {
-                            return <rect key={i} x={20+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                          })} 
+                        <div style = {{paddingBottom: 0, width: 1000}}>
+                          <Header.Content style = {{paddingLeft: 20, fontSize: "1.5em"}}>
+                            Click on a state.
+                            <br/>
+                            <br/>
+                            <b><em> {varMap["caserate7dayfig"].name} </em></b>
+                          </Header.Content>
+                          <svg width="460" height="80" >
+                            {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
+                            
+                            {_.map(legendSplit, (splitpoint, i) => {
+                              if(legendSplit[i] < 1){
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                              }else if(legendSplit[i] > 999999){
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+                              }else if(legendSplit[i] > 999){
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+                              }
+                              return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                            })} 
+                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
+                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
 
-                          <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                          <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                            {_.map(colorPalette, (color, i) => {
+                              return <rect key={i} x={20+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                            })} 
 
 
-                          <rect x={165} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                          <text x={187} y={50} style={{fontSize: '0.7em'}}> None </text>
-                          <text x={187} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-
-                          
+                            <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                            <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
 
-                        </svg>
-                      </div>
-                    <ComposableMap 
-                      projection="geoAlbersUsa" 
-                      data-tip=""
-                      width={700} 
-                      height={280}
-                      strokeWidth= {0.1}
-                      stroke= 'black'
-                      offsetX = {-250}
-                      projectionConfig={{scale: 570}}
+                            <rect x={165} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                            <text x={187} y={50} style={{fontSize: '0.7em'}}> None </text>
+                            <text x={187} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+
+                            
 
 
-                      >
-                      <Geographies geography={geoUrl}>
-                        {({ geographies }) => 
-                          <svg>
-                            {setStateFips(fips)}
-                            {geographies.map(geo => (
-                              <Geography
-                                key={geo.rsmKey}
-                                geography={geo}
-                                onMouseEnter={()=>{
-
-                                  const fips = geo.id.substring(0,2);
-                                  const configMatched = configs.find(s => s.fips === fips);
-
-                                  // if(clicked === true){
-                                  //   setDelayHandler(setTimeout(() => {
-                                  //     setFips(stateFip);
-                                        
-                                  //     }, 3000))
-                                    
-                                  // }else{
-                                    setFips(fips);
-                                    setHoverName(configMatched.name)
-                                  // }
-                                  
-                                  // setStateFips(geo.id.substring(0,2));
-                                  
-                                  
-                                  // setShowState(false);
-                                
-                                }}
-                                
-                                onMouseLeave={()=>{
-
-                                  setTooltipContent("");
-                                  setFips("_nation");
-                                  
-                                  
-                                  // if(clicked !== true){
-                                  //   setFips("_nation");
-                                  // }
-                                  // setDelayHandler(setTimeout(() => {
-                                  //   setClicked(false);
-                                    
-                                  // }, 5000))
-                                  // clearTimeout(delayHandler);
-                                }}
-
-                                onClick={()=>{
-                                  // history.push("/Vaccine-Tracker/"+geo.id.substring(0,2)+"");
-                                  const configMatched = configs.find(s => s.fips === fips);
-                                  setStateName(configMatched.name); 
-                                  setStateMapFips(geo.id.substring(0,2));
-
-                                  setClicked(true);
-                                  setShowState(true);
-                                // history.push('/Vaccine-Tracker#select');
-                                // goToAnchor('select')
-                                }}
-
-                                
-                                fill={stateMapFips===geo.id.substring(0,2) || fips===geo.id.substring(0,2)?colorHighlight:
-                                ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
-                                    colorScale[data[geo.id][metric]]: 
-                                    (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
-                                      '#e1dce2':'#FFFFFF')}
-                                
-                              />
-                            ))}
                           </svg>
-                        }
-                      </Geographies>
-                      
+                        </div>
+                        <ComposableMap 
+                          projection="geoAlbersUsa" 
+                          data-tip=""
+                          width={1200} 
+                          height={450}
+                          strokeWidth= {0.1}
+                          stroke= 'black'
+                          offsetX = {-380}
+                          projectionConfig={{scale: 800}}
 
-                    </ComposableMap>
-                    </Grid.Row>
+
+                          >
+                          <Geographies geography={geoUrl}>
+                            {({ geographies }) => 
+                              <svg>
+                                {setStateFips(fips)}
+                                {geographies.map(geo => (
+                                  <Geography
+                                    key={geo.rsmKey}
+                                    geography={geo}
+                                    onMouseEnter={()=>{
+
+                                      const fips = geo.id.substring(0,2);
+                                      const configMatched = configs.find(s => s.fips === fips);
+
+                                      // if(clicked === true){
+                                      //   setDelayHandler(setTimeout(() => {
+                                      //     setFips(stateFip);
+                                            
+                                      //     }, 3000))
+                                        
+                                      // }else{
+                                        setFips(fips);
+                                        setHoverName(configMatched.name)
+                                      // }
+                                      
+                                      // setStateFips(geo.id.substring(0,2));
+                                      
+                                      
+                                      // setShowState(false);
+                                    
+                                    }}
+                                    
+                                    onMouseLeave={()=>{
+
+                                      setTooltipContent("");
+                                      setFips("_nation");
+                                      
+                                      
+                                      // if(clicked !== true){
+                                      //   setFips("_nation");
+                                      // }
+                                      // setDelayHandler(setTimeout(() => {
+                                      //   setClicked(false);
+                                        
+                                      // }, 5000))
+                                      // clearTimeout(delayHandler);
+                                    }}
+
+                                    onClick={()=>{
+                                      // history.push("/Vaccine-Tracker/"+geo.id.substring(0,2)+"");
+                                      const configMatched = configs.find(s => s.fips === fips);
+                                      setStateName(configMatched.name); 
+                                      setStateMapFips(geo.id.substring(0,2));
+
+                                      setClicked(true);
+                                      setShowState(true);
+                                    // history.push('/Vaccine-Tracker#select');
+                                    // goToAnchor('select')
+                                    }}
+
+                                    
+                                    fill={stateMapFips===geo.id.substring(0,2) || fips===geo.id.substring(0,2)?colorHighlight:
+                                    ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
+                                        colorScale[data[geo.id][metric]]: 
+                                        (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
+                                          '#e1dce2':'#FFFFFF')}
+                                    
+                                  />
+                                ))}
+                              </svg>
+                            }
+                          </Geographies>
+                          
+
+                        </ComposableMap>
                     
                     
-                    <Grid.Row style={{width: 400, paddingTop: 100}}>
-                        <Header.Content style={{fontWeight: 300, paddingTop: 7, fontSize: "14pt", lineHeight: "18pt"}}>
-                        <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition} <br/>
-                              <br/>
-                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                        </Header.Content>
-                    </Grid.Row>
+                        {stateFips && <Accordion style = {{paddingTop: 10}} defaultActiveIndex={1} panels={[
+                          {
+                              key: 'acquire-dog',
+                              title: {
+                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+                                      <Grid.Row style={{width: 900, paddingLeft: -10}}>
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, fontSize: "14pt", lineHeight: "18pt"}}>
+                                          <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition} <br/>
+                                                <br/>
+                                          For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a> </Header.Content>
+                                    </Grid.Row>
+                                  ),
+                                },
+                            }
+                          ]
+                        } /> }
                   </Grid.Column>
                   
-                  <Grid.Column style ={{width: 500, paddingLeft: 50}}>
+                  <Grid.Column style ={{width: 350}}>
                     <Header as='h2' style={{fontWeight: 400}}>
-                      <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center", paddingTop: 38}}>
+                      <Header.Content style={{width : 350, height: 100, fontSize: "18pt", textAlign: "center", paddingTop: 35, paddingLeft: 35}}>
                         Vaccination Status in <b>{stateName}</b>
+                        
                         
                       </Header.Content>
                     </Header>
                     <Grid>
-                      <Grid.Row style={{paddingLeft:0}}>
-                        <Table celled fixed >
+                      <Grid.Row style={{width: 350, paddingLeft: 35}}>
+                        <Table celled fixed style = {{width: 350}}>
                           <Table.Header>
 
                             <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
-                                <td colSpan='1' style={{width:190}}> </td>
-                                <td colSpan='1' style={{width:170, fontSize: '24px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> The U.S.</td>
-                                <td colSpan='1' style={{width:170, fontSize: '24px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":stateName}</td>
+                                <td colSpan='1' style={{width:130}}> </td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> The U.S.</td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":"State"}</td>
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Number who received first dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number who received first dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Percent who received first dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1_Per_100K"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1_Per_100K"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent who received first dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1_Per_100K"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1_Per_100K"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Number who received second dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number who received second dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Percent who received second dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2_Per_100K"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2_Per_100K"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent who received second dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2_Per_100K"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2_Per_100K"])} </Table.HeaderCell>
 
                             </Table.Row>
                             {/* <Table.Row textAlign = 'center'>
@@ -823,9 +834,9 @@ export default function USMap(props) {
 
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"New doses distributed per 100,000 on date"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinated"])} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '24px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["percentVaccinated"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"New doses distributed per 100,000 on date"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinated"])} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["percentVaccinated"])} </Table.HeaderCell>
 
                             </Table.Row>
                             
