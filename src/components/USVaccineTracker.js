@@ -518,7 +518,7 @@ export default function USMap(props) {
                 <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 8}}> 
                   <div style = {{width: 240}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Doses Distributed <br/><br/></p>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Total doses distributed <br/><br/></p>
                       <Header.Content style = {{paddingBottom: 5}}>
                         
                         <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p>
@@ -529,7 +529,7 @@ export default function USMap(props) {
                 <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 8}}> 
                   <div style = {{width: 240}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Dose 1 Administered <br/><br/></p>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Number who received first dose <br/><br/></p>
                       <Header.Content style = {{paddingBottom: 5}}>
                         
                         <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p>
@@ -540,10 +540,10 @@ export default function USMap(props) {
                 <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 8}}> 
                   <div style = {{width: 240}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Dose 1 Administered Per 100,000</p>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Number who received second dose </p>
                       <Header.Content style = {{paddingBottom: 5}}>
                        
-                        <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1_Per_100K"])}</p>
+                        <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p>
                       </Header.Content>
                     </Header>
                   </div>
@@ -551,7 +551,7 @@ export default function USMap(props) {
                 <Grid.Column style = {{width: 240, paddingLeft: 240, paddingTop: 8}}> 
                   <div style = {{width: 240}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Dose 2 Administered <br/><br/></p>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> New doses distributed on date <br/><br/></p>
                       
                       <Header.Content style = {{paddingBottom: 5}}>
                         
@@ -567,11 +567,11 @@ export default function USMap(props) {
                <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 8}}> 
                   <div style = {{width: 900}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Percent Vaccinated</p>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Percent of the population that is partially vaccinated (one dose received) </p>
                       <Header.Content style = {{paddingBottom: 20}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinated"]).toFixed(0))} label = {"< 1%"} size='large' color='green' progress/>
                       </Header.Content>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}>Number Vaccinated</p>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Percent of the population that is fully vaccinated (two doses received)</p>
                       <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p>
                     </Header>
                   </div>
@@ -632,9 +632,12 @@ export default function USMap(props) {
                     <Grid.Row columns={2} style={{width: 800, paddingLeft: 0, paddingRight: 0, paddingBottom: 0}}>
 
                           
-                      <div style = {{paddingBottom: 40}}>
-
+                      <div style = {{paddingBottom: 0}}>
+                        <Header.Content style = {{paddingLeft: 20, fontSize: "1.5em"}}>
+                          Click on a state.
+                        </Header.Content>
                         <svg width="460" height="80" >
+                          {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
                           
                           {_.map(legendSplit, (splitpoint, i) => {
                             if(legendSplit[i] < 1){
@@ -663,7 +666,7 @@ export default function USMap(props) {
                           <text x={187} y={50} style={{fontSize: '0.7em'}}> None </text>
                           <text x={187} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
-                          <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text>
+                          
 
 
                         </svg>
@@ -672,7 +675,7 @@ export default function USMap(props) {
                       projection="geoAlbersUsa" 
                       data-tip=""
                       width={700} 
-                      height={350}
+                      height={280}
                       strokeWidth= {0.1}
                       stroke= 'black'
                       offsetX = {-250}
@@ -757,28 +760,13 @@ export default function USMap(props) {
                     </Grid.Row>
                     
                     
-                    {stateFips && <Accordion style = {{paddingTop: 80, paddingLeft: 12}}defaultActiveIndex={1} panels={[
-                    {
-                        key: 'acquire-dog',
-                        title: {
-                            content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                            icon: 'dropdown',
-                        },
-                        content: {
-                            content: (
-                              <Grid.Row style={{width: 400}}>
-                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, fontSize: "14pt", lineHeight: "18pt"}}>
-                                  <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition} <br/>
-                                        <br/>
-                                  For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                                  </Header.Content>
-                              </Grid.Row>
-                            ),
-                          },
-                      }
-                  ]
-
-                  } /> }
+                    <Grid.Row style={{width: 400}}>
+                        <Header.Content style={{fontWeight: 300, paddingTop: 7, fontSize: "14pt", lineHeight: "18pt"}}>
+                        <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition} <br/>
+                              <br/>
+                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                        </Header.Content>
+                    </Grid.Row>
                   </Grid.Column>
                   
                   <Grid.Column style ={{width: 500, paddingLeft: 50}}>
@@ -799,25 +787,25 @@ export default function USMap(props) {
                                 <td colSpan='1' style={{width:170, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateName}</td>
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Dose 1 Administered"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Number who received first dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Dose 1 Administered per 100K"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Percent who received first dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1_Per_100K"])} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1_Per_100K"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Dose 2 Administered"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Number who received second dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Dose 2 Administered per 100K"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Percent who received second dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2_Per_100K"])} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2_Per_100K"])} </Table.HeaderCell>
 
@@ -835,7 +823,7 @@ export default function USMap(props) {
 
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '24px'}}> {"Percent Vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {"New doses distributed per 100,000 on date"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '24px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinated"])} </Table.HeaderCell>
                               <Table.HeaderCell  style={{fontSize: '24px'}}> {numberWithCommas(vaccineData[stateMapFips]["percentVaccinated"])} </Table.HeaderCell>
 
