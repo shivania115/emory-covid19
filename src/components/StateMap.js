@@ -1423,7 +1423,7 @@ export default function StateMap(props) {
 
                   <Header as='h2' style={{fontWeight: 400, width: 800}}>
                     <Header.Content style={{fontSize: 20}}>
-                      Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
+                      <b>{stateFips === "_nation" || stateFips === "72"? "Comparing ":countyName ? "Comparing" + countyName: "Loading..."}</b>
                       <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
                         The number of cases and deaths due to COVID-19 are dynamic. 
                         Cases are declining in many counties and rising in others. 
@@ -1476,7 +1476,7 @@ export default function StateMap(props) {
                               <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
                               <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
                               <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                              <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":countyName}</text>
+                              <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "": countyName ? countyName: "Loading..."}</text>
                           </svg>
                         </div>
                         <div style = {{width: 1000, height: 180}}>
