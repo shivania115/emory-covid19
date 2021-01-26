@@ -1745,13 +1745,13 @@ export default function USMap(props) {
         <ReactTooltip > 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> <br/>
-          <b> Dose 1 Administered: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
+          <b> Number who received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
           <br/><br/>
-          <b> Dose 1 Administered per 100K: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"])}
+          <b> Percent who received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
           <br/><br/>
-          <b> Dose 2 Administered: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
+          <b> Number who received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
           <br/><br/>
-          <b> Dose 2 Administered per 100K: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"])}
+          <b> Percent who received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
           <br/><br/>
           
           <b>Click to lock.</b> 
