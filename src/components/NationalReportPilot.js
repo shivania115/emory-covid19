@@ -855,7 +855,7 @@ function DeathChartAll(props){
   // useEffect(() =>{
   //   setAnimationBool(playCount>-1);
   // },[playCount])
-
+  //console.log(data);
 
   var wait=0;
 
