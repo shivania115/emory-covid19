@@ -289,10 +289,11 @@ useEffect(()=>{
     data[183].t,
     data[214].t,
     data[244].t,
+    data[275].t,
     data[data.length-1].t]);
     if(chartNo===0){
       setDisabled(true);
-      setTimeout(()=>setChartNo(chartNo+1), 11500);
+      setTimeout(()=>setChartNo(chartNo+1), 10000);
     } else {
       setTimeout(()=>setChartNo(chartNo+1), 8000);
     }
@@ -458,10 +459,10 @@ function CaseChartAll(props){
       <Transition visible={visible5} animation='scale' duration={200}>
       <Message compact style={{ width: '10rem', top:'-53rem', left:'36rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 175, y: 243 }} end={{ x: 131, y: 336 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 255, y: 327 }} end={{ x: 265, y: 350 }} strokeWidth='0.8'/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 370, y: 285 }} end={{ x: 362, y: 302 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 665, y: 110 }} end={{ x: 680, y: 125 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 175, y: 243 }} end={{ x: 129, y: 336 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 255, y: 327 }} end={{ x: 263, y: 350 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 370, y: 285 }} end={{ x: 358, y: 302 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 662, y: 110 }} end={{ x: 677, y: 125 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -913,8 +914,8 @@ function DeathChartAll(props){
       <Transition visible={visible3} animation='scale' duration={300}>
       <Message compact style={{ width: '8rem', top:'-30rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 295, y: 382 }} end={{ x: 271, y: 442 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 530, y: 440 }} end={{ x: 540, y: 465 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 295, y: 382 }} end={{ x: 269, y: 442 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 530, y: 440 }} end={{ x: 538, y: 465 }} strokeWidth='0.8'/> : null}
       
       </Grid.Column>   
 
