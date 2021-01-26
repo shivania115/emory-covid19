@@ -46,25 +46,39 @@
         "group": "outcomes"},
     "Administered_Moderna": {
         "variable": "Administered_Moderna",
-        "name": "Moderna Vaccine Administered",
+        "name": "Administered Moderna vaccine",
         "definition": "definition",
         "group": "outcomes"},
     "Administered_Pfizer": {
         "variable": "Administered_Pfizer",
-        "name": "Pfizer Vaccine Administered",
+        "name": "Administered Pfizer caccine",
         "definition": "definition",
         "group": "outcomes"},
     "Administered_Unk_Manuf": {
         "variable": "Administered_Unk_Manuf",
-        "name": "Vaccine Administered by Unknown Manufacturer",
+        "name": "Vaccine administered by Unknown Manufacturer",
         "definition": "definition",
         "group": "outcomes"},
-    "percentVaccinated": {
-        "variable": "percentVaccinated",
-        "name": "Percent of Population Vaccinated",
+    "percentVaccinatedDose1": {
+        "variable": "percentVaccinatedDose1",
+        "name": "Percent of population with first dose",
+        "definition": "definition",
+        "group": "outcomes"},
+    "percentVaccinatedDose2": {
+        "variable": "percentVaccinatedDose2",
+        "name": "Percent of population with second dose",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Dist_Per_100K_new": {
+        "variable": "Dist_Per_100K_new",
+        "name": "New doses distributed per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Dist_new": {
+        "variable": "Dist_new",
+        "name": "New doses distributed",
         "definition": "definition",
         "group": "outcomes"}
-    
 }
 
 
