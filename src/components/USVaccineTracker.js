@@ -456,27 +456,35 @@ export default function USMap(props) {
      
   }, [stateMapFips]);
 
-  useEffect(()=>{
+  // useEffect(()=>{
     
-    if (isLoggedIn === true){
-      const fetchData = async() => { 
-        // let seriesDict = {};
-        const stateSeriesQ = {tag: "stateonly"};
-        const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
-        // _.map(promState, i=> {
-        //   seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-        //   return seriesDict;
-        // });
-        // let seriesDict = promState[0].timeseriesAll;
-        setDataTS(promState[0].timeseriesAll);
-      };
-      fetchData();
-    } else {
-      handleAnonymousLogin();
-    }
+  //   if (isLoggedIn === true){
+  //     const fetchData = async() => { 
+  //       // let seriesDict = {};
+  //       const stateSeriesQ = {tag: "stateonly"};
+  //       const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+  //       // _.map(promState, i=> {
+  //       //   seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+  //       //   return seriesDict;
+  //       // });
+  //       // let seriesDict = promState[0].timeseriesAll;
+  //       setDataTS(promState[0].timeseriesAll);
+  //     };
+  //     fetchData();
+  //   } else {
+  //     handleAnonymousLogin();
+  //   }
 
 
-  },[isLoggedIn]);
+  // },[isLoggedIn]);
+
+  useEffect(()=>{
+    fetch('/data/timeseriesAll.json').then(res => res.json())
+        .then(x => setDataTS(x));
+    
+
+
+  },[]);
 
 
 
