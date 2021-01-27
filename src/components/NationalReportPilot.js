@@ -293,7 +293,7 @@ useEffect(()=>{
     data[data.length-1].t]);
     if(chartNo===0){
       setDisabled(true);
-      setTimeout(()=>setChartNo(chartNo+1), 10000);
+      setTimeout(()=>setChartNo(chartNo+1), 9000);
     } else {
       setTimeout(()=>setChartNo(chartNo+1), 8000);
     }
