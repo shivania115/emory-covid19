@@ -577,14 +577,14 @@ export default function USMap(props) {
                   </Grid.Column>
                   <Grid.Column style = {{width: 240, paddingLeft: 240, paddingTop: 8}}> 
                     <Grid style = {{width: 240}}>
-                      <Grid.Row columns = {2} style = {{width: 240}}>
-                        <Grid.Column style = {{width: 140, paddingLeft: 0}}>
+                      <Grid.Row style = {{width: 242}}>
+                        <Grid.Column style = {{width: 242, paddingLeft: 0}}>
 
                               <VictoryChart 
                                                   
-                                width={140}
-                                height={180}
-                                padding={{left: -5, right: -1, top: 180, bottom: -0.9}}
+                                width={242}
+                                height={80}
+                                padding={{left: -5, right: -1, top: 80, bottom: -0.9}}
                                 containerComponent={<VictoryContainer responsive={false}/>}>
                                 
                                 <VictoryGroup 
@@ -592,7 +592,7 @@ export default function USMap(props) {
                                 >
 
                                 <VictoryLine data={VaxSeries ? VaxSeries["_nation"] : [0,0,0]}
-                                    x='t' y='Dist_new'
+                                    x='t' y='Dist_Per_100K_new'
                                     />
 
                                 </VictoryGroup>
@@ -602,9 +602,42 @@ export default function USMap(props) {
                                   x= 't' y = 'Dist_new'
 
                                 /> */}
-                                <VictoryLabel text= {"New doses "}  x={58} y={15} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
-                                <VictoryLabel text= {"distributed"}  x={59} y={50} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
-                                <VictoryLabel text= {numberWithCommas(vaccineData["_nation"]["Dist_new"])}  x={35} y={144} textAnchor="middle" style={{fontSize: "28px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
+                                <VictoryLabel text= {"New doses distributed"}  x={122} y={15} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
+                                <VictoryLabel text= {"per 100,000"}  x={67} y={50} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
+
+                                
+                            </VictoryChart>
+                        </Grid.Column>
+                        
+                      </Grid.Row>
+                      <Grid.Row columns = {2} style = {{width: 240}}>
+                        <Grid.Column style = {{width: 140, paddingLeft: 0}}>
+
+                              <VictoryChart 
+                                                  
+                                width={140}
+                                height={100}
+                                padding={{left: -5, right: -1, top: 100, bottom: -0.9}}
+                                containerComponent={<VictoryContainer responsive={false}/>}>
+                                
+                                <VictoryGroup 
+                                  colorScale={[stateColor]}
+                                >
+
+                                <VictoryLine data={VaxSeries ? VaxSeries["_nation"] : [0,0,0]}
+                                    x='t' y='Dist_Per_100K_new'
+                                    />
+
+                                </VictoryGroup>
+                                {/* <VictoryArea
+                                  style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
+                                  data={VaxSeries? VaxSeries["_nation"] : [0,0,0]}
+                                  x= 't' y = 'Dist_Per_100K_new'
+
+                                /> */}
+                                {/* <VictoryLabel text= {"New doses "}  x={58} y={15} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
+                                <VictoryLabel text= {"distributed"}  x={59} y={50} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/> */}
+                                <VictoryLabel text= {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}  x={35} y={35} textAnchor="middle" style={{fontSize: "28px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
 
                                 
                             </VictoryChart>
@@ -613,8 +646,8 @@ export default function USMap(props) {
                                 <VictoryChart 
                                                     
                                   width={100}
-                                  height={157}
-                                  padding={{left: -5, right: -1, top: 110, bottom: -1}}
+                                  height={45}
+                                  padding={{left: -5, right: -1, top: 20, bottom: 0}}
                                   containerComponent={<VictoryContainer responsive={false}/>}>
                                   
                                   <VictoryGroup 
