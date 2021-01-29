@@ -261,6 +261,7 @@ export default function USMap(props) {
   const [legendSplit, setLegendSplit] = useState([]);
 
   const [varMap, setVarMap] = useState({});
+  const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState('caserate7dayfig');
 
 
@@ -278,6 +279,7 @@ export default function USMap(props) {
           dataTS["_nation"][183].t,
           dataTS["_nation"][214].t,
           dataTS["_nation"][244].t,
+          dataTS["_nation"][275 ].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -312,6 +314,9 @@ export default function USMap(props) {
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => {setStateLabels(x);});
+
+    fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
+      .then(x => {setVaxVarMap(x);});
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -503,7 +508,7 @@ export default function USMap(props) {
 
 
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    console.log(usAbbrev);
+    console.log(vaxVarMap);
   return (
       <div>
         <AppBar menu='countyReport'/>
@@ -542,9 +547,9 @@ export default function USMap(props) {
 
                 <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 20}}>
                   <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 8}}> 
-                    <div style = {{width: 240}}>
-                      <Header>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Total doses distributed <br/><br/></p>
+                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                      <Header style = {{textAlign: "center"}}>
+                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Total doses distributed <br/><br/></p>
                         <Header.Content style = {{paddingBottom: 5}}>
                           
                           <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p>
@@ -554,9 +559,9 @@ export default function USMap(props) {
                   </Grid.Column>
                   
                   <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 8}}> 
-                    <div style = {{width: 240}}>
-                      <Header>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Number received <br/> first dose <br/><br/></p>
+                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                      <Header style = {{textAlign: "center"}}>
+                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p>
                         <Header.Content style = {{paddingBottom: 5}}>
                           
                           <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p>
@@ -565,9 +570,9 @@ export default function USMap(props) {
                     </div>
                   </Grid.Column>
                   <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 8}}> 
-                    <div style = {{width: 240}}>
-                      <Header>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Number received second dose <br/><br/></p>
+                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                      <Header style = {{textAlign: "center"}}>
+                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p>
                         <Header.Content style = {{paddingBottom: 5}}>
                         
                           <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p>
@@ -575,101 +580,63 @@ export default function USMap(props) {
                       </Header>
                     </div>
                   </Grid.Column>
-                  <Grid.Column style = {{width: 240, paddingLeft: 240, paddingTop: 8}}> 
-                    <Grid style = {{width: 240}}>
-                      <Grid.Row style = {{width: 242}}>
-                        <Grid.Column style = {{width: 242, paddingLeft: 0}}>
-
-                              <VictoryChart 
-                                                  
-                                width={242}
-                                height={80}
-                                padding={{left: -5, right: -1, top: 80, bottom: -0.9}}
-                                containerComponent={<VictoryContainer responsive={false}/>}>
-                                
-                                <VictoryGroup 
-                                  colorScale={[stateColor]}
-                                >
-
-                                <VictoryLine data={VaxSeries ? VaxSeries["_nation"] : [0,0,0]}
-                                    x='t' y='Dist_Per_100K_new'
-                                    />
-
-                                </VictoryGroup>
-                                {/* <VictoryArea
-                                  style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                  data={VaxSeries? VaxSeries["_nation"] : [0,0,0]}
-                                  x= 't' y = 'Dist_new'
-
-                                /> */}
-                                <VictoryLabel text= {"New doses distributed"}  x={122} y={15} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
-                                <VictoryLabel text= {"per 100,000"}  x={67} y={50} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
-
-                                
-                            </VictoryChart>
-                        </Grid.Column>
+                  <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 8}}> 
+                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                      <Header style = {{textAlign: "center"}}>
+                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p>
+                        <Header.Content style = {{paddingBottom: 5}}>
                         
-                      </Grid.Row>
-                      <Grid.Row columns = {2} style = {{width: 240}}>
-                        <Grid.Column style = {{width: 140, paddingLeft: 0}}>
+                          <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p>
+                        </Header.Content>
+                      </Header>
+                      {/* <Grid style = {{width: 240}}>
+                        <Grid.Row style = {{width: 240}}>
+                          <Grid.Column style = {{width: 240, paddingTop: 0, paddingBottom: 5, textAlign: "center"}}>
+                            <Header>
+                              <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p>
+                            </Header>
+                            <p style={{fontSize: "28px", fontWeight: 800, fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p>
 
-                              <VictoryChart 
-                                                  
-                                width={140}
-                                height={100}
-                                padding={{left: -5, right: -1, top: 100, bottom: -0.9}}
-                                containerComponent={<VictoryContainer responsive={false}/>}>
-                                
-                                <VictoryGroup 
-                                  colorScale={[stateColor]}
-                                >
-
-                                <VictoryLine data={VaxSeries ? VaxSeries["_nation"] : [0,0,0]}
-                                    x='t' y='Dist_Per_100K_new'
-                                    />
-
-                                </VictoryGroup>
-                                {/* <VictoryArea
-                                  style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                  data={VaxSeries? VaxSeries["_nation"] : [0,0,0]}
-                                  x= 't' y = 'Dist_Per_100K_new'
-
-                                /> */}
-                                {/* <VictoryLabel text= {"New doses "}  x={58} y={15} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
-                                <VictoryLabel text= {"distributed"}  x={59} y={50} textAnchor="middle" style={{fontSize: "24px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/> */}
-                                <VictoryLabel text= {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}  x={35} y={35} textAnchor="middle" style={{fontSize: "28px", fontFamily: 'lato', fontWeight: 800, fill: "#004071"}}/>
-
-                                
-                            </VictoryChart>
-                        </Grid.Column>
-                        <Grid.Column style = {{width: 100, paddingLeft: 0}}>
-                                <VictoryChart 
-                                                    
-                                  width={100}
-                                  height={45}
-                                  padding={{left: -5, right: -1, top: 20, bottom: 0}}
-                                  containerComponent={<VictoryContainer responsive={false}/>}>
-                                  
-                                  <VictoryGroup 
-                                    colorScale={[stateColor]}
-                                  >
-
-                                  <VictoryLine data={VaxSeries ? VaxSeries["_nation"] : [0,0,0]}
-                                      x='t' y='Dist_new'
-                                      />
-
-                                  </VictoryGroup>
-                                  <VictoryArea
-                                    style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
-                                    data={VaxSeries? VaxSeries["_nation"] : [0,0,0]}
-                                    x= 't' y = 'Dist_new'
-
-                                  />
-                                  
-                              </VictoryChart>
                           </Grid.Column>
-                        </Grid.Row>
-                      </Grid>
+                          
+                        </Grid.Row> */}
+                        {/* <Grid.Row columns = {2} style = {{width: 240}}>
+                          
+                          <Grid.Column style = {{width: 140, height: 100}}>
+                            
+                            <br/><br/><br/><br/>
+                              <p style={{fontSize: "28px", fontWeight: 800, fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p>
+                       
+                          </Grid.Column>
+                          <Grid.Column style = {{width: 100, paddingLeft: 0}}>
+                                  <VictoryChart 
+                                                      
+                                    width={100}
+                                    height={118}
+                                    padding={{left: -5, right: -1, top: 20, bottom: 0}}
+                                    containerComponent={<VictoryContainer responsive={false}/>}>
+                                    
+                                    <VictoryGroup 
+                                      colorScale={[stateColor]}
+                                    >
+
+                                    <VictoryLine data={VaxSeries ? VaxSeries["_nation"] : [0,0,0]}
+                                        x='t' y='Dist_new'
+                                        />
+
+                                    </VictoryGroup>
+                                    <VictoryArea
+                                      style={{ data: {fill: "#00BFFF" , fillOpacity: 0.1} }}
+                                      data={VaxSeries? VaxSeries["_nation"] : [0,0,0]}
+                                      x= 't' y = 'Dist_new'
+
+                                    />
+                                    
+                                </VictoryChart>
+                            </Grid.Column>
+                          </Grid.Row> */}
+                        {/* </Grid> */}
+                      </div>
                     </Grid.Column>
                 </Grid.Row>
               
@@ -677,12 +644,12 @@ export default function USMap(props) {
                <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 8}}> 
                   <div style = {{width: 900}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Percent of population partially vaccinated (one dose received) </p>
-                      <Header.Content style = {{paddingBottom: 20}}>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "19px"}}> Percent of population partially vaccinated (one dose received) </p>
+                      <Header.Content style = {{paddingBottom: 20, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]).toFixed(0))} size='large' color='green' progress/>
                       </Header.Content>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071"}}> Percent of population fully vaccinated (two doses received)</p>
-                      <Header.Content style = {{paddingBottom: 10}}>
+                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "19px"}}> Percent of population fully vaccinated (two doses received)</p>
+                      <Header.Content style = {{paddingBottom: 10, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose2"]).toFixed(0))} size='large' color='green' progress/>
                       </Header.Content>
                     </Header>
@@ -699,25 +666,27 @@ export default function USMap(props) {
                             },
                             content: {
                                 content: (
-                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 965}}>
-                                    <b><em> Total Vaccine Doses Allocated </em></b> is the number of vaccine doses 
-                                    that each state will receive from the Federal Government. <br/>
+                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    <b><em> Total doses distributed </em></b> is the number of vaccine doses that have been distributed 
+                                    to facilities across the United States by the federal government. <br/>
 
-                                    <b><em> First Doses Administered </em></b> is the number of individuals who have 
-                                    received the first dose of a COVID-19 vaccine. Individuals must receive two doses 
-                                    of the current COVID-19 vaccines (Pfizer, Moderna) to become fully vaccinated. <br/>
-                                    
+                                    <b><em> Number received first dose </em></b> is the number of individuals in the United States 
+                                    recorded in CDC database to have received the first dose of a COVID-19 vaccine. <br/>
 
-                                    <b><em> Total Number of People Vaccinated </em></b> is the number of individuals 
-                                    who have received two doses of the COVID-19 vaccine and have completed the vaccination series. <br/>
+                                    <b><em> Number received second dose </em></b> is the number of individuals in the United States 
+                                    recorded in CDC database to have received the second dose of a COVID-19 vaccine. <br/>
 
-                                    <b><em> Percentage Vaccinated </em></b> is the percentage of the total population 
-                                    who have received both doses of a COVID-19 vaccine.<br/>
+                                    <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been most 
+                                    recently distributed to facilities across the United States by the federal government. <br/>
 
-                                    <b><em> *14-day change </em></b> trends use 7-day averages.<br/>
+                                    <b><em> Percent of population partially vaccinated (one dose received) </em></b> is the 
+                                    percentage of the total US population that has received at least one dose of a COVID-19 
+                                    vaccine according to CDC database. The total US population is derived from the Census.<br/>
 
-                                    Dashboard includes the percent of the population by age, sex, race, and ethnicity 
-                                    for states that have made this data publicly available. 
+                                    <b><em> Percent of population fully vaccinated (two doses received) </em></b> is the 
+                                    percentage of the total US population that has received at two doses of a COVID-19 
+                                    vaccine according to CDC database. The total US population is derived from the Census.<br/>
+
 
                                   </Header.Content>
                                 ),
@@ -772,19 +741,8 @@ export default function USMap(props) {
                             <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
                             <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
-
-                            <rect x={165} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                            <text x={187} y={50} style={{fontSize: '0.7em'}}> None </text>
-                            <text x={187} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-
-                            
-
-
                           </svg>
                         </div>
-                        
-
-
 
                         <ComposableMap 
                           projection="geoAlbersUsa" 
@@ -884,12 +842,29 @@ export default function USMap(props) {
                                 },
                                 content: {
                                     content: (
-                                      <Grid.Row style={{width: 900, paddingLeft: -10}}>
-                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, fontSize: "14pt", lineHeight: "18pt"}}>
-                                          <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition} <br/>
-                                                <br/>
-                                          For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a> </Header.Content>
-                                    </Grid.Row>
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                        
+                                        <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+
+                                        <b><em> Number received first dose </em></b> is the number of individuals in the United States 
+                                        recorded in CDC database to have received the first dose of a COVID-19 vaccine. <br/>
+
+                                        <b><em> Number received second dose </em></b> is the number of individuals in the United States 
+                                        recorded in CDC database to have received the second dose of a COVID-19 vaccine. <br/>
+
+                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been most 
+                                        recently distributed to facilities across the United States by the federal government. <br/>
+
+                                        <b><em> Percent of population partially vaccinated (one dose received) </em></b> is the 
+                                        percentage of the total US population that has received at least one dose of a COVID-19 
+                                        vaccine according to CDC database. The total US population is derived from the Census.<br/>
+
+                                        <b><em> Percent of population fully vaccinated (two doses received) </em></b> is the 
+                                        percentage of the total US population that has received at two doses of a COVID-19 
+                                        vaccine according to CDC database. The total US population is derived from the Census.<br/>
+
+
+                                      </Header.Content>
                                   ),
                                 },
                             }
@@ -953,8 +928,8 @@ export default function USMap(props) {
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"New doses distributed per 100,000 on " + vaccineDate} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_Per_100K_new"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"])} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
 
                             </Table.Row>
                             
@@ -1145,14 +1120,39 @@ export default function USMap(props) {
                     
                     </Grid.Column>
                     
-                    <Header.Content style={{fontWeight: 300, paddingTop: 17, paddingLeft: 20,fontSize: "19px", width: 500}}>
-                      
-                      *14-day change trends use 7-day averages.
-                    </Header.Content>
+                    
                   </Grid.Row>
+                  <div style = {{height: 60}}>
+                    {stateFips && <Accordion style = {{paddingTop: 10, paddingLeft: 15}} defaultActiveIndex={1} panels={[
+                          {
+                              key: 'acquire-dog',
+                              title: {
+                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 5,fontSize: "19px", width: 460}}>
+                                        *14-day change trends use 7-day averages.
+                                        <br/>
+                                        <b><em> {varMap["dailycases"].name} </em></b> {varMap["dailycases"].definition}
+                                        <br/> 
+                                        <b><em> {varMap["dailydeaths"].name} </em></b> {varMap["dailydeaths"].definition} 
+                                        <br/>
+                                        <br/>
+                                        
+
+
+
+                                      </Header.Content>
+                                  ),
+                                },
+                            }
+                          ]
+                        } /> }
+                  </div>
 
                   <Grid.Row>
-                    <Grid.Column style = {{paddingLeft: 20, paddingTop: 71}}>
+                    <Grid.Column style = {{paddingLeft: 20, paddingTop: 101}}>
                       <Header as='h2' style={{fontWeight: 400, paddingTop: 10}}>
                         <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
                           Disparities in COVID-19 Mortality <br/> <b>{stateMapFips !== "_nation" ? stateName : "Nation"}</b>
@@ -1723,7 +1723,11 @@ export default function USMap(props) {
                                 },
                                 content: {
                                     content: (
-                                      <div>
+
+                                      <div style = {{fontSize: "19px"}}>
+                                        
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+
                                         {stateMapFips && stateMapFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 53}}> 
                                           <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450}}>
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
@@ -1817,7 +1821,7 @@ export default function USMap(props) {
                           }
                   </div>
 
-                  <div style = {{paddingTop: 10, paddingLeft: 50}}>
+                  <div style = {{paddingTop: 65, paddingLeft: 50}}>
                     <div style = {{paddingTop: 50, width: 500, paddingBottom: 20}}>
                       <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
                     </div>
@@ -1833,6 +1837,31 @@ export default function USMap(props) {
                                 ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"covidmortality7dayfig"}/>
                           }
                   </div>
+
+                  {stateFips && <Accordion style = {{paddingTop: 82, paddingLeft: 15}} defaultActiveIndex={1} panels={[
+                          {
+                              key: 'acquire-dog',
+                              title: {
+                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 510}}>
+                                        <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
+                                        <br/> 
+                                        <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition} 
+                                        <br/>
+                                        <br/>
+                                        
+
+
+
+                                      </Header.Content>
+                                  ),
+                                },
+                            }
+                          ]
+                        } /> }
                   
                 </Grid.Column>
 
