@@ -191,7 +191,6 @@ export default function VaccinesFAQ(props){
 
 
         <div id="develop" style = {{height: 45}}> </div>
-        {scrollCount=1}
         <Header block as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Development
