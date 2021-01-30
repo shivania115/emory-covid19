@@ -124,16 +124,17 @@ function StickyExampleAdjacentContext(props) {
     
     return (
 
-        <div >
+        <div style = {{width: 110}}>
           <Ref innerRef={contextRef}>
-            <Rail attached size='mini' >
+            <Rail attached size='mini' style = {{width: 230}}>
                 <Sticky offset={180} position= "fixed" context={contextRef}>
                     <Menu
+                        style = {{width: 110}}
                         size='small'
                         compact
                         pointing secondary vertical>
                         <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Header></Menu.Item>
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
                         <Menu.Item as='a' href="#vaccine" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
                         <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
@@ -512,7 +513,7 @@ export default function USMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+        <Container style={{marginTop: '8em', minWidth: '1260px', overFlowX: 'hidden'}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >Vaccination: United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
@@ -520,7 +521,7 @@ export default function USMap(props) {
           <Divider hidden /> */}
           <Grid >
             
-            <Grid.Column width={2} style={{zIndex: 10}}>
+            <Grid.Column style={{zIndex: 10, width:110}}>
               <Ref innerRef={createRef()} >
                 <StickyExampleAdjacentContext activeCharacter={activeCharacter}  />
               </Ref>
@@ -657,7 +658,7 @@ export default function USMap(props) {
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row >
-              {stateFips && <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 10}}defaultActiveIndex={1} panels={[
+              {stateFips && <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 26}}defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -834,7 +835,7 @@ export default function USMap(props) {
                         </ComposableMap>
                     
                     
-                        {stateFips && <Accordion style = {{paddingTop: 10}} defaultActiveIndex={1} panels={[
+                        {stateFips && <Accordion id = "burden" style = {{paddingTop: 10}} defaultActiveIndex={1} panels={[
                           {
                               key: 'acquire-dog',
                               title: {
@@ -935,7 +936,6 @@ export default function USMap(props) {
                             
                           </Table.Header>
                         </Table>
-                        <div id = "burden" style = {{height: 45}}> </div>
                       </Grid.Row>
                       
                     </Grid>
@@ -944,11 +944,11 @@ export default function USMap(props) {
                 </Grid.Row> 
                 
               </Grid>
-              <div style = {{height: 25}}> </div>
+              <div style = {{height: 55}}> </div>
 
               <Grid>
                 <Grid.Column>
-                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 50}}> COVID-19 Burden in {stateName} </Divider>
+                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 30}}> COVID-19 Burden in {stateName} </Divider>
 
                 </Grid.Column>
               </Grid>
@@ -1879,7 +1879,7 @@ export default function USMap(props) {
             </Grid.Column>
           </Grid>
           
-          <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}}>
+          <Container id="title" style={{marginTop: '8em', minWidth: '1260px', overFlowX: 'hidden'}}>
             <Notes />
           </Container>
         </Container>
