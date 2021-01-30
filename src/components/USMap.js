@@ -5,7 +5,9 @@ import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
+
 import ReactTooltip from "react-tooltip";
+
 import { VictoryChart, 
   VictoryGroup, 
   VictoryBar, 
@@ -62,6 +64,7 @@ function numberWithCommas(x) {
 
 //const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+
 const colorPalette = [
         "#e1dce2",
         "#d3b6cd",
@@ -92,6 +95,7 @@ export default function USMap(props) {
 
   // const [stateName, setStateName] = useState('Georgia');
   // const [fips, setFips] = useState('13');
+
   const [stateName, setStateName] = useState('The United States');
   const [fips, setFips] = useState('_nation');
   const [stateFips, setStateFips] = useState();
@@ -129,75 +133,114 @@ export default function USMap(props) {
           return {key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-    fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => 
-        setRaceData(x));
-    
-    fetch('/data/timeseriesAll.json').then(res => res.json())
-        .then(x => setAllTS(x));
+    if (isLoggedIn === true){
+      const fetchData = async() => {
+          const mainQ = {all: "all"};
+          const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
 
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
-
-          setData(x);       
+          promStatic.forEach( i => {
+            if(i.tag === "nationalraw"){ //nationalraw
+              newDict[i[Object.keys(i)[3]]] = i.data;
+            }else if(i.tag === "racedataAll"){ //race data
+              setRaceData(i.racedataAll);       
+            }
+          });
+          setData(newDict);       
       
+          //assign each data point to a color scale
           const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
+          .domain(_.map(_.filter(newDict, 
+            d => (
+                d[metric] > 0 &&
+                d.fips.length === 5)),
+            d=> d[metric]))
+          .range(colorPalette);
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          if(d[metric] >= 0){
-          scaleMap[d[metric]] = cs(d[metric])}});
+          let scaleMap = {}
+          _.each(newDict, d=>{
+            if(d[metric] > 0){
+            scaleMap[d[metric]] = cs(d[metric])}});
       
-        setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        _.each(x, d=> { 
-          if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-            min = d[metric]
-          }
-        });
-
-        if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
-          setLegendMax(max);
-        }else if (max > 999) {
-          max = (max/1000).toFixed(0) + "K";
-          setLegendMax(max);
-        }else{
-          setLegendMax(max.toFixed(0));
-
-        }
-        setLegendMin(min.toFixed(0));
-        setLegendSplit(cs.quantiles());
-          //all states' time series data
-          // let tempDict = {};
-          // const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
-          // const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-          // tempDict = promSeries[1].timeseriesAll;
-          // tempDict["_nation"] = promSeries[0].timeseries_nation;
+          setColorScale(scaleMap);
+          setLegendSplit(cs.quantiles());
           
-        });
-
+          //find the largest value and set as legend max
+          _.each(newDict, d=> { 
+            if (d[metric] > max && d.fips.length === 5) {
+              max = d[metric]
+            } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+              min = d[metric]
+            }
+          });
       
-        
+          if (max > 999999) {
+            max = (max/1000000).toFixed(0) + "M";
+            setLegendMax(max);
+          }else if (max > 999) {
+            max = (max/1000).toFixed(0) + "K";
+            setLegendMax(max);
+          }else{
+            setLegendMax(max.toFixed(0));
+      
+          }
+          setLegendMin(min.toFixed(0));
 
-    //   fetchData();
-    //   } else {
-    //   handleAnonymousLogin();
-    // }
-  },[metric]);
+          //all states' time series data
+          let tempDict = {};
+          const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
+          const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+          tempDict = promSeries[1].timeseriesAll;
+          tempDict["_nation"] = promSeries[0].timeseries_nation;
+          setAllTS(tempDict);
+        };
+      
+      fetchData();
+      } else {
+      handleAnonymousLogin();
+    }
+  },[isLoggedIn]);
 
-  if (data && allTS && metric) {
+  useEffect(() =>{
+    const cs = scaleQuantile()
+  .domain(_.map(_.filter(data, 
+    d => (
+        d[metric] > 0 &&
+        d.fips.length === 5)),
+    d=> d[metric]))
+  .range(colorPalette);
+
+  let scaleMap = {}
+  _.each(data, d=>{
+    if(d[metric] > 0){
+    scaleMap[d[metric]] = cs(d[metric])}});
+
+  setColorScale(scaleMap);
+  setLegendSplit(cs.quantiles());
+  
+  //find the largest value and set as legend max
+  _.each(data, d=> { 
+    if (d[metric] > max && d.fips.length === 5) {
+      max = d[metric]
+    } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+      min = d[metric]
+    }
+  });
+
+  if (max > 999999) {
+    max = (max/1000000).toFixed(0) + "M";
+    setLegendMax(max);
+  }else if (max > 999) {
+    max = (max/1000).toFixed(0) + "K";
+    setLegendMax(max);
+  }else{
+    setLegendMax(max.toFixed(0));
+
+  }
+  setLegendMin(min.toFixed(0));
+
+  }, [metric]);
+
+  if (data && allTS) {
     console.log(stateFips);
   return (
     <HEProvider>
@@ -449,6 +492,8 @@ export default function USMap(props) {
                             
                           />
                         ))}
+
+                        
                       </svg>
                     }
                   </Geographies>
@@ -1246,8 +1291,7 @@ export default function USMap(props) {
 
 
                   }
-
-                  {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 53}}> 
+                  {stateFips && stateFips === "_nation" && <Grid.Row style= {{paddingTop: 22, paddingBottom: 54}}> 
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
@@ -1283,7 +1327,7 @@ export default function USMap(props) {
 
                   {stateFips !== "38"  && !!raceData[fips]["White Alone"] && !!raceData[fips]["White Alone"] && !(!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] )
                               && 
-                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
+                    <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", paddingBottom: 10}}>
                       {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
@@ -1301,7 +1345,7 @@ export default function USMap(props) {
                     </Header.Content>}
 
                     {!raceData[fips]["Non-Hispanic African American"]  && stateFips !== "02"  && 
-                        <div style = {{marginTop: 10}}>
+                        <div style = {{marginTop: 0}}>
                         </div>
                       }
 
