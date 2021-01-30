@@ -7,15 +7,17 @@ import { Waypoint } from 'react-waypoint'
 
 const contextRef = createRef()
 const nameList = ['General Information', 'Vaccine Development', 'Vaccine Safety', 'Getting Vaccinated', 'After You Are Vaccinated'];
-var scrollCount = 0;
+const scrollCount = 0;
 
 function StickyExampleAdjacentContext(props) {
     const contextRef = createRef();
-    const [sTate, setsTate] = useState({ activeItem: 'General Information' })
-    const { activeItem } = sTate
+    const [activeItem, setActiveItem] = useState('General Information')
+    //const { activeItem } = sTate
     useEffect(() => {
-        setsTate(nameList[scrollCount])
+        setActiveItem(nameList[scrollCount])
     }, [scrollCount])
+
+    console.log(scrollCount)
     
     return (
 
@@ -23,25 +25,26 @@ function StickyExampleAdjacentContext(props) {
           <Ref innerRef={contextRef}>
             <Rail attached size='mini' >
               <Sticky offset={180} position= "fixed" context={contextRef}>
-                <div style={{width:212, overflow: "hidden"}}>
-                  <div style= {{height:600, width: 220, overflowY: "scroll", overflowX:"hidden"}}> 
-                    <div style={{height: "100%", width: 330}}>
+                <div style={{width:240, overflow: "hidden"}}>
+                  <div style= {{height:600, width: 250, overflowY: "scroll", overflowX:"hidden"}}> 
+                    {/* <div style={{height: "100%", width: 240}}> */}
                       <Menu
                         //   size='small'
+                        style={{width: 230, marginTop:'2rem'}}
                         //   compact
                           pointing secondary vertical>
                           <Menu.Item as='a' href="#general" name='General Information' active={props.activeCharacter === 'General Information' || activeItem === 'General Information'}
-                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>General Information</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( name ) }}><Header as='h4'>General Information</Header></Menu.Item>
                           <Menu.Item as='a' href="#develop" name='Vaccine Development' active={props.activeCharacter === 'Vaccine Development' || activeItem === 'Vaccine Development'}
-                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Vaccine Development</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( name ) }}><Header as='h4'>Vaccine Development</Header></Menu.Item>
                           <Menu.Item as='a' href="#safety" name='Vaccine Safety' active={props.activeCharacter === 'Vaccine Safety' || activeItem === 'Vaccine Safety'}
-                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Vaccine Safety</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( name ) }}><Header as='h4'>Vaccine Safety</Header></Menu.Item>
                           <Menu.Item as='a' href="#get" name='Getting Vaccinated' active={props.activeCharacter === 'Getting Vaccinated' || activeItem === 'Getting Vaccinated'}
-                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Getting Vaccinated</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( name ) }}><Header as='h4'>Getting Vaccinated</Header></Menu.Item>
                           <Menu.Item as='a' href="#after" name='After You Are Vaccinated' active={props.activeCharacter === 'After You Are Vaccinated' || activeItem === 'After You Are Vaccinated'}
-                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>After You Are Vaccinated</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( name ) }}><Header as='h4'>After You Are Vaccinated</Header></Menu.Item>
                       </Menu>
-                    </div>
+                    {/* </div> */}
                   </div>
                 </div>
               </Sticky>
@@ -82,8 +85,8 @@ export default function VaccinesFAQ(props){
         <Grid.Column width={14}>
         <center> <Waypoint
             onEnter={() => {
-                setActiveCharacter('General Information')
-                console.log(activeCharacter)
+                //setActiveCharacter('General Information')
+                //console.log(activeCharacter)
             }}>
         </Waypoint> 
         </center>
@@ -93,17 +96,21 @@ export default function VaccinesFAQ(props){
 
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
-            <Header.Subheader style={{paddingTop:'1rem', paddingBottom:'1rem', lineHeight: "18pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
+            <Header.Subheader style={{paddingTop:'2rem', paddingBottom:'1rem', lineHeight: "18pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
             This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of {Date().slice(4,10)}. Before taking the vaccine, please consult your healthcare provider.
             </Header.Subheader>
           </Header.Content>
         </Header>
 
-        <Divider />
-
-        <Header as='h2' style={{paddingTop: 0, fontWeight: 600}}>
+        {/* <div><br/></div> */}
+        {/* <Divider /> */}
+        {/* <div><br/></div> */}
+        
+        <div id="general" style = {{height: 45}}> </div>
+        <Header block as='h2' style={{fontWeight: 600}}>
             General Information
         </Header>
+        <div><br/></div>
 
         <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
             What COVID-19 vaccines are approved for use in the United States?
@@ -123,8 +130,8 @@ export default function VaccinesFAQ(props){
             vaccines have shown that they are very effective in preventing symptomatic COVID-19 disease (95% and 94.1% effective, respectively). They have also shown that they are safe to get. 
             However, there are a few small differences in who should get them and when. The most important ones for anyone getting a vaccine are the following:
         </p>
-        <Container style={{paddingLeft:'12rem', paddingBottom:'0.5rem'}}>
-        <Table celled compact style={{fontWeight: 400, fontSize:'13pt', width: '60rem'}}>
+        <Container style={{paddingLeft:'5rem', paddingBottom:'0.5rem'}}>
+        <Table celled compact style={{fontWeight: 400, fontSize:'13pt', width: '58rem'}}>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell width={3}>Pfizer-BioNTech COVID-19 vaccine</Table.HeaderCell>
@@ -184,11 +191,13 @@ export default function VaccinesFAQ(props){
 
 
         <div id="develop" style = {{height: 45}}> </div>
-        <Header as='h2'>
+        {scrollCount=1}
+        <Header block as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Development
             </Header.Content>
         </Header>
+        <div><br/></div>
 
         <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
             How many vaccines are currently being studied?
@@ -234,11 +243,12 @@ export default function VaccinesFAQ(props){
 
 
         <div id="safety" style = {{height: 45}}> </div>
-        <Header as='h2'>
+        <Header block as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Safety
             </Header.Content>
         </Header>
+        <div><br/></div>
 
         <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
             What is an Emergency Use Authorization (EUA) for vaccines?
@@ -287,11 +297,12 @@ export default function VaccinesFAQ(props){
 
 
         <div id="get" style = {{height: 45}}></div>
-        <Header as='h2'>
+        <Header block as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Getting Vaccinated
             </Header.Content>
         </Header>
+        <div><br/></div>
 
 
         <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
@@ -586,11 +597,12 @@ export default function VaccinesFAQ(props){
 
 
         <div id="after" style = {{height: 45}}></div>
-        <Header as='h2'>
+        <Header block as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 After You Are Vaccinated
             </Header.Content>
         </Header>
+        <div><br/></div>
 
 
         <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
@@ -612,11 +624,13 @@ export default function VaccinesFAQ(props){
         Yes. Transmission of COVID-19 is very high across the country so CDC still recommends quarantining if you are exposed through a close contact.
         </p>
 
-        <Header as='h2'>
+        <div><br/></div>
+        <Header as='h2' style={{fontWeight: 600}}>
           Reviewed by 
         </Header>
+        <div><br/></div>
 
-        <p style={{fontSize:'14pt'}}>
+        <p style={{fontSize:'14pt', paddingLeft:'2rem'}}>
           Robert A. Bednarczyk, PhD (Assistant Professor, Emory University Rollins School of Public Health) <br/>
           Vincent Marconi, MD (Professor, Emory University School of Medicine, Division of Infectious Diseases; Emory University Rollins School of Public Health) <br/>
           Maria Sundaram, MSPH, PhD  (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health
