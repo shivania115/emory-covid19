@@ -1550,7 +1550,7 @@ export default function NationalReport(props) {
 
               
             </Grid.Column>
-            <Grid.Column width={14} >
+            <Grid.Column width={14} style={{paddingLeft:'3rem'}}>
             <center> <Waypoint
                                         onEnter={() => {
                                             setActiveCharacter('COVID-19 National Health Equity Report')

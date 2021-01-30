@@ -1,14 +1,94 @@
-import React from 'react'
 import AppBar from './AppBar';
 import Notes from './Notes';
-import { Container, Grid, List, Divider, Image, Header, Table, Segment } from 'semantic-ui-react'
+import { Container, Grid, Rail, Ref, Sticky, Divider, Image, Header, Table, Menu } from 'semantic-ui-react'
+import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
+import { Waypoint } from 'react-waypoint'
+
+
+const contextRef = createRef()
+const nameList = ['General Information', 'Vaccine Development', 'Vaccine Safety', 'Getting Vaccinated', 'After You Are Vaccinated'];
+var scrollCount = 0;
+
+function StickyExampleAdjacentContext(props) {
+    const contextRef = createRef();
+    const [sTate, setsTate] = useState({ activeItem: 'General Information' })
+    const { activeItem } = sTate
+    useEffect(() => {
+        setsTate(nameList[scrollCount])
+    }, [scrollCount])
+    
+    return (
+
+        <div >
+          <Ref innerRef={contextRef}>
+            <Rail attached size='mini' >
+              <Sticky offset={180} position= "fixed" context={contextRef}>
+                <div style={{width:212, overflow: "hidden"}}>
+                  <div style= {{height:600, width: 220, overflowY: "scroll", overflowX:"hidden"}}> 
+                    <div style={{height: "100%", width: 330}}>
+                      <Menu
+                        //   size='small'
+                        //   compact
+                          pointing secondary vertical>
+                          <Menu.Item as='a' href="#general" name='General Information' active={props.activeCharacter === 'General Information' || activeItem === 'General Information'}
+                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>General Information</Header></Menu.Item>
+                          <Menu.Item as='a' href="#develop" name='Vaccine Development' active={props.activeCharacter === 'Vaccine Development' || activeItem === 'Vaccine Development'}
+                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Vaccine Development</Header></Menu.Item>
+                          <Menu.Item as='a' href="#safety" name='Vaccine Safety' active={props.activeCharacter === 'Vaccine Safety' || activeItem === 'Vaccine Safety'}
+                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Vaccine Safety</Header></Menu.Item>
+                          <Menu.Item as='a' href="#get" name='Getting Vaccinated' active={props.activeCharacter === 'Getting Vaccinated' || activeItem === 'Getting Vaccinated'}
+                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>Getting Vaccinated</Header></Menu.Item>
+                          <Menu.Item as='a' href="#after" name='After You Are Vaccinated' active={props.activeCharacter === 'After You Are Vaccinated' || activeItem === 'After You Are Vaccinated'}
+                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>After You Are Vaccinated</Header></Menu.Item>
+                      </Menu>
+                    </div>
+                  </div>
+                </div>
+              </Sticky>
+            </Rail>
+          </Ref> 
+        </div>
+    )
+  // }
+
+}
+
+
+
+
+
 
 export default function VaccinesFAQ(props){
+  const [activeCharacter, setActiveCharacter] = useState('');
 
   return (
     <div>
-      <AppBar menu='dataSources'/>
+      
+      <AppBar menu='vaccinefaq'/>
       <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+
+      <div >
+        <br/><br/><br/><br/>
+      </div>
+
+      <Grid>
+        <Grid.Column width={2} style={{zIndex: 10}}>
+          <Ref innerRef={createRef()} >
+            <StickyExampleAdjacentContext activeCharacter={activeCharacter}  />
+          </Ref>
+        </Grid.Column>
+
+
+        <Grid.Column width={14}>
+        <center> <Waypoint
+            onEnter={() => {
+                setActiveCharacter('General Information')
+                console.log(activeCharacter)
+            }}>
+        </Waypoint> 
+        </center>
+
+        <div style={{paddingLeft: '10rem'}}>
         <Header as='h1' style={{paddingTop: 16, fontWeight: 400, fontSize: "24pt"}}>
 
           <Header.Content>
@@ -103,7 +183,7 @@ export default function VaccinesFAQ(props){
         </p>
 
 
-
+        <div id="develop" style = {{height: 45}}> </div>
         <Header as='h2'>
             <Header.Content>
                 Vaccine Development
@@ -153,6 +233,7 @@ export default function VaccinesFAQ(props){
         </p>
 
 
+        <div id="safety" style = {{height: 45}}> </div>
         <Header as='h2'>
             <Header.Content>
                 Vaccine Safety
@@ -205,6 +286,7 @@ export default function VaccinesFAQ(props){
         </p>
 
 
+        <div id="get" style = {{height: 45}}></div>
         <Header as='h2'>
             <Header.Content>
                 Getting Vaccinated
@@ -309,7 +391,8 @@ export default function VaccinesFAQ(props){
 
         <p style={{paddingTop:'1rem', paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         You may see some rumors about untrue side effects online or on social media. Make sure any time you see a claim about a side effect that you carefully check the source of that claim. Some trustworthy sources are:
-        <ul>
+        </p>
+        <ul style={{paddingLeft:'5rem', fontSize:'14pt', lineHeight:'1.5'}}>
         <li>
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/index.html" target="_blank" rel="noopener noreferrer"> CDC website </a>
         </li>
@@ -320,7 +403,7 @@ export default function VaccinesFAQ(props){
         Your local Department of Health website
         </li>
         </ul>
-        </p>
+        
 
 
         <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
@@ -334,19 +417,23 @@ export default function VaccinesFAQ(props){
         <p style={{paddingTop:'1rem', paddingLeft:'2rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         A severe allergic reaction will usually happen within a few minutes to an hour after getting vaccinated. Your healthcare provider may ask you to stay at the place where you received your vaccine for a short time so that they can make sure you are safe when you leave. 
         This is particularly important if you have had allergic reactions in the past. If you have had an allergic reaction to a vaccine in the past, you should let your healthcare provider know ahead of time. Signs of a severe allergic reaction can include: 
-        <ul>
+        </p>
+        <ul style={{paddingLeft:'5rem', fontSize:'14pt', lineHeight:'1.5'}}>
         <li>Difficulty breathing</li>
         <li>Swelling of your face and throat</li>
         <li>A fast heartbeat</li>
         <li>A bad rash all over your body</li>
         <li>Dizziness and weakness</li>
         </ul>
+        <p style={{paddingTop:'0rem', paddingLeft:'2rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         Some people have reported less severe allergic reactions within 4 hours after getting vaccinated (known as an “immediate allergic reaction”). Symptoms of this type of reaction include:
-        <ul>
+        </p>
+        <ul style={{paddingLeft:'5rem', fontSize:'14pt', lineHeight:'1.5'}}>
         <li>Hives</li>
         <li>Swelling</li>
         <li>Wheezing</li>
         </ul>
+        <p style={{paddingTop:'0rem', paddingLeft:'2rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         If you experience any of these symptoms after vaccination, tell your provider. They will be prepared and will be able to give you the care and advice that you need to resolve the allergic reaction. 
         </p>
         
@@ -380,213 +467,167 @@ export default function VaccinesFAQ(props){
         </p>
 
 
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        Who should <u>not</u> get the COVID-19 vaccine?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Anyone who has had a serious allergic reaction to an ingredient in one of the COVID-19 vaccines should not get the vaccine. Similarly, anyone who has a serious allergic reaction to the first dose of a COVID-19 vaccine should not get the second dose. 
+        You can find a list of the ingredients for the two vaccines <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144414/download" target="_blank" rel="noopener noreferrer"> here </a> and <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144638/download" target="_blank" rel="noopener noreferrer"> here</a>.
+        If you are not sure whether this applies to you, check with your healthcare provider.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        I have allergies - can I still get the COVID-19 vaccine?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        If you have had allergic reactions to other vaccines or injectable treatments in the past, you should check with your healthcare provider whether you can get the COVID-19 vaccine.
+        </p>
+
+        <p style={{paddingTop:'1rem', paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        If you have allergies to other medications or to substances (including pets, foods, latex, pollen…), CDC still recommends that you 
+        <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety/allergic-reaction.html" target="_blank" rel="noopener noreferrer"> get vaccinated </a>.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        I have a medical condition - can I still get the COVID-19 vaccine?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        This depends on your medical condition; in most cases you will still be eligible to get the COVID-19 vaccine. Neither of the approved COVID-19 vaccines have specific 
+        <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/underlying-conditions.html" target="_blank" rel="noopener noreferrer"> restrictions </a> 
+        based on medical conditions. However, if you have concerns about whether a vaccine is right for you, you should speak with your healthcare provider. 
+        They can answer your questions and advise you based on your risk factors, your medical condition, and your risks of getting COVID-19.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        If I am trying to become pregnant or am considering becoming pregnant in the future, should I get the COVID-19 vaccine? 
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        You may get the vaccine even if you are considering becoming pregnant. The American College of Obstetricians and Gynecologists and 
+        <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer"> CDC </a> 
+        recommend the COVID-19 vaccine for people trying to become pregnant or considering becoming pregnant in the future. There is no need to delay pregnancy after being fully vaccinated.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        If I am already pregnant, should I get the COVID-19 vaccine?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        You may get the vaccine even if you are currently pregnant. The
+        <a style ={{color: "#397AB9"}} href="https://www.acog.org/en/Clinical/Clinical%20Guidance/Practice%20Advisory/Articles/2020/12/Vaccinating%20Pregnant%20and%20Lactating%20Patients%20Against%20COVID%2019" target="_blank" rel="noopener noreferrer"> American College of Obstetricians and Gynecologists </a> 
+        recommends that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. Although there are no contraindications based on pregnancy, you should discuss this decision with your healthcare provider to make sure it is right for your situation.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        Is it safe to get the COVID-19 vaccine while breastfeeding?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Yes. The
+        <a style ={{color: "#397AB9"}} href="https://www.acog.org/en/Clinical/Clinical%20Guidance/Practice%20Advisory/Articles/2020/12/Vaccinating%20Pregnant%20and%20Lactating%20Patients%20Against%20COVID%2019" target="_blank" rel="noopener noreferrer"> American College of Obstetricians and Gynecologists </a> 
+        recommends that people who are breastfeeding get a COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        What do I do to protect myself while I wait to get vaccinated against COVID-19?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        You can continue taking the same precautions CDC recommends to protect yourself and others from COVID-19. This includes washing your hands, wearing a face covering, maintaining a physical distance of at least 6 feet from others, and limiting gathering in groups. 
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        Why are some people getting the COVID-19 vaccine first?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', marginBottom: '0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Because there are limited doses of the vaccine at this point, vaccination efforts are 
+        <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations.html" target="_blank" rel="noopener noreferrer"> prioritizing </a> 
+        people based on:
+        </p>
+        <ul style={{paddingLeft:'5rem', fontSize:'14pt', lineHeight:'1.5'}}>
+        <li>Decreasing death and serious disease as much as possible</li>
+        <li>Protecting our essential services and essential workers as much as possible </li>
+        <li>Reducing the extra burden of COVID-19 on people already facing disparities</li>
+        </ul>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        This means that those who have the highest risks of being exposed to COVID-19 or the highest risks of getting seriously ill if they become infected with COVID-19 are being vaccinated first. 
+        For Phase 1a, the first phase, this means vaccinating healthcare workers and residents of long-term care facilities.  The second phase (“Phase 1b”) focuses on frontline essential workers 
+        and people aged 75 and over. During the third phase (“Phase 1c”), the following groups are also eligible: essential workers, people aged 65-74, and people aged 16-64 who have other medical conditions 
+        that put them at risk for serious complications from COVID-19.
+        </p>
+
+        <p style={{paddingTop:'1rem', paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        These decisions were made by the
+        <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations-process.html" target="_blank" rel="noopener noreferrer"> Advisory Committee on Immunization Practices </a> 
+        and are based on recommendations by, among others, the
+        <a style ={{color: "#397AB9"}} href="https://www.nap.edu/catalog/25917/framework-for-equitable-allocation-of-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> National Academies of Sciences, Engineering, and Medicine </a> 
+        </p>
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        When can I get a COVID-19 vaccine?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Since doses of the available vaccines are limited at this point, certain groups are being prioritized, for example healthcare workers and residents in long-term care facilities. You can find out more about what groups of people are currently eligible 
+        to be vaccinated in your state by accessing your state’s Department of Health website.
+        </p>
+
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        Will I have to pay to get vaccinated against COVID-19?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        The federal government will cover the cost of the COVID-19 vaccine. However, some healthcare providers may charge you an office visit fee, or a fee to give you the vaccine. Health insurance should cover these fees since this vaccine is recommended by the Advisory Committee on Immunization Practices. 
+        If you do not have health insurance, you may be eligible for additional help to cover the cost of the vaccine. This may be state dependent. Vaccine providers can get reimbursed for costs associated with vaccinated uninsured people through the Health Resources and Services Administration’s Provider Relief Fund. 
+        Children (if in the appropriate age range for the vaccines) can get access to vaccines through the Vaccines for Children program.
+        </p>
+
+
+        <div id="after" style = {{height: 45}}></div>
         <Header as='h2'>
             <Header.Content>
                 After You Are Vaccinated
             </Header.Content>
         </Header>
 
-        <Table basic='very' style={{fontWeight: 400, fontSize: "14pt"}}>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell width={3}>Measure</Table.HeaderCell>
-              <Table.HeaderCell width={5}>Data Source</Table.HeaderCell>
-              <Table.HeaderCell width={8}>How to Interpret</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> The <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total COVID-19 Cases</i> is the number of people who have tested positive for COVID-19 in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> The <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total COVID-19 Deaths</i> is the number of people who have died of confirmed or presumed COVID-19 cases in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Cases</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Cases</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Deaths</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Deaths</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases per 100,000</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. 
-                          <br/><br/>
-                          If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. 
-                          This measurement adjusts for different counties’ populations to provide a standardized point of comparison of 
-                          cases in each county.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths per 100,000</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. 
-                            <br/><br/>
-                          If every county in the United States had 100,000 residents, this is how many would have died in each county from 
-                          COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison 
-                          of deaths in each county.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Cases per 100,000</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Cases per 100,000</i> helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100,000 people. 
-                          <br/><br/>
-                          If every county in the United States had 100,000 residents, this is how many would have tested positive for COVID-19 
-                          over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to provide a 
-                          standardized point of comparison of cases in each county.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Deaths per 100,000</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Deaths per 100,000</i> helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people. 
-                          <br/><br/>
-                          If every county in the United States had 100,000 residents, this is how many would have died from COVID-19 
-                          over a recent 7-day period, in each county. This measurement adjusts for different counties’ populations to 
-                          provide a standardized point of comparison of deaths in each county.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Daily Hospitalization</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Daily Hospitalization</i> is the number of new COVID-19 hospitalizations.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Percent Positive</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Percent Positive</i> is the percentage of total tests for COVID-19 that resulted in a positive result.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Percent Occupied Beds</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> CDC's<a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nhsn/datastat/index.html" target="_blank" rel="noopener noreferrer"> National Healthcare Safety Network  </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Percent Occupied Beds</i> is the state representative estimates for percentage of inpatient beds cccupied by COVID-19 patients.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Cases per 100,000 Persons by Race</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> Derived from <a style ={{color: "#397AB9"}} href="https://covidtracking.com/race" target="_blank" rel="noopener noreferrer"> The COVID Racial Data Tracker </a> and <a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Cases per 100,000 persons by race</i> shows the distribution of COVID-19 infections across the race categories relative to the size of their population, among those with race information available.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% African American</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% African American</i> is the percentage of residents in each county who self-identify as having African American ancestry. These data are from 2018. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% Hispanic or Latino</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Hispanic or Latino</i> is the percentage of residents in each county who self-identified as Hispanic or Latino to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% American Natives </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% American Natives </i> is the percentage of residents in each county who self-identified as American Indian and Alaska Native alone to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% Minority</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Minority</i> is the percentage of residents in each county who self-identify as having ancestry other than non-Hispanic white. These data are from 2018. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% in Poverty</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% in Poverty</i> is the percentage of residents in each county whose household income falls at or below the poverty thresholds set by the U.S. Census Bureau. These data are from 2018. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% Uninsured</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Uninsured</i> is the percentage of residents in each county who currently lack personal health insurance. These data are from 2018. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% Diabetes</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>CDC's<a style ={{color: "#397AB9"}} href="https://www.cdc.gov/diabetes/data/index.html" target="_blank" rel="noopener noreferrer"> Division of Diabetes Translation </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Diabetes</i> is the percentage of residents in each county who currently have a medical diagnosis of Type 2 Diabetes, previously called Adult Onset Diabetes. These data are from 2016. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% Obesity</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>CDC's <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/diabetes/data/index.html" target="_blank" rel="noopener noreferrer"> Division of Diabetes Translation </a></Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Obesity</i> is the percentage of residents in each county who have obesity, defined as having a Body Mass Index (weight in kilograms divided by the square of height in meters) above 30. These data are from 2016.  </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% over 65 y/o</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% over 65 y/o</i> is the percentage of residents in each county who are older than 65 years. These data are from 2018.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% in Group Quarters</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% in Group Quarters</i> is the percentage of residents in each county who live in group living arrangements, such as nursing or assisted-living facilities. These data are from 2018. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>% Male</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Male</i> is the percentage of residents in each county who are male. These data are from 2018.</Table.Cell>
-            </Table.Row>
 
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>COVID-19 Community Vulnerability Index (CCVI)</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://precisionforcovid.org/ccvi" target="_blank" rel="noopener noreferrer">Surgo Foundation </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>The COVID-19 Community Vulnerability Index (CCVI)</i> can be used to identify the communities that may need the most support during the pandemic. CCVI scores range in value from 0 to 1, with higher scores indicating greater vulnerability.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Residential Segregation</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.countyhealthrankings.org/explore-health-rankings/measures-data-sources/county-health-rankings-model/health-factors/social-and-economic-factors/family-social-support/residential-segregation-blackwhite" target="_blank" rel="noopener noreferrer">Robert Wood Johnson Foundation program </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Residential Segregation</i> is an index of dissimilarity where higher values indicate greater degree of Black and White county residents living separately from one another in a geographic area. 
-                                                          <br/> <br/>
-                                                          The index score can be interpreted as the percentage of either Black or White residents that would have to move to different geographic areas to produce a distribution that matches that of the larger area.
-              </Table.Cell>
-            </Table.Row>
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        After I get two doses of a COVID-19 vaccine, do I still have to take other preventive measures?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Yes.
+        <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/_nation" target="_blank" rel="noopener noreferrer"> COVID-19 transmission </a> 
+        is very high in communities across the United States right now. As such, CDC still recommends continuing to physically distance, wear a face covering, limit gatherings, and wash your hands thoroughly even once you are vaccinated. 
+        It will take months for everyone across the United States to be fully vaccinated, so it is important that people continue to follow these precautions. The vaccine is the first part in a “one-two punch” that also includes physical distancing, wearing a mask, 
+        washing your hands regularly, and staying away from large gatherings.
+        </p>
 
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Socioeconomic Vulnerability</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> CDC’s <a style ={{color: "#397AB9"}} href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank" rel="noopener noreferrer">Social Vulnerability Index data 2018 database</a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Socioeconomic Vulnerability</i> is a composite measurement for each county that takes into account poverty, unemployment, per capita income, and not having a high school diploma; with the highest level of vulnerability assigned to tracts in the top 10% based on values for all of these measurements. These data are from 2018.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Household Composition Vulnerability</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> CDC’s <a style ={{color: "#397AB9"}} href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank" rel="noopener noreferrer">Social Vulnerability Index data 2018 database</a></Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Household Composition Vulnerability</i> is a composite measurement for each county that takes into account population aged 65 and older, population aged 17 and younger, people with disabilities who do not live in an institutional setting, and single-parent households with child(ren) under age 18; with the highest level of vulnerability assigned to tracts in the top 10% based on values for all of these measurements. These data are from 2018.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Minority/Language Vulnerability</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> CDC’s <a style ={{color: "#397AB9"}} href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank" rel="noopener noreferrer"> Social Vulnerability Index data 2018 database</a></Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Minority/Language Vulnerability</i> is a composite measurement for each county that takes into account all people except the white non-Hispanic population and those who speak English “less than well,” with the highest level of vulnerability assigned to tracts in the top 10% based on values for the measurements. These data are from 2018.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Housing/Transportation Vulnerability</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> CDC's <a style ={{color: "#397AB9"}} href="https://svi.cdc.gov/data-and-tools-download.html" target="_blank" rel="noopener noreferrer"> Social Vulnerability Index data 2018 database</a></Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Housing/Transportation Vulnerability</i> is a composite measurement for each county that takes into account living structures with 10 or more units, mobile homes, having more people than rooms in occupied housing, households with no vehicle available, and those living in institutionalized group quarters; with the highest level of vulnerability assigned to tracts in the top 10% based on values for all of these measurements. These data are from 2018.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Population</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Population</i> is the total number of people who live in each county. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Population Density</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Population Density</i> is the total number of people who live in each county per square mile. </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Household Income</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Mean Household Income</i> measures the average total income per household in each county. These data are from 2018.</Table.Cell>
-            </Table.Row>            
-          </Table.Body>
-        </Table>
+
+        <Header as='h3' style={{fontSize:'14pt', paddingLeft:'2rem'}}>
+        After I am fully vaccinated, do I still need to quarantine if I am exposed to COVID-19?
+        </Header>
+        <p style={{paddingLeft:'2rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Yes. Transmission of COVID-19 is very high across the country so CDC still recommends quarantining if you are exposed through a close contact.
+        </p>
+
+        <Header as='h2'>
+          Reviewed by 
+        </Header>
+
+        <p style={{fontSize:'14pt'}}>
+          Robert A. Bednarczyk, PhD (Assistant Professor, Emory University Rollins School of Public Health) <br/>
+          Vincent Marconi, MD (Professor, Emory University School of Medicine, Division of Infectious Diseases; Emory University Rollins School of Public Health) <br/>
+          Maria Sundaram, MSPH, PhD  (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health
+        </p>
+
+        </div>
+        </Grid.Column>
         <Notes />
+        </Grid>
       </Container>
-    </div>);
+      
+    </div>
+    );
 }
