@@ -35,7 +35,7 @@
         "definition": "definition",
         "group": "outcomes"},
     "Administered_Dose2": {
-        "variable": "Administered_Dose1",
+        "variable": "Administered_Dose2",
         "name": "Number received second dose",
         "definition": "is the number of individuals in the United States recorded in CDC database to have received the second dose of a COVID-19 vaccine.",
         "group": "outcomes"},
@@ -67,7 +67,7 @@
     "percentVaccinatedDose2": {
         "variable": "percentVaccinatedDose2",
         "name": "Percent of population fully vaccinated (two doses received)",
-        "definition": "definiis the percentage of the total US population that has received at two doses of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.tion",
+        "definition": "is the percentage of the total US population that has received at two doses of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
         "group": "outcomes"},
     "Dist_Per_100K_new": {
         "variable": "Dist_Per_100K_new",
