@@ -124,16 +124,17 @@ function StickyExampleAdjacentContext(props) {
     
     return (
 
-        <div >
+        <div style = {{width: 110}}>
           <Ref innerRef={contextRef}>
-            <Rail attached size='mini' >
+            <Rail attached size='mini' style = {{width: 230}}>
                 <Sticky offset={180} position= "fixed" context={contextRef}>
                     <Menu
+                        style = {{width: 110}}
                         size='small'
                         compact
                         pointing secondary vertical>
                         <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Header></Menu.Item>
+                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
                         <Menu.Item as='a' href="#vaccine" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
                               onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
                         <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
@@ -512,7 +513,7 @@ export default function USMap(props) {
   return (
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+        <Container style={{marginTop: '8em', width: 1260, overFlowX: 'hidden'}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >Vaccination: United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
@@ -520,7 +521,7 @@ export default function USMap(props) {
           <Divider hidden /> */}
           <Grid >
             
-            <Grid.Column width={2} style={{zIndex: 10}}>
+            <Grid.Column style={{zIndex: 10, width:110}}>
               <Ref innerRef={createRef()} >
                 <StickyExampleAdjacentContext activeCharacter={activeCharacter}  />
               </Ref>
@@ -657,7 +658,7 @@ export default function USMap(props) {
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row >
-              {stateFips && <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 10}}defaultActiveIndex={1} panels={[
+              {stateFips && <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 26}}defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -667,25 +668,15 @@ export default function USMap(props) {
                             content: {
                                 content: (
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                    <b><em> Total doses distributed </em></b> is the number of vaccine doses that have been distributed 
-                                    to facilities across the United States by the federal government. <br/>
+                                    <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                        <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
 
-                                    <b><em> Number received first dose </em></b> is the number of individuals in the United States 
-                                    recorded in CDC database to have received the first dose of a COVID-19 vaccine. <br/>
-
-                                    <b><em> Number received second dose </em></b> is the number of individuals in the United States 
-                                    recorded in CDC database to have received the second dose of a COVID-19 vaccine. <br/>
-
-                                    <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been most 
-                                    recently distributed to facilities across the United States by the federal government. <br/>
-
-                                    <b><em> Percent of population partially vaccinated (one dose received) </em></b> is the 
-                                    percentage of the total US population that has received at least one dose of a COVID-19 
-                                    vaccine according to CDC database. The total US population is derived from the Census.<br/>
-
-                                    <b><em> Percent of population fully vaccinated (two doses received) </em></b> is the 
-                                    percentage of the total US population that has received at two doses of a COVID-19 
-                                    vaccine according to CDC database. The total US population is derived from the Census.<br/>
+                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                        distributed on {vaccineDate} to facilities across the United States by the federal government. <br/>
+                                        
+                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
 
 
                                   </Header.Content>
@@ -834,7 +825,7 @@ export default function USMap(props) {
                         </ComposableMap>
                     
                     
-                        {stateFips && <Accordion style = {{paddingTop: 10}} defaultActiveIndex={1} panels={[
+                        {stateFips && <Accordion id = "burden" style = {{paddingTop: 10}} defaultActiveIndex={1} panels={[
                           {
                               key: 'acquire-dog',
                               title: {
@@ -845,24 +836,14 @@ export default function USMap(props) {
                                       <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
                                         
                                         <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                        <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
 
-                                        <b><em> Number received first dose </em></b> is the number of individuals in the United States 
-                                        recorded in CDC database to have received the first dose of a COVID-19 vaccine. <br/>
-
-                                        <b><em> Number received second dose </em></b> is the number of individuals in the United States 
-                                        recorded in CDC database to have received the second dose of a COVID-19 vaccine. <br/>
-
-                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been most 
-                                        recently distributed to facilities across the United States by the federal government. <br/>
-
-                                        <b><em> Percent of population partially vaccinated (one dose received) </em></b> is the 
-                                        percentage of the total US population that has received at least one dose of a COVID-19 
-                                        vaccine according to CDC database. The total US population is derived from the Census.<br/>
-
-                                        <b><em> Percent of population fully vaccinated (two doses received) </em></b> is the 
-                                        percentage of the total US population that has received at two doses of a COVID-19 
-                                        vaccine according to CDC database. The total US population is derived from the Census.<br/>
-
+                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                        distributed on {vaccineDate} to facilities across the United States by the federal government. <br/>
+                                        
+                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
 
                                       </Header.Content>
                                   ),
@@ -891,25 +872,25 @@ export default function USMap(props) {
                                 <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> The U.S.</td>
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number who received first dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1"])} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent who received first dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received first dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["percentVaccinatedDose1"]) + "%"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinatedDose1"]) + "%"} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number who received second dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received second dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2"])} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent who received second dose"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received second dose"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["percentVaccinatedDose2"]) + "%"} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinatedDose2"]) + "%"} </Table.HeaderCell>
 
@@ -927,7 +908,7 @@ export default function USMap(props) {
 
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"New doses distributed per 100,000 on " + vaccineDate} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Newly distributed per 100,000 on " + vaccineDate} </Table.HeaderCell>
                               <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
 
@@ -935,7 +916,6 @@ export default function USMap(props) {
                             
                           </Table.Header>
                         </Table>
-                        <div id = "burden" style = {{height: 45}}> </div>
                       </Grid.Row>
                       
                     </Grid>
@@ -944,11 +924,11 @@ export default function USMap(props) {
                 </Grid.Row> 
                 
               </Grid>
-              <div style = {{height: 25}}> </div>
+              <div style = {{height: 55}}> </div>
 
               <Grid>
                 <Grid.Column>
-                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 50}}> COVID-19 Burden in {stateName} </Divider>
+                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 30}}> COVID-19 Burden in {stateName} </Divider>
 
                 </Grid.Column>
               </Grid>
@@ -956,11 +936,11 @@ export default function USMap(props) {
               <Grid.Row columns = {2} style = {{width: 1000}}>
 
                 
-                <Grid.Column style = {{width: 600}}>
+                <Grid.Column style = {{width: 630}}>
                   <Grid>
                     
 
-                  <Grid.Row columns = {2} style = {{width: 600, paddingLeft: 20}}>
+                  <Grid.Row columns = {2} style = {{width: 630, paddingLeft: 20}}>
                     <Grid.Column style = {{width: 240, paddingLeft: 15}}> 
 
                       <div>
@@ -1803,7 +1783,7 @@ export default function USMap(props) {
                       </Grid.Row>
                     </Grid>
                 </Grid.Column>
-                <Grid.Column style = {{paddingLeft: 80}}>
+                <Grid.Column style = {{paddingLeft: 80, width: 630}}>
                   <div style = {{paddingTop: 10, paddingLeft: 50}}>
                     <div style = {{paddingTop: 0, width: 500, paddingBottom: 20}}>
                       <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
@@ -1879,22 +1859,24 @@ export default function USMap(props) {
             </Grid.Column>
           </Grid>
           
-          <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}}>
+          <Container id="title" style={{marginTop: '8em', minWidth: '1260px', overFlowX: 'hidden'}}>
             <Notes />
           </Container>
         </Container>
         <ReactTooltip > 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> <br/>
-          <b> Number who received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
+          <b> Number received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
           <br/><br/>
-          <b> Percent who received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
+          <b> Percent received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
           <br/><br/>
-          <b> Number who received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
+          <b> Number received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
           <br/><br/>
-          <b> Percent who received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
+          <b> Percent received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
           <br/><br/>
-          
+          <b> Newly distributed per 100,000: </b> {numberWithCommas(vaccineData[fips]["Dist_Per_100K_new"].toFixed(0))}
+          <br/><br/>
+
           <b>Click to lock.</b> 
         </ReactTooltip>
       </div>
