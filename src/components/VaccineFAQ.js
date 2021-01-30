@@ -1,6 +1,6 @@
 import AppBar from './AppBar';
 import Notes from './Notes';
-import { Container, Grid, Rail, Ref, Sticky, Divider, Image, Header, Table, Menu } from 'semantic-ui-react'
+import { Container, Grid, Rail, Ref, Sticky, Divider, Accordion, Icon, Header, Table, Menu } from 'semantic-ui-react'
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
 import { Waypoint } from 'react-waypoint'
 
@@ -69,6 +69,8 @@ function StickyExampleAdjacentContext(props) {
 
 export default function VaccinesFAQ(props){
   const [activeCharacter, setActiveCharacter] = useState('');
+  const [activeIndex, setActiveIndex] = useState([-1]);
+  console.log(activeIndex);
 
   return (
     <div>
@@ -197,7 +199,7 @@ export default function VaccinesFAQ(props){
 
 
         <div id="develop" style = {{height: 45}}> </div>
-        <Header block as='h2' style={{fontWeight: 600}}>
+        <Header  as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Development
             </Header.Content>
@@ -206,7 +208,7 @@ export default function VaccinesFAQ(props){
 
         
 
-        <Header as='h3' style={{fontSize:'16pt', paddingLeft:'2rem'}}>
+        { /*<Header as='h3' style={{fontSize:'16pt', paddingLeft:'2rem'}}>
             How many vaccines are currently being studied?
         </Header>
         <p style={{paddingLeft:'4rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
@@ -252,7 +254,87 @@ export default function VaccinesFAQ(props){
         It is normal for a clinical trial to be temporarily paused when a possible side effect (or “adverse event”) is found. This pause happens so that the side effect can be investigated fully, 
         to see if it is really related to the vaccine, or to something else. This is done by doctors and an independent monitoring board of other scientists, not by the pharmaceutical company. 
         Clinical trials are specifically designed to allow for potential pauses, so that they can put patient safety at the absolute top of the priority list. 
+        </p> */}
+
+
+      <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
+      <Accordion fluid styled exclusive={false}>
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 0}
+          index={0}
+          onClick={() => activeIndex.indexOf(0) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 0]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 0))}
+        >
+          <Icon name='dropdown' />
+          How many vaccines are currently being studied?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(0)>0}>
+          <p>
+          There are <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/vaccines/" target="_blank" rel="noopener noreferrer"> currently </a>
+        78 vaccines in various phases of testing across the world. Of these, 20 are in <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
+        clinical trials. Phase 3 trials are the large-scale studies done before a vaccine is approved.
+        
+          </p>
+        </Accordion.Content>
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 1}
+          index={1}
+          onClick={() => activeIndex.indexOf(1) <0 ? setActiveIndex(activeIndex =>[...activeIndex, 1]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 1))}
+        >
+          <Icon name='dropdown' />
+          Will the approved vaccines protect against new variants of the coronavirus?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(1)>0}>
+          <p>
+          It is hard to know exactly how effective the authorized vaccines will be against new and different variants of SARS-CoV-2, the virus that causes COVID-19. 
+        Right now, the limited information we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or 
+        from vaccination will still protect against most new variants. However, this is a changing situation, and something scientists are continuing to study. 
+        
+          </p>
+        </Accordion.Content>
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          active={activeIndex === 2}
+          index={2}
+          onClick={() => activeIndex.indexOf(2) <0 ? setActiveIndex(activeIndex =>[...activeIndex, 2]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 2))}
+        >
+          <Icon name='dropdown' />
+          What is Operation Warp Speed?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(2)>0}>
+          <p>
+            Operation Warp Speed is a partnership among components of the Department of Health and Human Services and the Department of Defense to help develop, make, 
+            and distribute millions of vaccine doses for COVID-19 as quickly as possible after making sure that the vaccines are safe and that they work. 
+            <br/><br/>
+            Details about Operation Warp Speed can be found <a style ={{color: "#397AB9"}} href="https://www.hhs.gov/coronavirus/explaining-operation-warp-speed/index.html" target="_blank" rel="noopener noreferrer"> here </a>.
+          </p>
+        </Accordion.Content>
+
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          active={activeIndex === 3}
+          index={3}
+          onClick={() => activeIndex.indexOf(3) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 3]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 3))}
+        >
+          <Icon name='dropdown' />
+          What does it mean if a clinical trial is “paused”?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(3)>0}>
+          <p>
+          During clinical trials, the top priority is safety of the participants. The clinical trials of the COVID-19 vaccines are no different. 
+        It is normal for a clinical trial to be temporarily paused when a possible side effect (or “adverse event”) is found. This pause happens so that the side effect can be investigated fully, 
+        to see if it is really related to the vaccine, or to something else. This is done by doctors and an independent monitoring board of other scientists, not by the pharmaceutical company. 
+        Clinical trials are specifically designed to allow for potential pauses, so that they can put patient safety at the absolute top of the priority list. 
         </p>
+        </Accordion.Content>
+      </Accordion>
+      </div>
+
+
 
 
 
