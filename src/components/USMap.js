@@ -5,7 +5,9 @@ import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
 import Geography from './Geography';
 import ComposableMap from './ComposableMap';
+
 import ReactTooltip from "react-tooltip";
+
 import { VictoryChart, 
   VictoryGroup, 
   VictoryBar, 
@@ -62,6 +64,7 @@ function numberWithCommas(x) {
 
 //const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+
 const colorPalette = [
         "#e1dce2",
         "#d3b6cd",
@@ -92,6 +95,7 @@ export default function USMap(props) {
 
   // const [stateName, setStateName] = useState('Georgia');
   // const [fips, setFips] = useState('13');
+
   const [stateName, setStateName] = useState('The United States');
   const [fips, setFips] = useState('_nation');
   const [stateFips, setStateFips] = useState();
@@ -488,6 +492,8 @@ export default function USMap(props) {
                             
                           />
                         ))}
+
+                        
                       </svg>
                     }
                   </Geographies>

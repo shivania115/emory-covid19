@@ -160,7 +160,11 @@ function BarChart(props) {
       padding={{left: 105, right: 30, top: 30, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/>
+      {props.title !== "Community Vulnerability Index" && props.title !== "Any Condition" && <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Community Vulnerability Index" && <VictoryLabel text="Vulnerability Index" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Prevalence of Any" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Condition / 100,000" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "16px", fontFamily: 'lato'}}}  />
       <VictoryAxis tickCount={3} dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", padding: 1, fontSize: "12px", fontFamily: 'lato'}}} />
       <VictoryBar
@@ -1459,106 +1463,7 @@ export default function StateMap(props) {
                 } />
                 </Grid.Column>
                 <Grid.Column style={{padding: 0, paddingLeft: 20, width: 800}}>
-
-                <Header as='h2' style={{width:750, paddingBottom: 10}}>
-                    <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
-                      {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
-                      <Header.Subheader style={{fontWeight: 350, width: 750, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
-                      Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
-                      Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
-                      </Header.Subheader>
-                    </Header.Content>
-
-                  </Header>
-                  <Grid>
-                    <Grid.Row>
-                      <BarChart 
-                        title="% African American" 
-                        var="black" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />
-                      <BarChart 
-                        title="% Hispanic or Latino" 
-                        var="hispanic"  
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />
-                      <BarChart 
-                        title="% Native American" 
-                        var="natives" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />  
-                      <BarChart 
-                        title="% Over 65 y/o" 
-                        var="age65over" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />
-                    </Grid.Row>
-                    <Grid.Row style = {{paddingTop: 15}}>
-                      <BarChart 
-                        title="% Obese" 
-                        var="obesity" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />  
-                      {/* <BarChart 
-                        title="% Diabetes" 
-                        var="diabetes" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />  */}
-                      <BarChart 
-                        title="% in Poverty" 
-                        var="poverty"  
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />
-                      <BarChart 
-                        title="% Uninsured" 
-                        var="PCTUI" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />
-                      <BarChart 
-                        title="% in Group Quarters" 
-                        var="groupquater" 
-                        stateFips={stateFips}
-                        countyFips={countyFips}
-                        countyName={barCountyName}
-                        stateName={stateName}
-                        data={data} />
-                        {/* <BarChart 
-                          title="% Male" 
-                          var="male" 
-                          stateFips={stateFips}
-                          countyFips={countyFips}
-                          countyName={barCountyName}
-                          stateName={stateName}
-                          data={data} /> */}
-                    </Grid.Row>
-                  </Grid>
-
-
-                  <Header as='h2' style={{fontWeight: 400, width: 750}}>
+                <Header as='h2' style={{fontWeight: 400, width: 750}}>
                     <Header.Content style={{fontSize: 20}}>
                       Comparing <b>{stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName}</b>
                       <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 750, fontSize: "14pt", lineHeight: "16pt"}}>
@@ -1628,6 +1533,106 @@ export default function StateMap(props) {
                     </Grid.Row>}
 
                   </Grid>
+
+                <Header as='h2' style={{width:750, paddingBottom: 10}}>
+                    <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
+                      {stateFips === "_nation" || stateFips === "72"? "":stateFips == "02"? countyName :countyName.match(/[^\s]+/)} Population Characteristics
+                      <Header.Subheader style={{fontWeight: 350, width: 750, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
+                      Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
+                      Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
+                      </Header.Subheader>
+                    </Header.Content>
+
+                  </Header>
+                  <Grid>
+                    <Grid.Row>
+                      <BarChart 
+                        title="% African American" 
+                        var="black" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% Hispanic or Latino" 
+                        var="hispanic"  
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% Native American" 
+                        var="natives" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />  
+                      <BarChart 
+                        title="Community Vulnerability Index" 
+                        var="ccvi" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                    </Grid.Row>
+                    <Grid.Row style = {{paddingTop: 15}}>
+                      <BarChart 
+                        title="Any Condition" 
+                        var="anycondition" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />  
+                      {/* <BarChart 
+                        title="% Diabetes" 
+                        var="diabetes" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />  */}
+                      <BarChart 
+                        title="% in Poverty" 
+                        var="poverty"  
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% Uninsured" 
+                        var="PCTUI" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                      <BarChart 
+                        title="% in Group Quarters" 
+                        var="groupquater" 
+                        stateFips={stateFips}
+                        countyFips={countyFips}
+                        countyName={barCountyName}
+                        stateName={stateName}
+                        data={data} />
+                        {/* <BarChart 
+                          title="% Male" 
+                          var="male" 
+                          stateFips={stateFips}
+                          countyFips={countyFips}
+                          countyName={barCountyName}
+                          stateName={stateName}
+                          data={data} /> */}
+                    </Grid.Row>
+                  </Grid>
+
+
+                  
 
                   
                 </Grid.Column>
