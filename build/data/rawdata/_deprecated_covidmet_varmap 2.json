@@ -1,0 +1,40 @@
+{
+    "cases": {
+        "name": "Total COVID Cases",
+        "nameShort": "Total COVID Cases",
+        "desc": "",
+        "seq": 0,
+        "average": false},
+    "deaths": {
+        "name": "Total COVID Deaths",
+        "nameShort": "Total COVID Deaths",        
+        "desc": "",
+        "seq": 1,
+        "average": false},
+    "caseratecounty": {
+        "name": "COVID cases per 100,000",
+        "nameShort": "COVID Case Rate",        
+        "desc": "",
+        "seq": 2,
+        "average": true},
+    "covidmortalitycounty": {
+        "name": "COVID deaths per 100,000",
+        "nameShort": "COVID Death Rate",
+        "desc": "",
+        "seq": 3,  
+        "average": true},
+    "excessdeathscounty": {
+        "name": "COVID Proportionate mortality",
+        "nameShort": "COVID Mortality",        
+        "desc": "",
+        "seq": 4,
+        "average": true},
+    "POPLOSS00": {
+        "name": "Population Loss",
+        "nameShort": "Population Loss",        
+        "desc": "",
+        "seq": 5, 
+        "average": false}
+}
+
+
