@@ -16,7 +16,7 @@ export default function AboutUs(props){
 
         <Grid row = {1} style = {{marginLeft: -10, paddingTop: 30}}>
             <Header style={{fontWeight: 400, fontSize: "24pt", paddingBottom: 0}}>
-                About This Dashboard
+                About This Tool
 
                 <Header.Subheader style={{color: "#000000", paddingTop: 13, lineHeight: "24pt", fontSize: "14pt"}}>Early data about COVID-19 suggests that communities are affected very differently 
                 due to social determinants of health like population density, poverty, residential segregation, underlying chronic health conditions, and availability of medical services.
