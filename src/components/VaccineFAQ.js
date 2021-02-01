@@ -995,7 +995,7 @@ export default function VaccinesFAQ(props){
 
         <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
         <Accordion fluid styled exclusive={false}>
-        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+        <Accordion.Title style={{fontSize:'15pt', color: 'black', lineHeight:'1.4'}}
           // active={activeIndex === 0}
           index={32}
           onClick={() => activeIndex.indexOf(32) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 32]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 32))}
