@@ -640,6 +640,10 @@ export default function USMap(props) {
                       </div>
                     </Grid.Column>
                 </Grid.Row>
+
+
+
+                
               
               <Grid.Row>
                <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 8}}> 
@@ -702,8 +706,8 @@ export default function USMap(props) {
                   <Grid.Column style = {{width: 1000, paddingLeft: 30}}>
 
                         <div style = {{paddingBottom: 0, width: 1000}}>
-                          <Header.Content style = {{paddingLeft: 20, fontSize: "1.5em"}}>
-                            Click on a state.
+                          <Header.Content style = {{paddingLeft: 20, fontSize: "19px"}}>
+                            <a style = {{color: "#004071"}}> Click on a state. </a>
                             <br/>
                             <br/>
                             <b><em> Percent of population partially vaccinated </em></b>
@@ -857,7 +861,7 @@ export default function USMap(props) {
                   
                   <Grid.Column style ={{width: 350}}>
                     <Header as='h2' style={{fontWeight: 400}}>
-                      <Header.Content style={{width : 350, height: 100, fontSize: "18pt", textAlign: "center", paddingTop: 35, paddingLeft: 35}}>
+                      <Header.Content style={{width : 350, height: 100, fontSize: "19px", textAlign: "center", paddingTop: 35, paddingLeft: 35}}>
                         Vaccination Status in <b>{stateName}</b>
                         
                         
@@ -1136,14 +1140,14 @@ export default function USMap(props) {
                   <Grid.Row>
                     <Grid.Column style = {{paddingLeft: 20, paddingTop: 101}}>
                       <Header as='h2' style={{fontWeight: 400, paddingTop: 10}}>
-                        <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
+                        <Header.Content style={{width : 500, fontSize: "19px", textAlign: "center"}}>
                           Disparities in COVID-19 Mortality <br/> <b>{stateMapFips !== "_nation" ? stateName : "Nation"}</b>
                           
                         </Header.Content>
                       </Header>
 
                       {stateMapFips && stateMapFips === "_nation" && <div style = {{marginTop: 13}}>
-                              <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 130, fontWeight: 400, width: 400}}> Deaths by Race & Ethnicity</Header.Content>
+                              <Header.Content x={0} y={20} style={{fontSize: '19px', paddingLeft: 130, fontWeight: 400, width: 400}}> Deaths by Race & Ethnicity</Header.Content>
                       </div>}
 
                       {stateMapFips && stateMapFips === "_nation" && <div style={{paddingLeft: "0em", paddingRight: "2em"}}>
@@ -1155,10 +1159,10 @@ export default function USMap(props) {
                                 domainPadding={20}
                                 minDomain={{y: props.ylog?1:0}}
                                 padding={{left: 164, right: 35, top: 12, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
+                                style = {{fontSize: "19px"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                 <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
@@ -1198,7 +1202,7 @@ export default function USMap(props) {
                               <Grid.Column style = {{paddingLeft: 20}}> 
                                 {!raceData[stateMapFips]["Non-Hispanic African American"]  && stateMapFips !== "02"  && 
                                   <div style = {{marginTop: 10, width: 250}}>
-                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths by Race</Header.Content>
+                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 58, fontWeight: 400}}> Deaths by Race</Header.Content>
                                   </div>
                                 }
                                 {stateMapFips && !raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38"  && stateMapFips !== "02" &&
@@ -1211,12 +1215,12 @@ export default function USMap(props) {
                                                 (!!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 ?1:0))}
                                                 domainPadding={20}
                                                 minDomain={{y: props.ylog?1:0}}
-                                                padding={{left: 80, right: 65, top: 12, bottom: 1}}
+                                                padding={{left: 100, right: 65, top: 12, bottom: 1}}
                                                 style = {{fontSize: "14pt"}}
                                                 containerComponent={<VictoryContainer responsive={false}/>}
                                               >
 
-                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                                 <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                                 <VictoryGroup>
                                                 
@@ -1331,7 +1335,7 @@ export default function USMap(props) {
                               <Grid.Column style = {{paddingLeft: 50}}> 
                                 {!!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
                                   <div style = {{marginTop: 10}}>
-                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400, width: 250}}> Deaths by Ethnicity</Header.Content>
+                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 60, fontWeight: 400, width: 250}}> Deaths by Ethnicity</Header.Content>
                                     {!(stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ))
                                         && 
                                       <center> <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 20, fontWeight: 400, width: 250}}> <br/> <br/> None Reported</Header.Content> </center>
@@ -1346,12 +1350,12 @@ export default function USMap(props) {
                                                 height = {!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ?  81 : 3 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
                                                 domainPadding={20}
                                                 minDomain={{y: props.ylog?1:0}}
-                                                padding={{left: 110, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
+                                                padding={{left: 130, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
                                                 style = {{fontSize: "14pt"}}
                                                 containerComponent={<VictoryContainer responsive={false}/>}
                                               >
 
-                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                                 <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                                 
                                                   <VictoryGroup>
@@ -1524,12 +1528,12 @@ export default function USMap(props) {
                                               height = {32 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
                                               domainPadding={20}
                                               minDomain={{y: props.ylog?1:0}}
-                                              padding={{left: 150, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
+                                              padding={{left: 160, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
                                               style = {{fontSize: "14pt"}}
                                               containerComponent={<VictoryContainer responsive={false}/>}
                                             >
 
-                                              <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                              <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                               <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                               
                                                 <VictoryGroup>
@@ -1788,7 +1792,7 @@ export default function USMap(props) {
                 <Grid.Column style = {{paddingLeft: 80, width: 630}}>
                   <div style = {{paddingTop: 10, paddingLeft: 50}}>
                     <div style = {{paddingTop: 0, width: 500, paddingBottom: 20}}>
-                      <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
+                      <Header.Content x={0} y={20} style={{fontSize: "19px", fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
                     </div>
                     <svg width = "500" height = "40">
                         <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -1804,8 +1808,8 @@ export default function USMap(props) {
                   </div>
 
                   <div style = {{paddingTop: 65, paddingLeft: 50}}>
-                    <div style = {{paddingTop: 50, width: 500, paddingBottom: 20}}>
-                      <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
+                    <div style = {{paddingTop: 47, width: 500, paddingBottom: 20}}>
+                      <Header.Content style={{fontSize: "19px", fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
                     </div>
                     <svg width = "500" height = "40">
                         <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -1820,7 +1824,7 @@ export default function USMap(props) {
                           }
                   </div>
 
-                  {stateFips && <Accordion style = {{paddingTop: 82, paddingLeft: 15}} defaultActiveIndex={1} panels={[
+                  {stateFips && <Accordion style = {{paddingTop: 85, paddingLeft: 15}} defaultActiveIndex={1} panels={[
                           {
                               key: 'acquire-dog',
                               title: {
