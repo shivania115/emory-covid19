@@ -624,7 +624,7 @@ export default function StateMap(props) {
 
               <Dropdown
                 style={{background: '#fff', 
-                        fontSize: "14pt",
+                        fontSize: "19px",
                         fontWeight: 400, 
                         theme: '#000000',
                         width: '380px',
@@ -652,7 +652,7 @@ export default function StateMap(props) {
               {stateFips !== "_nation" && 
               <Dropdown
                   style={{background: '#fff', 
-                          fontSize: "14pt",
+                          fontSize: "19px",
                           fontWeight: 400, 
                           theme: '#000000',
                           width: '450px',
@@ -686,7 +686,7 @@ export default function StateMap(props) {
             <Grid columns={15}>
               <Grid.Row columns={5} style={{width: 252, paddingRight: 0, paddingTop: '2em', paddingBottom: "0"}}>
                 <Grid.Column style = {{width:235}}> 
-                  <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Cases</center>
+                  <center style = {{ fontSize: "22px", fontFamily: "lato", paddingBottom: 5}}> Daily Cases</center>
                   
                   
                   <div style = {{width: 235, background: "#e5f2f7"}}>
@@ -716,7 +716,7 @@ export default function StateMap(props) {
                   
                 </Grid.Column>
                 <Grid.Column style = {{width:235}}> 
-                  <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
+                  <center style = {{ fontSize: "22px", fontFamily: "lato", paddingBottom: 5}}> Daily Deaths</center>
                   <div style = {{width: 235, background: "#e5f2f7"}}>
 
                   {stateFips === "_nation" && 
@@ -747,7 +747,7 @@ export default function StateMap(props) {
                 </Grid.Column>
 
                 <Grid.Column style = {{width:235}}> 
-                  <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Daily Hospitalizations</center>
+                  <center style = {{ fontSize: "22px", fontFamily: "lato", paddingBottom: 5}}> Daily Hospitalizations</center>
 
                   <div style = {{width: 235, background: "#e5f2f7"}}>
 
@@ -780,7 +780,7 @@ export default function StateMap(props) {
                 </Grid.Column>
               
                 <Grid.Column style = {{width:235}}>
-                  <center style = {{ fontSize: "16pt", fontFamily: "lato", paddingBottom: 5}}> Percent Tested Positive</center>
+                  <center style = {{ fontSize: "22px", fontFamily: "lato", paddingBottom: 5}}> Percent Tested Positive</center>
                   
                   <div style = {{width: 235, background: "#e5f2f7"}}>
 
@@ -1424,8 +1424,8 @@ export default function StateMap(props) {
 
 
                   <Header as='h2' style={{fontWeight: 400, width: 800}}>
-                    <Header.Content style={{fontSize: 20}}>
-                      <b>{stateFips === "_nation" || stateFips === "72"? "Comparing ":countyName ? "Comparing" + countyName: "Loading..."}</b>
+                    <Header.Content style={{fontSize: "22px"}}>
+                      <b>{stateFips === "_nation" || stateFips === "72"? "Comparing ":countyName ? "Comparing " + countyName: "Loading..."}</b>
                       <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
                         The number of cases and deaths due to COVID-19 are dynamic. 
                         Cases are declining in many counties and rising in others. 
@@ -1494,7 +1494,7 @@ export default function StateMap(props) {
                   </Grid>
 
                   <Header as='h2' style={{width:800, paddingBottom: 10}}>
-                    <Header.Content style={{fontSize: "14pt", lineHeight: "16pt", marginTop: 6}}>
+                    <Header.Content style={{fontSize: "22px", marginTop: 6}}>
                       {stateFips === "_nation" || stateFips === "72"? "":countyName} Population Characteristics
                       <Header.Subheader style={{fontWeight: 350, width: 800, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
                       Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
