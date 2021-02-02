@@ -97,18 +97,17 @@ export default function VaccinesFAQ(props){
 
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
-            <Header.Subheader style={{paddingTop:'3rem', paddingLeft: '1rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
+            <Header.Subheader style={{paddingTop:'2rem', paddingLeft: '0rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
             This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of {Date().slice(4,10)}. Before taking the vaccine, please consult your healthcare provider.
             </Header.Subheader>
           </Header.Content>
         </Header>
 
         
-        <div id="general" style = {{height: 45}}> </div>
+        <div id="general" style = {{height: 5}}> </div>
         <Header as='h2' style={{fontWeight: 600}}>
             General Information
         </Header>
-        <div><br/></div>
         
         <Waypoint
             onEnter={() => {
@@ -117,7 +116,7 @@ export default function VaccinesFAQ(props){
             }}>
         </Waypoint> 
 
-        <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
+        <div style={{paddingLeft:'2rem', paddingBottom: '0rem'}}>
         <Accordion fluid styled exclusive={false}>
         <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           index={0}
@@ -240,13 +239,12 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="develop" style = {{height: 45}}> </div>
+        <div id="develop" style = {{height: 5}}> </div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Development
             </Header.Content>
         </Header>
-        <div><br/></div>
 
         
 
@@ -323,7 +321,7 @@ export default function VaccinesFAQ(props){
         </p> */}
 
 
-      <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
+      <div style={{paddingLeft:'2rem', paddingBottom: '0rem'}}>
       <Accordion fluid styled exclusive={false}>
         <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
@@ -337,7 +335,7 @@ export default function VaccinesFAQ(props){
           active={activeIndex.indexOf(5)>0}>
           <p>
           There are <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/vaccines/" target="_blank" rel="noopener noreferrer"> currently </a>
-        78 vaccines in various phases of testing across the world. Of these, 20 are in <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
+        79 vaccines in various phases of testing across the world. Of these, 20 are in <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
         clinical trials. Phase 3 trials are the large-scale studies done before a vaccine is approved.
         
           </p>
@@ -404,7 +402,7 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="safety" style = {{height: 45}}> </div>
+        <div id="safety" style = {{height: 5}}> </div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Safety
@@ -417,9 +415,8 @@ export default function VaccinesFAQ(props){
                 //console.log(activeCharacter)
             }}>
         </Waypoint> 
-        <div><br/></div>
         
-        <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
+        <div style={{paddingLeft:'2rem', paddingBottom: '0rem'}}>
         <Accordion fluid styled exclusive={false}>
         <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
@@ -495,13 +492,12 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="get" style = {{height: 45}}></div>
+        <div id="get" style = {{height: 5}}></div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Getting Vaccinated
             </Header.Content>
         </Header>
-        <div><br/></div>
 
         <Waypoint
             onEnter={() => {
@@ -511,7 +507,7 @@ export default function VaccinesFAQ(props){
         </Waypoint> 
 
 
-        <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
+        <div style={{paddingLeft:'2rem', paddingBottom: '0rem'}}>
         <Accordion fluid styled exclusive={false}>
         <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
@@ -976,13 +972,12 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="after" style = {{height: 45}}></div>
+        <div id="after" style = {{height: 5}}></div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 After You Are Vaccinated
             </Header.Content>
         </Header>
-        <div><br/></div>
 
         <center> <Waypoint
             onEnter={() => {
@@ -993,7 +988,7 @@ export default function VaccinesFAQ(props){
         </center>
 
 
-        <div style={{paddingLeft:'2rem', paddingBottom: '2rem'}}>
+        <div style={{paddingLeft:'2rem', paddingBottom: '0rem'}}>
         <Accordion fluid styled exclusive={false}>
         <Accordion.Title style={{fontSize:'15pt', color: 'black', lineHeight:'1.4'}}
           // active={activeIndex === 0}
@@ -1032,12 +1027,11 @@ export default function VaccinesFAQ(props){
         </Accordion>
         </div>
 
-
-        <div><br/></div>
+        
+        <div id="after" style = {{height: 20}}></div>
         <Header as='h2' style={{fontWeight: 600}}>
           Reviewed by 
         </Header>
-        <div><br/></div>
 
         <p style={{fontSize:'14pt', paddingLeft:'0rem'}}>
           Robert A. Bednarczyk, PhD (Assistant Professor, Emory University Rollins School of Public Health) <br/>
