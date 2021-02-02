@@ -9,6 +9,7 @@ import Marker from './Marker';
 import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import ReactTooltip from "react-tooltip";
+import VaccinesFAQ from './VaccineFAQ';
 // import {
 //   ComposableMap,
 //   Geographies,
@@ -1787,6 +1788,8 @@ export default function USMap(props) {
 
                         </Grid.Column>
                       </Grid.Row>
+                      
+
                     </Grid>
                 </Grid.Column>
                 <Grid.Column style = {{paddingLeft: 80, width: 630}}>
@@ -1852,6 +1855,10 @@ export default function USMap(props) {
                 </Grid.Column>
 
               </Grid.Row>
+              <Grid>
+                <VaccinesFAQ />
+
+              </Grid>
 
               {/* <Grid.Row>
                 <Header as='h2' style={{fontWeight: 400, paddingTop: 70}}>

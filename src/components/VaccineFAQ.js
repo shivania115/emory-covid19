@@ -76,23 +76,23 @@ export default function VaccinesFAQ(props){
     <div>
       
       <AppBar menu='vaccinefaq'/>
-      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+      <Container style={{marginTop: '0em', minWidth: '1260px'}}>
 
       <div >
         <br/><br/><br/><br/>
       </div>
 
       <Grid>
-        <Grid.Column width={2} style={{zIndex: 10}}>
+        {/* <Grid.Column width={2} style={{zIndex: 10}}>
           <Ref innerRef={createRef()} >
             <StickyExampleAdjacentContext activeCharacter={activeCharacter}  />
           </Ref>
-        </Grid.Column>
+        </Grid.Column> */}
 
 
         <Grid.Column width={14}>
 
-        <div style={{paddingLeft: '10rem', paddingRight:'3rem'}}>
+        <div style={{paddingLeft: '2rem', paddingRight:'8rem'}}>
         <Header as='h1' style={{paddingTop: 16, fontWeight: 400, fontSize: "24pt"}}>
 
           <Header.Content>
@@ -1043,7 +1043,7 @@ export default function VaccinesFAQ(props){
 
         </div>
         </Grid.Column>
-        <Notes />
+        {/* <Notes /> */}
         </Grid>
       </Container>
       
