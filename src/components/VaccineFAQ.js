@@ -1042,7 +1042,7 @@ export default function VaccinesFAQ(props){
         <p style={{fontSize:'14pt', paddingLeft:'0rem'}}>
           Robert A. Bednarczyk, PhD (Assistant Professor, Emory University Rollins School of Public Health) <br/>
           Vincent Marconi, MD (Professor, Emory University School of Medicine, Division of Infectious Diseases; Emory University Rollins School of Public Health) <br/>
-          Maria Sundaram, MSPH, PhD  (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health
+          Maria Sundaram, MSPH, PhD  (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health <br/>
           Henry M. Wu, MD (Associate Professor, Emory University School of Medicine, Division of Infectious Diseases)
         </p>
         
