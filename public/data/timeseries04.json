@@ -7981,6 +7981,32 @@
       "percent14dayDailyCases": -33.55399818,
       "percent14dayDailyDeaths": -20.91152815,
       "percent14dayhospDaily": -23.1060606060606
+    },
+    {
+      "t": 1612242000,
+      "cases": 766445,
+      "deaths": 13415,
+      "caseRate": 10687.156059,
+      "mortality": 187.05608169,
+      "caseRateMean": 4547.4285714,
+      "mortalityMean": 132.28571429,
+      "dailyCases": 3987.0,
+      "dailyMortality": 291.0,
+      "caserate7dayfig": 63.408436103,
+      "covidmortality7dayfig": 1.8445655891,
+      "tests": 6754669,
+      "totalHospitalized": 53149,
+      "hospitalizationRate": 3513.0,
+      "hospDaily": 3513.0,
+      "cfr": 1.7502886704,
+      "positive": 765083,
+      "percentPositive": 11.33,
+      "negative": 2760412.0,
+      "recovered": 104681.0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -32.68624839,
+      "percent14dayDailyDeaths": 26.849315068,
+      "percent14dayhospDaily": -26.5062761506276
     }
   ],
   "04001": [
@@ -8110,7 +8136,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": 30.0,
+      "percent14dayDailyCases": 116.66666667,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -8162,7 +8188,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": 100.0,
+      "percent14dayDailyCases": 133.33333333,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -8188,7 +8214,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": 111.11111111,
+      "percent14dayDailyCases": 171.42857143,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -15965,6 +15991,32 @@
       "percent14dayDailyCases": 12.054794521,
       "percent14dayDailyDeaths": -5.263157895,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 9643,
+      "deaths": 314,
+      "caseRate": 13426.996018,
+      "mortality": 437.21629675,
+      "caseRateMean": 51.428571429,
+      "mortalityMean": 2.2857142857,
+      "dailyCases": 5.0,
+      "dailyMortality": 3.0,
+      "caserate7dayfig": 71.609584545,
+      "covidmortality7dayfig": 3.182648202,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 3.2562480556,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": 2.8571428571,
+      "percent14dayDailyDeaths": -11.11111111,
+      "percent14dayhospDaily": 0
     }
   ],
   "04003": [
@@ -15990,7 +16042,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.50576606,
+      "percent14dayDailyCases": -99.25558313,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -16016,7 +16068,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.50372208,
+      "percent14dayDailyCases": -99.51100244,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -16042,7 +16094,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.26650367,
+      "percent14dayDailyCases": -99.16666667,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -16068,7 +16120,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.87640449,
+      "percent14dayDailyCases": -98.4375,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -16094,7 +16146,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.00796813,
+      "percent14dayDailyCases": -97.09302326,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -16120,7 +16172,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -97.00598802,
+      "percent14dayDailyCases": -96.91358025,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -16146,8 +16198,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -96.81528662,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -96.35036496,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -16172,8 +16224,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -96.21212121,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -86.48648649,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -16198,8 +16250,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -78.78787879,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": 0.0,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -23949,6 +24001,32 @@
       "percent14dayDailyCases": -62.46290801,
       "percent14dayDailyDeaths": -29.62962963,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 10484,
+      "deaths": 233,
+      "caseRate": 8270.0954484,
+      "mortality": 183.79742841,
+      "caseRateMean": 33.714285714,
+      "mortalityMean": 3.4285714286,
+      "dailyCases": 15.0,
+      "dailyMortality": 6.0,
+      "caserate7dayfig": 26.594845558,
+      "covidmortality7dayfig": 2.7045605653,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.2224341854,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -48.583878,
+      "percent14dayDailyDeaths": 26.315789474,
+      "percent14dayhospDaily": 0
     }
   ],
   "04005": [
@@ -23974,8 +24052,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -72.07207207,
-      "percent14dayDailyDeaths": -88.88888889,
+      "percent14dayDailyCases": -67.36842105,
+      "percent14dayDailyDeaths": -87.5,
       "percent14dayhospDaily": 0
     },
     {
@@ -24000,8 +24078,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -50.0,
-      "percent14dayDailyDeaths": -40.0,
+      "percent14dayDailyCases": -45.67901235,
+      "percent14dayDailyDeaths": -53.84615385,
       "percent14dayhospDaily": 0
     },
     {
@@ -24026,7 +24104,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -45.51282051,
+      "percent14dayDailyCases": -34.61538462,
       "percent14dayDailyDeaths": -14.28571429,
       "percent14dayhospDaily": 0
     },
@@ -24052,8 +24130,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -20.86956522,
-      "percent14dayDailyDeaths": 700.0,
+      "percent14dayDailyCases": 10.975609756,
+      "percent14dayDailyDeaths": 14.285714286,
       "percent14dayhospDaily": 0
     },
     {
@@ -24078,8 +24156,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": 22.535211268,
-      "percent14dayDailyDeaths": 700.0,
+      "percent14dayDailyCases": 85.106382979,
+      "percent14dayDailyDeaths": 33.333333333,
       "percent14dayhospDaily": 0
     },
     {
@@ -24104,8 +24182,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": 176.47058824,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": 193.75,
+      "percent14dayDailyDeaths": 16.666666667,
       "percent14dayhospDaily": 0
     },
     {
@@ -31933,6 +32011,32 @@
       "percent14dayDailyCases": -59.81308411,
       "percent14dayDailyDeaths": 25.0,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 15313,
+      "deaths": 280,
+      "caseRate": 10719.335825,
+      "mortality": 196.00431209,
+      "caseRateMean": 59.857142857,
+      "mortalityMean": 2.2857142857,
+      "dailyCases": 39.0,
+      "dailyMortality": 4.0,
+      "caserate7dayfig": 41.90092182,
+      "covidmortality7dayfig": 1.6000352008,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.8285117221,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -62.14995483,
+      "percent14dayDailyDeaths": 77.777777778,
+      "percent14dayhospDaily": 0
     }
   ],
   "04007": [
@@ -31942,12 +32046,12 @@
       "deaths": 0,
       "caseRate": 1.855666277,
       "mortality": 0,
-      "caseRateMean": 18.714285714,
-      "mortalityMean": 0.0,
+      "caseRateMean": 12.285714286,
+      "mortalityMean": 0.5714285714,
       "dailyCases": 0.0,
       "dailyMortality": 0.0,
-      "caserate7dayfig": 34.727468898,
-      "covidmortality7dayfig": 0,
+      "caserate7dayfig": 22.798185689,
+      "covidmortality7dayfig": 1.0603807297,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
@@ -31958,8 +32062,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -84.12121212,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyCases": -89.27680798,
+      "percent14dayDailyDeaths": -75.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -31968,12 +32072,12 @@
       "deaths": 0,
       "caseRate": 3.711332554,
       "mortality": 0,
-      "caseRateMean": 6.8571428571,
-      "mortalityMean": 0.0,
+      "caseRateMean": 5.8571428571,
+      "mortalityMean": 0.5714285714,
       "dailyCases": 1.0,
       "dailyMortality": 0.0,
-      "caserate7dayfig": 12.724568756,
-      "covidmortality7dayfig": 0,
+      "caserate7dayfig": 10.868902479,
+      "covidmortality7dayfig": 1.0603807297,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
@@ -31984,8 +32088,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -94.01496259,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyCases": -94.73007712,
+      "percent14dayDailyDeaths": -75.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -32010,7 +32114,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.74293059,
+      "percent14dayDailyCases": -99.71346705,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32036,7 +32140,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.71346705,
+      "percent14dayDailyCases": -99.72789116,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32062,7 +32166,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.72789116,
+      "percent14dayDailyCases": -99.68553459,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32088,7 +32192,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.68553459,
+      "percent14dayDailyCases": -99.60707269,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32114,7 +32218,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.60707269,
+      "percent14dayDailyCases": -99.6131528,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32140,7 +32244,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.6131528,
+      "percent14dayDailyCases": -99.58592133,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32166,7 +32270,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.79296066,
+      "percent14dayDailyCases": -99.76744186,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32192,7 +32296,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.76744186,
+      "percent14dayDailyCases": -99.76133652,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -32297,7 +32401,7 @@
       "recovered": 0,
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -100.0,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -32323,7 +32427,7 @@
       "recovered": 0,
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -100.0,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -32348,8 +32452,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -95.83333333,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -95.12195122,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -39917,6 +40021,32 @@
       "percent14dayDailyCases": -27.56410256,
       "percent14dayDailyDeaths": -16.66666667,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 6036,
+      "deaths": 191,
+      "caseRate": 11200.801648,
+      "mortality": 354.4322589,
+      "caseRateMean": 30.285714286,
+      "mortalityMean": 1.7142857143,
+      "dailyCases": 5.0,
+      "dailyMortality": 3.0,
+      "caserate7dayfig": 56.200178674,
+      "covidmortality7dayfig": 3.1811421891,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 3.1643472498,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -29.56810631,
+      "percent14dayDailyDeaths": 20.0,
+      "percent14dayhospDaily": 0
     }
   ],
   "04009": [
@@ -39942,8 +40072,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -96.07843137,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -85.71428571,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -39968,8 +40098,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -77.77777778,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -66.66666667,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -47901,6 +48031,32 @@
       "percent14dayDailyCases": -5.466237942,
       "percent14dayDailyDeaths": -50.0,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 5128,
+      "deaths": 66,
+      "caseRate": 13469.216222,
+      "mortality": 173.35574701,
+      "caseRateMean": 42.285714286,
+      "mortalityMean": 0.1428571429,
+      "dailyCases": 2.0,
+      "dailyMortality": 1.0,
+      "caserate7dayfig": 111.06775133,
+      "covidmortality7dayfig": 0.3752288896,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.2870514821,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": 19.83805668,
+      "percent14dayDailyDeaths": -50.0,
+      "percent14dayhospDaily": 0
     }
   ],
   "04011": [
@@ -47910,12 +48066,12 @@
       "deaths": 0,
       "caseRate": 10.545186123,
       "mortality": 0,
-      "caseRateMean": 36.428571429,
-      "mortalityMean": 0.0,
+      "caseRateMean": 11.285714286,
+      "mortalityMean": 0.1428571429,
       "dailyCases": 0.0,
       "dailyMortality": 0.0,
-      "caserate7dayfig": 384.14606589,
-      "covidmortality7dayfig": 0,
+      "caserate7dayfig": 119.00995767,
+      "covidmortality7dayfig": 1.5064551604,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
@@ -47926,8 +48082,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -47.5308642,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyCases": -83.47280335,
+      "percent14dayDailyDeaths": -83.33333333,
       "percent14dayhospDaily": 0
     },
     {
@@ -47936,12 +48092,12 @@
       "deaths": 0,
       "caseRate": 10.545186123,
       "mortality": 0,
-      "caseRateMean": 11.0,
-      "mortalityMean": 0.0,
+      "caseRateMean": 6.1428571429,
+      "mortalityMean": 0.1428571429,
       "dailyCases": 0.0,
       "dailyMortality": 0.0,
-      "caserate7dayfig": 115.99704735,
-      "covidmortality7dayfig": 0,
+      "caserate7dayfig": 64.777571896,
+      "covidmortality7dayfig": 1.5064551604,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
@@ -47952,8 +48108,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -83.89121339,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyCases": -90.71274298,
+      "percent14dayDailyDeaths": -80.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -47962,12 +48118,12 @@
       "deaths": 0,
       "caseRate": 10.545186123,
       "mortality": 0,
-      "caseRateMean": 5.8571428571,
-      "mortalityMean": 0.0,
+      "caseRateMean": 1.7142857143,
+      "mortalityMean": 0.1428571429,
       "dailyCases": 0.0,
       "dailyMortality": 0.0,
-      "caserate7dayfig": 61.764661575,
-      "covidmortality7dayfig": 0,
+      "caserate7dayfig": 18.077461924,
+      "covidmortality7dayfig": 1.5064551604,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
@@ -47978,8 +48134,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -91.14470842,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyCases": -97.36263736,
+      "percent14dayDailyDeaths": -80.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -47988,12 +48144,12 @@
       "deaths": 0,
       "caseRate": 10.545186123,
       "mortality": 0,
-      "caseRateMean": 1.4285714286,
-      "mortalityMean": 0.0,
+      "caseRateMean": 0.4285714286,
+      "mortalityMean": 0.1428571429,
       "dailyCases": 0.0,
       "dailyMortality": 0.0,
-      "caserate7dayfig": 15.064551604,
-      "covidmortality7dayfig": 0,
+      "caserate7dayfig": 4.5193654811,
+      "covidmortality7dayfig": 1.5064551604,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
@@ -48004,8 +48160,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -97.8021978,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyCases": -99.33481153,
+      "percent14dayDailyDeaths": -83.33333333,
       "percent14dayhospDaily": 0
     },
     {
@@ -48030,7 +48186,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.77827051,
+      "percent14dayDailyCases": -99.75961538,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -48186,7 +48342,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.66887417,
+      "percent14dayDailyCases": -99.65986395,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -48212,7 +48368,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.65986395,
+      "percent14dayDailyCases": -99.66216216,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -48238,8 +48394,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.66101695,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -99.64412811,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -48264,8 +48420,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.64157706,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -99.61089494,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -48290,8 +48446,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.60784314,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -98.73417722,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -48316,8 +48472,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.7012987,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -97.6744186,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -48342,8 +48498,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -97.56097561,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -91.66666667,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -48369,7 +48525,7 @@
       "recovered": 0,
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -100.0,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -55885,6 +56041,32 @@
       "percent14dayDailyCases": -10.52631579,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 526,
+      "deaths": 6,
+      "caseRate": 5546.7679005,
+      "mortality": 63.271116735,
+      "caseRateMean": 1.8571428571,
+      "mortalityMean": 0.0,
+      "dailyCases": 1.0,
+      "dailyMortality": 0.0,
+      "caserate7dayfig": 19.583917085,
+      "covidmortality7dayfig": 0,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.1406844106,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -43.47826087,
+      "percent14dayDailyDeaths": 0,
+      "percent14dayhospDaily": 0
     }
   ],
   "04012": [
@@ -55910,7 +56092,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -92.0,
+      "percent14dayDailyCases": -92.30769231,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -55963,7 +56145,7 @@
       "recovered": 0,
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -100.0,
-      "percent14dayDailyDeaths": -100.0,
+      "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
     {
@@ -56014,7 +56196,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -93.75,
+      "percent14dayDailyCases": -92.30769231,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56040,7 +56222,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -92.30769231,
+      "percent14dayDailyCases": -93.33333333,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56066,7 +56248,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -93.33333333,
+      "percent14dayDailyCases": -94.11764706,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56092,7 +56274,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -94.11764706,
+      "percent14dayDailyCases": -92.30769231,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56144,7 +56326,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -84.61538462,
+      "percent14dayDailyCases": -83.33333333,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56170,7 +56352,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -81.81818182,
+      "percent14dayDailyCases": -83.33333333,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56196,7 +56378,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -90.90909091,
+      "percent14dayDailyCases": -85.71428571,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56222,7 +56404,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -83.33333333,
+      "percent14dayDailyCases": -80.0,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -56248,7 +56430,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -75.0,
+      "percent14dayDailyCases": -66.66666667,
       "percent14dayDailyDeaths": 0,
       "percent14dayhospDaily": 0
     },
@@ -63868,6 +64050,32 @@
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -54.9382716,
       "percent14dayDailyDeaths": 28.571428571,
+      "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 2256,
+      "deaths": 62,
+      "caseRate": 10692.956678,
+      "mortality": 293.86671722,
+      "caseRateMean": 11.285714286,
+      "mortalityMean": 1.1428571429,
+      "dailyCases": 6.0,
+      "dailyMortality": 2.0,
+      "caserate7dayfig": 53.491867882,
+      "covidmortality7dayfig": 5.4168980134,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.7482269504,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -51.82926829,
+      "percent14dayDailyDeaths": 60.0,
       "percent14dayhospDaily": 0
     }
   ],
@@ -71853,6 +72061,32 @@
       "percent14dayDailyCases": -32.38276875,
       "percent14dayDailyDeaths": -17.71336554,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 478097,
+      "deaths": 7612,
+      "caseRate": 10839.176535,
+      "mortality": 172.57546436,
+      "caseRateMean": 2934.5714286,
+      "mortalityMean": 74.0,
+      "dailyCases": 2836.0,
+      "dailyMortality": 150.0,
+      "caserate7dayfig": 66.531138594,
+      "covidmortality7dayfig": 1.6776910618,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.592145527,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -30.82802977,
+      "percent14dayDailyDeaths": 37.400530504,
+      "percent14dayhospDaily": 0
     }
   ],
   "04015": [
@@ -71878,7 +72112,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.97768853,
+      "percent14dayDailyCases": -99.97792564,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -71904,7 +72138,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.98107912,
+      "percent14dayDailyCases": -99.97985834,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -71930,7 +72164,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.98321528,
+      "percent14dayDailyCases": -99.98182941,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -71956,7 +72190,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.97456118,
+      "percent14dayDailyCases": -99.97339516,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -71982,8 +72216,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.96199308,
-      "percent14dayDailyDeaths": -99.82788296,
+      "percent14dayDailyCases": -99.96005433,
+      "percent14dayDailyDeaths": -99.82269504,
       "percent14dayhospDaily": 0
     },
     {
@@ -72008,8 +72242,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.94407606,
-      "percent14dayDailyDeaths": -99.82269504,
+      "percent14dayDailyCases": -99.94067294,
+      "percent14dayDailyDeaths": -99.8046875,
       "percent14dayhospDaily": 0
     },
     {
@@ -72034,8 +72268,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.93219764,
-      "percent14dayDailyDeaths": -99.8046875,
+      "percent14dayDailyCases": -99.92836676,
+      "percent14dayDailyDeaths": -99.80430528,
       "percent14dayhospDaily": 0
     },
     {
@@ -72060,8 +72294,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.92836676,
-      "percent14dayDailyDeaths": -99.80430528,
+      "percent14dayDailyCases": -99.9221108,
+      "percent14dayDailyDeaths": -99.80694981,
       "percent14dayhospDaily": 0
     },
     {
@@ -72086,8 +72320,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.89270386,
-      "percent14dayDailyDeaths": -99.72826087,
+      "percent14dayDailyCases": -99.88703252,
+      "percent14dayDailyDeaths": -99.75786925,
       "percent14dayhospDaily": 0
     },
     {
@@ -72112,8 +72346,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.86414015,
-      "percent14dayDailyDeaths": -99.23954373,
+      "percent14dayDailyCases": -99.85487321,
+      "percent14dayDailyDeaths": -99.33110368,
       "percent14dayhospDaily": 0
     },
     {
@@ -72138,8 +72372,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.82451009,
-      "percent14dayDailyDeaths": -98.65771812,
+      "percent14dayDailyCases": -99.82021574,
+      "percent14dayDailyDeaths": -99.05660377,
       "percent14dayhospDaily": 0
     },
     {
@@ -72164,8 +72398,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.80493242,
-      "percent14dayDailyDeaths": -98.38709677,
+      "percent14dayDailyCases": -99.78182952,
+      "percent14dayDailyDeaths": -99.36305732,
       "percent14dayhospDaily": 0
     },
     {
@@ -72190,8 +72424,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.46957007,
-      "percent14dayDailyDeaths": -85.71428571,
+      "percent14dayDailyCases": -99.64446108,
+      "percent14dayDailyDeaths": -99.33333333,
       "percent14dayhospDaily": 0
     },
     {
@@ -72216,8 +72450,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.12280702,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -99.22616954,
+      "percent14dayDailyDeaths": -99.33333333,
       "percent14dayhospDaily": 0
     },
     {
@@ -79837,6 +80071,32 @@
       "percent14dayDailyCases": 1.8018018018,
       "percent14dayDailyDeaths": -32.65306122,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 19717,
+      "deaths": 533,
+      "caseRate": 9409.2102124,
+      "mortality": 254.35456932,
+      "caseRateMean": 169.85714286,
+      "mortalityMean": 5.2857142857,
+      "dailyCases": 76.0,
+      "dailyMortality": 12.0,
+      "caserate7dayfig": 81.058049562,
+      "covidmortality7dayfig": 2.5224119712,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.7032510017,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": 7.2137060415,
+      "percent14dayDailyDeaths": 5.7142857143,
+      "percent14dayhospDaily": 0
     }
   ],
   "04017": [
@@ -79862,7 +80122,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -93.57072206,
+      "percent14dayDailyCases": -93.35378323,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -79888,8 +80148,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -90.47619048,
-      "percent14dayDailyDeaths": -85.71428571,
+      "percent14dayDailyCases": -89.72520908,
+      "percent14dayDailyDeaths": -93.33333333,
       "percent14dayhospDaily": 0
     },
     {
@@ -79914,8 +80174,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -86.99080158,
-      "percent14dayDailyDeaths": -66.66666667,
+      "percent14dayDailyCases": -80.77669903,
+      "percent14dayDailyDeaths": -92.85714286,
       "percent14dayhospDaily": 0
     },
     {
@@ -79940,8 +80200,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -73.0941704,
-      "percent14dayDailyDeaths": -50.0,
+      "percent14dayDailyCases": -63.85542169,
+      "percent14dayDailyDeaths": -92.85714286,
       "percent14dayhospDaily": 0
     },
     {
@@ -79966,8 +80226,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -48.64864865,
-      "percent14dayDailyDeaths": -50.0,
+      "percent14dayDailyCases": 49.438202247,
+      "percent14dayDailyDeaths": -91.66666667,
       "percent14dayhospDaily": 0
     },
     {
@@ -87820,6 +88080,32 @@
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -39.07203907,
       "percent14dayDailyDeaths": -15.0,
+      "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 14597,
+      "deaths": 437,
+      "caseRate": 13216.533116,
+      "mortality": 395.67205396,
+      "caseRateMean": 68.142857143,
+      "mortalityMean": 2.7142857143,
+      "dailyCases": 32.0,
+      "dailyMortality": 8.0,
+      "caserate7dayfig": 61.698453658,
+      "covidmortality7dayfig": 2.4575903973,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.9937658423,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -31.26801153,
+      "percent14dayDailyDeaths": 26.666666667,
       "percent14dayhospDaily": 0
     }
   ],
@@ -95805,6 +96091,32 @@
       "percent14dayDailyCases": -39.19230248,
       "percent14dayDailyDeaths": -18.86792453,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 102320,
+      "deaths": 1795,
+      "caseRate": 9847.2388369,
+      "mortality": 172.75013401,
+      "caseRateMean": 612.28571429,
+      "mortalityMean": 20.857142857,
+      "dailyCases": 359.0,
+      "dailyMortality": 55.0,
+      "caserate7dayfig": 58.926149971,
+      "covidmortality7dayfig": 2.0072836901,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.7543002346,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -41.40005469,
+      "percent14dayDailyDeaths": 31.531531532,
+      "percent14dayhospDaily": 0
     }
   ],
   "04021": [
@@ -103789,6 +104101,32 @@
       "percent14dayDailyCases": -19.56923077,
       "percent14dayDailyDeaths": -6.944444444,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 42930,
+      "deaths": 627,
+      "caseRate": 9601.0627591,
+      "mortality": 140.22516539,
+      "caseRateMean": 342.42857143,
+      "mortalityMean": 8.1428571429,
+      "dailyCases": 474.0,
+      "dailyMortality": 15.0,
+      "caserate7dayfig": 76.582301533,
+      "covidmortality7dayfig": 1.821106044,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.4605171209,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -3.424657534,
+      "percent14dayDailyDeaths": 32.558139535,
+      "percent14dayhospDaily": 0
     }
   ],
   "04023": [
@@ -103814,7 +104152,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.96174445,
+      "percent14dayDailyCases": -99.95828118,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -103840,7 +104178,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.94802495,
+      "percent14dayDailyCases": -99.93084371,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -103866,7 +104204,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.89711934,
+      "percent14dayDailyCases": -99.9092559,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -103892,7 +104230,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.68152866,
+      "percent14dayDailyCases": -99.77246871,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -103918,7 +104256,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -99.50617284,
+      "percent14dayDailyCases": -99.69088099,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -103944,8 +104282,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.26589595,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -99.50738916,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -103970,8 +104308,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -97.77777778,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -99.36842105,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -111772,6 +112110,32 @@
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -63.71428571,
       "percent14dayDailyDeaths": -28.57142857,
+      "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 7450,
+      "deaths": 151,
+      "caseRate": 16017.716239,
+      "mortality": 324.65438283,
+      "caseRateMean": 13.571428571,
+      "mortalityMean": 1.4285714286,
+      "dailyCases": 11.0,
+      "dailyMortality": 2.0,
+      "caserate7dayfig": 29.178965345,
+      "covidmortality7dayfig": 3.0714700363,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.0268456376,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -69.74522293,
+      "percent14dayDailyDeaths": -9.090909091,
       "percent14dayhospDaily": 0
     }
   ],
@@ -119757,6 +120121,32 @@
       "percent14dayDailyCases": -47.57062147,
       "percent14dayDailyDeaths": -50.0,
       "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 16677,
+      "deaths": 393,
+      "caseRate": 7188.5789657,
+      "mortality": 169.40166298,
+      "caseRateMean": 71.857142857,
+      "mortalityMean": 4.4285714286,
+      "dailyCases": 39.0,
+      "dailyMortality": 12.0,
+      "caserate7dayfig": 30.973840959,
+      "covidmortality7dayfig": 1.9089245919,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.3565389459,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -59.40274415,
+      "percent14dayDailyDeaths": -6.060606061,
+      "percent14dayhospDaily": 0
     }
   ],
   "04027": [
@@ -119782,7 +120172,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.66071429,
+      "percent14dayDailyCases": -98.06034483,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -119808,7 +120198,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.06034483,
+      "percent14dayDailyCases": -98.21073559,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -119834,7 +120224,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.06451613,
+      "percent14dayDailyCases": -97.90697674,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -119860,7 +120250,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -97.44245524,
+      "percent14dayDailyCases": -97.04142012,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -119886,7 +120276,7 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.3277592,
+      "percent14dayDailyCases": -98.14814815,
       "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
@@ -119912,8 +120302,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.26839827,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -98.51851852,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -119938,8 +120328,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.27586207,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -98.52398524,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -119964,8 +120354,8 @@
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -98.2832618,
-      "percent14dayDailyDeaths": 0,
+      "percent14dayDailyCases": -90.47619048,
+      "percent14dayDailyDeaths": -100.0,
       "percent14dayhospDaily": 0
     },
     {
@@ -127740,6 +128130,32 @@
       "pctBedsOccupied": 0,
       "percent14dayDailyCases": -54.15162455,
       "percent14dayDailyDeaths": -56.36363636,
+      "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 35271,
+      "deaths": 715,
+      "caseRate": 16627.225072,
+      "mortality": 337.06064263,
+      "caseRateMean": 104.0,
+      "mortalityMean": 4.8571428571,
+      "dailyCases": 87.0,
+      "dailyMortality": 18.0,
+      "caserate7dayfig": 49.027002564,
+      "covidmortality7dayfig": 2.2897226472,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 2.0271611239,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -59.30687535,
+      "percent14dayDailyDeaths": -19.04761905,
       "percent14dayhospDaily": 0
     }
   ],
@@ -135702,28 +136118,54 @@
     },
     {
       "t": 1612155600,
-      "cases": 26358605,
-      "deaths": 443295,
-      "caseRate": 8056.6102432,
-      "mortality": 135.49484268,
-      "caseRateMean": 146485.85714,
-      "mortalityMean": 3168.7142857,
-      "dailyCases": 139830.0,
-      "dailyMortality": 2010.0,
-      "caserate7dayfig": 44.773972566,
-      "covidmortality7dayfig": 0.9685298585,
+      "cases": 26358607,
+      "deaths": 443235,
+      "caseRate": 8056.6108545,
+      "mortality": 135.47650345,
+      "caseRateMean": 146486.14286,
+      "mortalityMean": 3160.1428571,
+      "dailyCases": 139832.0,
+      "dailyMortality": 1950.0,
+      "caserate7dayfig": 44.774059895,
+      "covidmortality7dayfig": 0.965909968,
       "tests": 0,
       "totalHospitalized": 0,
       "hospitalizationRate": 0,
       "hospDaily": 0,
-      "cfr": 1.681784753,
+      "cfr": 1.6815569958,
       "positive": 0,
       "percentPositive": 0,
       "negative": 0,
       "recovered": 0,
       "pctBedsOccupied": 0,
-      "percent14dayDailyCases": -29.40265645,
-      "percent14dayDailyDeaths": -1.753997431,
+      "percent14dayDailyCases": -29.40251875,
+      "percent14dayDailyDeaths": -2.019754618,
+      "percent14dayhospDaily": 0
+    },
+    {
+      "t": 1612242000,
+      "cases": 26472780,
+      "deaths": 446641,
+      "caseRate": 8091.5082765,
+      "mortality": 136.51756061,
+      "caseRateMean": 141137.14286,
+      "mortalityMean": 3061.4285714,
+      "dailyCases": 114173.0,
+      "dailyMortality": 3406.0,
+      "caserate7dayfig": 43.139117219,
+      "covidmortality7dayfig": 0.9357375623,
+      "tests": 0,
+      "totalHospitalized": 0,
+      "hospitalizationRate": 0,
+      "hospDaily": 0,
+      "cfr": 1.6871707467,
+      "positive": 0,
+      "percentPositive": 0,
+      "negative": 0,
+      "recovered": 0,
+      "pctBedsOccupied": 0,
+      "percent14dayDailyCases": -29.82351462,
+      "percent14dayDailyDeaths": 2.3302454398,
       "percent14dayhospDaily": 0
     }
   ],
