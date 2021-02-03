@@ -4,7 +4,7 @@ import Notes from './Notes';
 import { useParams, useHistory } from 'react-router-dom';
 import { Container, Grid, List, Divider, Image, Header, Table } from 'semantic-ui-react'
 
-export default function DataSources(props){
+export default function MediaHub(props){
     const history = useHistory();
 
 

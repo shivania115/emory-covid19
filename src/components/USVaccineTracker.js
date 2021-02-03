@@ -9,6 +9,7 @@ import Marker from './Marker';
 import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import ReactTooltip from "react-tooltip";
+import VaccinesFAQ from './VaccineFAQ';
 // import {
 //   ComposableMap,
 //   Geographies,
@@ -17,6 +18,7 @@ import ReactTooltip from "react-tooltip";
 //   Annotation
 // } from "react-simple-maps";
 import allStates from "./allstates.json";
+
 
 import { VictoryChart, 
   VictoryGroup, 
@@ -110,16 +112,17 @@ function goToAnchor(anchor) {
   return false;
 }
 const contextRef = createRef()
-const nameList = ['USA Vaccine Tracker', 'State Vaccine Compare', 
-'State COVID-19 Burden', 'Subheader', 'Subheader'];
+const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker', 
+'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety', 
+'Getting Vaccinated', 'After You Are Vaccinated'];
 var scrollCount = 0;
 
 function StickyExampleAdjacentContext(props) {
     const contextRef = createRef();
-    const [sTate, setsTate] = useState({ activeItem: nameList[0] })
-    const { activeItem } = sTate
+    const [actionItem, setActiveItem] = useState({ activeItem: nameList[0] })
+    const { activeItem } = actionItem;
     useEffect(() => {
-        setsTate(nameList[scrollCount])
+      setActiveItem(nameList[scrollCount])
     }, [scrollCount])
     
     return (
@@ -134,15 +137,29 @@ function StickyExampleAdjacentContext(props) {
                         compact
                         pointing secondary vertical>
                         <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
+                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </Header></Menu.Item>
+
                         <Menu.Item as='a' href="#vaccine" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
+                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
+
                         <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
-                        {/* <Menu.Item as='a' href="#commu" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by {nameList[3]}</Header></Menu.Item>
-                        <Menu.Item as='a' href="#commu" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by {nameList[4]}</Header></Menu.Item> */}
+                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
+
+                        <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
+                          // || activeItem === 'General Information'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[3]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#develop" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
+                          // || activeItem === 'Vaccine Development'
+                                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[4]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#safety" name={nameList[5]} active={props.activeCharacter == nameList[5] || activeItem === nameList[5]}
+                          // || activeItem === 'Vaccine Safety'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name } ) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[5]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#get" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
+                          // || activeItem === 'Getting Vaccinated'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[6]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#after" name={nameList[7]} active={props.activeCharacter == nameList[7] || activeItem === nameList[7]}
+                          // || activeItem === 'After You Are Vaccinated'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[7]}</Header></Menu.Item>
                     </Menu>
                 </Sticky>
             </Rail>
@@ -213,7 +230,7 @@ function CaseChart(props){
 }
 
 
-export default function USMap(props) {
+export default function USVaccineTracker(props) {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -511,8 +528,9 @@ export default function USMap(props) {
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
     console.log(vaxVarMap);
   return (
+    <HEProvider>
       <div>
-        <AppBar menu='countyReport'/>
+        <AppBar menu='vaccineTracker'/>
         <Container style={{marginTop: '8em', width: 1260, overFlowX: 'hidden'}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >Vaccination: United States</Breadcrumb.Section>
@@ -529,65 +547,87 @@ export default function USMap(props) {
             <Grid.Column style = {{paddingLeft: 150, width: 1000}}>
               <center>  
                 <Waypoint onEnter={() => {
-                  setActiveCharacter('Vaccination Tracker')}}>
+                  setActiveCharacter('USA Vaccination Tracker')}}>
                 </Waypoint> 
               </center>
               {/* <Grid columns={14}> */}
               <div>     	
-                <Header as='h2' style={{color: VaxColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "5em", paddingBottom: 50}}>
+                <Header as='h2' style={{color: "#004071",textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "5em", paddingBottom: 50}}>
                   <Header.Content >
-                  <b> Vaccination Tracker </b> 
+                  <b> COVID-19 Vaccination Tracker </b> 
                   
                   </Header.Content>
                 </Header>
               </div>
-              <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20}}> COVID-19 Vaccination in the United States </Divider>
+              <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20}}> The United States </Divider>
 
               <Grid>
 
 
-                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 20}}>
-                  <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 8}}> 
-                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+              <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 40}}>
+                  <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
+                    <center style={{width: 240,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses distributed</center>
+
+                    
+                  </Grid.Column>
+                  
+                  <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 8}}> 
+                    <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> first dose</center>
+
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 8}}> 
+           
+                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
+
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 8}}> 
+                   
+                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineDate} </center>
+  
+                    </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 0}}>
+                  <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 0}}> 
+                    <div style = {{width: 240, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Total doses distributed <br/><br/></p>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
-                          
-                          <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p>
+                        <br/><br/><p style={{width: 240, fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
                   </Grid.Column>
                   
-                  <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 8}}> 
-                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                  <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 0}}> 
+                    <div style = {{width: 240, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                           
-                          <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
                   </Grid.Column>
-                  <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 8}}> 
-                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                  <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 0}}> 
+                    <div style = {{width: 240, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                          <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
                   </Grid.Column>
-                  <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 8}}> 
-                    <div style = {{width: 240, borderStyle: "solid", borderColor: "#e5f2f7"}}>
+                  <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 0}}> 
+                    <div style = {{width: 240, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
-                        <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                          <p style={{fontSize: "28px", fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p><br/>
                         </Header.Content>
                       </Header>
                       {/* <Grid style = {{width: 240}}>
@@ -640,17 +680,19 @@ export default function USMap(props) {
                       </div>
                     </Grid.Column>
                 </Grid.Row>
+
+                
               
               <Grid.Row>
-               <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 8}}> 
+               <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 18}}> 
                   <div style = {{width: 900}}>
                     <Header>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "19px"}}> Percent of population partially vaccinated (one dose received) </p>
+                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated (one dose received) </p>
                       <Header.Content style = {{paddingBottom: 20, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]).toFixed(0))} size='large' color='green' progress/>
                       </Header.Content>
-                      <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "19px"}}> Percent of population fully vaccinated (two doses received)</p>
-                      <Header.Content style = {{paddingBottom: 10, paddingTop: 0}}>
+                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated (two doses received)</p>
+                      <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose2"]).toFixed(0))} size='large' color='green' progress/>
                       </Header.Content>
                     </Header>
@@ -668,15 +710,16 @@ export default function USMap(props) {
                             content: {
                                 content: (
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                     <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
+                                    <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                    <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
 
-                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                        distributed on {vaccineDate} to facilities across the United States by the federal government. <br/>
-                                        
-                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+                                    <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                    distributed on {vaccineDate} to facilities across the United States by the federal government. <br/>
+                                    
+                                    <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                    <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
 
 
                                   </Header.Content>
@@ -689,7 +732,7 @@ export default function USMap(props) {
               <div style = {{height: 25}}> </div>
               <Grid>
                 <Grid.Column>
-                  <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20}}> COVID-19 Vaccination by State </Divider>
+                  <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20}}> COVID-19 Vaccination by State </Divider>
 
                 </Grid.Column>
               </Grid>
@@ -701,16 +744,16 @@ export default function USMap(props) {
                   <Grid.Column style = {{width: 1000, paddingLeft: 30}}>
 
                         <div style = {{paddingBottom: 0, width: 1000}}>
-                          <Header.Content style = {{paddingLeft: 20, fontSize: "1.5em"}}>
-                            Click on a state.
+                          <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
+                            <a style = {{color: "#004071"}}> Click on a state. </a>
                             <br/>
                             <br/>
-                            <b><em> Percent of population partially vaccinated </em></b>
+                            <b> % of population partially vaccinated (one dose received)</b>
                           </Header.Content>
                           <svg width="460" height="80" >
                             {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
                             
-                            {_.map(legendSplit, (splitpoint, i) => {
+                            {/* {_.map(legendSplit, (splitpoint, i) => {
                               if(legendSplit[i] < 1){
                                 return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                               }else if(legendSplit[i] > 999999){
@@ -719,9 +762,9 @@ export default function USMap(props) {
                                 return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
                               }
                               return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                            })} 
-                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                            })}  */}
+                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin + "%"}</text>
+                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax + "%"}</text>
 
 
                             {_.map(colorPalette, (color, i) => {
@@ -760,6 +803,7 @@ export default function USMap(props) {
                                       const configMatched = configs.find(s => s.fips === fips);
                                       setFips(fips);
                                       setHoverName(configMatched.name)
+
                                     }}
                                     
                                     onMouseLeave={()=>{
@@ -834,7 +878,8 @@ export default function USMap(props) {
                                 content: {
                                     content: (
                                       <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                        
+                                        Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+
                                         <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
                                         <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
                                         <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
@@ -855,7 +900,7 @@ export default function USMap(props) {
                   
                   <Grid.Column style ={{width: 350}}>
                     <Header as='h2' style={{fontWeight: 400}}>
-                      <Header.Content style={{width : 350, height: 100, fontSize: "18pt", textAlign: "center", paddingTop: 35, paddingLeft: 35}}>
+                      <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 36, paddingLeft: 35}}>
                         Vaccination Status in <b>{stateName}</b>
                         
                         
@@ -869,7 +914,7 @@ export default function USMap(props) {
                             <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
                                 <td colSpan='1' style={{width:130}}> </td>
                                 <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
-                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> The U.S.</td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
@@ -928,7 +973,7 @@ export default function USMap(props) {
 
               <Grid>
                 <Grid.Column>
-                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 30}}> COVID-19 Burden in {stateName} </Divider>
+                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 15}}> COVID-19 Burden in {stateName} </Divider>
 
                 </Grid.Column>
               </Grid>
@@ -1015,7 +1060,7 @@ export default function USMap(props) {
 
                                     <VictoryLabel text= {"14-day"}  x={197} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
                                     <VictoryLabel text= {"change"}  x={197} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {"Daily Cases"}  x={110} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato'}}/>
+                                    <VictoryLabel text= {"Daily Cases"}  x={110} y={20} textAnchor="middle" style={{fontSize: "22px", fontFamily: 'lato'}}/>
 
                                     
                         </VictoryChart>}
@@ -1093,7 +1138,7 @@ export default function USMap(props) {
 
                                     <VictoryLabel text= {"14-day"}  x={197} y={100} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
                                     <VictoryLabel text= {"change"}  x={197} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato', fill: "#004071"}}/>
-                                    <VictoryLabel text= {"Daily Deaths"}  x={110} y={20} textAnchor="middle" style={{fontSize: "19px", fontFamily: 'lato'}}/>
+                                    <VictoryLabel text= {"Daily Deaths"}  x={110} y={20} textAnchor="middle" style={{fontSize: "22px", fontFamily: 'lato'}}/>
 
                         </VictoryChart>}
                       </div>
@@ -1134,14 +1179,14 @@ export default function USMap(props) {
                   <Grid.Row>
                     <Grid.Column style = {{paddingLeft: 20, paddingTop: 101}}>
                       <Header as='h2' style={{fontWeight: 400, paddingTop: 10}}>
-                        <Header.Content style={{width : 500, fontSize: "18pt", textAlign: "center"}}>
+                        <Header.Content style={{width : 500, fontSize: "22px", textAlign: "center"}}>
                           Disparities in COVID-19 Mortality <br/> <b>{stateMapFips !== "_nation" ? stateName : "Nation"}</b>
                           
                         </Header.Content>
                       </Header>
 
                       {stateMapFips && stateMapFips === "_nation" && <div style = {{marginTop: 13}}>
-                              <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 130, fontWeight: 400, width: 400}}> Deaths by Race & Ethnicity</Header.Content>
+                              <Header.Content x={0} y={20} style={{fontSize: '19px', paddingLeft: 130, fontWeight: 400, width: 400}}> Deaths by Race & Ethnicity</Header.Content>
                       </div>}
 
                       {stateMapFips && stateMapFips === "_nation" && <div style={{paddingLeft: "0em", paddingRight: "2em"}}>
@@ -1153,10 +1198,10 @@ export default function USMap(props) {
                                 domainPadding={20}
                                 minDomain={{y: props.ylog?1:0}}
                                 padding={{left: 164, right: 35, top: 12, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
+                                style = {{fontSize: "19px"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                 <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
@@ -1196,7 +1241,7 @@ export default function USMap(props) {
                               <Grid.Column style = {{paddingLeft: 20}}> 
                                 {!raceData[stateMapFips]["Non-Hispanic African American"]  && stateMapFips !== "02"  && 
                                   <div style = {{marginTop: 10, width: 250}}>
-                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths by Race</Header.Content>
+                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 58, fontWeight: 400}}> Deaths by Race</Header.Content>
                                   </div>
                                 }
                                 {stateMapFips && !raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38"  && stateMapFips !== "02" &&
@@ -1209,12 +1254,12 @@ export default function USMap(props) {
                                                 (!!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 ?1:0))}
                                                 domainPadding={20}
                                                 minDomain={{y: props.ylog?1:0}}
-                                                padding={{left: 80, right: 65, top: 12, bottom: 1}}
+                                                padding={{left: 100, right: 65, top: 12, bottom: 1}}
                                                 style = {{fontSize: "14pt"}}
                                                 containerComponent={<VictoryContainer responsive={false}/>}
                                               >
 
-                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                                 <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                                 <VictoryGroup>
                                                 
@@ -1329,7 +1374,7 @@ export default function USMap(props) {
                               <Grid.Column style = {{paddingLeft: 50}}> 
                                 {!!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
                                   <div style = {{marginTop: 10}}>
-                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400, width: 250}}> Deaths by Ethnicity</Header.Content>
+                                    <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 60, fontWeight: 400, width: 250}}> Deaths by Ethnicity</Header.Content>
                                     {!(stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ))
                                         && 
                                       <center> <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 20, fontWeight: 400, width: 250}}> <br/> <br/> None Reported</Header.Content> </center>
@@ -1344,12 +1389,12 @@ export default function USMap(props) {
                                                 height = {!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ?  81 : 3 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
                                                 domainPadding={20}
                                                 minDomain={{y: props.ylog?1:0}}
-                                                padding={{left: 110, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
+                                                padding={{left: 130, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
                                                 style = {{fontSize: "14pt"}}
                                                 containerComponent={<VictoryContainer responsive={false}/>}
                                               >
 
-                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                                <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                                 <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                                 
                                                   <VictoryGroup>
@@ -1522,12 +1567,12 @@ export default function USMap(props) {
                                               height = {32 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
                                               domainPadding={20}
                                               minDomain={{y: props.ylog?1:0}}
-                                              padding={{left: 150, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
+                                              padding={{left: 160, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
                                               style = {{fontSize: "14pt"}}
                                               containerComponent={<VictoryContainer responsive={false}/>}
                                             >
 
-                                              <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
+                                              <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "19px", fill: '#000000', fontFamily: 'lato'}}} />
                                               <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000'}, tickLabels: {fontSize: "19px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                               
                                                 <VictoryGroup>
@@ -1708,7 +1753,7 @@ export default function USMap(props) {
                                         
                                         For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
 
-                                        {stateMapFips && stateMapFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 53}}> 
+                                        {stateMapFips && stateMapFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
                                           <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450}}>
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
@@ -1781,18 +1826,20 @@ export default function USMap(props) {
 
                         </Grid.Column>
                       </Grid.Row>
+                      
+
                     </Grid>
                 </Grid.Column>
                 <Grid.Column style = {{paddingLeft: 80, width: 630}}>
                   <div style = {{paddingTop: 10, paddingLeft: 50}}>
                     <div style = {{paddingTop: 0, width: 500, paddingBottom: 20}}>
-                      <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
+                      <Header.Content x={0} y={20} style={{fontSize: "22px", fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
                     </div>
                     <svg width = "500" height = "40">
                         <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                        <text x = {35} y = {20} style = {{ fontSize: "19px"}}> USA</text>
+                        <text x = {35} y = {20} style = {{ fontSize: "22px"}}> USA</text>
                         <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                        <text x = {102} y = {20} style = {{ fontSize: "19px"}}> {stateMapFips === "_nation" || stateMapFips === "72"? "Select State":stateName} </text>
+                        <text x = {102} y = {20} style = {{ fontSize: "22px"}}> {stateMapFips === "_nation" || stateMapFips === "72"? "Select State":stateName} </text>
                     </svg>
                   </div>
                   <div style = {{width: 500, height: 180}}>
@@ -1802,14 +1849,14 @@ export default function USMap(props) {
                   </div>
 
                   <div style = {{paddingTop: 65, paddingLeft: 50}}>
-                    <div style = {{paddingTop: 50, width: 500, paddingBottom: 20}}>
-                      <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
+                    <div style = {{paddingTop: 47, width: 500, paddingBottom: 20}}>
+                      <Header.Content style={{fontSize: "22px", fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
                     </div>
                     <svg width = "500" height = "40">
                         <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                        <text x = {35} y = {20} style = {{ fontSize: "19px"}}> USA</text>
+                        <text x = {35} y = {20} style = {{ fontSize: "22px"}}> USA</text>
                         <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                        <text x = {102} y = {20} style = {{ fontSize: "19px"}}> {stateMapFips === "_nation" || stateMapFips === "72"? "Select State":stateName} </text>
+                        <text x = {102} y = {20} style = {{ fontSize: "22px"}}> {stateMapFips === "_nation" || stateMapFips === "72"? "Select State":stateName} </text>
                     </svg>
                   </div>
                   <div style = {{width: 500, height: 180}}>
@@ -1818,7 +1865,7 @@ export default function USMap(props) {
                           }
                   </div>
 
-                  {stateFips && <Accordion style = {{paddingTop: 82, paddingLeft: 15}} defaultActiveIndex={1} panels={[
+                  {stateFips && <Accordion style = {{paddingTop: 85, paddingLeft: 15}} defaultActiveIndex={1} panels={[
                           {
                               key: 'acquire-dog',
                               title: {
@@ -1826,7 +1873,7 @@ export default function USMap(props) {
                                 },
                                 content: {
                                     content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 510}}>
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 510}}>
                                         <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
                                         <br/> 
                                         <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition} 
@@ -1846,6 +1893,17 @@ export default function USMap(props) {
                 </Grid.Column>
 
               </Grid.Row>
+              <div id = "general" style = {{height: 40}}></div>
+              <Grid>
+                <Grid.Column style = {{paddingLeft: 33}}>
+                  <Divider style={{width: 980}}/> 
+
+                </Grid.Column>
+              </Grid>
+              <Grid >
+                <VaccinesFAQ />
+
+              </Grid>
 
               {/* <Grid.Row>
                 <Header as='h2' style={{fontWeight: 400, paddingTop: 70}}>
@@ -1865,21 +1923,41 @@ export default function USMap(props) {
         </Container>
         <ReactTooltip > 
           <font size="+2"><b >{hoverName}</b> </font> 
-          <br/> <br/>
-          <b> Number received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
-          <br/><br/>
-          <b> Percent received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
-          <br/><br/>
-          <b> Number received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
-          <br/><br/>
-          <b> Percent received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
-          <br/><br/>
-          <b> Newly distributed per 100,000: </b> {numberWithCommas(vaccineData[fips]["Dist_Per_100K_new"].toFixed(0))}
-          <br/><br/>
+          <br/> 
+          {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
+          <br/>
+          <b> % received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
+          <br/>
+          <b> # received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
+          <br/>
+          <b> % received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
+          <br/> */}
 
           <b>Click to lock.</b> 
+
+          <table class="ui celled inverted table" >
+            <thead>
+              <tr>
+                <th># received first dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose1"])}</th>
+              </tr>
+              <tr>
+                <th> % received first dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}</th>
+              </tr>
+              <tr>
+                <th> # received second dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose2"])}</th>
+              </tr>
+              <tr>
+                <th> % received second dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}</th>
+              </tr>
+            </thead>
+          </table>
         </ReactTooltip>
       </div>
+    </HEProvider>
       );
   } else {
     return <Loader active inline='centered' />

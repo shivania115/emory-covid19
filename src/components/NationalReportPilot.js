@@ -2557,7 +2557,7 @@ export default function NationalReport(props) {
                   />
                 </VictoryChart>
 
-                <Header.Content style = {{width: 540}}>
+                <Header.Content style = {{width: 550}}>
                   
                   <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                     <b>COVID-19 Cases per 100,000</b>
@@ -2687,41 +2687,12 @@ export default function NationalReport(props) {
                     </svg>
 
                     <br/><br/><br/>
-                      {/* <ComposableMap 
-                        projection="geoAlbersUsa" 
-                        data-tip=""
-                        width={520} 
-                        height={300}
-                        strokeWidth= {0.1}
-                        stroke= 'black'
-                        projectionConfig={{scale: 580}}
-                        style = {{paddingLeft: 50}}
-                        >
-                        <Geographies geography={geoUrl}>
-                          {({ geographies }) => 
-                            <svg>
-                              {geographies.map(geo => (
-                                <Geography
-                                  key={geo.rsmKey}
-                                  geography={geo}
-                                  fill={
-                                  ((colorccvi && data[geo.id] && (data[geo.id][ccvi]) > 0)?
-                                      colorccvi[data[geo.id][ccvi]]: 
-                                      (colorccvi && data[geo.id] && data[geo.id][ccvi] === 0)?
-                                        '#FFFFFF':'#FFFFFF')}                              
-                                />
-                              ))}
-                            </svg>
-                          }
-                        </Geographies>
-                        
-
-                      </ComposableMap> */}
+                     
 
                     <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/ccvi.png' />            
 
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -2732,7 +2703,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
                                         residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
@@ -2755,50 +2726,50 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column style = {{paddingLeft: 0}}>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by <br/> Community Vulnerability Index
                       </Header.Content>
                     </Header>
-                        <VictoryChart
-                          theme={VictoryTheme.material}
-                          width={530}
-                          height={180}
-                          domainPadding={20}
-                          minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 5, bottom: 1}}
-                          style = {{fontSize: "14pt"}}
-                          containerComponent={<VictoryContainer responsive={false}/>}
-                        >
-                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                          <VictoryBar
-                            horizontal
-                            barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                            data={[
-                                  {key: nationalBarChart['caserate7day'][0]['CVI'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][0]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['CVI'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][1]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['CVI'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][2]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['CVI'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][3]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['CVI'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][4]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0}
+                          <VictoryChart
+                            theme={VictoryTheme.material}
+                            width={530}
+                            height={180}
+                            domainPadding={20}
+                            minDomain={{y: props.ylog?1:0}}
+                            padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                            style = {{fontSize: "14pt"}}
+                            containerComponent={<VictoryContainer responsive={false}/>}
+                          >
+                            <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                            <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryBar
+                              horizontal
+                              barRatio={0.80}
+                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                              data={[
+                                    {key: nationalBarChart['caserate7day'][0]['CVI'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][0]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                    {key: nationalBarChart['caserate7day'][0]['CVI'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][1]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                    {key: nationalBarChart['caserate7day'][0]['CVI'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][2]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                    {key: nationalBarChart['caserate7day'][0]['CVI'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][3]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0},
+                                    {key: nationalBarChart['caserate7day'][0]['CVI'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['CVI'][4]['measure']/nationalBarChart['caserate7day'][0]['CVI'][0]['measure'])*nationalBarChart['caserate7day'][0]['CVI'][0]['measure'] || 0}
 
 
 
-                            ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: casesColor[1]
-                              }
-                            }}
-                            x="key"
-                            y="value"
-                          />
-                        </VictoryChart>
+                              ]}
+                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                              style={{
+                                data: {
+                                  fill: casesColor[1]
+                                }
+                              }}
+                              x="key"
+                              y="value"
+                            />
+                          </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -2807,7 +2778,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                           COVID-19 Deaths by <br/> Community Vulnerability Index
                           </Header.Content>
                         </Header>
@@ -2817,7 +2788,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 5, bottom: 1}}
+                          padding={{left: 130, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -2849,7 +2820,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -2943,7 +2914,7 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/poverty.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 160, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -2954,7 +2925,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                           This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                           per 100,000 residents by county ranking on percentage of population in poverty. 
                                           The y-axis displays percentage population in poverty rankings based on quintiles 
@@ -2980,7 +2951,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by Percentage of <br/> Population in Poverty
                       </Header.Content>
                     </Header>
@@ -2990,7 +2961,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3021,9 +2992,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -3032,7 +3003,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Deaths by Percentage of <br/> Population in Poverty
                       </Header.Content>
                     </Header>
@@ -3042,7 +3013,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3074,7 +3045,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -3166,7 +3137,7 @@ export default function NationalReport(props) {
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural.png' />
                       
                   </div>
-                  <Accordion style = {{paddingTop: 55, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 40, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -3177,7 +3148,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                           This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                           per 100,000 residents by metropolitan status (y-axis). Inner city counties have {">"} 
                                           1 million population or contain the entire or large part of the population of the 
@@ -3202,7 +3173,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by <br/>  Metropolitan Status
                       </Header.Content>
                     </Header>
@@ -3212,7 +3183,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 300, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 250, right: 90, top: 15, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3244,9 +3215,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -3255,7 +3226,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Deaths by <br/> Metropolitan Status
                       </Header.Content>
                     </Header>
@@ -3265,7 +3236,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 300, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 250, right: 90, top: 15, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3298,7 +3269,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -3384,7 +3355,7 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/region.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 70, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 30, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -3395,7 +3366,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         RegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegion 
                                         </Header.Subheader>
                                       </Header.Content>
@@ -3411,7 +3382,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by Region
                       </Header.Content>
                     </Header>
@@ -3421,7 +3392,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3452,9 +3423,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -3463,7 +3434,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Deaths by Region
                       </Header.Content>
                     </Header>
@@ -3473,7 +3444,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3505,7 +3476,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -3598,7 +3569,7 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/black.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 162, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -3609,7 +3580,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by percentage African American population ranking. The y-axis 
                                         displays percentage African American population rankings based on quintiles (groups 
@@ -3635,7 +3606,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by Percentage of <br/> African American Population
                       </Header.Content>
                     </Header>
@@ -3645,7 +3616,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3676,9 +3647,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -3687,7 +3658,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Deaths by Percentage of <br/> African American Population
                       </Header.Content>
                     </Header>
@@ -3697,7 +3668,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3729,7 +3700,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -3821,7 +3792,7 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/resSeg.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 118, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -3832,7 +3803,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -3857,7 +3828,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by <br/> Residential Segregation Index
                       </Header.Content>
                     </Header>
@@ -3867,7 +3838,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3898,9 +3869,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -3909,7 +3880,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                           COVID-19 Deaths by  <br/> Residential Segregation Index
                       </Header.Content>
                     </Header>
@@ -3919,7 +3890,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -3951,7 +3922,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -4044,7 +4015,7 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/anycondition.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 118, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4055,7 +4026,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -4080,7 +4051,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by <br/> Any Underlying Comorbidity
                       </Header.Content>
                     </Header>
@@ -4090,7 +4061,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -4121,9 +4092,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -4132,7 +4103,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                           COVID-19 Deaths by <br/> Any Underlying Comorbidity
                       </Header.Content>
                     </Header>
@@ -4142,7 +4113,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -4174,7 +4145,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>
@@ -4238,7 +4209,7 @@ export default function NationalReport(props) {
                       
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/copd.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 118, paddingLeft: 100}} defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4249,7 +4220,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -4274,7 +4245,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
                       COVID-19 Cases by <br/> Percentage of Population with COPD
                       </Header.Content>
                     </Header>
@@ -4284,7 +4255,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -4315,9 +4286,9 @@ export default function NationalReport(props) {
                           />
                         </VictoryChart>
 
-                        <Header.Content style = {{width: 540}}>
+                        <Header.Content style = {{width: 550}}>
                           
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
                             <b>COVID-19 Cases per 100,000</b>
                           </Header.Content>
                         </Header.Content>
@@ -4326,7 +4297,7 @@ export default function NationalReport(props) {
                           <br/>
 
                       <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 60, width: 500}}>
+                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
                           COVID-19 Deaths by <br/> Any Underlying Comorbidity
                       </Header.Content>
                     </Header>
@@ -4336,7 +4307,7 @@ export default function NationalReport(props) {
                           height={180}
                           domainPadding={20}
                           minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
                           style = {{fontSize: "14pt"}}
                           containerComponent={<VictoryContainer responsive={false}/>}
                         >
@@ -4368,7 +4339,7 @@ export default function NationalReport(props) {
                         </VictoryChart>
 
                         <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
+                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
                               <b>COVID-19 Deaths per 100,000</b>
                             </Header.Content>
                         </Header.Content>

@@ -234,6 +234,18 @@ export default function USMap(props) {
                 </Grid.Column> */}
 
                 <Grid.Column style={{width: 190}}>
+                  <Image width = {175} height = {95} href = "/Vaccine-Tracker" src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b> COVID-19 Vaccination Tracker <br/> </b>
+
+                  The COVID-19 Vaccionation Tracker tab takes you to an overview of current vaccination status in the U.S. and in each state. 
+                  Check out some FAQs about COVID-19 Vaccines...
+                  <a href = "/Vaccine-Tracker">for more</a>. 
+                  
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
                   <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
@@ -1314,7 +1326,7 @@ export default function USMap(props) {
 
           <Notes />
         </Container>
-        <ReactTooltip > <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
+        <ReactTooltip> <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
       </div>
     </HEProvider>
       );
