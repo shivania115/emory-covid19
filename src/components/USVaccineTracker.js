@@ -763,8 +763,8 @@ export default function USVaccineTracker(props) {
                               }
                               return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
                             })}  */}
-                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
-                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
+                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin + "%"}</text>
+                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax + "%"}</text>
 
 
                             {_.map(colorPalette, (color, i) => {
