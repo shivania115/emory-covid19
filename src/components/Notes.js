@@ -21,10 +21,17 @@ export default function Notes(props){
 
             <Grid style = {{paddingTop: 30, paddingBottom: 30}}>
                 <Grid.Row columns ={4}>
-                  <Grid.Column>
+                  {/* <Grid.Column>
                     <Image width='300' height='192' href = '' style = {{stroke:  "#000000"}} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' /> 
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> National Report </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}><br/>Coming soon...</Header.Content>
+
+                  </Grid.Column> */}
+
+                  <Grid.Column>
+                    <Image width='300' height='192' href = '/Vaccine-Tracker' style = {{stroke:  "#000000"}} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' /> 
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Vaccination Tracker </Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}><br/>Click on icon for latest information on COVID-19 vaccination. </Header.Content>
 
                   </Grid.Column>
                   <Grid.Column>

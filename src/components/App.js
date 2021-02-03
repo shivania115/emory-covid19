@@ -59,9 +59,7 @@ function AppUI() {
           <Route path='/Vaccine-Tracker'>
             <USVaccineTracker />
           </Route>
-          <Route path='/vaccine-faq'>
-            <VaccineFAQ />
-          </Route>
+          
           <Route path='/map-state'>
             <MapYourState />
           </Route>

@@ -21,12 +21,20 @@ export default function AppBar(props) {
            COVID-19 Health Equity<br/>Interactive Dashboard
            </span>
           </Menu.Item>
+
           <Menu.Item 
             active={props.menu==='countyReport'} 
             content='Home'
             onClick={() => history.push('/')}
             name='countyReport'/>
 
+          <Menu.Item 
+            active={props.menu==='vaccineTracker'} 
+            onClick={() => history.push('/Vaccine-Tracker')}
+            name='vaccineTracker'>
+            Vaccination Tracker
+          </Menu.Item>
+          
           <Menu.Item 
             active={props.menu==='selectState'} 
             onClick={() => history.push('/_nation')}

@@ -19,6 +19,7 @@ import VaccinesFAQ from './VaccineFAQ';
 // } from "react-simple-maps";
 import allStates from "./allstates.json";
 
+
 import { VictoryChart, 
   VictoryGroup, 
   VictoryBar, 
@@ -111,16 +112,17 @@ function goToAnchor(anchor) {
   return false;
 }
 const contextRef = createRef()
-const nameList = ['USA Vaccine Tracker', 'State Vaccine Compare', 
-'State COVID-19 Burden', 'Subheader', 'Subheader'];
+const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker', 
+'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety', 
+'Getting Vaccinated', 'After You Are Vaccinated'];
 var scrollCount = 0;
 
 function StickyExampleAdjacentContext(props) {
     const contextRef = createRef();
-    const [sTate, setsTate] = useState({ activeItem: nameList[0] })
-    const { activeItem } = sTate
+    const [actionItem, setActiveItem] = useState({ activeItem: nameList[0] })
+    const { activeItem } = actionItem;
     useEffect(() => {
-        setsTate(nameList[scrollCount])
+      setActiveItem(nameList[scrollCount])
     }, [scrollCount])
     
     return (
@@ -135,15 +137,29 @@ function StickyExampleAdjacentContext(props) {
                         compact
                         pointing secondary vertical>
                         <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
+                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </Header></Menu.Item>
+
                         <Menu.Item as='a' href="#vaccine" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
+                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
+
                         <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
-                        {/* <Menu.Item as='a' href="#commu" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by {nameList[3]}</Header></Menu.Item>
-                        <Menu.Item as='a' href="#commu" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
-                              onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by {nameList[4]}</Header></Menu.Item> */}
+                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
+
+                        <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
+                          // || activeItem === 'General Information'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[3]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#develop" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
+                          // || activeItem === 'Vaccine Development'
+                                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[4]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#safety" name={nameList[5]} active={props.activeCharacter == nameList[5] || activeItem === nameList[5]}
+                          // || activeItem === 'Vaccine Safety'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name } ) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[5]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#get" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
+                          // || activeItem === 'Getting Vaccinated'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[6]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#after" name={nameList[7]} active={props.activeCharacter == nameList[7] || activeItem === nameList[7]}
+                          // || activeItem === 'After You Are Vaccinated'
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[7]}</Header></Menu.Item>
                     </Menu>
                 </Sticky>
             </Rail>
@@ -214,7 +230,7 @@ function CaseChart(props){
 }
 
 
-export default function USMap(props) {
+export default function USVaccineTracker(props) {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -512,8 +528,9 @@ export default function USMap(props) {
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
     console.log(vaxVarMap);
   return (
+    <HEProvider>
       <div>
-        <AppBar menu='countyReport'/>
+        <AppBar menu='vaccineTracker'/>
         <Container style={{marginTop: '8em', width: 1260, overFlowX: 'hidden'}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >Vaccination: United States</Breadcrumb.Section>
@@ -530,24 +547,24 @@ export default function USMap(props) {
             <Grid.Column style = {{paddingLeft: 150, width: 1000}}>
               <center>  
                 <Waypoint onEnter={() => {
-                  setActiveCharacter('Vaccination Tracker')}}>
+                  setActiveCharacter('USA Vaccination Tracker')}}>
                 </Waypoint> 
               </center>
               {/* <Grid columns={14}> */}
               <div>     	
-                <Header as='h2' style={{color: VaxColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "5em", paddingBottom: 50}}>
+                <Header as='h2' style={{color: "#004071",textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "5em", paddingBottom: 50}}>
                   <Header.Content >
-                  <b> Vaccination Tracker </b> 
+                  <b> COVID-19 Vaccination Tracker </b> 
                   
                   </Header.Content>
                 </Header>
               </div>
-              <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20}}> COVID-19 Vaccination in the United States </Divider>
+              <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20}}> The United States </Divider>
 
               <Grid>
 
 
-              <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 20}}>
+              <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 40}}>
                   <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
                     <center style={{width: 240,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses distributed</center>
 
@@ -560,12 +577,12 @@ export default function USMap(props) {
                   </Grid.Column>
                   <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 8}}> 
            
-                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received second dose</center>
+                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
 
                   </Grid.Column>
                   <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 8}}> 
                    
-                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000</center>
+                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineDate} </center>
   
                     </Grid.Column>
                 </Grid.Row>
@@ -731,12 +748,12 @@ export default function USMap(props) {
                             <a style = {{color: "#004071"}}> Click on a state. </a>
                             <br/>
                             <br/>
-                            <b><em> Percent of population partially vaccinated </em></b>
+                            <b> % of population partially vaccinated (one dose received)</b>
                           </Header.Content>
                           <svg width="460" height="80" >
                             {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
                             
-                            {_.map(legendSplit, (splitpoint, i) => {
+                            {/* {_.map(legendSplit, (splitpoint, i) => {
                               if(legendSplit[i] < 1){
                                 return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
                               }else if(legendSplit[i] > 999999){
@@ -745,7 +762,7 @@ export default function USMap(props) {
                                 return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
                               }
                               return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                            })} 
+                            })}  */}
                             <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>
                             <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>
 
@@ -786,6 +803,7 @@ export default function USMap(props) {
                                       const configMatched = configs.find(s => s.fips === fips);
                                       setFips(fips);
                                       setHoverName(configMatched.name)
+
                                     }}
                                     
                                     onMouseLeave={()=>{
@@ -882,7 +900,7 @@ export default function USMap(props) {
                   
                   <Grid.Column style ={{width: 350}}>
                     <Header as='h2' style={{fontWeight: 400}}>
-                      <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 35, paddingLeft: 35}}>
+                      <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 36, paddingLeft: 35}}>
                         Vaccination Status in <b>{stateName}</b>
                         
                         
@@ -896,7 +914,7 @@ export default function USMap(props) {
                             <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
                                 <td colSpan='1' style={{width:130}}> </td>
                                 <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
-                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> The U.S.</td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
@@ -955,7 +973,7 @@ export default function USMap(props) {
 
               <Grid>
                 <Grid.Column>
-                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 30}}> COVID-19 Burden in {stateName} </Divider>
+                <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 15}}> COVID-19 Burden in {stateName} </Divider>
 
                 </Grid.Column>
               </Grid>
@@ -1735,7 +1753,7 @@ export default function USMap(props) {
                                         
                                         For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
 
-                                        {stateMapFips && stateMapFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 53}}> 
+                                        {stateMapFips && stateMapFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
                                           <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450}}>
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['Race'][0]['Unknown Race'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
@@ -1855,7 +1873,7 @@ export default function USMap(props) {
                                 },
                                 content: {
                                     content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 510}}>
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 510}}>
                                         <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
                                         <br/> 
                                         <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition} 
@@ -1875,7 +1893,14 @@ export default function USMap(props) {
                 </Grid.Column>
 
               </Grid.Row>
+              <div id = "general" style = {{height: 40}}></div>
               <Grid>
+                <Grid.Column style = {{paddingLeft: 33}}>
+                  <Divider style={{width: 980}}/> 
+
+                </Grid.Column>
+              </Grid>
+              <Grid >
                 <VaccinesFAQ />
 
               </Grid>
@@ -1898,21 +1923,41 @@ export default function USMap(props) {
         </Container>
         <ReactTooltip > 
           <font size="+2"><b >{hoverName}</b> </font> 
-          <br/> <br/>
-          <b> Number received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
-          <br/><br/>
-          <b> Percent received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
-          <br/><br/>
-          <b> Number received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
-          <br/><br/>
-          <b> Percent received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
-          <br/><br/>
-          <b> Newly distributed per 100,000: </b> {numberWithCommas(vaccineData[fips]["Dist_Per_100K_new"].toFixed(0))}
-          <br/><br/>
+          <br/> 
+          {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
+          <br/>
+          <b> % received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
+          <br/>
+          <b> # received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
+          <br/>
+          <b> % received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
+          <br/> */}
 
           <b>Click to lock.</b> 
+
+          <table class="ui celled inverted table" >
+            <thead>
+              <tr>
+                <th># received first dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose1"])}</th>
+              </tr>
+              <tr>
+                <th> % received first dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}</th>
+              </tr>
+              <tr>
+                <th> # received second dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose2"])}</th>
+              </tr>
+              <tr>
+                <th> % received second dose</th>
+                <th>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}</th>
+              </tr>
+            </thead>
+          </table>
         </ReactTooltip>
       </div>
+    </HEProvider>
       );
   } else {
     return <Loader active inline='centered' />

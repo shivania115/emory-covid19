@@ -34,7 +34,7 @@ function StickyExampleAdjacentContext(props) {
                         style={{width: 240, marginTop:'2rem', fontSize: '14pt'}}
                           // compact
                           pointing secondary vertical>
-                          <Menu.Item as='a' href="#general" name='General Information' active={activeItem === 'General Information'}
+                          <Menu.Item as='a' name='General Information' active={activeItem === 'General Information'}
                           // || activeItem === 'General Information'
                                 onClick={(e, { name }) => { setActiveItem( name )  }}><Header as='h4'>General Information</Header></Menu.Item>
                           <Menu.Item as='a' href="#develop" name='Vaccine Development' active={activeItem === 'Vaccine Development' }
@@ -75,12 +75,8 @@ export default function VaccinesFAQ(props){
   return (
     <div>
       
-      <AppBar menu='vaccinefaq'/>
+      <AppBar menu='vaccineTracker'/>
       <Container style={{marginTop: '0em', minWidth: '1260px'}}>
-
-      <div >
-        <br/><br/><br/><br/>
-      </div>
 
       <Grid>
         {/* <Grid.Column width={2} style={{zIndex: 10}}>
@@ -93,7 +89,7 @@ export default function VaccinesFAQ(props){
         <Grid.Column width={14}>
 
         <div style={{paddingLeft: '2rem', paddingRight:'8rem'}}>
-        <Header as='h1' style={{paddingTop: 16, fontWeight: 400, fontSize: "24pt"}}>
+        <Header as='h1' style={{paddingTop: 30, fontWeight: 400, fontSize: "24pt"}}>
 
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
@@ -104,7 +100,7 @@ export default function VaccinesFAQ(props){
         </Header>
 
         
-        <div id="general" style = {{height: 5}}> </div>
+        <div style = {{height: 5}}> </div>
         <Header as='h2' style={{fontWeight: 600}}>
             General Information
         </Header>
@@ -217,7 +213,7 @@ export default function VaccinesFAQ(props){
         </Accordion.Content>
 
 
-        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+        <Accordion.Title id="develop" style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
           index={4}
           onClick={() => activeIndex.indexOf(4) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 4]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 4))}
@@ -239,7 +235,7 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="develop" style = {{height: 5}}> </div>
+        <div style = {{height: 5}}> </div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Development
@@ -378,7 +374,7 @@ export default function VaccinesFAQ(props){
         </Accordion.Content>
 
 
-        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+        <Accordion.Title id="safety" style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 3}
           index={8}
           onClick={() => activeIndex.indexOf(8) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 8]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 8))}
@@ -402,7 +398,7 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="safety" style = {{height: 5}}> </div>
+        <div style = {{height: 5}}> </div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Vaccine Safety
@@ -471,7 +467,7 @@ export default function VaccinesFAQ(props){
         </Accordion.Content>
 
 
-        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+        <Accordion.Title id="get" style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
           index={11}
           onClick={() => activeIndex.indexOf(11) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 11]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 11))}
@@ -492,7 +488,7 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="get" style = {{height: 5}}></div>
+        <div style = {{height: 5}}></div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 Getting Vaccinated
@@ -949,7 +945,7 @@ export default function VaccinesFAQ(props){
         </Accordion.Content>
 
 
-        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+        <Accordion.Title id="after" style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
           index={31}
           onClick={() => activeIndex.indexOf(31) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 31]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 31))}
@@ -972,7 +968,7 @@ export default function VaccinesFAQ(props){
 
 
 
-        <div id="after" style = {{height: 5}}></div>
+        <div style = {{height: 5}}></div>
         <Header as='h2' style={{fontWeight: 600}}>
             <Header.Content>
                 After You Are Vaccinated
