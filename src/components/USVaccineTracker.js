@@ -114,7 +114,7 @@ function goToAnchor(anchor) {
 const contextRef = createRef()
 const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker', 
 'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety', 
-'Getting Vaccinated', 'After You Are Vaccinated'];
+'Getting Vaccinated', 'After You Are Vaccinated','COVID-19 Vaccines FAQ'];
 var scrollCount = 0;
 
 function StickyExampleAdjacentContext(props) {
@@ -144,10 +144,11 @@ function StickyExampleAdjacentContext(props) {
 
                         <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
                               onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
-
-                        <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
+                        <Menu.Item as='a' href="#general" name={nameList[8]} active={props.activeCharacter == nameList[8] || activeItem === nameList[8]}
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[8]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
                           // || activeItem === 'General Information'
-                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[3]}</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[3]}</Header></Menu.Item>
                           <Menu.Item as='a' href="#develop" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
                           // || activeItem === 'Vaccine Development'
                                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[4]}</Header></Menu.Item>
