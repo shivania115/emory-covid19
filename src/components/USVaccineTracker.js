@@ -114,7 +114,7 @@ function goToAnchor(anchor) {
 const contextRef = createRef()
 const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker', 
 'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety', 
-'Getting Vaccinated', 'After You Are Vaccinated'];
+'Getting Vaccinated', 'After You Are Vaccinated','COVID-19 Vaccines FAQ'];
 var scrollCount = 0;
 
 function StickyExampleAdjacentContext(props) {
@@ -144,10 +144,11 @@ function StickyExampleAdjacentContext(props) {
 
                         <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
                               onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
-
-                        <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
+                        <Menu.Item as='a' href="#general" name={nameList[8]} active={props.activeCharacter == nameList[8] || activeItem === nameList[8]}
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[8]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
                           // || activeItem === 'General Information'
-                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[3]}</Header></Menu.Item>
+                                onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[3]}</Header></Menu.Item>
                           <Menu.Item as='a' href="#develop" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
                           // || activeItem === 'Vaccine Development'
                                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[4]}</Header></Menu.Item>
@@ -175,6 +176,7 @@ function StickyExampleAdjacentContext(props) {
 function CaseChart(props){
   const [playCount, setPlayCount] = useState(0);
   const data = props.data;
+  const dataState = props.dataState;
   const sfps = props.stateFips;
   const ticks = props.ticks;
   const variable = props.var;
@@ -186,7 +188,6 @@ function CaseChart(props){
     return y<1000?y:(y/1000+'k');
   };
 
-  
 
   return(
     <div style={{paddingTop: 5, paddingBottom: 70, width: 500}}>
@@ -200,7 +201,7 @@ function CaseChart(props){
               animationDuration={5500} 
               animationBegin={500} 
               stroke={nationColor} strokeWidth="2" />
-        {sfps !== "_nation" && <Line data={data[sfps]} name="State" type='monotone' dataKey={variable} dot={false} 
+        {sfps !== "_nation" && <Line data={dataState} name="State" type='monotone' dataKey={variable} dot={false} 
               isAnimationActive={animationBool} 
               onAnimationEnd={()=>setAnimationBool(false)}
               animationDuration={5500} 
@@ -224,7 +225,7 @@ function CaseChart(props){
         <Line dataKey={variable} data={data[sfps]} name = "nation1"/>
         <Line dataKey={variable} data={data[sfps+cfps]} name = "nation2"/>
       </LineChart> */}
-      <Button content='Play' icon='play' floated="right" onClick={() => {setAnimationBool(true); }}/>
+      {/* <Button content='Play' icon='play' floated="right" onClick={() => {setPlayCount(playCount+1); }}/> */}
     </div>
   );
 }
@@ -493,40 +494,42 @@ export default function USVaccineTracker(props) {
      
   }, []);
 
-  useEffect(()=>{
-    
-    if (isLoggedIn === true){
-      const fetchData = async() => { 
-        // let seriesDict = {};
-        const stateSeriesQ = {tag: "stateonly"};
-        const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
-        // _.map(promState, i=> {
-        //   seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-        //   return seriesDict;
-        // });
-        // let seriesDict = promState[0].timeseriesAll;
-        setDataTS(promState[0].timeseriesAll);
-      };
-      fetchData();
-    } else {
-      handleAnonymousLogin();
-    }
-
-
-  },[isLoggedIn]);
-
   // useEffect(()=>{
-  //   fetch('/data/timeseriesAll.json').then(res => res.json())
-  //       .then(x => setDataTS(x));
+    
+  //   if (isLoggedIn === true){
+  //     const fetchData = async() => { 
+  //       // let seriesDict = {};
+  //       const stateSeriesQ = {tag: "stateonly"};
+  //       const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+  //       // _.map(promState, i=> {
+  //       //   seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+  //       //   return seriesDict;
+  //       // });
+  //       // let seriesDict = promState[0].timeseriesAll;
+  //       setDataTS(promState[0].timeseriesAll);
+  //     };
+  //     fetchData();
+  //   } else {
+  //     handleAnonymousLogin();
+  //   }
+
+
+  // },[isLoggedIn]);
+
+  
+
+  useEffect(()=>{
+    fetch('/data/timeseriesAll.json').then(res => res.json())
+        .then(x => setDataTS(x));
     
 
 
-  // },[]);
+  },[]);
 
 
 
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    console.log(vaxVarMap);
+    // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
       <div>
@@ -582,7 +585,7 @@ export default function USVaccineTracker(props) {
                   </Grid.Column>
                   <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 8}}> 
                    
-                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineDate} </center>
+                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)} </center>
   
                     </Grid.Column>
                 </Grid.Row>
@@ -716,7 +719,8 @@ export default function USVaccineTracker(props) {
                                     <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
 
                                     <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                    distributed on {vaccineDate} to facilities across the United States by the federal government. <br/>
+                                    distributed to facilities across the United States by the federal government. 
+                                    Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
                                     
                                     <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                                     <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
@@ -885,7 +889,9 @@ export default function USVaccineTracker(props) {
                                         <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
 
                                         <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                        distributed on {vaccineDate} to facilities across the United States by the federal government. <br/>
+                                        distributed to facilities across the United States by the federal government. 
+                                        Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
+                                        For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
                                         
                                         <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                                         <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
@@ -953,7 +959,7 @@ export default function USVaccineTracker(props) {
 
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Newly distributed per 100,000 on " + vaccineDate} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Newly distributed per 100,000"} </Table.HeaderCell>
                               <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
 
@@ -1843,7 +1849,7 @@ export default function USVaccineTracker(props) {
                     </svg>
                   </div>
                   <div style = {{width: 500, height: 180}}>
-                  {stateMapFips && <CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
+                  {stateMapFips && <CaseChart data={dataTS} dataState = {dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
                                 ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"caserate7dayfig"}/>
                           }
                   </div>
@@ -1860,7 +1866,7 @@ export default function USVaccineTracker(props) {
                     </svg>
                   </div>
                   <div style = {{width: 500, height: 180}}>
-                  {stateMapFips && <CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
+                  {stateMapFips && <CaseChart data={dataTS} dataState = {dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
                                 ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"covidmortality7dayfig"}/>
                           }
                   </div>

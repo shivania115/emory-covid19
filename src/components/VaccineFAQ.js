@@ -562,7 +562,7 @@ export default function VaccinesFAQ(props){
           onClick={() => activeIndex.indexOf(15) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 15]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 15))}
         >
           <Icon name='dropdown' />
-            Do I need two doses of the COVID-19 vaccine?
+          Do I need two doses of the same COVID-19 vaccine?
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(15)>0}>
