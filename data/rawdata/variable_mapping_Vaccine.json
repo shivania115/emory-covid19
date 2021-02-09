@@ -78,7 +78,12 @@
         "variable": "Dist_new",
         "name": "New doses distributed",
         "definition": "definition",
-        "group": "outcomes"}
+        "group": "outcomes"},
+    "distDate": {
+        "variable": "distDate",
+        "name": "distDate",
+        "definition": "definition",
+        "group": "date"}
 }
 
 
