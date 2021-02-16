@@ -1569,14 +1569,14 @@ export default function NationalReport(props) {
                 </Header.Content>
               </Header>
             </div>
-            {/* <div style={{paddingTop:36,textAlign:'justify', fontSize:"14pt", lineHeight: "16pt",paddingBottom:30, paddingLeft: "12em", paddingRight: "2em"}}>
+            <div style={{paddingTop:36,textAlign:'justify', fontSize:"14pt", lineHeight: "16pt",paddingBottom:30, paddingLeft: "12em", paddingRight: "2em"}}>
               <Header.Content style={{fontFamily:'lato', fontSize: "14pt", width: 810}}>
               The United States has reported {numberWithCommas(data['_nation']['casesfig'])} cases, the highest number of any country in the world. 
               The number of cases and deaths differ substantially across American communities. The COVID-19 U.S. Health Equity 
               Report documents how COVID-19 cases and deaths are changing over time, geography, and demography. The report will 
               be released each week to keep track of how COVID-19 is impacting U.S. communities.
               </Header.Content>
-            </div> */}
+            </div>
             <div id="cases" style = {{height: 45}}> </div>
             <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
             <div style={{paddingBottom:'0em', paddingLeft: "12rem", paddingRight: "1rem"}}>
@@ -2654,7 +2654,7 @@ export default function NationalReport(props) {
                   <div >
                     <br/>
 
-                    {/* <svg width="260" height="80">
+                    <svg width="260" height="80">
                       
                       {_.map(legendSplitccvi, (splitpoint, i) => {
                         if(legendSplitccvi[i] < 1){
@@ -2684,7 +2684,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg> */}
+                    </svg>
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -2877,7 +2877,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    {/* <svg width="260" height="80">
+                    <svg width="260" height="80">
                       
                       {_.map(legendSplitPoverty, (splitpoint, i) => {
                         if(legendSplitPoverty[i] < 1){
@@ -2907,7 +2907,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg> */}
+                    </svg>
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -3532,7 +3532,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    {/* <svg width="260" height="80">
+                    <svg width="260" height="80">
                       
                       {_.map(legendSplitBlack, (splitpoint, i) => {
                         if(legendSplitBlack[i] < 1){
@@ -3562,7 +3562,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg> */}
+                    </svg>
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -3755,7 +3755,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    {/* <svg width="260" height="80">
+                    <svg width="260" height="80">
                       
                       {_.map(legendSplitResSeg, (splitpoint, i) => {
                         if(legendSplitResSeg[i] < 1){
@@ -3785,7 +3785,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg> */}
+                    </svg>
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -3978,7 +3978,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    {/* <svg width="260" height="80">
+                    <svg width="260" height="80">
                       
                       {_.map(legendSplitResSeg, (splitpoint, i) => {
                         if(legendSplitComorb[i] < 1){
@@ -4008,7 +4008,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg> */}
+                    </svg>
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -4202,7 +4202,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    {/* <svg width="260" height="80">
+                    <svg width="260" height="80">
                       
                       {_.map(legendSplitResSeg, (splitpoint, i) => {
                         if(legendSplitComorb[i] < 1){
@@ -4232,7 +4232,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg> */}
+                    </svg>
 
                     <br/><br/><br/>
                       
