@@ -1150,20 +1150,15 @@ export default function NationalReport(props) {
     useEffect(() => {
 
       let seriesDict = {};
-      let newDict = {};
       const fetchTimeSeries = async() => { 
-        const mainQ = {all: "all"};
+        const mainQ = {tag: "nationalrawfull"};
         const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+        // console.log(promStatic[0].data);
 
         const testQ = {full_fips: "_nation"};
         const promTs = await CHED_series.find(testQ,{projection:{}}).toArray();
-        promStatic.forEach ( i=> {
-          if(i.tag === "nationalraw"){
-            newDict[i[Object.keys(i)[3]]] = i.data;
-            // return newDict;
-          }
-        });
-        setData(newDict);  
+                    
+        setData(promStatic[0].data);  
 
         
         _.map(promTs, i=> {
