@@ -2654,7 +2654,7 @@ export default function NationalReport(props) {
                   <div >
                     <br/>
 
-                    <svg width="260" height="80">
+                    {/* <svg width="260" height="80">
                       
                       {_.map(legendSplitccvi, (splitpoint, i) => {
                         if(legendSplitccvi[i] < 1){
@@ -2684,7 +2684,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg>
+                    </svg> */}
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -2877,7 +2877,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    <svg width="260" height="80">
+                    {/* <svg width="260" height="80">
                       
                       {_.map(legendSplitPoverty, (splitpoint, i) => {
                         if(legendSplitPoverty[i] < 1){
@@ -2907,7 +2907,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg>
+                    </svg> */}
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -3532,7 +3532,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    <svg width="260" height="80">
+                    {/* <svg width="260" height="80">
                       
                       {_.map(legendSplitBlack, (splitpoint, i) => {
                         if(legendSplitBlack[i] < 1){
@@ -3562,7 +3562,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg>
+                    </svg> */}
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -3755,7 +3755,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    <svg width="260" height="80">
+                    {/* <svg width="260" height="80">
                       
                       {_.map(legendSplitResSeg, (splitpoint, i) => {
                         if(legendSplitResSeg[i] < 1){
@@ -3785,7 +3785,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg>
+                    </svg> */}
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -3978,7 +3978,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    <svg width="260" height="80">
+                    {/* <svg width="260" height="80">
                       
                       {_.map(legendSplitResSeg, (splitpoint, i) => {
                         if(legendSplitComorb[i] < 1){
@@ -4008,7 +4008,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg>
+                    </svg> */}
 
                     <br/><br/><br/>
                       {/* <ComposableMap 
@@ -4202,7 +4202,7 @@ export default function NationalReport(props) {
 
                   <div >
                     
-                    <svg width="260" height="80">
+                    {/* <svg width="260" height="80">
                       
                       {_.map(legendSplitResSeg, (splitpoint, i) => {
                         if(legendSplitComorb[i] < 1){
@@ -4232,7 +4232,7 @@ export default function NationalReport(props) {
                       <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                     
 
-                    </svg>
+                    </svg> */}
 
                     <br/><br/><br/>
                       
