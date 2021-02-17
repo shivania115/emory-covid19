@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo} from 'react'
+import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo, PureComponent} from 'react'
 import { Container, Header, Grid, Loader, Divider, Button, Dropdown, Image, Rail, Sticky, Ref, Accordion, Menu, Message, Transition, List} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
-import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell} from "recharts";
+import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,  PieChart, Pie, Sector} from "recharts";
 import {ArrowSvg} from 'react-simple-arrows';
 import { CSSTransition } from 'react-transition-group';
 
@@ -936,7 +936,215 @@ function DeathChartAll(props){
   );
 }
 
+
+const renderActiveShape = (props) => {
+  const RADIAN = Math.PI / 180;
+  const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 10) * cos;
+  const sy = cy + (outerRadius + 10) * sin;
+  const mx = cx + (outerRadius + 30) * cos;
+  const my = cy + (outerRadius + 30) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  const textAnchor = cos >= 0 ? 'start' : 'end';
+
+  return (
+    <g>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill="#000000">
+        {payload.demographicVar}
+        
+      </text>
+      <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+      <Sector
+        cx={cx}
+        cy={cy}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        innerRadius={outerRadius + 6}
+        outerRadius={outerRadius + 10}
+        fill={fill}
+      />
+      {/* <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" /> */}
+      {/* <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" /> */}
+      {/* <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} fill="#333">{`${payload.demogLabel} ${(percent * 100).toFixed(0)}%`}</text> */}
+      {/* <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey - payload.percentCases/100 * 10} dy={18} textAnchor={'end'} fill="#999">
+        {`(${payload.demogLabel})(${(percent * 100).toFixed(2)}%)`}
+      </text> */}
+    </g>
+  );
+};
+
+const COLORSex = ['#0088FE', '#00C49F'];
+const COLORRace = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#124432'];
+
+const RADIAN = Math.PI / 180;
+
+
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, payload, index }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 0) * cos;
+  const sy = cy + (outerRadius + 0) * sin;
+  const mx = cx + (outerRadius + 25) * cos;
+  const my = cy + (outerRadius + 35.5) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  console.log("sin", sin);
+  console.log("cos", cos);
+  console.log("midAngle", midAngle);
+
+  return (
+    <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey - payload.percentCases/100 * 10} 
+      dy = {Math.abs(90-midAngle) <= 8? -1/(Math.abs(90 - midAngle))*20 :  
+      Math.abs(90-midAngle) <= 45? 1/(Math.abs(90 - midAngle))*20: 
+      Math.abs(270-midAngle) <= 20? (Math.abs(90 - midAngle) / 90)*(-8) : 
+      Math.abs(270-midAngle) <= 45? -1/(Math.abs(90 - midAngle))*(-8): 
+      0} fill="black" textAnchor={x > cx? 'end' : 'start'} dominantBaseline="central">
+      {`${payload.demogLabel} ${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+ class Sex extends PureComponent{
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
+
+  state = {
+    activeIndex: 0,
+  };
+
+  onPieEnter = (_, index) => {
+    this.setState({
+      activeIndex: [index],
+    });
+    // console.log(index);
+  };
+
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      dataTot: [],
+    };
+  }
+  componentDidMount(){
+    fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
+      dataTot: [data['Sex'][0]['Male'][0], data['Sex'][0]['Female'][0]] }));
+  }
+   
+
+  render() {
+    const { dataTot } = this.state;
+    return (
+      <PieChart width={400} height={500}>
+        <Pie
+          
+          activeIndex={this.state.activeIndex ? this.state.activeIndex : 1}
+          // activeIndex={0 && 1}
+          activeShape={renderActiveShape}
+          data={dataTot}
+          cx={200}
+          cy={200}
+          innerRadius={60}
+          outerRadius={80}
+          fill="#8884d8"
+          dataKey="percentCases"
+          onMouseEnter={this.onPieEnter}
+          labelLine={true}
+          label = {renderCustomizedLabel}
+          
+        >
+          {dataTot.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORSex[index % COLORSex.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    );
+  }
+}
+
+
+class Race extends PureComponent{
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
+
+  state = {
+    activeIndex: 0,
+  };
+
+  onPieEnter = (_, index) => {
+    this.setState({
+      activeIndex: [index],
+    });
+    // console.log(index);
+  };
+
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      dataTot: [],
+    };
+  }
+  componentDidMount(){
+    fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
+      dataTot: [
+        data['Race'][0]['Hispanic'][0], data['Race'][0]['Asian'][0],
+        data['Race'][0]['American Natives'][0], data['Race'][0]['African American'][0],
+        data['Race'][0]['White'][0]
+      ] }));
+  }
+   
+
+  render() {
+    const { dataTot } = this.state;
+
+    return (
+      <PieChart width={500} height={500}>
+        <Pie
+          
+          activeIndex={this.state.activeIndex ? this.state.activeIndex : 1}
+          // activeIndex={0 && 1}
+          activeShape={renderActiveShape}
+          data={dataTot}
+          cx={250}
+          cy={250}
+          innerRadius={100}
+          outerRadius={120}
+          paddingAngle = {5}
+          fill="#8884d8"
+          dataKey="percentCases"
+          onMouseEnter={this.onPieEnter}
+          labelLine={true}
+          label = {renderCustomizedLabel}
+          
+        >
+          {dataTot.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORRace[index % COLORRace.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    );
+  }
+}
+
+
 export default function NationalReport(props) {
+
+
+
+  
   const characterRef = createRef();
   const [activeCharacter, setActiveCharacter] = useState('');
   const [data, setData] = useState();
@@ -1681,6 +1889,14 @@ export default function NationalReport(props) {
                     </Grid.Row>
                 </Grid>
             </div>
+
+
+
+            <Sex />
+            <Race />
+
+
+
             {/* <div id="deaths" style = {{height: 45}}> </div> */}
 
             {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
