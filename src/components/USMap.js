@@ -136,66 +136,166 @@ export default function USMap(props) {
     fetch('/data/timeseriesAll.json').then(res => res.json())
         .then(x => setAllTS(x));
 
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
+    //local
+    // fetch('/data/data.json').then(res => res.json())
+    //   .then(x => {
 
-          setData(x);       
+    //       setData(x);       
       
-          const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
+    //       const cs = scaleQuantile()
+    //     .domain(_.map(_.filter(_.map(x, (d, k) => {
+    //       d.fips = k
+    //       return d}), 
+    //       d => (
+    //           d[metric] >= 0 &&
+    //           d.fips.length === 5)),
+    //       d=> d[metric]))
+    //     .range(colorPalette);
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          if(d[metric] >= 0){
-          scaleMap[d[metric]] = cs(d[metric])}});
+    //     let scaleMap = {}
+    //     _.each(x, d=>{
+    //       if(d[metric] >= 0){
+    //       scaleMap[d[metric]] = cs(d[metric])}});
       
-        setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        _.each(x, d=> { 
-          if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-            min = d[metric]
-          }
-        });
+    //     setColorScale(scaleMap);
+    //     var max = 0
+    //     var min = 100
+    //     _.each(x, d=> { 
+    //       if (d[metric] > max && d.fips.length === 5) {
+    //         max = d[metric]
+    //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+    //         min = d[metric]
+    //       }
+    //     });
 
-        if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
-          setLegendMax(max);
-        }else if (max > 999) {
-          max = (max/1000).toFixed(0) + "K";
-          setLegendMax(max);
-        }else{
-          setLegendMax(max.toFixed(0));
+    //     if (max > 999999) {
+    //       max = (max/1000000).toFixed(0) + "M";
+    //       setLegendMax(max);
+    //     }else if (max > 999) {
+    //       max = (max/1000).toFixed(0) + "K";
+    //       setLegendMax(max);
+    //     }else{
+    //       setLegendMax(max.toFixed(0));
 
-        }
-        setLegendMin(min.toFixed(0));
-        setLegendSplit(cs.quantiles());
-          //all states' time series data
-          // let tempDict = {};
-          // const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
-          // const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-          // tempDict = promSeries[1].timeseriesAll;
-          // tempDict["_nation"] = promSeries[0].timeseries_nation;
+    //     }
+    //     setLegendMin(min.toFixed(0));
+    //     setLegendSplit(cs.quantiles());
           
-        });
+          
+    //     });
 
       
         
+      //mongo
+        if (isLoggedIn === true){
+          const fetchData = async() => {
+              const mainQ = {all: "all"};
+              const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+    
+              promStatic.forEach( i => {
+                if(i.tag === "nationalrawfull"){ //nationalraw
+                  newDict = i.data;
+                  const cs = scaleQuantile()
+                  .domain(_.map(_.filter(newDict, 
+                    d => (
+                        d[metric] > 0 &&
+                        d.fips.length === 5)),
+                    d=> d[metric]))
+                  .range(colorPalette);
+        
+                  let scaleMap = {}
+                  _.each(newDict, d=>{
+                    if(d[metric] > 0){
+                    scaleMap[d[metric]] = cs(d[metric])}});
+              
+                  setColorScale(scaleMap);
+                  setLegendSplit(cs.quantiles());
+                  
+                  //find the largest value and set as legend max
+                  _.each(newDict, d=> { 
+                    if (d[metric] > max && d.fips.length === 5) {
+                      max = d[metric]
+                    } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+                      min = d[metric]
+                    }
+                  });
+              
+                  if (max > 999999) {
+                    max = (max/1000000).toFixed(0) + "M";
+                    setLegendMax(max);
+                  }else if (max > 999) {
+                    max = (max/1000).toFixed(0) + "K";
+                    setLegendMax(max);
+                  }else{
+                    setLegendMax(max.toFixed(0));
+              
+                  }
+                  setLegendMin(min.toFixed(0));
+                  setData(newDict);
 
-    //   fetchData();
-    //   } else {
-    //   handleAnonymousLogin();
-    // }
-  },[metric]);
+                }else if(i.tag === "racedataAll"){ //race data
+                  setRaceData(i.racedataAll);       
+                }
+              });
+
+              //all states' time series data
+              let tempDict = {};
+              const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
+              const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+              tempDict = promSeries[1].timeseriesAll;
+              tempDict["_nation"] = promSeries[0].timeseries_nation;
+              setAllTS(tempDict);
+            };
+          
+          fetchData();
+          } else {
+          handleAnonymousLogin();
+        }
+        //local
+      // },[metric]);
+      //mongo
+    },[isLoggedIn]);
+
+    //mongo
+  useEffect(() =>{
+      const cs = scaleQuantile()
+      .domain(_.map(_.filter(data, 
+        d => (
+            d[metric] > 0 &&
+            d.fips.length === 5)),
+        d=> d[metric]))
+      .range(colorPalette);
+
+      let scaleMap = {}
+      _.each(data, d=>{
+        if(d[metric] > 0){
+        scaleMap[d[metric]] = cs(d[metric])}});
+
+      setColorScale(scaleMap);
+      setLegendSplit(cs.quantiles());
+      
+      //find the largest value and set as legend max
+      _.each(data, d=> { 
+        if (d[metric] > max && d.fips.length === 5) {
+          max = d[metric]
+        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+          min = d[metric]
+        }
+      });
+
+      if (max > 999999) {
+        max = (max/1000000).toFixed(0) + "M";
+        setLegendMax(max);
+      }else if (max > 999) {
+        max = (max/1000).toFixed(0) + "K";
+        setLegendMax(max);
+      }else{
+        setLegendMax(max.toFixed(0));
+
+      }
+      setLegendMin(min.toFixed(0));
+
+  }, [metric]);
 
   if (data && allTS && metric) {
     console.log(stateFips);
@@ -244,6 +344,16 @@ export default function USMap(props) {
                   <a href = "/Vaccine-Tracker">for more</a>. 
                   
                 </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>Statewide Mask Mandates in the United States<br/></b>
+
+                  Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in lower case rates during the third wave of the pandemic compared to ...
+                  <a href = "/media-hub/blog/maskmandate">for more</a>. 
+                </Grid.Column>  
 
                 <Grid.Column style={{width: 190}}>
                   <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />

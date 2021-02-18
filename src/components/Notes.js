@@ -68,10 +68,10 @@ export default function Notes(props){
                   </Grid.Column>
                   
 
-                  {false && <Grid.Column>
-                    <Image width='300' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
+                  {true && <Grid.Column>
+                    <Image width='300' height='236' href = '/media-hub/blog/maskmandate' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Blog </Header.Subheader>
-                    <Header.Content style = {{fontSize: "14pt"}}> <br/>COVID-19 and Poverty-related issues (Update to July 27th)</Header.Content>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>State-wide mask mandate in the early stages resulting in lower case rates during ...</Header.Content>
 
                   </Grid.Column>}
 
@@ -84,12 +84,12 @@ export default function Notes(props){
 
                   {true && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
-                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 1</Header.Subheader>
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/> Katie Kirkpatrick discusses the ramifications of COVID-19 in the business community...</Header.Content>
 
                   </Grid.Column>}
 
-                  {true && <Grid.Column>
+                  {false && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Podcast 2</Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/> Dr. Allison Chamberlain talks about blending public health academia and practice, how public health educ... </Header.Content>
