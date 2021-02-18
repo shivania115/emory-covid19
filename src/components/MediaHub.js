@@ -41,7 +41,7 @@ export default function MediaHub(props){
                     <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                       Date Published: Feb. 18, 2021 <br/> 
                       Media Type: Blog<br/><br/>
-                      Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in fewer case rates during the third wave of the pandemic compared to states with later or no mask mandates, our data suggests.
+                      Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in lower case rates during the third wave of the pandemic compared to states with later or no mask mandates, our data suggests.
                     </Header.Subheader>
                   </Header.Content>
               </Header>
