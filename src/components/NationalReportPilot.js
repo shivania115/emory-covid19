@@ -210,8 +210,8 @@ function StickyExampleAdjacentContext(props) {
                           <Menu.Item as='a' href="#heart" name={nameList[15]} active={props.activeCharacter == nameList[15] || activeItem === nameList[15]}
                                 onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent with Heart Disease</Header></Menu.Item>
 
-                          <Menu.Item as='a' href="#obesity" name={nameList[16]} active={props.activeCharacter == nameList[16] || activeItem === nameList[16]}
-                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent with Obesity</Header></Menu.Item>
+                          {/* <Menu.Item as='a' href="#obesity" name={nameList[16]} active={props.activeCharacter == nameList[16] || activeItem === nameList[16]}
+                                onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Percent with Obesity</Header></Menu.Item> */}
                       </Menu>
                     </div>
                   </div>
@@ -1791,7 +1791,7 @@ export default function NationalReport(props) {
                 </Header.Content>
               </Header>
             </div>
-            <div style={{paddingTop:36,textAlign:'justify', fontSize:"14pt", lineHeight: "16pt",paddingBottom:30, paddingLeft: 240, paddingRight: "2em"}}>
+            <div style={{paddingTop:36,textAlign:'justify', fontSize:"14pt", lineHeight: "16pt",paddingBottom:30, paddingLeft: 238, paddingRight: "2em"}}>
               <Header.Content style={{fontFamily:'lato', fontSize: "14pt", width: 810}}>
               The United States has reported {numberWithCommas(data['_nation']['casesfig'])} cases, the highest number of any country in the world. 
               The number of cases and deaths differ substantially across American communities. The COVID-19 U.S. Health Equity 
@@ -2029,7 +2029,6 @@ export default function NationalReport(props) {
                       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 70, paddingRight: "1em", paddingBottom: 0}}>
                         <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by race</b> </center> 
                         <br/>
-                        <br/>         
                       </Header.Subheader>
                     </div>
                   </Grid.Column>
@@ -2374,14 +2373,12 @@ export default function NationalReport(props) {
                       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
                         <center> <b style= {{fontSize: "18pt"}}>Cases by Age</b> </center> 
                         <br/>
-                        <br/>         
                       </Header.Subheader>
                   </Grid.Column>
                   <Grid.Column style = {{width: 450, paddingLeft: 145}}>
                         <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
                           <center> <b style= {{fontSize: "18pt"}}>Deaths by Age</b> </center> 
                           <br/>
-                          <br/>         
                         </Header.Subheader>
                   </Grid.Column>
                 </Grid.Row>
@@ -2560,10 +2557,10 @@ export default function NationalReport(props) {
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
             {true && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
               <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
-                <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 130}}>
+                <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 140}}>
                 COVID-19 Across U.S. Communities
-                  <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 25}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
+                  <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 15}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 3}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
                     <br/>
                     <br/>
                     COVID-19 is affecting communities differently. Community-level factors such as urbanicity,  
@@ -2862,10 +2859,9 @@ export default function NationalReport(props) {
 
 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: 240, paddingRight: "5em", paddingBottom: 40}}>
                   <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Community Vulnerability Index </b> </center> 
                   <br/>
-                  <br/>         
 
                 </Header.Subheader>
               <Grid>
@@ -2927,14 +2923,16 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
-                                        residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
-                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
-                                        100,000 that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
-                                        five groups designed to be of equal size, so that the lowest quintile contains the counties with values 
-                                        in the 0%-20% range for this county characteristic, and the highest quintile contains counties with 
-                                        values in the 80%-100% range for this county characteristic. Q2 indicates counties in the 20%-40% 
-                                        range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties in the 60%-80% range.
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                        per 100,000 residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
+                                        (top chart) or deaths (bottom chart) per 100,000 that occurred in each group of 
+                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                        to be of equal size, so that the lowest quintile contains the counties with values 
+                                        in the 0%-20% range for this county characteristic, and the very high CCVI contains 
+                                        counties with values in the 80%-100% range for this county characteristic. Low CCVI 
+                                        indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
+                                        range, and high CCVI indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -3055,13 +3053,10 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
 
-
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>Population in poverty</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Population in poverty</b> </center> 
+              </Header.Subheader>
 
               {ccvi && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -3149,17 +3144,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                          This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                          per 100,000 residents by county ranking on percentage of population in poverty. 
-                                          The y-axis displays percentage population in poverty rankings based on quintiles 
-                                          (groups of 20%). The x-axis displays the average number of COVID-19 cases (top chart) 
-                                          or deaths (bottom chart) per 100,000 that occurred in each group of counties ranked 
-                                          by percentage population in poverty. The ranking classified counties into five groups 
-                                          designed to be of equal size, so that the lowest quintile contains the counties with 
-                                          values in the 0%-20% range for this county characteristic, and the highest quintile 
-                                          contains counties with values in the 80%-100% range for this county characteristic. 
-                                          Q2 indicates counties in the 20%-40% range, Q3 indicates counties in the 40%-60% range, 
-                                          and Q4 indicates counties in the 60%-80% range.
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                        per 100,000 residents by county ranking on percentage of population in poverty. The 
+                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
+                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                        per 100,000 that occurred in each group of counties ranked by percentage population in poverty. 
+                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                        very low % in poverty contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the very high % in poverty contains counties with values in the 80%-100% 
+                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indecates 
+                                        counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -3278,13 +3273,10 @@ export default function NationalReport(props) {
               <div id="metro" style = {{height: 45}}> </div>
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
-
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>Metropolitan Status</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Metropolitan Status</b> </center> 
+              </Header.Subheader>
+             
 
               {poverty && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -3372,15 +3364,15 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                          This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                          per 100,000 residents by metropolitan status (y-axis). Inner city counties have {">"} 
-                                          1 million population or contain the entire or large part of the population of the 
-                                          largest principle city. Large suburban counties have a population {">"} 1 million, but 
-                                          do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. 
-                                          Small cities have populations {"<"} 250,000 and are near large cities. Smallest city counties 
-                                          have an urbanized area with population between 10,000-49,999. Remote rural counties 
-                                          have populations less than 10,000 individuals. This urban-rural classification comes 
-                                          from the National Center for Health Statistics.
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                        per 100,000 residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
+                                        million population or contain the entire or large part of the population of the largest 
+                                        principle city. Large suburban counties have a population &#60; 1 million, but do not qualify 
+                                        as inner city. Small suburban counties have a population of 250,000-999,999. Small cities 
+                                        have populations &#62; 250,000 and are near large cities. Rural areas near cities have an 
+                                        urbanized area with population between 10,000-49,999. Remote rural counties have 
+                                        populations less than 10,000 individuals. This urban-rural classification scheme is 
+                                        from the National Center for Health Statistics.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -3504,12 +3496,9 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>Region</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Region</b> </center> 
+              </Header.Subheader>
 
 
                   {urbrur && <Grid>
@@ -3582,7 +3571,7 @@ export default function NationalReport(props) {
                         {
                             key: 'acquire-dog',
                             title: {
-                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the dataRegionRegionRegion</u>,
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
                                 icon: 'dropdown',
                             },
                             content: {
@@ -3590,7 +3579,8 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        RegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegionRegion 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                        per 100,000 residents by geographic region (y-axis).
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -3710,12 +3700,10 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>African American population</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>African American population</b> </center> 
+              </Header.Subheader>
+              
 
 
               {region && <Grid>
@@ -3806,15 +3794,16 @@ export default function NationalReport(props) {
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by percentage African American population ranking. The y-axis 
-                                        displays percentage African American population rankings based on quintiles (groups 
-                                        of 20%). The x-axis displays the average number of COVID-19 cases (top chart) or 
-                                        deaths (bottom chart) per 100,000 that occurred in each group of counties ranked 
-                                        by percentage percentage African American. The ranking classified counties into 
-                                        five groups designed to be of equal size, so that the lowest quintile contains 
-                                        the counties with values in the 0%-20% range for this county characteristic, and 
-                                        the highest quintile contains counties with values in the 80%-100% range for this 
-                                        county characteristic. Q2 indicates counties in the 20%-40% range, Q3 indicates 
-                                        counties in the 40%-60% range, and Q4 indicates counties in the 60%-80% range.
+                                        displays percentage African American population rankings based on quintiles (groups of 20%). 
+                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                        per 100,000 that occurred in each group of counties ranked by percentage percentage African 
+                                        American. The ranking classified counties into five groups designed to be of equal size, 
+                                        so that the very low % African American contains the counties with values in the 0%-20% 
+                                        range for this county characteristic, and the very high % African American contains 
+                                        counties with values in the 80%-100% range for this county characteristic. Low % 
+                                        African American indicates counties in the 20%-40% range, moderate % African American 
+                                        indicates counties in the 40%-60% range, and high % African American indecates counties 
+                                        in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -3933,13 +3922,10 @@ export default function NationalReport(props) {
               <div id="resseg" style = {{height: 45}}> </div>
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
-
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Residential Segregation Index</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Residential Segregation Index</b> </center> 
+              </Header.Subheader>
 
               {black && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -4027,17 +4013,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                        100,000 residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
+                                        that occurred in each group of counties ranked by residential segregation. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the very 
+                                        low segregation contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the very high segregation contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low segregation indicates counties in 
+                                        the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
+                                        high segregation indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4157,12 +4143,9 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Underlying Comorbidity</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Underlying Comorbidity</b> </center> 
+              </Header.Subheader>
 
               {black && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -4250,17 +4233,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
-                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                        100,000 residents by percent of population with any underlying conditions. The y-axis 
+                                        displays percent of population with any underlying conditions rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with any underlying conditions. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with very 
+                                        low percentage of any underlying conditions contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with very high percentage of any underlying conditions contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with any underlying conditions indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with any underlying conditions indicates counties in the 40%-60% range, and 
+                                        high percentage of population with any underlying conditions indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4380,13 +4363,11 @@ export default function NationalReport(props) {
               <div id="copd" style = {{height: 45}}> </div>
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
-
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by COPD</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Chronic Obstructive Pulmonary Disease</b> </center> 
+              </Header.Subheader>
+              
 
               {black && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -4444,17 +4425,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
-                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                        100,000 residents by percent of population with COPD. The y-axis 
+                                        displays percent of population with COPD rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with COPD. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with very 
+                                        low percentage of COPD contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with very high percentage of COPD contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with COPD indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with COPD indicates counties in the 40%-60% range, and 
+                                        high percentage of population with COPD indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4581,12 +4562,10 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by CKD</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Chronic Kidney Disease</b> </center> 
+              </Header.Subheader>
+              
 
               {black && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -4644,17 +4623,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
-                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                        100,000 residents by percent of population with CKD. The y-axis 
+                                        displays percent of population with CKD rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with CKD. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with very 
+                                        low percentage of CKD contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with very high percentage of CKD contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with CKD indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with CKD indicates counties in the 40%-60% range, and 
+                                        high percentage of population with CKD indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4775,12 +4754,10 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by diabetes 2018</b> </center> 
-                    <br/>
-                    <br/>         
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Diabetes 2018</b> </center> 
+              </Header.Subheader>
 
-                  </Header.Subheader>
 
               {black && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -4838,17 +4815,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
-                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                        100,000 residents by percent of population with diabetes. The y-axis 
+                                        displays percent of population with diabetes rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with diabetes. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with very 
+                                        low percentage of diabetes contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with very high percentage of diabetes contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with diabetes indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with diabetes indicates counties in the 40%-60% range, and 
+                                        high percentage of population with diabetes indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4970,12 +4947,10 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by heart disease</b> </center> 
-                    <br/>
-                    <br/>         
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Heart disease</b> </center> 
+              </Header.Subheader>
 
-                  </Header.Subheader>
 
               {black && <Grid>
                 <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
@@ -5033,17 +5008,17 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
-                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                        100,000 residents by percent of population with heart disease. The y-axis 
+                                        displays percent of population with heart disease rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with heart disease. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with very 
+                                        low percentage of heart disease contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with very high percentage of heart disease contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with heart disease indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with heart disease indicates counties in the 40%-60% range, and 
+                                        high percentage of population with heart disease indecates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5160,198 +5135,7 @@ export default function NationalReport(props) {
               </Grid>}
 
 
-              <div id="obesity" style = {{height: 45}}> </div>
-
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
-
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "11em", paddingRight: "5em", paddingBottom: 40}}>
-                    <center> <b style= {{fontSize: "18pt"}}>COVID-19 by obesity 2018</b> </center> 
-                    <br/>
-                    <br/>         
-
-                  </Header.Subheader>
-
-              {black && <Grid>
-                <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                  <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
-                    
-
-                  <div >
-                    
-                    <svg width="260" height="80">
-                      
-                      {_.map(legendSplitResSeg, (splitpoint, i) => {
-                        if(legendSplitComorb[i] < 1){
-                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitComorb[i].toFixed(1)}</text>                    
-                        }else if(legendSplitComorb[i] > 999999){
-                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitComorb[i]/1000000).toFixed(0) + "M"}</text>                    
-                        }else if(legendSplitComorb[i] > 999){
-                          return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitComorb[i]/1000).toFixed(0) + "K"}</text>                    
-                        }
-                        return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitComorb[i].toFixed(0)}</text>                    
-                      })} 
-                      <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinComorb}</text>
-                      <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxComorb}</text>
-
-
-                      {_.map(colorPalette, (color, i) => {
-                        return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                      })} 
-
-
-                      <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                      <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
-
-
-                      <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                      <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                      <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
-                    
-
-                    </svg>
-
-                    <br/><br/><br/>
-                      
-                      <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/obesity.png' />
-                  </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by residential segregation index. The y-axis displays residential 
-                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by residential segregation. The 
-                                        ranking classified counties into five groups designed to be of equal size, so that 
-                                        the lowest quintile contains the counties with values in the 0%-20% range for this 
-                                        county characteristic, and the highest quintile contains counties with values in 
-                                        the 80%-100% range for this county characteristic. Q2 indicates counties in the 
-                                        20%-40% range, Q3 indicates counties in the 40%-60% range, and Q4 indicates counties 
-                                        in the 60%-80% range.
-                                        </Header.Subheader>
-                                      </Header.Content>
-                                    </Header>
-                                ),
-                              },
-                          }
-                      ]
-
-                      } />
-
-                  </Grid.Column>
-                  <Grid.Column>
-                  <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                      <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                      COVID-19 Cases by <br/> Percentage of Population with obesity 2018
-                      </Header.Content>
-                    </Header>
-                        <VictoryChart
-                          theme={VictoryTheme.material}
-                          width={530}
-                          height={180}
-                          domainPadding={20}
-                          minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                          style = {{fontSize: "14pt"}}
-                          containerComponent={<VictoryContainer responsive={false}/>}
-                        >
-                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                          <VictoryBar
-                            horizontal
-                            barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                            data={[
-                                  {key: nationalBarChart['caserate7day'][0]['obesity 2018'][0]['label'], 'value': (nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure']/nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['obesity 2018'][1]['label'], 'value': (nationalBarChart['caserate7day'][0]['obesity 2018'][1]['measure']/nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['obesity 2018'][2]['label'], 'value': (nationalBarChart['caserate7day'][0]['obesity 2018'][2]['measure']/nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['obesity 2018'][3]['label'], 'value': (nationalBarChart['caserate7day'][0]['obesity 2018'][3]['measure']/nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate7day'][0]['obesity 2018'][4]['label'], 'value': (nationalBarChart['caserate7day'][0]['obesity 2018'][4]['measure']/nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['caserate7day'][0]['obesity 2018'][0]['measure'] || 0}
-
-
-
-                            ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: casesColor[1]
-                              }
-                            }}
-                            x="key"
-                            y="value"
-                          />
-                        </VictoryChart>
-
-                        <Header.Content style = {{width: 550}}>
-                          
-                          <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
-                          </Header.Content>
-                        </Header.Content>
-                          
-                          <br/>
-                          <br/>
-
-                      <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                          <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                          COVID-19 Deaths by <br/> Percentage of Population with obesity 2018
-                      </Header.Content>
-                    </Header>
-                        <VictoryChart
-                          theme={VictoryTheme.material}
-                          width={530}
-                          height={180}
-                          domainPadding={20}
-                          minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                          style = {{fontSize: "14pt"}}
-                          containerComponent={<VictoryContainer responsive={false}/>}
-                        >
-                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                          <VictoryBar
-                            horizontal
-                            barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                            data={[
-                                  {key: nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure']/nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality7day'][0]['obesity 2018'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity 2018'][1]['measure']/nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality7day'][0]['obesity 2018'][2]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity 2018'][2]['measure']/nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality7day'][0]['obesity 2018'][3]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity 2018'][3]['measure']/nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality7day'][0]['obesity 2018'][4]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity 2018'][4]['measure']/nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity 2018'][0]['measure'] || 0}
-
-
-
-                            ]}
-                            labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: mortalityColor[1]
-                              }
-                            }}
-                            x="key"
-                            y="value"
-                          />
-                        </VictoryChart>
-
-                        <Header.Content style = {{width: 550}}>
-                            <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
-                            </Header.Content>
-                        </Header.Content>
-                    </Grid.Column>
-                </Grid.Row> 
-              </Grid>}
+              
 
 
               
