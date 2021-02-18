@@ -28,6 +28,28 @@ export default function MediaHub(props){
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Row>
+            <div style = {{paddingBottom: 10}}>
+              <Image width='390' height='290' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />            
+            </div>
+          </Grid.Row>
+          <Grid.Row>
+            <div>
+              <Header as='h2'>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/maskmandate'>Statewide Mask Mandates in the United States</Header.Content></div>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                      Date Published: Feb. 18, 2021 <br/> 
+                      Media Type: Blog<br/><br/>
+                      Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in fewer case rates during the third wave of the pandemic compared to states with later or no mask mandates, our data suggests.
+                    </Header.Subheader>
+                  </Header.Content>
+              </Header>
+            </div>
+          </Grid.Row>
+        </Grid.Column>
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/podcast images/Katie Kirkpatrick.jpeg' />            
@@ -71,7 +93,7 @@ export default function MediaHub(props){
             </Grid.Row>
           </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution' src='/podcast images/Robert Breiman.png' />            

@@ -346,6 +346,16 @@ export default function USMap(props) {
                 </Grid.Column>
 
                 <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b>Statewide Mask Mandates in the United States<br/></b>
+
+                  Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in lower case rates during the third wave of the pandemic compared to ...
+                  <a href = "/media-hub/blog/maskmandate">for more</a>. 
+                </Grid.Column>  
+
+                <Grid.Column style={{width: 190}}>
                   <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
                 </Grid.Column>
                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
