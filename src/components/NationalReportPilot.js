@@ -133,8 +133,8 @@ function goToAnchor(anchor) {
   return false;
 }
 const contextRef = createRef()
-const nameList = ['COVID-19 National Health Equity Report', 'Cases in the U.S. Over Time', 
-'Deaths in the U.S. Over Time', '50% of Cases Comes From These States', 'COVID-19 Across U.S. Communities',
+const nameList = ['COVID-19 National Health Equity Report', 'Cases & Deaths in the U.S. Over Time', 
+ '50% of Cases Comes From These States', 'Cases & Deaths by race, age, and sex', 'COVID-19 Across U.S. Communities',
  'COVID-19 by Community Vulnerability Index', 'COVID-19 by Percent in Poverty', 'COVID-19 by Metropolitan Status', 
  'COVID-19 by Region', 'COVID-19 by Percent African American', 'COVID-19 by Residential Segregation Index',
  "COVID-19 by Underlying Comorbidity", "COVID-19 by Percent COPD", 'COVID-19 by Percent CKD',
@@ -168,10 +168,10 @@ function StickyExampleAdjacentContext(props) {
                           <Menu.Item as='a' href="#cases" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
                                 onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
 
-                          <Menu.Item as='a' href="#deaths" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
+                          <Menu.Item as='a' href="#half" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
                                 onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
-
-                          <Menu.Item as='a' href="#half" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
+                          
+                          <Menu.Item as='a' href="#who" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
                                 onClick={(e, { name }) => { setsTate({ activeItem: name }) }}><Header as='h4'>{nameList[3]}</Header></Menu.Item>
 
                           <Menu.Item as='a' href="#commu" name={nameList[4]} active={props.activeCharacter == nameList[4] || activeItem === nameList[4]}
@@ -2069,7 +2069,7 @@ export default function NationalReport(props) {
                     the United States were attributed to {(states50[0]["statenames"].split(",")).length} states: <br/>
 
                     <br/>
-                  <center> <b style = {{fontSize:"18pt"}}>{states50[0]["statenames"]}</b> </center>
+                  <center > <b style = {{fontSize:"18pt"}}>{states50[0]["statenames"]}</b> </center>
                   </Header.Subheader>
                 </Header.Content>
               </Header>
@@ -2090,7 +2090,8 @@ export default function NationalReport(props) {
                   Deaths are highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({(demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0)} deaths per 100,000), 
                   followed by {Object.keys(demog_descriptives['Age'][0])[1]} age group ({(demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0)} deaths per 100,000). 
                   Those {(Object.keys(demog_descriptives['Age'][0])[3] === "0 - 4" && Object.keys(demog_descriptives['Age'][0])[2] === "5 - 17") ? " under 18 ": "in " + (Object.keys(demog_descriptives['Age'][0])[3] + " and " + Object.keys(demog_descriptives['Age'][0])[2] + " age group ")} are, however, 
-                  experiencing the lowest mortality from COVID-19.
+                  experiencing the lowest mortality from COVID-19. Males make up {(nationalDemog['Sex'][0]['Male'][0]['percentPop']).toFixed(0) + "%"} of the population and {(nationalDemog['Sex'][0]['Male'][0]['percentCases']).toFixed(0) + "%"} of cases, yet they account for 
+                  {" " + (nationalDemog['Sex'][0]['Male'][0]['percentDeaths']).toFixed(0) + "%"} of deaths.
                     
                   </Header.Subheader>
                 </Header.Content>
@@ -2756,7 +2757,7 @@ export default function NationalReport(props) {
                                   </Header.Content>
                               </Header.Content> */}
                     </div>
-                    <Accordion style = {{paddingTop: 20, paddingLeft: 103, paddingBottom: 50}} defaultActiveIndex={1} panels={[
+                    {/* <Accordion style = {{paddingTop: 20, paddingLeft: 103, paddingBottom: 28}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -2777,16 +2778,16 @@ export default function NationalReport(props) {
                           }
                       ]
 
-                      } />
+                      } /> */}
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
 
               <div id="commu" style = {{height: 45}}> </div>
 
-            <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center>
+            <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 0}}/> </center>
             {true && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
-              <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
+              <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 29}}>
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 140}}>
                   COVID-19 Across U.S. Communities
                   <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 15}}>
