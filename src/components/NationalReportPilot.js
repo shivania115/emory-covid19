@@ -1969,7 +1969,7 @@ export default function NationalReport(props) {
 
 
 
-            <Sex />
+            
             <Race />
 
 
