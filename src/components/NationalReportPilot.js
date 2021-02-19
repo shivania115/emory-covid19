@@ -278,6 +278,13 @@ function ChartSection(props){
   //const [activeItem, setActiveItem] = useState('All');
   const [chartNo, setChartNo] = useState(0);
   const data = props.data;
+  const dailyCases = props.dailyCases;
+  const dailyDeaths = props.dailyDeaths;
+  const monthNames = props.monthNames;
+  const mean7dayCases = props.mean7dayCases;
+  const mortalityMean = props.mortalityMean;
+  const percentChangeCases = props.percentChangeCases;
+  const percentChangeMortality = props.percentChangeMortality;
   //const chart = props.chart;
   const [barName, setBarName] = useState('dailyCases');
   const [lineName, setLineName] = useState('caseRateMean');
@@ -307,7 +314,7 @@ useEffect(()=>{
     data[data.length-1].t]);
     if(chartNo===0){
       setDisabled(true);
-      setTimeout(()=>setChartNo(chartNo+1), 9000);
+      setTimeout(()=>setChartNo(chartNo+1), 10000);
     } else {
       setTimeout(()=>setChartNo(chartNo+1), 8000);
     }
@@ -332,8 +339,8 @@ useEffect(()=>{
   console.log('chartNo', chartNo);
 
   return(
-  <Grid.Row style={{paddingLeft: '2rem', paddingBottom: '0rem'}}>  
-  <Header as='h2' style={{paddingTop: 30, paddingLeft: 80, color: mortalityColor[1], textAlign:'center',fontSize:"22pt"}}>
+  <Grid.Row style={{paddingLeft: 20, paddingBottom: '0rem'}}>  
+  <Header as='h2' style={{paddingTop: 30, paddingLeft: 60, color: mortalityColor[1], textAlign:'center',fontSize:"22pt"}}>
     <Header.Content>
       How have {chartNo<3 ? 'cases' : 'deaths'} in the U.S. changed over time?
     </Header.Content>
@@ -369,7 +376,75 @@ useEffect(()=>{
     }
   }
     )()}
-    <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setChartNo(0);}}/>
+    
+    <Button style={{marginLeft: 780}} content='Play' icon='play' disabled={disabled} onClick={() => {setChartNo(0);}}/>
+   
+    {(()=>{
+      if (chartNo<3){
+        return (<Accordion style = {{paddingLeft: 35}} defaultActiveIndex={1} panels={[
+        {
+            key: 'acquire-dog',
+            title: {
+                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                icon: 'dropdown',
+            },
+            content: {
+                content: (
+                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
+                  <Header.Content  style={{fontSize: "14pt"}}>
+                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
+                      This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
+                      new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
+                      an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
+                      We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
+                      the average new cases over the past 14-day period. 
+                      <br/>
+                      <br/>
+                      *14-day period includes {monthNames[new Date(data[data.length - 15].t*1000).getMonth()] + " " + new Date(data[data.length - 15].t*1000).getDate() + ", " + new Date(data[data.length - 15].t*1000).getFullYear()} to {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}.
+
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              ),
+            },
+        }
+    ]
+          } />)}
+      else{
+        return (<Accordion style = {{paddingLeft: 35}} defaultActiveIndex={1} panels={[
+        {
+            key: 'acquire-dog',
+            title: {
+                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                icon: 'dropdown',
+            },
+            content: {
+                content: (
+                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
+                  <Header.Content  style={{fontSize: "14pt"}}>
+                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
+                          This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
+                          per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                          associated with COVID-19 reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
+                          an average of {mortalityMean} new deaths per day reported over the past 7 days. 
+                          We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
+                          <br/>
+                          <br/>
+                          *14-day period includes {monthNames[new Date(data[data.length - 15].t*1000).getMonth()] + " " + new Date(data[data.length - 15].t*1000).getDate() + ", " + new Date(data[data.length - 15].t*1000).getFullYear()} to {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}.
+                        
+                        </Header.Subheader>
+                      </Header.Content>
+                    </Header>
+                ),
+              },
+          }
+      ]
+
+      } />)}
+    }
+    )()
+    }
+
   </ Grid.Row>
   )
 }
@@ -411,9 +486,9 @@ function CaseChartAll(props){
   // console.log("data[data.length-1].t", data[data.length-1].t);
   
   return(
-    <Grid.Column style={{paddingTop:'1rem', paddingLeft: 40, width: 850, height: 500, position:'relative'}}>
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: 35, width: 850, height: 450, position:'relative'}}>
 
-      <ComposedChart width={830} height={420} data={data}
+      <ComposedChart width={850} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" ticks={ticks} domain={[1585713600, 1610859600]} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
@@ -465,18 +540,18 @@ function CaseChartAll(props){
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={visible3} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'13.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-26rem', left:'12.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={visible4} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-36rem', left:'23rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-36.5rem', left:'22rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'36rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'33rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 175, y: 243 }} end={{ x: 129, y: 336 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 255, y: 327 }} end={{ x: 263, y: 350 }} strokeWidth='0.8'/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 370, y: 285 }} end={{ x: 358, y: 302 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 662, y: 110 }} end={{ x: 677, y: 125 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 275, y: 330 }} end={{ x: 283, y: 350 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 390, y: 285 }} end={{ x: 375, y: 302 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 650, y: 110 }} end={{ x: 675, y: 125 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -668,9 +743,9 @@ function CaseChart90(props){
   
 
   return(
-    <Grid.Column style={{paddingTop: '1em', paddingLeft: 0, width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop: '1em', paddingLeft: 35, width: 850, height: 450}}>
 
-      <ComposedChart width={830} height={420} data={data}
+      <ComposedChart width={850} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" type="number" domain={[data[data.length-90].t,'dataMax']} padding={{ left: 3, right: 3 }}
@@ -715,7 +790,7 @@ function CaseChart90(props){
       </ComposedChart>
       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact style={{ width: '15rem', top: barName==='dailyCases' ? '-32rem' : '-29rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '15rem', top: barName==='dailyCases' ? '-29rem' : '-32rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -777,9 +852,9 @@ function CaseChart14(props){
   var wait=0;
 
   return(
-    <Grid.Column style={{paddingTop:'1rem', paddingLeft: '1rem', width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: 35, width: 850, height: 450}}>
 
-      <ComposedChart width={830} height={420} data={data}
+      <ComposedChart width={850} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey="t" type="number" domain={[data[data.length-14].t,'dataMax']} padding={{ left: 5, right: 5 }}
@@ -875,7 +950,7 @@ function DeathChartAll(props){
   var wait=0;
 
   return(
-    <Grid.Column style={{paddingTop:'1rem', paddingLeft: 40, width: 850, height: 500}}>
+    <Grid.Column style={{paddingTop:'1rem', paddingLeft: 35, width: 850, height: 450}}>
 
 
       <ComposedChart height={420} width={850} data={data}
@@ -923,13 +998,13 @@ function DeathChartAll(props){
       <Message compact style={{ width: '10rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-27rem', left:'14rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '8rem', top:'-30rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 295, y: 382 }} end={{ x: 269, y: 442 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 530, y: 440 }} end={{ x: 538, y: 465 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 305, y: 380 }} end={{ x: 279, y: 442 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 520, y: 440 }} end={{ x: 528, y: 465 }} strokeWidth='0.8'/> : null}
       
       </Grid.Column>   
 
@@ -1822,9 +1897,11 @@ export default function NationalReport(props) {
                     </ Grid.Row>
                     <Grid.Row columns={1}> */}
                     <ChartSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                               tickFormatter={caseTickFmt} chart='case'/>
+                               tickFormatter={caseTickFmt} chart='case' dailyCases={dailyCases} monthNames={monthNames} 
+                               mean7dayCases={mean7dayCases} percentChangeCases={percentChangeCases} dailyDeaths={dailyDeaths}
+                               mortalityMean={mortalityMean} percentChangeMortality={percentChangeMortality}/>
                     <Grid.Row>
-                          <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
+                          {/* <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -1882,7 +1959,7 @@ export default function NationalReport(props) {
                           }
                       ]
 
-                      } />
+                      } /> */}
                   </Grid.Row>
                           {/* </div> */}
                         {/* </ Grid.Column> */}
