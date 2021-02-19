@@ -1781,7 +1781,7 @@ export default function NationalReport(props) {
                                     </Waypoint> 
                                     </center>
             <div>     	
-              <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: "9em", paddingRight: "2em"}}>
+              <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: 270, paddingRight: "2em"}}>
                 <Header.Content>
                 <b> COVID-19 National Health Equity Report </b> 
                 <Header.Subheader style={{fontWeight:300,fontSize:"20pt", paddingTop:16, color: mortalityColor[1]}}> 
@@ -1981,9 +1981,9 @@ export default function NationalReport(props) {
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center>
             <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
               <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
-                <Header.Content style = {{paddingLeft: 50}}>
+                <Header.Content style = {{paddingLeft: 54}}>
                   Where are cases and deaths occurring?
-                  <Header.Subheader style={{ width: 825, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 5 }}>
+                  <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
 
                     Cases and deaths attributed to COVID-19 are rapidly rising in some counties. Additionally, 
                     the geographic distribution of the hardest-hit counties is changing, with the virus shifting from 
@@ -2003,9 +2003,9 @@ export default function NationalReport(props) {
             <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
               <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
                 <Header.Content style = {{paddingLeft: 50}}>
-                &nbsp;&nbsp;Who is impacted by COVID-19?
-                  <Header.Subheader style={{width: 825, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 5}}>
-                  <center> <b style= {{fontSize: "18pt", paddingLeft: -5}}>Cases and deaths by race, age, and sex </b> </center> 
+                &nbsp;Who is impacted by COVID-19?
+                  <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
+                  <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and deaths by race, age, and sex </b> </center> 
                   <br/><br/>
                   While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
                   affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0)} cases per 100,000 individuals, 
@@ -2026,7 +2026,7 @@ export default function NationalReport(props) {
                 <Grid.Row columns = {1} style = {{width: 1000}}>
                   <Grid.Column style = {{width: 450, paddingLeft: 180}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 70, paddingRight: "1em", paddingBottom: 0}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
                         <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by race</b> </center> 
                         <br/>
                       </Header.Subheader>
@@ -2175,7 +2175,7 @@ export default function NationalReport(props) {
                                   </Header.Content>
                               </Header.Content> */}
                     </div>
-                    <Accordion style = {{paddingTop: 20, paddingLeft: 100, paddingBottom: 50}} defaultActiveIndex={1} panels={[
+                    <Accordion style = {{paddingTop: 20, paddingLeft: 103, paddingBottom: 50}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -2358,7 +2358,7 @@ export default function NationalReport(props) {
               <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 0}}/> </center>
 
               <Grid style = {{paddingTop: 0, paddingBottom: 0}}>
-                <Grid.Row style = {{width: 1000, paddingLeft: 350}}>
+                <Grid.Row style = {{width: 1000, paddingLeft: 305}}>
                   <svg width = "1000" height = "40">
                     <rect x = {40} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
                     <text x = {65} y = {30} style = {{ fontSize: "19px"}}> Percent of Cases</text>
@@ -2375,7 +2375,7 @@ export default function NationalReport(props) {
                         <br/>
                       </Header.Subheader>
                   </Grid.Column>
-                  <Grid.Column style = {{width: 450, paddingLeft: 145}}>
+                  <Grid.Column style = {{width: 450, paddingLeft: 100}}>
                         <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
                           <center> <b style= {{fontSize: "18pt"}}>Deaths by Age</b> </center> 
                           <br/>
@@ -2469,7 +2469,7 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 450}}>
                     {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center> */}
                     
-                      <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
+                      <div style={{paddingLeft: 64, paddingRight: "0em"}}>
                       
                       <VictoryChart
                           theme={VictoryTheme.material}
@@ -2558,9 +2558,9 @@ export default function NationalReport(props) {
             {true && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
               <Header as='h2' style={{color: '#b2b3b3', textAlign:'center',fontSize:"22pt", paddingTop: 32}}>
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 140}}>
-                COVID-19 Across U.S. Communities
+                  COVID-19 Across U.S. Communities
                   <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 15}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 3}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 18}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
                     <br/>
                     <br/>
                     COVID-19 is affecting communities differently. Community-level factors such as urbanicity,  
@@ -2859,7 +2859,7 @@ export default function NationalReport(props) {
 
 
 
-              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: 240, paddingRight: "5em", paddingBottom: 40}}>
+              <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:0, textAlign: "left", paddingLeft: 234, paddingRight: "5em", paddingBottom: 40}}>
                   <center> <b style= {{fontSize: "18pt"}}>COVID-19 by Community Vulnerability Index </b> </center> 
                   <br/>
 
@@ -3055,7 +3055,7 @@ export default function NationalReport(props) {
 
               
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Population in poverty</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Population in poverty</b> </center> 
               </Header.Subheader>
 
               {ccvi && <Grid>
@@ -3274,7 +3274,7 @@ export default function NationalReport(props) {
 
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Metropolitan Status</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Metropolitan Status</b> </center> 
               </Header.Subheader>
              
 
@@ -3497,7 +3497,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Region</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Region</b> </center> 
               </Header.Subheader>
 
 
@@ -3701,7 +3701,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>African American population</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>African American population</b> </center> 
               </Header.Subheader>
               
 
@@ -3924,7 +3924,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
               
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Residential Segregation Index</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Residential Segregation Index</b> </center> 
               </Header.Subheader>
 
               {black && <Grid>
@@ -4144,7 +4144,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Underlying Comorbidity</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Underlying Comorbidity</b> </center> 
               </Header.Subheader>
 
               {black && <Grid>
@@ -4365,7 +4365,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
               
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Chronic Obstructive Pulmonary Disease</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Chronic Obstructive Pulmonary Disease</b> </center> 
               </Header.Subheader>
               
 
@@ -4563,7 +4563,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Chronic Kidney Disease</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Chronic Kidney Disease</b> </center> 
               </Header.Subheader>
               
 
@@ -4755,7 +4755,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Diabetes 2018</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Diabetes 2018</b> </center> 
               </Header.Subheader>
 
 
@@ -4948,7 +4948,7 @@ export default function NationalReport(props) {
               <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 160}}>Heart disease</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Heart disease</b> </center> 
               </Header.Subheader>
 
 
