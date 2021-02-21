@@ -399,260 +399,51 @@ export default function StateMap(props) {
 
      //local fetch
 
-  // useEffect(()=>{
-  //   fetch('/data/racedataAll.json').then(res => res.json())
-  //     .then(x => {
-  //       setRaceData(x);
-  //       // setTemp(x[stateFips]);
-  //     });
-  //   fetch('/data/timeseriesAll.json').then(res => res.json())
-  //     .then(x => {
-  //       let caseRate = 0;
-  //         let mortality = 0;
-  //         let percentChangeCase = 0;
-  //         let percentChangeMortality = 0;
-  //         let index = 0;
-  //         let indexP = 0;
-  //         let hospD = 0;
-  //         let totCases = 0;
-  //         let percentChangeHospDaily = 0;
-  //         let percentPositive = 0;
-  //       setStateTS(x[stateFips]);
-  //       if(stateFips === "_nation"){
-  //                         caseRate = 0;
-  //                         mortality = 0;
-  //                         totCases = 0;
-  //                         hospD = 0;
-  //                       }else{
-  //                         //case rate
-  //                         caseRate = x[stateFips][x[stateFips].length-1].dailyCases;
-  //                         percentChangeCase = x[stateFips][x[stateFips].length-1].percent14dayDailyCases;
-                          
-  //                         //mortality rate
-  //                         mortality = x[stateFips][x[stateFips].length-1].dailyMortality;
-  //                         percentChangeMortality = x[stateFips][x[stateFips].length-1].percent14dayDailyDeaths;
-        
-  //                         //hospitalization rate
-  //                         percentChangeHospDaily = x[stateFips][x[stateFips].length-1].percent14dayhospDaily;
-  //                         hospD = x[stateFips][x[stateFips].length-1].hospDaily;
-        
-  //                         //testing positive rate
-  //                         percentPositive = x[stateFips][x[stateFips].length-1].percentPositive;
-        
-  //                         totCases = x[stateFips][x[stateFips].length-1].cases;
-        
-  //                       }
-
-  //       //manipulate string
-  //           if (percentChangeCase.toFixed(0) > 0){
-  //             setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
-  //           }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
-  //             setPercentChangeCases(percentChangeCase.toFixed(0).substring(1) + "%");
-  //           }else{
-  //             setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
-  //           }
-
-  //           if (percentChangeMortality.toFixed(0) > 0){
-  //             setPercentChangeMortality("+" + percentChangeMortality.toFixed(0) + "%");
-  //           }else if(percentChangeMortality.toFixed(0).substring(1) === "0"){
-  //             setPercentChangeMortality(percentChangeMortality.toFixed(0).substring(1) + "%");
-  //           }else{
-  //             setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
-  //           }
-
-  //           if (percentChangeHospDaily.toFixed(0) > 0){
-  //             setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
-  //           }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
-  //             setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
-  //           }else{
-  //             setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
-  //           }
-
-  //           //set values
-  //           setPctPositive(percentPositive.toFixed(0) + "%");
-  //           // setIndexP(indexP);
-  //           // setIndex(index);
-  //           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
-  //           setMortality(numberWithCommas(mortality.toFixed(0)));
-  //           // setTotalCases(numberWithCommas(totCases.toFixed(0)));
-  //           setHospDaily(numberWithCommas(hospD.toFixed(0)));
-  //     });
-
-  // }, [stateFips]);
-
-  // useEffect(()=>{
-  //   if (metric) {
-  //   const configMatched = configs.find(s => s.fips === stateFips);
-
-  //     if (!configMatched){
-  //       history.push('/_nation');
-  //     }else{
-
-  //       setConfig(configMatched);
-
-  //       setStateName(configMatched.name);
-
-  //       fetch('/data/data.json').then(res => res.json())
-  //         .then(x => {
-  //           setData(x);
-
-  //           const cs = scaleQuantile()
-  //           .domain(_.map(_.filter(_.map(x, (d, k) => {
-  //             d.fips = k
-  //             return d}), 
-  //             d => (
-  //                 d[metric] > 0 &&
-  //                 d.fips.length === 5)),
-  //             d=> d[metric]))
-  //           .range(colorPalette);
-
-  //           let scaleMap = {}
-  //           _.each(_.filter(_.map(x, (d, k) => {
-  //             d.fips = k
-  //             return d}), 
-  //             d => (
-  //                 d[metric] > 0 &&
-  //                 d.fips.length === 5))
-  //                 , d=>{
-  //             scaleMap[d[metric]] = cs(d[metric])});
-
-  //           setColorScale(scaleMap);
-  //           var max = 0
-  //           var min = 100
-  //           _.each(x, d=> { 
-  //             if (d[metric] > max && d.fips.length === 5) {
-  //               max = d[metric]
-  //             } else if (d.fips.length === 5 && d[metric] < min && d[metric] > 0){
-  //               min = d[metric]
-  //             }
-  //           });
-
-  //           if (max > 999) {
-  //             max = (max/1000).toFixed(0) + "K";
-  //             setLegendMax(max);
-  //           }else{
-  //             setLegendMax(max.toFixed(0));
-
-  //           }
-  //           setLegendMin(min.toFixed(0));
-
-  //           var split = scaleQuantile()
-  //           .domain(_.map(_.filter(_.map(x, (d, k) => {
-  //             d.fips = k
-  //             return d}), 
-  //             d => (
-  //                 d[metric] > 0 &&
-  //                 d.fips.length === 5)),
-  //             d=> d[metric]))
-  //           .range(colorPalette);
-
-  //           setLegendSplit(split.quantiles());
-  //         });
-        
-  //       fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
-  //         .then(x => {
-
-  //           let countyMost = '';
-  //           let covidmortality7dayfig = 0;
-            
-
-  //           _.each(x, (v, k)=>{
-
-  //             if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
-  //               countyMost = k.substring(2, 5);
-  //               covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
-  //             }
-              
-  //             setCountyFips(countyMost);
-
-  //             if(stateFips !== "_nation"){
-  //               setCountyName(fips2county[stateFips+countyMost]);
-  //               // setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
-
-  //            }
-            
-            
-
-            
-  //           });
-  //         setDataTS(x);
-  //      });
-      
-  //   }
-  //  }
-  
-
-  
-  // }, [metric]);
-
-
-  // mongo
   useEffect(()=>{
-    if (metric) {
-      const configMatched = configs.find(s => s.fips === stateFips);
-      if (!configMatched){
-        history.push('/_nation');
-      }else{
-        if (isLoggedIn === true){
-          let newDict = {};
-          let caseRate = 0;
+    fetch('/data/racedataAll.json').then(res => res.json())
+      .then(x => {
+        setRaceData(x);
+        // setTemp(x[stateFips]);
+      });
+    fetch('/data/timeseriesAll.json').then(res => res.json())
+      .then(x => {
+        let caseRate = 0;
           let mortality = 0;
           let percentChangeCase = 0;
           let percentChangeMortality = 0;
+          let index = 0;
+          let indexP = 0;
           let hospD = 0;
           let totCases = 0;
           let percentChangeHospDaily = 0;
-          let percentPositive = 0;    
-          setConfig(configMatched);
-          setStateName(configMatched.name);
-          const fetchData = async() => { 
-            if(stateFips !== "_nation"){
-              //all static data
-              const staticQ = {all: "all"};
-              const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+          let percentPositive = 0;
+        setStateTS(x[stateFips]);
+        if(stateFips === "_nation"){
+                          caseRate = 0;
+                          mortality = 0;
+                          totCases = 0;
+                          hospD = 0;
+                        }else{
+                          //case rate
+                          caseRate = x[stateFips][x[stateFips].length-1].dailyCases;
+                          percentChangeCase = x[stateFips][x[stateFips].length-1].percent14dayDailyCases;
+                          
+                          //mortality rate
+                          mortality = x[stateFips][x[stateFips].length-1].dailyMortality;
+                          percentChangeMortality = x[stateFips][x[stateFips].length-1].percent14dayDailyDeaths;
+        
+                          //hospitalization rate
+                          percentChangeHospDaily = x[stateFips][x[stateFips].length-1].percent14dayhospDaily;
+                          hospD = x[stateFips][x[stateFips].length-1].hospDaily;
+        
+                          //testing positive rate
+                          percentPositive = x[stateFips][x[stateFips].length-1].percentPositive;
+        
+                          totCases = x[stateFips][x[stateFips].length-1].cases;
+        
+                        }
 
-              promStatic.forEach(i=> {
-                if(i.tag === "nationalrawfull"){ //nationalraw
-                  newDict = i.data;
-                  setData(newDict); 
-                }else if(i.tag === "racedataAll"){ //race data
-                  setRaceData(i.racedataAll);       
-                }
-              });
-                    
-          
-              const stateSeriesQ = {tag: "stateonly"};
-              const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
-              let stateSeriesDict = promState[0].timeseriesAll[stateFips];
-              setStateTS(stateSeriesDict);
-
-                if(stateFips === "_nation"){
-                  caseRate = 0;
-                  mortality = 0;
-                  totCases = 0;
-                  hospD = 0;
-                }else{
-                  //case rate
-                  caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
-                  percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
-                  
-                  //mortality rate
-                  mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
-                  percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
-
-                  //hospitalization rate
-                  percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
-                  hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
-
-                  //testing positive rate
-                  percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
-
-                  totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
-
-                }
-              }
-              
-            //manipulate string
+        //manipulate string
             if (percentChangeCase.toFixed(0) > 0){
               setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
             }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
@@ -685,87 +476,296 @@ export default function StateMap(props) {
             setMortality(numberWithCommas(mortality.toFixed(0)));
             // setTotalCases(numberWithCommas(totCases.toFixed(0)));
             setHospDaily(numberWithCommas(hospD.toFixed(0)));
+      });
+
+  }, [stateFips]);
+
+  useEffect(()=>{
+    if (metric) {
+    const configMatched = configs.find(s => s.fips === stateFips);
+
+      if (!configMatched){
+        history.push('/_nation');
+      }else{
+
+        setConfig(configMatched);
+
+        setStateName(configMatched.name);
+
+        fetch('/data/data.json').then(res => res.json())
+          .then(x => {
+            setData(x);
+
+            const cs = scaleQuantile()
+            .domain(_.map(_.filter(_.map(x, (d, k) => {
+              d.fips = k
+              return d}), 
+              d => (
+                  d[metric] > 0 &&
+                  d.fips.length === 5)),
+              d=> d[metric]))
+            .range(colorPalette);
+
+            let scaleMap = {}
+            _.each(_.filter(_.map(x, (d, k) => {
+              d.fips = k
+              return d}), 
+              d => (
+                  d[metric] > 0 &&
+                  d.fips.length === 5))
+                  , d=>{
+              scaleMap[d[metric]] = cs(d[metric])});
+
+            setColorScale(scaleMap);
+            var max = 0
+            var min = 100
+            _.each(x, d=> { 
+              if (d[metric] > max && d.fips.length === 5) {
+                max = d[metric]
+              } else if (d.fips.length === 5 && d[metric] < min && d[metric] > 0){
+                min = d[metric]
+              }
+            });
+
+            if (max > 999) {
+              max = (max/1000).toFixed(0) + "K";
+              setLegendMax(max);
+            }else{
+              setLegendMax(max.toFixed(0));
+
+            }
+            setLegendMin(min.toFixed(0));
+
+            var split = scaleQuantile()
+            .domain(_.map(_.filter(_.map(x, (d, k) => {
+              d.fips = k
+              return d}), 
+              d => (
+                  d[metric] > 0 &&
+                  d.fips.length === 5)),
+              d=> d[metric]))
+            .range(colorPalette);
+
+            setLegendSplit(split.quantiles());
+          });
+        
+        fetch('/data/timeseries'+stateFips+'.json').then(res => res.json())
+          .then(x => {
+
+            let countyMost = '';
+            let covidmortality7dayfig = 0;
+            
+
+            _.each(x, (v, k)=>{
+
+              if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
+                countyMost = k.substring(2, 5);
+                covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
+              }
+              
+              setCountyFips(countyMost);
+
+              if(stateFips !== "_nation"){
+                setCountyName(fips2county[stateFips+countyMost]);
+                // setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
+
+             }
+            
+            
+
+            
+            });
+          setDataTS(x);
+       });
+      
+    }
+   }
+  
+
+  
+  }, [metric]);
+
+
+  // mongo
+  // useEffect(()=>{
+  //   if (metric) {
+  //     const configMatched = configs.find(s => s.fips === stateFips);
+  //     if (!configMatched){
+  //       history.push('/_nation');
+  //     }else{
+  //       if (isLoggedIn === true){
+  //         let newDict = {};
+  //         let caseRate = 0;
+  //         let mortality = 0;
+  //         let percentChangeCase = 0;
+  //         let percentChangeMortality = 0;
+  //         let hospD = 0;
+  //         let totCases = 0;
+  //         let percentChangeHospDaily = 0;
+  //         let percentPositive = 0;    
+  //         setConfig(configMatched);
+  //         setStateName(configMatched.name);
+  //         const fetchData = async() => { 
+  //           if(stateFips !== "_nation"){
+  //             //all static data
+  //             const staticQ = {all: "all"};
+  //             const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+
+  //             promStatic.forEach(i=> {
+  //               if(i.tag === "nationalrawfull"){ //nationalraw
+  //                 newDict = i.data;
+  //                 setData(newDict); 
+  //               }else if(i.tag === "racedataAll"){ //race data
+  //                 setRaceData(i.racedataAll);       
+  //               }
+  //             });
+                    
+          
+  //             const stateSeriesQ = {tag: "stateonly"};
+  //             const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+  //             let stateSeriesDict = promState[0].timeseriesAll[stateFips];
+  //             setStateTS(stateSeriesDict);
+
+  //               if(stateFips === "_nation"){
+  //                 caseRate = 0;
+  //                 mortality = 0;
+  //                 totCases = 0;
+  //                 hospD = 0;
+  //               }else{
+  //                 //case rate
+  //                 caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
+  //                 percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
+                  
+  //                 //mortality rate
+  //                 mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
+  //                 percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
+
+  //                 //hospitalization rate
+  //                 percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+  //                 hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+
+  //                 //testing positive rate
+  //                 percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
+  //                 totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
+
+  //               }
+  //             }
+              
+  //           //manipulate string
+  //           if (percentChangeCase.toFixed(0) > 0){
+  //             setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
+  //           }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
+  //             setPercentChangeCases(percentChangeCase.toFixed(0).substring(1) + "%");
+  //           }else{
+  //             setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
+  //           }
+
+  //           if (percentChangeMortality.toFixed(0) > 0){
+  //             setPercentChangeMortality("+" + percentChangeMortality.toFixed(0) + "%");
+  //           }else if(percentChangeMortality.toFixed(0).substring(1) === "0"){
+  //             setPercentChangeMortality(percentChangeMortality.toFixed(0).substring(1) + "%");
+  //           }else{
+  //             setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
+  //           }
+
+  //           if (percentChangeHospDaily.toFixed(0) > 0){
+  //             setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
+  //           }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
+  //             setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
+  //           }else{
+  //             setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
+  //           }
+
+  //           //set values
+  //           setPctPositive(percentPositive.toFixed(0) + "%");
+  //           // setIndexP(indexP);
+  //           // setIndex(index);
+  //           setCaseRate(numberWithCommas(caseRate.toFixed(0)));
+  //           setMortality(numberWithCommas(mortality.toFixed(0)));
+  //           // setTotalCases(numberWithCommas(totCases.toFixed(0)));
+  //           setHospDaily(numberWithCommas(hospD.toFixed(0)));
 
               
 
-            let seriesDict = {};
-            let countyMost = '';
-            let covidmortality7dayfig = 0;
-            if( stateFips !== "_nation"){
-              //Timeseries data
-              const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
-              const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
-              _.map(prom, i=> {
-                seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-                return seriesDict;
-              });
-              _.each(seriesDict, (v, k)=>{
+  //           let seriesDict = {};
+  //           let countyMost = '';
+  //           let covidmortality7dayfig = 0;
+  //           if( stateFips !== "_nation"){
+  //             //Timeseries data
+  //             const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
+  //             const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
+  //             _.map(prom, i=> {
+  //               seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+  //               return seriesDict;
+  //             });
+  //             _.each(seriesDict, (v, k)=>{
 
-                if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
-                  countyMost = k.substring(2, 5);
-                  covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
-                }
-              });
-            }
-            setCountyFips(countyMost);
-            if(stateFips !== "_nation"){
-              setCountyName(fips2county[stateFips+countyMost]);
-              setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
-            }
+  //               if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
+  //                 countyMost = k.substring(2, 5);
+  //                 covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
+  //               }
+  //             });
+  //           }
+  //           setCountyFips(countyMost);
+  //           if(stateFips !== "_nation"){
+  //             setCountyName(fips2county[stateFips+countyMost]);
+  //             setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
+  //           }
             
-            setDataTS(seriesDict);
-          };
-          fetchData();
+  //           setDataTS(seriesDict);
+  //         };
+  //         fetchData();
         
           
-        } else {
-          handleAnonymousLogin();
-        }
-      }
-    }
-  },[isLoggedIn]);
+  //       } else {
+  //         handleAnonymousLogin();
+  //       }
+  //     }
+  //   }
+  // },[isLoggedIn]);
 
-  useEffect(() => {
-    if(stateFips !== "_nation"){
-      let scaleMap = {};
-      var max = 0;
-      var min = 100;
-      const cs = scaleQuantile()
-      .domain(_.map(_.filter(data, 
-        d => (
-            d[metric] > 0 &&
-            d.fips.length === 5)),
-        d=> d[metric]))
-      .range(colorPalette);
+  // useEffect(() => {
+  //   if(stateFips !== "_nation"){
+  //     let scaleMap = {};
+  //     var max = 0;
+  //     var min = 100;
+  //     const cs = scaleQuantile()
+  //     .domain(_.map(_.filter(data, 
+  //       d => (
+  //           d[metric] > 0 &&
+  //           d.fips.length === 5)),
+  //       d=> d[metric]))
+  //     .range(colorPalette);
 
-      _.each(data, d=>{
-        if(d[metric] > 0){
-        scaleMap[d[metric]] = cs(d[metric])}});
-      setColorScale(scaleMap);
-      setLegendSplit(cs.quantiles());
+  //     _.each(data, d=>{
+  //       if(d[metric] > 0){
+  //       scaleMap[d[metric]] = cs(d[metric])}});
+  //     setColorScale(scaleMap);
+  //     setLegendSplit(cs.quantiles());
 
-      //find the largest value and set as legend max
-      _.each(data, d=> { 
-        if (d[metric] > max && d.fips.length === 5) {
-          max = d[metric]
-        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-          min = d[metric]
-        }
-      });
+  //     //find the largest value and set as legend max
+  //     _.each(data, d=> { 
+  //       if (d[metric] > max && d.fips.length === 5) {
+  //         max = d[metric]
+  //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+  //         min = d[metric]
+  //       }
+  //     });
 
-      if (max > 999999) {
-        max = (max/1000000).toFixed(0) + "M";
-        setLegendMax(max);
-      }else if (max > 999) {
-        max = (max/1000).toFixed(0) + "K";
-        setLegendMax(max);
-      }else{
-        setLegendMax(max.toFixed(0));
-      }
-      setLegendMin(min.toFixed(0));
-    }
+  //     if (max > 999999) {
+  //       max = (max/1000000).toFixed(0) + "M";
+  //       setLegendMax(max);
+  //     }else if (max > 999) {
+  //       max = (max/1000).toFixed(0) + "K";
+  //       setLegendMax(max);
+  //     }else{
+  //       setLegendMax(max.toFixed(0));
+  //     }
+  //     setLegendMin(min.toFixed(0));
+  //   }
 
-  }, [metric, data]);
+  // }, [metric, data]);
 
 
   //set date
