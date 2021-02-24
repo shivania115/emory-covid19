@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo, PureComponent} from 'react'
-import { Container, Header, Grid, Loader, Divider, Button, Dropdown, Image, Rail, Sticky, Ref, Accordion, Menu, Message, Transition, List} from 'semantic-ui-react'
+import { Container, Header, Grid, Loader, Divider, Button, Progress, Dropdown, Image, Rail, Sticky, Ref, Accordion, Menu, Message, Transition, List} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
@@ -1297,10 +1297,14 @@ export default function NationalReport(props) {
   const [activeCharacter, setActiveCharacter] = useState('');
   const [data, setData] = useState();
   const [date, setDate] = useState('');
+  const [vaccineDate, setVaccineDate] = useState('');
+
   const [fips, setFips] = useState('13');
   const [nationalDemog, setNationalDemog] = useState();
 
   const [dataTS, setDataTS] = useState();
+  const [vaccineData, setVaccineData] = useState();
+
   const [topTen, setTopTen] = useState();
   const [states50, setStates50] = useState();
 
@@ -1321,6 +1325,11 @@ export default function NationalReport(props) {
   const [dailyDeaths, setDailyDeaths] = useState();
 
   const [bar, LoadBar] = useState(false);
+
+  const [colorScale, setColorScale] = useState();
+  const [legendMax, setLegendMax] = useState([]);
+  const [legendMin, setLegendMin] = useState([]);
+  const [legendSplit, setLegendSplit] = useState([]);
 
   const [ccvi] = useState("ccvi");
   const [colorccvi, setColorccvi] = useState();
@@ -1411,22 +1420,71 @@ export default function NationalReport(props) {
                                                   caseRateMA: "N/A", mortalityMA: "N/A",
                                                   cfr:"N/A", t: 'n/a'});
   const [varMap, setVarMap] = useState({});
+  const [vaxVarMap, setVaxVarMap] = useState({});
+
   const [metricName, setMetricName] = useState('COVID-19 Community Vulnerability Index');
   const [metricOptions, setMetricOptions] = useState();
 
   useEffect(()=>{
 
 
-  fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-    .then(x => {
-      setVarMap(x);
-      setMetricOptions(_.filter(_.map(x, d=> {
-        return {key: d.id, value: d.variable, text: d.name, group: d.group};
-      }), d => (
-        d.value === "ccvi" || d.value === "poverty" || d.value === "urbanrural" || 
-        d.value === "region" || d.value === "black" || d.value === "resSeg" 
-      )));
-    });
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => {
+        setVarMap(x);
+        setMetricOptions(_.filter(_.map(x, d=> {
+          return {key: d.id, value: d.variable, text: d.name, group: d.group};
+        }), d => (
+          d.value === "ccvi" || d.value === "poverty" || d.value === "urbanrural" || 
+          d.value === "region" || d.value === "black" || d.value === "resSeg" 
+        )));
+      });
+    fetch('/data/vaccinedate.json').then(res => res.json())
+      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10));});
+    fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
+      .then(x => {setVaxVarMap(x);});
+    fetch('/data/vaccineData.json').then(res => res.json())
+      .then(x => {
+        setVaccineData(x);
+        const cs = scaleQuantile()
+          .domain(_.map(_.filter(_.map(x, (d, k) => {
+            d.fips = k
+            return d}), 
+            d => (
+                d["percentVaccinatedDose1"] >= 0 &&
+                d.fips.length === 2)),
+            d=> d["percentVaccinatedDose1"]))
+          .range(colorPalette);
+
+          let scaleMap = {}
+          _.each(x, d=>{
+            if(d["percentVaccinatedDose1"] >= 0){
+            scaleMap[d["percentVaccinatedDose1"]] = cs(d["percentVaccinatedDose1"])}});
+        
+          setColorScale(scaleMap);
+          var max = 0
+          var min = 100
+          _.each(x, d=> { 
+            if (d["percentVaccinatedDose1"] > max && d.fips.length === 2) {
+              max = d["percentVaccinatedDose1"]
+            } else if (d.fips.length === 2 && d["percentVaccinatedDose1"] < min && d["percentVaccinatedDose1"] >= 0){
+              min = d["percentVaccinatedDose1"]
+            }
+          });
+
+          if (max > 999999) {
+            max = (max/1000000).toFixed(0) + "M";
+            setLegendMax(max);
+          }else if (max > 999) {
+            max = (max/1000).toFixed(0) + "K";
+            setLegendMax(max);
+          }else{
+            setLegendMax(max.toFixed(0));
+
+          }
+          setLegendMin(min.toFixed(0));
+          setLegendSplit(cs.quantiles());
+        
+      });
   }, []);
 
 
@@ -2214,6 +2272,168 @@ export default function NationalReport(props) {
               </Header.Content>
             </div>
             <div id="cases" style = {{height: 45}}> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <Grid>
+                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 40}}>
+                  <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
+                    <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses distributed</center>
+
+                    
+                  </Grid.Column>
+                  
+                  <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 8}}> 
+                    <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> first dose</center>
+
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 8}}> 
+           
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
+
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 8}}> 
+                   
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)} </center>
+  
+                    </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 0}}>
+                  <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 0}}> 
+                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                      <Header style = {{textAlign: "center"}}>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                        <Header.Content style = {{paddingBottom: 5}}>
+                        <br/><br/><p style={{width: 200, fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p><br/>
+                        </Header.Content>
+                      </Header>
+                    </div>
+                  </Grid.Column>
+                  
+                  <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 0}}> 
+                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                      <Header style = {{textAlign: "center"}}>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                        <Header.Content style = {{paddingBottom: 5}}>
+                          
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
+                        </Header.Content>
+                      </Header>
+                    </div>
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 0}}> 
+                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                      <Header style = {{textAlign: "center"}}>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
+                        <Header.Content style = {{paddingBottom: 5}}>
+                        
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p><br/>
+                        </Header.Content>
+                      </Header>
+                    </div>
+                  </Grid.Column>
+                  <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 0}}> 
+                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                      <Header style = {{textAlign: "center"}}>
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p> */}
+                        <Header.Content style = {{paddingBottom: 5}}>
+                        
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p><br/>
+                        </Header.Content>
+                      </Header>
+                      </div>
+                    </Grid.Column>
+                </Grid.Row>                
+                <Grid.Row>
+                <Grid.Column style = {{width: 900, paddingLeft: 205, paddingTop: 18}}> 
+                    <div style = {{width: 900}}>
+                      <Header>
+                        <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated (one dose received) </p>
+                        <Header.Content style = {{paddingBottom: 20, paddingTop: 0}}>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]).toFixed(0))} size='large' color='green' progress/>
+                        </Header.Content>
+                        <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated (two doses received)</p>
+                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["percentVaccinatedDose2"]).toFixed(0))} size='large' color='green' progress/>
+                        </Header.Content>
+                      </Header>
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <Grid>
+
+                <Grid.Row >
+                  <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 205, paddingBottom: 26}}defaultActiveIndex={1} panels={[
+                            {
+                                key: 'acquire-dog',
+                                title: {
+                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                    icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 900}}>
+                                        Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                                        <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                        <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
+
+                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                        distributed to facilities across the United States by the federal government. 
+                                        Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
+                                        
+                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+
+
+                                      </Header.Content>
+                                    ),
+                                  },
+                              }
+                          ]
+                          } /> 
+                  </Grid.Row>
+                </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
             <div style={{paddingBottom:'0em', paddingLeft: "12rem", paddingRight: "1rem"}}>
               {/* <Header as='h2' style={{color: mortalityColor[1], textAlign:'center',fontSize:"22pt", paddingTop: 30}}>
@@ -2896,13 +3116,13 @@ export default function NationalReport(props) {
                   </Grid.Column>
                 </Grid.Row>
 
-                <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 0}}/> </center>
+                <center style = {{paddingLeft: 200}}> <Divider style= {{width : 900, paddingTop: 0}}/> </center>
 
                 
                 <Grid.Row columns = {1} style = {{width: 1000}}>
                   <Grid.Column style = {{width: 450, paddingLeft: 180}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 53, paddingRight: "1em", paddingBottom: 0}}>
                         <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by Sex</b> </center> 
                         <br/>
                       </Header.Subheader>
@@ -3239,7 +3459,7 @@ export default function NationalReport(props) {
 
           </Grid.Column>
           <Grid.Column>
-          <Header as='h2' style={{paddingLeft: 80, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+          <Header as='h2' style={{paddingLeft: 60, textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
               <Header.Content>
                 Cases by {varMap[metric]['name']}
               </Header.Content>
@@ -3420,37 +3640,41 @@ export default function NationalReport(props) {
                     <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/ccvi.png' />            
 
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by CCVI ranking. The y-axis displays CCVI rankings based on 
-                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
-                                        (top chart) or deaths (bottom chart) per 100,000 that occurred in each group of 
-                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
-                                        to be of equal size, so that the lowest quintile contains the counties with values 
-                                        in the 0%-20% range for this county characteristic, and the very high CCVI contains 
-                                        counties with values in the 80%-100% range for this county characteristic. Low CCVI 
-                                        indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
-                                        range, and high CCVI indecates counties in the 60%-80% range.
-                                        </Header.Subheader>
-                                      </Header.Content>
-                                    </Header>
-                                ),
-                              },
-                          }
-                      ]
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                            {
+                                key: 'acquire-dog',
+                                title: {
+                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                    icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+                                        <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                          <Header.Content  style={{fontSize: "14pt"}}>
+                                            <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                            This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                            per 100,000 residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                            quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
+                                            (top chart) or deaths (bottom chart) per 100,000 that occurred in each group of 
+                                            counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                            to be of equal size, so that the lowest quintile contains the counties with values 
+                                            in the 0%-20% range for this county characteristic, and the very high CCVI contains 
+                                            counties with values in the 80%-100% range for this county characteristic. Low CCVI 
+                                            indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
+                                            range, and high CCVI indecates counties in the 60%-80% range.
+                                            </Header.Subheader>
+                                          </Header.Content>
+                                        </Header>
+                                    ),
+                                  },
+                              }
+                          ]
 
-                      } />
+                          } />
+                    </Grid.Row>
+                  </Grid>
 
 
                   </Grid.Column>
@@ -3560,11 +3784,11 @@ export default function NationalReport(props) {
               </Grid>
               <div id="poverty" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center>
 
               
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Population in poverty</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Population in poverty</b> </center> 
               </Header.Subheader>
 
               {ccvi && <Grid>
@@ -3641,7 +3865,9 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/poverty.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                     <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -3652,7 +3878,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by county ranking on percentage of population in poverty. The 
                                         y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
@@ -3674,7 +3900,8 @@ export default function NationalReport(props) {
 
                       } />
 
-
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -3781,9 +4008,9 @@ export default function NationalReport(props) {
               </Grid>}
               <div id="metro" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center>
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Metropolitan Status</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Metropolitan Status</b> </center> 
               </Header.Subheader>
              
 
@@ -3861,7 +4088,9 @@ export default function NationalReport(props) {
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural.png' />
                       
                   </div>
-                  <Accordion style = {{paddingTop: 40, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 40, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -3872,7 +4101,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
                                         million population or contain the entire or large part of the population of the largest 
@@ -3893,7 +4122,8 @@ export default function NationalReport(props) {
                       } />
 
 
-
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4003,10 +4233,10 @@ export default function NationalReport(props) {
 
               <div id="region" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center>
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center>
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Region</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Region</b> </center> 
               </Header.Subheader>
 
 
@@ -4076,7 +4306,9 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/region.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 30, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 30, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4087,7 +4319,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by geographic region (y-axis).
                                         </Header.Subheader>
@@ -4100,7 +4332,8 @@ export default function NationalReport(props) {
 
                       } />
 
-
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4207,10 +4440,10 @@ export default function NationalReport(props) {
               </Grid>}
               <div id="black" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>African American population</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>African American population</b> </center> 
               </Header.Subheader>
               
 
@@ -4289,7 +4522,9 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/black.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4300,7 +4535,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by percentage African American population ranking. The y-axis 
                                         displays percentage African American population rankings based on quintiles (groups of 20%). 
@@ -4323,7 +4558,8 @@ export default function NationalReport(props) {
 
                       } />
 
-
+                    </Grid.Row>
+                  </Grid> 
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4430,10 +4666,10 @@ export default function NationalReport(props) {
               </Grid>}
               <div id="resseg" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
               
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Residential Segregation Index</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Residential Segregation Index</b> </center> 
               </Header.Subheader>
 
               {black && <Grid>
@@ -4510,7 +4746,9 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/resSeg.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4521,7 +4759,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -4543,6 +4781,8 @@ export default function NationalReport(props) {
 
                       } />
 
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4650,10 +4890,10 @@ export default function NationalReport(props) {
 
               <div id="comorb" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Any Underlying Comorbidity</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Any Underlying Comorbidity</b> </center> 
               </Header.Subheader>
 
               {Comorb && <Grid>
@@ -4730,7 +4970,9 @@ export default function NationalReport(props) {
                       </ComposableMap> */}
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/anycondition.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4741,7 +4983,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by percent of population with any underlying conditions. The y-axis 
                                         displays percent of population with any underlying conditions rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -4763,6 +5005,8 @@ export default function NationalReport(props) {
 
                       } />
 
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4871,10 +5115,10 @@ export default function NationalReport(props) {
 
               <div id="copd" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
               
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Chronic Obstructive Pulmonary Disease</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Chronic Obstructive Pulmonary Disease</b> </center> 
               </Header.Subheader>
               
 
@@ -4922,7 +5166,9 @@ export default function NationalReport(props) {
                       
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/copd.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -4933,7 +5179,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by percent of population with COPD. The y-axis 
                                         displays percent of population with COPD rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -4955,6 +5201,9 @@ export default function NationalReport(props) {
 
                       } />
 
+
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5069,10 +5318,10 @@ export default function NationalReport(props) {
 
               <div id="ckd" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Chronic Kidney Disease</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Chronic Kidney Disease</b> </center> 
               </Header.Subheader>
               
 
@@ -5120,7 +5369,9 @@ export default function NationalReport(props) {
                       
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/ckd.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -5131,7 +5382,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by percent of population with CKD. The y-axis 
                                         displays percent of population with CKD rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -5153,6 +5404,8 @@ export default function NationalReport(props) {
 
                       } />
 
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5261,10 +5514,10 @@ export default function NationalReport(props) {
 
               <div id="diabetes" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Diabetes</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Diabetes</b> </center> 
               </Header.Subheader>
 
 
@@ -5312,7 +5565,9 @@ export default function NationalReport(props) {
                       
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/diabetes.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -5323,7 +5578,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by percent of population with diabetes. The y-axis 
                                         displays percent of population with diabetes rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -5344,7 +5599,9 @@ export default function NationalReport(props) {
                       ]
 
                       } />
-
+                      
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5454,10 +5711,10 @@ export default function NationalReport(props) {
 
               <div id="heart" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Heart disease</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Heart disease</b> </center> 
               </Header.Subheader>
 
 
@@ -5505,7 +5762,9 @@ export default function NationalReport(props) {
                       
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/heartdisease.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                  <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -5516,7 +5775,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by percent of population with heart disease. The y-axis 
                                         displays percent of population with heart disease rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -5537,7 +5796,9 @@ export default function NationalReport(props) {
                       ]
 
                       } />
-
+                      
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5647,10 +5908,10 @@ export default function NationalReport(props) {
 
               <div id="obesity" style = {{height: 45}}> </div>
 
-              <center style={{paddingLeft: 100}}><Divider style={{width: 900}}/> </center> 
+              <center style={{paddingLeft: 90}}><Divider style={{width: 900}}/> </center> 
 
               <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, paddingLeft: 0, paddingRight: 0, paddingBottom: 60}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 155}}>Obesity</b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Obesity</b> </center> 
               </Header.Subheader>
 
 
@@ -5698,7 +5959,9 @@ export default function NationalReport(props) {
                       
                       <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/obesity.png' />
                   </div>
-                  <Accordion style = {{paddingTop: 100, paddingLeft: 80}} defaultActiveIndex={1} panels={[
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -5709,7 +5972,7 @@ export default function NationalReport(props) {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 850, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100,000 residents by percent of population with obesity. The y-axis 
                                         displays percent of population with obesity rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -5730,7 +5993,9 @@ export default function NationalReport(props) {
                       ]
 
                       } />
-
+                      
+                    </Grid.Row>
+                  </Grid>
                   </Grid.Column>
                   <Grid.Column>
                   <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
