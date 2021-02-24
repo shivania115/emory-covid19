@@ -137,163 +137,163 @@ export default function USMap(props) {
         .then(x => setAllTS(x));
 
     // local
-    fetch('/data/data.json').then(res => res.json())
-      .then(x => {
+    // fetch('/data/data.json').then(res => res.json())
+    //   .then(x => {
 
-          setData(x);       
+    //       setData(x);       
       
-          const cs = scaleQuantile()
-        .domain(_.map(_.filter(_.map(x, (d, k) => {
-          d.fips = k
-          return d}), 
-          d => (
-              d[metric] >= 0 &&
-              d.fips.length === 5)),
-          d=> d[metric]))
-        .range(colorPalette);
+    //       const cs = scaleQuantile()
+    //     .domain(_.map(_.filter(_.map(x, (d, k) => {
+    //       d.fips = k
+    //       return d}), 
+    //       d => (
+    //           d[metric] >= 0 &&
+    //           d.fips.length === 5)),
+    //       d=> d[metric]))
+    //     .range(colorPalette);
 
-        let scaleMap = {}
-        _.each(x, d=>{
-          if(d[metric] >= 0){
-          scaleMap[d[metric]] = cs(d[metric])}});
+    //     let scaleMap = {}
+    //     _.each(x, d=>{
+    //       if(d[metric] >= 0){
+    //       scaleMap[d[metric]] = cs(d[metric])}});
       
-        setColorScale(scaleMap);
-        var max = 0
-        var min = 100
-        _.each(x, d=> { 
-          if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
-          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-            min = d[metric]
-          }
-        });
+    //     setColorScale(scaleMap);
+    //     var max = 0
+    //     var min = 100
+    //     _.each(x, d=> { 
+    //       if (d[metric] > max && d.fips.length === 5) {
+    //         max = d[metric]
+    //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+    //         min = d[metric]
+    //       }
+    //     });
 
-        if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
-          setLegendMax(max);
-        }else if (max > 999) {
-          max = (max/1000).toFixed(0) + "K";
-          setLegendMax(max);
-        }else{
-          setLegendMax(max.toFixed(0));
+    //     if (max > 999999) {
+    //       max = (max/1000000).toFixed(0) + "M";
+    //       setLegendMax(max);
+    //     }else if (max > 999) {
+    //       max = (max/1000).toFixed(0) + "K";
+    //       setLegendMax(max);
+    //     }else{
+    //       setLegendMax(max.toFixed(0));
 
-        }
-        setLegendMin(min.toFixed(0));
-        setLegendSplit(cs.quantiles());
+    //     }
+    //     setLegendMin(min.toFixed(0));
+    //     setLegendSplit(cs.quantiles());
           
           
-        });
+    //     });
 
       
         
       //mongo
-  //       if (isLoggedIn === true){
-  //         const fetchData = async() => {
-  //             const mainQ = {all: "all"};
-  //             const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+        if (isLoggedIn === true){
+          const fetchData = async() => {
+              const mainQ = {all: "all"};
+              const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
     
-  //             promStatic.forEach( i => {
-  //               if(i.tag === "nationalrawfull"){ //nationalraw
-  //                 newDict = i.data;
-  //                 const cs = scaleQuantile()
-  //                 .domain(_.map(_.filter(newDict, 
-  //                   d => (
-  //                       d[metric] > 0 &&
-  //                       d.fips.length === 5)),
-  //                   d=> d[metric]))
-  //                 .range(colorPalette);
+              promStatic.forEach( i => {
+                if(i.tag === "nationalrawfull"){ //nationalraw
+                  newDict = i.data;
+                  const cs = scaleQuantile()
+                  .domain(_.map(_.filter(newDict, 
+                    d => (
+                        d[metric] > 0 &&
+                        d.fips.length === 5)),
+                    d=> d[metric]))
+                  .range(colorPalette);
         
-  //                 let scaleMap = {}
-  //                 _.each(newDict, d=>{
-  //                   if(d[metric] > 0){
-  //                   scaleMap[d[metric]] = cs(d[metric])}});
+                  let scaleMap = {}
+                  _.each(newDict, d=>{
+                    if(d[metric] > 0){
+                    scaleMap[d[metric]] = cs(d[metric])}});
               
-  //                 setColorScale(scaleMap);
-  //                 setLegendSplit(cs.quantiles());
+                  setColorScale(scaleMap);
+                  setLegendSplit(cs.quantiles());
                   
-  //                 //find the largest value and set as legend max
-  //                 _.each(newDict, d=> { 
-  //                   if (d[metric] > max && d.fips.length === 5) {
-  //                     max = d[metric]
-  //                   } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-  //                     min = d[metric]
-  //                   }
-  //                 });
+                  //find the largest value and set as legend max
+                  _.each(newDict, d=> { 
+                    if (d[metric] > max && d.fips.length === 5) {
+                      max = d[metric]
+                    } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+                      min = d[metric]
+                    }
+                  });
               
-  //                 if (max > 999999) {
-  //                   max = (max/1000000).toFixed(0) + "M";
-  //                   setLegendMax(max);
-  //                 }else if (max > 999) {
-  //                   max = (max/1000).toFixed(0) + "K";
-  //                   setLegendMax(max);
-  //                 }else{
-  //                   setLegendMax(max.toFixed(0));
+                  if (max > 999999) {
+                    max = (max/1000000).toFixed(0) + "M";
+                    setLegendMax(max);
+                  }else if (max > 999) {
+                    max = (max/1000).toFixed(0) + "K";
+                    setLegendMax(max);
+                  }else{
+                    setLegendMax(max.toFixed(0));
               
-  //                 }
-  //                 setLegendMin(min.toFixed(0));
-  //                 setData(newDict);
+                  }
+                  setLegendMin(min.toFixed(0));
+                  setData(newDict);
 
-  //               }else if(i.tag === "racedataAll"){ //race data
-  //                 setRaceData(i.racedataAll);       
-  //               }
-  //             });
+                }else if(i.tag === "racedataAll"){ //race data
+                  setRaceData(i.racedataAll);       
+                }
+              });
 
-  //             //all states' time series data
-  //             let tempDict = {};
-  //             const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
-  //             const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-  //             tempDict = promSeries[1].timeseriesAll;
-  //             tempDict["_nation"] = promSeries[0].timeseries_nation;
-  //             setAllTS(tempDict);
-  //           };
+              //all states' time series data
+              let tempDict = {};
+              const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
+              const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+              tempDict = promSeries[1].timeseriesAll;
+              tempDict["_nation"] = promSeries[0].timeseries_nation;
+              setAllTS(tempDict);
+            };
           
-  //         fetchData();
-  //         } else {
-  //         handleAnonymousLogin();
-  //       }
-  //       //local
-  //     // },[metric]);
-  //     //mongo
-  //   },[isLoggedIn]);
+          fetchData();
+          } else {
+          handleAnonymousLogin();
+        }
+        //local
+      // },[metric]);
+      //mongo
+    },[isLoggedIn]);
 
-  //   //mongo
-  // useEffect(() =>{
-  //     const cs = scaleQuantile()
-  //     .domain(_.map(_.filter(data, 
-  //       d => (
-  //           d[metric] > 0 &&
-  //           d.fips.length === 5)),
-  //       d=> d[metric]))
-  //     .range(colorPalette);
+    //mongo
+  useEffect(() =>{
+      const cs = scaleQuantile()
+      .domain(_.map(_.filter(data, 
+        d => (
+            d[metric] > 0 &&
+            d.fips.length === 5)),
+        d=> d[metric]))
+      .range(colorPalette);
 
-  //     let scaleMap = {}
-  //     _.each(data, d=>{
-  //       if(d[metric] > 0){
-  //       scaleMap[d[metric]] = cs(d[metric])}});
+      let scaleMap = {}
+      _.each(data, d=>{
+        if(d[metric] > 0){
+        scaleMap[d[metric]] = cs(d[metric])}});
 
-  //     setColorScale(scaleMap);
-  //     setLegendSplit(cs.quantiles());
+      setColorScale(scaleMap);
+      setLegendSplit(cs.quantiles());
       
-  //     //find the largest value and set as legend max
-  //     _.each(data, d=> { 
-  //       if (d[metric] > max && d.fips.length === 5) {
-  //         max = d[metric]
-  //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-  //         min = d[metric]
-  //       }
-  //     });
+      //find the largest value and set as legend max
+      _.each(data, d=> { 
+        if (d[metric] > max && d.fips.length === 5) {
+          max = d[metric]
+        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+          min = d[metric]
+        }
+      });
 
-  //     if (max > 999999) {
-  //       max = (max/1000000).toFixed(0) + "M";
-  //       setLegendMax(max);
-  //     }else if (max > 999) {
-  //       max = (max/1000).toFixed(0) + "K";
-  //       setLegendMax(max);
-  //     }else{
-  //       setLegendMax(max.toFixed(0));
+      if (max > 999999) {
+        max = (max/1000000).toFixed(0) + "M";
+        setLegendMax(max);
+      }else if (max > 999) {
+        max = (max/1000).toFixed(0) + "K";
+        setLegendMax(max);
+      }else{
+        setLegendMax(max.toFixed(0));
 
-  //     }
-  //     setLegendMin(min.toFixed(0));
+      }
+      setLegendMin(min.toFixed(0));
 
   }, [metric]);
 
