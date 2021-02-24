@@ -872,36 +872,39 @@ export default function USVaccineTracker(props) {
 
                         </ComposableMap>
                     
-                    
-                        {stateFips && <Accordion id = "burden" style = {{paddingTop: 10}} defaultActiveIndex={1} panels={[
-                          {
-                              key: 'acquire-dog',
-                              title: {
-                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                },
-                                content: {
-                                    content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                        Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                        <Grid>
+                          <Grid.Row>
+                            {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 14}} defaultActiveIndex={1} panels={[
+                              {
+                                  key: 'acquire-dog',
+                                  title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                    },
+                                    content: {
+                                        content: (
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                            Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
 
-                                        <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
+                                            <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                            <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                            <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
 
-                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                        distributed to facilities across the United States by the federal government. 
-                                        Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
-                                        For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
-                                        
-                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+                                            <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                            distributed to facilities across the United States by the federal government. 
+                                            Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
+                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
+                                            
+                                            <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                            <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
 
-                                      </Header.Content>
-                                  ),
-                                },
-                            }
-                          ]
-                        } /> }
+                                          </Header.Content>
+                                      ),
+                                    },
+                                }
+                              ]
+                            } /> }
+                          </Grid.Row>
+                        </Grid>
                   </Grid.Column>
                   
                   <Grid.Column style ={{width: 350}}>
@@ -1744,8 +1747,9 @@ export default function USVaccineTracker(props) {
                             </Grid.Column>
                           </Grid.Row>
                           }
-
-                          {stateMapFips && <Accordion style = {{paddingTop: 30, paddingLeft: 10}}defaultActiveIndex={1} panels={[
+                      <Grid>
+                        <Grid.Row>
+                          {stateMapFips && <Accordion style = {{paddingTop: 30, paddingLeft: 23}}defaultActiveIndex={1} panels={[
                             {
                                 key: 'acquire-dog',
                                 title: {
@@ -1826,15 +1830,17 @@ export default function USVaccineTracker(props) {
                           ]
 
                           } /> }
-                          
+                        
+                        </Grid.Row>
+                      </Grid>
                           
 
 
-                        </Grid.Column>
-                      </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                       
 
-                    </Grid>
+                  </Grid>
                 </Grid.Column>
                 <Grid.Column style = {{paddingLeft: 80, width: 630}}>
                   <div style = {{paddingTop: 10, paddingLeft: 50}}>
@@ -1870,31 +1876,35 @@ export default function USVaccineTracker(props) {
                                 ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"covidmortality7dayfig"}/>
                           }
                   </div>
+                  <Grid>
+                    <Grid.Row>
 
-                  {stateFips && <Accordion style = {{paddingTop: 85, paddingLeft: 15}} defaultActiveIndex={1} panels={[
-                          {
-                              key: 'acquire-dog',
-                              title: {
-                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                },
-                                content: {
-                                    content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 510}}>
-                                        <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
-                                        <br/> 
-                                        <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition} 
-                                        <br/>
-                                        <br/>
-                                        
+                      {stateFips && <Accordion style = {{paddingTop: 85, paddingLeft: 32}} defaultActiveIndex={1} panels={[
+                              {
+                                  key: 'acquire-dog',
+                                  title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                    },
+                                    content: {
+                                        content: (
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 510}}>
+                                            <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
+                                            <br/> 
+                                            <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition} 
+                                            <br/>
+                                            <br/>
+                                            
 
 
 
-                                      </Header.Content>
-                                  ),
-                                },
-                            }
-                          ]
-                        } /> }
+                                          </Header.Content>
+                                      ),
+                                    },
+                                }
+                              ]
+                            } /> }
+                    </Grid.Row>
+                  </Grid>
                   
                 </Grid.Column>
 

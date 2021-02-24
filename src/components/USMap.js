@@ -577,28 +577,29 @@ export default function USMap(props) {
                   
 
                 </ComposableMap>
-                
-                {stateFips && <Accordion style = {{paddingTop: 17}}defaultActiveIndex={1} panels={[
-                  {
-                      key: 'acquire-dog',
-                      title: {
-                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                          icon: 'dropdown',
-                      },
-                      content: {
-                          content: (
-                            <Grid.Row style={{width: "660px"}}>
-                                <Header.Content style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                                <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                                For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                                </Header.Content>
-                            </Grid.Row>
-                          ),
+                <Grid>
+                <Grid.Row>
+                  {stateFips && <Accordion style = {{paddingTop: 17}}defaultActiveIndex={1} panels={[
+                    {
+                        key: 'acquire-dog',
+                        title: {
+                            content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                            icon: 'dropdown',
                         },
-                    }
-                ]
+                        content: {
+                            content: (
+                                  <Header.Content style={{width: 660, fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                                  For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                  </Header.Content>
+                            ),
+                          },
+                      }
+                  ]
 
-                } /> }
+                  } /> }
+                </Grid.Row>
+                </Grid>
               </Grid.Column>
               <Grid.Column width={7} style ={{paddingLeft: 0}}>
                 <Header as='h2' style={{fontWeight: 400}}>

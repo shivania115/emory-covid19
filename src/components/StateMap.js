@@ -353,6 +353,7 @@ export default function StateMap(props) {
           dataTS["_nation"][214].t,
           dataTS["_nation"][244].t,
           dataTS["_nation"][275].t,
+          dataTS["_nation"][306].t,
 
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
@@ -1582,33 +1583,37 @@ export default function StateMap(props) {
                       )}
                     </Geographies>
                   </ComposableMap>
-                  <Accordion defaultActiveIndex={1} panels={[
-                  {
-                      key: 'acquire-dog',
-                      title: {
-                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                          icon: 'dropdown',
-                      },
-                      content: {
-                          content: (
-                            <div>
-                            {stateFips !== "_nation" && <Grid.Row style={{width: "420px"}}>
-                                <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
-                                <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
-                                For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-                                <br/><br/>
-                                Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
-                                </text>
+                  <Grid>
+                    <Grid.Row>
+                      <Accordion defaultActiveIndex={1} panels={[
+                      {
+                          key: 'acquire-dog',
+                          title: {
+                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                              icon: 'dropdown',
+                          },
+                          content: {
+                              content: (
+                                <div>
+                                {stateFips !== "_nation" && <Grid.Row style={{width: "420px"}}>
+                                    <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
+                                    For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                    <br/><br/>
+                                    Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    </text>
 
 
-                            </Grid.Row>}
-                            </div>
-                          ),
-                        },
-                    }
-                ]
+                                </Grid.Row>}
+                                </div>
+                                ),
+                              },
+                          }
+                      ]
 
-                } />
+                      } />
+                    </Grid.Row>
+                  </Grid>
                 </Grid.Column>
                 <Grid.Column style={{padding: 0, paddingLeft: 40, width: 810}}>
 
