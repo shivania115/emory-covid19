@@ -1243,9 +1243,9 @@ class Race extends PureComponent{
   componentDidMount(){
     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
       dataTot: [
-        data['Race'][0]['Hispanic'][0], data['Race'][0]['Asian'][0],
-        data['Race'][0]['American Natives'][0], data['Race'][0]['African American'][0],
-        data['Race'][0]['White'][0]
+        data['race'][0]['Hispanic'][0], data['race'][0]['Asian'][0],
+        data['race'][0]['American Natives'][0], data['race'][0]['African American'][0],
+        data['race'][0]['White'][0]
       ] }));
   }
    
@@ -2745,11 +2745,11 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentCases']},
-                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentCases']},
-                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentCases']},
-                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentCases']},
-                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentCases']},
+                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentCases']},
+                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentCases']},
+                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentCases']},
+                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentCases']},
+                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentCases']},
                                  
 
 
@@ -2769,11 +2769,11 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentPop']},
+                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentPop']},
                                  
 
 
@@ -2820,11 +2820,11 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentDeaths']},
-                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentDeaths']},
-                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentDeaths']},
-                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentDeaths']},
-                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentDeaths']},
+                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentDeaths']},
+                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentDeaths']},
+                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentDeaths']},
+                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentDeaths']},
+                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentDeaths']},
                                  
 
 
@@ -2844,11 +2844,11 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Hispanic'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['American Natives'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['Asian'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['African American'][0]['percentPop']},
-                                    {key: nationalDemog['Race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['Race'][0]['White'][0]['percentPop']},
+                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentPop']},
+                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentPop']},
                                  
 
 
@@ -2971,15 +2971,15 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentCases']},
-                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['age'][0]['50 - 64'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['age'][0]['65 - 74'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['age'][0]['75 - 84'][0]['percentCases']},
+                              {key: nationalDemog['age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['age'][0]['85+'][0]['percentCases']},
                                  
 
 
@@ -2999,15 +2999,15 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['age'][0]['50 - 64'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['age'][0]['65 - 74'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['age'][0]['75 - 84'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['age'][0]['85+'][0]['percentPop']},
                                  
 
 
@@ -3054,15 +3054,15 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentDeaths']},
-                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['age'][0]['50 - 64'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['age'][0]['65 - 74'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['age'][0]['75 - 84'][0]['percentDeaths']},
+                              {key: nationalDemog['age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['age'][0]['85+'][0]['percentDeaths']},
                                  
 
 
@@ -3082,15 +3082,15 @@ export default function NationalReport(props) {
                             barWidth={20}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                             data={[
-                              {key: nationalDemog['Age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['0 - 4'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['5 - 17'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['18 - 29'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['30 - 39'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['40 - 49'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['50 - 64'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['65 - 74'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['75 - 84'][0]['percentPop']},
-                              {key: nationalDemog['Age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['Age'][0]['85+'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['50 - 64'][0]['demogLabel'], 'value': nationalDemog['age'][0]['50 - 64'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['65 - 74'][0]['demogLabel'], 'value': nationalDemog['age'][0]['65 - 74'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['75 - 84'][0]['demogLabel'], 'value': nationalDemog['age'][0]['75 - 84'][0]['percentPop']},
+                              {key: nationalDemog['age'][0]['85+'][0]['demogLabel'], 'value': nationalDemog['age'][0]['85+'][0]['percentPop']},
                                  
 
 
@@ -3123,7 +3123,7 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 450, paddingLeft: 180}}>
                     <div style={{paddingTop:'0em'}}>
                       <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 53, paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by Sex</b> </center> 
+                        <center> <b style= {{fontSize: "18pt"}}>Cases and Deaths by sex</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -3136,8 +3136,8 @@ export default function NationalReport(props) {
                     <Header.Content style = {{paddingLeft: 50}}>
                       <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:5, paddingBottom:28, paddingLeft: 6}}>
                         
-                        Males make up {(nationalDemog['Sex'][0]['Male'][0]['percentPop']).toFixed(0) + "%"} of the population and {(nationalDemog['Sex'][0]['Male'][0]['percentCases']).toFixed(0) + "%"} of cases, yet they account for 
-                        {" " + (nationalDemog['Sex'][0]['Male'][0]['percentDeaths']).toFixed(0) + "%"} of deaths.
+                        Males make up {(nationalDemog['sex'][0]['Male'][0]['percentPop']).toFixed(0) + "%"} of the population and {(nationalDemog['sex'][0]['Male'][0]['percentCases']).toFixed(0) + "%"} of cases, yet they account for 
+                        {" " + (nationalDemog['sex'][0]['Male'][0]['percentDeaths']).toFixed(0) + "%"} of deaths.
                           
                       </Header.Subheader>
                     </Header.Content>
@@ -3186,8 +3186,8 @@ export default function NationalReport(props) {
                                   barWidth={20}
                                   labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                                   data={[
-                                    {key: nationalDemog['Sex'][0]['Male'][0]['demogLabel'], 'value': nationalDemog['Sex'][0]['Male'][0]['percentCases']},
-                                    {key: nationalDemog['Sex'][0]['Female'][0]['demogLabel'], 'value': nationalDemog['Sex'][0]['Female'][0]['percentCases']},
+                                    {key: nationalDemog['sex'][0]['Male'][0]['demogLabel'], 'value': nationalDemog['sex'][0]['Male'][0]['percentCases']},
+                                    {key: nationalDemog['sex'][0]['Female'][0]['demogLabel'], 'value': nationalDemog['sex'][0]['Female'][0]['percentCases']},
                                     
                                       
 
@@ -3208,8 +3208,8 @@ export default function NationalReport(props) {
                                   barWidth={20}
                                   labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                                   data={[
-                                    {key: nationalDemog['Sex'][0]['Male'][0]['demogLabel'], 'value': nationalDemog['Sex'][0]['Male'][0]['percentDeaths']},
-                                    {key: nationalDemog['Sex'][0]['Female'][0]['demogLabel'], 'value': nationalDemog['Sex'][0]['Female'][0]['percentDeaths']},
+                                    {key: nationalDemog['sex'][0]['Male'][0]['demogLabel'], 'value': nationalDemog['sex'][0]['Male'][0]['percentDeaths']},
+                                    {key: nationalDemog['sex'][0]['Female'][0]['demogLabel'], 'value': nationalDemog['sex'][0]['Female'][0]['percentDeaths']},
                                     
                                       
 
@@ -3230,8 +3230,8 @@ export default function NationalReport(props) {
                                   barWidth={20}
                                   labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                                   data={[
-                                    {key: nationalDemog['Sex'][0]['Male'][0]['demogLabel'], 'value': nationalDemog['Sex'][0]['Male'][0]['percentPop']},
-                                    {key: nationalDemog['Sex'][0]['Female'][0]['demogLabel'], 'value': nationalDemog['Sex'][0]['Female'][0]['percentPop']},
+                                    {key: nationalDemog['sex'][0]['Male'][0]['demogLabel'], 'value': nationalDemog['sex'][0]['Male'][0]['percentPop']},
+                                    {key: nationalDemog['sex'][0]['Female'][0]['demogLabel'], 'value': nationalDemog['sex'][0]['Female'][0]['percentPop']},
                                     
                                       
 
@@ -3751,7 +3751,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['ccvi'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['ccvi'][0]['measure']/nationalBarChart['covidmortality7day'][0]['ccvi'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['ccvi'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['ccvi'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['ccvi'][1]['measure']/nationalBarChart['covidmortality7day'][0]['ccvi'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['ccvi'][0]['measure'] || 0},
@@ -3976,7 +3976,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['poverty'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['poverty'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['poverty'][1]['measure']/nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['poverty'][0]['measure'] || 0},
@@ -4199,7 +4199,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['urbanrural'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['urbanrural'][1]['measure']/nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['urbanrural'][0]['measure'] || 0},
@@ -4408,7 +4408,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['region'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][0]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['region'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['region'][1]['measure']/nationalBarChart['covidmortality7day'][0]['region'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['region'][0]['measure'] || 0},
@@ -4634,7 +4634,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['black'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][0]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['black'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['black'][1]['measure']/nationalBarChart['covidmortality7day'][0]['black'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['black'][0]['measure'] || 0},
@@ -4857,7 +4857,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['resSeg'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['resSeg'][1]['measure']/nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['resSeg'][0]['measure'] || 0},
@@ -5081,7 +5081,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['anycondition'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['anycondition'][0]['measure']/nationalBarChart['covidmortality7day'][0]['anycondition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['anycondition'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['anycondition'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['anycondition'][1]['measure']/nationalBarChart['covidmortality7day'][0]['anycondition'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['anycondition'][0]['measure'] || 0},
@@ -5278,7 +5278,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['copd'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['copd'][0]['measure']/nationalBarChart['covidmortality7day'][0]['copd'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['copd'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['copd'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['copd'][1]['measure']/nationalBarChart['covidmortality7day'][0]['copd'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['copd'][0]['measure'] || 0},
@@ -5480,7 +5480,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['ckd'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['ckd'][0]['measure']/nationalBarChart['covidmortality7day'][0]['ckd'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['ckd'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['ckd'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['ckd'][1]['measure']/nationalBarChart['covidmortality7day'][0]['ckd'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['ckd'][0]['measure'] || 0},
@@ -5676,7 +5676,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['diabetes'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['diabetes'][0]['measure']/nationalBarChart['covidmortality7day'][0]['diabetes'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['diabetes'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['diabetes'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['diabetes'][1]['measure']/nationalBarChart['covidmortality7day'][0]['diabetes'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['diabetes'][0]['measure'] || 0},
@@ -5873,7 +5873,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['heartdisease'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['heartdisease'][0]['measure']/nationalBarChart['covidmortality7day'][0]['heartdisease'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['heartdisease'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['heartdisease'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['heartdisease'][1]['measure']/nationalBarChart['covidmortality7day'][0]['heartdisease'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['heartdisease'][0]['measure'] || 0},
@@ -6070,7 +6070,7 @@ export default function NationalReport(props) {
                           <VictoryBar
                             horizontal
                             barRatio={0.80}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
                             data={[
                                   {key: nationalBarChart['covidmortality7day'][0]['obesity'][0]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity'][0]['measure']/nationalBarChart['covidmortality7day'][0]['obesity'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity'][0]['measure'] || 0},
                                   {key: nationalBarChart['covidmortality7day'][0]['obesity'][1]['label'], 'value': (nationalBarChart['covidmortality7day'][0]['obesity'][1]['measure']/nationalBarChart['covidmortality7day'][0]['obesity'][0]['measure'])*nationalBarChart['covidmortality7day'][0]['obesity'][0]['measure'] || 0},
