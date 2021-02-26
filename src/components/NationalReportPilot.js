@@ -2411,11 +2411,169 @@ export default function NationalReport(props) {
                           } /> 
                   </Grid.Row>
                 </Grid>
+                <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
+                <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 430}}>
+                    <div style={{paddingTop:'0em'}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{fontSize: "18pt"}}>Deaths by Race</b> </center> 
+                        <br/>
+                      </Header.Subheader>
+                    </div>
+                  </Grid.Column>
+                  
+                </Grid.Row>
+                <Grid>
+                  
+                  {/* <Grid.Row columns = {2} style = {{width: 1000}}>
+                    <Grid.Column style = {{width: 450, paddingLeft: 300}}>
+                        <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
+                          <center> <b style= {{fontSize: "18pt"}}>Deaths by Race</b> </center> 
+                          <br/>
+                        </Header.Subheader>
+                    </Grid.Column>
+                    <Grid.Column style = {{width: 450, paddingLeft: 100}}>
+                          <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
+                            <center> <b style= {{fontSize: "18pt"}}></b> </center> 
+                            <br/>
+                          </Header.Subheader>
+                    </Grid.Column>
+                  </Grid.Row> */}
+                  {/* <div style={{paddingLeft: "6em", paddingRight: "0em"}}></div> */}
+                  
+                  <Grid.Row columns = {2} style = {{width: 1000}}>
+                    <Grid.Column style = {{width: 450, paddingLeft: 120}}>
+                      <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
+
+                      <VictoryChart
+                            theme={VictoryTheme.material}
+                            width={450}
+                            height={250}
+                            domainPadding={25}
+                            minDomain={{y: props.ylog?1:0}}
+                            padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                            style = {{fontSize: "14pt"}}
+                            containerComponent={<VictoryContainer responsive={false}/>}
+                          >
+                            <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                            <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryGroup offset={15}>
+                            <VictoryBar
+                              horizontal
+                              barWidth={20}
+                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                              data={[
+                                {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentDeaths']},
+                                      {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentDeaths']},
+                                      {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentDeaths']},
+                                      {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentDeaths']},
+                                      {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentDeaths']},
+                                  
 
 
+                              ]}
+                              labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                              style={{
+                                data: {
+                                  fill: mortalityColor[1]
+                                }
+                              }}
+                              x="key"
+                              y="value"
+                            />
+
+                          
+
+                            </VictoryGroup>
+                          </VictoryChart>
+                          <Header.Content style = {{paddingLeft: 50, width: 450}}>
+                              <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                              <b>Percentage of COVID-19 Deaths and Population</b>
+                              </Header.Content>
+                          </Header.Content>
+                      </div>
+                    </Grid.Column>
+                    <Grid.Column style = {{width: 450}}>
+                      {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center> */}
+                      
+                        <div style={{paddingLeft: 140, paddingRight: "0em"}}>
+                          <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
+                            <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}> </b> </center> 
+                            <br/><br/>
+                            While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
+                            affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                            around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate. 
+                            
+                              
+                          </Header.Subheader>
+                        
+                        </div>
+                    </Grid.Column>
+                  </Grid.Row>
+
+              </Grid>
+
+              <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
+
+              <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 430}}>
+                    <div style={{paddingTop:'0em'}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{fontSize: "18pt"}}>Cases by Race</b> </center> 
+                        <br/>
+                      </Header.Subheader>
+                    </div>
+                  </Grid.Column>
+                  
+              </Grid.Row>
+              <Grid>
+                
+                <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
+                  <Grid.Column rows = {2} >
+                    <Grid>
+                      <Grid.Row columns = {2} style = {{width: 900}}>
+                        <Grid.Column style = {{width: 300}}>
+                          <Race rate = {false}/>
+                        </Grid.Column>
+                        <Grid.Column style = {{width: 300, paddingLeft: 50}}>
+                          <Race rate = {true}/> 
+                        </Grid.Column>
+                      </Grid.Row>
+                      <Grid.Row style = {{width: 900}}>
+                        <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+                            <div>
+                              <svg width="450" height="145">
+
+                                  <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
+                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                                  <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
+                                  <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
+                                  <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
 
 
-
+                                  {_.map(pieChartRace, (color, i) => {
+                                    return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  })} 
+                              </svg>
+                            </div>
+                          </Grid.Column>
+                      </Grid.Row>
+                      </Grid>
+                  </Grid.Column>
+                  <Grid.Column >
+                    <div style={{paddingTop: 80, paddingLeft: 150}}>
+                      <Header.Content style = {{width: 250, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt",}}>
+                          
+                          Currently African Americans are sdfos sdv s css vsdv sdv svdsdv sv
+                          <br/>
+                          Texttexttext
+                          <br/>Texttexttext
+                          <br/>
+                      </Header.Content>
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
 
 
 
@@ -2526,53 +2684,7 @@ export default function NationalReport(props) {
                 </Grid>
             </div>
 
-            <Grid>
-              <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
-                <Grid.Column rows = {2} >
-                  <Grid>
-                    <Grid.Row columns = {2} style = {{width: 900}}>
-                      <Grid.Column style = {{width: 300}}>
-                        <Race rate = {false}/>
-                      </Grid.Column>
-                      <Grid.Column style = {{width: 300, paddingLeft: 50}}>
-                        <Race rate = {true}/> 
-                      </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row style = {{width: 900}}>
-                      <Grid.Column style = {{width: 450, paddingLeft: 0}}>
-                          <div>
-                            <svg width="450" height="145">
-
-                                <text x={280} y={25} style={{fontSize: '16px'}}> Hispanic</text>                    
-                                <text x={280} y={45} style={{fontSize: '16px'}}> American Natives</text>                    
-                                <text x={280} y={65} style={{fontSize: '16px'}}> Asian</text>                    
-                                <text x={280} y={85} style={{fontSize: '16px'}}> African American</text>                    
-                                <text x={280} y={105} style={{fontSize: '16px'}}> White</text>                    
-
-
-                                {_.map(pieChartRace, (color, i) => {
-                                  return <rect key={i} x={250} y={10+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                                })} 
-                            </svg>
-                          </div>
-                        </Grid.Column>
-                    </Grid.Row>
-                    </Grid>
-                </Grid.Column>
-                <Grid.Column >
-                  <div style={{paddingTop: 80, paddingLeft: 150}}>
-                    <Header.Content style = {{width: 250, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt",}}>
-                         
-                        Currently African Americans are sdfos sdv s css vsdv sdv svdsdv sv
-                        <br/>
-                        Texttexttext
-                        <br/>Texttexttext
-                        <br/>
-                    </Header.Content>
-                  </div>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+            
             {/* <div id="deaths" style = {{height: 45}}> </div> */}
 
             {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
