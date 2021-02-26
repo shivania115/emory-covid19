@@ -1,9 +1,9 @@
 {
   "age": [
     {
-      "0 - 4": [
+      "0-4": [
         {
-          "demogLabel": "0 - 4",
+          "demogLabel": "0-4",
           "popUS": 327167439,
           "demogPop": 19646315,
           "percentPop": 6.0,
@@ -18,13 +18,12 @@
           "percentDeaths": 0.0,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 0.43,
-          "demographicVar": "age"
+          "deathrate": 0.43
         }
       ],
-      "5 - 17": [
+      "5-17": [
         {
-          "demogLabel": "5 - 17",
+          "demogLabel": "5-17",
           "popUS": 327167439,
           "demogPop": 53705927,
           "percentPop": 16.42,
@@ -39,13 +38,12 @@
           "percentDeaths": 0.1,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 0.43,
-          "demographicVar": "age"
+          "deathrate": 0.43
         }
       ],
-      "18 - 29": [
+      "18-29": [
         {
-          "demogLabel": "18 - 29",
+          "demogLabel": "18-29",
           "popUS": 327167439,
           "demogPop": 53977052,
           "percentPop": 16.5,
@@ -60,13 +58,12 @@
           "percentDeaths": 0.5,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 3.31,
-          "demographicVar": "age"
+          "deathrate": 3.31
         }
       ],
-      "30 - 39": [
+      "30-39": [
         {
-          "demogLabel": "30 - 39",
+          "demogLabel": "30-39",
           "popUS": 327167439,
           "demogPop": 43595274,
           "percentPop": 13.33,
@@ -81,13 +78,12 @@
           "percentDeaths": 1.2,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 9.58,
-          "demographicVar": "age"
+          "deathrate": 9.58
         }
       ],
-      "40 - 49": [
+      "40-49": [
         {
-          "demogLabel": "40 - 49",
+          "demogLabel": "40-49",
           "popUS": 327167439,
           "demogPop": 40660591,
           "percentPop": 12.43,
@@ -102,13 +98,12 @@
           "percentDeaths": 2.8,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 24.91,
-          "demographicVar": "age"
+          "deathrate": 24.91
         }
       ],
-      "50 - 64": [
+      "50-64": [
         {
-          "demogLabel": "50 - 64",
+          "demogLabel": "50-64",
           "popUS": 327167439,
           "demogPop": 63159166,
           "percentPop": 19.3,
@@ -123,13 +118,12 @@
           "percentDeaths": 14.5,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 82.54,
-          "demographicVar": "age"
+          "deathrate": 82.54
         }
       ],
-      "65 - 74": [
+      "65-74": [
         {
-          "demogLabel": "65 - 74",
+          "demogLabel": "65-74",
           "popUS": 327167439,
           "demogPop": 30571313,
           "percentPop": 9.34,
@@ -144,13 +138,12 @@
           "percentDeaths": 21.1,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 248.95,
-          "demographicVar": "age"
+          "deathrate": 248.95
         }
       ],
-      "75 - 84": [
+      "75-84": [
         {
-          "demogLabel": "75 - 84",
+          "demogLabel": "75-84",
           "popUS": 327167439,
           "demogPop": 15547953,
           "percentPop": 4.75,
@@ -165,8 +158,7 @@
           "percentDeaths": 27.6,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 639.05,
-          "demographicVar": "age"
+          "deathrate": 639.05
         }
       ],
       "85+": [
@@ -186,8 +178,7 @@
           "percentDeaths": 32.3,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 1845.44,
-          "demographicVar": "age"
+          "deathrate": 1845.44
         }
       ],
       "Unknown": [
@@ -207,8 +198,7 @@
           "percentDeaths": -9999.0,
           "availableDeaths": 99,
           "missingDeaths": 1,
-          "deathrate": -9999.0,
-          "demographicVar": "age"
+          "deathrate": -9999.0
         }
       ]
     }
@@ -232,8 +222,7 @@
           "percentDeaths": 12.4,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 55.02,
-          "demographicVar": "race"
+          "deathrate": 55.02
         }
       ],
       "Unknown": [
@@ -253,8 +242,7 @@
           "percentDeaths": -9999.0,
           "availableDeaths": 74,
           "missingDeaths": 26,
-          "deathrate": -9999.0,
-          "demographicVar": "race"
+          "deathrate": -9999.0
         }
       ],
       "American Natives": [
@@ -274,8 +262,7 @@
           "percentDeaths": 1.0,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 112.41,
-          "demographicVar": "race"
+          "deathrate": 112.41
         }
       ],
       "Asian": [
@@ -295,8 +282,7 @@
           "percentDeaths": 4.3,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 61.16,
-          "demographicVar": "race"
+          "deathrate": 61.16
         }
       ],
       "African American": [
@@ -316,8 +302,7 @@
           "percentDeaths": 14.8,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 96.62,
-          "demographicVar": "race"
+          "deathrate": 96.62
         }
       ],
       "Multiple/Other": [
@@ -337,8 +322,7 @@
           "percentDeaths": -9999.0,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "race"
+          "deathrate": -9999.0
         }
       ],
       "NHPI": [
@@ -358,8 +342,7 @@
           "percentDeaths": 0.2,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 106.56,
-          "demographicVar": "race"
+          "deathrate": 106.56
         }
       ],
       "White": [
@@ -379,8 +362,7 @@
           "percentDeaths": 62.9,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": 85.69,
-          "demographicVar": "race"
+          "deathrate": 85.69
         }
       ]
     }
@@ -404,8 +386,7 @@
           "percentDeaths": 45.8,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "sex"
+          "deathrate": -9999.0
         }
       ],
       "Unknown": [
@@ -425,8 +406,7 @@
           "percentDeaths": -9999.0,
           "availableDeaths": 99,
           "missingDeaths": 1,
-          "deathrate": -9999.0,
-          "demographicVar": "sex"
+          "deathrate": -9999.0
         }
       ],
       "Male": [
@@ -446,8 +426,7 @@
           "percentDeaths": 54.2,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "sex"
+          "deathrate": -9999.0
         }
       ],
       "Other": [
@@ -467,8 +446,7 @@
           "percentDeaths": 0.0,
           "availableDeaths": -9999,
           "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "sex"
+          "deathrate": -9999.0
         }
       ]
     }
@@ -481,19 +459,12 @@
           "popUS": 327167439,
           "demogPop": -9999,
           "percentPop": -9999.0,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "40981336",
+          "pctAdmDose1": "-9999",
+          "pctKnownAdmDose1": "92",
+          "admDose2": "18070863",
+          "pctAdmDose2": "-9999",
+          "pctKnownAdmDose2": "92"
         }
       ],
       "<18": [
@@ -502,124 +473,82 @@
           "popUS": 327167439,
           "demogPop": 73352242,
           "percentPop": 22.42,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "26405",
+          "pctAdmDose1": "0.1",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "7625",
+          "pctAdmDose2": "0",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
-      "18 - 29": [
+      "18-29": [
         {
-          "demogLabel": "18 - 29",
+          "demogLabel": "18-29",
           "popUS": 327167439,
           "demogPop": 53977052,
           "percentPop": 16.5,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "2856869",
+          "pctAdmDose1": "7",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "1529204",
+          "pctAdmDose2": "8.5",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
-      "30 - 39": [
+      "30-39": [
         {
-          "demogLabel": "30 - 39",
+          "demogLabel": "30-39",
           "popUS": 327167439,
           "demogPop": 43595274,
           "percentPop": 13.33,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "4110020",
+          "pctAdmDose1": "10",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "2427070",
+          "pctAdmDose2": "13.4",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
-      "40 - 49": [
+      "40-49": [
         {
-          "demogLabel": "40 - 49",
+          "demogLabel": "40-49",
           "popUS": 327167439,
           "demogPop": 40660591,
           "percentPop": 12.43,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "4292722",
+          "pctAdmDose1": "10.5",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "2450880",
+          "pctAdmDose2": "13.6",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
-      "50 - 64": [
+      "50-64": [
         {
-          "demogLabel": "50 - 64",
+          "demogLabel": "50-64",
           "popUS": 327167439,
           "demogPop": 63159166,
           "percentPop": 19.3,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "7495723",
+          "pctAdmDose1": "18.3",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "3960366",
+          "pctAdmDose2": "21.9",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
-      "65 - 74": [
+      "65-74": [
         {
-          "demogLabel": "65 - 74",
+          "demogLabel": "65-74",
           "popUS": 327167439,
           "demogPop": 30571313,
           "percentPop": 9.34,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "10584769",
+          "pctAdmDose1": "25.8",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "3361234",
+          "pctAdmDose2": "18.6",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "75+": [
@@ -628,19 +557,12 @@
           "popUS": 327167439,
           "demogPop": 21851810,
           "percentPop": 6.68,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineAge"
+          "admDose1": "11614828",
+          "pctAdmDose1": "28.3",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "4334484",
+          "pctAdmDose2": "24",
+          "pctKnownAdmDose2": "-9999"
         }
       ]
     }
@@ -653,19 +575,12 @@
           "popUS": 327167439,
           "demogPop": 60572237,
           "percentPop": 18.45,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "2089536",
+          "pctAdmDose1": "8.7",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "828928",
+          "pctAdmDose2": "8",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "Unknown": [
@@ -674,19 +589,12 @@
           "popUS": 327167439,
           "demogPop": -9999,
           "percentPop": -9999.0,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "24007713",
+          "pctAdmDose1": "-9999",
+          "pctKnownAdmDose1": "54.4",
+          "admDose2": "10316674",
+          "pctAdmDose2": "-9999",
+          "pctKnownAdmDose2": "53.1"
         }
       ],
       "American Natives": [
@@ -695,19 +603,12 @@
           "popUS": 327167439,
           "demogPop": 2434908,
           "percentPop": 0.74,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "413427",
+          "pctAdmDose1": "1.7",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "175062",
+          "pctAdmDose2": "1.7",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "Asian": [
@@ -716,19 +617,12 @@
           "popUS": 327167439,
           "demogPop": 18905879,
           "percentPop": 5.76,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "1211394",
+          "pctAdmDose1": "5",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "519309",
+          "pctAdmDose2": "5",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "African American": [
@@ -737,19 +631,12 @@
           "popUS": 327167439,
           "demogPop": 41147488,
           "percentPop": 12.54,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "1529268",
+          "pctAdmDose1": "6.4",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "593773",
+          "pctAdmDose2": "5.8",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "Multiple/Other": [
@@ -758,19 +645,12 @@
           "popUS": 327167439,
           "demogPop": -9999,
           "percentPop": -9999.0,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "3301284",
+          "pctAdmDose1": "13.8",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "1412921",
+          "pctAdmDose2": "13.7",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "NHPI": [
@@ -779,19 +659,12 @@
           "popUS": 327167439,
           "demogPop": 595908,
           "percentPop": 0.18,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "61901",
+          "pctAdmDose1": "0.3",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "30339",
+          "pctAdmDose2": "0.3",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "White": [
@@ -800,19 +673,12 @@
           "popUS": 327167439,
           "demogPop": 197309822,
           "percentPop": 60.11,
-          "cases": -9999,
-          "totalcases": -9999,
-          "percentCases": -9999.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": -9999,
-          "percentDeaths": -9999.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineRace"
+          "admDose1": "15400903",
+          "pctAdmDose1": "64.1",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "6756342",
+          "pctAdmDose2": "65.5",
+          "pctKnownAdmDose2": "-9999"
         }
       ]
     }
@@ -825,19 +691,12 @@
           "popUS": 327167439,
           "demogPop": 166049288,
           "percentPop": 50.75,
-          "cases": 10905727,
-          "totalcases": 21123263,
-          "percentCases": 52.3,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": 6567.76,
-          "deaths": -9999,
-          "totaldeaths": 359211,
-          "percentDeaths": 45.8,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineSex"
+          "admDose1": "23599698",
+          "pctAdmDose1": "58.5",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "10849838",
+          "pctAdmDose2": "61.2",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "Unknown": [
@@ -846,19 +705,12 @@
           "popUS": 327167439,
           "demogPop": -9999,
           "percentPop": -9999.0,
-          "cases": 259218,
-          "totalcases": 21123263,
-          "percentCases": -9999.0,
-          "availableCases": 98,
-          "missingCases": 2,
-          "caserate": -9999.0,
-          "deaths": 1164,
-          "totaldeaths": 359211,
-          "percentDeaths": -9999.0,
-          "availableDeaths": 99,
-          "missingDeaths": 1,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineSex"
+          "admDose1": "40324506",
+          "pctAdmDose1": "-9999",
+          "pctKnownAdmDose1": "91.4",
+          "admDose2": "17737355",
+          "pctAdmDose2": "-9999",
+          "pctKnownAdmDose2": "91.2"
         }
       ],
       "Male": [
@@ -867,19 +719,12 @@
           "popUS": 327167439,
           "demogPop": 161118151,
           "percentPop": 49.25,
-          "cases": 9957880,
-          "totalcases": 21123263,
-          "percentCases": 47.7,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": 6180.48,
-          "deaths": -9999,
-          "totaldeaths": 359211,
-          "percentDeaths": 54.2,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineSex"
+          "admDose1": "16724808",
+          "pctAdmDose1": "41.5",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "6887517",
+          "pctAdmDose2": "38.8",
+          "pctKnownAdmDose2": "-9999"
         }
       ],
       "Other": [
@@ -888,19 +733,12 @@
           "popUS": 327167439,
           "demogPop": -9999,
           "percentPop": -9999.0,
-          "cases": 438,
-          "totalcases": 21123263,
-          "percentCases": 0.0,
-          "availableCases": -9999,
-          "missingCases": -9999,
-          "caserate": -9999.0,
-          "deaths": -9999,
-          "totaldeaths": 359211,
-          "percentDeaths": 0.0,
-          "availableDeaths": -9999,
-          "missingDeaths": -9999,
-          "deathrate": -9999.0,
-          "demographicVar": "vaccineSex"
+          "admDose1": "-9999",
+          "pctAdmDose1": "-9999",
+          "pctKnownAdmDose1": "-9999",
+          "admDose2": "-9999",
+          "pctAdmDose2": "-9999",
+          "pctKnownAdmDose2": "-9999"
         }
       ]
     }
