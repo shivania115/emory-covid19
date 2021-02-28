@@ -14,7 +14,7 @@ import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
 import {HEProvider} from './HEProvider';
 import USVaccineTracker from "./USVaccineTracker";
-import VaccineFAQ from "./VaccineFAQ";
+import VaccineMap from "./VaccineMap";
 import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
 // import USMapPilot from "./USMapPilot";
@@ -86,6 +86,9 @@ function AppUI() {
           </Route>  
           <Route path='/:stateFips'>
             <StateMap />
+          </Route>
+          <Route path='/vaccine-map'>
+            <VaccineMap />
           </Route>
           <Route path='/'>
             <USMap />
