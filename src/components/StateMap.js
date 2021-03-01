@@ -333,7 +333,8 @@ export default function StateMap(props) {
       'covidmortality7dayfig': 'Average Daily COVID-19 Deaths /100,000'
 
     }
-    
+  
+  console.log("stateFips ", stateFips);
 
 
   const [delayHandler, setDelayHandler] = useState();
@@ -585,12 +586,13 @@ export default function StateMap(props) {
 
   
   // }, [metric]);
-
+  console.log("config ", config);
 
   // mongo
   useEffect(()=>{
     if (metric) {
       const configMatched = configs.find(s => s.fips === stateFips);
+      console.log("configMatched", configMatched);
       if (!configMatched){
         history.push('/_nation');
       }else{
@@ -725,6 +727,7 @@ export default function StateMap(props) {
       }
     }
   },[isLoggedIn]);
+
 
   useEffect(() => {
     if(stateFips !== "_nation"){

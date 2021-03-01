@@ -1,9 +1,17 @@
 import React, { useEffect, useState, PureComponent} from 'react'
 import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button} from 'semantic-ui-react'
 import AppBar from './AppBar';
-import Geographies from './Geographies';
-import Geography from './Geography';
-import ComposableMap from './ComposableMap';
+// import Geographies from './Geographies';
+// import Geography from './Geography';
+// import ComposableMap from './ComposableMap';
+// import { Marker } from "react-simple-maps";
+
+import {
+    ComposableMap,
+    Geographies,
+    Geography,
+    Marker
+  } from "react-simple-maps";
 
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
@@ -20,277 +28,329 @@ import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
 import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
-function numberWithCommas(x) {
-    x = x.toString();
-    var pattern = /(-?\d+)(\d{3})/;
-    while (pattern.test(x))
-        x = x.replace(pattern, "$1,$2");
-    return x;
-}
 
+
+
+const colorPalette = [
+        "#e1dce2",
+        "#d3b6cd",
+        "#bf88b5", 
+        "#af5194", 
+        "#99528c", 
+        "#633c70", 
+      ];
 const countyColor = '#f2a900';
+const stateColor = "#778899";
+const nationColor = '#b1b3b3';
+
+const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+];
 
 
-export default function VaccineMap(props){
-    const {
-        isLoggedIn,
-        actions: { handleAnonymousLogin },
-      } = useStitchAuth();  
-    
-      
-      const history = useHistory();
-      let {stateFips} = useParams();
-      const [tooltipContent, setTooltipContent] = useState('');
-    
-      const [data, setData] = useState();
-      const [dataTS, setDataTS] = useState();
-      const [dataStateTS, setStateTS] = useState();
-      const [raceData, setRaceData] = useState();
-    
-      const [config, setConfig] = useState();
-      const [stateName, setStateName] = useState('');
-      const [countyFips, setCountyFips] = useState('');
-      const [countyName, setCountyName] = useState('');
-      const [barCountyName, setBarCountyName] = useState('');
-      
-      const [colorScale, setColorScale] = useState();
-      const [legendMax, setLegendMax] = useState([]);
-      const [legendMin, setLegendMin] = useState([]);
-      const [legendSplit, setLegendSplit] = useState([]);
-    
-      const [caseRate, setCaseRate] = useState();
-      const [percentChangeCases, setPercentChangeCases] = useState();
-      const [mortality, setMortality] = useState();
-      const [percentChangeMortality, setPercentChangeMortality] = useState();
-      const [pctPositive, setPctPositive] = useState();
-      // const [totalCases, setTotalCases] = useState();
-      const [hospDaily, setHospDaily] = useState();
-      const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
-      const [index, setIndex] = useState();
-      const [indexP, setIndexP] = useState();
-    
-      const [varMap, setVarMap] = useState({});
-      const [metric, setMetric] = useState('caserate7dayfig');
-      const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-      const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
-      const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
-      const [countyOption, setCountyOption] = useState();
-      const [selectedTrend, setSelectedTrend] = useState("");
 
-      const [delayHandler, setDelayHandler] = useState();
-    
-    //variable list & fips code to county name 
-    useEffect(()=>{
-        fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-        .then(x => {
-            setVarMap(x);
-            setMetricOptions(_.filter(_.map(x, d=> {
-            return {key: d.id, value: d.variable, text: d.name, group: d.group};
-            }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
-        });
+export default function VaccineMap(props) {
+  const {
+    isLoggedIn,
+    actions: { handleAnonymousLogin },
+  } = useStitchAuth();  
 
-        fetch('/data/rawdata/f2c.json').then(res => res.json())
-        .then(x => {
-            setCountyOption(_.filter(_.map(x, d=> {
-            return {key: d.id, value: d.value, text: d.text, group: d.state};
-            }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
-        });
-    }, []);
+  
+  const history = useHistory();
+  //let {stateFips} = useParams();
+  let stateFips = "13";
+  const [tooltipContent, setTooltipContent] = useState('');
 
-    // mongo
-    useEffect(()=>{
-        if (metric) {
+  const [data, setData] = useState();
+  const [dataTS, setDataTS] = useState();
+  const [dataStateTS, setStateTS] = useState();
+  const [raceData, setRaceData] = useState();
+
+  const [config, setConfig] = useState();
+  const [stateName, setStateName] = useState('');
+  const [countyFips, setCountyFips] = useState('');
+  const [countyName, setCountyName] = useState('');
+  
+  const [colorScale, setColorScale] = useState();
+  const [pctPositive, setPctPositive] = useState();
+  // const [totalCases, setTotalCases] = useState();
+  const [hospDaily, setHospDaily] = useState();
+  const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
+  const [index, setIndex] = useState();
+  const [indexP, setIndexP] = useState();
+
+  const [varMap, setVarMap] = useState({});
+  const [metric, setMetric] = useState('caserate7dayfig');
+  const [countyOption, setCountyOption] = useState();
+
+  const [transform, setTransform] = useState();
+  
+  console.log("stateFips ", stateFips);
+
+
+  const [delayHandler, setDelayHandler] = useState();
+
+
+  //variable list & fips code to county name 
+  useEffect(()=>{
+    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      .then(x => {
+        setVarMap(x);
+        // setMetricOptions(_.filter(_.map(x, d=> {
+        //   return {key: d.id, value: d.variable, text: d.name, group: d.group};
+        // }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
+      });
+
+    fetch('/data/rawdata/f2c.json').then(res => res.json())
+      .then(x => {
+        setCountyOption(_.filter(_.map(x, d=> {
+          return {key: d.id, value: d.value, text: d.text, group: d.state};
+        }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
+      });
+  }, []);
+
+
+  // mongo
+  useEffect(()=>{
+    //if (metric) {
+
+    if (isLoggedIn === true){
         const configMatched = configs.find(s => s.fips === stateFips);
+      
         if (!configMatched){
             history.push('/_nation');
-        }else{
-            if (isLoggedIn === true){
-            let newDict = {};
-            let caseRate = 0;
-            let mortality = 0;
-            let percentChangeCase = 0;
-            let percentChangeMortality = 0;
-            let hospD = 0;
-            let totCases = 0;
-            let percentChangeHospDaily = 0;
-            let percentPositive = 0;    
-            setConfig(configMatched);
-            setStateName(configMatched.name);
-            const fetchData = async() => { 
-                if(stateFips !== "_nation"){
-                //all static data
-                const staticQ = {all: "all"};
-                const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+        } else{
+        //   let newDict = {}; 
+          console.log("configMatched.offsetX", configMatched.offsetX);
+          setConfig(configMatched);
+        //   setTransform("translate(" + configMatched.offsetX + "," + configMatched.offsetY + ")")
+          setTransform("translate(-900, -400)")
+          setStateName(configMatched.name);
+        //   const fetchData = async() => { 
+        //     if(stateFips !== "_nation"){
+        //       //all static data
+        //       const staticQ = {all: "all"};
+        //       const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
 
-                promStatic.forEach(i=> {
-                    if(i.tag === "nationalrawfull"){ //nationalraw
-                    newDict = i.data;
-                    setData(newDict); 
-                    }else if(i.tag === "racedataAll"){ //race data
-                    setRaceData(i.racedataAll);       
-                    }
-                });
-                        
-            
-                const stateSeriesQ = {tag: "stateonly"};
-                const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
-                let stateSeriesDict = promState[0].timeseriesAll[stateFips];
-                setStateTS(stateSeriesDict);
-
-                    if(stateFips === "_nation"){
-                    caseRate = 0;
-                    mortality = 0;
-                    totCases = 0;
-                    hospD = 0;
-                    }else{
-                    //case rate
-                    caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
-                    percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
+        //       promStatic.forEach(i=> {
+        //         if(i.tag === "nationalrawfull"){ //nationalraw
+        //           newDict = i.data;
+        //           setData(newDict); 
+        //         }else if(i.tag === "racedataAll"){ //race data
+        //           setRaceData(i.racedataAll);       
+        //         }
+        //       });
                     
-                    //mortality rate
-                    mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
-                    percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
+          
+        //       const stateSeriesQ = {tag: "stateonly"};
+        //       const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+        //       let stateSeriesDict = promState[0].timeseriesAll[stateFips];
+        //       setStateTS(stateSeriesDict);
 
-                    //hospitalization rate
-                    percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
-                    hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+        //       }
+              
 
-                    //testing positive rate
-                    percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+        //     let seriesDict = {};
+        //     let countyMost = '';
+        //     if( stateFips !== "_nation"){
+        //       //Timeseries data
+        //       const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
+        //       const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
+        //       _.map(prom, i=> {
+        //         seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
+        //         return seriesDict;
+        //       });
+        //       _.each(seriesDict, (v, k)=>{
 
-                    totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
-
-                    }
-                }
-                
-                //manipulate string
-                if (percentChangeCase.toFixed(0) > 0){
-                setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
-                }else if(percentChangeCase.toFixed(0).substring(1) === "0"){
-                setPercentChangeCases(percentChangeCase.toFixed(0).substring(1) + "%");
-                }else{
-                setPercentChangeCases(percentChangeCase.toFixed(0) + "%");
-                }
-
-                if (percentChangeMortality.toFixed(0) > 0){
-                setPercentChangeMortality("+" + percentChangeMortality.toFixed(0) + "%");
-                }else if(percentChangeMortality.toFixed(0).substring(1) === "0"){
-                setPercentChangeMortality(percentChangeMortality.toFixed(0).substring(1) + "%");
-                }else{
-                setPercentChangeMortality(percentChangeMortality.toFixed(0) + "%");
-                }
-
-                if (percentChangeHospDaily.toFixed(0) > 0){
-                setPercentChangeHospDaily("+" + percentChangeHospDaily.toFixed(0) + "%");
-                }else if(percentChangeHospDaily.toFixed(0).substring(1) === "0"){
-                setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0).substring(1) + "%");
-                }else{
-                setPercentChangeHospDaily(percentChangeHospDaily.toFixed(0) + "%");
-                }
-
-                //set values
-                setPctPositive(percentPositive.toFixed(0) + "%");
-                // setIndexP(indexP);
-                // setIndex(index);
-                setCaseRate(numberWithCommas(caseRate.toFixed(0)));
-                setMortality(numberWithCommas(mortality.toFixed(0)));
-                // setTotalCases(numberWithCommas(totCases.toFixed(0)));
-                setHospDaily(numberWithCommas(hospD.toFixed(0)));
-
-                
-
-                let seriesDict = {};
-                let countyMost = '';
-                let covidmortality7dayfig = 0;
-                if( stateFips !== "_nation"){
-                //Timeseries data
-                const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
-                const prom = await CHED_series.find(seriesQ, {projection: {}}).toArray();
-                _.map(prom, i=> {
-                    seriesDict[i[Object.keys(i)[4]]] = i[Object.keys(i)[5]];
-                    return seriesDict;
-                });
-                _.each(seriesDict, (v, k)=>{
-
-                    if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
-                    countyMost = k.substring(2, 5);
-                    covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
-                    }
-                });
-                }
-                setCountyFips(countyMost);
-                if(stateFips !== "_nation"){
-                setCountyName(fips2county[stateFips+countyMost]);
-                setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
-                }
-                
-                setDataTS(seriesDict);
-            };
-            fetchData();
+        //       });
+        //     }
+        //     setCountyFips(countyMost);
+        //     if(stateFips !== "_nation"){
+        //       setCountyName(fips2county[stateFips+countyMost]);
+        //       //setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
+        //     }
             
-            
-            } else {
-            handleAnonymousLogin();
-            }
+        //     setDataTS(seriesDict);
+        //   };
+        //   fetchData();
         }
-        }
-    },[isLoggedIn]);
+          
+        } else {
+          handleAnonymousLogin();
+        
+      }
+    //}
+  },[isLoggedIn]);
+  console.log("config ", config);
+  console.log("tranform ", transform);
 
+//   useEffect(() => {
+//     if(stateFips !== "_nation"){
+//       let scaleMap = {};
+//       var max = 0;
+//       var min = 100;
+//       const cs = scaleQuantile()
+//       .domain(_.map(_.filter(data, 
+//         d => (
+//             d[metric] > 0 &&
+//             d.fips.length === 5)),
+//         d=> d[metric]))
+//       .range(colorPalette);
+
+//       _.each(data, d=>{
+//         if(d[metric] > 0){
+//         scaleMap[d[metric]] = cs(d[metric])}});
+//       setColorScale(scaleMap);
+//       setLegendSplit(cs.quantiles());
+
+//       //find the largest value and set as legend max
+//       _.each(data, d=> { 
+//         if (d[metric] > max && d.fips.length === 5) {
+//           max = d[metric]
+//         } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+//           min = d[metric]
+//         }
+//       });
+
+//       if (max > 999999) {
+//         max = (max/1000000).toFixed(0) + "M";
+//         setLegendMax(max);
+//       }else if (max > 999) {
+//         max = (max/1000).toFixed(0) + "K";
+//         setLegendMax(max);
+//       }else{
+//         setLegendMax(max.toFixed(0));
+//       }
+//       setLegendMin(min.toFixed(0));
+//     }
+
+//   }, [metric, data]);
+
+
+  //set date
+//   useEffect(() => {
+//     if (dataTS && dataTS[stateFips]){
+//       setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
+//     }
+//   }, [dataTS]);
+
+  const markers = [
+    {
+      markerOffset: 0,
+      name: "230",
+      coordinates: [-81.4865, 31.1979]
+    },
+    { markerOffset: 0, name: "111", coordinates: [-83.8838, 32.5556] },
+    // { markerOffset: 0, name: "233", coordinates: [-83.8788, 32.5647] },
+    { markerOffset: 0, name: "235", coordinates: [-84.1549, 31.5906] },
+    { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
+  ];
+
+
+  // if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
+  // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
+    if (config) {
+    console.log( dataTS);
     return(
+    <HEProvider>
     <div>
       
-      <AppBar menu='vaccinemap'/>
-      <Container style={{marginTop: '0em', minWidth: '1260px'}}>
+        <AppBar menu='vaccinemap'/>
+        <Container style={{marginTop: '10em', minWidth: '1260px'}}>
 
-      <Grid>
-        <ComposableMap projection="geoAlbersUsa" 
-        projectionConfig={{scale:`${config.scale*0.7}`}} 
-        width={400} 
-        height={500} 
-        strokeWidth = {0.1}
-        stroke = 'black'
-        data-tip=""
-        offsetX={config.offsetX}
-        offsetY={config.offsetY}>
-        <Geographies geography={config.url}>
-            {({geographies}) => geographies.map(geo =>
-            <Geography 
-                key={geo.rsmKey} 
-                geography={geo}  
-                onClick={()=>{
-                if(stateFips !== "_nation"){
-                    history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
-                }
-                }}
-                onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
-                if(stateFips !== "_nation"){
-                    setCountyFips(geo.properties.COUNTYFP);
-                    setCountyName(fips2county[stateFips + geo.properties.COUNTYFP]);
-                    setBarCountyName((fips2county[stateFips + geo.properties.COUNTYFP]).match(/\S+/)[0]);
-                    }
-                }, 300))
-                
-                }}
-                onMouseLeave={()=>{
-                if(stateFips !== "_nation"){
-                    clearTimeout(delayHandler);
-
-                    setTooltipContent("")
-                }
-                }}
-                
-                fill={(stateFips === "_nation" || stateFips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
-                    ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
-                        colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
-                        (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
-                        '#e1dce2':'#FFFFFF')}
-                />
-            )}
-        </Geographies>
-        </ComposableMap>
+        <Grid>
+        <Header>Vaccination Sites</Header>
         </Grid>
-      </Container>
+
+        <Grid >
+            <ComposableMap projection="geoAlbersUsa" 
+            //projectionConfig={{scale:`${config.scale*0.7}`}} 
+            projectionConfig={{
+                // rotate: [-100, 20, 0],
+                scale: 4000,
+              }}
+            width={800} 
+            height={500} 
+            strokeWidth = {0.1}
+            stroke = 'black'
+            data-tip=""
+            // offsetx={config.offsetX}
+            // offsety={config.offsetY}
+            >
+            <Geographies geography={config.url} transform={transform}>
+                {({geographies}) => geographies.map(geo =>
+                <Geography 
+                    key={geo.rsmKey} 
+                    geography={geo} 
+                    
+                    // onClick link
+                    // onClick={()=>{
+                    // if(stateFips !== "_nation"){
+                    //     history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
+                    // }
+                    // }}
+
+                    // onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
+                    // if(stateFips !== "_nation"){
+                    //     setCountyFips(geo.properties.COUNTYFP);
+                    //     setCountyName(fips2county[stateFips + geo.properties.COUNTYFP]);
+                    //     setBarCountyName((fips2county[stateFips + geo.properties.COUNTYFP]).match(/\S+/)[0]);
+                    //     }
+                    // }, 300))
+                    
+                    // }}
+                    // onMouseLeave={()=>{
+                    // if(stateFips !== "_nation"){
+                    //     clearTimeout(delayHandler);
+
+                    //     setTooltipContent("")
+                    // }
+                    // }}
+                    
+                    // fill={(stateFips === "_nation" || stateFips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
+                    //     ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
+                    //         colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
+                    //         (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
+                    //         '#e1dce2':'#FFFFFF')}
+                    fill = 'white'
+                    />
+                )}
+            </Geographies>
+            {markers.map(({ name, coordinates, markerOffset }) => (
+                <Marker key={name} coordinates={coordinates} onClick={() => {
+                    window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
+                  }}>
+                <circle r={3} z-index={10} fill="#FF5533" stroke="#FF5533" strokeWidth={2} transform='translate(-900, -414)'/>
+                <g
+                    fill="none"
+                    stroke="#FF5533"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    // transform={transform}
+                    transform="translate(-912, -424)"
+                >
+                    {/* <circle cx="12" cy="10" r="3" transform={transform}/> */}
+                    <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
+                </g>
+                <text
+                    textAnchor="middle"
+                    y={markerOffset}
+                    transform={transform}
+                    style={{ fontFamily: "system-ui", fill: "#5D5A6D", fontSize: 10 }}
+                >
+                    {name}
+                </text>
+                </Marker>
+            ))}
+            </ComposableMap>
+            </Grid>
+        </Container>
       
     </div>
+    </HEProvider>
     );
+} else {
+        return <Loader active inline='centered' />
+    }
 }
