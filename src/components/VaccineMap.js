@@ -1,5 +1,5 @@
 import React, { useEffect, useState, PureComponent} from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button} from 'semantic-ui-react'
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button, Card} from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
 // import Geography from './Geography';
@@ -49,6 +49,29 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
 ];
 
 
+function CountySites(props) {
+  const county = props.county;
+  const siteData = props.siteData;
+  console.log("selectedCounty", county)
+  
+  const CardGroup = _.filter(siteData, {'county':county+' County'}).map((obj, index) =>
+    <Card 
+      href={"https://maps.google.com?q="+obj.address}
+      target='_blank'
+      key={index}
+      header={obj.address}
+      // meta='Friend'
+      description='Click to view on Google Map'
+    />
+    )
+  
+  return (
+    <Card.Group style={{width:'280px', paddingTop:'2rem'}}>
+      {CardGroup}
+    </Card.Group>
+  )
+}
+
 
 export default function VaccineMap(props) {
   const {
@@ -61,7 +84,9 @@ export default function VaccineMap(props) {
   //let {stateFips} = useParams();
   let stateFips = "13";
   const [tooltipContent, setTooltipContent] = useState('');
-  const [hoverMarker, setHoverMarker] = useState("");
+  // const [hoverMarker, setHoverMarker] = useState('');
+  const [countyList, setCountyList] = useState([]);
+  const [countySelected, setCountySelected] = useState();
 
   const [siteData, setSiteData] = useState();
   const [dataTS, setDataTS] = useState();
@@ -140,7 +165,8 @@ export default function VaccineMap(props) {
           .then(x => {
             setSiteData(
               _.map(x, d=> {
-                return {address: d.Address, coordinates: [d.Longitude, d.Latitude]};
+                return {address: d.Address, county: d.County, coordinates: [d.Longitude, d.Latitude]};
+              
               })
             );
         }).then(text => console.log(text))
@@ -148,6 +174,7 @@ export default function VaccineMap(props) {
           // Do something for an error here
           console.log("Error Reading data " + err);
         });
+
   }, []);
 
     
@@ -163,7 +190,7 @@ export default function VaccineMap(props) {
             history.push('/_nation');
         } else{
         //   let newDict = {}; 
-          console.log("configMatched.offsetX", configMatched.offsetX);
+          // console.log("configMatched.offsetX", configMatched.offsetX);
           setConfig(configMatched);
         //   setTransform("translate(" + configMatched.offsetX + "," + configMatched.offsetY + ")")
           setTransform("translate(-900, -400)")
@@ -223,8 +250,8 @@ export default function VaccineMap(props) {
       }
     //}
   },[isLoggedIn]);
-  console.log("config ", config);
-  console.log("tranform ", transform);
+  // console.log("config ", config);
+  // console.log("tranform ", transform);
   console.log('site data', siteData);
 
 //   useEffect(() => {
@@ -270,13 +297,25 @@ export default function VaccineMap(props) {
 //   }, [metric, data]);
 
 
-  //set date
-//   useEffect(() => {
-//     if (dataTS && dataTS[stateFips]){
-//       setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
-//     }
-//   }, [dataTS]);
+  //set county list
+  useEffect(() => {
+    // county list
+    if(config){
+      fetch(config.url)
+    .then(res => res.json())
+    .then(x => {
+      setCountyList(_.sortBy(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),
+      d => {
+        return {key:d.GEOID, value:d.NAME, text:d.NAME+' County'}
+      }), 'text'));
+      // setCountyList(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),'NAME'));
+  })
+    // setCountyList()
+    }
+    
+  }, [config]);
 
+  console.log("countyList", countyList)
   // const markers = [
   //   {
   //     markerOffset: 0,
@@ -288,11 +327,22 @@ export default function VaccineMap(props) {
   //   { markerOffset: 0, name: "235", coordinates: [-84.1549, 31.5906] },
   //   { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
   // ];
-    console.log("tooltipContent", tooltipContent==="459 HWY 119S,Springfield,GA 31329");
+  const CardGroup = _.filter(siteData, {'county':countySelected+' County'}).map((obj, index) =>
+    <Card 
+      href={"https://maps.google.com?q="+obj.address}
+      target='_blank'
+      key={index}
+      header={obj.address}
+      // meta='Friend'
+      description='Click to view on Google Map'
+      onMouseEnter={()=>{setTooltipContent(obj.address)}}
+      onMouseLeave={()=>{setTooltipContent("")}}
+    />
+    )
 
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
-    if (config && siteData) {
+    if (config && siteData && countyList) {
     
     return(
     <HEProvider>
@@ -304,16 +354,16 @@ export default function VaccineMap(props) {
         <Grid>
         <Header>Vaccination Sites</Header>
         </Grid>
-
-        <Grid >
+        <Grid columns={2}>
+        <Grid.Column width={10}>
             <ComposableMap projection="geoAlbersUsa" 
             //projectionConfig={{scale:`${config.scale*0.7}`}} 
             projectionConfig={{
                 // rotate: [-100, 20, 0],
                 scale: 4500,
               }}
-            width={800} 
-            height={500} 
+            width={500} 
+            height={400} 
             strokeWidth = {0.3}
             stroke = 'black'
             data-tip=""
@@ -367,11 +417,11 @@ export default function VaccineMap(props) {
                   }}
                   onMouseEnter={() => {
                     setTooltipContent(address);
-                    setHoverMarker(address);
+                    // setHoverMarker(address);
                   }}
                   onMouseLeave={() => {
                     setTooltipContent("");
-                    setHoverMarker("");
+                    // setHoverMarker("");
                   }}
                   >
                 {/* <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="3" transform={transform}/> */}
@@ -406,14 +456,14 @@ export default function VaccineMap(props) {
                 }}
                 onMouseEnter={() => {
                   setTooltipContent(address);
-                  setHoverMarker(address);
+                  // setHoverMarker(address);
                 }}
                 onMouseLeave={() => {
                   setTooltipContent("");
-                  setHoverMarker("");
+                  // setHoverMarker("");
                 }}
                 >
-                <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="3" transform={transform}/>
+                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="3" transform={transform}/>
                 </Marker>
                 
                 // "rgb(255,209,93)"
@@ -429,9 +479,45 @@ export default function VaccineMap(props) {
             ))}
             {/* </ZoomableGroup> */}
             </ComposableMap>
-            </Grid>
+            </Grid.Column>
+        <Grid.Column width={4}>
+          <Grid.Row>
+          <Dropdown
+                style={{background: '#fff', 
+                        fontSize: "19px",
+                        fontWeight: 400, 
+                        theme: '#000000',
+                        width: '280px',
+                        left: '0px',
+                        text: "Select",
+                        borderTop: '0.5px solid #bdbfc1',
+                        borderLeft: '0.5px solid #bdbfc1',
+                        borderRight: '0.5px solid #bdbfc1', 
+                        borderBottom: '0.5px solid #bdbfc1',
+                        // borderRadius: 0,
+                        minHeight: '1.0em',
+                        paddingBottom: '0.5em'}}
+                placeholder="Selected County: "
+                // + (stateFips === "_nation" ? "The United States": stateName)
+                search
+                selection
+                pointing = 'top'
+                options={countyList}
+                onChange={(e, { value }) => {
+                  setCountySelected(value);
+                  console.log("countySelected", countySelected)
+                }}
+
+              />
+              </Grid.Row>
+              <Grid.Row style={{width:'290px', height: '500px', marginTop:'2rem', overflow: 'auto'}}>
+              {/* <CountySites county={countySelected} siteData={siteData}/> */}
+              <Card.Group style={{width:'280px', paddingTop:'1rem', paddingLeft:'0.5rem'}}>{CardGroup}</Card.Group>
+              </Grid.Row>
+          </Grid.Column>
+          </Grid>
         </Container>
-        {tooltipContent!=="" ? stateFips !== "_nation" && <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent} </b> </font> <br/> Click to show on Google Map. </ReactTooltip> : null}
+        {tooltipContent!=="" ? stateFips !== "_nation" && <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent} </b> </font> <br/> Click to view on Google Map. </ReactTooltip> : null}
     </div>
     </HEProvider>
     );
