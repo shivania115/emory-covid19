@@ -534,12 +534,12 @@ function CaseChartStatic(props){
       <Message compact style={{ width: '10rem', top:'-37rem', left:'21.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'33rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/>
       <ArrowSvg start={{ x: 270, y: 330 }} end={{ x: 275, y: 350 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 365, y: 302 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 645, y: 110 }} end={{ x: 667, y: 125 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 360, y: 302 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 628, y: 110 }} end={{ x: 652, y: 125 }} strokeWidth='0.8'/>
       </Grid.Column>
   );
 }
@@ -639,12 +639,12 @@ function CaseChartAll(props){
       <Message compact style={{ width: '10rem', top:'-37rem', left:'21.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'33rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       {visible2 ? <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/> : null}
       {visible3 ? <ArrowSvg start={{ x: 270, y: 330 }} end={{ x: 275, y: 350 }} strokeWidth='0.8'/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 365, y: 302 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 645, y: 110 }} end={{ x: 667, y: 125 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 360, y: 302 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 628, y: 110 }} end={{ x: 652, y: 125 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -1094,10 +1094,10 @@ function DeathChartAll(props){
       <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'29rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 300, y: 380 }} end={{ x: 275, y: 442 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 515, y: 440 }} end={{ x: 523, y: 465 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 290, y: 380 }} end={{ x: 265, y: 442 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 505, y: 440 }} end={{ x: 513, y: 465 }} strokeWidth='0.8'/> : null}
       
       </Grid.Column>   
 
