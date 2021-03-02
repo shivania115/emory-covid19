@@ -1,4 +1,4 @@
-import React, { useEffect, useState, PureComponent} from 'react'
+import React, { useEffect, useState, PureComponent, createRef} from 'react'
 import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button, Card} from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
@@ -79,14 +79,16 @@ export default function VaccineMap(props) {
     actions: { handleAnonymousLogin },
   } = useStitchAuth();  
 
+  const dropdownRef = createRef();
   
   const history = useHistory();
   //let {stateFips} = useParams();
   let stateFips = "13";
-  const [tooltipContent, setTooltipContent] = useState('');
+  const [tooltipContent, setTooltipContent] = useState("");
   // const [hoverMarker, setHoverMarker] = useState('');
   const [countyList, setCountyList] = useState([]);
-  const [countySelected, setCountySelected] = useState();
+  const [countySelected, setCountySelected] = useState([]);
+  const [resultHeight, setResultHeight] = useState();
 
   const [siteData, setSiteData] = useState();
   const [dataTS, setDataTS] = useState();
@@ -110,7 +112,7 @@ export default function VaccineMap(props) {
   const [metric, setMetric] = useState('caserate7dayfig');
   const [countyOption, setCountyOption] = useState();
 
-  const [transform, setTransform] = useState();
+  var transform = [-900,-410];
   
   console.log("stateFips ", stateFips);
 
@@ -193,8 +195,8 @@ export default function VaccineMap(props) {
           // console.log("configMatched.offsetX", configMatched.offsetX);
           setConfig(configMatched);
         //   setTransform("translate(" + configMatched.offsetX + "," + configMatched.offsetY + ")")
-          setTransform("translate(-900, -400)")
           setStateName(configMatched.name);
+          console.log("transform", "translate("+(transform[0]-12)+","+transform[1]+")")
         //   const fetchData = async() => { 
         //     if(stateFips !== "_nation"){
         //       //all static data
@@ -327,19 +329,35 @@ export default function VaccineMap(props) {
   //   { markerOffset: 0, name: "235", coordinates: [-84.1549, 31.5906] },
   //   { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
   // ];
-  const CardGroup = _.filter(siteData, {'county':countySelected+' County'}).map((obj, index) =>
+
+  //useEffect(() => {
+  console.log("countySelected", countySelected)
+  useEffect ( () => {
+    if(dropdownRef.current){  
+        let ddHeight = dropdownRef.current.offsetHeight;  
+        setResultHeight(700-ddHeight); 
+        console.log(ddHeight);
+    }
+  }, [dropdownRef]);
+
+
+  const CardGroup = _.filter(siteData, function(o) { return countySelected.indexOf(o.county.replace(' County',''))>-1; }).map((obj, index) =>
+  // {'county':countySelected}
+  
     <Card 
       href={"https://maps.google.com?q="+obj.address}
       target='_blank'
       key={index}
       header={obj.address}
-      // meta='Friend'
+      meta={obj.county}
       description='Click to view on Google Map'
-      onMouseEnter={()=>{setTooltipContent(obj.address)}}
+      onMouseEnter={()=>{setTooltipContent([obj.address, obj.county])}}
       onMouseLeave={()=>{setTooltipContent("")}}
     />
     )
-
+   //, [countySelected])
+    
+   
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
     if (config && siteData && countyList) {
@@ -352,7 +370,7 @@ export default function VaccineMap(props) {
         <Container style={{marginTop: '10em', minWidth: '1260px'}}>
 
         <Grid>
-        <Header>Vaccination Sites</Header>
+        <Header>Vaccination Distribution Sites</Header>
         </Grid>
         <Grid columns={2}>
         <Grid.Column width={10}>
@@ -371,7 +389,7 @@ export default function VaccineMap(props) {
             // offsety={config.offsetY}
             >
             {/* <ZoomableGroup zoom={1}> */}
-            <Geographies geography={config.url} transform={transform}>
+            <Geographies geography={config.url} transform={"translate("+transform[0]+","+transform[1]+")"}>
                 {({geographies}) => geographies.map(geo =>
                 <Geography 
                     key={geo.rsmKey} 
@@ -399,24 +417,24 @@ export default function VaccineMap(props) {
                     //     setTooltipContent("")
                     // }
                     // }}
-                    
+                    fill = {countySelected.indexOf(fips2county[stateFips + geo.properties.COUNTYFP].replace(' County',''))>-1 ? '#f2a900' : 'white'}
                     // fill={(stateFips === "_nation" || stateFips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
                     //     ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
                     //         colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
                     //         (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
                     //         '#e1dce2':'#FFFFFF')}
-                    fill = 'white'
+                    // fill = 'white'
                     />
                 )}
             </Geographies>
-            {siteData.map(({ coordinates, address }) => (
-              tooltipContent === address ?
+            {siteData.map(({ coordinates, address, county }) => (
+              tooltipContent[0] === address ?
                 <Marker className="marker" key={address} coordinates={coordinates} onClick={() => {
                     // window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
                     window.open("https://maps.google.com?q="+address);
                   }}
                   onMouseEnter={() => {
-                    setTooltipContent(address);
+                    setTooltipContent([address,county]);
                     // setHoverMarker(address);
                   }}
                   onMouseLeave={() => {
@@ -439,12 +457,13 @@ export default function VaccineMap(props) {
                     strokeLinejoin="round"
                     opacity={0.8}
                     // transform={transform}
-                    transform="translate(-912, -420)"
+                    transform={"translate("+(transform[0]-12)+","+(transform[1]-20)+")"} 
+                    // "translate(-912, -420)"
                 >
                     <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
                     
                 </g>
-                <circle r={2.5} z-index={10} fill="white" stroke="white" strokeWidth={1} transform='translate(-900, -410)'/>
+                <circle r={2.5} z-index={10} fill="white" stroke="white" strokeWidth={1} transform={"translate("+transform[0]+","+(transform[1]-10)+")"}/>
                 {/* </div>   */}
                 </Marker>
 
@@ -455,7 +474,7 @@ export default function VaccineMap(props) {
                   window.open("https://maps.google.com?q="+address);
                 }}
                 onMouseEnter={() => {
-                  setTooltipContent(address);
+                  setTooltipContent([address, county]);
                   // setHoverMarker(address);
                 }}
                 onMouseLeave={() => {
@@ -463,7 +482,7 @@ export default function VaccineMap(props) {
                   // setHoverMarker("");
                 }}
                 >
-                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="3" transform={transform}/>
+                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="3" transform={"translate("+transform[0]+","+transform[1]+")"}/>
                 </Marker>
                 
                 // "rgb(255,209,93)"
@@ -480,14 +499,14 @@ export default function VaccineMap(props) {
             {/* </ZoomableGroup> */}
             </ComposableMap>
             </Grid.Column>
-        <Grid.Column width={4}>
-          <Grid.Row>
+        <Grid.Column width={5} style={{height:'600px'}}>
+          <Grid.Row >
           <Dropdown
                 style={{background: '#fff', 
-                        fontSize: "19px",
+                        fontSize: "16px",
                         fontWeight: 400, 
                         theme: '#000000',
-                        width: '280px',
+                        width: '350px',
                         left: '0px',
                         text: "Select",
                         borderTop: '0.5px solid #bdbfc1',
@@ -495,29 +514,29 @@ export default function VaccineMap(props) {
                         borderRight: '0.5px solid #bdbfc1', 
                         borderBottom: '0.5px solid #bdbfc1',
                         // borderRadius: 0,
-                        minHeight: '1.0em',
-                        paddingBottom: '0.5em'}}
-                placeholder="Selected County: "
+                        paddingBottom: '0em'}}
+                placeholder="Select County"
                 // + (stateFips === "_nation" ? "The United States": stateName)
+                multiple
                 search
                 selection
                 pointing = 'top'
                 options={countyList}
                 onChange={(e, { value }) => {
                   setCountySelected(value);
-                  console.log("countySelected", countySelected)
+              
                 }}
 
               />
               </Grid.Row>
-              <Grid.Row style={{width:'290px', height: '500px', marginTop:'2rem', overflow: 'auto'}}>
+              <Grid.Row style={{width:'290px', height:'500px', marginTop:'2rem', overflow:'auto'}}>
               {/* <CountySites county={countySelected} siteData={siteData}/> */}
               <Card.Group style={{width:'280px', paddingTop:'1rem', paddingLeft:'0.5rem'}}>{CardGroup}</Card.Group>
               </Grid.Row>
           </Grid.Column>
           </Grid>
         </Container>
-        {tooltipContent!=="" ? stateFips !== "_nation" && <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent} </b> </font> <br/> Click to view on Google Map. </ReactTooltip> : null}
+        {tooltipContent!=="" ?  <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent[0]} </b> </font> <br/> <b> {tooltipContent[1]} </b> <br/> Click to view on Google Map. </ReactTooltip> : null}
     </div>
     </HEProvider>
     );
