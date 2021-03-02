@@ -8,6 +8,7 @@ import AppBar from './AppBar';
 
 import {
     ComposableMap,
+    ZoomableGroup,
     Geographies,
     Geography,
     Marker
@@ -21,7 +22,7 @@ import { scaleQuantile } from "d3-scale";
 import fips2county from './fips2county.json'
 import stateOptions from "./stateOptions.json";
 import configs from "./state_config.json";
-import racedatadate from "./Pre-Processed Data/racedatadate.json";
+// import vaccine_site_geocoded from "./vaccine_site_geocoded.json";
 
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
@@ -60,8 +61,9 @@ export default function VaccineMap(props) {
   //let {stateFips} = useParams();
   let stateFips = "13";
   const [tooltipContent, setTooltipContent] = useState('');
+  const [hoverMarker, setHoverMarker] = useState("");
 
-  const [data, setData] = useState();
+  const [siteData, setSiteData] = useState();
   const [dataTS, setDataTS] = useState();
   const [dataStateTS, setStateTS] = useState();
   const [raceData, setRaceData] = useState();
@@ -89,26 +91,66 @@ export default function VaccineMap(props) {
 
 
   const [delayHandler, setDelayHandler] = useState();
-
+  
 
   //variable list & fips code to county name 
   useEffect(()=>{
-    fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-      .then(x => {
-        setVarMap(x);
-        // setMetricOptions(_.filter(_.map(x, d=> {
-        //   return {key: d.id, value: d.variable, text: d.name, group: d.group};
-        // }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
-      });
+    // fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+    //   .then(x => {
+    //     setVarMap(x);
+    //     // setMetricOptions(_.filter(_.map(x, d=> {
+    //     //   return {key: d.id, value: d.variable, text: d.name, group: d.group};
+    //     // }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
+    //   });
 
-    fetch('/data/rawdata/f2c.json').then(res => res.json())
-      .then(x => {
-        setCountyOption(_.filter(_.map(x, d=> {
-          return {key: d.id, value: d.value, text: d.text, group: d.state};
-        }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
-      });
+    // fetch('/data/rawdata/f2c.json').then(res => res.json())
+    //   .then(x => {
+    //     setCountyOption(_.filter(_.map(x, d=> {
+    //       return {key: d.id, value: d.value, text: d.text, group: d.state};
+    //     }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
+    //   });
+
+    // fetch('data/vaccine_site_geocoded.json',{
+    //   headers : { 
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json'
+    //    }
+
+    // }).then(res => res.json())
+    //     .then(x => {
+    //       setSiteData(
+    //         _.map(x, d=> {
+    //           return {name: d.id, address: d.address, coordinates: [d.lon, d.lat]};
+    //         })
+    //       );
+    //   }).then(text => console.log(text))
+    //   .catch(err => {
+    //     // Do something for an error here
+    //     console.log("Error Reading data " + err);
+    //   });
+
+
+      fetch('data/vaccinesite_0301_cleaned.json',{
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+  
+      }).then(res => res.json())
+          .then(x => {
+            setSiteData(
+              _.map(x, d=> {
+                return {address: d.Address, coordinates: [d.Longitude, d.Latitude]};
+              })
+            );
+        }).then(text => console.log(text))
+        .catch(err => {
+          // Do something for an error here
+          console.log("Error Reading data " + err);
+        });
   }, []);
 
+    
 
   // mongo
   useEffect(()=>{
@@ -183,6 +225,7 @@ export default function VaccineMap(props) {
   },[isLoggedIn]);
   console.log("config ", config);
   console.log("tranform ", transform);
+  console.log('site data', siteData);
 
 //   useEffect(() => {
 //     if(stateFips !== "_nation"){
@@ -234,23 +277,23 @@ export default function VaccineMap(props) {
 //     }
 //   }, [dataTS]);
 
-  const markers = [
-    {
-      markerOffset: 0,
-      name: "230",
-      coordinates: [-81.4865, 31.1979]
-    },
-    { markerOffset: 0, name: "111", coordinates: [-83.8838, 32.5556] },
-    // { markerOffset: 0, name: "233", coordinates: [-83.8788, 32.5647] },
-    { markerOffset: 0, name: "235", coordinates: [-84.1549, 31.5906] },
-    { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
-  ];
-
+  // const markers = [
+  //   {
+  //     markerOffset: 0,
+  //     name: "230",
+  //     coordinates: [-81.4865, 31.1979]
+  //   },
+  //   { markerOffset: 0, name: "111", coordinates: [-83.8838, 32.5556] },
+  //   // { markerOffset: 0, name: "233", coordinates: [-83.8788, 32.5647] },
+  //   { markerOffset: 0, name: "235", coordinates: [-84.1549, 31.5906] },
+  //   { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
+  // ];
+    console.log("tooltipContent", tooltipContent==="459 HWY 119S,Springfield,GA 31329");
 
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
-    if (config) {
-    console.log( dataTS);
+    if (config && siteData) {
+    
     return(
     <HEProvider>
     <div>
@@ -267,22 +310,22 @@ export default function VaccineMap(props) {
             //projectionConfig={{scale:`${config.scale*0.7}`}} 
             projectionConfig={{
                 // rotate: [-100, 20, 0],
-                scale: 4000,
+                scale: 4500,
               }}
             width={800} 
             height={500} 
-            strokeWidth = {0.1}
+            strokeWidth = {0.3}
             stroke = 'black'
             data-tip=""
             // offsetx={config.offsetX}
             // offsety={config.offsetY}
             >
+            {/* <ZoomableGroup zoom={1}> */}
             <Geographies geography={config.url} transform={transform}>
                 {({geographies}) => geographies.map(geo =>
                 <Geography 
                     key={geo.rsmKey} 
                     geography={geo} 
-                    
                     // onClick link
                     // onClick={()=>{
                     // if(stateFips !== "_nation"){
@@ -316,37 +359,79 @@ export default function VaccineMap(props) {
                     />
                 )}
             </Geographies>
-            {markers.map(({ name, coordinates, markerOffset }) => (
-                <Marker key={name} coordinates={coordinates} onClick={() => {
-                    window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
-                  }}>
-                <circle r={3} z-index={10} fill="#FF5533" stroke="#FF5533" strokeWidth={2} transform='translate(-900, -414)'/>
+            {siteData.map(({ coordinates, address }) => (
+              tooltipContent === address ?
+                <Marker className="marker" key={address} coordinates={coordinates} onClick={() => {
+                    // window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
+                    window.open("https://maps.google.com?q="+address);
+                  }}
+                  onMouseEnter={() => {
+                    setTooltipContent(address);
+                    setHoverMarker(address);
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent("");
+                    setHoverMarker("");
+                  }}
+                  >
+                {/* <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="3" transform={transform}/> */}
+                {/* <g id="icon" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(-1.9444444444444287 -1.9444444444444287) scale(3.89 3.89)" >
+                  <circle cx="44.75" cy="34.61" r="19" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,209,93); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+                  <path d="M 45 0 C 25.463 0 9.625 15.838 9.625 35.375 c 0 8.722 3.171 16.693 8.404 22.861 L 45 90 l 26.97 -31.765 c 5.233 -6.167 8.404 -14.139 8.404 -22.861 C 80.375 15.838 64.537 0 45 0 z M 45 48.705 c -8.035 0 -14.548 -6.513 -14.548 -14.548 c 0 -8.035 6.513 -14.548 14.548 -14.548 s 14.548 6.513 14.548 14.548 C 59.548 42.192 53.035 48.705 45 48.705 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(243,112,91); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                </g> */}
+              
+                  {/* <div> */}
                 <g
-                    fill="none"
-                    stroke="#FF5533"
-                    strokeWidth="2"
+                    fill="#FF5533"
+                    stroke="white"
+                    strokeWidth="1"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    opacity={0.8}
                     // transform={transform}
-                    transform="translate(-912, -424)"
+                    transform="translate(-912, -420)"
                 >
-                    {/* <circle cx="12" cy="10" r="3" transform={transform}/> */}
                     <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
+                    
                 </g>
-                <text
-                    textAnchor="middle"
-                    y={markerOffset}
-                    transform={transform}
-                    style={{ fontFamily: "system-ui", fill: "#5D5A6D", fontSize: 10 }}
-                >
-                    {name}
-                </text>
+                <circle r={2.5} z-index={10} fill="white" stroke="white" strokeWidth={1} transform='translate(-900, -410)'/>
+                {/* </div>   */}
                 </Marker>
+
+                :
+
+                <Marker className="marker" key={address} coordinates={coordinates} onClick={() => {
+                  // window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
+                  window.open("https://maps.google.com?q="+address);
+                }}
+                onMouseEnter={() => {
+                  setTooltipContent(address);
+                  setHoverMarker(address);
+                }}
+                onMouseLeave={() => {
+                  setTooltipContent("");
+                  setHoverMarker("");
+                }}
+                >
+                <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="3" transform={transform}/>
+                </Marker>
+                
+                // "rgb(255,209,93)"
+                // <text
+                //     textAnchor="middle"
+                //     y={markerOffset}
+                //     transform={transform}
+                //     style={{ fontFamily: "system-ui", fill: "#5D5A6D", fontSize: 10 }}
+                // >
+                //     {name}
+                // </text>
+                
             ))}
+            {/* </ZoomableGroup> */}
             </ComposableMap>
             </Grid>
         </Container>
-      
+        {tooltipContent!=="" ? stateFips !== "_nation" && <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent} </b> </font> <br/> Click to show on Google Map. </ReactTooltip> : null}
     </div>
     </HEProvider>
     );
