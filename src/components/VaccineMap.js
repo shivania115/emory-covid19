@@ -112,7 +112,7 @@ export default function VaccineMap(props) {
   const [metric, setMetric] = useState('caserate7dayfig');
   const [countyOption, setCountyOption] = useState();
 
-  var transform = [-900,-410];
+  var transform = [-900,-420];
   
   console.log("stateFips ", stateFips);
 
@@ -482,7 +482,7 @@ export default function VaccineMap(props) {
                   // setHoverMarker("");
                 }}
                 >
-                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="3" transform={"translate("+transform[0]+","+transform[1]+")"}/>
+                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="2" transform={"translate("+transform[0]+","+transform[1]+")"}/>
                 </Marker>
                 
                 // "rgb(255,209,93)"
