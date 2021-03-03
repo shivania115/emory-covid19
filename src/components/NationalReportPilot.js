@@ -3000,7 +3000,7 @@ export default function NationalReport(props) {
                     <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
-                          <svg width="550" height="70">
+                          <svg width="550" height="80">
 
                               <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
                               <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
