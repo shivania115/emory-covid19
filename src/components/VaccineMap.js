@@ -84,40 +84,19 @@ export default function VaccineMap(props) {
   const history = useHistory();
   //let {stateFips} = useParams();
   let stateFips = "13";
+  let configURL = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/GA-13-georgia-counties.json"
   const [tooltipContent, setTooltipContent] = useState("");
   // const [hoverMarker, setHoverMarker] = useState('');
   const [countyList, setCountyList] = useState([]);
   const [countySelected, setCountySelected] = useState([]);
-  const [resultHeight, setResultHeight] = useState();
 
   const [siteData, setSiteData] = useState();
-  const [dataTS, setDataTS] = useState();
-  const [dataStateTS, setStateTS] = useState();
-  const [raceData, setRaceData] = useState();
-
-  const [config, setConfig] = useState();
-  const [stateName, setStateName] = useState('');
-  const [countyFips, setCountyFips] = useState('');
-  const [countyName, setCountyName] = useState('');
-  
-  const [colorScale, setColorScale] = useState();
-  const [pctPositive, setPctPositive] = useState();
-  // const [totalCases, setTotalCases] = useState();
-  const [hospDaily, setHospDaily] = useState();
-  const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
-  const [index, setIndex] = useState();
-  const [indexP, setIndexP] = useState();
-
-  const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('caserate7dayfig');
-  const [countyOption, setCountyOption] = useState();
 
   var transform = [-900,-420];
   
   console.log("stateFips ", stateFips);
 
 
-  const [delayHandler, setDelayHandler] = useState();
   
 
   //variable list & fips code to county name 
@@ -183,7 +162,6 @@ export default function VaccineMap(props) {
 
   // mongo
   useEffect(()=>{
-    //if (metric) {
 
     if (isLoggedIn === true){
         const configMatched = configs.find(s => s.fips === stateFips);
@@ -191,11 +169,10 @@ export default function VaccineMap(props) {
         if (!configMatched){
             history.push('/_nation');
         } else{
-        //   let newDict = {}; 
-          // console.log("configMatched.offsetX", configMatched.offsetX);
-          setConfig(configMatched);
+
+          //setConfig(configMatched);
         //   setTransform("translate(" + configMatched.offsetX + "," + configMatched.offsetY + ")")
-          setStateName(configMatched.name);
+          //setStateName(configMatched.name);
           console.log("transform", "translate("+(transform[0]-12)+","+transform[1]+")")
         //   const fetchData = async() => { 
         //     if(stateFips !== "_nation"){
@@ -252,58 +229,16 @@ export default function VaccineMap(props) {
       }
     //}
   },[isLoggedIn]);
-  // console.log("config ", config);
-  // console.log("tranform ", transform);
+
   console.log('site data', siteData);
 
-//   useEffect(() => {
-//     if(stateFips !== "_nation"){
-//       let scaleMap = {};
-//       var max = 0;
-//       var min = 100;
-//       const cs = scaleQuantile()
-//       .domain(_.map(_.filter(data, 
-//         d => (
-//             d[metric] > 0 &&
-//             d.fips.length === 5)),
-//         d=> d[metric]))
-//       .range(colorPalette);
 
-//       _.each(data, d=>{
-//         if(d[metric] > 0){
-//         scaleMap[d[metric]] = cs(d[metric])}});
-//       setColorScale(scaleMap);
-//       setLegendSplit(cs.quantiles());
-
-//       //find the largest value and set as legend max
-//       _.each(data, d=> { 
-//         if (d[metric] > max && d.fips.length === 5) {
-//           max = d[metric]
-//         } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-//           min = d[metric]
-//         }
-//       });
-
-//       if (max > 999999) {
-//         max = (max/1000000).toFixed(0) + "M";
-//         setLegendMax(max);
-//       }else if (max > 999) {
-//         max = (max/1000).toFixed(0) + "K";
-//         setLegendMax(max);
-//       }else{
-//         setLegendMax(max.toFixed(0));
-//       }
-//       setLegendMin(min.toFixed(0));
-//     }
-
-//   }, [metric, data]);
 
 
   //set county list
   useEffect(() => {
-    // county list
-    if(config){
-      fetch(config.url)
+
+      fetch(configURL)
     .then(res => res.json())
     .then(x => {
       setCountyList(_.sortBy(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),
@@ -312,10 +247,10 @@ export default function VaccineMap(props) {
       }), 'text'));
       // setCountyList(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),'NAME'));
   })
-    // setCountyList()
+
     }
     
-  }, [config]);
+  , []);
 
   console.log("countyList", countyList)
   // const markers = [
@@ -330,15 +265,14 @@ export default function VaccineMap(props) {
   //   { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
   // ];
 
-  //useEffect(() => {
   console.log("countySelected", countySelected)
-  useEffect ( () => {
-    if(dropdownRef.current){  
-        let ddHeight = dropdownRef.current.offsetHeight;  
-        setResultHeight(700-ddHeight); 
-        console.log(ddHeight);
-    }
-  }, [dropdownRef]);
+  // useEffect ( () => {
+  //   if(dropdownRef.current){  
+  //       let ddHeight = dropdownRef.current.offsetHeight;  
+  //       setResultHeight(700-ddHeight); 
+  //       console.log(ddHeight);
+  //   }
+  // }, [dropdownRef]);
 
 
   const CardGroup = _.filter(siteData, function(o) { return countySelected.indexOf(o.county.replace(' County',''))>-1; }).map((obj, index) =>
@@ -355,12 +289,8 @@ export default function VaccineMap(props) {
       onMouseLeave={()=>{setTooltipContent("")}}
     />
     )
-   //, [countySelected])
-    
-   
-  // if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
-  // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
-    if (config && siteData && countyList) {
+
+    if (siteData && countyList) {
     
     return(
     <HEProvider>
@@ -389,7 +319,7 @@ export default function VaccineMap(props) {
             // offsety={config.offsetY}
             >
             {/* <ZoomableGroup zoom={1}> */}
-            <Geographies geography={config.url} transform={"translate("+transform[0]+","+transform[1]+")"}>
+            <Geographies geography={configURL} transform={"translate("+transform[0]+","+transform[1]+")"}>
                 {({geographies}) => geographies.map(geo =>
                 <Geography 
                     key={geo.rsmKey} 
@@ -418,12 +348,7 @@ export default function VaccineMap(props) {
                     // }
                     // }}
                     fill = {countySelected.indexOf(fips2county[stateFips + geo.properties.COUNTYFP].replace(' County',''))>-1 ? '#f2a900' : 'white'}
-                    // fill={(stateFips === "_nation" || stateFips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
-                    //     ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
-                    //         colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
-                    //         (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
-                    //         '#e1dce2':'#FFFFFF')}
-                    // fill = 'white'
+
                     />
                 )}
             </Geographies>
