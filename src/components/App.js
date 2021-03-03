@@ -16,6 +16,7 @@ import {HEProvider} from './HEProvider';
 import USVaccineTracker from "./USVaccineTracker";
 import USVaccineTrackerPilot from "./USVaccineTrackerPilot";
 import VaccineFAQ from "./VaccineFAQ";
+import VaccineMap from "./VaccineMap";
 import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
 // import USMapPilot from "./USMapPilot";
@@ -63,6 +64,9 @@ function AppUI() {
           </Route>
           <Route path='/Vaccine-Tracker'>
             <USVaccineTracker />
+          </Route>
+          <Route path='/vaccine-map'>
+            <VaccineMap />
           </Route>
           
           <Route path='/map-state'>
