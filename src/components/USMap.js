@@ -200,8 +200,7 @@ export default function USMap(props) {
               const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
               promStatic.forEach( i => {
                 if(i.tag === "nationalrawfull"){ //nationalraw
-                  newDict = i.data;
-                  console.log(newDict);
+                  newDict = JSON.parse(JSON.stringify(i.data));
 
                   const cs = scaleQuantile()
                   .domain(_.map(_.filter(newDict, 
@@ -305,8 +304,8 @@ export default function USMap(props) {
 
   }, [metric]);
 
-  if (data && allTS && metric) {
-    console.log(stateFips);
+  if (data && allTS && metric && raceData) {
+    console.log(isJson(JSON.stringify(data)));
   return (
     <HEProvider>
       <div>
