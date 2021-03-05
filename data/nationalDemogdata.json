@@ -438,12 +438,24 @@
           "demogLabel": "<18",
           "popUS": 327167439,
           "demogPop": 73352242,
-          "percentPop": 22.42,
+          "percentPop": -9999.0,
           "admDose1": 35950.0,
           "pctAdmDose1": 0.1,
           "pctKnownAdmDose1": -9999.0,
           "admDose2": 11162.0,
           "pctAdmDose2": 0.0,
+          "pctKnownAdmDose2": -9999.0
+        },
+        {
+          "demogLabel": "<18",
+          "popUS": 327167439,
+          "demogPop": 73352242,
+          "percentPop": -9999.0,
+          "admDose1": -9999.0,
+          "pctAdmDose1": -9999.0,
+          "pctKnownAdmDose1": -9999.0,
+          "admDose2": -9999.0,
+          "pctAdmDose2": -9999.0,
           "pctKnownAdmDose2": -9999.0
         }
       ],
@@ -522,12 +534,24 @@
           "demogLabel": "75+",
           "popUS": 327167439,
           "demogPop": 21851801,
-          "percentPop": 6.68,
+          "percentPop": -9999.0,
           "admDose1": 13629407.0,
           "pctAdmDose1": 27.2,
           "pctKnownAdmDose1": -9999.0,
           "admDose2": 7068583.0,
           "pctAdmDose2": 27.6,
+          "pctKnownAdmDose2": -9999.0
+        },
+        {
+          "demogLabel": "75+",
+          "popUS": 327167439,
+          "demogPop": 21851801,
+          "percentPop": -9999.0,
+          "admDose1": -9999.0,
+          "pctAdmDose1": -9999.0,
+          "pctKnownAdmDose1": -9999.0,
+          "admDose2": -9999.0,
+          "pctAdmDose2": -9999.0,
           "pctKnownAdmDose2": -9999.0
         }
       ],
