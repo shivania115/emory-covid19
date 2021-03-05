@@ -58,7 +58,9 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      By October 31<sup>st</sup>, 2020, over 9,000,000 cases and 200,000 deaths <sup>5</sup> had occurred in the U.S., 
+                      By October 31<sup>st</sup>, 2020, over 
+                      <a href="https://coronavirus.jhu.edu/us-map" target="_blank" rel="noopener noreferrer"> 9,000,000 cases and 200,000 deaths 
+                          </a> had occurred in the U.S., 
                       with cases and death rates consistently higher than in most other countries. The ongoing 
                       epidemic has demanded a comprehensive response from the federal, state, and local governments. 
                       It has also challenged governments to act in extraordinary ways to contain the spread of coronavirus. 
@@ -78,12 +80,18 @@ export default function AboutUs(props){
                       The shifting guidelines on mask use by the World Health Organization (WHO) and U.S. 
                       Centers for Disease Control and Prevention (CDC) in the early days of the pandemic 
                       precipitated confusion among the general public about the effectiveness and utility 
-                      of face masks. Both WHO<sup>1</sup> and CDC<sup>2</sup> had deemed the use of face masks unnecessary earlier 
+                      of face masks. Both 
+                      <a href="https://www.vox.com/2020/6/6/21282108/masks-for-covid-19-world-health-organizationguidelines-cloth-n95" target="_blank" rel="noopener noreferrer"> WHO </a>
+                       and 
+                       <a href="https://www.dallasnews.com/news/public-health/2020/04/08/why-did-the-recommendation-on-wearing-face-masks-change/" target="_blank" rel="noopener noreferrer"> CDC </a>
+                        had deemed the use of face masks unnecessary earlier 
                       in the pandemic but later changed their stance in early June 2020. Several studies on the 
-                      effectiveness of masks in controlling the spread of COVID-19 resulted in 15 U.S. states 
-                      suddenly mandating mask use statewide in April, May, and June<sup>3</sup>. Twelve other states followed 
-                      in June, July, and August 2020. Despite several strong pieces of evidence on the 
-                      effectiveness of masks in controlling spread<sup>4</sup>, 18 states had failed to put a statewide 
+                      effectiveness of masks in controlling the spread of COVID-19 resulted in 
+                      <a href="https://www.vox.com/2020/5/29/21273625/coronavirus-masks-required-virginia-china-hongkong" target="_blank" rel="noopener noreferrer"> 15 U.S. states suddenly mandating mask use statewide </a>
+                           in April, May, and June. Twelve other states followed 
+                      in June, July, and August 2020. Despite 
+                      <a href="https://jamanetwork.com/journals/jama/fullarticle/2776536" target="_blank" rel="noopener noreferrer"> several strong pieces of evidence </a> on the 
+                      effectiveness of masks in controlling spread, 18 states had failed to put a statewide 
                       order in place before the peak rose too high to be controlled by October 31<sup>st</sup>, 2020. There 
                       had been several additional studies of mask effectiveness done before the third wave hit. 
                       However, since November, almost all the states saw dramatic spikes in cases. Thus, as we 
@@ -133,8 +141,8 @@ export default function AboutUs(props){
                           </tr>
                           <tr>
                             <th style= {{border: "1px solid black"}}>First (Before the Second wave (N = 15)</th>
-                            <th style= {{border: "1px solid black"}}>Second (During the Second wave (N = 15)</th>
-                            <th style= {{border: "1px solid black"}}>Third (After the Second wave (N = 15)</th>
+                            <th style= {{border: "1px solid black"}}>Second (During the Second wave (N = 12)</th>
+                            <th style= {{border: "1px solid black"}}>Third (After the Second wave (N = 6)</th>
 
                           </tr>
                           <tr>
@@ -256,8 +264,10 @@ export default function AboutUs(props){
                             in the later phase (during the second wave), and after the second wave (by October 31<sup>st</sup>, 2020). 
                             <br/>
                             <sup>*</sup>Mississippi is classified as such because it lifted mask mandate on September 30<sup>th</sup>.<br/>
-                            Data source: State-by-State Guide to Face Mask Requirements by Andy Markowitz, AARP <br/>
-                            https://www.aarp.org/health/healthy-living/info-2020/states-mask-mandates-coronavirus.html
+                            Data source: 
+                            <a href="https://www.aarp.org/health/healthy-living/info-2020/states-mask-mandates-coronavirus.html" target="_blank" rel="noopener noreferrer"> State-by-State Guide to Face Mask Requirements by Andy Markowitz, AARP.</a>
+                            <br/>
+                            
                         </p>
                       
                       <br/>
@@ -348,26 +358,7 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      <b> References: </b>
-                      <br/>
-                      1.  <a href="https://www.vox.com/2020/6/6/21282108/masks-for-covid-19-world-health-organizationguidelines-cloth-n95" target="_blank" rel="noopener noreferrer"> 
-                            https://www.vox.com/2020/6/6/21282108/masks-for-covid-19-world-health-organizationguidelines-cloth-n95 
-                          </a>
-                      <br/>
-                      2.  <a href="https://www.dallasnews.com/news/public-health/2020/04/08/why-did-the-recommendation-onwearing-face-masks-change/" target="_blank" rel="noopener noreferrer"> 
-                            https://www.dallasnews.com/news/public-health/2020/04/08/why-did-the-recommendation-onwearing-face-masks-change/ 
-                          </a>
-                      <br/>
-                      3.  <a href="https://www.vox.com/2020/5/29/21273625/coronavirus-masks-required-virginia-china-hongkong" target="_blank" rel="noopener noreferrer"> 
-                            https://www.vox.com/2020/5/29/21273625/coronavirus-masks-required-virginia-china-hongkong
-                          </a>
-                      <br/>
-                      4.  Brooks JT, Butler JC. Effectiveness of Mask Wearing to Control Community Spread of SARS-CoV-2. <i>JAMA</i>. Published online February 10, 2021. doi:10.1001/jama.2021.1505
-                      <br/>
-                      5.  <a href="https://coronavirus.jhu.edu/us-map" target="_blank" rel="noopener noreferrer"> 
-                            https://coronavirus.jhu.edu/us-map 
-                          </a>
-                      <br/>
+                      
 
                 </Header>
 
