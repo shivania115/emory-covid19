@@ -573,8 +573,7 @@ export default function USMap(props) {
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
                             ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
                                 colorScale[data[geo.id][metric]]: 
-                                (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
-                                  '#e1dce2':'#FFFFFF')}
+                                '#FFFFFF')}
                             
                           />
                         ))}
