@@ -29,7 +29,14 @@ import { CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
 
-
+function isJson(str) {
+  try {
+      JSON.parse(str);
+  } catch (e) {
+      return false;
+  }
+  return true;
+}
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -191,10 +198,10 @@ export default function USMap(props) {
           const fetchData = async() => {
               const mainQ = {all: "all"};
               const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
-    
               promStatic.forEach( i => {
                 if(i.tag === "nationalrawfull"){ //nationalraw
-                  newDict = i.data;
+                  newDict = JSON.parse(JSON.stringify(i.data));
+
                   const cs = scaleQuantile()
                   .domain(_.map(_.filter(newDict, 
                     d => (
@@ -297,8 +304,8 @@ export default function USMap(props) {
 
   }, [metric]);
 
-  if (data && allTS && metric) {
-    console.log(stateFips);
+  if (data && allTS && metric && raceData) {
+    console.log(isJson(JSON.stringify(data)));
   return (
     <HEProvider>
       <div>
@@ -566,8 +573,7 @@ export default function USMap(props) {
                             fill={fips===geo.id.substring(0,2)?colorHighlight:
                             ((colorScale && data[geo.id] && (data[geo.id][metric]) > 0)?
                                 colorScale[data[geo.id][metric]]: 
-                                (colorScale && data[geo.id] && data[geo.id][metric] === 0)?
-                                  '#e1dce2':'#FFFFFF')}
+                                '#FFFFFF')}
                             
                           />
                         ))}
