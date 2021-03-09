@@ -317,6 +317,7 @@ useEffect(()=>{
     data[214].t,
     data[244].t,
     data[275].t,
+    data[306].t,
     data[data.length-1].t]);
   }else if(chartNo===0 || chartNo===3) {
     setCaseTicks([data[0].t,
@@ -329,30 +330,32 @@ useEffect(()=>{
     data[214].t,
     data[244].t,
     data[275].t,
+    data[306].t,
     data[data.length-1].t]);
     setHeaderTime('');
     if(chartNo===0){
       setDisabled(true);
-      setTimeout(()=>setChartNo(chartNo+1), 10000);
+      setTimeout(()=>setChartNo(chartNo+1), 12000); //10000
     } else {
-      setTimeout(()=>setChartNo(chartNo+1), 8000);
+      setTimeout(()=>setChartNo(chartNo+1), 10000);   //8000
     }
   } else if(chartNo===1 || chartNo===4){
     setCaseTicks([data[214].t,
     data[244].t,
     data[275].t,
+    data[306].t,
     data[data.length-1].t]);
     setHeaderTime('in Past 90 Days');
-    setTimeout(()=>setChartNo(chartNo+1), 5000);
+    setTimeout(()=>setChartNo(chartNo+1), 7000);   //5000
   } else if(chartNo===2 || chartNo===5){
     setCaseTicks([
       data[data.length-14].t,
       data[data.length-7].t,
       data[data.length-1].t]);
     setHeaderTime('in Past 14 Days');
-    setTimeout(()=>setChartNo(chartNo+1), 5000);
+    setTimeout(()=>setChartNo(chartNo+1), 7000);
     if(chartNo===5){
-      setTimeout(()=>setDisabled(false), 5000);
+      setTimeout(()=>setDisabled(false), 7000);
     }
   }
 }, [chartNo]);
@@ -418,8 +421,8 @@ useEffect(()=>{
                   <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
                   <Header.Content  style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
-                      This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
-                      new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
+                      This figure shows the trend of daily COVID-19 cases in the U.S.. The bar height reflects the number of 
+                      new cases per day and the line depicts the 7-day moving average of daily cases in the U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
                       an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
                       We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
                       the average new cases over the past 14-day period. 
@@ -448,8 +451,8 @@ useEffect(()=>{
                   <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
                   <Header.Content  style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
-                          This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                          per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                          This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
+                          per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                           associated with COVID-19 reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
                           an average of {mortalityMean} new deaths per day reported over the past 7 days. 
                           We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
@@ -475,13 +478,13 @@ useEffect(()=>{
 }
 
 function CaseChartStatic(props){
-  const [playCount, setPlayCount] = useState(0);
-  const [visible1, setVisible1] = useState(false);
-  const [visible2, setVisible2] = useState(false);
-  const [visible3, setVisible3] = useState(false);
-  const [visible4, setVisible4] = useState(false);
-  const [visible5, setVisible5] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  // const [playCount, setPlayCount] = useState(0);
+  // const [visible1, setVisible1] = useState(false);
+  // const [visible2, setVisible2] = useState(false);
+  // const [visible3, setVisible3] = useState(false);
+  // const [visible4, setVisible4] = useState(false);
+  // const [visible5, setVisible5] = useState(false);
+  // const [disabled, setDisabled] = useState(true);
   const [highlightIndex, setHighlightIndex] = useState([-1, 9, 71, 109, 260]);
   const data = props.data;
   const barColor = props.barColor;
@@ -527,23 +530,23 @@ function CaseChartStatic(props){
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       {/* <Arrow1/> */}
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'12.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-26rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-37rem', left:'21.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'31rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 270, y: 330 }} end={{ x: 275, y: 350 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 360, y: 302 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 628, y: 110 }} end={{ x: 652, y: 125 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 265, y: 330 }} end={{ x: 270, y: 350 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 365, y: 280 }} end={{ x: 355, y: 302 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 615, y: 110 }} end={{ x: 640, y: 125 }} strokeWidth='0.8'/>
       </Grid.Column>
   );
 }
@@ -632,23 +635,24 @@ function CaseChartAll(props){
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       {/* <Arrow1/> */}
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={visible3} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'12.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-26rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={visible4} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-37rem', left:'21.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'31rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
+      
       {visible2 ? <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 270, y: 330 }} end={{ x: 275, y: 350 }} strokeWidth='0.8'/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 360, y: 302 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 628, y: 110 }} end={{ x: 652, y: 125 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 265, y: 330 }} end={{ x: 270, y: 350 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 365, y: 280 }} end={{ x: 355, y: 302 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 615, y: 110 }} end={{ x: 640, y: 125 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -1098,10 +1102,10 @@ function DeathChartAll(props){
       <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'29rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'28.5rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
       </Transition> 
       {visible2 ? <ArrowSvg start={{ x: 290, y: 380 }} end={{ x: 265, y: 442 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 505, y: 440 }} end={{ x: 513, y: 465 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 495, y: 438 }} end={{ x: 503, y: 465 }} strokeWidth='0.8'/> : null}
       
       </Grid.Column>   
 
@@ -2560,8 +2564,8 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                          This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                                          per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                                          This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
+                                          per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                                           associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
                                           an average of {mortalityMean} new deaths per day reported over the past 7 days. 
                                           We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
@@ -2592,8 +2596,8 @@ export default function NationalReport(props) {
                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
                                   <Header.Content  style={{fontSize: "14pt"}}>
                                     <Header.Subheader style={{color: '#000000', width: 800, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                      This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                                      per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                                      This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
+                                      per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                                       associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
                                       an average of {mortalityMean} new deaths per day reported over the past 7 days. 
                                       We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 

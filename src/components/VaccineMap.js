@@ -94,7 +94,7 @@ export default function VaccineMap(props) {
   //let {stateFips} = useParams();
   let stateFips = "13";
   let configURL = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/GA-13-georgia-counties.json"
-  let zipURL = "https://api.zip-codes.com/ZipCodesAPI.svc/1.0/GetAllZipCodes?state=GA&country=US&key=DEMOAPIKEY"
+  //let zipURL = "https://api.zip-codes.com/ZipCodesAPI.svc/1.0/GetAllZipCodes?state=GA&country=US&key=DEMOAPIKEY"
   const [tooltipContent, setTooltipContent] = useState("");
   const [countyTooltipContent, setCountyTooltipContent] = useState("");
   // const [hoverMarker, setHoverMarker] = useState('');
@@ -178,7 +178,15 @@ export default function VaccineMap(props) {
           console.log("Error Reading data " + err);
         });
 
+
+
   }, []);
+
+  useEffect(() => {
+    setZipList(_.sortBy(_.map(_.uniq(_.map(siteData,'zipcode')), d => {
+      return {key:d, value:d, text:d}
+    }),'key'));
+  },[siteData])
 
     
 
@@ -210,7 +218,7 @@ export default function VaccineMap(props) {
               var scaler = scaleQuantile().domain(varData).range(colorPalette);
 
               _.forEach(promStatic[0].data, item => {
-                scaleMap[Object.key(item)] = scaler(item.dailycases)
+                scaleMap[Object.keys(item)] = scaler(item.dailycases)
               });
               setLegendSplit(scaler.quantiles());
               setMapColor(scaleMap);
@@ -288,14 +296,14 @@ export default function VaccineMap(props) {
       // setCountyList(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),'NAME'));
   })
 
-  fetch(zipURL)
-  .then(res => res.json())
-  .then(x => {
-    setZipList(_.map(x, d => {
-      return {key:d, value:d, text:d}
-    }));
+  // fetch(zipURL)
+  // .then(res => res.json())
+  // .then(x => {
+    // setZipList(_.map(x, d => {
+    //   return {key:d, value:d, text:d}
+    // }));
     // setCountyList(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),'NAME'));
-    })
+    // })
 
     }
     
@@ -342,7 +350,7 @@ export default function VaccineMap(props) {
       
   };
 
-
+  console.log('siteData', siteData);
 
   const CardGroup = _.filter(siteData, function(o) { return countySelected.indexOf(o.county.replace(' County',''))>-1; }).map((obj, index) =>
   // {'county':countySelected}
@@ -369,9 +377,17 @@ export default function VaccineMap(props) {
         <Container style={{marginTop: '10em', minWidth: '1260px'}}>
 
         <Grid>
-        <Header>Vaccination Distribution Sites</Header>
+        <Header style={{fontWeight:600,fontSize:"18pt", paddingTop:16}}>
+          Vaccination Distribution Sites
+        </Header>
+        <Header.Subheader style={{fontWeight:400, lineHeight: 1.2, fontSize:"14pt", paddingTop:16, paddingLeft: '1rem', paddingRight: '1rem'}}>
+          There are {siteData.length} locations in Georgia currently offering at least one COVID-19 vaccine. 
+          Before heading to any location for a vaccine, please consult their hours and websites, where available, 
+          to make sure you know under what conditions you can receive a COVID-19 vaccine there. You may need an appointment. 
+          All locations are current as of {Date().slice(4,10)}.
+        </Header.Subheader>
         </Grid>
-        <Grid columns={2}>
+        <Grid columns={2} style={{paddingTop:'2rem'}}>
         <Grid.Column width={10}>
             <ComposableMap projection="geoAlbersUsa" 
             //projectionConfig={{scale:`${config.scale*0.7}`}} 
