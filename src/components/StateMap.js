@@ -278,6 +278,7 @@ export default function StateMap(props) {
   let {stateFips} = useParams();
   const [tooltipContent, setTooltipContent] = useState('');
 
+  const [date, setDate] = useState();
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [dataStateTS, setStateTS] = useState();
@@ -397,6 +398,10 @@ export default function StateMap(props) {
           return {key: d.id, value: d.value, text: d.text, group: d.state};
         }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
       });
+
+    fetch('/data/date.json').then(res => res.json())
+      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
   }, []);
 
      //local fetch
@@ -771,13 +776,6 @@ export default function StateMap(props) {
 
   }, [metric, data]);
 
-
-  //set date
-  useEffect(() => {
-    if (dataTS && dataTS[stateFips]){
-      setCovidMetric(_.takeRight(dataTS[stateFips])[0]);
-    }
-  }, [dataTS]);
 
   if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
@@ -1402,7 +1400,7 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips === "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    Last updated on {date}
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
@@ -1415,7 +1413,7 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips !== "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    Last updated on {date}
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
@@ -1426,7 +1424,7 @@ export default function StateMap(props) {
                           }
 
                           { false && 
-                            <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}</span>
+                            <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {date}</span>
                           }
                         </div>
                       ),
