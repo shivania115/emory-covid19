@@ -101,7 +101,7 @@ export default function VaccineMap(props) {
   const [countyList, setCountyList] = useState([]);
   const [countySelected, setCountySelected] = useState([]);
   const [countyFips, setCountyFips] = useState("13121");
-  const [countyClicked, setCountyClicked] = useState("Select County");
+  const [countyClicked, setCountyClicked] = useState("Fulton County");
 
   const [zipList, setZipList] = useState([]);
   const [zipSelected, setZipSelected] = useState();
@@ -210,7 +210,7 @@ export default function VaccineMap(props) {
               const staticQ = {tag: "nationalrawfull"};
               const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
               setCountyData(promStatic[0].data);
-              var varData = _.map(promStatic[0].data,'dailycases');
+              var varData = _.map(promStatic[0].data,'dailycases').slice(115,274);
               setLegendMin(Math.min(...varData).toFixed(1));
               setLegendMax(Math.max(...varData).toFixed(1));
 
@@ -218,15 +218,20 @@ export default function VaccineMap(props) {
               var scaler = scaleQuantile().domain(varData).range(colorPalette);
 
               _.forEach(promStatic[0].data, item => {
-                scaleMap[Object.keys(item)] = scaler(item.dailycases)
+                if(parseInt(Object.keys(promStatic[0].data).find(key => promStatic[0].data[key] === item))>=13001 
+                && parseInt(Object.keys(promStatic[0].data).find(key => promStatic[0].data[key] === item))<=14000){
+                  scaleMap[parseInt(Object.keys(promStatic[0].data).find(key => promStatic[0].data[key] === item))] = scaler(item['dailycases'])
+                }
+                
               });
               setLegendSplit(scaler.quantiles());
+              console.log('scaleMap',scaleMap)
               setMapColor(scaleMap);
               console.log('vardata',promStatic[0].data);
               // slice(115,274)
               console.log('index of 13001', Object.keys(promStatic[0].data).indexOf("13001"));
               console.log('index of 13321', Object.keys(promStatic[0].data).indexOf("13321"));
-              console.log("sqr ", legendSplit);
+              console.log("sqr ", mapColor);
         //       promStatic.forEach(i=> {
         //         if(i.tag === "nationalrawfull"){ //nationalraw
         //           newDict = i.data;
@@ -347,6 +352,57 @@ export default function VaccineMap(props) {
         MinVal = <text x={40} y={35} style={{fontSize: '0.7em'}}>{(legendMin/1000).toFixed(1)} </text>;
         MaxVal = <text x={80+20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.7em'}}>{(legendMax/1000).toFixed(1)} </text>;
       }
+
+      if (Object.keys(mapColor).length>0 && legendMin>999 && legendMax<999999) {    // income
+        return (
+        <svg width="280" height="80" transform="translate(-10,-20)"> 
+          {_.map(legendSplit, (splitpoint, i) => {
+            return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {(legendSplit[i]/1000).toFixed(1)}</text>                                      
+          })}
+  
+        {MinVal}
+        {MaxVal}
+          
+          {_.map(colorPalette, (color, i) => {
+            return <rect key={i} x={50+24*i} y={40} width="22" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+          })} 
+          <text x={30} y={74} style={{fontSize: '0.7em'}}>Low </text>
+          <text x={80+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.7em'}}>High </text>
+  
+          <rect x={200} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+          <text x={225} y={48} style={{fontSize: '0.7em'}}> None </text>
+          <text x={225} y={58} style={{fontSize: '0.7em'}}> Reported </text>
+        </svg>);
+      } else if (Object.keys(mapColor).length>0) {
+        return (
+        <svg width="280" height="80" transform="translate(-10,-20)"> 
+          {_.map(legendSplit, (splitpoint, i) => {
+            if(legendSplit[i] < 1){
+              return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {legendSplit[i].toFixed(1)}</text>                    
+            }else if(legendSplit[i] > 999999){
+              return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {(legendSplit[i]/1000000).toFixed(1) + "M"}</text>                    
+            }else if(legendSplit[i] > 999){
+              return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {(legendSplit[i]/1000).toFixed(1) + "K"}</text>                    
+            }
+            return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {legendSplit[i].toFixed(1)}</text>                    
+          })}
+  
+        {MinVal}
+        {MaxVal}
+          
+          {_.map(colorPalette, (color, i) => {
+            return <rect key={i} x={50+24*i} y={40} width="22" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+          })} 
+          <text x={30} y={74} style={{fontSize: '0.7em'}}>Low </text>
+          <text x={80+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.7em'}}>High </text>
+  
+          <rect x={200} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+          <text x={225} y={48} style={{fontSize: '0.7em'}}> None </text>
+          <text x={225} y={58} style={{fontSize: '0.7em'}}> Reported </text>
+        </svg>);
+      } else {
+        return;
+      }
       
   };
 
@@ -387,7 +443,7 @@ export default function VaccineMap(props) {
           All locations are current as of {Date().slice(4,10)}.
         </Header.Subheader>
         </Grid>
-        <Grid columns={2} style={{paddingTop:'2rem'}}>
+        <Grid columns={2} style={{paddingTop:'3rem'}}>
         <Grid.Column width={10}>
             <ComposableMap projection="geoAlbersUsa" 
             //projectionConfig={{scale:`${config.scale*0.7}`}} 
@@ -469,7 +525,7 @@ export default function VaccineMap(props) {
                   // setHoverMarker("");
                 }}
                 >
-                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="2" transform={"translate("+transform[0]+","+transform[1]+")"}/>
+                <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="1" transform={"translate("+transform[0]+","+transform[1]+")"}/>
                 </Marker>
                 
                 // "rgb(255,209,93)"
@@ -549,6 +605,9 @@ export default function VaccineMap(props) {
 
           <Grid columns={2}>
         <Grid.Column width={10}>
+          <div>
+            {Legend()}
+          </div>
             <ComposableMap projection="geoAlbersUsa" 
             //projectionConfig={{scale:`${config.scale*0.7}`}} 
             projectionConfig={{
@@ -582,21 +641,21 @@ export default function VaccineMap(props) {
                     onMouseLeave={()=>{
                       setCountyTooltipContent("")
                     }}
-                    fill = {countyFips=== "13"+geo.properties.COUNTYFP ? '#f2a900' : 'white'}
-
+                    fill = { countyTooltipContent === geo.properties.NAME+' County' ? '#f2a900' : mapColor["13"+geo.properties.COUNTYFP]}
+                    // countyFips === "13"+geo.properties.COUNTYFP
                     />
                 )}
             </Geographies>
             {siteData.map(({ coordinates, address, county }) => (
                 <Marker className="marker" key={address} coordinates={coordinates} >
-                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="2" transform={"translate("+transform[0]+","+transform[1]+")"}/>
+                <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="1" transform={"translate("+transform[0]+","+transform[1]+")"}/>
                 </Marker>
                  
             ))}
             {/* </ZoomableGroup> */}
             </ComposableMap>
             </Grid.Column>
-        <Grid.Column width={5} style={{height:'600px', paddingTop:'2rem'}}>
+        <Grid.Column width={5} style={{height:'600px', paddingTop:'4rem'}}>
           <Grid.Row >
           <Table celled fixed style = {{width: 350}}>
                   <Table.Header>
@@ -632,9 +691,9 @@ export default function VaccineMap(props) {
                     </Table.Row>
 
                     <Table.Row textAlign = 'center'>
-                      <Table.HeaderCell style={{fontSize: '14px'}}> {"caseratefig"} </Table.HeaderCell>
-                      <Table.HeaderCell  style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["caseratefig"].toFixed(0))} </Table.HeaderCell>
-                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["caseratefig"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"#sites"} </Table.HeaderCell>
+                      <Table.HeaderCell  style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(_.filter(siteData, ['county', countyClicked]).length)} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(siteData.length)} </Table.HeaderCell>
 
                     </Table.Row>
                     
