@@ -1,5 +1,5 @@
 import React, { useEffect, useState, PureComponent, createRef} from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button, Card} from 'semantic-ui-react'
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Table, Icon, Transition, Button, Card} from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
 // import Geography from './Geography';
@@ -48,6 +48,14 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
 
+function numberWithCommas(x) {
+  x = x.toString();
+  var pattern = /(-?\d+)(\d{3})/;
+  while (pattern.test(x))
+      x = x.replace(pattern, "$1,$2");
+  return x;
+}
+
 
 function CountySites(props) {
   const county = props.county;
@@ -89,8 +97,11 @@ export default function VaccineMap(props) {
   // const [hoverMarker, setHoverMarker] = useState('');
   const [countyList, setCountyList] = useState([]);
   const [countySelected, setCountySelected] = useState([]);
+  const [countyFips, setCountyFips] = useState("13001");
+  const [countyClicked, setCountyClicked] = useState("Select County");
 
   const [siteData, setSiteData] = useState();
+  const [countyData, setCountyData] = useState();
 
   var transform = [-900,-420];
   
@@ -174,12 +185,13 @@ export default function VaccineMap(props) {
         //   setTransform("translate(" + configMatched.offsetX + "," + configMatched.offsetY + ")")
           //setStateName(configMatched.name);
           console.log("transform", "translate("+(transform[0]-12)+","+transform[1]+")")
-        //   const fetchData = async() => { 
+          const fetchData = async() => { 
         //     if(stateFips !== "_nation"){
         //       //all static data
-        //       const staticQ = {all: "all"};
-        //       const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
-
+              const staticQ = {tag: "nationalrawfull"};
+              const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+              setCountyData(promStatic[0].data);
+              
         //       promStatic.forEach(i=> {
         //         if(i.tag === "nationalrawfull"){ //nationalraw
         //           newDict = i.data;
@@ -219,10 +231,10 @@ export default function VaccineMap(props) {
         //     }
             
         //     setDataTS(seriesDict);
-        //   };
-        //   fetchData();
+          };
+          fetchData();
         }
-          
+        console.log('county data', countyData);
         } else {
           handleAnonymousLogin();
         
@@ -230,7 +242,8 @@ export default function VaccineMap(props) {
     //}
   },[isLoggedIn]);
 
-  console.log('site data', siteData);
+
+
 
 
 
@@ -252,7 +265,8 @@ export default function VaccineMap(props) {
     
   , []);
 
-  console.log("countyList", countyList)
+  // console.log("countyList", countyList)
+
   // const markers = [
   //   {
   //     markerOffset: 0,
@@ -265,7 +279,8 @@ export default function VaccineMap(props) {
   //   { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
   // ];
 
-  console.log("countySelected", countySelected)
+  console.log("countyData", countyData)
+  console.log("countyFips", countyFips)
   // useEffect ( () => {
   //   if(dropdownRef.current){  
   //       let ddHeight = dropdownRef.current.offsetHeight;  
@@ -290,7 +305,7 @@ export default function VaccineMap(props) {
     />
     )
 
-    if (siteData && countyList) {
+    if (siteData && countyList && countyData) {
     
     return(
     <HEProvider>
@@ -460,8 +475,109 @@ export default function VaccineMap(props) {
               </Grid.Row>
           </Grid.Column>
           </Grid>
+
+          <Grid columns={2}>
+        <Grid.Column width={10}>
+            <ComposableMap projection="geoAlbersUsa" 
+            //projectionConfig={{scale:`${config.scale*0.7}`}} 
+            projectionConfig={{
+                // rotate: [-100, 20, 0],
+                scale: 4500,
+              }}
+            width={500} 
+            height={400} 
+            strokeWidth = {0.3}
+            stroke = 'black'
+            data-tip=""
+            // offsetx={config.offsetX}
+            // offsety={config.offsetY}
+            >
+            {/* <ZoomableGroup zoom={1}> */}
+            <Geographies geography={configURL} transform={"translate("+transform[0]+","+transform[1]+")"}>
+                {({geographies}) => geographies.map(geo =>
+                <Geography 
+                    key={geo.rsmKey} 
+                    geography={geo} 
+
+                    onClick={()=>{
+                      setCountyFips("13"+geo.properties.COUNTYFP);
+                      setCountyClicked(fips2county[stateFips + geo.properties.COUNTYFP]);
+                    }}
+
+                    onMouseEnter={()=>{
+                      setTooltipContent(fips2county[stateFips + geo.properties.COUNTYFP]);
+                        // setBarCountyName((fips2county[stateFips + geo.properties.COUNTYFP]).match(/\S+/)[0]);
+                    }}
+                    onMouseLeave={()=>{
+                      setTooltipContent("")
+                    }}
+                    fill = {countySelected.indexOf(fips2county[stateFips + geo.properties.COUNTYFP].replace(' County',''))>-1 ? '#f2a900' : 'white'}
+
+                    />
+                )}
+            </Geographies>
+            {siteData.map(({ coordinates, address, county }) => (
+                <Marker className="marker" key={address} coordinates={coordinates} onClick={() => {
+                  // window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
+                  window.open("https://maps.google.com?q="+address);
+                }}
+                >
+                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="2" transform={"translate("+transform[0]+","+transform[1]+")"}/>
+                </Marker>
+                 
+            ))}
+            {/* </ZoomableGroup> */}
+            </ComposableMap>
+            </Grid.Column>
+        <Grid.Column width={5} style={{height:'600px'}}>
+          <Grid.Row >
+          <Table celled fixed style = {{width: 350}}>
+                  <Table.Header>
+
+                    <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                        <td colSpan='1' style={{width:130}}> </td>
+                        <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {countyClicked}</td>
+                        <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> GA </td>
+                    </tr>
+                    <Table.Row textAlign = 'center' style = {{height: 40}}>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["dailycases"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["dailycases"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received first dose"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["dailydeaths"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["dailydeaths"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received second dose"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["mean7daycases"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["mean7daycases"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received second dose"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["mean7daydeaths"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["mean7daydeaths"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"Newly distributed per 100,000"} </Table.HeaderCell>
+                      <Table.HeaderCell  style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["caseratefig"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["caseratefig"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    
+                  </Table.Header>
+                </Table>
+              </Grid.Row>
+          </Grid.Column>
+          </Grid>
         </Container>
-        {tooltipContent!=="" ?  <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent[0]} </b> </font> <br/> <b> {tooltipContent[1]} </b> <br/> Click to view on Google Map. </ReactTooltip> : null}
+        {tooltipContent!=="" ?  <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent} </b> </font> <br/> </ReactTooltip> : null}
     </div>
     </HEProvider>
     );
