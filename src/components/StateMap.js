@@ -221,10 +221,11 @@ function BarChart(props) {
 }
 
 function TopChart(params) {
+
   return(
       <VictoryChart 
-        minDomain={{ x: params.sFips !== "_nation"? params.data[params.data.length-15][params.xVar] : 0}}
-        maxDomain = {{y: params.sFips !== "_nation"? getMaxRange(params.data, params.yVar, params.data.length-15)*params.resize: 0}}                            
+        minDomain={{ x: params.sFips !== "_nation"? params.data[(params.data.length - params.recentIndex)-15][params.xVar] : 0}}
+        maxDomain = {{x: params.sFips !== "_nation"? params.data[params.data.length - params.recentIndex - 1][params.xVar] : 0 , y: params.sFips !== "_nation"? getMaxRange(params.data, params.yVar, (params.data.length - params.recentIndex) -15)*params.resize: 0}}                            
         width={235}
         height={180}    
         parent= {{background: "#ccdee8"}}   
@@ -235,7 +236,7 @@ function TopChart(params) {
           tickValues={params.sFips !== "_nation"? [
             params.data[params.data.length - Math.round(params.data.length/3)*2 - 1][params.xVar],
             params.data[params.data.length - Math.round(params.data.length/3) - 1][params.xVar],
-            params.data[params.data.length-1][params.xVar]] 
+            params.data[params.data.length - params.recentIndex -1][params.xVar]] 
             : 
             [0]
           }                        
@@ -278,6 +279,7 @@ export default function StateMap(props) {
   let {stateFips} = useParams();
   const [tooltipContent, setTooltipContent] = useState('');
 
+  const [hospDate, setHospDate] = useState();
   const [date, setDate] = useState();
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
@@ -304,7 +306,7 @@ export default function StateMap(props) {
   const [hospDaily, setHospDaily] = useState();
   const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
   const [index, setIndex] = useState();
-  const [indexP, setIndexP] = useState();
+  const [indexP, setIndexP] = useState(0);
 
 
   // const [varMap, setVarMap] = useState({});
@@ -343,7 +345,7 @@ export default function StateMap(props) {
 
     }
   
-  console.log("stateFips ", stateFips);
+  // console.log("stateFips ", stateFips);
 
 
   const [delayHandler, setDelayHandler] = useState();
@@ -599,13 +601,13 @@ export default function StateMap(props) {
 
   
   // }, [metric]);
-  console.log("config ", config);
+  // console.log("config ", config);
 
   // mongo
   useEffect(()=>{
     if (metric) {
       const configMatched = configs.find(s => s.fips === stateFips);
-      console.log("configMatched", configMatched);
+      // console.log("configMatched", configMatched);
       if (!configMatched){
         history.push('/_nation');
       }else{
@@ -619,6 +621,9 @@ export default function StateMap(props) {
           let totCases = 0;
           let percentChangeHospDaily = 0;
           let percentPositive = 0;    
+          let indexP = 0;
+          let hospDate = 0;
+          let str = "";
           setConfig(configMatched);
           setStateName(configMatched.name);
           const fetchData = async() => { 
@@ -656,18 +661,61 @@ export default function StateMap(props) {
                   mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
                   percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
 
-                  //hospitalization rate
-                  percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
-                  hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                  // //hospitalization rate
+                  // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                  // hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
 
-                  //testing positive rate
-                  percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+                  // //testing positive rate
+                  // percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
 
                   totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
 
+                  
+                      
+                     
+        
+                    
+                    if(stateSeriesDict[stateSeriesDict.length-1].hospDaily === 0){
+                      for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
+                        if (i ===0 ){
+                          indexP = 1;
+                          hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                          percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                        }else if (stateSeriesDict[i].hospDaily === 0){
+                        }else{
+                          indexP = stateSeriesDict.length - i;
+                          hospD = stateSeriesDict[i].hospDaily;
+                          percentChangeHospDaily = stateSeriesDict[i].percent14dayhospDaily;
+                          hospDate = stateSeriesDict[i].t;
+                          i = 0;
+                        }
+                      }
+                    }
+
+                    if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
+                      for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
+                        if (i ===0 ){
+                          indexP = 1;
+                          percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
+                        }else if (stateSeriesDict[i].percentPositive === 0){
+                        }else{
+                          indexP = stateSeriesDict.length - i;
+                          percentPositive = stateSeriesDict[i].percentPositive;
+
+                          i = 0;
+                        }
+                      }
+                    }
+                    
+        
+                  
+
                 }
               }
-              
+            
+            
+            setHospDate("0" + (new Date(hospDate*1000).toLocaleDateString()).substring(0,2) + "0" + (new Date(hospDate*1000).toLocaleDateString()).substring(2));
             //manipulate string
             if (percentChangeCase.toFixed(0) > 0){
               setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
@@ -695,7 +743,8 @@ export default function StateMap(props) {
 
             //set values
             setPctPositive(percentPositive.toFixed(0) + "%");
-            // setIndexP(indexP);
+            setIndexP(indexP);
+            // console.log(indexP);
             // setIndex(index);
             setCaseRate(numberWithCommas(caseRate.toFixed(0)));
             setMortality(numberWithCommas(mortality.toFixed(0)));
@@ -787,7 +836,8 @@ export default function StateMap(props) {
 
   if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
-    console.log( dataTS);
+    // console.log(hospDate);
+
   return (
     <HEProvider>
       <div>
@@ -902,6 +952,8 @@ export default function StateMap(props) {
                       rate = {caseRate}
                       percentChange = {percentChangeCases}
                       resize= {1.2}
+                      recentIndex = {0}
+
                     />}
                   {stateFips && dataStateTS && stateFips !== "_nation" && 
                     <TopChart
@@ -912,6 +964,7 @@ export default function StateMap(props) {
                       rate = {caseRate}
                       percentChange = {percentChangeCases}
                       resize= {1.2}
+                      recentIndex = {0}
                     />}
                     
                   </div>
@@ -930,6 +983,7 @@ export default function StateMap(props) {
                       rate = {caseRate}
                       percentChange = {percentChangeCases}
                       resize= {1.2}
+                      recentIndex = {0}
                     />}
                   {stateFips && dataStateTS && stateFips !== "_nation" && 
 
@@ -941,6 +995,7 @@ export default function StateMap(props) {
                       rate = {mortality}
                       percentChange = {percentChangeMortality}
                       resize= {3}
+                      recentIndex = {0}
                     />
                   }
 
@@ -962,6 +1017,7 @@ export default function StateMap(props) {
                       rate = {caseRate}
                       percentChange = {percentChangeCases}
                       resize= {1.2}
+                      recentIndex = {0}
                     />}
                   {stateFips && dataStateTS && stateFips !== "_nation" && 
 
@@ -973,6 +1029,7 @@ export default function StateMap(props) {
                       rate = {hospDaily}
                       percentChange = {percentChangeHospDaily}
                       resize= {1.5}
+                      recentIndex = {indexP}
                     />
                   }
 
@@ -995,12 +1052,13 @@ export default function StateMap(props) {
                       rate = {caseRate}
                       percentChange = {percentChangeCases}
                       resize= {1.2}
+                      recentIndex = {indexP}
                     />}
                   {stateFips && dataStateTS && stateFips !== "_nation" && 
                     <VictoryChart theme={VictoryTheme.material}
                                                   
                       minDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- 15].t : 0 }}
-                      maxDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length-1].t : 0 , y: stateFips !== "_nation" ? getMaxRange(dataStateTS, "percentPositive", dataStateTS.length-15)*1.05 : 0 }}
+                      maxDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- indexP - 1].t : 0 , y: stateFips !== "_nation" ? getMaxRange(dataStateTS, "percentPositive", dataStateTS.length-15)*1.05 : 0 }}
                       width={235}
                       height={180}       
                       padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
@@ -1410,10 +1468,12 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Last updated on {date}
                                     <br/>
+                                    Hospitalization data last updated: {hospDate}.
+                                    <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
                                     Race data last updated: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}, updated every 3 days. 
-
+                                    
                                   </text>
                           </Grid.Row>
                           }
@@ -1423,10 +1483,12 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Last updated on {date}
                                     <br/>
+                                    Hospitalization data last updated: {hospDate}.
+                                    <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
                                     Race data last updated: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}, updated every 3 days. 
-
+                                    
                                   </text>
                           </Grid.Row>
                           }

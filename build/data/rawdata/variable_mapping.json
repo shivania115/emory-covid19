@@ -49,7 +49,11 @@
         "name": "Average Daily COVID-19 Deaths per 100,000",
         "definition": "helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people.",
         "group": "outcomes"},
-
+	"cfr": {
+        "variable": "cfr",
+        "name": "Case Fatality Ratio",
+        "definition": "definition",
+        "group": "other"},
         
     "black": {
         "variable": "black",
