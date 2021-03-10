@@ -152,17 +152,20 @@ export default function CountyReport() {
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
    const [tooltipContent, setTooltipContent] = useState('');
-  const [countyMetric, setCountyMetric] = useState({cases: 'N/A', deaths: 'N/A', 
-                                                  caseRate: "N/A", mortality: "N/A", 
-                                                  caseRateMean: "N/A", mortalityMean: "N/A",
-                                                  caserate7dayfig: "N/A", covidmortality7dayfig: "N/A",
-                                                  cfr:"N/A", t: 'n/a'});
+  // const [countyMetric, setCountyMetric] = useState({cases: 'N/A', deaths: 'N/A', 
+  //                                                 caseRate: "N/A", mortality: "N/A", 
+  //                                                 caseRateMean: "N/A", mortalityMean: "N/A",
+  //                                                 caserate7dayfig: "N/A", covidmortality7dayfig: "N/A",
+  //                                                 cfr:"N/A", t: 'n/a'});
+    const [countyMetric, setCountyMetric] = useState();
 
-  const [stateMetric, setStateMetric] = useState({cases: 'N/A', deaths: 'N/A', 
-                                                  caseRate: "N/A", mortality: "N/A", 
-                                                  caseRateMean: "N/A", mortalityMean: "N/A",
-                                                  caserate7dayfig: "N/A", covidmortality7dayfig: "N/A",
-                                                  cfr:"N/A", t: 'n/a'});
+  // const [stateMetric, setStateMetric] = useState({cases: 'N/A', deaths: 'N/A', 
+  //                                                 caseRate: "N/A", mortality: "N/A", 
+  //                                                 caseRateMean: "N/A", mortalityMean: "N/A",
+  //                                                 caserate7dayfig: "N/A", covidmortality7dayfig: "N/A",
+  //                                                 cfr:"N/A", t: 'n/a'});
+
+  const [stateMetric, setStateMetric] = useState();                                                
   const [varMap, setVarMap] = useState({});
 
 
@@ -320,7 +323,6 @@ export default function CountyReport() {
           }
           
           
-          setDataTS(seriesDict);
         };
         fetchData();
     
@@ -328,23 +330,11 @@ export default function CountyReport() {
         handleAnonymousLogin();
       }
     }
-  },[isLoggedIn, stateFips]);
-
-  useEffect(() => {
-    if (dataTS && dataTS[stateFips+countyFips]){
-      setCountyMetric(_.takeRight(dataTS[stateFips+countyFips])[0]);
-    }
-  }, [dataTS, stateFips, countyFips]);
-
-  useEffect(() => {
-    if (dataTS && dataTS[stateFips]){
-      setStateMetric(_.takeRight(dataTS[stateFips])[0]);
-    }
-  }, [dataTS, stateFips]);
+  },[isLoggedIn]);
 
 
   if (data && varMap) {
-
+    console.log(data[stateFips]['casesfig']);
   return (
     <HEProvider> 
       <div>
@@ -384,18 +374,18 @@ export default function CountyReport() {
                   </tr>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName : countyName.match(/[^\s]+/)} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.cases=== "N/A"? "Loading..." : countyMetric.cases < 0?'0':countyMetric.cases.toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caseRate==="N/A"? "Loading..." : countyMetric.caseRate < 0?'0':numberWithCommas(parseFloat(countyMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caseRateMean==="N/A"? "Loading..." : countyMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(countyMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.caserate7dayfig==="N/A"? "Loading..." : countyMetric.caserate7dayfig < 0?'0':numberWithCommas(parseFloat(countyMetric.caserate7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].casesfig=== "N/A"? "Loading..." : data["" + stateFips + countyFips].casesfig < 0?'0':data["" + stateFips + countyFips].casesfig.toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].caseratefig==="N/A"? "Loading..." : data["" + stateFips + countyFips].caseratefig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].caseratefig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].mean7daycases==="N/A"? "Loading..." : data["" + stateFips + countyFips].mean7daycases < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].mean7daycases).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].caserate7dayfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].caserate7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].caserate7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
 
                   </Table.Row>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {stateName} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.cases==="N/A"? "Loading..." : stateMetric.cases < 0?'0':stateMetric.cases.toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.caseRate==="N/A"? "Loading..." : stateMetric.caseRate < 0?'0':numberWithCommas(parseFloat(stateMetric.caseRate).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.caseRateMean==="N/A"? "Loading..." : stateMetric.caseRateMean < 0?'0':numberWithCommas(parseFloat(stateMetric.caseRateMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.caserate7dayfig==="N/A"? "Loading..." : stateMetric.caserate7dayfig < 0?'0':numberWithCommas(parseFloat(stateMetric.caserate7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].casesfig==="N/A"? "Loading..." : data["" + stateFips].casesfig < 0?'0':data["" + stateFips].casesfig.toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].caseratefig==="N/A"? "Loading..." : data["" + stateFips].caseratefig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].caseratefig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].mean7daycases==="N/A"? "Loading..." : data["" + stateFips].mean7daycases < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].mean7daycases).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].caserate7dayfig==="N/A"? "Loading..." : data["" + stateFips].caserate7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].caserate7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
 
                   </Table.Row>
                 </Table.Header>
@@ -419,20 +409,20 @@ export default function CountyReport() {
                   </tr>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName :countyName.match(/[^\s]+/)} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.deaths==="N/A"? "Loading..." : countyMetric.deaths < 0?'0':countyMetric.deaths.toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.mortality==="N/A"? "Loading..." : countyMetric.mortality < 0?'0':numberWithCommas(parseFloat(countyMetric.mortality).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.mortalityMean==="N/A"? "Loading..." : countyMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(countyMetric.mortalityMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.covidmortality7dayfig==="N/A"? "Loading..." : countyMetric.covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(countyMetric.covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {countyMetric.cfr==="N/A"? "Loading..." : countyMetric.cfr < 0?'0':numberWithCommas(parseFloat(countyMetric.cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
+                    {/* <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].deathsfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].deathsfig < 0?'0':data["" + stateFips + countyFips].deathsfig.toLocaleString()} </Table.HeaderCell> */}
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortalityfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortalityfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortalityfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].mean7daydeaths==="N/A"? "Loading..." : data["" + stateFips + countyFips].mean7daydeaths < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].mean7daydeaths).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell> 
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].cfr==="N/A"? "Loading..." : data["" + stateFips + countyFips].cfr < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
 
                   </Table.Row>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {stateName} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.deaths==="N/A"? "Loading..." : stateMetric.deaths < 0?'0':stateMetric.deaths.toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.mortality==="N/A"? "Loading..." : stateMetric.mortality < 0?'0':numberWithCommas(parseFloat(stateMetric.mortality).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.mortalityMean==="N/A"? "Loading..." : stateMetric.mortalityMean < 0?'0':numberWithCommas(parseFloat(stateMetric.mortalityMean).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.covidmortality7dayfig==="N/A"? "Loading..." : stateMetric.covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(stateMetric.covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {stateMetric.cfr==="N/A"? "Loading..." : stateMetric.cfr < 0?'0':numberWithCommas(parseFloat(stateMetric.cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].deathsfig==="N/A"? "Loading..." : data["" + stateFips].deathsfig < 0?'0':data["" + stateFips].deathsfig.toLocaleString()} </Table.HeaderCell> 
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].covidmortalityfig==="N/A"? "Loading..." : data["" + stateFips].covidmortalityfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].covidmortalityfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].mean7daydeaths==="N/A"? "Loading..." : data["" + stateFips].mean7daydeaths < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].mean7daydeaths).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].cfr==="N/A"? "Loading..." : data["" + stateFips].cfr < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
 
                   </Table.Row>
                 </Table.Header>
@@ -445,7 +435,7 @@ export default function CountyReport() {
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 51, paddingBottom: 40}}>COVID-19 Outcomes </Divider>
           <Grid columns={2} centered>
             <Grid.Row>
-              { dataTS && <Grid.Column>
+              <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
                   <Header.Content x={0} y={20} style={{fontSize: 20, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
                 </div>
@@ -457,149 +447,153 @@ export default function CountyReport() {
                           <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
                           <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
                       </svg>
-                <VictoryChart theme={VictoryTheme.material}
-                  width={550}
-                  height={300}       
-                  padding={{left: 50, right: 60, top: 10, bottom: 40}}
-                  containerComponent={<VictoryVoronoiContainer/>}
-                  
-                  >
+                <div style = {{height: 300}}>
+                  { dataTS && <VictoryChart theme={VictoryTheme.material}
+                    width={550}
+                    height={300}       
+                    padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                    containerComponent={<VictoryVoronoiContainer/>}
+                    
+                    >
 
 
-                  <VictoryAxis
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+                    <VictoryAxis
+                      style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
-                    tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
-                    tickValues={[
-                      dataTS["_nation"][30].t,
-                      dataTS["_nation"][91].t,
-                      dataTS["_nation"][153].t,
-                      dataTS["_nation"][214].t,
-                      dataTS["_nation"][275].t,
+                      tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
+                      tickValues={[
+                        dataTS["_nation"][30].t,
+                        dataTS["_nation"][91].t,
+                        dataTS["_nation"][153].t,
+                        dataTS["_nation"][214].t,
+                        dataTS["_nation"][275].t,
 
-                      
+                        
 
-                      // dataTS["_nation"][0].t,
-                      // dataTS["_nation"][61].t,
-                      // dataTS["_nation"][122].t,
-                      // dataTS["_nation"][183].t,
-                      // dataTS["_nation"][244].t,
-                      // dataTS["_nation"][306].t,
-                      dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
-                  <VictoryAxis dependentAxis tickCount={5}
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+                        // dataTS["_nation"][0].t,
+                        // dataTS["_nation"][61].t,
+                        // dataTS["_nation"][122].t,
+                        // dataTS["_nation"][183].t,
+                        // dataTS["_nation"][244].t,
+                        // dataTS["_nation"][306].t,
+                        dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
+                    <VictoryAxis dependentAxis tickCount={5}
+                      style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
-                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                    />
-                  <VictoryGroup 
-                    colorScale={[nationColor, stateColor, countyColor]}
-                  >
-                    <VictoryLine data={dataTS["_nation"]}
-                      x='t' y='caserate7dayfig'
-                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                      style={{
-                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                      }}
+                      tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                       />
-                    <VictoryLine data={dataTS[stateFips]}
-                      x='t' y='caserate7dayfig'
-                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                      style={{
-                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                      }}
-                      />
-                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
-                      x='t' y='caserate7dayfig'
-                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                      style={{
-                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                      }}
+                    <VictoryGroup 
+                      colorScale={[nationColor, stateColor, countyColor]}
+                    >
+                      <VictoryLine data={dataTS["_nation"]}
+                        x='t' y='caserate7dayfig'
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
+                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        style={{
+                            data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                        }}
+                        />
+                      <VictoryLine data={dataTS[stateFips]}
+                        x='t' y='caserate7dayfig'
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
+                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        style={{
+                            data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                        }}
+                        />
+                      <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                        x='t' y='caserate7dayfig'
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
+                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        style={{
+                            data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                        }}
 
-                      />
-                  </VictoryGroup>
-                </VictoryChart>
-              </Grid.Column>}
-              { dataTS && <Grid.Column >
+                        />
+                    </VictoryGroup>
+                  </VictoryChart>}
+                </div>
+              </Grid.Column>
+              <Grid.Column >
                 <div style = {{paddingBottom: 20}}>
                   <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
                 </div>
-                      <svg width = "370" height = "40">
-                          <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                          <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
-                          <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                          <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
-                          <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
-                      </svg>
-                <VictoryChart theme={VictoryTheme.material}
-                  width={550}
-                  height={300}       
-                  padding={{left: 50, right: 60, top: 10, bottom: 40}}
-                  containerComponent={<VictoryVoronoiContainer/>}
-                  
-                  >
+                  <svg width = "370" height = "40">
+                      <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                      <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
+                      <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                      <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
+                      <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                      <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
+                  </svg>
+                  <div style = {{height: 300}}>
+                    { dataTS && <VictoryChart theme={VictoryTheme.material}
+                      width={550}
+                      height={300}       
+                      padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                      containerComponent={<VictoryVoronoiContainer/>}
+                      
+                      >
 
-                  <VictoryAxis
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
-                    tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
-                    tickValues={[
-                      dataTS["_nation"][30].t,
-                      dataTS["_nation"][91].t,
-                      dataTS["_nation"][153].t,
-                      dataTS["_nation"][214].t,
-                      dataTS["_nation"][275].t,
-                      // dataTS["_nation"][0].t,
-                      // dataTS["_nation"][61].t,
-                      // dataTS["_nation"][122].t,
-                      // dataTS["_nation"][183].t,
-                      // dataTS["_nation"][244].t,
-                      // dataTS["_nation"][306 ].t,
+                      <VictoryAxis
+                        style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+                        tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
+                        tickValues={[
+                          dataTS["_nation"][30].t,
+                          dataTS["_nation"][91].t,
+                          dataTS["_nation"][153].t,
+                          dataTS["_nation"][214].t,
+                          dataTS["_nation"][275].t,
+                          // dataTS["_nation"][0].t,
+                          // dataTS["_nation"][61].t,
+                          // dataTS["_nation"][122].t,
+                          // dataTS["_nation"][183].t,
+                          // dataTS["_nation"][244].t,
+                          // dataTS["_nation"][306 ].t,
 
-                      dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
-                  <VictoryAxis dependentAxis tickCount={5}
-                    style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
-                    tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
-                    />
-                  <VictoryGroup 
-                    colorScale={[nationColor, stateColor, countyColor]}
-                  >
-                    <VictoryLine data={dataTS["_nation"]}
-                      x='t' y='covidmortality7dayfig'
-                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                      style={{
-                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                      }}
-                      />
-                    <VictoryLine data={dataTS[stateFips]}
-                      x='t' y='covidmortality7dayfig'
-                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                      style={{
-                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                      }}
-                      />
-                    <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
-                      x='t' y='covidmortality7dayfig'
-                      labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                      labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
-                      style={{
-                          data: { strokeWidth: ({ active }) => active ? 3 : 2},
-                      }}
-                      />
-                  </VictoryGroup>
-                </VictoryChart>
-              </Grid.Column>}
+                          dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
+                      <VictoryAxis dependentAxis tickCount={5}
+                        style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+                        tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
+                        />
+                      <VictoryGroup 
+                        colorScale={[nationColor, stateColor, countyColor]}
+                      >
+                        <VictoryLine data={dataTS["_nation"]}
+                          x='t' y='covidmortality7dayfig'
+                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
+                          labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                          style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                          }}
+                          />
+                        <VictoryLine data={dataTS[stateFips]}
+                          x='t' y='covidmortality7dayfig'
+                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
+                          labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                          style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                          }}
+                          />
+                        <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                          x='t' y='covidmortality7dayfig'
+                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
+                          labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                          style={{
+                              data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                          }}
+                          />
+                      </VictoryGroup>
+                    </VictoryChart>}
+                  </div>
+              </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2} style={{paddingBottom: 50}}>
               <Grid.Column>
                 <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: "19px"}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: "19px", lineHeight: "16pt"}}>
-                      As of <b>{countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
+                      As of <b>{data["" + stateFips + countyFips].t==='n/a'?'N/A':(new Date(data["" + stateFips + countyFips].t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
                       in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
@@ -609,7 +603,7 @@ export default function CountyReport() {
                 <Header as='h2' style={{fontWeight: 400, width: 550, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: "19px"}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 570, fontSize: "19px", lineHeight: "16pt"}}>
-                      As of <b>{countyMetric.t==='n/a'?'N/A':(new Date(countyMetric.t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
+                      As of <b>{data["" + stateFips + countyFips].t==='n/a'?'N/A':(new Date(data["" + stateFips + countyFips].t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
                       in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>

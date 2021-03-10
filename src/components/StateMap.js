@@ -306,10 +306,18 @@ export default function StateMap(props) {
   const [index, setIndex] = useState();
   const [indexP, setIndexP] = useState();
 
+
+  // const [varMap, setVarMap] = useState({});
+  // const [metric, setMetric] = useState('caserate7dayfig');
+  // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
+  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
+
   const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('caserate7dayfig');
-  const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-  const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
+  const [metric, setMetric] = useState('casesfig');
+  const [metricOptions, setMetricOptions] = useState('casesfig');
+  const [metricName, setMetricName] = useState('Total COVID-19 Cases');
+
+
   const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
   const [countyOption, setCountyOption] = useState();
   const [selectedTrend, setSelectedTrend] = useState("");

@@ -19,9 +19,9 @@
         "name": "Distributed Per 100,000",
         "definition": "definition",
         "group": "outcomes"},
-    "Admin_Per_100K": {
-        "variable": "Admin_Per_100K",
-        "name": "Administered Per 100,000",
+    "Admin_Per_100k_18Plus": {
+        "variable": "Admin_Per_100k_18Plus",
+        "name": "Adults administered Per 100,000",
         "definition": "definition",
         "group": "outcomes"},
     "Administered_Dose1": {
@@ -29,20 +29,11 @@
         "name": "Number received first dose",
         "definition": "is the number of individuals in the United States recorded in CDC database to have received the first dose of a COVID-19 vaccine.",
         "group": "outcomes"},
-    "Administered_Dose1_Per_100K": {
-        "variable": "Administered_Dose1_Per_100K",
-        "name": "Dose 1 Administered Per 100,000",
-        "definition": "definition",
-        "group": "outcomes"},
-    "Administered_Dose2": {
-        "variable": "Administered_Dose2",
+    
+    "Series_Complete_Yes": {
+        "variable": "Series_Complete_Yes",
         "name": "Number received second dose",
         "definition": "is the number of individuals in the United States recorded in CDC database to have received the second dose of a COVID-19 vaccine.",
-        "group": "outcomes"},
-    "Administered_Dose2_Per_100K": {
-        "variable": "Administered_Dose2_Per_100K",
-        "name": "Dose 2 Administered Per 100,000",
-        "definition": "definition",
         "group": "outcomes"},
     "Administered_Moderna": {
         "variable": "Administered_Moderna",
@@ -64,15 +55,25 @@
         "name": "Percent of population partially vaccinated (one dose received)",
         "definition": "is the percentage of the total US population that has received at least one dose of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
         "group": "outcomes"},
-    "percentVaccinatedDose2": {
-        "variable": "percentVaccinatedDose2",
+    "Series_Complete_Pop_Pct": {
+        "variable": "Series_Complete_Pop_Pct",
         "name": "Percent of population fully vaccinated (two doses received)",
-        "definition": "is the percentage of the total US population that has received at two doses of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
+        "definition": "is the percentage of the total US population that has received two doses of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
         "group": "outcomes"},
     "Dist_Per_100K_new": {
         "variable": "Dist_Per_100K_new",
         "name": "New doses distributed per 100,000",
         "definition": "is the number of vaccine doses per 100,000 that have been most recently distributed to facilities across the United States by the federal government.",
+        "group": "outcomes"},
+    "AdministeredPartial": {
+        "variable": "AdministeredPartial",
+        "name": "Number received the first dose",
+        "definition": "is the number of individuals in the United States recorded in CDC database to have received only the first dose of a COVID-19 vaccine.",
+        "group": "outcomes"},
+    "PercentAdministeredPartial": {
+        "variable": "PercentAdministeredPartial",
+        "name": "Percent received the first dose",
+        "definition": "is the percentage of the total US population that has received only the first dose of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
         "group": "outcomes"},
     "Dist_new": {
         "variable": "Dist_new",
