@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, createRef, PureComponent} from 'react'
+import React, { useEffect, useState, useRef, createRef, PureComponent} from 'react'
 import { Container, Breadcrumb, Dropdown, Header, Grid, Progress, Loader, Divider, Popup, Table, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
@@ -19,6 +19,9 @@ import VaccinesFAQ from './VaccineFAQ';
 // } from "react-simple-maps";
 import allStates from "./allstates.json";
 
+import FileSaver from "file-saver";
+import { getPngData, useRechartToPng } from "recharts-to-png";
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 
 import { VictoryChart, 
   VictoryGroup, 
@@ -348,8 +351,6 @@ const renderCustomizedLabelFV = ({ cx, cy, midAngle, innerRadius, outerRadius, p
   // );
 };
 
-
-
 class Race extends PureComponent{
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
 
@@ -369,8 +370,21 @@ class Race extends PureComponent{
  
     this.state = {
       dataTot: [],
+      chart: "",
     };
+
+    // this.handleDownload = this.handleDownload.bind(this);
+
   }
+
+  async handleDownload() {
+        const {chart} = this.state;
+        // Send the chart to getPngData
+        const pngData = await useRechartToPng(chart);
+        // Use FileSaver to download the PNG
+        FileSaver.saveAs(pngData, "test.png");
+      };
+
   componentDidMount(){
     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
       dataTot: [
@@ -379,14 +393,19 @@ class Race extends PureComponent{
         data['vaccineRace'][0]['White'][0]
       ] }));
   }
+
    
 
   render() {
     const { dataTot } = this.state;
+    console.log("this props", this.props);
     // console.log("here", this.props.rate)
 
     return (
-      <PieChart width={300} height={280}>
+      <Grid>
+      <PieChart 
+        ref={(ref) => this.setState({chart: ref})} // Save the ref of the chart
+        width={300} height={280}>
         <Pie
           
           activeIndex={10}
@@ -412,15 +431,180 @@ class Race extends PureComponent{
           
         </Pie>
       </PieChart>
-
-   
+      <span style={{ float: "left" }}>
+        <button onClick={() => this.handleDownload()}>Download</button>
+      </span>
+      </Grid>
     );
   }
 }
 
 
+// class Race extends PureComponent{
+// function Race(props) {
+//   // static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
 
-export default function USVaccineTracker(props) {
+//   // state = {
+//   //   activeIndex: 0,
+//   // };
+
+//   // constructor(props) {
+//   //   super(props);
+ 
+//   //   this.state = {
+//   //     dataTot: [],
+//   //     chart: "",
+//   //   };
+
+//   //   // this.handleDownload = this.handleDownload.bind(this);
+
+//   // }
+//   const [dataTot, setDataTot] = useState([]);
+//   const [activeIndex, setActiveIndex] = useState([]);
+//   const [chart, setChart] = React.useState();
+
+//   const onPieEnter = (_, index) => {
+//     setActiveIndex([index]);
+//     // console.log(index);
+//   };
+
+//   const [pngData, ref] = useRechartToPng();
+
+//   const handleDownload = React.useCallback(async () => {
+//     // Send the chart to getPngData
+//     // const pngData = await getPngData(chart);
+//     // Use FileSaver to download the PNG
+//     FileSaver.saveAs(pngData, "test.png");
+//   }, [pngData]);
+
+//   // componentDidMount(){
+//   useEffect(() => {
+//     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => setDataTot(
+//       [
+//         data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
+//         data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
+//         data['vaccineRace'][0]['White'][0]
+//       ] ));
+//   },[])
+   
+
+//   // render() {
+//   //   const { dataTot } = this.state;
+//     console.log("here", dataTot)
+
+//     if(dataTot.length>1){
+//     return (
+//       <div >
+//       <PieChart 
+//         // ref={(ref) => setChart(ref)} // Save the ref of the chart
+//         ref={ref}
+//         width={300} height={280}>
+//         <Pie
+//           activeIndex={10}
+//           activeShape={renderActiveShape}
+//           data={dataTot}
+//           cx={150}
+//           cy={150}
+//           innerRadius={50}
+//           outerRadius={70}
+//           paddingAngle = {5}
+//           fill="#8884d8"
+//           dataKey={props.pop == true? "percentPop" :"pctAdmDose2"}
+//           // onMouseEnter={this.onPieEnter}
+//           labelLine={true}
+//           label = {props.pop == true? renderCustomizedLabelPop:renderCustomizedLabelFV }
+//           rate = {props.pop}
+          
+//         >
+//           {dataTot.map((entry, index) => (
+//             <Cell key={`cell-${index}`} fill={COLORRace[index % COLORRace.length]} />
+//           ))}
+//         <Label value={props.pop == true? "Population" : "Fully Vaccinated"} position="center" />
+          
+//         </Pie>
+//       </PieChart>
+//       {/* <span style={{ float: "left" }}>
+//         <button onClick={handleDownload}>Download</button>
+//       </span> */}
+//       </div>
+//     );} else {
+//       return null;
+//     }
+// }
+
+// const toPrint = React.forwardRef((props, ref) => (
+  
+//   <Grid.Column rows = {2} >
+//     <Ref innerRef={ref}>
+//     <Grid.Row style = {{width: 550}}>
+//       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
+//         <div>
+//           <svg width="550" height="80">
+
+//               <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
+//               <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
+
+//               <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+//               <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
+
+//               <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
+//               <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
+
+//               <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
+//               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
+
+//               <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+//               <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>                    
+
+
+//               {/* {_.map(pieChartRace, (color, i) => {
+//                 return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+//               })}  */}
+//           </svg>
+//         </div>
+//       </Grid.Column>
+//     </Grid.Row>
+//     <Grid >
+//       <Grid.Row columns = {2} style = {{width: 1000}}>
+//         <Grid.Column style = {{width: 300}}>
+//           <Race pop = {false} />
+//         </Grid.Column>
+//         <Grid.Column style = {{width: 300, paddingLeft: 50}}>
+//           <Race pop = {true}/> 
+//         </Grid.Column>
+//       </Grid.Row>
+
+//       {/* <Grid.Row style = {{width: 900}}>
+//         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+//             <div>
+//               <svg width="450" height="145">
+
+//                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
+//                   <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+//                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
+//                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
+//                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
+
+
+//                   {_.map(pieChartRace, (color, i) => {
+//                     return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+//                   })} 
+//               </svg>
+//             </div>
+//           </Grid.Column>
+//       </Grid.Row> */}
+//       </Grid>
+//       </Ref>
+//   </Grid.Column>
+  
+// ));
+
+const toPrint = React.forwardRef((props, ref) => (
+  <div ref={ref}>Hello World</div>
+));
+
+// export default function USVaccineTracker(props) {
+const USVaccineTracker = (props) => {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -765,6 +949,9 @@ export default function USVaccineTracker(props) {
 
 
 
+  const componentRef = useRef();
+
+
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
     // console.log(vaccineData[stateFips]);
   return (
@@ -1087,6 +1274,9 @@ export default function USVaccineTracker(props) {
                   </Grid.Column>
                   
               </Grid.Row>
+              
+              
+                    
               <Grid>
                 
                 <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
@@ -1120,7 +1310,7 @@ export default function USVaccineTracker(props) {
                         </div>
                       </Grid.Column>
                     </Grid.Row>
-                    <Grid>
+                    <Grid >
                       <Grid.Row columns = {2} style = {{width: 1000}}>
                         <Grid.Column style = {{width: 300}}>
                           <Race pop = {false}/>
@@ -1129,6 +1319,7 @@ export default function USVaccineTracker(props) {
                           <Race pop = {true}/> 
                         </Grid.Column>
                       </Grid.Row>
+                      
                       {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
@@ -1149,6 +1340,10 @@ export default function USVaccineTracker(props) {
                           </Grid.Column>
                       </Grid.Row> */}
                       </Grid>
+                      <toPrint ref={componentRef} />
+                    <button onClick={() => exportComponentAsPNG(componentRef)}>
+                              Export As PNG
+                            </button>
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 0, paddingLeft: 140}}>
@@ -2456,3 +2651,5 @@ export default function USVaccineTracker(props) {
     return <Loader active inline='centered' />
   }
 }
+
+export default USVaccineTracker;

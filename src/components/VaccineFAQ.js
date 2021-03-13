@@ -95,6 +95,18 @@ export default function VaccinesFAQ(props){
             Frequently Asked Questions about COVID-19 Vaccines
             <Header.Subheader style={{paddingTop:'2rem', paddingLeft: '0rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
             This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of {Date().slice(4,10)}. Before taking the vaccine, please consult your healthcare provider.
+            If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:
+            <ul style={{paddingLeft:'6rem', fontSize:'14pt', lineHeight:'1.5'}}>
+            <li>
+            <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/index.html" target="_blank" rel="noopener noreferrer"> CDC website </a>
+            </li>
+            <li>
+            <a style ={{color: "#397AB9"}} href="https://www.mayoclinic.org/coronavirus-covid-19/vaccine" target="_blank" rel="noopener noreferrer"> Mayo Clinic website </a>
+            </li>
+            <li>
+            Your local Department of Health website
+            </li>
+            </ul>
             </Header.Subheader>
           </Header.Content>
         </Header>
@@ -124,9 +136,10 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(0)>0}>
           <p>
-            At this time, two vaccines have been approved for use by the United States Food and Drug Administration (<a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer">FDA</a>): 
-            one developed by the company <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
-            and one by <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>. 
+            At this time, three vaccines have been approved for use by the United States Food and Drug Administration (<a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer">FDA</a>): 
+            one developed by the company <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech</a>
+            , one by <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>, and one by 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer"> Janssen Biotech, Johnson & Johnson’s vaccine division</a>. 
         </p>
         </Accordion.Content>
 
@@ -144,8 +157,8 @@ export default function VaccinesFAQ(props){
           <p>
             Both the <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
             and the <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>
-            vaccines have shown that they are very effective in preventing symptomatic COVID-19 disease (95% and 94.1% effective, respectively). They have also shown that they are safe to get. 
-            However, there are a few small differences in who should get them and when. The most important ones for anyone getting a vaccine are the following:
+            vaccines have shown that they are very effective in preventing symptomatic COVID-19 disease (95% and 94.1% effective, respectively). The Johnson & Johnson vaccine showed that it was also quite effective in preventing severe COVID-19 illness (85% effective), 
+            as well as preventing less severe illness. All three vaccines  have also shown that they are safe to get. However, there are a few small differences in who should get them and when. The most important ones for anyone getting a vaccine are the following:
         </p>
         <Container style={{paddingLeft:'3rem', paddingBottom:'0.5rem'}}>
         <Table celled compact style={{fontWeight: 400, fontSize:'13pt', width: '58rem'}}>
@@ -153,16 +166,19 @@ export default function VaccinesFAQ(props){
             <Table.Row>
               <Table.HeaderCell width={3}>Pfizer-BioNTech COVID-19 vaccine</Table.HeaderCell>
               <Table.HeaderCell width={3}>Moderna COVID-19 vaccine</Table.HeaderCell>
+              <Table.HeaderCell width={3}>Johnson & Johnson COVID-19 vaccine</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             <Table.Row>
               <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 16 years and older</Table.Cell>
               <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 18 years and older</Table.Cell>
+              <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 18 years and older</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "14pt"}}>2 doses, 3 weeks apart</Table.Cell>
               <Table.Cell style={{lineHeight: "14pt"}}>2 doses, 4 weeks apart</Table.Cell>
+              <Table.Cell style={{lineHeight: "14pt"}}>1 dose</Table.Cell>
             </Table.Row>
             </Table.Body>
         </Table>
@@ -180,13 +196,26 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(2)>0}>
-          <p>
-            Each vaccine that is being developed is slightly different. The two vaccines for COVID-19 currently approved by the Food and Drug Administration (FDA) for use in the United States are the Pfizer-BioNTech COVID-19 vaccine and the Moderna COVID-19 vaccine. 
-            The active ingredient of these vaccines is mRNA. The two vaccines also include other ingredients like fat, salts, and sugars that protect the mRNA. These ingredients also help the mRNA work better in the body, and protect the vaccine when it is stored at very cold temperatures. 
-            The specific ingredients for each vaccine are listed <a style ={{color: "#397AB9"}} href="https://www.cvdvaccine-us.com/images/pdf/fact-sheet-for-recipients-and-caregivers.pdf" target="_blank" rel="noopener noreferrer"> here </a>for the Pfizer-BioNTech vaccine and
-            <a style ={{color: "#397AB9"}} href="https://www.modernatx.com/covid19vaccine-eua/recipients/faq" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine. 
-            <u> Neither vaccine contains preservatives, eggs, or latex. Neither vaccine contains any kind of fetal tissue.</u>
-            </p>
+          <p style={{marginBottom:0}}>
+            Each vaccine that is being developed is slightly different. The three vaccines for COVID-19 currently approved by the Food and Drug Administration (FDA) for use in the United States are the Pfizer-BioNTech COVID-19 vaccine, the Moderna COVID-19 vaccine, and the Johnson & Johnson COVID-19 vaccine. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            For the Pfizer-BioNTech and Moderna vaccines, the active ingredient is mRNA. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            For the Johnson & Johnson vaccine, the active ingredient is modified virus particles that carry SARS-CoV-2 DNA. These virus particles are not active virus and cannot replicate in the body or cause illness. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            All of the vaccines also include other ingredients like fat, salts, and sugars that protect the active ingredients, either mRNA or modified virus cells, depending on the vaccine. These ingredients also help the active ingredients work better in the body, and protect the vaccine when it is stored at very cold temperatures. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            The specific ingredients for each vaccine are listed <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144414/download" target="_blank" rel="noopener noreferrer"> here </a>for the Pfizer-BioNTech vaccine, 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144638/download" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine, and 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> here </a> for the Johnson & Johnson vaccine.
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            <u>None of the approved vaccines contain preservatives, eggs, latex., or fetal tissue.</u>
+          </p>
         </Accordion.Content>
 
 
@@ -200,15 +229,19 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(3)>0}>
-          <p>
-            The approved COVID-19 vaccines are a new type of vaccine called an mRNA <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/mrna.html" target="_blank" rel="noopener noreferrer"> vaccine</a>.
+        <p style={{marginBottom:0}}>
+            The first two approved COVID-19 vaccines, those from Pfizer-BioNTech and Moderna, are a new type of vaccine called an mRNA <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/mrna.html" target="_blank" rel="noopener noreferrer"> vaccine</a>.
             An mRNA vaccine contains “instructions” for the body to make a piece of the “spike protein” found on the surface of the virus that causes COVID-19. These vaccines do not contain the whole virus.  
             The body then follows the instructions in the mRNA to make spike proteins and the immune system learns to recognize those proteins. 
             The body can then make antibodies to fight viruses that have this protein, in the same way it would learn to recognize and fight the virus if you actually got a COVID infection. 
         </p>
-        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
             mRNA vaccines cannot change a person’s DNA. The mRNA from the vaccine does not interact with a person’s DNA. mRNA is not “permanent”. In fact, it is quite fragile and breaks down quickly after it has triggered the body to make the virus spike proteins. 
             The mRNA “instructions” in these vaccines is likely to be read just by the muscle cells in your arm and some immune system cells. It will not be read by cells in other parts of your body.
+        </p>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+          Although these vaccines are the first mRNA vaccines approved for use against any disease, scientists have been studying and working with mRNA for decades. This type of vaccine is also being studied against flu, Zika, rabies, and cytomegalovirus (CMV). 
+          Because of the type of technology and materials they use, mRNA vaccines can also be developed more quickly against new viruses than other types of vaccines, as they were against COVID-19.
         </p>
         </Accordion.Content>
 
