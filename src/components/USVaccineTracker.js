@@ -488,6 +488,7 @@ export default function USVaccineTracker(props) {
           dataTS["_nation"][214].t,
           dataTS["_nation"][244].t,
           dataTS["_nation"][275 ].t,
+          dataTS["_nation"][306 ].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -763,11 +764,11 @@ export default function USVaccineTracker(props) {
                     
                   </Grid.Column>
                   
-                  <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 8}}> 
+                  <Grid.Column style = {{width: 240, paddingLeft: 85, paddingTop: 8}}> 
                     <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> first dose</center>
 
                   </Grid.Column>
-                  <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 8}}> 
+                  <Grid.Column style = {{width: 240, paddingLeft: 170, paddingTop: 8}}> 
            
                         <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
 
@@ -791,24 +792,24 @@ export default function USVaccineTracker(props) {
                     </div>
                   </Grid.Column>
                   
-                  <Grid.Column style = {{width: 240, paddingLeft: 80, paddingTop: 0}}> 
+                  <Grid.Column style = {{width: 240, paddingLeft: 85, paddingTop: 0}}> 
                     <div style = {{width: 240, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                           
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
                   </Grid.Column>
-                  <Grid.Column style = {{width: 240, paddingLeft: 160, paddingTop: 0}}> 
+                  <Grid.Column style = {{width: 240, paddingLeft: 170, paddingTop: 0}}> 
                     <div style = {{width: 240, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -885,7 +886,7 @@ export default function USVaccineTracker(props) {
                       </Header.Content>
                       <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated (two doses received)</p>
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose2"]).toFixed(0))} size='large' color='green' progress/>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(0))} size='large' color='green' progress/>
                       </Header.Content>
                     </Header>
                   </div>
@@ -904,15 +905,15 @@ export default function USVaccineTracker(props) {
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
                                     Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                     <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                    <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                    <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
+                                    <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                    <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
                                     <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
                                     distributed to facilities across the United States by the federal government. 
                                     Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
                                     
                                     <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                    <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+                                    <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
 
                                   </Header.Content>
@@ -1102,6 +1103,8 @@ export default function USVaccineTracker(props) {
 
                                       setTooltipContent("");
                                       setFips("_nation");
+                                      setHoverName("The United States");
+
                                     }}
 
                                     onClick={()=>{
@@ -1174,8 +1177,8 @@ export default function USVaccineTracker(props) {
                                             Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
 
                                             <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                            <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                            <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
+                                            <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                            <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
                                             <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
                                             distributed to facilities across the United States by the federal government. 
@@ -1183,7 +1186,7 @@ export default function USVaccineTracker(props) {
                                             For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
                                             
                                             <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                            <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+                                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
                                           </Header.Content>
                                       ),
@@ -1215,8 +1218,8 @@ export default function USVaccineTracker(props) {
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
@@ -1227,14 +1230,14 @@ export default function USVaccineTracker(props) {
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received second dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose2"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received second dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["percentVaccinatedDose2"]) + "%"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinatedDose2"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
 
                             </Table.Row>
                             {/* <Table.Row textAlign = 'center'>
@@ -2234,13 +2237,13 @@ export default function USVaccineTracker(props) {
         <ReactTooltip > 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> 
-          {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
+          {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}
           <br/>
           <b> % received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
           <br/>
-          <b> # received second dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose2"])}
+          <b> # received second dose: </b> {numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}
           <br/>
-          <b> % received second dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}
+          <b> % received second dose: </b> {numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}
           <br/> */}
 
           <b>Click to lock.</b> 
@@ -2249,7 +2252,7 @@ export default function USVaccineTracker(props) {
             <thead>
               <tr>
                 <th># received first dose</th>
-                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose1"])}</th>
+                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</th>
               </tr>
               <tr>
                 <th> % received first dose</th>
@@ -2257,11 +2260,11 @@ export default function USVaccineTracker(props) {
               </tr>
               <tr>
                 <th> # received second dose</th>
-                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose2"])}</th>
+                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</th>
               </tr>
               <tr>
                 <th> % received second dose</th>
-                <th>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose2"]) + "%"}</th>
+                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</th>
               </tr>
             </thead>
           </table>

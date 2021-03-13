@@ -360,7 +360,7 @@ useEffect(()=>{
   }
 }, [chartNo]);
 
-  console.log('chartNo', chartNo);
+  // console.log('chartNo', chartNo);
 
   return(
   <Grid.Row style={{paddingLeft: 20, paddingBottom: '0rem'}}>  
@@ -2234,7 +2234,7 @@ export default function NationalReport(props) {
 
 
   if (data && dataTS && varMap) {
-
+    // console.log(demog_descriptives['AgeDescription']);
   return (
     <HEProvider>
       <div>
@@ -2275,7 +2275,7 @@ export default function NationalReport(props) {
               <Header.Content style={{fontFamily:'lato', fontSize: "14pt", width: 810}}>
               The United States has reported {numberWithCommas(data['_nation']['casesfig'])} cases, the highest number of any country in the world. 
               The number of cases and deaths differ substantially across American communities. The COVID-19 U.S. Health Equity 
-              Report documents how COVID-19 cases and deaths are changing over time, geography, and demography. The report will 
+              Report documents how COVID-19 cases and deaths are changing over time, across geography, and by demographics. The report will 
               be released each week to keep track of how COVID-19 is impacting U.S. communities.
               </Header.Content>
             </div>
@@ -2358,7 +2358,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2385,7 +2385,7 @@ export default function NationalReport(props) {
                         </Header.Content>
                         <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated (two doses received)</p>
                         <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["percentVaccinatedDose2"]).toFixed(0))} size='large' color='green' progress/>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(0))} size='large' color='green' progress/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2408,14 +2408,14 @@ export default function NationalReport(props) {
                                         Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                         <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
                                         <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
+                                        <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
                                         <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
                                         distributed to facilities across the United States by the federal government. 
                                         Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
                                         
                                         <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+                                        <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
 
                                       </Header.Content>
@@ -2625,9 +2625,8 @@ export default function NationalReport(props) {
                   Where are cases and deaths occurring?
                   <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
 
-                    Cases and deaths attributed to COVID-19 are rapidly rising in some counties. Additionally, 
-                    the geographic distribution of the hardest-hit counties is changing, with the virus shifting from 
-                    the Northeast toward the Southeast and Southwest.
+                    Cases and deaths attributed to COVID-19 are rapidly rising in some counties, and 
+                    the geographic distribution of the hardest-hit counties is changing.
                     Approximately 50% of new cases on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()} in 
                     the United States were attributed to {(states50[0]["statenames"].split(",")).length} states: <br/>
 
@@ -2648,8 +2647,8 @@ export default function NationalReport(props) {
                   <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and Deaths by Race </b> </center> 
                   <br/><br/>
                   While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                  affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
-                  around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate. 
+                  affected. The {Object.keys(demog_descriptives['Race'][0])[0]} population is seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                  around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0])[1]} population, the group with the lowest mortality rate. 
                   
                     
                   </Header.Subheader>
@@ -2860,10 +2859,10 @@ export default function NationalReport(props) {
 
               {/* <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center> */}
                 <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
-                  <Grid.Column style = {{width: 810, paddingLeft: 430}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 5}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Deaths by Race</b> </center> 
+                      <Header.Subheader style={{width: 580, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 5}}>
+                        <center> <b style= {{width: 580, fontSize: "18pt"}}>COVID-19 Death Rate by Race & Ethnicity</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -2933,12 +2932,41 @@ export default function NationalReport(props) {
 
                             </VictoryGroup>
                           </VictoryChart>
-                          <Header.Content style = {{paddingLeft: 50, width: 450}}>
+                          <Header.Content style = {{paddingLeft: 160, width: 450}}>
                               <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:5, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>Percentage of COVID-19 Deaths and Population</b>
+                              <b>Deaths per 100,000 residents</b>
                               </Header.Content>
                           </Header.Content>
                       </div>
+
+                      <Grid>
+                      <Grid.Row>
+                        <Accordion style = {{paddingTop: 50, paddingLeft: 96, paddingBottom: 28}} defaultActiveIndex={1} panels={[
+                              {
+                                  key: 'acquire-dog',
+                                  title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                      icon: 'dropdown',
+                                  },
+                                  content: {
+                                      content: (
+                                          <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                            <Header.Content  style={{fontSize: "14pt"}}>
+                                              <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                                The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                                <br/>
+                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                              </Header.Subheader>
+                                            </Header.Content>
+                                          </Header>
+                                      ),
+                                    },
+                                }
+                            ]
+
+                            } />
+                      </Grid.Row>
+                    </Grid>
                     </Grid.Column>
                     <Grid.Column style = {{width: 450}}>
                       {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center> */}
@@ -2954,22 +2982,41 @@ export default function NationalReport(props) {
                               
                           </Header.Subheader> */}
                           <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
-                            <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Deaths by Race/Ethnicity</b> </center> 
-                            <br/><br/>
-                            <p style = {{paddingLeft: 40}}>
-                              Compared to the White <br/>
-                              - African Americans: {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
-                              <br/>
-                              - Hispanic: {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
-                              <br/>
-                              - Asians: {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
-                              <br/>
-                              - American Natives: {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+                            {/* <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Deaths by Race/Ethnicity</b> </center>  */}
+                            
+                            <p style = {{paddingLeft: 20}}>
+                              <b>Compared with death rates in White Americans, death rates* are: </b><br/>
+                              <ul>
+                                <li>{(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in African Americans
+                                  <br/>
+                                </li>
+                                <li>{(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Hispanic Americans
+                                  <br/>
+                                </li>
+                                <li>{(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Asian Americans
+                                  <br/>
+                                </li>
+                                <li>{(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Native Americans
+                                </li>
+                              </ul>
 
+                            <text style = {{fontSize: "13px"}}>
+                            *The Hispanics population consists of mostly younger age groups. 
+                            <br/>
+                            *These are crude death rates based on cumulative deaths since January 2020. Age differences, such as the lower average age of Hispanic Americans, are not considered due to data limitations.
+                            </text>
                             {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
                             affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
                             around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
@@ -2980,16 +3027,17 @@ export default function NationalReport(props) {
                         </div>
                     </Grid.Column>
                   </Grid.Row>
+                  
 
               </Grid>
 
               <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
 
               <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
-                  <Grid.Column style = {{width: 810, paddingLeft: 430}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Cases by Race</b> </center> 
+                      <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{width: 560, fontSize: "18pt"}}> Racial & Ethnic Make Up <br/> of COVID-19 Cases and Population in the U.S.</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -3009,8 +3057,8 @@ export default function NationalReport(props) {
                               <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
                               <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
 
-                              <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
-                              <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
+                              <rect x={235} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+                              <text x={265} y={35} style={{fontSize: '16px'}}> African American </text>    
 
                               <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
                               <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
@@ -3018,8 +3066,8 @@ export default function NationalReport(props) {
                               <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
                               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
 
-                              <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-                              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>                    
+                              <rect x={322.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
 
 
                               {/* {_.map(pieChartRace, (color, i) => {
@@ -3062,22 +3110,35 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 50, paddingLeft: 80}}>
                       <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
-                        <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Infection by Race/Ethnicity</b> </center> 
-                        <br/><br/>
-                        <p style = {{paddingLeft: 40}}>
-                          Compared to the White <br/>
-                          - African Americans: {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-                          <br/>
-                          - Hispanic: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-                          <br/>
-                          - Asians: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-                          <br/>
-                          - American Natives: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-
+                        {/* <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Infection by Race/Ethnicity</b> </center>  */}
+                        <br/>
+                        <p style = {{paddingLeft: 20}}>
+                          Comparing with White Americans<br/>
+                          <ul>
+                            <li> African Americans: {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Hispanic Americans: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Asian Americans: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Native Americans: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
+                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                            </li>
+                          </ul>
                         {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
                         affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
                         around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
@@ -3110,10 +3171,10 @@ export default function NationalReport(props) {
                   <Header.Content style = {{paddingLeft: 50}}>
                     <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
                       
-                      Deaths are highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0))} deaths per 100,000), 
-                      followed by {Object.keys(demog_descriptives['Age'][0])[1]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0))} deaths per 100,000). 
-                      Those {(Object.keys(demog_descriptives['Age'][0])[3] === "0 - 4" && Object.keys(demog_descriptives['Age'][0])[2] === "5 - 17") ? " under 18 ": "in " + (Object.keys(demog_descriptives['Age'][0])[3] + " and " + Object.keys(demog_descriptives['Age'][0])[2] + " age group ")} are, however, 
-                      experiencing the lowest mortality from COVID-19.
+                      Cases are currently highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0))}% of all cases), 
+                      followed by the {Object.keys(demog_descriptives['Age'][0])[1]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0))}% of all cases). 
+                      {demog_descriptives['AgeDescription'][0]["description"] != "" ? 
+                      " They are disproportionately high in the " + demog_descriptives['AgeDescription'][0]["description"] + ", compared to those age groups' shares of the U.S. population.":""}
                         
                     </Header.Subheader>
                   </Header.Content>

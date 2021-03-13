@@ -71,7 +71,7 @@ export default function MapState() {
         }), d => (d.text !== "region") 
                 && (d.text !== "Any Condition Prevalence2") && (d.text !== "Diabetes Prevalence") && (d.text !== "Heart Disease") 
                 && (d.text !== "Chronic Obstructive Pulmonary Disease") && (d.text !== "Chronic Kidney Disease")
-              && (d.text !== "Urban-Rural Status Name") && (d.text !== "Region Status Code") && (d.group !== "outcomes") && (d.group !== "text")));
+              && (d.text !== "Urban-Rural Status Name") && (d.text !== "Region Status Code") && (d.group !== "outcomes") && (d.group !== "text") && (d.group !== "other")));
 
       });
   }, []);
