@@ -4,63 +4,63 @@
       "black": [
         {
           "var": "black",
-          "measure": 8703.6110077395,
-          "quintGroup": "[0,0.531]",
+          "measure": 8691.03074563381,
+          "quintGroup": "[0,0.544]",
           "label": "Very Low"
         },
         {
           "var": "black",
-          "measure": 8514.63948607398,
-          "quintGroup": "(0.531,1.38]",
+          "measure": 8393.60035760755,
+          "quintGroup": "(0.544,1.41]",
           "label": "Low"
         },
         {
           "var": "black",
-          "measure": 8893.74698655156,
-          "quintGroup": "(1.38,4.31]",
+          "measure": 8698.6164485731,
+          "quintGroup": "(1.41,4.44]",
           "label": "Moderate"
         },
         {
           "var": "black",
-          "measure": 8334.59597555472,
-          "quintGroup": "(4.31,14.3]",
+          "measure": 8043.65156781468,
+          "quintGroup": "(4.44,14.5]",
           "label": "High"
         },
         {
           "var": "black",
-          "measure": 9068.89209488986,
-          "quintGroup": "(14.3,87.4]",
+          "measure": 8824.33797491773,
+          "quintGroup": "(14.5,87.4]",
           "label": "Very High"
         }
       ],
       "male": [
         {
           "var": "male",
-          "measure": 8634.20358910637,
+          "measure": 8403.88585416428,
           "quintGroup": "[41.4,48.7]",
           "label": "Very Low"
         },
         {
           "var": "male",
-          "measure": 8286.00073915684,
+          "measure": 8061.82709872559,
           "quintGroup": "(48.7,49.3]",
           "label": "Low"
         },
         {
           "var": "male",
-          "measure": 8138.91263306544,
+          "measure": 7947.79215446337,
           "quintGroup": "(49.3,49.9]",
           "label": "Moderate"
         },
         {
           "var": "male",
-          "measure": 8799.18216250246,
+          "measure": 8684.1427468292,
           "quintGroup": "(49.9,50.9]",
           "label": "High"
         },
         {
           "var": "male",
-          "measure": 9661.34385559648,
+          "measure": 9557.96122771574,
           "quintGroup": "(50.9,79]",
           "label": "Very High"
         }
@@ -68,31 +68,31 @@
       "poverty": [
         {
           "var": "poverty",
-          "measure": 7954.43635622857,
-          "quintGroup": "[2.3,10.1]",
+          "measure": 7718.65287134524,
+          "quintGroup": "[2.3,10]",
           "label": "Very Low"
         },
         {
           "var": "poverty",
-          "measure": 8396.97912653754,
-          "quintGroup": "(10.1,13.1]",
+          "measure": 8205.83085353729,
+          "quintGroup": "(10,13.1]",
           "label": "Low"
         },
         {
           "var": "poverty",
-          "measure": 8434.53251297558,
+          "measure": 8288.33646162119,
           "quintGroup": "(13.1,16]",
           "label": "Moderate"
         },
         {
           "var": "poverty",
-          "measure": 8819.40898835777,
+          "measure": 8693.96810815507,
           "quintGroup": "(16,19.9]",
           "label": "High"
         },
         {
           "var": "poverty",
-          "measure": 9913.83366916969,
+          "measure": 9747.50609048961,
           "quintGroup": "(19.9,55.1]",
           "label": "Very High"
         }
@@ -100,159 +100,159 @@
       "age65over": [
         {
           "var": "age65over",
-          "measure": 8790.06797159624,
+          "measure": 8478.86122362401,
           "quintGroup": "[3.8,14.6]",
           "label": "Very Low"
         },
         {
           "var": "age65over",
-          "measure": 8722.13997910588,
-          "quintGroup": "(14.6,16.8]",
+          "measure": 8346.95802270736,
+          "quintGroup": "(14.6,16.7]",
           "label": "Low"
         },
         {
           "var": "age65over",
-          "measure": 9189.63819454947,
-          "quintGroup": "(16.8,18.8]",
+          "measure": 9074.82295946283,
+          "quintGroup": "(16.7,18.8]",
           "label": "Moderate"
         },
         {
           "var": "age65over",
-          "measure": 8914.99822192419,
-          "quintGroup": "(18.8,21.4]",
+          "measure": 8854.3590442147,
+          "quintGroup": "(18.8,21.3]",
           "label": "High"
         },
         {
           "var": "age65over",
-          "measure": 7901.01412444877,
-          "quintGroup": "(21.4,55.6]",
+          "measure": 7896.19357527963,
+          "quintGroup": "(21.3,55.6]",
           "label": "Very High"
         }
       ],
       "minority": [
         {
           "var": "minority",
-          "measure": 8564.53591803322,
-          "quintGroup": "[0,6.49]",
+          "measure": 8577.59978800722,
+          "quintGroup": "[0,6.56]",
           "label": "Very Low"
         },
         {
           "var": "minority",
-          "measure": 8881.52148807024,
-          "quintGroup": "(6.49,12.9]",
+          "measure": 8812.46959007456,
+          "quintGroup": "(6.56,13.1]",
           "label": "Low"
         },
         {
           "var": "minority",
-          "measure": 8521.43692055487,
-          "quintGroup": "(12.9,23.9]",
+          "measure": 8229.44155981161,
+          "quintGroup": "(13.1,24.1]",
           "label": "Moderate"
         },
         {
           "var": "minority",
-          "measure": 8441.69261860818,
-          "quintGroup": "(23.9,41]",
+          "measure": 8211.05973593608,
+          "quintGroup": "(24.1,41.2]",
           "label": "High"
         },
         {
           "var": "minority",
-          "measure": 9111.58917645372,
-          "quintGroup": "(41,99.3]",
+          "measure": 8823.78596358314,
+          "quintGroup": "(41.2,99.3]",
           "label": "Very High"
         }
       ],
       "groupquarter": [
         {
           "var": "groupquarter",
-          "measure": 7965.73696260798,
+          "measure": 7830.07602572329,
           "quintGroup": "[0,1.12]",
           "label": "Very Low"
         },
         {
           "var": "groupquarter",
-          "measure": 8967.51701384422,
+          "measure": 8789.77863093708,
           "quintGroup": "(1.12,1.64]",
           "label": "Low"
         },
         {
           "var": "groupquarter",
-          "measure": 8383.62745415452,
+          "measure": 8201.01486055675,
           "quintGroup": "(1.64,2.52]",
           "label": "Moderate"
         },
         {
           "var": "groupquarter",
-          "measure": 8436.36032092065,
-          "quintGroup": "(2.52,4.56]",
+          "measure": 8185.50453657071,
+          "quintGroup": "(2.52,4.53]",
           "label": "High"
         },
         {
           "var": "groupquarter",
-          "measure": 9767.61010459908,
-          "quintGroup": "(4.56,55.7]",
+          "measure": 9649.724485038,
+          "quintGroup": "(4.53,55.7]",
           "label": "Very High"
         }
       ],
       "hispanic": [
         {
           "var": "hispanic",
-          "measure": 8734.89795526246,
-          "quintGroup": "[0,1.91]",
+          "measure": 8737.21646593328,
+          "quintGroup": "[0,1.92]",
           "label": "Very Low"
         },
         {
           "var": "hispanic",
-          "measure": 9366.44238640662,
-          "quintGroup": "(1.91,3.25]",
+          "measure": 9277.33417074868,
+          "quintGroup": "(1.92,3.3]",
           "label": "Low"
         },
         {
           "var": "hispanic",
-          "measure": 8801.74134917533,
-          "quintGroup": "(3.25,5.88]",
+          "measure": 8558.08157787608,
+          "quintGroup": "(3.3,5.95]",
           "label": "Moderate"
         },
         {
           "var": "hispanic",
-          "measure": 7917.31191652951,
-          "quintGroup": "(5.88,13]",
+          "measure": 7669.968782377,
+          "quintGroup": "(5.95,13.2]",
           "label": "High"
         },
         {
           "var": "hispanic",
-          "measure": 8693.03681862085,
-          "quintGroup": "(13,99.1]",
+          "measure": 8405.6047722439,
+          "quintGroup": "(13.2,99.1]",
           "label": "Very High"
         }
       ],
       "natives": [
         {
           "var": "natives",
-          "measure": 9152.66931294687,
-          "quintGroup": "[0,0.146]",
+          "measure": 9072.02892191635,
+          "quintGroup": "[0,0.148]",
           "label": "Very Low"
         },
         {
           "var": "natives",
-          "measure": 8277.15298271283,
-          "quintGroup": "(0.146,0.274]",
+          "measure": 8116.53040403754,
+          "quintGroup": "(0.148,0.276]",
           "label": "Low"
         },
         {
           "var": "natives",
-          "measure": 8593.31321826747,
-          "quintGroup": "(0.274,0.476]",
+          "measure": 8354.58279424926,
+          "quintGroup": "(0.276,0.477]",
           "label": "Moderate"
         },
         {
           "var": "natives",
-          "measure": 8383.46172721962,
-          "quintGroup": "(0.476,1.09]",
+          "measure": 8230.46956633987,
+          "quintGroup": "(0.477,1.09]",
           "label": "High"
         },
         {
           "var": "natives",
-          "measure": 9109.64712669936,
+          "measure": 8877.3700029419,
           "quintGroup": "(1.09,92.5]",
           "label": "Very High"
         }
@@ -260,37 +260,37 @@
       "urbanrural": [
         {
           "var": "urbanrural",
-          "measure": 5671.2216748093,
+          "measure": 5148.1793534341,
           "quintGroup": "Large Central Metro",
           "label": "Large Central Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 7515.0305569826,
+          "measure": 7183.70976640024,
           "quintGroup": "Large Fringe Metro",
           "label": "Large Fringe Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 8156.59857549175,
+          "measure": 7930.65389249053,
           "quintGroup": "Medium Metro",
           "label": "Medium Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 9331.38125297378,
+          "measure": 9247.03081030584,
           "quintGroup": "Micropolitan (Nonmetro)",
           "label": "Micropolitan (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 9367.82152530464,
+          "measure": 9364.14035903298,
           "quintGroup": "NonCore (Nonmetro)",
           "label": "NonCore (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 8772.70629175457,
+          "measure": 8460.90153868487,
           "quintGroup": "Small Metro",
           "label": "Small Metro"
         }
@@ -298,57 +298,57 @@
       "hhincome": [
         {
           "var": "hhincome",
-          "measure": 9674.00063311013,
-          "quintGroup": "[3.36e+04,5.6e+04]",
+          "measure": 9643.75397326554,
+          "quintGroup": "[3.36e+04,5.61e+04]",
           "label": "Very Low"
         },
         {
           "var": "hhincome",
-          "measure": 9300.34839191362,
-          "quintGroup": "(5.6e+04,6.23e+04]",
+          "measure": 9238.30047044845,
+          "quintGroup": "(5.61e+04,6.26e+04]",
           "label": "Low"
         },
         {
           "var": "hhincome",
-          "measure": 9022.70496698654,
-          "quintGroup": "(6.23e+04,6.93e+04]",
+          "measure": 8902.8031760704,
+          "quintGroup": "(6.26e+04,6.95e+04]",
           "label": "Moderate"
         },
         {
           "var": "hhincome",
-          "measure": 8776.1594678563,
-          "quintGroup": "(6.93e+04,7.94e+04]",
+          "measure": 8548.90202528823,
+          "quintGroup": "(6.95e+04,7.97e+04]",
           "label": "High"
         },
         {
           "var": "hhincome",
-          "measure": 6730.90192380155,
-          "quintGroup": "(7.94e+04,1.82e+05]",
+          "measure": 6304.42864385852,
+          "quintGroup": "(7.97e+04,1.82e+05]",
           "label": "Very High"
         }
       ],
       "region": [
         {
           "var": "region",
-          "measure": 9639.49730035115,
+          "measure": 9459.88102709871,
           "quintGroup": "Midwest",
           "label": "Midwest"
         },
         {
           "var": "region",
-          "measure": 5741.51688306134,
+          "measure": 5624.79380819405,
           "quintGroup": "Northeast",
           "label": "Northeast"
         },
         {
           "var": "region",
-          "measure": 9213.66805957593,
+          "measure": 9076.94969414087,
           "quintGroup": "South",
           "label": "South"
         },
         {
           "var": "region",
-          "measure": 6726.81167096433,
+          "measure": 6485.03242610424,
           "quintGroup": "West",
           "label": "West"
         }
@@ -356,63 +356,63 @@
       "ccvi": [
         {
           "var": "ccvi",
-          "measure": 8445.40199695403,
-          "quintGroup": "[0,0.204]",
+          "measure": 8313.97014476473,
+          "quintGroup": "[0,0.205]",
           "label": "Very Low"
         },
         {
           "var": "ccvi",
-          "measure": 8051.66617871662,
-          "quintGroup": "(0.204,0.403]",
+          "measure": 7869.88685874739,
+          "quintGroup": "(0.205,0.404]",
           "label": "Low"
         },
         {
           "var": "ccvi",
-          "measure": 8293.03340858557,
-          "quintGroup": "(0.403,0.601]",
+          "measure": 8152.77583367294,
+          "quintGroup": "(0.404,0.602]",
           "label": "Moderate"
         },
         {
           "var": "ccvi",
-          "measure": 9052.39670198182,
-          "quintGroup": "(0.601,0.8]",
+          "measure": 8852.89046347296,
+          "quintGroup": "(0.602,0.801]",
           "label": "High"
         },
         {
           "var": "ccvi",
-          "measure": 9702.95276255938,
-          "quintGroup": "(0.8,1]",
+          "measure": 9489.48416792015,
+          "quintGroup": "(0.801,1]",
           "label": "Very High"
         }
       ],
       "resSeg": [
         {
           "var": "resSeg",
-          "measure": 9223.64377228915,
-          "quintGroup": "[0,31]",
+          "measure": 9147.29794750603,
+          "quintGroup": "[0,32]",
           "label": "Very Low"
         },
         {
           "var": "resSeg",
-          "measure": 9314.07768820213,
-          "quintGroup": "(31,42]",
+          "measure": 9054.79170340053,
+          "quintGroup": "(32,43]",
           "label": "Low"
         },
         {
           "var": "resSeg",
-          "measure": 8427.81965510592,
-          "quintGroup": "(42,50]",
+          "measure": 8095.57692922952,
+          "quintGroup": "(43,50]",
           "label": "Moderate"
         },
         {
           "var": "resSeg",
-          "measure": 8080.08314444294,
+          "measure": 7823.78730633741,
           "quintGroup": "(50,60]",
           "label": "High"
         },
         {
           "var": "resSeg",
-          "measure": 8254.62102890871,
+          "measure": 7967.80543773785,
           "quintGroup": "(60,90]",
           "label": "Very High"
         }
@@ -420,63 +420,63 @@
       "anycondition": [
         {
           "var": "anycondition",
-          "measure": 6805.46247921299,
-          "quintGroup": "[22,41.1]",
+          "measure": 6418.51635224176,
+          "quintGroup": "[22,41]",
           "label": "Very Low"
         },
         {
           "var": "anycondition",
-          "measure": 8786.73130968587,
-          "quintGroup": "(41.1,45.3]",
+          "measure": 8533.5561332337,
+          "quintGroup": "(41,45.2]",
           "label": "Low"
         },
         {
           "var": "anycondition",
-          "measure": 9127.20753558563,
-          "quintGroup": "(45.3,48.4]",
+          "measure": 9040.66466006612,
+          "quintGroup": "(45.2,48.3]",
           "label": "Moderate"
         },
         {
           "var": "anycondition",
-          "measure": 9505.46994633918,
-          "quintGroup": "(48.4,52]",
+          "measure": 9473.56783593067,
+          "quintGroup": "(48.3,51.9]",
           "label": "High"
         },
         {
           "var": "anycondition",
-          "measure": 9810.96936898504,
-          "quintGroup": "(52,66.2]",
+          "measure": 9793.55928440918,
+          "quintGroup": "(51.9,66.2]",
           "label": "Very High"
         }
       ],
       "diabetes": [
         {
           "var": "diabetes",
-          "measure": 7690.62083687698,
+          "measure": 7337.97367246859,
           "quintGroup": "[6.1,10.7]",
           "label": "Very Low"
         },
         {
           "var": "diabetes",
-          "measure": 8829.52384320736,
+          "measure": 8658.8145952286,
           "quintGroup": "(10.7,12]",
           "label": "Low"
         },
         {
           "var": "diabetes",
-          "measure": 8736.1951702189,
+          "measure": 8674.06809801346,
           "quintGroup": "(12,13.4]",
           "label": "Moderate"
         },
         {
           "var": "diabetes",
-          "measure": 9111.22767302439,
+          "measure": 8961.43493309683,
           "quintGroup": "(13.4,15.2]",
           "label": "High"
         },
         {
           "var": "diabetes",
-          "measure": 9703.82845646439,
+          "measure": 9691.15869401903,
           "quintGroup": "(15.2,25.6]",
           "label": "Very High"
         }
@@ -484,63 +484,63 @@
       "obesity": [
         {
           "var": "obesity",
-          "measure": 6581.62137485398,
-          "quintGroup": "[15.2,31.3]",
+          "measure": 6282.08330963062,
+          "quintGroup": "[15.2,31.2]",
           "label": "Very Low"
         },
         {
           "var": "obesity",
-          "measure": 8583.78355478289,
-          "quintGroup": "(31.3,34.1]",
+          "measure": 8269.94464595826,
+          "quintGroup": "(31.2,34]",
           "label": "Low"
         },
         {
           "var": "obesity",
-          "measure": 9252.2721034342,
-          "quintGroup": "(34.1,36.2]",
+          "measure": 9126.59540872715,
+          "quintGroup": "(34,36.2]",
           "label": "Moderate"
         },
         {
           "var": "obesity",
-          "measure": 9696.18450868394,
-          "quintGroup": "(36.2,38.5]",
+          "measure": 9675.21351311827,
+          "quintGroup": "(36.2,38.4]",
           "label": "High"
         },
         {
           "var": "obesity",
-          "measure": 9941.43030194355,
-          "quintGroup": "(38.5,49.9]",
+          "measure": 9926.34947176737,
+          "quintGroup": "(38.4,49.9]",
           "label": "Very High"
         }
       ],
       "heartdisease": [
         {
           "var": "heartdisease",
-          "measure": 7485.65369793519,
-          "quintGroup": "[3.5,7]",
+          "measure": 6976.53961532962,
+          "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "heartdisease",
-          "measure": 9142.88665028932,
-          "quintGroup": "(7,8.1]",
+          "measure": 8940.19270050284,
+          "quintGroup": "(6.9,8]",
           "label": "Low"
         },
         {
           "var": "heartdisease",
-          "measure": 9172.77640767593,
-          "quintGroup": "(8.1,9]",
+          "measure": 9047.80353399104,
+          "quintGroup": "(8,8.9]",
           "label": "Moderate"
         },
         {
           "var": "heartdisease",
-          "measure": 9399.65097891539,
-          "quintGroup": "(9,10]",
+          "measure": 9334.50163790442,
+          "quintGroup": "(8.9,10]",
           "label": "High"
         },
         {
           "var": "heartdisease",
-          "measure": 8923.22309897363,
+          "measure": 8928.82003357208,
           "quintGroup": "(10,15.1]",
           "label": "Very High"
         }
@@ -548,31 +548,31 @@
       "copd": [
         {
           "var": "copd",
-          "measure": 7871.64733902812,
+          "measure": 7441.69884629802,
           "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "copd",
-          "measure": 8987.04112743835,
-          "quintGroup": "(6.9,8.2]",
+          "measure": 8941.0087446838,
+          "quintGroup": "(6.9,8.1]",
           "label": "Low"
         },
         {
           "var": "copd",
-          "measure": 8778.15041685996,
-          "quintGroup": "(8.2,9.5]",
+          "measure": 8633.15370670961,
+          "quintGroup": "(8.1,9.5]",
           "label": "Moderate"
         },
         {
           "var": "copd",
-          "measure": 9098.84179878055,
+          "measure": 9002.55950142832,
           "quintGroup": "(9.5,10.9]",
           "label": "High"
         },
         {
           "var": "copd",
-          "measure": 9314.98134608703,
+          "measure": 9335.29548596711,
           "quintGroup": "(10.9,19.9]",
           "label": "Very High"
         }
@@ -580,31 +580,31 @@
       "ckd": [
         {
           "var": "ckd",
-          "measure": 7870.31269672997,
+          "measure": 7557.78110150231,
           "quintGroup": "[1.8,3]",
           "label": "Very Low"
         },
         {
           "var": "ckd",
-          "measure": 9110.590274231,
-          "quintGroup": "(3,3.3]",
+          "measure": 8812.0915595895,
+          "quintGroup": "(3,3.2]",
           "label": "Low"
         },
         {
           "var": "ckd",
-          "measure": 9058.94217965394,
-          "quintGroup": "(3.3,3.5]",
+          "measure": 9021.76653975598,
+          "quintGroup": "(3.2,3.5]",
           "label": "Moderate"
         },
         {
           "var": "ckd",
-          "measure": 9123.38812963142,
+          "measure": 9064.46759178183,
           "quintGroup": "(3.5,3.9]",
           "label": "High"
         },
         {
           "var": "ckd",
-          "measure": 9189.52244174758,
+          "measure": 9166.25877696873,
           "quintGroup": "(3.9,6.2]",
           "label": "Very High"
         }
@@ -616,63 +616,63 @@
       "black": [
         {
           "var": "black",
-          "measure": 22.7853043275401,
-          "quintGroup": "[0,0.531]",
+          "measure": 22.2975250290756,
+          "quintGroup": "[0,0.544]",
           "label": "Very Low"
         },
         {
           "var": "black",
-          "measure": 21.8324839426539,
-          "quintGroup": "(0.531,1.38]",
+          "measure": 19.6864971369517,
+          "quintGroup": "(0.544,1.41]",
           "label": "Low"
         },
         {
           "var": "black",
-          "measure": 25.1840781572551,
-          "quintGroup": "(1.38,4.31]",
+          "measure": 25.0941465121505,
+          "quintGroup": "(1.41,4.44]",
           "label": "Moderate"
         },
         {
           "var": "black",
-          "measure": 21.012957721371,
-          "quintGroup": "(4.31,14.3]",
+          "measure": 18.8926290039638,
+          "quintGroup": "(4.44,14.5]",
           "label": "High"
         },
         {
           "var": "black",
-          "measure": 15.5934365470807,
-          "quintGroup": "(14.3,87.4]",
+          "measure": 14.8274602970211,
+          "quintGroup": "(14.5,87.4]",
           "label": "Very High"
         }
       ],
       "male": [
         {
           "var": "male",
-          "measure": 21.796054508152,
+          "measure": 20.1399630436753,
           "quintGroup": "[41.4,48.7]",
           "label": "Very Low"
         },
         {
           "var": "male",
-          "measure": 20.246980714803,
+          "measure": 19.4970822981624,
           "quintGroup": "(48.7,49.3]",
           "label": "Low"
         },
         {
           "var": "male",
-          "measure": 20.5499082024357,
+          "measure": 19.8666310726884,
           "quintGroup": "(49.3,49.9]",
           "label": "Moderate"
         },
         {
           "var": "male",
-          "measure": 24.1331045344862,
+          "measure": 21.9786152437164,
           "quintGroup": "(49.9,50.9]",
           "label": "High"
         },
         {
           "var": "male",
-          "measure": 19.6762632035072,
+          "measure": 19.3133455642218,
           "quintGroup": "(50.9,79]",
           "label": "Very High"
         }
@@ -680,31 +680,31 @@
       "poverty": [
         {
           "var": "poverty",
-          "measure": 17.0377802313745,
-          "quintGroup": "[2.3,10.1]",
+          "measure": 15.5652999536138,
+          "quintGroup": "[2.3,10]",
           "label": "Very Low"
         },
         {
           "var": "poverty",
-          "measure": 19.7135251595588,
-          "quintGroup": "(10.1,13.1]",
+          "measure": 19.2266609110496,
+          "quintGroup": "(10,13.1]",
           "label": "Low"
         },
         {
           "var": "poverty",
-          "measure": 26.9082557203563,
+          "measure": 25.075758700963,
           "quintGroup": "(13.1,16]",
           "label": "Moderate"
         },
         {
           "var": "poverty",
-          "measure": 21.9314556296513,
+          "measure": 21.2477198857629,
           "quintGroup": "(16,19.9]",
           "label": "High"
         },
         {
           "var": "poverty",
-          "measure": 20.8306701014702,
+          "measure": 19.6948074117904,
           "quintGroup": "(19.9,55.1]",
           "label": "Very High"
         }
@@ -712,159 +712,159 @@
       "age65over": [
         {
           "var": "age65over",
-          "measure": 18.1746881510246,
+          "measure": 15.0442140790714,
           "quintGroup": "[3.8,14.6]",
           "label": "Very Low"
         },
         {
           "var": "age65over",
-          "measure": 18.1949733188762,
-          "quintGroup": "(14.6,16.8]",
+          "measure": 17.9632607091499,
+          "quintGroup": "(14.6,16.7]",
           "label": "Low"
         },
         {
           "var": "age65over",
-          "measure": 22.5759540054274,
-          "quintGroup": "(16.8,18.8]",
+          "measure": 21.9386442075422,
+          "quintGroup": "(16.7,18.8]",
           "label": "Moderate"
         },
         {
           "var": "age65over",
-          "measure": 26.0409329318787,
-          "quintGroup": "(18.8,21.4]",
+          "measure": 24.4929325531785,
+          "quintGroup": "(18.8,21.3]",
           "label": "High"
         },
         {
           "var": "age65over",
-          "measure": 21.3914998160143,
-          "quintGroup": "(21.4,55.6]",
+          "measure": 21.3130168734524,
+          "quintGroup": "(21.3,55.6]",
           "label": "Very High"
         }
       ],
       "minority": [
         {
           "var": "minority",
-          "measure": 34.1434461226793,
-          "quintGroup": "[0,6.49]",
+          "measure": 33.6142193505612,
+          "quintGroup": "[0,6.56]",
           "label": "Very Low"
         },
         {
           "var": "minority",
-          "measure": 22.5748213551192,
-          "quintGroup": "(6.49,12.9]",
+          "measure": 21.7184867716988,
+          "quintGroup": "(6.56,13.1]",
           "label": "Low"
         },
         {
           "var": "minority",
-          "measure": 18.785892366879,
-          "quintGroup": "(12.9,23.9]",
+          "measure": 18.1394725087781,
+          "quintGroup": "(13.1,24.1]",
           "label": "Moderate"
         },
         {
           "var": "minority",
-          "measure": 15.0018722478043,
-          "quintGroup": "(23.9,41]",
+          "measure": 14.1253170895964,
+          "quintGroup": "(24.1,41.2]",
           "label": "High"
         },
         {
           "var": "minority",
-          "measure": 15.804782479643,
-          "quintGroup": "(41,99.3]",
+          "measure": 13.0832432021623,
+          "quintGroup": "(41.2,99.3]",
           "label": "Very High"
         }
       ],
       "groupquarter": [
         {
           "var": "groupquarter",
-          "measure": 18.6298206035441,
+          "measure": 16.9255868104289,
           "quintGroup": "[0,1.12]",
           "label": "Very Low"
         },
         {
           "var": "groupquarter",
-          "measure": 22.631582598052,
+          "measure": 21.3816320852766,
           "quintGroup": "(1.12,1.64]",
           "label": "Low"
         },
         {
           "var": "groupquarter",
-          "measure": 23.0312774502377,
+          "measure": 22.5793662314279,
           "quintGroup": "(1.64,2.52]",
           "label": "Moderate"
         },
         {
           "var": "groupquarter",
-          "measure": 19.7400311332314,
-          "quintGroup": "(2.52,4.56]",
+          "measure": 18.4605434267518,
+          "quintGroup": "(2.52,4.53]",
           "label": "High"
         },
         {
           "var": "groupquarter",
-          "measure": 22.3905828139054,
-          "quintGroup": "(4.56,55.7]",
+          "measure": 21.4663415375324,
+          "quintGroup": "(4.53,55.7]",
           "label": "Very High"
         }
       ],
       "hispanic": [
         {
           "var": "hispanic",
-          "measure": 29.4241881063338,
-          "quintGroup": "[0,1.91]",
+          "measure": 29.1017307333936,
+          "quintGroup": "[0,1.92]",
           "label": "Very Low"
         },
         {
           "var": "hispanic",
-          "measure": 28.4099992335356,
-          "quintGroup": "(1.91,3.25]",
+          "measure": 27.4266981650799,
+          "quintGroup": "(1.92,3.3]",
           "label": "Low"
         },
         {
           "var": "hispanic",
-          "measure": 16.1376982143091,
-          "quintGroup": "(3.25,5.88]",
+          "measure": 15.2491319325757,
+          "quintGroup": "(3.3,5.95]",
           "label": "Moderate"
         },
         {
           "var": "hispanic",
-          "measure": 16.4815904330504,
-          "quintGroup": "(5.88,13]",
+          "measure": 15.8159823888936,
+          "quintGroup": "(5.95,13.2]",
           "label": "High"
         },
         {
           "var": "hispanic",
-          "measure": 15.909719799415,
-          "quintGroup": "(13,99.1]",
+          "measure": 13.1534536789202,
+          "quintGroup": "(13.2,99.1]",
           "label": "Very High"
         }
       ],
       "natives": [
         {
           "var": "natives",
-          "measure": 19.865436725093,
-          "quintGroup": "[0,0.146]",
+          "measure": 18.5558319283433,
+          "quintGroup": "[0,0.148]",
           "label": "Very Low"
         },
         {
           "var": "natives",
-          "measure": 19.4032436783696,
-          "quintGroup": "(0.146,0.274]",
+          "measure": 18.6679589149886,
+          "quintGroup": "(0.148,0.276]",
           "label": "Low"
         },
         {
           "var": "natives",
-          "measure": 24.8767093023773,
-          "quintGroup": "(0.274,0.476]",
+          "measure": 23.6900446801283,
+          "quintGroup": "(0.276,0.477]",
           "label": "Moderate"
         },
         {
           "var": "natives",
-          "measure": 25.690154375693,
-          "quintGroup": "(0.476,1.09]",
+          "measure": 24.652878555224,
+          "quintGroup": "(0.477,1.09]",
           "label": "High"
         },
         {
           "var": "natives",
-          "measure": 16.5639256228966,
+          "measure": 15.2211185150413,
           "quintGroup": "(1.09,92.5]",
           "label": "Very High"
         }
@@ -872,37 +872,37 @@
       "urbanrural": [
         {
           "var": "urbanrural",
-          "measure": 12.5175482185755,
+          "measure": 11.1345830417288,
           "quintGroup": "Large Central Metro",
           "label": "Large Central Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 21.6503156860813,
+          "measure": 20.2283407010727,
           "quintGroup": "Large Fringe Metro",
           "label": "Large Fringe Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 16.4731732953731,
+          "measure": 15.6070264733841,
           "quintGroup": "Medium Metro",
           "label": "Medium Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 19.9188156076888,
+          "measure": 19.3773127109678,
           "quintGroup": "Micropolitan (Nonmetro)",
           "label": "Micropolitan (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 24.9432005611457,
+          "measure": 23.5171741970859,
           "quintGroup": "NonCore (Nonmetro)",
           "label": "NonCore (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 19.5512446863183,
+          "measure": 17.8652788462623,
           "quintGroup": "Small Metro",
           "label": "Small Metro"
         }
@@ -910,57 +910,57 @@
       "hhincome": [
         {
           "var": "hhincome",
-          "measure": 25.4600421795043,
-          "quintGroup": "[3.36e+04,5.6e+04]",
+          "measure": 24.5720849606026,
+          "quintGroup": "[3.36e+04,5.61e+04]",
           "label": "Very Low"
         },
         {
           "var": "hhincome",
-          "measure": 27.0565316010121,
-          "quintGroup": "(5.6e+04,6.23e+04]",
+          "measure": 25.9492944099673,
+          "quintGroup": "(5.61e+04,6.26e+04]",
           "label": "Low"
         },
         {
           "var": "hhincome",
-          "measure": 18.8819632774747,
-          "quintGroup": "(6.23e+04,6.93e+04]",
+          "measure": 18.8083800373817,
+          "quintGroup": "(6.26e+04,6.95e+04]",
           "label": "Moderate"
         },
         {
           "var": "hhincome",
-          "measure": 19.5948676758181,
-          "quintGroup": "(6.93e+04,7.94e+04]",
+          "measure": 16.8916956406407,
+          "quintGroup": "(6.95e+04,7.97e+04]",
           "label": "High"
         },
         {
           "var": "hhincome",
-          "measure": 15.4136482986145,
-          "quintGroup": "(7.94e+04,1.82e+05]",
+          "measure": 14.5719710154242,
+          "quintGroup": "(7.97e+04,1.82e+05]",
           "label": "Very High"
         }
       ],
       "region": [
         {
           "var": "region",
-          "measure": 33.5228821434212,
+          "measure": 32.9927831160659,
           "quintGroup": "Midwest",
           "label": "Midwest"
         },
         {
           "var": "region",
-          "measure": 18.9461359041787,
+          "measure": 17.8723245235475,
           "quintGroup": "Northeast",
           "label": "Northeast"
         },
         {
           "var": "region",
-          "measure": 15.8403862680139,
+          "measure": 14.3644886694024,
           "quintGroup": "South",
           "label": "South"
         },
         {
           "var": "region",
-          "measure": 12.3587180117306,
+          "measure": 11.0986377186961,
           "quintGroup": "West",
           "label": "West"
         }
@@ -968,63 +968,63 @@
       "ccvi": [
         {
           "var": "ccvi",
-          "measure": 14.9642673568814,
-          "quintGroup": "[0,0.204]",
+          "measure": 14.7038393815052,
+          "quintGroup": "[0,0.205]",
           "label": "Very Low"
         },
         {
           "var": "ccvi",
-          "measure": 20.336468042815,
-          "quintGroup": "(0.204,0.403]",
+          "measure": 19.7747627686045,
+          "quintGroup": "(0.205,0.404]",
           "label": "Low"
         },
         {
           "var": "ccvi",
-          "measure": 29.3166893719861,
-          "quintGroup": "(0.403,0.601]",
+          "measure": 27.1357419928578,
+          "quintGroup": "(0.404,0.602]",
           "label": "Moderate"
         },
         {
           "var": "ccvi",
-          "measure": 23.138437455,
-          "quintGroup": "(0.601,0.8]",
+          "measure": 22.0487426744454,
+          "quintGroup": "(0.602,0.801]",
           "label": "High"
         },
         {
           "var": "ccvi",
-          "measure": 18.7221009472442,
-          "quintGroup": "(0.8,1]",
+          "measure": 17.1885248986892,
+          "quintGroup": "(0.801,1]",
           "label": "Very High"
         }
       ],
       "resSeg": [
         {
           "var": "resSeg",
-          "measure": 16.9543914296528,
-          "quintGroup": "[0,31]",
+          "measure": 16.6101792065082,
+          "quintGroup": "[0,32]",
           "label": "Very Low"
         },
         {
           "var": "resSeg",
-          "measure": 22.5162171580658,
-          "quintGroup": "(31,42]",
+          "measure": 21.2966686693909,
+          "quintGroup": "(32,43]",
           "label": "Low"
         },
         {
           "var": "resSeg",
-          "measure": 21.2537681862826,
-          "quintGroup": "(42,50]",
+          "measure": 19.4632961081356,
+          "quintGroup": "(43,50]",
           "label": "Moderate"
         },
         {
           "var": "resSeg",
-          "measure": 17.9308451544342,
+          "measure": 17.1004597987901,
           "quintGroup": "(50,60]",
           "label": "High"
         },
         {
           "var": "resSeg",
-          "measure": 19.6354034608792,
+          "measure": 18.3354018836642,
           "quintGroup": "(60,90]",
           "label": "Very High"
         }
@@ -1032,63 +1032,63 @@
       "anycondition": [
         {
           "var": "anycondition",
-          "measure": 15.4852289688801,
-          "quintGroup": "[22,41.1]",
+          "measure": 14.3081416805999,
+          "quintGroup": "[22,41]",
           "label": "Very Low"
         },
         {
           "var": "anycondition",
-          "measure": 17.3829006506317,
-          "quintGroup": "(41.1,45.3]",
+          "measure": 15.6078385535888,
+          "quintGroup": "(41,45.2]",
           "label": "Low"
         },
         {
           "var": "anycondition",
-          "measure": 27.829859699287,
-          "quintGroup": "(45.3,48.4]",
+          "measure": 25.319031707367,
+          "quintGroup": "(45.2,48.3]",
           "label": "Moderate"
         },
         {
           "var": "anycondition",
-          "measure": 26.9392565063133,
-          "quintGroup": "(48.4,52]",
+          "measure": 25.7750298195798,
+          "quintGroup": "(48.3,51.9]",
           "label": "High"
         },
         {
           "var": "anycondition",
-          "measure": 19.8118991596594,
-          "quintGroup": "(52,66.2]",
+          "measure": 20.3551793887844,
+          "quintGroup": "(51.9,66.2]",
           "label": "Very High"
         }
       ],
       "diabetes": [
         {
           "var": "diabetes",
-          "measure": 16.2572695683042,
+          "measure": 15.4904540209267,
           "quintGroup": "[6.1,10.7]",
           "label": "Very Low"
         },
         {
           "var": "diabetes",
-          "measure": 20.20088018632,
+          "measure": 18.6887231846765,
           "quintGroup": "(10.7,12]",
           "label": "Low"
         },
         {
           "var": "diabetes",
-          "measure": 28.4961689934052,
+          "measure": 26.306678503262,
           "quintGroup": "(12,13.4]",
           "label": "Moderate"
         },
         {
           "var": "diabetes",
-          "measure": 23.9841952457887,
+          "measure": 23.4426247073283,
           "quintGroup": "(13.4,15.2]",
           "label": "High"
         },
         {
           "var": "diabetes",
-          "measure": 18.3994968722785,
+          "measure": 17.4285202051606,
           "quintGroup": "(15.2,25.6]",
           "label": "Very High"
         }
@@ -1096,63 +1096,63 @@
       "obesity": [
         {
           "var": "obesity",
-          "measure": 15.4137559061834,
-          "quintGroup": "[15.2,31.3]",
+          "measure": 14.3775461813102,
+          "quintGroup": "[15.2,31.2]",
           "label": "Very Low"
         },
         {
           "var": "obesity",
-          "measure": 24.8606371698726,
-          "quintGroup": "(31.3,34.1]",
+          "measure": 23.6185895047012,
+          "quintGroup": "(31.2,34]",
           "label": "Low"
         },
         {
           "var": "obesity",
-          "measure": 25.2233799081765,
-          "quintGroup": "(34.1,36.2]",
+          "measure": 23.3384736440403,
+          "quintGroup": "(34,36.2]",
           "label": "Moderate"
         },
         {
           "var": "obesity",
-          "measure": 23.1375113905907,
-          "quintGroup": "(36.2,38.5]",
+          "measure": 21.8106825821659,
+          "quintGroup": "(36.2,38.4]",
           "label": "High"
         },
         {
           "var": "obesity",
-          "measure": 18.9331677522229,
-          "quintGroup": "(38.5,49.9]",
+          "measure": 18.157273070347,
+          "quintGroup": "(38.4,49.9]",
           "label": "Very High"
         }
       ],
       "heartdisease": [
         {
           "var": "heartdisease",
-          "measure": 16.9373598334567,
-          "quintGroup": "[3.5,7]",
+          "measure": 15.3824562621552,
+          "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "heartdisease",
-          "measure": 19.3821148530163,
-          "quintGroup": "(7,8.1]",
+          "measure": 16.9142761833358,
+          "quintGroup": "(6.9,8]",
           "label": "Low"
         },
         {
           "var": "heartdisease",
-          "measure": 20.9672571652748,
-          "quintGroup": "(8.1,9]",
+          "measure": 19.292813466475,
+          "quintGroup": "(8,8.9]",
           "label": "Moderate"
         },
         {
           "var": "heartdisease",
-          "measure": 27.3445637531891,
-          "quintGroup": "(9,10]",
+          "measure": 26.780829900735,
+          "quintGroup": "(8.9,10]",
           "label": "High"
         },
         {
           "var": "heartdisease",
-          "measure": 23.6296099283609,
+          "measure": 22.887593326175,
           "quintGroup": "(10,15.1]",
           "label": "Very High"
         }
@@ -1160,31 +1160,31 @@
       "copd": [
         {
           "var": "copd",
-          "measure": 16.404530752628,
+          "measure": 14.7773356811471,
           "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "copd",
-          "measure": 16.3122884153545,
-          "quintGroup": "(6.9,8.2]",
+          "measure": 14.2779720796239,
+          "quintGroup": "(6.9,8.1]",
           "label": "Low"
         },
         {
           "var": "copd",
-          "measure": 17.0344052975615,
-          "quintGroup": "(8.2,9.5]",
+          "measure": 16.276150513318,
+          "quintGroup": "(8.1,9.5]",
           "label": "Moderate"
         },
         {
           "var": "copd",
-          "measure": 27.7965563886801,
+          "measure": 26.7819709220131,
           "quintGroup": "(9.5,10.9]",
           "label": "High"
         },
         {
           "var": "copd",
-          "measure": 30.1905584676405,
+          "measure": 29.5986832457017,
           "quintGroup": "(10.9,19.9]",
           "label": "Very High"
         }
@@ -1192,31 +1192,31 @@
       "ckd": [
         {
           "var": "ckd",
-          "measure": 18.5791765687637,
+          "measure": 17.035137235083,
           "quintGroup": "[1.8,3]",
           "label": "Very Low"
         },
         {
           "var": "ckd",
-          "measure": 20.7822228188031,
-          "quintGroup": "(3,3.3]",
+          "measure": 18.6653741518106,
+          "quintGroup": "(3,3.2]",
           "label": "Low"
         },
         {
           "var": "ckd",
-          "measure": 27.9189006454824,
-          "quintGroup": "(3.3,3.5]",
+          "measure": 24.6171599681859,
+          "quintGroup": "(3.2,3.5]",
           "label": "Moderate"
         },
         {
           "var": "ckd",
-          "measure": 24.1517717055207,
+          "measure": 23.5369637252837,
           "quintGroup": "(3.5,3.9]",
           "label": "High"
         },
         {
           "var": "ckd",
-          "measure": 18.0250240369313,
+          "measure": 16.8882799171815,
           "quintGroup": "(3.9,6.2]",
           "label": "Very High"
         }
@@ -1228,63 +1228,63 @@
       "black": [
         {
           "var": "black",
-          "measure": 168.400754048136,
-          "quintGroup": "[0,0.531]",
+          "measure": 167.932193648251,
+          "quintGroup": "[0,0.544]",
           "label": "Very Low"
         },
         {
           "var": "black",
-          "measure": 155.680282373222,
-          "quintGroup": "(0.531,1.38]",
+          "measure": 153.975068402119,
+          "quintGroup": "(0.544,1.41]",
           "label": "Low"
         },
         {
           "var": "black",
-          "measure": 159.084755831029,
-          "quintGroup": "(1.38,4.31]",
+          "measure": 155.762470231224,
+          "quintGroup": "(1.41,4.44]",
           "label": "Moderate"
         },
         {
           "var": "black",
-          "measure": 153.690430554347,
-          "quintGroup": "(4.31,14.3]",
+          "measure": 149.228121519948,
+          "quintGroup": "(4.44,14.5]",
           "label": "High"
         },
         {
           "var": "black",
-          "measure": 206.747086541994,
-          "quintGroup": "(14.3,87.4]",
+          "measure": 201.901512604979,
+          "quintGroup": "(14.5,87.4]",
           "label": "Very High"
         }
       ],
       "male": [
         {
           "var": "male",
-          "measure": 191.878407874033,
+          "measure": 188.035998121243,
           "quintGroup": "[41.4,48.7]",
           "label": "Very Low"
         },
         {
           "var": "male",
-          "measure": 163.018123819797,
+          "measure": 158.424634109299,
           "quintGroup": "(48.7,49.3]",
           "label": "Low"
         },
         {
           "var": "male",
-          "measure": 151.146010681561,
+          "measure": 148.075374595061,
           "quintGroup": "(49.3,49.9]",
           "label": "Moderate"
         },
         {
           "var": "male",
-          "measure": 160.32909079972,
+          "measure": 159.127629859782,
           "quintGroup": "(49.9,50.9]",
           "label": "High"
         },
         {
           "var": "male",
-          "measure": 177.336101085914,
+          "measure": 175.275083752789,
           "quintGroup": "(50.9,79]",
           "label": "Very High"
         }
@@ -1292,31 +1292,31 @@
       "poverty": [
         {
           "var": "poverty",
-          "measure": 136.585005207684,
-          "quintGroup": "[2.3,10.1]",
+          "measure": 132.604944640916,
+          "quintGroup": "[2.3,10]",
           "label": "Very Low"
         },
         {
           "var": "poverty",
-          "measure": 148.768632555529,
-          "quintGroup": "(10.1,13.1]",
+          "measure": 146.074314155067,
+          "quintGroup": "(10,13.1]",
           "label": "Low"
         },
         {
           "var": "poverty",
-          "measure": 159.251422413356,
+          "measure": 156.414437449447,
           "quintGroup": "(13.1,16]",
           "label": "Moderate"
         },
         {
           "var": "poverty",
-          "measure": 175.348931220525,
+          "measure": 172.815820272656,
           "quintGroup": "(16,19.9]",
           "label": "High"
         },
         {
           "var": "poverty",
-          "measure": 223.768484113469,
+          "measure": 220.995597707982,
           "quintGroup": "(19.9,55.1]",
           "label": "Very High"
         }
@@ -1324,159 +1324,159 @@
       "age65over": [
         {
           "var": "age65over",
-          "measure": 134.382740902051,
+          "measure": 129.121917201823,
           "quintGroup": "[3.8,14.6]",
           "label": "Very Low"
         },
         {
           "var": "age65over",
-          "measure": 164.316228859853,
-          "quintGroup": "(14.6,16.8]",
+          "measure": 158.021123398145,
+          "quintGroup": "(14.6,16.7]",
           "label": "Low"
         },
         {
           "var": "age65over",
-          "measure": 183.243813168442,
-          "quintGroup": "(16.8,18.8]",
+          "measure": 180.429879698925,
+          "quintGroup": "(16.7,18.8]",
           "label": "Moderate"
         },
         {
           "var": "age65over",
-          "measure": 184.028225449421,
-          "quintGroup": "(18.8,21.4]",
+          "measure": 184.169575285028,
+          "quintGroup": "(18.8,21.3]",
           "label": "High"
         },
         {
           "var": "age65over",
-          "measure": 177.282819129335,
-          "quintGroup": "(21.4,55.6]",
+          "measure": 176.679678065038,
+          "quintGroup": "(21.3,55.6]",
           "label": "Very High"
         }
       ],
       "minority": [
         {
           "var": "minority",
-          "measure": 172.550593804518,
-          "quintGroup": "[0,6.49]",
+          "measure": 173.300125133887,
+          "quintGroup": "[0,6.56]",
           "label": "Very Low"
         },
         {
           "var": "minority",
-          "measure": 157.696101652277,
-          "quintGroup": "(6.49,12.9]",
+          "measure": 155.673383140175,
+          "quintGroup": "(6.56,13.1]",
           "label": "Low"
         },
         {
           "var": "minority",
-          "measure": 146.895062071363,
-          "quintGroup": "(12.9,23.9]",
+          "measure": 142.374051875149,
+          "quintGroup": "(13.1,24.1]",
           "label": "Moderate"
         },
         {
           "var": "minority",
-          "measure": 161.481687568697,
-          "quintGroup": "(23.9,41]",
+          "measure": 157.822245049326,
+          "quintGroup": "(24.1,41.2]",
           "label": "High"
         },
         {
           "var": "minority",
-          "measure": 205.421655409475,
-          "quintGroup": "(41,99.3]",
+          "measure": 200.020422449457,
+          "quintGroup": "(41.2,99.3]",
           "label": "Very High"
         }
       ],
       "groupquarter": [
         {
           "var": "groupquarter",
-          "measure": 145.105288068363,
+          "measure": 142.915057363599,
           "quintGroup": "[0,1.12]",
           "label": "Very Low"
         },
         {
           "var": "groupquarter",
-          "measure": 174.583519300498,
+          "measure": 171.393529511644,
           "quintGroup": "(1.12,1.64]",
           "label": "Low"
         },
         {
           "var": "groupquarter",
-          "measure": 173.190858342529,
+          "measure": 169.761163431396,
           "quintGroup": "(1.64,2.52]",
           "label": "Moderate"
         },
         {
           "var": "groupquarter",
-          "measure": 164.749387282601,
-          "quintGroup": "(2.52,4.56]",
+          "measure": 160.819003276191,
+          "quintGroup": "(2.52,4.53]",
           "label": "High"
         },
         {
           "var": "groupquarter",
-          "measure": 186.068672983356,
-          "quintGroup": "(4.56,55.7]",
+          "measure": 183.997360495332,
+          "quintGroup": "(4.53,55.7]",
           "label": "Very High"
         }
       ],
       "hispanic": [
         {
           "var": "hispanic",
-          "measure": 188.653093440655,
-          "quintGroup": "[0,1.91]",
+          "measure": 188.926309533512,
+          "quintGroup": "[0,1.92]",
           "label": "Very Low"
         },
         {
           "var": "hispanic",
-          "measure": 182.719367366055,
-          "quintGroup": "(1.91,3.25]",
+          "measure": 180.763880498248,
+          "quintGroup": "(1.92,3.3]",
           "label": "Low"
         },
         {
           "var": "hispanic",
-          "measure": 163.890150246914,
-          "quintGroup": "(3.25,5.88]",
+          "measure": 159.573056980046,
+          "quintGroup": "(3.3,5.95]",
           "label": "Moderate"
         },
         {
           "var": "hispanic",
-          "measure": 136.414206900644,
-          "quintGroup": "(5.88,13]",
+          "measure": 132.141258840835,
+          "quintGroup": "(5.95,13.2]",
           "label": "High"
         },
         {
           "var": "hispanic",
-          "measure": 171.83087079382,
-          "quintGroup": "(13,99.1]",
+          "measure": 167.286879553243,
+          "quintGroup": "(13.2,99.1]",
           "label": "Very High"
         }
       ],
       "natives": [
         {
           "var": "natives",
-          "measure": 205.042865454283,
-          "quintGroup": "[0,0.146]",
+          "measure": 203.39119241655,
+          "quintGroup": "[0,0.148]",
           "label": "Very Low"
         },
         {
           "var": "natives",
-          "measure": 163.531487165223,
-          "quintGroup": "(0.146,0.274]",
+          "measure": 160.624933400265,
+          "quintGroup": "(0.148,0.276]",
           "label": "Low"
         },
         {
           "var": "natives",
-          "measure": 157.94499378917,
-          "quintGroup": "(0.274,0.476]",
+          "measure": 154.176484988967,
+          "quintGroup": "(0.276,0.477]",
           "label": "Moderate"
         },
         {
           "var": "natives",
-          "measure": 155.92987053829,
-          "quintGroup": "(0.476,1.09]",
+          "measure": 153.309097407335,
+          "quintGroup": "(0.477,1.09]",
           "label": "High"
         },
         {
           "var": "natives",
-          "measure": 160.933974862159,
+          "measure": 157.068913239519,
           "quintGroup": "(1.09,92.5]",
           "label": "Very High"
         }
@@ -1484,37 +1484,37 @@
       "urbanrural": [
         {
           "var": "urbanrural",
-          "measure": 95.788904260466,
+          "measure": 87.051593575175,
           "quintGroup": "Large Central Metro",
           "label": "Large Central Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 126.914792406969,
+          "measure": 121.675687424029,
           "quintGroup": "Large Fringe Metro",
           "label": "Large Fringe Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 142.69542938269,
+          "measure": 138.990832202871,
           "quintGroup": "Medium Metro",
           "label": "Medium Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 176.753958260668,
+          "measure": 175.551098362062,
           "quintGroup": "Micropolitan (Nonmetro)",
           "label": "Micropolitan (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 197.720012710582,
+          "measure": 198.147089685835,
           "quintGroup": "NonCore (Nonmetro)",
           "label": "NonCore (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 163.490635473799,
+          "measure": 158.05413443534,
           "quintGroup": "Small Metro",
           "label": "Small Metro"
         }
@@ -1522,57 +1522,57 @@
       "hhincome": [
         {
           "var": "hhincome",
-          "measure": 221.853756357417,
-          "quintGroup": "[3.36e+04,5.6e+04]",
+          "measure": 222.252186580051,
+          "quintGroup": "[3.36e+04,5.61e+04]",
           "label": "Very Low"
         },
         {
           "var": "hhincome",
-          "measure": 191.193947482492,
-          "quintGroup": "(5.6e+04,6.23e+04]",
+          "measure": 189.062357203619,
+          "quintGroup": "(5.61e+04,6.26e+04]",
           "label": "Low"
         },
         {
           "var": "hhincome",
-          "measure": 174.656734234388,
-          "quintGroup": "(6.23e+04,6.93e+04]",
+          "measure": 172.767349826846,
+          "quintGroup": "(6.26e+04,6.95e+04]",
           "label": "Moderate"
         },
         {
           "var": "hhincome",
-          "measure": 150.277887353189,
-          "quintGroup": "(6.93e+04,7.94e+04]",
+          "measure": 145.345604567557,
+          "quintGroup": "(6.95e+04,7.97e+04]",
           "label": "High"
         },
         {
           "var": "hhincome",
-          "measure": 105.190100024351,
-          "quintGroup": "(7.94e+04,1.82e+05]",
+          "measure": 98.9181504904789,
+          "quintGroup": "(7.97e+04,1.82e+05]",
           "label": "Very High"
         }
       ],
       "region": [
         {
           "var": "region",
-          "measure": 175.369846406412,
+          "measure": 172.389566900335,
           "quintGroup": "Midwest",
           "label": "Midwest"
         },
         {
           "var": "region",
-          "measure": 134.136580650891,
+          "measure": 131.057697159941,
           "quintGroup": "Northeast",
           "label": "Northeast"
         },
         {
           "var": "region",
-          "measure": 193.49957655278,
+          "measure": 191.290618195649,
           "quintGroup": "South",
           "label": "South"
         },
         {
           "var": "region",
-          "measure": 100.458455665216,
+          "measure": 96.9855683479013,
           "quintGroup": "West",
           "label": "West"
         }
@@ -1580,63 +1580,63 @@
       "ccvi": [
         {
           "var": "ccvi",
-          "measure": 144.773722831983,
-          "quintGroup": "[0,0.204]",
+          "measure": 143.117539361858,
+          "quintGroup": "[0,0.205]",
           "label": "Very Low"
         },
         {
           "var": "ccvi",
-          "measure": 144.825022576962,
-          "quintGroup": "(0.204,0.403]",
+          "measure": 141.525672106218,
+          "quintGroup": "(0.205,0.404]",
           "label": "Low"
         },
         {
           "var": "ccvi",
-          "measure": 156.487764465092,
-          "quintGroup": "(0.403,0.601]",
+          "measure": 154.244575991254,
+          "quintGroup": "(0.404,0.602]",
           "label": "Moderate"
         },
         {
           "var": "ccvi",
-          "measure": 178.757125743496,
-          "quintGroup": "(0.601,0.8]",
+          "measure": 175.291940801988,
+          "quintGroup": "(0.602,0.801]",
           "label": "High"
         },
         {
           "var": "ccvi",
-          "measure": 219.345314316674,
-          "quintGroup": "(0.8,1]",
+          "measure": 215.164010605844,
+          "quintGroup": "(0.801,1]",
           "label": "Very High"
         }
       ],
       "resSeg": [
         {
           "var": "resSeg",
-          "measure": 204.986404523737,
-          "quintGroup": "[0,31]",
+          "measure": 202.228917063764,
+          "quintGroup": "[0,32]",
           "label": "Very Low"
         },
         {
           "var": "resSeg",
-          "measure": 174.34893299779,
-          "quintGroup": "(31,42]",
+          "measure": 167.759386801923,
+          "quintGroup": "(32,43]",
           "label": "Low"
         },
         {
           "var": "resSeg",
-          "measure": 154.749733101632,
-          "quintGroup": "(42,50]",
+          "measure": 150.688267267929,
+          "quintGroup": "(43,50]",
           "label": "Moderate"
         },
         {
           "var": "resSeg",
-          "measure": 152.391817792826,
+          "measure": 147.727959265134,
           "quintGroup": "(50,60]",
           "label": "High"
         },
         {
           "var": "resSeg",
-          "measure": 150.634600273233,
+          "measure": 145.563766937682,
           "quintGroup": "(60,90]",
           "label": "Very High"
         }
@@ -1644,63 +1644,63 @@
       "anycondition": [
         {
           "var": "anycondition",
-          "measure": 96.977555304393,
-          "quintGroup": "[22,41.1]",
+          "measure": 91.6883913442559,
+          "quintGroup": "[22,41]",
           "label": "Very Low"
         },
         {
           "var": "anycondition",
-          "measure": 154.322547440021,
-          "quintGroup": "(41.1,45.3]",
+          "measure": 149.949697118573,
+          "quintGroup": "(41,45.2]",
           "label": "Low"
         },
         {
           "var": "anycondition",
-          "measure": 179.235688570648,
-          "quintGroup": "(45.3,48.4]",
+          "measure": 177.151371737031,
+          "quintGroup": "(45.2,48.3]",
           "label": "Moderate"
         },
         {
           "var": "anycondition",
-          "measure": 202.056712238214,
-          "quintGroup": "(48.4,52]",
+          "measure": 200.888305511288,
+          "quintGroup": "(48.3,51.9]",
           "label": "High"
         },
         {
           "var": "anycondition",
-          "measure": 223.717450557536,
-          "quintGroup": "(52,66.2]",
+          "measure": 223.328536893689,
+          "quintGroup": "(51.9,66.2]",
           "label": "Very High"
         }
       ],
       "diabetes": [
         {
           "var": "diabetes",
-          "measure": 108.817521464772,
+          "measure": 104.075365346533,
           "quintGroup": "[6.1,10.7]",
           "label": "Very Low"
         },
         {
           "var": "diabetes",
-          "measure": 157.078089065421,
+          "measure": 154.188202937317,
           "quintGroup": "(10.7,12]",
           "label": "Low"
         },
         {
           "var": "diabetes",
-          "measure": 166.906914786408,
+          "measure": 166.5970918059,
           "quintGroup": "(12,13.4]",
           "label": "Moderate"
         },
         {
           "var": "diabetes",
-          "measure": 187.449216210059,
+          "measure": 183.888552077603,
           "quintGroup": "(13.4,15.2]",
           "label": "High"
         },
         {
           "var": "diabetes",
-          "measure": 238.153622636594,
+          "measure": 238.557861969881,
           "quintGroup": "(15.2,25.6]",
           "label": "Very High"
         }
@@ -1708,63 +1708,63 @@
       "obesity": [
         {
           "var": "obesity",
-          "measure": 104.413489947749,
-          "quintGroup": "[15.2,31.3]",
+          "measure": 97.9783076880789,
+          "quintGroup": "[15.2,31.2]",
           "label": "Very Low"
         },
         {
           "var": "obesity",
-          "measure": 159.178175343568,
-          "quintGroup": "(31.3,34.1]",
+          "measure": 154.395988064219,
+          "quintGroup": "(31.2,34]",
           "label": "Low"
         },
         {
           "var": "obesity",
-          "measure": 180.758424508213,
-          "quintGroup": "(34.1,36.2]",
+          "measure": 179.214503650973,
+          "quintGroup": "(34,36.2]",
           "label": "Moderate"
         },
         {
           "var": "obesity",
-          "measure": 196.879730444475,
-          "quintGroup": "(36.2,38.5]",
+          "measure": 196.504881661283,
+          "quintGroup": "(36.2,38.4]",
           "label": "High"
         },
         {
           "var": "obesity",
-          "measure": 215.136781545943,
-          "quintGroup": "(38.5,49.9]",
+          "measure": 215.296517060703,
+          "quintGroup": "(38.4,49.9]",
           "label": "Very High"
         }
       ],
       "heartdisease": [
         {
           "var": "heartdisease",
-          "measure": 104.520649269168,
-          "quintGroup": "[3.5,7]",
+          "measure": 95.9932609202147,
+          "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "heartdisease",
-          "measure": 162.019758642596,
-          "quintGroup": "(7,8.1]",
+          "measure": 156.315505734726,
+          "quintGroup": "(6.9,8]",
           "label": "Low"
         },
         {
           "var": "heartdisease",
-          "measure": 180.276088668103,
-          "quintGroup": "(8.1,9]",
+          "measure": 177.149248827873,
+          "quintGroup": "(8,8.9]",
           "label": "Moderate"
         },
         {
           "var": "heartdisease",
-          "measure": 210.487307372168,
-          "quintGroup": "(9,10]",
+          "measure": 207.892993689427,
+          "quintGroup": "(8.9,10]",
           "label": "High"
         },
         {
           "var": "heartdisease",
-          "measure": 204.698994961112,
+          "measure": 205.432404901577,
           "quintGroup": "(10,15.1]",
           "label": "Very High"
         }
@@ -1772,31 +1772,31 @@
       "copd": [
         {
           "var": "copd",
-          "measure": 116.780388673014,
+          "measure": 110.722895337829,
           "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "copd",
-          "measure": 160.865308279476,
-          "quintGroup": "(6.9,8.2]",
+          "measure": 160.522683089067,
+          "quintGroup": "(6.9,8.1]",
           "label": "Low"
         },
         {
           "var": "copd",
-          "measure": 177.902001680114,
-          "quintGroup": "(8.2,9.5]",
+          "measure": 173.948192998359,
+          "quintGroup": "(8.1,9.5]",
           "label": "Moderate"
         },
         {
           "var": "copd",
-          "measure": 196.237896428601,
+          "measure": 194.627727821002,
           "quintGroup": "(9.5,10.9]",
           "label": "High"
         },
         {
           "var": "copd",
-          "measure": 205.840109162718,
+          "measure": 206.610401242417,
           "quintGroup": "(10.9,19.9]",
           "label": "Very High"
         }
@@ -1804,31 +1804,31 @@
       "ckd": [
         {
           "var": "ckd",
-          "measure": 111.783074673643,
+          "measure": 107.539231906007,
           "quintGroup": "[1.8,3]",
           "label": "Very Low"
         },
         {
           "var": "ckd",
-          "measure": 167.203117937739,
-          "quintGroup": "(3,3.3]",
+          "measure": 155.790368751621,
+          "quintGroup": "(3,3.2]",
           "label": "Low"
         },
         {
           "var": "ckd",
-          "measure": 177.885827655044,
-          "quintGroup": "(3.3,3.5]",
+          "measure": 177.663297211124,
+          "quintGroup": "(3.2,3.5]",
           "label": "Moderate"
         },
         {
           "var": "ckd",
-          "measure": 192.516394104393,
+          "measure": 191.795928228131,
           "quintGroup": "(3.5,3.9]",
           "label": "High"
         },
         {
           "var": "ckd",
-          "measure": 231.132127825624,
+          "measure": 231.424496794035,
           "quintGroup": "(3.9,6.2]",
           "label": "Very High"
         }
@@ -1840,63 +1840,63 @@
       "black": [
         {
           "var": "black",
-          "measure": 0.374788235733184,
-          "quintGroup": "[0,0.531]",
+          "measure": 0.396596566756642,
+          "quintGroup": "[0,0.544]",
           "label": "Very Low"
         },
         {
           "var": "black",
-          "measure": 0.419771137504769,
-          "quintGroup": "(0.531,1.38]",
+          "measure": 0.420742059174964,
+          "quintGroup": "(0.544,1.41]",
           "label": "Low"
         },
         {
           "var": "black",
-          "measure": 0.610206594009389,
-          "quintGroup": "(1.38,4.31]",
+          "measure": 0.531173087988792,
+          "quintGroup": "(1.41,4.44]",
           "label": "Moderate"
         },
         {
           "var": "black",
-          "measure": 0.572242118262239,
-          "quintGroup": "(4.31,14.3]",
+          "measure": 0.485232873312682,
+          "quintGroup": "(4.44,14.5]",
           "label": "High"
         },
         {
           "var": "black",
-          "measure": 0.768358622171642,
-          "quintGroup": "(14.3,87.4]",
+          "measure": 0.609591696305831,
+          "quintGroup": "(14.5,87.4]",
           "label": "Very High"
         }
       ],
       "male": [
         {
           "var": "male",
-          "measure": 0.713904538978326,
+          "measure": 0.607863960343129,
           "quintGroup": "[41.4,48.7]",
           "label": "Very Low"
         },
         {
           "var": "male",
-          "measure": 0.571327718864776,
+          "measure": 0.478328419064774,
           "quintGroup": "(48.7,49.3]",
           "label": "Low"
         },
         {
           "var": "male",
-          "measure": 0.529540380981548,
+          "measure": 0.49289267893532,
           "quintGroup": "(49.3,49.9]",
           "label": "Moderate"
         },
         {
           "var": "male",
-          "measure": 0.40616888495625,
+          "measure": 0.35100659107093,
           "quintGroup": "(49.9,50.9]",
           "label": "High"
         },
         {
           "var": "male",
-          "measure": 0.525243336401347,
+          "measure": 0.514167746420468,
           "quintGroup": "(50.9,79]",
           "label": "Very High"
         }
@@ -1904,31 +1904,31 @@
       "poverty": [
         {
           "var": "poverty",
-          "measure": 0.40046404985403,
-          "quintGroup": "[2.3,10.1]",
+          "measure": 0.351033224726093,
+          "quintGroup": "[2.3,10]",
           "label": "Very Low"
         },
         {
           "var": "poverty",
-          "measure": 0.427982750968358,
-          "quintGroup": "(10.1,13.1]",
+          "measure": 0.401213258893586,
+          "quintGroup": "(10,13.1]",
           "label": "Low"
         },
         {
           "var": "poverty",
-          "measure": 0.558872081509091,
+          "measure": 0.458007768016012,
           "quintGroup": "(13.1,16]",
           "label": "Moderate"
         },
         {
           "var": "poverty",
-          "measure": 0.573940386553055,
+          "measure": 0.539111420051237,
           "quintGroup": "(16,19.9]",
           "label": "High"
         },
         {
           "var": "poverty",
-          "measure": 0.782998713946407,
+          "measure": 0.693212080465643,
           "quintGroup": "(19.9,55.1]",
           "label": "Very High"
         }
@@ -1936,159 +1936,159 @@
       "age65over": [
         {
           "var": "age65over",
-          "measure": 0.44520629934955,
+          "measure": 0.375170688539443,
           "quintGroup": "[3.8,14.6]",
           "label": "Very Low"
         },
         {
           "var": "age65over",
-          "measure": 0.549431479471898,
-          "quintGroup": "(14.6,16.8]",
+          "measure": 0.478500255657518,
+          "quintGroup": "(14.6,16.7]",
           "label": "Low"
         },
         {
           "var": "age65over",
-          "measure": 0.624304545807738,
-          "quintGroup": "(16.8,18.8]",
+          "measure": 0.549808516632122,
+          "quintGroup": "(16.7,18.8]",
           "label": "Moderate"
         },
         {
           "var": "age65over",
-          "measure": 0.610986690990462,
-          "quintGroup": "(18.8,21.4]",
+          "measure": 0.570004626166376,
+          "quintGroup": "(18.8,21.3]",
           "label": "High"
         },
         {
           "var": "age65over",
-          "measure": 0.514812933241159,
-          "quintGroup": "(21.4,55.6]",
+          "measure": 0.469061664382583,
+          "quintGroup": "(21.3,55.6]",
           "label": "Very High"
         }
       ],
       "minority": [
         {
           "var": "minority",
-          "measure": 0.512144461890788,
-          "quintGroup": "[0,6.49]",
+          "measure": 0.480952070807692,
+          "quintGroup": "[0,6.56]",
           "label": "Very Low"
         },
         {
           "var": "minority",
-          "measure": 0.465421039998065,
-          "quintGroup": "(6.49,12.9]",
+          "measure": 0.450888028079506,
+          "quintGroup": "(6.56,13.1]",
           "label": "Low"
         },
         {
           "var": "minority",
-          "measure": 0.479542156460714,
-          "quintGroup": "(12.9,23.9]",
+          "measure": 0.442317049344767,
+          "quintGroup": "(13.1,24.1]",
           "label": "Moderate"
         },
         {
           "var": "minority",
-          "measure": 0.59808512213845,
-          "quintGroup": "(23.9,41]",
+          "measure": 0.492230921514265,
+          "quintGroup": "(24.1,41.2]",
           "label": "High"
         },
         {
           "var": "minority",
-          "measure": 0.692378998211916,
-          "quintGroup": "(41,99.3]",
+          "measure": 0.57823313100648,
+          "quintGroup": "(41.2,99.3]",
           "label": "Very High"
         }
       ],
       "groupquarter": [
         {
           "var": "groupquarter",
-          "measure": 0.594629735397028,
+          "measure": 0.485596662967054,
           "quintGroup": "[0,1.12]",
           "label": "Very Low"
         },
         {
           "var": "groupquarter",
-          "measure": 0.542708237558744,
+          "measure": 0.48454428404292,
           "quintGroup": "(1.12,1.64]",
           "label": "Low"
         },
         {
           "var": "groupquarter",
-          "measure": 0.509819035632042,
+          "measure": 0.466717541217613,
           "quintGroup": "(1.64,2.52]",
           "label": "Moderate"
         },
         {
           "var": "groupquarter",
-          "measure": 0.46180532919432,
-          "quintGroup": "(2.52,4.56]",
+          "measure": 0.419798444702044,
+          "quintGroup": "(2.52,4.53]",
           "label": "High"
         },
         {
           "var": "groupquarter",
-          "measure": 0.636407956133184,
-          "quintGroup": "(4.56,55.7]",
+          "measure": 0.586858669046715,
+          "quintGroup": "(4.53,55.7]",
           "label": "Very High"
         }
       ],
       "hispanic": [
         {
           "var": "hispanic",
-          "measure": 0.663927532530849,
-          "quintGroup": "[0,1.91]",
+          "measure": 0.591277107523872,
+          "quintGroup": "[0,1.92]",
           "label": "Very Low"
         },
         {
           "var": "hispanic",
-          "measure": 0.53433689806622,
-          "quintGroup": "(1.91,3.25]",
+          "measure": 0.519934789183721,
+          "quintGroup": "(1.92,3.3]",
           "label": "Low"
         },
         {
           "var": "hispanic",
-          "measure": 0.524876951609254,
-          "quintGroup": "(3.25,5.88]",
+          "measure": 0.429576395008746,
+          "quintGroup": "(3.3,5.95]",
           "label": "Moderate"
         },
         {
           "var": "hispanic",
-          "measure": 0.454285107052687,
-          "quintGroup": "(5.88,13]",
+          "measure": 0.400084945564723,
+          "quintGroup": "(5.95,13.2]",
           "label": "High"
         },
         {
           "var": "hispanic",
-          "measure": 0.568027746272455,
-          "quintGroup": "(13,99.1]",
+          "measure": 0.502359388344152,
+          "quintGroup": "(13.2,99.1]",
           "label": "Very High"
         }
       ],
       "natives": [
         {
           "var": "natives",
-          "measure": 0.764609174163447,
-          "quintGroup": "[0,0.146]",
+          "measure": 0.643483480885776,
+          "quintGroup": "[0,0.148]",
           "label": "Very Low"
         },
         {
           "var": "natives",
-          "measure": 0.564630157938897,
-          "quintGroup": "(0.146,0.274]",
+          "measure": 0.513118422683697,
+          "quintGroup": "(0.148,0.276]",
           "label": "Low"
         },
         {
           "var": "natives",
-          "measure": 0.52602803401435,
-          "quintGroup": "(0.274,0.476]",
+          "measure": 0.443547170501898,
+          "quintGroup": "(0.276,0.477]",
           "label": "Moderate"
         },
         {
           "var": "natives",
-          "measure": 0.431742608477943,
-          "quintGroup": "(0.476,1.09]",
+          "measure": 0.398801419360553,
+          "quintGroup": "(0.477,1.09]",
           "label": "High"
         },
         {
           "var": "natives",
-          "measure": 0.457256414406147,
+          "measure": 0.443638576104832,
           "quintGroup": "(1.09,92.5]",
           "label": "Very High"
         }
@@ -2096,37 +2096,37 @@
       "urbanrural": [
         {
           "var": "urbanrural",
-          "measure": 0.324035670296809,
+          "measure": 0.255682882343269,
           "quintGroup": "Large Central Metro",
           "label": "Large Central Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 0.579933008230582,
+          "measure": 0.460836162240416,
           "quintGroup": "Large Fringe Metro",
           "label": "Large Fringe Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 0.585240921873566,
+          "measure": 0.498174741207005,
           "quintGroup": "Medium Metro",
           "label": "Medium Metro"
         },
         {
           "var": "urbanrural",
-          "measure": 0.502818746897385,
+          "measure": 0.458106374641033,
           "quintGroup": "Micropolitan (Nonmetro)",
           "label": "Micropolitan (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 0.565395368331006,
+          "measure": 0.526834364366567,
           "quintGroup": "NonCore (Nonmetro)",
           "label": "NonCore (Nonmetro)"
         },
         {
           "var": "urbanrural",
-          "measure": 0.621210156577957,
+          "measure": 0.534561033442119,
           "quintGroup": "Small Metro",
           "label": "Small Metro"
         }
@@ -2134,57 +2134,57 @@
       "hhincome": [
         {
           "var": "hhincome",
-          "measure": 0.747055822038003,
-          "quintGroup": "[3.36e+04,5.6e+04]",
+          "measure": 0.631573242810917,
+          "quintGroup": "[3.36e+04,5.61e+04]",
           "label": "Very Low"
         },
         {
           "var": "hhincome",
-          "measure": 0.623991643983134,
-          "quintGroup": "(5.6e+04,6.23e+04]",
+          "measure": 0.533513076212391,
+          "quintGroup": "(5.61e+04,6.26e+04]",
           "label": "Low"
         },
         {
           "var": "hhincome",
-          "measure": 0.512702428424554,
-          "quintGroup": "(6.23e+04,6.93e+04]",
+          "measure": 0.541529952844331,
+          "quintGroup": "(6.26e+04,6.95e+04]",
           "label": "Moderate"
         },
         {
           "var": "hhincome",
-          "measure": 0.48668499127597,
-          "quintGroup": "(6.93e+04,7.94e+04]",
+          "measure": 0.431612991982507,
+          "quintGroup": "(6.95e+04,7.97e+04]",
           "label": "High"
         },
         {
           "var": "hhincome",
-          "measure": 0.372197645314093,
-          "quintGroup": "(7.94e+04,1.82e+05]",
+          "measure": 0.302604868014788,
+          "quintGroup": "(7.97e+04,1.82e+05]",
           "label": "Very High"
         }
       ],
       "region": [
         {
           "var": "region",
-          "measure": 0.44069281626483,
+          "measure": 0.433055826491105,
           "quintGroup": "Midwest",
           "label": "Midwest"
         },
         {
           "var": "region",
-          "measure": 0.299536301478346,
+          "measure": 0.236385229414176,
           "quintGroup": "Northeast",
           "label": "Northeast"
         },
         {
           "var": "region",
-          "measure": 0.76246430599651,
+          "measure": 0.64823280041357,
           "quintGroup": "South",
           "label": "South"
         },
         {
           "var": "region",
-          "measure": 0.285800679909109,
+          "measure": 0.276586768183426,
           "quintGroup": "West",
           "label": "West"
         }
@@ -2192,63 +2192,63 @@
       "ccvi": [
         {
           "var": "ccvi",
-          "measure": 0.256677578303125,
-          "quintGroup": "[0,0.204]",
+          "measure": 0.32215512382311,
+          "quintGroup": "[0,0.205]",
           "label": "Very Low"
         },
         {
           "var": "ccvi",
-          "measure": 0.430798764855988,
-          "quintGroup": "(0.204,0.403]",
+          "measure": 0.364343619446637,
+          "quintGroup": "(0.205,0.404]",
           "label": "Low"
         },
         {
           "var": "ccvi",
-          "measure": 0.666297849672048,
-          "quintGroup": "(0.403,0.601]",
+          "measure": 0.581269082621022,
+          "quintGroup": "(0.404,0.602]",
           "label": "Moderate"
         },
         {
           "var": "ccvi",
-          "measure": 0.633269842299253,
-          "quintGroup": "(0.601,0.8]",
+          "measure": 0.542230787463504,
+          "quintGroup": "(0.602,0.801]",
           "label": "High"
         },
         {
           "var": "ccvi",
-          "measure": 0.760739127334081,
-          "quintGroup": "(0.8,1]",
+          "measure": 0.635404723487007,
+          "quintGroup": "(0.801,1]",
           "label": "Very High"
         }
       ],
       "resSeg": [
         {
           "var": "resSeg",
-          "measure": 0.933865372992027,
-          "quintGroup": "[0,31]",
+          "measure": 0.725814043169392,
+          "quintGroup": "[0,32]",
           "label": "Very Low"
         },
         {
           "var": "resSeg",
-          "measure": 0.66565960047867,
-          "quintGroup": "(31,42]",
+          "measure": 0.600047867952212,
+          "quintGroup": "(32,43]",
           "label": "Low"
         },
         {
           "var": "resSeg",
-          "measure": 0.514093593018462,
-          "quintGroup": "(42,50]",
+          "measure": 0.394931515733257,
+          "quintGroup": "(43,50]",
           "label": "Moderate"
         },
         {
           "var": "resSeg",
-          "measure": 0.52737277506082,
+          "measure": 0.466180380878901,
           "quintGroup": "(50,60]",
           "label": "High"
         },
         {
           "var": "resSeg",
-          "measure": 0.482178180250124,
+          "measure": 0.437520765951313,
           "quintGroup": "(60,90]",
           "label": "Very High"
         }
@@ -2256,63 +2256,63 @@
       "anycondition": [
         {
           "var": "anycondition",
-          "measure": 0.289228530594018,
-          "quintGroup": "[22,41.1]",
+          "measure": 0.262773491271893,
+          "quintGroup": "[22,41]",
           "label": "Very Low"
         },
         {
           "var": "anycondition",
-          "measure": 0.462323950706829,
-          "quintGroup": "(41.1,45.3]",
+          "measure": 0.38193124796027,
+          "quintGroup": "(41,45.2]",
           "label": "Low"
         },
         {
           "var": "anycondition",
-          "measure": 0.541640615440634,
-          "quintGroup": "(45.3,48.4]",
+          "measure": 0.51375827894359,
+          "quintGroup": "(45.2,48.3]",
           "label": "Moderate"
         },
         {
           "var": "anycondition",
-          "measure": 0.75614976084778,
-          "quintGroup": "(48.4,52]",
+          "measure": 0.611478054426466,
+          "quintGroup": "(48.3,51.9]",
           "label": "High"
         },
         {
           "var": "anycondition",
-          "measure": 0.739404708187402,
-          "quintGroup": "(52,66.2]",
+          "measure": 0.703061046623867,
+          "quintGroup": "(51.9,66.2]",
           "label": "Very High"
         }
       ],
       "diabetes": [
         {
           "var": "diabetes",
-          "measure": 0.323576752673724,
+          "measure": 0.301429328282596,
           "quintGroup": "[6.1,10.7]",
           "label": "Very Low"
         },
         {
           "var": "diabetes",
-          "measure": 0.407481811352574,
+          "measure": 0.354898011769969,
           "quintGroup": "(10.7,12]",
           "label": "Low"
         },
         {
           "var": "diabetes",
-          "measure": 0.499580383149477,
+          "measure": 0.444861672370497,
           "quintGroup": "(12,13.4]",
           "label": "Moderate"
         },
         {
           "var": "diabetes",
-          "measure": 0.723659022778659,
+          "measure": 0.662470323973857,
           "quintGroup": "(13.4,15.2]",
           "label": "High"
         },
         {
           "var": "diabetes",
-          "measure": 0.841756443227186,
+          "measure": 0.713178610525317,
           "quintGroup": "(15.2,25.6]",
           "label": "Very High"
         }
@@ -2320,63 +2320,63 @@
       "obesity": [
         {
           "var": "obesity",
-          "measure": 0.31677451487855,
-          "quintGroup": "[15.2,31.3]",
+          "measure": 0.264710048355457,
+          "quintGroup": "[15.2,31.2]",
           "label": "Very Low"
         },
         {
           "var": "obesity",
-          "measure": 0.54967978112675,
-          "quintGroup": "(31.3,34.1]",
+          "measure": 0.460698681138333,
+          "quintGroup": "(31.2,34]",
           "label": "Low"
         },
         {
           "var": "obesity",
-          "measure": 0.594945038952366,
-          "quintGroup": "(34.1,36.2]",
+          "measure": 0.512760283692878,
+          "quintGroup": "(34,36.2]",
           "label": "Moderate"
         },
         {
           "var": "obesity",
-          "measure": 0.648847810356971,
-          "quintGroup": "(36.2,38.5]",
+          "measure": 0.548749058253251,
+          "quintGroup": "(36.2,38.4]",
           "label": "High"
         },
         {
           "var": "obesity",
-          "measure": 0.677418041453312,
-          "quintGroup": "(38.5,49.9]",
+          "measure": 0.687229306110287,
+          "quintGroup": "(38.4,49.9]",
           "label": "Very High"
         }
       ],
       "heartdisease": [
         {
           "var": "heartdisease",
-          "measure": 0.375180905766425,
-          "quintGroup": "[3.5,7]",
+          "measure": 0.294011680237834,
+          "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "heartdisease",
-          "measure": 0.508673585843531,
-          "quintGroup": "(7,8.1]",
+          "measure": 0.448975927185757,
+          "quintGroup": "(6.9,8]",
           "label": "Low"
         },
         {
           "var": "heartdisease",
-          "measure": 0.485507346450602,
-          "quintGroup": "(8.1,9]",
+          "measure": 0.445419150860358,
+          "quintGroup": "(8,8.9]",
           "label": "Moderate"
         },
         {
           "var": "heartdisease",
-          "measure": 0.767327984461928,
-          "quintGroup": "(9,10]",
+          "measure": 0.642828501007478,
+          "quintGroup": "(8.9,10]",
           "label": "High"
         },
         {
           "var": "heartdisease",
-          "measure": 0.674524646938304,
+          "measure": 0.641859118403599,
           "quintGroup": "(10,15.1]",
           "label": "Very High"
         }
@@ -2384,31 +2384,31 @@
       "copd": [
         {
           "var": "copd",
-          "measure": 0.368160702061481,
+          "measure": 0.33259093934993,
           "quintGroup": "[3.5,6.9]",
           "label": "Very Low"
         },
         {
           "var": "copd",
-          "measure": 0.417144941428139,
-          "quintGroup": "(6.9,8.2]",
+          "measure": 0.423502301882553,
+          "quintGroup": "(6.9,8.1]",
           "label": "Low"
         },
         {
           "var": "copd",
-          "measure": 0.550036167839172,
-          "quintGroup": "(8.2,9.5]",
+          "measure": 0.459098514087101,
+          "quintGroup": "(8.1,9.5]",
           "label": "Moderate"
         },
         {
           "var": "copd",
-          "measure": 0.739400027199387,
+          "measure": 0.624418981006798,
           "quintGroup": "(9.5,10.9]",
           "label": "High"
         },
         {
           "var": "copd",
-          "measure": 0.718338734592702,
+          "measure": 0.642333506917364,
           "quintGroup": "(10.9,19.9]",
           "label": "Very High"
         }
@@ -2416,31 +2416,31 @@
       "ckd": [
         {
           "var": "ckd",
-          "measure": 0.384750881687365,
+          "measure": 0.319728369951323,
           "quintGroup": "[1.8,3]",
           "label": "Very Low"
         },
         {
           "var": "ckd",
-          "measure": 0.498415721850712,
-          "quintGroup": "(3,3.3]",
+          "measure": 0.43071538543737,
+          "quintGroup": "(3,3.2]",
           "label": "Low"
         },
         {
           "var": "ckd",
-          "measure": 0.557282604425918,
-          "quintGroup": "(3.3,3.5]",
+          "measure": 0.504370278806513,
+          "quintGroup": "(3.2,3.5]",
           "label": "Moderate"
         },
         {
           "var": "ckd",
-          "measure": 0.612833358071322,
+          "measure": 0.591882882753382,
           "quintGroup": "(3.5,3.9]",
           "label": "High"
         },
         {
           "var": "ckd",
-          "measure": 0.814126036894336,
+          "measure": 0.680820777504577,
           "quintGroup": "(3.9,6.2]",
           "label": "Very High"
         }
