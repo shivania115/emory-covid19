@@ -369,21 +369,12 @@ class Race extends PureComponent{
     super(props);
  
     this.state = {
-      dataTot: [],
-      chart: "",
+      dataTot: []
     };
 
-    // this.handleDownload = this.handleDownload.bind(this);
 
   }
 
-  async handleDownload() {
-        const {chart} = this.state;
-        // Send the chart to getPngData
-        const pngData = await useRechartToPng(chart);
-        // Use FileSaver to download the PNG
-        FileSaver.saveAs(pngData, "test.png");
-      };
 
   componentDidMount(){
     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
@@ -398,14 +389,11 @@ class Race extends PureComponent{
 
   render() {
     const { dataTot } = this.state;
-    console.log("this props", this.props);
-    // console.log("here", this.props.rate)
 
     return (
       <Grid>
       <PieChart 
-        ref={(ref) => this.setState({chart: ref})} // Save the ref of the chart
-        width={300} height={280}>
+        width={300} height={280} transform='translate(-10,0)'>
         <Pie
           
           activeIndex={10}
@@ -431,16 +419,12 @@ class Race extends PureComponent{
           
         </Pie>
       </PieChart>
-      <span style={{ float: "left" }}>
-        <button onClick={() => this.handleDownload()}>Download</button>
-      </span>
       </Grid>
     );
   }
 }
 
 
-// class Race extends PureComponent{
 // function Race(props) {
 //   // static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
 
@@ -498,7 +482,7 @@ class Race extends PureComponent{
 //       <PieChart 
 //         // ref={(ref) => setChart(ref)} // Save the ref of the chart
 //         ref={ref}
-//         width={300} height={280}>
+//         width={300} height={280} transform='translate(-10,0)'>
 //         <Pie
 //           activeIndex={10}
 //           activeShape={renderActiveShape}
@@ -532,76 +516,75 @@ class Race extends PureComponent{
 //     }
 // }
 
-// const toPrint = React.forwardRef((props, ref) => (
+const ToPrint = React.forwardRef((props, ref) => (
   
-//   <Grid.Column rows = {2} >
-//     <Ref innerRef={ref}>
-//     <Grid.Row style = {{width: 550}}>
-//       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
-//         <div>
-//           <svg width="550" height="80">
+  <div ref={ref} style={{width: 550}}>
+  <Grid.Column rows = {2}>
+    <Grid.Row style = {{width: 550}}>
+      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
+        <div>
+          <svg width="550" height="80">
 
-//               <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
-//               <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
+              <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
+              <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
 
-//               <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
-//               <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
+              <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+              <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
 
-//               <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
-//               <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
+              <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
+              <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
 
-//               <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
-//               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
+              <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
+              <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
 
-//               <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-//               <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>                    
-
-
-//               {/* {_.map(pieChartRace, (color, i) => {
-//                 return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-//               })}  */}
-//           </svg>
-//         </div>
-//       </Grid.Column>
-//     </Grid.Row>
-//     <Grid >
-//       <Grid.Row columns = {2} style = {{width: 1000}}>
-//         <Grid.Column style = {{width: 300}}>
-//           <Race pop = {false} />
-//         </Grid.Column>
-//         <Grid.Column style = {{width: 300, paddingLeft: 50}}>
-//           <Race pop = {true}/> 
-//         </Grid.Column>
-//       </Grid.Row>
-
-//       {/* <Grid.Row style = {{width: 900}}>
-//         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
-//             <div>
-//               <svg width="450" height="145">
-
-//                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-//                   <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
-//                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
-//                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
-//                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
+              <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>                    
 
 
-//                   {_.map(pieChartRace, (color, i) => {
-//                     return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-//                   })} 
-//               </svg>
-//             </div>
-//           </Grid.Column>
-//       </Grid.Row> */}
-//       </Grid>
-//       </Ref>
-//   </Grid.Column>
+              {/* {_.map(pieChartRace, (color, i) => {
+                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+              })}  */}
+          </svg>
+        </div>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid >
+      <Grid.Row columns = {2} >
+      {/* style = {{width: 550}} */}
+        <Grid.Column>
+          <Race pop = {false} />
+        </Grid.Column>
+        <Grid.Column >
+          <Race pop = {true}/> 
+          {/* style = {{width: 200}} */}
+        </Grid.Column>
+      </Grid.Row>
+
+      {/* <Grid.Row style = {{width: 900}}>
+        <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+            <div>
+              <svg width="450" height="145">
+
+                  <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
+                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                  <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
+                  <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
+                  <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
+
+
+                  {_.map(pieChartRace, (color, i) => {
+                    return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+              </svg>
+            </div>
+          </Grid.Column>
+      </Grid.Row> */}
+      </Grid>
+  </Grid.Column>
+  </div>
   
-// ));
-
-const toPrint = React.forwardRef((props, ref) => (
-  <div ref={ref}>Hello World</div>
 ));
+
 
 // export default function USVaccineTracker(props) {
 const USVaccineTracker = (props) => {
@@ -963,11 +946,8 @@ const USVaccineTracker = (props) => {
   useEffect(()=>{
     fetch('/data/timeseriesAll.json').then(res => res.json())
         .then(x => setDataTS(x));
-    
-
-
+  
   },[]);
-
 
 
   const componentRef = useRef();
@@ -1334,7 +1314,7 @@ const USVaccineTracker = (props) => {
                 <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
                   <Grid.Column rows = {2} >
 
-                    <Grid.Row style = {{width: 550}}>
+                    {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
                           <svg width="550" height="80">
@@ -1352,17 +1332,17 @@ const USVaccineTracker = (props) => {
                               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
 
                               <rect x={322.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
+                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                     */}
 
 
                               {/* {_.map(pieChartRace, (color, i) => {
                                 return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                               })}  */}
-                          </svg>
+                          {/* </svg>
                         </div>
                       </Grid.Column>
-                    </Grid.Row>
-                    <Grid >
+                    </Grid.Row> */}
+                    {/* <Grid >
                       <Grid.Row columns = {2} style = {{width: 1000}}>
                         <Grid.Column style = {{width: 300}}>
                           <Race pop = {false}/>
@@ -1370,7 +1350,7 @@ const USVaccineTracker = (props) => {
                         <Grid.Column style = {{width: 300, paddingLeft: 50}}>
                           <Race pop = {true}/> 
                         </Grid.Column>
-                      </Grid.Row>
+                      </Grid.Row> */}
                       
                       {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
@@ -1391,11 +1371,10 @@ const USVaccineTracker = (props) => {
                             </div>
                           </Grid.Column>
                       </Grid.Row> */}
-                      </Grid>
-                      <toPrint ref={componentRef} />
-                    <button onClick={() => exportComponentAsPNG(componentRef)}>
-                              Export As PNG
-                            </button>
+                      {/* </Grid> */}
+                      <ToPrint ref={componentRef} />
+                    <Button style={{marginTop: 10, marginLeft: 10}} active={false}
+                      content='Export As PNG' onClick={() => exportComponentAsPNG(componentRef, {fileName:'vaccination_by_race&ethnicity'})} />
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 0, paddingLeft: 140}}>

@@ -11,7 +11,10 @@
   background-size:18px 18px;
 }
 
-/* g[onhover] { cursor: pointer !important} */
+/* .ui.button:focus{
+    background-color: '' !important;
+    color: '' !important;
+} */
 
 /* .marker:hover {transform: scale(1.5) !important} */
 
