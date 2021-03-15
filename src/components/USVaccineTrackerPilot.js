@@ -1176,7 +1176,7 @@ const USVaccineTracker = (props) => {
                             content: {
                                 content: (
                                   <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                    One or more doses of any of the authorized vaccines received
+                                    Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
                                   </Header.Content>
                                 ),
                               },
@@ -1225,7 +1225,7 @@ const USVaccineTracker = (props) => {
                         </Dropdown>
                       
                       </p> */}
-                      <Header.Content style = {{paddingBottom: 10, paddingTop: 0}}>
+                      <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
                     </Header>
@@ -1455,7 +1455,7 @@ const USVaccineTracker = (props) => {
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 0, paddingLeft: 140}}>
-                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:10, paddingLeft: 6}}>
+                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
                         <p style = {{paddingLeft: 40}}>
