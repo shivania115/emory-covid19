@@ -123,7 +123,7 @@ function goToAnchor(anchor) {
 const contextRef = createRef()
 const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker', 
 'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety', 
-'Getting Vaccinated', 'After You Are Vaccinated','COVID-19 Vaccines FAQ'];
+'Getting Vaccinated', 'After You Are Vaccinated','COVID-19 Vaccines FAQ', "Vaccination by Race & Ethinicity"];
 var scrollCount = 0;
 
 function StickyExampleAdjacentContext(props) {
@@ -145,15 +145,19 @@ function StickyExampleAdjacentContext(props) {
                         size='small'
                         compact
                         pointing secondary vertical>
-                        <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
-                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
+                          <Menu.Item as='a' href="#" name={nameList[0]} active={props.activeCharacter == nameList[0] || activeItem === nameList[0]}
+                                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'> {nameList[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </Header></Menu.Item>
 
-                        <Menu.Item as='a' href="#vaccine" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
-                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
+                          <Menu.Item as='a' href="#race" name={nameList[9]} active={props.activeCharacter == nameList[9] || activeItem === nameList[9]}
+                                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[9]}</Header></Menu.Item>
+                          
+                          <Menu.Item as='a' href="#vaccine" name={nameList[1]} active={props.activeCharacter == nameList[1] || activeItem === nameList[1]}
+                                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[1]}</Header></Menu.Item>
 
-                        <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
-                              onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
-                        <Menu.Item as='a' href="#general" name={nameList[8]} active={props.activeCharacter == nameList[8] || activeItem === nameList[8]}
+                          <Menu.Item as='a' href="#burden" name={nameList[2]} active={props.activeCharacter == nameList[2] || activeItem === nameList[2]}
+                                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>{nameList[2]}</Header></Menu.Item>
+                                
+                          <Menu.Item as='a' href="#general" name={nameList[8]} active={props.activeCharacter == nameList[8] || activeItem === nameList[8]}
                                 onClick={(e, { name }) => { setActiveItem( { activeItem: name })  }}><Header as='h4'>{nameList[8]}</Header></Menu.Item>
                           <Menu.Item as='a' href="#general" name={nameList[3]} active={props.activeCharacter == nameList[3] || activeItem === nameList[3]}
                           // || activeItem === 'General Information'
@@ -1131,7 +1135,25 @@ const USVaccineTracker = (props) => {
                   <div style = {{width: 900}}>
                     <Header>
 
-                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated
+                    <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of population partially vaccinated</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    One of two doses of Pfizer or Moderna vaccine received
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } />
+
+                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated
                         <Dropdown inline header = "">
                           <Dropdown.Menu>
                             <Dropdown.Item text = 'One of two doses of Pfizer or Moderna vaccine received' />
@@ -1139,12 +1161,30 @@ const USVaccineTracker = (props) => {
                           </Dropdown.Menu>
                           
                         </Dropdown>
-                      </p>
+                      </p> */}
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]))} size='large' color='green' progress/>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
 
-                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated 
+                      <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of population fully vaccinated</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    One or more doses of any of the authorized vaccines received
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } /> 
+
+                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated 
                         <Dropdown inline header = "">
                           <Dropdown.Menu>
                             <Dropdown.Item text = 'Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received' />
@@ -1152,12 +1192,30 @@ const USVaccineTracker = (props) => {
                           </Dropdown.Menu>
                           
                         </Dropdown>
-                      </p>
+                      </p> */}
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]))} size='large' color='green' progress/>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
 
-                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population that received at least one dose
+                      <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of population that received at least one dose</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    One or more doses of any of the authorized vaccines received
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } />
+
+                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population that received at least one dose
                         <Dropdown inline header = "">
                           <Dropdown.Menu>
                             <Dropdown.Item text = 'One or more doses of any of the authorized vaccines received' />
@@ -1166,16 +1224,16 @@ const USVaccineTracker = (props) => {
                           
                         </Dropdown>
                       
-                      </p>
+                      </p> */}
                       <Header.Content style = {{paddingBottom: 10, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]))} size='large' color='green' progress/>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
                     </Header>
                   </div>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row >
-              {stateFips && <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 15}}defaultActiveIndex={1} panels={[
+              {stateFips && <Accordion id = "race" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 15}}defaultActiveIndex={1} panels={[
                         {
                             key: 'acquire-dog',
                             title: {
@@ -1184,7 +1242,7 @@ const USVaccineTracker = (props) => {
                             },
                             content: {
                                 content: (
-                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
                                     Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                     <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
                                     <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
@@ -1328,7 +1386,7 @@ const USVaccineTracker = (props) => {
               <Grid>
                 
                 <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
-                  <Grid.Column rows = {2} >
+                  <Grid.Column rows = {3} >
 
                     <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
@@ -1392,10 +1450,12 @@ const USVaccineTracker = (props) => {
                     <button onClick={() => exportComponentAsPNG(componentRef)}>
                               Export As PNG
                             </button> */}
+
+                    
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 0, paddingLeft: 140}}>
-                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
+                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:10, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
                         <p style = {{paddingLeft: 40}}>
@@ -1448,7 +1508,36 @@ const USVaccineTracker = (props) => {
                     </div>
                   </Grid.Column>
                 </Grid.Row>
+                 
               </Grid>
+              <Grid.Row>
+                <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 15}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
+                                    The demographics of vaccinated adults is obtained from the US CDC Covid Data Tracker. 
+                                    The CDC notes that “These demographic data only represent the geographic areas that 
+                                    contributed data and might differ by populations prioritized within each state or 
+                                    jurisdiction’s vaccination phase. Every geographic area has a different racial and 
+                                    ethnic composition, and not all are in the same vaccination phase.” For comparison 
+                                    purposes, we show the demographics of the US population. Note that the demographics of the total 
+                                    population will include some areas that are not represented in the vaccination data. 
+                                    The numbers are therefore our best estimation of vaccination coverage by race.
+
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } />
+
+              </Grid.Row>
 
               <div style = {{height: 25}}> </div>
               <Grid>
@@ -1631,7 +1720,7 @@ const USVaccineTracker = (props) => {
                                     },
                                     content: {
                                         content: (
-                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
                                             Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
 
                                             <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
@@ -1906,7 +1995,7 @@ const USVaccineTracker = (props) => {
                     
                   </Grid.Row>
                   <div style = {{height: 60}}>
-                    {stateFips && <Accordion style = {{paddingTop: 10, paddingLeft: 15}} defaultActiveIndex={1} panels={[
+                    {stateFips && <Accordion style = {{paddingTop: 10, paddingLeft: 17}} defaultActiveIndex={1} panels={[
                           {
                               key: 'acquire-dog',
                               title: {
@@ -2504,7 +2593,7 @@ const USVaccineTracker = (props) => {
                           }
                       <Grid>
                         <Grid.Row>
-                          {stateMapFips && <Accordion style = {{paddingTop: 30, paddingLeft: 23}}defaultActiveIndex={1} panels={[
+                          {stateMapFips && <Accordion style = {{paddingTop: 30, paddingLeft: 25}}defaultActiveIndex={1} panels={[
                             {
                                 key: 'acquire-dog',
                                 title: {
@@ -2514,12 +2603,12 @@ const USVaccineTracker = (props) => {
                                 content: {
                                     content: (
 
-                                      <div style = {{fontSize: "19px"}}>
+                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
                                         
                                         For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
 
                                         {stateMapFips && stateMapFips === "_nation" && <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
-                                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450}}>
+                                          <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 450}}>
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
@@ -2642,7 +2731,7 @@ const USVaccineTracker = (props) => {
                                     },
                                     content: {
                                         content: (
-                                          <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 510}}>
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 0, paddingLeft: 5,fontSize: "19px", width: 510}}>
                                             <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
                                             <br/> 
                                             <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition} 
