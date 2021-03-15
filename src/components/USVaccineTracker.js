@@ -1521,7 +1521,8 @@ const USVaccineTracker = (props) => {
                             content: {
                                 content: (
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
-                                    The demographics of vaccinated adults is obtained from the US CDC Covid Data Tracker. 
+                                    The demographics of vaccinated adults is obtained from the US
+                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker.</a> 
                                     The CDC notes that “These demographic data only represent the geographic areas that 
                                     contributed data and might differ by populations prioritized within each state or 
                                     jurisdiction’s vaccination phase. Every geographic area has a different racial and 
