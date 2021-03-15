@@ -19,9 +19,9 @@ import VaccinesFAQ from './VaccineFAQ';
 // } from "react-simple-maps";
 import allStates from "./allstates.json";
 
-import FileSaver from "file-saver";
-import { getPngData, useRechartToPng } from "recharts-to-png";
-import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+// import FileSaver from "file-saver";
+// import { getPngData, useRechartToPng } from "recharts-to-png";
+// import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 
 import { VictoryChart, 
   VictoryGroup, 
@@ -1373,8 +1373,8 @@ const USVaccineTracker = (props) => {
                       </Grid.Row> */}
                       {/* </Grid> */}
                       <ToPrint ref={componentRef} />
-                    <Button style={{marginTop: 10, marginLeft: 10}} active={false}
-                      content='Export As PNG' onClick={() => exportComponentAsPNG(componentRef, {fileName:'vaccination_by_race&ethnicity'})} />
+                    {/* <Button style={{marginTop: 10, marginLeft: 10}} active={false}
+                      content='Export As PNG' onClick={() => exportComponentAsPNG(componentRef, {fileName:'vaccination_by_race&ethnicity'})} /> */}
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 0, paddingLeft: 140}}>
