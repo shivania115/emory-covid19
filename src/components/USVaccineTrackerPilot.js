@@ -19,9 +19,9 @@ import VaccinesFAQ from './VaccineFAQ';
 // } from "react-simple-maps";
 import allStates from "./allstates.json";
 
-import FileSaver from "file-saver";
-import { getPngData, useRechartToPng } from "recharts-to-png";
-import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+// import FileSaver from "file-saver";
+// import { getPngData, useRechartToPng } from "recharts-to-png";
+// import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 
 import { VictoryChart, 
   VictoryGroup, 
@@ -377,13 +377,13 @@ class Race extends PureComponent{
 
   }
 
-  async handleDownload() {
-        const {chart} = this.state;
-        // Send the chart to getPngData
-        const pngData = await useRechartToPng(chart);
-        // Use FileSaver to download the PNG
-        FileSaver.saveAs(pngData, "test.png");
-      };
+  // async handleDownload() {
+  //       const {chart} = this.state;
+  //       // Send the chart to getPngData
+  //       const pngData = await useRechartToPng(chart);
+  //       // Use FileSaver to download the PNG
+  //       FileSaver.saveAs(pngData, "test.png");
+  //     };
 
   componentDidMount(){
     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
@@ -402,7 +402,6 @@ class Race extends PureComponent{
     // console.log("here", this.props.rate)
 
     return (
-      <Grid>
       <PieChart 
         ref={(ref) => this.setState({chart: ref})} // Save the ref of the chart
         width={300} height={280}>
@@ -431,10 +430,7 @@ class Race extends PureComponent{
           
         </Pie>
       </PieChart>
-      <span style={{ float: "left" }}>
-        <button onClick={() => this.handleDownload()}>Download</button>
-      </span>
-      </Grid>
+      
     );
   }
 }
@@ -1392,10 +1388,10 @@ const USVaccineTracker = (props) => {
                           </Grid.Column>
                       </Grid.Row> */}
                       </Grid>
-                      <toPrint ref={componentRef} />
+                      {/* <toPrint ref={componentRef} />
                     <button onClick={() => exportComponentAsPNG(componentRef)}>
                               Export As PNG
-                            </button>
+                            </button> */}
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 0, paddingLeft: 140}}>

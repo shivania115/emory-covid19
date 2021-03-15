@@ -798,7 +798,7 @@ export default function USVaccineTracker(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                           
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
