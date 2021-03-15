@@ -94,8 +94,9 @@ export default function VaccinesFAQ(props){
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
             <Header.Subheader style={{paddingTop:'2rem', paddingLeft: '0rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
-            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of {Date().slice(4,10)}. Before taking the vaccine, please consult your healthcare provider.
+            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of Mar 14, 2021. Before taking the vaccine, please consult your healthcare provider.
             If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:
+            {/* {Date().slice(4,10)} */}
             <ul style={{paddingLeft:'6rem', fontSize:'14pt', lineHeight:'1.5'}}>
             <li>
             <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/index.html" target="_blank" rel="noopener noreferrer"> CDC website </a>
@@ -139,7 +140,7 @@ export default function VaccinesFAQ(props){
             At this time, three vaccines have been approved for use by the United States Food and Drug Administration (<a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer">FDA</a>): 
             one developed by the company <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech</a>
             , one by <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>, and one by 
-            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer"> Janssen Biotech, Johnson & Johnson’s vaccine division</a>. 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> Janssen Biotech, Johnson & Johnson’s vaccine division</a>. 
         </p>
         </Accordion.Content>
 
@@ -155,8 +156,8 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(1)>0}>
           <p>
-            Both the <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
-            and the <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>
+            Both the <a style ={{color: "#397AB9"}} href="https://www.nejm.org/doi/full/10.1056/NEJMoa2034577" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
+            and the <a style ={{color: "#397AB9"}} href="https://www.nejm.org/doi/full/10.1056/nejmoa2022483" target="_blank" rel="noopener noreferrer"> Moderna </a>
             vaccines have shown that they are very effective in preventing symptomatic COVID-19 disease (95% and 94.1% effective, respectively). The Johnson & Johnson vaccine showed that it was also quite effective in preventing severe COVID-19 illness (85% effective), 
             as well as preventing less severe illness. All three vaccines  have also shown that they are safe to get. However, there are a few small differences in who should get them and when. The most important ones for anyone getting a vaccine are the following:
         </p>
@@ -230,7 +231,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(3)>0}>
         <p style={{marginBottom:0}}>
-            The first two approved COVID-19 vaccines, those from Pfizer-BioNTech and Moderna, are a new type of vaccine called an mRNA <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/mrna.html" target="_blank" rel="noopener noreferrer"> vaccine</a>.
+            The first two approved COVID-19 vaccines, those from Pfizer-BioNTech and Moderna, are a new type of vaccine called an <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/mrna.html" target="_blank" rel="noopener noreferrer"> mRNA vaccine</a>.
             An mRNA vaccine contains “instructions” for the body to make a piece of the “spike protein” found on the surface of the virus that causes COVID-19. These vaccines do not contain the whole virus. 
             The body then follows the instructions in the mRNA to make spike proteins and the immune system learns to recognize those proteins. 
             The body can then make antibodies to fight viruses that have this protein, in the same way it would learn to recognize and fight the virus if you actually got a COVID infection. 
@@ -269,7 +270,7 @@ export default function VaccinesFAQ(props){
         </p>
         <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         Although adenovirus-based vaccines are a newer type of vaccine, this technology has been studied since the 1970s. A safe and effective vaccine against Ebola (also developed by 
-        <a style ={{color: "#397AB9"}} href="https://www.jnj.com/latest-news/latest-facts-about-johnson-johnson-ebola-vaccine" target="_blank" rel="noopener noreferrer"> Johnson & Johnson </a>) that uses this technology has been in use since 2019. 
+        <a style ={{color: "#397AB9"}} href="https://www.jnj.com/latest-news/latest-facts-about-johnson-johnson-ebola-vaccine" target="_blank" rel="noopener noreferrer"> Johnson & Johnson</a>) that uses this technology has been in use since 2019. 
         Other viral vector vaccines that are being studied now include vaccines against HIV, Zika, and flu.  
         </p>
         </Accordion.Content>
@@ -300,7 +301,7 @@ export default function VaccinesFAQ(props){
           onClick={() => activeIndex.indexOf(35) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 35]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 35))}
         >
           <Icon name='dropdown' />
-            Can I get COVID-19 from taking the mRNA vaccine?
+          Can I get COVID-19 from taking the viral vector vaccine?
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(35)>0}>
@@ -430,11 +431,13 @@ export default function VaccinesFAQ(props){
           active={activeIndex.indexOf(6)>0}>
           <p style={{marginBottom:0}}>
           It is hard to know exactly how effective the authorized vaccines will be against new and different variants of SARS-CoV-2, the virus that causes COVID-19. 
-        Right now, the limited information we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or 
+        Right now, the limited <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/transmission/variant.html" target="_blank" rel="noopener noreferrer"> information </a>
+        we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or 
         from vaccination will still protect against most new variants. However, this is a changing situation, and something scientists are continuing to study. 
           </p>
           <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
-          At this time, the data show a mixed picture. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. At this time, it is recommended that even if you are vaccinated, you continue to wear a mask, especially in large groups.
+          At this time, the <a style ={{color: "#397AB9"}} href="https://www.bmj.com/content/372/bmj.n597" target="_blank" rel="noopener noreferrer"> data </a> 
+          show a mixed picture. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. At this time, it is recommended that even if you are vaccinated, you continue to wear a mask, especially in large groups.
           </p>
         </Accordion.Content>
 
@@ -622,7 +625,6 @@ export default function VaccinesFAQ(props){
           active={activeIndex.indexOf(12)>0}>
           <p style={{marginBottom:0}}>
         Yes. The clinical trials for each approved vaccine showed that the vaccine was effective in protecting vaccinated people from getting sick with COVID-19 disease. 
-        For each of the approved vaccines, 2 doses are required to be fully protected from COVID-19. Individuals are not considered to be “vaccinated” until after they receive their 2<sup>nd</sup> dose.
         </p>
         
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
@@ -662,7 +664,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(14)>0}>
           <p style={{marginBottom:0}}>
-        Yes, if you are getting one of the approved mRNA vaccines (from Pfizer-BioNTech or Moderna), your need both doses. For these vaccines, one dose is not effective enough to provide strong protection against COVID-19. You can enroll in 
+        Yes, if you are getting one of the approved mRNA vaccines (from Pfizer-BioNTech or Moderna), you need both doses. For these vaccines, one dose is not effective enough to provide strong protection against COVID-19. You can enroll in 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/reporting/vaxtext/index.html" target="_blank" rel="noopener noreferrer"> CDC’s VaxText program </a>
         to receive text messages to remind you when it is time to get your second dose.
         </p>
