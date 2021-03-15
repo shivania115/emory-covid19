@@ -436,7 +436,8 @@ export default function VaccinesFAQ(props){
         from vaccination will still protect against most new variants. However, this is a changing situation, and something scientists are continuing to study. 
           </p>
           <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
-          At this time, the data show a mixed picture. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. At this time, it is recommended that even if you are vaccinated, you continue to wear a mask, especially in large groups.
+          At this time, the <a style ={{color: "#397AB9"}} href="https://www.bmj.com/content/372/bmj.n597" target="_blank" rel="noopener noreferrer"> data </a> 
+          show a mixed picture. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. At this time, it is recommended that even if you are vaccinated, you continue to wear a mask, especially in large groups.
           </p>
         </Accordion.Content>
 
@@ -663,7 +664,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(14)>0}>
           <p style={{marginBottom:0}}>
-        Yes, if you are getting one of the approved mRNA vaccines (from Pfizer-BioNTech or Moderna), your need both doses. For these vaccines, one dose is not effective enough to provide strong protection against COVID-19. You can enroll in 
+        Yes, if you are getting one of the approved mRNA vaccines (from Pfizer-BioNTech or Moderna), you need both doses. For these vaccines, one dose is not effective enough to provide strong protection against COVID-19. You can enroll in 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/reporting/vaxtext/index.html" target="_blank" rel="noopener noreferrer"> CDC’s VaxText program </a>
         to receive text messages to remind you when it is time to get your second dose.
         </p>
