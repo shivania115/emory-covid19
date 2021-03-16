@@ -409,8 +409,8 @@ export default function StateMap(props) {
         }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
       });
 
-    fetch('/data/date.json').then(res => res.json())
-      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+    // fetch('/data/date.json').then(res => res.json())
+    //   .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
   }, []);
 
@@ -638,6 +638,8 @@ export default function StateMap(props) {
                   setData(newDict); 
                 }else if(i.tag === "racedataAll"){ //race data
                   setRaceData(i.racedataAll);       
+                }else if(i.tag === "date"){
+                  setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
                 }
               });
                     

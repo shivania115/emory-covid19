@@ -127,11 +127,11 @@ export default function USMap(props) {
     var max = 0;
     var min = 100;
   useEffect(()=>{
-    fetch('/data/date.json').then(res => res.json())
-      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+    // fetch('/data/date.json').then(res => res.json())
+    //   .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
-    fetch('/data/nationalDemogdata.json').then(res => res.json())
-        .then(x => setNationalDemog(x));
+    // fetch('/data/nationalDemogdata.json').then(res => res.json())
+    //     .then(x => setNationalDemog(x));
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -140,12 +140,12 @@ export default function USMap(props) {
           return {key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-    fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => 
-        setRaceData(x));
+    // fetch('/data/racedataAll.json').then(res => res.json())
+    //   .then(x => 
+    //     setRaceData(x));
     
-    fetch('/data/timeseriesAll.json').then(res => res.json())
-        .then(x => setAllTS(x));
+    // fetch('/data/timeseriesAll.json').then(res => res.json())
+    //     .then(x => setAllTS(x));
 
     // local
     // fetch('/data/data.json').then(res => res.json())
@@ -246,16 +246,35 @@ export default function USMap(props) {
 
                 }else if(i.tag === "racedataAll"){ //race data
                   setRaceData(i.racedataAll);       
+                }else if(i.tag === "date"){
+                  setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
+                }else if(i.tag === "nationalDemog"){
+                  setNationalDemog(i.nationalDemog);
+                }else if(i.tag === "racedataAll"){
+                  setRaceData(i.racedataAll);
                 }
               });
 
-              //all states' time series data
+              //all states' time series data in one single document
               let tempDict = {};
               const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
               const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
               tempDict = promSeries[1].timeseriesAll;
               tempDict["_nation"] = promSeries[0].timeseries_nation;
               setAllTS(tempDict);
+
+              //if timeseriesAll exceeds 16MB (max size for a single document on MongoDB), 
+              //use the following code and comment out the above
+
+              // const seriesQ = { $or: [ { state: "_n" } , { stateonly: "true" } ] };
+              // const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+              // promSeries.forEach( i => {
+              //   if(i.state === "_n"){
+              //     tempDict["_nation"] = i["timeseries_nation"];
+              //   }
+              //   tempDict[i.state] = i["timeseries" + i.state];
+              // });
+              // setAllTS(tempDict);
             };
           
           fetchData();
