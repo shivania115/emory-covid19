@@ -1134,97 +1134,39 @@ const USVaccineTracker = (props) => {
                <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 18}}> 
                   <div style = {{width: 900}}>
                     <Header>
-
-                    <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population partially vaccinated</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                    One of two doses of Pfizer or Moderna vaccine received
-                                  </Header.Content>
-                                ),
-                              },
-                          }
-                      ]
-                      } />
-
-                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated
-                        <Dropdown inline header = "">
-                          <Dropdown.Menu>
-                            <Dropdown.Item text = 'One of two doses of Pfizer or Moderna vaccine received' />
-                            
-                          </Dropdown.Menu>
-                          
-                        </Dropdown>
-                      </p> */}
+                      
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 975}}>
+                          Percent of the U.S. population partially vaccinated<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            One of two doses of Pfizer or Moderna vaccine received
+                          </Header.Content>
+                        </Header>
+                      </div>
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
 
-                      <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population fully vaccinated</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                    Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
-                                  </Header.Content>
-                                ),
-                              },
-                          }
-                      ]
-                      } /> 
-
-                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated 
-                        <Dropdown inline header = "">
-                          <Dropdown.Menu>
-                            <Dropdown.Item text = 'Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received' />
-                            
-                          </Dropdown.Menu>
-                          
-                        </Dropdown>
-                      </p> */}
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 975}}>
+                          Percent of the U.S. population fully vaccinated<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
+                          </Header.Content>
+                        </Header>
+                      </div>
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
 
-                      <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population that received at least one dose</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
-                                    One or more doses of any of the authorized vaccines received
-                                  </Header.Content>
-                                ),
-                              },
-                          }
-                      ]
-                      } />
-
-                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population that received at least one dose
-                        <Dropdown inline header = "">
-                          <Dropdown.Menu>
-                            <Dropdown.Item text = 'One or more doses of any of the authorized vaccines received' />
-                            
-                          </Dropdown.Menu>
-                          
-                        </Dropdown>
-                      
-                      </p> */}
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 975}}>
+                          Percent of the U.S. population that received at least one dose<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            One or more doses of any of the authorized vaccines received
+                          </Header.Content>
+                        </Header>
+                      </div>
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
                         <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
@@ -1749,7 +1691,7 @@ const USVaccineTracker = (props) => {
                   <Grid.Column style ={{width: 350}}>
                     <Header as='h2' style={{fontWeight: 400}}>
                       <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 36, paddingLeft: 35}}>
-                        Vaccination Status in <b>{stateName}</b>
+                        Vaccination Status in <br/> <b>{stateName}</b>
                         
                         
                       </Header.Content>
@@ -1801,9 +1743,9 @@ const USVaccineTracker = (props) => {
 
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Newly distributed per 100,000"} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
 
                             </Table.Row>
                             
