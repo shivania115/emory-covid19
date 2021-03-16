@@ -236,12 +236,12 @@ export default function CountyReport() {
     // }
   // }, []);
 
-  useEffect(() => {
-    fetch('/data/date.json').then(res => res.json())
-      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+  // useEffect(() => {
+  //   fetch('/data/date.json').then(res => res.json())
+  //     .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
 
-  });
+  // });
 
   // mongo
   useEffect(()=>{
@@ -268,16 +268,18 @@ export default function CountyReport() {
 
         const fetchData = async() => { 
           //all static data
-          const staticQ = {tag: "nationalrawfull"};
+          const staticQ = { $or: [ {tag: "date"}, {tag: "nationalrawfull"}] };
+          
           const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
 
-          // promStatic.forEach(i=> {
-          //   if(i.tag === "nationalrawfull"){ //nationalraw
-          //     newDict = i.data;
-          //     setData(newDict); 
-          //   }
-          // });
-          setData(promStatic[0].data);
+          promStatic.forEach( i => {
+            if(i.tag === "nationalrawfull"){ //race data
+              setData(i.data);       
+            }else if(i.tag === "date"){
+              setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
+            }
+          });
+          // setData(promStatic[0].data);
 
           let seriesDict = {};
           let covidmortality7dayfig = 0;
@@ -334,7 +336,7 @@ export default function CountyReport() {
 
 
   if (data && varMap) {
-    console.log(data[stateFips]['casesfig']);
+    // console.log(data[stateFips]['casesfig']);
   return (
     <HEProvider> 
       <div>
@@ -409,7 +411,7 @@ export default function CountyReport() {
                   </tr>
                   <Table.Row textAlign = 'center'>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName :countyName.match(/[^\s]+/)} </Table.HeaderCell>
-                    {/* <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].deathsfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].deathsfig < 0?'0':data["" + stateFips + countyFips].deathsfig.toLocaleString()} </Table.HeaderCell> */}
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].deathsfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].deathsfig < 0?'0':data["" + stateFips + countyFips].deathsfig.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortalityfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortalityfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortalityfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].mean7daydeaths==="N/A"? "Loading..." : data["" + stateFips + countyFips].mean7daydeaths < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].mean7daydeaths).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell> 
@@ -429,7 +431,7 @@ export default function CountyReport() {
               </Table>
             </Grid.Row>
 
-            <span style={{ color: '#73777B', paddingTop: 20, fontSize:"19px"}}>Last updated on {date}</span>
+            <span style={{ color: '#000000', paddingTop: 20, fontSize:"19px"}}>Last updated on {date}</span>
 
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 51, paddingBottom: 40}}>COVID-19 Outcomes </Divider>
@@ -593,7 +595,7 @@ export default function CountyReport() {
                 <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: "19px"}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: "19px", lineHeight: "16pt"}}>
-                      As of <b>{data["" + stateFips + countyFips].t==='n/a'?'N/A':(new Date(data["" + stateFips + countyFips].t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 cases<br/> 
+                      As of <b>{date}</b>, the daily average of new COVID-19 cases<br/> 
                       in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
@@ -603,7 +605,7 @@ export default function CountyReport() {
                 <Header as='h2' style={{fontWeight: 400, width: 550, paddingLeft: 55}}>
                   <Header.Content style={{fontSize: "19px"}}>
                     <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 570, fontSize: "19px", lineHeight: "16pt"}}>
-                      As of <b>{data["" + stateFips + countyFips].t==='n/a'?'N/A':(new Date(data["" + stateFips + countyFips].t*1000).toLocaleDateString())}</b>, the daily average of new COVID-19 deaths<br/>
+                      As of <b>{date}</b>, the daily average of new COVID-19 deaths<br/>
                       in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100,000 residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100,000 and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100,000.
                     </Header.Subheader>
                   </Header.Content>
@@ -611,7 +613,7 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {date}</span>
+          <span style={{color: '#000000', fontSize:"19px"}}>Last updated on {date}</span>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 10}}>County Characteristics</Divider>
 
@@ -732,7 +734,7 @@ export default function CountyReport() {
 
 
                                             </text>
-                                            <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {date}</span>
+                                            <span style={{color: '#000000', fontSize:"19px"}}>Last updated on {date}</span>
 
                                     </Grid.Row>
           </Grid>
@@ -879,7 +881,7 @@ export default function CountyReport() {
                   </Header.Content>
               </Grid.Column>
             </Grid.Row>
-            <span style={{color: '#73777B', fontSize:"19px", paddingTop: "30px"}}>Last updated on {date}</span>
+            <span style={{color: '#000000', fontSize:"19px", paddingTop: "30px"}}>Last updated on {date}</span>
 
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '20pt', paddingTop: 54, paddingBottom: 20}}>Data Table</Divider>
@@ -923,7 +925,7 @@ export default function CountyReport() {
             <a style ={{color: "#397AB9", fontSize: "19px", marginLeft: 12}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> Data Sources and Definitions</a>
 
             <Divider hidden/>
-            <span style={{color: '#73777B', fontSize:"19px"}}>Last updated on {date}</span>
+            <span style={{color: '#000000', fontSize:"19px"}}>Last updated on {date}</span>
 
             </div>
           }

@@ -409,8 +409,7 @@ export default function StateMap(props) {
         }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
       });
 
-    // fetch('/data/date.json').then(res => res.json())
-    //   .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+    
 
   }, []);
 
@@ -508,6 +507,8 @@ export default function StateMap(props) {
   //       setConfig(configMatched);
 
   //       setStateName(configMatched.name);
+  //       fetch('/data/date.json').then(res => res.json())
+  //        .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
   //       fetch('/data/data.json').then(res => res.json())
   //         .then(x => {
@@ -644,9 +645,9 @@ export default function StateMap(props) {
               });
                     
           
-              const stateSeriesQ = {tag: "stateonly"};
+              const stateSeriesQ = {full_fips: stateFips};
               const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
-              let stateSeriesDict = promState[0].timeseriesAll[stateFips];
+              let stateSeriesDict = promState[0]["timeseries" + stateFips];
               setStateTS(stateSeriesDict);
 
                 if(stateFips === "_nation"){
