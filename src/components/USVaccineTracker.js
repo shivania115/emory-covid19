@@ -1139,7 +1139,7 @@ const USVaccineTracker = (props) => {
                         {
                             key: 'acquire-dog',
                             title: {
-                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of population partially vaccinated</u>,
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population partially vaccinated</u>,
                                 icon: 'dropdown',
                             },
                             content: {
@@ -1170,7 +1170,7 @@ const USVaccineTracker = (props) => {
                         {
                             key: 'acquire-dog',
                             title: {
-                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of population fully vaccinated</u>,
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population fully vaccinated</u>,
                                 icon: 'dropdown',
                             },
                             content: {
@@ -1201,7 +1201,7 @@ const USVaccineTracker = (props) => {
                         {
                             key: 'acquire-dog',
                             title: {
-                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of population that received at least one dose</u>,
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population that received at least one dose</u>,
                                 icon: 'dropdown',
                             },
                             content: {
@@ -1250,7 +1250,7 @@ const USVaccineTracker = (props) => {
 
                                     <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
                                     distributed to facilities across the United States by the federal government. 
-                                    Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
+                                    Newly distributed per 100,000 for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
                                     
                                     <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                                     <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
@@ -1521,13 +1521,13 @@ const USVaccineTracker = (props) => {
                             content: {
                                 content: (
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
-                                    The demographics of vaccinated adults is obtained from the US
-                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker.</a> 
+                                    The demographics of vaccinated adults is obtained from the U.S.
+                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker. </a> 
                                     The CDC notes that “These demographic data only represent the geographic areas that 
                                     contributed data and might differ by populations prioritized within each state or 
                                     jurisdiction’s vaccination phase. Every geographic area has a different racial and 
                                     ethnic composition, and not all are in the same vaccination phase.” For comparison 
-                                    purposes, we show the demographics of the US population. Note that the demographics of the total 
+                                    purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
                                     population will include some areas that are not represented in the vaccination data. 
                                     The numbers are therefore our best estimation of vaccination coverage by race.
 
@@ -1730,7 +1730,7 @@ const USVaccineTracker = (props) => {
 
                                             <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
                                             distributed to facilities across the United States by the federal government. 
-                                            Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
+                                            Newly distributed per 100,000 for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
                                             For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
                                             
                                             <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>

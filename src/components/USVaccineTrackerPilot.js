@@ -377,13 +377,16 @@ class Race extends PureComponent{
 
 
   componentDidMount(){
-    fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
-      dataTot: [
-        data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
-        data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
-        data['vaccineRace'][0]['White'][0]
-      ] }));
-  }
+    if(this.props.pop == true){
+      fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
+        dataTot: [
+          data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
+          data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
+          data['vaccineRace'][0]['White'][0]
+        ] }));
+      }
+    }
+    
 
    
 
@@ -586,8 +589,10 @@ const ToPrint = React.forwardRef((props, ref) => (
 ));
 
 
-// export default function USVaccineTracker(props) {
-const USVaccineTracker = (props) => {
+
+
+export default function USVaccineTracker(props) {
+// const USVaccineTracker = (props) => {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -611,6 +616,7 @@ const USVaccineTracker = (props) => {
   const [dataTS, setDataTS] = useState();
   const [VaxSeries, setVaxSeries] = useState();
   const [vaccineData, setVaccineData] = useState();
+  const [stateVaccineData, setStateVaccineData] = useState();
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
@@ -711,6 +717,10 @@ const USVaccineTracker = (props) => {
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => {setStateLabels(x);});
+
+    fetch('/data/stateVaccineData.json').then(res => res.json())
+      .then(x => {setStateVaccineData(x);});
+
 
     fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
       .then(x => {setVaxVarMap(x);});
@@ -1437,7 +1447,7 @@ const USVaccineTracker = (props) => {
               <Grid>
                 <Grid.Column>
                   <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20}}> COVID-19 Vaccination by State </Divider>
-
+                  
                 </Grid.Column>
               </Grid>
 
@@ -2718,4 +2728,4 @@ const USVaccineTracker = (props) => {
   }
 }
 
-export default USVaccineTracker;
+// export default USVaccineTracker;
