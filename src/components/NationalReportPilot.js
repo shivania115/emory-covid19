@@ -409,7 +409,7 @@ useEffect(()=>{
    
     {(()=>{
       if (chartNo<3){
-        return (<Accordion style = {{paddingLeft: 35}} defaultActiveIndex={1} panels={[
+        return (<Accordion style = {{paddingLeft: 18}} defaultActiveIndex={1} panels={[
         {
             key: 'acquire-dog',
             title: {
@@ -439,7 +439,7 @@ useEffect(()=>{
     ]
           } />)}
       else{
-        return (<Accordion style = {{paddingLeft: 35}} defaultActiveIndex={1} panels={[
+        return (<Accordion style = {{paddingLeft: 20}} defaultActiveIndex={1} panels={[
         {
             key: 'acquire-dog',
             title: {
@@ -2308,23 +2308,23 @@ export default function NationalReport(props) {
               <Grid>
                 <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 40}}>
                   <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
-                    <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses distributed</center>
+                    <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses <br/> delivered</center>
 
                     
                   </Grid.Column>
                   
                   <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 8}}> 
-                    <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> first dose</center>
+                    <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Total doses <br/> administered</center>
 
                   </Grid.Column>
                   <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 8}}> 
            
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> at least one dose</center>
 
                   </Grid.Column>
                   <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 8}}> 
                    
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)} </center>
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose </center>
   
                     </Grid.Column>
                 </Grid.Row>
@@ -2347,7 +2347,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                           
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Administered"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2358,7 +2358,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2369,7 +2369,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"].toFixed(0))}</p><br/>
                         </Header.Content>
                       </Header>
                       </div>
@@ -2379,13 +2379,40 @@ export default function NationalReport(props) {
                 <Grid.Column style = {{width: 900, paddingLeft: 205, paddingTop: 18}}> 
                     <div style = {{width: 900}}>
                       <Header>
-                        <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated (one dose received) </p>
-                        <Header.Content style = {{paddingBottom: 20, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]).toFixed(0))} size='large' color='green' progress/>
-                        </Header.Content>
-                        <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated (two doses received)</p>
+                        <div>
+                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                            Percent of the U.S. population partially vaccinated<br/>
+                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                              One of two doses of Pfizer or Moderna vaccine received
+                            </Header.Content>
+                          </Header>
+                        </div>
                         <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(0))} size='large' color='green' progress/>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
+                        </Header.Content>
+
+                        <div>
+                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                            Percent of the U.S. population fully vaccinated<br/>
+                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                              Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
+                            </Header.Content>
+                          </Header>
+                        </div>
+                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
+                        </Header.Content>
+
+                        <div>
+                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                            Percent of the U.S. population that received at least one dose<br/>
+                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                              One or more doses of any of the authorized vaccines received
+                            </Header.Content>
+                          </Header>
+                        </div>
+                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2395,7 +2422,7 @@ export default function NationalReport(props) {
               <Grid>
 
                 <Grid.Row >
-                  <Accordion style = {{paddingTop: 0, paddingLeft: 223, paddingBottom: 0}}defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 0, paddingLeft: 204, paddingBottom: 0}}defaultActiveIndex={1} panels={[
                             {
                                 key: 'acquire-dog',
                                 title: {
@@ -2404,18 +2431,12 @@ export default function NationalReport(props) {
                                 },
                                 content: {
                                     content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 900}}>
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 900}}>
                                         Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                         <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                        <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
                                         <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
                                         <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
-
-                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                        distributed to facilities across the United States by the federal government. 
-                                        Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
-                                        
-                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
 
                                       </Header.Content>
@@ -2941,7 +2962,7 @@ export default function NationalReport(props) {
 
                       <Grid>
                       <Grid.Row>
-                        <Accordion style = {{paddingTop: 50, paddingLeft: 96, paddingBottom: 28}} defaultActiveIndex={1} panels={[
+                        <Accordion style = {{paddingTop: 50, paddingLeft: 98, paddingBottom: 45}} defaultActiveIndex={1} panels={[
                               {
                                   key: 'acquire-dog',
                                   title: {
@@ -2950,7 +2971,7 @@ export default function NationalReport(props) {
                                   },
                                   content: {
                                       content: (
-                                          <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                          <Header as='h2' style={{paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                             <Header.Content  style={{fontSize: "14pt"}}>
                                               <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                                 The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
@@ -3037,7 +3058,7 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
                       <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{width: 560, fontSize: "18pt"}}> Racial & Ethnic Make Up <br/> of COVID-19 Cases and Population in the U.S.</b> </center> 
+                        <center> <b style= {{width: 560, fontSize: "18pt"}}> Racial & Ethnic Make Up of <br/> COVID-19 Cases and Population in the U.S.</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -3149,6 +3170,38 @@ export default function NationalReport(props) {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
+              <Grid.Row>
+                      <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
+                            {
+                                key: 'acquire-dog',
+                                title: {
+                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                    icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+
+                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
+                                        
+
+                                        <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
+                                          <Header.Content style={{fontWeight: 400, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 900}}>
+                                            The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                            <br/>
+                                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                          
+                                          </Header.Content>
+                                        </Grid.Row>
+
+                                      </div>
+                                    ),
+                                  },
+                              }
+                          ]
+
+                          } /> 
+                        
+                        </Grid.Row>
 
 
               
@@ -3910,7 +3963,7 @@ export default function NationalReport(props) {
                                 },
                                 content: {
                                     content: (
-                                        <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                        <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                           <Header.Content  style={{fontSize: "14pt"}}>
                                             <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                             This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4135,7 +4188,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4358,7 +4411,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4576,7 +4629,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4792,7 +4845,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -5016,7 +5069,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5240,7 +5293,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5436,7 +5489,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5639,7 +5692,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5835,7 +5888,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -6032,7 +6085,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -6229,7 +6282,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 

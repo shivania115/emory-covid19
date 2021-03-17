@@ -1187,15 +1187,12 @@ const USVaccineTracker = (props) => {
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
                                     Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                     <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                    <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
                                     <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
                                     <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
-                                    <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                    distributed to facilities across the United States by the federal government. 
-                                    Newly distributed per 100,000 for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
-                                    
-                                    <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                    <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
+                                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                    <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
 
 
                                   </Header.Content>
@@ -1663,21 +1660,19 @@ const USVaccineTracker = (props) => {
                                     },
                                     content: {
                                         content: (
-                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", lineHeight: "20px", width: 975}}>
                                             Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
 
-                                            <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                            <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                            <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
+                                            <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
                                             <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
                                             <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
                                             distributed to facilities across the United States by the federal government. 
                                             Newly distributed per 100,000 for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
                                             For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
-                                            
-                                            <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
-
+                                           
                                           </Header.Content>
                                       ),
                                     },
@@ -1708,14 +1703,14 @@ const USVaccineTracker = (props) => {
                             </tr>
                             <Table.Row textAlign = 'center' style = {{height: 40}}>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Administered_Dose1"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received first dose"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["percentVaccinatedDose1"]) + "%"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["percentVaccinatedDose1"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
 
                             </Table.Row>
                             <Table.Row textAlign = 'center'>
@@ -1744,8 +1739,8 @@ const USVaccineTracker = (props) => {
                             </Table.Row> */}
                             <Table.Row textAlign = 'center'>
                               <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
 
                             </Table.Row>
                             
@@ -2742,11 +2737,11 @@ const USVaccineTracker = (props) => {
             <thead>
               <tr>
                 <th># received first dose</th>
-                <th>{numberWithCommas(vaccineData[fips]["Administered_Dose1"])}</th>
+                <th>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</th>
               </tr>
               <tr>
                 <th> % received first dose</th>
-                <th>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}</th>
+                <th>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</th>
               </tr>
               <tr>
                 <th> # received second dose</th>
