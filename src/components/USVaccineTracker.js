@@ -1030,7 +1030,7 @@ const USVaccineTracker = (props) => {
                   </Grid.Column>
                   <Grid.Column style = {{width: 240, paddingLeft: 232, paddingTop: 8}}> 
                    
-                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
+                        <center style={{width: 240, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number fully vaccinated</center>
   
                     </Grid.Column>
                 </Grid.Row>
@@ -2744,11 +2744,11 @@ const USVaccineTracker = (props) => {
                 <th>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</th>
               </tr>
               <tr>
-                <th> # received second dose</th>
+                <th> # fully vaccinated</th>
                 <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</th>
               </tr>
               <tr>
-                <th> % received second dose</th>
+                <th> % fully vaccinated</th>
                 <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</th>
               </tr>
             </thead>

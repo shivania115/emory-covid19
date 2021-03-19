@@ -2324,7 +2324,7 @@ export default function NationalReport(props) {
                   </Grid.Column>
                   <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 8}}> 
                    
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose </center>
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number fully <br/> vaccinated </center>
   
                     </Grid.Column>
                 </Grid.Row>
