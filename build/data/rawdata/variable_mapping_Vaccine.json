@@ -32,7 +32,7 @@
     
     "Series_Complete_Yes": {
         "variable": "Series_Complete_Yes",
-        "name": "Number received second dose",
+        "name": "Number fully vaccinated",
         "definition": "is the number of individuals in the United States recorded in CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received.",
         "group": "outcomes"},
     "Administered_Moderna": {
@@ -58,7 +58,7 @@
     "Series_Complete_Pop_Pct": {
         "variable": "Series_Complete_Pop_Pct",
         "name": "Percent of the U.S. population fully vaccinated",
-        "definition": "is the percentage of the total U.S. population that has received two doses of a COVID-19 vaccine according to CDC database. The total U.S. population is derived from the Census.",
+        "definition": "is the percentage of the total U.S. population that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
         "group": "outcomes"},
     "Dist_Per_100K_new": {
         "variable": "Dist_Per_100K_new",
@@ -68,12 +68,12 @@
     "AdministeredPartial": {
         "variable": "AdministeredPartial",
         "name": "Number received the first dose",
-        "definition": "is the number of individuals in the United States recorded in CDC database to have received one of two doses of Pfizer or Moderna vaccine received.",
+        "definition": "is the number of individuals in the United States recorded in CDC database to have received one of two doses of Pfizer or Moderna vaccine.",
         "group": "outcomes"},
     "PercentAdministeredPartial": {
         "variable": "PercentAdministeredPartial",
-        "name": "Percent received the first dose",
-        "definition": "is the percentage of the total U.S. population that has received only the first dose of a COVID-19 vaccine according to CDC database. The total U.S. population is derived from the Census.",
+        "name": "Percent of the U.S. population received the first dose",
+        "definition": "is the percentage of the total U.S. population that has received one of two doses of Pfizer or Moderna vaccine according to CDC database. The total U.S. population is derived from the Census.",
         "group": "outcomes"},
     "Dist_new": {
         "variable": "Dist_new",
