@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, createRef, PureComponent} from 'react'
-import { Container, Breadcrumb, Dropdown, Header, Grid, Progress, Loader, Divider, Popup, Table, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
+import { Container, Breadcrumb, Dropdown, Header, Grid, Progress, Loader, Divider, Popup, Tab, Table, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -46,7 +46,7 @@ import configs from "./state_config.json";
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
-import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
@@ -204,6 +204,7 @@ function CaseChart(props){
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+        <Brush dataKey="t"/>
         <Line data={data["_nation"]} name="Nation" type='monotone' dataKey={variable} dot={false} 
               isAnimationActive={animationBool} 
               onAnimationEnd={()=>setAnimationBool(false)} 
@@ -218,7 +219,7 @@ function CaseChart(props){
               stroke={stateColor} strokeWidth="2" />}
 
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
-
+        
 
         
         <Tooltip labelFormatter={labelFormatter} formatter={variable === "covidmortality7dayfig" ? (value) => numberWithCommas(value.toFixed(1)): (value) => numberWithCommas(value.toFixed(0))} active={true}/>
@@ -377,13 +378,18 @@ class Race extends PureComponent{
 
 
   componentDidMount(){
-    fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
-      dataTot: [
-        data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
-        data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
-        data['vaccineRace'][0]['White'][0]
-      ] }));
+    if(this.props.state == false){
+      fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
+        dataTot: [
+          data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
+          data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
+          data['vaccineRace'][0]['White'][0]
+        ] }));
+    }else{
+
+    }
   }
+    
 
    
 
@@ -585,9 +591,186 @@ const ToPrint = React.forwardRef((props, ref) => (
   
 ));
 
+function ComparisonTable(props){
+  return(
+    <div>
+      <Header as='h2' style={{fontWeight: 400}}>
+        <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 20, paddingLeft: 35}}>
+          Vaccination Status in <br/> <b>{props.stateName}</b>
+          
+          
+        </Header.Content>
+      </Header>
+      <Grid>
+        <Grid.Row style={{width: 350, paddingLeft: 35}}>
+          <Table celled fixed style = {{width: 350}}>
+            <Table.Header>
 
-// export default function USVaccineTracker(props) {
-const USVaccineTracker = (props) => {
+              <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                  <td colSpan='1' style={{width:130}}> </td>
+                  <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {props.fips === "_nation" ? "Select State":props.abbrev[props.fips]["state_abbr"]}</td>
+                  <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
+              </tr>
+              <Table.Row textAlign = 'center' style = {{height: 40}}>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received first dose"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Administered_Dose1"])} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Administered_Dose1"])} </Table.HeaderCell>
+
+              </Table.Row>
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received first dose"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["percentVaccinatedDose1"]) + "%"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["percentVaccinatedDose1"]) + "%"} </Table.HeaderCell>
+
+              </Table.Row>
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Number received second dose"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
+
+              </Table.Row>
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent received second dose"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+
+              </Table.Row>
+              
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + props.date} </Table.HeaderCell>
+                <Table.HeaderCell  style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
+
+              </Table.Row>
+              
+            </Table.Header>
+          </Table>
+        </Grid.Row>
+        
+      </Grid>
+    </div>
+  )
+}
+
+function RaceBarChart(props){
+  return(
+    <div>
+          <VictoryChart
+            theme={VictoryTheme.material}
+            domainPadding={{ x: 10 }}
+            containerComponent={<VictoryContainer responsive={false}/>}
+          >
+            <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+            <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                          
+            <VictoryBar
+              horizontal
+              barWidth={20}
+              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+              
+              style={{
+                data: { fill: "#00ff00" , opacity: 0.5}
+              }}
+              data={
+                [
+                  // {key: "Hispanic", 'value': props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']},
+                {key: "American Natives", 'value': props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']},
+                {key: "Asian", 'value': props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']},
+                // {key: "African American", 'value': props.VaccineData[props.fips][0]['African American'][0]['percentVaccinated']},
+                {key: "White", 'value': props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']}
+              ]
+              }
+              x="key"
+              y="value"
+            />
+            <VictoryBar 
+              horizontal
+              barWidth={20}
+              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+              style={{
+                data: { fill: "#00000", opacity: 0.2 }
+              }}
+              data={
+                [{key: props.data['race'][0]['Hispanic'][0]['demogLabel'], 'value': props.data['race'][0]['Hispanic'][0]['percentPop']},
+                {key: props.data['race'][0]['American Natives'][0]['demogLabel'], 'value': props.data['race'][0]['American Natives'][0]['percentPop']},
+                {key: props.data['race'][0]['Asian'][0]['demogLabel'], 'value': props.data['race'][0]['Asian'][0]['percentPop']},
+                {key: props.data['race'][0]['African American'][0]['demogLabel'], 'value': props.data['race'][0]['African American'][0]['percentPop']},
+                {key: props.data['race'][0]['White'][0]['demogLabel'], 'value': props.data['race'][0]['White'][0]['percentPop']}]
+              }
+              x="key"
+              y="value"
+            />
+          </VictoryChart>
+        </div>
+  )
+}
+
+
+// const TabExampleBasic = () => <Tab panes={panes} />
+
+function TabExampleBasic(props){
+  const panes = [
+    { menuItem: 'State & Nation Vaccination', render: () => 
+      <Tab.Pane attached={false}>
+        <ComparisonTable 
+          data = {props.data} 
+          fips = {props.fips} 
+          stateName = {props.stateName} 
+          abbrev = {props.abbrev}
+          date = {props.date}
+        />
+      </Tab.Pane> 
+    },
+    { menuItem: 'Vaccination by Race & Ethnicity', render: () => 
+      <Tab.Pane attached={false}>
+        <RaceBarChart
+          data = {props.demogData}
+          fips = {props.fips}
+          VaccineData = {props.VaccineData}
+        />
+      </Tab.Pane> },
+  ]
+
+  return(
+    <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+  )
+}
+
+
+function NewLinePlot(props){
+  const data = props.data;
+  const dataState = props.dataState;
+  const sfps = props.stateFips;
+  const ticks = props.ticks;
+  const variable = props.var;
+  const tickFormatter = props.tickFormatter;
+  const labelFormatter = props.labelFormatter;
+
+  
+// ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}
+    return (
+      
+        <LineChart width={450} height={300} data={data["_nation"]}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey = "t" allowDuplicatedCategory={false}/>
+          <YAxis  />
+          <Tooltip />
+          <Line data = {data["_nation"]} type="monotone" dataKey={variable} stroke="#8884d8" dot={false}/>
+          {/* <Line data = {dataState} type="monotone" dataKey={variable} stroke="#82ca9d" dot={false}/> */}
+          
+          <Brush dataKey = "t" startIndex = {0} />
+
+        </LineChart>
+
+      
+    );
+  
+}
+
+
+
+export default function USVaccineTracker(props) {
+// const USVaccineTracker = (props) => {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -611,6 +794,7 @@ const USVaccineTracker = (props) => {
   const [dataTS, setDataTS] = useState();
   const [VaxSeries, setVaxSeries] = useState();
   const [vaccineData, setVaccineData] = useState();
+  const [stateVaccineData, setStateVaccineData] = useState();
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
@@ -711,6 +895,10 @@ const USVaccineTracker = (props) => {
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => {setStateLabels(x);});
+
+    fetch('/data/stateVaccineData.json').then(res => res.json())
+      .then(x => {setStateVaccineData(x);});
+
 
     fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
       .then(x => {setVaxVarMap(x);});
@@ -954,7 +1142,7 @@ const USVaccineTracker = (props) => {
 
 
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    // console.log(vaccineData[stateFips]);
+    console.log(stateVaccineData["01"][0]["Asian"][0]["percentVaccinated"]);
   return (
     <HEProvider>
       <div>
@@ -1114,8 +1302,25 @@ const USVaccineTracker = (props) => {
                <Grid.Column style = {{width: 900, paddingLeft: 35, paddingTop: 18}}> 
                   <div style = {{width: 900}}>
                     <Header>
+                    {/* <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population partially vaccinated</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    One of two doses of Pfizer or Moderna vaccine received
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } /> */}
 
-                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated
+                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated
                         <Dropdown inline header = "">
                           <Dropdown.Menu>
                             <Dropdown.Item text = 'One of two doses of Pfizer or Moderna vaccine received' />
@@ -1123,12 +1328,38 @@ const USVaccineTracker = (props) => {
                           </Dropdown.Menu>
                           
                         </Dropdown>
-                      </p>
+                      </p> */}
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 975}}>
+                          Percent of the U.S. population partially vaccinated<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            One of two doses of Pfizer or Moderna vaccine received
+                          </Header.Content>
+                        </Header>
+                      </div>
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]))} size='large' color='green' progress/>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
 
-                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated 
+                      {/* <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population fully vaccinated</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } />  */}
+
+                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated 
                         <Dropdown inline header = "">
                           <Dropdown.Menu>
                             <Dropdown.Item text = 'Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received' />
@@ -1136,12 +1367,38 @@ const USVaccineTracker = (props) => {
                           </Dropdown.Menu>
                           
                         </Dropdown>
-                      </p>
+                      </p> */}
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 975}}>
+                          Percent of the U.S. population fully vaccinated<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
+                          </Header.Content>
+                        </Header>
+                      </div>
                       <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]))} size='large' color='green' progress/>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
 
-                      <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population that received at least one dose
+                      {/* <Accordion style = {{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{fontSize: "22px", fontFamily: 'lato', color: "#004071"}}>Percent of the U.S. population that received at least one dose</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px", width: 975}}>
+                                    One or more doses of any of the authorized vaccines received
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } /> */}
+
+                      {/* <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population that received at least one dose
                         <Dropdown inline header = "">
                           <Dropdown.Menu>
                             <Dropdown.Item text = 'One or more doses of any of the authorized vaccines received' />
@@ -1150,9 +1407,17 @@ const USVaccineTracker = (props) => {
                           
                         </Dropdown>
                       
-                      </p>
-                      <Header.Content style = {{paddingBottom: 10, paddingTop: 0}}>
-                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]))} size='large' color='green' progress/>
+                      </p> */}
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 975}}>
+                          Percent of the U.S. population that received at least one dose<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            One or more doses of any of the authorized vaccines received
+                          </Header.Content>
+                        </Header>
+                      </div>
+                      <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                        <Progress style = {{width: 970}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                       </Header.Content>
                     </Header>
                   </div>
@@ -1376,7 +1641,9 @@ const USVaccineTracker = (props) => {
                     {/* <Button style={{marginTop: 10, marginLeft: 10}} active={false}
                       content='Export As PNG' onClick={() => exportComponentAsPNG(componentRef, {fileName:'vaccination_by_race&ethnicity'})} /> */}
                   </Grid.Column>
+                  
                   <Grid.Column style = {{width: 450}}>
+                    
                     <div style={{paddingTop: 0, paddingLeft: 140}}>
                       <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
@@ -1437,7 +1704,7 @@ const USVaccineTracker = (props) => {
               <Grid>
                 <Grid.Column>
                   <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20}}> COVID-19 Vaccination by State </Divider>
-
+                  
                 </Grid.Column>
               </Grid>
 
@@ -1445,7 +1712,7 @@ const USVaccineTracker = (props) => {
 
                 <Grid.Row columns = {2} style = {{width: 1260}}>
 
-                  <Grid.Column style = {{width: 1000, paddingLeft: 30}}>
+                  <Grid.Column style = {{width: 1000, paddingLeft: 30, paddingRight: 50}}>
 
                         <div style = {{paddingBottom: 0, width: 1000}}>
                           <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
@@ -1516,12 +1783,12 @@ const USVaccineTracker = (props) => {
                         <ComposableMap 
                           projection="geoAlbersUsa" 
                           data-tip=""
-                          width={1200} 
+                          width={1100} 
                           height={450}
                           strokeWidth= {0.1}
                           stroke= 'black'
-                          offsetX = {-380}
-                          projectionConfig={{scale: 800}}
+                          offsetX = {-375}
+                          projectionConfig={{scale: 750}}
 
 
                           >
@@ -1639,8 +1906,12 @@ const USVaccineTracker = (props) => {
                         </Grid>
                   </Grid.Column>
                   
-                  <Grid.Column style ={{width: 350}}>
-                    <Header as='h2' style={{fontWeight: 400}}>
+                  <Grid.Column>
+                    <div style = {{width: 425}}>
+                      <TabExampleBasic data = {vaccineData} fips = {stateMapFips} stateName = {stateName} abbrev = {usAbbrev} date = {vaccineDate} demogData = {nationalDemog} VaccineData = {stateVaccineData}/>
+
+                    </div>
+                    {/* <Header as='h2' style={{fontWeight: 400}}>
                       <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 36, paddingLeft: 35}}>
                         Vaccination Status in <b>{stateName}</b>
                         
@@ -1681,22 +1952,11 @@ const USVaccineTracker = (props) => {
                               <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
 
                             </Table.Row>
-                            {/* <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Moderna"])} </Table.HeaderCell>
-
-                            </Table.Row>
+                            
                             <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {"Pfizer \n \n Vaccine"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Pfizer"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Pfizer"])} </Table.HeaderCell>
-
-                            </Table.Row> */}
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Newly distributed per 100,000"} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Doses_Distributed"].toFixed(0))} </Table.HeaderCell>
 
                             </Table.Row>
                             
@@ -1704,7 +1964,7 @@ const USVaccineTracker = (props) => {
                         </Table>
                       </Grid.Row>
                       
-                    </Grid>
+                    </Grid> */}
                     
                   </Grid.Column>
                 </Grid.Row> 
@@ -2593,9 +2853,15 @@ const USVaccineTracker = (props) => {
                     </svg>
                   </div>
                   <div style = {{width: 500, height: 180}}>
-                  {stateMapFips && <CaseChart data={dataTS} dataState = {dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
-                                ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"caserate7dayfig"}/>
-                          }
+                  {stateMapFips && 
+                  
+                  // <CaseChart data={dataTS} dataState = {dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
+                  //               ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"caserate7dayfig"}/>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <NewLinePlot data={dataTS} dataState = {dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips = {stateMapFips} 
+                                   ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {"caserate7dayfig"}/> 
+                    </ResponsiveContainer>
+                   }
                   </div>
 
                   <div style = {{paddingTop: 65, paddingLeft: 50}}>
@@ -2718,4 +2984,4 @@ const USVaccineTracker = (props) => {
   }
 }
 
-export default USVaccineTracker;
+// export default USVaccineTracker;
