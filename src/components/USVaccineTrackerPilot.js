@@ -47,8 +47,7 @@ import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
 import {LineChart, BarChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
-// import CanvasJSReact from "./canvasjs.react";
-// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 
 
 // function getKeyByValue(object, value) {
@@ -381,7 +380,7 @@ class Race extends PureComponent{
 
 
   componentDidMount(){
-    if(this.props.state == false){
+    if(this.props.state === false){
       fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
         dataTot: [
           data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
@@ -389,7 +388,7 @@ class Race extends PureComponent{
           data['vaccineRace'][0]['White'][0]
         ] }));
     }else{
-
+      
     }
   }
     
@@ -402,7 +401,8 @@ class Race extends PureComponent{
     return (
       <Grid>
       <PieChart 
-        width={300} height={280} transform='translate(-10,0)'>
+        width={300} height={280} >
+          {/* transform='translate(-10,0)' */}
         <Pie
           
           activeIndex={10}
@@ -661,8 +661,8 @@ function ComparisonTable(props){
 }
 
 const RaceBarChart = (props) => {
-  console.log('bar data', props.demogData)
-  console.log('bar vac data', props.VaccineData)
+
+  // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
 
   const renderLabel = (obj) => {
     console.log('entry', obj)
@@ -711,13 +711,13 @@ const RaceBarChart = (props) => {
           margin={{
             top: 20,
             right: 30,
-            left: 30,
+            left: 10,
             bottom: 10,
           }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis dataKey="name" />
-          {/* <YAxis domain={[0,100]}/> */}
+          <YAxis domain={[0,100]}/>
           <Tooltip formatter={(value) => value+'%'}/>
           <Legend />
           <Bar name='White' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}>
