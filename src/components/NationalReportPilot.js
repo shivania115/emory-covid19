@@ -2976,7 +2976,7 @@ export default function NationalReport(props) {
                                               <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                                 The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                                 <br/>
-                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
                                               </Header.Subheader>
                                             </Header.Content>
                                           </Header>
@@ -3034,7 +3034,7 @@ export default function NationalReport(props) {
                               </ul>
 
                             <text style = {{fontSize: "13px"}}>
-                            *The Hispanics population consists of mostly younger age groups. 
+                            *The Hispanic population consists of mostly younger age groups. 
                             <br/>
                             *These are crude death rates based on cumulative deaths since January 2020. Age differences, such as the lower average age of Hispanic Americans, are not considered due to data limitations.
                             </text>
@@ -3058,7 +3058,7 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
                       <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{width: 560, fontSize: "18pt"}}> Racial & Ethnic Make Up of <br/> COVID-19 Cases and Population in the U.S.</b> </center> 
+                        <center> <b style= {{width: 560, fontSize: "18pt"}}> COVID-19 Cases and U.S. Population <br/> distribution by race & ethnicity.</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -3605,7 +3605,7 @@ export default function NationalReport(props) {
                     <br/>
                     <br/>
                     COVID-19 is affecting communities differently. Community-level factors such as urbanicity,  
-                    socioeconomic status, race, and underlying medication conditions make some communities more 
+                    socioeconomic status, race, and underlying medical conditions make some communities more 
                     vulnerable to COVID-19 than others. The maps and figures below show COVID-19 case rates and 
                     death rates across U.S. counties grouped by these community characteristics.  
 
@@ -3975,7 +3975,10 @@ export default function NationalReport(props) {
                                             in the 0%-20% range for this county characteristic, and the very high CCVI contains 
                                             counties with values in the 80%-100% range for this county characteristic. Low CCVI 
                                             indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
-                                            range, and high CCVI indecates counties in the 60%-80% range.
+                                            range, and high CCVI indicates counties in the 60%-80% range.
+                                            <br/>
+                                            <br/>
+                                            For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                             </Header.Subheader>
                                           </Header.Content>
                                         </Header>
@@ -4197,11 +4200,15 @@ export default function NationalReport(props) {
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
                                         per 100,000 that occurred in each group of counties ranked by percentage population in poverty. 
                                         The ranking classified counties into five groups designed to be of equal size, so that the 
-                                        very low % in poverty contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the very high % in poverty contains counties with values in the 80%-100% 
+                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
                                         range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
-                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indecates 
+                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
                                         counties in the 60%-80% range.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                            
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4423,6 +4430,10 @@ export default function NationalReport(props) {
                                         urbanized area with population between 10,000-49,999. Remote rural counties have 
                                         populations less than 10,000 individuals. This urban-rural classification scheme is 
                                         from the National Center for Health Statistics.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                            
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4634,6 +4645,9 @@ export default function NationalReport(props) {
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by geographic region (y-axis).
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4854,12 +4868,15 @@ export default function NationalReport(props) {
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
                                         per 100,000 that occurred in each group of counties ranked by percentage percentage African 
                                         American. The ranking classified counties into five groups designed to be of equal size, 
-                                        so that the very low % African American contains the counties with values in the 0%-20% 
-                                        range for this county characteristic, and the very high % African American contains 
+                                        so that the "very low % African American" group contains the counties with values in the 0%-20% 
+                                        range for this county characteristic, and the "very high % African American" group contains 
                                         counties with values in the 80%-100% range for this county characteristic. Low % 
                                         African American indicates counties in the 20%-40% range, moderate % African American 
-                                        indicates counties in the 40%-60% range, and high % African American indecates counties 
+                                        indicates counties in the 40%-60% range, and high % African American indicates counties 
                                         in the 60%-80% range.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5077,12 +5094,15 @@ export default function NationalReport(props) {
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by residential segregation. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the very 
-                                        low segregation contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the very high segregation contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the "very 
+                                        low segregation" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the "very high segregation" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low segregation indicates counties in 
                                         the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
-                                        high segregation indecates counties in the 60%-80% range.
+                                        high segregation indicates counties in the 60%-80% range.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5297,16 +5317,16 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with any underlying conditions. The y-axis 
-                                        displays percent of population with any underlying conditions rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        100,000 residents by percent of population with any underlying comorbidity. The y-axis 
+                                        displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by percent of population with any underlying conditions. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of any underlying conditions contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of any underlying conditions contains counties with values in the 
-                                        80%-100% range for this county characteristic. Low percentage of population with any underlying conditions indicates counties in 
-                                        the 20%-40% range, moderate percentage of population with any underlying conditions indicates counties in the 40%-60% range, and 
-                                        high percentage of population with any underlying conditions indecates counties in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with any underlying comorbidity indicates counties in the 40%-60% range, and 
+                                        high percentage of population with any underlying comorbidity indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5497,12 +5517,12 @@ export default function NationalReport(props) {
                                         displays percent of population with COPD rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with COPD. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of COPD contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of COPD contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of COPD" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of COPD" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with COPD indicates counties in 
                                         the 20%-40% range, moderate percentage of population with COPD indicates counties in the 40%-60% range, and 
-                                        high percentage of population with COPD indecates counties in the 60%-80% range.
+                                        high percentage of population with COPD indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5700,12 +5720,12 @@ export default function NationalReport(props) {
                                         displays percent of population with CKD rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with CKD. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of CKD contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of CKD contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of CKD" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of CKD" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with CKD indicates counties in 
                                         the 20%-40% range, moderate percentage of population with CKD indicates counties in the 40%-60% range, and 
-                                        high percentage of population with CKD indecates counties in the 60%-80% range.
+                                        high percentage of population with CKD indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5896,12 +5916,12 @@ export default function NationalReport(props) {
                                         displays percent of population with diabetes rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with diabetes. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of diabetes contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of diabetes contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of diabetes" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of diabetes" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with diabetes indicates counties in 
                                         the 20%-40% range, moderate percentage of population with diabetes indicates counties in the 40%-60% range, and 
-                                        high percentage of population with diabetes indecates counties in the 60%-80% range.
+                                        high percentage of population with diabetes indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -6093,12 +6113,12 @@ export default function NationalReport(props) {
                                         displays percent of population with heart disease rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with heart disease. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of heart disease contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of heart disease contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of heart disease" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of heart disease" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with heart disease indicates counties in 
                                         the 20%-40% range, moderate percentage of population with heart disease indicates counties in the 40%-60% range, and 
-                                        high percentage of population with heart disease indecates counties in the 60%-80% range.
+                                        high percentage of population with heart disease indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -6290,12 +6310,12 @@ export default function NationalReport(props) {
                                         displays percent of population with obesity rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with obesity. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of obesity contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of obesity contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of obesity" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of obesity" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with obesity indicates counties in 
                                         the 20%-40% range, moderate percentage of population with obesity indicates counties in the 40%-60% range, and 
-                                        high percentage of population with obesity indecates counties in the 60%-80% range.
+                                        high percentage of population with obesity indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
