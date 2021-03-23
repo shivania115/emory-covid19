@@ -47,6 +47,9 @@ import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
 import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+import CanvasJSReact from "./canvasjs.react";
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
@@ -591,6 +594,11 @@ const ToPrint = React.forwardRef((props, ref) => (
   
 ));
 
+
+
+
+
+
 function ComparisonTable(props){
   return(
     <div>
@@ -652,56 +660,117 @@ function ComparisonTable(props){
   )
 }
 
-function RaceBarChart(props){
+const RaceBarChart = (props) => {
+  console.log('vax-fips', props.fips === '_nation')
+
+  const options = {
+    animationEnabled: true,
+    title:{
+      text: "Vaccination by Race and Ethnicity"
+    },
+    legend: {
+      verticalAlign: "center",
+      horizontalAlign: "right",
+      reversed: true,
+      cursor: "pointer",
+        fontSize: 16,
+        // itemclick: this.toggleDataSeries
+    },
+    toolTip: {
+      shared: true
+    },
+    data: [
+    {
+      type: "stackedColumn100",
+      name: "Gold",
+      showInLegend: true,
+      color: "#D4AF37",
+      dataPoints: [
+        { label: "United States", y:1118},
+        { label: "Soviet Union", y:473},
+      ]
+    },
+    {
+      type: "stackedColumn100",
+      name: "Silver",
+      showInLegend: true,
+      color: "#C0C0C0",
+      dataPoints: [
+        { label: "United States",	y: 897},
+        { label: "Soviet Union", y: 376},
+      ]
+    },
+    {
+      type: "stackedColumn100",
+      name: "Bronze",
+      showInLegend: true,
+      color: "#CD7F32",
+      dataPoints: [
+        { label: "United States", y: 789},
+        { label: "Soviet Union", y: 355},
+      ]
+    }
+    ]
+  }
+
   return(
     <div>
-          <VictoryChart
-            theme={VictoryTheme.material}
-            domainPadding={{ x: 10 }}
-            containerComponent={<VictoryContainer responsive={false}/>}
-          >
-            <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-            <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+			<CanvasJSChart options = {options}
+				//  onRef={ref => this.chart = ref}
+			/>
+		</div>
+
+
+    // <div>
+    //       <VictoryChart
+    //         theme={VictoryTheme.material}
+    //         domainPadding={{ x: 10 }}
+    //         containerComponent={<VictoryContainer responsive={false}/>}
+    //       >
+    //         <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+    //         <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                           
-            <VictoryBar
-              horizontal
-              barWidth={20}
-              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+    //         {props.fips === '_nation' ? null :
+    //         <VictoryBar
+    //           horizontal
+    //           barWidth={20}
+    //           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
               
-              style={{
-                data: { fill: "#00ff00" , opacity: 0.5}
-              }}
-              data={
-                [
-                  // {key: "Hispanic", 'value': props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']},
-                {key: "American Natives", 'value': props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']},
-                {key: "Asian", 'value': props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']},
-                // {key: "African American", 'value': props.VaccineData[props.fips][0]['African American'][0]['percentVaccinated']},
-                {key: "White", 'value': props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']}
-              ]
-              }
-              x="key"
-              y="value"
-            />
-            <VictoryBar 
-              horizontal
-              barWidth={20}
-              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-              style={{
-                data: { fill: "#00000", opacity: 0.2 }
-              }}
-              data={
-                [{key: props.data['race'][0]['Hispanic'][0]['demogLabel'], 'value': props.data['race'][0]['Hispanic'][0]['percentPop']},
-                {key: props.data['race'][0]['American Natives'][0]['demogLabel'], 'value': props.data['race'][0]['American Natives'][0]['percentPop']},
-                {key: props.data['race'][0]['Asian'][0]['demogLabel'], 'value': props.data['race'][0]['Asian'][0]['percentPop']},
-                {key: props.data['race'][0]['African American'][0]['demogLabel'], 'value': props.data['race'][0]['African American'][0]['percentPop']},
-                {key: props.data['race'][0]['White'][0]['demogLabel'], 'value': props.data['race'][0]['White'][0]['percentPop']}]
-              }
-              x="key"
-              y="value"
-            />
-          </VictoryChart>
-        </div>
+    //           style={{
+    //             data: { fill: "#00ff00" , opacity: 0.5}
+    //           }}
+    //           data={
+    //             [
+    //               // {key: "Hispanic", 'value': props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']},
+    //             {key: "American Natives", 'value': props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']},
+    //             {key: "Asian", 'value': props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']},
+    //             // {key: "African American", 'value': props.VaccineData[props.fips][0]['African American'][0]['percentVaccinated']},
+    //             {key: "White", 'value': props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']}
+    //           ]
+    //           }
+    //           x="key"
+    //           y="value"
+    //         />}
+
+    //         <VictoryBar 
+    //           horizontal
+    //           barWidth={20}
+    //           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+    //           style={{
+    //             data: { fill: "#00000", opacity: 0.2 }
+    //           }}
+    //           data={
+    //             [{key: props.data['race'][0]['Hispanic'][0]['demogLabel'], 'value': props.data['race'][0]['Hispanic'][0]['percentPop']},
+    //             {key: props.data['race'][0]['American Natives'][0]['demogLabel'], 'value': props.data['race'][0]['American Natives'][0]['percentPop']},
+    //             {key: props.data['race'][0]['Asian'][0]['demogLabel'], 'value': props.data['race'][0]['Asian'][0]['percentPop']},
+    //             {key: props.data['race'][0]['African American'][0]['demogLabel'], 'value': props.data['race'][0]['African American'][0]['percentPop']},
+    //             {key: props.data['race'][0]['White'][0]['demogLabel'], 'value': props.data['race'][0]['White'][0]['percentPop']}]
+    //           }
+    //           x="key"
+    //           y="value"
+    //         />
+    //       </VictoryChart>
+    //     </div>
   )
 }
 
@@ -709,6 +778,7 @@ function RaceBarChart(props){
 // const TabExampleBasic = () => <Tab panes={panes} />
 
 function TabExampleBasic(props){
+  console.log('fips', props.fips)
   const panes = [
     { menuItem: 'State & Nation Vaccination', render: () => 
       <Tab.Pane attached={false}>
@@ -1141,8 +1211,9 @@ export default function USVaccineTracker(props) {
   const componentRef = useRef();
 
 
-  if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
+  if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries && nationalDemog && stateVaccineData) {
     console.log(stateVaccineData["01"][0]["Asian"][0]["percentVaccinated"]);
+    console.log('vaccinedata', vaccineData)
   return (
     <HEProvider>
       <div>
