@@ -46,9 +46,9 @@ import configs from "./state_config.json";
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
-import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
-import CanvasJSReact from "./canvasjs.react";
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import {LineChart, BarChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+// import CanvasJSReact from "./canvasjs.react";
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 // function getKeyByValue(object, value) {
@@ -661,64 +661,82 @@ function ComparisonTable(props){
 }
 
 const RaceBarChart = (props) => {
-  console.log('vax-fips', props.fips === '_nation')
+  console.log('bar data', props.demogData)
+  console.log('bar vac data', props.VaccineData)
 
-  const options = {
-    animationEnabled: true,
-    title:{
-      text: "Vaccination by Race and Ethnicity"
-    },
-    legend: {
-      verticalAlign: "center",
-      horizontalAlign: "right",
-      reversed: true,
-      cursor: "pointer",
-        fontSize: 16,
-        // itemclick: this.toggleDataSeries
-    },
-    toolTip: {
-      shared: true
-    },
-    data: [
-    {
-      type: "stackedColumn100",
-      name: "Gold",
-      showInLegend: true,
-      color: "#D4AF37",
-      dataPoints: [
-        { label: "United States", y:1118},
-        { label: "Soviet Union", y:473},
-      ]
-    },
-    {
-      type: "stackedColumn100",
-      name: "Silver",
-      showInLegend: true,
-      color: "#C0C0C0",
-      dataPoints: [
-        { label: "United States",	y: 897},
-        { label: "Soviet Union", y: 376},
-      ]
-    },
-    {
-      type: "stackedColumn100",
-      name: "Bronze",
-      showInLegend: true,
-      color: "#CD7F32",
-      dataPoints: [
-        { label: "United States", y: 789},
-        { label: "Soviet Union", y: 355},
-      ]
-    }
-    ]
+  const renderLabel = (obj) => {
+    console.log('entry', obj)
+    return obj.value+'%'
+    // <text x={obj.x} y={obj.y} z-index={10}>{obj.value+'%'}</text>
   }
 
+  const valueAccessor = attribute => ({ payload }) => {
+    console.log('payload', payload)
+    return payload[attribute]===0 ? null : payload[attribute]+'%';
+
+  };
+
+  let barSize = 50
+
+  const data = [
+    {
+      name: '% Population',
+      white: props.demogData['race'][0]['White'][0]['percentPop'].toFixed(1),
+      black: props.demogData['race'][0]['African American'][0]['percentPop'].toFixed(1),
+      hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop'].toFixed(1),
+      asian: props.demogData['race'][0]['Asian'][0]['percentPop'].toFixed(1),
+      american_natives: props.demogData['race'][0]['American Natives'][0]['percentPop'].toFixed(1),
+    },
+    {
+      name: '% Vaccination',
+      white: props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'],
+      black: props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'],
+      hispanic: props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'],
+      asian: props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'],
+      american_natives: props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']
+    }
+  ]
+
   return(
-    <div>
-			<CanvasJSChart options = {options}
-				//  onRef={ref => this.chart = ref}
-			/>
-		</div>
+    // <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          width={400}
+          height={500}
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 30,
+            bottom: 10,
+          }}
+        >
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis dataKey="name" />
+          {/* <YAxis domain={[0,100]}/> */}
+          <Tooltip formatter={(value) => value+'%'}/>
+          <Legend />
+          <Bar name='White' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}>
+          <LabelList valueAccessor={valueAccessor("white")} />
+          </Bar>
+          <Bar name='African Americans' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}>
+          <LabelList valueAccessor={valueAccessor("black")} />
+          </Bar>
+          <Bar name='Hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}>
+          <LabelList valueAccessor={valueAccessor("hispanic")} />
+          </Bar>
+          <Bar name='Asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}> 
+          <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
+          </Bar>
+          <Bar name='American Natives' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}>
+            <LabelList valueAccessor={valueAccessor("american_natives")} position="top"/>
+          </Bar>
+        </BarChart>
+      //</ResponsiveContainer>
 
 
     // <div>
@@ -794,7 +812,7 @@ function TabExampleBasic(props){
     { menuItem: 'Vaccination by Race & Ethnicity', render: () => 
       <Tab.Pane attached={false}>
         <RaceBarChart
-          data = {props.demogData}
+          demogData = {props.demogData}
           fips = {props.fips}
           VaccineData = {props.VaccineData}
         />
@@ -1213,7 +1231,8 @@ export default function USVaccineTracker(props) {
 
   if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries && nationalDemog && stateVaccineData) {
     console.log(stateVaccineData["01"][0]["Asian"][0]["percentVaccinated"]);
-    console.log('vaccinedata', vaccineData)
+    console.log('nationalDemog', nationalDemog)
+    console.log('stateVaccineData', stateVaccineData)
   return (
     <HEProvider>
       <div>
