@@ -1060,8 +1060,8 @@ export default function StateMap(props) {
                   {stateFips && dataStateTS && stateFips !== "_nation" && 
                     <VictoryChart theme={VictoryTheme.material}
                                                   
-                      minDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- 15].t : 0 }}
-                      maxDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- indexP - 1].t : 0 , y: stateFips !== "_nation" ? getMaxRange(dataStateTS, "percentPositive", dataStateTS.length-15)*1.05 : 0 }}
+                      minDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- indexP - 15].t : 0 }}
+                      maxDomain={{ x: stateFips !== "_nation" ? dataStateTS[dataStateTS.length- indexP - 1].t : 0 , y: stateFips !== "_nation" ? getMaxRange(dataStateTS, "percentPositive", dataStateTS.length-indexP -15)*1.2 : 0 }}
                       width={235}
                       height={180}       
                       padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
