@@ -47,7 +47,9 @@ import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
 import {LineChart, BarChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
-
+import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent';
+import _get from 'lodash/get'
+import { index } from 'd3';
 
 
 // function getKeyByValue(object, value) {
@@ -664,14 +666,10 @@ const RaceBarChart = (props) => {
 
   // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
 
-  const renderLabel = (obj) => {
-    console.log('entry', obj)
-    return obj.value+'%'
-    // <text x={obj.x} y={obj.y} z-index={10}>{obj.value+'%'}</text>
-  }
+  const [hoverBar, setHoverBar] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1)
 
   const valueAccessor = attribute => ({ payload }) => {
-    console.log('payload', payload)
     return payload[attribute]===0 ? null : payload[attribute]+'%';
 
   };
@@ -707,23 +705,25 @@ const RaceBarChart = (props) => {
     }
   ]
 
-
 const CustomTooltip = ({ active, payload, label }) => {
-  console.log('active', active)
-  console.log('payload', payload)
-  console.log('label', label)
-  if (active && payload && payload.length) {
+
+  if (active && payload && payload.length && hoverBar[0]>=0) {
+    var colIndex = 4-hoverBar[0];
+
     return (
-      <div className="custom-tooltip">
-        <p className="label">{`${label} : ${payload[0].value}`}</p>
-        <p className="intro">{active}</p>
-        <p className="desc">Anything you want can be displayed here.</p>
+      <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
+        <p style={{color: pieChartRace[colIndex]}}> <b> {hoverBar[2]} </b> </p>
+        {/* ${payload[hoverBar[0]]['name']}  */}
+        <p className="label">{`% Population: ${data[0][hoverBar[1]]}`}</p>
+        <p className="label">{`% Vaccinated : ${data[1][hoverBar[1]]}`}</p>
       </div>
     );
   }
 
   return null;
 };
+
+console.log('active index', activeIndex);
 
   return(
     // <ResponsiveContainer width="100%" height="100%">
@@ -741,24 +741,69 @@ const CustomTooltip = ({ active, payload, label }) => {
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis dataKey="name" />
           <YAxis domain={[0,100]}/>
-          <Tooltip formatter={CustomTooltip}/>
+          <Tooltip content={<CustomTooltip />}
+          // formatter={function(value, name) {
+          //     if(name === hoverBar){
+          //       return [value,name];
+          //     }else {
+          //       return null
+          //     }
+          //   }}
+             cursor={false}/>
+          {/* content={renderTooltip}  content={<CustomTooltip />}*/}
           <Legend />
-          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}>
-            <LabelList valueAccessor={valueAccessor("american_natives")} position="right"/>
+          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
+            onMouseEnter={()=>{setHoverBar([0,'american_natives', 'American Natives']); setActiveIndex(0)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
           </Bar>
-          <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}> 
+          <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
+            onMouseEnter={()=>{setHoverBar([1,'asian', 'Asian']); setActiveIndex(1)}}
+            onMouseLeave={()=>setActiveIndex(-1)}> 
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} style={{zIndex: -10}} fill={activeIndex === 1 ? 'white' : pieChartRace[3]}/>
+              ))
+            } */}
             <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
           </Bar>
-          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}>
-            <LabelList valueAccessor={valueAccessor("hispanic")} />
+          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
+            onMouseEnter={()=>{setHoverBar([2,'hispanic', 'Hispanic']); setActiveIndex(2)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 2 ? 'white' : pieChartRace[2]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white'/>
           </Bar>
-          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}>
-            <LabelList valueAccessor={valueAccessor("black")} />
+          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
+            onMouseEnter={()=>{setHoverBar([3,'black', 'African Americans']); setActiveIndex(3)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={activeIndex === 3 ? 2 : 0}/>
+                // fill={activeIndex === 3 ? 'white' : pieChartRace[1]}
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("black")} fill='white'/>
           </Bar>
-          <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}>
-            <LabelList valueAccessor={valueAccessor("white")} />
+          <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
+            onMouseEnter={()=>{setHoverBar([4,'white','White']); setActiveIndex(4)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 4 ? 'white' : pieChartRace[0]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("white")} fill='white'/>
+            
           </Bar>
-          
           
           
           
