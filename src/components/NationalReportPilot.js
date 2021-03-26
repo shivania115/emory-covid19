@@ -3224,11 +3224,19 @@ export default function NationalReport(props) {
                   <Header.Content style = {{paddingLeft: 50}}>
                     <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
                       
-                      Cases are currently highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0))}% of all cases), 
-                      followed by the {Object.keys(demog_descriptives['Age'][0])[1]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0))}% of all cases). 
-                      {demog_descriptives['AgeDescription'][0]["description"] != "" ? 
-                      " They are disproportionately high in the " + demog_descriptives['AgeDescription'][0]["description"] + ", compared to those age groups' shares of the U.S. population.":""}
+                      Cases are currently highest in the {Object.keys(demog_descriptives['Age'][0]["cases"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][0]["cases"][Object.keys(demog_descriptives['Age'][0]["cases"])[0]]).toFixed(0))}% of all cases), 
+                      followed by the {Object.keys(demog_descriptives['Age'][0]["cases"])[1]} age group ({numberWithCommas((demog_descriptives['Age'][0]["cases"][Object.keys(demog_descriptives['Age'][0]["cases"])[1]]).toFixed(0))}% of all cases). 
+                      {demog_descriptives['AgeDescription'][0]["CasesDescription"] != "" ? 
+                      " They are disproportionately high in the " + demog_descriptives['AgeDescription'][0]["CasesDescription"] + ", compared to those age groups' shares of the U.S. population.":""}
                         
+                      
+                      <br/>
+                      <br/>
+                      Deaths increase in prevalence with age and are highest in the {Object.keys(demog_descriptives['Age'][1]["deaths"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][1]["deaths"][Object.keys(demog_descriptives['Age'][1]["deaths"])[0]]).toFixed(0))}% of all deaths), 
+                      {demog_descriptives['AgeDescription'][0]["DeathsDescription"] != "" ? 
+                      " Deaths are disproportionately high in the " + demog_descriptives['AgeDescription'][1]["DeathsDescription"] + ", compared to those age groups' shares of the U.S. population.":""} 
+
+
                     </Header.Subheader>
                   </Header.Content>
                 </Header>

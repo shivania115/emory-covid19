@@ -67,12 +67,12 @@
         "group": "outcomes"},
     "AdministeredPartial": {
         "variable": "AdministeredPartial",
-        "name": "Number received the first dose",
+        "name": "Number partially vaccinated",
         "definition": "is the number of individuals in the United States recorded in CDC database to have received one of two doses of Pfizer or Moderna vaccine.",
         "group": "outcomes"},
     "PercentAdministeredPartial": {
         "variable": "PercentAdministeredPartial",
-        "name": "Percent of the U.S. population received the first dose",
+        "name": "Percent of the U.S. population partially vaccinated",
         "definition": "is the percentage of the total U.S. population that has received one of two doses of Pfizer or Moderna vaccine according to CDC database. The total U.S. population is derived from the Census.",
         "group": "outcomes"},
     "Dist_new": {
