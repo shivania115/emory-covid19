@@ -689,18 +689,41 @@ const RaceBarChart = (props) => {
     },
     {
       name: '% Vaccination',
-      white: props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'],
-      black: props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'],
-      hispanic: props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'],
-      asian: props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'],
-      american_natives: props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']
+      white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['pctAdmDose1'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']),
+      black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['pctAdmDose1'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']),
+      hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['pctAdmDose1'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']),
+      asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose1'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']),
+      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose1'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'])
     }
   ]
+
+
+const CustomTooltip = ({ active, payload, label }) => {
+  console.log('active', active)
+  console.log('payload', payload)
+  console.log('label', label)
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${label} : ${payload[0].value}`}</p>
+        <p className="intro">{active}</p>
+        <p className="desc">Anything you want can be displayed here.</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
   return(
     // <ResponsiveContainer width="100%" height="100%">
@@ -718,23 +741,27 @@ const RaceBarChart = (props) => {
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis dataKey="name" />
           <YAxis domain={[0,100]}/>
-          <Tooltip formatter={(value) => value+'%'}/>
+          <Tooltip formatter={CustomTooltip}/>
           <Legend />
-          <Bar name='White' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}>
-          <LabelList valueAccessor={valueAccessor("white")} />
+          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}>
+            <LabelList valueAccessor={valueAccessor("american_natives")} position="right"/>
           </Bar>
-          <Bar name='African Americans' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}>
-          <LabelList valueAccessor={valueAccessor("black")} />
+          <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}> 
+            <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
           </Bar>
-          <Bar name='Hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}>
-          <LabelList valueAccessor={valueAccessor("hispanic")} />
+          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}>
+            <LabelList valueAccessor={valueAccessor("hispanic")} />
           </Bar>
-          <Bar name='Asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}> 
-          <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
+          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}>
+            <LabelList valueAccessor={valueAccessor("black")} />
           </Bar>
-          <Bar name='American Natives' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}>
-            <LabelList valueAccessor={valueAccessor("american_natives")} position="top"/>
+          <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}>
+            <LabelList valueAccessor={valueAccessor("white")} />
           </Bar>
+          
+          
+          
+          
         </BarChart>
       //</ResponsiveContainer>
 
