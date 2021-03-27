@@ -1100,6 +1100,11 @@ export default function StateMap(props) {
                   
                 </Grid.Column>
 
+                {stateFips === "_nation" && 
+                  <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, paddingLeft: 8, width: 250}}> Deaths by Race & Ethnicity</center>
+
+
+                  }
                 {stateFips && dataStateTS && stateFips !== "_nation" && 
                 <Grid.Column rows = {2} style = {{width:235}}>
 
@@ -1114,11 +1119,7 @@ export default function StateMap(props) {
                       resize= {1.2}
                     />}
 
-                  {stateFips === "_nation" && 
-                  <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, width: 238}}> Deaths by Race & Ethnicity</center>
-
-
-                  }
+                  
                   {stateFips !== "_nation" && stateFips !== "72" &&
                   <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, width: 238}}> 
                     Deaths by {(!!raceData[stateFips]["White Alone"] ||
