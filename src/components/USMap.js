@@ -259,8 +259,8 @@ export default function USMap(props) {
               let tempDict = {};
               const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
               const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-              tempDict = promSeries[1].timeseriesAll;
-              tempDict["_nation"] = promSeries[0].timeseries_nation;
+              tempDict = promSeries[0].timeseriesAll;
+              tempDict["_nation"] = promSeries[1].timeseries_nation;
               setAllTS(tempDict);
 
               //if timeseriesAll exceeds 16MB (max size for a single document on MongoDB), 
