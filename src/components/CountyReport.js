@@ -129,7 +129,7 @@ function BarChart(props) {
         y="value"
       />
     </VictoryChart>);
-}
+  }
 
 
 

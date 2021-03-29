@@ -1,5 +1,5 @@
 import React, { useEffect, useState, PureComponent} from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button} from 'semantic-ui-react'
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Table, Divider, Accordion, Icon, Transition, Button} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -9,6 +9,8 @@ import { VictoryChart,
   VictoryGroup, 
   VictoryBar, 
   VictoryTheme, 
+  VictoryLegend,
+  VictoryScatter,
   VictoryAxis, 
   VictoryLine,
   VictoryLabel,
@@ -146,30 +148,79 @@ function CaseChart(props){
   );
 }
 
+function ScatterChart(props) {
+
+  return (
+    <VictoryChart
+      width={450}
+      height={350}
+      scale={{y: props.ylog?'log':'linear'}}
+      minDomain={{y: props.ylog?1:0}}
+      padding={{left: 80, right: 20, top: 50, bottom: 35}}>
+      {props.showLegend && <VictoryLegend
+        x={10} y={10}
+        orientation="horizontal"
+        style={{labels:{ fontFamily: 'lato'}}}
+        colorScale={[stateColor, countyColor]}
+        data ={[
+          {name: ('Other counties in '+ props.stateName)}, {name: props.countyName}
+          ]}
+      />}
+      <VictoryScatter
+        data={_.filter(_.map(props.data, (d, k)=>{d.fips=k; return d;}), (d)=> (
+                 d.fips.length===5 &&
+                 d.fips.substring(0,2)===props.stateFips &&
+                 d[props.x] >= 0 && d[props.y] >= 0))}
+        sortKey={(d) => d.fips===(props.stateFips + props.countyFips)}
+        style={{ 
+                 data: { fontFamily: 'lato', 
+                 fill: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?countyColor:stateColor,
+                 fillOpacity: ({datum}) => datum.fips===(props.stateFips + props.countyFips)?1.0:0.7} }}
+        size={4}
+        x={props.x}
+        y={props.y}
+        labels={({ datum }) => `${datum[props.y].toFixed(1)}`}
+        labelComponent={<VictoryTooltip style = {{fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 20, y: 30 }} cornerRadius={4} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+
+      />
+      <VictoryAxis 
+        tickCount={4}
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+        tickFormat={(y) => (props.rescaleX?(Math.round(y/1000)+'k'):(Math.round(y*100)/100))} />
+
+      <VictoryAxis dependentAxis label={props.varMap[props.y]?props.varMap[props.y].name:props.y} 
+                          style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, axisLabel: {padding: 60, fontFamily: 'lato', fontSize: "19px"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {fontWeight: 300,stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+        tickCount={5}
+        tickFormat={(y) => (Math.round(y*100)/100)} />
+    </VictoryChart>);
+
+}
+
 function BarChart(props) {
   
   if (props.stateFips !== "_nation") {
   return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={190}
-      height={115}       
+      width={320}
+      height={130}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 95, right: 30, top: 30, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      {props.title !== "Community Vulnerability Index" && props.title !== "Any Condition" && <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
-      {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
-      {props.title === "Community Vulnerability Index" && <VictoryLabel text="Vulnerability Index" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
-      {props.title === "Any Condition" && <VictoryLabel text="Prevalence of Any" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
-      {props.title === "Any Condition" && <VictoryLabel text="Condition / 100,000" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title !== "Community Vulnerability Index" && props.title !== "Any Condition" && <VictoryLabel text={props.title} x={200} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={200} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Community Vulnerability Index" && <VictoryLabel text="Vulnerability Index" x={200} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Prevalence of Any" x={200} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Condition / 100,000" x={200} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "16px", fontFamily: 'lato'}}}  />
       <VictoryAxis tickCount={3} dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", padding: 1, fontSize: "12px", fontFamily: 'lato'}}} />
       <VictoryBar
         horizontal
         barRatio={0.8}
+        barWidth = {10}
         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
         data={[{key: 'USA', 'value': props.data['_nation'][props.var] || 0},
               {key: props.stateName, 'value': props.data[props.stateFips][props.var]>0?props.data[props.stateFips][props.var] : 0},
@@ -188,20 +239,21 @@ function BarChart(props) {
     return (
     <VictoryChart
       theme={VictoryTheme.material}
-      width={190}
-      height={100}       
+      width={320}
+      height={130}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 105, right: 30, top: 30, bottom: 20}}
       containerComponent={<VictoryContainer responsive={false}/>}
     >
-      <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/>
+      <VictoryLabel text={props.title} x={200} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/>
       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "16px", fontFamily: 'lato'}}}  />
       <VictoryAxis tickCount={3} dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", padding: 1, fontSize: "12px", fontFamily: 'lato'}}} />
       <VictoryBar
         horizontal
         barRatio={0.8}
+        barWidth = {10}
         labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(1))}
         data={[{key: 'USA', 'value':  [1]}]}
         labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "14px", fill: "#000000" }}/>}
@@ -281,6 +333,8 @@ export default function StateMap(props) {
 
   const [hospDate, setHospDate] = useState();
   const [date, setDate] = useState();
+  const [vaccineDate, setVaccineDate] = useState('');
+
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [dataStateTS, setStateTS] = useState();
@@ -313,6 +367,7 @@ export default function StateMap(props) {
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
   // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
+  const [vaxVarMap, setVaxVarMap] = useState({});
 
   const [varMap, setVarMap] = useState({});
   const [metric, setMetric] = useState('casesfig');
@@ -323,7 +378,15 @@ export default function StateMap(props) {
   const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
   const [countyOption, setCountyOption] = useState();
   const [selectedTrend, setSelectedTrend] = useState("");
-  
+
+  const [countyCasesOutcome, setCountyCasesOutcome] = useState();
+  const [countyDeathsOutcome, setCountyDeathsOutcome] = useState();
+
+  const [stateCasesOutcome, setStateCasesOutcome] = useState();
+  const [stateDeathsOutcome, setStateDeathsOutcome] = useState();
+
+  const [nationCasesOutcome, setNationCasesOutcome] = useState();
+  const [nationDeathsOutcome, setNationDeathsOutcome] = useState();
 
   const [trendline, setTrendline] = useState('caserate7dayfig');
   const trendOptions = [
@@ -401,7 +464,10 @@ export default function StateMap(props) {
           return {key: d.id, value: d.variable, text: d.name, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-
+    fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
+      .then(x => {setVaxVarMap(x);});
+    fetch('/data/vaccinedate.json').then(res => res.json())
+      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10));});
     fetch('/data/rawdata/f2c.json').then(res => res.json())
       .then(x => {
         setCountyOption(_.filter(_.map(x, d=> {
@@ -625,6 +691,15 @@ export default function StateMap(props) {
           let indexP = 0;
           let hospDate = 0;
           let str = "";
+
+          let t = 0;
+          let countyCases = 0;
+          let stateCases = 0;
+          let nationCases = 0;
+
+          let countyDeaths = 0;
+          let stateDeaths = 0;
+          let nationDeaths = 0;
           setConfig(configMatched);
           setStateName(configMatched.name);
           const fetchData = async() => { 
@@ -650,72 +725,72 @@ export default function StateMap(props) {
               let stateSeriesDict = promState[0]["timeseries" + stateFips];
               setStateTS(stateSeriesDict);
 
-                if(stateFips === "_nation"){
-                  caseRate = 0;
-                  mortality = 0;
-                  totCases = 0;
-                  hospD = 0;
-                }else{
-                  //case rate
-                  caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
-                  percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
-                  
-                  //mortality rate
-                  mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
-                  percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
+              if(stateFips === "_nation"){
+                caseRate = 0;
+                mortality = 0;
+                totCases = 0;
+                hospD = 0;
+              }else{
+                //case rate
+                caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
+                percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
+                
+                //mortality rate
+                mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
+                percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
 
-                  // //hospitalization rate
-                  // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
-                  // hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                // //hospitalization rate
+                // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                // hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
 
-                  // //testing positive rate
-                  // percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+                // //testing positive rate
+                // percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
 
-                  totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
+                totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
 
-                  
-                      
-                     
-        
+                
                     
-                    if(stateSeriesDict[stateSeriesDict.length-1].hospDaily === 0){
-                      for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
-                        if (i ===0 ){
-                          indexP = 1;
-                          hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
-                          percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
-                        }else if (stateSeriesDict[i].hospDaily === 0){
-                        }else{
-                          indexP = stateSeriesDict.length - i;
-                          hospD = stateSeriesDict[i].hospDaily;
-                          percentChangeHospDaily = stateSeriesDict[i].percent14dayhospDaily;
-                          hospDate = stateSeriesDict[i].t;
-                          i = 0;
-                        }
-                      }
-                    }
-
-                    if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
-                      for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
-                        if (i ===0 ){
-                          indexP = 1;
-                          percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
-
-                        }else if (stateSeriesDict[i].percentPositive === 0){
-                        }else{
-                          indexP = stateSeriesDict.length - i;
-                          percentPositive = stateSeriesDict[i].percentPositive;
-
-                          i = 0;
-                        }
-                      }
-                    }
                     
-        
+      
                   
-
+                if(stateSeriesDict[stateSeriesDict.length-1].hospDaily === 0){
+                  for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
+                    if (i ===0 ){
+                      indexP = 1;
+                      hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                      percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                    }else if (stateSeriesDict[i].hospDaily === 0){
+                    }else{
+                      indexP = stateSeriesDict.length - i;
+                      hospD = stateSeriesDict[i].hospDaily;
+                      percentChangeHospDaily = stateSeriesDict[i].percent14dayhospDaily;
+                      hospDate = stateSeriesDict[i].t;
+                      i = 0;
+                    }
+                  }
                 }
+
+                if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
+                  for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
+                    if (i ===0 ){
+                      indexP = 1;
+                      percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
+                    }else if (stateSeriesDict[i].percentPositive === 0){
+                    }else{
+                      indexP = stateSeriesDict.length - i;
+                      percentPositive = stateSeriesDict[i].percentPositive;
+
+                      i = 0;
+                    }
+                  }
+                }
+                  
+      
+                
+
               }
+            }
             
             
             setHospDate("0" + (new Date(hospDate*1000).toLocaleDateString()).substring(0,2) + "0" + (new Date(hospDate*1000).toLocaleDateString()).substring(2));
@@ -780,6 +855,31 @@ export default function StateMap(props) {
               setCountyName(fips2county[stateFips+countyMost]);
               setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
             }
+
+
+            //county
+
+            _.each(seriesDict, (v, k)=>{
+              if (k === stateFips + countyFips && v.length > 0 ){
+                countyCases = v[v.length-1].caserate7dayfig;
+                countyDeaths = v[v.length-1].covidmortality7dayfig;
+              }else if(k.length===2 && v.length > 0 && v[v.length-1].t > t){
+                stateCases = v[v.length-1].caserate7dayfig;
+                stateDeaths = v[v.length-1].covidmortality7dayfig;
+              }else if(k === "_nation" && v.length > 0 && v[v.length-1].t > t){
+                nationCases = v[v.length-1].caserate7dayfig;
+                nationDeaths = v[v.length-1].covidmortality7dayfig;
+              }
+
+            });
+
+            setCountyCasesOutcome(countyCases.toFixed(0));
+            setStateCasesOutcome(stateCases.toFixed(0));
+            setNationCasesOutcome(nationCases.toFixed(0));
+
+            setCountyDeathsOutcome(countyDeaths.toFixed(1));
+            setStateDeathsOutcome(stateDeaths.toFixed(1));
+            setNationDeathsOutcome(nationDeaths.toFixed(1));
             
             setDataTS(seriesDict);
           };
@@ -792,6 +892,9 @@ export default function StateMap(props) {
       }
     }
   },[isLoggedIn]);
+
+
+  
 
 
   useEffect(() => {
@@ -1691,11 +1794,143 @@ export default function StateMap(props) {
                   </Grid>
                 </Grid.Column>
                 <Grid.Column style={{padding: 0, paddingLeft: 40, width: 810}}>
+                  
 
-                
+                  {false && 
+                  
+                    <Grid style={{paddingTop: '2em', paddingBottom: "2em"}}>
+                      <Grid.Row style={{paddingLeft:20}}>
+
+                        <Table celled fixed singleLine>
+                          <Table.Header>
+
+                            <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                                <td colSpan='1' style={{width:220}}> </td>
+                                <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE</td>
+                                <td colSpan='1' style={{width:200, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> TOTAL TO DATE PER 100,000</td>
+                            </tr>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {stateFips == "02"? countyName : countyName.match(/[^\s]+/)} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].casesfig=== "N/A"? "Loading..." : data["" + stateFips + countyFips].casesfig < 0?'0':data["" + stateFips + countyFips].casesfig.toLocaleString()} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].caseratefig==="N/A"? "Loading..." : data["" + stateFips + countyFips].caseratefig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].caseratefig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {stateName} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].casesfig==="N/A"? "Loading..." : data["" + stateFips].casesfig < 0?'0':data["" + stateFips].casesfig.toLocaleString()} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].caseratefig==="N/A"? "Loading..." : data["" + stateFips].caseratefig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].caseratefig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+
+                            </Table.Row>
+                          </Table.Header>
+                        </Table>
+                      </Grid.Row>
+                    </Grid>
+                  
+                  }
+
+                  {true && 
+                  
+
+                  <Grid>
+
+                    <Header as='h2' style={{fontWeight: 400, width: 800}}>
+                      <Header.Content style={{fontSize: "22px"}}>
+                        <b>{stateFips === "_nation" || stateFips === "72"? "Vaccination Status in  ":countyName ? "Vaccination Status in  " + countyName: "Loading..."}</b>
+                        <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
+                          Subheader Text
+                        </Header.Subheader>
+                      </Header.Content>
+                    </Header>
+                  
+                    <Grid.Row columns = {3} style = {{width: 600, paddingLeft: 35, paddingTop: 40}}>
+                      <Grid.Column style = {{width: 220, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
+                            <center style={{width: 220,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses <br/> delivered</center>
+
+                        
+                      </Grid.Column>
+                      
+                      <Grid.Column style = {{width: 220, paddingLeft: 0, paddingTop: 8}}> 
+                            <center style={{width: 220,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses administered</center>
+
+                      </Grid.Column>
+                      <Grid.Column style = {{width: 220, paddingLeft: 0, paddingTop: 8}}> 
+              
+                            <center style={{width: 220, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> at least one dose</center>
+
+                      </Grid.Column>
+                      
+                    </Grid.Row>
+
+                    <Grid.Row columns = {3} style = {{width: 800, paddingLeft: 35, paddingTop: 0}}>
+                      <Grid.Column style = {{width: 220, paddingLeft: 0, paddingTop: 0}}> 
+                        <div style = {{width: 220, background: "#e5f2f7", height: 130}}>
+                          <Header style = {{textAlign: "center"}}>
+                            {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                            <Header.Content style = {{paddingBottom: 5}}>
+                            <br/><br/><p style={{width: 220, fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>100</p><br/>
+                            </Header.Content>
+                          </Header>
+                        </div>
+                      </Grid.Column>
+                      
+                      <Grid.Column style = {{width: 220, paddingLeft: 0, paddingTop: 0}}> 
+                        <div style = {{width: 220, background: "#e5f2f7", height: 130}}>
+                          <Header style = {{textAlign: "center"}}>
+                            {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                            <Header.Content style = {{paddingBottom: 5}}>
+                            <br/><br/><p style={{width: 220, fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>100</p><br/>
+                            </Header.Content>
+                          </Header>
+                        </div>
+                      </Grid.Column>
+                      <Grid.Column style = {{width: 220, paddingLeft: 0, paddingTop: 0}}> 
+                        <div style = {{width: 220, background: "#e5f2f7", height: 130}}>
+                          <Header style = {{textAlign: "center"}}>
+                            {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                            <Header.Content style = {{paddingBottom: 5}}>
+                              
+                            <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>100</p><br/>
+                            </Header.Content>
+                          </Header>
+                        </div>
+                      </Grid.Column>
+                      
+                    </Grid.Row>
+
+                    <Grid.Row >
+                    {stateFips && <Accordion id = "race" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 5}}defaultActiveIndex={1} panels={[
+                              {
+                                  key: 'acquire-dog',
+                                  title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                      icon: 'dropdown',
+                                  },
+                                  content: {
+                                      content: (
+                                        <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px"}}>
+                                          Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                                          <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                          <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
+                                          <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                          <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+
+                                          {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                          <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
 
 
-                  <Header as='h2' style={{fontWeight: 400, width: 800}}>
+                                        </Header.Content>
+                                      ),
+                                    },
+                                }
+                            ]
+                            } /> }
+                    </Grid.Row>
+                  </Grid>
+                  
+                  
+                  
+                  }
+                  <Header as='h2' style={{fontWeight: 400, width: 800}}>  
                     <Header.Content style={{fontSize: "22px"}}>
                       <b>{stateFips === "_nation" || stateFips === "72"? "Comparing ":countyName ? "Comparing " + countyName: "Loading..."}</b>
                       <Header.Subheader style={{fontWeight: 350, paddingTop: 15, width: 800, fontSize: "14pt", lineHeight: "16pt"}}>
@@ -1709,6 +1944,7 @@ export default function StateMap(props) {
                       </Header.Subheader>
                     </Header.Content>
                   </Header>
+                  
                   <Grid>
                     {stateFips !== "_nation" && 
                     <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 800}}>
@@ -1753,7 +1989,7 @@ export default function StateMap(props) {
                               <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "": countyName ? countyName: "Loading..."}</text>
                           </svg>
                         </div>
-                        <div style = {{width: 1000, height: 180}}>
+                        <div style = {{width: 900, height: 180}}>
                           {dataTS && <CaseChart data={dataTS} lineColor={[colorPalette[1]]} stateFips = {stateFips} countyFips = {countyFips}
                                 ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter = {labelTickFmt} var = {trendline}/>
                           }  
@@ -1765,16 +2001,48 @@ export default function StateMap(props) {
 
                   </Grid>
 
-                  <Header as='h2' style={{width:800, paddingBottom: 10}}>
-                    <Header.Content style={{fontSize: "22px", marginTop: 6}}>
-                      {stateFips === "_nation" || stateFips === "72"? "":countyName} Population Characteristics
-                      <Header.Subheader style={{fontWeight: 350, width: 800, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
-                      Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
-                      Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
-                      </Header.Subheader>
-                    </Header.Content>
+                </Grid.Column>
+                <Grid.Row>
+                  
+                </Grid.Row>
 
-                  </Header>
+              </Grid.Row>            
+            </Grid>
+
+
+
+
+
+
+
+
+
+
+
+            <Header as='h2' style={{ paddingBottom: 10, paddingTop: 10}}>
+              <Header.Content style={{fontSize: "22px", marginTop: 6}}>
+                {stateFips === "_nation" || stateFips === "72"? "": countyName ? countyName : "Loading"} Population Characteristics
+                <Header.Subheader style={{fontWeight: 350, fontSize: "14pt", lineHeight: "16pt", paddingTop: 18}}>
+                Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
+                Counties with large groups of vulnerable people may be  disproportionately impacted by COVID-19.
+
+                <br/> <br/>
+                  <b>Note:</b> These are not characteristics of COVID-19.
+                </Header.Subheader>
+              </Header.Content>
+
+            </Header>
+
+            {!countyFips &&
+
+              <div style = {{height: 300}}>
+              </div>
+            
+            }
+            {countyFips &&
+            
+              <div>
+                
                   <Grid>
                     <Grid.Row>
                       <BarChart 
@@ -1871,14 +2139,20 @@ export default function StateMap(props) {
                     </Grid.Row>
                   </Grid>
 
-                  
-                </Grid.Column>
-                <Grid.Row>
-                  
-                </Grid.Row>
 
-              </Grid.Row>            
-            </Grid>
+              </div>
+            
+            }
+
+
+
+
+
+
+
+
+
+
             
             </div>
           }

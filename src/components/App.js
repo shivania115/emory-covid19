@@ -3,6 +3,7 @@ import React, {useEffect}from "react";
 // Components & Hooks
 import USMap from "./USMap";
 import StateMap from "./StateMap";
+import StateMapPilot from "./StateMapPilot";
 import CountyReport from "./CountyReport";
 import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
@@ -58,7 +59,9 @@ function AppUI() {
           <Route path='/pilot-09-01-2020/national-report'>
             <NationalReportPilot />
           </Route>
-
+          <Route path='/statemap-Pilot03292021:stateFips'>
+            <StateMapPilot />
+          </Route>
           <Route path='/Vaccine-Tracker-Pilot03022021'>
             <USVaccineTrackerPilot />
           </Route>
