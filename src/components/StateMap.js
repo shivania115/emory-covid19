@@ -845,7 +845,7 @@ export default function StateMap(props) {
     <HEProvider>
       <div>
         <AppBar menu='countyReport'/>
-          <Container style={{marginTop: '8em', minWidth: '1260px'}}>
+          <Container style={{marginTop: '8em', minWidth: '1260px', overflow: "hidden"}}>
 
             {config &&
             <div>

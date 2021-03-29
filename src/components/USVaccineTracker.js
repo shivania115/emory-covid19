@@ -977,9 +977,9 @@ const USVaccineTracker = (props) => {
     // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
-      <div>
+      <div style = {{overflow: 'hidden'}}>
         <AppBar menu='vaccineTracker'/>
-        <Container style={{marginTop: '8em', width: 1260, overFlowX: 'hidden'}}>
+        <Container style={{marginTop: '8em', width: 1260}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >Vaccination: United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>

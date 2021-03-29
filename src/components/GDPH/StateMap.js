@@ -3060,7 +3060,7 @@ export default function StateMap(props) {
                                     <StickyExampleAdjacentContext activeCharacter={activeCharacter} />
                                 </Grid.Column>
 
-                                <Grid.Column width={16} style={{ width: "100%", height: "100%" }}>
+                                <Grid.Column width={16} style={{ width: "200%", height: "100%" }}>
                                     {/* <Divider id='summary' hidden /> */}
                                     <Grid.Row>
                                         <div id='summary' style={sectionStyle2}>

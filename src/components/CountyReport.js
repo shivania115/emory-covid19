@@ -341,7 +341,7 @@ export default function CountyReport() {
     <HEProvider> 
       <div>
         <AppBar menu='countyReport'/>
-        <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
+        <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0, overflow: "hidden"}}>
           {config &&
           <div>
           <Breadcrumb style={{fontSize: "19px", paddingTop: "19px"}}>
