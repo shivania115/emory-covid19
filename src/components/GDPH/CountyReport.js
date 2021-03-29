@@ -849,6 +849,7 @@ export default function CountyReport() {
                         dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
                         dataTS["13001"][337].t,
+                        // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}
 
@@ -910,11 +911,10 @@ export default function CountyReport() {
 
                       <VictoryAxis
                         style={{
-                          tickLabels: { fontSize: 17, padding: 5 }
+                          tickLabels: { fontSize: 15, padding: 7 }
                         }}
                         tickFormat={(t) => new Date(t * 1000).toLocaleDateString('en-Us', { month: 'numeric', day: 'numeric' })}
                         tickValues={[
-                          // 1583035200, 1585713600, 1588305600, 1590984000, 1593576000
                           dataTS['13001'][0].t,
                         dataTS["13001"][31].t,
                         dataTS["13001"][61].t,
@@ -927,6 +927,7 @@ export default function CountyReport() {
                         dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
                         dataTS["13001"][337].t,
+                        // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}
 
