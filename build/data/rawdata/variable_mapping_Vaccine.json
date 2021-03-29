@@ -1,0 +1,89 @@
+{
+    "Population": {
+        "variable": "Population",
+        "name": "Population",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Doses_Distributed": {
+        "variable": "Doses_Distributed",
+        "name": "Total doses distributed",
+        "definition": "is the number of vaccine doses that have been distributed to facilities across the United States by the federal government.",
+        "group": "outcomes"},
+    "Doses_Administered": {
+        "variable": "Doses_Administered",
+        "name": "Doses Administered",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Dist_Per_100K": {
+        "variable": "Dist_Per_100K",
+        "name": "Distributed Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Admin_Per_100K": {
+        "variable": "Admin_Per_100K",
+        "name": "Administered Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Dose1": {
+        "variable": "Administered_Dose1",
+        "name": "Number received first dose",
+        "definition": "is the number of individuals in the United States recorded in CDC database to have received the first dose of a COVID-19 vaccine.",
+        "group": "outcomes"},
+    "Administered_Dose1_Per_100K": {
+        "variable": "Administered_Dose1_Per_100K",
+        "name": "Dose 1 Administered Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Dose2": {
+        "variable": "Administered_Dose2",
+        "name": "Number received second dose",
+        "definition": "is the number of individuals in the United States recorded in CDC database to have received the second dose of a COVID-19 vaccine.",
+        "group": "outcomes"},
+    "Administered_Dose2_Per_100K": {
+        "variable": "Administered_Dose2_Per_100K",
+        "name": "Dose 2 Administered Per 100,000",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Moderna": {
+        "variable": "Administered_Moderna",
+        "name": "Administered Moderna vaccine",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Pfizer": {
+        "variable": "Administered_Pfizer",
+        "name": "Administered Pfizer caccine",
+        "definition": "definition",
+        "group": "outcomes"},
+    "Administered_Unk_Manuf": {
+        "variable": "Administered_Unk_Manuf",
+        "name": "Vaccine administered by Unknown Manufacturer",
+        "definition": "definition",
+        "group": "outcomes"},
+    "percentVaccinatedDose1": {
+        "variable": "percentVaccinatedDose1",
+        "name": "Percent of population partially vaccinated (one dose received)",
+        "definition": "is the percentage of the total US population that has received at least one dose of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
+        "group": "outcomes"},
+    "percentVaccinatedDose2": {
+        "variable": "percentVaccinatedDose2",
+        "name": "Percent of population fully vaccinated (two doses received)",
+        "definition": "is the percentage of the total US population that has received at two doses of a COVID-19 vaccine according to CDC database. The total US population is derived from the Census.",
+        "group": "outcomes"},
+    "Dist_Per_100K_new": {
+        "variable": "Dist_Per_100K_new",
+        "name": "New doses distributed per 100,000",
+        "definition": "is the number of vaccine doses per 100,000 that have been most recently distributed to facilities across the United States by the federal government.",
+        "group": "outcomes"},
+    "Dist_new": {
+        "variable": "Dist_new",
+        "name": "New doses distributed",
+        "definition": "definition",
+        "group": "outcomes"},
+    "distDate": {
+        "variable": "distDate",
+        "name": "distDate",
+        "definition": "definition",
+        "group": "date"}
+}
+
+

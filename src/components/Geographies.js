@@ -14,14 +14,12 @@ const Geographies = ({
 }) => {
   const { path, projection } = useContext(MapContext)
   const { geographies } = useGeographies({ geography, parseGeographies })
-  // console.log(geographies)
 
   return (
     <g className={`rsm-geographies ${className}`} {...restProps}>
       {
         geographies && geographies.length > 0 &&
         children({ geographies, path, projection })
-        
       }
     </g>
   )

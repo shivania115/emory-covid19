@@ -1,5 +1,14 @@
 [
   {
+    "fips": "_nation",
+    "name": "The United States",
+    "nameShort": "US",
+    "offsetX": 50,
+    "offsetY": -120,
+    "scale": 650,
+    "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+  },
+  {
     "fips": "01",
     "name": "Alabama",
     "nameShort": "AL",
@@ -84,7 +93,7 @@
     "fips": "13",
     "name": "Georgia",
     "nameShort": "GA",
-    "offsetX": -193.69763051375597,
+    "offsetX": -190.69763051375597,
     "offsetY": -95.48558928250176,
     "scale": 6000,
     "url": "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/GA-13-georgia-counties.json"
