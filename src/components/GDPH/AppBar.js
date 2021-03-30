@@ -43,10 +43,10 @@ export default function AppBar(props) {
 
           <Menu.Menu position='right'>
           <Menu.Item as='a' header>
-              <Image size='medium' src='/data/GDPH/ERPublicHealth_shield_hz_rv.png'/>
-            </Menu.Item>
-            <Menu.Item as='a' header>
               <Image size='small' src='/logo_white.png' />
+            </Menu.Item>
+          <Menu.Item as='a' header>
+              <Image size='tiny' src='/data/GDPH/rols.png'/>
             </Menu.Item>
             </Menu.Menu>
           

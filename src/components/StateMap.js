@@ -261,7 +261,7 @@ function TopChart(params) {
 
         <VictoryLabel text= {params.sFips === "_nation" ? 0 : params.rate} x={115} y={60} textAnchor="middle" style={{fontSize: 50, fontFamily: 'lato'}}/>
         <VictoryLabel text= {params.sFips === "_nation" ? "" : params.percentChange}  x={115} y={115} textAnchor="middle" style={{fontSize: 24, fontFamily: 'lato'}}/>
-        <VictoryLabel text= {params.sFips === "_nation" ? "" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
+        <VictoryLabel text= {params.sFips === "_nation" ? "" : params.yVar === "hospDaily" ? "7-day" : "14-day"}  x={180} y={110} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
         <VictoryLabel text= {params.sFips === "_nation" ? "" : "change"}  x={180} y={120} textAnchor="middle" style={{fontSize: 12, fontFamily: 'lato'}}/>
 
     </VictoryChart>
@@ -449,7 +449,7 @@ export default function StateMap(props) {
   //                         percentChangeMortality = x[stateFips][x[stateFips].length-1].percent14dayDailyDeaths;
         
   //                         //hospitalization rate
-  //                         percentChangeHospDaily = x[stateFips][x[stateFips].length-1].percent14dayhospDaily;
+  //                         percentChangeHospDaily = x[stateFips][x[stateFips].length-1].percent7dayhospDaily;
   //                         hospD = x[stateFips][x[stateFips].length-1].hospDaily;
         
   //                         //testing positive rate
@@ -665,7 +665,7 @@ export default function StateMap(props) {
                   percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
 
                   // //hospitalization rate
-                  // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                  // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
                   // hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
 
                   // //testing positive rate
@@ -683,12 +683,12 @@ export default function StateMap(props) {
                         if (i ===0 ){
                           indexP = 1;
                           hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
-                          percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent14dayhospDaily;
+                          percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
                         }else if (stateSeriesDict[i].hospDaily === 0){
                         }else{
                           indexP = stateSeriesDict.length - i;
                           hospD = stateSeriesDict[i].hospDaily;
-                          percentChangeHospDaily = stateSeriesDict[i].percent14dayhospDaily;
+                          percentChangeHospDaily = stateSeriesDict[i].percent7dayhospDaily;
                           hospDate = stateSeriesDict[i].t;
                           i = 0;
                         }
@@ -1435,16 +1435,16 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Daily new COVID-19 Hospitalization <br/>
-                    <br/><br/>
-                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> New York Times </a> <br/>
+                    New COVID-19 Hospitalization (7-day average)<br/>
+                    <br/>
+                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> U.S. Department of Health & Human Services, Community Profile Report </a> <br/>
                   </Header.Content>
                 </Grid.Column>
                 <Grid.Column style={{left: 9, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
                     Percentage of total tests for
                     COVID-19 that resulted in a positive result. <br/><br/>
-                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a> <br/>
+                    <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> U.S. Department of Health & Human Services, Community Profile Report </a> <br/>
                   </Header.Content>
                 </Grid.Column>
                 <Grid.Column style={{left: 12, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
@@ -1472,7 +1472,7 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Last updated on {date}
                                     <br/>
-                                    Hospitalization data last updated: {hospDate}.
+                                    Hospitalization data is calculated as the 7-day average, last updated: {hospDate}.
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
@@ -1487,7 +1487,7 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Last updated on {date}
                                     <br/>
-                                    Hospitalization data last updated: {hospDate}.
+                                    Hospitalization data is calculated as the 7-day average, last updated: {hospDate}.
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
