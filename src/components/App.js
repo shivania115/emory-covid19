@@ -3,8 +3,8 @@ import React, {useEffect}from "react";
 // Components & Hooks
 import USMap from "./USMap";
 import StateMap from "./StateMap";
-import StateMapPilot from "./StateMapPilot";
 import CountyReport from "./CountyReport";
+import CountyReportPilot from "./CountyReportPilot";
 import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
 import MediaHub from "./MediaHub";
@@ -77,9 +77,7 @@ function AppUI() {
           <Route path='/pilot-09-01-2020/national-report'>
             <NationalReportPilot />
           </Route>
-          <Route path='/statemap-Pilot03292021:stateFips'>
-            <StateMapPilot />
-          </Route>
+          
           <Route path='/Vaccine-Tracker-Pilot03022021'>
             <USVaccineTrackerPilot />
           </Route>
@@ -110,6 +108,9 @@ function AppUI() {
           <Route path='/data-sources'>
             <DataSources />
           </Route>       
+          <Route path='/crp03302021:stateFips/:countyFips'>
+            <CountyReportPilot />
+          </Route>
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  
