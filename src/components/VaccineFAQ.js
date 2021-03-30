@@ -76,7 +76,7 @@ export default function VaccinesFAQ(props){
     <div>
       
       <AppBar menu='vaccineTracker'/>
-      <Container style={{marginTop: '0em', minWidth: '1260px'}}>
+      <Container style={{marginTop: '0em', minWidth: '1260px', overflow: "hidden"}}>
 
       <Grid>
         {/* <Grid.Column width={2} style={{zIndex: 10}}>
@@ -94,7 +94,20 @@ export default function VaccinesFAQ(props){
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
             <Header.Subheader style={{paddingTop:'2rem', paddingLeft: '0rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
-            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of {Date().slice(4,10)}. Before taking the vaccine, please consult your healthcare provider.
+            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of Mar 14, 2021. Before taking the vaccine, please consult your healthcare provider.
+            If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:
+            {/* {Date().slice(4,10)} */}
+            <ul style={{paddingLeft:'6rem', fontSize:'14pt', lineHeight:'1.5'}}>
+            <li>
+            <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/index.html" target="_blank" rel="noopener noreferrer"> CDC website </a>
+            </li>
+            <li>
+            <a style ={{color: "#397AB9"}} href="https://www.mayoclinic.org/coronavirus-covid-19/vaccine" target="_blank" rel="noopener noreferrer"> Mayo Clinic website </a>
+            </li>
+            <li>
+            Your local Department of Health website
+            </li>
+            </ul>
             </Header.Subheader>
           </Header.Content>
         </Header>
@@ -124,9 +137,10 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(0)>0}>
           <p>
-            At this time, two vaccines have been approved for use by the United States Food and Drug Administration (<a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer">FDA</a>): 
-            one developed by the company <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
-            and one by <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>. 
+            At this time, three vaccines have been approved for use by the United States Food and Drug Administration (<a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer">FDA</a>): 
+            one developed by the company <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech</a>
+            , one by <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>, and one by 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> Janssen Biotech, Johnson & Johnson’s vaccine division</a>. 
         </p>
         </Accordion.Content>
 
@@ -142,10 +156,10 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(1)>0}>
           <p>
-            Both the <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
-            and the <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>
-            vaccines have shown that they are very effective in preventing symptomatic COVID-19 disease (95% and 94.1% effective, respectively). They have also shown that they are safe to get. 
-            However, there are a few small differences in who should get them and when. The most important ones for anyone getting a vaccine are the following:
+            Both the <a style ={{color: "#397AB9"}} href="https://www.nejm.org/doi/full/10.1056/NEJMoa2034577" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech </a>
+            and the <a style ={{color: "#397AB9"}} href="https://www.nejm.org/doi/full/10.1056/nejmoa2022483" target="_blank" rel="noopener noreferrer"> Moderna </a>
+            vaccines have shown that they are very effective in preventing symptomatic COVID-19 disease (95% and 94.1% effective, respectively). The Johnson & Johnson vaccine showed that it was also quite effective in preventing severe COVID-19 illness (85% effective), 
+            as well as preventing less severe illness. All three vaccines  have also shown that they are safe to get. However, there are a few small differences in who should get them and when. The most important ones for anyone getting a vaccine are the following:
         </p>
         <Container style={{paddingLeft:'3rem', paddingBottom:'0.5rem'}}>
         <Table celled compact style={{fontWeight: 400, fontSize:'13pt', width: '58rem'}}>
@@ -153,16 +167,19 @@ export default function VaccinesFAQ(props){
             <Table.Row>
               <Table.HeaderCell width={3}>Pfizer-BioNTech COVID-19 vaccine</Table.HeaderCell>
               <Table.HeaderCell width={3}>Moderna COVID-19 vaccine</Table.HeaderCell>
+              <Table.HeaderCell width={3}>Johnson & Johnson COVID-19 vaccine</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             <Table.Row>
               <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 16 years and older</Table.Cell>
               <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 18 years and older</Table.Cell>
+              <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 18 years and older</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "14pt"}}>2 doses, 3 weeks apart</Table.Cell>
               <Table.Cell style={{lineHeight: "14pt"}}>2 doses, 4 weeks apart</Table.Cell>
+              <Table.Cell style={{lineHeight: "14pt"}}>1 dose</Table.Cell>
             </Table.Row>
             </Table.Body>
         </Table>
@@ -180,13 +197,26 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(2)>0}>
-          <p>
-            Each vaccine that is being developed is slightly different. The two vaccines for COVID-19 currently approved by the Food and Drug Administration (FDA) for use in the United States are the Pfizer-BioNTech COVID-19 vaccine and the Moderna COVID-19 vaccine. 
-            The active ingredient of these vaccines is mRNA. The two vaccines also include other ingredients like fat, salts, and sugars that protect the mRNA. These ingredients also help the mRNA work better in the body, and protect the vaccine when it is stored at very cold temperatures. 
-            The specific ingredients for each vaccine are listed <a style ={{color: "#397AB9"}} href="https://www.cvdvaccine-us.com/images/pdf/fact-sheet-for-recipients-and-caregivers.pdf" target="_blank" rel="noopener noreferrer"> here </a>for the Pfizer-BioNTech vaccine and
-            <a style ={{color: "#397AB9"}} href="https://www.modernatx.com/covid19vaccine-eua/recipients/faq" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine. 
-            <u> Neither vaccine contains preservatives, eggs, or latex. Neither vaccine contains any kind of fetal tissue.</u>
-            </p>
+          <p style={{marginBottom:0}}>
+            Each vaccine that is being developed is slightly different. The three vaccines for COVID-19 currently approved by the Food and Drug Administration (FDA) for use in the United States are the Pfizer-BioNTech COVID-19 vaccine, the Moderna COVID-19 vaccine, and the Johnson & Johnson COVID-19 vaccine. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            For the Pfizer-BioNTech and Moderna vaccines, the active ingredient is mRNA. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            For the Johnson & Johnson vaccine, the active ingredient is modified virus particles that carry SARS-CoV-2 DNA. These virus particles are not active virus and cannot replicate in the body or cause illness. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            All of the vaccines also include other ingredients like fat, salts, and sugars that protect the active ingredients, either mRNA or modified virus cells, depending on the vaccine. These ingredients also help the active ingredients work better in the body, and protect the vaccine when it is stored at very cold temperatures. 
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            The specific ingredients for each vaccine are listed <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144414/download" target="_blank" rel="noopener noreferrer"> here </a>for the Pfizer-BioNTech vaccine, 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144638/download" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine, and 
+            <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> here </a> for the Johnson & Johnson vaccine.
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            <u>None of the approved vaccines contain preservatives, eggs, latex, or fetal tissue.</u>
+          </p>
         </Accordion.Content>
 
 
@@ -200,15 +230,48 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(3)>0}>
-          <p>
-            The approved COVID-19 vaccines are a new type of vaccine called an mRNA <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/mrna.html" target="_blank" rel="noopener noreferrer"> vaccine</a>.
-            An mRNA vaccine contains “instructions” for the body to make a piece of the “spike protein” found on the surface of the virus that causes COVID-19. These vaccines do not contain the whole virus.  
+        <p style={{marginBottom:0}}>
+            The first two approved COVID-19 vaccines, those from Pfizer-BioNTech and Moderna, are a new type of vaccine called an <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/mrna.html" target="_blank" rel="noopener noreferrer"> mRNA vaccine</a>.
+            An mRNA vaccine contains “instructions” for the body to make a piece of the “spike protein” found on the surface of the virus that causes COVID-19. These vaccines do not contain the whole virus. 
             The body then follows the instructions in the mRNA to make spike proteins and the immune system learns to recognize those proteins. 
             The body can then make antibodies to fight viruses that have this protein, in the same way it would learn to recognize and fight the virus if you actually got a COVID infection. 
         </p>
-        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
             mRNA vaccines cannot change a person’s DNA. The mRNA from the vaccine does not interact with a person’s DNA. mRNA is not “permanent”. In fact, it is quite fragile and breaks down quickly after it has triggered the body to make the virus spike proteins. 
             The mRNA “instructions” in these vaccines is likely to be read just by the muscle cells in your arm and some immune system cells. It will not be read by cells in other parts of your body.
+        </p>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+          Although these vaccines are the first mRNA vaccines approved for use against any disease, scientists have been studying and working with mRNA for decades. This type of vaccine is also being studied against flu, Zika, rabies, and cytomegalovirus (CMV). 
+          Because of the type of technology and materials they use, mRNA vaccines can also be developed more quickly against new viruses than other types of vaccines, as they were against COVID-19.
+        </p>
+        </Accordion.Content>
+
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 0}
+          index={34}
+          onClick={() => activeIndex.indexOf(34) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 34]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 34))}
+        >
+          <Icon name='dropdown' />
+          What is a “viral vector” or “adenovirus-based” vaccine?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(34)>0}>
+        <p style={{marginBottom:0}}>
+        The COVID-19 vaccine developed by Johnson & Johnson is part of a category of vaccines known as “non-replicating viral vector”, “adenovirus-based”, or simply “viral vector” vaccines. These vaccines contain modified virus cells to deliver information to the body’s cells. 
+        These virus cells are modified to be harmless so that they cannot cause any kind of illness, including COVID-19. They are not SARS-CoV-2 virus cells.
+        </p>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        These cells carry the DNA, or genes, for the SARS-CoV-2 “spike protein”. Once in the body, these genes allow the body to produce the mRNA or instructions to build those spike proteins. Then the body makes those spike proteins and the immune system learns to recognize those proteins. 
+        The body can then make antibodies to fight viruses that have this protein, in the same way it would learn to recognize and fight the virus if you actually got a COVID infection.    
+        </p>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        The spike protein DNA in these vaccines cannot change or affect a person’s DNA. The genes in the vaccines do not interact with a person’s DNA. 
+        </p>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Although adenovirus-based vaccines are a newer type of vaccine, this technology has been studied since the 1970s. A safe and effective vaccine against Ebola (also developed by 
+        <a style ={{color: "#397AB9"}} href="https://www.jnj.com/latest-news/latest-facts-about-johnson-johnson-ebola-vaccine" target="_blank" rel="noopener noreferrer"> Johnson & Johnson</a>) that uses this technology has been in use since 2019. 
+        Other viral vector vaccines that are being studied now include vaccines against HIV, Zika, and flu.  
         </p>
         </Accordion.Content>
 
@@ -225,11 +288,31 @@ export default function VaccinesFAQ(props){
           active={activeIndex.indexOf(4)>0}>
           <p>
         No. mRNA vaccines cannot make anyone sick with COVID-19. They do not contain the virus that causes COVID-19. However, after receiving a vaccine, you may experience feelings like a headache or muscle aches. 
-        The headaches and muscle aches happen because the vaccine triggers your body’s  immune system and teaches it how to fight the virus. That is good news! If you do <b>not</b> experience these symptoms, 
+        The headaches and muscle aches happen because the vaccine triggers your body’s immune system and teaches it how to fight the virus. That is good news! If you do <b>not</b> experience these symptoms, 
         however, that does not mean your immune system is not reacting to the vaccine and learning how to fight the virus or that the vaccine is not working. 
         Individuals react differently to vaccines and your body may just have a less pronounced response.
         </p>
         </Accordion.Content>
+
+
+        <Accordion.Title id="develop" style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 0}
+          index={35}
+          onClick={() => activeIndex.indexOf(35) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 35]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 35))}
+        >
+          <Icon name='dropdown' />
+          Can I get COVID-19 from taking the viral vector vaccine?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(35)>0}>
+          <p>
+          No. Viral vector vaccines cannot make anyone sick with COVID-19. They do not contain the virus that causes COVID-19. However, after receiving a vaccine, you may experience feelings like a headache or muscle aches. 
+          The headaches and muscle aches happen because the vaccine triggers your body’s immune system and teaches it how to fight the virus. That is good news! If you do not experience these symptoms, however, 
+          that does not mean your immune system is not reacting to the vaccine and learning how to fight the virus or that the vaccine is not working. Individuals react differently to vaccines and your body may just have a less pronounced response.
+        </p>
+        </Accordion.Content>
+
+
         </Accordion>
         </div>
 
@@ -331,9 +414,8 @@ export default function VaccinesFAQ(props){
           active={activeIndex.indexOf(5)>0}>
           <p>
           There are <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/vaccines/" target="_blank" rel="noopener noreferrer"> currently </a>
-        79 vaccines in various phases of testing across the world. Of these, 20 are in <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
-        clinical trials. Phase 3 trials are the large-scale studies done before a vaccine is approved.
-        
+        93 vaccines in various phases of testing across the world. Of these, 25 are in <a style ={{color: "#397AB9"}} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
+        clinical trials. Phase 3 trials are the large-scale studies done before a vaccine is approved. There are 12 vaccines approved for use in different countries, although only 3 have been approved for use in the United States under the Food and Drug Administration’s Emergency Use Authorization.
           </p>
         </Accordion.Content>
 
@@ -347,15 +429,19 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(6)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
           It is hard to know exactly how effective the authorized vaccines will be against new and different variants of SARS-CoV-2, the virus that causes COVID-19. 
-        Right now, the limited information we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or 
+        Right now, the limited <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/transmission/variant.html" target="_blank" rel="noopener noreferrer"> information </a>
+        we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or 
         from vaccination will still protect against most new variants. However, this is a changing situation, and something scientists are continuing to study. 
-        
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+          At this time, the <a style ={{color: "#397AB9"}} href="https://www.bmj.com/content/372/bmj.n597" target="_blank" rel="noopener noreferrer"> data </a> 
+          show a mixed picture. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. At this time, it is recommended that even if you are vaccinated, you continue to wear a mask, especially in large groups.
           </p>
         </Accordion.Content>
 
-        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+        {/* <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 2}
           index={7}
           onClick={() => activeIndex.indexOf(7) <0 ? setActiveIndex(activeIndex =>[...activeIndex, 7]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 7))}
@@ -371,7 +457,7 @@ export default function VaccinesFAQ(props){
             <br/><br/>
             Details about Operation Warp Speed can be found <a style ={{color: "#397AB9"}} href="https://www.hhs.gov/coronavirus/explaining-operation-warp-speed/index.html" target="_blank" rel="noopener noreferrer"> here </a>.
           </p>
-        </Accordion.Content>
+        </Accordion.Content> */}
 
 
         <Accordion.Title id="safety" style={{fontSize:'15pt', color: 'black'}}
@@ -391,9 +477,31 @@ export default function VaccinesFAQ(props){
         Clinical trials are specifically designed to allow for potential pauses, so that they can put patient safety at the absolute top of the priority list. 
         </p>
         </Accordion.Content>
-      </Accordion>
-      </div>
 
+
+      <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 1}
+          index={7}
+          onClick={() => activeIndex.indexOf(7) <0 ? setActiveIndex(activeIndex =>[...activeIndex, 7]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 7))}
+        >
+          <Icon name='dropdown' />
+          How was it possible to develop these vaccines so quickly?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(7)>0}>
+          <p style={{marginBottom:0}}>
+          As soon as the virus was identified as SARS-CoV-2 in early 2020, many researchers around the world began to work on mapping out its genetic code. Because scientists were already familiar with coronaviruses, 
+          the virus family SARS-CoV-2 belongs to, and because they collaborated on this work, they were able to identify its viral sequence incredibly quickly. The technologies for the different types of vaccines (mRNA, viral vector, and others) 
+          were already being tested on other viruses and in other areas of medicine. They were rapidly adapted against SARS-CoV-2 once scientists had its viral sequence fully mapped out.
+          </p>
+          <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+          Because of the global urgency to fight the COVID-19 pandemic, researchers received very large amounts of funding from governments and private sector investors. Partnerships were also developed between groups of institutions to plan ahead 
+          in case the vaccines that were being developed and tested proved to be effective. In the United States, one such partnership was Operation Warp Speed. This collaboration brought together components of the Department of Health and Human Services 
+          and the Department of Defense to develop, make and distribute vaccines as quickly as possible after they were tested for safety and effectiveness.
+          </p>
+        </Accordion.Content>
+        </Accordion>
+      </div>
 
 
 
@@ -443,7 +551,7 @@ export default function VaccinesFAQ(props){
           </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(10)>0}>
-          <p>
+          <p style={{marginBottom: 0}}>
         Yes. Any vaccine that is approved for use is thoroughly tested to make sure that it is both effective and safe. Tests for safety already happen in Phase I, Phase II, and Phase III clinical trials. 
         However, vaccines continue to be tested for safety after they are approved for use, in what are called “Phase IV” studies. All the vaccines for COVID-19 are being developed through careful scientific studies, 
         which follow strict standards set by the Food and Drug Administration (FDA). During vaccine development and testing, researchers carefully study whether each vaccine effectively reduces the chances of getting COVID-19 or getting sick from COVID-19. 
@@ -454,9 +562,9 @@ export default function VaccinesFAQ(props){
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         There are very strict standards about whether a vaccine is authorized as safe by the Food and Drug Administration. Before a COVID-19 vaccine is approved, scientists must show that any risks of side effects from the vaccine are outweighed by its benefits and 
         by the potential harm of getting sick from COVID-19. You can find additional information about COVID-19 vaccine safety on the <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html" target="_blank" rel="noopener noreferrer"> CDC’s website </a>
-        and the full documents shared with the FDA <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144434/download" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine and
-        <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144245/download" target="_blank" rel="noopener noreferrer"> here </a> for the Pfizer-BioNTech vaccine. Vaccine safety monitoring does not stop once a vaccine is approved. 
-        It continues on a larger scale with Phase IV studies as well as nationwide vaccine safety reporting systems.
+        and the full documents shared with the FDA <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144434/download" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine, 
+        <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144245/download" target="_blank" rel="noopener noreferrer"> here </a> for the Pfizer-BioNTech vaccine, and <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146217/download" target="_blank" rel="noopener noreferrer"> here </a>
+        for the Johnson & Johnson vaccine. Vaccine safety monitoring does not stop once a vaccine is approved. It continues on a larger scale with Phase IV studies as well as nationwide vaccine safety reporting systems.
         </p>
         
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
@@ -478,8 +586,8 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(11)>0}>
           <p>
-        No. There is no evidence to suggest that the COVID-19 mRNA vaccines would increase the risk of infertility. This is a concern that began to be shared widely by non-scientific sources. 
-        However, there is no connection between the virus spike protein targeted by the vaccine and human reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on fertility.  
+        No. There is no evidence to suggest that the COVID-19 vaccines would increase the risk of infertility. This is a concern that began to be shared widely by non-scientific sources. 
+        However, there is no connection between the virus spike protein targeted by the vaccine and human reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on fertility. 
         </p>
         </Accordion.Content>
         </Accordion>
@@ -515,9 +623,16 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(12)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         Yes. The clinical trials for each approved vaccine showed that the vaccine was effective in protecting vaccinated people from getting sick with COVID-19 disease. 
-        For each of the approved vaccines, 2 doses are required to be fully protected from COVID-19. Individuals are not considered to be “vaccinated” until after they receive their 2<sup>nd</sup> dose.
+        </p>
+        
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        For both the Pfizer-BioNTech and Moderna vaccines, 2 doses are required to be fully protected from COVID-19. Individuals are not considered to be “vaccinated” until after they receive their 2<sup>nd</sup> dose. 
+        </p>
+
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        For the Johnson & Johnson vaccine, only one dose is needed. For all vaccines, it takes around 2 weeks after vaccination to be fully protected.
         </p>
         </Accordion.Content>
 
@@ -548,10 +663,13 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(14)>0}>
-          <p>
-        Yes. Both approved vaccines (developed by Pfizer-BioNTech and Moderna) are given in two doses. One dose is not effective enough to provide strong protection against COVID-19. You can enroll in 
+          <p style={{marginBottom:0}}>
+        Yes, if you are getting one of the approved mRNA vaccines (from Pfizer-BioNTech or Moderna), you need both doses. For these vaccines, one dose is not effective enough to provide strong protection against COVID-19. You can enroll in 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/reporting/vaxtext/index.html" target="_blank" rel="noopener noreferrer"> CDC’s VaxText program </a>
         to receive text messages to remind you when it is time to get your second dose.
+        </p>
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        For the vaccine developed by Johnson & Johnson, you do not need a second dose.
         </p>
         </Accordion.Content>
 
@@ -562,17 +680,22 @@ export default function VaccinesFAQ(props){
           onClick={() => activeIndex.indexOf(15) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 15]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 15))}
         >
           <Icon name='dropdown' />
-          Do I need two doses of the same COVID-19 vaccine?
+          Do I need two doses of the same COVID-19 vaccine (if I get a two-dose vaccine)?
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(15)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         Yes, whenever possible. You should get both doses of the same vaccine. In other words, you should not “mix and match” vaccines from different manufacturers. When you get your first vaccine dose, you will receive a card with the date, 
         the name of the manufacturer, and lot number of the vaccine you received and the date when you should get the second dose. You should take that card to your next vaccination appointment to keep track of what vaccine you were given and when. 
-        This will help the healthcare staff provide you with the correct second dose. Getting two different types of vaccines will likely not give you more protection than one type of vaccine. 
+        This will help the healthcare staff provide you with the correct second dose. 
+        </p>
+
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Getting two different types of vaccines will likely not give you more protection than one type of vaccine. 
         The safety of getting vaccinated by two different vaccines has not been directly tested in clinical trials, so this is not recommended. In very limited situations, CDC recently published
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/clinical-considerations.html" target="_blank" rel="noopener noreferrer"> guidance </a>
-        to allow for two doses of different vaccines to be given. This should only be done if the vaccine given for the first dose is no longer available or it is not possible to determine which vaccine was used for the first dose. This should be avoided if at all possible.  
+        to allow for two doses of different vaccines to be given. This should only be done if the vaccine given for the first dose is no longer available or it is not possible to determine which vaccine was used for the first dose. 
+        This should be avoided if at all possible.
         </p>
         </Accordion.Content>
 
@@ -621,14 +744,15 @@ export default function VaccinesFAQ(props){
             </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(18)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         Yes. Since COVID-19 is a new virus, we do not know how long immunity (or protection) someone gets from having an infection lasts. In general, immunity after an infection depends on both the disease and the individual. 
         So far, based on evidence from a small number of people, it seems like immunity from a COVID-19 infection may not last very long. More research is needed to understand this fully and to get a clearer sense of how long it might last. 
         Because we do not yet know how long this immunity will last, it is still important to get vaccinated even if you had COVID-19 and recovered.
         </p>
 
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
-        However, if you currently have COVID-19, you should wait to get vaccinated until you feel better and your isolation period is over. There is data suggesting that getting re-infected with COVID-19 within 90 days following infection is uncommon. 
+        However, if you currently have COVID-19, you should wait to get vaccinated until you feel better and your isolation period is over. If you were treated with antibody therapy during your COVID-19 illness, you should wait until 90 days after you received this treatment to get vaccinated. 
+        There is data suggesting that getting re-infected with COVID-19 within 90 days following infection is uncommon. 
         As a result, some people may choose to wait 90 days after they have recovered from COVID-19 before getting vaccinated.
         </p>
         
@@ -649,18 +773,19 @@ export default function VaccinesFAQ(props){
             </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(19)>0}>
-          <p>
-        The <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect/after.html" target="_blank" rel="noopener noreferrer"> side effects </a> of the two approved vaccines are similar to typical side effects you might experience after getting other vaccines. 
+          <p style={{marginBottom:0}}>
+        The <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect/after.html" target="_blank" rel="noopener noreferrer"> side effects </a> of the approved vaccines are similar to typical side effects you might experience after getting other vaccines. 
         Common side effects people report are: a sore arm where you got the vaccine, tiredness, headaches, and muscle pain. Other side effects reported in some of the clinical trials include chills, joint pain, and fever. Most people reported that these lasted a day or less.
         </p>
 
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
-        For both vaccines that have been approved, more people experienced side effects after the second dose than after the first dose. These side effects mean that your immune system is working to protect you against COVID-19, and that is a good sign.
+        For the approved two-dose vaccines, more people experienced side effects after the second dose than after the first dose. These side effects mean that your immune system is working to protect you against COVID-19, and that is a good sign.
         </p>
         
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         More data on the types of side effects and reactions experienced by participants in the vaccine trials can be found <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/pfizer/reactogenicity.html" target="_blank" rel="noopener noreferrer"> here </a>
-        for the Pfizer-BioNTech vaccine and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/moderna/reactogenicity.html" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine.
+        for the Pfizer-BioNTech vaccine,<a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/moderna/reactogenicity.html" target="_blank" rel="noopener noreferrer"> here </a> for the Moderna vaccine, and 
+        <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/janssen/reactogenicity.html" target="_blank" rel="noopener noreferrer"> here </a>for the Johnson & Johnson vaccine.
         </p>
 
         <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
@@ -690,7 +815,7 @@ export default function VaccinesFAQ(props){
             </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(20)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         As for any vaccine there is a very small chance of a severe allergic reaction. These are very rare but, when they do happen, they usually happen in people who have a history of severe allergic reactions. There are reports that a small number of people have had serious 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety/allergic-reaction.html" target="_blank" rel="noopener noreferrer"> allergic reactions </a> after getting a COVID-19 vaccine. 
         </p>
@@ -735,7 +860,7 @@ export default function VaccinesFAQ(props){
             </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(21)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         You can report any possible side effects to CDC through the <a style ={{color: "#397AB9"}} href="https://vaers.hhs.gov/reportevent.html" target="_blank" rel="noopener noreferrer"> Vaccine Adverse Event Reporting System </a>. 
         This is a national system that helps CDC monitor the safety of approved vaccines, including the COVID-19 vaccines. Ensuring that vaccines are safe is a top priority for CDC and the Food and Drug Administration (FDA). 
         Vaccine Adverse Event Reporting System data helps scientists to look for side effects or reactions that are unexpected, more frequent than expected, or unusual. You can learn more about vaccine side effects and how they are monitored
@@ -769,7 +894,8 @@ export default function VaccinesFAQ(props){
           active={activeIndex.indexOf(22)>0}>
           <p>
         Anyone who has had a serious allergic reaction to an ingredient in one of the COVID-19 vaccines should not get the vaccine. Similarly, anyone who has a serious allergic reaction to the first dose of a COVID-19 vaccine should not get the second dose. 
-        You can find a list of the ingredients for the two vaccines <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144414/download" target="_blank" rel="noopener noreferrer"> here </a> and <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144638/download" target="_blank" rel="noopener noreferrer"> here</a>.
+        You can find a list of the ingredients for the vaccines <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144414/download" target="_blank" rel="noopener noreferrer"> here</a>,<a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/144638/download" target="_blank" rel="noopener noreferrer"> here</a>, 
+        and <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> here</a>.
         If you are not sure whether this applies to you, check with your healthcare provider.
         </p>
         </Accordion.Content>
@@ -785,7 +911,7 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(23)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         If you have had allergic reactions to other vaccines or injectable treatments in the past, you should check with your healthcare provider whether you can get the COVID-19 vaccine.
         </p>
 
@@ -807,7 +933,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(24)>0}>
           <p>
-        This depends on your medical condition; in most cases you will still be eligible to get the COVID-19 vaccine. Neither of the approved COVID-19 vaccines have specific 
+        This depends on your medical condition; in most cases you will still be eligible to get the COVID-19 vaccine. None of the approved COVID-19 vaccines have specific 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/underlying-conditions.html" target="_blank" rel="noopener noreferrer"> restrictions </a> 
         based on medical conditions. However, if you have concerns about whether a vaccine is right for you, you should speak with your healthcare provider. 
         They can answer your questions and advise you based on your risk factors, your medical condition, and your risks of getting COVID-19.
@@ -826,7 +952,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(25)>0}>
           <p>
-        You may get the vaccine even if you are considering becoming pregnant. The American College of Obstetricians and Gynecologists and 
+        You may get any of the available vaccines even if you are considering becoming pregnant. The American College of Obstetricians and Gynecologists and 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer"> CDC </a> 
         recommend the COVID-19 vaccine for people trying to become pregnant or considering becoming pregnant in the future. There is no need to delay pregnancy after being fully vaccinated.
         </p>
@@ -844,7 +970,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(26)>0}>
           <p>
-        You may get the vaccine even if you are currently pregnant. The
+        You may get any of the available vaccines even if you are currently pregnant. The
         <a style ={{color: "#397AB9"}} href="https://www.acog.org/en/Clinical/Clinical%20Guidance/Practice%20Advisory/Articles/2020/12/Vaccinating%20Pregnant%20and%20Lactating%20Patients%20Against%20COVID%2019" target="_blank" rel="noopener noreferrer"> American College of Obstetricians and Gynecologists </a> 
         recommends that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. Although there are no contraindications based on pregnancy, you should discuss this decision with your healthcare provider to make sure it is right for your situation.
         </p>
@@ -865,6 +991,23 @@ export default function VaccinesFAQ(props){
         Yes. The
         <a style ={{color: "#397AB9"}} href="https://www.acog.org/en/Clinical/Clinical%20Guidance/Practice%20Advisory/Articles/2020/12/Vaccinating%20Pregnant%20and%20Lactating%20Patients%20Against%20COVID%2019" target="_blank" rel="noopener noreferrer"> American College of Obstetricians and Gynecologists </a> 
         recommends that people who are breastfeeding get a COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine.
+        </p>
+        </Accordion.Content>
+
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 0}
+          index={36}
+          onClick={() => activeIndex.indexOf(36) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 36]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 36))}
+        >
+          <Icon name='dropdown' />
+          Can I get other vaccines at the same time as a COVID-19 vaccine?
+        </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(36)>0}>
+          <p>
+          <a style ={{color: "#397AB9"}} href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html" target="_blank" rel="noopener noreferrer"> CDC</a> recommends 
+          that you wait at least 14 days between a COVID-19 vaccine and any other vaccine, including vaccines against flu or shingles. If you get a COVID-19 vaccine within less than 14 days of another vaccine, you do not get revaccinated; you can still complete the vaccine series (for multi-dose vaccines) as planned.
         </p>
         </Accordion.Content>
 
@@ -895,7 +1038,7 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(29)>0}>
-          <p>
+          <p style={{marginBottom:0}}>
         Because there are limited doses of the vaccine at this point, vaccination efforts are 
         <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations.html" target="_blank" rel="noopener noreferrer"> prioritizing </a> 
         people based on:
@@ -905,9 +1048,9 @@ export default function VaccinesFAQ(props){
         <li>Protecting our essential services and essential workers as much as possible </li>
         <li>Reducing the extra burden of COVID-19 on people already facing disparities</li>
         </ul>
-        <p style={{paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        <p style={{paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
         This means that those who have the highest risks of being exposed to COVID-19 or the highest risks of getting seriously ill if they become infected with COVID-19 are being vaccinated first. 
-        For Phase 1a, the first phase, this means vaccinating healthcare workers and residents of long-term care facilities.  The second phase (“Phase 1b”) focuses on frontline essential workers 
+        For Phase 1a, the first phase, this means vaccinating healthcare workers and residents of long-term care facilities. The second phase (“Phase 1b”) focuses on frontline essential workers 
         and people aged 75 and over. During the third phase (“Phase 1c”), the following groups are also eligible: essential workers, people aged 65-74, and people aged 16-64 who have other medical conditions 
         that put them at risk for serious complications from COVID-19.
         </p>
@@ -939,7 +1082,7 @@ export default function VaccinesFAQ(props){
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(30)>0}>
           <p>
-        Since doses of the available vaccines are limited at this point, certain groups are being prioritized, for example healthcare workers and residents in long-term care facilities. You can find out more about what groups of people are currently eligible 
+        Since doses of the available vaccines continue to be limited at this point, certain groups are being prioritized, for example healthcare workers and residents in long-term care facilities, older age groups, and adults with some medical conditions. You can find out more about what groups of people are currently eligible 
         to be vaccinated in your state by accessing your state’s Department of Health website.
         </p>
         </Accordion.Content>
@@ -992,14 +1135,14 @@ export default function VaccinesFAQ(props){
           onClick={() => activeIndex.indexOf(32) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 32]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 32))}
         >
           <Icon name='dropdown' />
-        After I get two doses of a COVID-19 vaccine, do I still have to take other preventive measures?
+        After I am fully vaccinated against COVID-19, do I still have to take other preventive measures?
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(32)>0}>
           <p>
         Yes.
         <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/_nation" target="_blank" rel="noopener noreferrer"> COVID-19 transmission </a> 
-        is very high in communities across the United States right now. As such, CDC still recommends continuing to physically distance, wear a face covering, limit gatherings, and wash your hands thoroughly even once you are vaccinated. 
+        is very high in communities across the United States right now. As such, CDC still recommends continuing to physically distance, wear a face covering, limit gatherings, and wash your hands thoroughly even once you are vaccinated, including after receiving both doses for the two-dose vaccines. 
         It will take months for everyone across the United States to be fully vaccinated, so it is important that people continue to follow these precautions. The vaccine is the first part in a “one-two punch” that also includes physical distancing, wearing a mask, 
         washing your hands regularly, and staying away from large gatherings.
         </p>
@@ -1016,8 +1159,23 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(33)>0}>
-          <p>
-        Yes. Transmission of COVID-19 is very high across the country so CDC still recommends quarantining if you are exposed through a close contact.
+        <p>
+        You may not need to quarantine, but it depends on your situation. Currently,<a style ={{color: "#397AB9"}} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/clinical-considerations.html#phrecs" target="_blank" rel="noopener noreferrer"> COVID-19 recommendations </a>
+        are that you do not need to quarantine if you meet all these criteria: 
+        </p>
+        <ol style={{paddingLeft:'4rem', lineHeight:"150%"}}>
+          <li>
+            You have been fully vaccinated (received both shots if the COVID-19 vaccine you are getting is a two-dose vaccine) more than 2 weeks ago
+          </li>
+          <li>
+            You received your last COVID-19 vaccine less than 3 months ago
+          </li>
+          <li>
+            AND you do not have any symptoms of COVID-19 since you were exposed.
+          </li>
+        </ol>
+        <p>
+        Transmission of COVID-19 is very high across the country so CDC still recommends quarantining if you are exposed through a close contact and do not meet all 3 of these conditions.
         </p>
         </Accordion.Content>
         </Accordion>
@@ -1032,7 +1190,7 @@ export default function VaccinesFAQ(props){
         <p style={{fontSize:'14pt', paddingLeft:'0rem'}}>
           Robert A. Bednarczyk, PhD (Assistant Professor, Emory University Rollins School of Public Health) <br/>
           Vincent Marconi, MD (Professor, Emory University School of Medicine, Division of Infectious Diseases; Emory University Rollins School of Public Health) <br/>
-          Maria Sundaram, MSPH, PhD  (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health <br/>
+          Maria Sundaram, MSPH, PhD (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health <br/>
           Henry M. Wu, MD (Associate Professor, Emory University School of Medicine, Division of Infectious Diseases)
         </p>
         

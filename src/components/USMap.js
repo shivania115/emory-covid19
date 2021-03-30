@@ -109,9 +109,13 @@ export default function USMap(props) {
   const [legendSplit, setLegendSplit] = useState([]);
 
   const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('caserate7dayfig');
-  const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-  const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
+  const [metric, setMetric] = useState('casesfig');
+  const [metricOptions, setMetricOptions] = useState('casesfig');
+  const [metricName, setMetricName] = useState('Total COVID-19 Cases');
+
+  // const [metric, setMetric] = useState('caserate7dayfig');
+  // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
+  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
 
   const [delayHandler, setDelayHandler] = useState();
 
@@ -123,11 +127,11 @@ export default function USMap(props) {
     var max = 0;
     var min = 100;
   useEffect(()=>{
-    fetch('/data/date.json').then(res => res.json())
-      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+    // fetch('/data/date.json').then(res => res.json())
+    //   .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
-    fetch('/data/nationalDemogdata.json').then(res => res.json())
-        .then(x => setNationalDemog(x));
+    // fetch('/data/nationalDemogdata.json').then(res => res.json())
+    //     .then(x => setNationalDemog(x));
 
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
@@ -136,12 +140,12 @@ export default function USMap(props) {
           return {key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-    fetch('/data/racedataAll.json').then(res => res.json())
-      .then(x => 
-        setRaceData(x));
+    // fetch('/data/racedataAll.json').then(res => res.json())
+    //   .then(x => 
+    //     setRaceData(x));
     
-    fetch('/data/timeseriesAll.json').then(res => res.json())
-        .then(x => setAllTS(x));
+    // fetch('/data/timeseriesAll.json').then(res => res.json())
+    //     .then(x => setAllTS(x));
 
     // local
     // fetch('/data/data.json').then(res => res.json())
@@ -242,16 +246,35 @@ export default function USMap(props) {
 
                 }else if(i.tag === "racedataAll"){ //race data
                   setRaceData(i.racedataAll);       
+                }else if(i.tag === "date"){
+                  setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
+                }else if(i.tag === "nationalDemog"){
+                  setNationalDemog(i.nationalDemog);
+                }else if(i.tag === "racedataAll"){
+                  setRaceData(i.racedataAll);
                 }
               });
 
-              //all states' time series data
+              //all states' time series data in one single document
               let tempDict = {};
               const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
               const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-              tempDict = promSeries[1].timeseriesAll;
-              tempDict["_nation"] = promSeries[0].timeseries_nation;
+              tempDict = promSeries[0].timeseriesAll;
+              tempDict["_nation"] = promSeries[1].timeseries_nation;
               setAllTS(tempDict);
+
+              //if timeseriesAll exceeds 16MB (max size for a single document on MongoDB), 
+              //use the following code and comment out the above
+
+              // const seriesQ = { $or: [ { state: "_n" } , { stateonly: "true" } ] };
+              // const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+              // promSeries.forEach( i => {
+              //   if(i.state === "_n"){
+              //     tempDict["_nation"] = i["timeseries_nation"];
+              //   }
+              //   tempDict[i.state] = i["timeseries" + i.state];
+              // });
+              // setAllTS(tempDict);
             };
           
           fetchData();
@@ -308,10 +331,10 @@ export default function USMap(props) {
     console.log(isJson(JSON.stringify(data)));
   return (
     <HEProvider>
-      <div>
+      <div style = {{overflow: "hidden"}}>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <div style={{height:130, overflow: "hidden"}}>
+        <Grid style={{height:130, overflow: "hidden"}}>
           <div style = {{ paddingBottom: 8}}>
           </div>
           
@@ -440,21 +463,21 @@ export default function USMap(props) {
               </Grid>
             </div>
           </div>
-        </div>
+        </Grid>
           <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
           </Breadcrumb>
           <Divider hidden />
-          <Grid columns={16}>
+        <Grid columns={9} style = {{ width: "100%", height: "100%", overflow: "hidden" }}>
           <div style={{fontSize: "14pt", paddingTop: 10, paddingBottom: 30}}>
             See Dashboard Guide (<a style ={{color: "#397AB9"}} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
 
           </div>
 
             
-            <Grid.Row>
-              <Grid.Column width={9}>
+            <Grid.Row style = {{ width: "100%", height: "100%" }}>
+              <Grid.Column width={9} style = {{ width: "100%", height: "100%" }}>
                 <Header as='h2' style={{fontWeight: 400, fontSize: "18pt"}}>
                   <Header.Content>
                     COVID-19 is affecting every community differently.<br/>
@@ -1386,7 +1409,7 @@ export default function USMap(props) {
                     <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt"}}>
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
-                      <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                      <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
                       <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
                     
                     </Header.Content>

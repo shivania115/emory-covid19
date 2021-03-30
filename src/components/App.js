@@ -3,6 +3,7 @@ import React, {useEffect}from "react";
 // Components & Hooks
 import USMap from "./USMap";
 import StateMap from "./StateMap";
+import StateMapPilot from "./StateMapPilot";
 import CountyReport from "./CountyReport";
 import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
@@ -17,6 +18,10 @@ import USVaccineTracker from "./USVaccineTracker";
 import USVaccineTrackerPilot from "./USVaccineTrackerPilot";
 import VaccineFAQ from "./VaccineFAQ";
 import VaccineMap from "./VaccineMap";
+import GDPHStateMap from "./GDPH/StateMap";
+import GDPHCountyReport from "./GDPH/CountyReport";
+import GDPHAboutUs from "./GDPH/AboutUs";
+import GDPHDataSources from "./GDPH/DataSources";
 import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
 // import USMapPilot from "./USMapPilot";
@@ -55,10 +60,26 @@ function AppUI() {
     <HEProvider>
       <Router>
         <Switch>
+          {/* GDPH urls */}
+          <Route path='/Georgia/data-sources'>
+            <GDPHDataSources />
+          </Route>
+          <Route path='/Georgia/about-team'>
+            <GDPHAboutUs />
+          </Route>
+          <Route path='/Georgia/:countyFips'>
+            <GDPHCountyReport />
+          </Route>
+          <Route path='/Georgia' component={GDPHStateMap} />
+
+
+          {/* Main urls */}
           <Route path='/pilot-09-01-2020/national-report'>
             <NationalReportPilot />
           </Route>
-
+          <Route path='/statemap-Pilot03292021:stateFips'>
+            <StateMapPilot />
+          </Route>
           <Route path='/Vaccine-Tracker-Pilot03022021'>
             <USVaccineTrackerPilot />
           </Route>
@@ -68,7 +89,6 @@ function AppUI() {
           <Route path='/vaccine-map'>
             <VaccineMap />
           </Route>
-          
           <Route path='/map-state'>
             <MapYourState />
           </Route>

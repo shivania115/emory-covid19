@@ -1,5 +1,5 @@
 import React, { useEffect, useState, PureComponent, createRef} from 'react'
-import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Accordion, Icon, Transition, Button, Card} from 'semantic-ui-react'
+import { Container, Dropdown, Grid, Breadcrumb, Header, Loader, Divider, Table, Icon, Transition, Button, Card} from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
 // import Geography from './Geography';
@@ -33,13 +33,14 @@ import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 
 
 const colorPalette = [
-        "#e1dce2",
-        "#d3b6cd",
-        "#bf88b5", 
-        "#af5194", 
-        "#99528c", 
-        "#633c70", 
-      ];
+  "#e1dce2",
+  "#d3b6cd",
+  "#bf88b5", 
+  "#af5194", 
+  "#99528c", 
+  "#633c70", 
+];
+
 const countyColor = '#f2a900';
 const stateColor = "#778899";
 const nationColor = '#b1b3b3';
@@ -47,6 +48,14 @@ const nationColor = '#b1b3b3';
 const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
+
+function numberWithCommas(x) {
+  x = x.toString();
+  var pattern = /(-?\d+)(\d{3})/;
+  while (pattern.test(x))
+      x = x.replace(pattern, "$1,$2");
+  return x;
+}
 
 
 function CountySites(props) {
@@ -84,40 +93,32 @@ export default function VaccineMap(props) {
   const history = useHistory();
   //let {stateFips} = useParams();
   let stateFips = "13";
+  let configURL = "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/us-states/GA-13-georgia-counties.json"
+  //let zipURL = "https://api.zip-codes.com/ZipCodesAPI.svc/1.0/GetAllZipCodes?state=GA&country=US&key=DEMOAPIKEY"
   const [tooltipContent, setTooltipContent] = useState("");
+  const [countyTooltipContent, setCountyTooltipContent] = useState("");
   // const [hoverMarker, setHoverMarker] = useState('');
   const [countyList, setCountyList] = useState([]);
   const [countySelected, setCountySelected] = useState([]);
-  const [resultHeight, setResultHeight] = useState();
+  const [countyFips, setCountyFips] = useState("13121");
+  const [countyClicked, setCountyClicked] = useState("Fulton County");
+
+  const [zipList, setZipList] = useState([]);
+  const [zipSelected, setZipSelected] = useState();
 
   const [siteData, setSiteData] = useState();
-  const [dataTS, setDataTS] = useState();
-  const [dataStateTS, setStateTS] = useState();
-  const [raceData, setRaceData] = useState();
+  const [countyData, setCountyData] = useState();
 
-  const [config, setConfig] = useState();
-  const [stateName, setStateName] = useState('');
-  const [countyFips, setCountyFips] = useState('');
-  const [countyName, setCountyName] = useState('');
-  
-  const [colorScale, setColorScale] = useState();
-  const [pctPositive, setPctPositive] = useState();
-  // const [totalCases, setTotalCases] = useState();
-  const [hospDaily, setHospDaily] = useState();
-  const [percentChangeHospDaily, setPercentChangeHospDaily] = useState();
-  const [index, setIndex] = useState();
-  const [indexP, setIndexP] = useState();
-
-  const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('caserate7dayfig');
-  const [countyOption, setCountyOption] = useState();
+  const [mapColor, setMapColor] = useState(0);
+  const [legendMax, setLegendMax] = useState([]);
+  const [legendMin, setLegendMin] = useState([]);
+  const [legendSplit, setLegendSplit] = useState([]);
 
   var transform = [-900,-420];
   
   console.log("stateFips ", stateFips);
 
 
-  const [delayHandler, setDelayHandler] = useState();
   
 
   //variable list & fips code to county name 
@@ -167,7 +168,7 @@ export default function VaccineMap(props) {
           .then(x => {
             setSiteData(
               _.map(x, d=> {
-                return {address: d.Address, county: d.County, coordinates: [d.Longitude, d.Latitude]};
+                return {address: d.Address, county: d.County, zipcode: d.Zipcode2, coordinates: [d.Longitude, d.Latitude]};
               
               })
             );
@@ -177,13 +178,20 @@ export default function VaccineMap(props) {
           console.log("Error Reading data " + err);
         });
 
+
+
   }, []);
+
+  useEffect(() => {
+    setZipList(_.sortBy(_.map(_.uniq(_.map(siteData,'zipcode')), d => {
+      return {key:d, value:d, text:d}
+    }),'key'));
+  },[siteData])
 
     
 
   // mongo
   useEffect(()=>{
-    //if (metric) {
 
     if (isLoggedIn === true){
         const configMatched = configs.find(s => s.fips === stateFips);
@@ -191,18 +199,39 @@ export default function VaccineMap(props) {
         if (!configMatched){
             history.push('/_nation');
         } else{
-        //   let newDict = {}; 
-          // console.log("configMatched.offsetX", configMatched.offsetX);
-          setConfig(configMatched);
+
+          //setConfig(configMatched);
         //   setTransform("translate(" + configMatched.offsetX + "," + configMatched.offsetY + ")")
-          setStateName(configMatched.name);
+          //setStateName(configMatched.name);
           console.log("transform", "translate("+(transform[0]-12)+","+transform[1]+")")
-        //   const fetchData = async() => { 
+          const fetchData = async() => { 
         //     if(stateFips !== "_nation"){
         //       //all static data
-        //       const staticQ = {all: "all"};
-        //       const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+              const staticQ = {tag: "nationalrawfull"};
+              const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
+              setCountyData(promStatic[0].data);
+              var varData = _.map(promStatic[0].data,'dailycases').slice(115,274);
+              setLegendMin(Math.min(...varData).toFixed(1));
+              setLegendMax(Math.max(...varData).toFixed(1));
 
+              let scaleMap = {};
+              var scaler = scaleQuantile().domain(varData).range(colorPalette);
+
+              _.forEach(promStatic[0].data, item => {
+                if(parseInt(Object.keys(promStatic[0].data).find(key => promStatic[0].data[key] === item))>=13001 
+                && parseInt(Object.keys(promStatic[0].data).find(key => promStatic[0].data[key] === item))<=14000){
+                  scaleMap[parseInt(Object.keys(promStatic[0].data).find(key => promStatic[0].data[key] === item))] = scaler(item['dailycases'])
+                }
+                
+              });
+              setLegendSplit(scaler.quantiles());
+              console.log('scaleMap',scaleMap)
+              setMapColor(scaleMap);
+              console.log('vardata',promStatic[0].data);
+              // slice(115,274)
+              console.log('index of 13001', Object.keys(promStatic[0].data).indexOf("13001"));
+              console.log('index of 13321', Object.keys(promStatic[0].data).indexOf("13321"));
+              console.log("sqr ", mapColor);
         //       promStatic.forEach(i=> {
         //         if(i.tag === "nationalrawfull"){ //nationalraw
         //           newDict = i.data;
@@ -242,68 +271,27 @@ export default function VaccineMap(props) {
         //     }
             
         //     setDataTS(seriesDict);
-        //   };
-        //   fetchData();
+          };
+          fetchData();
         }
-          
+        
         } else {
           handleAnonymousLogin();
         
       }
     //}
   },[isLoggedIn]);
-  // console.log("config ", config);
-  // console.log("tranform ", transform);
-  console.log('site data', siteData);
 
-//   useEffect(() => {
-//     if(stateFips !== "_nation"){
-//       let scaleMap = {};
-//       var max = 0;
-//       var min = 100;
-//       const cs = scaleQuantile()
-//       .domain(_.map(_.filter(data, 
-//         d => (
-//             d[metric] > 0 &&
-//             d.fips.length === 5)),
-//         d=> d[metric]))
-//       .range(colorPalette);
 
-//       _.each(data, d=>{
-//         if(d[metric] > 0){
-//         scaleMap[d[metric]] = cs(d[metric])}});
-//       setColorScale(scaleMap);
-//       setLegendSplit(cs.quantiles());
 
-//       //find the largest value and set as legend max
-//       _.each(data, d=> { 
-//         if (d[metric] > max && d.fips.length === 5) {
-//           max = d[metric]
-//         } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-//           min = d[metric]
-//         }
-//       });
 
-//       if (max > 999999) {
-//         max = (max/1000000).toFixed(0) + "M";
-//         setLegendMax(max);
-//       }else if (max > 999) {
-//         max = (max/1000).toFixed(0) + "K";
-//         setLegendMax(max);
-//       }else{
-//         setLegendMax(max.toFixed(0));
-//       }
-//       setLegendMin(min.toFixed(0));
-//     }
 
-//   }, [metric, data]);
 
 
   //set county list
   useEffect(() => {
-    // county list
-    if(config){
-      fetch(config.url)
+
+    fetch(configURL)
     .then(res => res.json())
     .then(x => {
       setCountyList(_.sortBy(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),
@@ -312,12 +300,22 @@ export default function VaccineMap(props) {
       }), 'text'));
       // setCountyList(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),'NAME'));
   })
-    // setCountyList()
+
+  // fetch(zipURL)
+  // .then(res => res.json())
+  // .then(x => {
+    // setZipList(_.map(x, d => {
+    //   return {key:d, value:d, text:d}
+    // }));
+    // setCountyList(_.map(_.map(x.objects.cb_2015_georgia_county_20m.geometries, 'properties'),'NAME'));
+    // })
+
     }
     
-  }, [config]);
+  , []);
 
-  console.log("countyList", countyList)
+  console.log("zipList", zipList)
+
   // const markers = [
   //   {
   //     markerOffset: 0,
@@ -330,16 +328,85 @@ export default function VaccineMap(props) {
   //   { markerOffset: 0, name: "115", coordinates: [-83.2166, 34.3630] }
   // ];
 
-  //useEffect(() => {
-  console.log("countySelected", countySelected)
-  useEffect ( () => {
-    if(dropdownRef.current){  
-        let ddHeight = dropdownRef.current.offsetHeight;  
-        setResultHeight(700-ddHeight); 
-        console.log(ddHeight);
-    }
-  }, [dropdownRef]);
+  const Legend = () => {
+    let MinVal;
+    let MaxVal;
 
+      if(legendMin>999999){
+        MinVal = <text x={37} y={35} style={{fontSize: '0.7em'}}>{(legendMin/1000000).toFixed(1) + "M"} </text>;
+      }else if(legendMin>999){
+        MinVal = <text x={37} y={35} style={{fontSize: '0.7em'}}>{(legendMin/1000).toFixed(1) + "K"} </text>;
+      }else{
+        MinVal = <text x={37} y={35} style={{fontSize: '0.7em'}}>{legendMin}</text>;
+      }
+  
+      if(legendMax>999999){
+        MaxVal = <text x={80+20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.7em'}}>{(legendMax/1000000).toFixed(1) + "M"} </text>;
+      }else if(legendMax>999){
+        MaxVal = <text x={80+20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.7em'}}>{(legendMax/1000).toFixed(1) + "K"} </text>;
+      }else{
+        MaxVal = <text x={80+20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.7em'}}>{legendMax}</text>;
+      }
+
+      if(legendMin>999 && legendMax<999999){
+        MinVal = <text x={40} y={35} style={{fontSize: '0.7em'}}>{(legendMin/1000).toFixed(1)} </text>;
+        MaxVal = <text x={80+20 * (colorPalette.length - 1)} y={35} style={{fontSize: '0.7em'}}>{(legendMax/1000).toFixed(1)} </text>;
+      }
+
+      if (Object.keys(mapColor).length>0 && legendMin>999 && legendMax<999999) {    // income
+        return (
+        <svg width="280" height="80" transform="translate(-10,-20)"> 
+          {_.map(legendSplit, (splitpoint, i) => {
+            return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {(legendSplit[i]/1000).toFixed(1)}</text>                                      
+          })}
+  
+        {MinVal}
+        {MaxVal}
+          
+          {_.map(colorPalette, (color, i) => {
+            return <rect key={i} x={50+24*i} y={40} width="22" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+          })} 
+          <text x={30} y={74} style={{fontSize: '0.7em'}}>Low </text>
+          <text x={80+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.7em'}}>High </text>
+  
+          <rect x={200} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+          <text x={225} y={48} style={{fontSize: '0.7em'}}> None </text>
+          <text x={225} y={58} style={{fontSize: '0.7em'}}> Reported </text>
+        </svg>);
+      } else if (Object.keys(mapColor).length>0) {
+        return (
+        <svg width="280" height="80" transform="translate(-10,-20)"> 
+          {_.map(legendSplit, (splitpoint, i) => {
+            if(legendSplit[i] < 1){
+              return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {legendSplit[i].toFixed(1)}</text>                    
+            }else if(legendSplit[i] > 999999){
+              return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {(legendSplit[i]/1000000).toFixed(1) + "M"}</text>                    
+            }else if(legendSplit[i] > 999){
+              return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {(legendSplit[i]/1000).toFixed(1) + "K"}</text>                    
+            }
+            return <text key = {i} x={64 + 24 * (i)} y={35} style={{fontSize: '0.6em'}}> {legendSplit[i].toFixed(1)}</text>                    
+          })}
+  
+        {MinVal}
+        {MaxVal}
+          
+          {_.map(colorPalette, (color, i) => {
+            return <rect key={i} x={50+24*i} y={40} width="22" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+          })} 
+          <text x={30} y={74} style={{fontSize: '0.7em'}}>Low </text>
+          <text x={80+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.7em'}}>High </text>
+  
+          <rect x={200} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+          <text x={225} y={48} style={{fontSize: '0.7em'}}> None </text>
+          <text x={225} y={58} style={{fontSize: '0.7em'}}> Reported </text>
+        </svg>);
+      } else {
+        return;
+      }
+      
+  };
+
+  console.log('siteData', siteData);
 
   const CardGroup = _.filter(siteData, function(o) { return countySelected.indexOf(o.county.replace(' County',''))>-1; }).map((obj, index) =>
   // {'county':countySelected}
@@ -355,12 +422,8 @@ export default function VaccineMap(props) {
       onMouseLeave={()=>{setTooltipContent("")}}
     />
     )
-   //, [countySelected])
-    
-   
-  // if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
-  // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
-    if (config && siteData && countyList) {
+
+    if (siteData && countyList && countyData) {
     
     return(
     <HEProvider>
@@ -370,9 +433,17 @@ export default function VaccineMap(props) {
         <Container style={{marginTop: '10em', minWidth: '1260px'}}>
 
         <Grid>
-        <Header>Vaccination Distribution Sites</Header>
+        <Header style={{fontWeight:600,fontSize:"18pt", paddingTop:16}}>
+          Vaccination Distribution Sites
+        </Header>
+        <Header.Subheader style={{fontWeight:400, lineHeight: 1.2, fontSize:"14pt", paddingTop:16, paddingLeft: '1rem', paddingRight: '1rem'}}>
+          There are {siteData.length} locations in Georgia currently offering at least one COVID-19 vaccine. 
+          Before heading to any location for a vaccine, please consult their hours and websites, where available, 
+          to make sure you know under what conditions you can receive a COVID-19 vaccine there. You may need an appointment. 
+          All locations are current as of {Date().slice(4,10)}.
+        </Header.Subheader>
         </Grid>
-        <Grid columns={2}>
+        <Grid columns={2} style={{paddingTop:'3rem'}}>
         <Grid.Column width={10}>
             <ComposableMap projection="geoAlbersUsa" 
             //projectionConfig={{scale:`${config.scale*0.7}`}} 
@@ -389,46 +460,18 @@ export default function VaccineMap(props) {
             // offsety={config.offsetY}
             >
             {/* <ZoomableGroup zoom={1}> */}
-            <Geographies geography={config.url} transform={"translate("+transform[0]+","+transform[1]+")"}>
+            <Geographies geography={configURL} transform={"translate("+transform[0]+","+transform[1]+")"}>
                 {({geographies}) => geographies.map(geo =>
                 <Geography 
                     key={geo.rsmKey} 
                     geography={geo} 
-                    // onClick link
-                    // onClick={()=>{
-                    // if(stateFips !== "_nation"){
-                    //     history.push("/" + stateFips + "/" +geo.properties.COUNTYFP);
-                    // }
-                    // }}
-
-                    // onMouseEnter={()=>{setDelayHandler(setTimeout(() => {
-                    // if(stateFips !== "_nation"){
-                    //     setCountyFips(geo.properties.COUNTYFP);
-                    //     setCountyName(fips2county[stateFips + geo.properties.COUNTYFP]);
-                    //     setBarCountyName((fips2county[stateFips + geo.properties.COUNTYFP]).match(/\S+/)[0]);
-                    //     }
-                    // }, 300))
-                    
-                    // }}
-                    // onMouseLeave={()=>{
-                    // if(stateFips !== "_nation"){
-                    //     clearTimeout(delayHandler);
-
-                    //     setTooltipContent("")
-                    // }
-                    // }}
                     fill = {countySelected.indexOf(fips2county[stateFips + geo.properties.COUNTYFP].replace(' County',''))>-1 ? '#f2a900' : 'white'}
-                    // fill={(stateFips === "_nation" || stateFips === "72")? "#FFFFFF" :countyFips===geo.properties.COUNTYFP?countyColor:
-                    //     ((colorScale && data[stateFips+geo.properties.COUNTYFP] && (data[stateFips+geo.properties.COUNTYFP][metric]) > 0)?
-                    //         colorScale[data[stateFips+geo.properties.COUNTYFP][metric]]: 
-                    //         (colorScale && data[stateFips+geo.properties.COUNTYFP] && data[stateFips+geo.properties.COUNTYFP][metric] === 0)?
-                    //         '#e1dce2':'#FFFFFF')}
-                    // fill = 'white'
+
                     />
                 )}
             </Geographies>
-            {siteData.map(({ coordinates, address, county }) => (
-              tooltipContent[0] === address ?
+            {siteData.map(({ coordinates, address, county, zipcode }) => (
+              tooltipContent[0] === address || zipSelected === zipcode ?
                 <Marker className="marker" key={address} coordinates={coordinates} onClick={() => {
                     // window.open("https://maps.google.com?q="+coordinates[1]+","+coordinates[0]);
                     window.open("https://maps.google.com?q="+address);
@@ -482,7 +525,7 @@ export default function VaccineMap(props) {
                   // setHoverMarker("");
                 }}
                 >
-                <circle cx="0" cy="0" fill="#FF5533" stroke="white" r="2" transform={"translate("+transform[0]+","+transform[1]+")"}/>
+                <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="1" transform={"translate("+transform[0]+","+transform[1]+")"}/>
                 </Marker>
                 
                 // "rgb(255,209,93)"
@@ -528,15 +571,139 @@ export default function VaccineMap(props) {
                 }}
 
               />
+              <Dropdown
+                style={{background: '#fff', 
+                        fontSize: "16px",
+                        fontWeight: 400, 
+                        theme: '#000000',
+                        width: '350px',
+                        left: '0px',
+                        text: "Select",
+                        borderTop: '0.5px solid #bdbfc1',
+                        borderLeft: '0.5px solid #bdbfc1',
+                        borderRight: '0.5px solid #bdbfc1', 
+                        borderBottom: '0.5px solid #bdbfc1',
+                        marginTop: '1rem',
+                        paddingBottom: '0em'}}
+                placeholder="Select Zipcode"
+                search
+                selection
+                clearable
+                pointing = 'top'
+                options={zipList}
+                onChange={(e, { value }) => {
+                  setZipSelected(value);
+                }}
+              />
               </Grid.Row>
               <Grid.Row style={{width:'290px', height:'500px', marginTop:'2rem', overflow:'auto'}}>
               {/* <CountySites county={countySelected} siteData={siteData}/> */}
               <Card.Group style={{width:'280px', paddingTop:'1rem', paddingLeft:'0.5rem'}}>{CardGroup}</Card.Group>
               </Grid.Row>
           </Grid.Column>
-          </Grid>
+          </Grid>{tooltipContent==="" ? null : <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent[0]} </b> </font> <br/> {tooltipContent[1]} </ReactTooltip> }
+
+          <Grid columns={2}>
+        <Grid.Column width={10}>
+          <div>
+            {Legend()}
+          </div>
+            <ComposableMap projection="geoAlbersUsa" 
+            //projectionConfig={{scale:`${config.scale*0.7}`}} 
+            projectionConfig={{
+                // rotate: [-100, 20, 0],
+                scale: 4500,
+              }}
+            width={500} 
+            height={400} 
+            strokeWidth = {0.3}
+            stroke = 'black'
+            data-tip=""
+            // offsetx={config.offsetX}
+            // offsety={config.offsetY}
+            >
+            {/* <ZoomableGroup zoom={1}> */}
+            <Geographies geography={configURL} transform={"translate("+transform[0]+","+transform[1]+")"}>
+                {({geographies}) => geographies.map(geo =>
+                <Geography 
+                    key={geo.rsmKey} 
+                    geography={geo} 
+
+                    onClick={()=>{
+                      setCountyFips("13"+geo.properties.COUNTYFP);
+                      setCountyClicked(fips2county[stateFips + geo.properties.COUNTYFP]);
+                    }}
+
+                    onMouseEnter={()=>{
+                      setCountyTooltipContent(fips2county[stateFips + geo.properties.COUNTYFP]);
+                        // setBarCountyName((fips2county[stateFips + geo.properties.COUNTYFP]).match(/\S+/)[0]);
+                    }}
+                    onMouseLeave={()=>{
+                      setCountyTooltipContent("")
+                    }}
+                    fill = { countyTooltipContent === geo.properties.NAME+' County' ? '#f2a900' : mapColor["13"+geo.properties.COUNTYFP]}
+                    // countyFips === "13"+geo.properties.COUNTYFP
+                    />
+                )}
+            </Geographies>
+            {siteData.map(({ coordinates, address, county }) => (
+                <Marker className="marker" key={address} coordinates={coordinates} >
+                <circle cx="0" cy="0" fill="#FF5533" stroke="#FF5533" r="1" transform={"translate("+transform[0]+","+transform[1]+")"}/>
+                </Marker>
+                 
+            ))}
+            {/* </ZoomableGroup> */}
+            </ComposableMap>
+            </Grid.Column>
+        <Grid.Column width={5} style={{height:'600px', paddingTop:'4rem'}}>
+          <Grid.Row >
+          <Table celled fixed style = {{width: 350}}>
+                  <Table.Header>
+
+                    <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                        <td colSpan='1' style={{width:130}}> </td>
+                        <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {countyClicked}</td>
+                        <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> GA </td>
+                    </tr>
+                    <Table.Row textAlign = 'center' style = {{height: 40}}>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"dailycases"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["dailycases"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["dailycases"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"dailydeaths"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["dailydeaths"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["dailydeaths"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"mean7daycases"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["mean7daycases"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["mean7daycases"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"mean7daydeaths"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(countyData[countyFips]["mean7daydeaths"].toFixed(0))} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(countyData[13]["mean7daydeaths"].toFixed(0))} </Table.HeaderCell>
+
+                    </Table.Row>
+
+                    <Table.Row textAlign = 'center'>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {"#sites"} </Table.HeaderCell>
+                      <Table.HeaderCell  style={{fontSize: '14px'}}> {countyFips === "_nation" ? "":numberWithCommas(_.filter(siteData, ['county', countyClicked]).length)} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(siteData.length)} </Table.HeaderCell>
+
+                    </Table.Row>
+                    
+                  </Table.Header>
+                </Table>
+              </Grid.Row>
+          </Grid.Column>
+          </Grid>{countyTooltipContent!=="" ?  <ReactTooltip place='right'> <font size="+1"> <b> {countyTooltipContent} </b> </font> <br/> </ReactTooltip> : null}
         </Container>
-        {tooltipContent!=="" ?  <ReactTooltip place='right'> <font size="+1"> <b> {tooltipContent[0]} </b> </font> <br/> <b> {tooltipContent[1]} </b> <br/> Click to view on Google Map. </ReactTooltip> : null}
+        
     </div>
     </HEProvider>
     );

@@ -317,6 +317,7 @@ useEffect(()=>{
     data[214].t,
     data[244].t,
     data[275].t,
+    data[306].t,
     data[data.length-1].t]);
   }else if(chartNo===0 || chartNo===3) {
     setCaseTicks([data[0].t,
@@ -329,35 +330,37 @@ useEffect(()=>{
     data[214].t,
     data[244].t,
     data[275].t,
+    data[306].t,
     data[data.length-1].t]);
     setHeaderTime('');
     if(chartNo===0){
       setDisabled(true);
-      setTimeout(()=>setChartNo(chartNo+1), 10000);
+      setTimeout(()=>setChartNo(chartNo+1), 12000); //10000
     } else {
-      setTimeout(()=>setChartNo(chartNo+1), 8000);
+      setTimeout(()=>setChartNo(chartNo+1), 10000);   //8000
     }
   } else if(chartNo===1 || chartNo===4){
     setCaseTicks([data[214].t,
     data[244].t,
     data[275].t,
+    data[306].t,
     data[data.length-1].t]);
     setHeaderTime('in Past 90 Days');
-    setTimeout(()=>setChartNo(chartNo+1), 5000);
+    setTimeout(()=>setChartNo(chartNo+1), 7000);   //5000
   } else if(chartNo===2 || chartNo===5){
     setCaseTicks([
       data[data.length-14].t,
       data[data.length-7].t,
       data[data.length-1].t]);
     setHeaderTime('in Past 14 Days');
-    setTimeout(()=>setChartNo(chartNo+1), 5000);
+    setTimeout(()=>setChartNo(chartNo+1), 7000);
     if(chartNo===5){
-      setTimeout(()=>setDisabled(false), 5000);
+      setTimeout(()=>setDisabled(false), 7000);
     }
   }
 }, [chartNo]);
 
-  console.log('chartNo', chartNo);
+  // console.log('chartNo', chartNo);
 
   return(
   <Grid.Row style={{paddingLeft: 20, paddingBottom: '0rem'}}>  
@@ -406,7 +409,7 @@ useEffect(()=>{
    
     {(()=>{
       if (chartNo<3){
-        return (<Accordion style = {{paddingLeft: 35}} defaultActiveIndex={1} panels={[
+        return (<Accordion style = {{paddingLeft: 18}} defaultActiveIndex={1} panels={[
         {
             key: 'acquire-dog',
             title: {
@@ -418,8 +421,8 @@ useEffect(()=>{
                   <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
                   <Header.Content  style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
-                      This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
-                      new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
+                      This figure shows the trend of daily COVID-19 cases in the U.S.. The bar height reflects the number of 
+                      new cases per day and the line depicts the 7-day moving average of daily cases in the U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
                       an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
                       We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
                       the average new cases over the past 14-day period. 
@@ -436,7 +439,7 @@ useEffect(()=>{
     ]
           } />)}
       else{
-        return (<Accordion style = {{paddingLeft: 35}} defaultActiveIndex={1} panels={[
+        return (<Accordion style = {{paddingLeft: 20}} defaultActiveIndex={1} panels={[
         {
             key: 'acquire-dog',
             title: {
@@ -448,8 +451,8 @@ useEffect(()=>{
                   <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
                   <Header.Content  style={{fontSize: "14pt"}}>
                     <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
-                          This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                          per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                          This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
+                          per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                           associated with COVID-19 reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
                           an average of {mortalityMean} new deaths per day reported over the past 7 days. 
                           We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
@@ -475,13 +478,13 @@ useEffect(()=>{
 }
 
 function CaseChartStatic(props){
-  const [playCount, setPlayCount] = useState(0);
-  const [visible1, setVisible1] = useState(false);
-  const [visible2, setVisible2] = useState(false);
-  const [visible3, setVisible3] = useState(false);
-  const [visible4, setVisible4] = useState(false);
-  const [visible5, setVisible5] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  // const [playCount, setPlayCount] = useState(0);
+  // const [visible1, setVisible1] = useState(false);
+  // const [visible2, setVisible2] = useState(false);
+  // const [visible3, setVisible3] = useState(false);
+  // const [visible4, setVisible4] = useState(false);
+  // const [visible5, setVisible5] = useState(false);
+  // const [disabled, setDisabled] = useState(true);
   const [highlightIndex, setHighlightIndex] = useState([-1, 9, 71, 109, 260]);
   const data = props.data;
   const barColor = props.barColor;
@@ -527,23 +530,23 @@ function CaseChartStatic(props){
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       {/* <Arrow1/> */}
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'12.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-26rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-37rem', left:'21.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 270, y: 330 }} end={{ x: 275, y: 350 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 360, y: 302 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 628, y: 110 }} end={{ x: 652, y: 125 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 260, y: 330 }} end={{ x: 268, y: 350 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 350, y: 302 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 605, y: 110 }} end={{ x: 630, y: 125 }} strokeWidth='0.8'/>
       </Grid.Column>
   );
 }
@@ -632,23 +635,24 @@ function CaseChartAll(props){
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       {/* <Arrow1/> */}
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={visible3} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'12.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-26rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={visible4} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-37rem', left:'21.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'32rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
+      
       {visible2 ? <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 270, y: 330 }} end={{ x: 275, y: 350 }} strokeWidth='0.8'/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 370, y: 280 }} end={{ x: 360, y: 302 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 628, y: 110 }} end={{ x: 652, y: 125 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 260, y: 330 }} end={{ x: 268, y: 350 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 350, y: 302 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 605, y: 110 }} end={{ x: 630, y: 125 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -887,7 +891,7 @@ function CaseChart90(props){
       </ComposedChart>
       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact style={{ width: '15rem', top: barName==='dailyCases' ? '-29rem' : '-32rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
+      <Message compact style={{ width: '15rem', top: '-29rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
       </Transition>
       {/* <Transition visible={visible2} animation='scale' duration={300}>
       <Message compact style={{ width: '10rem', top:'-28rem', left:'10rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
@@ -1098,10 +1102,10 @@ function DeathChartAll(props){
       <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'29rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'27.5rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 290, y: 380 }} end={{ x: 265, y: 442 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 505, y: 440 }} end={{ x: 513, y: 465 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 290, y: 380 }} end={{ x: 263, y: 442 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 490, y: 438 }} end={{ x: 495, y: 465 }} strokeWidth='0.8'/> : null}
       
       </Grid.Column>   
 
@@ -2230,10 +2234,10 @@ export default function NationalReport(props) {
 
 
   if (data && dataTS && varMap) {
-
+    // console.log(demog_descriptives['AgeDescription']);
   return (
     <HEProvider>
-      <div>
+      <div style = {{overflow: "hidden"}}>
         <AppBar menu='nationalReport' /> 
         <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} >
         <div >
@@ -2271,7 +2275,7 @@ export default function NationalReport(props) {
               <Header.Content style={{fontFamily:'lato', fontSize: "14pt", width: 810}}>
               The United States has reported {numberWithCommas(data['_nation']['casesfig'])} cases, the highest number of any country in the world. 
               The number of cases and deaths differ substantially across American communities. The COVID-19 U.S. Health Equity 
-              Report documents how COVID-19 cases and deaths are changing over time, geography, and demography. The report will 
+              Report documents how COVID-19 cases and deaths are changing over time, across geography, and by demographics. The report will 
               be released each week to keep track of how COVID-19 is impacting U.S. communities.
               </Header.Content>
             </div>
@@ -2304,23 +2308,23 @@ export default function NationalReport(props) {
               <Grid>
                 <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 40}}>
                   <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
-                    <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses distributed</center>
+                    <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses <br/> delivered</center>
 
                     
                   </Grid.Column>
                   
                   <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 8}}> 
-                    <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> first dose</center>
+                    <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Total doses <br/> administered</center>
 
                   </Grid.Column>
                   <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 8}}> 
            
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> second dose</center>
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> at least one dose</center>
 
                   </Grid.Column>
                   <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 8}}> 
                    
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Newly distributed per 100,000 on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)} </center>
+                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number fully <br/> vaccinated </center>
   
                     </Grid.Column>
                 </Grid.Row>
@@ -2343,7 +2347,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                           
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Administered"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2354,7 +2358,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose2"])}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2365,7 +2369,7 @@ export default function NationalReport(props) {
                         {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p><br/>
+                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"].toFixed(0))}</p><br/>
                         </Header.Content>
                       </Header>
                       </div>
@@ -2375,13 +2379,40 @@ export default function NationalReport(props) {
                 <Grid.Column style = {{width: 900, paddingLeft: 205, paddingTop: 18}}> 
                     <div style = {{width: 900}}>
                       <Header>
-                        <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population partially vaccinated (one dose received) </p>
-                        <Header.Content style = {{paddingBottom: 20, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["percentVaccinatedDose1"]).toFixed(0))} size='large' color='green' progress/>
-                        </Header.Content>
-                        <p style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", paddingBottom: 0, lineHeight: "22px"}}> Percent of population fully vaccinated (two doses received)</p>
+                        <div>
+                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                            Percent of the U.S. population partially vaccinated<br/>
+                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                              One of two doses of Pfizer or Moderna vaccine received
+                            </Header.Content>
+                          </Header>
+                        </div>
                         <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["percentVaccinatedDose2"]).toFixed(0))} size='large' color='green' progress/>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
+                        </Header.Content>
+
+                        <div>
+                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                            Percent of the U.S. population fully vaccinated<br/>
+                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                              Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
+                            </Header.Content>
+                          </Header>
+                        </div>
+                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
+                        </Header.Content>
+
+                        <div>
+                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                            Percent of the U.S. population that received at least one dose<br/>
+                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                              One or more doses of any of the authorized vaccines received
+                            </Header.Content>
+                          </Header>
+                        </div>
+                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
                         </Header.Content>
                       </Header>
                     </div>
@@ -2391,7 +2422,7 @@ export default function NationalReport(props) {
               <Grid>
 
                 <Grid.Row >
-                  <Accordion style = {{paddingTop: 0, paddingLeft: 223, paddingBottom: 0}}defaultActiveIndex={1} panels={[
+                  <Accordion style = {{paddingTop: 0, paddingLeft: 204, paddingBottom: 0}}defaultActiveIndex={1} panels={[
                             {
                                 key: 'acquire-dog',
                                 title: {
@@ -2400,18 +2431,12 @@ export default function NationalReport(props) {
                                 },
                                 content: {
                                     content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 900}}>
+                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 900}}>
                                         Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
                                         <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                        <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
                                         <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose2"].name} </em></b> {vaxVarMap["Administered_Dose2"].definition} <br/>
-
-                                        <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                        distributed to facilities across the United States by the federal government. 
-                                        Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}.<br/>
-                                        
-                                        <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["percentVaccinatedDose2"].name} </em></b> {vaxVarMap["percentVaccinatedDose2"].definition} <br/>
+                                        <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
 
                                       </Header.Content>
@@ -2560,8 +2585,8 @@ export default function NationalReport(props) {
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                          This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                                          per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                                          This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
+                                          per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                                           associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
                                           an average of {mortalityMean} new deaths per day reported over the past 7 days. 
                                           We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
@@ -2592,8 +2617,8 @@ export default function NationalReport(props) {
                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 35, paddingTop: 0, paddingBottom: 20}}>
                                   <Header.Content  style={{fontSize: "14pt"}}>
                                     <Header.Subheader style={{color: '#000000', width: 800, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                      This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                                      per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                                      This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
+                                      per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                                       associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
                                       an average of {mortalityMean} new deaths per day reported over the past 7 days. 
                                       We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
@@ -2621,9 +2646,8 @@ export default function NationalReport(props) {
                   Where are cases and deaths occurring?
                   <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
 
-                    Cases and deaths attributed to COVID-19 are rapidly rising in some counties. Additionally, 
-                    the geographic distribution of the hardest-hit counties is changing, with the virus shifting from 
-                    the Northeast toward the Southeast and Southwest.
+                    Cases and deaths attributed to COVID-19 are rapidly rising in some counties, and 
+                    the geographic distribution of the hardest-hit counties is changing.
                     Approximately 50% of new cases on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()} in 
                     the United States were attributed to {(states50[0]["statenames"].split(",")).length} states: <br/>
 
@@ -2644,8 +2668,8 @@ export default function NationalReport(props) {
                   <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and Deaths by Race </b> </center> 
                   <br/><br/>
                   While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                  affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
-                  around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate. 
+                  affected. The {Object.keys(demog_descriptives['Race'][0])[0]} population is seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                  around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0])[1]} population, the group with the lowest mortality rate. 
                   
                     
                   </Header.Subheader>
@@ -2856,10 +2880,10 @@ export default function NationalReport(props) {
 
               {/* <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center> */}
                 <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
-                  <Grid.Column style = {{width: 810, paddingLeft: 430}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 5}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Deaths by Race</b> </center> 
+                      <Header.Subheader style={{width: 580, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 5}}>
+                        <center> <b style= {{width: 580, fontSize: "18pt"}}>COVID-19 Death Rate by Race & Ethnicity</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -2929,12 +2953,41 @@ export default function NationalReport(props) {
 
                             </VictoryGroup>
                           </VictoryChart>
-                          <Header.Content style = {{paddingLeft: 50, width: 450}}>
+                          <Header.Content style = {{paddingLeft: 160, width: 450}}>
                               <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:5, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>Percentage of COVID-19 Deaths and Population</b>
+                              <b>Deaths per 100,000 residents</b>
                               </Header.Content>
                           </Header.Content>
                       </div>
+
+                      <Grid>
+                      <Grid.Row>
+                        <Accordion style = {{paddingTop: 50, paddingLeft: 98, paddingBottom: 45}} defaultActiveIndex={1} panels={[
+                              {
+                                  key: 'acquire-dog',
+                                  title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                      icon: 'dropdown',
+                                  },
+                                  content: {
+                                      content: (
+                                          <Header as='h2' style={{paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                            <Header.Content  style={{fontSize: "14pt"}}>
+                                              <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                                The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                                <br/>
+                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                              </Header.Subheader>
+                                            </Header.Content>
+                                          </Header>
+                                      ),
+                                    },
+                                }
+                            ]
+
+                            } />
+                      </Grid.Row>
+                    </Grid>
                     </Grid.Column>
                     <Grid.Column style = {{width: 450}}>
                       {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center> */}
@@ -2950,22 +3003,41 @@ export default function NationalReport(props) {
                               
                           </Header.Subheader> */}
                           <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
-                            <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Deaths by Race/Ethnicity</b> </center> 
-                            <br/><br/>
-                            <p style = {{paddingLeft: 40}}>
-                              Compared to the White <br/>
-                              - African Americans: {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
-                              <br/>
-                              - Hispanic: {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
-                              <br/>
-                              - Asians: {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
-                              <br/>
-                              - American Natives: {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+                            {/* <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Deaths by Race/Ethnicity</b> </center>  */}
+                            
+                            <p style = {{paddingLeft: 20}}>
+                              <b>Compared with death rates in White Americans, death rates* are: </b><br/>
+                              <ul>
+                                <li>{(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in African Americans
+                                  <br/>
+                                </li>
+                                <li>{(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Hispanic Americans
+                                  <br/>
+                                </li>
+                                <li>{(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Asian Americans
+                                  <br/>
+                                </li>
+                                <li>{(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Native Americans
+                                </li>
+                              </ul>
 
+                            <text style = {{fontSize: "13px"}}>
+                            *The Hispanic population consists of mostly younger age groups. 
+                            <br/>
+                            *These are crude death rates based on cumulative deaths since January 2020. Age differences, such as the lower average age of Hispanic Americans, are not considered due to data limitations.
+                            </text>
                             {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
                             affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
                             around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
@@ -2976,16 +3048,17 @@ export default function NationalReport(props) {
                         </div>
                     </Grid.Column>
                   </Grid.Row>
+                  
 
               </Grid>
 
               <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
 
               <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
-                  <Grid.Column style = {{width: 810, paddingLeft: 430}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Cases by Race</b> </center> 
+                      <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{width: 560, fontSize: "18pt"}}> COVID-19 Cases and U.S. Population <br/> distribution by race & ethnicity.</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
@@ -3005,8 +3078,8 @@ export default function NationalReport(props) {
                               <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
                               <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
 
-                              <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
-                              <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
+                              <rect x={235} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+                              <text x={265} y={35} style={{fontSize: '16px'}}> African American </text>    
 
                               <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
                               <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
@@ -3014,8 +3087,8 @@ export default function NationalReport(props) {
                               <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
                               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
 
-                              <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-                              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>                    
+                              <rect x={322.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
 
 
                               {/* {_.map(pieChartRace, (color, i) => {
@@ -3058,22 +3131,35 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 450}}>
                     <div style={{paddingTop: 50, paddingLeft: 80}}>
                       <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
-                        <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Infection by Race/Ethnicity</b> </center> 
-                        <br/><br/>
-                        <p style = {{paddingLeft: 40}}>
-                          Compared to the White <br/>
-                          - African Americans: {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-                          <br/>
-                          - Hispanic: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-                          <br/>
-                          - Asians: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-                          <br/>
-                          - American Natives: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                          {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) <= 1? "times" : "times"} the risk
-
+                        {/* <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Infection by Race/Ethnicity</b> </center>  */}
+                        <br/>
+                        <p style = {{paddingLeft: 20}}>
+                          Comparing with White Americans<br/>
+                          <ul>
+                            <li> African Americans: {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Hispanic Americans: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Asian Americans: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Native Americans: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
+                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                            </li>
+                          </ul>
                         {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
                         affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
                         around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
@@ -3084,6 +3170,38 @@ export default function NationalReport(props) {
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
+              <Grid.Row>
+                      <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
+                            {
+                                key: 'acquire-dog',
+                                title: {
+                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                    icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+
+                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
+                                        
+
+                                        <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
+                                          <Header.Content style={{fontWeight: 400, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 900}}>
+                                            The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                            <br/>
+                                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                          
+                                          </Header.Content>
+                                        </Grid.Row>
+
+                                      </div>
+                                    ),
+                                  },
+                              }
+                          ]
+
+                          } /> 
+                        
+                        </Grid.Row>
 
 
               
@@ -3106,11 +3224,19 @@ export default function NationalReport(props) {
                   <Header.Content style = {{paddingLeft: 50}}>
                     <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
                       
-                      Deaths are highest in the {Object.keys(demog_descriptives['Age'][0])[0]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[0]]).toFixed(0))} deaths per 100,000), 
-                      followed by {Object.keys(demog_descriptives['Age'][0])[1]} age group ({numberWithCommas((demog_descriptives['Age'][0][Object.keys(demog_descriptives['Age'][0])[1]]).toFixed(0))} deaths per 100,000). 
-                      Those {(Object.keys(demog_descriptives['Age'][0])[3] === "0 - 4" && Object.keys(demog_descriptives['Age'][0])[2] === "5 - 17") ? " under 18 ": "in " + (Object.keys(demog_descriptives['Age'][0])[3] + " and " + Object.keys(demog_descriptives['Age'][0])[2] + " age group ")} are, however, 
-                      experiencing the lowest mortality from COVID-19.
+                      Cases are currently highest in the {Object.keys(demog_descriptives['Age'][0]["cases"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][0]["cases"][Object.keys(demog_descriptives['Age'][0]["cases"])[0]]).toFixed(0))}% of all cases), 
+                      followed by the {Object.keys(demog_descriptives['Age'][0]["cases"])[1]} age group ({numberWithCommas((demog_descriptives['Age'][0]["cases"][Object.keys(demog_descriptives['Age'][0]["cases"])[1]]).toFixed(0))}% of all cases). 
+                      {demog_descriptives['AgeDescription'][0]["CasesDescription"] != "" ? 
+                      " They are disproportionately high in the " + demog_descriptives['AgeDescription'][0]["CasesDescription"] + ", compared to those age groups' shares of the U.S. population.":""}
                         
+                      
+                      <br/>
+                      <br/>
+                      Deaths increase in prevalence with age and are highest in the {Object.keys(demog_descriptives['Age'][1]["deaths"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][1]["deaths"][Object.keys(demog_descriptives['Age'][1]["deaths"])[0]]).toFixed(0))}% of all deaths), 
+                      {demog_descriptives['AgeDescription'][0]["DeathsDescription"] != "" ? 
+                      " Deaths are disproportionately high in the " + demog_descriptives['AgeDescription'][1]["DeathsDescription"] + ", compared to those age groups' shares of the U.S. population.":""} 
+
+
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -3487,7 +3613,7 @@ export default function NationalReport(props) {
                     <br/>
                     <br/>
                     COVID-19 is affecting communities differently. Community-level factors such as urbanicity,  
-                    socioeconomic status, race, and underlying medication conditions make some communities more 
+                    socioeconomic status, race, and underlying medical conditions make some communities more 
                     vulnerable to COVID-19 than others. The maps and figures below show COVID-19 case rates and 
                     death rates across U.S. counties grouped by these community characteristics.  
 
@@ -3845,7 +3971,7 @@ export default function NationalReport(props) {
                                 },
                                 content: {
                                     content: (
-                                        <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                        <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                           <Header.Content  style={{fontSize: "14pt"}}>
                                             <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                             This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -3857,7 +3983,10 @@ export default function NationalReport(props) {
                                             in the 0%-20% range for this county characteristic, and the very high CCVI contains 
                                             counties with values in the 80%-100% range for this county characteristic. Low CCVI 
                                             indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
-                                            range, and high CCVI indecates counties in the 60%-80% range.
+                                            range, and high CCVI indicates counties in the 60%-80% range.
+                                            <br/>
+                                            <br/>
+                                            For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                             </Header.Subheader>
                                           </Header.Content>
                                         </Header>
@@ -4070,7 +4199,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4079,11 +4208,15 @@ export default function NationalReport(props) {
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
                                         per 100,000 that occurred in each group of counties ranked by percentage population in poverty. 
                                         The ranking classified counties into five groups designed to be of equal size, so that the 
-                                        very low % in poverty contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the very high % in poverty contains counties with values in the 80%-100% 
+                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
                                         range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
-                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indecates 
+                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
                                         counties in the 60%-80% range.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                            
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4293,7 +4426,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4305,6 +4438,10 @@ export default function NationalReport(props) {
                                         urbanized area with population between 10,000-49,999. Remote rural counties have 
                                         populations less than 10,000 individuals. This urban-rural classification scheme is 
                                         from the National Center for Health Statistics.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                            
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4511,11 +4648,14 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100,000 residents by geographic region (y-axis).
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4727,7 +4867,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
@@ -4736,12 +4876,15 @@ export default function NationalReport(props) {
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
                                         per 100,000 that occurred in each group of counties ranked by percentage percentage African 
                                         American. The ranking classified counties into five groups designed to be of equal size, 
-                                        so that the very low % African American contains the counties with values in the 0%-20% 
-                                        range for this county characteristic, and the very high % African American contains 
+                                        so that the "very low % African American" group contains the counties with values in the 0%-20% 
+                                        range for this county characteristic, and the "very high % African American" group contains 
                                         counties with values in the 80%-100% range for this county characteristic. Low % 
                                         African American indicates counties in the 20%-40% range, moderate % African American 
-                                        indicates counties in the 40%-60% range, and high % African American indecates counties 
+                                        indicates counties in the 40%-60% range, and high % African American indicates counties 
                                         in the 60%-80% range.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -4951,7 +5094,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -4959,12 +5102,15 @@ export default function NationalReport(props) {
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by residential segregation. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the very 
-                                        low segregation contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the very high segregation contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the "very 
+                                        low segregation" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the "very high segregation" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low segregation indicates counties in 
                                         the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
-                                        high segregation indecates counties in the 60%-80% range.
+                                        high segregation indicates counties in the 60%-80% range.
+                                        <br/>
+                                        <br/>
+                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5175,20 +5321,20 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with any underlying conditions. The y-axis 
-                                        displays percent of population with any underlying conditions rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                        100,000 residents by percent of population with any underlying comorbidity. The y-axis 
+                                        displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
-                                        that occurred in each group of counties ranked by percent of population with any underlying conditions. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of any underlying conditions contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of any underlying conditions contains counties with values in the 
-                                        80%-100% range for this county characteristic. Low percentage of population with any underlying conditions indicates counties in 
-                                        the 20%-40% range, moderate percentage of population with any underlying conditions indicates counties in the 40%-60% range, and 
-                                        high percentage of population with any underlying conditions indecates counties in the 60%-80% range.
+                                        that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
+                                        80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
+                                        the 20%-40% range, moderate percentage of population with any underlying comorbidity indicates counties in the 40%-60% range, and 
+                                        high percentage of population with any underlying comorbidity indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5371,7 +5517,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5379,12 +5525,12 @@ export default function NationalReport(props) {
                                         displays percent of population with COPD rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with COPD. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of COPD contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of COPD contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of COPD" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of COPD" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with COPD indicates counties in 
                                         the 20%-40% range, moderate percentage of population with COPD indicates counties in the 40%-60% range, and 
-                                        high percentage of population with COPD indecates counties in the 60%-80% range.
+                                        high percentage of population with COPD indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5574,7 +5720,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5582,12 +5728,12 @@ export default function NationalReport(props) {
                                         displays percent of population with CKD rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with CKD. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of CKD contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of CKD contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of CKD" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of CKD" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with CKD indicates counties in 
                                         the 20%-40% range, moderate percentage of population with CKD indicates counties in the 40%-60% range, and 
-                                        high percentage of population with CKD indecates counties in the 60%-80% range.
+                                        high percentage of population with CKD indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5770,7 +5916,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5778,12 +5924,12 @@ export default function NationalReport(props) {
                                         displays percent of population with diabetes rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with diabetes. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of diabetes contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of diabetes contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of diabetes" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of diabetes" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with diabetes indicates counties in 
                                         the 20%-40% range, moderate percentage of population with diabetes indicates counties in the 40%-60% range, and 
-                                        high percentage of population with diabetes indecates counties in the 60%-80% range.
+                                        high percentage of population with diabetes indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -5967,7 +6113,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -5975,12 +6121,12 @@ export default function NationalReport(props) {
                                         displays percent of population with heart disease rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with heart disease. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of heart disease contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of heart disease contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of heart disease" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of heart disease" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with heart disease indicates counties in 
                                         the 20%-40% range, moderate percentage of population with heart disease indicates counties in the 40%-60% range, and 
-                                        high percentage of population with heart disease indecates counties in the 60%-80% range.
+                                        high percentage of population with heart disease indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
@@ -6164,7 +6310,7 @@ export default function NationalReport(props) {
                             },
                             content: {
                                 content: (
-                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
+                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
@@ -6172,12 +6318,12 @@ export default function NationalReport(props) {
                                         displays percent of population with obesity rankings based on quintiles (groups of 20%). The x-axis displays the 
                                         average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
                                         that occurred in each group of counties ranked by percent of population with obesity. The ranking 
-                                        classified counties into five groups designed to be of equal size, so that the population with very 
-                                        low percentage of obesity contains the counties with values in the 0%-20% range for this county 
-                                        characteristic, and the population with very high percentage of obesity contains counties with values in the 
+                                        classified counties into five groups designed to be of equal size, so that the population with "very 
+                                        low percentage of obesity" group contains the counties with values in the 0%-20% range for this county 
+                                        characteristic, and the population with "very high percentage of obesity" group contains counties with values in the 
                                         80%-100% range for this county characteristic. Low percentage of population with obesity indicates counties in 
                                         the 20%-40% range, moderate percentage of population with obesity indicates counties in the 40%-60% range, and 
-                                        high percentage of population with obesity indecates counties in the 60%-80% range.
+                                        high percentage of population with obesity indicates counties in the 60%-80% range.
                                         </Header.Subheader>
                                       </Header.Content>
                                     </Header>
