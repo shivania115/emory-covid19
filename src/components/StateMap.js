@@ -1436,7 +1436,7 @@ export default function StateMap(props) {
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
                     New COVID-19 Hospitalization (7-day average)<br/>
-                    <br/><br/>
+                    <br/>
                     <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> U.S. Department of Health & Human Services, Community Profile Report </a> <br/>
                   </Header.Content>
                 </Grid.Column>
