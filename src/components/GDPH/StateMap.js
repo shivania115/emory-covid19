@@ -130,10 +130,10 @@ function StickyExampleAdjacentContext(props) {
     return (
 
         <div style = {{width: 140}}>
-            <Rail attached size='mini' position='left' style = {{width: 200}}>
+            <Rail attached size='mini' style = {{width: 210}}>
                 <Sticky offset={150}>
                     <Menu
-                    style = {{fontSize:'8pt', width: 140}}
+                    style = {{fontSize:'12pt', width: 140}}
                         size='small'
                         compact
                         pointing secondary vertical>
@@ -827,7 +827,7 @@ export default function StateMap(props) {
 
                                                 </Grid.Row>
                                             </Grid.Column>
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                                 <Grid.Row columns={1}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -1075,7 +1075,7 @@ export default function StateMap(props) {
 
                                                 </Grid.Row>
                                             </Grid.Column>
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                             <Grid.Row columns={1}>
                                                 <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                     <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -1328,7 +1328,7 @@ export default function StateMap(props) {
 
                     </Grid.Row>
                 </Grid.Column>
-                <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                     <Grid.Row columns={1}>
                         <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                             <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -1578,7 +1578,7 @@ export default function StateMap(props) {
 
                         </Grid.Row>
                     </Grid.Column>
-                    <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                    <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                         <Grid.Row columns={1}>
                             <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                 <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -1830,7 +1830,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
             </Grid.Column>
-            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                 <Grid.Row columns={1}>
                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -2081,7 +2081,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
             </Grid.Column>
-            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                 <Grid.Row columns={1}>
                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -2332,7 +2332,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
             </Grid.Column>
-            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                 <Grid.Row columns={1}>
                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -2583,7 +2583,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
             </Grid.Column>
-            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                 <Grid.Row columns={1}>
                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -3045,7 +3045,7 @@ export default function StateMap(props) {
                 </div>
                 <AppBar />
 
-                <Container style={{ marginTop: '8em', minWidth: '1260px' ,overFlowX: 'hidden'}}>
+                <Container style={{ marginTop: '8em', minWidth: '1260px'}}>
 
                     {config &&
                         <div>
@@ -3057,11 +3057,12 @@ export default function StateMap(props) {
                                 <Breadcrumb.Divider />
                             </Breadcrumb> */}
                             <Grid stackable columns={3} style={{ width: "100%", height: "100%" }} >
-                                <Grid.Column style={{zIndex: 10, width:140}}>
+                                
+                            <Grid.Column style={{paddingLeft:20, width:140}}>
                                     <StickyExampleAdjacentContext activeCharacter={activeCharacter} />
                                 </Grid.Column>
 
-                                <Grid.Column width={16} style={{ width: "200%", height: "100%" }}>
+                                <Grid.Column width={16} style={{paddingLeft:250, width: "100%", height: "100%" }}>
                                     {/* <Divider id='summary' hidden /> */}
                                     <Grid.Row>
                                         <div id='summary' style={sectionStyle2}>
@@ -3143,7 +3144,7 @@ export default function StateMap(props) {
                                                 </Header.Content>
                                             </Header>
                                             </Grid.Row>
-                                        <Grid.Column width={7} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                        <Grid.Column width={7} style={{ paddingLeft: "2"}}>
                                             
                                             <Header as='h2' style={{ fontWeight: 600 }}>
                                                 <Header.Content style={{ paddingTop:'-1'}}>
@@ -3267,7 +3268,7 @@ export default function StateMap(props) {
                                             </Grid.Row>
 
                                         </Grid.Column>
-                                        <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                        <Grid.Column width={9} style={{ paddingLeft: "10em" }}>
                                             <Header as='h2' style={{ fontWeight: 400, paddingLeft: "1em", paddingTop:'0.7em' }}>
                                                 <Header.Content>
                                                     {/* {varGraphPair[metric]['legend'][0]} for <span style={{ color: countyColor }}>{countyName}</span> */}
@@ -3359,7 +3360,7 @@ export default function StateMap(props) {
 
                                     </Grid>
                                     <div id="demog" style = {{height: 100}}> </div>                   
-                                    <Grid style={{ paddingBottom: '0em' }}>
+                                    <Grid style={{paddingLeft:'1em', paddingBottom: '0em' }}>
                                         <Grid.Row>
                                             <div id='demog' style={sectionStyle2}>
                                                 <Header as='h2' style={{ textAlign: 'center', color: 'black', fontSize: "22pt", paddingTop: '1em', paddingBottom: '1em' }}>
@@ -3379,7 +3380,7 @@ export default function StateMap(props) {
                                             </Header>
 
                                     </Grid>
-                                    <Grid >
+                                    <Grid style={{paddingLeft:'1em' }}>
                                     <div id="age_g" style = {{height: 70}}> </div>                   
 
                                         <div id='age_g' style={{ width: "100%", height: "100%" }}>
@@ -3389,13 +3390,13 @@ export default function StateMap(props) {
                                     </Header.Content>
                                             </Header>
                                         </div>
-                                        <Grid style={{ paddingLeft: "7em", paddingTop: '0em', paddingRight: "7em", width: "100%", height: "100%" }}>
-                                            <Grid.Row columns={2} style={{ paddingTop: 11 }}>
-                                                <Grid.Column style={{ paddingTop: '1em', paddingBottom: 18 }}>
-                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "18pt", lineHeight: "16pt", paddingRight: '2em' }}>
+                                        <Grid style={{paddingLeft:'2em',  paddingTop: '0em', paddingRight: "7em", width: "100%", height: "100%" }}>
+                                            <Grid.Row columns={2} style={{paddingLeft:'2em', paddingTop: 11 }}>
+                                                <Grid.Column style={{ paddingLeft:'1em',paddingTop: '1em', paddingBottom: 18 }}>
+                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingRight: '2em', paddingLeft:'2em' }}>
                                                         <Header.Content>
                                                             COVID-19 Cases in Georgia by Age
-            		                        </Header.Content>
+            		                                    </Header.Content>
                                                     </Header>
                                                     <VictoryChart
                                                         theme={VictoryTheme.material}
@@ -3404,7 +3405,7 @@ export default function StateMap(props) {
                                                         domainPadding={10}
                                                         scale={{ y: props.ylog ? 'log' : 'linear' }}
                                                         minDomain={{ y: props.ylog ? 1 : 0 }}
-                                                        padding={{ left: 79, right: 40, top: 60, bottom: 50 }}
+                                                        padding={{ left: 40, right: 70, top: 60, bottom: 50 }}
                                                         containerComponent={<VictoryContainer responsive={false} />}
                                                     >
 
@@ -3483,10 +3484,10 @@ export default function StateMap(props) {
                                                             />
                                                         </VictoryGroup>
                                                     </VictoryChart>
-                                                    <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                                                    <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '1em', paddingRight: '2em' }} centered>
                                                         Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
                                                     </Grid.Row>
-                                                    <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
+                                                    <Grid.Row style={{ paddingTop: '0em', paddingLeft: '1em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
                                                             {
                                                                 key: 'acquire-dog',
@@ -3536,8 +3537,8 @@ export default function StateMap(props) {
 
                                                     </Grid.Row>
                                                 </Grid.Column>
-                                                <Grid.Column style={{ paddingTop: '1em', paddingBottom: 18 }}>
-                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "18pt", lineHeight: "16pt", paddingRight: '2em' }}>
+                                                <Grid.Column style={{paddingLeft:'3em', paddingTop: '1em', paddingBottom: 18 }}>
+                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingRight: '0em',paddingLeft:'2em' }}>
                                                         <Header.Content>
                                                             COVID-19 Deaths in Georgia by Age
             		                        </Header.Content>
@@ -3680,8 +3681,6 @@ export default function StateMap(props) {
                                                 width: '100%'
                                             }}
                                         />
-                                    {/* <div id="sex_g" style = {{height: 100}}> </div>                    */}
-
                                         <div id='sex_g' style={{ width: "100%", height: "100%" }}>
                                             <Header as='h2' style={{ textAlign: 'center', color: 'black', fontSize: "19pt", paddingTop: '1em', paddingBottom: '1em' }}>
                                                 <Header.Content>
@@ -3689,10 +3688,10 @@ export default function StateMap(props) {
                                     </Header.Content>
                                             </Header>
                                         </div>
-                                        <Grid style={{ paddingLeft: "7em", paddingTop: '0.5em', paddingRight: "7em", width: "100%", height: "100%" }}>
-                                            <Grid.Row columns={2} style={{ paddingTop: 11 }}>
-                                                <Grid.Column style={{ paddingTop: '1em', paddingBottom: 18 }}>
-                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "18pt", lineHeight: "16pt", paddingRight: '2em' }}>
+                                        <Grid style={{ paddingLeft: "2em", paddingTop: '0.5em', paddingRight: "7em", width: "100%", height: "100%" }}>
+                                            <Grid.Row columns={2} style={{paddingLeft:'2em', paddingTop: 11 }}>
+                                                <Grid.Column style={{paddingLeft:'1em', paddingTop: '1em', paddingBottom: 18 }}>
+                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingRight: '2em' }}>
                                                         <Header.Content>
                                                             COVID-19 Cases in Georgia by Sex
             		                        </Header.Content>
@@ -3705,7 +3704,7 @@ export default function StateMap(props) {
                                                         scale={{ y: props.ylog ? 'log' : 'linear' }}
                                                         // minDomain={{ y: props.ylog ? 1 : 0 }}
                                                         maxDomain={{ y: 1 }}
-                                                        padding={{ left: 79, right: 40, top: 60, bottom: 50 }}
+                                                        padding={{ left: 40, right: 70, top: 60, bottom: 50 }}
                                                         containerComponent={<VictoryContainer responsive={false} />}
                                                     >
                                                         {/* <VictoryLabel style={{
@@ -3786,10 +3785,10 @@ export default function StateMap(props) {
                                                             />
                                                         </VictoryGroup>
                                                     </VictoryChart>
-                                                    <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                                                    <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '2em', paddingRight: '2em' }} centered>
                                                         Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
                                                     </Grid.Row>
-                                                    <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
+                                                    <Grid.Row style={{ paddingTop: '0em', paddingLeft: '2em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
                                                             {
                                                                 key: 'acquire-dog',
@@ -3819,8 +3818,8 @@ export default function StateMap(props) {
                                                     </Grid.Row>
 
                                                 </Grid.Column>
-                                                <Grid.Column style={{ paddingTop: '1em', paddingBottom: 18 }}>
-                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "18pt", lineHeight: "16pt", paddingRight: '2em' }}>
+                                                <Grid.Column style={{paddingLeft:'2em', paddingTop: '1em', paddingBottom: 18 }}>
+                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingRight: '0em',paddingLeft:'1em' }}>
                                                         <Header.Content>
                                                             COVID-19 Deaths in Georgia by Sex
             		                        </Header.Content>
@@ -3962,10 +3961,10 @@ export default function StateMap(props) {
                                             </Header>
                                         </div>
 
-                                        <Grid style={{ paddingLeft: "7em", paddingTop: '0.5em', paddingRight: "7em", width: "100%", height: "100%" }}>
-                                            <Grid.Row columns={2} style={{ paddingTop: 11 }}>
+                                        <Grid style={{ paddingLeft: "2em", paddingTop: '0.5em', paddingRight: "7em", width: "100%", height: "100%" }}>
+                                            <Grid.Row columns={2} style={{paddingLeft:'2em', paddingTop: 11 }}>
                                                 <Grid.Column style={{ paddingTop: '1em', paddingBottom: 18 }}>
-                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "18pt", lineHeight: "16pt", paddingRight: '2em' }}>
+                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingRight: '2em' }}>
                                                         <Header.Content>
                                                             COVID-19 Cases in Georgia by Race and Ethnicity
             		                        </Header.Content>
@@ -3977,7 +3976,7 @@ export default function StateMap(props) {
                                                         domainPadding={10}
                                                         scale={{ y: props.ylog ? 'log' : 'linear' }}
                                                         minDomain={{ y: props.ylog ? 1 : 0 }}
-                                                        padding={{ left: 79, right: 40, top: 60, bottom: 50 }}
+                                                        padding={{ left: 40, right: 70, top: 60, bottom: 50 }}
                                                         containerComponent={<VictoryContainer responsive={false} />}
                                                     >
                                                         {/* <VictoryLabel style={{
@@ -4060,10 +4059,10 @@ export default function StateMap(props) {
                                                             />
                                                         </VictoryGroup>
                                                     </VictoryChart>
-                                                    <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                                                    <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '2em', paddingRight: '2em' }} centered>
                                                         Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
                                                     </Grid.Row>
-                                                    <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
+                                                    <Grid.Row style={{ paddingTop: '0em', paddingLeft: '2em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
                                                             {
                                                                 key: 'acquire-dog',
@@ -4095,7 +4094,7 @@ export default function StateMap(props) {
 
                                                 </Grid.Column>
                                                 <Grid.Column style={{ paddingTop: '1em', paddingBottom: 18 }}>
-                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "18pt", lineHeight: "16pt", paddingRight: '2em' }}>
+                                                    <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingRight: '0em',paddingLeft:'1em' }}>
                                                         <Header.Content>
                                                             COVID-19 Deaths in Georgia by Race and Ethnicity
 
@@ -4232,13 +4231,6 @@ export default function StateMap(props) {
 
 
 
-                                        {/* Charactor */}
-                                        {/* <center> <Waypoint
-                                            onEnter={() => {
-                                                setActiveCharacter('COVID-19 by County Characteristics')
-                                                console.log(activeCharacter)
-                                            }}>
-                                        </Waypoint> </center> */}
                                         <Grid  style={{ paddingBottom: '2em' }}>
                                             <Grid.Row>
                                                 <div id='chara' style={sectionStyle2}>
@@ -4435,7 +4427,7 @@ export default function StateMap(props) {
 
                                                 </Grid.Row>
                                             </Grid.Column>
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "6em" }}>
                                                 <Grid.Row columns={1}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -4712,7 +4704,7 @@ export default function StateMap(props) {
 
                                             </Grid.Column>
 
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "6em" }}>
                                                 <Grid.Row columns={1} style={{ paddingBottom: "2" }}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -4990,7 +4982,7 @@ export default function StateMap(props) {
                                                 </Grid.Row>
                                             </Grid.Column>
 
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                                 <Grid.Row columns={1} style={{ paddingBottom: "2" }}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -5257,7 +5249,7 @@ export default function StateMap(props) {
                                                 </Grid.Row>
                                             </Grid.Column>
 
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                                 <Grid.Row columns={1} style={{ paddingBottom: "2" }}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -5539,7 +5531,7 @@ export default function StateMap(props) {
 
                                             </Grid.Column>
 
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                                 <Grid.Row columns={1} style={{ paddingBottom: "2" }}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -5821,7 +5813,7 @@ export default function StateMap(props) {
 
                                             </Grid.Column>
 
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                                 <Grid.Row columns={1} style={{ paddingBottom: "2" }}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -6103,7 +6095,7 @@ export default function StateMap(props) {
 
                                             </Grid.Column>
 
-                                            <Grid.Column width={9} style={{ paddingLeft: "2", paddingLeft: "1" }}>
+                                            <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
                                                 <Grid.Row columns={1} style={{ paddingBottom: "2" }}>
                                                     <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
@@ -6273,6 +6265,7 @@ export default function StateMap(props) {
                                         
                                     </Grid>
                                 </Grid.Column>
+                                
 
                             </Grid>
 
