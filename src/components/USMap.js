@@ -259,8 +259,8 @@ export default function USMap(props) {
               let tempDict = {};
               const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
               const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-              tempDict = promSeries[1].timeseriesAll;
-              tempDict["_nation"] = promSeries[0].timeseries_nation;
+              tempDict = promSeries[0].timeseriesAll;
+              tempDict["_nation"] = promSeries[1].timeseries_nation;
               setAllTS(tempDict);
 
               //if timeseriesAll exceeds 16MB (max size for a single document on MongoDB), 
@@ -331,10 +331,10 @@ export default function USMap(props) {
     console.log(isJson(JSON.stringify(data)));
   return (
     <HEProvider>
-      <div>
+      <div style = {{overflow: "hidden"}}>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-        <div style={{height:130, overflow: "hidden"}}>
+        <Grid style={{height:130, overflow: "hidden"}}>
           <div style = {{ paddingBottom: 8}}>
           </div>
           
@@ -463,21 +463,21 @@ export default function USMap(props) {
               </Grid>
             </div>
           </div>
-        </div>
+        </Grid>
           <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
           </Breadcrumb>
           <Divider hidden />
-          <Grid columns={16}>
+        <Grid columns={9} style = {{ width: "100%", height: "100%", overflow: "hidden" }}>
           <div style={{fontSize: "14pt", paddingTop: 10, paddingBottom: 30}}>
             See Dashboard Guide (<a style ={{color: "#397AB9"}} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style ={{color: "#397AB9"}} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
 
           </div>
 
             
-            <Grid.Row>
-              <Grid.Column width={9}>
+            <Grid.Row style = {{ width: "100%", height: "100%" }}>
+              <Grid.Column width={9} style = {{ width: "100%", height: "100%" }}>
                 <Header as='h2' style={{fontWeight: 400, fontSize: "18pt"}}>
                   <Header.Content>
                     COVID-19 is affecting every community differently.<br/>

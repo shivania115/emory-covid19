@@ -16,8 +16,8 @@ export default function Notes(props){
 
   	
 
-    <div style={{paddingTop: '2em', fontWeight: 300}}>
-    <Divider/>
+    <div style={{paddingTop: '2em', fontWeight: 300, overflow: "hidden"}}>
+      <Divider/>
 
             <Grid style = {{paddingTop: 30, paddingBottom: 30}}>
                 <Grid.Row columns ={4}>

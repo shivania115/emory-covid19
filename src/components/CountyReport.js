@@ -129,7 +129,7 @@ function BarChart(props) {
         y="value"
       />
     </VictoryChart>);
-}
+  }
 
 
 
@@ -339,7 +339,7 @@ export default function CountyReport() {
     // console.log(data[stateFips]['casesfig']);
   return (
     <HEProvider> 
-      <div>
+      <div style = {{overflow: "hidden"}}>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
           {config &&

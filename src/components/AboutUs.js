@@ -12,9 +12,9 @@ export default function AboutUs(props){
   return (
     <div>
       <AppBar menu='aboutUs'/>
-      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-
-        <Grid row = {1} style = {{marginLeft: -10, paddingTop: 30}}>
+      <Container style={{marginTop: '8em', minWidth: '1260px', overflow: "hidden"}}>
+        
+        <Grid row = {1} style = {{marginLeft: 0, paddingTop: 30}}>
             <Header style={{fontWeight: 400, fontSize: "24pt", paddingBottom: 0}}>
                 About This Tool
 
@@ -31,101 +31,104 @@ export default function AboutUs(props){
             </Header>
 
             
-          </Grid>
-        <Grid columns={2}>
-          <Grid columns={2} style = {{width : 600, marginLeft: -10}}>
-
-            <Header as='h1' style={{fontWeight: 400, width: 600}}>
-              <Header.Content style = {{ fontSize: "24pt", paddingTop: 46, lineHeight: "24pt"}}>
-                Team
-                <Header.Subheader style={{color: "#000000", paddingTop: 17, paddingBottom: 0, lineHeight: "24pt", fontSize: "14pt"}}>We are an interdisciplinary group of researchers, clinicians, and students with expertise in epidemiology, social determinants of health, infectious disease, chronic disease, and computer science.</Header.Subheader>
-              </Header.Content>
-            </Header>
-            <Grid.Column>
-              <List bulleted style = {{lineHeight: "18pt", fontSize: "14pt"}}>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Shivani A. Patel, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>K. M. Venkat Narayan, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Carlos Del Rio, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Robert F. Breiman, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Mark Hutcheson, BS</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Yubin Park, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Daesung Choi, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Jing Zhang, PhD</List.Item>                
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Pooja Naik, B.Pharm</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Star Liu</List.Item>               
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Leanna Ehrlich, BA</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Neil K. Mehta, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Vince Marconi, MD</List.Item>                
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Joel P. Baumgart, PhD</List.Item> 
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Ke Sun</List.Item>                
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Sriya Naga Karra</List.Item>     
-           
-                               
-              </List>
-            </Grid.Column>
-            <Grid.Column>
-
-              <List bulleted style = {{lineHeight: "18pt", fontSize: "14pt"}}>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Michael Kramer, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Rob O'Reilly, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Sanjana Pampati, MPH</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Joyce Ho, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Shabatun Jamila Islam, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Anurag Mehta, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Aditi Nayak , MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Arshed Quyyumi , MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Yi-Ann Co, PhD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Samaah Sullivan, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Mohammed K. Ali, MD</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Xinzhu Wang, BS</List.Item>
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Kaifu Xiao</List.Item>                
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Isha Gavas</List.Item>                
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Aditya Rao</List.Item>                
-                <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Alka Rao</List.Item> 
-
-
-              </List>
-            </Grid.Column>
-          </Grid> 
-
-          
-          <Grid columns={1} style = {{width : 600, marginLeft: 80}}>
-            <Header style={{fontWeight: 400, fontSize: "24pt", paddingTop: 27}}>
-                Funding
-              <Header.Content style = {{paddingTop: 13, lineHeight: "24pt", paddingBottom: 20, fontSize: "14pt"}}>
-                The COVID-19 Health Equity Dashboard was developed with funding from the Robert Wood Johnson Foundation and Emory University’s Woodruff Health Sciences Center. Development was also supported by the Georgia Center for Diabetes Translation Research.
-              </Header.Content>
-            </Header>
-            <br/>
-            <br/>
-            <Header style={{fontWeight: 400, fontSize: "24pt", paddingBottom: 0, paddingTop: 7}}>
-              Feedback
-              <Header.Content style = {{paddingTop: 9, lineHeight: "24pt", fontSize: "14pt"}}>
-                We strive to make this a user-friendly resource for policy makers, public health actors, the public, researchers, 
-                and the media. Please share your feedback by mailing us at: 
-                <a href="mailto:covid19dashboard@emory.edu"> covid19dashboard@emory.edu</a>
-              </Header.Content>
-            </Header>
-          </Grid>
-
         </Grid>
+        <Grid columns={2}>
+          <Grid.Column>
+            <Grid columns={2} style = {{width : 600, marginLeft: 0}}>
+
+              <Header as='h1' style={{fontWeight: 400, width: 600}}>
+                <Header.Content style = {{ fontSize: "24pt", paddingTop: 46, lineHeight: "24pt"}}>
+                  Team
+                  <Header.Subheader style={{color: "#000000", paddingTop: 17, paddingBottom: 0, lineHeight: "24pt", fontSize: "14pt"}}>We are an interdisciplinary group of researchers, clinicians, and students with expertise in epidemiology, social determinants of health, infectious disease, chronic disease, and computer science.</Header.Subheader>
+                </Header.Content>
+              </Header>
+              <Grid.Column style = {{overFlow: "hidden"}}>
+                <List bulleted style = {{lineHeight: "18pt", fontSize: "14pt"}}>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Shivani A. Patel, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>K. M. Venkat Narayan, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Carlos Del Rio, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Robert F. Breiman, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Mark Hutcheson, BS</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Yubin Park, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Daesung Choi, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Jing Zhang, PhD</List.Item>                
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Pooja Naik, B.Pharm</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Star Liu</List.Item>               
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Leanna Ehrlich, BA</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Neil K. Mehta, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Vince Marconi, MD</List.Item>                
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Joel P. Baumgart, PhD</List.Item> 
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Ke Sun</List.Item>                
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Sriya Naga Karra</List.Item>     
+            
+                                
+                </List>
+              </Grid.Column>
+              <Grid.Column style = {{overFlow: "hidden"}}>
+
+                <List bulleted style = {{lineHeight: "18pt", fontSize: "14pt"}}>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Michael Kramer, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Rob O'Reilly, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Sanjana Pampati, MPH</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Joyce Ho, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Shabatun Jamila Islam, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Anurag Mehta, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Aditi Nayak , MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Arshed Quyyumi , MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Yi-Ann Co, PhD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Samaah Sullivan, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Mohammed K. Ali, MD</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Xinzhu Wang, BS</List.Item>
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Kaifu Xiao</List.Item>                
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Isha Gavas</List.Item>                
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Aditya Rao</List.Item>                
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Alka Rao</List.Item> 
+
+
+                </List>
+              </Grid.Column>
+            </Grid> 
+          </Grid.Column>
+
+          <Grid.Column >
+            <Grid columns={1} style = {{width : 600, marginLeft: 10, overFlow: "hidden"}}>
+              <Header style={{fontWeight: 400, fontSize: "24pt", paddingTop: 41}}>
+                  Funding
+                <Header.Content style = {{paddingTop: 13, lineHeight: "24pt", paddingBottom: 20, fontSize: "14pt"}}>
+                  The COVID-19 Health Equity Dashboard was developed with funding from the Robert Wood Johnson Foundation and Emory University’s Woodruff Health Sciences Center. Development was also supported by the Georgia Center for Diabetes Translation Research.
+                </Header.Content>
+              </Header>
+              <br/>
+              <br/>
+              <Header style={{fontWeight: 400, fontSize: "24pt", paddingBottom: 0, paddingTop: 7}}>
+                Feedback
+                <Header.Content style = {{paddingTop: 9, lineHeight: "24pt", fontSize: "14pt"}}>
+                  We strive to make this a user-friendly resource for policy makers, public health actors, the public, researchers, 
+                  and the media. Please share your feedback by mailing us at: 
+                  <a href="mailto:covid19dashboard@emory.edu"> covid19dashboard@emory.edu</a>
+                </Header.Content>
+              </Header>
+            </Grid>
+            </Grid.Column> 
+          </Grid>
 
 
         
 
-        <div style={{paddingTop: '2em', fontWeight: 300}}>
+        <div style={{paddingTop: '2em', fontWeight: 300, overFlow: "hidden"}}>
+          
     <Divider/>
-    <Grid>
+    <Grid style = {{overFlow: "hidden" }}>
       <Divider hidden/>
-        <Grid.Row columns={3} >
-          <Grid.Column style={{fontSize: "14pt"}}>          
+        <Grid.Row columns={3} style = {{overFlow: "hidden"}}>
+          <Grid.Column style={{fontSize: "14pt", overFlow: "hidden"}}>          
             <Image size='medium' src='/logo.png' />
             &copy; 2020 Emory University. All rights reserved.
             <br/>
             <a style ={{color: "#397AB9"}} href="/privacy"> Privacy Statement</a> 
 
           </Grid.Column>
-          <Grid.Column style={{ left: 0, fontSize: "14pt", paddingRight: 0, width: "500px"}}>          
+          <Grid.Column style={{ left: 0, fontSize: "14pt", paddingRight: 0, width: "500px", overFlow: "hidden"}}>          
             <Header.Content style={{width: "500px", fontSize: "14pt"}}>
               This <a style ={{color: "#397AB9"}} href="COVID19.emory.edu"> COVID-19 Health Equity Dashboard </a> is created using
             </Header.Content>
@@ -139,7 +142,7 @@ export default function AboutUs(props){
 
           </Grid.Column>
 
-          <Grid.Column style={{paddingLeft: 0, width: 300}}>
+          <Grid.Column style={{paddingLeft: 0, width: 300, overFlow: "hidden"}}>
             <Grid>
                 <Grid.Row style={{fontSize: "14pt", paddingBottom: 0, right: -240}}> 
                     Share This Dashboard 

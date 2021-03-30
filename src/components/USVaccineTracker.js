@@ -977,9 +977,9 @@ const USVaccineTracker = (props) => {
     // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
-      <div>
+      <div style = {{overflow: 'hidden'}}>
         <AppBar menu='vaccineTracker'/>
-        <Container style={{marginTop: '8em', width: 1260, overFlowX: 'hidden'}}>
+        <Container style={{marginTop: '8em', width: 1260}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
             <Breadcrumb.Section active >Vaccination: United States</Breadcrumb.Section>
             <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
@@ -1012,7 +1012,7 @@ const USVaccineTracker = (props) => {
               <Grid>
 
 
-              <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 40}}>
+                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 35, paddingTop: 40}}>
                   <Grid.Column style = {{width: 240, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
                         <center style={{width: 240,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses delivered</center>
 
@@ -1125,7 +1125,7 @@ const USVaccineTracker = (props) => {
                           </Grid.Row> */}
                         {/* </Grid> */}
                       </div>
-                    </Grid.Column>
+                  </Grid.Column>
                 </Grid.Row>
 
                 

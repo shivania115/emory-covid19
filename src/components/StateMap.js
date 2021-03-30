@@ -843,7 +843,7 @@ export default function StateMap(props) {
 
   return (
     <HEProvider>
-      <div>
+      <div style = {{overflow: "hidden"}}>
         <AppBar menu='countyReport'/>
           <Container style={{marginTop: '8em', minWidth: '1260px'}}>
 
@@ -1100,6 +1100,11 @@ export default function StateMap(props) {
                   
                 </Grid.Column>
 
+                {stateFips === "_nation" && 
+                  <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, paddingLeft: 8, width: 250}}> Deaths by Race & Ethnicity</center>
+
+
+                  }
                 {stateFips && dataStateTS && stateFips !== "_nation" && 
                 <Grid.Column rows = {2} style = {{width:235}}>
 
@@ -1114,11 +1119,7 @@ export default function StateMap(props) {
                       resize= {1.2}
                     />}
 
-                  {stateFips === "_nation" && 
-                  <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, width: 238}}> Deaths by Race & Ethnicity</center>
-
-
-                  }
+                  
                   {stateFips !== "_nation" && stateFips !== "72" &&
                   <center style = {{ fontSize: "15pt", fontFamily: "lato", paddingBottom: 5, width: 238}}> 
                     Deaths by {(!!raceData[stateFips]["White Alone"] ||
@@ -1577,7 +1578,7 @@ export default function StateMap(props) {
                   />
                   
                   {dataTS && legendSplit && 
-                  <svg width="400" height="90">
+                  <svg width="420" height="90">
                     
                     {_.map(legendSplit, (splitpoint, i) => {
                       if(legendSplit[i] < 1){
@@ -1607,8 +1608,8 @@ export default function StateMap(props) {
                     <text x={167} y={59} style={{fontSize: '0.7em'}}> Reported </text>
 
 
-                    <text x={250} y={49} style={{fontSize: '0.7em'}}> Click on a county</text>
-                    <text x={250} y={59} style={{fontSize: '0.7em'}}> below for a detailed report. </text>
+                    <text x={250} y={49} style={{fontSize: '1em'}}> Click on a county</text>
+                    <text x={250} y={65} style={{fontSize: '1em'}}> below for a detailed report. </text>
 
 
                   </svg>}
