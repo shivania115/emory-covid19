@@ -125,15 +125,15 @@ function StickyExampleAdjacentContext(props) {
     const { activeItem } = sTate
     useEffect(() => {
         setsTate(nameList[scrollCount])
-        console.log('name changed!!!!!!!!')
     }, [scrollCount])
     // console.log(props.activeCharacter)
     return (
 
-        <div >
-            <Rail attached size='mini' position='left'>
+        <div style = {{width: 140}}>
+            <Rail attached size='mini' position='left' style = {{width: 200}}>
                 <Sticky offset={150}>
                     <Menu
+                    style = {{fontSize:'8pt', width: 140}}
                         size='small'
                         compact
                         pointing secondary vertical>
@@ -3045,7 +3045,7 @@ export default function StateMap(props) {
                 </div>
                 <AppBar />
 
-                <Container style={{ marginTop: '8em', minWidth: '1260px' }}>
+                <Container style={{ marginTop: '8em', minWidth: '1260px' ,overFlowX: 'hidden'}}>
 
                     {config &&
                         <div>
@@ -3056,8 +3056,8 @@ export default function StateMap(props) {
                                 <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
                                 <Breadcrumb.Divider />
                             </Breadcrumb> */}
-                            <Grid stackable columns={3} style={{ width: "80%", height: "100%" }} >
-                                <Grid.Column>
+                            <Grid stackable columns={3} style={{ width: "100%", height: "100%" }} >
+                                <Grid.Column style={{zIndex: 10, width:140}}>
                                     <StickyExampleAdjacentContext activeCharacter={activeCharacter} />
                                 </Grid.Column>
 
