@@ -474,7 +474,7 @@ export default function CountyReport() {
             <Grid.Row columns={2}>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
-                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Cases / 100K </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
                           <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -553,7 +553,7 @@ export default function CountyReport() {
               </Grid.Column>
               <Grid.Column >
                 <div style = {{paddingBottom: 20}}>
-                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Deaths / 100K </Header.Content>
                 </div>
                   <svg width = "370" height = "40">
                       <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -673,7 +673,7 @@ export default function CountyReport() {
             <Grid.Row columns={2}>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
-                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Cases / 100K </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
                           <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>

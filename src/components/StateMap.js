@@ -164,7 +164,7 @@ function BarChart(props) {
       {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       {props.title === "Community Vulnerability Index" && <VictoryLabel text="Vulnerability Index" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       {props.title === "Any Condition" && <VictoryLabel text="Prevalence of Any" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
-      {props.title === "Any Condition" && <VictoryLabel text="Condition / 100,000" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
+      {props.title === "Any Condition" && <VictoryLabel text="Condition / 100K" x={100} y={22} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "16px", fontFamily: 'lato'}}}  />
       <VictoryAxis tickCount={3} dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", padding: 1, fontSize: "12px", fontFamily: 'lato'}}} />
       <VictoryBar
@@ -312,7 +312,7 @@ export default function StateMap(props) {
   // const [varMap, setVarMap] = useState({});
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
+  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100K');
 
   const [varMap, setVarMap] = useState({});
   const [metric, setMetric] = useState('casesfig');
@@ -329,19 +329,19 @@ export default function StateMap(props) {
   const trendOptions = [
     {
       key: 'caserate7dayfig',
-      text: 'Average Daily COVID-19 Cases /100,000',
+      text: 'Average Daily COVID-19 Cases / 100K',
       value: 'caserate7dayfig',
     },
     {
       key: 'covidmortality7dayfig',
-      text: 'Average Daily COVID-19 Deaths /100,000',
+      text: 'Average Daily COVID-19 Deaths / 100K',
       value: 'covidmortality7dayfig',
     },
   ]
   const trendName = 
     {
-      'caserate7dayfig': 'Average Daily COVID-19 Cases /100,000',
-      'covidmortality7dayfig': 'Average Daily COVID-19 Deaths /100,000'
+      'caserate7dayfig': 'Average Daily COVID-19 Cases / 100K',
+      'covidmortality7dayfig': 'Average Daily COVID-19 Deaths / 100K'
 
     }
   
@@ -1449,7 +1449,7 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 12, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Distribution of deaths per 100,000 persons. 
+                    Distribution of deaths per 100K persons. 
                     <br/><br/><br/>
                     <i>Data source</i>: <a style ={{color: "#397AB9"}} href="https://covidtracking.com/race" target="_blank" rel="noopener noreferrer"> The COVID Racial Data Tracker </a> <br/> 
 
@@ -1713,7 +1713,7 @@ export default function StateMap(props) {
                     {stateFips !== "_nation" && 
                     <Grid.Row columns={1} style={{padding: 0, paddingTop: 10, paddingBottom: 0, width: 800}}>
                       <Grid.Column>
-                        {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content> */}
+                        {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100K </Header.Content> */}
                         <Dropdown
                           style={{background: '#fff', 
                                   fontSize: "19px",
@@ -1731,7 +1731,7 @@ export default function StateMap(props) {
                                   minHeight: '1.0em',
                                   paddingBottom: '0.5em',
                                   paddingLeft: '1em'}}
-                          text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases/100,000"}
+                          text= { selectedTrend? selectedTrend : "Average Daily COVID-19 Cases / 100K"}
                           pointing = 'top'
                           search
                           selection
@@ -1862,7 +1862,7 @@ export default function StateMap(props) {
                     </Grid.Row>
                     <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                       <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                      *The state and national level measure of any chronic condition prevalence (per 100,000) is computed with the average of all the counties and states.
+                      *The state and national level measure of any chronic condition prevalence (per 100K) is computed with the average of all the counties and states.
                       <br/>
                       *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
 

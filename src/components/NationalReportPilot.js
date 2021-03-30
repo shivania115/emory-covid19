@@ -1099,10 +1099,10 @@ function DeathChartAll(props){
       <Message compact style={{ width: '10rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100K </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'27.5rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200,000 </Message>
+      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'27.5rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200K </Message>
       </Transition> 
       {visible2 ? <ArrowSvg start={{ x: 290, y: 380 }} end={{ x: 263, y: 442 }} strokeWidth='0.8'/> : null}
       {visible3 ? <ArrowSvg start={{ x: 490, y: 438 }} end={{ x: 495, y: 465 }} strokeWidth='0.8'/> : null}
@@ -2366,7 +2366,7 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 0}}> 
                     <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
                       <Header style = {{textAlign: "center"}}>
-                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p> */}
+                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100K <br/><br/></p> */}
                         <Header.Content style = {{paddingBottom: 5}}>
                         
                         <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"].toFixed(0))}</p><br/>
@@ -2668,7 +2668,7 @@ export default function NationalReport(props) {
                   <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and Deaths by Race </b> </center> 
                   <br/><br/>
                   While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                  affected. The {Object.keys(demog_descriptives['Race'][0])[0]} population is seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                  affected. The {Object.keys(demog_descriptives['Race'][0])[0]} population is seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
                   around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0])[1]} population, the group with the lowest mortality rate. 
                   
                     
@@ -2955,7 +2955,7 @@ export default function NationalReport(props) {
                           </VictoryChart>
                           <Header.Content style = {{paddingLeft: 160, width: 450}}>
                               <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:5, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>Deaths per 100,000 residents</b>
+                              <b>Deaths per 100K residents</b>
                               </Header.Content>
                           </Header.Content>
                       </div>
@@ -2997,7 +2997,7 @@ export default function NationalReport(props) {
                             <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}> </b> </center> 
                             <br/><br/>
                             While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                            affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                            affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
                             around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate. 
                             
                               
@@ -3039,7 +3039,7 @@ export default function NationalReport(props) {
                             *These are crude death rates based on cumulative deaths since January 2020. Age differences, such as the lower average age of Hispanic Americans, are not considered due to data limitations.
                             </text>
                             {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                            affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                            affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
                             around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
                             </p>
                               
@@ -3161,7 +3161,7 @@ export default function NationalReport(props) {
                             </li>
                           </ul>
                         {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                        affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100,000 individuals, 
+                        affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
                         around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
                         </p>
                           
@@ -3609,7 +3609,7 @@ export default function NationalReport(props) {
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 140}}>
                   COVID-19 Across U.S. Communities
                   <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 15}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 18}}>COVID-19 cases per 100,000 across the population characteristics of all the counties in the United States </b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 18}}>COVID-19 cases per 100K across the population characteristics of all the counties in the United States </b> </center> 
                     <br/>
                     <br/>
                     COVID-19 is affecting communities differently. Community-level factors such as urbanicity,  
@@ -3758,10 +3758,10 @@ export default function NationalReport(props) {
                             <Header as='h2' style={{fontWeight: 400, paddingLeft: 0, paddingTop: 0, paddingBottom: 20}}>
                               <Header.Content  style={{fontSize: "14pt"}}>
                                 <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
-                                This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 
+                                This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100K 
                                 residents by CCVI ranking. The y-axis displays CCVI rankings based on quintiles (groups of 20%). 
                                 The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) per 
-                                100,000 that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
+                                100K that occurred in each group of counties ranked by CCVI. The ranking classified counties into 
                                 five groups designed to be of equal size, so that the lowest quintile contains the counties with values 
                                 in the 0%-20% range for this county characteristic, and the highest quintile contains counties with 
                                 values in the 80%-100% range for this county characteristic. Q2 indicates counties in the 20%-40% 
@@ -3829,7 +3829,7 @@ export default function NationalReport(props) {
                 <Header.Content style = {{width: 550}}>
                   
                   <Header.Content style={{fontWeight: 300, paddingLeft: 175, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                    <b>COVID-19 Cases per 100,000</b>
+                    <b>COVID-19 Cases per 100K</b>
                   </Header.Content>
                 </Header.Content>
                   
@@ -3887,7 +3887,7 @@ export default function NationalReport(props) {
 
                 <Header.Content style = {{width: 550}}>
                     <Header.Content style={{ paddingLeft: 175,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                      <b>COVID-19 Deaths per 100,000</b>
+                      <b>COVID-19 Deaths per 100K</b>
                     </Header.Content>
                 </Header.Content>
 
@@ -3975,9 +3975,9 @@ export default function NationalReport(props) {
                                           <Header.Content  style={{fontSize: "14pt"}}>
                                             <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                             This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                            per 100,000 residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                            per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
                                             quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
-                                            (top chart) or deaths (bottom chart) per 100,000 that occurred in each group of 
+                                            (top chart) or deaths (bottom chart) per 100K that occurred in each group of 
                                             counties ranked by CCVI. The ranking classified counties into five groups designed 
                                             to be of equal size, so that the lowest quintile contains the counties with values 
                                             in the 0%-20% range for this county characteristic, and the very high CCVI contains 
@@ -4047,7 +4047,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -4098,7 +4098,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
 
@@ -4203,10 +4203,10 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by county ranking on percentage of population in poverty. The 
+                                        per 100K residents by county ranking on percentage of population in poverty. The 
                                         y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
-                                        per 100,000 that occurred in each group of counties ranked by percentage population in poverty. 
+                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
                                         The ranking classified counties into five groups designed to be of equal size, so that the 
                                         "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
                                         characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
@@ -4276,7 +4276,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -4327,7 +4327,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -4430,7 +4430,7 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
+                                        per 100K residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
                                         million population or contain the entire or large part of the population of the largest 
                                         principle city. Large suburban counties have a population &#60; 1 million, but do not qualify 
                                         as inner city. Small suburban counties have a population of 250,000-999,999. Small cities 
@@ -4503,7 +4503,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -4555,7 +4555,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:70, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -4652,7 +4652,7 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by geographic region (y-axis).
+                                        per 100K residents by geographic region (y-axis).
                                         <br/>
                                         <br/>
                                         For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
@@ -4715,7 +4715,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -4766,7 +4766,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -4871,10 +4871,10 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                        per 100,000 residents by percentage African American population ranking. The y-axis 
+                                        per 100K residents by percentage African American population ranking. The y-axis 
                                         displays percentage African American population rankings based on quintiles (groups of 20%). 
                                         The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
-                                        per 100,000 that occurred in each group of counties ranked by percentage percentage African 
+                                        per 100K that occurred in each group of counties ranked by percentage percentage African 
                                         American. The ranking classified counties into five groups designed to be of equal size, 
                                         so that the "very low % African American" group contains the counties with values in the 0%-20% 
                                         range for this county characteristic, and the "very high % African American" group contains 
@@ -4944,7 +4944,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -4995,7 +4995,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -5098,9 +5098,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by residential segregation index. The y-axis displays residential 
+                                        100K residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by residential segregation. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the "very 
                                         low segregation" group contains the counties with values in the 0%-20% range for this county 
@@ -5170,7 +5170,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -5221,7 +5221,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -5325,9 +5325,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with any underlying comorbidity. The y-axis 
+                                        100K residents by percent of population with any underlying comorbidity. The y-axis 
                                         displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the population with "very 
                                         low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
@@ -5394,7 +5394,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -5445,7 +5445,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -5521,9 +5521,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with COPD. The y-axis 
+                                        100K residents by percent of population with COPD. The y-axis 
                                         displays percent of population with COPD rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by percent of population with COPD. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the population with "very 
                                         low percentage of COPD" group contains the counties with values in the 0%-20% range for this county 
@@ -5591,7 +5591,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -5642,7 +5642,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -5724,9 +5724,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with CKD. The y-axis 
+                                        100K residents by percent of population with CKD. The y-axis 
                                         displays percent of population with CKD rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by percent of population with CKD. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the population with "very 
                                         low percentage of CKD" group contains the counties with values in the 0%-20% range for this county 
@@ -5793,7 +5793,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -5844,7 +5844,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -5920,9 +5920,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with diabetes. The y-axis 
+                                        100K residents by percent of population with diabetes. The y-axis 
                                         displays percent of population with diabetes rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by percent of population with diabetes. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the population with "very 
                                         low percentage of diabetes" group contains the counties with values in the 0%-20% range for this county 
@@ -5989,7 +5989,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -6040,7 +6040,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -6117,9 +6117,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with heart disease. The y-axis 
+                                        100K residents by percent of population with heart disease. The y-axis 
                                         displays percent of population with heart disease rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by percent of population with heart disease. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the population with "very 
                                         low percentage of heart disease" group contains the counties with values in the 0%-20% range for this county 
@@ -6186,7 +6186,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -6237,7 +6237,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>
@@ -6314,9 +6314,9 @@ export default function NationalReport(props) {
                                       <Header.Content  style={{fontSize: "14pt"}}>
                                         <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
-                                        100,000 residents by percent of population with obesity. The y-axis 
+                                        100K residents by percent of population with obesity. The y-axis 
                                         displays percent of population with obesity rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100,000 
+                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
                                         that occurred in each group of counties ranked by percent of population with obesity. The ranking 
                                         classified counties into five groups designed to be of equal size, so that the population with "very 
                                         low percentage of obesity" group contains the counties with values in the 0%-20% range for this county 
@@ -6383,7 +6383,7 @@ export default function NationalReport(props) {
                         <Header.Content style = {{width: 550}}>
                           
                           <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                            <b>COVID-19 Cases per 100,000</b>
+                            <b>COVID-19 Cases per 100K</b>
                           </Header.Content>
                         </Header.Content>
                           
@@ -6434,7 +6434,7 @@ export default function NationalReport(props) {
 
                         <Header.Content style = {{width: 550}}>
                             <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:50, fontSize: "14pt", lineHeight: "18pt"}}>
-                              <b>COVID-19 Deaths per 100,000</b>
+                              <b>COVID-19 Deaths per 100K</b>
                             </Header.Content>
                         </Header.Content>
                     </Grid.Column>

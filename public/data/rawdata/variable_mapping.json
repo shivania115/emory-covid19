@@ -31,23 +31,23 @@
         "group": "outcomes"},
     "caseratefig": {
         "variable": "caseratefig",
-        "name": "Total COVID-19 Cases per 100,000",
-        "definition": "helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people.",
+        "name": "Total COVID-19 Cases per 100K",
+        "definition": "helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100K people.",
         "group": "outcomes"},
     "covidmortalityfig": {
         "variable": "covidmortalityfig",
-        "name": "Total COVID-19 Deaths per 100,000",
-        "definition": "helps us understand COVID-19 deaths by population of the county per 100,000 people.",
+        "name": "Total COVID-19 Deaths per 100K",
+        "definition": "helps us understand COVID-19 deaths by population of the county per 100K people.",
         "group": "outcomes"},
     "caserate7dayfig": {
         "variable": "caserate7dayfig",
-        "name": "Average Daily COVID-19 Cases per 100,000",
-        "definition": "helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100,000 people.",
+        "name": "Average Daily COVID-19 Cases per 100K",
+        "definition": "helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100K people.",
         "group": "outcomes"},
     "covidmortality7dayfig": {
         "variable": "covidmortality7dayfig",
-        "name": "Average Daily COVID-19 Deaths per 100,000",
-        "definition": "helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100,000 people.",
+        "name": "Average Daily COVID-19 Deaths per 100K",
+        "definition": "helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100K people.",
         "group": "outcomes"},
 	"cfr": {
         "variable": "cfr",
