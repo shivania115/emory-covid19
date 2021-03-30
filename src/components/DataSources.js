@@ -87,7 +87,7 @@ export default function DataSources(props){
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Daily Hospitalization</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target="_blank" rel="noopener noreferrer"> U.S. Department of Health & Human Services, Community Profile Report </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Daily Hospitalization</i> is the number of new COVID-19 hospitalization calculated as the 7-day average.
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Daily Hospitalization</i> is the number of new daily COVID-19 hospitalizations.
               </Table.Cell>
             </Table.Row>
             <Table.Row>

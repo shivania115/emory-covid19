@@ -1435,8 +1435,8 @@ export default function StateMap(props) {
                 </Grid.Column>
                 <Grid.Column style={{left: 4, padding: 0, paddingLeft: 0, paddingRight: 10, lineHeight: '16pt'}}>
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
-                    New COVID-19 Hospitalization (7-day average)<br/>
-                    <br/>
+                    New daily COVID-19 Hospitalization <br/>
+                    <br/><br/>
                     <i>Data source</i>:<a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> U.S. Department of Health & Human Services, Community Profile Report </a> <br/>
                   </Header.Content>
                 </Grid.Column>
@@ -1470,9 +1470,9 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips === "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Last updated on {date}
+                                    Last updated on {date}.
                                     <br/>
-                                    Hospitalization data is calculated as the 7-day average, last updated: {hospDate}.
+                                    Hospitalization data last updated: {hospDate}.
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
@@ -1485,9 +1485,9 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips !== "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Last updated on {date}
+                                    Last updated on {date}.
                                     <br/>
-                                    Hospitalization data is calculated as the 7-day average, last updated: {hospDate}.
+                                    Hospitalization data last updated: {hospDate}.
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
