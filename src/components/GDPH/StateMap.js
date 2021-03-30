@@ -3056,7 +3056,7 @@ export default function StateMap(props) {
                                 <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
                                 <Breadcrumb.Divider />
                             </Breadcrumb> */}
-                            <Grid stackable columns={3} style={{ width: "100%", height: "100%" }} >
+                            <Grid stackable columns={3} style={{ width: "80%", height: "100%" }} >
                                 <Grid.Column>
                                     <StickyExampleAdjacentContext activeCharacter={activeCharacter} />
                                 </Grid.Column>
