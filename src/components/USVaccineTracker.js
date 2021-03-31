@@ -1081,7 +1081,7 @@ const USVaccineTracker = (props) => {
                         <Grid.Row style = {{width: 240}}>
                           <Grid.Column style = {{width: 240, paddingTop: 0, paddingBottom: 5, textAlign: "center"}}>
                             <Header>
-                              <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100,000 <br/><br/></p>
+                              <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100K <br/><br/></p>
                             </Header>
                             <p style={{fontSize: "28px", fontWeight: 800, fontFamily: 'lato', color: "#004071"}}>{numberWithCommas(vaccineData["_nation"]["Dist_Per_100K_new"].toFixed(0))}</p>
 
@@ -1668,9 +1668,9 @@ const USVaccineTracker = (props) => {
                                             <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
                                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
-                                            <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                            <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
                                             distributed to facilities across the United States by the federal government. 
-                                            Newly distributed per 100,000 for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
+                                            Newly distributed per 100K for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
                                             For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
                                            
                                           </Header.Content>
@@ -2015,7 +2015,7 @@ const USVaccineTracker = (props) => {
                               </VictoryChart>
                               <Header.Content style = {{width: 420}}>
                                   <Header.Content style={{ fontWeight: 300, paddingLeft: 150, paddingTop: 8, paddingBottom:34, fontSize: "19px", lineHeight: "18pt"}}>
-                                    <b>Deaths per 100,000 residents</b>
+                                    <b>Deaths per 100K residents</b>
                                   </Header.Content>
                               </Header.Content>
                     </div>}
@@ -2143,7 +2143,7 @@ const USVaccineTracker = (props) => {
                                 }
                                 {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38" && stateMapFips !== "02" &&
                                   <div style = {{marginTop: 10, textAlign: "center", width: 250}}>
-                                    <Header.Content x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100,000 <br/> residents</Header.Content>
+                                    <Header.Content x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100K <br/> residents</Header.Content>
                                   </div>
                                 }
 
@@ -2330,7 +2330,7 @@ const USVaccineTracker = (props) => {
                                 }
                                 {stateMapFips !== "_nation" && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ) && 
                                   <div style = {{marginTop: 10, textAlign: "center", width: 250}}>
-                                    <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
+                                    <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100K <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
                                   </div>
                                 }
 
@@ -2508,7 +2508,7 @@ const USVaccineTracker = (props) => {
                               }
                               {stateMapFips && !raceData[stateMapFips]["White Alone"] &&
                                 <div style = {{marginTop: 10, width: 400, paddingBottom: 3}}>
-                                  <Header.Content style={{fontSize: '19px', marginLeft: 150, fontWeight: 400}}> Deaths per 100,000 residents<br/> 
+                                  <Header.Content style={{fontSize: '19px', marginLeft: 150, fontWeight: 400}}> Deaths per 100K residents<br/> 
                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                   
                                   
@@ -2627,7 +2627,7 @@ const USVaccineTracker = (props) => {
                 <Grid.Column style = {{paddingLeft: 80, width: 630}}>
                   <div style = {{paddingTop: 10, paddingLeft: 50}}>
                     <div style = {{paddingTop: 0, width: 500, paddingBottom: 20}}>
-                      <Header.Content x={0} y={20} style={{fontSize: "22px", fontWeight: 400}}>Average Daily COVID-19 Cases /100,000 </Header.Content>
+                      <Header.Content x={0} y={20} style={{fontSize: "22px", fontWeight: 400}}>Average Daily COVID-19 Cases / 100K </Header.Content>
                     </div>
                     <svg width = "500" height = "40">
                         <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -2644,7 +2644,7 @@ const USVaccineTracker = (props) => {
 
                   <div style = {{paddingTop: 65, paddingLeft: 50}}>
                     <div style = {{paddingTop: 47, width: 500, paddingBottom: 20}}>
-                      <Header.Content style={{fontSize: "22px", fontWeight: 400}}>Average Daily COVID-19 Deaths /100,000 </Header.Content>
+                      <Header.Content style={{fontSize: "22px", fontWeight: 400}}>Average Daily COVID-19 Deaths / 100K </Header.Content>
                     </div>
                     <svg width = "500" height = "40">
                         <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
