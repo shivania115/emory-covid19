@@ -698,11 +698,10 @@ export default function CountyReport() {
 
                       tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                       tickValues={[
-                        dataTS["_nation"][30].t,
-                        dataTS["_nation"][91].t,
-                        dataTS["_nation"][153].t,
-                        dataTS["_nation"][214].t,
-                        dataTS["_nation"][275].t,
+                        dataTS["_nation"][300].t,
+                        dataTS["_nation"][305].t,
+                        dataTS["_nation"][310].t,
+                        dataTS["_nation"][315].t,
 
                         
 
