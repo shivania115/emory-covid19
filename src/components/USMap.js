@@ -676,7 +676,7 @@ export default function USMap(props) {
                       { stateFips &&
                         <VictoryChart 
                                     minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t : allTS["13"][allTS["13"]["13"].length-15].t}}
-                                    maxDomain = {{y: !stateFips ? getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean : getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.05}}                            
+                                    maxDomain = {{y: !stateFips ? getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length-15)).caseRateMean : getMaxRange(allTS[stateFips], "caseRateMean", (allTS[stateFips].length-15)).caseRateMean*1.45}}                            
                                     width={235}
                                     height={180}
                                     padding={{marginLeft: 0, right: -1, top: 150, bottom: -0.9}}
@@ -754,8 +754,8 @@ export default function USMap(props) {
                       <div>
                       { stateFips && 
                         <VictoryChart theme={VictoryTheme.material}
-                                    minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t}}
-                                    maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean * 1.1: getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8}}                            
+                                    minDomain={{ x: stateFips? allTS[stateFips][allTS[stateFips].length-15].t: allTS["13"][allTS["13"].length-15].t, y: 0}}
+                                    maxDomain = {{y: stateFips? getMax(allTS[stateFips], "mortalityMean").mortalityMean * 1.1: getMax(allTS["13"], "mortalityMean").mortalityMean*1.5}}                            
                                     width={235}
                                     height={180}       
                                     padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
