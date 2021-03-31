@@ -673,7 +673,7 @@ export default function CountyReport() {
             <Grid.Row columns={2} style = {{paddingTop: 51}}>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
-                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>COVID-19 Test Positivity </Header.Content>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>COVID-19 Test Percent Positivity </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
                           <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
@@ -725,7 +725,7 @@ export default function CountyReport() {
                     >
                       <VictoryLine data={dataTS["_nation"]}
                         x='t' y='percentPositive'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(1)}`}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}`}
                         labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -733,7 +733,7 @@ export default function CountyReport() {
                         />
                       <VictoryLine data={dataTS[stateFips]}
                         x='t' y='percentPositive'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(1)}`}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}`}
                         labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
@@ -741,7 +741,7 @@ export default function CountyReport() {
                         />
                       <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                         x='t' y='percentPositive'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(1)}`}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}`}
                         labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
