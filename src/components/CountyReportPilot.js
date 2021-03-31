@@ -693,15 +693,13 @@ export default function CountyReport() {
                     >
 
 
-                    <VictoryAxis
+                    <VictoryAxis domain={[dataTS["_nation"][325].t, dataTS["_nation"][dataTS["_nation"].length-1].t]}
                       style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
                       tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                       tickValues={[
-                        dataTS["_nation"][300].t,
-                        dataTS["_nation"][305].t,
-                        dataTS["_nation"][310].t,
-                        dataTS["_nation"][315].t,
+                        
+                        dataTS["_nation"][325].t,
 
                         
 
@@ -712,7 +710,7 @@ export default function CountyReport() {
                         // dataTS["_nation"][244].t,
                         // dataTS["_nation"][306].t,
                         dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
-                    <VictoryAxis dependentAxis tickCount={5}
+                    <VictoryAxis dependentAxis tickCount={5} 
                       style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
                       tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
