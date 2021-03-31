@@ -115,7 +115,7 @@ export default function USMap(props) {
 
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100,000');
+  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100K');
 
   const [delayHandler, setDelayHandler] = useState();
 
@@ -885,7 +885,7 @@ export default function USMap(props) {
                             </VictoryChart>
                             <Header.Content style = {{width: 420}}>
                                 <Header.Content id="region" style={{ fontWeight: 300, paddingLeft: 100, paddingTop: 8, paddingBottom:28, fontSize: "19px", lineHeight: "18pt"}}>
-                                  <b>Deaths per 100,000 residents</b>
+                                  <b>Deaths per 100K residents</b>
                                 </Header.Content>
                             </Header.Content>
                   </div>}
@@ -1011,7 +1011,7 @@ export default function USMap(props) {
                       }
                       {!raceData[fips]["Non-Hispanic African American"] && stateFips !== "38" && stateFips !== "02" &&
                         <div style = {{marginTop: 10, textAlign: "center"}}>
-                          <Header.Content x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100,000 <br/> residents</Header.Content>
+                          <Header.Content x={15} y={20} style={{fontSize: '14pt', paddingLeft: 15, fontWeight: 400}}> Deaths per 100K <br/> residents</Header.Content>
                         </div>
                       }
 
@@ -1195,7 +1195,7 @@ export default function USMap(props) {
                       }
                       {fips !== "_nation" && !!raceData[fips]["White Alone"] && fips !== "38" && !(raceData[fips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[fips]["Hispanic"] && !raceData[fips]["Non Hispanic"] && !raceData[fips]["Non-Hispanic African American"] && !raceData[fips]["Non-Hispanic American Natives"] && !raceData[fips]["Non-Hispanic Asian"] && !raceData[fips]["Non-Hispanic White"] ) ) && 
                         <div style = {{marginTop: 10, textAlign: "center", width: 300}}>
-                          <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100,000 <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
+                          <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100K <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
                         </div>
                       }
 
@@ -1377,7 +1377,7 @@ export default function USMap(props) {
                       }
                       {stateFips && !raceData[fips]["White Alone"] &&
                         <div style = {{marginTop: 10, width: 400, paddingBottom: 3}}>
-                          <Header.Content style={{fontSize: '19px', marginLeft: 150, fontWeight: 400}}> Deaths per 100,000 residents<br/> 
+                          <Header.Content style={{fontSize: '19px', marginLeft: 150, fontWeight: 400}}> Deaths per 100K residents<br/> 
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           
                           
