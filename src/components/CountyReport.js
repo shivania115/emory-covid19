@@ -738,7 +738,7 @@ export default function CountyReport() {
                       tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                       />
                     <VictoryGroup 
-                      colorScale={[nationColor, stateColor, countyColor]}
+                      colorScale={[stateColor, countyColor]}
                     >
                       {/* <VictoryLine data={dataTS["_nation"]}
                         x='t' y='percentPositive'
