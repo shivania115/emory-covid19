@@ -607,8 +607,12 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 <Grid>
+                <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 73, lineHeight: "18pt"}}>
+                  <b>Data last updated:</b> {date}, updated every weekday.
+                </Header.Content>
                 <Grid.Row>
-                  {stateFips && <Accordion style = {{paddingTop: 17}}defaultActiveIndex={1} panels={[
+                  
+                  {stateFips && <Accordion style = {{paddingTop: 0, paddingLeft: 10}}defaultActiveIndex={1} panels={[
                     {
                         key: 'acquire-dog',
                         title: {
@@ -1410,7 +1414,7 @@ export default function USMap(props) {
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data last updated:</b> 03/15/2020.<br/>
                     
                     </Header.Content>
                   </Grid.Row>}
@@ -1425,7 +1429,7 @@ export default function USMap(props) {
                       {stateName} is not reporting deaths by race or ethnicity.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data last updated:</b> 03/07/2020.<br/>
                     
                     </Header.Content>}
 
@@ -1435,7 +1439,7 @@ export default function USMap(props) {
                       {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data last updated:</b> 03/07/2020.<br/>
                     
                     </Header.Content>}
 
@@ -1445,7 +1449,7 @@ export default function USMap(props) {
                       {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[fips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[fips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data last updated:</b> 03/07/2020.<br/>
                     
                     </Header.Content>}
 
@@ -1454,7 +1458,7 @@ export default function USMap(props) {
                       {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[fips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                      <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data last updated:</b> 03/07/2020.<br/>
                     
                     </Header.Content>}
 

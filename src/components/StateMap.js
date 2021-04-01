@@ -718,7 +718,7 @@ export default function StateMap(props) {
               }
             
             
-            setHospDate("0" + (new Date(hospDate*1000).toLocaleDateString()).substring(0,2) + "0" + (new Date(hospDate*1000).toLocaleDateString()).substring(2));
+            setHospDate("0" + (new Date(hospDate*1000).toLocaleDateString()).substring(0,2) + (new Date(hospDate*1000).toLocaleDateString()).substring(2));
             //manipulate string
             if (percentChangeCase.toFixed(0) > 0){
               setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");

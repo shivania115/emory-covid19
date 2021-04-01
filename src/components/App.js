@@ -4,7 +4,6 @@ import React, {useEffect}from "react";
 import USMap from "./USMap";
 import StateMap from "./StateMap";
 import CountyReport from "./CountyReport";
-import CountyReportPilot from "./CountyReportPilot";
 import MapYourState from "./MapState";
 import AboutUs from "./AboutUs";
 import MediaHub from "./MediaHub";
@@ -108,9 +107,7 @@ function AppUI() {
           <Route path='/data-sources'>
             <DataSources />
           </Route>       
-          <Route path='/crp03302021:stateFips/:countyFips'>
-            <CountyReportPilot />
-          </Route>
+          
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
           </Route>  
