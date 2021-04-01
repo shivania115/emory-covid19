@@ -687,19 +687,19 @@ const RaceBarChart = (props) => {
     },
     {
       name: '% Vaccination',
-      white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['pctAdmDose1'].toFixed(1)
+      white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['pctAdmDose2'].toFixed(1)
          :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']),
-      black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['pctAdmDose1'].toFixed(1)
+      black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['pctAdmDose2'].toFixed(1)
          :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']),
-      hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['pctAdmDose1'].toFixed(1)
+      hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'].toFixed(1)
          :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']),
-      asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose1'].toFixed(1)
+      asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose2'].toFixed(1)
          :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']),
-      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose1'].toFixed(1)
+      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'].toFixed(1)
          :(props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'])
     }
