@@ -16,7 +16,7 @@ export default function Notes(props){
 
   	
 
-    <div style={{paddingTop: '2em', fontWeight: 300, overflow: "auto"}}>
+    <div style={{paddingTop: '2em', fontWeight: 300, overflow: "hidden"}}>
       <Divider/>
 
             <Grid style = {{paddingTop: 30, paddingBottom: 30}}>

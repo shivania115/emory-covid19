@@ -350,7 +350,7 @@ export default function CountyReport() {
     console.log(dataTS);
   return (
     <HEProvider> 
-      <div style = {{overflow: "auto"}}>
+      <div style = {{overflow: "hidden"}}>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
           {config &&
