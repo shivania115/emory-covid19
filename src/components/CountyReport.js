@@ -472,7 +472,7 @@ export default function CountyReport() {
 
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-              <b>Last updated on </b>{date}
+              <b>Data as of </b>{date}
               </text>
 
             </Grid.Row>
@@ -658,7 +658,7 @@ export default function CountyReport() {
           </Grid>
           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
             <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-            <b>Last updated on </b>{date}
+            <b>Data as of </b>{date}
             </text>
 
           </Grid.Row>
@@ -848,7 +848,7 @@ export default function CountyReport() {
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
               <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report</a>. <br/>
-              <b>Last updated on </b>
+              <b>Data as of </b>
                 {!dataTS? "" : " 0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)}
               </text>
               
@@ -866,7 +866,7 @@ export default function CountyReport() {
                         <div>
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    {/* County positivity Last updated on {date}. */}
+                                    {/* County positivity Data as of {date}. */}
                                     {/* <br/> */}
                                     <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report </a> <br/>
                                     
@@ -1016,7 +1016,7 @@ export default function CountyReport() {
               <br/>
               *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
               <br/>
-              <b>Last updated on </b>{date}
+              <b>Data as of </b>{date}
               </text>
 
             </Grid.Row>
@@ -1166,7 +1166,7 @@ export default function CountyReport() {
             </Grid.Row>
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-              <b>Last updated on </b>{date}
+              <b>Data as of </b>{date}
               </text>
 
             </Grid.Row>
@@ -1215,7 +1215,7 @@ export default function CountyReport() {
             <Divider hidden/>
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-              <b>Last updated on </b>{date}
+              <b>Data as of </b>{date}
               </text>
 
             </Grid.Row>
