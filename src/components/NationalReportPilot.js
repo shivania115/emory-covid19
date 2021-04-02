@@ -2237,7 +2237,7 @@ export default function NationalReport(props) {
     // console.log(demog_descriptives['AgeDescription']);
   return (
     <HEProvider>
-      <div style = {{overflow: "hidden"}}>
+      <div>
         <AppBar menu='nationalReport' /> 
         <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} >
         <div >
@@ -2432,7 +2432,7 @@ export default function NationalReport(props) {
                                 content: {
                                     content: (
                                       <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 900}}>
-                                        Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                                        Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
                                         <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
                                         <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
                                         <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>

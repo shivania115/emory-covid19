@@ -457,8 +457,9 @@ export default function MediaHub(props){
 
 
         </Grid.Row>
-        <Notes />
+        
       </Grid>
+      <Notes />
       </Container>
     </div>);
 }

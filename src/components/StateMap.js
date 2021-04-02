@@ -689,7 +689,7 @@ export default function StateMap(props) {
                           indexP = stateSeriesDict.length - i;
                           hospD = stateSeriesDict[i].hospDaily;
                           percentChangeHospDaily = stateSeriesDict[i].percent7dayhospDaily;
-                          hospDate = stateSeriesDict[i].t;
+                          hospDate = stateSeriesDict[i-1].t;
                           i = 0;
                         }
                       }
@@ -843,7 +843,7 @@ export default function StateMap(props) {
 
   return (
     <HEProvider>
-      <div style = {{overflow: "hidden"}}>
+      <div>
         <AppBar menu='countyReport'/>
           <Container style={{marginTop: '8em', minWidth: '1260px'}}>
 
@@ -1470,13 +1470,13 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips === "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Last updated on {date}.
+                                    Cases and deaths data as of {date}.
                                     <br/>
-                                    Hospitalization data last updated: {hospDate}.
+                                    Hospitalization data as of: {hospDate}.
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
-                                    Race data last updated: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}. 
+                                    Race data as of: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}. 
                                     
                                   </text>
                           </Grid.Row>
@@ -1485,20 +1485,20 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips !== "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Last updated on {date}.
+                                    Cases and deaths data as of {date}.
                                     <br/>
-                                    Hospitalization data last updated: {hospDate}.
+                                    Hospitalization data as of: {hospDate}.
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
-                                    Race data last updated: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}. 
+                                    Race data as of: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}. 
                                     
                                   </text>
                           </Grid.Row>
                           }
 
                           { false && 
-                            <span style={{color: '#73777B', fontSize: "14pt"}}>Last updated on {date}</span>
+                            <span style={{color: '#73777B', fontSize: "14pt"}}>Cases and deaths data as of {date}</span>
                           }
                         </div>
                       ),
@@ -1675,7 +1675,7 @@ export default function StateMap(props) {
                                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                     For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                     <br/><br/>
-                                    Last updated on {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    Data as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
                                     </text>
 
 
