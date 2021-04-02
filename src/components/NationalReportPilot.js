@@ -2237,7 +2237,7 @@ export default function NationalReport(props) {
     // console.log(demog_descriptives['AgeDescription']);
   return (
     <HEProvider>
-      <div style = {{overflow: "hidden"}}>
+      <div>
         <AppBar menu='nationalReport' /> 
         <Container id="title" style={{marginTop: '8em', minWidth: '1260px'}} >
         <div >
