@@ -331,7 +331,7 @@ export default function USMap(props) {
     console.log(isJson(JSON.stringify(data)));
   return (
     <HEProvider>
-      <div style = {{overflow: "hidden"}}>
+      <div style = {{overflow: "auto"}}>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px'}}>
         <Grid style={{height:130, overflow: "hidden"}}>

@@ -977,7 +977,7 @@ const USVaccineTracker = (props) => {
     // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
-      <div style = {{overflow: 'hidden'}}>
+      <div style = {{overflow: 'auto'}}>
         <AppBar menu='vaccineTracker'/>
         <Container style={{marginTop: '8em', width: 1260}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
