@@ -250,8 +250,6 @@ export default function USMap(props) {
                   setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
                 }else if(i.tag === "nationalDemog"){
                   setNationalDemog(i.nationalDemog);
-                }else if(i.tag === "racedataAll"){
-                  setRaceData(i.racedataAll);
                 }
               });
 
