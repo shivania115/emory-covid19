@@ -977,7 +977,7 @@ const USVaccineTracker = (props) => {
     // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
-      <div style = {{overflow: 'hidden'}}>
+      <div >
         <AppBar menu='vaccineTracker'/>
         <Container style={{marginTop: '8em', width: 1260}}>
           {/* <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt"}}>
@@ -1185,7 +1185,7 @@ const USVaccineTracker = (props) => {
                             content: {
                                 content: (
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
-                                    Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                                    Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
                                     <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
                                     <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
                                     <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
@@ -1661,7 +1661,7 @@ const USVaccineTracker = (props) => {
                                     content: {
                                         content: (
                                           <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", lineHeight: "20px", width: 975}}>
-                                            Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                                            Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
 
                                             <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
                                             <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
@@ -1670,7 +1670,7 @@ const USVaccineTracker = (props) => {
 
                                             <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
                                             distributed to facilities across the United States by the federal government. 
-                                            Newly distributed per 100K for the U.S. was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
+                                            Newly distributed per 100K for the U.S. was data as of {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
                                             For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
                                            
                                           </Header.Content>
@@ -2550,7 +2550,7 @@ const USVaccineTracker = (props) => {
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> 03/15/2021, updated every weekday.<br/>
                                           
                                           </Header.Content>
                                         </Grid.Row>}
@@ -2565,7 +2565,7 @@ const USVaccineTracker = (props) => {
                                             {stateName} is not reporting deaths by race or ethnicity.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> 03/07/2021, updated every weekday.<br/>
                                           
                                           </Header.Content>}
 
@@ -2575,7 +2575,7 @@ const USVaccineTracker = (props) => {
                                             {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> 03/07/2021, updated every weekday.<br/>
                                           
                                           </Header.Content>}
 
@@ -2585,7 +2585,7 @@ const USVaccineTracker = (props) => {
                                             {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[stateMapFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> 03/07/2021, updated every weekday.<br/>
                                           
                                           </Header.Content>}
 
@@ -2594,7 +2594,7 @@ const USVaccineTracker = (props) => {
                                             {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[stateMapFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covidtracking.com/about-data" target = "_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                            <br/><b>Data last updated:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> 03/07/2021, updated every weekday.<br/>
                                           
                                           </Header.Content>}
 

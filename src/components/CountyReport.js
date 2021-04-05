@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Breadcrumb, Header, Loader, Table, Divider } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Popup, Accordion, Table, Divider } from 'semantic-ui-react'
 import AppBar from './AppBar';
 // import Geographies from './Geographies';
 // import Geography from './Geography';
@@ -149,15 +149,16 @@ export default function CountyReport() {
   const history = useHistory();
 
   const [date, setDate] = useState();
+  // const [countyPosDate, setCountyPosDate] = useState();
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
-   const [tooltipContent, setTooltipContent] = useState('');
+  const [tooltipContent, setTooltipContent] = useState('');
   // const [countyMetric, setCountyMetric] = useState({cases: 'N/A', deaths: 'N/A', 
   //                                                 caseRate: "N/A", mortality: "N/A", 
   //                                                 caseRateMean: "N/A", mortalityMean: "N/A",
   //                                                 caserate7dayfig: "N/A", covidmortality7dayfig: "N/A",
   //                                                 cfr:"N/A", t: 'n/a'});
-    const [countyMetric, setCountyMetric] = useState();
+  const [countyMetric, setCountyMetric] = useState();
 
   // const [stateMetric, setStateMetric] = useState({cases: 'N/A', deaths: 'N/A', 
   //                                                 caseRate: "N/A", mortality: "N/A", 
@@ -167,6 +168,7 @@ export default function CountyReport() {
 
   const [stateMetric, setStateMetric] = useState();                                                
   const [varMap, setVarMap] = useState({});
+  const [countyOption, setCountyOption] = useState();
 
 
   const [countyCasesOutcome, setCountyCasesOutcome] = useState();
@@ -254,6 +256,12 @@ export default function CountyReport() {
       setCountyName(fips2county[stateFips+countyFips]);
       fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
         .then(x => setVarMap(x));
+      fetch('/data/rawdata/f2c.json').then(res => res.json())
+        .then(x => {
+          setCountyOption(_.filter(_.map(x, d=> {
+            return {key: d.id, value: d.value, text: d.text, group: d.state};
+          }), d => (d.group === stateFips && d.text !== "Augusta-Richmond County consolidated government" && d.text !== "Wrangell city and borough" && d.text !== "Zavalla city")));
+        });
     
       if (isLoggedIn === true){
         let newDict = {};
@@ -291,6 +299,7 @@ export default function CountyReport() {
           let countyDeaths = 0;
           let stateDeaths = 0;
           let nationDeaths = 0;
+          let countyposDate = 0;
           if( stateFips !== "_nation"){
             //Timeseries data
             const seriesQ = { $or: [ { state: "_n" } , { full_fips: stateFips } , {full_fips: "" + stateFips + countyFips}] }
@@ -310,8 +319,10 @@ export default function CountyReport() {
                 nationCases = v[v.length-1].caserate7dayfig;
                 nationDeaths = v[v.length-1].covidmortality7dayfig;
               }
+              // countyposDate = v[v.length-1].t;
 
             });
+            // setCountyPosDate("0" + (new Date(countyposDate*1000).toLocaleDateString()).substring(0,2) + (new Date(countyposDate*1000).toLocaleDateString()).substring(2));
 
             setCountyCasesOutcome(countyCases.toFixed(0));
             setStateCasesOutcome(stateCases.toFixed(0));
@@ -336,10 +347,10 @@ export default function CountyReport() {
 
 
   if (data && varMap) {
-    // console.log(data[stateFips]['casesfig']);
+    console.log(dataTS);
   return (
     <HEProvider> 
-      <div style = {{overflow: "hidden"}}>
+      <div>
         <AppBar menu='countyReport'/>
         <Container style={{marginTop: '8em', minWidth: '1260px', paddingRight: 0}}>
           {config &&
@@ -352,7 +363,35 @@ export default function CountyReport() {
             <Breadcrumb.Section active>{countyName}</Breadcrumb.Section>
           </Breadcrumb>
           <div style={{fontWeight: 300, fontSize: "24pt", paddingTop: 30, paddingBottom: "19px"}}>
-            <Header.Content>
+            <Dropdown
+                  style={{background: '#fff', 
+                          fontSize: "19px",
+                          fontWeight: 400, 
+                          theme: '#000000',
+                          width: '450px',
+                          left: '0px',
+                          text: "Select",
+                          borderTop: '0.5px solid #bdbfc1',
+                          borderLeft: '0.5px solid #bdbfc1',
+                          borderRight: '0.5px solid #bdbfc1', 
+                          borderBottom: '0.5px solid #bdbfc1',
+                          borderRadius: 0,
+                          minHeight: '1.0em',
+                          paddingBottom: '0.5em'}}
+                  text= "Select County/Census Area/Borough"
+                  search
+                  selection
+                  pointing = 'top'
+                  options={countyOption}
+                  onChange={(e, { value }) => {
+                    if (value !== "Select County/Census Area/Borough") {
+                      window.location.href = "/crp03302021"+stateFips + "/" + value+"";
+                    }
+                    
+                  }}
+                  
+              />
+            <Header.Content style = {{paddingTop: 45}}>
               <b>{countyName}, {stateName}</b>
             </Header.Content>
           </div>
@@ -431,12 +470,16 @@ export default function CountyReport() {
               </Table>
             </Grid.Row>
 
-            <span style={{ color: '#000000', paddingTop: 20, fontSize:"19px"}}>Last updated on {date}</span>
+            <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+              <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
+              <b>Data as of </b>{date}
+              </text>
 
+            </Grid.Row>
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 51, paddingBottom: 40}}>COVID-19 Outcomes </Divider>
-          <Grid columns={2} centered>
-            <Grid.Row>
+          <Grid centered>
+            <Grid.Row columns={2}>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
                   <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}>Average Daily COVID-19 Cases / 100K </Header.Content>
@@ -613,8 +656,249 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <span style={{color: '#000000', fontSize:"19px"}}>Last updated on {date}</span>
+          <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+            <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
+            <b>Data as of </b>{date}
+            </text>
 
+          </Grid.Row>
+          <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 10}}>County COVID-19 Test Positivity</Divider>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <Grid>
+            <Grid.Row columns={2} style = {{paddingTop: 51}}>
+              <Grid.Column>
+                <div style = {{paddingBottom: 20}}>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}> Percent Tested COVID-19 Positive </Header.Content>
+                </div>
+                      <svg width = "370" height = "40">
+                          {/* <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                          <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
+                          <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                          <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
+                          <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
+
+                          <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                          <text x = {92} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
+                          <rect x = {stateName.length > 10? 220: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                          <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
+                      </svg>
+                <div style = {{height: 240}}>
+                  { dataTS && <VictoryChart theme={VictoryTheme.material}
+                    minDomain={{ x: dataTS["_nation"][342].t }}
+                    maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
+                    width={550}
+                    height={200}       
+                    padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                    containerComponent={<VictoryVoronoiContainer/>}
+                    
+                    >
+
+
+                    <VictoryAxis 
+                      
+                      style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+
+                      tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
+                      tickValues={[
+                        
+                        dataTS["_nation"][342].t,
+
+                        dataTS["_nation"][347].t,
+                        dataTS["_nation"][352].t,
+                        dataTS["_nation"][357].t,
+
+                        // dataTS["_nation"][0].t,
+                        // dataTS["_nation"][61].t,
+                        // dataTS["_nation"][122].t,
+                        // dataTS["_nation"][183].t,
+                        // dataTS["_nation"][244].t,
+                        // dataTS["_nation"][306].t,
+                        dataTS["_nation"][dataTS["_nation"].length-2].t]}/>
+                    <VictoryAxis dependentAxis tickCount={5} 
+                      style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
+
+                      tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
+                      />
+                    <VictoryGroup 
+                      colorScale={[stateColor, countyColor]}
+                    >
+                      {/* <VictoryLine data={dataTS["_nation"]}
+                        x='t' y='percentPositive'
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
+                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        style={{
+                            data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                        }}
+                        /> */}
+                      <VictoryLine data={dataTS[stateFips]}
+                        minDomain={{ x: dataTS["_nation"][342].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
+                        x='t' y='percentPositive'
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
+                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        style={{
+                            data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                        }}
+                        />
+                      <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
+                        minDomain={{ x: dataTS["_nation"][342].t }}
+                        maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
+                        x='t' y='percentPositive'
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
+                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        style={{
+                            data: { strokeWidth: ({ active }) => active ? 3 : 2},
+                        }}
+
+                        />
+                    </VictoryGroup>
+                  </VictoryChart>}
+                </div>
+              </Grid.Column>
+              <Grid.Column style = {{paddingLeft: 60}}>
+                <div style = {{paddingBottom: 20}}>
+                  <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}> COVID-19 Test Positivity</Header.Content>
+                </div>
+                <Table celled fixed style = {{width: 350}}>
+                          <Table.Header>
+
+                            <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                                <td colSpan='1' style={{width:100}}> </td>
+                                <td colSpan='1' style={{width:220, height: 70,fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
+                                  trigger={<p>Percent Tested Positive</p>
+                                  }
+                                  content={!dataTS ? "" : "Percentage of total tests for COVID-19 that resulted in a positive result as of " + 
+                                  "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
+                                  }
+                                  basic /> </td>
+                                <td colSpan='1' style={{width:220, height: 70, fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
+                                  trigger={<p>Test Positivity per 100K </p>
+                                  }
+                                  content={!dataTS ? "" : "Positive COVID-19 tests per 100K as of " + 
+                                  "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
+                                  }
+                                  basic /></td>
+                            </tr>
+
+                            
+                            <Table.Row textAlign = 'center' style = {{height: 70}}>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {"County"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips + countyFips][dataTS[stateFips + countyFips].length - 2].percentPositive).toFixed(0)  + "%" : "Loading..."} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips + countyFips][dataTS[stateFips + countyFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center' style = {{height: 70}}>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {stateName} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+
+                            </Table.Row>
+                            {/* <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> The U.S. </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> 10 </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> 10 </Table.HeaderCell>
+
+                            </Table.Row> */}
+                            
+                          </Table.Header>
+                        </Table>
+
+              </Grid.Column>
+            </Grid.Row>
+            {/* <Grid.Row columns={2} style={{paddingBottom: 50}}>
+              <Grid.Column>
+                <Header as='h2' style={{fontWeight: 400, width: 540, paddingLeft: 55, paddingTop: 20}}>
+                  <Header.Content style={{fontSize: "19px"}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 540, fontSize: "19px", lineHeight: "16pt"}}>
+                      As of <b>{date}</b>, the daily average of new COVID-19 cases<br/> 
+                      in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyCasesOutcome))} case(s) per 100K residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateCasesOutcome))}</b> case(s) per 100K and in the United States was <b>{numberWithCommas(parseFloat(nationCasesOutcome))}</b> case(s) per 100K.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </Grid.Column>
+              <Grid.Column>
+                <Header as='h2' style={{fontWeight: 400, width: 550, paddingLeft: 55, paddingTop: 20}}>
+                  <Header.Content style={{fontSize: "19px"}}>
+                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 570, fontSize: "19px", lineHeight: "16pt"}}>
+                      As of <b>{date}</b>, the daily average of new COVID-19 deaths<br/>
+                      in <b>{countyName}</b> numbered <b>{numberWithCommas(parseFloat(countyDeathsOutcome))} death(s) per 100K residents</b>. In comparison, the daily average in {stateName} was <b>{numberWithCommas(parseFloat(stateDeathsOutcome))}</b> death(s) per 100K and in the United States was <b>{numberWithCommas(parseFloat(nationDeathsOutcome))}</b> death(s) per 100K.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </Grid.Column>
+            </Grid.Row> */}
+            <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+              <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+              <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report</a>. <br/>
+              <b>Data as of </b>
+                {!dataTS? "" : " 0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)}
+              </text>
+              
+
+            </Grid.Row>
+            {false && <Accordion defaultActiveIndex={1} panels={[
+              {
+                  key: 'acquire-dog',
+                  title: {
+                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                      icon: 'dropdown',
+                  },
+                  content: {
+                      content: (
+                        <div>
+                          <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+                                  <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
+                                    {/* County positivity Data as of {date}. */}
+                                    {/* <br/> */}
+                                    <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report </a> <br/>
+                                    
+                                  </text>
+                          </Grid.Row>
+                                  
+                        </div>
+                      ),
+                    },
+                }
+            ]
+
+            } />}
+          </Grid>
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 10}}>County Characteristics</Divider>
 
           <center style = {{marginLeft: 250, paddingBottom: 20, width: 750}}>
@@ -727,16 +1011,15 @@ export default function CountyReport() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
-                                            <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                            *The state and national level measure of any chronic condition prevalence is computed with the average of all the counties and states.
-                                            <br/>
-                                            *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
+              <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
+              *The state and national level measure of any chronic condition prevalence is computed with the average of all the counties and states.
+              <br/>
+              *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
+              <br/>
+              <b>Data as of </b>{date}
+              </text>
 
-
-                                            </text>
-                                            <span style={{color: '#000000', fontSize:"19px"}}>Last updated on {date}</span>
-
-                                    </Grid.Row>
+            </Grid.Row>
           </Grid>
 
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 54, paddingBottom: 25}}> County Characteristics and Outcomes</Divider>
@@ -881,7 +1164,12 @@ export default function CountyReport() {
                   </Header.Content>
               </Grid.Column>
             </Grid.Row>
-            <span style={{color: '#000000', fontSize:"19px", paddingTop: "30px"}}>Last updated on {date}</span>
+            <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+              <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
+              <b>Data as of </b>{date}
+              </text>
+
+            </Grid.Row>
 
           </Grid>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '20pt', paddingTop: 54, paddingBottom: 20}}>Data Table</Divider>
@@ -925,8 +1213,12 @@ export default function CountyReport() {
             <a style ={{color: "#397AB9", fontSize: "19px", marginLeft: 12}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> Data Sources and Definitions</a>
 
             <Divider hidden/>
-            <span style={{color: '#000000', fontSize:"19px"}}>Last updated on {date}</span>
+            <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
+              <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
+              <b>Data as of </b>{date}
+              </text>
 
+            </Grid.Row>
             </div>
           }
           <Notes />
