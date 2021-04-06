@@ -809,7 +809,7 @@ const USVaccineTracker = (props) => {
 
   useEffect(() => {
     if (metric) {
-      fetch('/data/VaccineTimeseries.json').then(res => res.json())
+      fetch('/data/vaccineTimeseries.json').then(res => res.json())
         .then(x => {setVaxSeries(x);});
       
       fetch('/data/vaccineData.json').then(res => res.json())
