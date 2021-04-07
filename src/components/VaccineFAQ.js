@@ -765,6 +765,51 @@ export default function VaccinesFAQ(props){
 
         <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 0}
+          index={37}
+          onClick={() => activeIndex.indexOf(37) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 37]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 37))}
+        >
+          <Icon name='dropdown' />
+            If I had COVID-19, can I just get one dose of the two-dose vaccines?
+          </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(37)>0}>
+          <p style={{marginBottom:0}}>
+          At this time, there isn’t enough evidence that one dose would be enough. The guidelines still recommend that, if you are getting either the Pfizer-BioNTech or the Moderna vaccine, 
+          you plan to get both doses to ensure you are fully vaccinated.
+          </p>
+
+        </Accordion.Content>
+
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 0}
+          index={38}
+          onClick={() => activeIndex.indexOf(38) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 38]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 38))}
+        >
+          <Icon name='dropdown' />
+          If I get a COVID-19 vaccine, will it cause me to test positive for COVID-19?
+          </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(38)>0}>
+          <p style={{marginBottom:0}}>
+          You will not test positive on a <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/testing/diagnostic-testing.html" target="_blank" rel="noopener noreferrer"> viral test </a>  
+          i.e. a swab or saliva test. These tests check for a current COVID-19 infection. Since the vaccines do not contain SARS-CoV-2 virus cells and cannot make you sick with the disease, you will not get a positive test after the vaccine.
+          </p>
+        
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        It is possible that you could get a positive <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/testing/serology-overview.html" target="_blank" rel="noopener noreferrer"> antibody (serological) test </a> 
+        after receiving one or two doses of a COVID-19 vaccine. This type of tests checks for antibodies against SARS-CoV-2, which your body’s immune system produces to fight off an infection or in response to a vaccine.
+        </p>
+
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        If you are concerned about a positive test result and unsure how to protect yourself and others, speak with your healthcare provider.
+        </p>
+        </Accordion.Content>
+
+
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
+          // active={activeIndex === 0}
           index={19}
           onClick={() => activeIndex.indexOf(19) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 19]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 19))}
         >
