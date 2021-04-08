@@ -385,7 +385,7 @@ export default function CountyReport() {
                   options={countyOption}
                   onChange={(e, { value }) => {
                     if (value !== "Select County/Census Area/Borough") {
-                      window.location.href = "/crp03302021"+stateFips + "/" + value+"";
+                      window.location.href = "/"+stateFips + "/" + value+"";
                     }
                     
                   }}
