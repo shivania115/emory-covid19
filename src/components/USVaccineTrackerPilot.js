@@ -46,7 +46,11 @@ import configs from "./state_config.json";
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
-import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+import {LineChart, BarChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Brush, ResponsiveContainer, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent';
+import _get from 'lodash/get'
+import { index } from 'd3';
+
 
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
@@ -378,7 +382,7 @@ class Race extends PureComponent{
 
 
   componentDidMount(){
-    if(this.props.state == false){
+    if(this.props.state === false){
       fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
         dataTot: [
           data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
@@ -386,7 +390,7 @@ class Race extends PureComponent{
           data['vaccineRace'][0]['White'][0]
         ] }));
     }else{
-
+      
     }
   }
     
@@ -399,7 +403,8 @@ class Race extends PureComponent{
     return (
       <Grid>
       <PieChart 
-        width={300} height={280} transform='translate(-10,0)'>
+        width={300} height={280} >
+          {/* transform='translate(-10,0)' */}
         <Pie
           
           activeIndex={10}
@@ -591,6 +596,11 @@ const ToPrint = React.forwardRef((props, ref) => (
   
 ));
 
+
+
+
+
+
 function ComparisonTable(props){
   return(
     <div>
@@ -652,56 +662,205 @@ function ComparisonTable(props){
   )
 }
 
-function RaceBarChart(props){
+const RaceBarChart = (props) => {
+
+  // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
+
+  const [hoverBar, setHoverBar] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1)
+
+  const valueAccessor = attribute => ({ payload }) => {
+    return payload[attribute]===0 ? null : payload[attribute]+'%';
+
+  };
+
+  let barSize = 50
+
+  const data = [
+    {
+      name: '% Population',
+      white: props.demogData['race'][0]['White'][0]['percentPop'].toFixed(1),
+      black: props.demogData['race'][0]['African American'][0]['percentPop'].toFixed(1),
+      hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop'].toFixed(1),
+      asian: props.demogData['race'][0]['Asian'][0]['percentPop'].toFixed(1),
+      american_natives: props.demogData['race'][0]['American Natives'][0]['percentPop'].toFixed(1),
+    },
+    {
+      name: '% Vaccination',
+      white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['pctAdmDose2'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']),
+      black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['pctAdmDose2'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']),
+      hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']),
+      asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose2'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']),
+      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'])
+    }
+  ]
+
+const CustomTooltip = ({ active, payload, label }) => {
+
+  if (active && payload && payload.length && hoverBar[0]>=0) {
+    var colIndex = 4-hoverBar[0];
+
+    return (
+      <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
+        <p style={{color: pieChartRace[colIndex]}}> <b> {hoverBar[2]} </b> </p>
+        {/* ${payload[hoverBar[0]]['name']}  */}
+        <p className="label">{`% Population: ${data[0][hoverBar[1]]}`}</p>
+        <p className="label">{`% Vaccinated : ${data[1][hoverBar[1]]}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+console.log('active index', activeIndex);
+
   return(
-    <div>
-          <VictoryChart
-            theme={VictoryTheme.material}
-            domainPadding={{ x: 10 }}
-            containerComponent={<VictoryContainer responsive={false}/>}
-          >
-            <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-            <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+    // <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          width={400}
+          height={500}
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 10,
+            bottom: 10,
+          }}
+        >
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis dataKey="name" />
+          <YAxis domain={[0,100]}/>
+          <Tooltip content={<CustomTooltip />}
+          // formatter={function(value, name) {
+          //     if(name === hoverBar){
+          //       return [value,name];
+          //     }else {
+          //       return null
+          //     }
+          //   }}
+             cursor={false}/>
+          {/* content={renderTooltip}  content={<CustomTooltip />}*/}
+          <Legend />
+          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
+            onMouseEnter={()=>{setHoverBar([0,'american_natives', 'American Natives']); setActiveIndex(0)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
+          </Bar>
+          <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
+            onMouseEnter={()=>{setHoverBar([1,'asian', 'Asian']); setActiveIndex(1)}}
+            onMouseLeave={()=>setActiveIndex(-1)}> 
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} style={{zIndex: -10}} fill={activeIndex === 1 ? 'white' : pieChartRace[3]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
+          </Bar>
+          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
+            onMouseEnter={()=>{setHoverBar([2,'hispanic', 'Hispanic']); setActiveIndex(2)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 2 ? 'white' : pieChartRace[2]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white'/>
+          </Bar>
+          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
+            onMouseEnter={()=>{setHoverBar([3,'black', 'African Americans']); setActiveIndex(3)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={activeIndex === 3 ? 2 : 0}/>
+                // fill={activeIndex === 3 ? 'white' : pieChartRace[1]}
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("black")} fill='white'/>
+          </Bar>
+          <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
+            onMouseEnter={()=>{setHoverBar([4,'white','White']); setActiveIndex(4)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 4 ? 'white' : pieChartRace[0]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("white")} fill='white'/>
+            
+          </Bar>
+          
+          
+          
+        </BarChart>
+      //</ResponsiveContainer>
+
+
+    // <div>
+    //       <VictoryChart
+    //         theme={VictoryTheme.material}
+    //         domainPadding={{ x: 10 }}
+    //         containerComponent={<VictoryContainer responsive={false}/>}
+    //       >
+    //         <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+    //         <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                           
-            <VictoryBar
-              horizontal
-              barWidth={20}
-              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+    //         {props.fips === '_nation' ? null :
+    //         <VictoryBar
+    //           horizontal
+    //           barWidth={20}
+    //           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
               
-              style={{
-                data: { fill: "#00ff00" , opacity: 0.5}
-              }}
-              data={
-                [
-                  // {key: "Hispanic", 'value': props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']},
-                {key: "American Natives", 'value': props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']},
-                {key: "Asian", 'value': props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']},
-                // {key: "African American", 'value': props.VaccineData[props.fips][0]['African American'][0]['percentVaccinated']},
-                {key: "White", 'value': props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']}
-              ]
-              }
-              x="key"
-              y="value"
-            />
-            <VictoryBar 
-              horizontal
-              barWidth={20}
-              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-              style={{
-                data: { fill: "#00000", opacity: 0.2 }
-              }}
-              data={
-                [{key: props.data['race'][0]['Hispanic'][0]['demogLabel'], 'value': props.data['race'][0]['Hispanic'][0]['percentPop']},
-                {key: props.data['race'][0]['American Natives'][0]['demogLabel'], 'value': props.data['race'][0]['American Natives'][0]['percentPop']},
-                {key: props.data['race'][0]['Asian'][0]['demogLabel'], 'value': props.data['race'][0]['Asian'][0]['percentPop']},
-                {key: props.data['race'][0]['African American'][0]['demogLabel'], 'value': props.data['race'][0]['African American'][0]['percentPop']},
-                {key: props.data['race'][0]['White'][0]['demogLabel'], 'value': props.data['race'][0]['White'][0]['percentPop']}]
-              }
-              x="key"
-              y="value"
-            />
-          </VictoryChart>
-        </div>
+    //           style={{
+    //             data: { fill: "#00ff00" , opacity: 0.5}
+    //           }}
+    //           data={
+    //             [
+    //               // {key: "Hispanic", 'value': props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']},
+    //             {key: "American Natives", 'value': props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']},
+    //             {key: "Asian", 'value': props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']},
+    //             // {key: "African American", 'value': props.VaccineData[props.fips][0]['African American'][0]['percentVaccinated']},
+    //             {key: "White", 'value': props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']}
+    //           ]
+    //           }
+    //           x="key"
+    //           y="value"
+    //         />}
+
+    //         <VictoryBar 
+    //           horizontal
+    //           barWidth={20}
+    //           labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+    //           style={{
+    //             data: { fill: "#00000", opacity: 0.2 }
+    //           }}
+    //           data={
+    //             [{key: props.data['race'][0]['Hispanic'][0]['demogLabel'], 'value': props.data['race'][0]['Hispanic'][0]['percentPop']},
+    //             {key: props.data['race'][0]['American Natives'][0]['demogLabel'], 'value': props.data['race'][0]['American Natives'][0]['percentPop']},
+    //             {key: props.data['race'][0]['Asian'][0]['demogLabel'], 'value': props.data['race'][0]['Asian'][0]['percentPop']},
+    //             {key: props.data['race'][0]['African American'][0]['demogLabel'], 'value': props.data['race'][0]['African American'][0]['percentPop']},
+    //             {key: props.data['race'][0]['White'][0]['demogLabel'], 'value': props.data['race'][0]['White'][0]['percentPop']}]
+    //           }
+    //           x="key"
+    //           y="value"
+    //         />
+    //       </VictoryChart>
+    //     </div>
   )
 }
 
@@ -709,6 +868,7 @@ function RaceBarChart(props){
 // const TabExampleBasic = () => <Tab panes={panes} />
 
 function TabExampleBasic(props){
+  console.log('fips', props.fips)
   const panes = [
     { menuItem: 'State & Nation Vaccination', render: () => 
       <Tab.Pane attached={false}>
@@ -724,7 +884,7 @@ function TabExampleBasic(props){
     { menuItem: 'Vaccination by Race & Ethnicity', render: () => 
       <Tab.Pane attached={false}>
         <RaceBarChart
-          data = {props.demogData}
+          demogData = {props.demogData}
           fips = {props.fips}
           VaccineData = {props.VaccineData}
         />
@@ -1141,8 +1301,10 @@ export default function USVaccineTracker(props) {
   const componentRef = useRef();
 
 
-  if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
+  if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries && nationalDemog && stateVaccineData) {
     console.log(stateVaccineData["01"][0]["Asian"][0]["percentVaccinated"]);
+    console.log('nationalDemog', nationalDemog)
+    console.log('stateVaccineData', stateVaccineData)
   return (
     <HEProvider>
       <div>

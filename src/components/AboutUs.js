@@ -12,7 +12,7 @@ export default function AboutUs(props){
   return (
     <div>
       <AppBar menu='aboutUs'/>
-      <Container style={{marginTop: '8em', minWidth: '1260px', overflow: "hidden"}}>
+      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
         
         <Grid row = {1} style = {{marginLeft: 0, paddingTop: 30}}>
             <Header style={{fontWeight: 400, fontSize: "24pt", paddingBottom: 0}}>
@@ -60,6 +60,8 @@ export default function AboutUs(props){
                   <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Joel P. Baumgart, PhD</List.Item> 
                   <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Ke Sun</List.Item>                
                   <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Sriya Naga Karra</List.Item>     
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Gaëlle L. Sabben, MPH</List.Item>     
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Jithin Sam Varghese, PhD</List.Item>     
             
                                 
                 </List>
@@ -83,6 +85,7 @@ export default function AboutUs(props){
                   <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Isha Gavas</List.Item>                
                   <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Aditya Rao</List.Item>                
                   <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Alka Rao</List.Item> 
+                  <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Kamini Doraivelu, MPH</List.Item> 
 
 
                 </List>
