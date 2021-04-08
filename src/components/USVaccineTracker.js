@@ -973,7 +973,7 @@ const USVaccineTracker = (props) => {
   const componentRef = useRef();
 
 
-  if (data && stateLabels && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
+  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
     // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
