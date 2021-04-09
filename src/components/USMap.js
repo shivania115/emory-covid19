@@ -1412,7 +1412,7 @@ export default function USMap(props) {
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                      <br/><b>Deaths by Race & Ethnicity data as of:</b> 03/15/2021.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data as of:</b> {date}.<br/>
                     
                     </Header.Content>
                   </Grid.Row>}
