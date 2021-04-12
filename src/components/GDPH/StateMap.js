@@ -427,6 +427,7 @@ function ChartGraph(props) {
                         dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
                         dataTS["13001"][337].t,
+                        dataTS["13001"][365].t,
                         // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                     ]}
@@ -5541,7 +5542,7 @@ export default function StateMap(props) {
                                             <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                 <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
                                                     <Header.Content>
-                                                        COVID-19 Case Rate by Percentage of African American Population
+                                                    COVID-19 Case Rate by Percentage of Hispanic Population
                                         </Header.Content>
                                                 </Header>
                                                 <VictoryChart

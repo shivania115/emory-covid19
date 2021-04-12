@@ -17,8 +17,13 @@ export default function AppBar(props) {
                 fontSize: "15pt"}}>
 
         <Container style={{width: '1305px'}}>
+        <Menu.Item as='a' header onClick={() => history.push('/')}>
+            <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
+            <strong>COVID-19 Health Equity</strong><br/><strong>Interactive Dashboard</strong>
+           </span>
+          </Menu.Item>
           <Menu.Item as='a' header onClick={() => history.push('/Georgia')}>
-            <span style={{fontSize: '15pt',fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
+            <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
            <strong>Georgia COVID-19</strong>
            <br></br>
            <strong>Health Equity Dashboard</strong>
@@ -26,7 +31,7 @@ export default function AppBar(props) {
           </Menu.Item>
           <Menu.Item 
             content='Home'
-            onClick={() => history.push('/')}
+            onClick={() => history.push('/Georgia')}
             name='countyReport'/>
             <Menu.Item 
             active={props.menu==='dataSources'} 
