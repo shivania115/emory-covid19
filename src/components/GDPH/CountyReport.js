@@ -913,7 +913,7 @@ export default function CountyReport() {
 
                       <VictoryAxis
                         style={{
-                          tickLabels: { fontSize: 15, padding: 7 }
+                          tickLabels: { fontSize: 17, padding: 7 }
                         }}
                         tickFormat={(t) => new Date(t * 1000).toLocaleDateString('en-Us', { month: 'numeric', day: 'numeric' })}
                         tickValues={[
