@@ -829,7 +829,7 @@ export default function CountyReport() {
                       }
                       width={550}
                       height={450}
-                      padding={{ left: 40, right: 60, top: 10, bottom: 60 }}>
+                      padding={{ left: 45, right: 60, top: 10, bottom: 60 }}>
                       <VictoryAxis
                         style={{
                           tickLabels: { fontSize: 17, padding: 5 }

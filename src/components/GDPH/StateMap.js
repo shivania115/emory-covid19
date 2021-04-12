@@ -2980,11 +2980,12 @@ export default function StateMap(props) {
     if (dataTS && dataUs) {
 
         return (
+
             <div
                 className={`character-block ${activeClass}`}
                 id="mycontent"
                 ref={characterRef}>
-
+                    
                 <div>
                     <LazyHero
                         imageSrc={"/CoronaVirus_LightBlue.jpg"}
