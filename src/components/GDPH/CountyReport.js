@@ -608,7 +608,7 @@ export default function CountyReport() {
       <div>
 
         <AppBar menu='countyReport' />
-        <Container fluid style={{ marginTop: '8em' }}>
+        <Container fluid style={{ marginTop: '8em' , minWidth: '1260px'}}>
           <Breadcrumb style={{ paddingBottom: '2em', paddingLeft: '30em' }}>
             <Breadcrumb.Section link onClick={() => history.push('/Georgia')}>{stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
@@ -829,7 +829,7 @@ export default function CountyReport() {
                       }
                       width={550}
                       height={450}
-                      padding={{ left: 40, right: 60, top: 10, bottom: 60 }}>
+                      padding={{ left: 45, right: 60, top: 10, bottom: 60 }}>
                       <VictoryAxis
                         style={{
                           tickLabels: { fontSize: 17, padding: 5 }
@@ -849,6 +849,8 @@ export default function CountyReport() {
                         dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
                         dataTS["13001"][337].t,
+                        dataTS["13001"][365].t,
+
                         // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}
@@ -911,7 +913,7 @@ export default function CountyReport() {
 
                       <VictoryAxis
                         style={{
-                          tickLabels: { fontSize: 15, padding: 7 }
+                          tickLabels: { fontSize: 17, padding: 7 }
                         }}
                         tickFormat={(t) => new Date(t * 1000).toLocaleDateString('en-Us', { month: 'numeric', day: 'numeric' })}
                         tickValues={[
@@ -927,6 +929,8 @@ export default function CountyReport() {
                         dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
                         dataTS["13001"][337].t,
+                        dataTS["13001"][365].t,
+
                         // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}

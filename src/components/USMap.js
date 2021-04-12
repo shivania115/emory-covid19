@@ -127,12 +127,7 @@ export default function USMap(props) {
     var max = 0;
     var min = 100;
   useEffect(()=>{
-    // fetch('/data/date.json').then(res => res.json())
-    //   .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
-
-    // fetch('/data/nationalDemogdata.json').then(res => res.json())
-    //     .then(x => setNationalDemog(x));
-
+    
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
         setVarMap(x);
@@ -140,193 +135,200 @@ export default function USMap(props) {
           return {key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group};
         }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
       });
-    // fetch('/data/racedataAll.json').then(res => res.json())
-    //   .then(x => 
-    //     setRaceData(x));
+
+    fetch('/data/date.json').then(res => res.json())
+      .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
+    fetch('/data/nationalDemogdata.json').then(res => res.json())
+        .then(x => setNationalDemog(x));
+
+    fetch('/data/racedataAll.json').then(res => res.json())
+      .then(x => 
+        setRaceData(x));
     
-    // fetch('/data/timeseriesAll.json').then(res => res.json())
-    //     .then(x => setAllTS(x));
+    fetch('/data/timeseriesAll.json').then(res => res.json())
+        .then(x => setAllTS(x));
 
     // local
-    // fetch('/data/data.json').then(res => res.json())
-    //   .then(x => {
+    fetch('/data/data.json').then(res => res.json())
+      .then(x => {
 
-    //       setData(x);       
+          setData(x);       
       
-    //       const cs = scaleQuantile()
-    //     .domain(_.map(_.filter(_.map(x, (d, k) => {
-    //       d.fips = k
-    //       return d}), 
-    //       d => (
-    //           d[metric] >= 0 &&
-    //           d.fips.length === 5)),
-    //       d=> d[metric]))
-    //     .range(colorPalette);
+          const cs = scaleQuantile()
+        .domain(_.map(_.filter(_.map(x, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[metric] > 0 &&
+              d.fips.length === 5)),
+          d=> d[metric]))
+        .range(colorPalette);
 
-    //     let scaleMap = {}
-    //     _.each(x, d=>{
-    //       if(d[metric] >= 0){
-    //       scaleMap[d[metric]] = cs(d[metric])}});
+        let scaleMap = {}
+        _.each(x, d=>{
+          if(d[metric] >= 0){
+          scaleMap[d[metric]] = cs(d[metric])}});
       
-    //     setColorScale(scaleMap);
-    //     var max = 0
-    //     var min = 100
-    //     _.each(x, d=> { 
-    //       if (d[metric] > max && d.fips.length === 5) {
-    //         max = d[metric]
-    //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-    //         min = d[metric]
-    //       }
-    //     });
+        setColorScale(scaleMap);
+        var max = 0
+        var min = 100
+        _.each(x, d=> { 
+          if (d[metric] > max && d.fips.length === 5) {
+            max = d[metric]
+          } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+            min = d[metric]
+          }
+        });
 
-    //     if (max > 999999) {
-    //       max = (max/1000000).toFixed(0) + "M";
-    //       setLegendMax(max);
-    //     }else if (max > 999) {
-    //       max = (max/1000).toFixed(0) + "K";
-    //       setLegendMax(max);
-    //     }else{
-    //       setLegendMax(max.toFixed(0));
+        if (max > 999999) {
+          max = (max/1000000).toFixed(0) + "M";
+          setLegendMax(max);
+        }else if (max > 999) {
+          max = (max/1000).toFixed(0) + "K";
+          setLegendMax(max);
+        }else{
+          setLegendMax(max.toFixed(0));
 
-    //     }
-    //     setLegendMin(min.toFixed(0));
-    //     setLegendSplit(cs.quantiles());
+        }
+        setLegendMin(min.toFixed(0));
+        setLegendSplit(cs.quantiles());
           
           
-    //     });
+        });
 
       
         
       //mongo
-        if (isLoggedIn === true){
-          const fetchData = async() => {
-              const mainQ = {all: "all"};
-              const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
-              promStatic.forEach( i => {
-                if(i.tag === "nationalrawfull"){ //nationalraw
-                  newDict = JSON.parse(JSON.stringify(i.data));
+        // if (isLoggedIn === true){
+        //   const fetchData = async() => {
+              // const mainQ = {all: "all"};
+              // const promStatic = await CHED_static.find(mainQ,{projection:{}}).toArray();
+              // promStatic.forEach( i => {
+              //   if(i.tag === "nationalrawfull"){ //nationalraw
+              //     newDict = JSON.parse(JSON.stringify(i.data));
 
-                  const cs = scaleQuantile()
-                  .domain(_.map(_.filter(newDict, 
-                    d => (
-                        d[metric] > 0 &&
-                        d.fips.length === 5)),
-                    d=> d[metric]))
-                  .range(colorPalette);
+              //     const cs = scaleQuantile()
+              //     .domain(_.map(_.filter(newDict, 
+              //       d => (
+              //           d[metric] > 0 &&
+              //           d.fips.length === 5)),
+              //       d=> d[metric]))
+              //     .range(colorPalette);
         
-                  let scaleMap = {}
-                  _.each(newDict, d=>{
-                    if(d[metric] > 0){
-                    scaleMap[d[metric]] = cs(d[metric])}});
+              //     let scaleMap = {}
+              //     _.each(newDict, d=>{
+              //       if(d[metric] > 0){
+              //       scaleMap[d[metric]] = cs(d[metric])}});
               
-                  setColorScale(scaleMap);
-                  setLegendSplit(cs.quantiles());
+              //     setColorScale(scaleMap);
+              //     setLegendSplit(cs.quantiles());
                   
-                  //find the largest value and set as legend max
-                  _.each(newDict, d=> { 
-                    if (d[metric] > max && d.fips.length === 5) {
-                      max = d[metric]
-                    } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-                      min = d[metric]
-                    }
-                  });
+              //     //find the largest value and set as legend max
+              //     _.each(newDict, d=> { 
+              //       if (d[metric] > max && d.fips.length === 5) {
+              //         max = d[metric]
+              //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+              //         min = d[metric]
+              //       }
+              //     });
               
-                  if (max > 999999) {
-                    max = (max/1000000).toFixed(0) + "M";
-                    setLegendMax(max);
-                  }else if (max > 999) {
-                    max = (max/1000).toFixed(0) + "K";
-                    setLegendMax(max);
-                  }else{
-                    setLegendMax(max.toFixed(0));
+              //     if (max > 999999) {
+              //       max = (max/1000000).toFixed(0) + "M";
+              //       setLegendMax(max);
+              //     }else if (max > 999) {
+              //       max = (max/1000).toFixed(0) + "K";
+              //       setLegendMax(max);
+              //     }else{
+              //       setLegendMax(max.toFixed(0));
               
-                  }
-                  setLegendMin(min.toFixed(0));
-                  setData(newDict);
+              //     }
+              //     setLegendMin(min.toFixed(0));
+              //     setData(newDict);
 
-                }else if(i.tag === "racedataAll"){ //race data
-                  setRaceData(i.racedataAll);       
-                }else if(i.tag === "date"){
-                  setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
-                }else if(i.tag === "nationalDemog"){
-                  setNationalDemog(i.nationalDemog);
-                }
-              });
+              //   }else if(i.tag === "racedataAll"){ //race data
+              //     setRaceData(i.racedataAll);       
+              //   }else if(i.tag === "date"){
+              //     setDate(i.date.substring(5,7) + "/" + i.date.substring(8,10) + "/" + i.date.substring(0,4));
+              //   }else if(i.tag === "nationalDemog"){
+              //     setNationalDemog(i.nationalDemog);
+              //   }
+              // });
 
               //all states' time series data in one single document
-              let tempDict = {};
-              const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
-              const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-              tempDict = promSeries[0].timeseriesAll;
-              tempDict["_nation"] = promSeries[1].timeseries_nation;
-              setAllTS(tempDict);
+        //       let tempDict = {};
+        //       const seriesQ = { $or: [ { state: "_n" } , { tag: "stateonly" } ] };
+        //       const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+        //       tempDict = promSeries[0].timeseriesAll;
+        //       tempDict["_nation"] = promSeries[1].timeseries_nation;
+        //       setAllTS(tempDict);
 
-              //if timeseriesAll exceeds 16MB (max size for a single document on MongoDB), 
-              //use the following code and comment out the above
+        //       //if timeseriesAll exceeds 16MB (max size for a single document on MongoDB), 
+        //       //use the following code and comment out the above
 
-              // const seriesQ = { $or: [ { state: "_n" } , { stateonly: "true" } ] };
-              // const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
-              // promSeries.forEach( i => {
-              //   if(i.state === "_n"){
-              //     tempDict["_nation"] = i["timeseries_nation"];
-              //   }
-              //   tempDict[i.state] = i["timeseries" + i.state];
-              // });
-              // setAllTS(tempDict);
-            };
+        //       // const seriesQ = { $or: [ { state: "_n" } , { stateonly: "true" } ] };
+        //       // const promSeries = await CHED_series.find(seriesQ,{projection:{}}).toArray();
+        //       // promSeries.forEach( i => {
+        //       //   if(i.state === "_n"){
+        //       //     tempDict["_nation"] = i["timeseries_nation"];
+        //       //   }
+        //       //   tempDict[i.state] = i["timeseries" + i.state];
+        //       // });
+        //       // setAllTS(tempDict);
+        //     };
           
-          fetchData();
-          } else {
-          handleAnonymousLogin();
-        }
+        //   fetchData();
+        //   } else {
+        //   handleAnonymousLogin();
+        // }
         //local
-      // },[metric]);
+      },[metric]);
       //mongo
-    },[isLoggedIn]);
+    // },[isLoggedIn]);
 
     //mongo
-  useEffect(() =>{
-      const cs = scaleQuantile()
-      .domain(_.map(_.filter(data, 
-        d => (
-            d[metric] > 0 &&
-            d.fips.length === 5)),
-        d=> d[metric]))
-      .range(colorPalette);
+  // useEffect(() =>{
+  //     const cs = scaleQuantile()
+  //     .domain(_.map(_.filter(data, 
+  //       d => (
+  //           d[metric] > 0 &&
+  //           d.fips.length === 5)),
+  //       d=> d[metric]))
+  //     .range(colorPalette);
 
-      let scaleMap = {}
-      _.each(data, d=>{
-        if(d[metric] > 0){
-        scaleMap[d[metric]] = cs(d[metric])}});
+  //     let scaleMap = {}
+  //     _.each(data, d=>{
+  //       if(d[metric] > 0){
+  //       scaleMap[d[metric]] = cs(d[metric])}});
 
-      setColorScale(scaleMap);
-      setLegendSplit(cs.quantiles());
+  //     setColorScale(scaleMap);
+  //     setLegendSplit(cs.quantiles());
       
-      //find the largest value and set as legend max
-      _.each(data, d=> { 
-        if (d[metric] > max && d.fips.length === 5) {
-          max = d[metric]
-        } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
-          min = d[metric]
-        }
-      });
+  //     //find the largest value and set as legend max
+  //     _.each(data, d=> { 
+  //       if (d[metric] > max && d.fips.length === 5) {
+  //         max = d[metric]
+  //       } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0){
+  //         min = d[metric]
+  //       }
+  //     });
 
-      if (max > 999999) {
-        max = (max/1000000).toFixed(0) + "M";
-        setLegendMax(max);
-      }else if (max > 999) {
-        max = (max/1000).toFixed(0) + "K";
-        setLegendMax(max);
-      }else{
-        setLegendMax(max.toFixed(0));
+  //     if (max > 999999) {
+  //       max = (max/1000000).toFixed(0) + "M";
+  //       setLegendMax(max);
+  //     }else if (max > 999) {
+  //       max = (max/1000).toFixed(0) + "K";
+  //       setLegendMax(max);
+  //     }else{
+  //       setLegendMax(max.toFixed(0));
 
-      }
-      setLegendMin(min.toFixed(0));
+  //     }
+  //     setLegendMin(min.toFixed(0));
 
-  }, [metric]);
+  // }, [metric]);
 
   if (data && allTS && metric && raceData) {
-    console.log(isJson(JSON.stringify(data)));
+    // console.log(isJson(JSON.stringify(data)));
   return (
     <HEProvider>
       <div>
@@ -1412,7 +1414,7 @@ export default function USMap(props) {
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                      <br/><b>Deaths by Race & Ethnicity data as of:</b> 03/15/2021.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data as of:</b> {date}.<br/>
                     
                     </Header.Content>
                   </Grid.Row>}

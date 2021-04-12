@@ -346,8 +346,8 @@ export default function CountyReport() {
   },[isLoggedIn]);
 
 
-  if (data && varMap) {
-    console.log(dataTS);
+  if (data && varMap && dataTS) {
+    console.log(342 + ((dataTS["_nation"].length - 344)/4).toFixed(0) - 1);
   return (
     <HEProvider> 
       <div>
@@ -385,7 +385,7 @@ export default function CountyReport() {
                   options={countyOption}
                   onChange={(e, { value }) => {
                     if (value !== "Select County/Census Area/Borough") {
-                      window.location.href = "/crp03302021"+stateFips + "/" + value+"";
+                      window.location.href = "/"+stateFips + "/" + value+"";
                     }
                     
                   }}
@@ -507,20 +507,20 @@ export default function CountyReport() {
 
                       tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                       tickValues={[
-                        dataTS["_nation"][30].t,
-                        dataTS["_nation"][91].t,
-                        dataTS["_nation"][153].t,
-                        dataTS["_nation"][214].t,
-                        dataTS["_nation"][275].t,
+                        // dataTS["_nation"][30].t,
+                        // dataTS["_nation"][91].t,
+                        // dataTS["_nation"][153].t,
+                        // dataTS["_nation"][214].t,
+                        // dataTS["_nation"][275].t,
 
                         
 
-                        // dataTS["_nation"][0].t,
-                        // dataTS["_nation"][61].t,
-                        // dataTS["_nation"][122].t,
-                        // dataTS["_nation"][183].t,
-                        // dataTS["_nation"][244].t,
-                        // dataTS["_nation"][306].t,
+                        dataTS["_nation"][0].t,
+                        dataTS["_nation"][61].t,
+                        dataTS["_nation"][122].t,
+                        dataTS["_nation"][183].t,
+                        dataTS["_nation"][244].t,
+                        dataTS["_nation"][306].t,
                         dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                     <VictoryAxis dependentAxis tickCount={5}
                       style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
@@ -584,17 +584,17 @@ export default function CountyReport() {
                         style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
                         tickFormat={(t)=> monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()}
                         tickValues={[
-                          dataTS["_nation"][30].t,
-                          dataTS["_nation"][91].t,
-                          dataTS["_nation"][153].t,
-                          dataTS["_nation"][214].t,
-                          dataTS["_nation"][275].t,
-                          // dataTS["_nation"][0].t,
-                          // dataTS["_nation"][61].t,
-                          // dataTS["_nation"][122].t,
-                          // dataTS["_nation"][183].t,
-                          // dataTS["_nation"][244].t,
-                          // dataTS["_nation"][306 ].t,
+                          // dataTS["_nation"][30].t,
+                          // dataTS["_nation"][91].t,
+                          // dataTS["_nation"][153].t,
+                          // dataTS["_nation"][214].t,
+                          // dataTS["_nation"][275].t,
+                          dataTS["_nation"][0].t,
+                          dataTS["_nation"][61].t,
+                          dataTS["_nation"][122].t,
+                          dataTS["_nation"][183].t,
+                          dataTS["_nation"][244].t,
+                          dataTS["_nation"][306 ].t,
 
                           dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                       <VictoryAxis dependentAxis tickCount={5}
@@ -721,16 +721,10 @@ export default function CountyReport() {
                         
                         dataTS["_nation"][342].t,
 
-                        dataTS["_nation"][347].t,
-                        dataTS["_nation"][352].t,
-                        dataTS["_nation"][357].t,
+                        dataTS["_nation"][Number(342) + Number(((dataTS["_nation"].length - 344)/4).toFixed(0))].t,
+                        dataTS["_nation"][Number(342) + Number(((dataTS["_nation"].length - 344)/2).toFixed(0))].t,
+                        dataTS["_nation"][Number(342) + Number(((dataTS["_nation"].length - 344)*3/4).toFixed(0))].t,
 
-                        // dataTS["_nation"][0].t,
-                        // dataTS["_nation"][61].t,
-                        // dataTS["_nation"][122].t,
-                        // dataTS["_nation"][183].t,
-                        // dataTS["_nation"][244].t,
-                        // dataTS["_nation"][306].t,
                         dataTS["_nation"][dataTS["_nation"].length-2].t]}/>
                     <VictoryAxis dependentAxis tickCount={5} 
                       style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
@@ -849,7 +843,7 @@ export default function CountyReport() {
               <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
               <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report</a>. <br/>
               <b>Data as of </b>
-                {!dataTS? "" : " 0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)}
+                {!dataTS? "" : " 0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)}
               </text>
               
 
