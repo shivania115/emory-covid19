@@ -5818,7 +5818,7 @@ export default function StateMap(props) {
 
                                     </Grid.Column>
 
-                                    <Grid.Column width={9} style={{ paddingLeft: "4em" }}>
+                                    <Grid.Column width={9} style={{ paddingLeft: "0em" }}>
                                         <Grid.Row columns={1}>
                                             <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
                                                 <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt" }}>
