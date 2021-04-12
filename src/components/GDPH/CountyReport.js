@@ -608,7 +608,7 @@ export default function CountyReport() {
       <div>
 
         <AppBar menu='countyReport' />
-        <Container fluid style={{ marginTop: '8em' }}>
+        <Container fluid style={{ marginTop: '8em' , minWidth: '1260px'}}>
           <Breadcrumb style={{ paddingBottom: '2em', paddingLeft: '30em' }}>
             <Breadcrumb.Section link onClick={() => history.push('/Georgia')}>{stateName}</Breadcrumb.Section>
             <Breadcrumb.Divider />
