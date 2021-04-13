@@ -719,7 +719,7 @@ export default function StateMap(props) {
               }
             
             
-            setHospDate("0" + (new Date(hospDate*1000).toLocaleDateString()).substring(0,2) + (new Date(hospDate*1000).toLocaleDateString()).substring(2));
+            setHospDate(("" + ((new Date(hospDate*1000).getMonth() + 1).toString().padStart(2, "0")) + "/" + new Date(hospDate*1000).getDate().toString().padStart(2, "0") + "/" + new Date(hospDate*1000).getFullYear().toString()));
             //manipulate string
             if (percentChangeCase.toFixed(0) > 0){
               setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
@@ -1676,7 +1676,7 @@ export default function StateMap(props) {
                                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                     For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                     <br/><br/>
-                                    Data as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    Data as of {date}
                                     </text>
 
 

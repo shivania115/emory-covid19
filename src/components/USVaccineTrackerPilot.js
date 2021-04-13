@@ -489,7 +489,7 @@ console.log('active index', activeIndex);
                 <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("multiOther")} position="left" fill='black'/>
+            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white'/>
           </Bar>
           <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
             isAnimationActive={false}
@@ -1316,8 +1316,8 @@ const USVaccineTracker = (props) => {
                     
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
-                    <div style={{paddingTop: 0, paddingLeft: 100}}>
-                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
+                    <div style={{paddingTop: 0, paddingLeft: 80}}>
+                      <Header.Subheader style={{width: 430, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
                         <p style = {{paddingLeft: 40}}>
