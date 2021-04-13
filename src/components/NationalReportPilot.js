@@ -1517,6 +1517,9 @@ export default function NationalReport(props) {
       fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
+      fetch('/data/vaccinedate.json').then(res => res.json())
+      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
+    
       // fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       //   .then(x => setVarMap(x));
       
@@ -2659,239 +2662,223 @@ export default function NationalReport(props) {
             </div>
             <div id="who" style = {{height: 45}}> </div>
 
+
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center>
+
+            
             <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
               <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
                 <Header.Content style = {{paddingLeft: 50}}>
                 &nbsp;Who is impacted by COVID-19?
                   <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
-                  <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and Deaths by Race </b> </center> 
+                  {/* <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and Deaths by Race </b> </center>  */}
                   <br/><br/>
                   While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                  affected. The {Object.keys(demog_descriptives['Race'][0])[0]} population is seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
-                  around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0])[1]} population, the group with the lowest mortality rate. 
+                  The {Object.keys(demog_descriptives['Race'][0]["cases"])[0]} population has the highest proportion, with {numberWithCommas((demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[0]]).toFixed(0))}% of all cases.  
+                  around {(demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[0]] / demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0]["cases"])[1]} population, the group that make up the fewest of total cases. 
                   
                     
                   </Header.Subheader>
                 </Header.Content>
               </Header>
             </div>
-
-              {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
-              {/* <Grid>
-
-
-              <Grid.Row style = {{width: 1000, paddingLeft: 305}}>
-                  <svg width = "1000" height = "40">
-                    <rect x = {40} y = {12} width = "20" height = "20" style = {{fill: casesColor[1], strokeWidth:1, stroke: casesColor[1]}}/>
-                    <text x = {65} y = {30} style = {{ fontSize: "19px"}}> Percent of Cases</text>
-                    <rect x = {250} y = {12} width = "20" height = "20" style = {{fill: mortalityColor[1], strokeWidth:1, stroke: mortalityColor[1]}}/>
-                    <text x = {275} y = {30} style = {{ fontSize: "19px"}}> Percent of Deaths </text>
-                    <rect x = {455} y = {12} width = "20" height = "20" style = {{fill: "#D3D3D3", strokeWidth:1, stroke: "#D3D3D3"}}/>
-                    <text x = {480} y = {30} style = {{ fontSize: "19px"}}> Percent of Population</text>
-                  </svg>
-                </Grid.Row>
-                <Grid.Row columns = {2} style = {{width: 1000}}>
-                  <Grid.Column style = {{width: 450, paddingLeft: 300}}>
-                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
-                        <center> <b style= {{fontSize: "18pt"}}>Cases by Race</b> </center> 
+            <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 330}}>
+                    <div style={{paddingTop:'0em'}}>
+                      <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{width: 560, fontSize: "18pt"}}> COVID-19 Cases and U.S. Population <br/> distribution by race & ethnicity.</b> </center> 
                         <br/>
                       </Header.Subheader>
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 450, paddingLeft: 100}}>
-                        <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
-                          <center> <b style= {{fontSize: "18pt"}}>Deaths by Race</b> </center> 
-                          <br/>
-                        </Header.Subheader>
-                  </Grid.Column>
-                </Grid.Row>
-                <div style={{paddingLeft: "6em", paddingRight: "0em"}}></div> 
-                
-                <Grid.Row columns = {2} style = {{width: 1000}}>
-                  <Grid.Column style = {{width: 450, paddingLeft: 100}}>
-                  <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
-
-                  <VictoryChart
-                          theme={VictoryTheme.material}
-                          width={450}
-                          height={320}
-                          domainPadding={25}
-                          minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
-                          style = {{fontSize: "14pt"}}
-                          containerComponent={<VictoryContainer responsive={false}/>}
-                        >
-                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                          <VictoryGroup offset={23}>
-                          <VictoryBar
-                            horizontal
-                            barWidth={20}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-                            data={[
-                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentCases']},
-                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentCases']},
-                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentCases']},
-                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentCases']},
-                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentCases']},
-                                 
-
-
-                            ]}
-                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: casesColor[1]
-                              }
-                            }}
-                            x="key"
-                            y="value"
-                          />
-
-                          <VictoryBar
-                            horizontal
-                            barWidth={20}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-                            data={[
-                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentPop']},
-                                 
-
-
-                            ]}
-                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: "#D3D3D3"
-                              }
-                            }}
-                            x="key" 
-                            y="value"
-                          />
-
-                          </VictoryGroup>
-                        </VictoryChart>
-                              <Header.Content style = {{paddingLeft: 50, width: 450}}>
-                                  <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
-                                    <b>Percentage of COVID-19 Cases and Population</b>
-                                  </Header.Content>
-                              </Header.Content>
                     </div>
+                  </Grid.Column>
+                  
+              </Grid.Row>
+
+              {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
+              <Grid>
+                
+                
+                <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
+                  <Grid.Column rows = {2} >
+
+                    <Grid.Row style = {{width: 550}}>
+                      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
+                        <div>
+                          <svg width="550" height="80">
+
+                              <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
+                              <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
+
+                              <rect x={235} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+                              <text x={265} y={35} style={{fontSize: '16px'}}> African American </text>    
+
+                              <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
+                              <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
+
+                              <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
+                              <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
+
+                              <rect x={322.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
+
+
+                              {/* {_.map(pieChartRace, (color, i) => {
+                                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                              })}  */}
+                          </svg>
+                        </div>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid>
+                      <Grid.Row columns = {2} style = {{width: 900}}>
+                        <Grid.Column style = {{width: 300}}>
+                          <Race pop = {false}/>
+                        </Grid.Column>
+                        <Grid.Column style = {{width: 300, paddingLeft: 20}}>
+                          <Race pop = {true}/> 
+                        </Grid.Column>
+                      </Grid.Row>
+                      {/* <Grid.Row style = {{width: 900}}>
+                        <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+                            <div>
+                              <svg width="450" height="145">
+
+                                  <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
+                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                                  <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
+                                  <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
+                                  <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
+
+
+                                  {_.map(pieChartRace, (color, i) => {
+                                    return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  })} 
+                              </svg>
+                            </div>
+                          </Grid.Column>
+                      </Grid.Row> */}
+                      </Grid>
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
-                    <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 40}}/> </center> 
-                    
-                      <div style={{paddingLeft: 64, paddingRight: "0em"}}>
-                      
-                      <VictoryChart
-                          theme={VictoryTheme.material}
-                          width={450}
-                          height={320}
-                          domainPadding={25}
-                          minDomain={{y: props.ylog?1:0}}
-                          padding={{left: 180, right: 40, top: 15, bottom: 1}}
-                          style = {{fontSize: "14pt"}}
-                          containerComponent={<VictoryContainer responsive={false}/>}
-                        >
-                          <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                          <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                          <VictoryGroup offset={23}>
-                          <VictoryBar
-                            horizontal
-                            barWidth={20}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-                            data={[
-                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentDeaths']},
-                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentDeaths']},
-                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentDeaths']},
-                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentDeaths']},
-                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentDeaths']},
-                                 
-
-
-                            ]}
-                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: mortalityColor[1]
-                              }
-                            }}
-                            x="key"
-                            y="value"
-                          />
-
-                          <VictoryBar
-                            horizontal
-                            barWidth={20}
-                            labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-                            data={[
-                              {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['percentPop']},
-                                    {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['percentPop']},
-                                 
-
-
-                            ]}
-                            labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                            style={{
-                              data: {
-                                fill: "#D3D3D3"
-                              }
-                            }}
-                            x="key" 
-                            y="value"
-                          />
-
-                          </VictoryGroup>
-                        </VictoryChart>
-                              <Header.Content style = {{paddingLeft: 50, width: 450}}>
-                                  <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
-                                  <b>Percentage of COVID-19 Deaths and Population</b>
-                                  </Header.Content>
-                              </Header.Content>
+                    <div style={{paddingTop: 50, paddingLeft: 80}}>
+                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
+                        {/* <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Infection by Race/Ethnicity</b> </center>  */}
+                        <br/>
+                        <p style = {{paddingLeft: 20}}>
+                          Comparing with White Americans<br/>
+                          <ul>
+                            <li> African Americans: {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Hispanic Americans: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Asian Americans: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
+                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                                <br/>
+                            </li>
+                            <li> Native Americans: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
+                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                            </li>
+                          </ul>
+                        {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
+                        affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
+                        around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
+                        </p>
+                          
+                      </Header.Subheader>
                     </div>
                   </Grid.Column>
                 </Grid.Row>
+              </Grid>
+              <Grid.Row>
+                      <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
+                            {
+                                key: 'acquire-dog',
+                                title: {
+                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                    icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
 
+                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
+                                        
 
+                                        <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
+                                          <Header.Content style={{fontWeight: 400, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 900}}>
+                                            The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                            <br/>
+                                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                          
+                                          </Header.Content>
+                                        </Grid.Row>
 
+                                      </div>
+                                    ),
+                                  },
+                              }
+                          ]
 
-
-
-
-
-
-
-
-
-
-
-                
-                
-                
-              </Grid> */}
+                          } /> 
+                        
+                        </Grid.Row>
 
 
 
               {/* <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center> */}
-                <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
+                
+
+
+
+
+              <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
+
+              
+              
+            <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
+              <Header as='h2' style={{paddingTop: 10, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
+                <Header.Content style = {{paddingLeft: 50}}>
+                  <Header.Subheader style={{width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
+                  {/* <center> <b style= {{fontSize: "18pt", paddingLeft: -3}}>Cases and Deaths by Race </b> </center>  */}
+                  <br/><br/>
+                  While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
+                  affected. The {Object.keys(demog_descriptives['Race'][1]["deaths"])[0]} population is seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][1]["deaths"][Object.keys(demog_descriptives['Race'][1]["deaths"])[0]]).toFixed(0))} cases per 100K individuals, 
+                  around {(demog_descriptives['Race'][1]["deaths"][Object.keys(demog_descriptives['Race'][1]["deaths"])[0]] / demog_descriptives['Race'][1]["deaths"][Object.keys(demog_descriptives['Race'][1]["deaths"])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][1]["deaths"])[1]} population, the group with the lowest mortality rate. 
+                    
+                    
+                  </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </div>
+            <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
                   <Grid.Column style = {{width: 810, paddingLeft: 330}}>
                     <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{width: 580, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 5}}>
-                        <center> <b style= {{width: 580, fontSize: "18pt"}}>COVID-19 Death Rate by Race & Ethnicity</b> </center> 
+                      <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{width: 560, fontSize: "18pt"}}> COVID-19 Death Rate by Race & Ethnicity</b> </center> 
                         <br/>
                       </Header.Subheader>
                     </div>
                   </Grid.Column>
                   
-                </Grid.Row>
+              </Grid.Row>
+              
+                
+                
                 <Grid>
                   
+
+
                   {/* <Grid.Row columns = {2} style = {{width: 1000}}>
                     <Grid.Column style = {{width: 450, paddingLeft: 300}}>
                         <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: "2em", paddingRight: "1em", paddingBottom: -10}}>
@@ -2907,6 +2894,7 @@ export default function NationalReport(props) {
                     </Grid.Column>
                   </Grid.Row> */}
                   {/* <div style={{paddingLeft: "6em", paddingRight: "0em"}}></div> */}
+                  
                   
                   <Grid.Row columns = {2} style = {{width: 1000}}>
                     <Grid.Column style = {{width: 450, paddingLeft: 120}}>
@@ -3051,157 +3039,8 @@ export default function NationalReport(props) {
                   
 
               </Grid>
-
-              <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
-
-              <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
-                  <Grid.Column style = {{width: 810, paddingLeft: 330}}>
-                    <div style={{paddingTop:'0em'}}>
-                      <Header.Subheader style={{width: 560, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 61, paddingRight: "1em", paddingBottom: 0}}>
-                        <center> <b style= {{width: 560, fontSize: "18pt"}}> COVID-19 Cases and U.S. Population <br/> distribution by race & ethnicity.</b> </center> 
-                        <br/>
-                      </Header.Subheader>
-                    </div>
-                  </Grid.Column>
-                  
-              </Grid.Row>
-              <Grid>
-                
-                <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
-                  <Grid.Column rows = {2} >
-
-                    <Grid.Row style = {{width: 550}}>
-                      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
-                        <div>
-                          <svg width="550" height="80">
-
-                              <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
-                              <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
-
-                              <rect x={235} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
-                              <text x={265} y={35} style={{fontSize: '16px'}}> African American </text>    
-
-                              <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
-                              <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
-
-                              <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
-                              <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
-
-                              <rect x={322.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
-
-
-                              {/* {_.map(pieChartRace, (color, i) => {
-                                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                              })}  */}
-                          </svg>
-                        </div>
-                      </Grid.Column>
-                    </Grid.Row>
-                    <Grid>
-                      <Grid.Row columns = {2} style = {{width: 900}}>
-                        <Grid.Column style = {{width: 300}}>
-                          <Race pop = {false}/>
-                        </Grid.Column>
-                        <Grid.Column style = {{width: 300, paddingLeft: 20}}>
-                          <Race pop = {true}/> 
-                        </Grid.Column>
-                      </Grid.Row>
-                      {/* <Grid.Row style = {{width: 900}}>
-                        <Grid.Column style = {{width: 450, paddingLeft: 0}}>
-                            <div>
-                              <svg width="450" height="145">
-
-                                  <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
-                                  <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
-                                  <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
-                                  <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
-
-
-                                  {_.map(pieChartRace, (color, i) => {
-                                    return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                                  })} 
-                              </svg>
-                            </div>
-                          </Grid.Column>
-                      </Grid.Row> */}
-                      </Grid>
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 450}}>
-                    <div style={{paddingTop: 50, paddingLeft: 80}}>
-                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
-                        {/* <center> <b style= {{fontSize: "18pt", paddingLeft: 0}}> Risks for COVID-19 Infection by Race/Ethnicity</b> </center>  */}
-                        <br/>
-                        <p style = {{paddingLeft: 20}}>
-                          Comparing with White Americans<br/>
-                          <ul>
-                            <li> African Americans: {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
-                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                                {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
-                                (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
-                                <br/>
-                            </li>
-                            <li> Hispanic Americans: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
-                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                                {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
-                                (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
-                                <br/>
-                            </li>
-                            <li> Asian Americans: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
-                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                                {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
-                                (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
-                                <br/>
-                            </li>
-                            <li> Native Americans: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
-                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                                {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
-                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
-                            </li>
-                          </ul>
-                        {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
-                        affected. {Object.keys(demog_descriptives['Race'][0])[0]} are seeing the largest mortality rate, with {numberWithCommas((demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]]).toFixed(0))} cases per 100K individuals, 
-                        around {(demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[0]] / demog_descriptives['Race'][0][Object.keys(demog_descriptives['Race'][0])[1]]).toFixed(0)} times that of {Object.keys(demog_descriptives['Race'][0])[1]}, the groups with the lowest mortality rate.  */}
-                        </p>
-                          
-                      </Header.Subheader>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-              <Grid.Row>
-                      <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
-                            {
-                                key: 'acquire-dog',
-                                title: {
-                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                    icon: 'dropdown',
-                                },
-                                content: {
-                                    content: (
-
-                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
-                                        
-
-                                        <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
-                                          <Header.Content style={{fontWeight: 400, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 900}}>
-                                            The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
-                                            <br/>
-                                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                                          
-                                          </Header.Content>
-                                        </Grid.Row>
-
-                                      </div>
-                                    ),
-                                  },
-                              }
-                          ]
-
-                          } /> 
-                        
-                        </Grid.Row>
+              
+              
 
 
               

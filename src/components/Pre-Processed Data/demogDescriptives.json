@@ -1,8 +1,16 @@
 {
   "Race": [
     {
-      "White": 49.7,
-      "American Natives": 1.0
+      "cases": {
+        "White": 49.7,
+        "American Natives": 1.0
+      }
+    },
+    {
+      "deaths": {
+        "American Natives": 131.83,
+        "Asian": 74.39
+      }
     }
   ],
   "Age": [
