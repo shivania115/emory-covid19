@@ -91,6 +91,7 @@ export default function USMap(props) {
   const [tooltipContent, setTooltipContent] = useState('');
   
   const [date, setDate] = useState('');
+  const [nationalDemogDate, setNationalDemogDate] = useState('');
 
   const [data, setData] = useState();
   const [allTS, setAllTS] = useState();
@@ -138,6 +139,9 @@ export default function USMap(props) {
 
     fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
+    fetch('/data/nationalDemogdate.json').then(res => res.json())
+      .then(x => setNationalDemogDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
     fetch('/data/nationalDemogdata.json').then(res => res.json())
         .then(x => setNationalDemog(x));
@@ -1414,7 +1418,7 @@ export default function USMap(props) {
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                      <br/><b>Deaths by Race & Ethnicity data as of:</b> {date}.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data as of:</b> {nationalDemogDate}.<br/>
                     
                     </Header.Content>
                   </Grid.Row>}

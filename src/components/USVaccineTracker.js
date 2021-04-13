@@ -623,6 +623,7 @@ const USVaccineTracker = (props) => {
   const [stateLabels, setStateLabels] = useState();
   const [date, setDate] = useState('');
   const [vaccineDate, setVaccineDate] = useState('');
+  const [nationalDemogDate, setNationalDemogDate] = useState('');
 
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
@@ -727,7 +728,11 @@ const USVaccineTracker = (props) => {
       .then(x => {setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
     
     fetch('/data/vaccinedate.json').then(res => res.json())
-      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10));});
+      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
+    
+    fetch('/data/nationalDemogdate.json').then(res => res.json())
+      .then(x => setNationalDemogDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => {setStateLabels(x);});
@@ -1673,8 +1678,8 @@ const USVaccineTracker = (props) => {
 
                                             <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
                                             distributed to facilities across the United States by the federal government. 
-                                            Newly distributed per 100K for the U.S. was data as of {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
-                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
+                                            Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
+                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
                                            
                                           </Header.Content>
                                       ),
@@ -2553,7 +2558,7 @@ const USVaccineTracker = (props) => {
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                                            <br/><b>Data as of:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> {nationalDemogDate}, updated every weekday.<br/>
                                           
                                           </Header.Content>
                                         </Grid.Row>}
