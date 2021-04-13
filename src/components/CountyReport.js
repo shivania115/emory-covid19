@@ -784,7 +784,7 @@ export default function CountyReport() {
                                   }
                                   basic /> </td>
                                 <td colSpan='1' style={{width:220, height: 70, fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
-                                  trigger={<p>Test Positivity per 100K </p>
+                                  trigger={<p>Number of positive tests per 100K </p>
                                   }
                                   content={!dataTS ? "" : "Positive COVID-19 tests per 100K as of " + 
                                   "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
@@ -843,7 +843,7 @@ export default function CountyReport() {
               <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
               <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report</a>. <br/>
               <b>Data as of </b>
-                {!dataTS? "" : " 0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)}
+                {!dataTS? "" : (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getMonth() + 1).toString().padStart(2, "0") + "/" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getDate()).toString().padStart(2, "0") + "/" +  (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getFullYear()).toString()}
               </text>
               
 

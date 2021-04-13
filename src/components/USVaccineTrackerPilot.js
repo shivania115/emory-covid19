@@ -389,7 +389,7 @@ const RaceBarChart = (props) => {
   const [activeIndex, setActiveIndex] = useState(-1)
 
   const valueAccessor = attribute => ({ payload }) => {
-    return payload[attribute]===0 ? null : payload[attribute]+'%';
+    return payload[attribute]===0 ? null : ( payload[attribute]=== undefined ? null : payload[attribute]+'%');
 
   };
 
@@ -462,7 +462,7 @@ console.log('active index', activeIndex);
           margin={{
             top: 20,
             right: 30,
-            left: 10,
+            left: 0,
             bottom: 10,
           }}
         >
@@ -479,8 +479,9 @@ console.log('active index', activeIndex);
           //   }}
              cursor={false}/>
           {/* content={renderTooltip}  content={<CustomTooltip />}*/}
-          <Legend align="center"/>
+          <Legend width={410} />
           <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([0,'multiOther', 'Multiple/Other']); setActiveIndex(0)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
@@ -488,9 +489,10 @@ console.log('active index', activeIndex);
                 <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
+            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white'/>
           </Bar>
           <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([1,'NHPI', 'Native Hawaiian/Pacific Islanders']); setActiveIndex(1)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
@@ -502,6 +504,7 @@ console.log('active index', activeIndex);
           </Bar>
 
           <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([2,'american_natives', 'American Natives']); setActiveIndex(2)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
@@ -512,6 +515,7 @@ console.log('active index', activeIndex);
             <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
           </Bar>
           <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([3,'asian', 'Asian']); setActiveIndex(3)}}
             onMouseLeave={()=>setActiveIndex(-1)}> 
             {/* {
@@ -522,6 +526,7 @@ console.log('active index', activeIndex);
             <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
           </Bar>
           <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([4,'hispanic', 'Hispanic']); setActiveIndex(4)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
@@ -532,6 +537,7 @@ console.log('active index', activeIndex);
             <LabelList valueAccessor={valueAccessor("hispanic")} fill='white'/>
           </Bar>
           <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([5,'black', 'African Americans']); setActiveIndex(5)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
@@ -543,6 +549,7 @@ console.log('active index', activeIndex);
             <LabelList valueAccessor={valueAccessor("black")} fill='white'/>
           </Bar>
           <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
+            isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([6,'white','White']); setActiveIndex(6)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
@@ -553,8 +560,7 @@ console.log('active index', activeIndex);
             <LabelList valueAccessor={valueAccessor("white")} fill='white'/>
             
           </Bar>
-          
-          
+        
           
         </BarChart>
       
@@ -1310,8 +1316,8 @@ const USVaccineTracker = (props) => {
                     
                   </Grid.Column>
                   <Grid.Column style = {{width: 450}}>
-                    <div style={{paddingTop: 0, paddingLeft: 100}}>
-                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
+                    <div style={{paddingTop: 0, paddingLeft: 80}}>
+                      <Header.Subheader style={{width: 430, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
                         <p style = {{paddingLeft: 40}}>
