@@ -1471,7 +1471,7 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips === "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Cases and deaths data as of {date}.
+                                    Cases and deaths data as of: {date}.
                                     <br/>
                                     Hospitalization data as of: {hospDate}.
                                     <br/>
@@ -1486,7 +1486,7 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips !== "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Cases and deaths data as of {date}.
+                                    Cases and deaths data as of: {date}.
                                     <br/>
                                     Hospitalization data as of: {hospDate}.
                                     <br/>
@@ -1499,7 +1499,7 @@ export default function StateMap(props) {
                           }
 
                           { false && 
-                            <span style={{color: '#73777B', fontSize: "14pt"}}>Cases and deaths data as of {date}</span>
+                            <span style={{color: '#73777B', fontSize: "14pt"}}>Cases and deaths data as of: {date}</span>
                           }
                         </div>
                       ),
@@ -1676,7 +1676,7 @@ export default function StateMap(props) {
                                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                     For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                     <br/><br/>
-                                    Data as of {date}
+                                    Data as of: {date}
                                     </text>
 
 
