@@ -318,6 +318,7 @@ useEffect(()=>{
     data[244].t,
     data[275].t,
     data[306].t,
+    data[334].t,
     data[data.length-1].t]);
   }else if(chartNo===0 || chartNo===3) {
     setCaseTicks([data[0].t,
@@ -331,6 +332,7 @@ useEffect(()=>{
     data[244].t,
     data[275].t,
     data[306].t,
+    data[334].t,
     data[data.length-1].t]);
     setHeaderTime('');
     if(chartNo===0){
@@ -344,6 +346,7 @@ useEffect(()=>{
     data[244].t,
     data[275].t,
     data[306].t,
+    data[334].t,
     data[data.length-1].t]);
     setHeaderTime('in Past 90 Days');
     setTimeout(()=>setChartNo(chartNo+1), 7000);   //5000
@@ -478,22 +481,12 @@ useEffect(()=>{
 }
 
 function CaseChartStatic(props){
-  // const [playCount, setPlayCount] = useState(0);
-  // const [visible1, setVisible1] = useState(false);
-  // const [visible2, setVisible2] = useState(false);
-  // const [visible3, setVisible3] = useState(false);
-  // const [visible4, setVisible4] = useState(false);
-  // const [visible5, setVisible5] = useState(false);
-  // const [disabled, setDisabled] = useState(true);
   const [highlightIndex, setHighlightIndex] = useState([-1, 9, 71, 109, 260]);
   const data = props.data;
   const barColor = props.barColor;
   const lineColor = props.lineColor;
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
-
-  // const ytickFormatter = props.ytickFormatter;
-  // const [animationBool, setAnimationBool] = useState(true);
 
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
@@ -530,23 +523,23 @@ function CaseChartStatic(props){
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Message compact id='message2' style={{ width: '10rem', top:'-27rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       {/* <Arrow1/> */}
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-27rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-37rem', left:'20.5rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'28rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
-      <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 260, y: 330 }} end={{ x: 268, y: 350 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 350, y: 302 }} strokeWidth='0.8'/>
-      <ArrowSvg start={{ x: 605, y: 110 }} end={{ x: 630, y: 125 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 185, y: 240 }} end={{ x: 145, y: 336 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 240, y: 320 }} end={{ x: 252, y: 350 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 335, y: 300 }} strokeWidth='0.8'/>
+      <ArrowSvg start={{ x: 570, y: 110 }} end={{ x: 592, y: 125 }} strokeWidth='0.8'/>
       </Grid.Column>
   );
 }
@@ -635,24 +628,24 @@ function CaseChartAll(props){
       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: '10rem', top:'-26rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
+      <Message compact id='message2' style={{ width: '10rem', top:'-27rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
       {/* <Arrow1/> */}
       </Transition> 
       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
       <Transition visible={visible3} animation='scale' duration={200}>
-      <Message compact style={{ width: '8rem', top:'-26rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
+      <Message compact style={{ width: '8rem', top:'-27rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
       </Transition> 
       <Transition visible={visible4} animation='scale' duration={200}>
       <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
       </Transition> 
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: '10rem', top:'-53rem', left:'30rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: '10rem', top:'-53rem', left:'28rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
       </Transition> 
       
-      {visible2 ? <ArrowSvg start={{ x: 185, y: 246 }} end={{ x: 150, y: 336 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 260, y: 330 }} end={{ x: 268, y: 350 }} strokeWidth='0.8'/> : null}
-      {visible4 ? <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 350, y: 302 }} strokeWidth='0.8'/> : null}
-      {visible5 ? <ArrowSvg start={{ x: 605, y: 110 }} end={{ x: 630, y: 125 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 185, y: 240 }} end={{ x: 145, y: 336 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 240, y: 320 }} end={{ x: 252, y: 350 }} strokeWidth='0.8'/> : null}
+      {visible4 ? <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 335, y: 300 }} strokeWidth='0.8'/> : null}
+      {visible5 ? <ArrowSvg start={{ x: 570, y: 110 }} end={{ x: 592, y: 125 }} strokeWidth='0.8'/> : null}
       </Grid.Column>
   );
 }
@@ -1102,10 +1095,10 @@ function DeathChartAll(props){
       <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100K </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'27.5rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200K </Message>
+      <Message compact style={{ width: '10rem', top:'-30.5rem', left:'27rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200K </Message>
       </Transition> 
-      {visible2 ? <ArrowSvg start={{ x: 290, y: 380 }} end={{ x: 263, y: 442 }} strokeWidth='0.8'/> : null}
-      {visible3 ? <ArrowSvg start={{ x: 490, y: 438 }} end={{ x: 495, y: 465 }} strokeWidth='0.8'/> : null}
+      {visible2 ? <ArrowSvg start={{ x: 285, y: 365 }} end={{ x: 253, y: 442 }} strokeWidth='0.8'/> : null}
+      {visible3 ? <ArrowSvg start={{ x: 490, y: 410 }} end={{ x: 476, y: 465 }} strokeWidth='0.8'/> : null}
       
       </Grid.Column>   
 
