@@ -3004,8 +3004,9 @@ export default function StateMap(props) {
                                 <Grid.Row>
                                     <Header as='h1' style={{fontWeight: 300 }}>
                                         <Header.Content style={{
+                                            paddingTop:'1em',
                                             fontSize: "36pt",
-                                            color: '#0072AE',
+                                            color: '#024174',
                                             fontWeight: 1000,
                                             textAlign: "left",
                                             paddingRight:'6em'
@@ -3018,6 +3019,7 @@ export default function StateMap(props) {
                                 <Grid.Row style={{paddingTop:'1.5em'}}>
                                     <Header as="h1" style={{
                                         fontSize: "28pt",
+                                        color:'#4a4948',
                                         fontWeight: 1000,
                                         textAlign: "left"
                                     }}>
