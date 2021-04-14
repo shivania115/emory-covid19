@@ -265,7 +265,7 @@ const ToPrint = React.forwardRef((props, ref) => (
               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
 
               <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>     
+              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Native </text>     
               
 
 
@@ -294,7 +294,7 @@ const ToPrint = React.forwardRef((props, ref) => (
               <svg width="450" height="145">
 
                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                  <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
@@ -402,7 +402,7 @@ const RaceBarChart = (props) => {
       black: props.demogData['race'][0]['African American'][0]['percentPop'].toFixed(1),
       hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop'].toFixed(1),
       asian: props.demogData['race'][0]['Asian'][0]['percentPop'].toFixed(1),
-      american_natives: props.demogData['race'][0]['American Natives'][0]['percentPop'].toFixed(1),
+      american_natives: props.demogData['race'][0]['American Native'][0]['percentPop'].toFixed(1),
       NHPI: props.demogData['race'][0]['NHPI'][0]['percentPop'].toFixed(1),
       // multiOther: props.demogData['race'][0]['Multiple/Other'][0]['percentPop'].toFixed(1),
     },
@@ -420,9 +420,9 @@ const RaceBarChart = (props) => {
       asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose2'].toFixed(1)
          :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']),
-      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'].toFixed(1)
-         :(props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']),
+      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['pctAdmDose2'].toFixed(1)
+         :(props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated']),
       
       NHPI: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['pctAdmDose2'].toFixed(1)
             :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
@@ -491,9 +491,9 @@ console.log('active index', activeIndex);
             } */}
             <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white'/>
           </Bar>
-          <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
+          <Bar name='Native Hawaiian/Pacific Islander' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([1,'NHPI', 'Native Hawaiian/Pacific Islanders']); setActiveIndex(1)}}
+            onMouseEnter={()=>{setHoverBar([1,'NHPI', 'Native Hawaiian/Pacific Islander']); setActiveIndex(1)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
@@ -503,9 +503,9 @@ console.log('active index', activeIndex);
             <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
           </Bar>
 
-          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
+          <Bar name='American Native' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([2,'american_natives', 'American Natives']); setActiveIndex(2)}}
+            onMouseEnter={()=>{setHoverBar([2,'american_natives', 'American Native']); setActiveIndex(2)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
@@ -757,7 +757,7 @@ const USVaccineTracker = (props) => {
         +
         (x['vaccineRace'][0]['Asian'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['Asian'][0]['percentPop'])
         +
-        (x['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['American Natives'][0]['percentPop'])
+        (x['vaccineRace'][0]['American Native'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['American Native'][0]['percentPop'])
         + 
         (x['vaccineRace'][0]['NHPI'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['NHPI'][0]['percentPop']);
 
@@ -775,11 +775,11 @@ const USVaccineTracker = (props) => {
         if(x['vaccineRace'][0]['Asian'][0]['pctAdmDose2'] > x['vaccineRace'][0]['Asian'][0]['percentPop']){
           listW.push("Asian Americans");
         }
-        if(x['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] > x['vaccineRace'][0]['American Natives'][0]['percentPop']){
+        if(x['vaccineRace'][0]['American Native'][0]['pctAdmDose2'] > x['vaccineRace'][0]['American Native'][0]['percentPop']){
           listW.push("Native Americans");
         }
         if(x['vaccineRace'][0]['NHPI'][0]['pctAdmDose2'] > x['vaccineRace'][0]['NHPI'][0]['percentPop']){
-          listW.push("Native Hawaiians/Pacific Islanders");
+          listW.push("Native Hawaiians/Pacific Islander");
         }
         var joinedStr = listW.join();
         var indexStr = 0;
@@ -1294,7 +1294,7 @@ const USVaccineTracker = (props) => {
                               <svg width="450" height="145">
 
                                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
                                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
                                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
                                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
@@ -1351,10 +1351,10 @@ const USVaccineTracker = (props) => {
                           :
                             ""}</li>}
 
-                          {nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop'] && <li>
-                            {nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop'] ? 
-                            " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
+                          {nationalDemog['vaccineRace'][0]['American Native'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
+                            {nationalDemog['vaccineRace'][0]['American Native'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
+                            " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                            (nationalDemog['vaccineRace'][0]['American Native'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
                           :
                             ""} </li>}
 
@@ -1638,10 +1638,10 @@ const USVaccineTracker = (props) => {
                                                   :
                                                     ""}</li>}
 
-                                                  {nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop'] && <li>
-                                                    {nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop'] ? 
-                                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                                                    (nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
+                                                  {nationalDemog['vaccineRace'][0]['American Native'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
+                                                    {nationalDemog['vaccineRace'][0]['American Native'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
+                                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                                                    (nationalDemog['vaccineRace'][0]['American Native'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
                                                   :
                                                     ""} </li>}
                                                   
@@ -1907,7 +1907,7 @@ const USVaccineTracker = (props) => {
                                   barRatio={0.45}
                                   labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                   data={[
-                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['deathrate']},
+                                    {key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate']},
                                     {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate']},
                                     {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate']},
                                     {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate']},
