@@ -389,7 +389,7 @@ const RaceBarChart = (props) => {
   const [activeIndex, setActiveIndex] = useState(-1)
 
   const valueAccessor = attribute => ({ payload }) => {
-    return payload[attribute]===0 ? null : ( payload[attribute]=== undefined ? null : payload[attribute]+'%');
+    return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : payload[attribute]+'%');
 
   };
 
@@ -436,11 +436,11 @@ const RaceBarChart = (props) => {
 const CustomTooltip = ({ active, payload, label }) => {
 
   if (active && payload && payload.length && hoverBar[0]>=0) {
-    var colIndex = 6-hoverBar[0];
+    // var colIndex = 6-hoverBar[0];
 
     return (
       <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
-        <p style={{color: pieChartRace[colIndex]}}> <b> {hoverBar[2]} </b> </p>
+        <p style={{color: pieChartRace[hoverBar[0]]}}> <b> {hoverBar[2]} </b> </p>
         {/* ${payload[hoverBar[0]]['name']}  */}
         <p className="label">{`% Population: ${data[0][hoverBar[1]]}`}</p>
         <p className="label">{`% Vaccinated : ${data[1][hoverBar[1]]}`}</p>
@@ -480,39 +480,28 @@ console.log('active index', activeIndex);
              cursor={false}/>
           {/* content={renderTooltip}  content={<CustomTooltip />}*/}
           <Legend width={410} />
-          <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
+          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([0,'multiOther', 'Multiple/Other']); setActiveIndex(0)}}
+            onMouseEnter={()=>{setHoverBar([2,'hispanic', 'Hispanic']); setActiveIndex(2)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+                <Cell key={`cell-${index}`} fill={activeIndex === 2 ? 'white' : pieChartRace[2]}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white'/>
+            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white'/>
           </Bar>
-          <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
+          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([1,'NHPI', 'Native Hawaiian/Pacific Islanders']); setActiveIndex(1)}}
+            onMouseEnter={()=>{setHoverBar([1,'black', 'African Americans']); setActiveIndex(1)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={activeIndex === 3 ? 2 : 0}/>
+                // fill={activeIndex === 3 ? 'white' : pieChartRace[1]}
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
-          </Bar>
-
-          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
-            isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([2,'american_natives', 'American Natives']); setActiveIndex(2)}}
-            onMouseLeave={()=>setActiveIndex(-1)}>
-            {/* {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
-              ))
-            } */}
-            <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
+            <LabelList valueAccessor={valueAccessor("black")} fill='white'/>
           </Bar>
           <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
             isAnimationActive={false}
@@ -525,32 +514,35 @@ console.log('active index', activeIndex);
             } */}
             <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
           </Bar>
-          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
+          
+          <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([4,'hispanic', 'Hispanic']); setActiveIndex(4)}}
+            onMouseEnter={()=>{setHoverBar([5,'NHPI', 'Native Hawaiian/Pacific Islanders']); setActiveIndex(5)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 2 ? 'white' : pieChartRace[2]}/>
+                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white'/>
+            <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
           </Bar>
-          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
+
+          <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([5,'black', 'African Americans']); setActiveIndex(5)}}
+            onMouseEnter={()=>{setHoverBar([4,'american_natives', 'American Natives']); setActiveIndex(4)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} stroke='white' strokeWidth={activeIndex === 3 ? 2 : 0}/>
-                // fill={activeIndex === 3 ? 'white' : pieChartRace[1]}
+                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("black")} fill='white'/>
+            <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
           </Bar>
+          
+          
           <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([6,'white','White']); setActiveIndex(6)}}
+            onMouseEnter={()=>{setHoverBar([0,'white','White']); setActiveIndex(0)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
@@ -559,6 +551,17 @@ console.log('active index', activeIndex);
             } */}
             <LabelList valueAccessor={valueAccessor("white")} fill='white'/>
             
+          </Bar>
+          <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([6,'multiOther', 'Multiple/Other']); setActiveIndex(6)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white'/>
           </Bar>
         
           
