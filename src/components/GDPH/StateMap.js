@@ -3002,25 +3002,27 @@ export default function StateMap(props) {
                         <Grid column={2} style={{ paddingTop: '4em', paddingLeft: '0em', paddingBottom: '1em', width: "1260px" }} divided>
                             <Grid.Column width={5}>
                                 <Grid.Row>
-                                    <Header as='h1' style={{ fontWeight: 300 }}>
+                                    <Header as='h1' style={{fontWeight: 300 }}>
                                         <Header.Content style={{
-                                            fontSize: "20pt",
+                                            fontSize: "36pt",
                                             color: '#0072AE',
                                             fontWeight: 1000,
                                             textAlign: "left",
-                                            paddingRight: '5em'
+                                            paddingRight:'6em'
+                                            
                                         }}>
-                                            <b>Georgia COVID-19</b>
+                                            <b>Georgia</b>
                                         </Header.Content>
                                     </Header>
                                 </Grid.Row>
-                                <Grid.Row>
+                                <Grid.Row style={{paddingTop:'1.5em'}}>
                                     <Header as="h1" style={{
-                                        fontSize: "44pt",
+                                        fontSize: "28pt",
                                         fontWeight: 1000,
                                         textAlign: "left"
                                     }}>
-                                        Health Equity Dashboard
+                                        COVID-19 Health 
+                                        <br></br>Equity Dashboard
                             </Header>
                                 </Grid.Row>
                             </Grid.Column>
