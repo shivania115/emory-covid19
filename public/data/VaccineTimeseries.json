@@ -218,8 +218,8 @@
       "Population": 4887871.0,
       "percentVaccinatedDose1": 6.17,
       "percentVaccinatedDose2": 1.15,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 4125.0,
+      "Dist_Per_100K_new": 84.0
     },
     {
       "t": 1612242000,
@@ -1036,6 +1036,23 @@
       "percentVaccinatedDose2": 15.8,
       "Dist_new": 79950.0,
       "Dist_Per_100K_new": 1631.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3493380,
+      "Doses_Administered": 2168891,
+      "Dist_Per_100K": 71247.0,
+      "Admin_Per_100K": 44234.0,
+      "Administered_Dose1": 1426530.0,
+      "Administered_Dose2": 868550.0,
+      "Administered_Moderna": 1041038.0,
+      "Administered_Pfizer": 1057148,
+      "Administered_Unk_Manuf": 0,
+      "Population": 4887871.0,
+      "percentVaccinatedDose1": 29.1,
+      "percentVaccinatedDose2": 16.2,
+      "Dist_new": 134450.0,
+      "Dist_Per_100K_new": 2742.0
     }
   ],
   "02": [
@@ -1495,8 +1512,8 @@
       "Population": 737438.0,
       "percentVaccinatedDose1": 17.73,
       "percentVaccinatedDose2": 8.47,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 200.0,
+      "Dist_Per_100K_new": 27.0
     },
     {
       "t": 1613624400,
@@ -2075,6 +2092,23 @@
       "percentVaccinatedDose2": 28.7,
       "Dist_new": 11140.0,
       "Dist_Per_100K_new": 1523.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 722835,
+      "Doses_Administered": 499742,
+      "Dist_Per_100K": 98809.0,
+      "Admin_Per_100K": 68313.0,
+      "Administered_Dose1": 284110.0,
+      "Administered_Dose2": 225131.0,
+      "Administered_Moderna": 223667.0,
+      "Administered_Pfizer": 262602,
+      "Administered_Unk_Manuf": 72,
+      "Population": 737438.0,
+      "percentVaccinatedDose1": 38.8,
+      "percentVaccinatedDose2": 29.0,
+      "Dist_new": 5510.0,
+      "Dist_Per_100K_new": 753.0
     }
   ],
   "04": [
@@ -3114,6 +3148,23 @@
       "percentVaccinatedDose2": 20.7,
       "Dist_new": 131140.0,
       "Dist_Per_100K_new": 1802.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 5444665,
+      "Doses_Administered": 4250790,
+      "Dist_Per_100K": 74803.0,
+      "Admin_Per_100K": 58400.0,
+      "Administered_Dose1": 2604648.0,
+      "Administered_Dose2": 1643434.0,
+      "Administered_Moderna": 1857421.0,
+      "Administered_Pfizer": 2270961,
+      "Administered_Unk_Manuf": 2191,
+      "Population": 7171646.0,
+      "percentVaccinatedDose1": 35.8,
+      "percentVaccinatedDose2": 21.0,
+      "Dist_new": 152480.0,
+      "Dist_Per_100K_new": 2095.0
     }
   ],
   "05": [
@@ -4153,6 +4204,23 @@
       "percentVaccinatedDose2": 17.5,
       "Dist_new": 89630.0,
       "Dist_Per_100K_new": 2971.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 2243300,
+      "Doses_Administered": 1508295,
+      "Dist_Per_100K": 74336.0,
+      "Admin_Per_100K": 49980.0,
+      "Administered_Dose1": 965352.0,
+      "Administered_Dose2": 590188.0,
+      "Administered_Moderna": 711225.0,
+      "Administered_Pfizer": 745875,
+      "Administered_Unk_Manuf": 347,
+      "Population": 3013825.0,
+      "percentVaccinatedDose1": 32.0,
+      "percentVaccinatedDose2": 17.9,
+      "Dist_new": 15240.0,
+      "Dist_Per_100K_new": 505.0
     }
   ],
   "06": [
@@ -5192,6 +5260,23 @@
       "percentVaccinatedDose2": 19.4,
       "Dist_new": 704640.0,
       "Dist_Per_100K_new": 1784.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 30837670,
+      "Doses_Administered": 23721226,
+      "Dist_Per_100K": 78046.0,
+      "Admin_Per_100K": 60035.0,
+      "Administered_Dose1": 15797249.0,
+      "Administered_Dose2": 8696655.0,
+      "Administered_Moderna": 10650523.0,
+      "Administered_Pfizer": 12125214,
+      "Administered_Unk_Manuf": 2352,
+      "Population": 39557045.0,
+      "percentVaccinatedDose1": 40.0,
+      "percentVaccinatedDose2": 19.6,
+      "Dist_new": 1098980.0,
+      "Dist_Per_100K_new": 2781.0
     }
   ],
   "08": [
@@ -5413,8 +5498,8 @@
       "Population": 5695564.0,
       "percentVaccinatedDose1": 8.0,
       "percentVaccinatedDose2": 2.3,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 6450.0,
+      "Dist_Per_100K_new": 112.0
     },
     {
       "t": 1612242000,
@@ -6231,6 +6316,23 @@
       "percentVaccinatedDose2": 20.9,
       "Dist_new": 91040.0,
       "Dist_Per_100K_new": 1581.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4308370,
+      "Doses_Administered": 3527781,
+      "Dist_Per_100K": 74815.0,
+      "Admin_Per_100K": 61260.0,
+      "Administered_Dose1": 2276754.0,
+      "Administered_Dose2": 1358993.0,
+      "Administered_Moderna": 1634260.0,
+      "Administered_Pfizer": 1755292,
+      "Administered_Unk_Manuf": 981,
+      "Population": 5695564.0,
+      "percentVaccinatedDose1": 39.5,
+      "percentVaccinatedDose2": 21.2,
+      "Dist_new": 126780.0,
+      "Dist_Per_100K_new": 2202.0
     }
   ],
   "09": [
@@ -6469,8 +6571,8 @@
       "Population": 3572665.0,
       "percentVaccinatedDose1": 10.12,
       "percentVaccinatedDose2": 2.42,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 975.0,
+      "Dist_Per_100K_new": 28.0
     },
     {
       "t": 1612328400,
@@ -7270,6 +7372,23 @@
       "percentVaccinatedDose2": 25.6,
       "Dist_new": 106350.0,
       "Dist_Per_100K_new": 2983.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3201205,
+      "Doses_Administered": 2572005,
+      "Dist_Per_100K": 89788.0,
+      "Admin_Per_100K": 72140.0,
+      "Administered_Dose1": 1629882.0,
+      "Administered_Dose2": 1040433.0,
+      "Administered_Moderna": 1078588.0,
+      "Administered_Pfizer": 1380619,
+      "Administered_Unk_Manuf": 189,
+      "Population": 3572665.0,
+      "percentVaccinatedDose1": 45.7,
+      "percentVaccinatedDose2": 26.0,
+      "Dist_new": 103620.0,
+      "Dist_Per_100K_new": 2906.0
     }
   ],
   "10": [
@@ -7491,8 +7610,8 @@
       "Population": 967171.0,
       "percentVaccinatedDose1": 8.73,
       "percentVaccinatedDose2": 1.82,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 1950.0,
+      "Dist_Per_100K_new": 200.0
     },
     {
       "t": 1612242000,
@@ -7593,8 +7712,8 @@
       "Population": 967171.0,
       "percentVaccinatedDose1": 10.42,
       "percentVaccinatedDose2": 2.6,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 6825.0,
+      "Dist_Per_100K_new": 701.0
     },
     {
       "t": 1612846800,
@@ -8309,6 +8428,23 @@
       "percentVaccinatedDose2": 19.9,
       "Dist_new": 20450.0,
       "Dist_Per_100K_new": 2100.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 761005,
+      "Doses_Administered": 599682,
+      "Dist_Per_100K": 78151.0,
+      "Admin_Per_100K": 61584.0,
+      "Administered_Dose1": 382813.0,
+      "Administered_Dose2": 222121.0,
+      "Administered_Moderna": 243486.0,
+      "Administered_Pfizer": 333840,
+      "Administered_Unk_Manuf": 176,
+      "Population": 967171.0,
+      "percentVaccinatedDose1": 39.3,
+      "percentVaccinatedDose2": 20.6,
+      "Dist_new": 11370.0,
+      "Dist_Per_100K_new": 1168.0
     }
   ],
   "11": [
@@ -8547,8 +8683,8 @@
       "Population": 702455.0,
       "percentVaccinatedDose1": 9.15,
       "percentVaccinatedDose2": 2.74,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 200.0,
+      "Dist_Per_100K_new": 28.0
     },
     {
       "t": 1612328400,
@@ -8649,8 +8785,8 @@
       "Population": 702455.0,
       "percentVaccinatedDose1": 10.73,
       "percentVaccinatedDose2": 3.84,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 2050.0,
+      "Dist_Per_100K_new": 291.0
     },
     {
       "t": 1612933200,
@@ -8768,8 +8904,8 @@
       "Population": 702455.0,
       "percentVaccinatedDose1": 12.57,
       "percentVaccinatedDose2": 5.69,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 100.0,
+      "Dist_Per_100K_new": 14.0
     },
     {
       "t": 1613624400,
@@ -9348,6 +9484,23 @@
       "percentVaccinatedDose2": 17.5,
       "Dist_new": 6640.0,
       "Dist_Per_100K_new": 941.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 653655,
+      "Doses_Administered": 471911,
+      "Dist_Per_100K": 92619.0,
+      "Admin_Per_100K": 66867.0,
+      "Administered_Dose1": 263823.0,
+      "Administered_Dose2": 147799.0,
+      "Administered_Moderna": 179316.0,
+      "Administered_Pfizer": 275181,
+      "Administered_Unk_Manuf": 0,
+      "Population": 702455.0,
+      "percentVaccinatedDose1": 37.4,
+      "percentVaccinatedDose2": 17.9,
+      "Dist_new": 36540.0,
+      "Dist_Per_100K_new": 5178.0
     }
   ],
   "12": [
@@ -10387,6 +10540,23 @@
       "percentVaccinatedDose2": 19.4,
       "Dist_new": 820040.0,
       "Dist_Per_100K_new": 3818.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 16827365,
+      "Doses_Administered": 12302529,
+      "Dist_Per_100K": 78348.0,
+      "Admin_Per_100K": 57280.0,
+      "Administered_Dose1": 7633413.0,
+      "Administered_Dose2": 4705146.0,
+      "Administered_Moderna": 5463479.0,
+      "Administered_Pfizer": 6311938,
+      "Administered_Unk_Manuf": 17909,
+      "Population": 21299325.0,
+      "percentVaccinatedDose1": 35.5,
+      "percentVaccinatedDose2": 19.6,
+      "Dist_new": 128850.0,
+      "Dist_Per_100K_new": 600.0
     }
   ],
   "13": [
@@ -11426,6 +11596,23 @@
       "percentVaccinatedDose2": 15.2,
       "Dist_new": 299300.0,
       "Dist_Per_100K_new": 2819.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 7539135,
+      "Doses_Administered": 5061522,
+      "Dist_Per_100K": 71007.0,
+      "Admin_Per_100K": 47672.0,
+      "Administered_Dose1": 3290515.0,
+      "Administered_Dose2": 1782385.0,
+      "Administered_Moderna": 2351721.0,
+      "Administered_Pfizer": 2576037,
+      "Administered_Unk_Manuf": 289,
+      "Population": 10519475.0,
+      "percentVaccinatedDose1": 31.0,
+      "percentVaccinatedDose2": 15.5,
+      "Dist_new": 42390.0,
+      "Dist_Per_100K_new": 399.0
     }
   ],
   "15": [
@@ -12465,6 +12652,23 @@
       "percentVaccinatedDose2": 24.3,
       "Dist_new": 40090.0,
       "Dist_Per_100K_new": 2831.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1202300,
+      "Doses_Administered": 881413,
+      "Dist_Per_100K": 84916.0,
+      "Admin_Per_100K": 62252.0,
+      "Administered_Dose1": 533673.0,
+      "Administered_Dose2": 372339.0,
+      "Administered_Moderna": 311039.0,
+      "Administered_Pfizer": 457669,
+      "Administered_Unk_Manuf": 93760,
+      "Population": 1420491.0,
+      "percentVaccinatedDose1": 37.7,
+      "percentVaccinatedDose2": 24.9,
+      "Dist_new": 22080.0,
+      "Dist_Per_100K_new": 1560.0
     }
   ],
   "16": [
@@ -12686,8 +12890,8 @@
       "Population": 1754208.0,
       "percentVaccinatedDose1": 5.75,
       "percentVaccinatedDose2": 1.28,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 10800.0,
+      "Dist_Per_100K_new": 604.0
     },
     {
       "t": 1612242000,
@@ -13504,6 +13708,23 @@
       "percentVaccinatedDose2": 19.7,
       "Dist_new": 34100.0,
       "Dist_Per_100K_new": 1908.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1214365,
+      "Doses_Administered": 917256,
+      "Dist_Per_100K": 67953.0,
+      "Admin_Per_100K": 51328.0,
+      "Administered_Dose1": 552313.0,
+      "Administered_Dose2": 378008.0,
+      "Administered_Moderna": 416433.0,
+      "Administered_Pfizer": 471513,
+      "Administered_Unk_Manuf": 386,
+      "Population": 1754208.0,
+      "percentVaccinatedDose1": 30.9,
+      "percentVaccinatedDose2": 19.5,
+      "Dist_new": 14470.0,
+      "Dist_Per_100K_new": 810.0
     }
   ],
   "17": [
@@ -14543,6 +14764,23 @@
       "percentVaccinatedDose2": 20.4,
       "Dist_new": 352070.0,
       "Dist_Per_100K_new": 2779.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 9692575,
+      "Doses_Administered": 7582133,
+      "Dist_Per_100K": 76489.0,
+      "Admin_Per_100K": 59835.0,
+      "Administered_Dose1": 4964094.0,
+      "Administered_Dose2": 2875073.0,
+      "Administered_Moderna": 3338570.0,
+      "Administered_Pfizer": 3955477,
+      "Administered_Unk_Manuf": 3794,
+      "Population": 12741080.0,
+      "percentVaccinatedDose1": 39.2,
+      "percentVaccinatedDose2": 20.4,
+      "Dist_new": 70120.0,
+      "Dist_Per_100K_new": 553.0
     }
   ],
   "18": [
@@ -15582,6 +15820,23 @@
       "percentVaccinatedDose2": 19.2,
       "Dist_new": 333620.0,
       "Dist_Per_100K_new": 4956.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4640750,
+      "Doses_Administered": 3443028,
+      "Dist_Per_100K": 68933.0,
+      "Admin_Per_100K": 51143.0,
+      "Administered_Dose1": 2109358.0,
+      "Administered_Dose2": 1419782.0,
+      "Administered_Moderna": 1469617.0,
+      "Administered_Pfizer": 1847410,
+      "Administered_Unk_Manuf": 5687,
+      "Population": 6691878.0,
+      "percentVaccinatedDose1": 31.3,
+      "percentVaccinatedDose2": 19.3,
+      "Dist_new": 20520.0,
+      "Dist_Per_100K_new": 304.0
     }
   ],
   "19": [
@@ -15820,8 +16075,8 @@
       "Population": 3156145.0,
       "percentVaccinatedDose1": 6.19,
       "percentVaccinatedDose2": 1.94,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 19300.0,
+      "Dist_Per_100K_new": 611.0
     },
     {
       "t": 1612328400,
@@ -15922,8 +16177,8 @@
       "Population": 3156145.0,
       "percentVaccinatedDose1": 8.16,
       "percentVaccinatedDose2": 2.87,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 39350.0,
+      "Dist_Per_100K_new": 1247.0
     },
     {
       "t": 1612933200,
@@ -16621,6 +16876,23 @@
       "percentVaccinatedDose2": 22.9,
       "Dist_new": 53200.0,
       "Dist_Per_100K_new": 1686.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 2331755,
+      "Doses_Administered": 1970222,
+      "Dist_Per_100K": 73905.0,
+      "Admin_Per_100K": 62446.0,
+      "Administered_Dose1": 1227309.0,
+      "Administered_Dose2": 821589.0,
+      "Administered_Moderna": 942468.0,
+      "Administered_Pfizer": 941268,
+      "Administered_Unk_Manuf": 119,
+      "Population": 3156145.0,
+      "percentVaccinatedDose1": 38.9,
+      "percentVaccinatedDose2": 23.3,
+      "Dist_new": 37580.0,
+      "Dist_Per_100K_new": 1191.0
     }
   ],
   "20": [
@@ -16859,8 +17131,8 @@
       "Population": 2911505.0,
       "percentVaccinatedDose1": 6.36,
       "percentVaccinatedDose2": 1.53,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 975.0,
+      "Dist_Per_100K_new": 33.0
     },
     {
       "t": 1612328400,
@@ -16961,8 +17233,8 @@
       "Population": 2911505.0,
       "percentVaccinatedDose1": 8.02,
       "percentVaccinatedDose2": 2.41,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 20475.0,
+      "Dist_Per_100K_new": 703.0
     },
     {
       "t": 1612933200,
@@ -17063,8 +17335,8 @@
       "Population": 2911505.0,
       "percentVaccinatedDose1": 10.02,
       "percentVaccinatedDose2": 3.52,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 17975.0,
+      "Dist_Per_100K_new": 617.0
     },
     {
       "t": 1613538000,
@@ -17660,6 +17932,23 @@
       "percentVaccinatedDose2": 21.5,
       "Dist_new": 9770.0,
       "Dist_Per_100K_new": 336.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 2225795,
+      "Doses_Administered": 1688602,
+      "Dist_Per_100K": 76401.0,
+      "Admin_Per_100K": 57962.0,
+      "Administered_Dose1": 1115228.0,
+      "Administered_Dose2": 689812.0,
+      "Administered_Moderna": 802483.0,
+      "Administered_Pfizer": 834217,
+      "Administered_Unk_Manuf": 482,
+      "Population": 2911505.0,
+      "percentVaccinatedDose1": 38.3,
+      "percentVaccinatedDose2": 21.9,
+      "Dist_new": 74550.0,
+      "Dist_Per_100K_new": 2559.0
     }
   ],
   "21": [
@@ -18699,6 +18988,23 @@
       "percentVaccinatedDose2": 22.0,
       "Dist_new": 156040.0,
       "Dist_Per_100K_new": 3492.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3298245,
+      "Doses_Administered": 2653617,
+      "Dist_Per_100K": 73825.0,
+      "Admin_Per_100K": 59396.0,
+      "Administered_Dose1": 1656702.0,
+      "Administered_Dose2": 1111018.0,
+      "Administered_Moderna": 1203231.0,
+      "Administered_Pfizer": 1346945,
+      "Administered_Unk_Manuf": 237,
+      "Population": 4468402.0,
+      "percentVaccinatedDose1": 37.1,
+      "percentVaccinatedDose2": 22.6,
+      "Dist_new": 12080.0,
+      "Dist_Per_100K_new": 271.0
     }
   ],
   "22": [
@@ -19738,6 +20044,23 @@
       "percentVaccinatedDose2": 19.4,
       "Dist_new": 92780.0,
       "Dist_Per_100K_new": 1996.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3421430,
+      "Doses_Administered": 2355526,
+      "Dist_Per_100K": 73598.0,
+      "Admin_Per_100K": 50670.0,
+      "Administered_Dose1": 1397631.0,
+      "Administered_Dose2": 991200.0,
+      "Administered_Moderna": 1060133.0,
+      "Administered_Pfizer": 1207520,
+      "Administered_Unk_Manuf": 943,
+      "Population": 4659978.0,
+      "percentVaccinatedDose1": 30.1,
+      "percentVaccinatedDose2": 19.5,
+      "Dist_new": 49560.0,
+      "Dist_Per_100K_new": 1066.0
     }
   ],
   "23": [
@@ -20061,8 +20384,8 @@
       "Population": 1338404.0,
       "percentVaccinatedDose1": 9.88,
       "percentVaccinatedDose2": 3.32,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 28275.0,
+      "Dist_Per_100K_new": 2104.0
     },
     {
       "t": 1612846800,
@@ -20163,8 +20486,8 @@
       "Population": 1338404.0,
       "percentVaccinatedDose1": 10.59,
       "percentVaccinatedDose2": 3.71,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 13575.0,
+      "Dist_Per_100K_new": 1009.0
     },
     {
       "t": 1613451600,
@@ -20777,6 +21100,23 @@
       "percentVaccinatedDose2": 24.9,
       "Dist_new": 28300.0,
       "Dist_Per_100K_new": 2105.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1074270,
+      "Doses_Administered": 947441,
+      "Dist_Per_100K": 79918.0,
+      "Admin_Per_100K": 70483.0,
+      "Administered_Dose1": 616642.0,
+      "Administered_Dose2": 404943.0,
+      "Administered_Moderna": 421579.0,
+      "Administered_Pfizer": 459364,
+      "Administered_Unk_Manuf": 83,
+      "Population": 1338404.0,
+      "percentVaccinatedDose1": 45.9,
+      "percentVaccinatedDose2": 25.2,
+      "Dist_new": 8970.0,
+      "Dist_Per_100K_new": 667.0
     }
   ],
   "24": [
@@ -21816,6 +22156,23 @@
       "percentVaccinatedDose2": 22.0,
       "Dist_new": 139310.0,
       "Dist_Per_100K_new": 2304.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4640710,
+      "Doses_Administered": 3765018,
+      "Dist_Per_100K": 76761.0,
+      "Admin_Per_100K": 62276.0,
+      "Administered_Dose1": 2427307.0,
+      "Administered_Dose2": 1534499.0,
+      "Administered_Moderna": 1657980.0,
+      "Administered_Pfizer": 1925110,
+      "Administered_Unk_Manuf": 2293,
+      "Population": 6042718.0,
+      "percentVaccinatedDose1": 40.1,
+      "percentVaccinatedDose2": 22.5,
+      "Dist_new": 26040.0,
+      "Dist_Per_100K_new": 431.0
     }
   ],
   "25": [
@@ -22054,8 +22411,8 @@
       "Population": 6902149.0,
       "percentVaccinatedDose1": 7.21,
       "percentVaccinatedDose2": 1.83,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 3900.0,
+      "Dist_Per_100K_new": 56.0
     },
     {
       "t": 1612328400,
@@ -22855,6 +23212,23 @@
       "percentVaccinatedDose2": 23.5,
       "Dist_new": 163580.0,
       "Dist_Per_100K_new": 2373.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 5610090,
+      "Doses_Administered": 4800301,
+      "Dist_Per_100K": 81394.0,
+      "Admin_Per_100K": 69645.0,
+      "Administered_Dose1": 3124643.0,
+      "Administered_Dose2": 1849210.0,
+      "Administered_Moderna": 2157249.0,
+      "Administered_Pfizer": 2444951,
+      "Administered_Unk_Manuf": 68,
+      "Population": 6902149.0,
+      "percentVaccinatedDose1": 45.3,
+      "percentVaccinatedDose2": 23.9,
+      "Dist_new": 115180.0,
+      "Dist_Per_100K_new": 1671.0
     }
   ],
   "26": [
@@ -23894,6 +24268,23 @@
       "percentVaccinatedDose2": 21.2,
       "Dist_new": 391210.0,
       "Dist_Per_100K_new": 3918.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 7643000,
+      "Doses_Administered": 5697977,
+      "Dist_Per_100K": 76531.0,
+      "Admin_Per_100K": 57055.0,
+      "Administered_Dose1": 3609519.0,
+      "Administered_Dose2": 2369798.0,
+      "Administered_Moderna": 2528600.0,
+      "Administered_Pfizer": 2952745,
+      "Administered_Unk_Manuf": 1225,
+      "Population": 9995915.0,
+      "percentVaccinatedDose1": 36.1,
+      "percentVaccinatedDose2": 21.5,
+      "Dist_new": 226690.0,
+      "Dist_Per_100K_new": 2270.0
     }
   ],
   "27": [
@@ -24132,8 +24523,8 @@
       "Population": 5611179.0,
       "percentVaccinatedDose1": 7.68,
       "percentVaccinatedDose2": 2.13,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 3000.0,
+      "Dist_Per_100K_new": 53.0
     },
     {
       "t": 1612328400,
@@ -24933,6 +25324,23 @@
       "percentVaccinatedDose2": 23.1,
       "Dist_new": 112730.0,
       "Dist_Per_100K_new": 1999.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4033140,
+      "Doses_Administered": 3543372,
+      "Dist_Per_100K": 71514.0,
+      "Admin_Per_100K": 62830.0,
+      "Administered_Dose1": 2254554.0,
+      "Administered_Dose2": 1496432.0,
+      "Administered_Moderna": 1547261.0,
+      "Administered_Pfizer": 1809968,
+      "Administered_Unk_Manuf": 220,
+      "Population": 5611179.0,
+      "percentVaccinatedDose1": 40.0,
+      "percentVaccinatedDose2": 23.2,
+      "Dist_new": 142470.0,
+      "Dist_Per_100K_new": 2526.0
     }
   ],
   "28": [
@@ -25154,8 +25562,8 @@
       "Population": 2986530.0,
       "percentVaccinatedDose1": 7.15,
       "percentVaccinatedDose2": 0.84,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 6950.0,
+      "Dist_Per_100K_new": 233.0
     },
     {
       "t": 1612242000,
@@ -25972,6 +26380,23 @@
       "percentVaccinatedDose2": 18.0,
       "Dist_new": 29910.0,
       "Dist_Per_100K_new": 1005.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 2119115,
+      "Doses_Administered": 1392708,
+      "Dist_Per_100K": 71203.0,
+      "Admin_Per_100K": 46796.0,
+      "Administered_Dose1": 844054.0,
+      "Administered_Dose2": 588887.0,
+      "Administered_Moderna": 680829.0,
+      "Administered_Pfizer": 667972,
+      "Administered_Unk_Manuf": 856,
+      "Population": 2986530.0,
+      "percentVaccinatedDose1": 28.4,
+      "percentVaccinatedDose2": 18.4,
+      "Dist_new": 14580.0,
+      "Dist_Per_100K_new": 490.0
     }
   ],
   "29": [
@@ -26210,8 +26635,8 @@
       "Population": 6126452.0,
       "percentVaccinatedDose1": 5.86,
       "percentVaccinatedDose2": 1.7,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 700.0,
+      "Dist_Per_100K_new": 12.0
     },
     {
       "t": 1612328400,
@@ -27011,6 +27436,23 @@
       "percentVaccinatedDose2": 19.3,
       "Dist_new": 24280.0,
       "Dist_Per_100K_new": 396.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4443455,
+      "Doses_Administered": 3263224,
+      "Dist_Per_100K": 72399.0,
+      "Admin_Per_100K": 53169.0,
+      "Administered_Dose1": 1976497.0,
+      "Administered_Dose2": 1295767.0,
+      "Administered_Moderna": 1316509.0,
+      "Administered_Pfizer": 1841058,
+      "Administered_Unk_Manuf": 334,
+      "Population": 6126452.0,
+      "percentVaccinatedDose1": 32.2,
+      "percentVaccinatedDose2": 19.4,
+      "Dist_new": 172750.0,
+      "Dist_Per_100K_new": 2814.0
     }
   ],
   "30": [
@@ -27232,8 +27674,8 @@
       "Population": 1062305.0,
       "percentVaccinatedDose1": 7.59,
       "percentVaccinatedDose2": 2.39,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 2925.0,
+      "Dist_Per_100K_new": 273.0
     },
     {
       "t": 1612242000,
@@ -27334,8 +27776,8 @@
       "Population": 1062305.0,
       "percentVaccinatedDose1": 9.64,
       "percentVaccinatedDose2": 3.44,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 6400.0,
+      "Dist_Per_100K_new": 599.0
     },
     {
       "t": 1612846800,
@@ -28050,6 +28492,23 @@
       "percentVaccinatedDose2": 23.3,
       "Dist_new": 5640.0,
       "Dist_Per_100K_new": 527.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 856275,
+      "Doses_Administered": 643288,
+      "Dist_Per_100K": 80117.0,
+      "Admin_Per_100K": 60189.0,
+      "Administered_Dose1": 392616.0,
+      "Administered_Dose2": 269683.0,
+      "Administered_Moderna": 313867.0,
+      "Administered_Pfizer": 309048,
+      "Administered_Unk_Manuf": 158,
+      "Population": 1062305.0,
+      "percentVaccinatedDose1": 36.7,
+      "percentVaccinatedDose2": 23.4,
+      "Dist_new": 24580.0,
+      "Dist_Per_100K_new": 2300.0
     }
   ],
   "31": [
@@ -28271,8 +28730,8 @@
       "Population": 1929268.0,
       "percentVaccinatedDose1": 6.96,
       "percentVaccinatedDose2": 2.37,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 975.0,
+      "Dist_Per_100K_new": 51.0
     },
     {
       "t": 1612242000,
@@ -28492,8 +28951,8 @@
       "Population": 1929268.0,
       "percentVaccinatedDose1": 10.3,
       "percentVaccinatedDose2": 4.68,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 1900.0,
+      "Dist_Per_100K_new": 98.0
     },
     {
       "t": 1613538000,
@@ -29089,6 +29548,23 @@
       "percentVaccinatedDose2": 22.7,
       "Dist_new": 63430.0,
       "Dist_Per_100K_new": 3279.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1470820,
+      "Doses_Administered": 1208422,
+      "Dist_Per_100K": 76035.0,
+      "Admin_Per_100K": 62470.0,
+      "Administered_Dose1": 753296.0,
+      "Administered_Dose2": 496992.0,
+      "Administered_Moderna": 525306.0,
+      "Administered_Pfizer": 633214,
+      "Administered_Unk_Manuf": 2130,
+      "Population": 1929268.0,
+      "percentVaccinatedDose1": 38.9,
+      "percentVaccinatedDose2": 23.2,
+      "Dist_new": 9840.0,
+      "Dist_Per_100K_new": 509.0
     }
   ],
   "32": [
@@ -30128,6 +30604,23 @@
       "percentVaccinatedDose2": 19.5,
       "Dist_new": 19240.0,
       "Dist_Per_100K_new": 625.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 2142040,
+      "Doses_Administered": 1709620,
+      "Dist_Per_100K": 69543.0,
+      "Admin_Per_100K": 55504.0,
+      "Administered_Dose1": 1060196.0,
+      "Administered_Dose2": 676261.0,
+      "Administered_Moderna": 717319.0,
+      "Administered_Pfizer": 924753,
+      "Administered_Unk_Manuf": 0,
+      "Population": 3034392.0,
+      "percentVaccinatedDose1": 34.4,
+      "percentVaccinatedDose2": 19.8,
+      "Dist_new": 108460.0,
+      "Dist_Per_100K_new": 3521.0
     }
   ],
   "33": [
@@ -31167,6 +31660,23 @@
       "percentVaccinatedDose2": 22.0,
       "Dist_new": 21550.0,
       "Dist_Per_100K_new": 1585.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1039375,
+      "Doses_Administered": 1008027,
+      "Dist_Per_100K": 76441.0,
+      "Admin_Per_100K": 74135.0,
+      "Administered_Dose1": 732717.0,
+      "Administered_Dose2": 351794.0,
+      "Administered_Moderna": 442914.0,
+      "Administered_Pfizer": 517219,
+      "Administered_Unk_Manuf": 27,
+      "Population": 1356458.0,
+      "percentVaccinatedDose1": 53.9,
+      "percentVaccinatedDose2": 22.3,
+      "Dist_new": 14270.0,
+      "Dist_Per_100K_new": 1050.0
     }
   ],
   "34": [
@@ -31507,8 +32017,8 @@
       "Population": 8908520.0,
       "percentVaccinatedDose1": 9.55,
       "percentVaccinatedDose2": 2.7,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 47075.0,
+      "Dist_Per_100K_new": 530.0
     },
     {
       "t": 1612933200,
@@ -32206,6 +32716,23 @@
       "percentVaccinatedDose2": 24.1,
       "Dist_new": 257520.0,
       "Dist_Per_100K_new": 2899.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 6636645,
+      "Doses_Administered": 5874832,
+      "Dist_Per_100K": 74719.0,
+      "Admin_Per_100K": 66142.0,
+      "Administered_Dose1": 3862780.0,
+      "Administered_Dose2": 2445130.0,
+      "Administered_Moderna": 2604470.0,
+      "Administered_Pfizer": 3006947,
+      "Administered_Unk_Manuf": 475,
+      "Population": 8908520.0,
+      "percentVaccinatedDose1": 43.5,
+      "percentVaccinatedDose2": 24.5,
+      "Dist_new": 16670.0,
+      "Dist_Per_100K_new": 188.0
     }
   ],
   "35": [
@@ -33245,6 +33772,23 @@
       "percentVaccinatedDose2": 27.7,
       "Dist_new": 61140.0,
       "Dist_Per_100K_new": 2915.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1791315,
+      "Doses_Administered": 1530389,
+      "Dist_Per_100K": 85430.0,
+      "Admin_Per_100K": 72986.0,
+      "Administered_Dose1": 951067.0,
+      "Administered_Dose2": 632216.0,
+      "Administered_Moderna": 680740.0,
+      "Administered_Pfizer": 803246,
+      "Administered_Unk_Manuf": 1974,
+      "Population": 2095428.0,
+      "percentVaccinatedDose1": 45.4,
+      "percentVaccinatedDose2": 28.1,
+      "Dist_new": 19610.0,
+      "Dist_Per_100K_new": 936.0
     }
   ],
   "36": [
@@ -34284,6 +34828,23 @@
       "percentVaccinatedDose2": 23.2,
       "Dist_new": 436350.0,
       "Dist_Per_100K_new": 2243.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 15145335,
+      "Doses_Administered": 12633362,
+      "Dist_Per_100K": 77854.0,
+      "Admin_Per_100K": 64941.0,
+      "Administered_Dose1": 7856472.0,
+      "Administered_Dose2": 5137853.0,
+      "Administered_Moderna": 5523032.0,
+      "Administered_Pfizer": 6560708,
+      "Administered_Unk_Manuf": 2116,
+      "Population": 19542209.0,
+      "percentVaccinatedDose1": 40.4,
+      "percentVaccinatedDose2": 23.6,
+      "Dist_new": 249390.0,
+      "Dist_Per_100K_new": 1282.0
     }
   ],
   "37": [
@@ -35323,6 +35884,23 @@
       "percentVaccinatedDose2": 19.9,
       "Dist_new": 56520.0,
       "Dist_Per_100K_new": 539.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 7783060,
+      "Doses_Administered": 5844600,
+      "Dist_Per_100K": 74209.0,
+      "Admin_Per_100K": 55726.0,
+      "Administered_Dose1": 3642553.0,
+      "Administered_Dose2": 2355104.0,
+      "Administered_Moderna": 2468564.0,
+      "Administered_Pfizer": 3148793,
+      "Administered_Unk_Manuf": 329,
+      "Population": 10383620.0,
+      "percentVaccinatedDose1": 34.7,
+      "percentVaccinatedDose2": 20.3,
+      "Dist_new": 244010.0,
+      "Dist_Per_100K_new": 2327.0
     }
   ],
   "38": [
@@ -35646,8 +36224,8 @@
       "Population": 760077.0,
       "percentVaccinatedDose1": 11.53,
       "percentVaccinatedDose2": 5.05,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 9475.0,
+      "Dist_Per_100K_new": 1243.0
     },
     {
       "t": 1612846800,
@@ -35748,8 +36326,8 @@
       "Population": 760077.0,
       "percentVaccinatedDose1": 13.07,
       "percentVaccinatedDose2": 6.26,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 11975.0,
+      "Dist_Per_100K_new": 1572.0
     },
     {
       "t": 1613451600,
@@ -36362,6 +36940,23 @@
       "percentVaccinatedDose2": 24.7,
       "Dist_new": 12690.0,
       "Dist_Per_100K_new": 1665.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 561930,
+      "Doses_Administered": 499005,
+      "Dist_Per_100K": 73738.0,
+      "Admin_Per_100K": 65481.0,
+      "Administered_Dose1": 281652.0,
+      "Administered_Dose2": 208612.0,
+      "Administered_Moderna": 219985.0,
+      "Administered_Pfizer": 257547,
+      "Administered_Unk_Manuf": 0,
+      "Population": 760077.0,
+      "percentVaccinatedDose1": 37.0,
+      "percentVaccinatedDose2": 24.9,
+      "Dist_new": 2070.0,
+      "Dist_Per_100K_new": 272.0
     }
   ],
   "39": [
@@ -36583,8 +37178,8 @@
       "Population": 11689442.0,
       "percentVaccinatedDose1": 7.05,
       "percentVaccinatedDose2": 1.53,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 21450.0,
+      "Dist_Per_100K_new": 184.0
     },
     {
       "t": 1612242000,
@@ -37401,6 +37996,23 @@
       "percentVaccinatedDose2": 21.0,
       "Dist_new": 304210.0,
       "Dist_Per_100K_new": 2603.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 8774035,
+      "Doses_Administered": 6847460,
+      "Dist_Per_100K": 75062.0,
+      "Admin_Per_100K": 58580.0,
+      "Administered_Dose1": 4223049.0,
+      "Administered_Dose2": 2770229.0,
+      "Administered_Moderna": 3035719.0,
+      "Administered_Pfizer": 3535711,
+      "Administered_Unk_Manuf": 5928,
+      "Population": 11689442.0,
+      "percentVaccinatedDose1": 36.1,
+      "percentVaccinatedDose2": 21.5,
+      "Dist_new": 147760.0,
+      "Dist_Per_100K_new": 1264.0
     }
   ],
   "40": [
@@ -37622,8 +38234,8 @@
       "Population": 3943079.0,
       "percentVaccinatedDose1": 9.15,
       "percentVaccinatedDose2": 2.03,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 1950.0,
+      "Dist_Per_100K_new": 49.0
     },
     {
       "t": 1612242000,
@@ -37877,8 +38489,8 @@
       "Population": 3943079.0,
       "percentVaccinatedDose1": 12.36,
       "percentVaccinatedDose2": 5.31,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 975.0,
+      "Dist_Per_100K_new": 24.0
     },
     {
       "t": 1613970000,
@@ -38440,6 +39052,23 @@
       "percentVaccinatedDose2": 22.5,
       "Dist_new": 68520.0,
       "Dist_Per_100K_new": 1731.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3277215,
+      "Doses_Administered": 2356622,
+      "Dist_Per_100K": 82821.0,
+      "Admin_Per_100K": 59556.0,
+      "Administered_Dose1": 1417964.0,
+      "Administered_Dose2": 956879.0,
+      "Administered_Moderna": 1078792.0,
+      "Administered_Pfizer": 1214407,
+      "Administered_Unk_Manuf": 34,
+      "Population": 3943079.0,
+      "percentVaccinatedDose1": 35.8,
+      "percentVaccinatedDose2": 22.6,
+      "Dist_new": 85070.0,
+      "Dist_Per_100K_new": 2150.0
     }
   ],
   "41": [
@@ -39479,6 +40108,23 @@
       "percentVaccinatedDose2": 20.7,
       "Dist_new": 105070.0,
       "Dist_Per_100K_new": 2491.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3150545,
+      "Doses_Administered": 2415448,
+      "Dist_Per_100K": 74698.0,
+      "Admin_Per_100K": 57269.0,
+      "Administered_Dose1": 1534466.0,
+      "Administered_Dose2": 970014.0,
+      "Administered_Moderna": 1086716.0,
+      "Administered_Pfizer": 1240350,
+      "Administered_Unk_Manuf": 1348,
+      "Population": 4190713.0,
+      "percentVaccinatedDose1": 36.4,
+      "percentVaccinatedDose2": 21.0,
+      "Dist_new": 117710.0,
+      "Dist_Per_100K_new": 2791.0
     }
   ],
   "42": [
@@ -40518,6 +41164,23 @@
       "percentVaccinatedDose2": 21.1,
       "Dist_new": 138530.0,
       "Dist_Per_100K_new": 1082.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 10014035,
+      "Doses_Administered": 7936989,
+      "Dist_Per_100K": 78222.0,
+      "Admin_Per_100K": 61998.0,
+      "Administered_Dose1": 5204337.0,
+      "Administered_Dose2": 3050358.0,
+      "Administered_Moderna": 3444406.0,
+      "Administered_Pfizer": 4201595,
+      "Administered_Unk_Manuf": 200,
+      "Population": 12807060.0,
+      "percentVaccinatedDose1": 40.7,
+      "percentVaccinatedDose2": 21.5,
+      "Dist_new": 332550.0,
+      "Dist_Per_100K_new": 2597.0
     }
   ],
   "44": [
@@ -41557,6 +42220,23 @@
       "percentVaccinatedDose2": 26.5,
       "Dist_new": 26270.0,
       "Dist_Per_100K_new": 2480.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 833545,
+      "Doses_Administered": 733129,
+      "Dist_Per_100K": 78684.0,
+      "Admin_Per_100K": 69205.0,
+      "Administered_Dose1": 446220.0,
+      "Administered_Dose2": 316219.0,
+      "Administered_Moderna": 325555.0,
+      "Administered_Pfizer": 374692,
+      "Administered_Unk_Manuf": 24,
+      "Population": 1057315.0,
+      "percentVaccinatedDose1": 42.1,
+      "percentVaccinatedDose2": 26.8,
+      "Dist_new": 4170.0,
+      "Dist_Per_100K_new": 394.0
     }
   ],
   "45": [
@@ -42596,6 +43276,23 @@
       "percentVaccinatedDose2": 19.1,
       "Dist_new": 122730.0,
       "Dist_Per_100K_new": 2383.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 3646715,
+      "Doses_Administered": 2734788,
+      "Dist_Per_100K": 70828.0,
+      "Admin_Per_100K": 53116.0,
+      "Administered_Dose1": 1702386.0,
+      "Administered_Dose2": 1085136.0,
+      "Administered_Moderna": 1070492.0,
+      "Administered_Pfizer": 1570522,
+      "Administered_Unk_Manuf": 1055,
+      "Population": 5084127.0,
+      "percentVaccinatedDose1": 33.1,
+      "percentVaccinatedDose2": 19.3,
+      "Dist_new": 29210.0,
+      "Dist_Per_100K_new": 568.0
     }
   ],
   "46": [
@@ -43635,6 +44332,23 @@
       "percentVaccinatedDose2": 26.6,
       "Dist_new": 13770.0,
       "Dist_Per_100K_new": 1557.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 764525,
+      "Doses_Administered": 603930,
+      "Dist_Per_100K": 86420.0,
+      "Admin_Per_100K": 68267.0,
+      "Administered_Dose1": 367699.0,
+      "Administered_Dose2": 255954.0,
+      "Administered_Moderna": 282458.0,
+      "Administered_Pfizer": 303684,
+      "Administered_Unk_Manuf": 13,
+      "Population": 882235.0,
+      "percentVaccinatedDose1": 41.6,
+      "percentVaccinatedDose2": 26.9,
+      "Dist_new": 10470.0,
+      "Dist_Per_100K_new": 1183.0
     }
   ],
   "47": [
@@ -43873,8 +44587,8 @@
       "Population": 6770010.0,
       "percentVaccinatedDose1": 6.66,
       "percentVaccinatedDose2": 2.65,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 45275.0,
+      "Dist_Per_100K_new": 663.0
     },
     {
       "t": 1612328400,
@@ -44674,6 +45388,23 @@
       "percentVaccinatedDose2": 16.8,
       "Dist_new": 35860.0,
       "Dist_Per_100K_new": 525.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4826180,
+      "Doses_Administered": 3320761,
+      "Dist_Per_100K": 70670.0,
+      "Admin_Per_100K": 48626.0,
+      "Administered_Dose1": 2087718.0,
+      "Administered_Dose2": 1260041.0,
+      "Administered_Moderna": 1485243.0,
+      "Administered_Pfizer": 1727447,
+      "Administered_Unk_Manuf": 4137,
+      "Population": 6770010.0,
+      "percentVaccinatedDose1": 30.6,
+      "percentVaccinatedDose2": 17.0,
+      "Dist_new": 154620.0,
+      "Dist_Per_100K_new": 2264.0
     }
   ],
   "48": [
@@ -44895,8 +45626,8 @@
       "Population": 28701845.0,
       "percentVaccinatedDose1": 6.94,
       "percentVaccinatedDose2": 1.75,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 146100.0,
+      "Dist_Per_100K_new": 504.0
     },
     {
       "t": 1612242000,
@@ -45713,6 +46444,23 @@
       "percentVaccinatedDose2": 18.3,
       "Dist_new": 460480.0,
       "Dist_Per_100K_new": 1588.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 20671965,
+      "Doses_Administered": 15610120,
+      "Dist_Per_100K": 71293.0,
+      "Admin_Per_100K": 53836.0,
+      "Administered_Dose1": 9670695.0,
+      "Administered_Dose2": 6000263.0,
+      "Administered_Moderna": 6931677.0,
+      "Administered_Pfizer": 8080927,
+      "Administered_Unk_Manuf": 691,
+      "Population": 28701845.0,
+      "percentVaccinatedDose1": 33.4,
+      "percentVaccinatedDose2": 18.7,
+      "Dist_new": 898990.0,
+      "Dist_Per_100K_new": 3101.0
     }
   ],
   "_nation": [
@@ -46752,6 +47500,23 @@
       "percentVaccinatedDose2": 20.5,
       "Dist_new": 7568500.0,
       "Dist_Per_100K_new": 2280.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 250998265,
+      "Doses_Administered": 194791836,
+      "Dist_Per_100K": 75603.0,
+      "Admin_Per_100K": 58673.0,
+      "Administered_Dose1": 123917385.0,
+      "Administered_Dose2": 76681252.0,
+      "Administered_Moderna": 86221076.0,
+      "Administered_Pfizer": 100891617,
+      "Administered_Unk_Manuf": 161472,
+      "Population": 327167434.0,
+      "percentVaccinatedDose1": 37.3,
+      "percentVaccinatedDose2": 20.8,
+      "Dist_new": 5633460.0,
+      "Dist_Per_100K_new": 1697.0
     }
   ],
   "49": [
@@ -46973,8 +47738,8 @@
       "Population": 3161105.0,
       "percentVaccinatedDose1": 7.74,
       "percentVaccinatedDose2": 1.98,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 1950.0,
+      "Dist_Per_100K_new": 61.0
     },
     {
       "t": 1612242000,
@@ -47791,6 +48556,23 @@
       "percentVaccinatedDose2": 14.8,
       "Dist_new": 49900.0,
       "Dist_Per_100K_new": 1557.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 2064210,
+      "Doses_Administered": 1755776,
+      "Dist_Per_100K": 64387.0,
+      "Admin_Per_100K": 54766.0,
+      "Administered_Dose1": 1079644.0,
+      "Administered_Dose2": 563429.0,
+      "Administered_Moderna": 773592.0,
+      "Administered_Pfizer": 902812,
+      "Administered_Unk_Manuf": 0,
+      "Population": 3161105.0,
+      "percentVaccinatedDose1": 33.7,
+      "percentVaccinatedDose2": 15.2,
+      "Dist_new": 59850.0,
+      "Dist_Per_100K_new": 1867.0
     }
   ],
   "50": [
@@ -48012,8 +48794,8 @@
       "Population": 626299.0,
       "percentVaccinatedDose1": 8.62,
       "percentVaccinatedDose2": 2.93,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 975.0,
+      "Dist_Per_100K_new": 156.0
     },
     {
       "t": 1612242000,
@@ -48114,8 +48896,8 @@
       "Population": 626299.0,
       "percentVaccinatedDose1": 10.06,
       "percentVaccinatedDose2": 4.33,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 2450.0,
+      "Dist_Per_100K_new": 393.0
     },
     {
       "t": 1612846800,
@@ -48830,6 +49612,23 @@
       "percentVaccinatedDose2": 25.2,
       "Dist_new": 12660.0,
       "Dist_Per_100K_new": 2029.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 538360,
+      "Doses_Administered": 440821,
+      "Dist_Per_100K": 86277.0,
+      "Admin_Per_100K": 70646.0,
+      "Administered_Dose1": 273837.0,
+      "Administered_Dose2": 177298.0,
+      "Administered_Moderna": 198636.0,
+      "Administered_Pfizer": 222640,
+      "Administered_Unk_Manuf": 276,
+      "Population": 626299.0,
+      "percentVaccinatedDose1": 43.9,
+      "percentVaccinatedDose2": 25.4,
+      "Dist_new": 9740.0,
+      "Dist_Per_100K_new": 1561.0
     }
   ],
   "51": [
@@ -49869,6 +50668,23 @@
       "percentVaccinatedDose2": 21.1,
       "Dist_new": 410620.0,
       "Dist_Per_100K_new": 4811.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 6431875,
+      "Doses_Administered": 5268328,
+      "Dist_Per_100K": 75354.0,
+      "Admin_Per_100K": 61722.0,
+      "Administered_Dose1": 3405033.0,
+      "Administered_Dose2": 2044204.0,
+      "Administered_Moderna": 2264840.0,
+      "Administered_Pfizer": 2795521,
+      "Administered_Unk_Manuf": 1339,
+      "Population": 8517685.0,
+      "percentVaccinatedDose1": 39.9,
+      "percentVaccinatedDose2": 21.5,
+      "Dist_new": 56130.0,
+      "Dist_Per_100K_new": 657.0
     }
   ],
   "53": [
@@ -50908,6 +51724,23 @@
       "percentVaccinatedDose2": 22.1,
       "Dist_new": 157180.0,
       "Dist_Per_100K_new": 2064.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 5740920,
+      "Doses_Administered": 4641399,
+      "Dist_Per_100K": 75391.0,
+      "Admin_Per_100K": 60952.0,
+      "Administered_Dose1": 2898988.0,
+      "Administered_Dose2": 1895244.0,
+      "Administered_Moderna": 1994447.0,
+      "Administered_Pfizer": 2458938,
+      "Administered_Unk_Manuf": 3117,
+      "Population": 7535591.0,
+      "percentVaccinatedDose1": 38.1,
+      "percentVaccinatedDose2": 22.5,
+      "Dist_new": 69700.0,
+      "Dist_Per_100K_new": 916.0
     }
   ],
   "54": [
@@ -51947,6 +52780,23 @@
       "percentVaccinatedDose2": 23.3,
       "Dist_new": 55150.0,
       "Dist_Per_100K_new": 3078.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 1441565,
+      "Doses_Administered": 1036782,
+      "Dist_Per_100K": 80438.0,
+      "Admin_Per_100K": 57851.0,
+      "Administered_Dose1": 606808.0,
+      "Administered_Dose2": 440408.0,
+      "Administered_Moderna": 499158.0,
+      "Administered_Pfizer": 518821,
+      "Administered_Unk_Manuf": 0,
+      "Population": 1805832.0,
+      "percentVaccinatedDose1": 33.9,
+      "percentVaccinatedDose2": 23.5,
+      "Dist_new": 200.0,
+      "Dist_Per_100K_new": 11.0
     }
   ],
   "55": [
@@ -52986,6 +53836,23 @@
       "percentVaccinatedDose2": 23.3,
       "Dist_new": 293190.0,
       "Dist_Per_100K_new": 5035.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 4322845,
+      "Doses_Administered": 3759176,
+      "Dist_Per_100K": 74245.0,
+      "Admin_Per_100K": 64564.0,
+      "Administered_Dose1": 2338649.0,
+      "Administered_Dose2": 1529318.0,
+      "Administered_Moderna": 1636397.0,
+      "Administered_Pfizer": 1958706,
+      "Administered_Unk_Manuf": 417,
+      "Population": 5813568.0,
+      "percentVaccinatedDose1": 40.2,
+      "percentVaccinatedDose2": 23.5,
+      "Dist_new": 29670.0,
+      "Dist_Per_100K_new": 510.0
     }
   ],
   "56": [
@@ -53207,8 +54074,8 @@
       "Population": 577737.0,
       "percentVaccinatedDose1": 8.34,
       "percentVaccinatedDose2": 1.67,
-      "Dist_new": 0.0,
-      "Dist_Per_100K_new": 0.0
+      "Dist_new": 2925.0,
+      "Dist_Per_100K_new": 505.0
     },
     {
       "t": 1612242000,
@@ -54025,6 +54892,23 @@
       "percentVaccinatedDose2": 21.5,
       "Dist_new": 2500.0,
       "Dist_Per_100K_new": 432.0
+    },
+    {
+      "t": 1618372800,
+      "Doses_Distributed": 460205,
+      "Doses_Administered": 317111,
+      "Dist_Per_100K": 79516.0,
+      "Admin_Per_100K": 54792.0,
+      "Administered_Dose1": 183741.0,
+      "Administered_Dose2": 135695.0,
+      "Administered_Moderna": 154133.0,
+      "Administered_Pfizer": 151704,
+      "Administered_Unk_Manuf": 173,
+      "Population": 577737.0,
+      "percentVaccinatedDose1": 31.7,
+      "percentVaccinatedDose2": 21.6,
+      "Dist_new": 7180.0,
+      "Dist_Per_100K_new": 1241.0
     }
   ]
 }
