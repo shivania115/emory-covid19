@@ -486,7 +486,7 @@ function CaseChartStatic(props){
   const lineColor = props.lineColor;
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
-  const labelWidth = '12rem'
+  const labelWidth = '11rem'
 
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
@@ -502,10 +502,10 @@ function CaseChartStatic(props){
     if (value===1586491200){  // 1
       return (
         <g transform="translate(0, -10)">
-          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red'/>
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
           <text
             x={x + width / 2}
-            y={y - radius}
+            y={y - radius + 1}
             fill="red"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -517,10 +517,10 @@ function CaseChartStatic(props){
     } else if(value===1595131200){  // 2
       return (
         <g transform="translate(0, -20)">
-          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red'/>
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
           <text
             x={x + width / 2}
-            y={y - radius}
+            y={y - radius + 1}
             fill="red"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -532,10 +532,10 @@ function CaseChartStatic(props){
     }else if(value===1610082000){  // 3
       return (
       <g transform="translate(0, -10)">
-        <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red'/>
+        <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
         <text
           x={x + width / 2}
-          y={y - radius}
+          y={y - radius + 1}
           fill="red"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -581,47 +581,50 @@ function CaseChartStatic(props){
     
       <Grid.Column width={3} style={{paddingLeft: '3rem'}}>
 
-      <Message compact id='Jan' style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> Jan. 21, 2020: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Message compact id='Jan' style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> Jan. 21, 2020: <br /> 1st case in the U.S. confirmed in Washington</Message>
 
-      <Message compact id='message2' style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
-      <svg height='28' width='30'>
-        <circle cx='12' cy='12' r={radius} fill="white" stroke='red'/>
+      <Message compact id='message2' style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
         <text
-          x='12'
-          y='12'
+          x='11'
+          y='11'
           fill="red"
           textAnchor="middle"
           dominantBaseline="middle"
+          fontSize={13}
         >
           1
         </text></svg>
         <text zIndex={10}>Apr. 10, 2020: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </text>
         </Message>
 
-      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
-      <svg height='28' width='30'>
-        <circle cx='12' cy='12' r={radius} fill="white" stroke='red'/>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
         <text
-          x='12'
-          y='12'
+          x='11'
+          y='11'
           fill="red"
           textAnchor="middle"
           dominantBaseline="middle"
+          fontSize={13}
         >
           2
         </text></svg>
       <text zIndex={10}>July. 19, 2020: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </text>
       </Message>
 
-      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
-      <svg height='28' width='30'>
-        <circle cx='12' cy='12' r={radius} fill="white" stroke='red'/>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
         <text
-          x='12'
-          y='12'
+          x='11'
+          y='11'
           fill="red"
           textAnchor="middle"
           dominantBaseline="middle"
+          fontSize={13}
         >
           3
         </text></svg>
