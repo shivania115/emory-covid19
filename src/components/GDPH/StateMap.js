@@ -506,7 +506,7 @@ function ChartGraph(props) {
                     (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
                         <VictoryAxis dependentAxis tickCount={6}
                             style={{
-                                tickLabels: { fontSize: 25, padding: 5 }
+                                tickLabels: { fontSize: 17, padding: 5 }
                             }}
                             tickFormat={(y) => (y < 1000 ? (Math.round(y, 2) === 0.00 ? " " : y) : (y / 1000 + 'k'))} /> :
                         <VictoryLine name="Line11" style={{ data: { stroke: '#007dba', strokeWidth: ({ active }) => active ? 5 : 3 } }} data={dataTS[stateFips] ? dataTS[stateFips] : dataTS["99999"]}
@@ -3004,8 +3004,9 @@ export default function StateMap(props) {
                                 <Grid.Row>
                                     <Header as='h1' style={{fontWeight: 300 }}>
                                         <Header.Content style={{
+                                            paddingTop:'1em',
                                             fontSize: "36pt",
-                                            color: '#0072AE',
+                                            color: '#024174',
                                             fontWeight: 1000,
                                             textAlign: "left",
                                             paddingRight:'6em'
@@ -3018,6 +3019,7 @@ export default function StateMap(props) {
                                 <Grid.Row style={{paddingTop:'1.5em'}}>
                                     <Header as="h1" style={{
                                         fontSize: "28pt",
+                                        color:'#4a4948',
                                         fontWeight: 1000,
                                         textAlign: "left"
                                     }}>
