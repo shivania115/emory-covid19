@@ -389,49 +389,78 @@ const RaceBarChart = (props) => {
   const [activeIndex, setActiveIndex] = useState(-1)
 
   const valueAccessor = attribute => ({ payload }) => {
-    return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : payload[attribute]+'%');
+    return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
 
   };
 
+  const renderLegend = (props) => {
+    const { payload } = props;
+  
+    return (
+      <ul>
+        {
+          payload.map((entry, index) => (
+            <li key={`item-${index}`}>{entry.value}</li>
+          ))
+        }
+      </ul>
+    );
+  }
+
   let barSize = 50
+  let strokeWidth = 1.5
+  let labelSize = '13px'
+  let fontWeight = 500
+  let barRatio = 100/103
 
   const data = [
     {
       name: '% Population',
-      white: props.demogData['race'][0]['White'][0]['percentPop'].toFixed(1),
-      black: props.demogData['race'][0]['African American'][0]['percentPop'].toFixed(1),
-      hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop'].toFixed(1),
-      asian: props.demogData['race'][0]['Asian'][0]['percentPop'].toFixed(1),
-      american_natives: props.demogData['race'][0]['American Natives'][0]['percentPop'].toFixed(1),
-      NHPI: props.demogData['race'][0]['NHPI'][0]['percentPop'].toFixed(1),
+      white: props.demogData['race'][0]['White'][0]['percentPop']*barRatio,
+      black: props.demogData['race'][0]['African American'][0]['percentPop']*barRatio,
+      hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop']*barRatio,
+      asian: props.demogData['race'][0]['Asian'][0]['percentPop']*barRatio,
+      space: 0.5,
+      american_natives: props.demogData['race'][0]['American Natives'][0]['percentPop']*barRatio,
+      NHPI: props.demogData['race'][0]['NHPI'][0]['percentPop']*barRatio,
       // multiOther: props.demogData['race'][0]['Multiple/Other'][0]['percentPop'].toFixed(1),
     },
     {
       name: '% Vaccination',
-      white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['pctAdmDose2'].toFixed(1)
+      white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['pctAdmDose2']*barRatio
          :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']),
-      black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['pctAdmDose2'].toFixed(1)
+            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']*barRatio),
+      black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['pctAdmDose2']*barRatio
          :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']),
-      hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'].toFixed(1)
+            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']*barRatio),
+      hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2']*barRatio
          :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']),
-      asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose2'].toFixed(1)
+            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']*barRatio),
+      asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['pctAdmDose2']*barRatio
          :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']),
-      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'].toFixed(1)
+            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']*barRatio),
+      space: 0.5,
+      american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Natives'][0]['pctAdmDose2']*barRatio
          :(props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated'] === -9999 ? 0 
-            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']),
+            : props.VaccineData[props.fips][0]['American Natives'][0]['percentVaccinated']*barRatio),
       
-      NHPI: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['pctAdmDose2'].toFixed(1)
+      NHPI: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['pctAdmDose2']*barRatio
             :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
-               : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']),
-      multiOther: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['pctAdmDose2'].toFixed(1)
+               : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']*barRatio),
+      multiOther: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['pctAdmDose2']*barRatio
                :(props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0 
-                  : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
+                  : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated']*barRatio)
     }
   ]
+
+  const legendFormatter = (value, entry) => {
+    if(value !== 'space'){
+      return <span >{value}</span>;
+    } else {
+      return null;
+    }
+    
+  };
 
 const CustomTooltip = ({ active, payload, label }) => {
 
@@ -440,10 +469,10 @@ const CustomTooltip = ({ active, payload, label }) => {
 
     return (
       <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
-        <p style={{color: pieChartRace[hoverBar[0]]}}> <b> {hoverBar[2]} </b> </p>
+        <p style={{color: pieChartRace[hoverBar[0]], marginBottom: 4}}> <b> {hoverBar[2]} </b> </p>
         {/* ${payload[hoverBar[0]]['name']}  */}
-        <p className="label">{`% Population: ${data[0][hoverBar[1]]}`}</p>
-        <p className="label">{`% Vaccinated : ${data[1][hoverBar[1]]}`}</p>
+        <p className="label" style={{marginBottom: 3}}>{`% Population: ${(data[0][hoverBar[1]]/barRatio).toFixed(1)}`}</p>
+        <p className="label" style={{marginBottom: 0}}>{`% Vaccinated : ${(data[1][hoverBar[1]]/barRatio).toFixed(1)}`}</p>
       </div>
     );
   }
@@ -468,7 +497,7 @@ console.log('active index', activeIndex);
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis dataKey="name" />
-          <YAxis domain={[0,100]}/>
+          <YAxis domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]}/>
           <Tooltip content={<CustomTooltip />}
           // formatter={function(value, name) {
           //     if(name === hoverBar){
@@ -479,40 +508,53 @@ console.log('active index', activeIndex);
           //   }}
              cursor={false}/>
           {/* content={renderTooltip}  content={<CustomTooltip />}*/}
-          <Legend width={410} />
+          <Legend width={410} formatter={legendFormatter}/>
           <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
             isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([2,'hispanic', 'Hispanic']); setActiveIndex(2)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 2 ? 'white' : pieChartRace[2]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white'/>
+            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
           </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
           <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
             isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([1,'black', 'African Americans']); setActiveIndex(1)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} stroke='white' strokeWidth={activeIndex === 3 ? 2 : 0}/>
-                // fill={activeIndex === 3 ? 'white' : pieChartRace[1]}
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("black")} fill='white'/>
+            <LabelList valueAccessor={valueAccessor("black")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
           </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
           <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
             isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([3,'asian', 'Asian']); setActiveIndex(3)}}
             onMouseLeave={()=>setActiveIndex(-1)}> 
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} style={{zIndex: -10}} fill={activeIndex === 1 ? 'white' : pieChartRace[3]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("asian")} fill='white'/>
+            <LabelList valueAccessor={valueAccessor("asian")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
           </Bar>
           
           <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
@@ -521,10 +563,14 @@ console.log('active index', activeIndex);
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={2}/>
               ))
             } */}
             <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
           </Bar>
 
           <Bar name='American Natives' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
@@ -533,12 +579,15 @@ console.log('active index', activeIndex);
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={0.5}/>
               ))
             } */}
             <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
           </Bar>
           
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
           
           <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
             isAnimationActive={false}
@@ -546,24 +595,27 @@ console.log('active index', activeIndex);
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 4 ? 'white' : pieChartRace[0]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("white")} fill='white'/>
-            
+            <LabelList valueAccessor={valueAccessor("white")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
           </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
           <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
             isAnimationActive={false}
             onMouseEnter={()=>{setHoverBar([6,'multiOther', 'Multiple/Other']); setActiveIndex(6)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={activeIndex === 0 ? 'white' : pieChartRace[4]}/>
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
               ))
             } */}
-            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white'/>
+            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
           </Bar>
-        
           
         </BarChart>
       

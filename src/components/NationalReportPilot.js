@@ -33,9 +33,10 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
-import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,  PieChart, Pie, Sector, Label, Legend, ResponsiveContainer} from "recharts";
+import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,  PieChart, Pie, Sector, Label, LabelList, Legend, ResponsiveContainer} from "recharts";
 import {ArrowSvg} from 'react-simple-arrows';
 import { CSSTransition } from 'react-transition-group';
+import { index } from 'd3';
 
 var obj, stobj;
 
@@ -491,6 +492,62 @@ function CaseChartStatic(props){
     return y<1000?y:(y/1000+'k');
   };
 
+  console.log('data ', data)
+
+  const radius = 10;
+  const renderCustomizedLabel = (props) => {
+    const { x, y, width, value } = props;
+    
+
+    if (value===1586491200){  // 1
+      return (
+        <g transform="translate(0, -10)">
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red'/>
+          <text
+            x={x + width / 2}
+            y={y - radius}
+            fill="red"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            1
+          </text>
+        </g>
+      );
+    } else if(value===1595131200){  // 2
+      return (
+        <g transform="translate(0, -20)">
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red'/>
+          <text
+            x={x + width / 2}
+            y={y - radius}
+            fill="red"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            2
+          </text>
+        </g>
+      );
+    }else if(value===1610082000){  // 3
+      return (
+      <g transform="translate(0, -10)">
+        <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red'/>
+        <text
+          x={x + width / 2}
+          y={y - radius}
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          3
+        </text>
+      </g>
+    );
+    }
+    return null
+  };
+
   
   return(
     <Grid columns={2} style={{paddingTop:'1rem', paddingLeft: 0, height: 450, width:930, position:'relative'}}>
@@ -499,7 +556,8 @@ function CaseChartStatic(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} domain={[1585713600, 1610859600]} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      <XAxis dataKey="t" ticks={ticks}  tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      {/* domain={[1585713600, 1610859600]} */}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
             isAnimationActive={false} 
@@ -511,6 +569,7 @@ function CaseChartStatic(props){
                 <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
             }
+          <LabelList dataKey='t' content={renderCustomizedLabel}/>
       </ Bar>
       <Line name="7-day average" id='all-line' type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={false} 
@@ -521,21 +580,54 @@ function CaseChartStatic(props){
       </Grid.Column>
     
       <Grid.Column width={3} style={{paddingLeft: '3rem'}}>
-      <Transition visible={true} animation='scale' duration={200}>
-      <Message compact id='Jan' style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Jan. 21, 2020: <br /> 1st case in the U.S. confirmed in Washington</Message>
-      </Transition>
-      <Transition visible={true} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Apr. 10, 2020: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
-      </Transition> 
-      {/* <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: labelWidth, top:'0rem', left:'0rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
-      </Transition>  */}
-      <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> July. 19, 2020: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
-      </Transition> 
-      <Transition visible={true} animation='scale' duration={200}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Jan. 8, 2021: <br /> Third wave peaked at 259,616 new cases <br />(7-day avg.) </Message>
-      </Transition> 
+
+      <Message compact id='Jan' style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> Jan. 21, 2020: <br /> 1st case in the U.S. confirmed in Washington</Message>
+
+      <Message compact id='message2' style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
+      <svg height='28' width='30'>
+        <circle cx='12' cy='12' r={radius} fill="white" stroke='red'/>
+        <text
+          x='12'
+          y='12'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          1
+        </text></svg>
+        <text zIndex={10}>Apr. 10, 2020: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </text>
+        </Message>
+
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
+      <svg height='28' width='30'>
+        <circle cx='12' cy='12' r={radius} fill="white" stroke='red'/>
+        <text
+          x='12'
+          y='12'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          2
+        </text></svg>
+      <text zIndex={10}>July. 19, 2020: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </text>
+      </Message>
+
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
+      <svg height='28' width='30'>
+        <circle cx='12' cy='12' r={radius} fill="white" stroke='red'/>
+        <text
+          x='12'
+          y='12'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          3
+        </text></svg>
+        <text zIndex={10}>Jan. 8, 2021: <br /> Third wave peaked at 259,616 new cases <br />(7-day avg.) </text>
+      
+      </Message>
       </Grid.Column>
       
       </Grid>
@@ -584,7 +676,8 @@ function CaseChartAll(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} domain={[1585713600, 1610859600]} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      {/* domain={[1585713600, 1610859600]} */}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
             isAnimationActive={animationBool} 
