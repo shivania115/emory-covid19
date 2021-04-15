@@ -1462,7 +1462,7 @@ class Race extends PureComponent{
     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
       dataTot: [
         data['race'][0]['Hispanic'][0], data['race'][0]['Asian'][0],
-        data['race'][0]['American Natives'][0], data['race'][0]['African American'][0],
+        data['race'][0]['American Native'][0], data['race'][0]['African American'][0],
         data['race'][0]['White'][0]
       ] }));
   }
@@ -2955,7 +2955,7 @@ export default function NationalReport(props) {
                               <svg width="450" height="145">
 
                                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
                                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
                                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
                                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
@@ -2996,10 +2996,10 @@ export default function NationalReport(props) {
                                 (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
                                 <br/>
                             </li>
-                            <li> Native Americans: {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
-                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
-                                {(nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
-                                (nationalDemog['race'][0]['American Natives'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                            <li> Native Americans: {(nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
+                                (nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
                             </li>
                           </ul>
                         {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 
@@ -3129,7 +3129,7 @@ export default function NationalReport(props) {
                               barWidth={20}
                               labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0))}
                               data={[
-                                      {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['deathrate']},
+                                      {key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate']},
                                       {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate']},
                                       {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate']},
                                       {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate']},
@@ -3226,10 +3226,10 @@ export default function NationalReport(props) {
                                   (nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Asian Americans
                                   <br/>
                                 </li>
-                                <li>{(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
-                                  (nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                                  {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
-                                  (nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Native Americans
+                                <li>{(nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1? "": 
+                                  (nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                                  {(nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) == 1 ? "equal" :
+                                  (nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1)  < 1? "times lower" : "times higher"} in Native Americans
                                 </li>
                               </ul>
 
