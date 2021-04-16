@@ -669,8 +669,59 @@ function CaseChartAll(props){
 
   var wait=0;
 
-  // console.log("data[0].t", data[0].t);
-  // console.log("data[data.length-1].t", data[data.length-1].t);
+  const radius = 10;
+  const renderCustomizedLabel = (props) => {
+    const { x, y, width, value } = props;
+    
+
+    if (value===1586491200 && highlightIndex.length >= 2){  // 1
+      return (
+        <g transform="translate(0, -10)">
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+          <text
+            x={x + width / 2}
+            y={y - radius + 1}
+            fill="red"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            1
+          </text>
+        </g>
+      );
+    } else if(value===1595131200 && highlightIndex.length >= 3){  // 2
+      return (
+        <g transform="translate(0, -20)">
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+          <text
+            x={x + width / 2}
+            y={y - radius + 1}
+            fill="red"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            2
+          </text>
+        </g>
+      );
+    }else if(value===1610082000 && highlightIndex.length >= 4){  // 3
+      return (
+      <g transform="translate(0, -10)">
+        <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+        <text
+          x={x + width / 2}
+          y={y - radius + 1}
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          3
+        </text>
+      </g>
+    );
+    }
+    return null
+  };
   
   return(
     <Grid columns={2} style={{paddingTop:'1rem', paddingLeft: 0, height: 450, width:930, position:'relative'}}>
@@ -711,6 +762,7 @@ function CaseChartAll(props){
               
               // fill={index === highlightIndex ? "red" : barColor}
             }
+            <LabelList dataKey='t' content={renderCustomizedLabel}/>
       </ Bar>
       <Line name="7-day average" id='all-line' type='monotone' dataKey='caseRateMean' dot={false} 
             isAnimationActive={animationBool} 
@@ -723,19 +775,61 @@ function CaseChartAll(props){
     
       <Grid.Column width={3} style={{paddingLeft: '3rem'}}>
       <Transition visible={visible1} animation='scale' duration={200}>
-      <Message compact id='Jan' style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Jan. 21, 2020: <br /> 1st case in the U.S. confirmed in Washington</Message>
+      <Message compact id='Jan' style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> Jan. 21, 2020: <br /> 1st case in the U.S. confirmed in Washington</Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={200}>
-      <Message compact id='message2' style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Apr. 10, 2020: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
-      </Transition> 
-      {/* <Transition visible={visible3} animation='scale' duration={200}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
-      </Transition>  */}
+      <Message compact id='message2' style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+        <text
+          x='11'
+          y='11'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={13}
+        >
+          1
+        </text></svg>
+        <text zindex={10}>Apr. 10, 2020: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </text>
+        </Message>
+        </Transition> 
+
       <Transition visible={visible4} animation='scale' duration={200}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> July. 19, 2020: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+        <text
+          x='11'
+          y='11'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={13}
+        >
+          2
+        </text></svg>
+      <text zindex={10}>July. 19, 2020: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </text>
+      </Message>
       </Transition> 
+      
       <Transition visible={visible5} animation='scale' duration={200}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Jan. 8, 2021: <br /> Third wave peaked at 259,616 new cases <br />(7-day avg.) </Message>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:3, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+        <text
+          x='11'
+          y='11'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={13}
+        >
+          3
+        </text></svg>
+        <text zindex={10}>Jan. 8, 2021: <br /> Third wave peaked at 259,616 new cases <br />(7-day avg.) </text>
+      
+      </Message>
       </Transition> 
     
       </Grid.Column>
@@ -923,6 +1017,44 @@ function DeathChartAll(props){
 
 
   var wait=0;
+  const radius = 10;
+  const renderCustomizedLabel = (props) => {
+    const { x, y, width, value } = props;
+    
+
+    if (value===1590552000 && highlightIndex.length >= 2){  // 1
+      return (
+        <g transform="translate(0, -10)">
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+          <text
+            x={x + width / 2}
+            y={y - radius + 1}
+            fill="red"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            1
+          </text>
+        </g>
+      );
+    } else if(value===1600747200 && highlightIndex.length >= 3){  // 2
+      return (
+        <g transform="translate(0, -20)">
+          <circle cx={x + width / 2} cy={y - radius} r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+          <text
+            x={x + width / 2}
+            y={y - radius + 1}
+            fill="red"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            2
+          </text>
+        </g>
+      );
+    }
+    return null
+  };
 
   return(
     <Grid columns={2} style={{paddingTop:'1rem', paddingLeft: 0, height: 450, width: 930, position:'relative'}}>
@@ -955,6 +1087,7 @@ function DeathChartAll(props){
                 <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
               ))
             }
+          <LabelList dataKey='t' content={renderCustomizedLabel}/>
       </ Bar>
       <Line name="7-day average" type='monotone' dataKey='mortalityMean' dot={false} 
             isAnimationActive={animationBool} 
@@ -967,13 +1100,41 @@ function DeathChartAll(props){
     
       <Grid.Column width={3} style={{paddingLeft: '3rem'}}>
       <Transition visible={visible1} animation='scale' duration={300}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Feb. 6, 2020: <br /> First death in US </Message>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> Feb. 6, 2020: <br /> First death in US </Message>
       </Transition>
       <Transition visible={visible2} animation='scale' duration={300}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> May. 27, 2020: <br /> Coronavirus deaths in the U.S. passed 100K </Message>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+        <text
+          x='11'
+          y='11'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={13}
+        >
+          1
+        </text></svg>
+        <text zindex={10}>May. 27, 2020: <br /> Coronavirus deaths in the U.S. passed 100K </text>
+        </Message>
       </Transition> 
       <Transition visible={visible3} animation='scale' duration={300}>
-      <Message compact style={{ width: labelWidth, padding: '1rem', fontSize: '0.8rem'}}> Sep. 22, 2020: <br /> Coronavirus deaths in the U.S. passed 200K </Message>
+      <Message compact style={{ width: labelWidth, padding: '1rem', margin:5, fontSize: '0.8rem'}}> 
+      <svg height='25' width='30'>
+        <circle cx='11' cy='11' r={radius} fill="white" stroke='red' strokeWidth={1.5}/>
+        <text
+          x='11'
+          y='11'
+          fill="red"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={13}
+        >
+          2
+        </text></svg>
+        <text zindex={10}>Sep. 22, 2020: <br /> Coronavirus deaths in the U.S. passed 200K </text>
+      </Message>
       </Transition> 
       
       </Grid.Column>
