@@ -688,17 +688,17 @@ export default function CountyReport() {
                   <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}> Percent Tested COVID-19 Positive </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
-                          {/* <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                          <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
                           <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
                           <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
                           <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
                           <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
+                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
 
-                          <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                          {/* <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
                           <text x = {92} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
                           <rect x = {stateName.length > 10? 220: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
+                          <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
                       </svg>
                 <div style = {{height: 240}}>
                   { dataTS && <VictoryChart theme={VictoryTheme.material}
@@ -706,7 +706,7 @@ export default function CountyReport() {
                     maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
                     width={550}
                     height={200}       
-                    padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                    padding={{left: 50, right: 5, top: 10, bottom: 40}}
                     containerComponent={<VictoryVoronoiContainer/>}
                     
                     >
@@ -734,14 +734,14 @@ export default function CountyReport() {
                     <VictoryGroup 
                       colorScale={[stateColor, countyColor]}
                     >
-                      {/* <VictoryLine data={dataTS["_nation"]}
+                      <VictoryLine data={dataTS["_nation"]}
                         x='t' y='percentPositive'
                         labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
                         labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
-                        /> */}
+                        />
                       <VictoryLine data={dataTS[stateFips]}
                         minDomain={{ x: dataTS["_nation"][342].t }}
                         maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
@@ -805,12 +805,12 @@ export default function CountyReport() {
                               <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
                             </Table.Row>
-                            {/* <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> The U.S. </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> 10 </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> 10 </Table.HeaderCell>
+                            <Table.Row textAlign = 'center' style = {{height: 70}}>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> The U.S. </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
-                            </Table.Row> */}
+                            </Table.Row>
                             
                           </Table.Header>
                         </Table>
