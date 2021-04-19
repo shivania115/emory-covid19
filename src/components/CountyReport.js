@@ -703,10 +703,10 @@ export default function CountyReport() {
                 <div style = {{height: 240}}>
                   { dataTS && <VictoryChart theme={VictoryTheme.material}
                     minDomain={{ x: dataTS["_nation"][342].t }}
-                    maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
+                    maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-1].t}}
                     width={550}
                     height={200}       
-                    padding={{left: 50, right: 5, top: 10, bottom: 40}}
+                    padding={{left: 50, right: 30, top: 10, bottom: 40}}
                     containerComponent={<VictoryVoronoiContainer/>}
                     
                     >
@@ -725,14 +725,14 @@ export default function CountyReport() {
                         dataTS["_nation"][Number(342) + Number(((dataTS["_nation"].length - 344)/2).toFixed(0))].t,
                         dataTS["_nation"][Number(342) + Number(((dataTS["_nation"].length - 344)*3/4).toFixed(0))].t,
 
-                        dataTS["_nation"][dataTS["_nation"].length-2].t]}/>
+                        dataTS["_nation"][dataTS["_nation"].length-1].t]}/>
                     <VictoryAxis dependentAxis tickCount={5} 
                       style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "19px", fontFamily: 'lato'}}} 
 
                       tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                       />
                     <VictoryGroup 
-                      colorScale={[stateColor, countyColor]}
+                      colorScale={[nationColor, stateColor, countyColor]}
                     >
                       <VictoryLine data={dataTS["_nation"]}
                         x='t' y='percentPositive'
@@ -843,7 +843,7 @@ export default function CountyReport() {
               <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
               <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report</a>. <br/>
               <b>Data as of: </b>
-                {!dataTS? "" : (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getMonth() + 1).toString().padStart(2, "0") + "/" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getDate()).toString().padStart(2, "0") + "/" +  (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getFullYear()).toString()}
+                {!dataTS? "" : (new Date(dataTS[stateFips][dataTS[stateFips].length-1].t*1000).getMonth() + 1).toString().padStart(2, "0") + "/" + (new Date(dataTS[stateFips][dataTS[stateFips].length-1].t*1000).getDate()).toString().padStart(2, "0") + "/" +  (new Date(dataTS[stateFips][dataTS[stateFips].length-1].t*1000).getFullYear()).toString()}
               </text>
               
 
