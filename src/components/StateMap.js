@@ -694,6 +694,11 @@ export default function StateMap(props) {
                           i = 0;
                         }
                       }
+                    }else{
+                      indexP = 0;
+                      hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                      percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
+                      hospDate = stateSeriesDict[stateSeriesDict.length-1].t;
                     }
 
                     if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
@@ -710,6 +715,9 @@ export default function StateMap(props) {
                           i = 0;
                         }
                       }
+                    }else{
+                      percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
                     }
                     
         
