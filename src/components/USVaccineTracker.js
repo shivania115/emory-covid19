@@ -1470,7 +1470,7 @@ const USVaccineTracker = (props) => {
                                     Race & Ethnicity data as of {nationalDemogDate}.
                                     <br/>
                                     The demographics of vaccinated adults is obtained from the U.S.
-                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
+                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
                                     The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
                                     <br/>
                                     The CDC notes that “These demographic data only represent the geographic areas that 
