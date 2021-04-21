@@ -256,7 +256,7 @@ export default function MapState() {
     }
   }, [measureB]);  
   
-  if (data) {
+  if (data && oriData) {
 
     return (
       <HEProvider> 
@@ -318,7 +318,7 @@ export default function MapState() {
                           setMeasureA(value);
                         }}
                       />
-                      {measureA && legendSplitA &&
+                      {measureA && legendSplitA && legendMinA && legendMaxA && colorPalette && 
                       <svg width="450" height="110">
                               
                               {_.map(legendSplitA, (split, i) => {
@@ -382,7 +382,7 @@ export default function MapState() {
                           setMeasureB(value);
                         }}
                       />
-                      {measureB && legendSplitB &&
+                      {measureB && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
                       <svg width="450" height="110">
                               
                               {_.map(legendSplitB, (split, i) => {
