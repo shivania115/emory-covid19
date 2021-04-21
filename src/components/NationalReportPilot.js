@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component, createRef, useRef, useContext, useMemo, PureComponent} from 'react'
-import { Container, Header, Grid, Loader, Divider, Button, Progress, Dropdown, Image, Rail, Sticky, Ref, Accordion, Menu, Message, Transition, List} from 'semantic-ui-react'
+import { Container, Header, Grid, Loader, Divider, Button, Progress, Dropdown, Table, Image, Rail, Sticky, Tab, Ref, Accordion, Menu, Message, Transition, List} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { geoCentroid } from "d3-geo";
@@ -33,7 +33,7 @@ import { VictoryChart,
   VictoryVoronoiContainer
 } from 'victory';
 import { render } from 'react-dom';
-import {ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,  PieChart, Pie, Sector, Label, LabelList, Legend, ResponsiveContainer} from "recharts";
+import {ComposedChart, Line, Area, Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Cell,  PieChart, Pie, Sector, Label, LabelList, Legend, ResponsiveContainer} from "recharts";
 import {ArrowSvg} from 'react-simple-arrows';
 import { CSSTransition } from 'react-transition-group';
 import { index } from 'd3';
@@ -1669,6 +1669,410 @@ class Race extends PureComponent{
   }
 }
 
+const ToPrint = React.forwardRef((props, ref) => (
+  
+  <div ref={ref} style={{width: 550}}>
+  <Grid.Column rows = {2}>
+    <Grid.Row style = {{width: 550}}>
+      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
+        <div>
+          <svg width="550" height="80">
+
+              <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
+              <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
+
+              <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+              <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
+
+              <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
+              <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
+
+              <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
+              <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
+
+              <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Native </text>     
+              
+
+
+              {/* {_.map(pieChartRace, (color, i) => {
+                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+              })}  */}
+          </svg>
+        </div>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid >
+      <Grid.Row columns = {2} >
+      {/* style = {{width: 550}} */}
+        <Grid.Column>
+          {/* <Race pop = {false} /> */}
+        </Grid.Column>
+        <Grid.Column >
+          {/* <Race pop = {true}/>  */}
+          {/* style = {{width: 200}} */}
+        </Grid.Column>
+      </Grid.Row>
+
+      {/* <Grid.Row style = {{width: 900}}>
+        <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+            <div>
+              <svg width="450" height="145">
+
+                  <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
+                  <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
+                  <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
+                  <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
+                  <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
+
+
+                  {_.map(pieChartRace, (color, i) => {
+                    return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                  })} 
+              </svg>
+            </div>
+          </Grid.Column>
+      </Grid.Row> */}
+      </Grid>
+  </Grid.Column>
+  </div>
+  
+));
+
+
+
+
+
+
+function ComparisonTable(props){
+  return(
+    <div>
+      <Header as='h2' style={{fontWeight: 400}}>
+        <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 20, paddingLeft: 35}}>
+          Vaccination Status in <br/> <b>{props.stateName}</b>
+          
+          
+        </Header.Content>
+      </Header>
+      <Grid>
+        <Grid.Row style={{width: 350, paddingLeft: 35}}>
+          <Table celled fixed style = {{width: 350}}>
+            <Table.Header>
+
+           
+
+              <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                                <td colSpan='1' style={{width:130}}> </td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {props.fips === "_nation" ? "Select State":props.abbrev[props.fips]["state_abbr"]}</td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
+                            </tr>
+                            <Table.Row textAlign = 'center' style = {{height: 40}}>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number partially vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["AdministeredPartial"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent partially vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number fully vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent fully vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+
+                            </Table.Row>
+                            
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + props.date} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+
+                            </Table.Row>
+              
+            </Table.Header>
+          </Table>
+        </Grid.Row>
+        
+      </Grid>
+    </div>
+  )
+}
+
+const RaceBarChart = (props) => {
+
+  // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
+
+  const [hoverBar, setHoverBar] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1)
+
+  const valueAccessor = attribute => ({ payload }) => {
+    return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
+
+  };
+
+  const renderLegend = (props) => {
+    const { payload } = props;
+  
+    return (
+      <ul>
+        {
+          payload.map((entry, index) => (
+            <li key={`item-${index}`}>{entry.value}</li>
+          ))
+        }
+      </ul>
+    );
+  }
+
+  let barSize = 50
+  let strokeWidth = 1.5
+  let labelSize = '13px'
+  let fontWeight = 500
+  let barRatio = 100/103
+
+  const data = [
+    {
+      name: '% Population',
+      white: props.demogData['race'][0]['White'][0]['percentPop']*barRatio,
+      black: props.demogData['race'][0]['African American'][0]['percentPop']*barRatio,
+      hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop']*barRatio,
+      asian: props.demogData['race'][0]['Asian'][0]['percentPop']*barRatio,
+      space: 0.5,
+      american_natives: props.demogData['race'][0]['American Native'][0]['percentPop']*barRatio,
+      NHPI: props.demogData['race'][0]['NHPI'][0]['percentPop']*barRatio,
+      multiOther: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop']*barRatio,
+    },
+    {
+      name: '% Vaccination',
+      white: props.fips == '_nation' ? props.demogData['race'][0]['White'][0]['percentCases']*barRatio
+         :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']*barRatio),
+      black: props.fips == '_nation' ? props.demogData['race'][0]['African American'][0]['percentCases']*barRatio
+         :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']*barRatio),
+      hispanic: props.fips == '_nation' ? props.demogData['race'][0]['Hispanic'][0]['percentCases']*barRatio
+         :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']*barRatio),
+      asian: props.fips == '_nation' ? props.demogData['race'][0]['Asian'][0]['percentCases']*barRatio
+         :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']*barRatio),
+      space: 0.5,
+      american_natives: props.fips == '_nation' ? props.demogData['race'][0]['American Native'][0]['percentCases']*barRatio
+         :(props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
+            : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated']*barRatio),
+      
+      NHPI: props.fips == '_nation' ? props.demogData['race'][0]['NHPI'][0]['percentCases']*barRatio
+            :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
+               : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']*barRatio)
+    }
+  ]
+
+  const legendFormatter = (value, entry) => {
+    if(value !== 'space'){
+      return <span >{value}</span>;
+    } else {
+      return null;
+    }
+    
+  };
+
+const CustomTooltip = ({ active, payload, label }) => {
+
+  if (active && payload && payload.length && hoverBar[0]>=0) {
+    // var colIndex = 6-hoverBar[0];
+
+    return (
+      <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
+        <p style={{color: pieChartRace[hoverBar[0]], marginBottom: 4}}> <b> {hoverBar[2]} </b> </p>
+        {/* ${payload[hoverBar[0]]['name']}  */}
+        <p className="label" style={{marginBottom: 3}}>{`% Population: ${(data[0][hoverBar[1]]/barRatio).toFixed(1)}`}</p>
+        <p className="label" style={{marginBottom: 0}}>{`% Cases : ${(data[1][hoverBar[1]]/barRatio).toFixed(1)}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+console.log('active index', activeIndex);
+
+  return(
+    // <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          width={400}
+          height={500}
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 0,
+            bottom: 10,
+          }}
+        >
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis dataKey="name" />
+          <YAxis domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]}/>
+          <Tooltip content={<CustomTooltip />}
+          // formatter={function(value, name) {
+          //     if(name === hoverBar){
+          //       return [value,name];
+          //     }else {
+          //       return null
+          //     }
+          //   }}
+             cursor={false}/>
+          {/* content={renderTooltip}  content={<CustomTooltip />}*/}
+          <Legend width={410} formatter={legendFormatter}/>
+          <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([2,'hispanic', 'Hispanic']); setActiveIndex(2)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("hispanic")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
+          <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([1,'black', 'African Americans']); setActiveIndex(1)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("black")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
+          <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([3,'asian', 'Asian']); setActiveIndex(3)}}
+            onMouseLeave={()=>setActiveIndex(-1)}> 
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("asian")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+          
+          <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([5,'NHPI', 'Native Hawaiian/Pacific Islanders']); setActiveIndex(5)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={2}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
+          <Bar name='American Native' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([4,'american_natives', 'American Native']); setActiveIndex(4)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={0.5}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
+          </Bar>
+          
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+          
+          <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([0,'white','White']); setActiveIndex(0)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("white")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+
+          <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
+            isAnimationActive={false}> 
+          </Bar>
+
+          <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
+            isAnimationActive={false}
+            onMouseEnter={()=>{setHoverBar([6,'multiOther', 'Multiple/Other']); setActiveIndex(6)}}
+            onMouseLeave={()=>setActiveIndex(-1)}>
+            {/* {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
+              ))
+            } */}
+            <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+          
+        </BarChart>
+      
+  )
+}
+
+function TabExampleBasic(props){
+  console.log('fips', props.fips)
+  const panes = [
+    { menuItem: 'State & Nation Vaccination', render: () => 
+      <Tab.Pane attached={false}>
+        <ComparisonTable 
+          data = {props.data} 
+          fips = {props.fips} 
+          stateName = {props.stateName} 
+          abbrev = {props.abbrev}
+          date = {props.date}
+        />
+      </Tab.Pane> 
+    },
+    { menuItem: 'Vaccination by Race & Ethnicity', render: () => 
+      <Tab.Pane attached={false}>
+        <RaceBarChart
+          demogData = {props.demogData}
+          fips = {props.fips}
+          VaccineData = {props.VaccineData}
+        />
+      </Tab.Pane> },
+  ]
+
+  return(
+    <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+  )
+}
 
 export default function NationalReport(props) {
 
@@ -3105,14 +3509,24 @@ export default function NationalReport(props) {
                       </Grid.Column>
                     </Grid.Row>
                     <Grid>
-                      <Grid.Row columns = {2} style = {{width: 900}}>
+                    <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}>
+                        <Grid.Column style = {{width: 300, paddingleft: 100}}>
+                          <RaceBarChart
+                            demogData = {nationalDemog}
+                            fips = {"_nation"}
+                            VaccineData = {vaccineData}
+                          />
+                        </Grid.Column>
+                        
+                      </Grid.Row>
+                      {/* <Grid.Row columns = {2} style = {{width: 900}}>
                         <Grid.Column style = {{width: 300}}>
                           <Race pop = {false}/>
                         </Grid.Column>
                         <Grid.Column style = {{width: 300, paddingLeft: 20}}>
                           <Race pop = {true}/> 
                         </Grid.Column>
-                      </Grid.Row>
+                      </Grid.Row> */}
                       {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
@@ -3146,24 +3560,31 @@ export default function NationalReport(props) {
                                 (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
                                 {(nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
                                 (nationalDemog['race'][0]['African American'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
-                                <br/>
+                                <br/><br/>
                             </li>
                             <li> Hispanic Americans: {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
                                 (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
                                 {(nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
                                 (nationalDemog['race'][0]['Hispanic'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  < 1? "times lower" : "times higher"} risk
-                                <br/>
+                                <br/><br/>
                             </li>
                             <li> Asian Americans: {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
                                 (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
                                 {(nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1)  == 1 ? "equal" :
                                 (nationalDemog['race'][0]['Asian'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
-                                <br/>
+                                <br/><br/>
                             </li>
                             <li> Native Americans: {(nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
                                 (nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
                                 {(nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
                                 (nationalDemog['race'][0]['American Native'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                                <br/><br/>
+                            </li>
+                            <li> Native Hawaiian and Pacific Islanders: {(nationalDemog['race'][0]['NHPI'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                                (nationalDemog['race'][0]['NHPI'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
+                                {(nationalDemog['race'][0]['NHPI'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
+                                (nationalDemog['race'][0]['NHPI'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
+                                
                             </li>
                           </ul>
                         {/* While people of all races, ages, and sex are impacted by COVID-19, some subgroups are disproportionally 

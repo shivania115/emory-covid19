@@ -375,9 +375,13 @@ export default function USMap(props) {
   const [legendSplit, setLegendSplit] = useState([]);
 
   const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('casesfig');
-  const [metricOptions, setMetricOptions] = useState('casesfig');
-  const [metricName, setMetricName] = useState('Total COVID-19 Cases');
+  const [metric, setMetric] = useState('seriesCompletePopPct');
+  const [metricOptions, setMetricOptions] = useState('seriesCompletePopPct');
+  const [metricName, setMetricName] = useState('Percent of population fully vaccinated');
+
+  // const [metric, setMetric] = useState('casesfig');
+  // const [metricOptions, setMetricOptions] = useState('casesfig');
+  // const [metricName, setMetricName] = useState('Total COVID-19 Cases');
 
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
@@ -451,7 +455,7 @@ export default function USMap(props) {
         });
 
         if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
+          max = (max/1000000).toFixed(1) + "M";
           setLegendMax(max);
         }else if (max > 999) {
           max = (max/1000).toFixed(0) + "K";
@@ -756,7 +760,9 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 <Grid>
-                <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 73, lineHeight: "18pt"}}>
+    
+                <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 73, lineHeight: "18pt", width: 640}}>
+                  
                   <b>Data as of:</b> {date}, updated every weekday.
                 </Header.Content>
                 <Grid.Row>
@@ -770,7 +776,10 @@ export default function USMap(props) {
                         },
                         content: {
                             content: (
-                                  <Header.Content style={{width: 660, fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  <Header.Content style={{width: 640, fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  {stateFips == "_nation" ? "" : stateName + " is reporting the number of fully vaccinated and percent of population fully vaccinated" + (stateFips === "48" ? " (population aged 16 years and older)": 
+                                  " (the entire population)")}
+                                  {stateFips =="_nation" ? "": <br/>}
                                   <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                   For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                   </Header.Content>
@@ -1625,8 +1634,12 @@ export default function USMap(props) {
 
           <Notes />
         </Container>
-        <ReactTooltip> <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
-      </div>
+        {/* <ReactTooltip overridePosition = {(currentEvent, currentTarget, node, place, desiredPlace, effect, offset) => ({left: 400, top: 600})}>  */}
+        <ReactTooltip offset = {{top: 40}}> 
+          <font size="+2"><b >{stateName}</b> </font> 
+          <br/>  
+          <b>Click for county-level data.</b> 
+        </ReactTooltip>      </div>
     </HEProvider>
       );
   } else {

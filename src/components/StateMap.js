@@ -1893,7 +1893,15 @@ export default function StateMap(props) {
           }
           <Notes />
         </Container>
-      {stateFips !== "_nation" && <ReactTooltip> <font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>}
+      {stateFips !== "_nation" && 
+        <ReactTooltip offset = {{top: 40}}> 
+          <font size="+1"> 
+            <b> {countyName} </b> 
+          </font> 
+          <br/> 
+          Click for a detailed report. 
+        
+        </ReactTooltip>}
     </div>
   </HEProvider>
     );

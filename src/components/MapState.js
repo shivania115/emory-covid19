@@ -200,7 +200,15 @@ export default function MapState() {
         }
       });
 
-      if (maxA > 999) {
+      // if (maxA > 999) {
+      //   setLegendMaxA((maxA/1000).toFixed(0) + "K");
+      // }else{
+      //   setLegendMaxA(maxA.toFixed(0));
+      // }
+
+      if (maxA > 999999) {
+        setLegendMaxA((maxA/1000000).toFixed(1) + "M");
+      }else if (maxA > 999) {
         setLegendMaxA((maxA/1000).toFixed(0) + "K");
       }else{
         setLegendMaxA(maxA.toFixed(0));
@@ -237,7 +245,7 @@ export default function MapState() {
         }
       });
       if (maxB > 999999) {
-        setLegendMaxB((maxB/1000000).toFixed(0) + "M");
+        setLegendMaxB((maxB/1000000).toFixed(1) + "M");
       }else if (maxB > 999) {
         setLegendMaxB((maxB/1000).toFixed(0) + "K");
       }else{
