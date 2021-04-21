@@ -24,46 +24,19 @@ export default function DataSources(props){
             </Table.Row>
           </Table.Header>
           <Table.Body>
+
             <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> The <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total COVID-19 Cases</i> is the number of people who have tested positive for COVID-19 in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}>Percent of population fully vaccinated</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Percent of population fully vaccinated</i> is the percentage of the total U.S. population that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census. </Table.Cell>
             </Table.Row>
+
             <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> The <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total COVID-19 Deaths</i> is the number of people who have died of confirmed or presumed COVID-19 cases in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}>Number fully vaccinated</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}>  <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Number fully vaccinated</i> is the number of individuals in the United States recorded in CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received. </Table.Cell>
             </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Cases</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Cases</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Deaths</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Deaths</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases per 100,000</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. 
-                          <br/><br/>
-                          If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. 
-                          This measurement adjusts for different counties’ populations to provide a standardized point of comparison of 
-                          cases in each county.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths per 100,000</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. 
-                            <br/><br/>
-                          If every county in the United States had 100,000 residents, this is how many would have died in each county from 
-                          COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison 
-                          of deaths in each county.
-              </Table.Cell>
-            </Table.Row>
+
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Cases per 100,000</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
@@ -84,6 +57,50 @@ export default function DataSources(props){
                           provide a standardized point of comparison of deaths in each county.
               </Table.Cell>
             </Table.Row>
+
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases per 100,000</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Cases per 100,000</i> helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100,000 people. 
+                          <br/><br/>
+                          If every county in the United States had 100,000 residents, this is how many would have COVID-19 in each county. 
+                          This measurement adjusts for different counties’ populations to provide a standardized point of comparison of 
+                          cases in each county.
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths per 100,000</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States and <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/nvss/bridged_race.htm#Newest%20Data%20Release" target="_blank" rel="noopener noreferrer">Bridged-race population estimates </a> by The National Center for Health Statistics </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total Deaths per 100,000</i> helps us understand COVID-19 deaths by population of the county per 100,000 people. 
+                            <br/><br/>
+                          If every county in the United States had 100,000 residents, this is how many would have died in each county from 
+                          COVID-19. This measurement adjusts for different counties’ populations to provide a standardized point of comparison 
+                          of deaths in each county.
+              </Table.Cell>
+            </Table.Row>
+            
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Cases</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Cases</i> is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Average Daily COVID-19 Deaths</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}>Derived from the <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Average Daily Deaths</i> is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days.</Table.Cell>
+            </Table.Row>
+
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Cases</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> The <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total COVID-19 Cases</i> is the number of people who have tested positive for COVID-19 in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Total COVID-19 Deaths</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> The <a style ={{color: "#397AB9"}} href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" target="_blank" rel="noopener noreferrer"> New York Times Coronavirus (Covid-19) Data </a> in the United States  </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total COVID-19 Deaths</i> is the number of people who have died of confirmed or presumed COVID-19 cases in each county. This database includes case counts from "both laboratory confirmed and probable cases using criteria that were developed by states and the federal government." </Table.Cell>
+            </Table.Row>
+
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Daily Hospitalization</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target="_blank" rel="noopener noreferrer"> U.S. Department of Health & Human Services, Community Profile Report </a> </Table.Cell>
