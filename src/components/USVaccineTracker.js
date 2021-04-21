@@ -2730,7 +2730,7 @@ const USVaccineTracker = (props) => {
             <Notes />
           </Container>
         </Container>
-        <ReactTooltip > 
+        <ReactTooltip offset = {{top: 40}}> 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> 
           {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
