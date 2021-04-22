@@ -27,13 +27,13 @@ export default function DataSources(props){
 
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Percent of population fully vaccinated</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Percent of population fully vaccinated</i> is the percentage of the total U.S. population that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census. </Table.Cell>
             </Table.Row>
 
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Number fully vaccinated</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}>  <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Number fully vaccinated</i> is the number of individuals in the United States recorded in CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received. </Table.Cell>
             </Table.Row>
 
