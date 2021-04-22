@@ -1,4 +1,17 @@
 {
+    "seriesCompletePopPct": {
+        "variable": "seriesCompletePopPct",
+        "name": "Percent of population fully vaccinated",
+        "definition": "is the percentage of the total U.S. population that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
+        "group": "outcomes"},
+
+    "seriesCompleteYes": {
+        "variable": "seriesCompleteYes",
+        "name": "Number fully vaccinated",
+        "definition": "is the number of individuals in the United States recorded in the CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received.",
+        "group": "outcomes"},
+    
+
     "caserate7dayfig": {
         "variable": "caserate7dayfig",
         "name": "Average Daily COVID-19 Cases per 100K",

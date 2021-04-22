@@ -309,15 +309,19 @@ export default function StateMap(props) {
   const [indexP, setIndexP] = useState(0);
 
 
-  // const [varMap, setVarMap] = useState({});
+  const [varMap, setVarMap] = useState({});
+
+  const [metric, setMetric] = useState('seriesCompletePopPct');
+  const [metricOptions, setMetricOptions] = useState('seriesCompletePopPct');
+  const [metricName, setMetricName] = useState('Percent of population fully vaccinated');
+
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
   // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100K');
 
-  const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('casesfig');
-  const [metricOptions, setMetricOptions] = useState('casesfig');
-  const [metricName, setMetricName] = useState('Total COVID-19 Cases');
+  // const [metric, setMetric] = useState('casesfig');
+  // const [metricOptions, setMetricOptions] = useState('casesfig');
+  // const [metricName, setMetricName] = useState('Total COVID-19 Cases');
 
 
   const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
@@ -694,6 +698,11 @@ export default function StateMap(props) {
                           i = 0;
                         }
                       }
+                    }else{
+                      indexP = 0;
+                      hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                      percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
+                      hospDate = stateSeriesDict[stateSeriesDict.length-1].t;
                     }
 
                     if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
@@ -710,6 +719,9 @@ export default function StateMap(props) {
                           i = 0;
                         }
                       }
+                    }else{
+                      percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
                     }
                     
         
@@ -1885,7 +1897,15 @@ export default function StateMap(props) {
           }
           <Notes />
         </Container>
-      {stateFips !== "_nation" && <ReactTooltip> <font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>}
+      {stateFips !== "_nation" && 
+        <ReactTooltip offset = {{top: 40}}> 
+          <font size="+1"> 
+            <b> {countyName} </b> 
+          </font> 
+          <br/> 
+          Click for a detailed report. 
+        
+        </ReactTooltip>}
     </div>
   </HEProvider>
     );
