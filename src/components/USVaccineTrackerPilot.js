@@ -108,7 +108,9 @@ const mortalityColor = [
 const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 const nationColor = '#b1b3b3';
-const pieChartRace = ['#007dba', '#a45791', '#e8ab3b', '#000000', '#b1b3b3', '#00aeef', '#5d3f6d'];
+// const pieChartRace = ['#007dba', '#808080', '#e8ab3b', '#008000', '#a45791', '#000000', '#8f4814']; //不是恶心的绿色
+const pieChartRace = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
+
 
 const VaxColor = [
   "#72ABB1",

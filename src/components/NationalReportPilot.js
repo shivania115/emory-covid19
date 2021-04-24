@@ -258,7 +258,7 @@ const colorPalett = [
   "#e1dce2",
   
 ];
-const pieChartRace = ['#007dba', '#a45791', '#e8ab3b', '#000000', '#b1b3b3'];
+const pieChartRace = ['#007dba', '#a45791', '#e8ab3b', '#000000', '#b1b3b3', '#00CC00', '#5d3f6d'];
 
 
 function numberWithCommas(x) {
@@ -450,14 +450,14 @@ useEffect(()=>{
             },
             content: {
                 content: (
-                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
-                  <Header.Content  style={{fontSize: "14pt"}}>
-                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:65}}>
+                  <Header as='h2' style={{fontWeight: 300, paddingTop: 0, paddingBottom: 20}}>
+                  <Header.Content  style={{fontSize: "19px"}}>
+                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "19px", textAlign:'justify', paddingLeft: '2rem', paddingRight:65}}>
                           This figure shows the trend of daily COVID-19 deaths in the U.S.. The bar height reflects the number of new deaths 
                           per day and the line depicts the 7-day moving average of daily deaths in the U.S.. There were {dailyDeaths} new deaths 
                           associated with COVID-19 reported on {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}, with 
                           an average of {mortalityMean} new deaths per day reported over the past 7 days. 
-                          We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
+                          We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in average new deaths over the past 14-day period. 
                           <br/>
                           <br/>
                           *14-day period includes {monthNames[new Date(data[data.length - 15].t*1000).getMonth()] + " " + new Date(data[data.length - 15].t*1000).getDate() + ", " + new Date(data[data.length - 15].t*1000).getFullYear()} to {monthNames[new Date(data[data.length - 1].t*1000).getMonth()] + " " + new Date(data[data.length - 1].t*1000).getDate() + ", " + new Date(data[data.length - 1].t*1000).getFullYear()}.
@@ -1852,7 +1852,7 @@ const RaceBarChart = (props) => {
       multiOther: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop']*barRatio,
     },
     {
-      name: '% Vaccination',
+      name: '% Cases',
       white: props.fips == '_nation' ? props.demogData['race'][0]['White'][0]['percentCases']*barRatio
          :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
             : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']*barRatio),
@@ -3478,36 +3478,9 @@ export default function NationalReport(props) {
                 
                 
                 <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
-                  <Grid.Column rows = {2} >
+                  <Grid.Column rows = {1} >
 
-                    <Grid.Row style = {{width: 550}}>
-                      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
-                        <div>
-                          <svg width="550" height="80">
-
-                              <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
-                              <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
-
-                              <rect x={235} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
-                              <text x={265} y={35} style={{fontSize: '16px'}}> African American </text>    
-
-                              <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
-                              <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
-
-                              <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
-                              <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
-
-                              <rect x={322.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-                              <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
-
-
-                              {/* {_.map(pieChartRace, (color, i) => {
-                                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                              })}  */}
-                          </svg>
-                        </div>
-                      </Grid.Column>
-                    </Grid.Row>
+                    
                     <Grid>
                     <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}>
                         <Grid.Column style = {{width: 300, paddingleft: 100}}>
@@ -3612,10 +3585,10 @@ export default function NationalReport(props) {
                                         
 
                                         <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
-                                          <Header.Content style={{fontWeight: 400, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 900}}>
+                                          <Header.Content style={{fontWeight: 300, fontSize: "19px", paddingTop: 7, paddingLeft: 0, width: 900}}>
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
-                                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                            <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.cdc.gov/diabetes/data/index.html" target = "_blank" rel="noopener noreferrer"> The CDC COVID Data Tracker </a>
                                             <br/><b>Cases by Race & Ethnicity data as of:</b> {nationalDemogDate}.<br/>
 
                                           </Header.Content>
@@ -3756,11 +3729,11 @@ export default function NationalReport(props) {
                                   content: {
                                       content: (
                                           <Header as='h2' style={{paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                            <Header.Content  style={{fontSize: "14pt"}}>
-                                              <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                            <Header.Content  style={{fontSize: "19px"}}>
+                                              <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                                 <br/>
-                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
+                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC COVID Data Tracker </a>
                                                 <br/><b>Deaths by Race & Ethnicity data as of:</b> {nationalDemogDate}.<br/>
                                               </Header.Subheader>
                                             </Header.Content>
@@ -3988,7 +3961,7 @@ export default function NationalReport(props) {
                       
                     </div>
                     <Grid.Row>
-                        <Accordion style = {{paddingTop: 50, paddingLeft: 98, paddingBottom: 45}} defaultActiveIndex={1} panels={[
+                        <Accordion style = {{paddingTop: 50, paddingLeft: 103, paddingBottom: 45}} defaultActiveIndex={1} panels={[
                               {
                                   key: 'acquire-dog',
                                   title: {
@@ -3998,8 +3971,9 @@ export default function NationalReport(props) {
                                   content: {
                                       content: (
                                           <Header as='h2' style={{paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                            <Header.Content  style={{fontSize: "14pt"}}>
-                                              <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                            <Header.Content  style={{fontSize: "19px"}}>
+                                              <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC COVID Data Tracker </a>
                                                 <br/><b>Data as of:</b> {nationalDemogDate}.<br/>
                                               </Header.Subheader>
                                             </Header.Content>
@@ -4217,7 +4191,7 @@ export default function NationalReport(props) {
                       
                     </div>
                     <Grid.Row>
-                        <Accordion style = {{paddingTop: 50, paddingLeft: 98, paddingBottom: 45}} defaultActiveIndex={1} panels={[
+                        <Accordion style = {{paddingTop: 50, paddingLeft: 103, paddingBottom: 45}} defaultActiveIndex={1} panels={[
                               {
                                   key: 'acquire-dog',
                                   title: {
@@ -4227,8 +4201,9 @@ export default function NationalReport(props) {
                                   content: {
                                       content: (
                                           <Header as='h2' style={{paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                            <Header.Content  style={{fontSize: "14pt"}}>
-                                              <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                            <Header.Content  style={{fontSize: "19px"}}>
+                                              <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC COVID Data Tracker </a>
                                                 <br/><b>Data as of:</b> {nationalDemogDate}.<br/>
                                               </Header.Subheader>
                                             </Header.Content>
@@ -4455,7 +4430,7 @@ export default function NationalReport(props) {
                 <Header.Content  style={{fontSize:"22pt",color: mortalityColor[1], paddingLeft: 140}}>
                   COVID-19 Across U.S. Communities
                   <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingRight: 15}}>
-                    <center> <b style= {{fontSize: "18pt", paddingLeft: 18}}>COVID-19 cases per 100K across the population characteristics of all the counties in the United States </b> </center> 
+                    <center> <b style= {{fontSize: "18pt", paddingLeft: 18}}>COVID-19 cases per 100K by population characteristics across all counties in the United States </b> </center> 
                     <br/>
                     <br/>
                     COVID-19 is affecting communities differently. Community-level factors such as urbanicity,  
@@ -4818,8 +4793,8 @@ export default function NationalReport(props) {
                                 content: {
                                     content: (
                                         <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                          <Header.Content  style={{fontSize: "14pt"}}>
-                                            <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                          <Header.Content  style={{fontSize: "19px"}}>
+                                            <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                             This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                             per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
                                             quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
@@ -5046,8 +5021,8 @@ export default function NationalReport(props) {
                             content: {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                      <Header.Content  style={{fontSize: "19px"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100K residents by county ranking on percentage of population in poverty. The 
                                         y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
@@ -5273,8 +5248,8 @@ export default function NationalReport(props) {
                             content: {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                      <Header.Content  style={{fontSize: "19px"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100K residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
                                         million population or contain the entire or large part of the population of the largest 
@@ -5495,8 +5470,8 @@ export default function NationalReport(props) {
                             content: {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                      <Header.Content  style={{fontSize: "19px"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100K residents by geographic region (y-axis).
                                         <br/>
@@ -5714,8 +5689,8 @@ export default function NationalReport(props) {
                             content: {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                      <Header.Content  style={{fontSize: "19px"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
                                         per 100K residents by percentage African American population ranking. The y-axis 
                                         displays percentage African American population rankings based on quintiles (groups of 20%). 
@@ -5941,8 +5916,8 @@ export default function NationalReport(props) {
                             content: {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                      <Header.Content  style={{fontSize: "19px"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100K residents by residential segregation index. The y-axis displays residential 
                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
@@ -6168,8 +6143,8 @@ export default function NationalReport(props) {
                             content: {
                                 content: (
                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
-                                      <Header.Content  style={{fontSize: "14pt"}}>
-                                        <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt"}}>
+                                      <Header.Content  style={{fontSize: "19px"}}>
+                                        <Header.Subheader style={{color: '#000000', width: 900, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                         This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
                                         100K residents by percent of population with any underlying comorbidity. The y-axis 
                                         displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
