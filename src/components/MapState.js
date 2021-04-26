@@ -77,7 +77,8 @@ export default function MapState() {
         }), d => (d.text !== "region") 
                 && (d.text !== "Any Condition Prevalence2") && (d.text !== "Diabetes Prevalence") && (d.text !== "Heart Disease") 
                 && (d.text !== "Chronic Obstructive Pulmonary Disease") && (d.text !== "Chronic Kidney Disease")
-              && (d.text !== "Urban-Rural Status Name") && (d.text !== "Region Status Code") && (d.group !== "outcomes") && (d.group !== "text") && (d.group !== "other")));
+              && (d.text !== "Urban-Rural Status Name") && (d.text !== "Region Status Code") && (d.group === "exposure" || d.group === "misc" ) && (d.group !== "text") && (d.group !== "other") 
+              || (d.text === "Percent of population fully vaccinated" || d.text === "Number fully vaccinated")));
 
       });
   }, []);
@@ -200,7 +201,15 @@ export default function MapState() {
         }
       });
 
-      if (maxA > 999) {
+      // if (maxA > 999) {
+      //   setLegendMaxA((maxA/1000).toFixed(0) + "K");
+      // }else{
+      //   setLegendMaxA(maxA.toFixed(0));
+      // }
+
+      if (maxA > 999999) {
+        setLegendMaxA((maxA/1000000).toFixed(1) + "M");
+      }else if (maxA > 999) {
         setLegendMaxA((maxA/1000).toFixed(0) + "K");
       }else{
         setLegendMaxA(maxA.toFixed(0));
@@ -237,7 +246,7 @@ export default function MapState() {
         }
       });
       if (maxB > 999999) {
-        setLegendMaxB((maxB/1000000).toFixed(0) + "M");
+        setLegendMaxB((maxB/1000000).toFixed(1) + "M");
       }else if (maxB > 999) {
         setLegendMaxB((maxB/1000).toFixed(0) + "K");
       }else{
@@ -248,7 +257,7 @@ export default function MapState() {
     }
   }, [measureB]);  
   
-  if (data) {
+  if (data && oriData) {
 
     return (
       <HEProvider> 
@@ -310,7 +319,7 @@ export default function MapState() {
                           setMeasureA(value);
                         }}
                       />
-                      {measureA && legendSplitA &&
+                      {measureA && legendSplitA && legendMinA && legendMaxA && colorPalette && 
                       <svg width="450" height="110">
                               
                               {_.map(legendSplitA, (split, i) => {
@@ -374,7 +383,7 @@ export default function MapState() {
                           setMeasureB(value);
                         }}
                       />
-                      {measureB && legendSplitB &&
+                      {measureB && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
                       <svg width="450" height="110">
                               
                               {_.map(legendSplitB, (split, i) => {

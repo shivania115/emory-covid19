@@ -309,15 +309,19 @@ export default function StateMap(props) {
   const [indexP, setIndexP] = useState(0);
 
 
-  // const [varMap, setVarMap] = useState({});
+  const [varMap, setVarMap] = useState({});
+
+  const [metric, setMetric] = useState('seriesCompletePopPct');
+  const [metricOptions, setMetricOptions] = useState('seriesCompletePopPct');
+  const [metricName, setMetricName] = useState('Percent of population fully vaccinated');
+
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
   // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100K');
 
-  const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('casesfig');
-  const [metricOptions, setMetricOptions] = useState('casesfig');
-  const [metricName, setMetricName] = useState('Total COVID-19 Cases');
+  // const [metric, setMetric] = useState('casesfig');
+  // const [metricOptions, setMetricOptions] = useState('casesfig');
+  // const [metricName, setMetricName] = useState('Total COVID-19 Cases');
 
 
   const [covidMetric, setCovidMetric] = useState({t: 'n/a'});
@@ -694,6 +698,11 @@ export default function StateMap(props) {
                           i = 0;
                         }
                       }
+                    }else{
+                      indexP = 0;
+                      hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                      percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
+                      hospDate = stateSeriesDict[stateSeriesDict.length-1].t;
                     }
 
                     if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
@@ -710,6 +719,9 @@ export default function StateMap(props) {
                           i = 0;
                         }
                       }
+                    }else{
+                      percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+
                     }
                     
         
@@ -719,7 +731,7 @@ export default function StateMap(props) {
               }
             
             
-            setHospDate("0" + (new Date(hospDate*1000).toLocaleDateString()).substring(0,2) + (new Date(hospDate*1000).toLocaleDateString()).substring(2));
+            setHospDate(("" + ((new Date(hospDate*1000).getMonth() + 1).toString().padStart(2, "0")) + "/" + new Date(hospDate*1000).getDate().toString().padStart(2, "0") + "/" + new Date(hospDate*1000).getFullYear().toString()));
             //manipulate string
             if (percentChangeCase.toFixed(0) > 0){
               setPercentChangeCases("+" + percentChangeCase.toFixed(0) + "%");
@@ -1471,7 +1483,7 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips === "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Cases and deaths data as of {date}.
+                                    Cases and deaths data as of: {date}.
                                     <br/>
                                     Hospitalization data as of: {hospDate}.
                                     <br/>
@@ -1486,7 +1498,7 @@ export default function StateMap(props) {
                           {stateFips !== "_nation" && stateFips !== "38" &&
                           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
-                                    Cases and deaths data as of {date}.
+                                    Cases and deaths data as of: {date}.
                                     <br/>
                                     Hospitalization data as of: {hospDate}.
                                     <br/>
@@ -1499,7 +1511,7 @@ export default function StateMap(props) {
                           }
 
                           { false && 
-                            <span style={{color: '#73777B', fontSize: "14pt"}}>Cases and deaths data as of {date}</span>
+                            <span style={{color: '#73777B', fontSize: "14pt"}}>Cases and deaths data as of: {date}</span>
                           }
                         </div>
                       ),
@@ -1676,7 +1688,7 @@ export default function StateMap(props) {
                                     <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                     For a complete table of variable definition, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                     <br/><br/>
-                                    Data as of {covidMetric.t==='n/a'?'N/A':(new Date(covidMetric.t*1000).toLocaleDateString())}
+                                    Data as of: {date}
                                     </text>
 
 
@@ -1885,7 +1897,15 @@ export default function StateMap(props) {
           }
           <Notes />
         </Container>
-      {stateFips !== "_nation" && <ReactTooltip> <font size="+1"> <b> {countyName} </b> </font> <br/> Click for a detailed report. </ReactTooltip>}
+      {stateFips !== "_nation" && 
+        <ReactTooltip offset = {{top: 40}}> 
+          <font size="+1"> 
+            <b> {countyName} </b> 
+          </font> 
+          <br/> 
+          Click for a detailed report. 
+        
+        </ReactTooltip>}
     </div>
   </HEProvider>
     );

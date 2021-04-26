@@ -453,7 +453,7 @@ export default function CountyReport() {
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].deathsfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].deathsfig < 0?'0':data["" + stateFips + countyFips].deathsfig.toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortalityfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortalityfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortalityfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].mean7daydeaths==="N/A"? "Loading..." : data["" + stateFips + countyFips].mean7daydeaths < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].mean7daydeaths).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell> 
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips + countyFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].covidmortality7dayfig).toFixed(1)).toLocaleString()} </Table.HeaderCell> 
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips + countyFips].cfr==="N/A"? "Loading..." : data["" + stateFips + countyFips].cfr < 0?'0':numberWithCommas(parseFloat(data["" + stateFips + countyFips].cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
 
                   </Table.Row>
@@ -462,7 +462,7 @@ export default function CountyReport() {
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].deathsfig==="N/A"? "Loading..." : data["" + stateFips].deathsfig < 0?'0':data["" + stateFips].deathsfig.toLocaleString()} </Table.HeaderCell> 
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].covidmortalityfig==="N/A"? "Loading..." : data["" + stateFips].covidmortalityfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].covidmortalityfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].mean7daydeaths==="N/A"? "Loading..." : data["" + stateFips].mean7daydeaths < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].mean7daydeaths).toFixed(0)).toLocaleString()} </Table.HeaderCell>
-                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].covidmortality7dayfig).toFixed(0)).toLocaleString()} </Table.HeaderCell>
+                    <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].covidmortality7dayfig==="N/A"? "Loading..." : data["" + stateFips].covidmortality7dayfig < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].covidmortality7dayfig).toFixed(1)).toLocaleString()} </Table.HeaderCell>
                     <Table.HeaderCell style={{fontSize: '24px'}}> {data["" + stateFips].cfr==="N/A"? "Loading..." : data["" + stateFips].cfr < 0?'0':numberWithCommas(parseFloat(data["" + stateFips].cfr).toFixed(2)).toLocaleString() + "%"} </Table.HeaderCell>
 
                   </Table.Row>
@@ -472,7 +472,7 @@ export default function CountyReport() {
 
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-              <b>Data as of </b>{date}
+              <b>Data as of: </b>{date}
               </text>
 
             </Grid.Row>
@@ -658,7 +658,7 @@ export default function CountyReport() {
           </Grid>
           <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
             <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-            <b>Data as of </b>{date}
+            <b>Data as of: </b>{date}
             </text>
 
           </Grid.Row>
@@ -688,17 +688,17 @@ export default function CountyReport() {
                   <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}> Percent Tested COVID-19 Positive </Header.Content>
                 </div>
                       <svg width = "370" height = "40">
-                          {/* <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                          <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
                           <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
                           <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
                           <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
                           <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
+                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
 
-                          <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                          {/* <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
                           <text x = {92} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
                           <rect x = {stateName.length > 10? 220: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
+                          <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
                       </svg>
                 <div style = {{height: 240}}>
                   { dataTS && <VictoryChart theme={VictoryTheme.material}
@@ -706,7 +706,7 @@ export default function CountyReport() {
                     maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
                     width={550}
                     height={200}       
-                    padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                    padding={{left: 50, right: 30, top: 10, bottom: 40}}
                     containerComponent={<VictoryVoronoiContainer/>}
                     
                     >
@@ -732,16 +732,16 @@ export default function CountyReport() {
                       tickFormat={(y) => (y<1000?y:(y/1000+'k'))}
                       />
                     <VictoryGroup 
-                      colorScale={[stateColor, countyColor]}
+                      colorScale={[nationColor, stateColor, countyColor]}
                     >
-                      {/* <VictoryLine data={dataTS["_nation"]}
+                      <VictoryLine data={dataTS["_nation"]}
                         x='t' y='percentPositive'
                         labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
                         labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
-                        /> */}
+                        />
                       <VictoryLine data={dataTS[stateFips]}
                         minDomain={{ x: dataTS["_nation"][342].t }}
                         maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
@@ -784,7 +784,7 @@ export default function CountyReport() {
                                   }
                                   basic /> </td>
                                 <td colSpan='1' style={{width:220, height: 70, fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
-                                  trigger={<p>Test Positivity per 100K </p>
+                                  trigger={<p>Number of positive tests per 100K </p>
                                   }
                                   content={!dataTS ? "" : "Positive COVID-19 tests per 100K as of " + 
                                   "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
@@ -805,12 +805,12 @@ export default function CountyReport() {
                               <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
                             </Table.Row>
-                            {/* <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> The U.S. </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> 10 </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> 10 </Table.HeaderCell>
+                            <Table.Row textAlign = 'center' style = {{height: 70}}>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> The U.S. </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
-                            </Table.Row> */}
+                            </Table.Row>
                             
                           </Table.Header>
                         </Table>
@@ -842,8 +842,8 @@ export default function CountyReport() {
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
               <i>Data source</i>: U.S. Department of Health & Human Services, <a style ={{color: "#397AB9"}} href = "https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9" target = "_blank" rel="noopener noreferrer"> Community Profile Report</a>. <br/>
-              <b>Data as of </b>
-                {!dataTS? "" : " 0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)}
+              <b>Data as of: </b>
+                {!dataTS? "" : (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getMonth() + 1).toString().padStart(2, "0") + "/" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getDate()).toString().padStart(2, "0") + "/" +  (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).getFullYear()).toString()}
               </text>
               
 
@@ -1010,7 +1010,7 @@ export default function CountyReport() {
               <br/>
               *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
               <br/>
-              <b>Data as of </b>{date}
+              <b>Data as of: </b>{date}
               </text>
 
             </Grid.Row>
@@ -1160,7 +1160,7 @@ export default function CountyReport() {
             </Grid.Row>
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-              <b>Data as of </b>{date}
+              <b>Data as of: </b>{date}
               </text>
 
             </Grid.Row>
@@ -1180,7 +1180,7 @@ export default function CountyReport() {
                   {_.map(data[stateFips + countyFips],
                     (v, k) => {
                       var rmList = ["casesfig", "deathsfig", "dailycases", "dailydeaths", "mean7daycases", "mean7daydeaths", "covidmortalityfig"
-                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips", "region", "urbanrural"];
+                        , "caseratefig", "covidmortality7dayfig", "caserate7dayfig", "fips", "region", "urbanrural", "seriesCompletePopPct", "seriesCompleteYes"];
                       if (!rmList.includes(k)) {
                         return (
                           <Table.Row key={k}>
@@ -1189,15 +1189,17 @@ export default function CountyReport() {
                                                         varMap[k].name === "Household Composition Vulnerability" || 
                                                         varMap[k].name === "Minority/Language Vulnerability" || 
                                                         varMap[k].name === "Housing/Transportaion Vulnerability" ||
-                                                        varMap[k].name === "% Native American" || 
-                                                        varMap[k].name === "% in Group Quarters" ||
+                                                        varMap[k].name === "Percent Native American" || 
+                                                        varMap[k].name === "Percent in Group Quarters" ||
                                                         varMap[k].name === "COVID-19 Community Vulnerability Index"? 
                                                         numberWithCommas(parseFloat(v).toFixed(1)): k === "urbanrural_text" ? 
                                                         v : numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
-                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : (numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" || k === "region_text") ? "" : 
-                                                        varMap[k].name === "% Native American" || varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(1)) : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
+                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : (numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" || k === "region_text" ) ? "" : 
+                                                        varMap[k].name === "Percent Native American" || varMap[k].name === "Percent in Group Quarters" ? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(1)) : 
+                                                        varMap[k].name === "Case Fatality Ratio"? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(2)) : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
                             <Table.Cell>{isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : 
-                                                        varMap[k].name === "% Native American" || varMap[k].name === "% in Group Quarters" ? numberWithCommas(parseFloat(data['_nation'][k]).toFixed(1)) : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0))}</Table.Cell>
+                                                        varMap[k].name === "Percent Native American" || varMap[k].name === "Percent in Group Quarters" ? numberWithCommas(parseFloat(data['_nation'][k]).toFixed(1)) : 
+                                                        varMap[k].name === "Case Fatality Ratio"? numberWithCommas(parseFloat(data["_nation"][k]).toFixed(2)) : numberWithCommas(parseFloat(data["_nation"][k]).toFixed(0))}</Table.Cell>
                           </Table.Row>
                         )
                       }
@@ -1209,7 +1211,7 @@ export default function CountyReport() {
             <Divider hidden/>
             <Grid.Row style={{paddingTop: 0, paddingBottom: 25, paddingLeft: 15}}>
               <text style={{fontWeight: 300, fontSize: "19px", lineHeight: "16pt"}}>
-              <b>Data as of </b>{date}
+              <b>Data as of: </b>{date}
               </text>
 
             </Grid.Row>

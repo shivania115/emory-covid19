@@ -136,12 +136,16 @@ export default function VaccinesFAQ(props){
         </Accordion.Title>
         <Accordion.Content style={{fontSize:'14pt'}}
           active={activeIndex.indexOf(0)>0}>
-          <p>
+          <p style={{marginBottom: 0}}>
             At this time, three vaccines have been approved for use by the United States Food and Drug Administration (<a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines" target="_blank" rel="noopener noreferrer">FDA</a>): 
             one developed by the company <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Pfizer-BioNTech</a>
             , one by <a style ={{color: "#397AB9"}} href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> Moderna </a>, and one by 
             <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> Janssen Biotech, Johnson & Johnson’s vaccine division</a>. 
         </p>
+        <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+            NOTE: The <a style ={{color: "#397AB9"}} href="https://www.fda.gov/news-events/press-announcements/joint-cdc-and-fda-statement-johnson-johnson-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> FDA and CDC </a>
+            recommended a pause in the use of the Johnson and Johnson vaccine “out of an abundance of caution” on 13 April 2021.
+          </p>
         </Accordion.Content>
 
 

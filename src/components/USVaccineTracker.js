@@ -314,7 +314,7 @@ const renderCustomizedLabelFV = ({ cx, cy, midAngle, innerRadius, outerRadius, p
   return (
     <text x={ex} y={ey } 
       fill="black" textAnchor={x > cx? 'end' : 'start'} dominantBaseline="central">
-      {`${(payload.pctAdmDose2).toFixed(0)}%`}
+      {`${(payload.seriesCompletePopPctKnown).toFixed(0)}%`}
 
     </text>
   );
@@ -393,7 +393,7 @@ class Race extends PureComponent{
     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
       dataTot: [
         data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
-        data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
+        data['vaccineRace'][0]['American Native'][0], data['vaccineRace'][0]['African American'][0],
         data['vaccineRace'][0]['White'][0]
       ] }));
   }
@@ -420,7 +420,7 @@ class Race extends PureComponent{
           outerRadius={70}
           paddingAngle = {5}
           fill="#8884d8"
-          dataKey={this.props.pop == true? "percentPop" : "pctAdmDose2"}
+          dataKey={this.props.pop == true? "percentPop" : "seriesCompletePopPctKnown"}
           // onMouseEnter={this.onPieEnter}
           labelLine={true}
           label = {this.props.pop == true? renderCustomizedLabelPop: renderCustomizedLabelFV}
@@ -482,7 +482,7 @@ class Race extends PureComponent{
 //     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => setDataTot(
 //       [
 //         data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
-//         data['vaccineRace'][0]['American Natives'][0], data['vaccineRace'][0]['African American'][0],
+//         data['vaccineRace'][0]['American Native'][0], data['vaccineRace'][0]['African American'][0],
 //         data['vaccineRace'][0]['White'][0]
 //       ] ));
 //   },[])
@@ -509,7 +509,7 @@ class Race extends PureComponent{
 //           outerRadius={70}
 //           paddingAngle = {5}
 //           fill="#8884d8"
-//           dataKey={props.pop == true? "percentPop" :"pctAdmDose2"}
+//           dataKey={props.pop == true? "percentPop" :"seriesCompletePopPctKnown"}
 //           // onMouseEnter={this.onPieEnter}
 //           labelLine={true}
 //           label = {props.pop == true? renderCustomizedLabelPop:renderCustomizedLabelFV }
@@ -554,7 +554,7 @@ class Race extends PureComponent{
 //               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
 
 //               <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-//               <text x={372.5} y={70} style={{fontSize: '16px'}}> American Natives </text>                    
+//               <text x={372.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
 
 
 //               {/* {_.map(pieChartRace, (color, i) => {
@@ -580,7 +580,7 @@ class Race extends PureComponent{
 //               <svg width="450" height="145">
 
 //                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-//                   <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+//                   <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
 //                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
 //                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
 //                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
@@ -623,6 +623,7 @@ const USVaccineTracker = (props) => {
   const [stateLabels, setStateLabels] = useState();
   const [date, setDate] = useState('');
   const [vaccineDate, setVaccineDate] = useState('');
+  const [nationalDemogDate, setNationalDemogDate] = useState('');
 
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
@@ -693,10 +694,9 @@ const USVaccineTracker = (props) => {
           dataTS["_nation"][183].t,
           dataTS["_nation"][214].t,
           dataTS["_nation"][244].t,
-          dataTS["_nation"][275 ].t,
-          dataTS["_nation"][306 ].t,
-          dataTS["_nation"][336 ].t,
-          dataTS["_nation"][366 ].t,
+          dataTS["_nation"][275].t,
+          dataTS["_nation"][306].t,
+          dataTS["_nation"][334].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -727,7 +727,11 @@ const USVaccineTracker = (props) => {
       .then(x => {setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
     
     fetch('/data/vaccinedate.json').then(res => res.json())
-      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10));});
+      .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
+    
+    fetch('/data/nationalDemogdate.json').then(res => res.json())
+      .then(x => setNationalDemogDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => {setStateLabels(x);});
@@ -746,31 +750,31 @@ const USVaccineTracker = (props) => {
       .then(x => {
         setNationalDemog(x);
         var listW = [];
-        var count = (x['vaccineRace'][0]['White'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['White'][0]['percentPop']) 
+        var count = (x['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['White'][0]['percentPop']) 
         + 
-        (x['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['Hispanic'][0]['percentPop']) 
+        (x['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Hispanic'][0]['percentPop']) 
         + 
-        (x['vaccineRace'][0]['African American'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['African American'][0]['percentPop']) 
+        (x['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['African American'][0]['percentPop']) 
         +
-        (x['vaccineRace'][0]['Asian'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['Asian'][0]['percentPop'])
+        (x['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Asian'][0]['percentPop'])
         +
-        (x['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] >= x['vaccineRace'][0]['American Natives'][0]['percentPop']);
+        (x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['American Native'][0]['percentPop']);
 
         setPctVacPopDisp(count);
 
-        if(x['vaccineRace'][0]['White'][0]['pctAdmDose2'] > x['vaccineRace'][0]['White'][0]['percentPop']){
+        if(x['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['White'][0]['percentPop']){
           listW.push("White Americans");
         }
-        if(x['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'] > x['vaccineRace'][0]['Hispanic'][0]['percentPop']){
+        if(x['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['Hispanic'][0]['percentPop']){
           listW.push("Hispanic Americans");
         }
-        if(x['vaccineRace'][0]['African American'][0]['pctAdmDose2'] > x['vaccineRace'][0]['African American'][0]['percentPop']){
+        if(x['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['African American'][0]['percentPop']){
           listW.push("African Americans");
         }
-        if(x['vaccineRace'][0]['Asian'][0]['pctAdmDose2'] > x['vaccineRace'][0]['Asian'][0]['percentPop']){
+        if(x['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['Asian'][0]['percentPop']){
           listW.push("Asian Americans");
         }
-        if(x['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] > x['vaccineRace'][0]['American Natives'][0]['percentPop']){
+        if(x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['American Native'][0]['percentPop']){
           listW.push("Native Americans");
         }
         var joinedStr = listW.join();
@@ -1248,7 +1252,7 @@ const USVaccineTracker = (props) => {
                               barWidth={20}
                               labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0))}
                               data={[
-                                      {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['deathrate']},
+                                      {key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate']},
                                       {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate']},
                                       {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate']},
                                       {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate']},
@@ -1296,8 +1300,8 @@ const USVaccineTracker = (props) => {
                               - Asians: {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
                               {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
                               <br/>
-                              - American Natives: {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
-                              {(nationalDemog['race'][0]['American Natives'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+                              - American Native: {(nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                              {(nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
 
                             
                               
@@ -1374,7 +1378,7 @@ const USVaccineTracker = (props) => {
                               <svg width="450" height="145">
 
                                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Natives</text>                    
+                                  <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
                                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
                                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
                                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
@@ -1403,38 +1407,38 @@ const USVaccineTracker = (props) => {
                         <p style = {{paddingLeft: 40}}>
                           <ul>
                             
-                          {nationalDemog['vaccineRace'][0]['White'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
-                            {nationalDemog['vaccineRace'][0]['White'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
+                          {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
+                            {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
                             " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['White'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated." 
+                            (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
                           :
                             ""} </li>}
 
-                            {nationalDemog['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
-                              {nationalDemog['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
+                            {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
+                              {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
                             " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Hispanic'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated." 
+                            (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
                           :
                             ""}</li>}
 
-                          {nationalDemog['vaccineRace'][0]['African American'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
-                            {nationalDemog['vaccineRace'][0]['African American'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
+                          {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
+                            {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
                             " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['African American'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
                           :
                             ""} </li>}
 
-                          {nationalDemog['vaccineRace'][0]['Asian'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
-                            {nationalDemog['vaccineRace'][0]['Asian'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
+                          {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
+                            {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
                             " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Asian'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
                           :
                             ""}</li>}
 
-                          {nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop'] && <li>
-                            {nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2'] < nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop'] ? 
-                            " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Natives'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['American Natives'][0]['pctAdmDose2']).toFixed(0) + "% of the fully vaccinated."
+                          {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
+                            {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
+                            " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                            (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
                           :
                             ""} </li>}
                           
@@ -1463,8 +1467,12 @@ const USVaccineTracker = (props) => {
                             content: {
                                 content: (
                                   <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
+                                    Race & Ethnicity data as of {nationalDemogDate}.
+                                    <br/>
                                     The demographics of vaccinated adults is obtained from the U.S.
-                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker. </a> 
+                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
+                                    The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
+                                    <br/>
                                     The CDC notes that “These demographic data only represent the geographic areas that 
                                     contributed data and might differ by populations prioritized within each state or 
                                     jurisdiction’s vaccination phase. Every geographic area has a different racial and 
@@ -1673,8 +1681,8 @@ const USVaccineTracker = (props) => {
 
                                             <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
                                             distributed to facilities across the United States by the federal government. 
-                                            Newly distributed per 100K for the U.S. was data as of {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
-                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
+                                            Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
+                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
                                            
                                           </Header.Content>
                                       ),
@@ -1996,7 +2004,7 @@ const USVaccineTracker = (props) => {
                                   barRatio={0.45}
                                   labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                   data={[
-                                    {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['deathrate']},
+                                    {key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate']},
                                     {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate']},
                                     {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate']},
                                     {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate']},
@@ -2553,7 +2561,7 @@ const USVaccineTracker = (props) => {
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                                            <br/><b>Data as of:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> {nationalDemogDate}, updated every weekday.<br/>
                                           
                                           </Header.Content>
                                         </Grid.Row>}
@@ -2722,7 +2730,7 @@ const USVaccineTracker = (props) => {
             <Notes />
           </Container>
         </Container>
-        <ReactTooltip > 
+        <ReactTooltip offset = {{top: 40}}> 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> 
           {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}

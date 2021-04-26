@@ -80,6 +80,271 @@ const colorPalette = [
 const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 
+// function LatestOnThisDashboard(){
+//   return(
+//     <Grid>
+//                 <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
+
+//                   <b>The Latest on this Dashboard</b>
+                  
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 20}}>
+                  
+//                 </Grid.Column>
+
+//                 {/* <Grid.Column style={{width: 190}}>
+//                   <Image width = {175} height = {95} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b> National Report <br/> </b>
+
+//                   The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
+//                   How has the pandemic been trending? What are the most hard hit counties? 
+//                   Who are the most vulnerable communities...
+//                   <a href = "/national-report/pilot">for more</a>. 
+                  
+//                 </Grid.Column> */}
+
+//                 {/* <Grid.Column style={{width: 190}}>
+//                   <Image width = {175} height = {95} href = "/Georgia" src='/LatestOnThisDashboard/GADash.png' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b> Georgia COVID-19 Health Equity Dashboard<br/> </b>
+
+//                   The Georgia COVID-19 Health Equity dashboard is a tool to dynamically track and compare the burden of cases and deaths across counties in Georgia.
+//                   <br/>
+//                   <a href = "/Georgia">Click to Access</a>. 
+                  
+//                 </Grid.Column> */}
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {175} height = {95} href = "/Vaccine-Tracker" src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b> COVID-19 Vaccination Tracker <br/> </b>
+
+//                   The COVID-19 Vaccionation Tracker tab takes you to an overview of current vaccination status in the U.S. and in each state. 
+//                   Check out some FAQs about COVID-19 Vaccines...
+//                   <a href = "/Vaccine-Tracker">for more</a>. 
+                  
+//                 </Grid.Column>
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>Statewide Mask Mandates in the United States<br/></b>
+
+//                   Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in lower case rates during the third wave of the pandemic compared to ...
+//                   <a href = "/media-hub/blog/maskmandate">for more</a>. 
+//                 </Grid.Column>  
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>“You can't have good public health, but not have equity and economic growth”: A conversation with Katie Kirkpatrick about economic responses to the COVID-19 pandemic.<br/></b>
+
+//                   Katie Kirkpatrick discusses the ramifications of COVID-19 in the business community...  
+//                   <a href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">for more</a>. 
+//                 </Grid.Column>        
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>“A teaching opportunity for many years to come”: Dr. Allison Chamberlain on public health education in the time of the COVID-19 pandemic <br/></b>
+
+//                   Dr. Allison Chamberlain talks about blending public health academia and practice, 
+//                   how public health educ... 
+//                   <a href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">for more</a>. 
+//                 </Grid.Column>
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution" src='/podcast images/Robert Breiman.png' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>“Information equity is a critical part of the whole picture”: Dr. Robert Breiman on COVID-19 vaccine development and distribution <br/></b>
+
+//                   Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development 
+//                   and clinical trials...
+//                   <a href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution">for more</a>. 
+//                 </Grid.Column>
+
+
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" src='/podcast images/Vincent Macroni.png' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection <br/></b>
+
+//                   Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor 
+//                   that reduces...
+//                   <a href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances">for more</a>. 
+//                 </Grid.Column>
+
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics" src='/podcast images/Dr. Nneka Sederstrom.jpg' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/></b>
+
+//                   Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
+//                   medicine to the forefront of clinical ethics and pandemic... 
+//                   <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">for more</a>. 
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC" src='/podcast images/JudyMonroe.jpg' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/></b>
+
+//                   In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
+//                   pandemics based on her experience as...
+//                   <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">for more</a>. 
+//                 </Grid.Column>
+//                 {/* <Grid.Column style={{width: 190}}>
+//                   <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes" src='/podcast images/CarlosdelRio.jpg' />
+//                 </Grid.Column>
+//                 <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+//                   <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/></b>
+
+//                   Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
+//                   What can be and needs to be done to change the course of the pandemic? <br/>
+//                   <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes">for more</a>. 
+//                 </Grid.Column> */}
+//               </Grid>
+//   )
+// }
+
+function LatestOnThisDashboard(){
+  return(
+    <Grid>
+                <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
+
+                  <b>The Latest on this Dashboard</b>
+                  
+                </Grid.Column>
+                <Grid.Column style={{width: 20}}>
+                  
+                </Grid.Column>
+
+                {/* <Grid.Column style={{width: 190}}>
+                  <Image width = {175} height = {95} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+                  <b> National Report <br/> </b>
+
+                  The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
+                  How has the pandemic been trending? What are the most hard hit counties? 
+                  Who are the most vulnerable communities...
+                  <a href = "/national-report/pilot">for more</a>. 
+                  
+                </Grid.Column> */}
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {175} height = {95} href = "/Georgia" src='/LatestOnThisDashboard/GADash.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b> Georgia COVID-19 Health Equity Dashboard<br/> </b>
+
+                  The Georgia COVID-19 Health Equity dashboard is a tool to dynamically track and compare the burden of cases and deaths across counties in Georgia.
+                  
+                  <a href = "/Georgia"> Click to Access</a>. 
+                  
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {175} height = {95} href = "/Vaccine-Tracker" src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b> COVID-19 Vaccination Tracker <br/> </b>
+
+                  The COVID-19 Vaccionation Tracker tab takes you to an overview of current vaccination status in the U.S. and in each state. 
+                  For FAQs on COVID-19 Vaccines...
+                  <a href = "/Vaccine-Tracker">click to access</a>. 
+                  
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>Statewide Mask Mandates in the United States<br/></b>
+
+                  State-wide mask mandate in the early stages of the pandemic may have been clever for US states, lowering case rates during the third wave of the pandemic compared to...
+                  <a href = "/media-hub/blog/maskmandate">for more</a>. 
+                </Grid.Column>  
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>“You can't have good public health, but not have equity and economic growth”<br/></b>
+
+                  Katie Kirkpatrick discusses the economic responses to COVID-19 & ramifications in the business community...  
+                  <a href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">for more</a>. 
+                </Grid.Column>        
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>“A teaching opportunity for many years to come”<br/></b>
+
+                  Dr. Allison Chamberlain talks about public health education in the time of the COVID-19 pandemic, blending public health... 
+                   
+                  <a href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">for more</a>. 
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution" src='/podcast images/Robert Breiman.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>“Information equity is a critical part of the whole picture”<br/></b>
+
+                  Dr. Robert Breiman talks about SARS-CoV-2 vaccine development, distribution, and clinical trials...
+                  <a href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution">for more</a>. 
+                </Grid.Column>
+
+
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" src='/podcast images/Vincent Macroni.png' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against COVID-19 <br/></b>
+
+                  Dr. Vincent Marconi talks about the state of research around baricitinib...
+                  <a href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances">for more</a>. 
+                </Grid.Column>
+
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics" src='/podcast images/Dr. Nneka Sederstrom.jpg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/></b>
+
+                  Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
+                  medicine to the forefront of clinical ethics and pandemic... 
+                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">for more</a>. 
+                </Grid.Column>
+                <Grid.Column style={{width: 190}}>
+                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC" src='/podcast images/JudyMonroe.jpg' />
+                </Grid.Column>
+                <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+                  <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/></b>
+
+                  In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
+                  pandemics based on her experience as...
+                  <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">for more</a>. 
+                </Grid.Column>
+                
+              </Grid>
+  )
+}
+
 
 export default function USMap(props) {
   const {
@@ -91,6 +356,7 @@ export default function USMap(props) {
   const [tooltipContent, setTooltipContent] = useState('');
   
   const [date, setDate] = useState('');
+  const [nationalDemogDate, setNationalDemogDate] = useState('');
 
   const [data, setData] = useState();
   const [allTS, setAllTS] = useState();
@@ -109,9 +375,13 @@ export default function USMap(props) {
   const [legendSplit, setLegendSplit] = useState([]);
 
   const [varMap, setVarMap] = useState({});
-  const [metric, setMetric] = useState('casesfig');
-  const [metricOptions, setMetricOptions] = useState('casesfig');
-  const [metricName, setMetricName] = useState('Total COVID-19 Cases');
+  const [metric, setMetric] = useState('seriesCompletePopPct');
+  const [metricOptions, setMetricOptions] = useState('seriesCompletePopPct');
+  const [metricName, setMetricName] = useState('Percent of population fully vaccinated');
+
+  // const [metric, setMetric] = useState('casesfig');
+  // const [metricOptions, setMetricOptions] = useState('casesfig');
+  // const [metricName, setMetricName] = useState('Total COVID-19 Cases');
 
   // const [metric, setMetric] = useState('caserate7dayfig');
   // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
@@ -138,6 +408,9 @@ export default function USMap(props) {
 
     fetch('/data/date.json').then(res => res.json())
       .then(x => setDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
+    fetch('/data/nationalDemogdate.json').then(res => res.json())
+      .then(x => setNationalDemogDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
 
     fetch('/data/nationalDemogdata.json').then(res => res.json())
         .then(x => setNationalDemog(x));
@@ -182,7 +455,7 @@ export default function USMap(props) {
         });
 
         if (max > 999999) {
-          max = (max/1000000).toFixed(0) + "M";
+          max = (max/1000000).toFixed(1) + "M";
           setLegendMax(max);
         }else if (max > 999) {
           max = (max/1000).toFixed(0) + "K";
@@ -340,127 +613,7 @@ export default function USMap(props) {
           
           <div style={{height:130, overflowY:"hidden", overflowX: "auto"}}>
             <div style={{width: "260%"}}>
-              <Grid>
-                <Grid.Column style={{width: 110, fontSize: "16pt", lineHeight: "18pt"}}>
-
-                  <b>The Latest on this Dashboard</b>
-                  
-                </Grid.Column>
-                <Grid.Column style={{width: 20}}>
-                  
-                </Grid.Column>
-
-                {/* <Grid.Column style={{width: 190}}>
-                  <Image width = {175} height = {95} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b> National Report <br/> </b>
-
-                  The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
-                  How has the pandemic been trending? What are the most hard hit counties? 
-                  Who are the most vulnerable communities...
-                  <a href = "/national-report/pilot">for more</a>. 
-                  
-                </Grid.Column> */}
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {175} height = {95} href = "/Vaccine-Tracker" src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b> COVID-19 Vaccination Tracker <br/> </b>
-
-                  The COVID-19 Vaccionation Tracker tab takes you to an overview of current vaccination status in the U.S. and in each state. 
-                  Check out some FAQs about COVID-19 Vaccines...
-                  <a href = "/Vaccine-Tracker">for more</a>. 
-                  
-                </Grid.Column>
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>Statewide Mask Mandates in the United States<br/></b>
-
-                  Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in lower case rates during the third wave of the pandemic compared to ...
-                  <a href = "/media-hub/blog/maskmandate">for more</a>. 
-                </Grid.Column>  
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>“You can't have good public health, but not have equity and economic growth”: A conversation with Katie Kirkpatrick about economic responses to the COVID-19 pandemic.<br/></b>
-
-                  Katie Kirkpatrick discusses the ramifications of COVID-19 in the business community...  
-                  <a href = "/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">for more</a>. 
-                </Grid.Column>        
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>“A teaching opportunity for many years to come”: Dr. Allison Chamberlain on public health education in the time of the COVID-19 pandemic <br/></b>
-
-                  Dr. Allison Chamberlain talks about blending public health academia and practice, 
-                  how public health educ... 
-                  <a href = "/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">for more</a>. 
-                </Grid.Column>
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution" src='/podcast images/Robert Breiman.png' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>“Information equity is a critical part of the whole picture”: Dr. Robert Breiman on COVID-19 vaccine development and distribution <br/></b>
-
-                  Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development 
-                  and clinical trials...
-                  <a href = "/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution">for more</a>. 
-                </Grid.Column>
-
-
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances" src='/podcast images/Vincent Macroni.png' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection <br/></b>
-
-                  Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor 
-                  that reduces...
-                  <a href = "/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances">for more</a>. 
-                </Grid.Column>
-
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics" src='/podcast images/Dr. Nneka Sederstrom.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19 <br/></b>
-
-                  Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of structural racism in 
-                  medicine to the forefront of clinical ethics and pandemic... 
-                  <a href = "/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">for more</a>. 
-                </Grid.Column>
-                <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC" src='/podcast images/JudyMonroe.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness <br/></b>
-
-                  In a podcast, Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during 
-                  pandemics based on her experience as...
-                  <a href = "/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">for more</a>. 
-                </Grid.Column>
-                {/* <Grid.Column style={{width: 190}}>
-                  <Image width = {165} height = {95} href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes" src='/podcast images/CarlosdelRio.jpg' />
-                </Grid.Column>
-                <Grid.Column style={{width: 320, fontSize: "8pt"}}>
-                  <b>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes<br/></b>
-
-                  Considering health equity and disparity, how will the pandemic progress? What is our current strategy? 
-                  What can be and needs to be done to change the course of the pandemic? <br/>
-                  <a href = "/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes">for more</a>. 
-                </Grid.Column> */}
-              </Grid>
+              <LatestOnThisDashboard/>
             </div>
           </div>
         </Grid>
@@ -607,7 +760,9 @@ export default function USMap(props) {
 
                 </ComposableMap>
                 <Grid>
-                <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 73, lineHeight: "18pt"}}>
+    
+                <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 73, lineHeight: "18pt", width: 640}}>
+                  
                   <b>Data as of:</b> {date}, updated every weekday.
                 </Header.Content>
                 <Grid.Row>
@@ -621,7 +776,10 @@ export default function USMap(props) {
                         },
                         content: {
                             content: (
-                                  <Header.Content style={{width: 660, fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  <Header.Content style={{width: 640, fontWeight: 300, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  {stateFips == "_nation" ? "" : stateName + " is reporting the number of fully vaccinated and percent of population fully vaccinated" + (stateFips === "48" ? " (population aged 16 years and older)": 
+                                  " (the entire population)")}
+                                  {stateFips =="_nation" ? "": <br/>}
                                   <b><em> {varMap[metric].name} </em></b> {varMap[metric].definition} <br/>
                                   For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                   </Header.Content>
@@ -721,7 +879,7 @@ export default function USMap(props) {
                                     <VictoryLabel text= {stateFips ? 
                                                         (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
                                                         (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
-                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                                        (allTS[stateFips][allTS[stateFips].length - 1].percent14dayDailyCases).toFixed(0).substring(1) + "%"
                                                         : 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%": 
                                                         (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%": 
@@ -867,7 +1025,7 @@ export default function USMap(props) {
                                 barRatio={0.45}
                                 labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                 data={[
-                                  {key: nationalDemog['race'][0]['American Natives'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Natives'][0]['deathrate']},
+                                  {key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate']},
                                   {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate']},
                                   {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate']},
                                   {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate']},
@@ -1414,7 +1572,7 @@ export default function USMap(props) {
                       The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                       <br/>
                       <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                      <br/><b>Deaths by Race & Ethnicity data as of:</b> {date}.<br/>
+                      <br/><b>Deaths by Race & Ethnicity data as of:</b> {nationalDemogDate}.<br/>
                     
                     </Header.Content>
                   </Grid.Row>}
@@ -1476,8 +1634,12 @@ export default function USMap(props) {
 
           <Notes />
         </Container>
-        <ReactTooltip> <font size="+2"><b >{stateName}</b> </font> <br/>  <b>Click for county-level data.</b> </ReactTooltip>
-      </div>
+        {/* <ReactTooltip overridePosition = {(currentEvent, currentTarget, node, place, desiredPlace, effect, offset) => ({left: 400, top: 600})}>  */}
+        <ReactTooltip offset = {{top: 40}}> 
+          <font size="+2"><b >{stateName}</b> </font> 
+          <br/>  
+          <b>Click for county-level data.</b> 
+        </ReactTooltip>      </div>
     </HEProvider>
       );
   } else {
