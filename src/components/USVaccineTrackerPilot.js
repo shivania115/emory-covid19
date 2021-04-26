@@ -48,6 +48,14 @@ import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
 import {LineChart, Line, BarChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBarMU from '@material-ui/core/AppBar';
+import TabsMU from '@material-ui/core/Tabs';
+import TabMU from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -78,7 +86,7 @@ function numberWithCommas(x) {
     return x;
 }
 
-// const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+const countyGeoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3.0.0/states-10m.json"
 const offsets = {
   VT: [50, -8],
@@ -653,6 +661,45 @@ function TabExampleBasic(props){
   )
 }
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 const toPrint = React.forwardRef((props, ref) => (
   <div ref={ref}>Hello World</div>
@@ -711,13 +758,20 @@ const USVaccineTracker = (props) => {
 
   const [varMap, setVarMap] = useState({});
   const [vaxVarMap, setVaxVarMap] = useState({});
-  const [metric, setMetric] = useState('caserate7dayfig');
+  const [metric, setMetric] = useState('seriesCompletePopPct');
   const [fully, setFully] = useState('PercentAdministeredPartial');
 
   const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
   const [finalStr, setFinalStr] = useState('');
   const [vaccineProp, setVaccine] = useState();
   const [selectedName, setSelectedName] = useState();
+
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const vaccineOptions = [
     {
@@ -1460,86 +1514,190 @@ const USVaccineTracker = (props) => {
                 <Grid.Row columns = {2} style = {{width: 1260}}>
 
                   <Grid.Column style = {{width: 1000, paddingLeft: 30, paddingRight: 50}}>
+                    <div className={classes.root}>
+                      <AppBarMU position="static">
+                        <TabsMU value={value} onChange={handleChange} aria-label="simple tabs example">
+                          <TabMU label="Item One" {...a11yProps(0)} />
+                          <TabMU label="Item Two" {...a11yProps(1)} />
+                          <TabMU label="Item Three" {...a11yProps(2)} />
+                        </TabsMU>
+                      </AppBarMU>
+                      <TabPanel value={value} index={0}>
+                        
+                          <div style = {{paddingBottom: 0, width: 1000}}>
+                            <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
+                              <a style = {{color: "#004071"}}> Click on a state. </a>
+                              <br/>
+                              <br/>
+                              {/* <b> { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}</b> */}
+                            </Header.Content>
 
-                        <div style = {{paddingBottom: 0, width: 1000}}>
-                          <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
-                            <a style = {{color: "#004071"}}> Click on a state. </a>
-                            <br/>
-                            <br/>
-                            {/* <b> { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}</b> */}
-                          </Header.Content>
+                            <Dropdown
+                            style={{background: '#fff', 
+                                    fontSize: "19px",
+                                    fontWeight: 400, 
+                                    theme: '#000000',
+                                    width: '530px',
+                                    top: '0px',
+                                    left: '15px',
+                                    text: "Select",
+                                    borderTop: '0.5px solid #bdbfc1',
+                                    borderLeft: '0.5px solid #bdbfc1',
+                                    borderRight: '0.5px solid #bdbfc1', 
+                                    borderBottom: '0.5px solid #bdbfc1',
+                                    borderRadius: 0,
+                                    minHeight: '1.0em',
+                                    paddingBottom: '0.5em',
+                                    paddingLeft: '1em'}}
+                            text= { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}
+                            pointing = 'top'
+                            search
+                            selection
+                            options={vaccineOptions}
+                            onChange={(e, { value}) => {
+                              setFully(value);
+                              setSelectedName(vaccineList[value]);
+                              
+                                      
+                            }}
+                          />
+                          <br/>
+                            <svg width="460" height="80" >
+                              {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
+                              
+                              {/* {_.map(legendSplit, (splitpoint, i) => {
+                                if(legendSplit[i] < 1){
+                                  return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                                }else if(legendSplit[i] > 999999){
+                                  return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+                                }else if(legendSplit[i] > 999){
+                                  return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+                                }
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                              })}  */}
+                              <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin + "%"}</text>
+                              <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax + "%"}</text>
 
-                          <Dropdown
-                          style={{background: '#fff', 
-                                  fontSize: "19px",
-                                  fontWeight: 400, 
-                                  theme: '#000000',
-                                  width: '530px',
-                                  top: '0px',
-                                  left: '15px',
-                                  text: "Select",
-                                  borderTop: '0.5px solid #bdbfc1',
-                                  borderLeft: '0.5px solid #bdbfc1',
-                                  borderRight: '0.5px solid #bdbfc1', 
-                                  borderBottom: '0.5px solid #bdbfc1',
-                                  borderRadius: 0,
-                                  minHeight: '1.0em',
-                                  paddingBottom: '0.5em',
-                                  paddingLeft: '1em'}}
-                          text= { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}
-                          pointing = 'top'
-                          search
-                          selection
-                          options={vaccineOptions}
-                          onChange={(e, { value}) => {
-                            setFully(value);
-                            setSelectedName(vaccineList[value]);
-                            
-                                    
-                          }}
-                        />
-                        <br/>
-                          <svg width="460" height="80" >
-                            {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
-                            
-                            {/* {_.map(legendSplit, (splitpoint, i) => {
-                              if(legendSplit[i] < 1){
-                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                              }else if(legendSplit[i] > 999999){
-                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-                              }else if(legendSplit[i] > 999){
-                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+
+                              {_.map(colorPalette, (color, i) => {
+                                return <rect key={i} x={20+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                              })} 
+
+
+                              <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                              <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
+                            </svg>
+                          </div>
+
+                          <ComposableMap 
+                            projection="geoAlbersUsa" 
+                            data-tip=""
+                            width={1100} 
+                            height={450}
+                            strokeWidth= {0.1}
+                            stroke= 'black'
+                            offsetX = {-375}
+                            projectionConfig={{scale: 750}}
+
+
+                            >
+                            <Geographies geography={geoUrl}>
+                              {({ geographies }) => 
+                                <svg>
+                                  {setStateFips(fips)}
+                                  {geographies.map(geo => (
+                                    <Geography
+                                      key={geo.rsmKey}
+                                      geography={geo}
+                                      onMouseEnter={()=>{
+                                        const fips = geo.id.substring(0,2);
+                                        const configMatched = configs.find(s => s.fips === fips);
+                                        setFips(fips);
+                                        setHoverName(configMatched.name)
+
+                                      }}
+                                      
+                                      onMouseLeave={()=>{
+
+                                        setTooltipContent("");
+                                        setFips("_nation");
+                                        setHoverName("The United States");
+                                      }}
+
+                                      onClick={()=>{
+                                        const configMatched = configs.find(s => s.fips === fips);
+                                        setStateName(configMatched.name); 
+                                        setStateMapFips(geo.id.substring(0,2));
+
+                                        setClicked(true);
+                                        setShowState(true);
+
+                                      }}
+
+                                      
+                                      fill={stateMapFips===geo.id.substring(0,2) || fips===geo.id.substring(0,2)?colorHighlight:
+                                      ((colorScale && vaccineData[geo.id] && (vaccineData[geo.id][fully]) > 0)?
+                                          colorScale[vaccineData[geo.id][fully]]: 
+                                          (colorScale && vaccineData[geo.id] && vaccineData[geo.id][fully] === 0)?
+                                            '#e1dce2':'#FFFFFF')}
+                                    />
+
+
+                                  ))}
+
+                                  {geographies.map(geo => {
+                                                const centroid = geoCentroid(geo);
+                                                const cur = allStates.find(s => s.val === geo.id);
+                                                return (
+                                                  <g key={geo.rsmKey + "-name"}>
+                                                    {cur &&
+                                                      centroid[0] > -160 &&
+                                                      centroid[0] < -67 &&
+                                                      (Object.keys(offsets).indexOf(cur.id) === -1 ? (
+                                                        <Marker coordinates={centroid}>
+                                                          <text y="2" fontSize={14} textAnchor="middle">
+                                                            {cur.id}
+                                                          </text>
+                                                        </Marker>
+                                                      ) : (
+                                                        <Annotation
+                                                          subject={centroid}
+                                                          dx={offsets[cur.id][0]}
+                                                          dy={offsets[cur.id][1]}
+                                                        >
+                                                          <text x={4} fontSize={14} alignmentBaseline="middle">
+                                                            {cur.id}
+                                                          </text>
+                                                        </Annotation>
+                                                      ))}
+                                                  </g>
+                                                );
+                                              })}
+                                </svg>
                               }
-                              return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                            })}  */}
-                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin + "%"}</text>
-                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax + "%"}</text>
+                            </Geographies>
+                            
 
-
-                            {_.map(colorPalette, (color, i) => {
-                              return <rect key={i} x={20+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                            })} 
-
-
-                            <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                            <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
-
-                          </svg>
-                        </div>
-
+                          </ComposableMap>
+                      
+                          
+                        
+                      </TabPanel>
+                      <TabPanel value={value} index={1}>
                         <ComposableMap 
-                          projection="geoAlbersUsa" 
-                          data-tip=""
-                          width={1100} 
-                          height={450}
-                          strokeWidth= {0.1}
-                          stroke= 'black'
-                          offsetX = {-375}
-                          projectionConfig={{scale: 750}}
+                            projection="geoAlbersUsa" 
+                            data-tip=""
+                            width={1100} 
+                            height={450}
+                            strokeWidth= {0.1}
+                            stroke= 'black'
+                            offsetX = {-375}
+                            projectionConfig={{scale: 750}}
 
 
-                          >
-                          <Geographies geography={geoUrl}>
+                            >
+                          <Geographies geography={countyGeoUrl}>
                             {({ geographies }) => 
                               <svg>
                                 {setStateFips(fips)}
@@ -1548,109 +1706,71 @@ const USVaccineTracker = (props) => {
                                     key={geo.rsmKey}
                                     geography={geo}
                                     onMouseEnter={()=>{
-                                      const fips = geo.id.substring(0,2);
-                                      const configMatched = configs.find(s => s.fips === fips);
-                                      setFips(fips);
-                                      setHoverName(configMatched.name)
 
+                                      // setCountyFips(geo.properties.COUNTYFP);
+                                      // setCountyName(fips2county[stateFips + geo.properties.COUNTYFP]);
                                     }}
                                     
                                     onMouseLeave={()=>{
-
                                       setTooltipContent("");
                                       setFips("_nation");
-                                      setHoverName("The United States");
+                                      setStateFips("_nation");
+                                      setStateName("The United States");   
                                     }}
-
-                                    onClick={()=>{
-                                      const configMatched = configs.find(s => s.fips === fips);
-                                      setStateName(configMatched.name); 
-                                      setStateMapFips(geo.id.substring(0,2));
-
-                                      setClicked(true);
-                                      setShowState(true);
-
-                                    }}
-
                                     
-                                    fill={stateMapFips===geo.id.substring(0,2) || fips===geo.id.substring(0,2)?colorHighlight:
-                                    ((colorScale && vaccineData[geo.id] && (vaccineData[geo.id][fully]) > 0)?
-                                        colorScale[vaccineData[geo.id][fully]]: 
-                                        (colorScale && vaccineData[geo.id] && vaccineData[geo.id][fully] === 0)?
-                                          '#e1dce2':'#FFFFFF')}
+                                    fill={
+                                      ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0)?
+                                      colorScaleState[data[geo.id][metric]]: 
+                                      (colorScaleState && data[geo.id] && data[geo.id][metric] === 0)?
+                                        '#e1dce2':'#FFFFFF')}
+                                    
                                   />
-
-
                                 ))}
-
-                                {geographies.map(geo => {
-                                              const centroid = geoCentroid(geo);
-                                              const cur = allStates.find(s => s.val === geo.id);
-                                              return (
-                                                <g key={geo.rsmKey + "-name"}>
-                                                  {cur &&
-                                                    centroid[0] > -160 &&
-                                                    centroid[0] < -67 &&
-                                                    (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                                                      <Marker coordinates={centroid}>
-                                                        <text y="2" fontSize={14} textAnchor="middle">
-                                                          {cur.id}
-                                                        </text>
-                                                      </Marker>
-                                                    ) : (
-                                                      <Annotation
-                                                        subject={centroid}
-                                                        dx={offsets[cur.id][0]}
-                                                        dy={offsets[cur.id][1]}
-                                                      >
-                                                        <text x={4} fontSize={14} alignmentBaseline="middle">
-                                                          {cur.id}
-                                                        </text>
-                                                      </Annotation>
-                                                    ))}
-                                                </g>
-                                              );
-                                            })}
                               </svg>
                             }
                           </Geographies>
                           
 
                         </ComposableMap>
-                    
-                        <Grid>
-                          <Grid.Row>
-                            {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 14}} defaultActiveIndex={1} panels={[
-                              {
-                                  key: 'acquire-dog',
-                                  title: {
-                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                    },
-                                    content: {
-                                        content: (
-                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 560}}>
-                                            Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
+                      </TabPanel>
+                      <TabPanel value={value} index={2}>
+                        Item Three
+                      </TabPanel>
+                    </div>
+                    <Grid>
+                            <Grid.Row>
+                              {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 14}} defaultActiveIndex={1} panels={[
+                                {
+                                    key: 'acquire-dog',
+                                    title: {
+                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                      },
+                                      content: {
+                                          content: (
+                                            <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 560}}>
+                                              Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
 
-                                            <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                            <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                            <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                              <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                              <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                              <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
-                                            <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                            distributed to facilities across the United States by the federal government. 
-                                            Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
-                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
-                                            
-                                            <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
+                                              <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
+                                              distributed to facilities across the United States by the federal government. 
+                                              Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
+                                              For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
+                                              
+                                              <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                                              <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
-                                          </Header.Content>
-                                      ),
-                                    },
-                                }
-                              ]
-                            } /> }
-                          </Grid.Row>
-                        </Grid>
+                                            </Header.Content>
+                                        ),
+                                      },
+                                  }
+                                ]
+                              } /> }
+                            </Grid.Row>
+                          </Grid>
+                      
                   </Grid.Column>
                   
                   <Grid.Column>
