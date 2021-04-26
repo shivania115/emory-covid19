@@ -428,7 +428,7 @@ function ChartGraph(props) {
                         dataTS["13001"][306].t,
                         dataTS["13001"][337].t,
                         dataTS["13001"][365].t,
-                        // dataTS["13001"][365].t,
+                        // dataTS["13001"][396].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                     ]}
 
@@ -4796,7 +4796,7 @@ export default function StateMap(props) {
                                                     height={230}
                                                     domainPadding={20}
                                                     minDomain={{ y: props.ylog ? 1 : 0 }}
-                                                    padding={{ left: 200, right: 100, top: 4, bottom: 10 }}
+                                                    padding={{ left: 220, right: 100, top: 4, bottom: 10 }}
                                                     style={{ fontSize: "14pt" }}
                                                     containerComponent={<VictoryContainer responsive={false} />}
                                                 >
@@ -5952,7 +5952,7 @@ minDomain={{ y: props.ylog ? 1 : 0 }}
                                             </Grid.Column>
                                         </Grid.Row>
 
-                                        <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                                        <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.3em', paddingLeft: '4em', paddingRight: '2em' }} centered>
                                         Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
                                         </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
@@ -6234,7 +6234,7 @@ minDomain={{ y: props.ylog ? 1 : 0 }}
                                             </Grid.Column>
                                         </Grid.Row>
 
-                                        <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                                        <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.3em', paddingLeft: '4em', paddingRight: '2em' }} centered>
                                             Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
                                             </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
