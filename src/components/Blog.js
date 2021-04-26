@@ -2,16 +2,443 @@ import AppBar from './AppBar';
 import Notes from './Notes';
 import { useParams, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
+import { Container, Grid, List, Divider, Image, Breadcrumb, Header, Segment, Loader } from 'semantic-ui-react'
+import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
-import { Container, Grid, List, Divider, Image, Breadcrumb, Header, Segment } from 'semantic-ui-react'
+function numberWithCommas(x) {
+  x = x.toString();
+  var pattern = /(-?\d+)(\d{3})/;
+  while (pattern.test(x))
+      x = x.replace(pattern, "$1,$2");
+  return x;
+}
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
+        <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
+        <p style = {{margin: 0, color: "#00cc00"}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
+        {/* <p className="desc">Anything you want can be displayed here.</p> */}
+      </div>
+    );
+  }
+
+  return null;
+};
+
+function VaccineDisparityCharts(props){
+  const caseYTickFmt = (y) => {
+    return y<1000?y:(y/1000+'k');
+  };
+  return(
+    <div style = {{fontSize: "19px"}}>
+      <LineChart width={720} height={180} data = {props.data} margin={{right: 20}}>
+        {/* <CartesianGrid stroke='#f5f5f5'/> */}
+        <XAxis dataKey="t" tick={{fontSize: 16}} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
+        <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+        <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={"#000000"} strokeWidth="2" />
+        <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={"#000000"} strokeWidth="2" />
+        <Legend />
+        {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
+
+        {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
+        <Tooltip content={<CustomTooltip />}/>
+      </LineChart>
+    </div>
+  )
+}
 
 export default function AboutUs(props){
   const history = useHistory();
+  const [vaccDisparityData, setVaccDisparityData] = useState();
+
   let {blogTitle} = useParams();
 
+  const caseTickFmt = (tick) => { 
+    // return ((new Date(tick*1000).getMonth()+1) + "/" +  new Date(tick*1000).getDate() + "/" + new Date(tick*1000).getFullYear());
+    return ((new Date(tick*1000).getMonth()+1) + "/" +  new Date(tick*1000).getDate() );
+  };
+
+  useEffect(() =>{
+    if( blogTitle === "test123PilotBlog"){
+      fetch('/data/vaccineDisparity.json').then(res => res.json())
+        .then(x => setVaccDisparityData(x));
+    }
+  }, []);
+  
+  if(true){
   return (
     <div>
     <AppBar/>
+
+    {blogTitle == "test123PilotBlog" &&
+      <Container style={{marginTop: "8em", minWidth: '1260px'}}>
+        <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{fontSize: "14pt"}}/>
+            <Breadcrumb.Section active>Blog</Breadcrumb.Section>
+        </Breadcrumb>
+        
+
+        <div width = {888}>
+        
+            <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
+              <Header.Content>
+                Statewide Mask Mandates <br/>in the United States
+
+                {vaccDisparityData && <VaccineDisparityCharts data = {vaccDisparityData} 
+                    aboveM = {"vaccAbvMeanAap"} belowM = {"vaccBelMeanAap"} outcome = {"percentFullyVaccinated"} 
+                    formatter= {caseTickFmt} />}
+
+                <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
+                  Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move 
+                  for US states resulting in lower case rates during the third wave of the pandemic compared to states with 
+                  later or no mask mandates, our data suggests.
+
+
+                </Header.Subheader>
+                <div style = {{paddingTop: 10}}>
+                       <Image width='600' height='350' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />            
+
+                </div>
+
+                <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <p style={{textAlign:"left", fontWeight: 300}}>
+
+                      By Star Liu & Pooja Naik, Feb. 12, 2021  &nbsp;&nbsp; |  &nbsp;&nbsp; 5-minute read
+
+                      <br/>
+                      Contributors: Gaëlle Sabben, Shivani A. Patel 
+                      <br/>
+                      From Emory University
+
+                      <br/>
+
+                      </p>
+
+                      <br/>
+                      <br/>
+
+                      By October 31<sup>st</sup>, 2020, over 
+                      <a href="https://coronavirus.jhu.edu/us-map" target="_blank" rel="noopener noreferrer"> 9,000,000 cases and 200,000 deaths 
+                          </a> had occurred in the U.S., 
+                      with cases and death rates consistently higher than in most other countries. The ongoing 
+                      epidemic has demanded a comprehensive response from the federal, state, and local governments. 
+                      It has also challenged governments to act in extraordinary ways to contain the spread of coronavirus. 
+                      In addition to thorough handwashing, social distancing and mask wearing are the primary prevention 
+                      strategies available to prevent SARS-CoV-2 (the virus that causes COVID-19 disease) infection. 
+                      In crises like this, citizens look to their governments for information, guidance, and safety. 
+                      The coronavirus pandemic has affected nearly every nation in the world differently and each 
+                      government’s response towards containing the pandemic has been equally distinct. 
+                      This has been the case on a range of measures, including whether leaders implemented local mask mandates.
+
+
+                
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      The shifting guidelines on mask use by the World Health Organization (WHO) and U.S. 
+                      Centers for Disease Control and Prevention (CDC) in the early days of the pandemic 
+                      precipitated confusion among the general public about the effectiveness and utility 
+                      of face masks. Both 
+                      <a href="https://www.vox.com/2020/6/6/21282108/masks-for-covid-19-world-health-organizationguidelines-cloth-n95" target="_blank" rel="noopener noreferrer"> WHO </a>
+                       and 
+                       <a href="https://www.dallasnews.com/news/public-health/2020/04/08/why-did-the-recommendation-on-wearing-face-masks-change/" target="_blank" rel="noopener noreferrer"> CDC </a>
+                        had deemed the use of face masks unnecessary earlier 
+                      in the pandemic but later changed their stance in early June 2020. Several studies on the 
+                      effectiveness of masks in controlling the spread of COVID-19 resulted in 
+                      <a href="https://www.vox.com/2020/5/29/21273625/coronavirus-masks-required-virginia-china-hongkong" target="_blank" rel="noopener noreferrer"> 15 U.S. states suddenly mandating mask use statewide </a>
+                           in April, May, and June. Twelve other states followed 
+                      in June, July, and August 2020. Despite 
+                      <a href="https://jamanetwork.com/journals/jama/fullarticle/2776536" target="_blank" rel="noopener noreferrer"> several strong pieces of evidence </a> on the 
+                      effectiveness of masks in controlling spread, 18 states had failed to put a statewide 
+                      order in place before the peak rose too high to be controlled by October 31<sup>st</sup>, 2020. There 
+                      had been several additional studies of mask effectiveness done before the third wave hit. 
+                      However, since November, almost all the states saw dramatic spikes in cases. Thus, as we 
+                      consider additional measures to control the ongoing spread of COVID-19, we need to examine 
+                      how mask mandates could have had important and lasting effects on recent trends in cases 
+                      and the implications for the coming weeks and months. If mask mandates indeed are crucial 
+                      in controlling the spread of COVID-19, we expect states with early mask mandates to have 
+                      the lowest case rates (per 100,000) among them all. As we negotiate the added risks of 
+                      infection from new and potentially more infectious variants of SARS-CoV-2, we revisit the 
+                      efficacy of mask mandates to remind ourselves of the importance of mask-wearing and 
+                      quantify the performance of statewide mask mandates in controlling the spread of COVID-19 in the United States. 
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      To understand the impact of mask mandates, we compared the trend of COVID-19 
+                      infection rates in the 15 states that first mandated mask usage statewide early 
+                      in the pandemic (before the second wave hit in June) with other states that passed 
+                      the statewide mask mandate order either during or after the second wave and with 
+                      those that had not implemented statewide mask mandates as of October 31<sup>st</sup>, 2020. 
+                      Since November 2020, there have been multiple events such as national elections, 
+                      the Thanksgiving and end of year holidays, the end of the Fall semester for schools, 
+                      and riots that could have contributed to the spike in COVID-19 cases. Thus, our 
+                      window of analysis is cut off on October 31<sup>st</sup>, 2020 and we considered states that 
+                      adopted a statewide order after November to be part of the group of states without 
+                      mandates. Each wave of the pandemic is defined as the period from the point of 
+                      lowest growth in daily cases in the previous period to the next peak. The states 
+                      that passed statewide mask mandate orders in April and early May were classified as 
+                      the “first group of states with mask mandates (Before the second wave).” Those that 
+                      mandated mask use statewide between June 7 and July 19 make up the “second group of 
+                      states with mask mandate (During the second wave).” Finally, we consider the states 
+                      that mandated mask usage statewide after the second curve abated as the “third group 
+                      of states with mask mandate (After the second wave).” The states in each category are listed below in Table 1. 
+
+
+                      
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                        <table style= {{border: "1px solid black", borderCollapse: "collapse"}}>
+                          <tbody>
+                            <tr>
+                              <th rowSpan = "2" style = {{border: "1px solid black", textAlign: "left"}}>States without statewide orders <br/>(N = 18)</th>
+                              <th colSpan = "3" style= {{border: "1px solid black"}}>States that implemented statewide mask mandate orders in different phases of the pandemic </th>
+                            </tr>
+                            <tr>
+                              <th style= {{border: "1px solid black"}}>First (Before the Second wave (N = 15)</th>
+                              <th style= {{border: "1px solid black"}}>Second (During the Second wave (N = 12)</th>
+                              <th style= {{border: "1px solid black"}}>Third (After the Second wave (N = 6)</th>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Alaska</td>
+                              <td style= {{border: "1px solid black"}}>Connecticut</td>
+                              <td style= {{border: "1px solid black"}}>Alabama</td>
+                              <td style= {{border: "1px solid black"}}>Arkansas</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Arizona</td>
+                              <td style= {{border: "1px solid black"}}>Delaware</td>
+                              <td style= {{border: "1px solid black"}}>California</td>
+                              <td style= {{border: "1px solid black"}}>Indiana</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Florida</td>
+                              <td style= {{border: "1px solid black"}}>District of Columbia</td>
+                              <td style= {{border: "1px solid black"}}>Colorado</td>
+                              <td style= {{border: "1px solid black"}}>Minnesota</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Georgia</td>
+                              <td style= {{border: "1px solid black"}}>Hawaii</td>
+                              <td style= {{border: "1px solid black"}}>Kentucky</td>
+                              <td style= {{border: "1px solid black"}}>Ohio</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Idaho</td>
+                              <td style= {{border: "1px solid black"}}>Illinois</td>
+                              <td style= {{border: "1px solid black"}}>Louisiana</td>
+                              <td style= {{border: "1px solid black"}}>Louisiana</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Iowa</td>
+                              <td style= {{border: "1px solid black"}}>Maine</td>
+                              <td style= {{border: "1px solid black"}}>Montana</td>
+                              <td style= {{border: "1px solid black"}}>Wisconsin</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Kansas</td>
+                              <td style= {{border: "1px solid black"}}>Maryland</td>
+                              <td style= {{border: "1px solid black"}}>Nevada</td>
+                              <td rowSpan = "12" style= {{border: "1px solid black"}}></td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Missouri</td>
+                              <td style= {{border: "1px solid black"}}>Massachusetts</td>
+                              <td style= {{border: "1px solid black"}}>North Carolina</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Nebraska</td>
+                              <td style= {{border: "1px solid black"}}>Michigan</td>
+                              <td style= {{border: "1px solid black"}}>Oregon</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>North Dakota</td>
+                              <td style= {{border: "1px solid black"}}>New Jersey</td>
+                              <td style= {{border: "1px solid black"}}>Texas</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Oklahoma</td>
+                              <td style= {{border: "1px solid black"}}>New Mexico</td>
+                              <td style= {{border: "1px solid black"}}>Washington</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>South Carolina</td>
+                              <td style= {{border: "1px solid black"}}>New York</td>
+                              <td style= {{border: "1px solid black"}}>West Virginia</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>South Dakota</td>
+                              <td style= {{border: "1px solid black"}}>Pennsylvania</td>
+                              <td rowSpan = "6" style= {{border: "1px solid black"}}></td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Tennessee</td>
+                              <td style= {{border: "1px solid black"}}>Rhode Island</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Utah</td>
+                              <td style= {{border: "1px solid black"}}>Virginia</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>New Hampshire</td>
+                              <td rowSpan = "3" style= {{border: "1px solid black"}}></td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Wyoming</td>
+
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Mississippi<sup>*</sup></td>
+
+                            </tr>
+                          </tbody> 
+                        </table>
+                      
+                      <br/>
+                      <br/>
+
+                        <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}>
+                            <b>Table 1:</b> List of U.S. states without statewide mask mandate versus states 
+                            that mandated mask use statewide in the early phase of the pandemic (before the second wave), 
+                            in the later phase (during the second wave), and after the second wave (by October 31<sup>st</sup>, 2020). 
+                            <br/>
+                            <sup>*</sup>Mississippi is classified as such because it lifted mask mandate on September 30<sup>th</sup>.<br/>
+                            Data source: 
+                            <a href="https://www.aarp.org/health/healthy-living/info-2020/states-mask-mandates-coronavirus.html" target="_blank" rel="noopener noreferrer"> State-by-State Guide to Face Mask Requirements by Andy Markowitz, AARP.</a>
+                            <br/>
+                            
+                        </p>
+                      
+                      <br/>
+
+                      We computed the COVID-19 case rate in states grouped by our statewide mask mandate 
+                      classification over time. In Figure 1, we show the cumulative COVID-19 cases, adjusted 
+                      by population size, in states by the timing of mask mandate adoption.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                        </Header>
+                                <center> <Image width='800' height='500' src='/blog images/maskmandate/Picture1.png' /> </center>
+                                <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}> 
+                                <b>Figure 1:</b> Cases per 100,000 in states with and without statewide mask 
+                                mandate as of October 31, 2020. Each wave is defined as the period from the 
+                                point of lowest growth in daily cases in the previous period to the next peak.  </p>
+                
+                        <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
+
+                      <br/>
+
+                      One major assumption we make is that mask mandates have a direct effect on 
+                      local residents’ behavior regarding mask-wearing. 15 states, including New York, 
+                      New Jersey, Massachusetts, Rhode Island, and Connecticut, had implemented statewide 
+                      mask mandates by the time first wave’s momentum halted in early June. Indeed, the first 
+                      group of states that turned to mask mandates was the one that saw a spike in cases early 
+                      on, but they were also the ones that limited the spike in case rate during the second wave. 
+                      During the second wave, this group saw a flattened curve compared to states not yet 
+                      implementing mandates, and the difference in case rate has grown only more separated 
+                      since the start of the third wave. As of October 31<sup>st</sup>, the average case rate in states 
+                      without mask mandates was approximately 50% more than (3,445 vs. 2,198 cases) that of 
+                      states with the earliest mask mandates.
+
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                      States that mandated mask use statewide in June, July, and August (the “second group” 
+                      in our categorization), saw a minimal impact of the mandates on COVID-19 case rates in 
+                      the few weeks that followed. While it may be tempting to discredit the effectiveness of 
+                      these mandates, the differences have manifested since September as case rates in states 
+                      without mask mandates skyrocketed. On October 31<sup>st</sup>, states with mask mandates during the 
+                      second wave saw approximately 867 fewer cases per 100,000 compared to the group with no 
+                      mask mandates. Similarly, states with statewide mask mandates after the second wave saw 
+                      approximately 884 fewer cases per 100,000 compared to states without mask mandates. The 
+                      average case rate across the group without mask mandates ticked up in the second half of 
+                      October at an alarming rate while other groups with earlier mask mandates had a steady 
+                      increase during the same period. This discrepancy sheds some light on the positive 
+                      contribution that mask mandates might have played in containing the spread of the 
+                      pandemic - even when the entire nation is experiencing worst of the pandemic.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      Multiple preventive guidelines beyond mask mandates could have contributed to 
+                      controlling the SARS-CoV-2 virus, so it is difficult to assess what proportion of 
+                      case control is due solely to mask mandates. For example, states that adopted early 
+                      mask mandates may have also been more likely to adopt other simultaneous mitigation 
+                      measures. Similarly, those states may have residents that are more compliant with 
+                      public health guidance and invested in community-wide mitigation, which would allow 
+                      decision-makers the political will to implement such measures in the first place. 
+                      Nevertheless, the timing of mask mandates and the subsequent changes in the growth 
+                      of case rates align. States that implemented statewide mask mandates saw a slower 
+                      growth in cases compared to those that did not, not just in the weeks that followed 
+                      the mandates, but for months after. The discrepancies in case rate trends affirm the 
+                      correlation between mask mandates and COVID-19 case rate, but they also highlight 
+                      that a lack thereof puts states in precarious situations.
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      It has been over a year since the first COVID-19 case was discovered in the 
+                      United States, and now the pandemic has reached new heights with increasing 
+                      concerns about potential new variants of the SARS-CoV-2 virus. Statewide mask 
+                      mandates assert states’ positions on following guidelines and could be game 
+                      changing towards flattening the curve in states that are currently experiencing 
+                      the worst of the pandemic. As vaccination slowly catches up, it remains critical 
+                      to mandate masks, protecting each other’s health and buying time for greater 
+                      vaccine uptake. Far too many lives have been lost, and there is no timetable for 
+                      the end of this calamity. We just might get a glimpse of the light at the end of 
+                      tunnel if we take all the necessary courses of action now. 
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                      
+
+                </Header>
+
+              </Header.Content>
+            </Header>
+  
+          
+        </div>
+        <Notes />
+      </Container>
+    }
 
     {blogTitle == "maskmandate" &&
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
@@ -135,124 +562,126 @@ export default function AboutUs(props){
                       <br/>
                       
                         <table style= {{border: "1px solid black", borderCollapse: "collapse"}}>
-                          <tr>
-                            <th rowSpan = "2" style = {{border: "1px solid black", textAlign: "left"}}>States without statewide orders <br/>(N = 18)</th>
-                            <th colspan = "3" style= {{border: "1px solid black"}}>States that implemented statewide mask mandate orders in different phases of the pandemic </th>
-                          </tr>
-                          <tr>
-                            <th style= {{border: "1px solid black"}}>First (Before the Second wave (N = 15)</th>
-                            <th style= {{border: "1px solid black"}}>Second (During the Second wave (N = 12)</th>
-                            <th style= {{border: "1px solid black"}}>Third (After the Second wave (N = 6)</th>
+                          <tbody>
+                            <tr>
+                              <th rowSpan = "2" style = {{border: "1px solid black", textAlign: "left"}}>States without statewide orders <br/>(N = 18)</th>
+                              <th colSpan = "3" style= {{border: "1px solid black"}}>States that implemented statewide mask mandate orders in different phases of the pandemic </th>
+                            </tr>
+                            <tr>
+                              <th style= {{border: "1px solid black"}}>First (Before the Second wave (N = 15)</th>
+                              <th style= {{border: "1px solid black"}}>Second (During the Second wave (N = 12)</th>
+                              <th style= {{border: "1px solid black"}}>Third (After the Second wave (N = 6)</th>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Alaska</td>
-                            <td style= {{border: "1px solid black"}}>Connecticut</td>
-                            <td style= {{border: "1px solid black"}}>Alabama</td>
-                            <td style= {{border: "1px solid black"}}>Arkansas</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Alaska</td>
+                              <td style= {{border: "1px solid black"}}>Connecticut</td>
+                              <td style= {{border: "1px solid black"}}>Alabama</td>
+                              <td style= {{border: "1px solid black"}}>Arkansas</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Arizona</td>
-                            <td style= {{border: "1px solid black"}}>Delaware</td>
-                            <td style= {{border: "1px solid black"}}>California</td>
-                            <td style= {{border: "1px solid black"}}>Indiana</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Arizona</td>
+                              <td style= {{border: "1px solid black"}}>Delaware</td>
+                              <td style= {{border: "1px solid black"}}>California</td>
+                              <td style= {{border: "1px solid black"}}>Indiana</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Florida</td>
-                            <td style= {{border: "1px solid black"}}>District of Columbia</td>
-                            <td style= {{border: "1px solid black"}}>Colorado</td>
-                            <td style= {{border: "1px solid black"}}>Minnesota</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Florida</td>
+                              <td style= {{border: "1px solid black"}}>District of Columbia</td>
+                              <td style= {{border: "1px solid black"}}>Colorado</td>
+                              <td style= {{border: "1px solid black"}}>Minnesota</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Georgia</td>
-                            <td style= {{border: "1px solid black"}}>Hawaii</td>
-                            <td style= {{border: "1px solid black"}}>Kentucky</td>
-                            <td style= {{border: "1px solid black"}}>Ohio</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Georgia</td>
+                              <td style= {{border: "1px solid black"}}>Hawaii</td>
+                              <td style= {{border: "1px solid black"}}>Kentucky</td>
+                              <td style= {{border: "1px solid black"}}>Ohio</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Idaho</td>
-                            <td style= {{border: "1px solid black"}}>Illinois</td>
-                            <td style= {{border: "1px solid black"}}>Louisiana</td>
-                            <td style= {{border: "1px solid black"}}>Louisiana</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Idaho</td>
+                              <td style= {{border: "1px solid black"}}>Illinois</td>
+                              <td style= {{border: "1px solid black"}}>Louisiana</td>
+                              <td style= {{border: "1px solid black"}}>Louisiana</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Iowa</td>
-                            <td style= {{border: "1px solid black"}}>Maine</td>
-                            <td style= {{border: "1px solid black"}}>Montana</td>
-                            <td style= {{border: "1px solid black"}}>Wisconsin</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Iowa</td>
+                              <td style= {{border: "1px solid black"}}>Maine</td>
+                              <td style= {{border: "1px solid black"}}>Montana</td>
+                              <td style= {{border: "1px solid black"}}>Wisconsin</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Kansas</td>
-                            <td style= {{border: "1px solid black"}}>Maryland</td>
-                            <td style= {{border: "1px solid black"}}>Nevada</td>
-                            <td rowspan = "12" style= {{border: "1px solid black"}}></td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Kansas</td>
+                              <td style= {{border: "1px solid black"}}>Maryland</td>
+                              <td style= {{border: "1px solid black"}}>Nevada</td>
+                              <td rowSpan = "12" style= {{border: "1px solid black"}}></td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Missouri</td>
-                            <td style= {{border: "1px solid black"}}>Massachusetts</td>
-                            <td style= {{border: "1px solid black"}}>North Carolina</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Missouri</td>
+                              <td style= {{border: "1px solid black"}}>Massachusetts</td>
+                              <td style= {{border: "1px solid black"}}>North Carolina</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Nebraska</td>
-                            <td style= {{border: "1px solid black"}}>Michigan</td>
-                            <td style= {{border: "1px solid black"}}>Oregon</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Nebraska</td>
+                              <td style= {{border: "1px solid black"}}>Michigan</td>
+                              <td style= {{border: "1px solid black"}}>Oregon</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>North Dakota</td>
-                            <td style= {{border: "1px solid black"}}>New Jersey</td>
-                            <td style= {{border: "1px solid black"}}>Texas</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>North Dakota</td>
+                              <td style= {{border: "1px solid black"}}>New Jersey</td>
+                              <td style= {{border: "1px solid black"}}>Texas</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Oklahoma</td>
-                            <td style= {{border: "1px solid black"}}>New Mexico</td>
-                            <td style= {{border: "1px solid black"}}>Washington</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Oklahoma</td>
+                              <td style= {{border: "1px solid black"}}>New Mexico</td>
+                              <td style= {{border: "1px solid black"}}>Washington</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>South Carolina</td>
-                            <td style= {{border: "1px solid black"}}>New York</td>
-                            <td style= {{border: "1px solid black"}}>West Virginia</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>South Carolina</td>
+                              <td style= {{border: "1px solid black"}}>New York</td>
+                              <td style= {{border: "1px solid black"}}>West Virginia</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>South Dakota</td>
-                            <td style= {{border: "1px solid black"}}>Pennsylvania</td>
-                            <td rowspan = "6" style= {{border: "1px solid black"}}></td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>South Dakota</td>
+                              <td style= {{border: "1px solid black"}}>Pennsylvania</td>
+                              <td rowSpan = "6" style= {{border: "1px solid black"}}></td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Tennessee</td>
-                            <td style= {{border: "1px solid black"}}>Rhode Island</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Tennessee</td>
+                              <td style= {{border: "1px solid black"}}>Rhode Island</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Utah</td>
-                            <td style= {{border: "1px solid black"}}>Virginia</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Utah</td>
+                              <td style= {{border: "1px solid black"}}>Virginia</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>New Hampshire</td>
-                            <td rowspan = "3" style= {{border: "1px solid black"}}></td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>New Hampshire</td>
+                              <td rowSpan = "3" style= {{border: "1px solid black"}}></td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Wyoming</td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Wyoming</td>
 
-                          </tr>
-                          <tr>
-                            <td style= {{border: "1px solid black"}}>Mississippi<sup>*</sup></td>
+                            </tr>
+                            <tr>
+                              <td style= {{border: "1px solid black"}}>Mississippi<sup>*</sup></td>
 
-                          </tr>
+                            </tr>
+                          </tbody>
                         </table>
                       
                       <br/>
@@ -1316,5 +1745,10 @@ export default function AboutUs(props){
 
       </Container>
     }
-    </div>);
+    </div>)
+    }
+    else {
+      return <Loader active inline='centered' />
+    }
+    ;
 }
