@@ -40,7 +40,7 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 // import ReactDOM from 'react-dom';
-// import fips2county from './fips2county.json'
+import fips2county from './fips2county.json'
 // import stateOptions from "./stateOptions.json";
 
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
@@ -880,6 +880,8 @@ function TabExampleBasic(props){
   )
 }
 
+
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -889,6 +891,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
+      
       {...other}
     >
       {value === index && (
@@ -916,8 +919,15 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "theme.palette.background.paper",
   },
+  customTabRoot: {
+    color: "black",
+    backgroundColor: "white"
+  },
+  customTabIndicator: {
+      backgroundColor: "blue"
+  }
 }));
 
 const toPrint = React.forwardRef((props, ref) => (
@@ -955,6 +965,10 @@ const USVaccineTracker = (props) => {
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
 
+  const [countyName, setCountyName] = useState();
+  const [countyTooltip, setCountyTooltip] = useState(false);
+  const [countyFips, setCountyFips] = useState();
+
   const [hoverName, setHoverName] = useState('The United States');
   const [stateName, setStateName] = useState('The United States');
   const [usAbbrev, setUSabbrev] = useState('');
@@ -962,8 +976,8 @@ const USVaccineTracker = (props) => {
   const [fips, setFips] = useState('_nation');
   const [stateFips, setStateFips] = useState();
   const [stateMapFips, setStateMapFips] = useState("_nation");
+  const [countyMapGeoFips, setCountyMapGeoFips] = useState();
   const [config, setConfig] = useState();
-  const [countyFips, setCountyFips] = useState('');
   const [colorScaleState, setColorScaleState] = useState();
   const [legendMaxState, setLegendMaxState] = useState([]);
   const [legendMinState, setLegendMinState] = useState([]);
@@ -1334,7 +1348,7 @@ const USVaccineTracker = (props) => {
 
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries && stateVaccineData) {
-    // console.log(vaccineData[stateFips]);
+    console.log(data["48427"]["seriesCompleteYes"], 'and', countyMapGeoFips);
   return (
     <HEProvider>
       <div >
@@ -1738,18 +1752,21 @@ const USVaccineTracker = (props) => {
                   <Grid.Column style = {{width: 1000, paddingLeft: 30, paddingRight: 50}}>
                     <div className={classes.root}>
                       <AppBarMU position="static">
-                        <TabsMU value={value} onChange={handleChange} aria-label="simple tabs example">
-                          <TabMU label="Item One" {...a11yProps(0)} />
-                          <TabMU label="Item Two" {...a11yProps(1)} />
-                          <TabMU label="Item Three" {...a11yProps(2)} />
+                        <TabsMU value={value} onChange={handleChange} aria-label="simple tabs example"
+                          classes={{
+                            root: classes.customTabRoot,
+                            indicator: classes.customTabIndicator}}
+                        >
+                          <TabMU style = {{textTransform: "capitalize"}} label="State Vaccination" {...a11yProps(0)} />
+                          <TabMU style = {{textTransform: "capitalize"}} label="County Vaccination" {...a11yProps(1)} />
+                          <TabMU style = {{textTransform: "capitalize"}} label="Item Three" {...a11yProps(2)} />
                         </TabsMU>
                       </AppBarMU>
                       <TabPanel value={value} index={0}>
                         
                           <div style = {{paddingBottom: 0, width: 1000}}>
-                            <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
+                            <Header.Content style = {{paddingLeft: -25, fontSize: "22px"}}>
                               <a style = {{color: "#004071"}}> Click on a state. </a>
-                              <br/>
                               <br/>
                               {/* <b> { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}</b> */}
                             </Header.Content>
@@ -1759,9 +1776,9 @@ const USVaccineTracker = (props) => {
                                     fontSize: "19px",
                                     fontWeight: 400, 
                                     theme: '#000000',
-                                    width: '530px',
+                                    width: '540px',
                                     top: '0px',
-                                    left: '15px',
+                                    left: '-20px',
                                     text: "Select",
                                     borderTop: '0.5px solid #bdbfc1',
                                     borderLeft: '0.5px solid #bdbfc1',
@@ -1833,6 +1850,7 @@ const USVaccineTracker = (props) => {
                                       key={geo.rsmKey}
                                       geography={geo}
                                       onMouseEnter={()=>{
+                                        setCountyTooltip(false);
                                         const fips = geo.id.substring(0,2);
                                         const configMatched = configs.find(s => s.fips === fips);
                                         setFips(fips);
@@ -1922,29 +1940,32 @@ const USVaccineTracker = (props) => {
                           <Geographies geography={countyGeoUrl}>
                             {({ geographies }) => 
                               <svg>
-                                {setStateFips(fips)}
+                                {setCountyTooltip(true)}
                                 {geographies.map(geo => (
                                   <Geography
                                     key={geo.rsmKey}
                                     geography={geo}
                                     onMouseEnter={()=>{
+                                      setCountyMapGeoFips(geo.id);
+                                      setCountyFips(geo.properties.COUNTYFP);
+                                      setCountyName(fips2county[geo.id]);
+                                    }}
 
+                                    onClick={()=>{
+                                      // setCountyMapGeoFips(geo.id);
                                       // setCountyFips(geo.properties.COUNTYFP);
-                                      // setCountyName(fips2county[stateFips + geo.properties.COUNTYFP]);
+                                      // setCountyName(fips2county[geo.id]);
                                     }}
                                     
                                     onMouseLeave={()=>{
                                       setTooltipContent("");
-                                      setFips("_nation");
-                                      setStateFips("_nation");
-                                      setStateName("The United States");   
+                                      setCountyTooltip(false)
                                     }}
                                     
-                                    fill={
+                                    fill={countyMapGeoFips===geo.id?colorHighlight:
                                       ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0)?
-                                      colorScaleState[data[geo.id][metric]]: 
-                                      (colorScaleState && data[geo.id] && data[geo.id][metric] === 0)?
-                                        '#e1dce2':'#FFFFFF')}
+                                          colorScaleState[data[geo.id][metric]]: 
+                                          '#FFFFFF')}
                                     
                                   />
                                 ))}
@@ -3042,7 +3063,7 @@ const USVaccineTracker = (props) => {
             <Notes />
           </Container>
         </Container>
-        <ReactTooltip > 
+        {(countyTooltip === false) && <ReactTooltip > 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> 
           {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
@@ -3076,7 +3097,24 @@ const USVaccineTracker = (props) => {
               </tr>
             </thead>
           </table>
-        </ReactTooltip>
+        </ReactTooltip>}
+
+        {countyTooltip && <ReactTooltip > 
+          <font size="+2"><b >{countyName}</b> </font> 
+          <br/> 
+          <table class="ui celled inverted table" >
+            <thead>
+              <tr>
+                <th> # fully vaccinated</th>
+                <th>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompleteYes"])}</th>
+              </tr>
+              <tr>
+                <th> % fully vaccinated</th>
+                <th>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</th>
+              </tr> 
+            </thead>
+          </table>
+        </ReactTooltip>}
       </div>
     </HEProvider>
       );

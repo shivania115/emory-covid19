@@ -258,7 +258,7 @@ const colorPalett = [
   "#e1dce2",
   
 ];
-const pieChartRace = ['#007dba', '#a45791', '#e8ab3b', '#000000', '#b1b3b3', '#00CC00', '#5d3f6d'];
+const pieChartRace = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
 
 
 function numberWithCommas(x) {
@@ -1872,7 +1872,11 @@ const RaceBarChart = (props) => {
       
       NHPI: props.fips == '_nation' ? props.demogData['race'][0]['NHPI'][0]['percentCases']*barRatio
             :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
-               : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']*barRatio)
+               : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']*barRatio),
+
+      multiOther: props.fips == '_nation' ? props.demogData['race'][0]['Multiple/Other'][0]['percentCases']*barRatio
+      :(props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0 
+         : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated']*barRatio)
     }
   ]
 
