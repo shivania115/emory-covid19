@@ -1889,7 +1889,7 @@ export default function StateMap(props) {
                     <Grid.Column style={{ paddingTop: 15, paddingBottom: 3 }}>
                         <Header as='h2' style={{ textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingLeft: "1em" }}>
                             <Header.Content>
-                                COVID-19 Death Rate by Minority Status and Language
+                                COVID-19 Death Rate by Epidemiological Factors
     </Header.Content>
                         </Header>
                         <VictoryChart
