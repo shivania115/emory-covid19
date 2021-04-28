@@ -116,8 +116,8 @@ const mortalityColor = [
 const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 const nationColor = '#b1b3b3';
-// const pieChartRace = ['#007dba', '#808080', '#e8ab3b', '#008000', '#a45791', '#000000', '#8f4814']; //不是恶心的绿色
-const pieChartRace = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
+const pieChartRace = ['#007dba', '#808080', '#e8ab3b', '#008000', '#a45791', '#000000', '#8f4814']; //不是恶心的绿色
+// const pieChartRace = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
 
 
 const VaxColor = [
@@ -421,26 +421,21 @@ const SideRaceBarChart = (props) => {
   let strokeWidth = 0.6
   let labelSize = '11px'
   let fontWeight = 500
-  let barRatio = 100/103
-  let tickFontSize = 10
+  let tickFontSize = props.inTab === true ? 10 : 12
 
   const data = [
     {name:'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
     vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
     :(props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0 
        : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])},
-    {name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
-       : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])},
-    {name:'American Natives', popvalue: props.demogData['race'][0]['American Native'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
-       : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])},
     {name:'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['race'][0]['NHPI'][0]['percentPop'],
     vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
     :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
         : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])},
+    {name:'American Natives', popvalue: props.demogData['race'][0]['American Native'][0]['percentPop'],
+    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
+    :(props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
+       : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])},
     {name: 'Asian', popvalue: props.demogData['race'][0]['Asian'][0]['percentPop'],
     vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
     :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
@@ -452,20 +447,15 @@ const SideRaceBarChart = (props) => {
     {name: 'Hispanic', popvalue: props.demogData['race'][0]['Hispanic'][0]['percentPop'],
     vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']
     :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])}
+        : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])},
+    {name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
+    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
+    :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
+       : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])}
       
   ]
 
 
-
-  const legendFormatter = (value, entry) => {
-    if(value !== 'space'){
-      return <span >{value}</span>;
-    } else {
-      return null;
-    }
-    
-  };
 
 const CustomTooltip = ({ active, payload, label }) => {
 
@@ -484,34 +474,51 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
+const CustomizedLabellist =(props) =>{
+  const { width, height, x, y, value } = props;
+
+  console.log('ll', props)
+
+  return (
+    <g>
+     {(()=>{ if(value > 60){
+        return <text x={x+width-40} y={height/2+y+4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
+     }else{
+       return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>{value.toFixed(1)}%</text>
+    }
+    })()}
+    </g>
+  )
+}
+
 const valueAccessor = (entry) => {
 	return entry ? (entry.value.toFixed(1) + '%') : null;
 };
 
 console.log('active index', activeIndex);
 
-const sideBySideColor = [pieChartRace[6], pieChartRace[0],pieChartRace[4],pieChartRace[5],pieChartRace[3],pieChartRace[1],pieChartRace[2]]
+const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
 
   return(
     <Grid>
-      <Grid.Row>
-      <Grid.Column width={8}>
-    <BarChart
+      <Grid.Column width={props.inTab===true ? 8 : 7} style={{paddingLeft: '0.5rem',paddingRight: 0}}>
+      <Header style={{fontSize: '10pt'}}> <center> % Population </center> </Header>
+      <BarChart
           layout='vertical'
-          width={200}
-          height={300}
+          width={props.inTab===true ? 200 : 260}
+          height={330}
           data={data}
-          // margin={{
-          //   top: 20,
-          //   right: 30,
-          //   left: 0,
-          //   bottom: 10,
-          // }}
+          margin={{
+            top: 0,
+            right: 15,
+            left: props.inTab===true ? 25: 35,
+            bottom: 0,
+          }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis type="number"/>
           {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize}}/>
+          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
           <Tooltip content={<CustomTooltip />}
           // formatter={function(value, name) {
           //     if(name === hoverBar){
@@ -521,17 +528,6 @@ const sideBySideColor = [pieChartRace[6], pieChartRace[0],pieChartRace[4],pieCha
           //     }
           //   }}
              cursor={false}/>
-          {/* content={renderTooltip}  content={<CustomTooltip />}*/}
-          {/* <Legend width={410} iconSize={10} payload={
-            data.map(
-              item => ({
-                id: item.name,
-                type: "square",
-                value: `${item.name}`,
-                color: sideBySideColor[data.indexOf(item)]
-              })
-            )
-          }/> */}
           <Bar dataKey="popvalue"
             isAnimationActive={false}>
             {
@@ -539,29 +535,31 @@ const sideBySideColor = [pieChartRace[6], pieChartRace[0],pieChartRace[4],pieCha
                 <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
               ))
             }
-            <LabelList position="right" valueAccessor={valueAccessor} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            {/* valueAccessor={valueAccessor} */}
           </Bar>
 
           
         </BarChart>
         </Grid.Column>
-        <Grid.Column width={8}>
-    <BarChart
+        <Grid.Column width={props.inTab===true ? 8 : 9} style={{paddingLeft: 0}}>
+          <Header style={{fontSize: '10pt'}}> <center> % Vaccination </center> </Header>
+          <BarChart
           layout='vertical'
-          width={200}
-          height={300}
+          width={props.inTab===true ? 210 : 260}
+          height={330}
           data={data}
-          // margin={{
-          //   top: 20,
-          //   right: 30,
-          //   left: 0,
-          //   bottom: 10,
-          // }}
+          margin={{
+            top: 0,
+            right: 15,
+            left: props.inTab===true ? 30 : 35,
+            bottom: 0,
+          }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis type="number"/>
           {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize}}/>
+          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
           <Tooltip content={<CustomTooltip />}
           // formatter={function(value, name) {
           //     if(name === hoverBar){
@@ -571,8 +569,6 @@ const sideBySideColor = [pieChartRace[6], pieChartRace[0],pieChartRace[4],pieCha
           //     }
           //   }}
              cursor={false}/>
-          {/* content={renderTooltip}  content={<CustomTooltip />}*/}
-          {/* <Legend width={410} formatter={legendFormatter}/> */}
           <Bar dataKey="vaxvalue"
             isAnimationActive={false}>
             {
@@ -580,14 +576,14 @@ const sideBySideColor = [pieChartRace[6], pieChartRace[0],pieChartRace[4],pieCha
                 <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
               ))
             }
-            <LabelList position="right" valueAccessor={valueAccessor} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            {/* valueAccessor={valueAccessor} */}
           </Bar>
 
           
         </BarChart>
         </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
+        {/* <Grid.Row>
         <Grid style={{paddingTop: '3.5rem'}}>
           <Legend width={450} wrapperStyle={{paddingLeft: "60px"}} 
             iconSize={10} payload={
@@ -601,7 +597,7 @@ const sideBySideColor = [pieChartRace[6], pieChartRace[0],pieChartRace[4],pieCha
             )
           }/>
         </Grid>
-        </Grid.Row>
+        </Grid.Row> */}
     </Grid>
       
   )
@@ -874,6 +870,7 @@ function TabExampleBasic(props){
           demogData = {props.demogData}
           fips = {props.fips}
           VaccineData = {props.VaccineData}
+          inTab = {true}
         />
       </Tab.Pane> },
   ]
@@ -1603,7 +1600,7 @@ const USVaccineTracker = (props) => {
               <Grid>
                 
                 <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
-                  <Grid.Column rows = {3} >
+                  <Grid.Column rows = {3} width={11} >
 
                     {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
@@ -1637,11 +1634,12 @@ const USVaccineTracker = (props) => {
                       {/* <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}> */}
                       {/* <Grid.Row columns = {1} > */}
                       {/* <Grid.Column style = {{width: 400, paddingleft: 100}}> */}
-                      <Grid.Column style = {{paddingleft: 100}}>
+                      <Grid.Column style = {{paddingTop: '2.5rem', paddingLeft: '3rem'}}>
                           <SideRaceBarChart
                             demogData = {nationalDemog}
                             fips = {"_nation"}
                             VaccineData = {vaccineData}
+                            inTab = {false}
                           />
                         </Grid.Column>
                         
@@ -1674,12 +1672,12 @@ const USVaccineTracker = (props) => {
 
                     
                   </Grid.Column>
-                  <Grid.Column style = {{width: 450}}>
-                    <div style={{paddingTop: 0, paddingLeft: 80}}>
-                      <Header.Subheader style={{width: 430, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
+                  <Grid.Column width={5}>
+                    <div style={{paddingTop: 0, paddingLeft: 0}}>
+                      <Header.Subheader style={{width: 410, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 0}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
-                        <p style = {{paddingLeft: 40}}>
+                        <p style = {{paddingLeft: 0}}>
                           <ul>
                             
                           {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
