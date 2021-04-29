@@ -40,21 +40,14 @@ import _ from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 // import ReactDOM from 'react-dom';
-import fips2county from './fips2county.json'
+// import fips2county from './fips2county.json'
 // import stateOptions from "./stateOptions.json";
 
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
-import {LineChart, Line, Area, Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBarMU from '@material-ui/core/AppBar';
-import TabsMU from '@material-ui/core/Tabs';
-import TabMU from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -85,7 +78,7 @@ function numberWithCommas(x) {
     return x;
 }
 
-const countyGeoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
+// const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3.0.0/states-10m.json"
 const offsets = {
   VT: [50, -8],
@@ -350,6 +343,16 @@ const renderCustomizedLabelFV = ({ cx, cy, midAngle, innerRadius, outerRadius, p
       </text>
     );
 
+
+  // const radius = innerRadius + (outerRadius - innerRadius) * 0.3;
+  // const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  // const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  
+  // return (
+  //   <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+  //     {`${(percent * 100).toFixed(0)}%`}
+  //   </text>
+  // );
 };
 
 class Race extends PureComponent{
@@ -437,271 +440,168 @@ class Race extends PureComponent{
 }
 
 
-const SideRaceBarChart = (props) => {
+// class Race extends PureComponent{
+// function Race(props) {
+//   // static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
 
-  // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
+//   // state = {
+//   //   activeIndex: 0,
+//   // };
 
-  const [hoverBar, setHoverBar] = useState();
-  const [activeIndex, setActiveIndex] = useState(-1)
+//   // constructor(props) {
+//   //   super(props);
+ 
+//   //   this.state = {
+//   //     dataTot: [],
+//   //     chart: "",
+//   //   };
 
-  // const valueAccessor = attribute => ({ payload }) => {
-  //   return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
+//   //   // this.handleDownload = this.handleDownload.bind(this);
 
-  // };
+//   // }
+//   const [dataTot, setDataTot] = useState([]);
+//   const [activeIndex, setActiveIndex] = useState([]);
+//   const [chart, setChart] = React.useState();
 
-  const renderLegend = (props) => {
-    const { payload } = props;
+//   const onPieEnter = (_, index) => {
+//     setActiveIndex([index]);
+//     // console.log(index);
+//   };
+
+//   const [pngData, ref] = useRechartToPng();
+
+//   const handleDownload = React.useCallback(async () => {
+//     // Send the chart to getPngData
+//     // const pngData = await getPngData(chart);
+//     // Use FileSaver to download the PNG
+//     FileSaver.saveAs(pngData, "test.png");
+//   }, [pngData]);
+
+//   // componentDidMount(){
+//   useEffect(() => {
+//     fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => setDataTot(
+//       [
+//         data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
+//         data['vaccineRace'][0]['American Native'][0], data['vaccineRace'][0]['African American'][0],
+//         data['vaccineRace'][0]['White'][0]
+//       ] ));
+//   },[])
+   
+
+//   // render() {
+//   //   const { dataTot } = this.state;
+//     console.log("here", dataTot)
+
+//     if(dataTot.length>1){
+//     return (
+//       <div >
+//       <PieChart 
+//         // ref={(ref) => setChart(ref)} // Save the ref of the chart
+//         ref={ref}
+//         width={300} height={280}>
+//         <Pie
+//           activeIndex={10}
+//           activeShape={renderActiveShape}
+//           data={dataTot}
+//           cx={150}
+//           cy={150}
+//           innerRadius={50}
+//           outerRadius={70}
+//           paddingAngle = {5}
+//           fill="#8884d8"
+//           dataKey={props.pop == true? "percentPop" :"seriesCompletePopPctKnown"}
+//           // onMouseEnter={this.onPieEnter}
+//           labelLine={true}
+//           label = {props.pop == true? renderCustomizedLabelPop:renderCustomizedLabelFV }
+//           rate = {props.pop}
+          
+//         >
+//           {dataTot.map((entry, index) => (
+//             <Cell key={`cell-${index}`} fill={COLORRace[index % COLORRace.length]} />
+//           ))}
+//         <Label value={props.pop == true? "Population" : "Fully Vaccinated"} position="center" />
+          
+//         </Pie>
+//       </PieChart>
+//       {/* <span style={{ float: "left" }}>
+//         <button onClick={handleDownload}>Download</button>
+//       </span> */}
+//       </div>
+//     );} else {
+//       return null;
+//     }
+// }
+
+// const toPrint = React.forwardRef((props, ref) => (
   
-    return (
-      <ul>
-        {
-          payload.map((entry, index) => (
-            <li key={`item-${index}`}>{entry.value}</li>
-          ))
-        }
-      </ul>
-    );
-  }
+//   <Grid.Column rows = {2} >
+//     <Ref innerRef={ref}>
+//     <Grid.Row style = {{width: 550}}>
+//       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
+//         <div>
+//           <svg width="550" height="80">
 
-  let barSize = 50
-  let strokeWidth = 0.6
-  let labelSize = '11px'
-  let fontWeight = 500
-  let tickFontSize = props.inTab === true ? 10 : 12
+//               <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
+//               <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
 
-  const data = [
-    {name:'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0 
-       : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])},
-    {name:'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['race'][0]['NHPI'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])},
-    {name:'American Natives', popvalue: props.demogData['race'][0]['American Native'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
-       : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])},
-    {name: 'Asian', popvalue: props.demogData['race'][0]['Asian'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])},
-    {name: 'African Americans', popvalue : props.demogData['race'][0]['African American'][0]['percentPop'],
-    vaxvalue : props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])},
-    {name: 'Hispanic', popvalue: props.demogData['race'][0]['Hispanic'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])},
-    {name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-    vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-    :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
-       : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])}
-      
-  ]
+//               <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
+//               <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
+
+//               <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
+//               <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
+
+//               <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
+//               <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
+
+//               <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
+//               <text x={372.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
 
 
+//               {/* {_.map(pieChartRace, (color, i) => {
+//                 return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+//               })}  */}
+//           </svg>
+//         </div>
+//       </Grid.Column>
+//     </Grid.Row>
+//     <Grid >
+//       <Grid.Row columns = {2} style = {{width: 1000}}>
+//         <Grid.Column style = {{width: 300}}>
+//           <Race pop = {false} />
+//         </Grid.Column>
+//         <Grid.Column style = {{width: 300, paddingLeft: 50}}>
+//           <Race pop = {true}/> 
+//         </Grid.Column>
+//       </Grid.Row>
 
-  const CustomTooltip = ({ active, payload, label }) => {
+//       {/* <Grid.Row style = {{width: 900}}>
+//         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+//             <div>
+//               <svg width="450" height="145">
 
-    if (active && payload && payload.length ) {
+//                   <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
+//                   <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
+//                   <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
+//                   <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
+//                   <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
 
-      return (
-        <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
-          <p style={{color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p>
-          {/* ${payload[hoverBar[0]]['name']}  */}
-          <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue.toFixed(1)}</p>
-          <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}</p>
-        </div>
-      );
-    }
 
-    return null;
-  };
-
-  const CustomizedLabellist =(props) =>{
-    const { width, height, x, y, value } = props;
-
-    console.log('ll', props)
-
-    return (
-      <g>
-      {(()=>{ if(value > 60){
-          return <text x={x+width-40} y={height/2+y+4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
-      }else{
-        return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>{value.toFixed(1)}%</text>
-      }
-      })()}
-      </g>
-    )
-  }
-
-  const valueAccessor = (entry) => {
-    return entry ? (entry.value.toFixed(1) + '%') : null;
-  };
-
-  console.log('active index', activeIndex);
-
-  const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
-
-  return(
-    <Grid>
-      <Grid.Column width={props.inTab===true ? 8 : 7} style={{paddingLeft: '0.5rem',paddingRight: 0}}>
-      <Header style={{fontSize: '10pt'}}> <center> % Population </center> </Header>
-      <BarChart
-          layout='vertical'
-          width={props.inTab===true ? 200 : 260}
-          height={330}
-          data={data}
-          margin={{
-            top: 0,
-            right: 15,
-            left: props.inTab===true ? 25: 35,
-            bottom: 0,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis type="number"/>
-          {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
-          <Tooltip content={<CustomTooltip />}
-          // formatter={function(value, name) {
-          //     if(name === hoverBar){
-          //       return [value,name];
-          //     }else {
-          //       return null
-          //     }
-          //   }}
-             cursor={false}/>
-          <Bar dataKey="popvalue"
-            isAnimationActive={false}>
-            {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
-              ))
-            }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
-            {/* valueAccessor={valueAccessor} */}
-          </Bar>
-
-          
-        </BarChart>
-        </Grid.Column>
-        <Grid.Column width={props.inTab===true ? 8 : 9} style={{paddingLeft: 0}}>
-          <Header style={{fontSize: '10pt'}}> <center> % Vaccination </center> </Header>
-          <BarChart
-          layout='vertical'
-          width={props.inTab===true ? 210 : 260}
-          height={330}
-          data={data}
-          margin={{
-            top: 0,
-            right: 15,
-            left: props.inTab===true ? 30 : 35,
-            bottom: 0,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis type="number"/>
-          {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
-          <Tooltip content={<CustomTooltip />}
-          // formatter={function(value, name) {
-          //     if(name === hoverBar){
-          //       return [value,name];
-          //     }else {
-          //       return null
-          //     }
-          //   }}
-             cursor={false}/>
-          <Bar dataKey="vaxvalue"
-            isAnimationActive={false}>
-            {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
-              ))
-            }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
-            {/* valueAccessor={valueAccessor} */}
-          </Bar>
-
-          
-        </BarChart>
-        </Grid.Column>
-        {/* <Grid.Row>
-        <Grid style={{paddingTop: '3.5rem'}}>
-          <Legend width={450} wrapperStyle={{paddingLeft: "60px"}} 
-            iconSize={10} payload={
-            data.map(
-              item => ({
-                id: item.name,
-                type: "square",
-                value: `${item.name}`,
-                color: sideBySideColor[data.indexOf(item)]
-              })
-            )
-          }/>
-        </Grid>
-        </Grid.Row> */}
-    </Grid>
-      
-  )
-}
-
+//                   {_.map(pieChartRace, (color, i) => {
+//                     return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+//                   })} 
+//               </svg>
+//             </div>
+//           </Grid.Column>
+//       </Grid.Row> */}
+//       </Grid>
+//       </Ref>
+//   </Grid.Column>
+  
+// ));
 
 const toPrint = React.forwardRef((props, ref) => (
   <div ref={ref}>Hello World</div>
 ));
-
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: "theme.palette.background.paper",
-  },
-  customTabRoot: {
-    color: "black",
-    backgroundColor: "white"
-  },
-  customTabIndicator: {
-      backgroundColor: "blue"
-  }
-}));
 
 // export default function USVaccineTracker(props) {
 const USVaccineTracker = (props) => {
@@ -725,9 +625,6 @@ const USVaccineTracker = (props) => {
   const [vaccineDate, setVaccineDate] = useState('');
   const [nationalDemogDate, setNationalDemogDate] = useState('');
 
-  const [countyName, setCountyName] = useState();
-  const [countyTooltip, setCountyTooltip] = useState(false);
-
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [VaxSeries, setVaxSeries] = useState();
@@ -743,8 +640,6 @@ const USVaccineTracker = (props) => {
   const [fips, setFips] = useState('_nation');
   const [stateFips, setStateFips] = useState();
   const [stateMapFips, setStateMapFips] = useState("_nation");
-  const [countyMapGeoFips, setCountyMapGeoFips] = useState();
-
   const [config, setConfig] = useState();
   const [countyFips, setCountyFips] = useState('');
   const [colorScaleState, setColorScaleState] = useState();
@@ -760,7 +655,7 @@ const USVaccineTracker = (props) => {
 
   const [varMap, setVarMap] = useState({});
   const [vaxVarMap, setVaxVarMap] = useState({});
-  const [metric, setMetric] = useState('seriesCompletePopPct');
+  const [metric, setMetric] = useState('caserate7dayfig');
   const [fully, setFully] = useState('PercentAdministeredPartial');
 
   const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
@@ -768,12 +663,6 @@ const USVaccineTracker = (props) => {
   const [vaccineProp, setVaccine] = useState();
   const [selectedName, setSelectedName] = useState();
 
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   const vaccineOptions = [
     {
       key: 'PercentAdministeredPartial',
@@ -1442,10 +1331,10 @@ const USVaccineTracker = (props) => {
                     
               <Grid>
                 
-              <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
-                  <Grid.Column rows = {3} width={10} >
+                <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
+                  <Grid.Column rows = {3} >
 
-                    {/* <Grid.Row style = {{width: 550}}>
+                    <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
                           <svg width="550" height="80">
@@ -1466,20 +1355,23 @@ const USVaccineTracker = (props) => {
                               <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
 
 
-                            
+                              {/* {_.map(pieChartRace, (color, i) => {
+                                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                              })}  */}
                           </svg>
                         </div>
                       </Grid.Column>
-                    </Grid.Row> */}
+                    </Grid.Row>
                     <Grid >
-                      <Grid.Column style = {{paddingTop: '2.5rem', paddingLeft: '3rem'}}>
-                          <SideRaceBarChart
-                            demogData = {nationalDemog}
-                            fips = {"_nation"}
-                            VaccineData = {vaccineData}
-                            inTab = {false}
-                          />
-                      </Grid.Column>
+                      <Grid.Row columns = {2} style = {{width: 1000}}>
+                        <Grid.Column style = {{width: 300}}>
+                          <Race pop = {false}/>
+                        </Grid.Column>
+                        <Grid.Column style = {{width: 300, paddingLeft: 50}}>
+                          <Race pop = {true}/> 
+                        </Grid.Column>
+                      </Grid.Row>
+                      
                       {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
@@ -1507,8 +1399,8 @@ const USVaccineTracker = (props) => {
 
                     
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <div style={{paddingTop: 0, paddingLeft: 0}}>
+                  <Grid.Column style = {{width: 450}}>
+                    <div style={{paddingTop: 0, paddingLeft: 140}}>
                       <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
@@ -1574,7 +1466,7 @@ const USVaccineTracker = (props) => {
                             },
                             content: {
                                 content: (
-                                  <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
+                                  <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
                                     Race & Ethnicity data as of {nationalDemogDate}.
                                     <br/>
                                     The demographics of vaccinated adults is obtained from the U.S.
@@ -1606,352 +1498,273 @@ const USVaccineTracker = (props) => {
                 </Grid.Column>
               </Grid>
 
-              
+              <Grid>
 
-                
-              <div className={classes.root} style = {{paddingLeft: 0}}>
-                <div style = {{paddingLeft: 20}}>
-                  <AppBarMU position="static" style = {{width: 1010}}>
-                    <TabsMU value={value} onChange={handleChange} aria-label="simple tabs example"
-                      classes={{
-                        root: classes.customTabRoot,
-                        indicator: classes.customTabIndicator}}
-                    >
-                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="State Vaccination" {...a11yProps(0)} />
-                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="County Vaccination" {...a11yProps(1)} />
-                      {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
-                    </TabsMU>
-                  </AppBarMU>
-                </div>
-                <TabPanel value={value} index={0}>
-                  <Grid style = {{width: 1260}}>
-                    <Grid.Row columns = {2} style = {{width: 1260}}>
-                      <Grid.Column style = {{width: 1000, paddingLeft: 0}}>
+                <Grid.Row columns = {2} style = {{width: 1260}}>
+
+                  <Grid.Column style = {{width: 1000, paddingLeft: 30}}>
 
                         <div style = {{paddingBottom: 0, width: 1000}}>
-                            <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
-                              <a style = {{color: "#004071"}}> Click on a state. </a>
-                              <br/>
-                              
-                              {/* <b> { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}</b> */}
-                            </Header.Content>
-
-                            <Dropdown
-                            style={{background: '#fff', 
-                                    fontSize: "19px",
-                                    fontWeight: 400, 
-                                    theme: '#000000',
-                                    width: '550px',
-                                    top: '0px',
-                                    left: '15px',
-                                    text: "Select",
-                                    borderTop: '0.5px solid #bdbfc1',
-                                    borderLeft: '0.5px solid #bdbfc1',
-                                    borderRight: '0.5px solid #bdbfc1', 
-                                    borderBottom: '0.5px solid #bdbfc1',
-                                    borderRadius: 0,
-                                    minHeight: '1.0em',
-                                    paddingBottom: '0.5em',
-                                    paddingLeft: '1em'}}
-                            text= { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}
-                            pointing = 'top'
-                            search
-                            selection
-                            options={vaccineOptions}
-                            onChange={(e, { value}) => {
-                              setFully(value);
-                              setSelectedName(vaccineList[value]);
-                              
-                                      
-                            }}
-                          />
-                          <br/>
-                            <svg width="460" height="80" >
-                              {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
-                              
-                              {/* {_.map(legendSplit, (splitpoint, i) => {
-                                if(legendSplit[i] < 1){
-                                  return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
-                                }else if(legendSplit[i] > 999999){
-                                  return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
-                                }else if(legendSplit[i] > 999){
-                                  return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
-                                }
-                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
-                              })}  */}
-                              <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin + "%"}</text>
-                              <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax + "%"}</text>
-
-
-                              {_.map(colorPalette, (color, i) => {
-                                return <rect key={i} x={20+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                              })} 
-
-
-                              <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                              <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
-
-                            </svg>
-                          </div>
-
-                          <ComposableMap 
-                            projection="geoAlbersUsa" 
-                            data-tip=""
-                            width={1200} 
-                            height={450}
-                            strokeWidth= {0.1}
-                            stroke= 'black'
-                            offsetX = {-380}
-                            projectionConfig={{scale: 800}}
-
-
-                            >
-                            <Geographies geography={geoUrl}>
-                              {({ geographies }) => 
-                                <svg>
-                                  {setStateFips(fips)}
-                                  {geographies.map(geo => (
-                                    <Geography
-                                      key={geo.rsmKey}
-                                      geography={geo}
-                                      onMouseEnter={()=>{
-                                        setCountyTooltip(false);
-                                        const fips = geo.id.substring(0,2);
-                                        const configMatched = configs.find(s => s.fips === fips);
-                                        setFips(fips);
-                                        setHoverName(configMatched.name)
-
-                                      }}
-                                      
-                                      onMouseLeave={()=>{
-
-                                        setTooltipContent("");
-                                        setFips("_nation");
-                                        setHoverName("The United States");
-                                      }}
-
-                                      onClick={()=>{
-                                        const configMatched = configs.find(s => s.fips === fips);
-                                        setStateName(configMatched.name); 
-                                        setStateMapFips(geo.id.substring(0,2));
-
-                                        setClicked(true);
-                                        setShowState(true);
-
-                                      }}
-
-                                      
-                                      fill={stateMapFips===geo.id.substring(0,2) || fips===geo.id.substring(0,2)?colorHighlight:
-                                      ((colorScale && vaccineData[geo.id] && (vaccineData[geo.id][fully]) > 0)?
-                                          colorScale[vaccineData[geo.id][fully]]: 
-                                          (colorScale && vaccineData[geo.id] && vaccineData[geo.id][fully] === 0)?
-                                            '#e1dce2':'#FFFFFF')}
-                                    />
-
-
-                                  ))}
-
-                                  {geographies.map(geo => {
-                                                const centroid = geoCentroid(geo);
-                                                const cur = allStates.find(s => s.val === geo.id);
-                                                return (
-                                                  <g key={geo.rsmKey + "-name"}>
-                                                    {cur &&
-                                                      centroid[0] > -160 &&
-                                                      centroid[0] < -67 &&
-                                                      (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                                                        <Marker coordinates={centroid}>
-                                                          <text y="2" fontSize={14} textAnchor="middle">
-                                                            {cur.id}
-                                                          </text>
-                                                        </Marker>
-                                                      ) : (
-                                                        <Annotation
-                                                          subject={centroid}
-                                                          dx={offsets[cur.id][0]}
-                                                          dy={offsets[cur.id][1]}
-                                                        >
-                                                          <text x={4} fontSize={14} alignmentBaseline="middle">
-                                                            {cur.id}
-                                                          </text>
-                                                        </Annotation>
-                                                      ))}
-                                                  </g>
-                                                );
-                                              })}
-                                </svg>
-                              }
-                            </Geographies>
-                            
-
-                          </ComposableMap>
-                        
-                            <Grid>
-                              <Grid.Row>
-                                {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 35}} defaultActiveIndex={1} panels={[
-                                  {
-                                      key: 'acquire-dog',
-                                      title: {
-                                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                        },
-                                        content: {
-                                            content: (
-                                              <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", fontFamily: 'lato', fontSize: "19px", lineHeight: "20px", width: 990}}>
-                                                Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
-
-                                                <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
-                                                <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
-                                                <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
-                                                <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
-
-                                                <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
-                                                distributed to facilities across the United States by the federal government. 
-                                                Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
-                                                For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
-                                              
-                                              </Header.Content>
-                                          ),
-                                        },
-                                    }
-                                  ]
-                                } /> }
-                              </Grid.Row>
-                            </Grid>
-                      </Grid.Column>
-                      
-                      <Grid.Column style ={{width: 250}}>
-                        <Header as='h2' style={{fontWeight: 400}}>
-                          <Header.Content style={{width : 250, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 45, paddingLeft: 30}}>
-                            Vaccination Status in <br/> <b>{stateName}</b>
-                            
-                            
+                          <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
+                            <a style = {{color: "#004071"}}> Click on a state. </a>
+                            <br/>
+                            <br/>
+                            {/* <b> { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}</b> */}
                           </Header.Content>
-                        </Header>
-                        <Grid>
-                          <Grid.Row style={{width: 355, paddingLeft: 0, paddingTop: 30}}>
-                            <Table celled fixed style = {{width: 355}}>
-                              <Table.Header>
 
-                                <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
-                                    <td colSpan='1' style={{width:135}}> </td>
-                                    <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
-                                    <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
-                                </tr>
-                                <Table.Row textAlign = 'center' style = {{height: 40}}>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Number partially vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
-
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Percent partially vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Number fully vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
-
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Percent fully vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
-
-                                </Table.Row>
-                                {/* <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Moderna"])} </Table.HeaderCell>
-
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {"Pfizer \n \n Vaccine"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Pfizer"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Pfizer"])} </Table.HeaderCell>
-
-                                </Table.Row> */}
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
-
-                                </Table.Row>
-                                
-                              </Table.Header>
-                            </Table>
-                          </Grid.Row>
-                          
-                        </Grid>
-                        
-                      </Grid.Column>
-                    </Grid.Row> 
-                  </Grid>
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                  <div style = {{paddingLeft: 50}}>
-                    <ComposableMap 
-                        projection="geoAlbersUsa" 
-                        data-tip=""
-                        width={950} 
-                        height={500}
-                        strokeWidth= {0.1}
-                        stroke= 'black'
-                        offsetX = {0}
-                        projectionConfig={{scale: 1000}}
+                          <Dropdown
+                          style={{background: '#fff', 
+                                  fontSize: "19px",
+                                  fontWeight: 400, 
+                                  theme: '#000000',
+                                  width: '530px',
+                                  top: '0px',
+                                  left: '15px',
+                                  text: "Select",
+                                  borderTop: '0.5px solid #bdbfc1',
+                                  borderLeft: '0.5px solid #bdbfc1',
+                                  borderRight: '0.5px solid #bdbfc1', 
+                                  borderBottom: '0.5px solid #bdbfc1',
+                                  borderRadius: 0,
+                                  minHeight: '1.0em',
+                                  paddingBottom: '0.5em',
+                                  paddingLeft: '1em'}}
+                          text= { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}
+                          pointing = 'top'
+                          search
+                          selection
+                          options={vaccineOptions}
+                          onChange={(e, { value}) => {
+                            setFully(value);
+                            setSelectedName(vaccineList[value]);
+                            
+                                    
+                          }}
+                        />
+                        <br/>
+                          <svg width="460" height="80" >
+                            {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
+                            
+                            {/* {_.map(legendSplit, (splitpoint, i) => {
+                              if(legendSplit[i] < 1){
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(1)}</text>                    
+                              }else if(legendSplit[i] > 999999){
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000000).toFixed(0) + "M"}</text>                    
+                              }else if(legendSplit[i] > 999){
+                                return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplit[i]/1000).toFixed(0) + "K"}</text>                    
+                              }
+                              return <text key = {i} x={40 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplit[i].toFixed(0)}</text>                    
+                            })}  */}
+                            <text x={20} y={35} style={{fontSize: '0.7em'}}>{legendMin + "%"}</text>
+                            <text x={140} y={35} style={{fontSize: '0.7em'}}>{legendMax + "%"}</text>
 
 
-                        >
-                      <Geographies geography={countyGeoUrl}>
-                        {({ geographies }) => 
-                          <svg>
-                            {setCountyTooltip(true)}
-                            {geographies.map(geo => (
-                              <Geography
-                                key={geo.rsmKey}
-                                geography={geo}
-                                onMouseEnter={()=>{
-                                  setCountyMapGeoFips(geo.id);
-                                  setCountyFips(geo.properties.COUNTYFP);
-                                  setCountyName(fips2county[geo.id]);
-                                  const fips = geo.id.substring(0,2);
-                                  const configMatched = configs.find(s => s.fips === fips);
-                                  setHoverName(configMatched.name)
-                                }}
+                            {_.map(colorPalette, (color, i) => {
+                              return <rect key={i} x={20+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                            })} 
 
-                                onClick={()=>{
-                                  // setCountyMapGeoFips(geo.id);
-                                  // setCountyFips(geo.properties.COUNTYFP);
-                                  // setCountyName(fips2county[geo.id]);
-                                }}
-                                
-                                onMouseLeave={()=>{
-                                  setTooltipContent("");
-                                  setCountyTooltip(false)
-                                }}
-                                
-                                fill={countyMapGeoFips===geo.id?colorHighlight:
-                                  ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0)?
-                                      colorScaleState[data[geo.id][metric]]: 
-                                      '#FFFFFF')}
-                                
-                              />
-                            ))}
+
+                            <text x={20} y={74} style={{fontSize: '0.8em'}}>Low</text>
+                            <text x={20+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+
                           </svg>
-                        }
-                      </Geographies>
-                      
+                        </div>
 
-                    </ComposableMap>
-                  </div>
-                </TabPanel>
+                        <ComposableMap 
+                          projection="geoAlbersUsa" 
+                          data-tip=""
+                          width={1200} 
+                          height={450}
+                          strokeWidth= {0.1}
+                          stroke= 'black'
+                          offsetX = {-380}
+                          projectionConfig={{scale: 800}}
+
+
+                          >
+                          <Geographies geography={geoUrl}>
+                            {({ geographies }) => 
+                              <svg>
+                                {setStateFips(fips)}
+                                {geographies.map(geo => (
+                                  <Geography
+                                    key={geo.rsmKey}
+                                    geography={geo}
+                                    onMouseEnter={()=>{
+                                      const fips = geo.id.substring(0,2);
+                                      const configMatched = configs.find(s => s.fips === fips);
+                                      setFips(fips);
+                                      setHoverName(configMatched.name)
+
+                                    }}
+                                    
+                                    onMouseLeave={()=>{
+
+                                      setTooltipContent("");
+                                      setFips("_nation");
+                                      setHoverName("The United States");
+                                    }}
+
+                                    onClick={()=>{
+                                      const configMatched = configs.find(s => s.fips === fips);
+                                      setStateName(configMatched.name); 
+                                      setStateMapFips(geo.id.substring(0,2));
+
+                                      setClicked(true);
+                                      setShowState(true);
+
+                                    }}
+
+                                    
+                                    fill={stateMapFips===geo.id.substring(0,2) || fips===geo.id.substring(0,2)?colorHighlight:
+                                    ((colorScale && vaccineData[geo.id] && (vaccineData[geo.id][fully]) > 0)?
+                                        colorScale[vaccineData[geo.id][fully]]: 
+                                        (colorScale && vaccineData[geo.id] && vaccineData[geo.id][fully] === 0)?
+                                          '#e1dce2':'#FFFFFF')}
+                                  />
+
+
+                                ))}
+
+                                {geographies.map(geo => {
+                                              const centroid = geoCentroid(geo);
+                                              const cur = allStates.find(s => s.val === geo.id);
+                                              return (
+                                                <g key={geo.rsmKey + "-name"}>
+                                                  {cur &&
+                                                    centroid[0] > -160 &&
+                                                    centroid[0] < -67 &&
+                                                    (Object.keys(offsets).indexOf(cur.id) === -1 ? (
+                                                      <Marker coordinates={centroid}>
+                                                        <text y="2" fontSize={14} textAnchor="middle">
+                                                          {cur.id}
+                                                        </text>
+                                                      </Marker>
+                                                    ) : (
+                                                      <Annotation
+                                                        subject={centroid}
+                                                        dx={offsets[cur.id][0]}
+                                                        dy={offsets[cur.id][1]}
+                                                      >
+                                                        <text x={4} fontSize={14} alignmentBaseline="middle">
+                                                          {cur.id}
+                                                        </text>
+                                                      </Annotation>
+                                                    ))}
+                                                </g>
+                                              );
+                                            })}
+                              </svg>
+                            }
+                          </Geographies>
+                          
+
+                        </ComposableMap>
+                    
+                        <Grid>
+                          <Grid.Row>
+                            {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 14}} defaultActiveIndex={1} panels={[
+                              {
+                                  key: 'acquire-dog',
+                                  title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                    },
+                                    content: {
+                                        content: (
+                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", lineHeight: "20px", width: 975}}>
+                                            Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
+
+                                            <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
+                                            <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
+                                            <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
+
+                                            <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
+                                            distributed to facilities across the United States by the federal government. 
+                                            Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
+                                            For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
+                                           
+                                          </Header.Content>
+                                      ),
+                                    },
+                                }
+                              ]
+                            } /> }
+                          </Grid.Row>
+                        </Grid>
+                  </Grid.Column>
+                  
+                  <Grid.Column style ={{width: 350}}>
+                    <Header as='h2' style={{fontWeight: 400}}>
+                      <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 36, paddingLeft: 35}}>
+                        Vaccination Status in <br/> <b>{stateName}</b>
+                        
+                        
+                      </Header.Content>
+                    </Header>
+                    <Grid>
+                      <Grid.Row style={{width: 350, paddingLeft: 35}}>
+                        <Table celled fixed style = {{width: 350}}>
+                          <Table.Header>
+
+                            <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                                <td colSpan='1' style={{width:130}}> </td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
+                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
+                            </tr>
+                            <Table.Row textAlign = 'center' style = {{height: 40}}>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number partially vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent partially vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number fully vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent fully vaccinated"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+
+                            </Table.Row>
+                            {/* <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Moderna"])} </Table.HeaderCell>
+
+                            </Table.Row>
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {"Pfizer \n \n Vaccine"} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Pfizer"])} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Pfizer"])} </Table.HeaderCell>
+
+                            </Table.Row> */}
+                            <Table.Row textAlign = 'center'>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
+                              <Table.HeaderCell  style={{fontSize: '14px'}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+
+                            </Table.Row>
+                            
+                          </Table.Header>
+                        </Table>
+                      </Grid.Row>
+                      
+                    </Grid>
+                    
+                  </Grid.Column>
+                </Grid.Row> 
                 
-              </div>
-                
-                
-              
+              </Grid>
               <div style = {{height: 55}}> </div>
 
               <Grid>
@@ -2917,7 +2730,7 @@ const USVaccineTracker = (props) => {
             <Notes />
           </Container>
         </Container>
-        {(countyTooltip === false) && <ReactTooltip offset = {{top: 40}}> 
+        <ReactTooltip offset = {{top: 40}}> 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> 
           {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
@@ -2931,56 +2744,27 @@ const USVaccineTracker = (props) => {
 
           <b>Click to lock.</b> 
 
-          <Table celled inverted selectable  >
-            <Table.Body>
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}># partially vaccinated</Table.HeaderCell>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</Table.HeaderCell>
-              </Table.Row>
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}> % partially vaccinated</Table.HeaderCell>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</Table.HeaderCell>
-              </Table.Row>
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}> # fully vaccinated</Table.HeaderCell>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
-              </Table.Row>
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}> % fully vaccinated</Table.HeaderCell>
-                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
-        </ReactTooltip>}
-
-        {countyTooltip && <ReactTooltip offset = {{top: 40}}> 
-        <div>
-          <font size="+2"><b >{countyName}, <br/> {hoverName}</b> </font> 
-          <br/>
-          <font size="+1">Percent fully vaccinated</font>
-        
-          <br/> 
-          <Table celled inverted selectable compact >
-            <Table.Body>
-              
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px"}}> All ages</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
-              </Table.Row> 
-
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px"}}> Age 18+</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
-              </Table.Row> 
-
-              <Table.Row style = {{height: 25}}>
-                <Table.HeaderCell style = {{fontSize: "16px"}}> Age 65+</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
-              </Table.Row> 
-            </Table.Body>
-            </Table>
-          </div>
-        </ReactTooltip>}
+          <table class="ui celled inverted table" >
+            <thead>
+              <tr>
+                <th># partially vaccinated</th>
+                <th>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</th>
+              </tr>
+              <tr>
+                <th> % partially vaccinated</th>
+                <th>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</th>
+              </tr>
+              <tr>
+                <th> # fully vaccinated</th>
+                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</th>
+              </tr>
+              <tr>
+                <th> % fully vaccinated</th>
+                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</th>
+              </tr>
+            </thead>
+          </table>
+        </ReactTooltip>
       </div>
     </HEProvider>
       );
