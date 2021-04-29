@@ -457,47 +457,47 @@ const SideRaceBarChart = (props) => {
 
 
 
-const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({ active, payload, label }) => {
 
-  if (active && payload && payload.length ) {
+    if (active && payload && payload.length ) {
+
+      return (
+        <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
+          <p style={{color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p>
+          {/* ${payload[hoverBar[0]]['name']}  */}
+          <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue.toFixed(1)}</p>
+          <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const CustomizedLabellist =(props) =>{
+    const { width, height, x, y, value } = props;
+
+    console.log('ll', props)
 
     return (
-      <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
-        <p style={{color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p>
-        {/* ${payload[hoverBar[0]]['name']}  */}
-        <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue.toFixed(1)}</p>
-        <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}</p>
-      </div>
-    );
+      <g>
+      {(()=>{ if(value > 60){
+          return <text x={x+width-40} y={height/2+y+4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
+      }else{
+        return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>{value.toFixed(1)}%</text>
+      }
+      })()}
+      </g>
+    )
   }
 
-  return null;
-};
+  const valueAccessor = (entry) => {
+    return entry ? (entry.value.toFixed(1) + '%') : null;
+  };
 
-const CustomizedLabellist =(props) =>{
-  const { width, height, x, y, value } = props;
+  console.log('active index', activeIndex);
 
-  console.log('ll', props)
-
-  return (
-    <g>
-     {(()=>{ if(value > 60){
-        return <text x={x+width-40} y={height/2+y+4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
-     }else{
-       return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>{value.toFixed(1)}%</text>
-    }
-    })()}
-    </g>
-  )
-}
-
-const valueAccessor = (entry) => {
-	return entry ? (entry.value.toFixed(1) + '%') : null;
-};
-
-console.log('active index', activeIndex);
-
-const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
+  const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
 
   return(
     <Grid>
