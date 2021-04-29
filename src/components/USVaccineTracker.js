@@ -1821,7 +1821,7 @@ const USVaccineTracker = (props) => {
                       
                       <Grid.Column style ={{width: 250}}>
                         <Header as='h2' style={{fontWeight: 400}}>
-                          <Header.Content style={{width : 250, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 45, paddingLeft: 30}}>
+                          <Header.Content style={{width : 300, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 45, paddingLeft: 35}}>
                             Vaccination Status in <br/> <b>{stateName}</b>
                             
                             
