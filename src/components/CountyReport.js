@@ -23,7 +23,7 @@ import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
 import fips2county from './fips2county.json'
 import configs from "./state_config.json";
-import _ from 'lodash';
+import _, { max } from 'lodash';
 
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
@@ -37,6 +37,14 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
 
+function getMax(arr, prop) {
+  var max = 0;
+  for (var i=0 ; i<arr.length ; i++) {
+      if (max === 0 || parseInt(arr[i][prop]) > parseInt(max))
+          max = arr[i][prop];
+  }
+  return max;
+}
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -496,9 +504,13 @@ export default function CountyReport() {
                   { dataTS && <VictoryChart theme={VictoryTheme.material}
                     width={550}
                     height={300}       
-                    padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                    padding={{left: 50, right: 30, top: 10, bottom: 40}}
                     containerComponent={<VictoryVoronoiContainer/>}
-                    
+                    maxDomain = {{y: getMax(dataTS["_nation"], "caserate7dayfig") > getMax(dataTS[stateFips], "caserate7dayfig") ? 
+                                            getMax(dataTS["_nation"], "caserate7dayfig") > getMax(dataTS[stateFips+countyFips]) ? 
+                                              getMax(dataTS["_nation"], "caserate7dayfig")*1.1: getMax(dataTS[stateFips+countyFips])*1.1:
+                                          getMax(dataTS[stateFips], "caserate7dayfig") > getMax(dataTS[stateFips+countyFips], "caserate7dayfig")?
+                                        getMax(dataTS[stateFips], "caserate7dayfig")*1.1 : getMax(dataTS[stateFips+countyFips], "caserate7dayfig")*1.1}}
                     >
 
 
@@ -532,24 +544,24 @@ export default function CountyReport() {
                     >
                       <VictoryLine data={dataTS["_nation"]}
                         x='t' y='caserate7dayfig'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}  `}
+                        labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
                         />
                       <VictoryLine data={dataTS[stateFips]}
                         x='t' y='caserate7dayfig'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}  `}
+                        labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
                         />
                       <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                         x='t' y='caserate7dayfig'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}`}
-                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.caserate7dayfig.toFixed(1)}  `}
+                        labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
@@ -575,9 +587,13 @@ export default function CountyReport() {
                     { dataTS && <VictoryChart theme={VictoryTheme.material}
                       width={550}
                       height={300}       
-                      padding={{left: 50, right: 60, top: 10, bottom: 40}}
+                      padding={{left: 50, right: 30, top: 10, bottom: 40}}
                       containerComponent={<VictoryVoronoiContainer/>}
-                      
+                      maxDomain = {{y: getMax(dataTS["_nation"], "covidmortality7dayfig") > getMax(dataTS[stateFips], "covidmortality7dayfig") ? 
+                                            getMax(dataTS["_nation"], "covidmortality7dayfig") > getMax(dataTS[stateFips+countyFips]) ? 
+                                              getMax(dataTS["_nation"], "covidmortality7dayfig")*1.5: getMax(dataTS[stateFips+countyFips])*1.5:
+                                          getMax(dataTS[stateFips], "covidmortality7dayfig") > getMax(dataTS[stateFips+countyFips], "covidmortality7dayfig")?
+                                        getMax(dataTS[stateFips], "covidmortality7dayfig")*1.5 : getMax(dataTS[stateFips+countyFips], "covidmortality7dayfig")*1.5}}
                       >
 
                       <VictoryAxis
@@ -606,24 +622,24 @@ export default function CountyReport() {
                       >
                         <VictoryLine data={dataTS["_nation"]}
                           x='t' y='covidmortality7dayfig'
-                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                          labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}  `}
+                          labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                           style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                           }}
                           />
                         <VictoryLine data={dataTS[stateFips]}
                           x='t' y='covidmortality7dayfig'
-                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                          labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}  `}
+                          labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                           style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                           }}
                           />
                         <VictoryLine data={dataTS[stateFips+countyFips]?dataTS[stateFips+countyFips]:dataTS["99999"]}
                           x='t' y='covidmortality7dayfig'
-                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}`}
-                          labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                          labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.covidmortality7dayfig.toFixed(1)}  `}
+                          labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                           style={{
                               data: { strokeWidth: ({ active }) => active ? 3 : 2},
                           }}
@@ -703,12 +719,16 @@ export default function CountyReport() {
                 <div style = {{height: 240}}>
                   { dataTS && <VictoryChart theme={VictoryTheme.material}
                     minDomain={{ x: dataTS["_nation"][342].t }}
-                    maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
+                    maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t, 
+                                  y: getMax(dataTS["_nation"], "percentPositive") > getMax(dataTS[stateFips], "percentPositive") ? 
+                                        getMax(dataTS["_nation"], "percentPositive") > getMax(dataTS[stateFips+countyFips]) ? 
+                                          getMax(dataTS["_nation"], "percentPositive")*1.2: getMax(dataTS[stateFips+countyFips])*1.2:
+                                      getMax(dataTS[stateFips], "percentPositive") > getMax(dataTS[stateFips+countyFips], "percentPositive")?
+                                        getMax(dataTS[stateFips], "percentPositive")*1.2 : getMax(dataTS[stateFips+countyFips], "percentPositive")*1.2}}
                     width={550}
                     height={200}       
                     padding={{left: 50, right: 30, top: 10, bottom: 40}}
                     containerComponent={<VictoryVoronoiContainer/>}
-                    
                     >
 
 
@@ -736,8 +756,8 @@ export default function CountyReport() {
                     >
                       <VictoryLine data={dataTS["_nation"]}
                         x='t' y='percentPositive'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
-                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%  `}
+                        labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
@@ -746,8 +766,8 @@ export default function CountyReport() {
                         minDomain={{ x: dataTS["_nation"][342].t }}
                         maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
                         x='t' y='percentPositive'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
-                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%  `}
+                        labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
@@ -756,8 +776,8 @@ export default function CountyReport() {
                         minDomain={{ x: dataTS["_nation"][342].t }}
                         maxDomain={{ x: dataTS["_nation"][dataTS["_nation"].length-2].t}}
                         x='t' y='percentPositive'
-                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%`}
-                        labelComponent={<VictoryTooltip style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
+                        labels={({ datum }) => `${monthNames[new Date(datum.t*1000).getMonth()] + " " +  new Date(datum.t*1000).getDate()}: ${datum.percentPositive.toFixed(0)}%  `}
+                        labelComponent={<VictoryTooltip constrainToVisibleArea style={{fontWeight: 400, fontFamily: 'lato', fontSize: "19px"}} centerOffset={{ x: 50, y: 30 }} flyoutStyle={{ fillOpacity: 0, stroke: "#FFFFFF", strokeWidth: 0 }}/>}
                         style={{
                             data: { strokeWidth: ({ active }) => active ? 3 : 2},
                         }}
