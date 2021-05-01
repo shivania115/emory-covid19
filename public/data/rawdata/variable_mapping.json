@@ -10,6 +10,18 @@
         "name": "Number fully vaccinated",
         "definition": "is the number of individuals in the United States recorded in the CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received.",
         "group": "outcomes"},
+
+    "seriesComplete18PlusPopPct": {
+        "variable": "seriesComplete18PlusPopPct",
+        "name": "Percent of population 18+ fully vaccinated",
+        "definition": "is the percentage of the total U.S. population age 18 and older that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
+        "group": "outcomes"},
+
+    "seriesComplete65PlusPopPct": {
+        "variable": "seriesComplete65PlusPopPct",
+        "name": "Percent of population 65+ fully vaccinated",
+        "definition": "is the percentage of the total U.S. population age 65 and older that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
+        "group": "outcomes"},
     
 
     "caserate7dayfig": {
