@@ -94,7 +94,7 @@ export default function VaccinesFAQ(props){
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
             <Header.Subheader style={{paddingTop:'2rem', paddingLeft: '0rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
-            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of Mar 14, 2021. Before taking the vaccine, please consult your healthcare provider.
+            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of May 1, 2021. Before taking the vaccine, please consult your healthcare provider.
             If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:
             {/* {Date().slice(4,10)} */}
             <ul style={{paddingLeft:'6rem', fontSize:'14pt', lineHeight:'1.5'}}>
@@ -143,8 +143,9 @@ export default function VaccinesFAQ(props){
             <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> Janssen Biotech, Johnson & Johnson’s vaccine division</a>. 
         </p>
         <p style={{paddingTop:'1rem',paddingLeft:'0rem', paddingRight:'1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
-            NOTE: The <a style ={{color: "#397AB9"}} href="https://www.fda.gov/news-events/press-announcements/joint-cdc-and-fda-statement-johnson-johnson-covid-19-vaccine" target="_blank" rel="noopener noreferrer"> FDA and CDC </a>
-            recommended a pause in the use of the Johnson and Johnson vaccine “out of an abundance of caution” on 13 April 2021.
+            NOTE: Use of the Johnson & Johnson vaccine was temporarily paused by the FDA and CDC “out of an abundance of caution” on 13 April 2021. After a review of the evidence relating to the safety of this vaccine on 23 April 2021, the Advisory Committee on Immunization Practices concluded that the vaccine was safe for use and 
+            that its benefits outweighed any known or potential risks. The FDA and CDC ended  <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/media/releases/2021/fda-cdc-lift-vaccine-use.html" target="_blank" rel="noopener noreferrer"> the pause </a>
+            and indicated that the Johnson & Johnson vaccine can again be distributed.
           </p>
         </Accordion.Content>
 
@@ -575,6 +576,60 @@ export default function VaccinesFAQ(props){
         There are multiple systems used to track any reports of any adverse side effects or reactions. The Vaccine Safety Datalink which helps to determine whether the reactions reported using the Vaccine Adverse Event Reporting System (VAERS) are related to a vaccine. 
         The Clinical Immunization Safety Assessment Project also helps to track and evaluate issues of vaccine safety. You can find out more about these and other different systems at CDC, the Food and Drug Administration, 
         and other groups used to monitor and assess safety  <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html" target="_blank" rel="noopener noreferrer"> here </a>.
+        </p>
+        </Accordion.Content>
+
+        <Accordion.Title style={{fontSize:'15pt', color: 'black', lineHeight: 1.4}}
+          // active={activeIndex === 0}
+          index={39}
+          onClick={() => activeIndex.indexOf(39) < 0 ? setActiveIndex(activeIndex =>[...activeIndex, 39]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 39))}
+        >
+          <Icon name='dropdown' />
+          Use of the Johnson & Johnson vaccine was paused and then restarted. Is the Johnson & Johnson vaccine safe?
+            </Accordion.Title>
+        <Accordion.Content style={{fontSize:'14pt'}}
+          active={activeIndex.indexOf(39)>0}>
+          <p style={{marginBottom:0}}>
+          Yes. In April 2021, the FDA and CDC recommended pausing the distribution of the Johnson & Johnson vaccine to allow the CDC’s Advisory Committee on Immunization Practices (ACIP) 
+          to investigate extremely rare reports of individuals experiencing blood clotting events after having received this vaccine (6 reports after 6.8 million vaccine doses were administered). 
+          These reports were identified through the careful monitoring of side effects and serious reactions being recorded via the Vaccine Adverse Event Reporting System (or VAERS). 
+          This is a very good sign that not only is the monitoring working to catch any rare reactions to the vaccine but also that the FDA and CDC are taking quick action to review any potential new risks linked to the vaccines that are authorized.
+          </p>
+
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        During two meetings, the ACIP reviewed the reports of blood clots and any other reports of adverse reactions to the vaccines. They reassessed how serious and common any risks linked to receiving the Johnson & Johnson vaccine might be, 
+        including the likelihood of having this rare type of blood clot. They also considered the benefits of being vaccinated against COVID-19 and the risks associated with not being vaccinated. The cases of these rare blood clots (called cerebral venous sinus thromboses or CVST) 
+        were all among women aged 18-59. The review concluded that the vaccine was safe and effective against COVID-19 and that its benefits outweigh any known or potential risks in all approved age groups and in both men and women.
+        </p>
+        
+        <p style={{paddingTop:'1rem', paddingLeft:'0rem', paddingRight:'1rem', marginBottom:'0', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        Following this review, the ACIP recommended continuing the use of the Johnson & Johnson vaccine. The FDA and CDC ended <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/media/releases/2021/fda-cdc-lift-vaccine-use.html" target="_blank" rel="noopener noreferrer"> the pause </a>
+        and indicated that the Johnson & Johnson vaccine can be made available again. Both FDA and CDC will continue to <a style ={{color: "#397AB9"}} href="https://www.cdc.gov/mmwr/volumes/70/wr/mm7018e2.htm?s_cid=mm7018e2_e&ACSTrackingID=USCDC_921-DM56028&ACSTrackingLabel=MMWR%20Early%20Release%20-%20Vol.%2070%2C%20April%2030%2C%202021&deliveryName=USCDC_921-DM56028" target="_blank" rel="noopener noreferrer"> monitor </a>  
+        any reports of blood clots and other serious side effects for both the Johnson & Johnson vaccine as well as the other vaccines under Emergency Use Authorization. The FDA and CDC reiterated that, based on the findings from the ACIP review:
+        </p>
+        
+        <ul style={{paddingLeft:'6rem', fontSize:'14pt', lineHeight:'1.5'}}>
+        <li>
+        Use of this vaccine should resume
+        </li>
+        <li>
+        The agencies are confident that the vaccine is safe and effective in preventing COVID-19
+        </li>
+        <li>
+        The data show that the vaccine’s known and potential benefits outweigh its known and potential risks
+        </li>
+        <li>
+        The data suggest that the risks of these types of blood clotting issues are very low
+        </li>
+        <li>
+        The FDA and CDC will continue to monitor these and any other reports relating to vaccine side effects and adverse reactions
+        </li>
+        </ul>
+        
+        <p style={{paddingTop:'0rem', paddingLeft:'0rem', paddingRight:'1rem', fontWeight: 400, fontSize: "14pt", textAlign: 'justify'}}>
+        The information sheets for vaccine administering <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146304/download" target="_blank" rel="noopener noreferrer"> healthcare staff </a>
+        and <a style ={{color: "#397AB9"}} href="https://www.fda.gov/media/146305/download" target="_blank" rel="noopener noreferrer"> recipients </a> have also been updated to include information about this potential and very rare risk, 
+        and about its treatment. Because this is a rare type of blood clot, the guidance for healthcare providers also ensures that they know what to look for to make sure that if they find these types of cases they treat them appropriately.
         </p>
         </Accordion.Content>
 
