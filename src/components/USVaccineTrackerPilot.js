@@ -477,12 +477,15 @@ const SideRaceBarChart = (props) => {
   const CustomizedLabellist =(props) =>{
     const { width, height, x, y, value } = props;
 
-    console.log('ll', props)
 
     return (
       <g>
-      {(()=>{ if(value > 60){
+      {(()=>{ 
+      
+      if(value > 60){
           return <text x={x+width-40} y={height/2+y+4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
+      } else if (value === 0){
+          return null
       }else{
         return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>{value.toFixed(1)}%</text>
       }
