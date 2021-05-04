@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, createRef, PureComponent} from 'react'
-import { Container, Breadcrumb, Dropdown, Header, Grid, Progress, Loader, Divider, Popup, Table, Tab, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
+import { Container, Breadcrumb, Dropdown, Header, Grid, Progress, Loader, Divider, Popup, Table, Button, Image, Rail, Sticky, Ref, Segment, Accordion, Icon, Menu, Message, Transition} from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -46,7 +46,7 @@ import fips2county from './fips2county.json'
 import { var_option_mapping, CHED_static, CHED_series} from "../stitch/mongodb";
 import {HEProvider, useHE} from './HEProvider';
 import {useStitchAuth} from "./StitchAuth";
-import {LineChart, Line, BarChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+import {LineChart, Line, Area, Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell,  PieChart, Pie, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,7 +55,6 @@ import TabsMU from '@material-ui/core/Tabs';
 import TabMU from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
 // function getKeyByValue(object, value) {
 //   return Object.keys(object).find(key => object[key] === value);
 // }
@@ -117,8 +116,6 @@ const colorHighlight = '#f2a900';
 const stateColor = "#778899";
 const nationColor = '#b1b3b3';
 const pieChartRace = ['#007dba', '#808080', '#e8ab3b', '#008000', '#a45791', '#000000', '#8f4814']; //不是恶心的绿色
-// const pieChartRace = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
-
 
 const VaxColor = [
   "#72ABB1",
@@ -253,143 +250,192 @@ function CaseChart(props){
   );
 }
 
-const ToPrint = React.forwardRef((props, ref) => (
-  
-  <div ref={ref} style={{width: 550}}>
-  <Grid.Column rows = {2}>
-    <Grid.Row style = {{width: 550}}>
-      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
-        <div>
-          <svg width="550" height="80">
 
-              <rect x={80} y={20} width="20" height="20" style={{fill: pieChartRace[0], strokeWidth:1, stroke: pieChartRace[0]}}/>                    
-              <text x={110} y={35} style={{fontSize: '16px'}}> White </text>  
+const renderActiveShape = (props) => {
+  const RADIAN = Math.PI / 180;
+  const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value, dataKey } = props;
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 10) * cos;
+  const sy = cy + (outerRadius + 10) * sin;
+  const mx = cx + (outerRadius + 30) * cos;
+  const my = cy + (outerRadius + 30) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  const textAnchor = cos >= 0 ? 'start' : 'end';
 
-              <rect x={255} y={20} width="20" height="20" style={{fill: pieChartRace[1], strokeWidth:1, stroke: pieChartRace[1]}}/>                    
-              <text x={285} y={35} style={{fontSize: '16px'}}> African Americans </text>    
-
-              <rect x={430} y={20} width="20" height="20" style={{fill: pieChartRace[2], strokeWidth:1, stroke: pieChartRace[2]}}/>                    
-              <text x={460} y={35} style={{fontSize: '16px'}}> Hispanic </text>   
-
-              <rect x={167.5} y={55} width="20" height="20" style={{fill: pieChartRace[3], strokeWidth:1, stroke: pieChartRace[3]}}/>                    
-              <text x={197.6} y={70} style={{fontSize: '16px'}}> Asian </text>  
-
-              <rect x={342.5} y={55} width="20" height="20" style={{fill: pieChartRace[4], strokeWidth:1, stroke: pieChartRace[4]}}/>                    
-              <text x={372.5} y={70} style={{fontSize: '16px'}}> American Native </text>     
-              
-
-
-              {/* {_.map(pieChartRace, (color, i) => {
-                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-              })}  */}
-          </svg>
-        </div>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid >
-      <Grid.Row columns = {2} >
-      {/* style = {{width: 550}} */}
-        <Grid.Column>
-          {/* <Race pop = {false} /> */}
-        </Grid.Column>
-        <Grid.Column >
-          {/* <Race pop = {true}/>  */}
-          {/* style = {{width: 200}} */}
-        </Grid.Column>
-      </Grid.Row>
-
-      {/* <Grid.Row style = {{width: 900}}>
-        <Grid.Column style = {{width: 450, paddingLeft: 0}}>
-            <div>
-              <svg width="450" height="145">
-
-                  <text x={280} y={15} style={{fontSize: '16px'}}> Hispanic</text>                    
-                  <text x={280} y={35} style={{fontSize: '16px'}}> American Native</text>                    
-                  <text x={280} y={55} style={{fontSize: '16px'}}> Asian</text>                    
-                  <text x={280} y={75} style={{fontSize: '16px'}}> African American</text>                    
-                  <text x={280} y={95} style={{fontSize: '16px'}}> White</text>                    
-
-
-                  {_.map(pieChartRace, (color, i) => {
-                    return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                  })} 
-              </svg>
-            </div>
-          </Grid.Column>
-      </Grid.Row> */}
-      </Grid>
-  </Grid.Column>
-  </div>
-  
-));
-
-
-
-
-
-
-function ComparisonTable(props){
-  return(
-    <div>
-      <Header as='h2' style={{fontWeight: 400}}>
-        <Header.Content style={{width : 350, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 20, paddingLeft: 35}}>
-          Vaccination Status in <br/> <b>{props.stateName}</b>
-          
-          
-        </Header.Content>
-      </Header>
-      <Grid>
-        <Grid.Row style={{width: 350, paddingLeft: 35}}>
-          <Table celled fixed style = {{width: 350}}>
-            <Table.Header>
-
-           
-
-              <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
-                                <td colSpan='1' style={{width:130}}> </td>
-                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {props.fips === "_nation" ? "Select State":props.abbrev[props.fips]["state_abbr"]}</td>
-                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
-                            </tr>
-                            <Table.Row textAlign = 'center' style = {{height: 40}}>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number partially vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["AdministeredPartial"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
-
-                            </Table.Row>
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent partially vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-
-                            </Table.Row>
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number fully vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Yes"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
-
-                            </Table.Row>
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent fully vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
-
-                            </Table.Row>
-                            
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + props.date} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
-
-                            </Table.Row>
-              
-            </Table.Header>
-          </Table>
-        </Grid.Row>
+  return (
+    <g>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill="#000000">
+        {dataKey == "percentPop" ? "Percent of Population" : "Percent Fully Vaccinated"}
         
-      </Grid>
-    </div>
-  )
+      </text>
+      {/* <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+      <Sector
+        cx={cx}
+        cy={cy}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        innerRadius={outerRadius + 6}
+        outerRadius={outerRadius + 10}
+        fill={fill}
+      /> */}
+      {/* <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} fill="#333">{`${payload.demogLabel} ${(percent * 100).toFixed(0)}%`}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey - payload.percentCases/100 * 10} dy={18} textAnchor={'end'} fill="#999">
+        {`(${payload.demogLabel})(${(percent * 100).toFixed(2)}%)`}
+      </text> */}
+    </g>
+  );
+};
+
+const COLORSex = ['#0088FE', '#00C49F'];
+const COLORRace = ['#e8ab3b' , '#000000', '#b1b3b3', '#a45791', '#007dba'];
+
+const RADIAN = Math.PI / 180;
+
+
+const renderCustomizedLabelFV = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, payload, index, }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 0) * cos;
+  const sy = cy + (outerRadius + 0) * sin;
+  const mx = cx + (outerRadius + 25) * cos;
+  const my = cy + (outerRadius + 35.5) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+
+
+  return (
+    <text x={ex} y={ey } 
+      fill="black" textAnchor={x > cx? 'end' : 'start'} dominantBaseline="central">
+      {`${(payload.seriesCompletePopPctKnown).toFixed(0)}%`}
+
+    </text>
+  );
+};
+
+  const renderCustomizedLabelPop = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, payload, index, }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    const sin = Math.sin(-RADIAN * midAngle);
+    const cos = Math.cos(-RADIAN * midAngle);
+    const sx = cx + (outerRadius + 0) * cos;
+    const sy = cy + (outerRadius + 0) * sin;
+    const mx = cx + (outerRadius + 25) * cos;
+    const my = cy + (outerRadius + 35.5) * sin;
+    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+    const ey = my;
+  
+  
+    return (
+      <text x={ex} y={ey } 
+        fill="black" textAnchor={x > cx? 'end' : 'start'} dominantBaseline="central">
+        {/* {dataKey == "percentCases" ? `${(payload.percentCases).toFixed(0)}%` : `${(payload.caserate).toFixed(0)}`} */}
+        {`${numberWithCommas((payload.percentPop).toFixed(0))}%`}
+  
+      </text>
+    );
+
+};
+
+class Race extends PureComponent{
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
+
+  state = {
+    activeIndex: 0,
+  };
+
+  onPieEnter = (_, index) => {
+    this.setState({
+      activeIndex: [index],
+    });
+    // console.log(index);
+  };
+
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      dataTot: [],
+      chart: "",
+    };
+
+    // this.handleDownload = this.handleDownload.bind(this);
+
+  }
+
+  // async handleDownload() {
+  //       const {chart} = this.state;
+  //       // Send the chart to getPngData
+  //       const pngData = await useRechartToPng(chart);
+  //       // Use FileSaver to download the PNG
+  //       FileSaver.saveAs(pngData, "test.png");
+  //     };
+
+  componentDidMount(){
+    fetch('/data/nationalDemogdata.json').then(res => res.json()).then(data => this.setState({ 
+      dataTot: [
+        data['vaccineRace'][0]['Hispanic'][0], data['vaccineRace'][0]['Asian'][0],
+        data['vaccineRace'][0]['American Native'][0], data['vaccineRace'][0]['African American'][0],
+        data['vaccineRace'][0]['White'][0]
+      ] }));
+  }
+
+   
+
+  render() {
+    const { dataTot } = this.state;
+    console.log("this props", this.props);
+    // console.log("here", this.props.rate)
+
+    return (
+      <PieChart 
+        ref={(ref) => this.setState({chart: ref})} // Save the ref of the chart
+        width={300} height={280}>
+        <Pie
+          
+          activeIndex={10}
+          activeShape={renderActiveShape}
+          data={dataTot}
+          cx={150}
+          cy={150}
+          innerRadius={50}
+          outerRadius={70}
+          paddingAngle = {5}
+          fill="#8884d8"
+          dataKey={this.props.pop == true? "percentPop" : "seriesCompletePopPctKnown"}
+          // onMouseEnter={this.onPieEnter}
+          labelLine={true}
+          label = {this.props.pop == true? renderCustomizedLabelPop: renderCustomizedLabelFV}
+          rate = {this.props.pop}
+          
+        >
+          {dataTot.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORRace[index % COLORRace.length]} />
+          ))}
+        <Label value={this.props.pop == true? "Population" : "Fully Vaccinated"} position="center" />
+          
+        </Pie>
+      </PieChart>
+      
+    );
+  }
 }
+
 
 const SideRaceBarChart = (props) => {
 
@@ -603,283 +649,10 @@ const SideRaceBarChart = (props) => {
   )
 }
 
-// const RaceBarChartN = (props) => {
 
-//   // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
-
-//   const [hoverBar, setHoverBar] = useState([]);
-//   const [activeIndex, setActiveIndex] = useState(-1)
-
-//   const valueAccessor = attribute => ({ payload }) => {
-//     return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
-
-//   };
-
-//   const valueAccessor = attribute => ({ payload }) => {
-//     return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
-
-//   };
-
-//   const renderLegend = (props) => {
-//     const { payload } = props;
-  
-//     return (
-//       <ul>
-//         {
-//           payload.map((entry, index) => (
-//             <li key={`item-${index}`}>{entry.value}</li>
-//           ))
-//         }
-//       </ul>
-//     );
-//   }
-
-//   let barSize = 50
-//   let strokeWidth = 1.5
-//   let labelSize = '13px'
-//   let fontWeight = 500
-//   let barRatio = 100/103
-
-//   const data = [
-//     {
-//       name: '% Population',
-//       white: props.demogData['race'][0]['White'][0]['percentPop']*barRatio,
-//       black: props.demogData['race'][0]['African American'][0]['percentPop']*barRatio,
-//       hispanic: props.demogData['race'][0]['Hispanic'][0]['percentPop']*barRatio,
-//       asian: props.demogData['race'][0]['Asian'][0]['percentPop']*barRatio,
-//       space: 0.5,
-//       american_natives: props.demogData['race'][0]['American Native'][0]['percentPop']*barRatio,
-//       NHPI: props.demogData['race'][0]['NHPI'][0]['percentPop']*barRatio,
-//       multiOther: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop']*barRatio,
-//     },
-//     {
-//       name: '% Vaccination',
-//       white: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']*barRatio
-//          :(props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0 
-//             : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated']*barRatio),
-//       black: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']*barRatio
-//          :(props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0 
-//             : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated']*barRatio),
-//       hispanic: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']*barRatio
-//          :(props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
-//             : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated']*barRatio),
-//       asian: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']*barRatio
-//          :(props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
-//             : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated']*barRatio),
-//       space: 0.5,
-//       american_natives: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']*barRatio
-//          :(props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
-//             : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated']*barRatio),
-      
-//       NHPI: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']*barRatio
-//             :(props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
-//                : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']*barRatio),
-//       multiOther: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']*barRatio
-//                :(props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0 
-//                   : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated']*barRatio)
-//     }
-//   ]
-
-
-//   const legendFormatter = (value, entry) => {
-//     if(value !== 'space'){
-//       return <span >{value}</span>;
-//     } else {
-//       return null;
-//     }
-    
-//   };
-
-// const CustomTooltip = ({ active, payload, label }) => {
-
-//   if (active && payload && payload.length && hoverBar[0]>=0) {
-//     // var colIndex = 6-hoverBar[0];
-
-//     return (
-//       <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
-//         <p style={{color: pieChartRace[hoverBar[0]], marginBottom: 4}}> <b> {hoverBar[2]} </b> </p>
-//         {/* ${payload[hoverBar[0]]['name']}  */}
-//         <p className="label" style={{marginBottom: 3}}>{`% Population: ${(data[0][hoverBar[1]]/barRatio).toFixed(1)}`}</p>
-//         <p className="label" style={{marginBottom: 0}}>{`% Vaccinated : ${(data[1][hoverBar[1]]/barRatio).toFixed(1)}`}</p>
-//       </div>
-//     );
-//   }
-
-//   return null;
-// };
-
-// console.log('active index', activeIndex);
-
-//   return(
-    
-//         <BarChart
-//           width={400}
-//           height={500}
-//           data={data}
-//           margin={{
-//             top: 20,
-//             right: 30,
-//             left: 0,
-//             bottom: 10,
-//           }}
-//         >
-//           {/* <CartesianGrid strokeDasharray="3 3" /> */}
-//           <XAxis dataKey="name" />
-//           <YAxis domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]}/>
-//           <Tooltip content={<CustomTooltip />}
-//           // formatter={function(value, name) {
-//           //     if(name === hoverBar){
-//           //       return [value,name];
-//           //     }else {
-//           //       return null
-//           //     }
-//           //   }}
-//              cursor={false}/>
-//           {/* content={renderTooltip}  content={<CustomTooltip />}*/}
-//           <Legend width={410} formatter={legendFormatter}/>
-//           <Bar name='Hispanic' id='hispanic' barSize={barSize} dataKey="hispanic" stackId="a" fill={pieChartRace[2]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([2,'hispanic', 'Hispanic']); setActiveIndex(2)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}>
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("hispanic")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
-//           </Bar>
-
-//           <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
-//             isAnimationActive={false}> 
-//           </Bar>
-
-//           <Bar name='African Americans' id='black' barSize={barSize} dataKey="black" stackId="a" fill={pieChartRace[1]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([1,'black', 'African Americans']); setActiveIndex(1)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}>
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("black")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
-//           </Bar>
-
-//           <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
-//             isAnimationActive={false}> 
-//           </Bar>
-
-//           <Bar name='Asian' id='asian' barSize={barSize} dataKey="asian" stackId="a" fill={pieChartRace[3]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([3,'asian', 'Asian']); setActiveIndex(3)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}> 
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("asian")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
-//           </Bar>
-
-//           <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
-//             isAnimationActive={false}> 
-//           </Bar>
-          
-//           <Bar name='Native Hawaiian/Pacific Islanders' id='NHPI' barSize={barSize} dataKey="NHPI" stackId="a" fill={pieChartRace[5]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([5,'NHPI', 'Native Hawaiian/Pacific Islanders']); setActiveIndex(5)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}>
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={2}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("NHPI")} position="left" fill='black'/>
-//           </Bar>
-
-//           <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
-//             isAnimationActive={false}> 
-//           </Bar>
-
-//           <Bar name='American Native' id='an' barSize={barSize} dataKey="american_natives" stackId="a" fill={pieChartRace[4]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([4,'american_natives', 'American Native']); setActiveIndex(4)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}>
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={0.5}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("american_natives")} position="right" fill='black'/>
-//           </Bar>
-          
-//           <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
-//             isAnimationActive={false}> 
-//           </Bar>
-          
-//           <Bar name='White' id='white' barSize={barSize} dataKey="white" stackId="a" fill={pieChartRace[0]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([0,'white','White']); setActiveIndex(0)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}>
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("white")} fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
-//           </Bar>
-
-//           <Bar name='space' id='space' barSize={barSize} dataKey="space" stackId="a" fill='white'
-//             isAnimationActive={false}> 
-//           </Bar>
-
-//           <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
-//             isAnimationActive={false}
-//             onMouseEnter={()=>{setHoverBar([6,'multiOther', 'Multiple/Other']); setActiveIndex(6)}}
-//             onMouseLeave={()=>setActiveIndex(-1)}>
-//             {/* {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} stroke='white' strokeWidth={strokeWidth}/>
-//               ))
-//             } */}
-//             <LabelList valueAccessor={valueAccessor("multiOther")}  fill='white' fontWeight={fontWeight} fontSize={labelSize}/>
-//           </Bar>
-          
-//         </BarChart>
-      
-//   )
-// }
-
-function TabExampleBasic(props){
-  console.log('fips', props.fips)
-  const panes = [
-    { menuItem: 'State & Nation Vaccination', render: () => 
-      <Tab.Pane attached={false}>
-        <ComparisonTable 
-          data = {props.data} 
-          fips = {props.fips} 
-          stateName = {props.stateName} 
-          abbrev = {props.abbrev}
-          date = {props.date}
-        />
-      </Tab.Pane> 
-    },
-    { menuItem: 'Vaccination by Race & Ethnicity', render: () => 
-      <Tab.Pane attached={false}>
-        <SideRaceBarChart
-          demogData = {props.demogData}
-          fips = {props.fips}
-          VaccineData = {props.VaccineData}
-          inTab = {true}
-        />
-      </Tab.Pane> },
-  ]
-
-  return(
-    <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-  )
-}
-
+const toPrint = React.forwardRef((props, ref) => (
+  <div ref={ref}>Hello World</div>
+));
 
 
 function TabPanel(props) {
@@ -930,10 +703,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const toPrint = React.forwardRef((props, ref) => (
-  <div ref={ref}>Hello World</div>
-));
-
 // export default function USVaccineTracker(props) {
 const USVaccineTracker = (props) => {
   const {
@@ -954,20 +723,18 @@ const USVaccineTracker = (props) => {
   const [stateLabels, setStateLabels] = useState();
   const [date, setDate] = useState('');
   const [vaccineDate, setVaccineDate] = useState('');
+  const [nationalDemogDate, setNationalDemogDate] = useState('');
+
+  const [countyName, setCountyName] = useState();
+  const [countyTooltip, setCountyTooltip] = useState(false);
 
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [VaxSeries, setVaxSeries] = useState();
   const [vaccineData, setVaccineData] = useState();
-  const [stateVaccineData, setStateVaccineData] = useState();
-
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
-
-  const [countyName, setCountyName] = useState();
-  const [countyTooltip, setCountyTooltip] = useState(false);
-  const [countyFips, setCountyFips] = useState();
 
   const [hoverName, setHoverName] = useState('The United States');
   const [stateName, setStateName] = useState('The United States');
@@ -977,7 +744,9 @@ const USVaccineTracker = (props) => {
   const [stateFips, setStateFips] = useState();
   const [stateMapFips, setStateMapFips] = useState("_nation");
   const [countyMapGeoFips, setCountyMapGeoFips] = useState();
+
   const [config, setConfig] = useState();
+  const [countyFips, setCountyFips] = useState('');
   const [colorScaleState, setColorScaleState] = useState();
   const [legendMaxState, setLegendMaxState] = useState([]);
   const [legendMinState, setLegendMinState] = useState([]);
@@ -1001,11 +770,14 @@ const USVaccineTracker = (props) => {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [value2, setValue2] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const handleChange2 = (event, newValue2) => {
+    setValue2(newValue2);
+  };
   const vaccineOptions = [
     {
       key: 'PercentAdministeredPartial',
@@ -1037,10 +809,9 @@ const USVaccineTracker = (props) => {
           dataTS["_nation"][183].t,
           dataTS["_nation"][214].t,
           dataTS["_nation"][244].t,
-          dataTS["_nation"][275 ].t,
-          dataTS["_nation"][306 ].t,
-          dataTS["_nation"][336 ].t,
-          dataTS["_nation"][366 ].t,
+          dataTS["_nation"][275].t,
+          dataTS["_nation"][306].t,
+          dataTS["_nation"][334].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -1073,8 +844,9 @@ const USVaccineTracker = (props) => {
     fetch('/data/vaccinedate.json').then(res => res.json())
       .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
     
-    fetch('/data/stateVaccineData.json').then(res => res.json())
-      .then(x => {setStateVaccineData(x);});
+    fetch('/data/nationalDemogdate.json').then(res => res.json())
+      .then(x => setNationalDemogDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4)));
+
     
     fetch('/data/allstates.json').then(res => res.json())
       .then(x => {setStateLabels(x);});
@@ -1101,9 +873,7 @@ const USVaccineTracker = (props) => {
         +
         (x['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Asian'][0]['percentPop'])
         +
-        (x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['American Native'][0]['percentPop'])
-        + 
-        (x['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['NHPI'][0]['percentPop']);
+        (x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['American Native'][0]['percentPop']);
 
         setPctVacPopDisp(count);
 
@@ -1122,27 +892,6 @@ const USVaccineTracker = (props) => {
         if(x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['American Native'][0]['percentPop']){
           listW.push("Native Americans");
         }
-        if(x['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['NHPI'][0]['percentPop']){
-          listW.push("Native Hawaiians/Pacific Islanders");
-        }
-        // var joinedStr = listW.join();
-        // var indexStr = 0;
-        // var previousIndexStr = 0;
-        // var i;
-        // var oldLeft = '';
-        // for (i = 0; i< (count - 1); i++){
-        //   indexStr = joinedStr.indexOf(',', indexStr + 1);
-        //   if (count ===2){
-        //     oldLeft = oldLeft + joinedStr.substring(previousIndexStr, indexStr);
-        //   }else{
-        //     oldLeft = oldLeft + joinedStr.substring(previousIndexStr, indexStr+1) + " ";
-        //   }
-        //   previousIndexStr = indexStr+1;
-        // };
-        // var left = oldLeft;
-        // // var left = joinedStr.substring(0, indexStr);
-        // var right = joinedStr.substring(indexStr+1); 
-
         var joinedStr = listW.join();
         var indexStr = 0;
         var i;
@@ -1152,12 +901,11 @@ const USVaccineTracker = (props) => {
         var left = joinedStr.substring(0, indexStr);
         var right = joinedStr.substring(indexStr+1); 
 
-
-        if(count === 1){
-        }else if(count === 2){
+        if(count == 1){
+        }else if(count == 2){
           setFinalStr(left + " and " + right);
         }else if(count > 2){
-          setFinalStr(left + " and " + right); 
+          setFinalStr(left + ", and " + right); 
         }
         
 
@@ -1347,8 +1095,8 @@ const USVaccineTracker = (props) => {
   const componentRef = useRef();
 
 
-  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries && stateVaccineData) {
-    console.log(data["48427"]["seriesCompleteYes"], 'and', countyMapGeoFips);
+  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
+    // console.log(vaccineData[stateFips]);
   return (
     <HEProvider>
       <div >
@@ -1583,6 +1331,105 @@ const USVaccineTracker = (props) => {
 
                 </Grid.Column>
               </Grid>
+
+              {/* <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center> */}
+              {/* <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
+                  <Grid.Column style = {{width: 810, paddingLeft: 60}}>
+                    <div style={{paddingTop:'0em'}}>
+                      <Header.Subheader style={{color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 190, paddingRight: "1em", paddingBottom: 0}}>
+                        <center> <b style= {{fontSize: "22px"}}>Deaths by Race</b> </center> 
+                        <br/>
+                      </Header.Subheader>
+                    </div>
+                  </Grid.Column>
+                  
+              </Grid.Row>
+                <Grid>
+                  <Grid.Row columns = {2} style = {{width: 1000}}>
+                    <Grid.Column style = {{width: 450, paddingLeft: 0}}>
+                      <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
+
+                      <VictoryChart
+                            theme={VictoryTheme.material}
+                            width={450}
+                            height={230}
+                            domainPadding={25}
+                            minDomain={{y: props.ylog?1:0}}
+                            padding={{left: 180, right: 40, top: 15, bottom: 1}}
+                            style = {{fontSize: "14pt"}}
+                            containerComponent={<VictoryContainer responsive={false}/>}
+                          >
+                            <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                            <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryGroup offset={13}>
+                            <VictoryBar
+                              horizontal
+                              barWidth={20}
+                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0))}
+                              data={[
+                                      {key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate']},
+                                      {key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate']},
+                                      {key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate']},
+                                      {key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate']},
+                                      {key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['deathrate']},
+                                  
+
+
+                              ]}
+                              labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                              style={{
+                                data: {
+                                  fill: mortalityColor[1]
+                                }
+                              }}
+                              x="key"
+                              y="value"
+                            />
+
+                          
+
+                            </VictoryGroup>
+                          </VictoryChart>
+                          <Header.Content style = {{paddingLeft: 50, width: 450}}>
+                              <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:5, fontSize: "14pt", lineHeight: "18pt"}}>
+                              <b>Percentage of COVID-19 Deaths and Population</b>
+                              </Header.Content>
+                          </Header.Content>
+                      </div>
+                    </Grid.Column>
+                    <Grid.Column style = {{width: 0}}>
+                      
+                        <div style={{paddingLeft: 140, paddingRight: "0em"}}>
+                          
+                          <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 6}}>
+                            <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Risks for COVID-19 Deaths by Race/Ethnicity</b> </center> 
+                            <br/><br/>
+                            <p style = {{paddingLeft: 40}}>
+                              Compared to the White <br/>
+                              - African Americans: {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                              {(nationalDemog['race'][0]['African American'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+                              <br/>
+                              - Hispanic: {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                              {(nationalDemog['race'][0]['Hispanic'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+                              <br/>
+                              - Asians: {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                              {(nationalDemog['race'][0]['Asian'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+                              <br/>
+                              - American Native: {(nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) + " "}
+                              {(nationalDemog['race'][0]['American Native'][0]['deathrate']/nationalDemog['race'][0]['White'][0]['deathrate']).toFixed(1) <= 1? "times" : "times"} the risk
+
+                            
+                              
+                          </Header.Subheader>
+                        
+                        </div>
+                    </Grid.Column>
+                  </Grid.Row>
+
+              </Grid> */}
+
+              {/* <center style={{paddingLeft: 30}}><Divider style={{width: 1000}}/> </center> */}
+
               <Grid.Row columns = {1} style = {{width: 1000, paddingTop: 15}}>
                   <Grid.Column style = {{width: 810, paddingLeft: 60}}>
                     <div style={{paddingTop:'0em'}}>
@@ -1599,8 +1446,8 @@ const USVaccineTracker = (props) => {
                     
               <Grid>
                 
-                <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
-                  <Grid.Column rows = {3} width={11} >
+              <Grid.Row columns = {2} style = {{width: 1000, paddingLeft: 0}} >
+                  <Grid.Column rows = {3} width={10} >
 
                     {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
@@ -1623,17 +1470,12 @@ const USVaccineTracker = (props) => {
                               <text x={352.5} y={70} style={{fontSize: '16px'}}> American Native </text>                    
 
 
-                              {/* {_.map(pieChartRace, (color, i) => {
-                                return <rect key={i} x={250} y={20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                              })}  
+                            
                           </svg>
                         </div>
                       </Grid.Column>
                     </Grid.Row> */}
                     <Grid >
-                      {/* <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}> */}
-                      {/* <Grid.Row columns = {1} > */}
-                      {/* <Grid.Column style = {{width: 400, paddingleft: 100}}> */}
                       <Grid.Column style = {{paddingTop: '2.5rem', paddingLeft: '3rem'}}>
                           <SideRaceBarChart
                             demogData = {nationalDemog}
@@ -1641,10 +1483,7 @@ const USVaccineTracker = (props) => {
                             VaccineData = {vaccineData}
                             inTab = {false}
                           />
-                        </Grid.Column>
-                        
-                      {/* </Grid.Row> */}
-                      
+                      </Grid.Column>
                       {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
@@ -1672,12 +1511,12 @@ const USVaccineTracker = (props) => {
 
                     
                   </Grid.Column>
-                  <Grid.Column width={5}>
+                  <Grid.Column width={4}>
                     <div style={{paddingTop: 0, paddingLeft: 0}}>
-                      <Header.Subheader style={{width: 410, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 0}}>
+                      <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
                         <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                         
-                        <p style = {{paddingLeft: 0}}>
+                        <p style = {{paddingLeft: 40}}>
                           <ul>
                             
                           {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
@@ -1714,13 +1553,6 @@ const USVaccineTracker = (props) => {
                             (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
                           :
                             ""} </li>}
-
-                          {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop'] && <li>
-                            {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop'] ? 
-                            " Native Hawaiians/Pacific Islanders make up " + (nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-                          :
-                            ""} </li>}
                           
                           
                           {pctVacPopDisp >= 1 && <li>
@@ -1736,49 +1568,86 @@ const USVaccineTracker = (props) => {
                 </Grid.Row>
                  
               </Grid>
+              <Grid.Row>
+                <Accordion id = "vaccine" style = {{paddingTop: 0, paddingLeft: 30, paddingBottom: 15}}defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                icon: 'dropdown',
+                            },
+                            content: {
+                                content: (
+                                  <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 975}}>
+                                    Race & Ethnicity data as of {nationalDemogDate}.
+                                    <br/>
+                                    The demographics of vaccinated adults is obtained from the U.S.
+                                    <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
+                                    The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
+                                    <br/>
+                                    The CDC notes that “These demographic data only represent the geographic areas that 
+                                    contributed data and might differ by populations prioritized within each state or 
+                                    jurisdiction’s vaccination phase. Every geographic area has a different racial and 
+                                    ethnic composition, and not all are in the same vaccination phase.” For comparison 
+                                    purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
+                                    population will include some areas that are not represented in the vaccination data. 
+                                    The numbers are therefore our best estimation of vaccination coverage by race.
+
+                                  </Header.Content>
+                                ),
+                              },
+                          }
+                      ]
+                      } />
+
+              </Grid.Row>
 
               <div style = {{height: 25}}> </div>
               <Grid>
                 <Grid.Column>
                   <Divider horizontal style={{fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20}}> COVID-19 Vaccination by State </Divider>
-                  
+
                 </Grid.Column>
               </Grid>
 
-              <Grid>
+              
 
-                <Grid.Row columns = {2} style = {{width: 1260}}>
+                
+              <div className={classes.root} style = {{paddingLeft: 0}}>
+                <div style = {{paddingLeft: 20}}>
+                  <AppBarMU position="static" style = {{width: 1010}}>
+                    <TabsMU value={value} onChange={handleChange} aria-label="simple tabs example"
+                      classes={{
+                        root: classes.customTabRoot,
+                        indicator: classes.customTabIndicator}}
+                    >
+                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="State Vaccination" {...a11yProps(0)} />
+                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="County Vaccination" {...a11yProps(1)} />
+                      {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                    </TabsMU>
+                  </AppBarMU>
+                </div>
+                <TabPanel value={value} index={0}>
+                  <Grid style = {{width: 1260}}>
+                    <Grid.Row columns = {2} style = {{width: 1260}}>
+                      <Grid.Column style = {{width: 550, paddingLeft: 0}}>
 
-                  <Grid.Column style = {{width: 1000, paddingLeft: 30, paddingRight: 50}}>
-                    <div className={classes.root}>
-                      <AppBarMU position="static">
-                        <TabsMU value={value} onChange={handleChange} aria-label="simple tabs example"
-                          classes={{
-                            root: classes.customTabRoot,
-                            indicator: classes.customTabIndicator}}
-                        >
-                          <TabMU style = {{textTransform: "capitalize"}} label="State Vaccination" {...a11yProps(0)} />
-                          <TabMU style = {{textTransform: "capitalize"}} label="County Vaccination" {...a11yProps(1)} />
-                          <TabMU style = {{textTransform: "capitalize"}} label="Item Three" {...a11yProps(2)} />
-                        </TabsMU>
-                      </AppBarMU>
-                      <TabPanel value={value} index={0}>
-                        
-                          <div style = {{paddingBottom: 0, width: 1000}}>
-                            <Header.Content style = {{paddingLeft: -25, fontSize: "22px"}}>
+                        <div style = {{paddingBottom: 0, width: 550}}>
+                            <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
                               <a style = {{color: "#004071"}}> Click on a state. </a>
                               <br/>
+                              
                               {/* <b> { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}</b> */}
                             </Header.Content>
 
                             <Dropdown
                             style={{background: '#fff', 
-                                    fontSize: "19px",
+                                    fontSize: "16px",
                                     fontWeight: 400, 
                                     theme: '#000000',
-                                    width: '540px',
+                                    width: '500px',
                                     top: '0px',
-                                    left: '-20px',
+                                    left: '15px',
                                     text: "Select",
                                     borderTop: '0.5px solid #bdbfc1',
                                     borderLeft: '0.5px solid #bdbfc1',
@@ -1828,17 +1697,17 @@ const USVaccineTracker = (props) => {
 
                             </svg>
                           </div>
-
+                          
                           <ComposableMap 
                             projection="geoAlbersUsa" 
                             data-tip=""
-                            width={1100} 
-                            height={450}
+                            width={550} 
+                            height={400}
                             strokeWidth= {0.1}
                             stroke= 'black'
-                            offsetX = {-375}
-                            projectionConfig={{scale: 750}}
-
+                            offsetX = {-15}
+                            projectionConfig={{scale: 700}}
+                            
 
                             >
                             <Geographies geography={geoUrl}>
@@ -1920,184 +1789,193 @@ const USVaccineTracker = (props) => {
                             
 
                           </ComposableMap>
-                      
-                          
                         
-                      </TabPanel>
-                      <TabPanel value={value} index={1}>
-                        <ComposableMap 
-                            projection="geoAlbersUsa" 
-                            data-tip=""
-                            width={1100} 
-                            height={450}
-                            strokeWidth= {0.1}
-                            stroke= 'black'
-                            offsetX = {-375}
-                            projectionConfig={{scale: 750}}
+                            <Grid>
+                              <Grid.Row>
+                                {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 35}} defaultActiveIndex={1} panels={[
+                                  {
+                                      key: 'acquire-dog',
+                                      title: {
+                                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                                        },
+                                        content: {
+                                            content: (
+                                              <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", fontFamily: 'lato', fontSize: "19px", lineHeight: "20px", width: 990}}>
+                                                Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
 
+                                                <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
+                                                <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
+                                                <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                                <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
 
-                            >
-                          <Geographies geography={countyGeoUrl}>
-                            {({ geographies }) => 
-                              <svg>
-                                {setCountyTooltip(true)}
-                                {geographies.map(geo => (
-                                  <Geography
-                                    key={geo.rsmKey}
-                                    geography={geo}
-                                    onMouseEnter={()=>{
-                                      setCountyMapGeoFips(geo.id);
-                                      setCountyFips(geo.properties.COUNTYFP);
-                                      setCountyName(fips2county[geo.id]);
-                                    }}
-
-                                    onClick={()=>{
-                                      // setCountyMapGeoFips(geo.id);
-                                      // setCountyFips(geo.properties.COUNTYFP);
-                                      // setCountyName(fips2county[geo.id]);
-                                    }}
-                                    
-                                    onMouseLeave={()=>{
-                                      setTooltipContent("");
-                                      setCountyTooltip(false)
-                                    }}
-                                    
-                                    fill={countyMapGeoFips===geo.id?colorHighlight:
-                                      ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0)?
-                                          colorScaleState[data[geo.id][metric]]: 
-                                          '#FFFFFF')}
-                                    
-                                  />
-                                ))}
-                              </svg>
-                            }
-                          </Geographies>
-                          
-
-                        </ComposableMap>
-                      </TabPanel>
-                      <TabPanel value={value} index={2}>
-                        Item Three
-                      </TabPanel>
-                    </div>
-                    <Grid>
-                            <Grid.Row>
-                              {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 14}} defaultActiveIndex={1} panels={[
-                                {
-                                    key: 'acquire-dog',
-                                    title: {
-                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                      },
-                                      content: {
-                                          content: (
-                                            <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 560}}>
-                                              Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, last updated on {vaccineDate} <br/>
-
-                                              <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                              <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                              <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
-
-                                              <b><em> Newly distributed per 100,000 </em></b> is the number of vaccine doses per 100,000 that have been 
-                                              distributed to facilities across the United States by the federal government. 
-                                              Newly distributed per 100,000 for the US was last updated on {vaccineData["_nation"]['distDate'].substring(5,7) + "/" + vaccineData["_nation"]['distDate'].substring(8,10)}. 
-                                              For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineData[stateMapFips]['distDate'].substring(5,7) + "/" + vaccineData[stateMapFips]['distDate'].substring(8,10)}. <br/>
+                                                <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
+                                                distributed to facilities across the United States by the federal government. 
+                                                Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
+                                                For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
                                               
-                                              <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
-                                              <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
-
-                                            </Header.Content>
-                                        ),
-                                      },
-                                  }
-                                ]
-                              } /> }
-                            </Grid.Row>
-                          </Grid>
+                                              </Header.Content>
+                                          ),
+                                        },
+                                    }
+                                  ]
+                                } /> }
+                              </Grid.Row>
+                            </Grid>
+                      </Grid.Column>
                       
-                  </Grid.Column>
-                  
-                  <Grid.Column>
-                    <div style = {{width: 425}}>
-                      <TabExampleBasic data = {vaccineData} fips = {stateMapFips} stateName = {stateName} abbrev = {usAbbrev} date = {vaccineDate} demogData = {nationalDemog} VaccineData = {stateVaccineData}/>
+                      <Grid.Column style ={{paddingLeft: -20, width: 300}}>
+                        <AppBarMU position="static">
+                            <TabsMU value={value2} onChange={handleChange2} aria-label="simple tabs example"
+                            classes={{
+                              root: classes.customTabRoot,
+                              indicator: classes.customTabIndicator}}
+                            >
+                              <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Vaccination Status" {...a11yProps(3)} />
+                              <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Vaccination By Race" {...a11yProps(4)} />
+                              {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                          </TabsMU>
+                        </AppBarMU>
+                        <TabPanel value={value2} index={3}>
+                          Item One
+                        </TabPanel>
+                        <TabPanel value={value2} index={4}>
+                          Item Two
+                        </TabPanel>
+                        
 
-                    </div>
-                    
-                    
-                    <Grid>
-                          <Grid.Row>
-                            {stateFips && <Accordion id = "burden" style = {{paddingTop: 56, paddingLeft: 14}} defaultActiveIndex={1} panels={[
-                              {
-                                  key: 'acquire-dog',
-                                  title: {
-                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                    },
-                                    content: {
-                                        content: (
-                                          <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 0,fontSize: "19px", width: 410}}>
-                                              <Header.Subheader style={{width: 410, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 0}}>
-                                                {/* <b style= {{fontSize: "22px", paddingLeft: 8}}> Under-vaccinated Populations</b> 
-                                                
-                                                <p style = {{paddingLeft: 15}}>
-                                                  <ul>
-                                                    
-                                                  {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
-                                                    {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
-                                                    " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                                                    (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
-                                                  :
-                                                    ""} </li>}
 
-                                                    {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
-                                                      {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
-                                                    " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                                                    (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
-                                                  :
-                                                    ""}</li>}
+                        <Header as='h2' style={{fontWeight: 400}}>
+                          <Header.Content style={{width : 300, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 45, paddingLeft: 0}}>
+                            Vaccination Status in <br/> <b>{stateName}</b>
+                            
+                            
+                          </Header.Content>
+                        </Header>
+                        <Grid>
+                          <Grid.Row style={{width: 400, paddingLeft: 0, paddingTop: 30}}>
+                            <Table celled fixed style = {{width: 400}}>
+                              <Table.Header>
 
-                                                  {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
-                                                    {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
-                                                    " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                                                    (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-                                                  :
-                                                    ""} </li>}
+                                <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                                    <td colSpan='1' style={{width:150}}> </td>
+                                    <td colSpan='1' style={{width:125, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
+                                    <td colSpan='1' style={{width:125, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
+                                </tr>
+                                <Table.Row textAlign = 'center' style = {{height: 40}}>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Number partially vaccinated"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
 
-                                                  {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
-                                                    {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
-                                                    " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                                                    (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-                                                  :
-                                                    ""}</li>}
+                                </Table.Row>
+                                <Table.Row textAlign = 'center'>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Percent partially vaccinated"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
 
-                                                  {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
-                                                    {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
-                                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                                                    (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-                                                  :
-                                                    ""} </li>}
-                                                  
-                                                  
-                                                  {pctVacPopDisp >= 1 && <li>
-                                                    {(pctVacPopDisp) < 1 ? "": " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
-                                                  </li>}
+                                </Table.Row>
+                                <Table.Row textAlign = 'center'>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Number fully vaccinated"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
 
-                                                  </ul>
-                                                </p> */}
-                                                  
-                                              </Header.Subheader>
-                                          </Header.Content>
-                                      ),
-                                    },
-                                }
-                              ]
-                            } /> }
+                                </Table.Row>
+                                <Table.Row textAlign = 'center'>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Percent fully vaccinated"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+
+                                </Table.Row>
+                                {/* <Table.Row textAlign = 'center'>
+                                  <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Moderna"])} </Table.HeaderCell>
+
+                                </Table.Row>
+                                <Table.Row textAlign = 'center'>
+                                  <Table.HeaderCell style={{fontSize: '19px'}}> {"Pfizer \n \n Vaccine"} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Pfizer"])} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Pfizer"])} </Table.HeaderCell>
+
+                                </Table.Row> */}
+                                <Table.Row textAlign = 'center'>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+
+                                </Table.Row>
+                                
+                              </Table.Header>
+                            </Table>
                           </Grid.Row>
+                          
                         </Grid>
-                  </Grid.Column>
-                  
-                  
-                </Grid.Row> 
+                        
+                      </Grid.Column>
+                    </Grid.Row> 
+                  </Grid>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <div style = {{paddingLeft: 50}}>
+                    <ComposableMap 
+                        projection="geoAlbersUsa" 
+                        data-tip=""
+                        width={950} 
+                        height={500}
+                        strokeWidth= {0.1}
+                        stroke= 'black'
+                        offsetX = {0}
+                        projectionConfig={{scale: 1000}}
+
+
+                        >
+                      <Geographies geography={countyGeoUrl}>
+                        {({ geographies }) => 
+                          <svg>
+                            {setCountyTooltip(true)}
+                            {geographies.map(geo => (
+                              <Geography
+                                key={geo.rsmKey}
+                                geography={geo}
+                                onMouseEnter={()=>{
+                                  setCountyMapGeoFips(geo.id);
+                                  setCountyFips(geo.properties.COUNTYFP);
+                                  setCountyName(fips2county[geo.id]);
+                                  const fips = geo.id.substring(0,2);
+                                  const configMatched = configs.find(s => s.fips === fips);
+                                  setHoverName(configMatched.name)
+                                }}
+
+                                onClick={()=>{
+                                  // setCountyMapGeoFips(geo.id);
+                                  // setCountyFips(geo.properties.COUNTYFP);
+                                  // setCountyName(fips2county[geo.id]);
+                                }}
+                                
+                                onMouseLeave={()=>{
+                                  setTooltipContent("");
+                                  setCountyTooltip(false)
+                                }}
+                                
+                                fill={countyMapGeoFips===geo.id?colorHighlight:
+                                  ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0)?
+                                      colorScaleState[data[geo.id][metric]]: 
+                                      '#FFFFFF')}
+                                
+                              />
+                            ))}
+                          </svg>
+                        }
+                      </Geographies>
+                      
+
+                    </ComposableMap>
+                  </div>
+                </TabPanel>
                 
-              </Grid>
+              </div>
+                
+                
+              
               <div style = {{height: 55}}> </div>
 
               <Grid>
@@ -2378,7 +2256,7 @@ const USVaccineTracker = (props) => {
                                                 theme = {VictoryTheme.material}
                                                 width = {250}
                                                 height = {40 * (( !!raceData[stateMapFips]["Asian Alone"] && raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["Asian Alone"][0]["deaths"] > 30 && raceData[stateMapFips]["Asian Alone"][0]["percentPop"] >= 1 ? 1: 0) + 
-                                                (!!raceData[stateMapFips]["American Native Alone"] && raceData[stateMapFips]["American Native Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Native Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Native Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
+                                                (!!raceData[stateMapFips]["American Natives Alone"] && raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Natives Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
                                                 (!!raceData[stateMapFips]["African American Alone"] && raceData[stateMapFips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["African American Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["African American Alone"][0]["percentPop"] >= 1 ? 1 : 0) + 
                                                 (!!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 ?1:0))}
                                                 domainPadding={20}
@@ -2394,14 +2272,14 @@ const USVaccineTracker = (props) => {
                                                 
                                                 
 
-                                                {"American Native Alone" in raceData[stateMapFips] && raceData[stateMapFips]["American Native Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Native Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Native Alone"][0]["percentPop"] >= 1 &&
+                                                {"American Natives Alone" in raceData[stateMapFips] && raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Natives Alone"][0]["percentPop"] >= 1 &&
                                                   <VictoryBar
                                                     barWidth= {10}
                                                     horizontal
                                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                                     data={[
 
-                                                          {key: "American\n Natives", 'value': raceData[stateMapFips]["American Native Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["American Native Alone"][0]['deathrateRace'])}
+                                                          {key: "American\n Natives", 'value': raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'])}
 
                                                     ]}
                                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
@@ -2506,18 +2384,18 @@ const USVaccineTracker = (props) => {
                                 {!!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
                                   <div style = {{marginTop: 10}}>
                                     <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 60, fontWeight: 400, width: 250}}> Deaths by Ethnicity</Header.Content>
-                                    {!(stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Native"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ))
+                                    {!(stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ))
                                         && 
                                       <center> <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 20, fontWeight: 400, width: 250}}> <br/> <br/> None Reported</Header.Content> </center>
 
                                   }
                                   </div>
                                 }
-                                {stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Native"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ) && 
+                                {stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ) && 
                                   <VictoryChart
                                                 theme = {VictoryTheme.material}
                                                 width = {250}
-                                                height = {!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ?  81 : 3 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Native"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
+                                                height = {!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ?  81 : 3 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
                                                 domainPadding={20}
                                                 minDomain={{y: props.ylog?1:0}}
                                                 padding={{left: 130, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1}}
@@ -2531,7 +2409,7 @@ const USVaccineTracker = (props) => {
                                                   <VictoryGroup>
 
 
-                                                  {!!raceData[stateMapFips]["Non-Hispanic American Native"] && raceData[stateMapFips]["Non-Hispanic American Native"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic American Native"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Native"][0]["percentPop"] >= 1 &&
+                                                  {!!raceData[stateMapFips]["Non-Hispanic American Natives"] && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
                                                     <VictoryBar
                                                       barWidth= {10}
                                                       horizontal
@@ -2539,7 +2417,7 @@ const USVaccineTracker = (props) => {
                                                       labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                                       data={[
 
-                                                            {key: "American\n Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Native"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Native"][0]['deathrateRaceEthnicity'])}
+                                                            {key: "American\n Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'])}
 
                                                       ]}
                                                       labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
@@ -2672,7 +2550,7 @@ const USVaccineTracker = (props) => {
 
                                   </VictoryChart>
                                 }
-                                {stateMapFips !== "_nation" && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Native"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ) && 
+                                {stateMapFips !== "_nation" && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] ) ) && 
                                   <div style = {{marginTop: 10, textAlign: "center", width: 250}}>
                                     <Header.Content style={{fontSize: '14pt', paddingLeft: 35, fontWeight: 400}}> Deaths per 100K <br/> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
                                   </div>
@@ -2686,7 +2564,7 @@ const USVaccineTracker = (props) => {
 
                           {stateMapFips !== "_nation" && (!!raceData[stateMapFips]["Non-Hispanic African American"] || !!raceData[stateMapFips]["Non-Hispanic White"] ) && stateMapFips !== "38" &&
                           <Grid.Row columns = {1}>
-                            <Grid.Column style = {{ marginLeft : 0, paddingBottom: (13+ 2 * (!raceData[stateMapFips]["Hispanic"] + !raceData[stateMapFips]["Non Hispanic"] + !raceData[stateMapFips]["Non-Hispanic African American"] + !raceData[stateMapFips]["Non-Hispanic American Native"] + !raceData[stateMapFips]["Non-Hispanic Asian"] + !raceData[stateMapFips]["Non-Hispanic White"] ))}}> 
+                            <Grid.Column style = {{ marginLeft : 0, paddingBottom: (13+ 2 * (!raceData[stateMapFips]["Hispanic"] + !raceData[stateMapFips]["Non Hispanic"] + !raceData[stateMapFips]["Non-Hispanic African American"] + !raceData[stateMapFips]["Non-Hispanic American Natives"] + !raceData[stateMapFips]["Non-Hispanic Asian"] + !raceData[stateMapFips]["Non-Hispanic White"] ))}}> 
                               {stateMapFips && !raceData[stateMapFips]["White Alone"] &&
                                 <div style = {{marginTop:10, width: 400}}>
                                   <Header.Content x={0} y={20} style={{fontSize: '14pt', paddingLeft: 150, fontWeight: 400}}> Deaths by Race & Ethnicity</Header.Content>
@@ -2697,7 +2575,7 @@ const USVaccineTracker = (props) => {
                                 <VictoryChart
                                               theme = {VictoryTheme.material}
                                               width = {400}
-                                              height = {32 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Native"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
+                                              height = {32 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"] )}
                                               domainPadding={20}
                                               minDomain={{y: props.ylog?1:0}}
                                               padding={{left: 160, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1}}
@@ -2710,7 +2588,7 @@ const USVaccineTracker = (props) => {
                                               
                                                 <VictoryGroup>
 
-                                                {!!raceData[stateMapFips]["Non-Hispanic American Native"] && raceData[stateMapFips]["Non-Hispanic American Native"][0]['deathrateRaceEthnicity'] >= 0  && raceData[stateMapFips]["Non-Hispanic American Native"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Native"][0]["percentPop"] >= 1 &&
+                                                {!!raceData[stateMapFips]["Non-Hispanic American Natives"] && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0  && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
                                                   <VictoryBar
                                                     barWidth= {10}
                                                     horizontal
@@ -2718,7 +2596,7 @@ const USVaccineTracker = (props) => {
                                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                                                     data={[
 
-                                                          {key: "American Native", 'value': raceData[stateMapFips]["Non-Hispanic American Native"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Native"][0]['deathrateRaceEthnicity'])}
+                                                          {key: "American Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'])}
 
                                                     ]}
                                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }}/>}
@@ -2894,7 +2772,7 @@ const USVaccineTracker = (props) => {
                                             The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
                                             <br/>
                                             <br/> <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://covid.cdc.gov/covid-data-tracker/#demographics" target = "_blank" rel="noopener noreferrer"> The CDC </a>
-                                            <br/><b>Data as of:</b> {date}, updated every weekday.<br/>
+                                            <br/><b>Data as of:</b> {nationalDemogDate}, updated every weekday.<br/>
                                           
                                           </Header.Content>
                                         </Grid.Row>}
@@ -2913,7 +2791,7 @@ const USVaccineTracker = (props) => {
                                           
                                           </Header.Content>}
 
-                                        {stateMapFips !== "38" && !raceData[stateMapFips]["Non-Hispanic African American"] && !!raceData[stateMapFips]["White Alone"] && (!raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic American Native"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] )
+                                        {stateMapFips !== "38" && !raceData[stateMapFips]["Non-Hispanic African American"] && !!raceData[stateMapFips]["White Alone"] && (!raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] )
                                                     && 
                                           <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450}}>
                                             {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
@@ -2923,7 +2801,7 @@ const USVaccineTracker = (props) => {
                                           
                                           </Header.Content>}
 
-                                        {stateMapFips !== "38"  && !!raceData[stateMapFips]["White Alone"] && !!raceData[stateMapFips]["White Alone"] && !(!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Native"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] )
+                                        {stateMapFips !== "38"  && !!raceData[stateMapFips]["White Alone"] && !!raceData[stateMapFips]["White Alone"] && !(!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"] )
                                                     && 
                                           <Header.Content style={{fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450}}>
                                             {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[stateMapFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
@@ -3063,7 +2941,7 @@ const USVaccineTracker = (props) => {
             <Notes />
           </Container>
         </Container>
-        {(countyTooltip === false) && <ReactTooltip > 
+        {(countyTooltip === false) && <ReactTooltip offset = {{top: 40}}> 
           <font size="+2"><b >{hoverName}</b> </font> 
           <br/> 
           {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
@@ -3077,43 +2955,55 @@ const USVaccineTracker = (props) => {
 
           <b>Click to lock.</b> 
 
-          <table class="ui celled inverted table" >
-            <thead>
-              <tr>
-                <th># partially vaccinated</th>
-                <th>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</th>
-              </tr>
-              <tr>
-                <th> % partially vaccinated</th>
-                <th>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</th>
-              </tr>
-              <tr>
-                <th> # fully vaccinated</th>
-                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</th>
-              </tr>
-              <tr>
-                <th> % fully vaccinated</th>
-                <th>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</th>
-              </tr>
-            </thead>
-          </table>
+          <Table celled inverted selectable  >
+            <Table.Body>
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}># partially vaccinated</Table.HeaderCell>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</Table.HeaderCell>
+              </Table.Row>
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}> % partially vaccinated</Table.HeaderCell>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</Table.HeaderCell>
+              </Table.Row>
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}> # fully vaccinated</Table.HeaderCell>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
+              </Table.Row>
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px"}}> % fully vaccinated</Table.HeaderCell>
+                <Table.HeaderCell style = {{fontSize: "16px", lineHeight: "16px", textAlign: "right"}}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
         </ReactTooltip>}
 
-        {countyTooltip && <ReactTooltip > 
-          <font size="+2"><b >{countyName}</b> </font> 
+        {countyTooltip && <ReactTooltip offset = {{top: 40}}> 
+        <div>
+          <font size="+2"><b >{countyName}, <br/> {hoverName}</b> </font> 
+          <br/>
+          <font size="+1">Percent fully vaccinated</font>
+        
           <br/> 
-          <table class="ui celled inverted table" >
-            <thead>
-              <tr>
-                <th> # fully vaccinated</th>
-                <th>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompleteYes"])}</th>
-              </tr>
-              <tr>
-                <th> % fully vaccinated</th>
-                <th>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</th>
-              </tr> 
-            </thead>
-          </table>
+          <Table celled inverted selectable compact >
+            <Table.Body>
+              
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px"}}> All ages</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
+              </Table.Row> 
+
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px"}}> Age 18+</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
+              </Table.Row> 
+
+              <Table.Row style = {{height: 25}}>
+                <Table.HeaderCell style = {{fontSize: "16px"}}> Age 65+</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
+              </Table.Row> 
+            </Table.Body>
+            </Table>
+          </div>
         </ReactTooltip>}
       </div>
     </HEProvider>
