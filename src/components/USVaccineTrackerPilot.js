@@ -770,9 +770,13 @@ const USVaccineTracker = (props) => {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [value2, setValue2] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  const handleChange2 = (event, newValue2) => {
+    setValue2(newValue2);
   };
   const vaccineOptions = [
     {
@@ -1624,11 +1628,11 @@ const USVaccineTracker = (props) => {
                   </AppBarMU>
                 </div>
                 <TabPanel value={value} index={0}>
-                  <Grid style = {{width: 1260}}>
-                    <Grid.Row columns = {2} style = {{width: 1260}}>
-                      <Grid.Column style = {{width: 1000, paddingLeft: 0}}>
+                  <Grid style = {{width: 1150}}>
+                    <Grid.Row columns = {2} style = {{width: 1150}}>
+                      <Grid.Column>
 
-                        <div style = {{paddingBottom: 0, width: 1000}}>
+                        <div>
                             <Header.Content style = {{paddingLeft: 20, fontSize: "22px"}}>
                               <a style = {{color: "#004071"}}> Click on a state. </a>
                               <br/>
@@ -1638,10 +1642,10 @@ const USVaccineTracker = (props) => {
 
                             <Dropdown
                             style={{background: '#fff', 
-                                    fontSize: "19px",
+                                    fontSize: "16px",
                                     fontWeight: 400, 
                                     theme: '#000000',
-                                    width: '550px',
+                                    width: '480px',
                                     top: '0px',
                                     left: '15px',
                                     text: "Select",
@@ -1693,17 +1697,17 @@ const USVaccineTracker = (props) => {
 
                             </svg>
                           </div>
-
+                          
                           <ComposableMap 
                             projection="geoAlbersUsa" 
                             data-tip=""
-                            width={1200} 
-                            height={450}
+                            width={550} 
+                            height={400}
                             strokeWidth= {0.1}
                             stroke= 'black'
-                            offsetX = {-380}
-                            projectionConfig={{scale: 800}}
-
+                            offsetX = {-15}
+                            projectionConfig={{scale: 700}}
+                            
 
                             >
                             <Geographies geography={geoUrl}>
@@ -1786,108 +1790,121 @@ const USVaccineTracker = (props) => {
 
                           </ComposableMap>
                         
-                            <Grid>
-                              <Grid.Row>
-                                {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 35}} defaultActiveIndex={1} panels={[
-                                  {
-                                      key: 'acquire-dog',
-                                      title: {
-                                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
-                                        },
-                                        content: {
-                                            content: (
-                                              <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", fontFamily: 'lato', fontSize: "19px", lineHeight: "20px", width: 990}}>
-                                                Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
-
-                                                <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
-                                                <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
-                                                <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
-                                                <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
-
-                                                <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
-                                                distributed to facilities across the United States by the federal government. 
-                                                Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
-                                                For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
-                                              
-                                              </Header.Content>
-                                          ),
-                                        },
-                                    }
-                                  ]
-                                } /> }
-                              </Grid.Row>
-                            </Grid>
+                            
                       </Grid.Column>
                       
-                      <Grid.Column style ={{width: 250}}>
-                        <Header as='h2' style={{fontWeight: 400}}>
-                          <Header.Content style={{width : 300, height: 100, fontSize: "22px", textAlign: "center", paddingTop: 45, paddingLeft: 35}}>
-                            Vaccination Status in <br/> <b>{stateName}</b>
+                      <Grid.Column style ={{paddingLeft: 0, width: 420}}>
+                        <Grid.Row style = {{paddingTop: 25}}>
+                          <AppBarMU position="static" style = {{width: 420}}>
+                              <TabsMU value={value2} onChange={handleChange2} aria-label="simple tabs example"
+                              classes={{
+                                root: classes.customTabRoot,
+                                indicator: classes.customTabIndicator}}
+                              >
+                                <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Vaccination Status" {...a11yProps(0)} />
+                                <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Vaccination By Race" {...a11yProps(1)} />
+                                {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                            </TabsMU>
+                          </AppBarMU>
+                          <TabPanel value={value2} index={0}>
                             
-                            
-                          </Header.Content>
-                        </Header>
-                        <Grid>
-                          <Grid.Row style={{width: 355, paddingLeft: 0, paddingTop: 30}}>
-                            <Table celled fixed style = {{width: 355}}>
-                              <Table.Header>
+                            <Grid>
+                              <Grid.Row style={{width: 420, paddingLeft: 0, paddingTop: 30}}>
+                                <Table celled fixed style = {{width: 400}}>
+                                  <Table.Header>
 
-                                <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
-                                    <td colSpan='1' style={{width:135}}> </td>
-                                    <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
-                                    <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
-                                </tr>
-                                <Table.Row textAlign = 'center' style = {{height: 40}}>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Number partially vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
+                                    <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                                        <td colSpan='1' style={{width:160}}> </td>
+                                        <td colSpan='1' style={{width:120, fontSize: '16px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {stateMapFips === "_nation" ? "Select State":usAbbrev[stateMapFips]["state_abbr"]}</td>
+                                        <td colSpan='1' style={{width:120, fontSize: '16px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
+                                    </tr>
+                                    <Table.Row textAlign = 'center' style = {{height: 40}}>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {"Number partially vaccinated"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
 
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Percent partially vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                                    </Table.Row>
+                                    <Table.Row textAlign = 'center'>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {"Percent partially vaccinated"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
 
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Number fully vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
+                                    </Table.Row>
+                                    <Table.Row textAlign = 'center'>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {"Number fully vaccinated"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
 
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Percent fully vaccinated"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                                    </Table.Row>
+                                    <Table.Row textAlign = 'center'>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {"Percent fully vaccinated"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
 
-                                </Table.Row>
-                                {/* <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Moderna"])} </Table.HeaderCell>
+                                    </Table.Row>
+                                    {/* <Table.Row textAlign = 'center'>
+                                      <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Moderna"])} </Table.HeaderCell>
 
-                                </Table.Row>
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {"Pfizer \n \n Vaccine"} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Pfizer"])} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Pfizer"])} </Table.HeaderCell>
+                                    </Table.Row>
+                                    <Table.Row textAlign = 'center'>
+                                      <Table.HeaderCell style={{fontSize: '19px'}}> {"Pfizer \n \n Vaccine"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Pfizer"])} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData[stateMapFips]["Administered_Pfizer"])} </Table.HeaderCell>
 
-                                </Table.Row> */}
-                                <Table.Row textAlign = 'center'>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
-                                  <Table.HeaderCell style={{fontSize: '14px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                                    </Table.Row> */}
+                                    <Table.Row textAlign = 'center'>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {"Distributed on " + vaccineDate} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {stateMapFips === "_nation" ? "":numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{fontSize: '16px', fontWeight: 600}}> {numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
 
-                                </Table.Row>
-                                
-                              </Table.Header>
-                            </Table>
-                          </Grid.Row>
-                          
-                        </Grid>
-                        
+                                    </Table.Row>
+                                    
+                                  </Table.Header>
+                                </Table>
+                              </Grid.Row>
+                              
+                            </Grid>
+                          </TabPanel>
+                          <TabPanel value={value2} index={1}>
+                            Item Two
+                          </TabPanel>
+                        </Grid.Row>
                       </Grid.Column>
                     </Grid.Row> 
+                    
+                  </Grid>
+                  <Grid>
+                    <Grid.Row>
+                      {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 20}} defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                              },
+                              content: {
+                                  content: (
+                                    <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", fontFamily: 'lato', fontSize: "19px", lineHeight: "20px", width: 990}}>
+                                      Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
+
+                                      <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
+                                      <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
+                                      <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                      <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
+
+                                      <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
+                                      distributed to facilities across the United States by the federal government. 
+                                      Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
+                                      For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
+                                    
+                                    </Header.Content>
+                                ),
+                              },
+                          }
+                        ]
+                      } /> }
+                    </Grid.Row>
                   </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
