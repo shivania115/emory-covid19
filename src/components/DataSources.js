@@ -30,11 +30,52 @@ export default function DataSources(props){
               <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Percent of population fully vaccinated</i> is the percentage of the total U.S. population that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census. </Table.Cell>
             </Table.Row>
-
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>Number fully vaccinated</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Number fully vaccinated</i> is the number of individuals in the United States recorded in CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received. </Table.Cell>
+            </Table.Row>
+
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Percent of population 18+ fully vaccinated</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Percent of population fully vaccinated</i> is the percentage of the total U.S. population age 18 and older that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census. </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Percent of population 65+ fully vaccinated</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Percent of population fully vaccinated</i> is the percentage of the total U.S. population age 65 and older that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census. </Table.Cell>
+            </Table.Row>
+
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Total doses delivered</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Total doses delivered</i> is the number of vaccine doses that have been distributed to facilities across the United States by the federal government. </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Doses Administered</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Doses Administered</i> is the total number of vaccine doses that have been given to people in the United States since December 14, 2020, the date when the first dose was administered to a person in the United States under the Emergency Use Authorization as a non-clinical trial according to CDC database. </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Number received at least one dose</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Number received at least one dose</i> is the number of individuals in the United States recorded in CDC database to have received one or more doses of any of the authorized vaccines received. </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Number partially vaccinated</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Number partially vaccinated</i> is the number of individuals in the United States recorded in CDC database to have received one of two doses of Pfizer or Moderna vaccine. </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Percent of the U.S. population partially vaccinated</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Percent of the U.S. population partially vaccinated</i> is the percentage of the total U.S. population that has received one of two doses of Pfizer or Moderna vaccine according to CDC database. The total U.S. population is derived from the Census </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Newly distributed per 100K</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" target="_blank" rel="noopener noreferrer"> The CDC's COVID Data Tracker </a></Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Newly distributed per 100K</i> is the number of vaccine doses per 100K that have been distributed to facilities across the United States by the federal government. </Table.Cell>
             </Table.Row>
 
             <Table.Row>
