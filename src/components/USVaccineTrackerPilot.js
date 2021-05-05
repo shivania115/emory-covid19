@@ -662,7 +662,7 @@ const SideRaceBarChart = (props) => {
         </BarChart>
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0, paddingTop: props.inTab===true ? '2rem':'1rem'}}>
-          <Header style={{fontSize: '10pt'}}> <center> % Vaccination </center> </Header>
+          <Header style={{fontSize: '10pt', paddingLeft: '5rem'}}> % Vaccination </Header>
           <BarChart
           layout='vertical'
           width={props.inTab === true ? 220:250}
@@ -757,7 +757,7 @@ const SideRaceBarChart = (props) => {
         </BarChart>
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0}}>
-          <Header style={{fontSize: '10pt'}}> <center> % Vaccination by Race</center> </Header>
+          <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination by Race </Header>
           <BarChart
           layout='vertical'
           width={210}
@@ -820,7 +820,7 @@ const SideRaceBarChart = (props) => {
         </BarChart>
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0}}>
-          <Header style={{fontSize: '10pt'}}> <center> % Vaccination by Ethnicity</center> </Header>
+          <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination by Ethnicity</Header>
           <BarChart
           layout='vertical'
           width={210}
