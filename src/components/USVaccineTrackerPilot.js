@@ -599,10 +599,10 @@ const SideRaceBarChart = (props) => {
 
       return (
         <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
-          <p style={{color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p>
-          {/* ${payload[hoverBar[0]]['name']}  */}
-          <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue===0 ? 'NA' : payload[0].payload.popvalue.toFixed(1)}</p>
+          <p style={{marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p>
+          {/* color: sideBySideColor[data.indexOf(payload[0].payload)] */}
           <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue===0 ? 'NA' : payload[0].payload.vaxvalue.toFixed(1)}</p>
+          <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue===0 ? 'NA' : payload[0].payload.popvalue.toFixed(1)}</p>
         </div>
       );
     }
@@ -688,7 +688,7 @@ const SideRaceBarChart = (props) => {
         </BarChart>
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0, paddingTop: props.inTab===true ? '2rem':'1rem'}}>
-        <Header style={{fontSize: '10pt', paddingLeft: '5rem'}}> % Population </Header>
+        <Header style={{fontSize: '10pt', paddingLeft: props.inTab===true ? '4.5rem' : '5.5rem'}}> % Population </Header>
       <BarChart
           transform={props.inTab===false ? "translate(10, 0)":"translate(-15, 0)"}
           layout='vertical'
@@ -731,7 +731,7 @@ const SideRaceBarChart = (props) => {
           
         </Grid.Column>
         {props.fips !== '_nation' ?
-          <Grid.Row style={{paddingLeft: '3rem'}}>
+          <Grid.Row style={{paddingLeft: '2rem'}}>
           <text><b>Note:</b> Data are not consistently available across sources.</text>
           </Grid.Row>
           : null}
@@ -776,7 +776,7 @@ const SideRaceBarChart = (props) => {
       
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0}}>
-        <Header style={{fontSize: '10pt', paddingLeft: '3.5rem'}}> % Population by Race </Header>
+        <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Population by Race </Header>
         <BarChart
           transform="translate(-15, 0)"
           layout='vertical'
@@ -842,7 +842,7 @@ const SideRaceBarChart = (props) => {
 
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0}}>
-        <Header style={{fontSize: '10pt', paddingLeft: '3.5rem'}}> % Population Hispanic </Header>
+        <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Population Hispanic </Header>
         <BarChart
           transform="translate(-15, 0)"
           layout='vertical'
@@ -874,7 +874,7 @@ const SideRaceBarChart = (props) => {
           
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{paddingLeft: '3rem'}}>
+        <Grid.Row style={{paddingLeft: '2rem'}}>
         <text><b>Note:</b> Data are not consistently available across sources.</text>
         </Grid.Row>
         </Grid>
