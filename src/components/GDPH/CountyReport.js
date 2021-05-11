@@ -931,7 +931,6 @@ export default function CountyReport() {
                         dataTS["13001"][337].t,
                         dataTS["13001"][365].t,
                         dataTS["13001"][396].t,
-                        // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}
 
