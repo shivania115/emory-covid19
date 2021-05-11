@@ -2,8 +2,27 @@ import AppBar from './AppBar';
 import Notes from './Notes';
 import { useParams, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, List, Divider, Image, Breadcrumb, Header, Segment, Loader } from 'semantic-ui-react'
+import { Container, Grid, List, Divider, Button, Image, Breadcrumb, Header, Segment, Loader } from 'semantic-ui-react'
 import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea, ReferenceLine} from "recharts";
+
+function getMin(arr, prop) {
+  var min;
+  for (var i=arr.length ; i > 0 ; i--) {
+    min = arr[arr.length][prop];
+      if (min == null || parseInt(arr[i][prop]) < min)
+          min = arr[i][prop];
+  }
+  return min;
+}
+
+function getMax(arr, prop) {
+  var max;
+  for (var i=0 ; i < arr.length ; i++) {
+      if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+          max = arr[i];
+  }
+  return max;
+}
 
 function numberWithCommas(x) {
   x = x.toString();
@@ -17,8 +36,8 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
         <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
-        <p style = {{margin: 0, color: "#00cc00"}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
-        <p style = {{margin: 0}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color: "#633c70"}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color : "#99528c"}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -29,20 +48,22 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 function VaccineDisparityCharts(props){
   const caseYTickFmt = (y) => {
-    return y<1000?y:(y/1000+'k');
+    return y<1000?y.toFixed(0):(y/1000+'k');
   };
   return(
     <div style = {{fontSize: "19px"}}>
-      <LineChart width={720} height={180} data = {props.data} margin={{right: 20}}>
+      <br/>
+      <center><p> Vaccination Overtime by Vulnerable Populations</p></center>
+      <LineChart width={720} height={450} data = {props.data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" tick={{fontSize: 16}} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
-        <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
+        <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={["dataMin", "dataMax"]}/>
         <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={"#000000"} strokeWidth="2" />
+              stroke={"#633c70"} strokeWidth="2" />
         <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={"#000000"} strokeWidth="2" />
+              stroke={"#99528c"} strokeWidth="2" />
         <Legend />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
@@ -56,9 +77,11 @@ function VaccineDisparityCharts(props){
 export default function AboutUs(props){
   const history = useHistory();
   const [vaccDisparityData, setVaccDisparityData] = useState();
+  
 
   let {blogTitle} = useParams();
-
+  const [vTrendGroup, setVTrendGroup] = useState();
+  
   const caseTickFmt = (tick) => { 
     // return ((new Date(tick*1000).getMonth()+1) + "/" +  new Date(tick*1000).getDate() + "/" + new Date(tick*1000).getFullYear());
     return ((new Date(tick*1000).getMonth()+1) + "/" +  new Date(tick*1000).getDate() );
@@ -68,15 +91,19 @@ export default function AboutUs(props){
     if( blogTitle === "test123PilotBlog"){
       fetch('/data/vaccineDisparity.json').then(res => res.json())
         .then(x => setVaccDisparityData(x));
+      
+      setVTrendGroup(["Counties with high proportion of African American", 
+      "Counties with low proportion of African American"]);
     }
   }, []);
   
   if(true){
+    console.log();
   return (
     <div>
     <AppBar/>
 
-    {blogTitle == "test123PilotBlog" &&
+    {blogTitle == "test123PilotBlog" && vaccDisparityData && 
       <Container style={{marginTop: "8em", minWidth: '1260px'}}>
         <Breadcrumb style={{fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt"}}>
             <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
@@ -90,11 +117,7 @@ export default function AboutUs(props){
             <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
               <Header.Content>
                 Statewide Mask Mandates <br/>in the United States
-
-                {vaccDisparityData && <VaccineDisparityCharts data = {vaccDisparityData} 
-                    aboveM = {"vaccAbvMeanAap"} belowM = {"vaccBelMeanAap"} outcome = {"percentFullyVaccinated"} 
-                    formatter= {caseTickFmt} />}
-
+                
                 <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
                   Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move 
                   for US states resulting in lower case rates during the third wave of the pandemic compared to states with 
@@ -139,7 +162,66 @@ export default function AboutUs(props){
                       This has been the case on a range of measures, including whether leaders implemented local mask mandates.
 
 
-                
+
+
+
+
+
+                      <div>
+                        <center>
+                          <Button content='African American' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of African American", 
+                            "Counties with low proportion of African American"]); 
+                          }}/>
+                          <Button content='Hispanic' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of Hispanic", 
+                            "Counties with low proportion of Hispanic"]); 
+                          }}/>
+                          <Button content='Age 65+' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of age 65+", 
+                            "Counties with low proportion of age 65+"]); 
+                          }}/>
+                          <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion with underlying condition", 
+                            "Counties with low proportion with underlying condition"]); 
+                          }}/>
+                          <Button content='In poverty' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion in poverty", 
+                            "Counties with low proportion in poverty"]); 
+                          }}/>
+                          <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high residential segregation", 
+                            "Counties with low residential segregation"]); 
+                          }}/>
+                          <Button content='Minority' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of minority", 
+                            "Counties with low proportion of minority"]); 
+                          }}/>
+                          <Button content='American Native' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of American Native", 
+                            "Counties with low proportion of American Native"]); 
+                          }}/>
+                          <Button content='Uninsured' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of uninsured", 
+                            "Counties with low proportion of uninsured"]); 
+                          }}/>
+                        </center>
+                        
+                        
+                        {vaccDisparityData && <VaccineDisparityCharts data = {vaccDisparityData} 
+                          aboveM = {vTrendGroup[0]} belowM = {vTrendGroup[1]} outcome = {"percentFullyVaccinated"} 
+                          formatter= {caseTickFmt} trendGroup = {vTrendGroup}/>}
+                      </div>
+
+
+
+
+
+
+
+
+
+
                       <br/>
                       <br/>
                       <br/>
