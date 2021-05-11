@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { Container, Grid, List, Divider, Button, Image, Breadcrumb, Header, Segment, Loader } from 'semantic-ui-react'
 import {LineChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, LabelList, ReferenceArea, ReferenceLine} from "recharts";
 
+const colorPalette = ['#007dba', '#808080', '#e8ab3b', '#008000', '#a45791', '#000000', '#8f4814'];
+
 function getMin(arr, prop) {
   var min;
   for (var i=arr.length ; i > 0 ; i--) {
@@ -36,8 +38,8 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
         <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
-        <p style = {{margin: 0, color: "#633c70"}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
-        <p style = {{margin: 0, color : "#99528c"}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color: colorPalette[0]}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color : colorPalette[1]}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -60,10 +62,10 @@ function VaccineDisparityCharts(props){
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={["dataMin", "dataMax"]}/>
         <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={"#633c70"} strokeWidth="2" />
+              stroke={colorPalette[0]} strokeWidth="2" />
         <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={"#99528c"} strokeWidth="2" />
+              stroke={colorPalette[1]} strokeWidth="2" />
         <Legend />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
