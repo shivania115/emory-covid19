@@ -463,16 +463,19 @@ const SideRaceBarChart = (props) => {
     );
   }
 
-  let barSize = 50
   let strokeWidth = 0.6
   let labelSize = '11px'
   let fontWeight = 500
-  let tickFontSize = props.inTab === true ? 10 : 12
+  let tickFontSize = props.inTab === true ? 11 : 12
+  let barSize = props.fips === '_nation' ? 35 : 50
 
   console.log('fips', props.fips)
   console.log('demog', props.demogData)
 
-    const data = [
+    const data = 
+    // show all categories at national level
+      props.fips === '_nation' ?
+      [
       {name:'Multiple/Other', 
       popvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'] 
       : (props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999 ? 0 : props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999),
@@ -515,28 +518,50 @@ const SideRaceBarChart = (props) => {
       vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
       :(props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'] === -9999 ? 0 
         : props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'])}  
+    ] 
+    :
+    // show only four catogories for states
+    [
+      {name: 'Asian', 
+      popvalue: (props.vaccRaceState[props.fips]['Asian'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['Asian'][0]['percentPop']),
+      vaxvalue: (props.vaccRaceState[props.fips]['Asian'][0]['percentVaccinated'] === -9999 ? 0 
+          : props.vaccRaceState[props.fips]['Asian'][0]['percentVaccinated'])},
+      {name: 'African Americans', 
+      popvalue : (props.vaccRaceState[props.fips]['African American'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['African American'][0]['percentPop']),
+      vaxvalue : (props.vaccRaceState[props.fips]['African American'][0]['percentVaccinated'] === -9999 ? 0 
+          : props.vaccRaceState[props.fips]['African American'][0]['percentVaccinated'])},
+      {name: 'Hispanic', 
+      popvalue: (props.vaccRaceState[props.fips]['Hispanic'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['Hispanic'][0]['percentPop']),
+      vaxvalue: (props.vaccRaceState[props.fips]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0 
+          : props.vaccRaceState[props.fips]['Hispanic'][0]['percentVaccinated'])},
+      {name: 'White', 
+      popvalue: (props.vaccRaceState[props.fips]['White'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['White'][0]['percentPop']),
+      vaxvalue: (props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'] === -9999 ? 0 
+        : props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'])}  
     ]
 
-  if(props.fips != '_nation' && props.vaccRaceState[props.fips]["stateReports"] === "Non-Hispanic Races only") {
-    const data = [
-      {name:'Multiple/Other', 
-      popvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'] 
-      : (props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999 ? 0 : props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999),
-      vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-      :(props.vaccRaceState[props.fips]['Other race'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.vaccRaceState[props.fips]['Other race'][0]['percentVaccinated'])},
-      {name:'Native Hawaiian/Pacific Islanders', 
-      popvalue: props.fips === '_nation' ? props.demogData['race'][0]['NHPI'][0]['percentPop'] 
-      : (props.vaccRaceState[props.fips]['NHPI'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['NHPI'][0]['percentPop']),
-      vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-      :(props.vaccRaceState[props.fips]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
-          : props.vaccRaceState[props.fips]['NHPI'][0]['percentVaccinated'])},
-      {name:'American Natives', 
-      popvalue: props.fips === '_nation' ? props.demogData['race'][0]['American Native'][0]['percentPop'] 
-      : (props.vaccRaceState[props.fips]['American Native'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['American Native'][0]['percentPop']),
-      vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-      :(props.vaccRaceState[props.fips]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
-        : props.vaccRaceState[props.fips]['American Native'][0]['percentVaccinated'])},
+
+  // if(props.fips !== '_nation' && props.vaccRaceState[props.fips]["stateReports"] !== "Non-Hispanic Races only") {
+    console.log('inside if')
+    const data_wo_his = [
+      // { name:'Multiple/Other', 
+      // popvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'] 
+      // : (props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999 ? 0 : props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999),
+      // vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
+      // :(props.vaccRaceState[props.fips]['Other race'][0]['percentVaccinated'] === -9999 ? 0 
+      //   : props.vaccRaceState[props.fips]['Other race'][0]['percentVaccinated'])},
+      // {name:'Native Hawaiian/Pacific Islanders', 
+      // popvalue: props.fips === '_nation' ? props.demogData['race'][0]['NHPI'][0]['percentPop'] 
+      // : (props.vaccRaceState[props.fips]['NHPI'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['NHPI'][0]['percentPop']),
+      // vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
+      // :(props.vaccRaceState[props.fips]['NHPI'][0]['percentVaccinated'] === -9999 ? 0 
+      //     : props.vaccRaceState[props.fips]['NHPI'][0]['percentVaccinated'])},
+      // {name:'American Natives', 
+      // popvalue: props.fips === '_nation' ? props.demogData['race'][0]['American Native'][0]['percentPop'] 
+      // : (props.vaccRaceState[props.fips]['American Native'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['American Native'][0]['percentPop']),
+      // vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
+      // :(props.vaccRaceState[props.fips]['American Native'][0]['percentVaccinated'] === -9999 ? 0 
+      //   : props.vaccRaceState[props.fips]['American Native'][0]['percentVaccinated'])},
       {name: 'Asian', 
       popvalue: props.fips === '_nation' ? props.demogData['race'][0]['Asian'][0]['percentPop'] 
       : (props.vaccRaceState[props.fips]['Asian'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['Asian'][0]['percentPop']),
@@ -556,7 +581,7 @@ const SideRaceBarChart = (props) => {
       :(props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'] === -9999 ? 0 
         : props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'])}  
     ]
-  }
+  // }
 
     const eth_data = [
       {name: 'Hispanic', 
@@ -612,6 +637,7 @@ const SideRaceBarChart = (props) => {
   console.log('active index', activeIndex);
 
   const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
+  const sideBySideColor_sep = [pieChartRace[3],pieChartRace[1], pieChartRace[0]]
 
   
   return(
@@ -621,8 +647,9 @@ const SideRaceBarChart = (props) => {
     return (
     <Grid>
       <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: props.inTab===true ? '0rem':'0.5rem',paddingTop: props.inTab===true ? '2rem':'1rem', paddingRight: 0}}>
-      <Header style={{fontSize: '10pt'}}> <center> % Population </center> </Header>
-      <BarChart
+      <Header style={{fontSize: '10pt', paddingLeft: '5rem'}}> % Vaccination </Header>
+          <BarChart
+          transform={props.inTab===false ? "translate(10, 0)":"translate(-15, 0)"}
           layout='vertical'
           width={props.inTab === true ? 220:250}
           height={props.inTab === true ? 350:330}
@@ -647,23 +674,23 @@ const SideRaceBarChart = (props) => {
           //     }
           //   }}
              cursor={false}/>
-          <Bar dataKey="popvalue"
+          <Bar dataKey="vaxvalue" barSize={barSize}
             isAnimationActive={false}>
             {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
+                <Cell key={`cell-${index}`} fill={sideBySideColor[props.fips === '_nation' ? index : index+3]}/>
               ))
             }
             <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
 
-          
         </BarChart>
         </Grid.Column>
         <Grid.Column width={9} style={{paddingLeft: 0, paddingTop: props.inTab===true ? '2rem':'1rem'}}>
-          <Header style={{fontSize: '10pt', paddingLeft: '5rem'}}> % Vaccination </Header>
-          <BarChart
+        <Header style={{fontSize: '10pt', paddingLeft: '5rem'}}> % Population </Header>
+      <BarChart
+          transform={props.inTab===false ? "translate(10, 0)":"translate(-15, 0)"}
           layout='vertical'
           width={props.inTab === true ? 220:250}
           height={props.inTab === true ? 350:330}
@@ -688,35 +715,26 @@ const SideRaceBarChart = (props) => {
           //     }
           //   }}
              cursor={false}/>
-          <Bar dataKey="vaxvalue"
+          <Bar dataKey="popvalue" barSize={barSize}
             isAnimationActive={false}>
             {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
+                <Cell key={`cell-${index}`} fill={sideBySideColor[props.fips === '_nation' ? index : index+3]}/>
               ))
             }
             <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
 
-          
         </BarChart>
+        
+          
         </Grid.Column>
-        {/* <Grid.Row>
-        <Grid style={{paddingTop: '3.5rem'}}>
-          <Legend width={450} wrapperStyle={{paddingLeft: "60px"}} 
-            iconSize={10} payload={
-            data.map(
-              item => ({
-                id: item.name,
-                type: "square",
-                value: `${item.name}`,
-                color: sideBySideColor[data.indexOf(item)]
-              })
-            )
-          }/>
-        </Grid>
-        </Grid.Row> */}
+        {props.fips !== '_nation' ?
+          <Grid.Row style={{paddingLeft: '3rem'}}>
+          <text><b>Note:</b> Data are not consistently available across sources.</text>
+          </Grid.Row>
+          : null}
     </Grid>
     )
       
@@ -725,44 +743,13 @@ const SideRaceBarChart = (props) => {
       <Grid>
       <Grid.Row>
       <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: '0rem',paddingRight: 0}}>
-      <Header style={{fontSize: '10pt'}}> <center> % Population by Race</center> </Header>
-      <BarChart
-          layout='vertical'
-          width={210}
-          height={280}
-          data={data}
-          margin={{
-            top: 0,
-            right: 15,
-            left: 25,
-            bottom: 0,
-          }}
-        >
-          <XAxis type="number" domain={[0, 100]}/>
-          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
-          <Tooltip wrapperStyle={{zIndex: 10}} content={<CustomTooltip />}
-             cursor={false}/>
-          <Bar dataKey="popvalue"
-            isAnimationActive={false}>
-            {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
-              ))
-            }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
-            {/* valueAccessor={valueAccessor} */}
-          </Bar>
-
-          
-        </BarChart>
-        </Grid.Column>
-        <Grid.Column width={9} style={{paddingLeft: 0}}>
-          <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination by Race </Header>
+      <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination by Race </Header>
           <BarChart
+          transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={280}
-          data={data}
+          height={260}
+          data={data_wo_his}
           margin={{
             top: 0,
             right: 15,
@@ -774,11 +761,11 @@ const SideRaceBarChart = (props) => {
           <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
           <Tooltip wrapperStyle={{zIndex: 10}} content={<CustomTooltip />}
              cursor={false}/>
-          <Bar dataKey="vaxvalue"
+          <Bar dataKey="vaxvalue" barSize={barSize}
             isAnimationActive={false}>
             {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
+              data_wo_his.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={sideBySideColor_sep[index]}/>
               ))
             }
             <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
@@ -786,45 +773,49 @@ const SideRaceBarChart = (props) => {
           </Bar>
           
         </BarChart>
+      
+        </Grid.Column>
+        <Grid.Column width={9} style={{paddingLeft: 0}}>
+        <Header style={{fontSize: '10pt', paddingLeft: '3.5rem'}}> % Population by Race </Header>
+        <BarChart
+          transform="translate(-15, 0)"
+          layout='vertical'
+          width={210}
+          height={260}
+          data={data_wo_his}
+          margin={{
+            top: 0,
+            right: 15,
+            left: 25,
+            bottom: 0,
+          }}
+        >
+          <XAxis type="number" domain={[0, 100]}/>
+          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
+          <Tooltip wrapperStyle={{zIndex: 10}} content={<CustomTooltip />}
+             cursor={false}/>
+          <Bar dataKey="popvalue" barSize={barSize}
+            isAnimationActive={false}>
+            {
+              data_wo_his.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={sideBySideColor_sep[index]}/>
+              ))
+            }
+            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            {/* valueAccessor={valueAccessor} */}
+          </Bar>
+        </BarChart>
+
         </Grid.Column>
         </Grid.Row>
         <Grid.Row style={{paddingTop: '0rem'}}>
         <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: '0rem',paddingRight: 0}}>
-        <Header style={{fontSize: '10pt'}}> <center> % Population by Ethnicity</center> </Header>
-        <BarChart
-          layout='vertical'
-          width={210}
-          height={80}
-          data={eth_data}
-          margin={{
-            top: 0,
-            right: 15,
-            left: 25,
-            bottom: 0,
-          }}
-        >
-          <XAxis type="number" domain={[0, 100]}/>
-          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
-          <Tooltip wrapperStyle={{zIndex: 10}} content={<CustomTooltip />}
-             cursor={false}/>
-          <Bar dataKey="popvalue" barSize={30}
-            isAnimationActive={false}>
-            {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
-              ))
-            }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
-          </Bar>
-          
-        </BarChart>
-        </Grid.Column>
-        <Grid.Column width={9} style={{paddingLeft: 0}}>
-          <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination by Ethnicity</Header>
+        <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination Hispanic</Header>
           <BarChart
+          transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={80}
+          height={100}
           data={eth_data}
           margin={{
             top: 0,
@@ -837,18 +828,54 @@ const SideRaceBarChart = (props) => {
           <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
           <Tooltip wrapperStyle={{zIndex: 10}} content={<CustomTooltip />}
              cursor={false}/>
-          <Bar dataKey="vaxvalue" barSize={30}
+          <Bar dataKey="vaxvalue" barSize={barSize}
             isAnimationActive={false}>
             {
               data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]}/>
+                <Cell key={`cell-${index}`} fill={pieChartRace[2]}/>
               ))
             }
             <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
         </BarChart>
+
         </Grid.Column>
+        <Grid.Column width={9} style={{paddingLeft: 0}}>
+        <Header style={{fontSize: '10pt', paddingLeft: '3.5rem'}}> % Population Hispanic </Header>
+        <BarChart
+          transform="translate(-15, 0)"
+          layout='vertical'
+          width={210}
+          height={100}
+          data={eth_data}
+          margin={{
+            top: 0,
+            right: 15,
+            left: 25,
+            bottom: 0,
+          }}
+        >
+          <XAxis type="number" domain={[0, 100]}/>
+          <YAxis type="category" dataKey='name' tick={{fontSize: tickFontSize, fill:'black'}}/>
+          <Tooltip wrapperStyle={{zIndex: 10}} content={<CustomTooltip />}
+             cursor={false}/>
+          <Bar dataKey="popvalue" barSize={barSize}
+            isAnimationActive={false}>
+            {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={pieChartRace[2]}/>
+              ))
+            }
+            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+          </Bar>
+          
+        </BarChart>
+          
+        </Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{paddingLeft: '3rem'}}>
+        <text><b>Note:</b> Data are not consistently available across sources.</text>
         </Grid.Row>
         </Grid>
         )}
