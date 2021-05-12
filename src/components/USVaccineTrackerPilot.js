@@ -464,10 +464,10 @@ const SideRaceBarChart = (props) => {
   }
 
   let strokeWidth = 0.6
-  let labelSize = '11px'
+  let labelSize = '12px'
   let fontWeight = 500
-  let tickFontSize = props.inTab === true ? 11 : 12
-  let barSize = props.fips === '_nation' ? 35 : 50
+  let tickFontSize = (props.inTab === true && props.fips === '_nation' === true) ? 11 : 12
+  let barSize = props.fips === '_nation' ? 35 : 45
 
   console.log('fips', props.fips)
   console.log('demog', props.demogData)
@@ -542,7 +542,6 @@ const SideRaceBarChart = (props) => {
 
 
   // if(props.fips !== '_nation' && props.vaccRaceState[props.fips]["stateReports"] !== "Non-Hispanic Races only") {
-    console.log('inside if')
     const data_wo_his = [
       // { name:'Multiple/Other', 
       // popvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'] 
@@ -601,8 +600,8 @@ const SideRaceBarChart = (props) => {
         <div className='tooltip' style={{background: 'white', border:'2px', borderStyle:'solid', borderColor: '#DCDCDC', borderRadius:'2px', padding: '0.8rem'}}>
           <p style={{marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p>
           {/* color: sideBySideColor[data.indexOf(payload[0].payload)] */}
-          <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue===0 ? 'NA' : payload[0].payload.vaxvalue.toFixed(1)}</p>
-          <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue===0 ? 'NA' : payload[0].payload.popvalue.toFixed(1)}</p>
+          <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue===0 ? 'NA' : (props.fips==='_nation' ? payload[0].payload.vaxvalue.toFixed(1) : payload[0].payload.vaxvalue)}</p>
+          <p className="label" style={{marginBottom: 3}}>% Population: {payload[0].payload.popvalue===0 ? 'NA' : (props.fips==='_nation' ? payload[0].payload.popvalue.toFixed(1) : payload[0].payload.popvalue)}</p>
         </div>
       );
     }
@@ -612,8 +611,6 @@ const SideRaceBarChart = (props) => {
 
   const CustomizedLabellist =(props) =>{
     const { width, height, x, y, value } = props;
-
-    console.log('ll', props)
 
     return (
       <g>
@@ -629,6 +626,26 @@ const SideRaceBarChart = (props) => {
       </g>
     )
   }
+
+
+  const CustomizedLabellist_state =(props) =>{
+    const { width, height, x, y, value } = props;
+
+    return (
+      <g>
+      {(()=>{ 
+        if(value === 0){
+          return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>NA</text>
+        }else if(value > 60){
+          return <text x={x+width-40} y={height/2+y+4} fill="#FFF" fontSize={labelSize}>{value}%</text>
+        }else{
+          return <text x={x+width+6} y={height/2+y+4} fill="#000" fontSize={labelSize}>{value}%</text>
+        }
+      })()}
+      </g>
+    )
+  }
+
 
   const valueAccessor = (entry) => {
     return entry ? (entry.value.toFixed(1) + '%') : null;
@@ -681,7 +698,7 @@ const SideRaceBarChart = (props) => {
                 <Cell key={`cell-${index}`} fill={sideBySideColor[props.fips === '_nation' ? index : index+3]}/>
               ))
             }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={props.fips==='_nation' ? <CustomizedLabellist /> : <CustomizedLabellist_state/> } fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
 
@@ -722,7 +739,7 @@ const SideRaceBarChart = (props) => {
                 <Cell key={`cell-${index}`} fill={sideBySideColor[props.fips === '_nation' ? index : index+3]}/>
               ))
             }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={props.fips==='_nation' ? <CustomizedLabellist /> : <CustomizedLabellist_state/> } fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
 
@@ -730,11 +747,11 @@ const SideRaceBarChart = (props) => {
         
           
         </Grid.Column>
-        {props.fips !== '_nation' ?
-          <Grid.Row style={{paddingLeft: '2rem'}}>
-          <text><b>Note:</b> Data are not consistently available across sources.</text>
+        {/* {props.fips !== '_nation' ?
+          <Grid.Row style={{paddingLeft: '2rem', paddingRight: '6rem'}}>
+          <text><b>Note:</b> Native Hawaiian/Pacific Islanders, American Natives, and Multiple/Other races data are not consistently available across sources.</text>
           </Grid.Row>
-          : null}
+          : null} */}
     </Grid>
     )
       
@@ -748,7 +765,7 @@ const SideRaceBarChart = (props) => {
           transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={260}
+          height={250}
           data={data_wo_his}
           margin={{
             top: 0,
@@ -768,7 +785,7 @@ const SideRaceBarChart = (props) => {
                 <Cell key={`cell-${index}`} fill={sideBySideColor_sep[index]}/>
               ))
             }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={<CustomizedLabellist_state />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
           
@@ -781,7 +798,7 @@ const SideRaceBarChart = (props) => {
           transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={260}
+          height={250}
           data={data_wo_his}
           margin={{
             top: 0,
@@ -801,7 +818,7 @@ const SideRaceBarChart = (props) => {
                 <Cell key={`cell-${index}`} fill={sideBySideColor_sep[index]}/>
               ))
             }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={<CustomizedLabellist_state />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
         </BarChart>
@@ -835,7 +852,7 @@ const SideRaceBarChart = (props) => {
                 <Cell key={`cell-${index}`} fill={pieChartRace[2]}/>
               ))
             }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={<CustomizedLabellist_state />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
             {/* valueAccessor={valueAccessor} */}
           </Bar>
         </BarChart>
@@ -867,16 +884,16 @@ const SideRaceBarChart = (props) => {
                 <Cell key={`cell-${index}`} fill={pieChartRace[2]}/>
               ))
             }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
+            <LabelList position="right" content={<CustomizedLabellist_state />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize}/>
           </Bar>
           
         </BarChart>
           
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{paddingLeft: '2rem'}}>
-        <text><b>Note:</b> Data are not consistently available across sources.</text>
-        </Grid.Row>
+        {/* <Grid.Row style={{paddingLeft: '2rem', paddingRight: '6rem'}}>
+          <text><b>Note:</b> Native Hawaiian/Pacific Islanders, American Natives, and Multiple/Other races data are not consistently available across sources.</text>
+        </Grid.Row> */}
         </Grid>
         )}
       })()}
@@ -2139,7 +2156,8 @@ const USVaccineTracker = (props) => {
                                       <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
                                       distributed to facilities across the United States by the federal government. 
                                       Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
-                                      For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/>
+                                      For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/> <br/>
+                                      <b>Note:</b> Native Hawaiian/Pacific Islanders, American Natives, and Multiple/Other races data are not consistently available across sources.
                                     
                                     </Header.Content>
                                 ),
