@@ -383,7 +383,7 @@ export default function MapState() {
                           setMeasureB(value);
                         }}
                       />
-                      {measureB && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
+                      {measureB != "region" && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
                       <svg width="450" height="110">
                               
                               {_.map(legendSplitB, (split, i) => {
