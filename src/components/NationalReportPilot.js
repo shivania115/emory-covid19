@@ -282,6 +282,8 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
 
 function ChartSection(props){
   const [chartNo, setChartNo] = useState(-1);
+  // const tempData = props.data.slice(0,366);
+  // const data = tempData;
   const data = props.data;
   const dailyCases = props.dailyCases;
   const dailyDeaths = props.dailyDeaths;
@@ -672,6 +674,8 @@ function CaseChartAll(props){
   const radius = 10;
   const renderCustomizedLabel = (props) => {
     const { x, y, width, value } = props;
+
+  console.log('nationaldata', data)
     
 
     if (value===1586491200 && highlightIndex.length >= 2){  // 1
@@ -2290,6 +2294,7 @@ export default function NationalReport(props) {
   const [nationalDemog, setNationalDemog] = useState();
 
   const [dataTS, setDataTS] = useState();
+  // const [tempData, setTempData] = useState()
   const [vaccineData, setVaccineData] = useState();
 
   const [topTen, setTopTen] = useState();
@@ -2590,6 +2595,7 @@ export default function NationalReport(props) {
 
       fetchTimeSeries();
     }, []);
+
 
     // useEffect(() => {
     //     // === "resSeg" ? "RS_blackwhite" : metric === "urbanrural" ? "_013_Urbanization_Code" : metric
@@ -3180,6 +3186,7 @@ export default function NationalReport(props) {
     // },[data, Heart]);
 
     
+    // dataTS["_nation"]
 
     
 
