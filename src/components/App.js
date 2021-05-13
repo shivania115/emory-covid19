@@ -24,7 +24,7 @@ import GDPHDataSources from "./GDPH/DataSources";
 import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
 // import USMapPilot from "./USMapPilot";
-import NationalReportPilot from "./NationalReportPilot";
+import NationalReport from "./NationalReport";
 
 import {
   BrowserRouter as Router,
@@ -73,8 +73,8 @@ function AppUI() {
 
 
           {/* Main urls */}
-          <Route path='/pilot-09-01-2020/national-report'>
-            <NationalReportPilot />
+          <Route path='/national-report'>
+            <NationalReport />
           </Route>
           
           <Route path='/Vaccine-Tracker-Pilot03022021'>
