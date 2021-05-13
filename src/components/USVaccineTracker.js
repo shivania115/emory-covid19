@@ -548,7 +548,7 @@ const SideRaceBarChart = (props) => {
   return(
     <Grid>
       <Grid.Column width={props.inTab===true ? 8 : 7} style={{paddingLeft: '0.5rem',paddingRight: 0}}>
-      <Header style={{fontSize: '10pt'}}> <center> % Population </center> </Header>
+      <Header style={{fontSize: '10pt'}}> <center> % Vaccination </center> </Header>
       <BarChart
           layout='vertical'
           width={props.inTab===true ? 200 : 260}
@@ -574,7 +574,7 @@ const SideRaceBarChart = (props) => {
           //     }
           //   }}
              cursor={false}/>
-          <Bar dataKey="popvalue"
+          <Bar dataKey="vaxvalue"
             isAnimationActive={false}>
             {
               data.map((entry, index) => (
@@ -589,7 +589,7 @@ const SideRaceBarChart = (props) => {
         </BarChart>
         </Grid.Column>
         <Grid.Column width={props.inTab===true ? 8 : 9} style={{paddingLeft: 0}}>
-          <Header style={{fontSize: '10pt'}}> <center> % Vaccination </center> </Header>
+          <Header style={{fontSize: '10pt'}}> <center> % Population </center> </Header>
           <BarChart
           layout='vertical'
           width={props.inTab===true ? 210 : 260}
@@ -615,7 +615,7 @@ const SideRaceBarChart = (props) => {
           //     }
           //   }}
              cursor={false}/>
-          <Bar dataKey="vaxvalue"
+          <Bar dataKey="popvalue"
             isAnimationActive={false}>
             {
               data.map((entry, index) => (

@@ -311,13 +311,13 @@ export default function StateMap(props) {
 
   const [varMap, setVarMap] = useState({});
 
-  const [metric, setMetric] = useState('seriesCompletePopPct');
-  const [metricOptions, setMetricOptions] = useState('seriesCompletePopPct');
-  const [metricName, setMetricName] = useState('Percent of population fully vaccinated');
+  // const [metric, setMetric] = useState('seriesCompletePopPct');
+  // const [metricOptions, setMetricOptions] = useState('seriesCompletePopPct');
+  // const [metricName, setMetricName] = useState('Percent of population fully vaccinated');
 
-  // const [metric, setMetric] = useState('caserate7dayfig');
-  // const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-  // const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100K');
+  const [metric, setMetric] = useState('caserate7dayfig');
+  const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
+  const [metricName, setMetricName] = useState('Average Daily COVID-19 Cases per 100K');
 
   // const [metric, setMetric] = useState('casesfig');
   // const [metricOptions, setMetricOptions] = useState('casesfig');
@@ -1762,8 +1762,8 @@ export default function StateMap(props) {
                               <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
                               <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
                               <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "":stateName} </text>
-                              <rect x = {stateName.length > 10? 230: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                              <text x = {stateName.length > 10? 245: 195} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "": countyName ? countyName: "Loading..."}</text>
+                              <rect x = {stateName.length > 10? 230: 185} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                              <text x = {stateName.length > 10? 245: 200} y = {20} style = {{ fontSize: "12pt"}}> {stateFips === "_nation" || stateFips === "72"? "": countyName ? countyName: "Loading..."}</text>
                           </svg>
                         </div>
                         <div style = {{width: 1000, height: 180}}>

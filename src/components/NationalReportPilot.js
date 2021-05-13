@@ -2111,19 +2111,26 @@ const SideRaceBarChart = (props) => {
 
   const data = [
     {name:'Multiple/Other', popvalue: props.demogData['race'][0]['Multiple/Other'][0]['percentPop'],
-    vaxvalue: props.demogData['race'][0]['Multiple/Other'][0]['percentCases']},
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['Multiple/Other'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown'] },
     {name:'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['race'][0]['NHPI'][0]['percentPop'],
-    vaxvalue: props.demogData['race'][0]['NHPI'][0]['percentCases']},
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['NHPI'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']},
     {name:'American Natives', popvalue: props.demogData['race'][0]['American Native'][0]['percentPop'],
-    vaxvalue: props.demogData['race'][0]['American Native'][0]['percentCases']},
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['American Native'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']},
     {name: 'Asian', popvalue: props.demogData['race'][0]['Asian'][0]['percentPop'],
-    vaxvalue: props.demogData['race'][0]['Asian'][0]['percentCases']},
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['Asian'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']},
     {name: 'African Americans', popvalue : props.demogData['race'][0]['African American'][0]['percentPop'],
-    vaxvalue : props.demogData['race'][0]['African American'][0]['percentCases']},
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['African American'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']},
     {name: 'Hispanic', popvalue: props.demogData['race'][0]['Hispanic'][0]['percentPop'],
-    vaxvalue: props.demogData['race'][0]['Hispanic'][0]['percentCases']},
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['Hispanic'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']},
     {name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-    vaxvalue: props.demogData['race'][0]['White'][0]['percentCases']}
+    vaxvalue: props.vacc === false ? props.demogData['race'][0]['White'][0]['percentCases'] :
+              props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']}
       
   ]
 
@@ -2174,7 +2181,7 @@ const SideRaceBarChart = (props) => {
   return(
     <Grid style = {{paddingTop: 50}}>
       <Grid.Column width={props.inTab===true ? 8 : 7} style={{paddingLeft: '0.5rem',paddingRight: 0}}>
-        <Header style={{fontSize: '10pt', paddingLeft: 5}}> <center> % Cases </center> </Header>
+        <Header style={{fontSize: '10pt', paddingLeft: 5}}> <center> {props.vacc ? "% Vaccination" : "% Cases"} </center> </Header>
           <BarChart
               layout='vertical'
               width={props.inTab===true ? 200 : 260}
@@ -2331,6 +2338,8 @@ export default function NationalReport(props) {
   // const [legendMinMetric, setLegendMinMetric] = useState([]);
   // const [legendSplitMetric, setLegendSplitMetric] = useState([]);
 
+  const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
+  const [finalStr, setFinalStr] = useState('');
 
   const [resSeg] = useState("resSeg");
   const [colorResSeg, setColorResSeg] = useState();
@@ -2513,7 +2522,53 @@ export default function NationalReport(props) {
         .then(x => setDataTopMortality(x));
       
       fetch('/data/nationalDemogdata.json').then(res => res.json())
-        .then(x => setNationalDemog(x));
+        .then(x => {
+          setNationalDemog(x); 
+          var listW = [];
+          var count = (x['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['White'][0]['percentPop']) 
+          + 
+          (x['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Hispanic'][0]['percentPop']) 
+          + 
+          (x['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['African American'][0]['percentPop']) 
+          +
+          (x['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Asian'][0]['percentPop'])
+          +
+          (x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['American Native'][0]['percentPop']);
+
+          setPctVacPopDisp(count);
+
+          if(x['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['White'][0]['percentPop']){
+            listW.push("White Americans");
+          }
+          if(x['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['Hispanic'][0]['percentPop']){
+            listW.push("Hispanic Americans");
+          }
+          if(x['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['African American'][0]['percentPop']){
+            listW.push("African Americans");
+          }
+          if(x['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['Asian'][0]['percentPop']){
+            listW.push("Asian Americans");
+          }
+          if(x['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] > x['vaccineRace'][0]['American Native'][0]['percentPop']){
+            listW.push("Native Americans");
+          }
+          var joinedStr = listW.join();
+          var indexStr = 0;
+          var i;
+          for (i = 0; i< (count - 1); i++){
+            indexStr = joinedStr.indexOf(',', indexStr);
+          };
+          var left = joinedStr.substring(0, indexStr);
+          var right = joinedStr.substring(indexStr+1); 
+
+          if(count == 1){
+          }else if(count == 2){
+            setFinalStr(left + " and " + right);
+          }else if(count > 2){
+            setFinalStr(left + ", and " + right); 
+          }
+        });
+        
 
     },[]);
 
@@ -3443,8 +3498,137 @@ export default function NationalReport(props) {
 
 
 
+                <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
+                <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
+              <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
+                <Header.Content style = {{paddingLeft: 54}}>
+                  COVID-19 Vaccination By Race & Ethnicity
+                  <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
+                    <center > <b style = {{fontSize:"18pt"}}>Vaccination by Race & Ethnicity</b> </center>
+                  </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </div>
 
+    <Grid>
 
+      <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
+        <Grid.Column style = {{width: 1000}}>
+                      <Grid rows = {1}>
+                    <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}>
+                        <Grid.Column style = {{width: 300, paddingleft: 100}}>
+                          
+                          <SideRaceBarChart
+                            demogData = {nationalDemog}
+                            fips = {"_nation"}
+                            VaccineData = {vaccineData}
+                            inTab = {false}
+                            vacc = {true}
+                          />
+                        </Grid.Column>
+                        
+                      </Grid.Row>
+                      
+                      </Grid>
+      </Grid.Column>
+      <Grid.Column style = {{width: 400}}>
+        <div style={{paddingTop: 0, paddingLeft: 30}}>
+          <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
+            <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
+            
+            <p style = {{paddingLeft: 40}}>
+              <ul>
+                
+              {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
+                {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
+                " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+              :
+                ""} </li>}
+
+                {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
+                  {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
+                " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+              :
+                ""}</li>}
+
+              {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
+                {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
+                " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+              :
+                ""} </li>}
+
+              {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
+                {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
+                " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+              :
+                ""}</li>}
+
+              {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
+                {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
+                " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+              :
+                ""} </li>}
+              
+              
+              {pctVacPopDisp >= 1 && <li>
+                {(pctVacPopDisp) < 1 ? "": " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
+              </li>}
+
+              </ul>
+            </p>
+              
+          </Header.Subheader>
+        </div>
+      </Grid.Column>
+    </Grid.Row>
+</Grid>
+<Grid.Row>
+                      <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
+                            {
+                                key: 'acquire-dog',
+                                title: {
+                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                    icon: 'dropdown',
+                                },
+                                content: {
+                                    content: (
+
+                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
+                                        
+
+                                        <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
+                                          <Header.Content style={{fontWeight: 300, fontSize: "19px", paddingTop: 7, paddingLeft: 0, width: 900}}>
+                                          Race & Ethnicity data as of {nationalDemogDate}.
+                                          <br/>
+                                          The demographics of vaccinated adults is obtained from the U.S.
+                                          <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
+                                          The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
+                                          <br/>
+                                          The CDC notes that “These demographic data only represent the geographic areas that 
+                                          contributed data and might differ by populations prioritized within each state or 
+                                          jurisdiction’s vaccination phase. Every geographic area has a different racial and 
+                                          ethnic composition, and not all are in the same vaccination phase.” For comparison 
+                                          purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
+                                          population will include some areas that are not represented in the vaccination data. 
+                                          The numbers are therefore our best estimation of vaccination coverage by race.
+
+                                          </Header.Content>
+                                        </Grid.Row>
+
+                                      </div>
+                                    ),
+                                  },
+                              }
+                          ]
+
+                          } /> 
+                        
+                        </Grid.Row>
 
 
 
@@ -3543,7 +3727,7 @@ export default function NationalReport(props) {
                 </Grid>
             </div>
 
-            
+
             {/* <div id="deaths" style = {{height: 45}}> </div> */}
 
             {/* <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900}}/> </center> */}
@@ -3629,10 +3813,10 @@ export default function NationalReport(props) {
             <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
               <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
                 <Header.Content style = {{paddingLeft: 54}}>
-                  Where are cases and deaths occurring?
+                  Where are most cases occurring?
                   <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
 
-                    Cases and deaths attributed to COVID-19 are rapidly rising in some counties, and 
+                    Cases attributed to COVID-19 are rapidly rising in some counties, and 
                     the geographic distribution of the hardest-hit counties is changing.
                     Approximately 50% of new cases on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()} in 
                     the United States were attributed to {(states50[0]["statenames"].split(",")).length} states: <br/>
@@ -3663,9 +3847,9 @@ export default function NationalReport(props) {
                       <Header.Subheader style={{width: 850, color:'#000000', fontSize:"14pt", paddingTop:19, textAlign: "left", paddingLeft: 60, paddingRight: 10, paddingBottom: 20}}>
                         <center> <b style= {{paddingLeft: 20, fontSize: "18pt"}}> COVID-19 Cases and U.S. Population <br/> distribution by race & ethnicity</b> </center> 
                         <br/><br/>
-                  While people of all races are impacted by COVID-19, some subgroups are disproportionally 
-                  The {Object.keys(demog_descriptives['Race'][0]["cases"])[0]} population has the highest proportion, with {numberWithCommas((demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[0]]).toFixed(0))}% of all cases.  
-                  around {(demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[0]] / demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0]["cases"])[1]} population, the group that make up the fewest of total cases. 
+                        While people of all races are impacted by COVID-19, some subgroups are disproportionally affected. 
+                        The {Object.keys(demog_descriptives['Race'][0]["cases"])[0]} population has the highest proportion, with {numberWithCommas((demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[0]]).toFixed(0))}% of all cases.  
+                        around {(demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[0]] / demog_descriptives['Race'][0]["cases"][Object.keys(demog_descriptives['Race'][0]["cases"])[1]]).toFixed(0)} times that of the {Object.keys(demog_descriptives['Race'][0]["cases"])[1]} population, the group that make up the fewest of total cases. 
                   
                       </Header.Subheader>
                       
@@ -3695,6 +3879,7 @@ export default function NationalReport(props) {
                             fips = {"_nation"}
                             VaccineData = {vaccineData}
                             inTab = {false}
+                            vacc = {false}
                           />
                         </Grid.Column>
                         
@@ -4327,7 +4512,7 @@ export default function NationalReport(props) {
                                 height={300}
                                 domainPadding={{x:80}}
                                 minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 100, right: 80, top: 30, bottom: 80}}
+                                padding={{left: 100, right: 80, top: 30, bottom: 50}}
                                 style = {{fontSize: "14pt"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
@@ -4391,14 +4576,14 @@ export default function NationalReport(props) {
                               </VictoryChart>
 
                               <Header.Content style = {{paddingLeft: 50, width: 450}}>
-                                  <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  <Header.Content style={{ fontWeight: 300, paddingTop: 0, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
                                     <b>Percentage of COVID-19 Cases and Population</b>
                                   </Header.Content>
                               </Header.Content>
                       
                     </div>
                     <Grid.Row>
-                        <Accordion style = {{paddingTop: 50, paddingLeft: 103, paddingBottom: 45}} defaultActiveIndex={1} panels={[
+                        <Accordion id="commu" style = {{paddingTop: 20, paddingLeft: 103, paddingBottom: 45}} defaultActiveIndex={1} panels={[
                               {
                                   key: 'acquire-dog',
                                   title: {
@@ -4434,7 +4619,7 @@ export default function NationalReport(props) {
                                 height={300}
                                 domainPadding={{x:80}}
                                 minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 100, right: 80, top: 30, bottom: 80}}
+                                padding={{left: 100, right: 80, top: 30, bottom: 50}}
                                 style = {{fontSize: "14pt"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
@@ -4499,7 +4684,7 @@ export default function NationalReport(props) {
                               </VictoryChart>
 
                               <Header.Content style = {{paddingLeft: 50, width: 450}}>
-                                  <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
+                                  <Header.Content style={{ fontWeight: 300, paddingTop: 0, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
                                   <b>Percentage of COVID-19 Deaths and Population</b>
                                   </Header.Content>
                               </Header.Content>
@@ -4629,7 +4814,7 @@ export default function NationalReport(props) {
                 </Grid.Row> */}
               </Grid>
 
-              <div id="commu" style = {{height: 45}}> </div>
+              {/* <div id="commu" style = {{height: 45}}> </div> */}
 
             <center style = {{paddingLeft: 190}}> <Divider style= {{width : 900, paddingTop: 0}}/> </center>
             {true && <div style = {{ paddingLeft: "7em", paddingRight: "2em"}}>
