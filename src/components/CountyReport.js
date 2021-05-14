@@ -680,42 +680,25 @@ export default function CountyReport() {
           </Grid.Row>
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 10}}>County COVID-19 Test Positivity</Divider>
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           <Grid>
             <Grid.Row columns={2} style = {{paddingTop: 51}}>
               <Grid.Column>
                 <div style = {{paddingBottom: 20}}>
                   <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}> Percent Tested COVID-19 Positive </Header.Content>
                 </div>
-                      <svg width = "370" height = "40">
-                          <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
-                          <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
-                          <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                          <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
-                          <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
+                <svg width = "370" height = "40">
+                  <rect x = {20} y = {12} width = "12" height = "2" style = {{fill: nationColor, strokeWidth:1, stroke: nationColor}}/>
+                  <text x = {35} y = {20} style = {{ fontSize: "12pt"}}> USA</text>
+                  <rect x = {87} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                  <text x = {102} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
+                  <rect x = {stateName.length > 10? 230: 190} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                  <text x = {stateName.length > 10? 245: 205} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text>
 
-                          {/* <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
-                          <text x = {92} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
-                          <rect x = {stateName.length > 10? 220: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
-                          <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
-                      </svg>
+                  {/* <rect x = {77} y = {12} width = "12" height = "2" style = {{fill: stateColor, strokeWidth:1, stroke: stateColor}}/>
+                  <text x = {92} y = {20} style = {{ fontSize: "12pt"}}> {stateName} </text>
+                  <rect x = {stateName.length > 10? 220: 180} y = {12} width = "12" height = "2" style = {{fill: countyColor, strokeWidth:1, stroke: countyColor}}/>
+                  <text x = {stateName.length > 10? 235: 195} y = {20} style = {{ fontSize: "12pt"}}> {countyName}</text> */}
+                </svg>
                 <div style = {{height: 240}}>
                   { dataTS && <VictoryChart theme={VictoryTheme.material}
                     minDomain={{ x: dataTS["_nation"][342].t }}
@@ -792,48 +775,48 @@ export default function CountyReport() {
                   <Header.Content x={0} y={20} style={{fontSize: 20, paddingBottom: 10, fontWeight: 400}}> COVID-19 Test Positivity</Header.Content>
                 </div>
                 <Table celled fixed style = {{width: 350}}>
-                          <Table.Header>
+                  <Table.Header>
 
-                            <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
-                                <td colSpan='1' style={{width:100}}> </td>
-                                <td colSpan='1' style={{width:220, height: 70,fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
-                                  trigger={<p>Percent Tested Positive</p>
-                                  }
-                                  content={!dataTS ? "" : "Percentage of total tests for COVID-19 that resulted in a positive result as of " + 
-                                  "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
-                                  }
-                                  basic /> </td>
-                                <td colSpan='1' style={{width:220, height: 70, fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
-                                  trigger={<p>Number of positive tests per 100K </p>
-                                  }
-                                  content={!dataTS ? "" : "Positive COVID-19 tests per 100K as of " + 
-                                  "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
-                                  }
-                                  basic /></td>
-                            </tr>
+                    <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
+                      <td colSpan='1' style={{width:100}}> </td>
+                      <td colSpan='1' style={{width:220, height: 70,fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
+                        trigger={<p>Percent Tested Positive</p>
+                        }
+                        content={!dataTS ? "" : "Percentage of total tests for COVID-19 that resulted in a positive result as of " + 
+                        "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
+                        }
+                        basic /> </td>
+                      <td colSpan='1' style={{width:220, height: 70, fontSize: '19px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> <Popup
+                        trigger={<p>Number of positive tests per 100K </p>
+                        }
+                        content={!dataTS ? "" : "Positive COVID-19 tests per 100K as of " + 
+                        "0" + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(0,2) + (new Date(dataTS[stateFips][dataTS[stateFips].length-2].t*1000).toLocaleDateString()).substring(2)
+                        }
+                        basic /></td>
+                    </tr>
 
-                            
-                            <Table.Row textAlign = 'center' style = {{height: 70}}>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {"County"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips + countyFips][dataTS[stateFips + countyFips].length - 2].percentPositive).toFixed(0)  + "%" : "Loading..."} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips + countyFips][dataTS[stateFips + countyFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+                    
+                    <Table.Row textAlign = 'center' style = {{height: 70}}>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {"County"} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips + countyFips][dataTS[stateFips + countyFips].length - 2].percentPositive).toFixed(0)  + "%" : "Loading..."} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips + countyFips][dataTS[stateFips + countyFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
-                            </Table.Row>
-                            <Table.Row textAlign = 'center' style = {{height: 70}}>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {stateName} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+                    </Table.Row>
+                    <Table.Row textAlign = 'center' style = {{height: 70}}>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {stateName} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS[stateFips][dataTS[stateFips].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
-                            </Table.Row>
-                            <Table.Row textAlign = 'center' style = {{height: 70}}>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> The U.S. </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+                    </Table.Row>
+                    <Table.Row textAlign = 'center' style = {{height: 70}}>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> The U.S. </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
 
-                            </Table.Row>
-                            
-                          </Table.Header>
-                        </Table>
+                    </Table.Row>
+                    
+                  </Table.Header>
+                </Table>
 
               </Grid.Column>
             </Grid.Row>
@@ -896,38 +879,20 @@ export default function CountyReport() {
             } />}
           </Grid>
 
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 10}}>County Characteristics</Divider>
 
           <center style = {{marginLeft: 250, paddingBottom: 20, width: 750}}>
             <Header as='h2' style={{fontWeight: 400, width: 750}}>
-                  <Header.Content style={{fontSize: "19px"}}>
-                    <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 750, fontSize: "19px", lineHeight: "16pt"}}>
-                      Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
-                      Counties with large groups of vulnerable people may be disproportionately impacted by COVID-19. The table below shows {countyName}, {stateName}, 
-                      and national statistics regarding the proportion of individuals falling into various high risk categories.
-                      <br/> <br/>
-                      <b>Note:</b> These are not characteristics of COVID-19.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-
+              <Header.Content style={{fontSize: "19px"}}>
+                <Header.Subheader style={{color: '#000000', fontWeight: 300, width: 750, fontSize: "19px", lineHeight: "16pt"}}>
+                  Social, economic, health and environmental factors impact an individual’s risk of infection and COVID-19 severity. 
+                  Counties with large groups of vulnerable people may be disproportionately impacted by COVID-19. The table below shows {countyName}, {stateName}, 
+                  and national statistics regarding the proportion of individuals falling into various high risk categories.
+                  <br/> <br/>
+                  <b>Note:</b> These are not characteristics of COVID-19.
+                </Header.Subheader>
+              </Header.Content>
+            </Header>
           </center>
           <Grid>
             <Grid.Row columns={3}>                    

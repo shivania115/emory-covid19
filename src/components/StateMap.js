@@ -79,8 +79,6 @@ const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
 ];
 
 
-
-
 function CaseChart(props){
   const [playCount, setPlayCount] = useState(0);
   const data = props.data;
@@ -655,80 +653,71 @@ export default function StateMap(props) {
               let stateSeriesDict = promState[0]["timeseries" + stateFips];
               setStateTS(stateSeriesDict);
 
-                if(stateFips === "_nation"){
-                  caseRate = 0;
-                  mortality = 0;
-                  totCases = 0;
-                  hospD = 0;
-                }else{
-                  //case rate
-                  caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
-                  percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
-                  
-                  //mortality rate
-                  mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
-                  percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
+              if(stateFips === "_nation"){
+                caseRate = 0;
+                mortality = 0;
+                totCases = 0;
+                hospD = 0;
+              }else{
+                //case rate
+                caseRate = stateSeriesDict[stateSeriesDict.length-1].dailyCases;
+                percentChangeCase = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyCases;
+                
+                //mortality rate
+                mortality = stateSeriesDict[stateSeriesDict.length-1].dailyMortality;
+                percentChangeMortality = stateSeriesDict[stateSeriesDict.length-1].percent14dayDailyDeaths;
 
-                  // //hospitalization rate
-                  // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
-                  // hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                // //hospitalization rate
+                // percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
+                // hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
 
-                  // //testing positive rate
-                  // percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
+                // //testing positive rate
+                // percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
 
-                  totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
+                totCases = stateSeriesDict[stateSeriesDict.length-1].cases;
 
-                  
-                      
-                     
-        
-                    
-                    if(stateSeriesDict[stateSeriesDict.length-1].hospDaily === 0){
-                      for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
-                        if (i ===0 ){
-                          indexP = 1;
-                          hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
-                          percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
-                        }else if (stateSeriesDict[i].hospDaily === 0){
-                        }else{
-                          indexP = stateSeriesDict.length - i;
-                          hospD = stateSeriesDict[i].hospDaily;
-                          percentChangeHospDaily = stateSeriesDict[i].percent7dayhospDaily;
-                          hospDate = stateSeriesDict[i-1].t;
-                          i = 0;
-                        }
-                      }
-                    }else{
-                      indexP = 0;
+                if(stateSeriesDict[stateSeriesDict.length-1].hospDaily === 0){
+                  for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
+                    if (i ===0 ){
+                      indexP = 1;
                       hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
                       percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
-                      hospDate = stateSeriesDict[stateSeriesDict.length-1].t;
-                    }
-
-                    if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
-                      for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
-                        if (i ===0 ){
-                          indexP = 1;
-                          percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
-
-                        }else if (stateSeriesDict[i].percentPositive === 0){
-                        }else{
-                          indexP = stateSeriesDict.length - i;
-                          percentPositive = stateSeriesDict[i].percentPositive;
-
-                          i = 0;
-                        }
-                      }
+                    }else if (stateSeriesDict[i].hospDaily === 0){
                     }else{
+                      indexP = stateSeriesDict.length - i;
+                      hospD = stateSeriesDict[i].hospDaily;
+                      percentChangeHospDaily = stateSeriesDict[i].percent7dayhospDaily;
+                      hospDate = stateSeriesDict[i-1].t;
+                      i = 0;
+                    }
+                  }
+                }else{
+                  indexP = 0;
+                  hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
+                  percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
+                  hospDate = stateSeriesDict[stateSeriesDict.length-1].t;
+                }
+
+                if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
+                  for (var i = stateSeriesDict.length - 1; i >= 0; i--) {
+                    if (i ===0 ){
+                      indexP = 1;
                       percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
 
+                    }else if (stateSeriesDict[i].percentPositive === 0){
+                    }else{
+                      indexP = stateSeriesDict.length - i;
+                      percentPositive = stateSeriesDict[i].percentPositive;
+
+                      i = 0;
                     }
-                    
-        
-                  
+                  }
+                }else{
+                  percentPositive = stateSeriesDict[stateSeriesDict.length-1].percentPositive;
 
                 }
               }
+            }
             
             
             setHospDate(("" + ((new Date(hospDate*1000).getMonth() + 1).toString().padStart(2, "0")) + "/" + new Date(hospDate*1000).getDate().toString().padStart(2, "0") + "/" + new Date(hospDate*1000).getFullYear().toString()));
@@ -766,8 +755,6 @@ export default function StateMap(props) {
             setMortality(numberWithCommas(mortality.toFixed(0)));
             // setTotalCases(numberWithCommas(totCases.toFixed(0)));
             setHospDaily(numberWithCommas(hospD.toFixed(0)));
-
-              
 
             let seriesDict = {};
             let countyMost = '';
@@ -949,14 +936,11 @@ export default function StateMap(props) {
                         
             <Divider horizontal style={{fontWeight: 400, color: 'black', fontSize: '22pt', paddingTop: 40, paddingBottom: 25}}> Covid-19 Outcomes in {stateName} </Divider>
             
-            { 
-
-            <Grid columns={15}>
+            {<Grid columns={15}>
               <Grid.Row columns={5} style={{width: 252, paddingRight: 0, paddingTop: '2em', paddingBottom: "0"}}>
                 <Grid.Column style = {{width:235}}> 
                   <center style = {{ fontSize: "22px", fontFamily: "lato", paddingBottom: 5}}> Daily Cases</center>
-                  
-                  
+
                   <div style = {{width: 235, background: "#e5f2f7"}}>
 
                   {stateFips === "_nation" && 
@@ -1704,10 +1688,6 @@ export default function StateMap(props) {
                   </Grid>
                 </Grid.Column>
                 <Grid.Column style={{padding: 0, paddingLeft: 40, width: 810}}>
-
-                
-
-
                   <Header as='h2' style={{fontWeight: 400, width: 800}}>
                     <Header.Content style={{fontSize: "22px"}}>
                       <b>{stateFips === "_nation" || stateFips === "72"? "Comparing ":countyName ? "Comparing " + countyName: "Loading..."}</b>
@@ -1879,11 +1859,9 @@ export default function StateMap(props) {
                       <br/>
                       *The national level measures of COVID-19 Community Vulnerability Index and Residential Segregation Index are computed with the average of all the states.
 
-
                       </text>
                     </Grid.Row>
                   </Grid>
-
                   
                 </Grid.Column>
                 <Grid.Row>
