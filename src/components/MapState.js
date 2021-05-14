@@ -322,32 +322,32 @@ export default function MapState() {
                       {measureA && legendSplitA && legendMinA && legendMaxA && colorPalette && 
                       <svg width="450" height="110">
                               
-                              {_.map(legendSplitA, (split, i) => {
-                                if (legendSplitA[0].toFixed(0) === legendSplitA[1].toFixed(0) && legendSplitA[1].toFixed(0) === legendSplitA[2].toFixed(0) && legendSplitA[2].toFixed(0) === legendSplitA[3].toFixed(0) && legendSplitA[3].toFixed(0) === legendSplitA[4].toFixed(0) ) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(2) < 0? 0:legendSplitA[i].toFixed(2)} </text>
-                                }else if (legendSplitA[i].toFixed(0) < 1) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(1) < 0? 0:legendSplitA[i].toFixed(1)} </text>
-                                }else if (legendSplitA[i] > 999) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitA[i]/1000).toFixed(0) < 0? 0:(legendSplitA[i]/1000).toFixed(0)}K </text>
-                                }
-                                return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(0) < 0? 0:legendSplitA[i].toFixed(0)} </text>                    
-                              })}
-                              <text x={0} y={34} style={{fontSize: '1.0em'}}> {legendMinA} </text> 
-                              <text x={240} y={34} style={{fontSize: '1.0em'}}> {legendMaxA} </text> 
+                        {_.map(legendSplitA, (split, i) => {
+                          if (legendSplitA[0].toFixed(0) === legendSplitA[1].toFixed(0) && legendSplitA[1].toFixed(0) === legendSplitA[2].toFixed(0) && legendSplitA[2].toFixed(0) === legendSplitA[3].toFixed(0) && legendSplitA[3].toFixed(0) === legendSplitA[4].toFixed(0) ) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(2) < 0? 0:legendSplitA[i].toFixed(2)} </text>
+                          }else if (legendSplitA[i].toFixed(0) < 1) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(1) < 0? 0:legendSplitA[i].toFixed(1)} </text>
+                          }else if (legendSplitA[i] > 999) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitA[i]/1000).toFixed(0) < 0? 0:(legendSplitA[i]/1000).toFixed(0)}K </text>
+                          }
+                          return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitA[i].toFixed(0) < 0? 0:legendSplitA[i].toFixed(0)} </text>                    
+                        })}
+                        <text x={0} y={34} style={{fontSize: '1.0em'}}> {legendMinA} </text> 
+                        <text x={240} y={34} style={{fontSize: '1.0em'}}> {legendMaxA} </text> 
 
 
-                              {_.map(colorPalette, (color, i) => {
-                                return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                              })} 
+                        {_.map(colorPalette, (color, i) => {
+                          return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                        })} 
 
 
-                              <text x={0} y={99} style={{fontSize: '1.2em'}}> Low </text>
-                              <text x={40 * (colorPalette.length - 1)} y={99} style={{fontSize: '1.2em'}}> High </text> 
+                        <text x={0} y={99} style={{fontSize: '1.2em'}}> Low </text>
+                        <text x={40 * (colorPalette.length - 1)} y={99} style={{fontSize: '1.2em'}}> High </text> 
 
 
-                              <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                              <text x={330} y={56} style={{fontSize: '1.2em'}}> None </text>
-                              <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
+                        <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
+                        <text x={330} y={56} style={{fontSize: '1.2em'}}> None </text>
+                        <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
 
                       </svg>
                     }
@@ -383,36 +383,36 @@ export default function MapState() {
                           setMeasureB(value);
                         }}
                       />
-                      {measureB && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
+                      {measureB != "region" && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
                       <svg width="450" height="110">
                               
-                              {_.map(legendSplitB, (split, i) => {
-                                if (legendSplitB[0].toFixed(0) === legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) === legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) === legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) === legendSplitB[4].toFixed(0) ) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
-                                }else if (legendSplitB[i].toFixed(0) < 1) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
-                                }else if (legendSplitB[i] > 999999) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000000).toFixed(0)}M </text>
-                                }else if (legendSplitB[i] > 999) {
-                                  return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
-                                }
-                                return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
-                              })}   
-                              <text x={0} y={34} style={{fontSize: '1.0em'}}> {legendMinB} </text> 
-                              <text x={240} y={34} style={{fontSize: '1.0em'}}> {legendMaxB} </text>
+                        {_.map(legendSplitB, (split, i) => {
+                          if (legendSplitB[0].toFixed(0) === legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) === legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) === legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) === legendSplitB[4].toFixed(0) ) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
+                          }else if (legendSplitB[i].toFixed(0) < 1) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
+                          }else if (legendSplitB[i] > 999999) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000000).toFixed(0)}M </text>
+                          }else if (legendSplitB[i] > 999) {
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
+                          }
+                          return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
+                        })}   
+                        <text x={0} y={34} style={{fontSize: '1.0em'}}> {legendMinB} </text> 
+                        <text x={240} y={34} style={{fontSize: '1.0em'}}> {legendMaxB} </text>
 
 
-                              {_.map(colorPalette2, (color, i) => {
-                                return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                              })} 
+                        {_.map(colorPalette2, (color, i) => {
+                          return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                        })} 
 
 
-                              <text x={0} y={99} style={{fontSize: '1.2em'}}>Low</text>
-                              <text x={40 * (colorPalette2.length - 1)} y={99} style={{fontSize: '1.2em'}}>High</text> 
+                        <text x={0} y={99} style={{fontSize: '1.2em'}}>Low</text>
+                        <text x={40 * (colorPalette2.length - 1)} y={99} style={{fontSize: '1.2em'}}>High</text> 
 
-                              <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                              <text x={330} y={56} style={{fontSize: '1.2em'}}> None </text>
-                              <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
+                        <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
+                        <text x={330} y={56} style={{fontSize: '1.2em'}}> None </text>
+                        <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
 
                       </svg>
                     }
