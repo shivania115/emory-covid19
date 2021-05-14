@@ -1145,348 +1145,6 @@ function DeathChartAll(props){
 }
 
 
-// function CaseChartAll(props){
-//   const [playCount, setPlayCount] = useState(0);
-//   const [visible1, setVisible1] = useState(false);
-//   const [visible2, setVisible2] = useState(false);
-//   const [visible3, setVisible3] = useState(false);
-//   const [visible4, setVisible4] = useState(false);
-//   const [visible5, setVisible5] = useState(false);
-//   const [disabled, setDisabled] = useState(true);
-//   const [highlightIndex, setHighlightIndex] = useState([-1]);
-//   const data = props.data;
-//   const barColor = props.barColor;
-//   const lineColor = props.lineColor;
-//   const ticks = props.tick;
-//   const tickFormatter = props.tickFormatter;
-
-//   // const ytickFormatter = props.ytickFormatter;
-//   const [animationBool, setAnimationBool] = useState(true);
-
-//   const caseYTickFmt = (y) => {
-//     return y<1000?y:(y/1000+'k');
-//   };
-
-
-//   useEffect(() =>{
-//     setHighlightIndex([-1]);
-    
-//   },[props.history])
-
-//   var wait=0;
-
-//   // console.log("data[0].t", data[0].t);
-//   // console.log("data[data.length-1].t", data[data.length-1].t);
-  
-//   return(
-//     <Grid.Column style={{paddingTop:'1rem', paddingLeft: 35, width: 850, height: 450, position:'relative'}}>
-
-//       <ComposedChart width={850} height={420} data={data}
-//         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
-//       <CartesianGrid stroke='#f5f5f5'/>
-//       <XAxis dataKey="t" ticks={ticks} domain={[1585713600, 1610859600]} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
-//       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-//       <Bar name="New cases" dataKey='dailyCases' barSize={10}
-//             isAnimationActive={animationBool} 
-//             animationEasing='ease'
-//             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
-//                                     setHighlightIndex([-1]);
-//             }} 
-//             onAnimationEnd={()=> {
-//               setAnimationBool(false);
-//               setTimeout(()=>setVisible1(true), wait); 
-//               setTimeout(()=>setVisible2(true), wait+1000); 
-//               setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 9]), wait+1000);
-//               setTimeout(()=>setVisible3(true), wait+2000);
-//               setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 71]), wait+2000);  
-//               setTimeout(()=>setVisible4(true), wait+3000); 
-//               setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 109]), wait+3000);  
-//               setTimeout(()=>setVisible5(true), wait+4000);
-//               setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 260]), wait+4000);  
-//               setTimeout(()=>setDisabled(false),wait+5000);
-//               // setTimeout(()=>setHighlightIndex(-1), wait+5000);
-//             }}
-//             animationDuration={3500} 
-//              barSize={2} fill={barColor} >
-//             {
-//               data.map((entry, index) => (
-//                 <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
-//               ))
-              
-//               // fill={index === highlightIndex ? "red" : barColor}
-//             }
-//       </ Bar>
-//       <Line name="7-day average" id='all-line' type='monotone' dataKey='caseRateMean' dot={false} 
-//             isAnimationActive={animationBool} 
-//             animationDuration={3500} 
-//             stroke={lineColor}
-//             strokeWidth="2" />
-//       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-//       </ComposedChart>
-//       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
-//       <Transition visible={visible1} animation='scale' duration={200}>
-//       <Message compact id='Jan' style={{ width: '18rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Jan. 21: <br /> 1st case in the U.S. confirmed in Washington</Message>
-//       </Transition>
-//       <Transition visible={visible2} animation='scale' duration={200}>
-//       <Message compact id='message2' style={{ width: '10rem', top:'-27rem', left:'7.5rem', padding: '1rem', fontSize: '0.8rem'}}> Apr. 10: <br /> First wave peaked at 31,709 new cases <br />(7-day avg.) </Message>
-//       {/* <Arrow1/> */}
-//       </Transition> 
-//       {/* <ArrowSvg start={{ x: 200, y: 340 }} end={{ x: 200, y: 430 }}/> */}
-//       <Transition visible={visible3} animation='scale' duration={200}>
-//       <Message compact style={{ width: '8rem', top:'-27rem', left:'11.5rem', padding: '1rem', fontSize: '0.8rem'}}> June. 11: <br /> 2M confirmed cases in the U.S. </Message>
-//       </Transition> 
-//       <Transition visible={visible4} animation='scale' duration={200}>
-//       <Message compact style={{ width: '10rem', top:'-37rem', left:'21rem', padding: '1rem', fontSize: '0.8rem'}}> July. 19: <br /> Second wave peaked at 66,692 new cases <br />(7-day avg.) </Message>
-//       </Transition> 
-//       <Transition visible={visible5} animation='scale' duration={200}>
-//       <Message compact style={{ width: '10rem', top:'-53rem', left:'28rem', padding: '1rem', fontSize: '0.8rem'}}> Dec. 17: <br /> Third wave peaked at 222,822 new cases <br />(7-day avg.) </Message>
-//       </Transition> 
-      
-//       {visible2 ? <ArrowSvg start={{ x: 185, y: 240 }} end={{ x: 145, y: 336 }} strokeWidth='0.8'/> : null}
-//       {visible3 ? <ArrowSvg start={{ x: 240, y: 320 }} end={{ x: 252, y: 350 }} strokeWidth='0.8'/> : null}
-//       {visible4 ? <ArrowSvg start={{ x: 360, y: 280 }} end={{ x: 335, y: 300 }} strokeWidth='0.8'/> : null}
-//       {visible5 ? <ArrowSvg start={{ x: 570, y: 110 }} end={{ x: 592, y: 125 }} strokeWidth='0.8'/> : null}
-//       </Grid.Column>
-//   );
-// }
-
-
-
-// function CaseChart90(props){
-//   const [playCount, setPlayCount] = useState(0);
-//   const [visible1, setVisible1] = useState(false);
-//   const [disabled, setDisabled] = useState(true);
-//   const [highlightIndex, setHighlightIndex] = useState([-1]);
-//   const [totalCase, setTotalCase] = useState(0);
-//   const data = props.data;
-//   const barColor = props.barColor;
-//   const lineColor = props.lineColor;
-//   const ticks = props.tick;
-//   const tickFormatter = props.tickFormatter;
-//   const barName = props.barName;
-//   const lineName = props.lineName;
-
-//   const [animationBool, setAnimationBool] = useState(true);
-
-//   const caseYTickFmt = (y) => {
-//     return y<1000?y:(y/1000+'k');
-//   };
-
-//   useEffect(() =>{
-//     var sum = 0;
-//     for(var i=data.length-90; i<data.length; i++) { 
-//       sum += data[i][barName]; 
-//       console.log(i);
-//     }
-//     setTotalCase(sum);
-//   },[])
-
-//   var wait = 0;
-  
-
-//   return(
-//     <Grid.Column style={{paddingTop: '1em', paddingLeft: 35, width: 850, height: 450}}>
-
-//       <ComposedChart width={850} height={420} data={data}
-//         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
-//       <CartesianGrid stroke='#f5f5f5'/>
-//       <XAxis dataKey="t" type="number" domain={[data[data.length-90].t,'dataMax']} padding={{ left: 3, right: 3 }}
-//       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
-//       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
-//       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={['auto','dataMax']}/>
-//       <Bar name="New cases" dataKey={barName} barSize={18} 
-//             isAnimationActive={animationBool} 
-//             animationEasing='ease'
-//             onAnimationStart={() => {setDisabled(true); setVisible1(false);
-//                                     setHighlightIndex([-1]);
-//             }} 
-//             onAnimationEnd={()=> {
-//               setAnimationBool(false);
-//               setTimeout(()=>setVisible1(true), wait);  
-//               setTimeout(()=>setDisabled(false),wait);
-//             }}
-//             animationDuration={3500} 
-//             fill={barColor}
-//             barSize={3} >
-//             {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
-//               ))
-//             }
-//       </ Bar>
-//       <Line name="7-day average" id='90-line' type='monotone' dataKey={lineName} dot={false} 
-//             isAnimationActive={animationBool} 
-//             animationDuration={3500} 
-//             stroke={lineColor} strokeWidth="2" />
-//       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-//       </ComposedChart>
-//       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
-//       <Transition visible={visible1} animation='scale' duration={200}>
-//       <Message compact style={{ width: '15rem', top: '-29rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 90 Days: {numberWithCommas(totalCase)}</Message>
-//       </Transition>
-//       </Grid.Column>
-//   );
-// }
-
-
-// function CaseChart14(props){
-//   const [playCount, setPlayCount] = useState(0);
-//   const [totalCase, setTotalCase] = useState(0);
-//   const [visible1, setVisible1] = useState(false);
-//   const [disabled, setDisabled] = useState(true);
-//   const [highlightIndex, setHighlightIndex] = useState([-1]);
-//   const data = props.data;
-//   const barColor = props.barColor;
-//   const lineColor = props.lineColor;
-//   const ticks = props.tick;
-//   const tickFormatter = props.tickFormatter;
-//   const barName = props.barName;
-//   const lineName = props.lineName;
-
-//   const [animationBool, setAnimationBool] = useState(true);
-
-//   const caseYTickFmt = (y) => {
-//     return y<1000?y:(y/1000+'k');
-//   };
-
-//   useEffect(() =>{
-//     var sum = 0;
-//     for(var i=data.length-14; i<data.length; i++) { 
-//       sum += data[i][barName]; 
-//       console.log(i);
-//     }
-//     setTotalCase(sum);
-//   },[])
-
-//   var wait=0;
-
-//   return(
-//     <Grid.Column style={{paddingTop:'1rem', paddingLeft: 35, width: 850, height: 450}}>
-
-//       <ComposedChart width={850} height={420} data={data}
-//         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
-//       <CartesianGrid stroke='#f5f5f5'/>
-//       <XAxis dataKey="t" type="number" domain={[data[data.length-14].t,'dataMax']} padding={{ left: 5, right: 5 }}
-//       ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDataOverflow={true}/>
-//       {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
-//       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-//       <Bar name="New cases" dataKey={barName} 
-//             isAnimationActive={animationBool} 
-//             animationEasing='ease'
-//             onAnimationStart={() => {setDisabled(true); setVisible1(false);
-//                                     setHighlightIndex([-1]); 
-//             }} 
-//             onAnimationEnd={()=> {
-//               setAnimationBool(false);
-//               setTimeout(()=>setVisible1(true), wait); 
-//               setTimeout(()=>setDisabled(false),wait);
-//             }}
-//             animationDuration={3500} 
-//             barSize={10} fill={barColor}>
-//             {
-//               data.map((entry, index) => (
-//                 <Cell key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
-//               ))
-//             }
-//       </ Bar>
-//       <Line name="7-day average" id='14-line' type='monotone' dataKey={lineName} dot={false} 
-//             isAnimationActive={animationBool} 
-//             animationDuration={3500} 
-//             stroke={lineColor} strokeWidth="2" />
-//       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-//       {/* <Brush dataKey='t'/> */}
-//       </ComposedChart>
-//       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
-//       <Transition visible={visible1} animation='scale' duration={300}>
-//       <Message compact style={{ width: '15rem', top:'-29rem', left:'40rem', padding: '1rem', fontSize: '0.8rem'}}> Cumulative Confirmed New {barName==='dailyCases' ? 'Cases' : 'Deaths'} in Past 14 Days: {numberWithCommas(totalCase)}</Message>
-//       </Transition>
-//       </Grid.Column>
-//   );
-// }
-
-// function DeathChartAll(props){
-//   const [playCount, setPlayCount] = useState(0);
-//   const [visible1, setVisible1] = useState(false);
-//   const [visible2, setVisible2] = useState(false);
-//   const [visible3, setVisible3] = useState(false);
-//   const [visible4, setVisible4] = useState(false);
-//   const [visible5, setVisible5] = useState(false);
-//   const [disabled, setDisabled] = useState(true);
-//   const [highlightIndex, setHighlightIndex] = useState([-1]);
-//   const data = props.data;
-//   const barColor = props.barColor;
-//   const lineColor = props.lineColor;
-//   const ticks = props.tick;
-//   const tickFormatter = props.tickFormatter;
-
-//   // const ytickFormatter = props.ytickFormatter;
-//   const [animationBool, setAnimationBool] = useState(true);
-
-//   const caseYTickFmt = (y) => {
-//     return y<1000?y:(y/1000+'k');
-//   };
-
-
-//   var wait=0;
-
-//   return(
-//     <Grid.Column style={{paddingTop:'1rem', paddingLeft: 35, width: 850, height: 450}}>
-
-
-//       <ComposedChart height={420} width={850} data={data}
-//         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
-//       <CartesianGrid stroke='#f5f5f5'/>
-//       <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
-//       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
-//       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
-//             isAnimationActive={animationBool} 
-//             animationEasing='ease'
-//             onAnimationStart={() => {setDisabled(true); setVisible1(false); setVisible2(false); setVisible3(false); setVisible4(false); setVisible5(false); 
-//                                     setHighlightIndex([-1]);
-//             }} 
-//             onAnimationEnd={()=> {
-//               setAnimationBool(false);
-//               setTimeout(()=>setVisible1(true), wait); 
-//               setTimeout(()=>setVisible2(true), wait+1000); 
-//               setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 56]), wait+1000);
-//               setTimeout(()=>setVisible3(true), wait+2000);
-//               setTimeout(()=>setHighlightIndex(highlightIndex => [...highlightIndex, 174]), wait+2000);  
-//               setTimeout(()=>setDisabled(false),wait+3000);
-//             }}
-//             animationDuration={3500} 
-//             barSize={2} fill={barColor}>
-//             {
-//               data.map((entry, index) => (
-//                 <Cell id={index} key={`cell-${index}`} fill={highlightIndex.indexOf(index)>0 ? "red" : barColor}/>
-//               ))
-//             }
-//       </ Bar>
-//       <Line name="7-day average" type='monotone' dataKey='mortalityMean' dot={false} 
-//             isAnimationActive={animationBool} 
-//             animationDuration={3500} 
-//             stroke={lineColor}
-//             strokeWidth="2" />
-//       <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
-//       </ComposedChart>
-//       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
-//       <Transition visible={visible1} animation='scale' duration={300}>
-//       <Message compact style={{ width: '10rem', top:'-28rem', left:'8rem', padding: '1rem', fontSize: '0.8rem'}}> Feb. 6: <br /> First death in US </Message>
-//       </Transition>
-//       <Transition visible={visible2} animation='scale' duration={300}>
-//       <Message compact style={{ width: '10rem', top:'-27.5rem', left:'12rem', padding: '1rem', fontSize: '0.8rem'}}> May. 27: <br /> Coronavirus deaths in the U.S. passed 100K </Message>
-//       </Transition> 
-//       <Transition visible={visible3} animation='scale' duration={300}>
-//       <Message compact style={{ width: '10rem', top:'-30.5rem', left:'27rem', padding: '1rem', fontSize: '0.8rem'}}> Sep. 22: <br /> Coronavirus deaths in the U.S. passed 200K </Message>
-//       </Transition> 
-//       {visible2 ? <ArrowSvg start={{ x: 285, y: 365 }} end={{ x: 253, y: 442 }} strokeWidth='0.8'/> : null}
-//       {visible3 ? <ArrowSvg start={{ x: 490, y: 410 }} end={{ x: 476, y: 465 }} strokeWidth='0.8'/> : null}
-      
-//       </Grid.Column>   
-
-//   );
-// }
-
-
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value, dataKey } = props;
@@ -1762,41 +1420,41 @@ function ComparisonTable(props){
            
 
               <tr textalign = "center" colSpan = "5" style = {{backgroundImage : 'url(/Emory_COVID_header_LightBlue.jpg)'}}>
-                                <td colSpan='1' style={{width:130}}> </td>
-                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {props.fips === "_nation" ? "Select State":props.abbrev[props.fips]["state_abbr"]}</td>
-                                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
-                            </tr>
-                            <Table.Row textAlign = 'center' style = {{height: 40}}>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number partially vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["AdministeredPartial"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
+                <td colSpan='1' style={{width:130}}> </td>
+                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> {props.fips === "_nation" ? "Select State":props.abbrev[props.fips]["state_abbr"]}</td>
+                <td colSpan='1' style={{width:110, fontSize: '14px', textAlign : "center", font: "lato", fontWeight: 600, color: "#FFFFFF"}}> U.S.</td>
+              </tr>
+              <Table.Row textAlign = 'center' style = {{height: 40}}>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Number partially vaccinated"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["AdministeredPartial"])} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
 
-                            </Table.Row>
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent partially vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+              </Table.Row>
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent partially vaccinated"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
 
-                            </Table.Row>
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Number fully vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Yes"])} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
+              </Table.Row>
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Number fully vaccinated"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Yes"])} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
 
-                            </Table.Row>
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent fully vaccinated"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+              </Table.Row>
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Percent fully vaccinated"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
 
-                            </Table.Row>
-                            
-                            <Table.Row textAlign = 'center'>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + props.date} </Table.HeaderCell>
-                              <Table.HeaderCell  style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
-                              <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+              </Table.Row>
+              
+              <Table.Row textAlign = 'center'>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {"Distributed on " + props.date} </Table.HeaderCell>
+                <Table.HeaderCell  style={{fontSize: '14px'}}> {props.fips === "_nation" ? "":numberWithCommas(props.data[props.fips]["Dist_new"].toFixed(0))} </Table.HeaderCell>
+                <Table.HeaderCell style={{fontSize: '14px'}}> {numberWithCommas(props.data["_nation"]["Dist_new"].toFixed(0))} </Table.HeaderCell>
 
-                            </Table.Row>
+              </Table.Row>
               
             </Table.Header>
           </Table>
@@ -2701,48 +2359,48 @@ export default function NationalReport(props) {
 
 
     useEffect(() => {
-        //ccvi
-          //metric
-          const cs = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[ccvi] > 0 &&
-                d.fips.length === 5)),
-            d=> d[ccvi]))
-          .range(colorPalette);
-  
-          let scaleMap = {}
-          _.each(data, d=>{
-            if(d[ccvi] > 0){
-            scaleMap[d[ccvi]] = cs(d[ccvi])}
-          });
-        
-          setColorccvi(scaleMap);
-          var max = 0
-          var min = 100
-          _.each(data, d=> { 
-            if (d[ccvi] > max && d.fips.length === 5) {
-              max = d[ccvi]
-            } else if (d.fips.length === 5 && d[ccvi] < min && d[ccvi] > 0){
-              min = d[ccvi]
-            }
-          });
-  
-          if (max > 999999) {
-            max = (max/1000000).toFixed(0) + "M";
-            setLegendMaxccvi(max);
-          }else if (max > 999) {
-            max = (max/1000).toFixed(0) + "K";
-            setLegendMaxccvi(max);
-          }else{
-            setLegendMaxccvi(max.toFixed(0));
-  
-          }
-          setLegendMinccvi(min.toFixed(0));
-  
-          setLegendSplitccvi(cs.quantiles());
+      //ccvi
+      //metric
+      const cs = scaleQuantile()
+      .domain(_.map(_.filter(_.map(data, (d, k) => {
+        d.fips = k
+        return d}), 
+        d => (
+            d[ccvi] > 0 &&
+            d.fips.length === 5)),
+        d=> d[ccvi]))
+      .range(colorPalette);
+
+      let scaleMap = {}
+      _.each(data, d=>{
+        if(d[ccvi] > 0){
+        scaleMap[d[ccvi]] = cs(d[ccvi])}
+      });
+    
+      setColorccvi(scaleMap);
+      var max = 0
+      var min = 100
+      _.each(data, d=> { 
+        if (d[ccvi] > max && d.fips.length === 5) {
+          max = d[ccvi]
+        } else if (d.fips.length === 5 && d[ccvi] < min && d[ccvi] > 0){
+          min = d[ccvi]
+        }
+      });
+
+      if (max > 999999) {
+        max = (max/1000000).toFixed(0) + "M";
+        setLegendMaxccvi(max);
+      }else if (max > 999) {
+        max = (max/1000).toFixed(0) + "K";
+        setLegendMaxccvi(max);
+      }else{
+        setLegendMaxccvi(max.toFixed(0));
+
+      }
+      setLegendMinccvi(min.toFixed(0));
+
+      setLegendSplitccvi(cs.quantiles());
 
 
         
@@ -2754,44 +2412,44 @@ export default function NationalReport(props) {
     //replace
     useEffect(() => {
       if(data && ccvi){
-          //poverty
-          const cs_poverty = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[poverty] > 0 &&
-                d.fips.length === 5)),
-            d=> d[poverty]))
-          .range(colorPalette);
-  
-          let scaleMap_poverty = {}
-          _.each(data, d=>{
-            if(d[poverty] > 0){
-              scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
-          });
-        
-          setColorPoverty(scaleMap_poverty);
-          var max_poverty = 0
-          var min_poverty = 100
-          _.each(data, d=> { 
-            if (d[poverty] > max_poverty && d.fips.length === 5) {
-              max_poverty = d[poverty]
-            } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
-              min_poverty = d[poverty]
-            }
-          });
-          if (max_poverty > 999999) {
-            max_poverty = (max_poverty/1000000).toFixed(0) + "M";
-            setLegendMaxPoverty(max_poverty);
-          }else if (max_poverty > 999) {
-            max_poverty = (max_poverty/1000).toFixed(0) + "K";
-            setLegendMaxPoverty(max_poverty);
-          }else{
-            setLegendMaxPoverty(max_poverty.toFixed(0));
+        //poverty
+        const cs_poverty = scaleQuantile()
+        .domain(_.map(_.filter(_.map(data, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[poverty] > 0 &&
+              d.fips.length === 5)),
+          d=> d[poverty]))
+        .range(colorPalette);
+
+        let scaleMap_poverty = {}
+        _.each(data, d=>{
+          if(d[poverty] > 0){
+            scaleMap_poverty[d[poverty]] = cs_poverty(d[poverty])}
+        });
+      
+        setColorPoverty(scaleMap_poverty);
+        var max_poverty = 0
+        var min_poverty = 100
+        _.each(data, d=> { 
+          if (d[poverty] > max_poverty && d.fips.length === 5) {
+            max_poverty = d[poverty]
+          } else if (d.fips.length === 5 && d[poverty] < min_poverty && d[poverty] > 0){
+            min_poverty = d[poverty]
           }
-          setLegendMinPoverty(min_poverty.toFixed(0));
-          setLegendSplitPoverty(cs_poverty.quantiles());
+        });
+        if (max_poverty > 999999) {
+          max_poverty = (max_poverty/1000000).toFixed(0) + "M";
+          setLegendMaxPoverty(max_poverty);
+        }else if (max_poverty > 999) {
+          max_poverty = (max_poverty/1000).toFixed(0) + "K";
+          setLegendMaxPoverty(max_poverty);
+        }else{
+          setLegendMaxPoverty(max_poverty.toFixed(0));
+        }
+        setLegendMinPoverty(min_poverty.toFixed(0));
+        setLegendSplitPoverty(cs_poverty.quantiles());
 
       }
 
@@ -2869,88 +2527,88 @@ export default function NationalReport(props) {
     
     useEffect(() => {
       if(data && urbrur){
-          //black
-          const cs_black = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[black] > 0 &&
-                d.fips.length === 5)),
-            d=> d[black]))
-          .range(colorPalette);
-  
-          let scaleMap_black = {}
-          _.each(data, d=>{
-            if(d[black] > 0){
-              scaleMap_black[d[black]] = cs_black(d[black])}
-          });
-        
-          setColorBlack(scaleMap_black);
-          var max_black = 0
-          var min_black = 100
-          _.each(data, d=> { 
-            if (d[black] > max_black && d.fips.length === 5) {
-              max_black = d[black]
-            } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
-              min_black = d[black]
-            }
-          });
-          if (max_black > 999999) {
-            max_black = (max_black/1000000).toFixed(0) + "M";
-            setLegendMaxBlack(max_black);
-          }else if (max_black > 999) {
-            max_black = (max_black/1000).toFixed(0) + "K";
-            setLegendMaxBlack(max_black);
-          }else{
-            setLegendMaxBlack(max_black.toFixed(0));
+        //black
+        const cs_black = scaleQuantile()
+        .domain(_.map(_.filter(_.map(data, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[black] > 0 &&
+              d.fips.length === 5)),
+          d=> d[black]))
+        .range(colorPalette);
+
+        let scaleMap_black = {}
+        _.each(data, d=>{
+          if(d[black] > 0){
+            scaleMap_black[d[black]] = cs_black(d[black])}
+        });
+      
+        setColorBlack(scaleMap_black);
+        var max_black = 0
+        var min_black = 100
+        _.each(data, d=> { 
+          if (d[black] > max_black && d.fips.length === 5) {
+            max_black = d[black]
+          } else if (d.fips.length === 5 && d[black] < min_black && d[black] > 0){
+            min_black = d[black]
           }
-          setLegendMinBlack(min_black.toFixed(0));
-          setLegendSplitBlack(cs_black.quantiles());
+        });
+        if (max_black > 999999) {
+          max_black = (max_black/1000000).toFixed(0) + "M";
+          setLegendMaxBlack(max_black);
+        }else if (max_black > 999) {
+          max_black = (max_black/1000).toFixed(0) + "K";
+          setLegendMaxBlack(max_black);
+        }else{
+          setLegendMaxBlack(max_black.toFixed(0));
+        }
+        setLegendMinBlack(min_black.toFixed(0));
+        setLegendSplitBlack(cs_black.quantiles());
       }
 
     },[data, urbrur]);
 
     useEffect(() => {
       if(data && black){
-          //ResSeg
-          const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[resSeg] > 0 &&
-                d.fips.length === 5)),
-            d=> d[resSeg]))
-          .range(colorPalette);
+        //ResSeg
+        const csii = scaleQuantile()
+        .domain(_.map(_.filter(_.map(data, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[resSeg] > 0 &&
+              d.fips.length === 5)),
+          d=> d[resSeg]))
+        .range(colorPalette);
 
-          let scaleMapii = {}
-          _.each(data, d=>{
-            if(d[resSeg] > 0){
-            scaleMapii[d[resSeg]] = csii(d[resSeg])}
-          });
-        
-          setColorResSeg(scaleMapii);
-          var maxii = 0
-          var minii = 100
-          _.each(data, d=> { 
-            if (d[resSeg] > maxii && d.fips.length === 5) {
-              maxii = d[resSeg]
-            } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
-              minii = d[resSeg]
-            }
-          });
-          if (maxii > 999999) {
-            maxii = (maxii/1000000).toFixed(0) + "M";
-            setLegendMaxResSeg(maxii);
-          }else if (maxii > 999) {
-            maxii = (maxii/1000).toFixed(0) + "K";
-            setLegendMaxResSeg(maxii);
-          }else{
-            setLegendMaxResSeg(maxii.toFixed(0));
+        let scaleMapii = {}
+        _.each(data, d=>{
+          if(d[resSeg] > 0){
+          scaleMapii[d[resSeg]] = csii(d[resSeg])}
+        });
+      
+        setColorResSeg(scaleMapii);
+        var maxii = 0
+        var minii = 100
+        _.each(data, d=> { 
+          if (d[resSeg] > maxii && d.fips.length === 5) {
+            maxii = d[resSeg]
+          } else if (d.fips.length === 5 && d[resSeg] < minii && d[resSeg] > 0){
+            minii = d[resSeg]
           }
-          setLegendMinResSeg(minii.toFixed(0));
-          setLegendSplitResSeg(csii.quantiles());
+        });
+        if (maxii > 999999) {
+          maxii = (maxii/1000000).toFixed(0) + "M";
+          setLegendMaxResSeg(maxii);
+        }else if (maxii > 999) {
+          maxii = (maxii/1000).toFixed(0) + "K";
+          setLegendMaxResSeg(maxii);
+        }else{
+          setLegendMaxResSeg(maxii.toFixed(0));
+        }
+        setLegendMinResSeg(minii.toFixed(0));
+        setLegendSplitResSeg(csii.quantiles());
 
 
       }
@@ -2959,44 +2617,44 @@ export default function NationalReport(props) {
 
     useEffect(() => {
       if(data && resSeg){
-          //comorb
-          const csii = scaleQuantile()
-          .domain(_.map(_.filter(_.map(data, (d, k) => {
-            d.fips = k
-            return d}), 
-            d => (
-                d[Comorb] > 0 &&
-                d.fips.length === 5)),
-            d=> d[Comorb]))
-          .range(colorPalette);
+        //comorb
+        const csii = scaleQuantile()
+        .domain(_.map(_.filter(_.map(data, (d, k) => {
+          d.fips = k
+          return d}), 
+          d => (
+              d[Comorb] > 0 &&
+              d.fips.length === 5)),
+          d=> d[Comorb]))
+        .range(colorPalette);
 
-          let scaleMapii = {}
-          _.each(data, d=>{
-            if(d[Comorb] > 0){
-            scaleMapii[d[Comorb]] = csii(d[Comorb])}
-          });
-        
-          setColorComorb(scaleMapii);
-          var maxii = 0
-          var minii = 100
-          _.each(data, d=> { 
-            if (d[Comorb] > maxii && d.fips.length === 5) {
-              maxii = d[Comorb]
-            } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
-              minii = d[Comorb]
-            }
-          });
-          if (maxii > 999999) {
-            maxii = (maxii/1000000).toFixed(0) + "M";
-            setLegendMaxComorb(maxii);
-          }else if (maxii > 999) {
-            maxii = (maxii/1000).toFixed(0) + "K";
-            setLegendMaxComorb(maxii);
-          }else{
-            setLegendMaxComorb(maxii.toFixed(0));
+        let scaleMapii = {}
+        _.each(data, d=>{
+          if(d[Comorb] > 0){
+          scaleMapii[d[Comorb]] = csii(d[Comorb])}
+        });
+      
+        setColorComorb(scaleMapii);
+        var maxii = 0
+        var minii = 100
+        _.each(data, d=> { 
+          if (d[Comorb] > maxii && d.fips.length === 5) {
+            maxii = d[Comorb]
+          } else if (d.fips.length === 5 && d[Comorb] < minii && d[Comorb] > 0){
+            minii = d[Comorb]
           }
-          setLegendMinComorb(minii.toFixed(0));
-          setLegendSplitComorb(csii.quantiles());
+        });
+        if (maxii > 999999) {
+          maxii = (maxii/1000000).toFixed(0) + "M";
+          setLegendMaxComorb(maxii);
+        }else if (maxii > 999) {
+          maxii = (maxii/1000).toFixed(0) + "K";
+          setLegendMaxComorb(maxii);
+        }else{
+          setLegendMaxComorb(maxii.toFixed(0));
+        }
+        setLegendMinComorb(minii.toFixed(0));
+        setLegendSplitComorb(csii.quantiles());
 
 
       }
@@ -3249,16 +2907,16 @@ export default function NationalReport(props) {
     if (dataTS){
       setCovidMetric(_.takeRight(dataTS['_nation'])[0]);
       setCaseTicks([
-          dataTS["_nation"][0].t,
-          dataTS["_nation"][30].t,
-          dataTS["_nation"][61].t,
-          dataTS["_nation"][91].t,
-          dataTS["_nation"][122].t,
-          dataTS["_nation"][153].t,
-          dataTS["_nation"][183].t,
-          dataTS["_nation"][214].t,
-          dataTS["_nation"][244].t,
-          dataTS["_nation"][dataTS["_nation"].length-1].t]);
+        dataTS["_nation"][0].t,
+        dataTS["_nation"][30].t,
+        dataTS["_nation"][61].t,
+        dataTS["_nation"][91].t,
+        dataTS["_nation"][122].t,
+        dataTS["_nation"][153].t,
+        dataTS["_nation"][183].t,
+        dataTS["_nation"][214].t,
+        dataTS["_nation"][244].t,
+        dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
       setCaseYTicks();
     }
@@ -3287,20 +2945,21 @@ export default function NationalReport(props) {
         <Grid >
             <Grid.Column width={2} style={{zIndex: 10}}>
               
-                  <Ref innerRef={createRef()} >
-                    <StickyExampleAdjacentContext activeCharacter={activeCharacter}  />
-                  </Ref>
+              <Ref innerRef={createRef()} >
+                <StickyExampleAdjacentContext activeCharacter={activeCharacter}  />
+              </Ref>
 
               
             </Grid.Column>
             <Grid.Column width={14} style={{paddingLeft:'3rem'}}>
-            <center> <Waypoint
-                                        onEnter={() => {
-                                            setActiveCharacter('COVID-19 National Health Equity Report')
-                                            console.log(activeCharacter)
-                                        }}>
-                                    </Waypoint> 
-                                    </center>
+            <center> 
+              <Waypoint
+                onEnter={() => {
+                    setActiveCharacter('COVID-19 National Health Equity Report')
+                    console.log(activeCharacter)
+                }}>
+              </Waypoint> 
+            </center>
             <div>     	
               <Header as='h2' style={{color: mortalityColor[1],textAlign:'center', fontWeight: 400, fontSize: "24pt", paddingTop: 17, paddingLeft: 272, paddingRight: "2em"}}>
                 <Header.Content>
@@ -3322,14 +2981,6 @@ export default function NationalReport(props) {
             </div>
             <div id="tracker" style = {{height: 45}}> </div>
 
-
-
-
-
-
-
-
-
             <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
 
             <div>     	
@@ -3341,165 +2992,154 @@ export default function NationalReport(props) {
                 </Header.Content>
               </Header>
             </div>
-            
 
+            <Grid>
+              <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 40}}>
+                <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
+                  <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses <br/> delivered</center>
 
-
-
-              <Grid>
-                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 40}}>
-                  <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 8, paddingBottom: 0}}> 
-                    <center style={{width: 200,fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center", paddingBottom: 0}}>Total doses <br/> delivered</center>
-
-                    
-                  </Grid.Column>
                   
-                  <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 8}}> 
-                    <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Total doses <br/> administered</center>
-
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 8}}> 
-           
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> at least one dose</center>
-
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 8}}> 
-                   
-                        <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number fully <br/> vaccinated </center>
-  
-                    </Grid.Column>
-                </Grid.Row>
-
-                <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 0}}>
-                  <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 0}}> 
-                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
-                      <Header style = {{textAlign: "center"}}>
-                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
-                        <Header.Content style = {{paddingBottom: 5}}>
-                        <br/><br/><p style={{width: 200, fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p><br/>
-                        </Header.Content>
-                      </Header>
-                    </div>
-                  </Grid.Column>
-                  
-                  <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 0}}> 
-                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
-                      <Header style = {{textAlign: "center"}}>
-                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
-                        <Header.Content style = {{paddingBottom: 5}}>
-                          
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Administered"])}</p><br/>
-                        </Header.Content>
-                      </Header>
-                    </div>
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 0}}> 
-                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
-                      <Header style = {{textAlign: "center"}}>
-                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
-                        <Header.Content style = {{paddingBottom: 5}}>
-                        
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
-                        </Header.Content>
-                      </Header>
-                    </div>
-                  </Grid.Column>
-                  <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 0}}> 
-                    <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
-                      <Header style = {{textAlign: "center"}}>
-                        {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100K <br/><br/></p> */}
-                        <Header.Content style = {{paddingBottom: 5}}>
-                        
-                        <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"].toFixed(0))}</p><br/>
-                        </Header.Content>
-                      </Header>
-                      </div>
-                    </Grid.Column>
-                </Grid.Row>                
-                <Grid.Row>
-                <Grid.Column style = {{width: 900, paddingLeft: 205, paddingTop: 18}}> 
-                    <div style = {{width: 900}}>
-                      <Header>
-                        <div>
-                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
-                            Percent of the U.S. population partially vaccinated<br/>
-                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
-                              One of two doses of Pfizer or Moderna vaccine received
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
-                        </Header.Content>
-
-                        <div>
-                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
-                            Percent of the U.S. population fully vaccinated<br/>
-                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
-                              Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
-                        </Header.Content>
-
-                        <div>
-                          <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
-                            Percent of the U.S. population that received at least one dose<br/>
-                            <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
-                              One or more doses of any of the authorized vaccines received
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
-                          <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
-                        </Header.Content>
-                      </Header>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-              <Grid>
-
-                <Grid.Row >
-                  <Accordion style = {{paddingTop: 0, paddingLeft: 204, paddingBottom: 0}}defaultActiveIndex={1} panels={[
-                            {
-                                key: 'acquire-dog',
-                                title: {
-                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                    icon: 'dropdown',
-                                },
-                                content: {
-                                    content: (
-                                      <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 900}}>
-                                        Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
-                                        <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
-                                        <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
-                                        <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
-                                        <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
-
-
-                                      </Header.Content>
-                                    ),
-                                  },
-                              }
-                          ]
-                          } /> 
-                  </Grid.Row>
-                </Grid>
+                </Grid.Column>
                 
+                <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 8}}> 
+                  <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Total doses <br/> administered</center>
 
-                <div id="cases" style = {{height: 45}}> </div>
+                </Grid.Column>
+                <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 8}}> 
+          
+                      <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number received <br/> at least one dose</center>
+
+                </Grid.Column>
+                <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 8}}> 
+                  
+                      <center style={{width: 200, fontSize: "22px", fontFamily: 'lato', color: "#000000", textAlign: "center"}}>Number fully <br/> vaccinated </center>
+
+                  </Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row columns = {5} style = {{width: 1000, paddingLeft: 205, paddingTop: 0}}>
+                <Grid.Column style = {{width: 200, paddingLeft: 0, paddingTop: 0}}> 
+                  <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                    <Header style = {{textAlign: "center"}}>
+                      {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                      <Header.Content style = {{paddingBottom: 5}}>
+                      <br/><br/><p style={{width: 200, fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p><br/>
+                      </Header.Content>
+                    </Header>
+                  </div>
+                </Grid.Column>
+                
+                <Grid.Column style = {{width: 200, paddingLeft: 50, paddingTop: 0}}> 
+                  <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                    <Header style = {{textAlign: "center"}}>
+                      {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
+                      <Header.Content style = {{paddingBottom: 5}}>
+                        
+                      <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Doses_Administered"])}</p><br/>
+                      </Header.Content>
+                    </Header>
+                  </div>
+                </Grid.Column>
+                <Grid.Column style = {{width: 200, paddingLeft: 100, paddingTop: 0}}> 
+                  <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                    <Header style = {{textAlign: "center"}}>
+                      {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received second dose <br/><br/></p> */}
+                      <Header.Content style = {{paddingBottom: 5}}>
+                      
+                      <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Administered_Dose1"])}</p><br/>
+                      </Header.Content>
+                    </Header>
+                  </div>
+                </Grid.Column>
+                <Grid.Column style = {{width: 200, paddingLeft: 150, paddingTop: 0}}> 
+                  <div style = {{width: 200, background: "#e5f2f7", height: 130}}>
+                    <Header style = {{textAlign: "center"}}>
+                      {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Newly distributed per 100K <br/><br/></p> */}
+                      <Header.Content style = {{paddingBottom: 5}}>
+                      
+                      <br/><br/><p style={{fontSize: "28px", fontFamily: 'lato', color: "#000000"}}>{numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"].toFixed(0))}</p><br/>
+                      </Header.Content>
+                    </Header>
+                    </div>
+                  </Grid.Column>
+              </Grid.Row>                
+              <Grid.Row>
+              <Grid.Column style = {{width: 900, paddingLeft: 205, paddingTop: 18}}> 
+                  <div style = {{width: 900}}>
+                    <Header>
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                          Percent of the U.S. population partially vaccinated<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            One of two doses of Pfizer or Moderna vaccine received
+                          </Header.Content>
+                        </Header>
+                      </div>
+                      <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                        <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress/>
+                      </Header.Content>
+
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                          Percent of the U.S. population fully vaccinated<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received
+                          </Header.Content>
+                        </Header>
+                      </div>
+                      <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                        <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
+                      </Header.Content>
+
+                      <div>
+                        <Header style={{fontSize: "22px", fontFamily: 'lato', color: "#004071", width: 900}}>
+                          Percent of the U.S. population that received at least one dose<br/>
+                          <Header.Content style={{paddingBottom: 5, fontWeight: 300, paddingTop: 0, paddingLeft: 0,fontSize: "19px"}}>
+                            One or more doses of any of the authorized vaccines received
+                          </Header.Content>
+                        </Header>
+                      </div>
+                      <Header.Content style = {{paddingBottom: 0, paddingTop: 0}}>
+                        <Progress style = {{width: 900}} percent={((vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]).toFixed(1))} size='large' color='green' progress/>
+                      </Header.Content>
+                    </Header>
+                  </div>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <Grid>
+
+              <Grid.Row >
+                <Accordion style = {{paddingTop: 0, paddingLeft: 204, paddingBottom: 0}}defaultActiveIndex={1} panels={[
+                          {
+                              key: 'acquire-dog',
+                              title: {
+                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                                  icon: 'dropdown',
+                              },
+                              content: {
+                                  content: (
+                                    <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", width: 900}}>
+                                      Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
+                                      <b><em> {vaxVarMap["Doses_Distributed"].name} </em></b> {vaxVarMap["Doses_Distributed"].definition} <br/>
+                                      <b><em> {vaxVarMap["Doses_Administered"].name} </em></b> {vaxVarMap["Doses_Administered"].definition} <br/>
+                                      <b><em> {vaxVarMap["Administered_Dose1"].name} </em></b> {vaxVarMap["Administered_Dose1"].definition} <br/>
+                                      <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
 
 
+                                    </Header.Content>
+                                  ),
+                                },
+                            }
+                        ]
+                        } /> 
+                </Grid.Row>
+            </Grid>
+                
+            <div id="cases" style = {{height: 45}}> </div>
 
-
-
-
-
-                <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
-                <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
+            <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
+            <div style={{paddingTop:'1em', paddingLeft: "13em", paddingRight: "2em"}}>
               <Header as='h2' style={{paddingTop: 17, textAlign:'center',fontSize:"22pt", color: mortalityColor[1]}}>
                 <Header.Content style = {{paddingLeft: 54}}>
                   COVID-19 Vaccination By Race & Ethnicity
@@ -3510,222 +3150,222 @@ export default function NationalReport(props) {
               </Header>
             </div>
 
-    <Grid>
+      <Grid>
 
-      <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
-        <Grid.Column style = {{width: 1000}}>
-                      <Grid rows = {1}>
-                    <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}>
-                        <Grid.Column style = {{width: 300, paddingleft: 100}}>
+        <Grid.Row columns = {2} style = {{width: 1360, paddingLeft: 120}} >
+          <Grid.Column style = {{width: 1000}}>
+            <Grid rows = {1}>
+              <Grid.Row columns = {1} style = {{width: 1000, paddingLeft: 100}}>
+                <Grid.Column style = {{width: 300, paddingleft: 100}}>
+                            
+                  <SideRaceBarChart
+                    demogData = {nationalDemog}
+                    fips = {"_nation"}
+                    VaccineData = {vaccineData}
+                    inTab = {false}
+                    vacc = {true}
+                  />
+                </Grid.Column>
                           
-                          <SideRaceBarChart
-                            demogData = {nationalDemog}
-                            fips = {"_nation"}
-                            VaccineData = {vaccineData}
-                            inTab = {false}
-                            vacc = {true}
-                          />
-                        </Grid.Column>
+              </Grid.Row>
                         
-                      </Grid.Row>
-                      
-                      </Grid>
-      </Grid.Column>
-      <Grid.Column style = {{width: 400}}>
-        <div style={{paddingTop: 0, paddingLeft: 30}}>
-          <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
-            <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
-            
-            <p style = {{paddingLeft: 40}}>
-              <ul>
+            </Grid>
+          </Grid.Column>
+          <Grid.Column style = {{width: 400}}>
+            <div style={{paddingTop: 0, paddingLeft: 30}}>
+              <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
+                <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
                 
-              {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
-                {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
-                " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
-              :
-                ""} </li>}
+                <p style = {{paddingLeft: 40}}>
+                  <ul>
+                    
+                  {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
+                    {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
+                    " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                    (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+                  :
+                    ""} </li>}
 
-                {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
-                  {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
-                " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
-              :
-                ""}</li>}
+                    {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
+                      {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
+                    " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                    (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+                  :
+                    ""}</li>}
 
-              {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
-                {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
-                " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-              :
-                ""} </li>}
+                  {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
+                    {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
+                    " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                    (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                  :
+                    ""} </li>}
 
-              {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
-                {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
-                " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-              :
-                ""}</li>}
+                  {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
+                    {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
+                    " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                    (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                  :
+                    ""}</li>}
 
-              {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
-                {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
-                " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
-              :
-                ""} </li>}
-              
-              
-              {pctVacPopDisp >= 1 && <li>
-                {(pctVacPopDisp) < 1 ? "": " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
-              </li>}
+                  {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
+                    {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
+                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                    (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                  :
+                    ""} </li>}
+                  
+                  
+                  {pctVacPopDisp >= 1 && <li>
+                    {(pctVacPopDisp) < 1 ? "": " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
+                  </li>}
 
-              </ul>
-            </p>
-              
-          </Header.Subheader>
-        </div>
-      </Grid.Column>
-    </Grid.Row>
-</Grid>
-<Grid.Row>
-                      <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
-                            {
-                                key: 'acquire-dog',
-                                title: {
-                                    content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                    icon: 'dropdown',
-                                },
-                                content: {
-                                    content: (
+                  </ul>
+                </p>
+                  
+              </Header.Subheader>
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      <Grid.Row>
+        <Accordion style = {{paddingTop: 30, paddingLeft: 190, paddingBottom: 45}}defaultActiveIndex={1} panels={[
+              {
+                  key: 'acquire-dog',
+                  title: {
+                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                      icon: 'dropdown',
+                  },
+                  content: {
+                      content: (
 
-                                      <div style = {{fontSize: "19px", paddingLeft: 5}}>
-                                        
+                        <div style = {{fontSize: "19px", paddingLeft: 5}}>
+                          
 
-                                        <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
-                                          <Header.Content style={{fontWeight: 300, fontSize: "19px", paddingTop: 7, paddingLeft: 0, width: 900}}>
-                                          Race & Ethnicity data as of {nationalDemogDate}.
-                                          <br/>
-                                          The demographics of vaccinated adults is obtained from the U.S.
-                                          <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
-                                          The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
-                                          <br/>
-                                          The CDC notes that “These demographic data only represent the geographic areas that 
-                                          contributed data and might differ by populations prioritized within each state or 
-                                          jurisdiction’s vaccination phase. Every geographic area has a different racial and 
-                                          ethnic composition, and not all are in the same vaccination phase.” For comparison 
-                                          purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
-                                          population will include some areas that are not represented in the vaccination data. 
-                                          The numbers are therefore our best estimation of vaccination coverage by race.
+                          <Grid.Row style= {{paddingTop: 0, paddingBottom: 25}}> 
+                            <Header.Content style={{fontWeight: 300, fontSize: "19px", paddingTop: 7, paddingLeft: 0, width: 900}}>
+                            Race & Ethnicity data as of {nationalDemogDate}.
+                            <br/>
+                            The demographics of vaccinated adults is obtained from the U.S.
+                            <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
+                            The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
+                            <br/>
+                            The CDC notes that “These demographic data only represent the geographic areas that 
+                            contributed data and might differ by populations prioritized within each state or 
+                            jurisdiction’s vaccination phase. Every geographic area has a different racial and 
+                            ethnic composition, and not all are in the same vaccination phase.” For comparison 
+                            purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
+                            population will include some areas that are not represented in the vaccination data. 
+                            The numbers are therefore our best estimation of vaccination coverage by race.
 
-                                          </Header.Content>
-                                        </Grid.Row>
+                            </Header.Content>
+                          </Grid.Row>
 
-                                      </div>
-                                    ),
-                                  },
-                              }
-                          ]
+                        </div>
+                      ),
+                    },
+                }
+            ]
 
-                          } /> 
+            } /> 
                         
-                        </Grid.Row>
+      </Grid.Row>
 
 
 
 
 
 
-            <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
-            <div style={{paddingBottom:'0em', paddingLeft: "12rem", paddingRight: "1rem"}}>
-              {/* <Header as='h2' style={{color: mortalityColor[1], textAlign:'center',fontSize:"22pt", paddingTop: 30}}>
-                <Header.Content>
-                  How have cases in the U.S. changed over time?
-                </Header.Content>
-              </Header> */}
-                <Grid>
-                    <Grid.Row>
-                    {/* <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
-                    <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content>
-                    </ Grid.Row> */}
-                    {/* <Grid.Row style={{textAlign:'center', paddingLeft: '22rem', paddingRight: '22rem'}}>                
-                    <Menu pointing secondary widths={3}> 
-                    <Menu.Item name='All' />
-                    active={activeItem==='all'} onClick={setActiveItem('all')}
-                    <Menu.Item name='90 Days' />
-                    <Menu.Item name='14 Days' />
-                    </ Menu>
-                    </ Grid.Row>
-                    <Grid.Row columns={1}> */}
-                    <ChartSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
-                               tickFormatter={caseTickFmt} chart='case' dailyCases={dailyCases} monthNames={monthNames} 
-                               mean7dayCases={mean7dayCases} percentChangeCases={percentChangeCases} dailyDeaths={dailyDeaths}
-                               mortalityMean={mortalityMean} percentChangeMortality={percentChangeMortality}/>
-                    <Grid.Row>
-                          {/* <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
-                                  <Header.Content  style={{fontSize: "14pt"}}>
-                                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:'4rem'}}>
-                                      This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
-                                      new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
-                                      an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
-                                      We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
-                                      the average new cases over the past 14-day period. 
+        <center style={{paddingLeft: 190}}><Divider style={{width: 900}}/> </center>
+        <div style={{paddingBottom:'0em', paddingLeft: "12rem", paddingRight: "1rem"}}>
+          {/* <Header as='h2' style={{color: mortalityColor[1], textAlign:'center',fontSize:"22pt", paddingTop: 30}}>
+            <Header.Content>
+              How have cases in the U.S. changed over time?
+            </Header.Content>
+          </Header> */}
+            <Grid>
+                <Grid.Row>
+                {/* <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
+                <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: 0, fontWeight: 600}}>Average Daily COVID-19 Cases </Header.Content>
+                </ Grid.Row> */}
+                {/* <Grid.Row style={{textAlign:'center', paddingLeft: '22rem', paddingRight: '22rem'}}>                
+                <Menu pointing secondary widths={3}> 
+                <Menu.Item name='All' />
+                active={activeItem==='all'} onClick={setActiveItem('all')}
+                <Menu.Item name='90 Days' />
+                <Menu.Item name='14 Days' />
+                </ Menu>
+                </ Grid.Row>
+                <Grid.Row columns={1}> */}
+                <ChartSection data={dataTS["_nation"]} barColor={mortalityColor[0]} lineColor={[mortalityColor[1]]} 
+                            tickFormatter={caseTickFmt} chart='case' dailyCases={dailyCases} monthNames={monthNames} 
+                            mean7dayCases={mean7dayCases} percentChangeCases={percentChangeCases} dailyDeaths={dailyDeaths}
+                            mortalityMean={mortalityMean} percentChangeMortality={percentChangeMortality}/>
+                <Grid.Row>
+                      {/* <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
+                    {
+                        key: 'acquire-dog',
+                        title: {
+                            content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                            icon: 'dropdown',
+                        },
+                        content: {
+                            content: (
+                              <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
+                              <Header.Content  style={{fontSize: "14pt"}}>
+                                <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:'4rem'}}>
+                                  This figure shows the trend of daily COVID-19 cases in U.S.. The bar height reflects the number of 
+                                  new cases per day and the line depicts 7-day moving average of daily cases in U.S.. There were {numberWithCommas(dailyCases)} new COVID-19 cases reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
+                                  an average of {numberWithCommas(mean7dayCases)} new cases per day reported over the past 7 days. 
+                                  We see a {percentChangeCases.includes("-")? "decrease of approximately " + percentChangeCases.substring(1): "increase of approximately " + percentChangeCases} in 
+                                  the average new cases over the past 14-day period. 
+                                  <br/>
+                                  <br/>
+                                  *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
+
+                                </Header.Subheader>
+                              </Header.Content>
+                            </Header>
+                          ),
+                        },
+                    }
+                ]
+              } />
+              <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
+                    {
+                        key: 'acquire-dog',
+                        title: {
+                            content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                            icon: 'dropdown',
+                        },
+                        content: {
+                            content: (
+                              <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
+                              <Header.Content  style={{fontSize: "14pt"}}>
+                                <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:'4rem'}}>
+                                      This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
+                                      per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
+                                      associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
+                                      an average of {mortalityMean} new deaths per day reported over the past 7 days. 
+                                      We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
                                       <br/>
                                       <br/>
                                       *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
-
+                                    
                                     </Header.Subheader>
                                   </Header.Content>
                                 </Header>
-                              ),
-                            },
-                        }
-                    ]
-                  } />
-                  <Accordion style = {{paddingLeft: '3rem'}} defaultActiveIndex={1} panels={[
-                        {
-                            key: 'acquire-dog',
-                            title: {
-                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
-                                icon: 'dropdown',
-                            },
-                            content: {
-                                content: (
-                                  <Header as='h2' style={{fontWeight: 400, paddingTop: 0, paddingBottom: 20}}>
-                                  <Header.Content  style={{fontSize: "14pt"}}>
-                                    <Header.Subheader style={{color: '#000000', width: 900, fontSize: "14pt", textAlign:'justify', lineHeight: "16pt", paddingLeft: '2rem', paddingRight:'4rem'}}>
-                                          This figure shows the trend of daily COVID-19 deaths in U.S.. The bar height reflects the number of new deaths 
-                                          per day and the line depicts 7-day moving average of daily deaths in U.S.. There were {dailyDeaths} new deaths 
-                                          associated with COVID-19 reported on {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}, with 
-                                          an average of {mortalityMean} new deaths per day reported over the past 7 days. 
-                                          We see {percentChangeMortality.includes("-")? "a decrease of approximately " + percentChangeMortality.substring(1): "an increase of approximately " + percentChangeMortality} in the average new deaths over the past 14-day period. 
-                                          <br/>
-                                          <br/>
-                                          *14-day period includes {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 15].t*1000).getFullYear()} to {monthNames[new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getMonth()] + " " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getDate() + ", " + new Date(dataTS['_nation'][dataTS['_nation'].length - 1].t*1000).getFullYear()}.
-                                        
-                                        </Header.Subheader>
-                                      </Header.Content>
-                                    </Header>
-                                ),
-                              },
-                          }
-                      ]
+                            ),
+                          },
+                      }
+                  ]
 
-                      } /> */}
-                  </Grid.Row>
-                          {/* </div> */}
-                        {/* </ Grid.Column> */}
-                    </Grid.Row>
-                </Grid>
-            </div>
+                  } /> */}
+              </Grid.Row>
+                      {/* </div> */}
+                    {/* </ Grid.Column> */}
+                </Grid.Row>
+            </Grid>
+        </div>
 
 
             {/* <div id="deaths" style = {{height: 45}}> </div> */}
@@ -4032,10 +3672,6 @@ export default function NationalReport(props) {
                 </Header.Content>
               </Header>
             </div>
-            
-              
-                
-                
                 <Grid>
                   
 
