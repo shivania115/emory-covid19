@@ -281,9 +281,8 @@ const fullMonthNames = ["January", "February", "March", "April", "May", "June",
 
 
 function ChartSection(props){
-  const [chartNo, setChartNo] = useState(-1);
-  // const tempData = props.data.slice(0,366);
-  // const data = tempData;
+  const [chartNo1, setChartNo1] = useState(-1);
+  const [chartNo2, setChartNo2] = useState(2);
   const data = props.data;
   const dailyCases = props.dailyCases;
   const dailyDeaths = props.dailyDeaths;
@@ -297,9 +296,20 @@ function ChartSection(props){
   const [caseTicks, setCaseTicks] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [headerTime, setHeaderTime] = useState('');
+  const [activeItem, setActiveItem] = useState('Cases')
+
+
+console.log('chartNo', chartNo1, chartNo2)
 
 useEffect(()=>{
-  if(chartNo < 3){
+  // var timer = 0
+
+  // if(timer){
+  //   clearTimeout(timer);
+  //   timer = 0;
+  // }
+
+  if(activeItem==='Cases'){
     setBarName('dailyCases');
     setLineName('caseRateMean');
   } else {
@@ -307,7 +317,7 @@ useEffect(()=>{
     setLineName('mortalityMean');
   }
 
-  if(chartNo===-1){
+  if(chartNo1===-1){
     setCaseTicks([data[0].t,
     data[30].t,
     data[61].t,
@@ -320,8 +330,9 @@ useEffect(()=>{
     data[275].t,
     data[306].t,
     data[334].t,
+    data[365].t,
     data[data.length-1].t]);
-  }else if(chartNo===0 || chartNo===3) {
+  }else if(chartNo1===0 || chartNo2===2) {
     setCaseTicks([data[0].t,
     data[30].t,
     data[61].t,
@@ -334,85 +345,99 @@ useEffect(()=>{
     data[275].t,
     data[306].t,
     data[334].t,
+    data[365].t,
     data[data.length-1].t]);
     setHeaderTime('');
-    if(chartNo===0){
-      setDisabled(true);
-      setTimeout(()=>setChartNo(chartNo+1), 11000); //10000
+    setDisabled(true);
+    if(activeItem==='Cases'){
+      setChartNo2(3.5)
+      setTimeout(()=>setChartNo1(1), 11000); //10000
     } else {
-      setTimeout(()=>setChartNo(chartNo+1), 10000);   //8000
+      setChartNo1(1.5);
+      setTimeout(()=>setChartNo2(3), 10000);   //8000
     }
-  } else if(chartNo===1 || chartNo===4){
+  } else if(chartNo1===1 || chartNo2===3){
     setCaseTicks([data[214].t,
     data[244].t,
     data[275].t,
     data[306].t,
     data[334].t,
+    data[365].t,
     data[data.length-1].t]);
     setHeaderTime('in Past 90 Days');
-    setTimeout(()=>setChartNo(chartNo+1), 7000);   //5000
-  } else if(chartNo===2 || chartNo===5){
-    setCaseTicks([
-      data[data.length-14].t,
-      data[data.length-7].t,
-      data[data.length-1].t]);
-    setHeaderTime('in Past 14 Days');
-    setTimeout(()=>setChartNo(chartNo+1), 7000);
-    if(chartNo===5){
-      setTimeout(()=>setDisabled(false), 7000);
+    if(activeItem==='Cases'){
+      setTimeout(()=>setChartNo1(1.5), 7000);   //5000
+    } else {
+      setTimeout(()=>setChartNo2(3.5), 7000);   //5000
     }
+    
+  } 
+  else if(chartNo1===1.5 || chartNo2===3.5){
+    setDisabled(false);
+    // setCaseTicks([
+    //   data[data.length-14].t,
+    //   data[data.length-7].t,
+    //   data[data.length-1].t]);
+    // setHeaderTime('in Past 14 Days');
+    // setTimeout(()=>setChartNo(chartNo+1), 7000);
+    // if(chartNo===5){
+    //   setTimeout(()=>setDisabled(false), 7000);
+    // }
   }
-}, [chartNo]);
+}, [chartNo1, chartNo2, activeItem]);
 
-  // console.log('chartNo', chartNo);
 
   return(
   <Grid.Row style={{paddingLeft: 20, paddingBottom: '0rem'}}>  
   <Header as='h2' style={{paddingTop: 30, paddingLeft: 60, color: mortalityColor[1], textAlign:'center',fontSize:"22pt"}}>
     <Header.Content>
-      How have {chartNo<3 ? 'cases' : 'deaths'} in the U.S. changed over time?
+      How have {activeItem==='Cases' ? 'cases' : 'deaths'} in the U.S. changed over time?
     </Header.Content>
   </Header>
-  <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
-    <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: '1rem', fontWeight: 600}}>Average Daily COVID-19 {chartNo<3 ? 'Cases' : 'Deaths'} {headerTime}</Header.Content>
-  </ Grid.Row>
-  {/* <Grid.Row style={{paddingTop: '1rem', paddingLeft: '23rem'}}>
-    <Menu pointing secondary widths={3} style={{width: '16rem'}}> 
-    <Menu.Item name='All' active={activeItem==='All'} onClick={()=>setActiveItem('All')}/>
-    <Menu.Item name='90 Days' active={activeItem==='90 Days'} onClick={()=>setActiveItem('90 Days')}/>
-    <Menu.Item name='14 Days' active={activeItem==='14 Days'} onClick={()=>setActiveItem('14 Days')}/>
+  <Grid.Row style={{paddingTop: '1rem', paddingLeft: '25rem'}}>
+    <Menu pointing secondary widths={2} style={{width: '15rem', fontSize: 17}}> 
+    <Menu.Item name='Cases' active={activeItem==='Cases'} onClick={()=>{setActiveItem('Cases'); setChartNo1(0); setChartNo2(3.5); setDisabled(true)}}/>
+    <Menu.Item name='Deaths' active={activeItem==='Deaths'} onClick={()=>{setActiveItem('Deaths'); setChartNo2(2); setDisabled(true)}}/>
     </ Menu>
-    </Grid.Row> */}
+  </Grid.Row>
+  <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
+    <Header.Content x={0} y={20} style={{ fontSize: '18pt', marginLeft: 0, paddingBottom: '1rem', fontWeight: 600}}>Average Daily COVID-19 {activeItem==='Cases' ? 'Cases' : 'Deaths'} {headerTime}</Header.Content>
+  </ Grid.Row>
 
     {(()=>{
-    if (chartNo===-1){
+    if (activeItem==='Cases' && chartNo1===-1){
       return (<Grid.Column>
               <CaseChartStatic data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} />
               </Grid.Column>)
-    }else if (chartNo===0){
+    }else if (activeItem==='Cases' && chartNo1===0){
       return (<Grid.Column>
               <CaseChartAll data={data} barColor={props.barColor} lineColor={props.lineColor}
               tick={caseTicks} tickFormatter={props.tickFormatter} />
               </Grid.Column>)
-    } else if(chartNo===3){
+    } else if(activeItem==='Deaths' && chartNo2===2){
       return <DeathChartAll data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter} />
-    } else if(chartNo===1 || chartNo===4){
+    } else if(activeItem==='Cases' && (chartNo1===1 || chartNo1===1.5)){
       return <CaseChart90 data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter}
               barName={barName} lineName={lineName}/>
-    } else {
-      return <CaseChart14 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+    } else if (activeItem==='Deaths' && (chartNo2===3 || chartNo2===3.5)) {
+      return <CaseChart90 data={data} barColor={props.barColor} lineColor={props.lineColor} 
               tick={caseTicks} tickFormatter={props.tickFormatter}
               barName={barName} lineName={lineName}/>
     }
+    // else {
+    //   return <CaseChart14 data={data} barColor={props.barColor} lineColor={props.lineColor} 
+    //           tick={caseTicks} tickFormatter={props.tickFormatter}
+    //           barName={barName} lineName={lineName}/>
+    // }
   })()}
     
-    <Button style={{marginLeft: 780}} content='Play' icon='play' disabled={disabled} onClick={() => {setChartNo(0);}}/>
+    <Button style={{marginLeft: 780}} content='Play' icon='play' disabled={disabled} onClick={() => {if(activeItem === 'Cases') {setChartNo1(0); setChartNo2(3.5)} else {setChartNo2(2); setChartNo1(1.5)}}}/>
    
     {(()=>{
-      if (chartNo<3){
+      if (activeItem==='Cases'){
         return (<Accordion style = {{paddingLeft: 18}} defaultActiveIndex={1} panels={[
         {
             key: 'acquire-dog',
@@ -558,7 +583,7 @@ function CaseChartStatic(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks}  tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      <XAxis dataKey="t" ticks={ticks}  tick={{fontSize: 13}} tickFormatter={tickFormatter} interval={0}/>
       {/* domain={[1585713600, 1610859600]} */}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
@@ -674,8 +699,6 @@ function CaseChartAll(props){
   const radius = 10;
   const renderCustomizedLabel = (props) => {
     const { x, y, width, value } = props;
-
-  console.log('nationaldata', data)
     
 
     if (value===1586491200 && highlightIndex.length >= 2){  // 1
@@ -734,7 +757,7 @@ function CaseChartAll(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 13}} tickFormatter={tickFormatter} interval={0}/>
       {/* domain={[1585713600, 1610859600]} */}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
@@ -868,7 +891,6 @@ function CaseChart90(props){
     var sum = 0;
     for(var i=data.length-90; i<data.length; i++) { 
       sum += data[i][barName]; 
-      console.log(i);
     }
     setTotalCase(sum);
   },[])
@@ -1067,7 +1089,7 @@ function DeathChartAll(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter}/>
+      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 13}} tickFormatter={tickFormatter} interval={0}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
             isAnimationActive={animationBool} 
@@ -2152,8 +2174,6 @@ const SideRaceBarChart = (props) => {
 
   const CustomizedLabellist =(props) =>{
     const { width, height, x, y, value } = props;
-
-    console.log('ll', props)
 
     return (
       <g>
