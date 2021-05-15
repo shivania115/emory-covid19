@@ -384,7 +384,7 @@ useEffect(()=>{
     //   setTimeout(()=>setDisabled(false), 7000);
     // }
   }
-}, [chartNo1, chartNo2, activeItem]);
+}, [chartNo1, chartNo2]);
 
 
   return(
@@ -397,7 +397,7 @@ useEffect(()=>{
   <Grid.Row style={{paddingTop: '1rem', paddingLeft: '25rem'}}>
     <Menu pointing secondary widths={2} style={{width: '15rem', fontSize: 17}}> 
     <Menu.Item name='Cases' active={activeItem==='Cases'} onClick={()=>{setActiveItem('Cases'); setChartNo1(0); setChartNo2(3.5); setDisabled(true)}}/>
-    <Menu.Item name='Deaths' active={activeItem==='Deaths'} onClick={()=>{setActiveItem('Deaths'); setChartNo2(2); setDisabled(true)}}/>
+    <Menu.Item name='Deaths' active={activeItem==='Deaths'} onClick={()=>{setActiveItem('Deaths'); setChartNo2(2); setChartNo1(1.5); setDisabled(true)}}/>
     </ Menu>
   </Grid.Row>
   <Grid.Row column = {1} style={{textAlign:'center', width: 800, paddingTop: '2rem', paddingLeft: '10rem'}}>
