@@ -1,0 +1,64 @@
+{
+    "RPL_THEME1": {
+        "name": "Socioeconomic Vulnerability",
+        "group": "exposure"},
+    "RPL_THEME2": {
+        "name": "Minority/Language Vulnerability",
+        "group": "exposure"},
+    "RPL_THEME3": {
+        "name": "Housing/Transportaion & Household Composition & Disability Vulnerability",
+        "group": "exposure"},
+    "RPL_THEME4": {
+        "name": "Epidemiological Factors",
+        "group": "exposure"},
+    "RPL_THEME5": {
+        "name": "Healthcare System Factors",
+        "group": "exposure"},
+    "RPL_THEME6": {
+        "name": "High Risk Environments",
+        "group": "exposure"},
+    "RPL_THEME7": {
+        "name": "Population Density Factors",
+        "group": "exposure"},
+    "black": {
+        "name": "% African American",
+        "group": "exposure"},
+    "minority": {
+        "name": "% Minority",
+        "group": "exposure"},
+    "poverty": {
+        "name": "% in Poverty",
+        "group": "exposure"},
+    "PCTUI": {
+        "name": "% Uninsured",
+        "group": "exposure"},
+    "diabetes": {
+        "name": "% Diabetes",
+        "group": "exposure"},
+    "obesity": {
+        "name": "% Obesity",
+        "group": "exposure"},
+    "age65over": {
+        "name": "% over 65 y/o",
+        "group": "exposure"},
+    "groupquater": {
+        "name": "% in Group Quarters",
+        "group": "exposure"},
+    "male": {
+        "name": "% Male",
+        "group": "exposure"},
+    "Population": {
+        "name": "Population",
+        "group": "misc"},
+    "popden": {
+        "name": "Population Density",
+        "group": "misc"},
+    "hhincome": {
+        "name": "Household Income",
+        "group": "misc"},
+    "_013_Urbanization": {
+        "name": "Urban-Rural Status",
+        "group": "misc"}        
+}
+
+
