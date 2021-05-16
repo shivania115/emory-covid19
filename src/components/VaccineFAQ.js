@@ -94,7 +94,7 @@ export default function VaccinesFAQ(props){
           <Header.Content>
             Frequently Asked Questions about COVID-19 Vaccines
             <Header.Subheader style={{paddingTop:'2rem', paddingLeft: '0rem', paddingBottom:'0rem', lineHeight: "20pt", fontWeight: 400, fontSize: "14pt", color: 'black'}}> 
-            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of May 1, 2021. Before taking the vaccine, please consult your healthcare provider.
+            This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of {Date().slice(4,10)}, 2021. Before taking the vaccine, please consult your healthcare provider.
             If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:
             {/* {Date().slice(4,10)} */}
             <ul style={{paddingLeft:'6rem', fontSize:'14pt', lineHeight:'1.5'}}>
@@ -177,7 +177,7 @@ export default function VaccinesFAQ(props){
           </Table.Header>
           <Table.Body>
             <Table.Row>
-              <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 16 years and older</Table.Cell>
+              <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 12 years and older</Table.Cell>
               <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 18 years and older</Table.Cell>
               <Table.Cell style={{lineHeight: "14pt"}}>Approved for individuals aged 18 years and older</Table.Cell>
             </Table.Row>
