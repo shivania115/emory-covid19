@@ -467,7 +467,7 @@ const SideRaceBarChart = (props) => {
   let labelSize = '12px'
   let fontWeight = 500
   let tickFontSize = (props.inTab === true && props.fips === '_nation' === true) ? 11 : 12
-  let barSize = props.fips === '_nation' ? 35 : 45
+  let barSize = props.fips === '_nation' ? 30 : 25
 
   console.log('fips', props.fips)
   console.log('demog', props.demogData)
@@ -663,13 +663,13 @@ const SideRaceBarChart = (props) => {
     if(props.fips === '_nation' || props.vaccRaceState[props.fips]["stateReports"] === "Non-Hispanic Races only"){
     return (
     <Grid>
-      <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: props.inTab===true ? '0rem':'0.5rem',paddingTop: props.inTab===true ? '2rem':'1rem', paddingRight: 0}}>
+      <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: props.inTab===true ? '0rem':'0.5rem',paddingTop: props.inTab===true ? '7rem':'1rem', paddingRight: 0}}>
       <Header style={{fontSize: '10pt', paddingLeft: '5rem'}}> % Vaccination </Header>
           <BarChart
           transform={props.inTab===false ? "translate(10, 0)":"translate(-15, 0)"}
           layout='vertical'
           width={props.inTab === true ? 220:250}
-          height={props.inTab === true ? 350:330}
+          height={props.inTab === true ? 330:330}
           data={data}
           margin={{
             top: 0,
@@ -704,13 +704,13 @@ const SideRaceBarChart = (props) => {
 
         </BarChart>
         </Grid.Column>
-        <Grid.Column width={9} style={{paddingLeft: 0, paddingTop: props.inTab===true ? '2rem':'1rem'}}>
+        <Grid.Column width={9} style={{paddingLeft: 0, paddingTop: props.inTab===true ? '7rem':'1rem'}}>
         <Header style={{fontSize: '10pt', paddingLeft: props.inTab===true ? '4.5rem' : '5.5rem'}}> % Population </Header>
       <BarChart
           transform={props.inTab===false ? "translate(10, 0)":"translate(-15, 0)"}
           layout='vertical'
           width={props.inTab === true ? 220:250}
-          height={props.inTab === true ? 350:330}
+          height={props.inTab === true ? 330:330}
           data={data}
           margin={{
             top: 0,
@@ -758,14 +758,14 @@ const SideRaceBarChart = (props) => {
     } else {
     return(
       <Grid>
-      <Grid.Row>
+      <Grid.Row style={{paddingTop: '7rem'}}>
       <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: '0rem',paddingRight: 0}}>
       <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination by Race </Header>
           <BarChart
           transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={250}
+          height={200}
           data={data_wo_his}
           margin={{
             top: 0,
@@ -798,7 +798,7 @@ const SideRaceBarChart = (props) => {
           transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={250}
+          height={200}
           data={data_wo_his}
           margin={{
             top: 0,
@@ -825,14 +825,14 @@ const SideRaceBarChart = (props) => {
 
         </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{paddingTop: '0rem'}}>
+        <Grid.Row style={{paddingTop: '0.5rem'}}>
         <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: '0rem',paddingRight: 0}}>
         <Header style={{fontSize: '10pt', paddingLeft: '3rem'}}> % Vaccination Hispanic</Header>
           <BarChart
           transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={100}
+          height={80}
           data={eth_data}
           margin={{
             top: 0,
@@ -864,7 +864,7 @@ const SideRaceBarChart = (props) => {
           transform="translate(-15, 0)"
           layout='vertical'
           width={210}
-          height={100}
+          height={80}
           data={eth_data}
           margin={{
             top: 0,
@@ -897,6 +897,42 @@ const SideRaceBarChart = (props) => {
         </Grid>
         )}
       })()}
+      {(()=>{
+        if(props.inTab === true){
+          return(
+      <Accordion id = "vaccine" style = {{paddingTop: 20, paddingLeft: 0, paddingBottom: 15}}defaultActiveIndex={1} panels={[
+        {
+            key: 'acquire-dog',
+            title: {
+                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,
+                icon: 'dropdown',
+            },
+            content: {
+                content: (
+                  <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 0, paddingLeft: 5, width: 400, lineHeight: '20px'}}>
+                    Race & Ethnicity data as of .
+                    <br/>
+                    The demographics of vaccinated adults is obtained from the U.S.
+                    <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
+                    The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for 
+                    {/* {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults. */}
+                    <br/>
+                    The CDC notes that “These demographic data only represent the geographic areas that 
+                    contributed data and might differ by populations prioritized within each state or 
+                    jurisdiction’s vaccination phase. Every geographic area has a different racial and 
+                    ethnic composition, and not all are in the same vaccination phase.” For comparison 
+                    purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
+                    population will include some areas that are not represented in the vaccination data. 
+                    The numbers are therefore our best estimation of vaccination coverage by race.
+
+                  </Header.Content>
+                ),
+              },
+          }
+      ]
+      } />
+          )}
+    })()}
     </div>
   )
 }
@@ -2044,7 +2080,39 @@ const USVaccineTracker = (props) => {
                             
 
                           </ComposableMap>
-                        
+
+                          <Grid>
+                    <Grid.Column >
+                      {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 20}} defaultActiveIndex={1} panels={[
+                        {
+                            key: 'acquire-dog',
+                            title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the data</u>,icon: 'dropdown',
+                              },
+                              content: {
+                                  content: (
+                                    <Header.Content style={{fontWeight: 300, paddingTop: 7, paddingLeft: 5,fontSize: "19px", fontFamily: 'lato', fontSize: "19px", lineHeight: "20px", width: 500}}>
+                                      Data are from the <a href = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations' target="_blank" rel="noopener noreferrer">CDC COVID Data Tracker</a>, data as of {vaccineDate} <br/>
+
+                                      <b><em> {vaxVarMap["AdministeredPartial"].name} </em></b> {vaxVarMap["AdministeredPartial"].definition} <br/>
+                                      <b><em> {vaxVarMap["PercentAdministeredPartial"].name} </em></b> {vaxVarMap["PercentAdministeredPartial"].definition} <br/>
+                                      <b><em> {vaxVarMap["Series_Complete_Yes"].name} </em></b> {vaxVarMap["Series_Complete_Yes"].definition} <br/>
+                                      <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
+
+                                      <b><em> Newly distributed per 100K </em></b> is the number of vaccine doses per 100K that have been 
+                                      distributed to facilities across the United States by the federal government. 
+                                      Newly distributed per 100K for the U.S. was data as of {vaccineDate}. 
+                                      For {stateName === "_nation" ? "SELECT STATE": stateName}, the most recent date of new distribution was on {vaccineDate}. <br/> <br/>
+                                      <b>Note:</b> Native Hawaiian/Pacific Islanders, American Natives, and Multiple/Other races data are not consistently available across sources.
+                                    
+                                    </Header.Content>
+                                ),
+                              },
+                          }
+                        ]
+                      } /> }
+                    </Grid.Column>
+                  </Grid>
                             
                       </Grid.Column>
                       
@@ -2135,7 +2203,7 @@ const USVaccineTracker = (props) => {
                     </Grid.Row> 
                     
                   </Grid>
-                  <Grid>
+                  {/* <Grid>
                     <Grid.Row>
                       {stateFips && <Accordion id = "burden" style = {{paddingTop: 10, paddingLeft: 20}} defaultActiveIndex={1} panels={[
                         {
@@ -2166,7 +2234,7 @@ const USVaccineTracker = (props) => {
                         ]
                       } /> }
                     </Grid.Row>
-                  </Grid>
+                  </Grid> */}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                   <div style = {{paddingLeft: 50}}>
