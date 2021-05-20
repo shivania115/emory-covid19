@@ -811,7 +811,7 @@ export default function CountyReport() {
                     <Table.Row textAlign = 'center' style = {{height: 70}}>
                       <Table.HeaderCell style={{fontSize: '19px'}}> The U.S. </Table.HeaderCell>
                       <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
-                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? numberWithCommas((dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0)) : "Loading..."} </Table.HeaderCell>
 
                     </Table.Row>
                     
