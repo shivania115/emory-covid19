@@ -2963,17 +2963,17 @@ const USVaccineTracker = (props) => {
               
               <Table.Row style = {{height: 25}}>
                 <Table.HeaderCell style = {{fontSize: "16px"}}> All ages</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"] === -1? "NA" : data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
               </Table.Row> 
 
               <Table.Row style = {{height: 25}}>
                 <Table.HeaderCell style = {{fontSize: "16px"}}> Age 18+</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"] === -1? "NA" : data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
               </Table.Row> 
 
               <Table.Row style = {{height: 25}}>
                 <Table.HeaderCell style = {{fontSize: "16px"}}> Age 65+</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
               </Table.Row> 
             </Table.Body>
             </Table>
