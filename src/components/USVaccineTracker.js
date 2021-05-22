@@ -399,7 +399,7 @@ class Race extends PureComponent{
 
   render() {
     const { dataTot } = this.state;
-    console.log("this props", this.props);
+    // console.log("this props", this.props);
     // console.log("here", this.props.rate)
 
     return (
@@ -523,7 +523,7 @@ const SideRaceBarChart = (props) => {
   const CustomizedLabellist =(props) =>{
     const { width, height, x, y, value } = props;
 
-    console.log('ll', props)
+    // console.log('ll', props)
 
     return (
       <g>
@@ -541,7 +541,7 @@ const SideRaceBarChart = (props) => {
     return entry ? (entry.value.toFixed(1) + '%') : null;
   };
 
-  console.log('active index', activeIndex);
+  // console.log('active index', activeIndex);
 
   const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
 
@@ -808,6 +808,7 @@ const USVaccineTracker = (props) => {
           dataTS["_nation"][275].t,
           dataTS["_nation"][306].t,
           dataTS["_nation"][334].t,
+          dataTS["_nation"][365].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -927,7 +928,7 @@ const USVaccineTracker = (props) => {
 
   useEffect(() => {
     if (metric) {
-      fetch('/data/vaccineTimeseries.json').then(res => res.json())
+      fetch('/data/VaccineTimeseries.json').then(res => res.json())
         .then(x => {setVaxSeries(x);});
       
       fetch('/data/vaccineData.json').then(res => res.json())
@@ -2962,17 +2963,17 @@ const USVaccineTracker = (props) => {
               
               <Table.Row style = {{height: 25}}>
                 <Table.HeaderCell style = {{fontSize: "16px"}}> All ages</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"] === -1? "NA" : data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
               </Table.Row> 
 
               <Table.Row style = {{height: 25}}>
                 <Table.HeaderCell style = {{fontSize: "16px"}}> Age 18+</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"] === -1? "NA" : data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
               </Table.Row> 
 
               <Table.Row style = {{height: 25}}>
                 <Table.HeaderCell style = {{fontSize: "16px"}}> Age 65+</Table.HeaderCell>
-                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
+                <Table.HeaderCell style = {{textAlign: "right", fontSize: "16px", textAlign: "right"}}>{ countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
               </Table.Row> 
             </Table.Body>
             </Table>
