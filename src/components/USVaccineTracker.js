@@ -399,7 +399,7 @@ class Race extends PureComponent{
 
   render() {
     const { dataTot } = this.state;
-    console.log("this props", this.props);
+    // console.log("this props", this.props);
     // console.log("here", this.props.rate)
 
     return (
@@ -523,7 +523,7 @@ const SideRaceBarChart = (props) => {
   const CustomizedLabellist =(props) =>{
     const { width, height, x, y, value } = props;
 
-    console.log('ll', props)
+    // console.log('ll', props)
 
     return (
       <g>
@@ -541,7 +541,7 @@ const SideRaceBarChart = (props) => {
     return entry ? (entry.value.toFixed(1) + '%') : null;
   };
 
-  console.log('active index', activeIndex);
+  // console.log('active index', activeIndex);
 
   const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
 
@@ -928,7 +928,7 @@ const USVaccineTracker = (props) => {
 
   useEffect(() => {
     if (metric) {
-      fetch('/data/vaccineTimeseries.json').then(res => res.json())
+      fetch('/data/VaccineTimeseries.json').then(res => res.json())
         .then(x => {setVaxSeries(x);});
       
       fetch('/data/vaccineData.json').then(res => res.json())
