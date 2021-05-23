@@ -1,6 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
+<<<<<<< HEAD:build/precache-manifest.6a77f6108ccf48d1069dd89848048b26.js
     "revision": "efa6e992b57c2701268dbdc0ef3e6679",
+=======
+    "revision": "5ef20afea4aba712d52d493dd13e1ecc",
+>>>>>>> emory-covid19-star:build/precache-manifest.a6315ab34a3d6f92bd7cf4cf45c91d25.js
     "url": "/index.html"
   },
   {
@@ -16,8 +20,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.9e94db29.chunk.js.LICENSE.txt"
   },
   {
+<<<<<<< HEAD:build/precache-manifest.6a77f6108ccf48d1069dd89848048b26.js
     "revision": "7e4ffd3b1553e8da4f5a",
     "url": "/static/js/main.efa027b8.chunk.js"
+=======
+    "revision": "45d7ad2df82f7ef4e619",
+    "url": "/static/js/main.c8771c19.chunk.js"
+>>>>>>> emory-covid19-star:build/precache-manifest.a6315ab34a3d6f92bd7cf4cf45c91d25.js
   },
   {
     "revision": "c4230752338736cfb986",

@@ -811,7 +811,7 @@ export default function CountyReport() {
                     <Table.Row textAlign = 'center' style = {{height: 70}}>
                       <Table.HeaderCell style={{fontSize: '19px'}}> The U.S. </Table.HeaderCell>
                       <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].percentPositive).toFixed(0) + "%" : "Loading..."} </Table.HeaderCell>
-                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? (dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0) : "Loading..."} </Table.HeaderCell>
+                      <Table.HeaderCell style={{fontSize: '19px'}}> {dataTS ? numberWithCommas((dataTS["_nation"][dataTS["_nation"].length - 2].positivePer100K).toFixed(0)) : "Loading..."} </Table.HeaderCell>
 
                     </Table.Row>
                     
@@ -1170,20 +1170,20 @@ export default function CountyReport() {
                         return (
                           <Table.Row key={k}>
                             <Table.Cell>{varMap[k] ? varMap[k].name: k}</Table.Cell>
-                            <Table.Cell>{isNaN(v) ? v : varMap[k].name === "Socioeconomic Vulnerability" || 
+                            <Table.Cell>{v === -1 ? "NA" : isNaN(v) ? v : varMap[k].name === "Socioeconomic Vulnerability" || 
                                                         varMap[k].name === "Household Composition Vulnerability" || 
                                                         varMap[k].name === "Minority/Language Vulnerability" || 
-                                                        varMap[k].name === "Housing/Transportaion Vulnerability" ||
+                                                        varMap[k].name === "Housing/Transportation Vulnerability" ||
                                                         varMap[k].name === "Percent Native American" || 
                                                         varMap[k].name === "Percent in Group Quarters" ||
                                                         varMap[k].name === "COVID-19 Community Vulnerability Index"? 
                                                         numberWithCommas(parseFloat(v).toFixed(1)): k === "urbanrural_text" ? 
                                                         v : numberWithCommas(parseFloat(v).toFixed(0))}</Table.Cell>
-                            <Table.Cell>{isNaN(data[stateFips][k]) ? data[stateFips][k] : (numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" || k === "region_text" ) ? "" : 
-                                                        varMap[k].name === "Percent Native American" || varMap[k].name === "Percent in Group Quarters" ? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(1)) : 
+                            <Table.Cell>{data[stateFips][k] === -1 ? "NA" : isNaN(data[stateFips][k]) ? data[stateFips][k] : (numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0)) === "NaN" || k === "region_text" ) ? "" : 
+                                                        varMap[k].name === "Percent Native American" || varMap[k].name === "Percent in Group Quarters" || varMap[k].name === "COVID-19 Community Vulnerability Index"? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(1)) : 
                                                         varMap[k].name === "Case Fatality Ratio"? numberWithCommas(parseFloat(data[stateFips][k]).toFixed(2)) : numberWithCommas(parseFloat(data[stateFips][k]).toFixed(0))}</Table.Cell>
-                            <Table.Cell>{isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : 
-                                                        varMap[k].name === "Percent Native American" || varMap[k].name === "Percent in Group Quarters" ? numberWithCommas(parseFloat(data['_nation'][k]).toFixed(1)) : 
+                            <Table.Cell>{data['_nation'][k] === -1 ? "NA" : isNaN(data['_nation'][k]) ? data[stateFips][k] : numberWithCommas(parseFloat(data['_nation'][k]).toFixed(0)) === "NaN" ? "" : 
+                                                        varMap[k].name === "Percent Native American" || varMap[k].name === "Percent in Group Quarters" || varMap[k].name === "COVID-19 Community Vulnerability Index"? numberWithCommas(parseFloat(data['_nation'][k]).toFixed(1)) : 
                                                         varMap[k].name === "Case Fatality Ratio"? numberWithCommas(parseFloat(data["_nation"][k]).toFixed(2)) : numberWithCommas(parseFloat(data["_nation"][k]).toFixed(0))}</Table.Cell>
                           </Table.Row>
                         )
