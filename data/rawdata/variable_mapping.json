@@ -147,36 +147,36 @@
 
     "anycondition": {
         "variable": "anycondition",
-        "name": "Percent of the population with any underlying condition",
+        "name": "Any Condition Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
     "diabetes": {
         "variable": "diabetes",
-        "name": "Percent of the population with Diabetes",
+        "name": "Diabetes Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
     "heartdisease": {
         "variable": "heartdisease",
-        "name": "Percent of the population with heart disease",
+        "name": "Heart Disease Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
     "copd": {
         "variable": "copd",
-        "name": "Percent of the population with Chronic Obstructive Pulmonary Disease",
+        "name": "Chronic Obstructive Pulmonary Disease Prevalence",
         "definition": "definition",
         "group": "exposure"},
 
     "ckd": {
         "variable": "ckd",
-        "name": "Percent of the population with Chronic Kidney Disease",
+        "name": "Chronic Kidney Disease Prevalence",
         "definition": "definition",
         "group": "exposure"},
     "obesity": {
         "variable": "obesity",
-        "name": "Percent of the population with obesity",
+        "name": "Obesity",
         "definition": "definition",
         "group": "exposure"},
 
@@ -197,7 +197,7 @@
         "group": "exposure"},
     "RPL_THEME4": {
         "variable": "RPL_THEME4",
-        "name": "Housing/Transportation Vulnerability",
+        "name": "Housing/Transportaion Vulnerability",
         "definition": "definition",
         "group": "exposure"},
 
