@@ -221,6 +221,45 @@ function SvgMap(props) {
 
         )
     }
+    if (props.name === 'labcasescum') {
+        return (
+            <svg width="400" height="70">
+                {_.map(colorPalette, (color, i) => {
+                    return <rect key={i} x={50 + 25 * i} y={20} width="25" height="20" style={{ fill: color, strokeWidth: 1, stroke: color }} />
+                })}
+                {_.map(colorPalette1, (color, i) => {
+                    return <rect key={i} x={200 + 25 * i} y={20} width="25" height="20" style={{ fill: color, strokeWidth: 1, stroke: color }} />
+                })}
+
+                <text x={50} y={52} style={{ fontSize: '0.8em' }}>Low</text>
+                <text x={300} y={52} style={{ fontSize: '0.8em' }}>High</text>
+                {_.map(props.legendSplit['thr'][props.name], (splitpoint, i) => {
+                    if (props.legendSplit['thr'][props.name][i] < 1) {
+                        return <text key={i} x={57 + 25 * (i)} y={15} style={{ fontSize: '0.7em' }}> {props.legendSplit['thr'][props.name][i].toFixed(1)}</text>
+                    }
+                    if (props.legendSplit['thr'][props.name][i] >= 1000) {
+                        return <text key={i} x={70 + 25 * (i)} y={15} style={{ fontSize: '0.7em' }}> {(props.legendSplit['thr'][props.name][i] / 1000).toFixed(1) + "K"}</text>
+                    }
+                    return <text key={i} x={70 + 25 * (i)} y={15} style={{ fontSize: '0.7em' }}> {props.legendSplit['thr'][props.name][i].toFixed(0)}</text>
+                })}
+
+                {_.map(props.legendSplit['thr2'], (splitpoint, i) => {
+                    if (props.legendSplit['thr2'][i] >= 1000) {
+                        return <text key={i} x={220 + 25 * (i)} y={15} style={{ fontSize: '0.7em' }}> {(props.legendSplit['thr2'][i] / 1000).toFixed(1) + "K"}</text>
+                    }
+                    return <text key={i} x={220 + 25 * (i)} y={15} style={{ fontSize: '0.7em' }}> {props.legendSplit['thr2'][i].toFixed(0)}</text>
+                })}
+                <text x={325} y={15} style={{ fontSize: '0.7em' }}>{props.legendMax[props.name]>999?(props.legendMax[props.name]/1000).toFixed(0) + "K"
+                :props.legendMax[props.name].toFixed(0)}</text>
+                <text x={50} y={15} style={{ fontSize: '0.7em' }}> {(props.legendMin[props.name] / 100).toFixed(0)} </text>
+                <rect x={5} y={20} width="25" height="20" style={{ fill: "#FFFFFF", strokeWidth: 0.5, stroke: "#000000" }} />
+                <text x={8} y={52} style={{ fontSize: '0.7em' }}> N/A </text>
+                <text x={8} y={65} style={{fontSize: '0.8em'}}> Click on a county below for a detailed report.</text>
+          {/* <text x={370} y={40} style={{fontSize: '0.8em'}}>  </text> */}
+            </svg>
+
+        )
+    }
     if (props.name === 'casescum14dayR') {
         return (
             <svg width="400" height="70">
@@ -465,7 +504,7 @@ function ChartGraph(props) {
                             />
                         }
                     />}
-                {countyFips === '' ? (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                {countyFips === '' ? (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7' ?
                     <VictoryLine name="Line11" style={{ data: { stroke: '#007dba', strokeWidth: ({ active }) => active ? 5 : 3 } }} data={dataTS[stateFips] ? dataTS[stateFips] : dataTS["99999"]}
                         x='t' y={varGraphPair[metric]['name'][1]}
                         labels={({ datum }) => [`Georgia\n`,
@@ -503,7 +542,7 @@ function ChartGraph(props) {
                         }
 
                     />) :
-                    (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                    (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7' ?
                         <VictoryAxis dependentAxis tickCount={6}
                             style={{
                                 tickLabels: { fontSize: 17, padding: 5 }
@@ -550,6 +589,23 @@ function DiscrpMap(props) {
         return (
             <p style={{   fontFamily: 'lato', fontSize: 18 }}>
                 The map shows the total number of COVID-19 cases recorded in each county. The darker shading indicates a greater number of cases.
+                This number represents confirmed cases only, defined as an individual with a positive molecular test. Only molecular test results
+                are used in identifying confirmed cases. These test results are reported through multiple sources including:
+                <br></br>
+
+                <List as='ul'>
+                    <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
+                    <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
+                    <List.Item as='li'>Faxed case reports</List.Item>
+                    <List.Item as='li'>Calls from providers to DPH</List.Item>
+                </List>
+            </p>
+        )
+    }
+    if (props.name === 'labcasescum') {
+        return (
+            <p style={{   fontFamily: 'lato', fontSize: 18 }}>
+                The map shows the total number of laboratory positive cases (PCR and Antigen Positive) recorded in each county. The darker shading indicates a greater number of cases.
                 This number represents confirmed cases only, defined as an individual with a positive molecular test. Only molecular test results
                 are used in identifying confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
@@ -620,6 +676,27 @@ function DiscrpChart(props) {
         return (
             <p style={{   fontFamily: 'lato', fontSize: 18 }}>
                 This chart shows the daily number of new confirmed COVID-19 cases in {props.county}. The vertical bars show the
+                number of new daily cases while the line shows the 7-day moving average of new daily cases. The daily COVID-19
+                case numbers represent confirmed cases only, defined as an individual with a positive molecular test. Only molecular
+                test results are used in identifying confirmed cases. These test results are reported through multiple sources including:
+                <br></br>
+
+                <List as='ul'>
+                    <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
+                    <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
+                    <List.Item as='li'>Faxed case reports</List.Item>
+                    <List.Item as='li'>Calls from providers to DPH</List.Item>
+                </List>
+                <br></br>
+                The date refers to the date the case was reported to DPH.
+                {/* The daily number reflects the date the case was first reported to DPH. */}
+            </p>
+        )
+    }
+    if (props.name === 'labcasescum') {
+        return (
+            <p style={{   fontFamily: 'lato', fontSize: 18 }}>
+                This chart shows the daily number of laboratory positive cases (PCR and Antigen Positive) in {props.county}. The vertical bars show the
                 number of new daily cases while the line shows the 7-day moving average of new daily cases. The daily COVID-19
                 case numbers represent confirmed cases only, defined as an individual with a positive molecular test. Only molecular
                 test results are used in identifying confirmed cases. These test results are reported through multiple sources including:
@@ -2838,6 +2915,7 @@ export default function StateMap(props) {
     }
 
     const metricOptions1 = [{ key: 'cacum', value: 'casescum', text: 'Total COVID-19 cases' },
+    { key: 'labcase', value: 'labcasescum', text: 'Total COVID-19 Laboratory Positive Cases' },
     { key: 'decum', value: 'deathscum', text: 'Total COVID-19 deaths' },
     { key: 'cacumr', value: 'casescumR', text: 'COVID-19 cases per 100,000 population' },
     { key: 'decumr', value: 'deathscumR', text: 'COVID-19 deaths per 100,000 population' },
@@ -2855,6 +2933,7 @@ export default function StateMap(props) {
 
     const varGraphPair = {
         "casescum": { "name": ['casesdaily', 'casesdailymean7'], "legend": ['Daily cases', '7-d rolling average '] },
+        "labcasescum": { "name": ['labcasesdaily', 'labcasesdailymean7'], "legend": ['Daily lab positive cases', '7-d rolling average '] },
         "deathscum": { "name": ['deathsdaily', 'deathsdailymean7'], "legend": ['Daily deaths', '7-d rolling average '] },
         "casescumR": { "name": ['casesdailyR', 'casesdailymean7R'], "legend": ['Daily cases per 100,000', '7-d rolling average'] },
         "deathscumR": { "name": ['deathsdailyR', 'deathsdailymean7R'], "legend": ['Daily deaths per 100,000', '7-d rolling average'] },
@@ -2965,7 +3044,7 @@ export default function StateMap(props) {
             setColorScale(x['csUs']);
             setLegendMax(x['max']);
             setLegendMin(x['min']);
-            setLegendSplit({'thr':x['thr'],'thr1':x['thr1'].slice(0, 4)})
+            setLegendSplit({'thr':x['thr'],'thr1':x['thr1'].slice(0, 4),'thr2':x['thr2'].slice(0, 4)})
         });
         fetch('/data/GDPH/ga_f2c.json').then(res => res.json())
         .then(x => {
@@ -3280,8 +3359,7 @@ export default function StateMap(props) {
                                                 <Header.Content>
                                                     {/* {varGraphPair[metric]['legend'][0]} for <span style={{ color: countyColor }}>{countyName}</span> */}
                                                     {varGraphPair[metric]['legend'][0]} for <b>{countyName1.current}</b>
-                                                    <Header.Subheader style={{ fontWeight: 300 }}>
-                                                    </Header.Subheader>
+   
                                                 </Header.Content>
                                             </Header>
                                             <Grid>
@@ -3294,31 +3372,31 @@ export default function StateMap(props) {
                                                             {/* {console.log(countyName1.current)} */}
 
 
-                                                            {varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                            {varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7'?
                                                                 <rect x={50} y={40} width="15" height="15" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} /> :
                                                                 <rect x={50} y={35} width="15" height="1" style={{ fill: '#007dba', strokeWidth: 1, stroke: '#007dba' }} />}
 
-                                                            {varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                            {varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7' ?
                                                                 <text x={75} y={52} style={{ fontSize: 16 }}> {varGraphPair[metric]['legend'][0]} </text> :
                                                                 <rect x={50} y={35} width="15" height="1" style={{ fill: '#007dba', strokeWidth: 1, stroke: '#007dba' }} />}
 
-                                                            {countyName1.current === 'Georgia' ? (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                            {countyName1.current === 'Georgia' ? (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7' ?
                                                                 <text x={75} y={20} style={{ fontSize: 16 }}>7-day rolling average in Georgia</text> :
                                                                 <text x={75} y={43} style={{ fontSize: 16 }}>7-day rolling average in Georgia</text>) :
 
-                                                                (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                                (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7' ?
                                                                     <text x={250} y={12} style={{ fontSize: 0 }}></text> :
                                                                     <text x={75} y={43} style={{ fontSize: 16 }}>7-day rolling average in Georgia</text>)}
 
-                                                            {countyName1.current === 'Georgia' ? (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                            {countyName1.current === 'Georgia' ? (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' || varGraphPair[metric]['name'][1] === 'labcasesdailymean7'?
                                                                 <rect x={50} y={12} width="15" height="1" style={{ fill: '#007dba', strokeWidth: 1, stroke: '#007dba' }} /> :
                                                                 <rect x={50} y={55} width="15" height="15" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} />)
                                                                 :
-                                                                (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                                (varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7'|| varGraphPair[metric]['name'][1] === 'labcasesdailymean7' ?
                                                                     <rect x={0} y={0} width="0" height="0" style={{ fill: 'white', strokeWidth: 0, stroke: 'white' }} /> :
                                                                     <rect x={50} y={55} width="15" height="15" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} />)}
 
-                                                            {varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' ?
+                                                            {varGraphPair[metric]['name'][1] === 'casesdailymean7' || varGraphPair[metric]['name'][1] === 'deathsdailymean7' || varGraphPair[metric]['name'][1] === 'labcasesdailymean7'?
                                                                 <rect x={0} y={0} width="0" height="0" style={{ fill: 'white', strokeWidth: 0, stroke: 'white' }} /> :
                                                                 <text x={75} y={68} style={{ fontSize: 16 }}> {varGraphPair[metric]['legend'][0]} </text>}
 
@@ -6292,52 +6370,9 @@ minDomain={{ y: props.ylog ? 1 : 0 }}
                     <b>Last 14-day Cases per 100k</b>: {data[stateFips + countyFips1.current]['casescum14dayR'] >= 0 ? data[stateFips + countyFips1.current]['casescum14dayR'].toFixed(0) : "N/A"} <br />
                     <b>Click to see county-level data.</b> </ReactTooltip>
 
-                    
-                    {/* <ReactTooltip id='ga_pop'>{tooltipContent}</ReactTooltip> */}
 
-                {/* <ReactTooltip id='cvi'><font size="+2"><b >{countyNamecvi}</b> </font> <br />
-                    <b>CCVI</b>: {dataUs[stateFips + countyFipscvi]['cvi'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipscvi]['casescum'] >= 0 ? data[stateFips + countyFipscvi]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipscvi]['deathscum'] >= 0 ? data[stateFips + countyFipscvi]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip> */}
                 <ReactTooltip>{tooltipContentccvi}</ReactTooltip>
 
-                {/* <ReactTooltip>{tooltipContentccvi}</ReactTooltip> */}
-                {/* <ReactTooltip id='th1'><font size="+2"><b >{countyNamecvi1}</b> </font> <br />
-                    <b>SS</b>: {dataCha[stateFips + countyFipsth1]['RPL_THEME1'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth1]['casescum'] >= 0 ? data[stateFips + countyFipsth1]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth1]['deathscum'] >= 0 ? data[stateFips + countyFipsth1]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip> */}
-                {/* <ReactTooltip id='th2'><font size="+2"><b >{countyNamecvi2}</b> </font> <br />
-                    <b>MSL</b>: {dataCha[stateFips + countyFipsth2]['RPL_THEME2'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth2]['casescum'] >= 0 ? data[stateFips + countyFipsth2]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth2]['deathscum'] >= 0 ? data[stateFips + countyFipsth2]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip>
-                <ReactTooltip id='th3'><font size="+2"><b >{countyNamecvi3}</b> </font> <br />
-                    <b>HTHD</b>: {dataCha[stateFips + countyFipsth3]['RPL_THEME3'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth3]['casescum'] >= 0 ? data[stateFips + countyFipsth3]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth3]['deathscum'] >= 0 ? data[stateFips + countyFipsth3]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip>
-                <ReactTooltip id='th4'><font size="+2"><b >{countyNamecvi4}</b> </font> <br />
-                    <b>EF</b>: {dataCha[stateFips + countyFipsth4]['RPL_THEME4'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth4]['casescum'] >= 0 ? data[stateFips + countyFipsth4]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth4]['deathscum'] >= 0 ? data[stateFips + countyFipsth4]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip>
-                <ReactTooltip id='th5'><font size="+2"><b >{countyNamecvi5}</b> </font> <br />
-                    <b>HSF</b>: {dataCha[stateFips + countyFipsth5]['RPL_THEME5'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth5]['casescum'] >= 0 ? data[stateFips + countyFipsth5]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth5]['deathscum'] >= 0 ? data[stateFips + countyFipsth5]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip>
-                <ReactTooltip id='th6'><font size="+2"><b >{countyNamecvi6}</b> </font> <br />
-                    <b>HRE</b>: {dataCha[stateFips + countyFipsth6]['RPL_THEME6'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth6]['casescum'] >= 0 ? data[stateFips + countyFipsth6]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth6]['deathscum'] >= 0 ? data[stateFips + countyFipsth6]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip>
-                <ReactTooltip id='th7'><font size="+2"><b >{countyNamecvi7}</b> </font> <br />
-                    <b>PD</b>: {dataCha[stateFips + countyFipsth7]['RPL_THEME7'].toFixed(2)} <br />
-                    <b>Total Cases</b>: {data[stateFips + countyFipsth7]['casescum'] >= 0 ? data[stateFips + countyFipsth7]['casescum'].toFixed(0) : "N/A"} <br />
-                    <b>Total Deaths</b>: {data[stateFips + countyFipsth7]['deathscum'] >= 0 ? data[stateFips + countyFipsth7]['deathscum'].toFixed(0) : "N/A"} <br />
-                </ReactTooltip> */}
 
                 <ReactTooltip id='si'><font size="+2"><b >{countyNamesi}</b> </font> <br />
                     <b>SI</b>: {dataUs[stateFips + countyFipssi]['si'].toFixed(0)} <br />
