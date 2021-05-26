@@ -105,7 +105,7 @@ function LatestOnThisDashboard(){
       </Grid.Column> */}
 
       <Grid.Column style={{width: 190}}>
-        <Image width = {175} height = {95} href = "/national-report" src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
+        <Image width = {175} height = {95} href = "/national-report" src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
       </Grid.Column>
       <Grid.Column style={{width: 250, fontSize: "8pt"}}>
         <b> National Report <br/> </b>

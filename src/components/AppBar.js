@@ -18,8 +18,8 @@ export default function AppBar(props) {
         <Container style={{width: '1305px'}}>
           <Menu.Item as='a' header onClick={() => history.push('/')} style = {{paddingLeft: 15, paddingRight: 15}}>
             <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
-           COVID-19 Health Equity<br/>Interactive Dashboard
-           </span>
+            COVID-19 Health Equity<br/>Interactive Dashboard
+            </span>
           </Menu.Item>
 
           {/* <Menu.Item 
@@ -42,7 +42,7 @@ export default function AppBar(props) {
             Vaccination Tracker
           </Menu.Item>
           
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='selectState'} 
             onClick={() => history.push('/_nation')}
             name='selectState'>
@@ -54,6 +54,12 @@ export default function AppBar(props) {
             onClick={() => history.push('/map-state')}
             name='mapState'>
             Map State
+          </Menu.Item> */}
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='otherTools'} 
+            onClick={() => history.push('/other-tools')}
+            name='mediaHub'>
+            Other Tools 
           </Menu.Item>
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
