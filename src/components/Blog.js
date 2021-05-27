@@ -40,6 +40,8 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
         <p style = {{margin: 0, color: colorPalette[0]}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
         <p style = {{margin: 0, color : colorPalette[1]}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
+        {payload.length > 2 && <p style = {{margin: 0, color : colorPalette[2]}} className="intro">{`Percent Vaccinated: ${(payload[2].value).toFixed(0)}`}</p>}
+        {payload.length > 2 && <p style = {{margin: 0, color : colorPalette[3]}} className="intro">{`Percent Vaccinated: ${(payload[3].value).toFixed(0)}`}</p>}
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -66,6 +68,12 @@ function VaccineDisparityCharts(props){
         <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
               stroke={colorPalette[1]} strokeWidth="2" />
+        {props.region && <Line data={props.data[props.trendGroup[2]]} name={props.trendGroup[2]} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPalette[2]} strokeWidth="2" />}
+        {props.region && <Line data={props.data[props.trendGroup[3]]} name={props.trendGroup[3]} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPalette[3]} strokeWidth="2" />}
         <Legend />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
@@ -79,6 +87,7 @@ function VaccineDisparityCharts(props){
 export default function AboutUs(props){
   const history = useHistory();
   const [vaccDisparityData, setVaccDisparityData] = useState();
+  const [region, setRegion] = useState();
   
 
   let {blogTitle} = useParams();
@@ -174,14 +183,17 @@ export default function AboutUs(props){
                           <Button content='African American' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion of African American", 
                             "Counties with low proportion of African American"]); 
+                            setRegion(false);
                           }}/>
                           <Button content='Hispanic' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion of Hispanic", 
                             "Counties with low proportion of Hispanic"]); 
+                            setRegion(false);
                           }}/>
                           <Button content='Age 65+' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion of age 65+", 
                             "Counties with low proportion of age 65+"]); 
+                            setRegion(false);
                           }}/>
                           <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion with underlying condition", 
@@ -190,28 +202,38 @@ export default function AboutUs(props){
                           <Button content='In poverty' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion in poverty", 
                             "Counties with low proportion in poverty"]); 
+                            setRegion(false);
                           }}/>
-                          <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
+                          {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high residential segregation", 
                             "Counties with low residential segregation"]); 
-                          }}/>
+                            setRegion(false);
+                          }}/> */}
                           <Button content='Minority' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion of minority", 
                             "Counties with low proportion of minority"]); 
+                            setRegion(false);
                           }}/>
                           <Button content='American Native' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion of American Native", 
                             "Counties with low proportion of American Native"]); 
+                            setRegion(false);
                           }}/>
                           <Button content='Uninsured' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high proportion of uninsured", 
                             "Counties with low proportion of uninsured"]); 
+                            setRegion(false);
+                          }}/>
+                          <Button content='Region' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties in the South", "Counties in the West", 
+                            "Counties in the Northeast", "Counties in the Midwest", ]); 
+                            setRegion(true);
                           }}/>
                         </center>
                         
                         
                         {vaccDisparityData && <VaccineDisparityCharts data = {vaccDisparityData} 
-                          aboveM = {vTrendGroup[0]} belowM = {vTrendGroup[1]} outcome = {"percentFullyVaccinated"} 
+                          aboveM = {vTrendGroup[0]} belowM = {vTrendGroup[1]} region = {region} outcome = {"percentFullyVaccinated"} 
                           formatter= {caseTickFmt} trendGroup = {vTrendGroup}/>}
                       </div>
 

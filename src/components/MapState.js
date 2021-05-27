@@ -78,7 +78,8 @@ export default function MapState() {
                 && (d.text !== "Any Condition Prevalence2") && (d.text !== "Diabetes Prevalence") && (d.text !== "Heart Disease") 
                 && (d.text !== "Chronic Obstructive Pulmonary Disease") && (d.text !== "Chronic Kidney Disease")
               && (d.text !== "Urban-Rural Status Name") && (d.text !== "Region Status Code") && (d.group === "exposure" || d.group === "misc" ) && (d.group !== "text") && (d.group !== "other") 
-              || (d.text === "Percent of population fully vaccinated" || d.text === "Number fully vaccinated")));
+              || (d.text === "Percent of population fully vaccinated" || d.text === "Number fully vaccinated" 
+              || d.text === "Percent of population 18+ fully vaccinated" || d.text === "Percent of population 65+ fully vaccinated")));
 
       });
   }, []);
@@ -258,7 +259,7 @@ export default function MapState() {
   }, [measureB]);  
   
   if (data && oriData) {
-
+    console.log(measureB);
     return (
       <HEProvider> 
         <div>
@@ -383,39 +384,81 @@ export default function MapState() {
                           setMeasureB(value);
                         }}
                       />
-                      {measureB != "region" && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
-                      <svg width="450" height="110">
+                      {(measureB != "Region" && measureB != "Urban-Rural" && measureB != null) && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
+                        <svg width="450" height="110">
                               
-                        {_.map(legendSplitB, (split, i) => {
-                          if (legendSplitB[0].toFixed(0) === legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) === legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) === legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) === legendSplitB[4].toFixed(0) ) {
-                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
-                          }else if (legendSplitB[i].toFixed(0) < 1) {
-                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
-                          }else if (legendSplitB[i] > 999999) {
-                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000000).toFixed(0)}M </text>
-                          }else if (legendSplitB[i] > 999) {
-                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
-                          }
-                          return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
-                        })}   
-                        <text x={0} y={34} style={{fontSize: '1.0em'}}> {legendMinB} </text> 
-                        <text x={240} y={34} style={{fontSize: '1.0em'}}> {legendMaxB} </text>
+                          {_.map(legendSplitB, (split, i) => {
+                            if (legendSplitB[0].toFixed(0) === legendSplitB[1].toFixed(0) && legendSplitB[1].toFixed(0) === legendSplitB[2].toFixed(0) && legendSplitB[2].toFixed(0) === legendSplitB[3].toFixed(0) && legendSplitB[3].toFixed(0) === legendSplitB[4].toFixed(0) ) {
+                              return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(2) < 0? 0:legendSplitB[i].toFixed(2)} </text>
+                            }else if (legendSplitB[i].toFixed(0) < 1) {
+                              return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(1)< 0? 0:legendSplitB[i].toFixed(1)} </text>
+                            }else if (legendSplitB[i] > 999999) {
+                              return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000000).toFixed(0)}M </text>
+                            }else if (legendSplitB[i] > 999) {
+                              return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {(legendSplitB[i]/1000).toFixed(0)< 0? 0:(legendSplitB[i]/1000).toFixed(0)}K </text>
+                            }
+                            return <text key = {i} x={40 + 40*i} y={34} style={{fontSize: '1.0em'}}> {legendSplitB[i].toFixed(0)< 0? 0:legendSplitB[i].toFixed(0)} </text>                    
+                          })}   
+                          <text x={0} y={34} style={{fontSize: '1.0em'}}> {legendMinB} </text> 
+                          <text x={240} y={34} style={{fontSize: '1.0em'}}> {legendMaxB} </text>
 
 
-                        {_.map(colorPalette2, (color, i) => {
-                          return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                        })} 
+                          {_.map(colorPalette2, (color, i) => {
+                            return <rect key={i} x={40*i} y={40} width="40" height="40" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                          })} 
 
 
-                        <text x={0} y={99} style={{fontSize: '1.2em'}}>Low</text>
-                        <text x={40 * (colorPalette2.length - 1)} y={99} style={{fontSize: '1.2em'}}>High</text> 
+                          <text x={0} y={99} style={{fontSize: '1.2em'}}>Low</text>
+                          <text x={40 * (colorPalette2.length - 1)} y={99} style={{fontSize: '1.2em'}}>High</text> 
 
-                        <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
-                        <text x={330} y={56} style={{fontSize: '1.2em'}}> None </text>
-                        <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
+                          <rect x={280} y={40} width="40" height="40" style={{fill: '#FFFFFF', strokeWidth:0.1, stroke: '#000000'}}/>
+                          <text x={330} y={56} style={{fontSize: '1.2em'}}> None </text>
+                          <text x={330} y={76} style={{fontSize: '1.2em'}}> Reported </text>
 
-                      </svg>
-                    }
+                        </svg>
+                        
+                      }
+
+                      {(measureB === "Urban-Rural" && measureB != null) && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
+                        <svg width="450" height="220">
+                                
+                          <text x={95} y={40} style={{fontSize: '1em'}}> Remote rural area</text>                    
+                          <text x={95} y={70} style={{fontSize: '1em'}}> Rural areas near cities</text>                    
+                          <text x={95} y={100} style={{fontSize: '1em'}}> Small cities</text>                    
+                          <text x={95} y={130} style={{fontSize: '1em'}}> Small suburbs</text>                    
+                          <text x={95} y={160} style={{fontSize: '1em'}}> Large suburbs</text>                    
+                          <text x={95} y={190} style={{fontSize: '1em'}}> Inner City</text>                    
+
+                          {_.map(colorPalette2, (color, i) => {
+                            return <rect key={i} x={50} y={20+30*i} width="30" height="30" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                          })} 
+
+                          <rect x={245} y={20} width="30" height="30" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                          <text x={290} y={33} style={{fontSize: '1em'}}> None </text>
+                          <text x={290} y={48} style={{fontSize: '1em'}}> Reported </text>
+
+                        </svg>
+                      }
+
+                      {(measureB === "Region" && measureB != null) && legendSplitB && legendMinB && legendMaxB && colorPalette2 &&
+                        <svg width="450" height="160">
+                                
+                          <text x={95} y={40} style={{fontSize: '1em'}}> South</text>                    
+                          <text x={95} y={70} style={{fontSize: '1em'}}> West</text>                    
+                          <text x={95} y={100} style={{fontSize: '1em'}}> Northeast</text>                    
+                          <text x={95} y={130} style={{fontSize: '1em'}}> Midwest</text>                    
+                  
+
+                          {_.map(colorPalette2.slice(2), (color, i) => {
+                            return <rect key={i} x={50} y={20+30*i} width="30" height="30" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                          })} 
+
+                          <rect x={245} y={20} width="30" height="30" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                          <text x={290} y={33} style={{fontSize: '1em'}}> None </text>
+                          <text x={290} y={48} style={{fontSize: '1em'}}> Reported </text>
+
+                        </svg>
+                      }
                     </Grid.Column>
                   </Grid>
                 </Grid.Column>
@@ -458,7 +501,7 @@ export default function MapState() {
                   <ComposableMap projection="geoAlbersUsa" 
                     projectionConfig={{scale: !config? 650:`${config.scale}`}} 
                     width={600} 
-                    height={600} 
+                    height={measureB === "Urban-Rural" ? 600 : 600} 
                     strokeWidth = {0.1}
                     stroke = 'black'
                     data-tip=""

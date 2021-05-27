@@ -94,26 +94,27 @@ function LatestOnThisDashboard(){
       {/* <Grid.Column style={{width: 190}}>
         <Image width = {175} height = {95} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
       </Grid.Column>
-      <Grid.Column style={{width: 320, fontSize: "8pt"}}>
+      <Grid.Column style={{width: 250, fontSize: "8pt"}}>
         <b> National Report <br/> </b>
 
         The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
-        How has the pandemic been trending? What are the most hard hit counties? 
+        How has the pandemic been trending?  
         Who are the most vulnerable communities...
-        <a href = "/national-report/pilot">for more</a>. 
+        <a href = "/national-report">for more</a>. 
         
       </Grid.Column> */}
 
       <Grid.Column style={{width: 190}}>
-        <Image width = {175} height = {95} href = "/Georgia" src='/LatestOnThisDashboard/GADash.png' />
+        <Image width = {175} height = {95} href = "/national-report" src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
       </Grid.Column>
       <Grid.Column style={{width: 250, fontSize: "8pt"}}>
-        <b> Georgia COVID-19 Health Equity Dashboard<br/> </b>
+        <b> National Report <br/> </b>
 
-        The Georgia COVID-19 Health Equity dashboard is a tool to dynamically track and compare the burden of cases and deaths across counties in Georgia.
-        
-        <a href = "/Georgia"> Click to Access</a>. 
-        
+          The National Report offers a detailed overview of the impact of COVID-19 in the U.S.. 
+          How has the pandemic been trending?  
+          Who are the most vulnerable communities...
+          <a href = "/national-report">click to access</a>. 
+                  
       </Grid.Column>
 
       <Grid.Column style={{width: 190}}>
@@ -127,6 +128,20 @@ function LatestOnThisDashboard(){
         <a href = "/Vaccine-Tracker">click to access</a>. 
         
       </Grid.Column>
+
+      <Grid.Column style={{width: 190}}>
+        <Image width = {175} height = {95} href = "/Georgia" src='/LatestOnThisDashboard/GADash.png' />
+      </Grid.Column>
+      <Grid.Column style={{width: 250, fontSize: "8pt"}}>
+        <b> Georgia COVID-19 Health Equity Dashboard<br/> </b>
+
+        The Georgia COVID-19 Health Equity dashboard is a tool to dynamically track and compare the burden of cases and deaths across counties in Georgia.
+        
+        <a href = "/Georgia"> Click to Access</a>. 
+        
+      </Grid.Column>
+
+      
 
       <Grid.Column style={{width: 190}}>
         <Image width = {165} height = {95} href = "/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
