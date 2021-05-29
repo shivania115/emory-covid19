@@ -29,12 +29,34 @@ export default function Notes(props){
                   </Grid.Column> */}
 
                   <Grid.Column>
+                    <Image width='300' height='236' href = '/national-report' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> National Report </Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon for an overview of COVID-19 in the U.S.</Header.Content>
+
+                  </Grid.Column>
+
+                  <Grid.Column>
                     <Image width='300' height='192' href = '/Vaccine-Tracker' style = {{stroke:  "#000000"}} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' /> 
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Vaccination Tracker </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}><br/>Click on icon for latest information on COVID-19 vaccination. </Header.Content>
 
                   </Grid.Column>
+
                   <Grid.Column>
+                    <Image width='300' height='236' href = '/Georgia' src='/LatestOnThisDashboard/GADash.png' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400, lineHeight: "20pt"}}> Georgia COVID-19 Health Equity Dashboard </Header.Subheader>
+                    {/* <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon .</Header.Content> */}
+
+                  </Grid.Column>
+
+                  <Grid.Column>
+                    <Image width='300' height='236' href = '/other-tools' src='/HomeIcons/Emory_Icons_MapState_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Other Tools </Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to to explore other tools.</Header.Content>
+
+                  </Grid.Column>
+
+                  {/* <Grid.Column>
                     <Image width='300' height='236' href = '/_nation' src='/HomeIcons/Emory_Icons_SelectState_v1.jpg' />            
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Find State & County </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to see how COVID-19 is impacting your state.</Header.Content>
@@ -45,13 +67,8 @@ export default function Notes(props){
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Map State </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to visualize state-wide outcomes and characteristics.</Header.Content>
 
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Image width='300' height='236' href = '/data-sources' src='/HomeIcons/Emory_Icons_DataSources_v1.jpg' />
-                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Sources & Interpretation </Header.Subheader>
-                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon for a complete list of measures' definitions and sources.</Header.Content>
-
-                  </Grid.Column>
+                  </Grid.Column> */}
+                  
                 </Grid.Row>
                 <Grid.Row columns ={4} style = {{paddingTop: 30}}>
                   <Grid.Column>
@@ -60,6 +77,14 @@ export default function Notes(props){
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to learn about the goal of the dashboard and its team.</Header.Content>
 
                   </Grid.Column>
+
+                  <Grid.Column>
+                    <Image width='300' height='236' href = '/data-sources' src='/HomeIcons/Emory_Icons_DataSources_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Sources & Interpretation </Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon for a complete list of measures' definitions and sources.</Header.Content>
+
+                  </Grid.Column>
+
                   <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub' src='/HomeIcons/Emory_Icons_MediaHub_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Media Hub </Header.Subheader>
@@ -68,12 +93,12 @@ export default function Notes(props){
                   </Grid.Column>
                   
 
-                  {true && <Grid.Column>
+                  {/* {true && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/blog/maskmandate' src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
                     <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Latest Blog </Header.Subheader>
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>State-wide mask mandate in the early stages resulting in lower case rates during ...</Header.Content>
 
-                  </Grid.Column>}
+                  </Grid.Column>} */}
 
                   {false && <Grid.Column>
                     <Image width='300' height='236' href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances' src='/HomeIcons/Emory_Icons_LatestVideo_v1.jpg' />

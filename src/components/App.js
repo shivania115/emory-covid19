@@ -25,6 +25,7 @@ import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
 
 // import USMapPilot from "./USMapPilot";
 import NationalReport from "./NationalReport";
+import OtherTools from "./OtherTools";
 
 import {
   BrowserRouter as Router,
@@ -76,7 +77,9 @@ function AppUI() {
           <Route path='/national-report'>
             <NationalReport />
           </Route>
-          
+          <Route path='/other-tools'>
+            <OtherTools />
+          </Route>
           <Route path='/Vaccine-Tracker-Pilot03022021'>
             <USVaccineTrackerPilot />
           </Route>
