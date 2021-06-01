@@ -174,12 +174,12 @@ export default function DataSources(props){
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>% Hispanic or Latino</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% Hispanic or Latino</i> is the percentage of residents in each county who self-identified as Hispanic or Latino to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>% Hispanic or Latino</i> is the percentage of residents in each county who self-identified as Hispanic or Latino to the American Community Survey (ACS). These data are from ACS 2014-2018 (5-Year Estimate). </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>% American Natives </Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}> <a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>% American Natives </i> is the percentage of residents in each county who self-identified as American Indian and Alaska Native alone to the American Community Survey (ACS). These data are from ACS 2014-2016 (5-Year Estimate). </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>% American Natives </i> is the percentage of residents in each county who self-identified as American Indian and Alaska Native alone to the American Community Survey (ACS). These data are from ACS 2014-2018 (5-Year Estimate). </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>% Minority</Table.Cell>
@@ -196,6 +196,11 @@ export default function DataSources(props){
               <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target="_blank" rel="noopener noreferrer">American Community Survey </a> by the U.S. Census Bureau  </Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>% Uninsured</i> is the percentage of residents in each county who currently lack personal health insurance. These data are from 2018. </Table.Cell>
             </Table.Row>
+            <Table.Row>
+              <Table.Cell style={{lineHeight: "16pt"}}>Any Underlying Comorbidity</Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://stacks.cdc.gov/" target="_blank" rel="noopener noreferrer">CDC Stacks Public Health Publications </a> </Table.Cell>
+              <Table.Cell style={{lineHeight: "16pt"}}><i>Any Underlying Comorbidity</i> include chronic obstructive pulmonary disease, emphysema, or chronic bronchitis; heart disease (angina or coronary heart disease, heart attack, or myocardial infarction); diabetes; chronic kidney disease; or obesity (body mass index ≥30 kg/m2).</Table.Cell>
+            </Table.Row>   
             <Table.Row>
               <Table.Cell style={{lineHeight: "16pt"}}>% Diabetes</Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}>CDC's<a style ={{color: "#397AB9"}} href="https://www.cdc.gov/diabetes/data/index.html" target="_blank" rel="noopener noreferrer"> Division of Diabetes Translation </a> </Table.Cell>
@@ -276,11 +281,7 @@ export default function DataSources(props){
               <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://www.cdc.gov/nchs/data_access/urban_rural.htm" target="_blank" rel="noopener noreferrer">2013 Urban-Rural Classification Scheme for Counties</a> by The National Center for Health Statistics </Table.Cell>
               <Table.Cell style={{lineHeight: "16pt"}}><i>Metropolitan Status</i> Inner city counties have &#60; 1 million population or contain the entire or large part of the population of the largest principal city. Large suburban counties have a population &#60; 1 million, but do not qualify as inner cities. Small suburban counties have a population of 250,000-999,999. Small cities have populations &#62; 250,000 and are near large cities. Rural areas near cities have an urbanized area with a population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals.</Table.Cell>
             </Table.Row>        
-            <Table.Row>
-              <Table.Cell style={{lineHeight: "16pt"}}>Any Underlying Comorbidity</Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><a style ={{color: "#397AB9"}} href="https://stacks.cdc.gov/" target="_blank" rel="noopener noreferrer">CDC Stacks Public Health Publications </a> </Table.Cell>
-              <Table.Cell style={{lineHeight: "16pt"}}><i>Any Underlying Comorbidity</i> include chronic obstructive pulmonary disease, emphysema, or chronic bronchitis; heart disease (angina or coronary heart disease, heart attack, or myocardial infarction); diabetes; chronic kidney disease; or obesity (body mass index ≥30 kg/m2).</Table.Cell>
-            </Table.Row>       
+                
           </Table.Body>
         </Table>
         <Notes />
