@@ -898,7 +898,7 @@ const SideRaceBarChart = (props) => {
         )}
       })()}
       {(()=>{
-        if(props.inTab === true){
+        if(props.inTab === true && props.fips !== '_nation'){
           return(
       <Accordion id = "vaccine" style = {{paddingTop: 20, paddingLeft: 0, paddingBottom: 15}}defaultActiveIndex={1} panels={[
         {
@@ -910,21 +910,18 @@ const SideRaceBarChart = (props) => {
             content: {
                 content: (
                   <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 0, paddingLeft: 5, width: 400, lineHeight: '20px'}}>
-                    Race & Ethnicity data as of .
-                    <br/>
-                    The demographics of vaccinated adults is obtained from the U.S.
-                    <a href = "https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
-                    The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for 
-                    {/* {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults. */}
-                    <br/>
-                    The CDC notes that “These demographic data only represent the geographic areas that 
-                    contributed data and might differ by populations prioritized within each state or 
-                    jurisdiction’s vaccination phase. Every geographic area has a different racial and 
-                    ethnic composition, and not all are in the same vaccination phase.” For comparison 
-                    purposes, we show the demographics of the U.S. population. Note that the demographics of the total 
-                    population will include some areas that are not represented in the vaccination data. 
-                    The numbers are therefore our best estimation of vaccination coverage by race.
-
+                    The left chart shows the race and ethnicity of persons who have received at least one vaccine dose in {props.stateName}. 
+                    {props.vaccRaceState[props.fips]["stateReports"]!=="Hisp and NonHisp Races" ? props.stateName+' includes Hispanic individuals in the racial categories. ' : ' '}
+                    The racial breakdown of those vaccinated is based on persons with known race/ethnicity. 
+                    {props.vaccRaceState[props.fips]["stateReports"]==="Hisp and NonHisp Races" ? 
+                    " Race data are known for " + props.vaccRaceState[props.fips]["Known race"][0]["pctVaccRace"] + "% and ethnicity data are known for " + props.vaccRaceState[props.fips]["Known ethnicity"][0]["pctVaccRace"] + "% of vaccinated persons in " + props.stateName 
+                    : " Race and ethnicity data are known for " + props.vaccRaceState[props.fips]["Known race ethnicity"][0]["pctVaccRaceEthn"] + "% of vaccinated persons in " + props.stateName}.
+                    <br/> <br/>
+                    * Shares of vaccinations in each state may not sum to 100% due to rounding, pending, or missing data.
+                    <br/> <br/>
+                    For comparison, the right chart shows the race and ethnicity of all adults in the {props.stateName} according to the US Census.
+                    <br/> <br/>
+                    * Vaccination data may not be directly comparable across states due to differences in data reported, reporting periods, racial/ethnic classifications, and/or rates of unknown race/ethnicity.
                   </Header.Content>
                 ),
               },
@@ -2196,6 +2193,7 @@ const USVaccineTracker = (props) => {
                               fips = {stateMapFips}
                               vaccRaceState = {vaccRaceState}
                               inTab = {true}
+                              stateName = {stateName}
                             />
                           </TabPanel>
                         </Grid.Row>
