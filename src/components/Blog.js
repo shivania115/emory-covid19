@@ -127,17 +127,15 @@ export default function AboutUs(props){
         
             <Header style={{width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400}}>
               <Header.Content>
-                Statewide Mask Mandates <br/>in the United States
+              Trend of COVID-19 Vaccine Administrations across the population characteristics of all counties in the United States
                 
                 <Header.Subheader style={{fontSize: "18pt", fontWeight: 300, paddingTop: "15px"}}>
-                  Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move 
-                  for US states resulting in lower case rates during the third wave of the pandemic compared to states with 
-                  later or no mask mandates, our data suggests.
+                Vaccination efforts should absolutely be commended, but we have also had our share of neglect. Time to celebrate? Not quite yet. 
 
 
                 </Header.Subheader>
                 <div style = {{paddingTop: 10}}>
-                       <Image width='600' height='350' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />            
+                       {/* <Image width='600' height='350' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />             */}
 
                 </div>
 
@@ -145,7 +143,7 @@ export default function AboutUs(props){
 
                       <p style={{textAlign:"left", fontWeight: 300}}>
 
-                      By Star Liu & Pooja Naik, Feb. 12, 2021  &nbsp;&nbsp; |  &nbsp;&nbsp; 5-minute read
+                      By Star Liu & Pooja Naik, Jun. 2, 2021  &nbsp;&nbsp; |  &nbsp;&nbsp; 3-minute read
 
                       <br/>
                       Contributors: Gaëlle Sabben, Shivani A. Patel 
@@ -159,24 +157,44 @@ export default function AboutUs(props){
                       <br/>
                       <br/>
 
-                      By October 31<sup>st</sup>, 2020, over 
-                      <a href="https://coronavirus.jhu.edu/us-map" target="_blank" rel="noopener noreferrer"> 9,000,000 cases and 200,000 deaths 
-                          </a> had occurred in the U.S., 
-                      with cases and death rates consistently higher than in most other countries. The ongoing 
-                      epidemic has demanded a comprehensive response from the federal, state, and local governments. 
-                      It has also challenged governments to act in extraordinary ways to contain the spread of coronavirus. 
-                      In addition to thorough handwashing, social distancing and mask wearing are the primary prevention 
-                      strategies available to prevent SARS-CoV-2 (the virus that causes COVID-19 disease) infection. 
-                      In crises like this, citizens look to their governments for information, guidance, and safety. 
-                      The coronavirus pandemic has affected nearly every nation in the world differently and each 
-                      government’s response towards containing the pandemic has been equally distinct. 
-                      This has been the case on a range of measures, including whether leaders implemented local mask mandates.
+                      Despite being a universal crisis, the COVID-19 pandemic has had a disproportionate 
+                      impact on the people of color in the United States - particularly, the African 
+                      American and the Hispanic community. Infection rate in African Americans is 1.1 
+                      times as high as White Americans’ infection rates, while Hispanics experience 1.9 
+                      times higher risk of getting infected with COVID-19 (Figure 1). The disproportionate 
+                      impact of COVID-19 on racial and ethnic minorities is extensively discussed but it 
+                      is yet to understand how much is being done to address it. Amidst CDC recommended 
+                      non-pharmaceutical interventions such as mask wearing, hand washing, hand sanitizing 
+                      and other measures taken by local, state and federal governments, the vaccines 
+                      emerged as a valuable weapon against COVID-19. Ensuring equitable vaccine access 
+                      remains a national priority. Despite targeted efforts in ensuring vaccine access 
+                      to vulnerable communities, our data suggests that vaccine administration is not 
+                      just lower in some vulnerable communities, but the gaps have been widening even 
+                      further over time. In absence of individual-level data, we carried out an ecologic 
+                      analysis. Although inferences from population-level data do not always translate 
+                      to findings at individual-level, our study provides insight into health equity in 
+                      COVID-19 vaccine administrations in the United States by comparing the U.S. 
+                      counties with higher proportion of vulnerable communities to the counties with 
+                      lower proportion of vulnerable communities. 
 
+                      <br/>
+                      <br/>
+                      <br/>
 
-
-
-
-
+                      As per the 
+                      <a href="https://www.cdc.gov/mmwr/volumes/69/wr/mm695152e2.htm?s_cid=mm695152e2_w" target="_blank" rel="noopener noreferrer"> recommendations </a>
+                      of Advisory Committee on Immunization Practices (ACIP), 
+                      the COVID-19 vaccinations were offered in three phases. Health care personnel, 
+                      residents of long-term care facilities, persons aged 65 – 74 years, persons aged 
+                      16 – 64 years with high-risk medical conditions, and essential workers were the 
+                      <a href="https://www.cdc.gov/mmwr/volumes/69/wr/mm695152e2.htm?s_cid=mm695152e2_w" target="_blank" rel="noopener noreferrer"> first groups to receive the vaccines</a>. This phased vaccine rollout provided guidance 
+                      for federal, state and local governments while vaccine supply was limited. Owing 
+                      to the intentionally targeted efforts to ensure that the population aged 65 and 
+                      over were amongst the first communities to receive vaccines, it comes as no 
+                      surprise that counties with higher population over the age of 65 years have had 
+                      higher vaccination rates from the very beginning of the vaccine rollout. 
+                      In contrast, American Indian and Alaska Natives (AIAN) and Hispanic communities, 
+                      that were hit hard by the pandemic due to underlying inequities, revealed discussible trends.  
 
                       <div>
                         <center>
@@ -237,298 +255,138 @@ export default function AboutUs(props){
                           formatter= {caseTickFmt} trendGroup = {vTrendGroup}/>}
                       </div>
 
-
-
-
-
-
-
-
-
-
                       <br/>
                       <br/>
                       <br/>
 
-                      The shifting guidelines on mask use by the World Health Organization (WHO) and U.S. 
-                      Centers for Disease Control and Prevention (CDC) in the early days of the pandemic 
-                      precipitated confusion among the general public about the effectiveness and utility 
-                      of face masks. Both 
-                      <a href="https://www.vox.com/2020/6/6/21282108/masks-for-covid-19-world-health-organizationguidelines-cloth-n95" target="_blank" rel="noopener noreferrer"> WHO </a>
-                       and 
-                       <a href="https://www.dallasnews.com/news/public-health/2020/04/08/why-did-the-recommendation-on-wearing-face-masks-change/" target="_blank" rel="noopener noreferrer"> CDC </a>
-                        had deemed the use of face masks unnecessary earlier 
-                      in the pandemic but later changed their stance in early June 2020. Several studies on the 
-                      effectiveness of masks in controlling the spread of COVID-19 resulted in 
-                      <a href="https://www.vox.com/2020/5/29/21273625/coronavirus-masks-required-virginia-china-hongkong" target="_blank" rel="noopener noreferrer"> 15 U.S. states suddenly mandating mask use statewide </a>
-                           in April, May, and June. Twelve other states followed 
-                      in June, July, and August 2020. Despite 
-                      <a href="https://jamanetwork.com/journals/jama/fullarticle/2776536" target="_blank" rel="noopener noreferrer"> several strong pieces of evidence </a> on the 
-                      effectiveness of masks in controlling spread, 18 states had failed to put a statewide 
-                      order in place before the peak rose too high to be controlled by October 31<sup>st</sup>, 2020. There 
-                      had been several additional studies of mask effectiveness done before the third wave hit. 
-                      However, since November, almost all the states saw dramatic spikes in cases. Thus, as we 
-                      consider additional measures to control the ongoing spread of COVID-19, we need to examine 
-                      how mask mandates could have had important and lasting effects on recent trends in cases 
-                      and the implications for the coming weeks and months. If mask mandates indeed are crucial 
-                      in controlling the spread of COVID-19, we expect states with early mask mandates to have 
-                      the lowest case rates (per 100,000) among them all. As we negotiate the added risks of 
-                      infection from new and potentially more infectious variants of SARS-CoV-2, we revisit the 
-                      efficacy of mask mandates to remind ourselves of the importance of mask-wearing and 
-                      quantify the performance of statewide mask mandates in controlling the spread of COVID-19 in the United States. 
-
+                      The vaccination rates in counties with higher percentage of American Indian and 
+                      Alaska Natives population have always been higher compared to the counties with 
+                      lower percentage of American Indian and Alaska Natives population. This can, 
+                      partly, be explained by strong implementation of vaccine distribution and 
+                      prioritization strategies by the AIAN tribe community leaders. The Indian 
+                      Health Service (IHS), a federal agency that maintains health service delivery 
+                      system for American Indian and Alaska Natives, 
+                      <a href="https://www.ihs.gov/sites/coronavirus/themes/responsive2017/display_objects/documents/COVID-19VaccineAllocationbyArea.pdf" target="_blank" rel="noopener noreferrer"> were initially shipped 68,400 vaccines </a>
+                      which were distributed among the AIAN communities across 37 U.S. states 
+                      when the vaccine rollout began. As for Hispanics, even though the vaccination 
+                      rate in counties with higher proportion of Hispanics was XXX percentage points 
+                      lower than that in counties with lower proportion of Hispanics in the early 
+                      days of vaccine rollout, we see the tables turned by the mid-April. As of May 30, 
+                      the counties with higher proportion of Hispanics showed higher vaccination rate. 
+                      As per Urban Institute Analysis of 2018 American Community Survey data, 
                       
+                      <a href="https://www.urban.org/research/publication/how-risk-exposure-coronavirus-work-varies-race-and-ethnicity-and-how-protect-health-and-well-being-workers-and-their-families/view/full_report" target="_blank" rel="noopener noreferrer"> 31% Hispanics </a>
+
+                      had essential jobs and have a 
+                      <a href="http://ftp.iza.org/dp13650.pdf" target="_blank" rel="noopener noreferrer"> higher representation </a>
+
+                      in frontline workers. 
+                      Frontline workers received vaccinations earlier as per ACIP’s recommendations and 
+                      we can say that the effects of these efforts are reflected in our ecological data.
+
                       <br/>
                       <br/>
                       <br/>
 
-                      To understand the impact of mask mandates, we compared the trend of COVID-19 
-                      infection rates in the 15 states that first mandated mask usage statewide early 
-                      in the pandemic (before the second wave hit in June) with other states that passed 
-                      the statewide mask mandate order either during or after the second wave and with 
-                      those that had not implemented statewide mask mandates as of October 31<sup>st</sup>, 2020. 
-                      Since November 2020, there have been multiple events such as national elections, 
-                      the Thanksgiving and end of year holidays, the end of the Fall semester for schools, 
-                      and riots that could have contributed to the spike in COVID-19 cases. Thus, our 
-                      window of analysis is cut off on October 31<sup>st</sup>, 2020 and we considered states that 
-                      adopted a statewide order after November to be part of the group of states without 
-                      mandates. Each wave of the pandemic is defined as the period from the point of 
-                      lowest growth in daily cases in the previous period to the next peak. The states 
-                      that passed statewide mask mandate orders in April and early May were classified as 
-                      the “first group of states with mask mandates (Before the second wave).” Those that 
-                      mandated mask use statewide between June 7 and July 19 make up the “second group of 
-                      states with mask mandate (During the second wave).” Finally, we consider the states 
-                      that mandated mask usage statewide after the second curve abated as the “third group 
-                      of states with mask mandate (After the second wave).” The states in each category are listed below in Table 1. 
+                      On the other hand, there are communities in the United States that are under 
+                      vaccinated right from the beginning of vaccination 
+                      
+                      <a href="https://www.cnn.com/2021/02/12/health/covid-19-vaccine-comorbidities-states-cnn-analysis-wellness/index.html" target="_blank" rel="noopener noreferrer"> rollout </a>
 
+                      , despite robust evidence highlighting the disproportionate impact of the COVID-19 pandemic 
+                      experienced by these communities. Particularly, counties with a higher proportion 
+                      of minority, African American and uninsured population as well as counties with 
+                      higher proportion of population with underlying conditions and population in 
+                      poverty have seen overall lower vaccination turnout. What comes as a surprise 
+                      is the vaccination turnout in counties with higher proportion of population 
+                      with underlying conditions.  
 
+                      Vaccination rollout started with healthcare workers, essential workers, and 
+                      the elderly before it was for those with underlying conditions. However, 
+                      we do not see the expected turnout like we do in counties with higher proportion 
+                      of age 65 and older. By the end of March, most U.S. states had expanded vaccination 
+                      eligibility to individuals with underlying medical conditions. The vaccination 
+                      rate in counties with higher proportion of population with underlying conditions 
+                      was then XXX percentage points lower than in counties with lower proportion of 
+                      population with underlying conditions, but now has increased to XXX percentage points.  
                       
                       <br/>
                       <br/>
                       <br/>
                       
-                        <table style= {{border: "1px solid black", borderCollapse: "collapse"}}>
-                          <tbody>
-                            <tr>
-                              <th rowSpan = "2" style = {{border: "1px solid black", textAlign: "left"}}>States without statewide orders <br/>(N = 18)</th>
-                              <th colSpan = "3" style= {{border: "1px solid black"}}>States that implemented statewide mask mandate orders in different phases of the pandemic </th>
-                            </tr>
-                            <tr>
-                              <th style= {{border: "1px solid black"}}>First (Before the Second wave (N = 15)</th>
-                              <th style= {{border: "1px solid black"}}>Second (During the Second wave (N = 12)</th>
-                              <th style= {{border: "1px solid black"}}>Third (After the Second wave (N = 6)</th>
+                      We see similar gaps in rollout between counties with higher and lower 
+                      proportion of African American population. In early April, Dr. Gary Bennette, 
+                      from Duke University, in an 
+                       
+                      <a href="https://researchblog.duke.edu/2021/04/08/black-americans-vaccine-hesitancy-is-grounded-by-more-than-mistrust/" target="_blank" rel="noopener noreferrer"> interview </a>
 
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Alaska</td>
-                              <td style= {{border: "1px solid black"}}>Connecticut</td>
-                              <td style= {{border: "1px solid black"}}>Alabama</td>
-                              <td style= {{border: "1px solid black"}}>Arkansas</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Arizona</td>
-                              <td style= {{border: "1px solid black"}}>Delaware</td>
-                              <td style= {{border: "1px solid black"}}>California</td>
-                              <td style= {{border: "1px solid black"}}>Indiana</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Florida</td>
-                              <td style= {{border: "1px solid black"}}>District of Columbia</td>
-                              <td style= {{border: "1px solid black"}}>Colorado</td>
-                              <td style= {{border: "1px solid black"}}>Minnesota</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Georgia</td>
-                              <td style= {{border: "1px solid black"}}>Hawaii</td>
-                              <td style= {{border: "1px solid black"}}>Kentucky</td>
-                              <td style= {{border: "1px solid black"}}>Ohio</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Idaho</td>
-                              <td style= {{border: "1px solid black"}}>Illinois</td>
-                              <td style= {{border: "1px solid black"}}>Louisiana</td>
-                              <td style= {{border: "1px solid black"}}>Louisiana</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Iowa</td>
-                              <td style= {{border: "1px solid black"}}>Maine</td>
-                              <td style= {{border: "1px solid black"}}>Montana</td>
-                              <td style= {{border: "1px solid black"}}>Wisconsin</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Kansas</td>
-                              <td style= {{border: "1px solid black"}}>Maryland</td>
-                              <td style= {{border: "1px solid black"}}>Nevada</td>
-                              <td rowSpan = "12" style= {{border: "1px solid black"}}></td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Missouri</td>
-                              <td style= {{border: "1px solid black"}}>Massachusetts</td>
-                              <td style= {{border: "1px solid black"}}>North Carolina</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Nebraska</td>
-                              <td style= {{border: "1px solid black"}}>Michigan</td>
-                              <td style= {{border: "1px solid black"}}>Oregon</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>North Dakota</td>
-                              <td style= {{border: "1px solid black"}}>New Jersey</td>
-                              <td style= {{border: "1px solid black"}}>Texas</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Oklahoma</td>
-                              <td style= {{border: "1px solid black"}}>New Mexico</td>
-                              <td style= {{border: "1px solid black"}}>Washington</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>South Carolina</td>
-                              <td style= {{border: "1px solid black"}}>New York</td>
-                              <td style= {{border: "1px solid black"}}>West Virginia</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>South Dakota</td>
-                              <td style= {{border: "1px solid black"}}>Pennsylvania</td>
-                              <td rowSpan = "6" style= {{border: "1px solid black"}}></td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Tennessee</td>
-                              <td style= {{border: "1px solid black"}}>Rhode Island</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Utah</td>
-                              <td style= {{border: "1px solid black"}}>Virginia</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>New Hampshire</td>
-                              <td rowSpan = "3" style= {{border: "1px solid black"}}></td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Wyoming</td>
-
-                            </tr>
-                            <tr>
-                              <td style= {{border: "1px solid black"}}>Mississippi<sup>*</sup></td>
-
-                            </tr>
-                          </tbody> 
-                        </table>
+                      highlighted barriers in accessing health care services, mistrust, and uncertainties around vaccines as the root 
+                      causes of increased vaccine hesitancy and, in turn, low vaccine turnout. 
+                      Over a month later, the same gap in vaccination exists among the African 
+                      American population. Better yet, the gap grew wider. Counties with higher 
+                      proportion of African American population see 6% lower vaccination turnout 
+                      compared to those with lower proportion. Among all minorities, except for 
+                      Hispanic and American Native, we see similar trends in vaccination: counties 
+                      with higher proportion of vulnerable communities are not hitting enough turnout.  
                       
-                      <br/>
-                      <br/>
-
-                        <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}>
-                            <b>Table 1:</b> List of U.S. states without statewide mask mandate versus states 
-                            that mandated mask use statewide in the early phase of the pandemic (before the second wave), 
-                            in the later phase (during the second wave), and after the second wave (by October 31<sup>st</sup>, 2020). 
-                            <br/>
-                            <sup>*</sup>Mississippi is classified as such because it lifted mask mandate on September 30<sup>th</sup>.<br/>
-                            Data source: 
-                            <a href="https://www.aarp.org/health/healthy-living/info-2020/states-mask-mandates-coronavirus.html" target="_blank" rel="noopener noreferrer"> State-by-State Guide to Face Mask Requirements by Andy Markowitz, AARP.</a>
-                            <br/>
-                            
-                        </p>
-                      
-                      <br/>
-
-                      We computed the COVID-19 case rate in states grouped by our statewide mask mandate 
-                      classification over time. In Figure 1, we show the cumulative COVID-19 cases, adjusted 
-                      by population size, in states by the timing of mask mandate adoption.
-
-                      <br/>
-                      <br/>
-                      <br/>
-
-                        </Header>
-                                <center> <Image width='800' height='500' src='/blog images/maskmandate/Picture1.png' /> </center>
-                                <p style = {{marginLeft: 0, fontSize: "14pt", fontWeight: 300, lineHeight: "16pt", lineSpacing: 0}}> 
-                                <b>Figure 1:</b> Cases per 100,000 in states with and without statewide mask 
-                                mandate as of October 31, 2020. Each wave is defined as the period from the 
-                                point of lowest growth in daily cases in the previous period to the next peak.  </p>
-                
-                        <Header style={{fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0}}>
-
-                      <br/>
-
-                      One major assumption we make is that mask mandates have a direct effect on 
-                      local residents’ behavior regarding mask-wearing. 15 states, including New York, 
-                      New Jersey, Massachusetts, Rhode Island, and Connecticut, had implemented statewide 
-                      mask mandates by the time first wave’s momentum halted in early June. Indeed, the first 
-                      group of states that turned to mask mandates was the one that saw a spike in cases early 
-                      on, but they were also the ones that limited the spike in case rate during the second wave. 
-                      During the second wave, this group saw a flattened curve compared to states not yet 
-                      implementing mandates, and the difference in case rate has grown only more separated 
-                      since the start of the third wave. As of October 31<sup>st</sup>, the average case rate in states 
-                      without mask mandates was approximately 50% more than (3,445 vs. 2,198 cases) that of 
-                      states with the earliest mask mandates.
-
                       <br/>
                       <br/>
                       <br/>
                       
-                      States that mandated mask use statewide in June, July, and August (the “second group” 
-                      in our categorization), saw a minimal impact of the mandates on COVID-19 case rates in 
-                      the few weeks that followed. While it may be tempting to discredit the effectiveness of 
-                      these mandates, the differences have manifested since September as case rates in states 
-                      without mask mandates skyrocketed. On October 31<sup>st</sup>, states with mask mandates during the 
-                      second wave saw approximately 867 fewer cases per 100,000 compared to the group with no 
-                      mask mandates. Similarly, states with statewide mask mandates after the second wave saw 
-                      approximately 884 fewer cases per 100,000 compared to states without mask mandates. The 
-                      average case rate across the group without mask mandates ticked up in the second half of 
-                      October at an alarming rate while other groups with earlier mask mandates had a steady 
-                      increase during the same period. This discrepancy sheds some light on the positive 
-                      contribution that mask mandates might have played in containing the spread of the 
-                      pandemic - even when the entire nation is experiencing worst of the pandemic.
+                      When it comes to the impoverished and underserved communities, limited access 
+                      is just one of the many obstacles that the residents of those neighborhoods 
+                      must deal with. Earlier in February, 
+                       
+                      <a href="https://www.nytimes.com/2021/02/02/health/white-people-covid-vaccines-minorities.html" target="_blank" rel="noopener noreferrer"> vaccination efforts for the impoverished </a>
 
-                      <br/>
-                      <br/>
-                      <br/>
+                      were hit with an influx of residents from other areas, further hindering the 
+                      effort. Despite continued work in impoverished neighborhoods, we still see 
+                      lower vaccination turnout among counties with higher proportion of population 
+                      in poverty. Typically, it is hard to overlook this phenomenon because most of 
+                      those impoverished communities are also the ones without insurance. Yet, if 
+                      COVID-19 vaccines are free, then why are we seeing 
+                       
+                      <a href="https://www.forbes.com/sites/debgordon/2021/04/16/uninsured-americans-are-half-as-likely-to-get-the-covid-19-vaccine-even-though-its-free-new-data-shows/?sh=5aa6bbf1766f" target="_blank" rel="noopener noreferrer"> lower turnout </a>
+                      among counties with greater proportion of uninsured residents? And, that gap has 
+                      almost doubled since April.  
 
-                      Multiple preventive guidelines beyond mask mandates could have contributed to 
-                      controlling the SARS-CoV-2 virus, so it is difficult to assess what proportion of 
-                      case control is due solely to mask mandates. For example, states that adopted early 
-                      mask mandates may have also been more likely to adopt other simultaneous mitigation 
-                      measures. Similarly, those states may have residents that are more compliant with 
-                      public health guidance and invested in community-wide mitigation, which would allow 
-                      decision-makers the political will to implement such measures in the first place. 
-                      Nevertheless, the timing of mask mandates and the subsequent changes in the growth 
-                      of case rates align. States that implemented statewide mask mandates saw a slower 
-                      growth in cases compared to those that did not, not just in the weeks that followed 
-                      the mandates, but for months after. The discrepancies in case rate trends affirm the 
-                      correlation between mask mandates and COVID-19 case rate, but they also highlight 
-                      that a lack thereof puts states in precarious situations.
+                      <Image width='2000' height='2450' src='/blog images/vaccineTrends/percentPoverty.png' />
+                      <Image width='2000' height='2450' src='/blog images/vaccineTrends/percentUninsured.png' /> 
 
+                      
+                      <br/>
+                      <br/>
+                      <br/>                  
+                      
+                      There also exists discrepancies in vaccination among the four regions of 
+                      the U.S.: South, West, Midwest, and Northeast. If you click on the “Region” 
+                      button down below, you will find that among counties in the South, they have 
+                      the lowest percent vaccinated population of the entire U.S.. The above heatmaps 
+                      are also generated from 
+                       
+                      <a href="https://covid19.emory.edu/map-state" target="_blank" rel="noopener noreferrer"> Emory’s COVID-19 Health Equity Dashboard Map State</a>.
+
+                      If I tell you that these heatmaps represent percent in poverty (left) and 
+                      percent uninsured (right), would you be surprised that the South is doing 
+                      poorly? This goes to show that COVID-19 has a differential impact, but 
+                      more importantly, we are facing a challenge that needs to be addressed 
+                      from multiple angles. And again, increasing proper access to care and 
+                      continuing efforts in these more impoverished regions could just save some lives. 
+                      
                       <br/>
                       <br/>
                       <br/>
-
-                      It has been over a year since the first COVID-19 case was discovered in the 
-                      United States, and now the pandemic has reached new heights with increasing 
-                      concerns about potential new variants of the SARS-CoV-2 virus. Statewide mask 
-                      mandates assert states’ positions on following guidelines and could be game 
-                      changing towards flattening the curve in states that are currently experiencing 
-                      the worst of the pandemic. As vaccination slowly catches up, it remains critical 
-                      to mandate masks, protecting each other’s health and buying time for greater 
-                      vaccine uptake. Far too many lives have been lost, and there is no timetable for 
-                      the end of this calamity. We just might get a glimpse of the light at the end of 
-                      tunnel if we take all the necessary courses of action now. 
-
+                      
+                      Most concerning challenges to vaccination hesitancy that has come up 
+                      repeated in reports and articles, including this 
+                       
+                      <a href="https://www.ajmc.com/view/disparities-in-covid-19-vaccine-rates-tarnish-swift-us-rollout" target="_blank" rel="noopener noreferrer"> piece </a>
+                      from AJMC, consist 
+                      of access to health care, mistrust, and uncertainties. It is unlikely like 
+                      we can turn the tide on mistrust in matters of weeks or months, perhaps even 
+                      years. Increasing local access to much needed care is within our grasp. 
+                      Don’t let this be another lesson learned. 
+                      
                       <br/>
                       <br/>
                       <br/>
