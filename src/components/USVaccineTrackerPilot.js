@@ -660,7 +660,7 @@ const SideRaceBarChart = (props) => {
   return(
     <div>
   {(()=>{
-    if(props.fips === '_nation' || props.vaccRaceState[props.fips]["stateReports"] === "Non-Hispanic Races only"){
+    if(props.fips === '_nation' || props.vaccRaceState[props.fips]["stateReports"] !== "Hisp and NonHisp Races"){
     return (
     <Grid>
       <Grid.Column width={props.inTab===true ? 6 : 7} style={{paddingLeft: props.inTab===true ? '0rem':'0.5rem',paddingTop: props.inTab===true ? '7rem':'1rem', paddingRight: 0}}>
@@ -909,13 +909,15 @@ const SideRaceBarChart = (props) => {
             },
             content: {
                 content: (
-                  <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 0, paddingLeft: 5, width: 400, lineHeight: '20px'}}>
+                  <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 5, paddingLeft: 5, width: 400, lineHeight: '20px'}}>
                     The left chart shows the race and ethnicity of persons who have received at least one vaccine dose in {props.stateName}. 
-                    {props.vaccRaceState[props.fips]["stateReports"]!=="Hisp and NonHisp Races" ? props.stateName+' includes Hispanic individuals in the racial categories. ' : ' '}
+                    {props.vaccRaceState[props.fips]["stateReports"]==="Hisp and NonHisp Races" ? ' ' + props.stateName+' includes Hispanic individuals in the racial categories. ' : ' '}
                     The racial breakdown of those vaccinated is based on persons with known race/ethnicity. 
-                    {props.vaccRaceState[props.fips]["stateReports"]==="Hisp and NonHisp Races" ? 
-                    " Race data are known for " + props.vaccRaceState[props.fips]["Known race"][0]["pctVaccRace"] + "% and ethnicity data are known for " + props.vaccRaceState[props.fips]["Known ethnicity"][0]["pctVaccRace"] + "% of vaccinated persons in " + props.stateName 
-                    : " Race and ethnicity data are known for " + props.vaccRaceState[props.fips]["Known race ethnicity"][0]["pctVaccRaceEthn"] + "% of vaccinated persons in " + props.stateName}.
+                    { (props.vaccRaceState[props.fips]["stateReports"]==="Hisp and NonHisp Races" || (props.vaccRaceState[props.fips]["stateReports"]==="Unknown" && props.vaccRaceState[props.fips]["Known race"][0]["percentVaccinated"] > 0)) ? 
+                    " Race data are known for " + props.vaccRaceState[props.fips]["Known race"][0]["percentVaccinated"] + "% and ethnicity data are known for " + props.vaccRaceState[props.fips]["Known ethnicity"][0]["percentVaccinated"] + "% of vaccinated persons in " + props.stateName + "." 
+                    : ( props.vaccRaceState[props.fips]["stateReports"]==="Non-Hispanic Races only" ?
+                       " Race and ethnicity data are known for " + props.vaccRaceState[props.fips]["Known race ethnicity"][0]["percentVaccinated"] + "% of vaccinated persons in " + props.stateName + "."
+                       : " " + props.stateName + " does not report the percentage of vaccinated persons with known race and ethnicity data." )}
                     <br/> <br/>
                     * Shares of vaccinations in each state may not sum to 100% due to rounding, pending, or missing data.
                     <br/> <br/>
