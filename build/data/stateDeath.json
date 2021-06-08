@@ -1,0 +1,3382 @@
+{
+  "_nation": {
+    "White": [
+      {
+        "state": "United States",
+        "covidDeaths": 354055,
+        "covideathDistribution": 60.7,
+        "popDistribution": 60.1,
+        "weighteddeathDistribution": 39.7
+      }
+    ],
+    "African American": [
+      {
+        "state": "United States",
+        "covidDeaths": 87393,
+        "covideathDistribution": 15.0,
+        "popDistribution": 12.5,
+        "weighteddeathDistribution": 13.3
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "United States",
+        "covidDeaths": 6585,
+        "covideathDistribution": 1.1,
+        "popDistribution": 0.7,
+        "weighteddeathDistribution": 0.4
+      }
+    ],
+    "Asian": [
+      {
+        "state": "United States",
+        "covidDeaths": 22441,
+        "covideathDistribution": 3.8,
+        "popDistribution": 5.8,
+        "weighteddeathDistribution": 10.1
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "United States",
+        "covidDeaths": 1063,
+        "covideathDistribution": 0.2,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "United States",
+        "covidDeaths": 1900,
+        "covideathDistribution": 0.3,
+        "popDistribution": 2.2,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "United States",
+        "covidDeaths": 107631,
+        "covideathDistribution": 18.5,
+        "popDistribution": 18.5,
+        "weighteddeathDistribution": 34.3
+      }
+    ]
+  },
+  "01": {
+    "White": [
+      {
+        "state": "Alabama",
+        "covidDeaths": 7298,
+        "covideathDistribution": 68.0,
+        "popDistribution": 65.3,
+        "weighteddeathDistribution": 55.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Alabama",
+        "covidDeaths": 3167,
+        "covideathDistribution": 29.5,
+        "popDistribution": 26.5,
+        "weighteddeathDistribution": 36.6
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Alabama",
+        "covidDeaths": 17,
+        "covideathDistribution": 0.2,
+        "popDistribution": 0.6,
+        "weighteddeathDistribution": 0.4
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Alabama",
+        "covidDeaths": 48,
+        "covideathDistribution": 0.4,
+        "popDistribution": 1.5,
+        "weighteddeathDistribution": 1.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Alabama",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Alabama",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 1.5
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Alabama",
+        "covidDeaths": 191,
+        "covideathDistribution": 1.8,
+        "popDistribution": 4.6,
+        "weighteddeathDistribution": 4.1
+      }
+    ]
+  },
+  "02": {
+    "White": [
+      {
+        "state": "Alaska",
+        "covidDeaths": 135,
+        "covideathDistribution": 39.9,
+        "popDistribution": 60.8,
+        "weighteddeathDistribution": 59.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Alaska",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 3.3,
+        "weighteddeathDistribution": 4.9
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Alaska",
+        "covidDeaths": 114,
+        "covideathDistribution": 33.7,
+        "popDistribution": 13.9,
+        "weighteddeathDistribution": 8.5
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Alaska",
+        "covidDeaths": 34,
+        "covideathDistribution": 10.1,
+        "popDistribution": 6.4,
+        "weighteddeathDistribution": 8.6
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Alaska",
+        "covidDeaths": 20,
+        "covideathDistribution": 5.9,
+        "popDistribution": 1.4,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Alaska",
+        "covidDeaths": 10,
+        "covideathDistribution": 3.0,
+        "popDistribution": 6.8,
+        "weighteddeathDistribution": 7.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Alaska",
+        "covidDeaths": 15,
+        "covideathDistribution": 4.4,
+        "popDistribution": 7.3,
+        "weighteddeathDistribution": 8.9
+      }
+    ]
+  },
+  "04": {
+    "White": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 8142,
+        "covideathDistribution": 51.5,
+        "popDistribution": 54.1,
+        "weighteddeathDistribution": 54.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 514,
+        "covideathDistribution": 3.3,
+        "popDistribution": 4.5,
+        "weighteddeathDistribution": 5.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 1615,
+        "covideathDistribution": 10.2,
+        "popDistribution": 3.9,
+        "weighteddeathDistribution": 1.8
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 329,
+        "covideathDistribution": 2.1,
+        "popDistribution": 3.4,
+        "weighteddeathDistribution": 4.2
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 36,
+        "covideathDistribution": 0.2,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 143,
+        "covideathDistribution": 0.9,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 2.2
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Arizona",
+        "covidDeaths": 4878,
+        "covideathDistribution": 30.8,
+        "popDistribution": 31.7,
+        "weighteddeathDistribution": 31.8
+      }
+    ]
+  },
+  "05": {
+    "White": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 4700,
+        "covideathDistribution": 78.3,
+        "popDistribution": 72.0,
+        "weighteddeathDistribution": 63.0
+      }
+    ],
+    "African American": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 897,
+        "covideathDistribution": 14.9,
+        "popDistribution": 15.4,
+        "weighteddeathDistribution": 22.2
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 40,
+        "covideathDistribution": 0.7,
+        "popDistribution": 0.8,
+        "weighteddeathDistribution": 0.7
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 47,
+        "covideathDistribution": 0.8,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 58,
+        "covideathDistribution": 1.0,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.4
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 24,
+        "covideathDistribution": 0.4,
+        "popDistribution": 2.0,
+        "weighteddeathDistribution": 2.2
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Arkansas",
+        "covidDeaths": 237,
+        "covideathDistribution": 3.9,
+        "popDistribution": 7.8,
+        "weighteddeathDistribution": 9.1
+      }
+    ]
+  },
+  "06": {
+    "White": [
+      {
+        "state": "California",
+        "covidDeaths": 20494,
+        "covideathDistribution": 31.8,
+        "popDistribution": 36.5,
+        "weighteddeathDistribution": 28.8
+      }
+    ],
+    "African American": [
+      {
+        "state": "California",
+        "covidDeaths": 4041,
+        "covideathDistribution": 6.3,
+        "popDistribution": 5.6,
+        "weighteddeathDistribution": 7.2
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "California",
+        "covidDeaths": 301,
+        "covideathDistribution": 0.5,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "California",
+        "covidDeaths": 8038,
+        "covideathDistribution": 12.5,
+        "popDistribution": 14.9,
+        "weighteddeathDistribution": 14.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "California",
+        "covidDeaths": 355,
+        "covideathDistribution": 0.6,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.3
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "California",
+        "covidDeaths": 400,
+        "covideathDistribution": 0.6,
+        "popDistribution": 2.8,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "California",
+        "covidDeaths": 30762,
+        "covideathDistribution": 47.7,
+        "popDistribution": 39.4,
+        "weighteddeathDistribution": 46.5
+      }
+    ]
+  },
+  "08": {
+    "White": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 4385,
+        "covideathDistribution": 65.0,
+        "popDistribution": 67.7,
+        "weighteddeathDistribution": 64.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 316,
+        "covideathDistribution": 4.7,
+        "popDistribution": 4.1,
+        "weighteddeathDistribution": 5.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 87,
+        "covideathDistribution": 1.3,
+        "popDistribution": 0.6,
+        "weighteddeathDistribution": 0.5
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 213,
+        "covideathDistribution": 3.2,
+        "popDistribution": 3.3,
+        "weighteddeathDistribution": 3.8
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 20,
+        "covideathDistribution": 0.3,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 27,
+        "covideathDistribution": 0.4,
+        "popDistribution": 2.3,
+        "weighteddeathDistribution": 2.6
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Colorado",
+        "covidDeaths": 1667,
+        "covideathDistribution": 24.7,
+        "popDistribution": 21.8,
+        "weighteddeathDistribution": 23.0
+      }
+    ]
+  },
+  "09": {
+    "White": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": 6094,
+        "covideathDistribution": 74.6,
+        "popDistribution": 65.9,
+        "weighteddeathDistribution": 61.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": 1044,
+        "covideathDistribution": 12.8,
+        "popDistribution": 10.3,
+        "weighteddeathDistribution": 12.2
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": 123,
+        "covideathDistribution": 1.5,
+        "popDistribution": 4.8,
+        "weighteddeathDistribution": 5.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 1.7
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Connecticut",
+        "covidDeaths": 865,
+        "covideathDistribution": 10.6,
+        "popDistribution": 16.9,
+        "weighteddeathDistribution": 19.1
+      }
+    ]
+  },
+  "10": {
+    "White": [
+      {
+        "state": "Delaware",
+        "covidDeaths": 1084,
+        "covideathDistribution": 72.2,
+        "popDistribution": 61.7,
+        "weighteddeathDistribution": 60.0
+      }
+    ],
+    "African American": [
+      {
+        "state": "Delaware",
+        "covidDeaths": 331,
+        "covideathDistribution": 22.0,
+        "popDistribution": 22.0,
+        "weighteddeathDistribution": 22.8
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Delaware",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.3
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Delaware",
+        "covidDeaths": 16,
+        "covideathDistribution": 1.1,
+        "popDistribution": 4.0,
+        "weighteddeathDistribution": 4.6
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Delaware",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Delaware",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.3,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Delaware",
+        "covidDeaths": 65,
+        "covideathDistribution": 4.3,
+        "popDistribution": 9.6,
+        "weighteddeathDistribution": 10.0
+      }
+    ]
+  },
+  "11": {
+    "White": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": 186,
+        "covideathDistribution": 12.9,
+        "popDistribution": 37.5,
+        "weighteddeathDistribution": 37.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": 1019,
+        "covideathDistribution": 70.5,
+        "popDistribution": 44.4,
+        "weighteddeathDistribution": 44.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": 30,
+        "covideathDistribution": 2.1,
+        "popDistribution": 4.3,
+        "weighteddeathDistribution": 4.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.3,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "District of Columbia",
+        "covidDeaths": 204,
+        "covideathDistribution": 14.1,
+        "popDistribution": 11.3,
+        "weighteddeathDistribution": 11.3
+      }
+    ]
+  },
+  "12": {
+    "White": [
+      {
+        "state": "Florida",
+        "covidDeaths": 18980,
+        "covideathDistribution": 55.7,
+        "popDistribution": 53.2,
+        "weighteddeathDistribution": 36.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Florida",
+        "covidDeaths": 5796,
+        "covideathDistribution": 17.0,
+        "popDistribution": 15.5,
+        "weighteddeathDistribution": 17.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Florida",
+        "covidDeaths": 48,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Florida",
+        "covidDeaths": 503,
+        "covideathDistribution": 1.5,
+        "popDistribution": 2.8,
+        "weighteddeathDistribution": 2.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Florida",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Florida",
+        "covidDeaths": 110,
+        "covideathDistribution": 0.3,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 1.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Florida",
+        "covidDeaths": 8634,
+        "covideathDistribution": 25.3,
+        "popDistribution": 26.4,
+        "weighteddeathDistribution": 41.6
+      }
+    ]
+  },
+  "13": {
+    "White": [
+      {
+        "state": "Georgia",
+        "covidDeaths": 10116,
+        "covideathDistribution": 57.7,
+        "popDistribution": 52.0,
+        "weighteddeathDistribution": 42.8
+      }
+    ],
+    "African American": [
+      {
+        "state": "Georgia",
+        "covidDeaths": 6051,
+        "covideathDistribution": 34.5,
+        "popDistribution": 31.6,
+        "weighteddeathDistribution": 37.6
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Georgia",
+        "covidDeaths": 14,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Georgia",
+        "covidDeaths": 360,
+        "covideathDistribution": 2.1,
+        "popDistribution": 4.3,
+        "weighteddeathDistribution": 6.4
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Georgia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Georgia",
+        "covidDeaths": 19,
+        "covideathDistribution": 0.1,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 2.0
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Georgia",
+        "covidDeaths": 968,
+        "covideathDistribution": 5.5,
+        "popDistribution": 9.9,
+        "weighteddeathDistribution": 11.0
+      }
+    ]
+  },
+  "15": {
+    "White": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": 40,
+        "covideathDistribution": 8.4,
+        "popDistribution": 21.7,
+        "weighteddeathDistribution": 18.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.0,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": 235,
+        "covideathDistribution": 49.5,
+        "popDistribution": 36.4,
+        "weighteddeathDistribution": 40.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": 109,
+        "covideathDistribution": 22.9,
+        "popDistribution": 9.4,
+        "weighteddeathDistribution": 9.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": 52,
+        "covideathDistribution": 10.9,
+        "popDistribution": 19.7,
+        "weighteddeathDistribution": 18.9
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Hawaii",
+        "covidDeaths": 33,
+        "covideathDistribution": 6.9,
+        "popDistribution": 10.7,
+        "weighteddeathDistribution": 10.1
+      }
+    ]
+  },
+  "16": {
+    "White": [
+      {
+        "state": "Idaho",
+        "covidDeaths": 1811,
+        "covideathDistribution": 85.9,
+        "popDistribution": 81.6,
+        "weighteddeathDistribution": 82.8
+      }
+    ],
+    "African American": [
+      {
+        "state": "Idaho",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.8,
+        "weighteddeathDistribution": 1.0
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Idaho",
+        "covidDeaths": 38,
+        "covideathDistribution": 1.8,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 0.7
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Idaho",
+        "covidDeaths": 23,
+        "covideathDistribution": 1.1,
+        "popDistribution": 1.4,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Idaho",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Idaho",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Idaho",
+        "covidDeaths": 213,
+        "covideathDistribution": 10.1,
+        "popDistribution": 12.8,
+        "weighteddeathDistribution": 10.9
+      }
+    ]
+  },
+  "17": {
+    "White": [
+      {
+        "state": "Illinois",
+        "covidDeaths": 13579,
+        "covideathDistribution": 61.8,
+        "popDistribution": 60.8,
+        "weighteddeathDistribution": 43.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "Illinois",
+        "covidDeaths": 3857,
+        "covideathDistribution": 17.6,
+        "popDistribution": 14.1,
+        "weighteddeathDistribution": 22.0
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Illinois",
+        "covidDeaths": 17,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Illinois",
+        "covidDeaths": 814,
+        "covideathDistribution": 3.7,
+        "popDistribution": 5.8,
+        "weighteddeathDistribution": 7.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Illinois",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Illinois",
+        "covidDeaths": 49,
+        "covideathDistribution": 0.2,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 1.6
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Illinois",
+        "covidDeaths": 3575,
+        "covideathDistribution": 16.3,
+        "popDistribution": 17.5,
+        "weighteddeathDistribution": 25.0
+      }
+    ]
+  },
+  "18": {
+    "White": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 11210,
+        "covideathDistribution": 84.6,
+        "popDistribution": 78.4,
+        "weighteddeathDistribution": 62.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 1361,
+        "covideathDistribution": 10.3,
+        "popDistribution": 9.6,
+        "weighteddeathDistribution": 20.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 16,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 119,
+        "covideathDistribution": 0.9,
+        "popDistribution": 2.5,
+        "weighteddeathDistribution": 3.4
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 11,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.1,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Indiana",
+        "covidDeaths": 523,
+        "covideathDistribution": 3.9,
+        "popDistribution": 7.3,
+        "weighteddeathDistribution": 10.7
+      }
+    ]
+  },
+  "19": {
+    "White": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 5581,
+        "covideathDistribution": 92.0,
+        "popDistribution": 85.0,
+        "weighteddeathDistribution": 79.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 168,
+        "covideathDistribution": 2.8,
+        "popDistribution": 3.9,
+        "weighteddeathDistribution": 6.3
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 47,
+        "covideathDistribution": 0.8,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.3
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 68,
+        "covideathDistribution": 1.1,
+        "popDistribution": 2.6,
+        "weighteddeathDistribution": 4.0
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.2,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 10,
+        "covideathDistribution": 0.2,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 2.2
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Iowa",
+        "covidDeaths": 179,
+        "covideathDistribution": 3.0,
+        "popDistribution": 6.3,
+        "weighteddeathDistribution": 7.6
+      }
+    ]
+  },
+  "20": {
+    "White": [
+      {
+        "state": "Kansas",
+        "covidDeaths": 4037,
+        "covideathDistribution": 81.6,
+        "popDistribution": 75.4,
+        "weighteddeathDistribution": 71.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Kansas",
+        "covidDeaths": 296,
+        "covideathDistribution": 6.0,
+        "popDistribution": 5.7,
+        "weighteddeathDistribution": 7.6
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Kansas",
+        "covidDeaths": 56,
+        "covideathDistribution": 1.1,
+        "popDistribution": 0.8,
+        "weighteddeathDistribution": 0.6
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Kansas",
+        "covidDeaths": 74,
+        "covideathDistribution": 1.5,
+        "popDistribution": 3.1,
+        "weighteddeathDistribution": 4.5
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Kansas",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Kansas",
+        "covidDeaths": 54,
+        "covideathDistribution": 1.1,
+        "popDistribution": 2.6,
+        "weighteddeathDistribution": 2.8
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Kansas",
+        "covidDeaths": 411,
+        "covideathDistribution": 8.3,
+        "popDistribution": 12.2,
+        "weighteddeathDistribution": 12.9
+      }
+    ]
+  },
+  "21": {
+    "White": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": 6559,
+        "covideathDistribution": 88.9,
+        "popDistribution": 84.1,
+        "weighteddeathDistribution": 70.1
+      }
+    ],
+    "African American": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": 650,
+        "covideathDistribution": 8.8,
+        "popDistribution": 8.2,
+        "weighteddeathDistribution": 18.8
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": 38,
+        "covideathDistribution": 0.5,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 2.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Kentucky",
+        "covidDeaths": 120,
+        "covideathDistribution": 1.6,
+        "popDistribution": 3.9,
+        "weighteddeathDistribution": 5.7
+      }
+    ]
+  },
+  "22": {
+    "White": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": 5429,
+        "covideathDistribution": 57.0,
+        "popDistribution": 58.4,
+        "weighteddeathDistribution": 51.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": 3717,
+        "covideathDistribution": 39.0,
+        "popDistribution": 32.3,
+        "weighteddeathDistribution": 37.3
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": 33,
+        "covideathDistribution": 0.3,
+        "popDistribution": 0.7,
+        "weighteddeathDistribution": 0.4
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": 72,
+        "covideathDistribution": 0.8,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 2.6
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.5,
+        "weighteddeathDistribution": 1.5
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Louisiana",
+        "covidDeaths": 258,
+        "covideathDistribution": 2.7,
+        "popDistribution": 5.3,
+        "weighteddeathDistribution": 6.7
+      }
+    ]
+  },
+  "23": {
+    "White": [
+      {
+        "state": "Maine",
+        "covidDeaths": 898,
+        "covideathDistribution": 95.7,
+        "popDistribution": 93.0,
+        "weighteddeathDistribution": 91.7
+      }
+    ],
+    "African American": [
+      {
+        "state": "Maine",
+        "covidDeaths": 12,
+        "covideathDistribution": 1.3,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Maine",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.7,
+        "weighteddeathDistribution": 0.5
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Maine",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.3,
+        "weighteddeathDistribution": 1.8
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Maine",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Maine",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 1.8
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Maine",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 1.9
+      }
+    ]
+  },
+  "24": {
+    "White": [
+      {
+        "state": "Maryland",
+        "covidDeaths": 5169,
+        "covideathDistribution": 50.6,
+        "popDistribution": 50.0,
+        "weighteddeathDistribution": 41.1
+      }
+    ],
+    "African American": [
+      {
+        "state": "Maryland",
+        "covidDeaths": 3720,
+        "covideathDistribution": 36.4,
+        "popDistribution": 29.9,
+        "weighteddeathDistribution": 34.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Maryland",
+        "covidDeaths": 13,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Maryland",
+        "covidDeaths": 379,
+        "covideathDistribution": 3.7,
+        "popDistribution": 6.6,
+        "weighteddeathDistribution": 8.2
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Maryland",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Maryland",
+        "covidDeaths": 19,
+        "covideathDistribution": 0.2,
+        "popDistribution": 2.5,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Maryland",
+        "covidDeaths": 897,
+        "covideathDistribution": 8.8,
+        "popDistribution": 10.6,
+        "weighteddeathDistribution": 13.3
+      }
+    ]
+  },
+  "25": {
+    "White": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": 10696,
+        "covideathDistribution": 79.3,
+        "popDistribution": 71.1,
+        "weighteddeathDistribution": 68.7
+      }
+    ],
+    "African American": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": 1042,
+        "covideathDistribution": 7.7,
+        "popDistribution": 7.3,
+        "weighteddeathDistribution": 7.6
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": 456,
+        "covideathDistribution": 3.4,
+        "popDistribution": 7.1,
+        "weighteddeathDistribution": 8.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": 46,
+        "covideathDistribution": 0.3,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 1.9
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Massachusetts",
+        "covidDeaths": 1092,
+        "covideathDistribution": 8.1,
+        "popDistribution": 12.4,
+        "weighteddeathDistribution": 13.0
+      }
+    ]
+  },
+  "26": {
+    "White": [
+      {
+        "state": "Michigan",
+        "covidDeaths": 12654,
+        "covideathDistribution": 71.5,
+        "popDistribution": 74.7,
+        "weighteddeathDistribution": 61.7
+      }
+    ],
+    "African American": [
+      {
+        "state": "Michigan",
+        "covidDeaths": 3966,
+        "covideathDistribution": 22.4,
+        "popDistribution": 13.8,
+        "weighteddeathDistribution": 25.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Michigan",
+        "covidDeaths": 73,
+        "covideathDistribution": 0.4,
+        "popDistribution": 0.6,
+        "weighteddeathDistribution": 0.3
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Michigan",
+        "covidDeaths": 172,
+        "covideathDistribution": 1.0,
+        "popDistribution": 3.3,
+        "weighteddeathDistribution": 4.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Michigan",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Michigan",
+        "covidDeaths": 52,
+        "covideathDistribution": 0.3,
+        "popDistribution": 2.3,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Michigan",
+        "covidDeaths": 652,
+        "covideathDistribution": 3.7,
+        "popDistribution": 5.3,
+        "weighteddeathDistribution": 5.5
+      }
+    ]
+  },
+  "27": {
+    "White": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": 6541,
+        "covideathDistribution": 86.1,
+        "popDistribution": 79.1,
+        "weighteddeathDistribution": 69.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": 391,
+        "covideathDistribution": 5.1,
+        "popDistribution": 6.8,
+        "weighteddeathDistribution": 12.1
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": 107,
+        "covideathDistribution": 1.4,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 0.7
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": 307,
+        "covideathDistribution": 4.0,
+        "popDistribution": 5.1,
+        "weighteddeathDistribution": 8.2
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": 20,
+        "covideathDistribution": 0.3,
+        "popDistribution": 2.3,
+        "weighteddeathDistribution": 2.9
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Minnesota",
+        "covidDeaths": 220,
+        "covideathDistribution": 2.9,
+        "popDistribution": 5.6,
+        "weighteddeathDistribution": 6.7
+      }
+    ]
+  },
+  "28": {
+    "White": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": 4203,
+        "covideathDistribution": 55.9,
+        "popDistribution": 56.4,
+        "weighteddeathDistribution": 47.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": 3078,
+        "covideathDistribution": 40.9,
+        "popDistribution": 37.4,
+        "weighteddeathDistribution": 46.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": 117,
+        "covideathDistribution": 1.6,
+        "popDistribution": 0.5,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": 36,
+        "covideathDistribution": 0.5,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 1.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.2,
+        "weighteddeathDistribution": 1.2
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Mississippi",
+        "covidDeaths": 70,
+        "covideathDistribution": 0.9,
+        "popDistribution": 3.4,
+        "weighteddeathDistribution": 3.1
+      }
+    ]
+  },
+  "29": {
+    "White": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 9095,
+        "covideathDistribution": 83.2,
+        "popDistribution": 79.1,
+        "weighteddeathDistribution": 68.1
+      }
+    ],
+    "African American": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 1387,
+        "covideathDistribution": 12.7,
+        "popDistribution": 11.6,
+        "weighteddeathDistribution": 21.2
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 42,
+        "covideathDistribution": 0.4,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.3
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 103,
+        "covideathDistribution": 0.9,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 3.6
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 15,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 39,
+        "covideathDistribution": 0.4,
+        "popDistribution": 2.2,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Missouri",
+        "covidDeaths": 240,
+        "covideathDistribution": 2.2,
+        "popDistribution": 4.4,
+        "weighteddeathDistribution": 4.4
+      }
+    ]
+  },
+  "30": {
+    "White": [
+      {
+        "state": "Montana",
+        "covidDeaths": 1263,
+        "covideathDistribution": 77.9,
+        "popDistribution": 85.9,
+        "weighteddeathDistribution": 87.0
+      }
+    ],
+    "African American": [
+      {
+        "state": "Montana",
+        "covidDeaths": 11,
+        "covideathDistribution": 0.7,
+        "popDistribution": 0.5,
+        "weighteddeathDistribution": 0.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Montana",
+        "covidDeaths": 289,
+        "covideathDistribution": 17.8,
+        "popDistribution": 6.1,
+        "weighteddeathDistribution": 3.7
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Montana",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.9,
+        "weighteddeathDistribution": 0.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Montana",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Montana",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.5,
+        "weighteddeathDistribution": 2.7
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Montana",
+        "covidDeaths": 41,
+        "covideathDistribution": 2.5,
+        "popDistribution": 4.1,
+        "weighteddeathDistribution": 4.9
+      }
+    ]
+  },
+  "31": {
+    "White": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": 2517,
+        "covideathDistribution": 87.0,
+        "popDistribution": 78.2,
+        "weighteddeathDistribution": 71.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": 106,
+        "covideathDistribution": 3.7,
+        "popDistribution": 4.9,
+        "weighteddeathDistribution": 9.2
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": 20,
+        "covideathDistribution": 0.7,
+        "popDistribution": 0.8,
+        "weighteddeathDistribution": 0.5
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": 25,
+        "covideathDistribution": 0.9,
+        "popDistribution": 2.7,
+        "weighteddeathDistribution": 4.2
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Nebraska",
+        "covidDeaths": 218,
+        "covideathDistribution": 7.5,
+        "popDistribution": 11.4,
+        "weighteddeathDistribution": 12.1
+      }
+    ]
+  },
+  "32": {
+    "White": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 2893,
+        "covideathDistribution": 50.8,
+        "popDistribution": 48.2,
+        "weighteddeathDistribution": 42.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 559,
+        "covideathDistribution": 9.8,
+        "popDistribution": 9.3,
+        "weighteddeathDistribution": 11.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 66,
+        "covideathDistribution": 1.2,
+        "popDistribution": 0.9,
+        "weighteddeathDistribution": 0.5
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 626,
+        "covideathDistribution": 11.0,
+        "popDistribution": 8.3,
+        "weighteddeathDistribution": 9.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 64,
+        "covideathDistribution": 1.1,
+        "popDistribution": 0.6,
+        "weighteddeathDistribution": 0.7
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 38,
+        "covideathDistribution": 0.7,
+        "popDistribution": 3.5,
+        "weighteddeathDistribution": 3.8
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Nevada",
+        "covidDeaths": 1444,
+        "covideathDistribution": 25.4,
+        "popDistribution": 29.2,
+        "weighteddeathDistribution": 31.4
+      }
+    ]
+  },
+  "33": {
+    "White": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": 1261,
+        "covideathDistribution": 94.7,
+        "popDistribution": 89.8,
+        "weighteddeathDistribution": 86.2
+      }
+    ],
+    "African American": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.9,
+        "popDistribution": 1.5,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": 16,
+        "covideathDistribution": 1.2,
+        "popDistribution": 2.9,
+        "weighteddeathDistribution": 3.8
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 1.7
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "New Hampshire",
+        "covidDeaths": 34,
+        "covideathDistribution": 2.6,
+        "popDistribution": 4.0,
+        "weighteddeathDistribution": 6.0
+      }
+    ]
+  },
+  "34": {
+    "White": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": 13738,
+        "covideathDistribution": 56.4,
+        "popDistribution": 54.6,
+        "weighteddeathDistribution": 50.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": 4039,
+        "covideathDistribution": 16.6,
+        "popDistribution": 12.9,
+        "weighteddeathDistribution": 14.1
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": 18,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Asian": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": 1467,
+        "covideathDistribution": 6.0,
+        "popDistribution": 9.8,
+        "weighteddeathDistribution": 11.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": 92,
+        "covideathDistribution": 0.4,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 1.5
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "New Jersey",
+        "covidDeaths": 4994,
+        "covideathDistribution": 20.5,
+        "popDistribution": 20.9,
+        "weighteddeathDistribution": 22.4
+      }
+    ]
+  },
+  "35": {
+    "White": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": 1133,
+        "covideathDistribution": 27.7,
+        "popDistribution": 36.8,
+        "weighteddeathDistribution": 37.3
+      }
+    ],
+    "African American": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": 50,
+        "covideathDistribution": 1.2,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": 1269,
+        "covideathDistribution": 31.0,
+        "popDistribution": 8.8,
+        "weighteddeathDistribution": 6.5
+      }
+    ],
+    "Asian": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": 22,
+        "covideathDistribution": 0.5,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.5,
+        "weighteddeathDistribution": 1.8
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "New Mexico",
+        "covidDeaths": 1599,
+        "covideathDistribution": 39.1,
+        "popDistribution": 49.3,
+        "weighteddeathDistribution": 49.7
+      }
+    ]
+  },
+  "36": {
+    "White": [
+      {
+        "state": "New York",
+        "covidDeaths": 18124,
+        "covideathDistribution": 72.4,
+        "popDistribution": 72.6,
+        "weighteddeathDistribution": 64.0
+      }
+    ],
+    "African American": [
+      {
+        "state": "New York",
+        "covidDeaths": 3051,
+        "covideathDistribution": 12.2,
+        "popDistribution": 8.9,
+        "weighteddeathDistribution": 10.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "New York",
+        "covidDeaths": 58,
+        "covideathDistribution": 0.2,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "New York",
+        "covidDeaths": 793,
+        "covideathDistribution": 3.2,
+        "popDistribution": 4.4,
+        "weighteddeathDistribution": 6.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "New York",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "New York",
+        "covidDeaths": 49,
+        "covideathDistribution": 0.2,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 1.6
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "New York",
+        "covidDeaths": 2877,
+        "covideathDistribution": 11.5,
+        "popDistribution": 11.9,
+        "weighteddeathDistribution": 17.1
+      }
+    ]
+  },
+  "37": {
+    "White": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": 8479,
+        "covideathDistribution": 66.9,
+        "popDistribution": 62.6,
+        "weighteddeathDistribution": 55.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": 3233,
+        "covideathDistribution": 25.5,
+        "popDistribution": 21.4,
+        "weighteddeathDistribution": 25.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": 149,
+        "covideathDistribution": 1.2,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 0.6
+      }
+    ],
+    "Asian": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": 145,
+        "covideathDistribution": 1.1,
+        "popDistribution": 3.1,
+        "weighteddeathDistribution": 5.0
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": 13,
+        "covideathDistribution": 0.1,
+        "popDistribution": 2.0,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "North Carolina",
+        "covidDeaths": 635,
+        "covideathDistribution": 5.0,
+        "popDistribution": 9.8,
+        "weighteddeathDistribution": 11.1
+      }
+    ]
+  },
+  "38": {
+    "White": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": 1514,
+        "covideathDistribution": 87.8,
+        "popDistribution": 83.7,
+        "weighteddeathDistribution": 84.9
+      }
+    ],
+    "African American": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.7,
+        "popDistribution": 3.3,
+        "weighteddeathDistribution": 5.1
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": 148,
+        "covideathDistribution": 8.6,
+        "popDistribution": 5.1,
+        "weighteddeathDistribution": 2.0
+      }
+    ],
+    "Asian": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.6,
+        "weighteddeathDistribution": 2.6
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 2.0
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "North Dakota",
+        "covidDeaths": 31,
+        "covideathDistribution": 1.8,
+        "popDistribution": 4.1,
+        "weighteddeathDistribution": 3.3
+      }
+    ]
+  },
+  "39": {
+    "White": [
+      {
+        "state": "Ohio",
+        "covidDeaths": 18995,
+        "covideathDistribution": 84.6,
+        "popDistribution": 78.4,
+        "weighteddeathDistribution": 66.3
+      }
+    ],
+    "African American": [
+      {
+        "state": "Ohio",
+        "covidDeaths": 2809,
+        "covideathDistribution": 12.5,
+        "popDistribution": 12.7,
+        "weighteddeathDistribution": 22.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Ohio",
+        "covidDeaths": 15,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Ohio",
+        "covidDeaths": 199,
+        "covideathDistribution": 0.9,
+        "popDistribution": 2.5,
+        "weighteddeathDistribution": 3.5
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Ohio",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Ohio",
+        "covidDeaths": 27,
+        "covideathDistribution": 0.1,
+        "popDistribution": 2.2,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Ohio",
+        "covidDeaths": 399,
+        "covideathDistribution": 1.8,
+        "popDistribution": 4.0,
+        "weighteddeathDistribution": 5.1
+      }
+    ]
+  },
+  "40": {
+    "White": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 6165,
+        "covideathDistribution": 72.8,
+        "popDistribution": 65.0,
+        "weighteddeathDistribution": 58.7
+      }
+    ],
+    "African American": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 583,
+        "covideathDistribution": 6.9,
+        "popDistribution": 7.4,
+        "weighteddeathDistribution": 12.6
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 873,
+        "covideathDistribution": 10.3,
+        "popDistribution": 8.4,
+        "weighteddeathDistribution": 4.6
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 103,
+        "covideathDistribution": 1.2,
+        "popDistribution": 2.3,
+        "weighteddeathDistribution": 3.5
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 24,
+        "covideathDistribution": 0.3,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 193,
+        "covideathDistribution": 2.3,
+        "popDistribution": 5.7,
+        "weighteddeathDistribution": 5.1
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Oklahoma",
+        "covidDeaths": 527,
+        "covideathDistribution": 6.2,
+        "popDistribution": 11.1,
+        "weighteddeathDistribution": 15.4
+      }
+    ]
+  },
+  "41": {
+    "White": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 2031,
+        "covideathDistribution": 79.6,
+        "popDistribution": 75.1,
+        "weighteddeathDistribution": 70.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 54,
+        "covideathDistribution": 2.1,
+        "popDistribution": 2.0,
+        "weighteddeathDistribution": 3.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 56,
+        "covideathDistribution": 2.2,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 0.8
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 89,
+        "covideathDistribution": 3.5,
+        "popDistribution": 4.7,
+        "weighteddeathDistribution": 7.0
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 19,
+        "covideathDistribution": 0.7,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.6
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 13,
+        "covideathDistribution": 0.5,
+        "popDistribution": 3.3,
+        "weighteddeathDistribution": 3.7
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Oregon",
+        "covidDeaths": 281,
+        "covideathDistribution": 11.0,
+        "popDistribution": 13.4,
+        "weighteddeathDistribution": 13.7
+      }
+    ]
+  },
+  "42": {
+    "White": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": 22633,
+        "covideathDistribution": 81.0,
+        "popDistribution": 75.7,
+        "weighteddeathDistribution": 63.2
+      }
+    ],
+    "African American": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": 3511,
+        "covideathDistribution": 12.6,
+        "popDistribution": 10.9,
+        "weighteddeathDistribution": 19.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": 11,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": 547,
+        "covideathDistribution": 2.0,
+        "popDistribution": 3.7,
+        "weighteddeathDistribution": 5.5
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": 36,
+        "covideathDistribution": 0.1,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 1.9
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Pennsylvania",
+        "covidDeaths": 1163,
+        "covideathDistribution": 4.2,
+        "popDistribution": 7.8,
+        "weighteddeathDistribution": 9.6
+      }
+    ]
+  },
+  "44": {
+    "White": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": 2246,
+        "covideathDistribution": 84.2,
+        "popDistribution": 71.4,
+        "weighteddeathDistribution": 61.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": 119,
+        "covideathDistribution": 4.5,
+        "popDistribution": 6.1,
+        "weighteddeathDistribution": 8.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": 10,
+        "covideathDistribution": 0.4,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.4
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": 66,
+        "covideathDistribution": 2.5,
+        "popDistribution": 3.6,
+        "weighteddeathDistribution": 4.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Rhode Island",
+        "covidDeaths": 218,
+        "covideathDistribution": 8.2,
+        "popDistribution": 16.3,
+        "weighteddeathDistribution": 22.8
+      }
+    ]
+  },
+  "45": {
+    "White": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": 5794,
+        "covideathDistribution": 63.6,
+        "popDistribution": 63.7,
+        "weighteddeathDistribution": 64.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": 2997,
+        "covideathDistribution": 32.9,
+        "popDistribution": 26.4,
+        "weighteddeathDistribution": 24.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": 25,
+        "covideathDistribution": 0.3,
+        "popDistribution": 0.4,
+        "weighteddeathDistribution": 0.3
+      }
+    ],
+    "Asian": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": 68,
+        "covideathDistribution": 0.7,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 2.2
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 1.8
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "South Carolina",
+        "covidDeaths": 212,
+        "covideathDistribution": 2.3,
+        "popDistribution": 6.0,
+        "weighteddeathDistribution": 6.6
+      }
+    ]
+  },
+  "46": {
+    "White": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": 1771,
+        "covideathDistribution": 85.5,
+        "popDistribution": 82.8,
+        "weighteddeathDistribution": 82.2
+      }
+    ],
+    "African American": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.2,
+        "weighteddeathDistribution": 5.0
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": 240,
+        "covideathDistribution": 11.6,
+        "popDistribution": 7.0,
+        "weighteddeathDistribution": 3.4
+      }
+    ],
+    "Asian": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": 20,
+        "covideathDistribution": 1.0,
+        "popDistribution": 1.5,
+        "weighteddeathDistribution": 1.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.2,
+        "weighteddeathDistribution": 2.4
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "South Dakota",
+        "covidDeaths": 26,
+        "covideathDistribution": 1.3,
+        "popDistribution": 4.2,
+        "weighteddeathDistribution": 5.0
+      }
+    ]
+  },
+  "47": {
+    "White": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": 10185,
+        "covideathDistribution": 78.3,
+        "popDistribution": 73.5,
+        "weighteddeathDistribution": 56.0
+      }
+    ],
+    "African American": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": 2332,
+        "covideathDistribution": 17.9,
+        "popDistribution": 16.7,
+        "weighteddeathDistribution": 31.7
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": 11,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": 100,
+        "covideathDistribution": 0.8,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 2.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": 16,
+        "covideathDistribution": 0.1,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 1.8
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Tennessee",
+        "covidDeaths": 348,
+        "covideathDistribution": 2.7,
+        "popDistribution": 5.7,
+        "weighteddeathDistribution": 7.3
+      }
+    ]
+  },
+  "48": {
+    "White": [
+      {
+        "state": "Texas",
+        "covidDeaths": 22794,
+        "covideathDistribution": 41.8,
+        "popDistribution": 41.2,
+        "weighteddeathDistribution": 31.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "Texas",
+        "covidDeaths": 5652,
+        "covideathDistribution": 10.4,
+        "popDistribution": 12.1,
+        "weighteddeathDistribution": 15.4
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Texas",
+        "covidDeaths": 96,
+        "covideathDistribution": 0.2,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Texas",
+        "covidDeaths": 1163,
+        "covideathDistribution": 2.1,
+        "popDistribution": 5.0,
+        "weighteddeathDistribution": 5.9
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Texas",
+        "covidDeaths": 32,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Texas",
+        "covidDeaths": 65,
+        "covideathDistribution": 0.1,
+        "popDistribution": 1.5,
+        "weighteddeathDistribution": 1.5
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Texas",
+        "covidDeaths": 24713,
+        "covideathDistribution": 45.3,
+        "popDistribution": 39.7,
+        "weighteddeathDistribution": 45.4
+      }
+    ]
+  },
+  "49": {
+    "White": [
+      {
+        "state": "Utah",
+        "covidDeaths": 1803,
+        "covideathDistribution": 73.3,
+        "popDistribution": 77.8,
+        "weighteddeathDistribution": 73.1
+      }
+    ],
+    "African American": [
+      {
+        "state": "Utah",
+        "covidDeaths": 20,
+        "covideathDistribution": 0.8,
+        "popDistribution": 1.2,
+        "weighteddeathDistribution": 1.6
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Utah",
+        "covidDeaths": 94,
+        "covideathDistribution": 3.8,
+        "popDistribution": 0.9,
+        "weighteddeathDistribution": 0.6
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Utah",
+        "covidDeaths": 75,
+        "covideathDistribution": 3.0,
+        "popDistribution": 2.5,
+        "weighteddeathDistribution": 3.7
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Utah",
+        "covidDeaths": 76,
+        "covideathDistribution": 3.1,
+        "popDistribution": 1.0,
+        "weighteddeathDistribution": 1.4
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Utah",
+        "covidDeaths": 15,
+        "covideathDistribution": 0.6,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 2.3
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Utah",
+        "covidDeaths": 378,
+        "covideathDistribution": 15.4,
+        "popDistribution": 14.4,
+        "weighteddeathDistribution": 17.3
+      }
+    ]
+  },
+  "50": {
+    "White": [
+      {
+        "state": "Vermont",
+        "covidDeaths": 232,
+        "covideathDistribution": 96.7,
+        "popDistribution": 92.6,
+        "weighteddeathDistribution": 89.5
+      }
+    ],
+    "African American": [
+      {
+        "state": "Vermont",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.3,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Vermont",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Vermont",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.9,
+        "weighteddeathDistribution": 3.8
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Vermont",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Vermont",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Vermont",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 2.0,
+        "weighteddeathDistribution": 2.3
+      }
+    ]
+  },
+  "51": {
+    "White": [
+      {
+        "state": "Virginia",
+        "covidDeaths": 6949,
+        "covideathDistribution": 63.6,
+        "popDistribution": 61.2,
+        "weighteddeathDistribution": 52.9
+      }
+    ],
+    "African American": [
+      {
+        "state": "Virginia",
+        "covidDeaths": 2735,
+        "covideathDistribution": 25.0,
+        "popDistribution": 19.1,
+        "weighteddeathDistribution": 18.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Virginia",
+        "covidDeaths": 12,
+        "covideathDistribution": 0.1,
+        "popDistribution": 0.3,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Virginia",
+        "covidDeaths": 428,
+        "covideathDistribution": 3.9,
+        "popDistribution": 6.8,
+        "weighteddeathDistribution": 12.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Virginia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Virginia",
+        "covidDeaths": 36,
+        "covideathDistribution": 0.3,
+        "popDistribution": 2.7,
+        "weighteddeathDistribution": 3.1
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Virginia",
+        "covidDeaths": 731,
+        "covideathDistribution": 6.7,
+        "popDistribution": 9.8,
+        "weighteddeathDistribution": 12.8
+      }
+    ]
+  },
+  "53": {
+    "White": [
+      {
+        "state": "Washington",
+        "covidDeaths": 3889,
+        "covideathDistribution": 71.2,
+        "popDistribution": 67.5,
+        "weighteddeathDistribution": 62.1
+      }
+    ],
+    "African American": [
+      {
+        "state": "Washington",
+        "covidDeaths": 191,
+        "covideathDistribution": 3.5,
+        "popDistribution": 4.0,
+        "weighteddeathDistribution": 5.8
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Washington",
+        "covidDeaths": 142,
+        "covideathDistribution": 2.6,
+        "popDistribution": 1.3,
+        "weighteddeathDistribution": 0.8
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Washington",
+        "covidDeaths": 415,
+        "covideathDistribution": 7.6,
+        "popDistribution": 9.3,
+        "weighteddeathDistribution": 15.0
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Washington",
+        "covidDeaths": 102,
+        "covideathDistribution": 1.9,
+        "popDistribution": 0.7,
+        "weighteddeathDistribution": 0.8
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Washington",
+        "covidDeaths": 64,
+        "covideathDistribution": 1.2,
+        "popDistribution": 4.1,
+        "weighteddeathDistribution": 4.5
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Washington",
+        "covidDeaths": 652,
+        "covideathDistribution": 11.9,
+        "popDistribution": 13.0,
+        "weighteddeathDistribution": 10.9
+      }
+    ]
+  },
+  "54": {
+    "White": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": 2686,
+        "covideathDistribution": 95.9,
+        "popDistribution": 92.0,
+        "weighteddeathDistribution": 89.4
+      }
+    ],
+    "African American": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": 92,
+        "covideathDistribution": 3.3,
+        "popDistribution": 3.5,
+        "weighteddeathDistribution": 5.2
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.2,
+        "weighteddeathDistribution": 0.2
+      }
+    ],
+    "Asian": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.8,
+        "weighteddeathDistribution": 1.3
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 2.2
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "West Virginia",
+        "covidDeaths": 10,
+        "covideathDistribution": 0.4,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 1.7
+      }
+    ]
+  },
+  "55": {
+    "White": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": 7020,
+        "covideathDistribution": 85.5,
+        "popDistribution": 80.9,
+        "weighteddeathDistribution": 66.6
+      }
+    ],
+    "African American": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": 532,
+        "covideathDistribution": 6.5,
+        "popDistribution": 6.4,
+        "weighteddeathDistribution": 15.3
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": 98,
+        "covideathDistribution": 1.2,
+        "popDistribution": 0.9,
+        "weighteddeathDistribution": 0.6
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": 140,
+        "covideathDistribution": 1.7,
+        "popDistribution": 3.0,
+        "weighteddeathDistribution": 4.2
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 0.0,
+        "weighteddeathDistribution": 0.0
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": 11,
+        "covideathDistribution": 0.1,
+        "popDistribution": 1.7,
+        "weighteddeathDistribution": 2.1
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Wisconsin",
+        "covidDeaths": 406,
+        "covideathDistribution": 4.9,
+        "popDistribution": 7.1,
+        "weighteddeathDistribution": 11.2
+      }
+    ]
+  },
+  "56": {
+    "White": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": 528,
+        "covideathDistribution": 82.2,
+        "popDistribution": 83.7,
+        "weighteddeathDistribution": 82.7
+      }
+    ],
+    "African American": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 1.5
+      }
+    ],
+    "American Natives": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": 47,
+        "covideathDistribution": 7.3,
+        "popDistribution": 2.1,
+        "weighteddeathDistribution": 1.9
+      }
+    ],
+    "Asian": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.1,
+        "weighteddeathDistribution": 1.0
+      }
+    ],
+    "NHPI": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": 0,
+        "covideathDistribution": 0.0,
+        "popDistribution": 0.1,
+        "weighteddeathDistribution": 0.1
+      }
+    ],
+    "Non Hispanic": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": -9999,
+        "covideathDistribution": -9999.0,
+        "popDistribution": 1.8,
+        "weighteddeathDistribution": 2.0
+      }
+    ],
+    "Hispanic": [
+      {
+        "state": "Wyoming",
+        "covidDeaths": 58,
+        "covideathDistribution": 9.0,
+        "popDistribution": 10.1,
+        "weighteddeathDistribution": 10.9
+      }
+    ]
+  }
+}
