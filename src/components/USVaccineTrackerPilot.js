@@ -444,6 +444,7 @@ const SideRaceBarChart = (props) => {
   const [hoverBar, setHoverBar] = useState();
   const [activeIndex, setActiveIndex] = useState(-1)
 
+  console.log("vaccRaceDate", props.vaccRaceDate)
   // const valueAccessor = attribute => ({ payload }) => {
   //   return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
 
@@ -651,7 +652,6 @@ const SideRaceBarChart = (props) => {
     return entry ? (entry.value.toFixed(1) + '%') : null;
   };
 
-  console.log('active index', activeIndex);
 
   const sideBySideColor = [pieChartRace[6], pieChartRace[5],pieChartRace[4],pieChartRace[3],pieChartRace[1],pieChartRace[2], pieChartRace[0]]
   const sideBySideColor_sep = [pieChartRace[3],pieChartRace[1], pieChartRace[0]]
@@ -910,6 +910,8 @@ const SideRaceBarChart = (props) => {
             content: {
                 content: (
                   <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 5, paddingLeft: 5, width: 400, lineHeight: '20px'}}>
+                    Data as of {props.vaccRaceDate}
+                    <br/> <br/>
                     The left chart shows the race and ethnicity of persons who have received at least one vaccine dose in {props.stateName}. 
                     {props.vaccRaceState[props.fips]["stateReports"]==="Hisp and NonHisp Races" ? ' ' + props.stateName+' includes Hispanic individuals in the racial categories. ' : ' '}
                     The racial breakdown of those vaccinated is based on persons with known race/ethnicity. 
@@ -1011,6 +1013,7 @@ const USVaccineTracker = (props) => {
   const [date, setDate] = useState('');
   const [vaccineDate, setVaccineDate] = useState('');
   const [nationalDemogDate, setNationalDemogDate] = useState('');
+  const [vaccRaceDate, setVaccRaceDate] = useState('')
 
   const [countyName, setCountyName] = useState();
   const [countyTooltip, setCountyTooltip] = useState(false);
@@ -1268,6 +1271,10 @@ const USVaccineTracker = (props) => {
       
         fetch('/data/vaccRaceState.json').then(res => res.json())
         .then(x => {setVaccRaceState(x);});
+
+        fetch('/data/vaccRaceStatedate.json').then(res => res.json())
+        .then(x => {setVaccRaceDate(x.date.substring(5,7) + "/" + x.date.substring(8,10) + "/" + x.date.substring(0,4));});
+      
     }
   }, [fully]);
 
@@ -2196,6 +2203,7 @@ const USVaccineTracker = (props) => {
                               vaccRaceState = {vaccRaceState}
                               inTab = {true}
                               stateName = {stateName}
+                              vaccRaceDate = {vaccRaceDate}
                             />
                           </TabPanel>
                         </Grid.Row>
