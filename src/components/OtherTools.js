@@ -3,11 +3,11 @@ import AppBar from './AppBar';
 import Notes from './Notes';
 import { Container, Grid, List, Divider, Image, Header, Table } from 'semantic-ui-react'
 
-export default function DataSources(props){
+export default function OtherTools(props){
 
   return (
     <div>
-      <AppBar menu='dataSources'/>
+      <AppBar menu='otherTools'/>
       <Container style={{marginTop: '8em', minWidth: '1260px'}}>
         <Header as='h1' style={{paddingTop: 16, fontWeight: 400, fontSize: "24pt"}}>
 
