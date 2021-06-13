@@ -58,7 +58,7 @@ export default function AppBar(props) {
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='otherTools'} 
             onClick={() => history.push('/other-tools')}
-            name='mediaHub'>
+            name='otherTools'>
             Other Tools 
           </Menu.Item>
 
