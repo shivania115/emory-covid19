@@ -377,8 +377,10 @@ const SideRaceBarChart = (props) => {
         <div className='tooltip' style={{ background: 'white', border: '2px', borderStyle: 'solid', borderColor: '#DCDCDC', borderRadius: '2px', padding: '0.8rem' }}>
           <p style={{ marginBottom: 4 }}> <b> {payload[0].payload.name} </b> </p>
           {/* color: sideBySideColor[data.indexOf(payload[0].payload)] */}
-          <p className="label" style={{ marginBottom: 0 }}>% Weighted Death: {payload[0].payload.vaxvalue === 0 ? 'NA' : (props.fips === '_nation' ? payload[0].payload.weightedDeathDist.toFixed(1) : payload[0].payload.weightedDeathDist)}</p>
+          <p className="label" style={{ marginBottom: 0 }}>% Covid Death: {payload[0].payload.vaxvalue === 0 ? 'NA' : (props.fips === '_nation' ? payload[0].payload.weightedDeathDist.toFixed(1) : payload[0].payload.weightedDeathDist)}</p>
           <p className="label" style={{ marginBottom: 3 }}>% Population: {payload[0].payload.popvalue === 0 ? 'NA' : (props.fips === '_nation' ? payload[0].payload.popDist.toFixed(1) : payload[0].payload.popDist)}</p>
+
+
         </div>
       );
     }
@@ -440,48 +442,7 @@ const SideRaceBarChart = (props) => {
           return (
             <Grid>
               <Grid.Column width={props.inTab === true ? 6 : 7} style={{ paddingLeft: props.inTab === true ? '0rem' : '0.5rem', paddingTop: props.inTab === true ? '7rem' : '1rem', paddingRight: 0 }}>
-                <Header style={{ fontSize: '10pt', paddingLeft: '5rem' }}> % Population </Header>
-                <BarChart
-                  transform={props.inTab === false ? "translate(10, 0)" : "translate(-15, 0)"}
-                  layout='vertical'
-                  width={props.inTab === true ? 220 : 250}
-                  height={props.inTab === true ? 330 : 330}
-                  data={data}
-                  margin={{
-                    top: 0,
-                    right: 15,
-                    left: 35,
-                    bottom: 0,
-                  }}
-                >
-                  {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                  <XAxis type="number" domain={[0, 100]} />
-                  {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-                  <YAxis type="category" dataKey='name' tick={{ fontSize: tickFontSize, fill: 'black' }} />
-                  <Tooltip wrapperStyle={{ zIndex: 10 }} content={<CustomTooltip />}
-                    // formatter={function(value, name) {
-                    //     if(name === hoverBar){
-                    //       return [value,name];
-                    //     }else {
-                    //       return null
-                    //     }
-                    //   }}
-                    cursor={false} />
-                  <Bar dataKey="popDist" barSize={barSize}
-                    isAnimationActive={false}>
-                    {
-                      data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
-                      ))
-                    }
-                    <LabelList position="right" content={props.fips === '_nation' ? <CustomizedLabellist /> : <CustomizedLabellist_state />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize} />
-                    {/* valueAccessor={valueAccessor} */}
-                  </Bar>
-
-                </BarChart>
-              </Grid.Column>
-              <Grid.Column width={9} style={{ paddingLeft: 0, paddingTop: props.inTab === true ? '7rem' : '1rem' }}>
-                <Header style={{ fontSize: '10pt', paddingLeft: props.inTab === true ? '4.5rem' : '5.5rem' }}> % Weighted Death </Header>
+                <Header style={{ fontSize: '10pt', paddingLeft: props.inTab === true ? '4.5rem' : '5.5rem' }}> % Covid Deaths </Header>
                 <BarChart
                   transform={props.inTab === false ? "translate(10, 0)" : "translate(-15, 0)"}
                   layout='vertical'
@@ -522,6 +483,48 @@ const SideRaceBarChart = (props) => {
 
                 </BarChart>
 
+              </Grid.Column>
+              <Grid.Column width={9} style={{ paddingLeft: 0, paddingTop: props.inTab === true ? '7rem' : '1rem' }}>
+
+                <Header style={{ fontSize: '10pt', paddingLeft: '5rem' }}> % Population </Header>
+                <BarChart
+                  transform={props.inTab === false ? "translate(10, 0)" : "translate(-15, 0)"}
+                  layout='vertical'
+                  width={props.inTab === true ? 220 : 250}
+                  height={props.inTab === true ? 330 : 330}
+                  data={data}
+                  margin={{
+                    top: 0,
+                    right: 15,
+                    left: 35,
+                    bottom: 0,
+                  }}
+                >
+                  {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                  <XAxis type="number" domain={[0, 100]} />
+                  {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
+                  <YAxis type="category" dataKey='name' tick={{ fontSize: tickFontSize, fill: 'black' }} />
+                  <Tooltip wrapperStyle={{ zIndex: 10 }} content={<CustomTooltip />}
+                    // formatter={function(value, name) {
+                    //     if(name === hoverBar){
+                    //       return [value,name];
+                    //     }else {
+                    //       return null
+                    //     }
+                    //   }}
+                    cursor={false} />
+                  <Bar dataKey="popDist" barSize={barSize}
+                    isAnimationActive={false}>
+                    {
+                      data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
+                      ))
+                    }
+                    <LabelList position="right" content={props.fips === '_nation' ? <CustomizedLabellist /> : <CustomizedLabellist_state />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize} />
+                    {/* valueAccessor={valueAccessor} */}
+                  </Bar>
+
+                </BarChart>
 
               </Grid.Column>
               {/* {props.fips !== '_nation' ?
