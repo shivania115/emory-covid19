@@ -38,12 +38,13 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
         <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
-        <p style = {{margin: 0, color: colorPalette[0]}} className="intro">{`Percent Vaccinated: ${(payload[0].value).toFixed(0)}`}</p>
-        <p style = {{margin: 0, color : colorPalette[1]}} className="intro">{`Percent Vaccinated: ${(payload[1].value).toFixed(0)}`}</p>
-        {payload.length > 2 && <p style = {{margin: 0, color : colorPalette[2]}} className="intro">{`Percent Vaccinated: ${(payload[2].value).toFixed(0)}`}</p>}
-        {payload.length > 2 && <p style = {{margin: 0, color : colorPalette[3]}} className="intro">{`Percent Vaccinated: ${(payload[3].value).toFixed(0)}`}</p>}
-        {payload.length > 4 && <p style = {{margin: 0, color : colorPalette[4]}} className="intro">{`Percent Vaccinated: ${(payload[4].value).toFixed(0)}`}</p>}
-        {payload.length > 4 && <p style = {{margin: 0, color : colorPalette[5]}} className="intro">{`Percent Vaccinated: ${(payload[5].value).toFixed(0)}`}</p>}
+        <p style = {{margin: 0, color: "#FF0000"}} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color: colorPalette[0]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color : colorPalette[1]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(0)}`}</p>
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPalette[2]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(0)}`}</p>}
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPalette[3]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(0)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPalette[4]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(0)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPalette[5]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(0)}`}</p>}
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -54,34 +55,37 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 function VaccineDisparityCharts(props){
   const caseYTickFmt = (y) => {
-    return y<1000?y.toFixed(0):(y/1000+'k');
+    return y<1000?y.toFixed(0) + "%":(y/1000+'k');
   };
   return(
     <div style = {{fontSize: "19px"}}>
       <br/>
-      <center><p> Vaccination Overtime by Vulnerable Populations</p></center>
+      <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
       <LineChart width={720} height={450} data = {props.data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" tick={{fontSize: 16}} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={["dataMin", "dataMax"]}/>
+        <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={"#FF0000"} strokeWidth="3" />
         <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[0]} strokeWidth="2" />
+              stroke={colorPalette[0]} strokeWidth="3" />
         <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[1]} strokeWidth="2" />
-        {props.selection === "region" || props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[2]]} name={props.trendGroup[2]} type='monotone' dataKey={props.outcome} dot={false} 
+              stroke={colorPalette[1]} strokeWidth="3" />
+        {(props.selection === "region" || props.selection === "urbanrural") && <Line data={props.data[props.trendGroup[2]]} name={props.trendGroup[2]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[2]} strokeWidth="2" />}
-        {props.selection === "region" || props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[3]]} name={props.trendGroup[3]} type='monotone' dataKey={props.outcome} dot={false} 
+              stroke={colorPalette[2]} strokeWidth="3" />}
+        {(props.selection === "region" || props.selection === "urbanrural") && <Line data={props.data[props.trendGroup[3]]} name={props.trendGroup[3]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[3]} strokeWidth="2" />}
+              stroke={colorPalette[3]} strokeWidth="3" />}
         {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[4]]} name={props.trendGroup[4]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[4]} strokeWidth="2" />}
+              stroke={colorPalette[4]} strokeWidth="3" />}
         {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[5]]} name={props.trendGroup[5]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[5]} strokeWidth="2" />}
+              stroke={colorPalette[5]} strokeWidth="3" />}
         <Legend />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
@@ -270,7 +274,7 @@ export default function AboutUs(props){
                         
                         
                         {vaccDisparityData && <VaccineDisparityCharts data = {vaccDisparityData} 
-                          aboveM = {vTrendGroup[0]} belowM = {vTrendGroup[1]} selection = {selection} outcome = {"percentFullyVaccinated"} 
+                          aboveM = {vTrendGroup[0]} belowM = {vTrendGroup[1]} nationalAverage = {"National Average"} selection = {selection} outcome = {"percentFullyVaccinated"} 
                           formatter= {caseTickFmt} trendGroup = {vTrendGroup}/>}
                       </div>
 
