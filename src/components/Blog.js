@@ -247,6 +247,11 @@ export default function AboutUs(props){
                             "Counties in the Northeast", "Counties in the Midwest", ]); 
                             setRegion(true);
                           }}/>
+                          <Button content='college' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of population with college education",
+                            "Counties with low proportion of population with college education"]); 
+                            setRegion(false);
+                          }}/>
                         </center>
                         
                         
