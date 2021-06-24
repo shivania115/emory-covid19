@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Accordion, Icon } from 'semantic-ui-react'
+import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Accordion, Icon, Tab } from 'semantic-ui-react'
 import AppBar from './AppBar';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
@@ -262,57 +262,57 @@ const SideRaceBarChart = (props) => {
         name: 'Non Hispanic',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['Non Hispanic'][0]['popDistribution']
           : (props.stateDeath[props.fips]['Non Hispanic'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Non Hispanic'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['Non Hispanic'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['Non Hispanic'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['Non Hispanic'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['Non Hispanic'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['Non Hispanic'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['Non Hispanic'][0]['covideathDistribution'])
       },
       {
         name: 'African American',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['African American'][0]['popDistribution']
           : (props.stateDeath[props.fips]['African American'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['African American'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['African American'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['African American'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['African American'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['African American'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['African American'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['African American'][0]['covideathDistribution'])
       },
       {
         name: 'American Natives',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['American Natives'][0]['popDistribution']
           : (props.stateDeath[props.fips]['American Natives'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['American Natives'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['American Natives'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['American Natives'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['American Natives'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['American Natives'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['American Natives'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['American Natives'][0]['covideathDistribution'])
       },
       {
         name: 'Asian',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['Asian'][0]['popDistribution']
           : (props.stateDeath[props.fips]['Asian'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Asian'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['Asian'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['Asian'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['Asian'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['Asian'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['Asian'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['Asian'][0]['covideathDistribution'])
       },
       {
         name: 'NHPI',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['NHPI'][0]['popDistribution']
           : (props.stateDeath[props.fips]['NHPI'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['NHPI'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['NHPI'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['NHPI'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['NHPI'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['NHPI'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['NHPI'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['NHPI'][0]['covideathDistribution'])
       },
       {
         name: 'Hispanic',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['Hispanic'][0]['popDistribution']
           : (props.stateDeath[props.fips]['Hispanic'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Hispanic'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['Hispanic'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['Hispanic'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['Hispanic'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['Hispanic'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['Hispanic'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['Hispanic'][0]['covideathDistribution'])
       },
       {
         name: 'White',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['White'][0]['popDistribution']
           : (props.stateDeath[props.fips]['White'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['White'][0]['popDistribution']),
-        weightedDeathDist: props.fips === '_nation' ? props.stateDeath['_nation']['White'][0]['weighteddeathDistribution']
-          : (props.stateDeath[props.fips]['White'][0]['weighteddeathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['White'][0]['weighteddeathDistribution'])
+        covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['White'][0]['covideathDistribution']
+          : (props.stateDeath[props.fips]['White'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['White'][0]['covideathDistribution'])
       },
     ]
 
@@ -377,7 +377,7 @@ const SideRaceBarChart = (props) => {
         <div className='tooltip' style={{ background: 'white', border: '2px', borderStyle: 'solid', borderColor: '#DCDCDC', borderRadius: '2px', padding: '0.8rem' }}>
           <p style={{ marginBottom: 4 }}> <b> {payload[0].payload.name} </b> </p>
           {/* color: sideBySideColor[data.indexOf(payload[0].payload)] */}
-          <p className="label" style={{ marginBottom: 0 }}>% Covid Death: {payload[0].payload.vaxvalue === 0 ? 'NA' : (props.fips === '_nation' ? payload[0].payload.weightedDeathDist.toFixed(1) : payload[0].payload.weightedDeathDist)}</p>
+          <p className="label" style={{ marginBottom: 0 }}>% Covid Death: {payload[0].payload.vaxvalue === 0 ? 'NA' : (props.fips === '_nation' ? payload[0].payload.covideathDistribution.toFixed(1) : payload[0].payload.covideathDistribution)}</p>
           <p className="label" style={{ marginBottom: 3 }}>% Population: {payload[0].payload.popvalue === 0 ? 'NA' : (props.fips === '_nation' ? payload[0].payload.popDist.toFixed(1) : payload[0].payload.popDist)}</p>
 
 
@@ -441,7 +441,7 @@ const SideRaceBarChart = (props) => {
         if (props.fips != "error") {
           return (
             <Grid>
-              <Grid.Column width={props.inTab === true ? 6 : 7} style={{ paddingLeft: props.inTab === true ? '0rem' : '0.5rem', paddingTop: props.inTab === true ? '7rem' : '1rem', paddingRight: 0 }}>
+              <Grid.Column width={props.inTab === true ? 6 : 7} style={{ paddingLeft: props.inTab === true ? '0rem' : '0.5rem', paddingTop: '3rem', paddingRight: 0 }}>
                 <Header style={{ fontSize: '10pt', paddingLeft: props.inTab === true ? '4.5rem' : '5.5rem' }}> % Covid Deaths </Header>
                 <BarChart
                   transform={props.inTab === false ? "translate(10, 0)" : "translate(-15, 0)"}
@@ -469,7 +469,7 @@ const SideRaceBarChart = (props) => {
                     //     }
                     //   }}
                     cursor={false} />
-                  <Bar dataKey="weightedDeathDist" barSize={barSize}
+                  <Bar dataKey="covideathDistribution" barSize={barSize}
                     isAnimationActive={false}>
                     {
 
@@ -484,7 +484,7 @@ const SideRaceBarChart = (props) => {
                 </BarChart>
 
               </Grid.Column>
-              <Grid.Column width={9} style={{ paddingLeft: 0, paddingTop: props.inTab === true ? '7rem' : '1rem' }}>
+              <Grid.Column width={9} style={{ paddingLeft: 0, paddingTop: '3rem' }}>
 
                 <Header style={{ fontSize: '10pt', paddingLeft: '5rem' }}> % Population </Header>
                 <BarChart
@@ -592,7 +592,7 @@ const SideRaceBarChart = (props) => {
                     <YAxis type="category" dataKey='name' tick={{ fontSize: tickFontSize, fill: 'black' }} />
                     <Tooltip wrapperStyle={{ zIndex: 10 }} content={<CustomTooltip />}
                       cursor={false} />
-                    <Bar dataKey="weightedDeathDist" barSize={barSize}
+                    <Bar dataKey="covideathDistribution" barSize={barSize}
                       isAnimationActive={false}>
                       {
                         data.map((entry, index) => (
@@ -781,6 +781,7 @@ export default function USMap(props) {
 
 
 
+
     //mongo
     // if (isLoggedIn === true){
     //   const fetchData = async() => {
@@ -908,6 +909,72 @@ export default function USMap(props) {
   //     setLegendMin(min.toFixed(0));
 
   // }, [metric]);
+  const panes = [
+    {
+      menuItem: { content: <p style={{ fontSize: "9.5pt" }}>COVID-19<br></br>Death Rates</p> }, render: () =>
+        <Grid.Row columns={1}>
+          <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
+            <Header as='h2' style={{ width: '420', textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingTop: "2rem" }}>
+              <Header.Content>
+                COVID-19 Death Rate per 100k
+              </Header.Content>
+            </Header>
+            <VictoryChart
+              theme={VictoryTheme.material}
+              width={630}
+              height={230}
+              domainPadding={20}
+              minDomain={{ y: props.ylog ? 1 : 0 }}
+              padding={{ left: 160, right: 100, top: 10, bottom: 10 }}
+              style={{ fontWeight: 300, paddingLeft: 100, paddingTop: 8, paddingBottom: 28, fontSize: "19px", lineHeight: "18pt" }}
+              containerComponent={<VictoryContainer responsive={false} />}
+            >
+              <VictoryAxis style={{ ticks: { stroke: "#FFFFFF" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "20px" }, tickLabels: { fontSize: "18px", fill: '#000000', fontFamily: 'lato' } }} />
+              <VictoryAxis dependentAxis
+                label='COVID-19 Cases per 100,000 Residents'
+                style={{
+                  ticks: { stroke: "transparent" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, axisLabel: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' },
+                  labels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' }, tickLabels: { fontSize: "0px", fill: '#000000', padding: 10, fontFamily: 'lato' }
+                }} />
+              <VictoryBar
+                horizontal
+                barRatio={0.6}
+                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                data={[
+                  { key: "White", 'value': (stateDeath[fips]["White"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["White"][0]['covideathDistribution']) },
+                  { key: "African American", 'value': (stateDeath[fips]["African American"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["African American"][0]['covideathDistribution']) },
+                  { key: "American Natives", 'value': (stateDeath[fips]["American Natives"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["American Natives"][0]['covideathDistribution']) },
+                  { key: "Asian", 'value': (stateDeath[fips]["Asian"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["Asian"][0]['covideathDistribution']) },
+                  { key: "NHPI", 'value': (stateDeath[fips]["NHPI"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["NHPI"][0]['covideathDistribution']) },
+                  { key: "Non Hispanic", 'value': (stateDeath[fips]["Non Hispanic"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["Non Hispanic"][0]['covideathDistribution']) },
+                  { key: "Hispanic", 'value': (stateDeath[fips]["Hispanic"][0]['covideathDistribution'] == '-9999' ? 0 : stateDeath[fips]["Hispanic"][0]['covideathDistribution']) }
+                ]}
+                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "18px", fill: "#000000" }} />}
+                style={{
+                  data: {
+                    fill: "#004071"
+                  }
+                }}
+                // style={{
+                //     data: {
+                //         fill: casesColor[1]
+                //     }
+                // }}
+                x="key"
+                y="value"
+              />
+            </VictoryChart>
+          </Grid.Column>
+        </Grid.Row>
+    },
+    {
+      menuItem: { content: <p style={{ fontSize: "9.5pt" }}>COVID-19<br></br>Death and Population</p> }, render: () =>
+        <SideRaceBarChart
+          stateDeath={stateDeath}
+          fips={fips}
+        />
+    }
+  ]
 
   if (data && allTS && metric && raceData) {
     // console.log(isJson(JSON.stringify(data)));
@@ -1315,10 +1382,8 @@ export default function USMap(props) {
 
                       </Header.Content>
                     </Header>
-                    <SideRaceBarChart
-                      stateDeath={stateDeath}
-                      fips={fips}
-                    />
+                    <Tab panes={panes} renderActiveOnly />
+
                     {/* {stateFips && stateFips === "_nation" && <div style={{ marginTop: 24 }}>
                       <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 170, fontWeight: 400 }}> Deaths by Race & Ethnicity</Header.Content>
                     </div>}
