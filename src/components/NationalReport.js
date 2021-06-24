@@ -5489,12 +5489,12 @@ export default function NationalReport(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChart['caserate'][0]['urbanrural'][0]['label'], 'value': (nationalBarChart['caserate'][0]['urbanrural'][0]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate'][0]['urbanrural'][1]['label'], 'value': (nationalBarChart['caserate'][0]['urbanrural'][1]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate'][0]['urbanrural'][2]['label'], 'value': (nationalBarChart['caserate'][0]['urbanrural'][2]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate'][0]['urbanrural'][3]['label'], 'value': (nationalBarChart['caserate'][0]['urbanrural'][3]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate'][0]['urbanrural'][4]['label'], 'value': (nationalBarChart['caserate'][0]['urbanrural'][4]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['caserate'][0]['urbanrural'][5]['label'], 'value': (nationalBarChart['caserate'][0]['urbanrural'][5]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0}
+                                  {key: "Inner city", 'value': (nationalBarChart['caserate'][0]['urbanrural'][0]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Large suburbs", 'value': (nationalBarChart['caserate'][0]['urbanrural'][1]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Small suburbs", 'value': (nationalBarChart['caserate'][0]['urbanrural'][2]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Small cities", 'value': (nationalBarChart['caserate'][0]['urbanrural'][3]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Rural areas near cities", 'value': (nationalBarChart['caserate'][0]['urbanrural'][4]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Remote rural areas", 'value': (nationalBarChart['caserate'][0]['urbanrural'][5]['measure']/nationalBarChart['caserate'][0]['urbanrural'][0]['measure'])*nationalBarChart['caserate'][0]['urbanrural'][0]['measure'] || 0}
 
 
 
@@ -5542,12 +5542,12 @@ export default function NationalReport(props) {
                             barRatio={0.80}
                             labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                             data={[
-                                  {key: nationalBarChart['covidmortality'][0]['urbanrural'][0]['label'], 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality'][0]['urbanrural'][1]['label'], 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][1]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality'][0]['urbanrural'][2]['label'], 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][2]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality'][0]['urbanrural'][3]['label'], 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][3]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality'][0]['urbanrural'][4]['label'], 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][4]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
-                                  {key: nationalBarChart['covidmortality'][0]['urbanrural'][5]['label'], 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][5]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0}
+                                  {key: "Inner city", 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Large suburbs", 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][1]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Small suburbs", 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][2]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Small cities", 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][3]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Rural areas near cities", 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][4]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0},
+                                  {key: "Remote rural areas", 'value': (nationalBarChart['covidmortality'][0]['urbanrural'][5]['measure']/nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'])*nationalBarChart['covidmortality'][0]['urbanrural'][0]['measure'] || 0}
 
 
 

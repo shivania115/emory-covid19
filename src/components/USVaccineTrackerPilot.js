@@ -1084,7 +1084,7 @@ const USVaccineTracker = (props) => {
       'Series_Complete_Pop_Pct': '% of population fully vaccinated (two doses received)'
 
     }
-    
+
   useEffect(() => {
     if (dataTS ){
       setCaseTicks([
