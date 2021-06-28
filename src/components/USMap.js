@@ -20,6 +20,7 @@ import {
 } from 'victory';
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
+import racedatadate from "./Pre-Processed Data/racedatadate.json";
 import _, { set } from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
@@ -224,7 +225,6 @@ function LatestOnThisDashboard() {
 const SideRaceBarChart = (props) => {
 
   // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
-  console.log( props);
 
   const [hoverBar, setHoverBar] = useState();
   const [activeIndex, setActiveIndex] = useState(-1)
@@ -676,8 +676,7 @@ export default function USMap(props) {
   const [colorScale, setColorScale] = useState();
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
-  const [legendSplit, setLegendSplit] = useState([]);
-  const [racedataDate, setracedataDate] = useState('');
+  const [legendSplit, setLegendSplit] = useState([]);  
   const [stateDeath, setstateDeath] = useState();
   const [varMap, setVarMap] = useState({});
   // const [metric, setMetric] = useState('seriesCompletePopPct');
@@ -702,7 +701,6 @@ export default function USMap(props) {
   var max = 0;
   var min = 100;
   useEffect(() => {
-    fetch('/data/racedatadate.json').then(res => res.json()).then(x => setracedataDate(x.date));
     fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
       .then(x => {
         setVarMap(x);
@@ -978,7 +976,7 @@ export default function USMap(props) {
   ]
 
   if (data && allTS && metric && raceData) {
-    // console.log(isJson(JSON.stringify(data)));
+    //console.log(isJson(JSON.stringify(data)));
     return (
       <HEProvider>
         <div>
@@ -2001,7 +1999,7 @@ export default function USMap(props) {
                         This data contains the following indicators that can be used to illustrate potential differences in the burden of deaths due to COVID-19 according to race and ethnicity: distribution of COVID-19 deaths, and weighted distribution of population.
                         <br />
                         <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
-                        <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedataDate}.<br />
+                        <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
 
                       </Header.Content>
                     </Grid.Row>

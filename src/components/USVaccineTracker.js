@@ -59,6 +59,9 @@ import Box from '@material-ui/core/Box';
 //   return Object.keys(object).find(key => object[key] === value);
 // }
 
+//colors for lines in Community Vaccination
+const colorPaletteGraph = ['#007dba', '#808080', '#e8ab3b', '#008000', '#a45791', '#000000', '#8f4814'];
+
 function getMax(arr, prop) {
     var max;
     for (var i=0 ; i<arr.length ; i++) {
@@ -435,7 +438,67 @@ class Race extends PureComponent{
     );
   }
 }
+const CustomTooltipGraph = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
+        <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
+        <p style = {{margin: 0, color: "#FF0000"}} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color: colorPaletteGraph[0]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(0)}`}</p>
+        <p style = {{margin: 0, color : colorPaletteGraph[1]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(0)}`}</p>
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPaletteGraph[2]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(0)}`}</p>}
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPaletteGraph[3]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(0)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPaletteGraph[4]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(0)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPaletteGraph[5]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(0)}`}</p>}
+        {/* <p className="desc">Anything you want can be displayed here.</p> */}
+      </div>
+    );
+  }
 
+  return null;
+};
+function VaccineDisparityCharts(props){
+  const caseYTickFmt = (y) => {
+    return y<1000?y.toFixed(0) + "%":(y/1000+'k');
+  };
+  return(
+    <div style = {{fontSize: "19px"}}>
+      <br/>
+      <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
+      <LineChart width={720} height={450} data = {props.data} margin={{right: 20}}>
+        {/* <CartesianGrid stroke='#f5f5f5'/> */}
+        <XAxis dataKey="t" tick={{fontSize: 16}} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
+        <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={["dataMin", "dataMax"]}/>
+        <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={"#FF0000"} strokeWidth="3" />
+        <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPaletteGraph[0]} strokeWidth="3" />
+        <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPaletteGraph[1]} strokeWidth="3" />
+        {(props.selection === "region" || props.selection === "urbanrural") && <Line data={props.data[props.trendGroup[2]]} name={props.trendGroup[2]} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPaletteGraph[2]} strokeWidth="3" />}
+        {(props.selection === "region" || props.selection === "urbanrural") && <Line data={props.data[props.trendGroup[3]]} name={props.trendGroup[3]} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPaletteGraph[3]} strokeWidth="3" />}
+        {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[4]]} name={props.trendGroup[4]} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPaletteGraph[4]} strokeWidth="3" />}
+        {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[5]]} name={props.trendGroup[5]} type='monotone' dataKey={props.outcome} dot={false} 
+              isAnimationActive={true} 
+              stroke={colorPaletteGraph[5]} strokeWidth="3" />}
+        <Legend />
+        {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
+
+        {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
+        <Tooltip content={<CustomTooltipGraph />}/>
+      </LineChart>
+    </div>
+  )
+}
 
 const SideRaceBarChart = (props) => {
 
@@ -536,6 +599,7 @@ const SideRaceBarChart = (props) => {
       </g>
     )
   }
+
 
   const valueAccessor = (entry) => {
     return entry ? (entry.value.toFixed(1) + '%') : null;
@@ -770,6 +834,9 @@ const USVaccineTracker = (props) => {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [vTrendGroup, setVTrendGroup] = useState();
+  const [vaccDisparityData, setVaccDisparityData] = useState();
+  const [selection, setSelection] = useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -813,6 +880,12 @@ const USVaccineTracker = (props) => {
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
   }, [dataTS]);
+  useEffect(() =>{
+      fetch('/data/vaccineDisparity.json').then(res => res.json())
+        .then(x => setVaccDisparityData(x));
+      setVTrendGroup(["Counties with high proportion of African American", 
+      "Counties with low proportion of African American"]);
+  }, []);
 
   const labelTickFmt = (tick) => { 
     return (
@@ -1615,13 +1688,81 @@ const USVaccineTracker = (props) => {
                         root: classes.customTabRoot,
                         indicator: classes.customTabIndicator}}
                     >
-                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="State Vaccination" {...a11yProps(0)} />
-                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="County Vaccination" {...a11yProps(1)} />
+                    <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Community Vaccination" {...a11yProps(0)} />
+                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="State Vaccination" {...a11yProps(1)} />
+                      <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="County Vaccination" {...a11yProps(2)} />
                       {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
                     </TabsMU>
                   </AppBarMU>
                 </div>
                 <TabPanel value={value} index={0}>
+                <center>
+                          <Button content='African American' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of African American", 
+                            "Counties with low proportion of African American"]); 
+                            setSelection("aa");
+                          }}/>
+                          <Button content='Hispanic' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of Hispanic", 
+                            "Counties with low proportion of Hispanic"]); 
+                            setSelection("hispanic");
+                          }}/>
+                          <Button content='Age 65+' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of age 65+", 
+                            "Counties with low proportion of age 65+"]); 
+                            setSelection("age65");
+                          }}/>
+                          <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion with underlying condition", 
+                            "Counties with low proportion with underlying condition"]); 
+                            setSelection("condition");
+                          }}/>
+                          <Button content='In poverty' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion in poverty", 
+                            "Counties with low proportion in poverty"]); 
+                            setSelection("poverty");
+                          }}/>
+                          {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high residential segregation", 
+                            "Counties with low residential segregation"]); 
+                            setRegion(false);
+                          }}/> */}
+                          <Button content='Minority' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of minority", 
+                            "Counties with low proportion of minority"]); 
+                            setSelection("minority");
+                          }}/>
+                          <Button content='American Native' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of American Native", 
+                            "Counties with low proportion of American Native"]); 
+                            setSelection("native");
+                          }}/>
+                          <Button content='Uninsured' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of uninsured", 
+                            "Counties with low proportion of uninsured"]); 
+                            setSelection("uninsured");
+                          }}/>
+                          <Button content='Region' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties in the South", "Counties in the West", 
+                            "Counties in the Northeast", "Counties in the Midwest"]); 
+                            setSelection("region");
+                          }}/>
+                          <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities", 
+                            "Rural areas near cities", "Remote rural areas"]); 
+                            setSelection("urbanrural");
+                          }}/>
+                          <Button content='College' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high proportion of population with college education",
+                            "Counties with low proportion of population with college education"]); 
+                            setSelection("college");
+                          }}/>
+                        </center>
+                        {vaccDisparityData && <VaccineDisparityCharts data = {vaccDisparityData} 
+                          aboveM = {vTrendGroup[0]} belowM = {vTrendGroup[1]} nationalAverage = {"National Average"} selection = {selection} outcome = {"percentFullyVaccinated"} 
+                          formatter= {caseTickFmt} trendGroup = {vTrendGroup}/>}
+                </TabPanel>
+                <TabPanel value={value} index={1}>
                   <Grid style = {{width: 1260}}>
                     <Grid.Row columns = {2} style = {{width: 1260}}>
                       <Grid.Column style = {{width: 1000, paddingLeft: 0}}>
@@ -1888,7 +2029,7 @@ const USVaccineTracker = (props) => {
                     </Grid.Row> 
                   </Grid>
                 </TabPanel>
-                <TabPanel value={value} index={1}>
+                <TabPanel value={value} index={2}>
                   <div style = {{paddingLeft: 50}}>
                     <ComposableMap 
                         projection="geoAlbersUsa" 
