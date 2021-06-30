@@ -38,13 +38,13 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
         <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
-        <p style = {{margin: 0, color: "#FF0000"}} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(0)}`}</p>
-        <p style = {{margin: 0, color: colorPalette[0]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(0)}`}</p>
-        <p style = {{margin: 0, color : colorPalette[1]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(0)}`}</p>
-        {payload.length > 3 && <p style = {{margin: 0, color : colorPalette[2]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(0)}`}</p>}
-        {payload.length > 3 && <p style = {{margin: 0, color : colorPalette[3]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(0)}`}</p>}
-        {payload.length > 5 && <p style = {{margin: 0, color : colorPalette[4]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(0)}`}</p>}
-        {payload.length > 5 && <p style = {{margin: 0, color : colorPalette[5]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(0)}`}</p>}
+        <p style = {{margin: 0, color: "#808080"}} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(1)}`}</p>
+        <p style = {{margin: 0, color: colorPalette[0]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(1)}`}</p>
+        <p style = {{margin: 0, color : colorPalette[4]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(1)}`}</p>
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPalette[2]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(1)}`}</p>}
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPalette[3]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(1)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPalette[1]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(1)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPalette[5]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(1)}`}</p>}
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -65,15 +65,15 @@ function VaccineDisparityCharts(props){
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" tick={{fontSize: 16}} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={["dataMin", "dataMax"]}/>
-        <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} 
+        <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} strokeDasharray="5 5"
               isAnimationActive={true} 
-              stroke={"#FF0000"} strokeWidth="3" />
+              stroke={"#808080"} strokeWidth="3" />
         <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
               stroke={colorPalette[0]} strokeWidth="3" />
         <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[1]} strokeWidth="3" />
+              stroke={colorPalette[4]} strokeWidth="3" />
         {(props.selection === "region" || props.selection === "urbanrural") && <Line data={props.data[props.trendGroup[2]]} name={props.trendGroup[2]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
               stroke={colorPalette[2]} strokeWidth="3" />}
@@ -82,11 +82,33 @@ function VaccineDisparityCharts(props){
               stroke={colorPalette[3]} strokeWidth="3" />}
         {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[4]]} name={props.trendGroup[4]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
-              stroke={colorPalette[4]} strokeWidth="3" />}
+              stroke={colorPalette[1]} strokeWidth="3" />}
         {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[5]]} name={props.trendGroup[5]} type='monotone' dataKey={props.outcome} dot={false} 
               isAnimationActive={true} 
               stroke={colorPalette[5]} strokeWidth="3" />}
-        <Legend />
+        <Legend payload={ (props.selection === "region" || props.selection === "urbanrural") === false? 
+            [
+              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080'},
+              { id: '1', value: props.trendGroup[0], type: 'square', color: colorPalette[0]},
+              { id: '2', value: props.trendGroup[1], type: 'square', color: colorPalette[4]},
+            ] : props.selection === "region"? 
+            [
+              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080'},
+              { id: '1', value: props.trendGroup[0], type: 'square', color: colorPalette[0]},
+              { id: '2', value: props.trendGroup[1], type: 'square', color: colorPalette[4]},
+              { id: '3', value: props.trendGroup[2], type: 'square', color: colorPalette[2]},
+              { id: '4', value: props.trendGroup[3], type: 'square', color: colorPalette[3]},
+            ] :
+            [
+              { id: '7', value: props.nationalAverage, type: 'square', color: "#808080"},
+              { id: '1', value: props.trendGroup[0], type: 'square', color: colorPalette[0]},
+              { id: '2', value: props.trendGroup[1], type: 'square', color: colorPalette[4]},
+              { id: '3', value: props.trendGroup[2], type: 'square', color: colorPalette[2]},
+              { id: '4', value: props.trendGroup[3], type: 'square', color: colorPalette[3]},
+              { id: '5', value: props.trendGroup[4], type: 'square', color: colorPalette[1]},
+              { id: '6', value: props.trendGroup[5], type: 'square', color: colorPalette[5]},
+            ]
+          }/>
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
         {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
