@@ -911,6 +911,7 @@ export default function USMap(props) {
   const panes = [
     {
       menuItem: { content: <p style={{ fontSize: "9.5pt" }}>COVID-19<br></br>Death Rates</p> }, render: () =>
+      <Grid>
         <Grid.Row columns={1}>
           <Grid.Column style={{ paddingTop: 0, paddingBottom: 3 }}>
             <Header as='h2' style={{ width: '420', textAlign: 'center', fontSize: "16pt", lineHeight: "16pt", paddingTop: "2rem" }}>
@@ -965,13 +966,35 @@ export default function USMap(props) {
             </VictoryChart>
           </Grid.Column>
         </Grid.Row>
+        <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
+                      <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
+                      The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for 83% of deaths in the nation.
+                        <br />
+                        <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
+                        <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
+
+                      </Header.Content>
+                    </Grid.Row>
+                    </Grid>
+        
     },
     {
       menuItem: { content: <p style={{ fontSize: "9.5pt" }}>COVID-19<br></br>Death and Population</p> }, render: () =>
+      <Grid>
         <SideRaceBarChart
           stateDeath={stateDeath}
           fips={fips}
         />
+        <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
+                      <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
+                        This data contains the following indicators that can be used to illustrate potential differences in the burden of deaths due to COVID-19 according to race and ethnicity: distribution of COVID-19 deaths, and distribution of population.
+                        <br />
+                        <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
+                        <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
+
+                      </Header.Content>
+                    </Grid.Row>
+        </Grid>
     }
   ]
 
@@ -1994,7 +2017,7 @@ export default function USMap(props) {
                       }
 
                     </Grid.Row>} */}
-                    <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
+                    {/* <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
                       <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
                         This data contains the following indicators that can be used to illustrate potential differences in the burden of deaths due to COVID-19 according to race and ethnicity: distribution of COVID-19 deaths, and weighted distribution of population.
                         <br />
@@ -2002,7 +2025,7 @@ export default function USMap(props) {
                         <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
 
                       </Header.Content>
-                    </Grid.Row>
+                    </Grid.Row> */}
                   </Grid>
                 </Grid.Column>
               </Grid.Row>
