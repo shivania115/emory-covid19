@@ -444,15 +444,15 @@ class Race extends PureComponent {
 const CustomTooltipGraph = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip" style={{ lineHeight: "19px" }}>
-        <p style={{ margin: 0 }} className="label">{`${(new Date(label * 1000).getMonth() + 1) + "/" + new Date(label * 1000).getDate() + "/" + new Date(label * 1000).getFullYear()}`}</p>
-        <p style={{ margin: 0, color: "#FF0000" }} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(0)}`}</p>
-        <p style={{ margin: 0, color: colorPaletteGraph[0] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(0)}`}</p>
-        <p style={{ margin: 0, color: colorPaletteGraph[1] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(0)}`}</p>
-        {payload.length > 3 && <p style={{ margin: 0, color: colorPaletteGraph[2] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(0)}`}</p>}
-        {payload.length > 3 && <p style={{ margin: 0, color: colorPaletteGraph[3] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(0)}`}</p>}
-        {payload.length > 5 && <p style={{ margin: 0, color: colorPaletteGraph[4] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(0)}`}</p>}
-        {payload.length > 5 && <p style={{ margin: 0, color: colorPaletteGraph[5] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(0)}`}</p>}
+      <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
+        <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
+        <p style = {{margin: 0, color: "#808080"}} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(1)}`}</p>
+        <p style = {{margin: 0, color: colorPaletteGraph[0]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(1)}`}</p>
+        <p style = {{margin: 0, color : colorPaletteGraph[4]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(1)}`}</p>
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPaletteGraph[2]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(1)}`}</p>}
+        {payload.length > 3 && <p style = {{margin: 0, color : colorPaletteGraph[3]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(1)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPaletteGraph[1]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(1)}`}</p>}
+        {payload.length > 5 && <p style = {{margin: 0, color : colorPaletteGraph[5]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(1)}`}</p>}
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -472,15 +472,15 @@ function VaccineDisparityCharts(props) {
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" tick={{ fontSize: 16 }} tickFormatter={props.formatter} allowDuplicatedCategory={false} />
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} domain={["dataMin", "dataMax"]} />
-        <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false}
+        <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} strokeDasharray="5 5"
           isAnimationActive={true}
-          stroke={"#FF0000"} strokeWidth="3" />
+          stroke={"#808080"} strokeWidth="3" />
         <Line data={props.data[props.aboveM]} name={props.aboveM} type='monotone' dataKey={props.outcome} dot={false}
           isAnimationActive={true}
           stroke={colorPaletteGraph[0]} strokeWidth="3" />
         <Line data={props.data[props.belowM]} name={props.belowM} type='monotone' dataKey={props.outcome} dot={false}
           isAnimationActive={true}
-          stroke={colorPaletteGraph[1]} strokeWidth="3" />
+          stroke={colorPaletteGraph[4]} strokeWidth="3" />
         {(props.selection === "region" || props.selection === "urbanrural") && <Line data={props.data[props.trendGroup[2]]} name={props.trendGroup[2]} type='monotone' dataKey={props.outcome} dot={false}
           isAnimationActive={true}
           stroke={colorPaletteGraph[2]} strokeWidth="3" />}
@@ -489,11 +489,33 @@ function VaccineDisparityCharts(props) {
           stroke={colorPaletteGraph[3]} strokeWidth="3" />}
         {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[4]]} name={props.trendGroup[4]} type='monotone' dataKey={props.outcome} dot={false}
           isAnimationActive={true}
-          stroke={colorPaletteGraph[4]} strokeWidth="3" />}
+          stroke={colorPaletteGraph[1]} strokeWidth="3" />}
         {props.selection === "urbanrural" && <Line data={props.data[props.trendGroup[5]]} name={props.trendGroup[5]} type='monotone' dataKey={props.outcome} dot={false}
           isAnimationActive={true}
           stroke={colorPaletteGraph[5]} strokeWidth="3" />}
-        <Legend />
+        <Legend payload={(props.selection === "region" || props.selection === "urbanrural") === false ?
+          [
+            { id: '7', value: props.nationalAverage, type: 'square', color: '#808080' },
+            { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
+            { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
+          ] : props.selection === "region" ?
+            [
+              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080' },
+              { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
+              { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
+              { id: '3', value: props.trendGroup[2], type: 'square', color: colorPaletteGraph[2] },
+              { id: '4', value: props.trendGroup[3], type: 'square', color: colorPaletteGraph[3] },
+            ] :
+            [
+              { id: '7', value: props.nationalAverage, type: 'square', color: "#808080" },
+              { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
+              { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
+              { id: '3', value: props.trendGroup[2], type: 'square', color: colorPaletteGraph[2] },
+              { id: '4', value: props.trendGroup[3], type: 'square', color: colorPaletteGraph[3] },
+              { id: '5', value: props.trendGroup[4], type: 'square', color: colorPaletteGraph[1] },
+              { id: '6', value: props.trendGroup[5], type: 'square', color: colorPaletteGraph[5] },
+            ]
+        } />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
         {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
@@ -854,7 +876,7 @@ const USVaccineTracker = (props) => {
   const [value, setValue] = React.useState(0);
   const [vTrendGroup, setVTrendGroup] = useState();
   const [vaccDisparityData, setVaccDisparityData] = useState();
-  const [selection, setSelection] = useState();
+  const [selection, setSelection] = useState('aa');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -904,6 +926,7 @@ const USVaccineTracker = (props) => {
     setVTrendGroup(["Counties with high proportion of African American",
       "Counties with low proportion of African American"]);
   }, []);
+  console.log(vaccDisparityData);
 
   const labelTickFmt = (tick) => {
     return (
@@ -1185,17 +1208,17 @@ const USVaccineTracker = (props) => {
 
   }, []);
   const description = {
-    "aa": " This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Counties with high proportion of African American have > 1 million population or contain the entire or large part of the population of the largest principle city. Counties with low proportion of African American have a population of 250,000-999,999.",
-    "hispanic": "This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "age65":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "condition":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "poverty":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "minority":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "native":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "insured":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "region":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "urbanrural":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-    "college":"This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis). Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "aa": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % African American. Counties with high proportion of African American have > 1 million population or contain the entire or large part of the population of the largest principle city. Counties with low proportion of African American have a population of 250,000-999,999.",
+    "hispanic": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % Hispanic. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "age65": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % Age 65+ population. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "condition": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % underlying condition. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "poverty": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % poverty. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "minority": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % minority. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "native": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % Native American. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "insured": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % uninsured population. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "region": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in different regions in the United States.\nNortheast: ME, NH, VT, MA, RI, CT, NY, NJ, PA; North Central/Midwest: MI, OH, IN, IL, WI, MN, IA, MO, ND, SD, KS, NE; South: DE, MD, DC, VA, WV, NC, SC, GA, FL, KY, TN, MS, AL, TX, AR, OK, LA; West: WA, AK, OR, CA, HI, MT, ID, WY, CO, NM, AZ, UT, NV.",
+    "urbanrural": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by urbanicity. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
+    "college": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % college education. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
   }
 
 
@@ -1820,7 +1843,7 @@ const USVaccineTracker = (props) => {
                                   Large suburban counties have a population {'>'} 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999.
                                   Small cities have populations {'<'} 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999.
                                   Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics. */}
-                                  {description['aa']}
+                                  {description[selection]}
                                 </p>
                               ),
                             },

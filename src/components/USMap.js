@@ -987,7 +987,7 @@ export default function USMap(props) {
         />
         <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
                       <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
-                        This data contains the following indicators that can be used to illustrate potential differences in the burden of deaths due to COVID-19 according to race and ethnicity: distribution of COVID-19 deaths, and distribution of population.
+                        The percentage of COVID-19 deaths by race in {stateName=="The United States"?"the United States":stateName} is shown on the left, and the percentage of the population by race in {stateName=="The United States"?"the United States":stateName} is shown on the right. NHPI: Native Hawaiians and Pacific Islanders.
                         <br />
                         <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
                         <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
