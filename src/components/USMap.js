@@ -968,7 +968,7 @@ export default function USMap(props) {
         </Grid.Row>
         <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
                       <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
-                      The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for 83% of deaths in the nation.
+                      The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for 83% of deaths in the nation. NHPI: Native Hawaiians and Pacific Islanders.
                         <br />
                         <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
                         <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
