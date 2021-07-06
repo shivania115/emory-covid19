@@ -1635,35 +1635,35 @@ const USVaccineTracker = (props) => {
                             </Header.Content>
 
                             <Dropdown
-                            style={{background: '#fff', 
-                                    fontSize: "19px",
-                                    fontWeight: 400, 
-                                    theme: '#000000',
-                                    width: '550px',
-                                    top: '0px',
-                                    left: '15px',
-                                    text: "Select",
-                                    borderTop: '0.5px solid #bdbfc1',
-                                    borderLeft: '0.5px solid #bdbfc1',
-                                    borderRight: '0.5px solid #bdbfc1', 
-                                    borderBottom: '0.5px solid #bdbfc1',
-                                    borderRadius: 0,
-                                    minHeight: '1.0em',
-                                    paddingBottom: '0.5em',
-                                    paddingLeft: '1em'}}
-                            text= { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}
-                            pointing = 'top'
-                            search
-                            selection
-                            options={vaccineOptions}
-                            onChange={(e, { value}) => {
-                              setFully(value);
-                              setSelectedName(vaccineList[value]);
-                              
-                                      
-                            }}
-                          />
-                          <br/>
+                              style={{background: '#fff', 
+                                      fontSize: "19px",
+                                      fontWeight: 400, 
+                                      theme: '#000000',
+                                      width: '550px',
+                                      top: '0px',
+                                      left: '15px',
+                                      text: "Select",
+                                      borderTop: '0.5px solid #bdbfc1',
+                                      borderLeft: '0.5px solid #bdbfc1',
+                                      borderRight: '0.5px solid #bdbfc1', 
+                                      borderBottom: '0.5px solid #bdbfc1',
+                                      borderRadius: 0,
+                                      minHeight: '1.0em',
+                                      paddingBottom: '0.5em',
+                                      paddingLeft: '1em'}}
+                              text= { selectedName? selectedName : "% of population partially vaccinated (one dose received)"}
+                              pointing = 'top'
+                              search
+                              selection
+                              options={vaccineOptions}
+                              onChange={(e, { value}) => {
+                                setFully(value);
+                                setSelectedName(vaccineList[value]);
+                                
+                                        
+                              }}
+                            />
+                            <br/>
                             <svg width="460" height="80" >
                               {/* <text x={280} y={59} style={{fontSize: '1.5em'}}> Click on a state</text> */}
                               
