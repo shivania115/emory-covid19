@@ -276,7 +276,7 @@ const SideRaceBarChart = (props) => {
             : props.stateDeath[props.fips]['African American'][0]['covideathDistribution'])
       },
       {
-        name: 'American Natives',
+        name: 'American Native',
         popDist: props.fips === '_nation' ? props.stateDeath['_nation']['American Natives'][0]['popDistribution']
           : (props.stateDeath[props.fips]['American Natives'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['American Natives'][0]['popDistribution']),
         covideathDistribution: props.fips === '_nation' ? props.stateDeath['_nation']['American Natives'][0]['covideathDistribution']
@@ -943,7 +943,7 @@ export default function USMap(props) {
                 data={[
                   { key: "White", 'value': ((stateDeath[fips]["White"][0]['population'] == '-9999'||stateDeath[fips]["White"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["White"][0]['covidDeaths']/stateDeath[fips]["White"][0]['population'])*100000) },
                   { key: "African American", 'value': ((stateDeath[fips]["African American"][0]['population'] == '-9999'||stateDeath[fips]["African American"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["African American"][0]['covidDeaths']/stateDeath[fips]["African American"][0]['population'])*100000) },
-                  { key: "American Natives", 'value': ((stateDeath[fips]["American Natives"][0]['population'] == '-9999'||stateDeath[fips]["American Natives"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["American Natives"][0]['covidDeaths']/stateDeath[fips]["American Natives"][0]['population'])*100000) },
+                  { key: "American Native", 'value': ((stateDeath[fips]["American Natives"][0]['population'] == '-9999'||stateDeath[fips]["American Natives"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["American Natives"][0]['covidDeaths']/stateDeath[fips]["American Natives"][0]['population'])*100000) },
                   { key: "Asian", 'value': ((stateDeath[fips]["Asian"][0]['population'] == '-9999'||stateDeath[fips]["Asian"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Asian"][0]['covidDeaths']/stateDeath[fips]["Asian"][0]['population'])*100000) },
                   { key: "NHPI", 'value': ((stateDeath[fips]["NHPI"][0]['population'] == '-9999'||stateDeath[fips]["NHPI"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["NHPI"][0]['covidDeaths']/stateDeath[fips]["NHPI"][0]['population'])*100000) },
                   { key: "Multiple Races", 'value': ((stateDeath[fips]["Non Hispanic Multiple Races"][0]['population'] == '-9999'||stateDeath[fips]["Non Hispanic Multiple Races"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Non Hispanic Multiple Races"][0]['covidDeaths']/stateDeath[fips]["Non Hispanic Multiple Races"][0]['population'])*100000) },
