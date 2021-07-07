@@ -832,7 +832,7 @@ export default function CountyReport() {
                       padding={{ left: 45, right: 60, top: 10, bottom: 60 }}>
                       <VictoryAxis
                         style={{
-                          tickLabels: { fontSize: 17, padding: 5 }
+                          tickLabels: { fontSize: 16, padding: 6 }
                         }}
                         tickFormat={(t) => new Date(t * 1000).toLocaleDateString('en-Us', { month: 'numeric', day: 'numeric' })}
                         tickValues={[
@@ -914,7 +914,7 @@ export default function CountyReport() {
 
                       <VictoryAxis
                         style={{
-                          tickLabels: { fontSize: 17, padding: 7 }
+                          tickLabels: { fontSize: 16, padding: 6 }
                         }}
                         tickFormat={(t) => new Date(t * 1000).toLocaleDateString('en-Us', { month: 'numeric', day: 'numeric' })}
                         tickValues={[

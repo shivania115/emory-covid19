@@ -1,5 +1,5 @@
 // React
-import React, {useEffect}from "react";
+import React, { useEffect } from "react";
 // Components & Hooks
 import USMap from "./USMap";
 import StateMap from "./StateMap";
@@ -12,7 +12,7 @@ import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
 import 'semantic-ui-css/semantic.min.css'
-import {HEProvider} from './HEProvider';
+import { HEProvider } from './HEProvider';
 import USVaccineTracker from "./USVaccineTracker";
 import USVaccineTrackerPilot from "./USVaccineTrackerPilot";
 import VaccineFAQ from "./VaccineFAQ";
@@ -21,8 +21,8 @@ import GDPHStateMap from "./GDPH/StateMap";
 import GDPHCountyReport from "./GDPH/CountyReport";
 import GDPHAboutUs from "./GDPH/AboutUs";
 import GDPHDataSources from "./GDPH/DataSources";
-import { StitchAuthProvider, useStitchAuth} from "./StitchAuth";
-
+import { StitchAuthProvider, useStitchAuth } from "./StitchAuth";
+import USMapPilot from "./USMapPilot";
 // import USMapPilot from "./USMapPilot";
 import NationalReport from "./NationalReport";
 import OtherTools from "./OtherTools";
@@ -52,7 +52,7 @@ function AppUI() {
     actions: { handleLogout, handleAnonymousLogin },
   } = useStitchAuth();
 
-  useEffect(()=>{
+  useEffect(() => {
     handleAnonymousLogin();
   });
 
@@ -83,6 +83,9 @@ function AppUI() {
           <Route path='/Vaccine-Tracker-Pilot03022021'>
             <USVaccineTrackerPilot />
           </Route>
+          <Route path='/US-Map-Pilot-12312'>
+            <USMapPilot />
+          </Route>
           <Route path='/Vaccine-Tracker'>
             <USVaccineTracker />
           </Route>
@@ -109,11 +112,11 @@ function AppUI() {
           </Route>
           <Route path='/data-sources'>
             <DataSources />
-          </Route>       
-          
+          </Route>
+
           <Route path='/:stateFips/:countyFips'>
             <CountyReport />
-          </Route>  
+          </Route>
           <Route path='/:stateFips'>
             <StateMap />
           </Route>
@@ -121,11 +124,11 @@ function AppUI() {
             <USMap />
           </Route>
           <Route path="*">
-            <Redirect to='/'/>
+            <Redirect to='/' />
           </Route>
         </Switch>
       </Router>
-      </HEProvider>
+    </HEProvider>
   );
 }
 
