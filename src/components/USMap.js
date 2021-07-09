@@ -1017,7 +1017,7 @@ export default function USMap(props) {
               <Grid.Row style={{ width: "100%", height: "100%" }}>
                 <Grid.Column width={9} style={{ width: "100%", height: "100%" }}>
                   <div style={{ fontSize: "14pt", paddingTop: 5, paddingBottom: 20 }}>
-                    See Dashboard Guide (<a style={{ color: "#397AB9" }} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style={{ color: "#397AB9" }} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
+                    See Dashboard Guide (<a style={{ color: "#397AB9" }} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style={{ color: "#397AB9" }} href="https://youtu.be/fV1mzyUIjis" target="_blank" rel="noopener noreferrer"> YouTube </a>)
 
                   </div>
                   <Header as='h2' style={{ fontWeight: 400, fontSize: "18pt" }}>
