@@ -470,7 +470,7 @@ function VaccineDisparityCharts(props) {
       <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
       <LineChart width={720} height={450} data={props.data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" tick={{ fontSize: 16 }} tickFormatter={props.formatter} allowDuplicatedCategory={false} />
+        <XAxis dataKey="t" tick={{ fontSize: 16 }} textAnchor="end" tickFormatter={props.formatter} allowDuplicatedCategory={false} angle={-35}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} domain={["dataMin", "dataMax"]} />
         <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} strokeDasharray="5 5"
           isAnimationActive={true}
@@ -495,19 +495,19 @@ function VaccineDisparityCharts(props) {
           stroke={colorPaletteGraph[5]} strokeWidth="3" />}
         <Legend payload={(props.selection === "region" || props.selection === "urbanrural") === false ?
           [
-            { id: '7', value: props.nationalAverage, type: 'square', color: '#808080' },
+            { id: '7', value: props.nationalAverage, type: 'line', color: '#808080'},
             { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
             { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
           ] : props.selection === "region" ?
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080' },
+              { id: '7', value: props.nationalAverage, type: 'line', color: '#808080' },
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
               { id: '3', value: props.trendGroup[2], type: 'square', color: colorPaletteGraph[2] },
               { id: '4', value: props.trendGroup[3], type: 'square', color: colorPaletteGraph[3] },
             ] :
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: "#808080" },
+              { id: '7', value: props.nationalAverage, type: 'line', color: "#808080" },
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
               { id: '3', value: props.trendGroup[2], type: 'square', color: colorPaletteGraph[2] },
@@ -515,7 +515,7 @@ function VaccineDisparityCharts(props) {
               { id: '5', value: props.trendGroup[4], type: 'square', color: colorPaletteGraph[1] },
               { id: '6', value: props.trendGroup[5], type: 'square', color: colorPaletteGraph[5] },
             ]
-        } />
+        }  />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
         {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
