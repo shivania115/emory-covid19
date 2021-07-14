@@ -940,7 +940,7 @@ const USVaccineTrackerPilot = (props) => {
   };
 
   const caseTickFmt = (tick) => {
-    console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
+    // console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
     return (
       // <text>// </ text>
       /* {tick} */
@@ -1215,7 +1215,7 @@ const USVaccineTrackerPilot = (props) => {
 
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    console.log(vaccDisparityData['cutoffs'][0]['black']);
+    console.log(dataTS);
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % of the population is African American. Counties are considered to have a low proportion of African Americans if less than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % of the population is Hispanic.",
@@ -1762,13 +1762,13 @@ const USVaccineTrackerPilot = (props) => {
                     <TabPanel value={value} index={0}>
                       <center>
                         <Button content='African American' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of African American",
-                            "Counties with low proportion of African American"]);
+                          setVTrendGroup(["Counties with high proportion of African Americans",
+                            "Counties with low proportion of African Americans"]);
                           setSelection("aa");
                         }} />
                         <Button content='Hispanic' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of Hispanic",
-                            "Counties with low proportion of Hispanic"]);
+                          setVTrendGroup(["Counties with high proportion of Hispanics",
+                            "Counties with low proportion of Hispanics"]);
                           setSelection("hispanic");
                         }} />
                         <Button content='Age 65+' icon='users' floated="center" onClick={() => {
@@ -1797,8 +1797,8 @@ const USVaccineTrackerPilot = (props) => {
                           setSelection("minority");
                         }} />
                         <Button content='American Native' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of American Native",
-                            "Counties with low proportion of American Native"]);
+                          setVTrendGroup(["Counties with high proportion of American Natives",
+                            "Counties with low proportion of American Natives"]);
                           setSelection("native");
                         }} />
                         <Button content='Uninsured' icon='users' floated="center" onClick={() => {
