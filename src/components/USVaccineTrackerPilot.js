@@ -461,6 +461,7 @@ const CustomTooltipGraph = ({ active, payload, label }) => {
   return null;
 };
 function VaccineDisparityCharts(props) {
+  console.log(props.data);
   const caseYTickFmt = (y) => {
     return y < 1000 ? y.toFixed(0) + "%" : (y / 1000 + 'k');
   };
@@ -470,7 +471,7 @@ function VaccineDisparityCharts(props) {
       <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
       <LineChart width={720} height={450} data={props.data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" tick={{ fontSize: 16 }} tickFormatter={props.formatter} allowDuplicatedCategory={false} />
+        <XAxis dataKey="t" tick={{ fontSize: 16 }} textAnchor="end" tickFormatter={props.formatter} allowDuplicatedCategory={false} angle={-35}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} domain={["dataMin", "dataMax"]} />
         <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} strokeDasharray="5 5"
           isAnimationActive={true}
@@ -495,19 +496,19 @@ function VaccineDisparityCharts(props) {
           stroke={colorPaletteGraph[5]} strokeWidth="3" />}
         <Legend payload={(props.selection === "region" || props.selection === "urbanrural") === false ?
           [
-            { id: '7', value: props.nationalAverage, type: 'square', color: '#808080' },
+            { id: '7', value: props.nationalAverage, type: 'line', color: '#808080'},
             { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
             { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
           ] : props.selection === "region" ?
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080' },
+              { id: '7', value: props.nationalAverage, type: 'line', color: '#808080' },
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
               { id: '3', value: props.trendGroup[2], type: 'square', color: colorPaletteGraph[2] },
               { id: '4', value: props.trendGroup[3], type: 'square', color: colorPaletteGraph[3] },
             ] :
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: "#808080" },
+              { id: '7', value: props.nationalAverage, type: 'line', color: "#808080" },
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
               { id: '3', value: props.trendGroup[2], type: 'square', color: colorPaletteGraph[2] },
@@ -515,7 +516,7 @@ function VaccineDisparityCharts(props) {
               { id: '5', value: props.trendGroup[4], type: 'square', color: colorPaletteGraph[1] },
               { id: '6', value: props.trendGroup[5], type: 'square', color: colorPaletteGraph[5] },
             ]
-        } />
+        }  />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
         {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
@@ -875,6 +876,8 @@ const USVaccineTrackerPilot = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [vTrendGroup, setVTrendGroup] = useState();
+  const[legendName,setlegendName]=useState(["Counties with high proportion of African Americans",
+  "Counties with low proportion of African Americans"] );
   const [vaccDisparityData, setVaccDisparityData] = useState();
   const [selection, setSelection] = useState('aa');
 
@@ -925,10 +928,10 @@ const USVaccineTrackerPilot = (props) => {
   useEffect(() => {
     fetch('/data/vaccineDisparity.json').then(res => res.json())
       .then(x => setVaccDisparityData(x));
-    setVTrendGroup(["Counties with high proportion of African American",
-      "Counties with low proportion of African American"]);
+    setVTrendGroup(["Counties with high proportion of African Americans",
+      "Counties with low proportion of African Americans"]);
   }, []);
-
+console.log(vaccDisparityData);
   const labelTickFmt = (tick) => {
     return (
       // <text>// </ text>
@@ -940,7 +943,7 @@ const USVaccineTrackerPilot = (props) => {
   };
 
   const caseTickFmt = (tick) => {
-    console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
+    // console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
     return (
       // <text>// </ text>
       /* {tick} */
@@ -1215,19 +1218,19 @@ const USVaccineTrackerPilot = (props) => {
 
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    console.log(vaccDisparityData['cutoffs'][0]['black']);
+    
     const description = {
-      "aa": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % African American. Counties with high proportion of African American have more than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % African American population. Counties with low proportion of African American have less than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % African American population.",
-      "hispanic": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % Hispanic. Counties with high proportion of Hispanic have more than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % Hispanic population. Counties with low proportion of Hispanic have less than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % Hispanic population.",
-      "age65": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % population of age 65+. Counties with high proportion of age over 65 have more than "+vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0)+" % population of age over 65. Counties with low proportion of age 65 over have less than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % population over age 65.",
-      "condition": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % underlying condition. Counties with high proportion of people with underlying condition have more than "+vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0)+" % population with underlying condition. Counties with low proportion of people with underlying conditions have less than "+vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0)+" % population with underlying condition.",
-      "poverty": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % poverty. Counties with high proportion of poverty have more than "+vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0)+" % poverty. Counties with low proportion of poverty have less than "+vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0)+" % poverty,",
-      "minority": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % minority. Counties with high proportion of minority have more than "+vaccDisparityData['cutoffs'][0]['minority'].toFixed(0)+" % minority. Counties with low proportion of African American have less than "+vaccDisparityData['cutoffs'][0]['minority'].toFixed(0)+" % minority.",
-      "native": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % Native American. Counties with high proportion of Native American have more than "+vaccDisparityData['cutoffs'][0]['natives'].toFixed(0)+" % Native American population. Counties with low proportion of Native American have less than "+vaccDisparityData['cutoffs'][0]['natives'].toFixed(0)+" % Native American population.",
-      "uninsured": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % uninsured population. Counties with high proportion of uninsured population have more than "+vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0)+" % uninsured population. Counties with low proportion of uninsured population have less than "+vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0)+" % uninsured population.",
-      "region": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in different regions in the United States.\nNortheast: ME, NH, VT, MA, RI, CT, NY, NJ, PA; North Central/Midwest: MI, OH, IN, IL, WI, MN, IA, MO, ND, SD, KS, NE; South: DE, MD, DC, VA, WV, NC, SC, GA, FL, KY, TN, MS, AL, TX, AR, OK, LA; West: WA, AK, OR, CA, HI, MT, ID, WY, CO, NM, AZ, UT, NV.",
-      "urbanrural": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by urbanicity. Inner city counties have > 1 million population or contain the entire or large part of the population of the largest principle city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-      "college": "The chart shows the average percent of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % college education. Counties with high proportion of college education have more than "+vaccDisparityData['cutoffs'][0]['college'].toFixed(0)+" % college education. Counties with low proportion of college education have less than "+vaccDisparityData['cutoffs'][0]['college'].toFixed(0)+" % college education.",
+      "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % of the population is African American. Counties are considered to have a low proportion of African Americans if less than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % of the population is African American.",
+      "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % of the population is Hispanic.",
+      "age65": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of population aged 65+. Counties with a high proportion of the population aged over 65 are those with more than "+vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0)+" % of the population of age over 65. Counties with a low proportion of the population aged 65 over have less than "+vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0)+" % of their population over age 65.",
+      "condition": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population with at least one underlying condition. Counties with a high proportion of people with underlying conditions include those where more than "+vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0)+" % of the population have an underlying condition. Counties with a low proportion of people with underlying conditions are those where less than "+vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0)+" % of the population has an underlying condition.",
+      "poverty": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population living in poverty. Counties with a high proportion of population in poverty have more than "+vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0)+" % of their population living in poverty. Counties with a low proportion in poverty are those where less than "+vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0)+" % of the population lives in poverty,",
+      "minority": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % minority population. Counties with a high proportion of minority have more than "+vaccDisparityData['cutoffs'][0]['minority'].toFixed(0)+" % of their populaiton which are racial and ethnic minorities. Counties with a low proportion of minorities have less than "+vaccDisparityData['cutoffs'][0]['minority'].toFixed(0)+" % minority population.",
+      "native": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Native American. Counties are considered to have a high proportion of Native Americans if more than "+vaccDisparityData['cutoffs'][0]['natives'].toFixed(0)+" % of the population is Native American. Counties are considered to have a low proportion of Native Americans if less than "+vaccDisparityData['cutoffs'][0]['natives'].toFixed(0)+" % of the population is Native American.",
+      "uninsured": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % uninsured population. Counties are considered to have a high proportion of uninsured population if they have more than "+vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0)+" % of their population uninsured. Counties are considered to have a low proportion of uninsured population if they have less than "+vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0)+" % uninsured population.",
+      "region": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in different regions in the United States.",
+      "urbanrural": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by urbanicity. Inner city counties have > 1 million population or contain the entire or a large part of the population of the largest principal city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics. (https://www.cdc.gov/nchs/data_access/urban_rural.htm)",
+      "college": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % college education. Counties with a high proportion of educated population are those where more than "+vaccDisparityData['cutoffs'][0]['college'].toFixed(0)+" % are college educated. Counties with a low proportion of college educated population are those where less than "+vaccDisparityData['cutoffs'][0]['college'].toFixed(0)+" % are college educated.",
     }
     return (
       <HEProvider>
@@ -1762,18 +1765,18 @@ const USVaccineTrackerPilot = (props) => {
                     <TabPanel value={value} index={0}>
                       <center>
                         <Button content='African American' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of African American",
-                            "Counties with low proportion of African American"]);
+                          setVTrendGroup(["Counties with high proportion of African Americans",
+                            "Counties with low proportion of African Americans"]);
                           setSelection("aa");
                         }} />
                         <Button content='Hispanic' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of Hispanic",
-                            "Counties with low proportion of Hispanic"]);
+                          setVTrendGroup(["Counties with high proportion of Hispanic Americans",
+                            "Counties with low proportion of Hispanic Americans"]);
                           setSelection("hispanic");
                         }} />
                         <Button content='Age 65+' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of age 65+",
-                            "Counties with low proportion of age 65+"]);
+                          setVTrendGroup(["Counties with high proportion of population age 65+",
+                            "Counties with low proportion of population age 65+"]);
                           setSelection("age65");
                         }} />
                         <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
@@ -1792,18 +1795,18 @@ const USVaccineTrackerPilot = (props) => {
                             setRegion(false);
                           }}/> */}
                         <Button content='Minority' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of minority",
-                            "Counties with low proportion of minority"]);
+                          setVTrendGroup(["Counties with high proportion of minorities",
+                            "Counties with low proportion of minorities"]);
                           setSelection("minority");
                         }} />
                         <Button content='American Native' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of American Native",
-                            "Counties with low proportion of American Native"]);
+                          setVTrendGroup(["Counties with high proportion of American Natives",
+                            "Counties with low proportion of American Natives"]);
                           setSelection("native");
                         }} />
                         <Button content='Uninsured' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of uninsured",
-                            "Counties with low proportion of uninsured"]);
+                          setVTrendGroup(["Counties with high proportion of uninsured population",
+                            "Counties with low proportion of uninsured population"]);
                           setSelection("uninsured");
                         }} />
                         <Button content='Region' icon='users' floated="center" onClick={() => {
@@ -3226,5 +3229,6 @@ const USVaccineTrackerPilot = (props) => {
     return <Loader active inline='centered' />
   }
 }
+
 
 export default USVaccineTrackerPilot;
