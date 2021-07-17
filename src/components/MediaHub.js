@@ -24,8 +24,32 @@ export default function MediaHub(props){
           </Header.Content>
         </Header>
 
+      
+
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='290' href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake' src='/podcast images/bednarczyk.jpg' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses'>“You can't have good public health, but not have equity and economic growth”: A conversation with Katie Kirkpatrick about economic responses to the COVID-19 pandemic.</Header.Content></div>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                      Date Published: July. 16, 2021 <br/> 
+                      Media Type: Podcast<br/><br/>
+                      Dr. Bob Bednarczyk talks about COVID-19 vaccination efforts and inequities in vaccine uptake across the United States. We discuss reasons why certain communities are lagging behind vaccination goals and innovative approaches to increasing vaccination rates in those communities.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
           <Grid.Row>
@@ -71,7 +95,7 @@ export default function MediaHub(props){
             </Grid.Row>
           </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/podcast images/Allison Chamberlain.png' />            
