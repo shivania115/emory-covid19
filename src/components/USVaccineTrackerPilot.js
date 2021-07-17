@@ -1785,8 +1785,8 @@ console.log(vaccDisparityData);
                           setSelection("condition");
                         }} />
                         <Button content='In poverty' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion in poverty",
-                            "Counties with low proportion in poverty"]);
+                          setVTrendGroup(["Counties with high proportion of population living in poverty",
+                            "Counties with low proportion of population living in poverty"]);
                           setSelection("poverty");
                         }} />
                         {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
@@ -1799,9 +1799,9 @@ console.log(vaccDisparityData);
                             "Counties with low proportion of minorities"]);
                           setSelection("minority");
                         }} />
-                        <Button content='American Native' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of American Natives",
-                            "Counties with low proportion of American Natives"]);
+                        <Button content='Native American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Native Americans",
+                            "Counties with low proportion of Native Americans"]);
                           setSelection("native");
                         }} />
                         <Button content='Uninsured' icon='users' floated="center" onClick={() => {
