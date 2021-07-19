@@ -63,7 +63,7 @@ function VaccineDisparityCharts(props){
       <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
       <LineChart width={720} height={450} data = {props.data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" tick={{fontSize: 16}} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
+        <XAxis dataKey="t" tick={{fontSize: 16}} angle={-35} tickFormatter={props.formatter} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}} domain={["dataMin", "dataMax"]}/>
         <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} strokeDasharray="5 5"
               isAnimationActive={true} 
@@ -88,19 +88,19 @@ function VaccineDisparityCharts(props){
               stroke={colorPalette[5]} strokeWidth="3" />}
         <Legend payload={ (props.selection === "region" || props.selection === "urbanrural") === false? 
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080'},
+              { id: '7', value: props.nationalAverage, type: 'line', color: '#808080'},
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPalette[0]},
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPalette[4]},
             ] : props.selection === "region"? 
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: '#808080'},
+              { id: '7', value: props.nationalAverage, type: 'line', color: '#808080'},
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPalette[0]},
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPalette[4]},
               { id: '3', value: props.trendGroup[2], type: 'square', color: colorPalette[2]},
               { id: '4', value: props.trendGroup[3], type: 'square', color: colorPalette[3]},
             ] :
             [
-              { id: '7', value: props.nationalAverage, type: 'square', color: "#808080"},
+              { id: '7', value: props.nationalAverage, type: 'line', color: "#808080"},
               { id: '1', value: props.trendGroup[0], type: 'square', color: colorPalette[0]},
               { id: '2', value: props.trendGroup[1], type: 'square', color: colorPalette[4]},
               { id: '3', value: props.trendGroup[2], type: 'square', color: colorPalette[2]},
@@ -137,8 +137,8 @@ export default function AboutUs(props){
       fetch('/data/vaccineDisparity.json').then(res => res.json())
         .then(x => setVaccDisparityData(x));
       
-      setVTrendGroup(["Counties with high proportion of African American", 
-      "Counties with low proportion of African American"]);
+      setVTrendGroup(["Counties with high proportion of African Americans", 
+      "Counties with low proportion of African Americans"]);
     }
   }, []);
   
@@ -232,66 +232,66 @@ export default function AboutUs(props){
 
                       <div>
                         <center>
-                          <Button content='African American' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of African American", 
-                            "Counties with low proportion of African American"]); 
-                            setSelection("aa");
-                          }}/>
-                          <Button content='Hispanic' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of Hispanic", 
-                            "Counties with low proportion of Hispanic"]); 
-                            setSelection("hispanic");
-                          }}/>
-                          <Button content='Age 65+' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of age 65+", 
-                            "Counties with low proportion of age 65+"]); 
-                            setSelection("age65");
-                          }}/>
-                          <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion with underlying condition", 
-                            "Counties with low proportion with underlying condition"]); 
-                            setSelection("condition");
-                          }}/>
-                          <Button content='In poverty' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion in poverty", 
-                            "Counties with low proportion in poverty"]); 
-                            setSelection("poverty");
-                          }}/>
-                          {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
+                        <Button content='African American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of African Americans",
+                            "Counties with low proportion of African Americans"]);
+                          setSelection("aa");
+                        }} />
+                        <Button content='Hispanic' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Hispanic Americans",
+                            "Counties with low proportion of Hispanic Americans"]);
+                          setSelection("hispanic");
+                        }} />
+                        <Button content='Age 65+' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population age 65+",
+                            "Counties with low proportion of population age 65+"]);
+                          setSelection("age65");
+                        }} />
+                        <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion with underlying condition",
+                            "Counties with low proportion with underlying condition"]);
+                          setSelection("condition");
+                        }} />
+                        <Button content='In poverty' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population living in poverty",
+                            "Counties with low proportion of population living in poverty"]);
+                          setSelection("poverty");
+                        }} />
+                        {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high residential segregation", 
                             "Counties with low residential segregation"]); 
                             setRegion(false);
                           }}/> */}
-                          <Button content='Minority' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of minority", 
-                            "Counties with low proportion of minority"]); 
-                            setSelection("minority");
-                          }}/>
-                          <Button content='American Native' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of American Native", 
-                            "Counties with low proportion of American Native"]); 
-                            setSelection("native");
-                          }}/>
-                          <Button content='Uninsured' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of uninsured", 
-                            "Counties with low proportion of uninsured"]); 
-                            setSelection("uninsured");
-                          }}/>
-                          <Button content='Region' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties in the South", "Counties in the West", 
-                            "Counties in the Northeast", "Counties in the Midwest"]); 
-                            setSelection("region");
-                          }}/>
-                          <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities", 
-                            "Rural areas near cities", "Remote rural areas"]); 
-                            setSelection("urbanrural");
-                          }}/>
-                          <Button content='College' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of population with college education",
-                            "Counties with low proportion of population with college education"]); 
-                            setSelection("college");
-                          }}/>
+                        <Button content='Minority' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of minorities",
+                            "Counties with low proportion of minorities"]);
+                          setSelection("minority");
+                        }} />
+                        <Button content='Native American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Native Americans",
+                            "Counties with low proportion of Native Americans"]);
+                          setSelection("native");
+                        }} />
+                        <Button content='Uninsured' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of uninsured population",
+                            "Counties with low proportion of uninsured population"]);
+                          setSelection("uninsured");
+                        }} />
+                        <Button content='Region' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties in the South", "Counties in the West",
+                            "Counties in the Northeast", "Counties in the Midwest"]);
+                          setSelection("region");
+                        }} />
+                        <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities",
+                            "Rural areas near cities", "Remote rural areas"]);
+                          setSelection("urbanrural");
+                        }} />
+                        <Button content='College' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population with college education",
+                            "Counties with low proportion of population with college education"]);
+                          setSelection("college");
+                        }} />
                         </center>
                         
                         

@@ -213,7 +213,7 @@ function CaseChart(props){
     <div style={{paddingTop: 5, paddingBottom: 70, width: 500}}>
       <LineChart width={500} height={180} data = {data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
+        <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} angle={-20} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
         <Line data={data["_nation"]} name="Nation" type='monotone' dataKey={variable} dot={false} 
               isAnimationActive={animationBool} 
@@ -809,6 +809,8 @@ const USVaccineTracker = (props) => {
           dataTS["_nation"][306].t,
           dataTS["_nation"][334].t,
           dataTS["_nation"][365].t,
+          dataTS["_nation"][395].t,
+          dataTS["_nation"][426].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
