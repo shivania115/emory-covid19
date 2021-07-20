@@ -39,7 +39,7 @@ export default function MediaHub(props){
               <div>
                 <Header as='h2'>
                   <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses'>“You can't have good public health, but not have equity and economic growth”: A conversation with Katie Kirkpatrick about economic responses to the COVID-19 pandemic.</Header.Content></div>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake'>“Going beyond the benchmarks: What it takes to get Americans vaccinated”: A conversation with Dr. Bob Bednarczyk about COVID-19 vaccine uptake.</Header.Content></div>
                     <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
                       Date Published: July. 16, 2021 <br/> 
                       Media Type: Podcast<br/><br/>
