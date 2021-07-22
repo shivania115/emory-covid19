@@ -374,7 +374,7 @@ export default function AboutUs(props){
                       in the nation. The US South also has a disproportionately large number of counties that are 
                       classified as having high poverty and high uninsured populations (see 
                       
-                      <a href="https://covid19.emory.edu/map-state" target="_blank" rel="noopener noreferrer"> Emory’s COVID-19 Health Equity Dashboard Map State</a>.
+                      <a href="https://covid19.emory.edu/map-state" target="_blank" rel="noopener noreferrer"> Emory’s COVID-19 Health Equity Dashboard Map State</a>
                       ). 
                       These maps reinforce a disconcerting pattern: the counties with the worst risk for severe 
                       COVID-19 disease and worst access to healthcare are the least vaccinated.  
