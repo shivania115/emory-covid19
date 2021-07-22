@@ -195,7 +195,7 @@ export default function AboutUs(props){
                       governments, the vaccines emerged as a valuable weapon against COVID-19. Ensuring 
                       equitable vaccine access remains a national priority and there have been major 
                       discussions regarding the best ways to address vaccine access in vulnerable 
-                      communities Nevertheless, CDC data suggest that vaccine administration is not 
+                      communities. Nevertheless, CDC data suggest that vaccine administration is not 
                       just lower in some vulnerable communities, but also the gaps have been widening 
                       even further over time. We compared vaccination coverage across counties based on 
                       social characteristics-considering a combination of location (region, urbanicity) 
