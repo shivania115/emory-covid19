@@ -1863,6 +1863,8 @@ const USVaccineTrackerPilot = (props) => {
                                         key={geo.rsmKey}
                                         geography={geo}
                                         onMouseEnter={() => {
+                                          setTooltipContent("");
+
                                           setCountyTooltip(false);
                                           const fips = geo.id.substring(0, 2);
                                           const configMatched = configs.find(s => s.fips === fips);
@@ -1870,6 +1872,7 @@ const USVaccineTrackerPilot = (props) => {
                                           setHoverName(configMatched.name)
 
                                         }}
+                                        
 
                                         onMouseLeave={() => {
 
@@ -2181,12 +2184,12 @@ const USVaccineTrackerPilot = (props) => {
                             <Geographies geography={countyGeoUrl}>
                               {({ geographies }) =>
                                 <svg>
-                                  {setCountyTooltip(true)}
                                   {geographies.map(geo => (
                                     <Geography
                                       key={geo.rsmKey}
                                       geography={geo}
                                       onMouseEnter={() => {
+                                        setCountyTooltip(true);
                                         setCountyMapGeoFips(geo.id);
                                         setCountyFips(geo.properties.COUNTYFP);
                                         setCountyName(fips2county[geo.id]);
