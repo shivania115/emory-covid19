@@ -1435,6 +1435,10 @@ const USVaccineTrackerPilot = (props) => {
                       </div>
                     </Grid.Column>
                   </Grid.Row>
+                  <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor,paddingLeft: 30, paddingTop: '2em', paddingRight: '2em' }} >
+                          Date Updated: {vaccineDate}
+                          {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                        </Grid.Row>
                   <Grid.Row >
                     {stateFips && <Accordion id="race" style={{ paddingTop: 0, paddingLeft: 30, paddingBottom: 15 }} defaultActiveIndex={1} panels={[
                       {
@@ -1707,6 +1711,10 @@ const USVaccineTrackerPilot = (props) => {
                     </Grid.Row>
 
                   </Grid>
+                  <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor,paddingLeft: 30, paddingTop: '2em', paddingRight: '2em' }} >
+                          Date Updated: {nationalDemogDate}
+                          {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                        </Grid.Row>
                   <Grid.Row>
                     <Accordion id="vaccine" style={{ paddingTop: 0, paddingLeft: 30, paddingBottom: 15 }} defaultActiveIndex={1} panels={[
                       {
@@ -2125,9 +2133,11 @@ const USVaccineTrackerPilot = (props) => {
                             setSelection("college");
                           }} />
                         </center>
+                        <center>
                         {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
                           aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
                           formatter={caseTickFmt} trendGroup={vTrendGroup} />}
+                          </center>
                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
                           Date Updated: {date}
                           {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
@@ -2158,6 +2168,7 @@ const USVaccineTrackerPilot = (props) => {
                           } />
 
                         </Grid.Row>
+                       
                       </TabPanel>
 
                       <TabPanel value={value} index={1}>
