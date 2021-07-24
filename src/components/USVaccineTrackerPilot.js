@@ -37,7 +37,7 @@ import {
 } from 'victory';
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
-import _ from 'lodash';
+import _, { map } from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 // import ReactDOM from 'react-dom';
@@ -823,7 +823,7 @@ const USVaccineTrackerPilot = (props) => {
   const [clicked, setClicked] = useState(false);
 
   const [activeCharacter, setActiveCharacter] = useState('');
-
+  const [dataStateTS, setStateTS] = useState();
   const history = useHistory();
   const [tooltipContent, setTooltipContent] = useState('');
 
@@ -851,7 +851,7 @@ const USVaccineTrackerPilot = (props) => {
   const [stateFips, setStateFips] = useState();
   const [stateMapFips, setStateMapFips] = useState("_nation");
   const [countyMapGeoFips, setCountyMapGeoFips] = useState();
-
+  const [stateTrendFips, setstateTrendFips] = useState("_nation");
   const [config, setConfig] = useState();
   const [countyFips, setCountyFips] = useState('');
   const [colorScaleState, setColorScaleState] = useState();
@@ -1050,7 +1050,30 @@ const USVaccineTrackerPilot = (props) => {
 
   }, []);
 
+  // useEffect(()=>{
+  //   if (metric) {
 
+  //     // console.log("configMatched", configMatched);
+
+  //       if (isLoggedIn === true){
+  //         // setStateName(configMatched.name);
+  //         const fetchData = async() => { 
+
+  //             //all static data
+  //             const staticQ = {all: "all"};
+  //             const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();                  
+  //             const stateSeriesQ = {full_fips: stateTrendFips};
+  //             const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+  //             // const promState = await CHED_series.find({}).toArray();
+  //             let stateSeriesDict = promState[0]["timeseries"+stateTrendFips];
+  //             console.log(stateSeriesDict);
+  //             setStateTS(stateSeriesDict);
+
+  //         };
+  //         fetchData();
+  //       } 
+  //   }
+  // },[isLoggedIn]);
 
   useEffect(() => {
     if (metric) {
@@ -1118,6 +1141,7 @@ const USVaccineTrackerPilot = (props) => {
       if (!configMatched) {
 
       } else {
+
 
         setConfig(configMatched);
 
@@ -1225,7 +1249,8 @@ const USVaccineTrackerPilot = (props) => {
 
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-
+    
+console.log((allTS));
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -1769,7 +1794,7 @@ const USVaccineTrackerPilot = (props) => {
                     </div>
 
 
-                    <TabPanel value={value+2} index={2}>
+                    <TabPanel value={value + 2} index={2}>
                       <Grid style={{ width: 1260 }}>
                         <Grid.Row columns={2} style={{ width: 1260 }}>
                           <Grid.Column style={{ width: 1000, paddingLeft: 0 }}>
@@ -1872,7 +1897,7 @@ const USVaccineTrackerPilot = (props) => {
                                           setHoverName(configMatched.name)
 
                                         }}
-                                        
+
 
                                         onMouseLeave={() => {
 
@@ -2041,1149 +2066,1176 @@ const USVaccineTrackerPilot = (props) => {
                         </Grid.Row>
                       </Grid>
                     </TabPanel>
-                    <TabPanel value={value+2} index={3}>
-                      Hello World
-                    
+                    <TabPanel value={value + 2} index={3}>
+                    <LineChart
+                        width={500}
+                        height={300}
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5
+                        }}
+                      >
+                      
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="t" />
+                        <YAxis />
+                        <Tooltip  />
+                        <Legend />
+                        {Object.keys(allTS).map((fip)=>(
+                          <Line
+                          type="monotone"
+                         
+                          stroke="#82ca9d"
+      
+                          strokeDasharray="3 4 5 2"
+                        />
+            
+                      ))}
+                        
+                      </LineChart>
+
                     </TabPanel>
+                  </div>
+
+                  <div style={{ height: 25 }}> </div>
+                  <Grid>
+                    <Grid.Column>
+                      <Divider horizontal style={{ fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20 }}> COVID-19 Vaccination by County </Divider>
+
+                    </Grid.Column>
+                  </Grid>
+                  <div className={classes.root} style={{ paddingLeft: 0 }}>
+                    <div style={{ paddingLeft: 20 }}>
+                      <AppBarMU position="static" style={{ width: 1010 }}>
+                        <TabsMU value={value2} onChange={handleChange2} aria-label="simple tabs example"
+                          classes={{
+                            root: classes.customTabRoot,
+                            indicator: classes.customTabIndicator
+                          }}
+                        >
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "18px" }} label="County Vaccination Trends" {...a11yProps(0)} />
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="County Vaccination Map" {...a11yProps(1)} />
+                          {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                        </TabsMU>
+                      </AppBarMU>
                     </div>
-
-                    <div style={{ height: 25 }}> </div>
-                    <Grid>
-                      <Grid.Column>
-                        <Divider horizontal style={{ fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20 }}> COVID-19 Vaccination by County </Divider>
-
-                      </Grid.Column>
-                    </Grid>
-                    <div className={classes.root} style={{ paddingLeft: 0 }}>
-                      <div style={{ paddingLeft: 20 }}>
-                        <AppBarMU position="static" style={{ width: 1010 }}>
-                          <TabsMU value={value2} onChange={handleChange2} aria-label="simple tabs example"
-                            classes={{
-                              root: classes.customTabRoot,
-                              indicator: classes.customTabIndicator
-                            }}
-                          >
-                            <TabMU style={{ textTransform: "capitalize", fontSize: "18px" }} label="County Vaccination Trends" {...a11yProps(0)} />
-                            <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="County Vaccination Map" {...a11yProps(1)} />
-                            {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
-                          </TabsMU>
-                        </AppBarMU>
-                      </div>
-                      <TabPanel value={value2} index={0}>
-                        <center>
-                          <Button content='African American' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of African Americans",
-                              "Counties with low proportion of African Americans"]);
-                            setSelection("aa");
-                          }} />
-                          <Button content='Hispanic' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of Hispanic Americans",
-                              "Counties with low proportion of Hispanic Americans"]);
-                            setSelection("hispanic");
-                          }} />
-                          <Button content='Age 65+' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of population age 65+",
-                              "Counties with low proportion of population age 65+"]);
-                            setSelection("age65");
-                          }} />
-                          <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion with underlying condition",
-                              "Counties with low proportion with underlying condition"]);
-                            setSelection("condition");
-                          }} />
-                          <Button content='In poverty' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of population living in poverty",
-                              "Counties with low proportion of population living in poverty"]);
-                            setSelection("poverty");
-                          }} />
-                          {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
+                    <TabPanel value={value2} index={0}>
+                      <center>
+                        <Button content='African American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of African Americans",
+                            "Counties with low proportion of African Americans"]);
+                          setSelection("aa");
+                        }} />
+                        <Button content='Hispanic' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Hispanic Americans",
+                            "Counties with low proportion of Hispanic Americans"]);
+                          setSelection("hispanic");
+                        }} />
+                        <Button content='Age 65+' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population age 65+",
+                            "Counties with low proportion of population age 65+"]);
+                          setSelection("age65");
+                        }} />
+                        <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion with underlying condition",
+                            "Counties with low proportion with underlying condition"]);
+                          setSelection("condition");
+                        }} />
+                        <Button content='In poverty' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population living in poverty",
+                            "Counties with low proportion of population living in poverty"]);
+                          setSelection("poverty");
+                        }} />
+                        {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
                             setVTrendGroup(["Counties with high residential segregation", 
                             "Counties with low residential segregation"]); 
                             setRegion(false);
                           }}/> */}
-                          <Button content='Minority' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of minorities",
-                              "Counties with low proportion of minorities"]);
-                            setSelection("minority");
-                          }} />
-                          <Button content='Native American' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of Native Americans",
-                              "Counties with low proportion of Native Americans"]);
-                            setSelection("native");
-                          }} />
-                          <Button content='Uninsured' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of uninsured population",
-                              "Counties with low proportion of uninsured population"]);
-                            setSelection("uninsured");
-                          }} />
-                          <Button content='Region' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties in the South", "Counties in the West",
-                              "Counties in the Northeast", "Counties in the Midwest"]);
-                            setSelection("region");
-                          }} />
-                          <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities",
-                              "Rural areas near cities", "Remote rural areas"]);
-                            setSelection("urbanrural");
-                          }} />
-                          <Button content='College' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high proportion of population with college education",
-                              "Counties with low proportion of population with college education"]);
-                            setSelection("college");
-                          }} />
-                        </center>
-                        {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
-                          aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
-                          formatter={caseTickFmt} trendGroup={vTrendGroup} />}
-                        <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                          Date Updated: {date}
-                          {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
-                        </Grid.Row>
-                        <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
-                          <Accordion defaultActiveIndex={1} panels={[
-                            {
-                              key: 'acquire-dog',
-                              title: {
-                                content: <u style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor }}>About the data</u>,
-                                icon: 'dropdown',
-                              },
-                              content: {
-                                content: (
-                                  <p style={{ fontFamily: 'lato', fontSize: 18 }}>
-                                    {/* This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis).
+                        <Button content='Minority' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of minorities",
+                            "Counties with low proportion of minorities"]);
+                          setSelection("minority");
+                        }} />
+                        <Button content='Native American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Native Americans",
+                            "Counties with low proportion of Native Americans"]);
+                          setSelection("native");
+                        }} />
+                        <Button content='Uninsured' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of uninsured population",
+                            "Counties with low proportion of uninsured population"]);
+                          setSelection("uninsured");
+                        }} />
+                        <Button content='Region' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties in the South", "Counties in the West",
+                            "Counties in the Northeast", "Counties in the Midwest"]);
+                          setSelection("region");
+                        }} />
+                        <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities",
+                            "Rural areas near cities", "Remote rural areas"]);
+                          setSelection("urbanrural");
+                        }} />
+                        <Button content='College' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population with college education",
+                            "Counties with low proportion of population with college education"]);
+                          setSelection("college");
+                        }} />
+                      </center>
+                      {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
+                        aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
+                        formatter={caseTickFmt} trendGroup={vTrendGroup} />}
+                      <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                        Date Updated: {date}
+                        {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                      </Grid.Row>
+                      <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
+                        <Accordion defaultActiveIndex={1} panels={[
+                          {
+                            key: 'acquire-dog',
+                            title: {
+                              content: <u style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor }}>About the data</u>,
+                              icon: 'dropdown',
+                            },
+                            content: {
+                              content: (
+                                <p style={{ fontFamily: 'lato', fontSize: 18 }}>
+                                  {/* This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis).
                                   Inner city counties have {'>'} 1 million population or contain the entire or large part of the population of the largest principle city.
                                   Large suburban counties have a population {'>'} 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999.
                                   Small cities have populations {'<'} 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999.
                                   Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics. */}
-                                    {description[selection]}
-                                  </p>
+                                  {description[selection]}
+                                </p>
+                              ),
+                            },
+                          }
+                        ]
+
+                        } />
+
+                      </Grid.Row>
+                    </TabPanel>
+
+                    <TabPanel value={value2} index={1}>
+                      <div style={{ paddingLeft: 50 }}>
+                        <ComposableMap
+                          projection="geoAlbersUsa"
+                          data-tip=""
+                          width={950}
+                          height={500}
+                          strokeWidth={0.1}
+                          stroke='black'
+                          offsetX={0}
+                          projectionConfig={{ scale: 1000 }}
+
+
+                        >
+                          <Geographies geography={countyGeoUrl}>
+                            {({ geographies }) =>
+                              <svg>
+                                {geographies.map(geo => (
+                                  <Geography
+                                    key={geo.rsmKey}
+                                    geography={geo}
+                                    onMouseEnter={() => {
+                                      setCountyTooltip(true);
+                                      setCountyMapGeoFips(geo.id);
+                                      setCountyFips(geo.properties.COUNTYFP);
+                                      setCountyName(fips2county[geo.id]);
+                                      const fips = geo.id.substring(0, 2);
+                                      const configMatched = configs.find(s => s.fips === fips);
+                                      setHoverName(configMatched.name)
+                                    }}
+
+                                    onClick={() => {
+                                      // setCountyMapGeoFips(geo.id);
+                                      // setCountyFips(geo.properties.COUNTYFP);
+                                      // setCountyName(fips2county[geo.id]);
+                                    }}
+
+                                    onMouseLeave={() => {
+                                      setTooltipContent("");
+                                      setCountyTooltip(false)
+                                    }}
+
+                                    fill={countyMapGeoFips === geo.id ? colorHighlight :
+                                      ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0) ?
+                                        colorScaleState[data[geo.id][metric]] :
+                                        '#FFFFFF')}
+
+                                  />
+                                ))}
+                              </svg>
+                            }
+                          </Geographies>
+
+
+                        </ComposableMap>
+                      </div>
+
+                    </TabPanel>
+                  </div>
+
+
+
+
+
+                  <div style={{ height: 55 }}> </div>
+
+                  <Grid>
+                    <Grid.Column>
+                      <Divider horizontal style={{ fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 15 }}> COVID-19 Burden in {stateName} </Divider>
+
+                    </Grid.Column>
+                  </Grid>
+
+                  <Grid.Row columns={2} style={{ width: 1000 }}>
+
+
+                    <Grid.Column style={{ width: 630 }}>
+                      <Grid>
+
+
+                        <Grid.Row columns={2} style={{ width: 630, paddingLeft: 20 }}>
+                          <Grid.Column style={{ width: 240, paddingLeft: 15 }}>
+
+                            <div>
+                              {stateMapFips &&
+                                <VictoryChart
+                                  minDomain={{ x: stateMapFips ? allTS[stateMapFips][allTS[stateMapFips].length - 15].t : allTS["13"][allTS["13"].length - 15].t }}
+                                  maxDomain={{ y: stateMapFips ? getMaxRange(allTS[stateMapFips], "caseRateMean", (allTS[stateMapFips].length - 15)).caseRateMean * 1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length - 15)).caseRateMean * 1.05 }}
+                                  width={220}
+                                  height={180}
+                                  padding={{ marginLeft: 0, right: -1, top: 150, bottom: -0.9 }}
+                                  containerComponent={<VictoryContainer responsive={false} />}>
+
+                                  <VictoryAxis
+                                    tickValues={stateMapFips ?
+                                      [
+                                        allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) * 2 - 1].t,
+                                        allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) - 1].t,
+                                        allTS[stateMapFips][allTS[stateMapFips].length - 1].t]
+                                      :
+                                      [
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
+                                        allTS["13"][allTS["13"].length - 1].t]}
+                                    style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
+                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
+
+                                  <VictoryGroup
+                                    colorScale={[stateColor]}
+                                  >
+
+                                    <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
+                                      x='t' y='caseRateMean'
+                                    />
+
+                                  </VictoryGroup>
+                                  <VictoryArea
+                                    style={{ data: { fill: "#00BFFF", fillOpacity: 0.1 } }}
+                                    data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
+                                    x='t' y='caseRateMean'
+
+                                  />
+
+                                  <VictoryLabel text={stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
+
+                                  <VictoryLabel text={stateMapFips ?
+                                    (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
+                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
+                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                    :
+                                    (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
+                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
+                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
+
+                                  <VictoryLabel text={stateMapFips ?
+                                    (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "↑" :
+                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "↓" : ""
+                                    :
+                                    (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "↑" :
+                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "↓" : ""}
+
+
+                                    x={160} y={80} textAnchor="middle" style={{
+                                      fontSize: 24, fontFamily: 'lato'
+
+                                      , fill: stateMapFips ?
+                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "#FF0000" :
+                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "#32CD32" : ""
+                                        :
+                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "#FF0000" :
+                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "#32CD32" : ""
+
+                                    }} />
+
+                                  <VictoryLabel text={"14-day"} x={197} y={100} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
+                                  <VictoryLabel text={"change"} x={197} y={110} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
+                                  <VictoryLabel text={"Daily Cases"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
+
+
+                                </VictoryChart>}
+                            </div>
+                          </Grid.Column>
+                          <Grid.Column style={{ width: 240, paddingLeft: 55 }}>
+                            <div>
+                              {stateMapFips &&
+                                <VictoryChart theme={VictoryTheme.material}
+                                  minDomain={{ x: stateMapFips ? allTS[stateMapFips][allTS[stateMapFips].length - 15].t : allTS["13"][allTS["13"].length - 15].t }}
+                                  maxDomain={{ y: stateMapFips ? getMax(allTS[stateMapFips], "mortalityMean").mortalityMean + 0.8 : getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8 }}
+                                  width={220}
+                                  height={180}
+                                  padding={{ left: 0, right: -1, top: 150, bottom: -0.9 }}
+                                  containerComponent={<VictoryContainer responsive={false} />}>
+
+                                  <VictoryAxis
+                                    tickValues={stateMapFips ?
+                                      [
+                                        allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) * 2 - 1].t,
+                                        allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) - 1].t,
+                                        allTS[stateMapFips][allTS[stateMapFips].length - 1].t]
+                                      :
+                                      [
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
+                                        allTS["13"][allTS["13"].length - 1].t]}
+                                    style={{ tickLabels: { fontSize: 10 } }}
+                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
+
+                                  <VictoryGroup
+                                    colorScale={[stateColor]}
+                                  >
+
+                                    <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
+                                      x='t' y='mortalityMean'
+                                    />
+
+                                  </VictoryGroup>
+
+                                  <VictoryArea
+                                    style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1 } }}
+                                    data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
+                                    x='t' y='mortalityMean'
+
+                                  />
+
+
+                                  <VictoryLabel text={stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
+
+                                  <VictoryLabel text={stateMapFips ?
+                                    (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%" :
+                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%" :
+                                        "0%"
+                                    :
+                                    (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%" :
+                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%" :
+                                        "0%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
+
+                                  <VictoryLabel text={stateMapFips ?
+                                    (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "↑" :
+                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "↓" : ""
+                                    :
+                                    (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "↑" :
+                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "↓" : ""}
+
+                                    x={160} y={80} textAnchor="middle" style={{
+                                      fontSize: 24, fontFamily: 'lato'
+
+                                      , fill: stateMapFips ?
+                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "#FF0000" :
+                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "#32CD32" : ""
+                                        :
+                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "#FF0000" :
+                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "#32CD32" : ""
+                                    }} />
+
+                                  <VictoryLabel text={"14-day"} x={197} y={100} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
+                                  <VictoryLabel text={"change"} x={197} y={110} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
+                                  <VictoryLabel text={"Daily Deaths"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
+
+                                </VictoryChart>}
+                            </div>
+
+                          </Grid.Column>
+
+
+                        </Grid.Row>
+                        <div style={{ height: 60 }}>
+                          {stateFips && <Accordion style={{ paddingTop: 10, paddingLeft: 17 }} defaultActiveIndex={1} panels={[
+                            {
+                              key: 'acquire-dog',
+                              title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>, icon: 'dropdown',
+                              },
+                              content: {
+                                content: (
+                                  <Header.Content style={{ fontWeight: 300, paddingTop: 0, paddingLeft: 5, fontSize: "19px", width: 460 }}>
+                                    *14-day change trends use 7-day averages.
+                                    <br />
+                                    <b><em> {varMap["dailycases"].name} </em></b> {varMap["dailycases"].definition}
+                                    <br />
+                                    <b><em> {varMap["dailydeaths"].name} </em></b> {varMap["dailydeaths"].definition}
+                                    <br />
+                                    <br />
+
+
+
+
+                                  </Header.Content>
                                 ),
                               },
                             }
                           ]
-
-                          } />
-
-                        </Grid.Row>
-                      </TabPanel>
-
-                      <TabPanel value={value2} index={1}>
-                        <div style={{ paddingLeft: 50 }}>
-                          <ComposableMap
-                            projection="geoAlbersUsa"
-                            data-tip=""
-                            width={950}
-                            height={500}
-                            strokeWidth={0.1}
-                            stroke='black'
-                            offsetX={0}
-                            projectionConfig={{ scale: 1000 }}
-
-
-                          >
-                            <Geographies geography={countyGeoUrl}>
-                              {({ geographies }) =>
-                                <svg>
-                                  {geographies.map(geo => (
-                                    <Geography
-                                      key={geo.rsmKey}
-                                      geography={geo}
-                                      onMouseEnter={() => {
-                                        setCountyTooltip(true);
-                                        setCountyMapGeoFips(geo.id);
-                                        setCountyFips(geo.properties.COUNTYFP);
-                                        setCountyName(fips2county[geo.id]);
-                                        const fips = geo.id.substring(0, 2);
-                                        const configMatched = configs.find(s => s.fips === fips);
-                                        setHoverName(configMatched.name)
-                                      }}
-
-                                      onClick={() => {
-                                        // setCountyMapGeoFips(geo.id);
-                                        // setCountyFips(geo.properties.COUNTYFP);
-                                        // setCountyName(fips2county[geo.id]);
-                                      }}
-
-                                      onMouseLeave={() => {
-                                        setTooltipContent("");
-                                        setCountyTooltip(false)
-                                      }}
-
-                                      fill={countyMapGeoFips === geo.id ? colorHighlight :
-                                        ((colorScaleState && data[geo.id] && (data[geo.id][metric]) > 0) ?
-                                          colorScaleState[data[geo.id][metric]] :
-                                          '#FFFFFF')}
-
-                                    />
-                                  ))}
-                                </svg>
-                              }
-                            </Geographies>
-
-
-                          </ComposableMap>
+                          } />}
                         </div>
 
-                      </TabPanel>
-                    </div>
+                        <Grid.Row>
+                          <Grid.Column style={{ paddingLeft: 20, paddingTop: 101 }}>
+                            <Header as='h2' style={{ fontWeight: 400, paddingTop: 10 }}>
+                              <Header.Content style={{ width: 500, fontSize: "22px", textAlign: "center" }}>
+                                Disparities in COVID-19 Mortality <br /> <b>{stateMapFips !== "_nation" ? stateName : "Nation"}</b>
+
+                              </Header.Content>
+                            </Header>
+
+                            {stateMapFips && stateMapFips === "_nation" && <div style={{ marginTop: 13 }}>
+                              <Header.Content x={0} y={20} style={{ fontSize: '19px', paddingLeft: 130, fontWeight: 400, width: 400 }}> Deaths by Race & Ethnicity</Header.Content>
+                            </div>}
+
+                            {stateMapFips && stateMapFips === "_nation" && <div style={{ paddingLeft: "0em", paddingRight: "2em" }}>
+
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={400}
+                                height={160}
+                                domainPadding={20}
+                                minDomain={{ y: props.ylog ? 1 : 0 }}
+                                padding={{ left: 164, right: 35, top: 12, bottom: 1 }}
+                                style={{ fontSize: "19px" }}
+                                containerComponent={<VictoryContainer responsive={false} />}
+                              >
+                                <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
+                                <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
+                                <VictoryBar
+                                  horizontal
+                                  barRatio={0.45}
+                                  labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                  data={[
+                                    { key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate'] },
+                                    { key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate'] },
+                                    { key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate'] },
+                                    { key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate'] },
+                                    { key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['deathrate'] },
 
 
 
 
-
-                    <div style={{ height: 55 }}> </div>
-
-                    <Grid>
-                      <Grid.Column>
-                        <Divider horizontal style={{ fontWeight: 400, width: 1000, color: 'black', fontSize: '22pt', paddingLeft: 20, paddingBottom: 15 }}> COVID-19 Burden in {stateName} </Divider>
-
-                      </Grid.Column>
-                    </Grid>
-
-                    <Grid.Row columns={2} style={{ width: 1000 }}>
-
-
-                      <Grid.Column style={{ width: 630 }}>
-                        <Grid>
-
-
-                          <Grid.Row columns={2} style={{ width: 630, paddingLeft: 20 }}>
-                            <Grid.Column style={{ width: 240, paddingLeft: 15 }}>
-
-                              <div>
-                                {stateMapFips &&
-                                  <VictoryChart
-                                    minDomain={{ x: stateMapFips ? allTS[stateMapFips][allTS[stateMapFips].length - 15].t : allTS["13"][allTS["13"].length - 15].t }}
-                                    maxDomain={{ y: stateMapFips ? getMaxRange(allTS[stateMapFips], "caseRateMean", (allTS[stateMapFips].length - 15)).caseRateMean * 1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length - 15)).caseRateMean * 1.05 }}
-                                    width={220}
-                                    height={180}
-                                    padding={{ marginLeft: 0, right: -1, top: 150, bottom: -0.9 }}
-                                    containerComponent={<VictoryContainer responsive={false} />}>
-
-                                    <VictoryAxis
-                                      tickValues={stateMapFips ?
-                                        [
-                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) * 2 - 1].t,
-                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) - 1].t,
-                                          allTS[stateMapFips][allTS[stateMapFips].length - 1].t]
-                                        :
-                                        [
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
-                                          allTS["13"][allTS["13"].length - 1].t]}
-                                      style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
-                                      tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
-
-                                    <VictoryGroup
-                                      colorScale={[stateColor]}
-                                    >
-
-                                      <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
-                                        x='t' y='caseRateMean'
-                                      />
-
-                                    </VictoryGroup>
-                                    <VictoryArea
-                                      style={{ data: { fill: "#00BFFF", fillOpacity: 0.1 } }}
-                                      data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
-                                      x='t' y='caseRateMean'
-
-                                    />
-
-                                    <VictoryLabel text={stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
-
-                                    <VictoryLabel text={stateMapFips ?
-                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
-                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
-                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
-                                      :
-                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
-                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
-                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
-
-                                    <VictoryLabel text={stateMapFips ?
-                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "↑" :
-                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "↓" : ""
-                                      :
-                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "↑" :
-                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "↓" : ""}
-
-
-                                      x={160} y={80} textAnchor="middle" style={{
-                                        fontSize: 24, fontFamily: 'lato'
-
-                                        , fill: stateMapFips ?
-                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "#FF0000" :
-                                            (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "#32CD32" : ""
-                                          :
-                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "#FF0000" :
-                                            (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "#32CD32" : ""
-
-                                      }} />
-
-                                    <VictoryLabel text={"14-day"} x={197} y={100} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
-                                    <VictoryLabel text={"change"} x={197} y={110} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
-                                    <VictoryLabel text={"Daily Cases"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
-
-
-                                  </VictoryChart>}
-                              </div>
-                            </Grid.Column>
-                            <Grid.Column style={{ width: 240, paddingLeft: 55 }}>
-                              <div>
-                                {stateMapFips &&
-                                  <VictoryChart theme={VictoryTheme.material}
-                                    minDomain={{ x: stateMapFips ? allTS[stateMapFips][allTS[stateMapFips].length - 15].t : allTS["13"][allTS["13"].length - 15].t }}
-                                    maxDomain={{ y: stateMapFips ? getMax(allTS[stateMapFips], "mortalityMean").mortalityMean + 0.8 : getMax(allTS["13"], "mortalityMean").mortalityMean + 0.8 }}
-                                    width={220}
-                                    height={180}
-                                    padding={{ left: 0, right: -1, top: 150, bottom: -0.9 }}
-                                    containerComponent={<VictoryContainer responsive={false} />}>
-
-                                    <VictoryAxis
-                                      tickValues={stateMapFips ?
-                                        [
-                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) * 2 - 1].t,
-                                          allTS[stateMapFips][allTS[stateMapFips].length - Math.round(allTS[stateMapFips].length / 3) - 1].t,
-                                          allTS[stateMapFips][allTS[stateMapFips].length - 1].t]
-                                        :
-                                        [
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
-                                          allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
-                                          allTS["13"][allTS["13"].length - 1].t]}
-                                      style={{ tickLabels: { fontSize: 10 } }}
-                                      tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
-
-                                    <VictoryGroup
-                                      colorScale={[stateColor]}
-                                    >
-
-                                      <VictoryLine data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
-                                        x='t' y='mortalityMean'
-                                      />
-
-                                    </VictoryGroup>
-
-                                    <VictoryArea
-                                      style={{ data: { fill: "#00BFFF", stroke: "#00BFFF", fillOpacity: 0.1 } }}
-                                      data={stateMapFips && allTS[stateMapFips] ? allTS[stateMapFips] : allTS["13"]}
-                                      x='t' y='mortalityMean'
-
-                                    />
-
-
-                                    <VictoryLabel text={stateMapFips ? numberWithCommas((allTS[stateMapFips][allTS[stateMapFips].length - 1].dailyMortality).toFixed(0)) : numberWithCommas((allTS["13"][allTS["13"].length - 1].dailyMortality).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
-
-                                    <VictoryLabel text={stateMapFips ?
-                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) + "%" :
-                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? ((allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%" :
-                                          "0%"
-                                      :
-                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) + "%" :
-                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0)).substring(1) + "%" :
-                                          "0%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
-
-                                    <VictoryLabel text={stateMapFips ?
-                                      (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "↑" :
-                                        (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "↓" : ""
-                                      :
-                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "↑" :
-                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "↓" : ""}
-
-                                      x={160} y={80} textAnchor="middle" style={{
-                                        fontSize: 24, fontFamily: 'lato'
-
-                                        , fill: stateMapFips ?
-                                          (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "#FF0000" :
-                                            (allTS[stateMapFips][allTS[stateMapFips].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "#32CD32" : ""
-                                          :
-                                          (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) > 0 ? "#FF0000" :
-                                            (allTS["13"][allTS["13"].length - 1].percent14dayDailyDeaths).toFixed(0) < 0 ? "#32CD32" : ""
-                                      }} />
-
-                                    <VictoryLabel text={"14-day"} x={197} y={100} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
-                                    <VictoryLabel text={"change"} x={197} y={110} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
-                                    <VictoryLabel text={"Daily Deaths"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
-
-                                  </VictoryChart>}
-                              </div>
-
-                            </Grid.Column>
-
-
-                          </Grid.Row>
-                          <div style={{ height: 60 }}>
-                            {stateFips && <Accordion style={{ paddingTop: 10, paddingLeft: 17 }} defaultActiveIndex={1} panels={[
-                              {
-                                key: 'acquire-dog',
-                                title: {
-                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>, icon: 'dropdown',
-                                },
-                                content: {
-                                  content: (
-                                    <Header.Content style={{ fontWeight: 300, paddingTop: 0, paddingLeft: 5, fontSize: "19px", width: 460 }}>
-                                      *14-day change trends use 7-day averages.
-                                      <br />
-                                      <b><em> {varMap["dailycases"].name} </em></b> {varMap["dailycases"].definition}
-                                      <br />
-                                      <b><em> {varMap["dailydeaths"].name} </em></b> {varMap["dailydeaths"].definition}
-                                      <br />
-                                      <br />
-
-
-
-
-                                    </Header.Content>
-                                  ),
-                                },
-                              }
-                            ]
-                            } />}
-                          </div>
-
-                          <Grid.Row>
-                            <Grid.Column style={{ paddingLeft: 20, paddingTop: 101 }}>
-                              <Header as='h2' style={{ fontWeight: 400, paddingTop: 10 }}>
-                                <Header.Content style={{ width: 500, fontSize: "22px", textAlign: "center" }}>
-                                  Disparities in COVID-19 Mortality <br /> <b>{stateMapFips !== "_nation" ? stateName : "Nation"}</b>
-
+                                  ]}
+                                  labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                  style={{
+                                    data: {
+                                      fill: "#004071"
+                                    }
+                                  }}
+                                  x="key"
+                                  y="value"
+                                />
+                              </VictoryChart>
+                              <Header.Content style={{ width: 420 }}>
+                                <Header.Content style={{ fontWeight: 300, paddingLeft: 150, paddingTop: 8, paddingBottom: 34, fontSize: "19px", lineHeight: "18pt" }}>
+                                  <b>Deaths per 100K residents</b>
                                 </Header.Content>
-                              </Header>
+                              </Header.Content>
+                            </div>}
 
-                              {stateMapFips && stateMapFips === "_nation" && <div style={{ marginTop: 13 }}>
-                                <Header.Content x={0} y={20} style={{ fontSize: '19px', paddingLeft: 130, fontWeight: 400, width: 400 }}> Deaths by Race & Ethnicity</Header.Content>
-                              </div>}
-
-                              {stateMapFips && stateMapFips === "_nation" && <div style={{ paddingLeft: "0em", paddingRight: "2em" }}>
-
-                                <VictoryChart
-                                  theme={VictoryTheme.material}
-                                  width={400}
-                                  height={160}
-                                  domainPadding={20}
-                                  minDomain={{ y: props.ylog ? 1 : 0 }}
-                                  padding={{ left: 164, right: 35, top: 12, bottom: 1 }}
-                                  style={{ fontSize: "19px" }}
-                                  containerComponent={<VictoryContainer responsive={false} />}
-                                >
-                                  <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
-                                  <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
-                                  <VictoryBar
-                                    horizontal
-                                    barRatio={0.45}
-                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                    data={[
-                                      { key: nationalDemog['race'][0]['American Native'][0]['demogLabel'], 'value': nationalDemog['race'][0]['American Native'][0]['deathrate'] },
-                                      { key: nationalDemog['race'][0]['Asian'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Asian'][0]['deathrate'] },
-                                      { key: nationalDemog['race'][0]['Hispanic'][0]['demogLabel'], 'value': nationalDemog['race'][0]['Hispanic'][0]['deathrate'] },
-                                      { key: nationalDemog['race'][0]['African American'][0]['demogLabel'], 'value': nationalDemog['race'][0]['African American'][0]['deathrate'] },
-                                      { key: nationalDemog['race'][0]['White'][0]['demogLabel'], 'value': nationalDemog['race'][0]['White'][0]['deathrate'] },
-
-
-
-
-                                    ]}
-                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                    style={{
-                                      data: {
-                                        fill: "#004071"
-                                      }
-                                    }}
-                                    x="key"
-                                    y="value"
-                                  />
-                                </VictoryChart>
-                                <Header.Content style={{ width: 420 }}>
-                                  <Header.Content style={{ fontWeight: 300, paddingLeft: 150, paddingTop: 8, paddingBottom: 34, fontSize: "19px", lineHeight: "18pt" }}>
-                                    <b>Deaths per 100K residents</b>
-                                  </Header.Content>
-                                </Header.Content>
-                              </div>}
-
-                              {stateMapFips !== "_nation" && !raceData[stateMapFips]["Non-Hispanic African American"] && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
-                                <Grid>
-                                  <Grid.Row columns={2} style={{ height: 273, paddingBottom: 0 }}>
-                                    <Grid.Column style={{ paddingLeft: 20 }}>
-                                      {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "02" &&
-                                        <div style={{ marginTop: 10, width: 250 }}>
-                                          <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 58, fontWeight: 400 }}> Deaths by Race</Header.Content>
-                                        </div>
-                                      }
-                                      {stateMapFips && !raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38" && stateMapFips !== "02" &&
-                                        <VictoryChart
-                                          theme={VictoryTheme.material}
-                                          width={250}
-                                          height={40 * ((!!raceData[stateMapFips]["Asian Alone"] && raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["Asian Alone"][0]["deaths"] > 30 && raceData[stateMapFips]["Asian Alone"][0]["percentPop"] >= 1 ? 1 : 0) +
-                                            (!!raceData[stateMapFips]["American Natives Alone"] && raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Natives Alone"][0]["percentPop"] >= 1 ? 1 : 0) +
-                                            (!!raceData[stateMapFips]["African American Alone"] && raceData[stateMapFips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["African American Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["African American Alone"][0]["percentPop"] >= 1 ? 1 : 0) +
-                                            (!!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 ? 1 : 0))}
-                                          domainPadding={20}
-                                          minDomain={{ y: props.ylog ? 1 : 0 }}
-                                          padding={{ left: 100, right: 65, top: 12, bottom: 1 }}
-                                          style={{ fontSize: "14pt" }}
-                                          containerComponent={<VictoryContainer responsive={false} />}
-                                        >
-
-                                          <VictoryAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
-                                          <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000' }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
-                                          <VictoryGroup>
-
-
-
-                                            {"American Natives Alone" in raceData[stateMapFips] && raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Natives Alone"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "American\n Natives", 'value': raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {"Asian Alone" in raceData[stateMapFips] && raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["Asian Alone"][0]["deaths"] > 30 && raceData[stateMapFips]["Asian Alone"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Asian", 'value': raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["Asian Alone"][0]['deathrateRace']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                            {"African American Alone" in raceData[stateMapFips] && raceData[stateMapFips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["African American Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["African American Alone"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "African\n American", 'value': raceData[stateMapFips]["African American Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["African American Alone"][0]['deathrateRace']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {"White Alone" in raceData[stateMapFips] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "White", 'value': raceData[stateMapFips]["White Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["White Alone"][0]['deathrateRace']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                          </VictoryGroup>
-                                        </VictoryChart>
-                                      }
-                                      {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38" && stateMapFips !== "02" &&
-                                        <div style={{ marginTop: 10, textAlign: "center", width: 250 }}>
-                                          <Header.Content x={15} y={20} style={{ fontSize: '14pt', paddingLeft: 15, fontWeight: 400 }}> Deaths per 100K <br /> residents</Header.Content>
-                                        </div>
-                                      }
-
-                                      {stateMapFips === "02" &&
-                                        <div style={{ marginTop: 10, width: 250 }}>
-                                          <text x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 35, fontWeight: 400 }}> Deaths by Race</text>
-
-                                          <text x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 0, fontWeight: 400 }}> <br /> <br /> <br />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            None Reported</text>
-                                        </div>
-                                      }
-
-                                    </Grid.Column>
-                                    <Grid.Column style={{ paddingLeft: 50 }}>
-                                      {!!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
-                                        <div style={{ marginTop: 10 }}>
-                                          <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 60, fontWeight: 400, width: 250 }}> Deaths by Ethnicity</Header.Content>
-                                          {!(stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])))
-                                            &&
-                                            <center> <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 20, fontWeight: 400, width: 250 }}> <br /> <br /> None Reported</Header.Content> </center>
-
-                                          }
-                                        </div>
-                                      }
-                                      {stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])) &&
-                                        <VictoryChart
-                                          theme={VictoryTheme.material}
-                                          width={250}
-                                          height={!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 81 : 3 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"])}
-                                          domainPadding={20}
-                                          minDomain={{ y: props.ylog ? 1 : 0 }}
-                                          padding={{ left: 130, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1 }}
-                                          style={{ fontSize: "14pt" }}
-                                          containerComponent={<VictoryContainer responsive={false} />}
-                                        >
-
-                                          <VictoryAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
-                                          <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000' }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
-
-                                          <VictoryGroup>
-
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic American Natives"] && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "American\n Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic Asian"] && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic Asian"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Asian", 'value': raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                            {!!raceData[stateMapFips]["Non Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Non Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Non Hispanic"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                barRatio={0.1}
-                                                horizontal
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Non Hispanic", 'value': raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {(!!raceData[stateMapFips]["Hispanic"] || (!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Hispanic"][0]["percentPop"] >= 1)) &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                barRatio={0.1}
-                                                horizontal
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Hispanic", 'value': raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic African American"] && raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic African American"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "African\n American", 'value': raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic White"] && raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic White"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "White", 'value': raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                          </VictoryGroup>
-
-
-                                        </VictoryChart>
-                                      }
-                                      {stateMapFips !== "_nation" && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])) &&
-                                        <div style={{ marginTop: 10, textAlign: "center", width: 250 }}>
-                                          <Header.Content style={{ fontSize: '14pt', paddingLeft: 35, fontWeight: 400 }}> Deaths per 100K <br /> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
-                                        </div>
-                                      }
-
-
-                                    </Grid.Column>
-                                  </Grid.Row>
-                                </Grid>
-                              }
-
-                              {stateMapFips !== "_nation" && (!!raceData[stateMapFips]["Non-Hispanic African American"] || !!raceData[stateMapFips]["Non-Hispanic White"]) && stateMapFips !== "38" &&
-                                <Grid.Row columns={1}>
-                                  <Grid.Column style={{ marginLeft: 0, paddingBottom: (13 + 2 * (!raceData[stateMapFips]["Hispanic"] + !raceData[stateMapFips]["Non Hispanic"] + !raceData[stateMapFips]["Non-Hispanic African American"] + !raceData[stateMapFips]["Non-Hispanic American Natives"] + !raceData[stateMapFips]["Non-Hispanic Asian"] + !raceData[stateMapFips]["Non-Hispanic White"])) }}>
-                                    {stateMapFips && !raceData[stateMapFips]["White Alone"] &&
-                                      <div style={{ marginTop: 10, width: 400 }}>
-                                        <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 150, fontWeight: 400 }}> Deaths by Race & Ethnicity</Header.Content>
-                                      </div>
-                                    }
-                                    {stateMapFips && !raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
-                                      <div style={{ paddingLeft: "1em", paddingRight: "0em", width: 550 }}>
-                                        <VictoryChart
-                                          theme={VictoryTheme.material}
-                                          width={400}
-                                          height={32 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"])}
-                                          domainPadding={20}
-                                          minDomain={{ y: props.ylog ? 1 : 0 }}
-                                          padding={{ left: 160, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1 }}
-                                          style={{ fontSize: "14pt" }}
-                                          containerComponent={<VictoryContainer responsive={false} />}
-                                        >
-
-                                          <VictoryAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
-                                          <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000' }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
-
-                                          <VictoryGroup>
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic American Natives"] && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "American Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic Asian"] && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic Asian"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Asian", 'value': raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {!!raceData[stateMapFips]["Non Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Non Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Non Hispanic"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                barRatio={0.1}
-                                                horizontal
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Non Hispanic", 'value': raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {(!!raceData[stateMapFips]["Hispanic"] || (!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Hispanic"][0]["percentPop"] >= 1)) &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                barRatio={0.1}
-                                                horizontal
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "Hispanic", 'value': raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic African American"] && raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic African American"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "African American", 'value': raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                            {!!raceData[stateMapFips]["Non-Hispanic White"] && raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic White"][0]["percentPop"] >= 1 &&
-                                              <VictoryBar
-                                                barWidth={10}
-                                                horizontal
-                                                barRatio={0.7}
-                                                labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                                data={[
-
-                                                  { key: "White", 'value': raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity']) }
-
-                                                ]}
-                                                labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
-                                                style={{
-                                                  data: {
-                                                    fill: "#004071"
-                                                  }
-                                                }}
-                                                x="key"
-                                                y="value"
-                                              />
-                                            }
-
-
-                                          </VictoryGroup>
-
-
-                                        </VictoryChart>
-                                      </div>
-                                    }
-                                    {stateMapFips && !raceData[stateMapFips]["White Alone"] &&
-                                      <div style={{ marginTop: 10, width: 400, paddingBottom: 3 }}>
-                                        <Header.Content style={{ fontSize: '19px', marginLeft: 150, fontWeight: 400 }}> Deaths per 100K residents<br />
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-                                        </Header.Content>
-                                      </div>
-                                    }
-
-                                  </Grid.Column>
-                                </Grid.Row>}
-
-                              {stateMapFips === "38" &&
-                                <Grid.Row columns={1}>
-                                  <Grid.Column style={{ marginLeft: 0, paddingTop: 8, paddingBottom: 87, width: 500 }}>
-                                    <div style={{ marginTop: 50 }}>
-                                      <text x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 90, fontWeight: 400 }}> Deaths per capita by Race & Ethnicity <br /> <br /> <br /> <br /> </text>
-                                      <text style={{ fontSize: '14pt', paddingLeft: 190, fontWeight: 400 }}> None Reported</text>
-                                    </div>
-                                  </Grid.Column>
-                                </Grid.Row>
-                              }
+                            {stateMapFips !== "_nation" && !raceData[stateMapFips]["Non-Hispanic African American"] && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
                               <Grid>
-                                <Grid.Row>
-                                  {stateMapFips && <Accordion style={{ paddingTop: 30, paddingLeft: 25 }} defaultActiveIndex={1} panels={[
-                                    {
-                                      key: 'acquire-dog',
-                                      title: {
-                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>,
-                                        icon: 'dropdown',
-                                      },
-                                      content: {
-                                        content: (
-
-                                          <div style={{ fontSize: "19px", paddingLeft: 5 }}>
-
-                                            For a complete table of definitions, click <a style={{ color: "#397AB9" }} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
-
-                                            {stateMapFips && stateMapFips === "_nation" && <Grid.Row style={{ paddingTop: 0, paddingBottom: 25 }}>
-                                              <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 450 }}>
-                                                The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
-                                                <br />
-                                                <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
-                                                <br /><b>Data as of:</b> {nationalDemogDate}, updated every weekday.<br />
-
-                                              </Header.Content>
-                                            </Grid.Row>}
-
-                                            {stateMapFips && stateMapFips !== "_nation" && <Grid.Row style={{ top: stateMapFips === "38" ? -30 : stateMapFips && !raceData[stateMapFips]["White Alone"] ? -40 : -30, paddingLeft: 0 }}>
-
-
-
-
-                                              {stateMapFips === "38" &&
-                                                <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
-                                                  {stateName} is not reporting deaths by race or ethnicity.
-                                                  <br />
-                                                  <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                                  <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
-
-                                                </Header.Content>}
-
-                                              {stateMapFips !== "38" && !raceData[stateMapFips]["Non-Hispanic African American"] && !!raceData[stateMapFips]["White Alone"] && (!raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])
-                                                &&
-                                                <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
-                                                  {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
-                                                  <br />
-                                                  <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                                  <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
-
-                                                </Header.Content>}
-
-                                              {stateMapFips !== "38" && !!raceData[stateMapFips]["White Alone"] && !!raceData[stateMapFips]["White Alone"] && !(!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])
-                                                &&
-                                                <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
-                                                  {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[stateMapFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
-                                                  <br />
-                                                  <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                                  <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
-
-                                                </Header.Content>}
-
-                                              {stateMapFips !== "38" && (!!raceData[stateMapFips]["Non-Hispanic African American"] || !!raceData[stateMapFips]["Non-Hispanic White"]) &&
-                                                <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
-                                                  {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[stateMapFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
-                                                  <br />
-                                                  <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
-                                                  <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
-
-                                                </Header.Content>}
-
-                                              {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "02" &&
-                                                <div style={{ marginTop: 10 }}>
-                                                </div>
-                                              }
-
-                                            </Grid.Row>}
-
-                                          </div>
-                                        ),
-                                      },
+                                <Grid.Row columns={2} style={{ height: 273, paddingBottom: 0 }}>
+                                  <Grid.Column style={{ paddingLeft: 20 }}>
+                                    {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "02" &&
+                                      <div style={{ marginTop: 10, width: 250 }}>
+                                        <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 58, fontWeight: 400 }}> Deaths by Race</Header.Content>
+                                      </div>
                                     }
-                                  ]
+                                    {stateMapFips && !raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38" && stateMapFips !== "02" &&
+                                      <VictoryChart
+                                        theme={VictoryTheme.material}
+                                        width={250}
+                                        height={40 * ((!!raceData[stateMapFips]["Asian Alone"] && raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["Asian Alone"][0]["deaths"] > 30 && raceData[stateMapFips]["Asian Alone"][0]["percentPop"] >= 1 ? 1 : 0) +
+                                          (!!raceData[stateMapFips]["American Natives Alone"] && raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Natives Alone"][0]["percentPop"] >= 1 ? 1 : 0) +
+                                          (!!raceData[stateMapFips]["African American Alone"] && raceData[stateMapFips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["African American Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["African American Alone"][0]["percentPop"] >= 1 ? 1 : 0) +
+                                          (!!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 ? 1 : 0))}
+                                        domainPadding={20}
+                                        minDomain={{ y: props.ylog ? 1 : 0 }}
+                                        padding={{ left: 100, right: 65, top: 12, bottom: 1 }}
+                                        style={{ fontSize: "14pt" }}
+                                        containerComponent={<VictoryContainer responsive={false} />}
+                                      >
 
-                                  } />}
+                                        <VictoryAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
+                                        <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000' }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
+                                        <VictoryGroup>
 
+
+
+                                          {"American Natives Alone" in raceData[stateMapFips] && raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["American Natives Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["American Natives Alone"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "American\n Natives", 'value': raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["American Natives Alone"][0]['deathrateRace']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {"Asian Alone" in raceData[stateMapFips] && raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["Asian Alone"][0]["deaths"] > 30 && raceData[stateMapFips]["Asian Alone"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Asian", 'value': raceData[stateMapFips]["Asian Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["Asian Alone"][0]['deathrateRace']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                          {"African American Alone" in raceData[stateMapFips] && raceData[stateMapFips]["African American Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["African American Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["African American Alone"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "African\n American", 'value': raceData[stateMapFips]["African American Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["African American Alone"][0]['deathrateRace']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {"White Alone" in raceData[stateMapFips] && raceData[stateMapFips]["White Alone"][0]['deathrateRace'] >= 0 && raceData[stateMapFips]["White Alone"][0]['deaths'] > 30 && raceData[stateMapFips]["White Alone"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "White", 'value': raceData[stateMapFips]["White Alone"][0]['deathrateRace'], 'label': numberWithCommas(raceData[stateMapFips]["White Alone"][0]['deathrateRace']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                        </VictoryGroup>
+                                      </VictoryChart>
+                                    }
+                                    {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "38" && stateMapFips !== "02" &&
+                                      <div style={{ marginTop: 10, textAlign: "center", width: 250 }}>
+                                        <Header.Content x={15} y={20} style={{ fontSize: '14pt', paddingLeft: 15, fontWeight: 400 }}> Deaths per 100K <br /> residents</Header.Content>
+                                      </div>
+                                    }
+
+                                    {stateMapFips === "02" &&
+                                      <div style={{ marginTop: 10, width: 250 }}>
+                                        <text x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 35, fontWeight: 400 }}> Deaths by Race</text>
+
+                                        <text x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 0, fontWeight: 400 }}> <br /> <br /> <br />
+                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          None Reported</text>
+                                      </div>
+                                    }
+
+                                  </Grid.Column>
+                                  <Grid.Column style={{ paddingLeft: 50 }}>
+                                    {!!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
+                                      <div style={{ marginTop: 10 }}>
+                                        <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 60, fontWeight: 400, width: 250 }}> Deaths by Ethnicity</Header.Content>
+                                        {!(stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])))
+                                          &&
+                                          <center> <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 20, fontWeight: 400, width: 250 }}> <br /> <br /> None Reported</Header.Content> </center>
+
+                                        }
+                                      </div>
+                                    }
+                                    {stateMapFips && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])) &&
+                                      <VictoryChart
+                                        theme={VictoryTheme.material}
+                                        width={250}
+                                        height={!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 81 : 3 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"])}
+                                        domainPadding={20}
+                                        minDomain={{ y: props.ylog ? 1 : 0 }}
+                                        padding={{ left: 130, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 13 : 10, bottom: 1 }}
+                                        style={{ fontSize: "14pt" }}
+                                        containerComponent={<VictoryContainer responsive={false} />}
+                                      >
+
+                                        <VictoryAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
+                                        <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000' }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
+
+                                        <VictoryGroup>
+
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic American Natives"] && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "American\n Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic Asian"] && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic Asian"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Asian", 'value': raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                          {!!raceData[stateMapFips]["Non Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Non Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Non Hispanic"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              barRatio={0.1}
+                                              horizontal
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Non Hispanic", 'value': raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {(!!raceData[stateMapFips]["Hispanic"] || (!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Hispanic"][0]["percentPop"] >= 1)) &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              barRatio={0.1}
+                                              horizontal
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Hispanic", 'value': raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic African American"] && raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic African American"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "African\n American", 'value': raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic White"] && raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic White"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "White", 'value': raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                        </VictoryGroup>
+
+
+                                      </VictoryChart>
+                                    }
+                                    {stateMapFips !== "_nation" && !!raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" && !(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] < 0 || (!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])) &&
+                                      <div style={{ marginTop: 10, textAlign: "center", width: 250 }}>
+                                        <Header.Content style={{ fontSize: '14pt', paddingLeft: 35, fontWeight: 400 }}> Deaths per 100K <br /> &nbsp;&nbsp;&nbsp;&nbsp;residents</Header.Content>
+                                      </div>
+                                    }
+
+
+                                  </Grid.Column>
                                 </Grid.Row>
                               </Grid>
+                            }
+
+                            {stateMapFips !== "_nation" && (!!raceData[stateMapFips]["Non-Hispanic African American"] || !!raceData[stateMapFips]["Non-Hispanic White"]) && stateMapFips !== "38" &&
+                              <Grid.Row columns={1}>
+                                <Grid.Column style={{ marginLeft: 0, paddingBottom: (13 + 2 * (!raceData[stateMapFips]["Hispanic"] + !raceData[stateMapFips]["Non Hispanic"] + !raceData[stateMapFips]["Non-Hispanic African American"] + !raceData[stateMapFips]["Non-Hispanic American Natives"] + !raceData[stateMapFips]["Non-Hispanic Asian"] + !raceData[stateMapFips]["Non-Hispanic White"])) }}>
+                                  {stateMapFips && !raceData[stateMapFips]["White Alone"] &&
+                                    <div style={{ marginTop: 10, width: 400 }}>
+                                      <Header.Content x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 150, fontWeight: 400 }}> Deaths by Race & Ethnicity</Header.Content>
+                                    </div>
+                                  }
+                                  {stateMapFips && !raceData[stateMapFips]["White Alone"] && stateMapFips !== "38" &&
+                                    <div style={{ paddingLeft: "1em", paddingRight: "0em", width: 550 }}>
+                                      <VictoryChart
+                                        theme={VictoryTheme.material}
+                                        width={400}
+                                        height={32 * (!!raceData[stateMapFips]["Hispanic"] + !!raceData[stateMapFips]["Non Hispanic"] + !!raceData[stateMapFips]["Non-Hispanic African American"] + !!raceData[stateMapFips]["Non-Hispanic American Natives"] + !!raceData[stateMapFips]["Non-Hispanic Asian"] + !!raceData[stateMapFips]["Non-Hispanic White"])}
+                                        domainPadding={20}
+                                        minDomain={{ y: props.ylog ? 1 : 0 }}
+                                        padding={{ left: 160, right: 35, top: !!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["Non Hispanic"] ? 12 : 10, bottom: 1 }}
+                                        style={{ fontSize: "14pt" }}
+                                        containerComponent={<VictoryContainer responsive={false} />}
+                                      >
+
+                                        <VictoryAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "19px" }, tickLabels: { fontSize: "19px", fill: '#000000', fontFamily: 'lato' } }} />
+                                        <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000' }, tickLabels: { fontSize: "19px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
+
+                                        <VictoryGroup>
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic American Natives"] && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic American Natives"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "American Natives", 'value': raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic American Natives"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic Asian"] && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic Asian"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic Asian"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Asian", 'value': raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic Asian"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {!!raceData[stateMapFips]["Non Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Non Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Non Hispanic"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              barRatio={0.1}
+                                              horizontal
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Non Hispanic", 'value': raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non Hispanic"][0]['deathrateEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {(!!raceData[stateMapFips]["Hispanic"] || (!!raceData[stateMapFips]["Hispanic"] && !!raceData[stateMapFips]["White Alone"] && raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'] >= 0 && raceData[stateMapFips]["Hispanic"][0]['deaths'] > 30 && raceData[stateMapFips]["Hispanic"][0]["percentPop"] >= 1)) &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              barRatio={0.1}
+                                              horizontal
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "Hispanic", 'value': raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Hispanic"][0]['deathrateEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic African American"] && raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic African American"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic African American"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "African American", 'value': raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic African American"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                          {!!raceData[stateMapFips]["Non-Hispanic White"] && raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'] >= 0 && raceData[stateMapFips]["Non-Hispanic White"][0]['deaths'] > 30 && raceData[stateMapFips]["Non-Hispanic White"][0]["percentPop"] >= 1 &&
+                                            <VictoryBar
+                                              barWidth={10}
+                                              horizontal
+                                              barRatio={0.7}
+                                              labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                              data={[
+
+                                                { key: "White", 'value': raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity'], 'label': numberWithCommas(raceData[stateMapFips]["Non-Hispanic White"][0]['deathrateRaceEthnicity']) }
+
+                                              ]}
+                                              labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "19px", fill: "#000000" }} />}
+                                              style={{
+                                                data: {
+                                                  fill: "#004071"
+                                                }
+                                              }}
+                                              x="key"
+                                              y="value"
+                                            />
+                                          }
+
+
+                                        </VictoryGroup>
+
+
+                                      </VictoryChart>
+                                    </div>
+                                  }
+                                  {stateMapFips && !raceData[stateMapFips]["White Alone"] &&
+                                    <div style={{ marginTop: 10, width: 400, paddingBottom: 3 }}>
+                                      <Header.Content style={{ fontSize: '19px', marginLeft: 150, fontWeight: 400 }}> Deaths per 100K residents<br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                                      </Header.Content>
+                                    </div>
+                                  }
+
+                                </Grid.Column>
+                              </Grid.Row>}
+
+                            {stateMapFips === "38" &&
+                              <Grid.Row columns={1}>
+                                <Grid.Column style={{ marginLeft: 0, paddingTop: 8, paddingBottom: 87, width: 500 }}>
+                                  <div style={{ marginTop: 50 }}>
+                                    <text x={0} y={20} style={{ fontSize: '14pt', paddingLeft: 90, fontWeight: 400 }}> Deaths per capita by Race & Ethnicity <br /> <br /> <br /> <br /> </text>
+                                    <text style={{ fontSize: '14pt', paddingLeft: 190, fontWeight: 400 }}> None Reported</text>
+                                  </div>
+                                </Grid.Column>
+                              </Grid.Row>
+                            }
+                            <Grid>
+                              <Grid.Row>
+                                {stateMapFips && <Accordion style={{ paddingTop: 30, paddingLeft: 25 }} defaultActiveIndex={1} panels={[
+                                  {
+                                    key: 'acquire-dog',
+                                    title: {
+                                      content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>,
+                                      icon: 'dropdown',
+                                    },
+                                    content: {
+                                      content: (
+
+                                        <div style={{ fontSize: "19px", paddingLeft: 5 }}>
+
+                                          For a complete table of definitions, click <a style={{ color: "#397AB9" }} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+
+                                          {stateMapFips && stateMapFips === "_nation" && <Grid.Row style={{ paddingTop: 0, paddingBottom: 25 }}>
+                                            <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, paddingLeft: 0, lineHeight: "18pt", width: 450 }}>
+                                              The United States reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {nationalDemog['race'][0]['Unknown'][0]['availableDeaths'] + "%"} of deaths in the nation.
+                                              <br />
+                                              <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
+                                              <br /><b>Data as of:</b> {nationalDemogDate}, updated every weekday.<br />
+
+                                            </Header.Content>
+                                          </Grid.Row>}
+
+                                          {stateMapFips && stateMapFips !== "_nation" && <Grid.Row style={{ top: stateMapFips === "38" ? -30 : stateMapFips && !raceData[stateMapFips]["White Alone"] ? -40 : -30, paddingLeft: 0 }}>
 
 
 
-                            </Grid.Column>
-                          </Grid.Row>
+
+                                            {stateMapFips === "38" &&
+                                              <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
+                                                {stateName} is not reporting deaths by race or ethnicity.
+                                                <br />
+                                                <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                                <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
+
+                                              </Header.Content>}
+
+                                            {stateMapFips !== "38" && !raceData[stateMapFips]["Non-Hispanic African American"] && !!raceData[stateMapFips]["White Alone"] && (!raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])
+                                              &&
+                                              <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
+                                                {stateName} reports deaths by race. The chart shows race groups that constitutes at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths in {stateName}.
+                                                <br />
+                                                <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                                <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
+
+                                              </Header.Content>}
+
+                                            {stateMapFips !== "38" && !!raceData[stateMapFips]["White Alone"] && !!raceData[stateMapFips]["White Alone"] && !(!raceData[stateMapFips]["Hispanic"] && !raceData[stateMapFips]["Non Hispanic"] && !raceData[stateMapFips]["Non-Hispanic African American"] && !raceData[stateMapFips]["Non-Hispanic American Natives"] && !raceData[stateMapFips]["Non-Hispanic Asian"] && !raceData[stateMapFips]["Non-Hispanic White"])
+                                              &&
+                                              <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
+                                                {stateName} reports deaths by race and ethnicity separately. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race data are known for {raceData[stateMapFips]["Race Missing"][0]["percentRaceDeaths"] + "%"} of deaths while ethnicity data are known for {raceData[stateMapFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%"} of deaths in {stateName}.
+                                                <br />
+                                                <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                                <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
+
+                                              </Header.Content>}
+
+                                            {stateMapFips !== "38" && (!!raceData[stateMapFips]["Non-Hispanic African American"] || !!raceData[stateMapFips]["Non-Hispanic White"]) &&
+                                              <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt", width: 450 }}>
+                                                {stateName} reports deaths by combined race and ethnicity groups. The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for {raceData[stateMapFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%"} of deaths in {stateName}.
+                                                <br />
+                                                <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covidtracking.com/about-data" target="_blank" rel="noopener noreferrer"> The COVID Tracking Project </a>
+                                                <br /><b>Data as of:</b> 03/07/2021, updated every weekday.<br />
+
+                                              </Header.Content>}
+
+                                            {!raceData[stateMapFips]["Non-Hispanic African American"] && stateMapFips !== "02" &&
+                                              <div style={{ marginTop: 10 }}>
+                                              </div>
+                                            }
+
+                                          </Grid.Row>}
+
+                                        </div>
+                                      ),
+                                    },
+                                  }
+                                ]
+
+                                } />}
+
+                              </Grid.Row>
+                            </Grid>
 
 
-                        </Grid>
-                      </Grid.Column>
-                      <Grid.Column style={{ paddingLeft: 80, width: 630 }}>
-                        <div style={{ paddingTop: 10, paddingLeft: 50 }}>
-                          <div style={{ paddingTop: 0, width: 500, paddingBottom: 20 }}>
-                            <Header.Content x={0} y={20} style={{ fontSize: "22px", fontWeight: 400 }}>Average Daily COVID-19 Cases / 100K </Header.Content>
-                          </div>
-                          <svg width="500" height="40">
-                            <rect x={20} y={12} width="12" height="2" style={{ fill: nationColor, strokeWidth: 1, stroke: nationColor }} />
-                            <text x={35} y={20} style={{ fontSize: "22px" }}> USA</text>
-                            <rect x={87} y={12} width="12" height="2" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} />
-                            <text x={102} y={20} style={{ fontSize: "22px" }}> {stateMapFips === "_nation" || stateMapFips === "72" ? "Select State" : stateName} </text>
-                          </svg>
+
+                          </Grid.Column>
+                        </Grid.Row>
+
+
+                      </Grid>
+                    </Grid.Column>
+                    <Grid.Column style={{ paddingLeft: 80, width: 630 }}>
+                      <div style={{ paddingTop: 10, paddingLeft: 50 }}>
+                        <div style={{ paddingTop: 0, width: 500, paddingBottom: 20 }}>
+                          <Header.Content x={0} y={20} style={{ fontSize: "22px", fontWeight: 400 }}>Average Daily COVID-19 Cases / 100K </Header.Content>
                         </div>
-                        <div style={{ width: 500, height: 180 }}>
-                          {stateMapFips && <CaseChart data={dataTS} dataState={dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
-                            ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={"caserate7dayfig"} />
-                          }
+                        <svg width="500" height="40">
+                          <rect x={20} y={12} width="12" height="2" style={{ fill: nationColor, strokeWidth: 1, stroke: nationColor }} />
+                          <text x={35} y={20} style={{ fontSize: "22px" }}> USA</text>
+                          <rect x={87} y={12} width="12" height="2" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} />
+                          <text x={102} y={20} style={{ fontSize: "22px" }}> {stateMapFips === "_nation" || stateMapFips === "72" ? "Select State" : stateName} </text>
+                        </svg>
+                      </div>
+                      <div style={{ width: 500, height: 180 }}>
+                        {stateMapFips && <CaseChart data={dataTS} dataState={dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
+                          ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={"caserate7dayfig"} />
+                        }
+                      </div>
+
+                      <div style={{ paddingTop: 65, paddingLeft: 50 }}>
+                        <div style={{ paddingTop: 47, width: 500, paddingBottom: 20 }}>
+                          <Header.Content style={{ fontSize: "22px", fontWeight: 400 }}>Average Daily COVID-19 Deaths / 100K </Header.Content>
                         </div>
+                        <svg width="500" height="40">
+                          <rect x={20} y={12} width="12" height="2" style={{ fill: nationColor, strokeWidth: 1, stroke: nationColor }} />
+                          <text x={35} y={20} style={{ fontSize: "22px" }}> USA</text>
+                          <rect x={87} y={12} width="12" height="2" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} />
+                          <text x={102} y={20} style={{ fontSize: "22px" }}> {stateMapFips === "_nation" || stateMapFips === "72" ? "Select State" : stateName} </text>
+                        </svg>
+                      </div>
+                      <div style={{ width: 500, height: 180 }}>
+                        {stateMapFips && <CaseChart data={dataTS} dataState={dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
+                          ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={"covidmortality7dayfig"} />
+                        }
+                      </div>
+                      <Grid>
+                        <Grid.Row>
 
-                        <div style={{ paddingTop: 65, paddingLeft: 50 }}>
-                          <div style={{ paddingTop: 47, width: 500, paddingBottom: 20 }}>
-                            <Header.Content style={{ fontSize: "22px", fontWeight: 400 }}>Average Daily COVID-19 Deaths / 100K </Header.Content>
-                          </div>
-                          <svg width="500" height="40">
-                            <rect x={20} y={12} width="12" height="2" style={{ fill: nationColor, strokeWidth: 1, stroke: nationColor }} />
-                            <text x={35} y={20} style={{ fontSize: "22px" }}> USA</text>
-                            <rect x={87} y={12} width="12" height="2" style={{ fill: stateColor, strokeWidth: 1, stroke: stateColor }} />
-                            <text x={102} y={20} style={{ fontSize: "22px" }}> {stateMapFips === "_nation" || stateMapFips === "72" ? "Select State" : stateName} </text>
-                          </svg>
-                        </div>
-                        <div style={{ width: 500, height: 180 }}>
-                          {stateMapFips && <CaseChart data={dataTS} dataState={dataTS[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
-                            ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={"covidmortality7dayfig"} />
-                          }
-                        </div>
-                        <Grid>
-                          <Grid.Row>
-
-                            {stateFips && <Accordion style={{ paddingTop: 85, paddingLeft: 32 }} defaultActiveIndex={1} panels={[
-                              {
-                                key: 'acquire-dog',
-                                title: {
-                                  content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>, icon: 'dropdown',
-                                },
-                                content: {
-                                  content: (
-                                    <Header.Content style={{ fontWeight: 300, paddingTop: 0, paddingLeft: 5, fontSize: "19px", width: 510 }}>
-                                      <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
-                                      <br />
-                                      <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition}
-                                      <br />
-                                      <br />
+                          {stateFips && <Accordion style={{ paddingTop: 85, paddingLeft: 32 }} defaultActiveIndex={1} panels={[
+                            {
+                              key: 'acquire-dog',
+                              title: {
+                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>, icon: 'dropdown',
+                              },
+                              content: {
+                                content: (
+                                  <Header.Content style={{ fontWeight: 300, paddingTop: 0, paddingLeft: 5, fontSize: "19px", width: 510 }}>
+                                    <b><em> {varMap["caserate7dayfig"].name} </em></b> {varMap["caserate7dayfig"].definition}
+                                    <br />
+                                    <b><em> {varMap["covidmortality7dayfig"].name} </em></b> {varMap["covidmortality7dayfig"].definition}
+                                    <br />
+                                    <br />
 
 
 
 
-                                    </Header.Content>
-                                  ),
-                                },
-                              }
-                            ]
-                            } />}
-                          </Grid.Row>
-                        </Grid>
+                                  </Header.Content>
+                                ),
+                              },
+                            }
+                          ]
+                          } />}
+                        </Grid.Row>
+                      </Grid>
 
-                      </Grid.Column>
+                    </Grid.Column>
 
-                    </Grid.Row>
-                    <div id="general" style={{ height: 40 }}></div>
-                    <Grid>
-                      <Grid.Column style={{ paddingLeft: 33 }}>
-                        <Divider style={{ width: 980 }} />
+                  </Grid.Row>
+                  <div id="general" style={{ height: 40 }}></div>
+                  <Grid>
+                    <Grid.Column style={{ paddingLeft: 33 }}>
+                      <Divider style={{ width: 980 }} />
 
-                      </Grid.Column>
-                    </Grid>
-                    <Grid >
-                      <VaccinesFAQ />
+                    </Grid.Column>
+                  </Grid>
+                  <Grid >
+                    <VaccinesFAQ />
 
-                    </Grid>
+                  </Grid>
 
-                    {/* <Grid.Row>
+                  {/* <Grid.Row>
                 <Header as='h2' style={{fontWeight: 400, paddingTop: 70}}>
                   <Header.Content style={{width : 900, fontSize: "18pt"}}>
                     Vaccination FAQs
@@ -3195,14 +3247,14 @@ const USVaccineTrackerPilot = (props) => {
               </Grid.Column>
             </Grid>
 
-              <Container id="title" style={{ marginTop: '8em', minWidth: '1260px', overFlowX: 'hidden' }}>
-                <Notes />
-              </Container>
+            <Container id="title" style={{ marginTop: '8em', minWidth: '1260px', overFlowX: 'hidden' }}>
+              <Notes />
+            </Container>
           </Container>
-            {(countyTooltip === false) && <ReactTooltip offset={{ top: 40 }}>
-              <font size="+2"><b >{hoverName}</b> </font>
-              <br />
-              {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
+          {(countyTooltip === false) && <ReactTooltip offset={{ top: 40 }}>
+            <font size="+2"><b >{hoverName}</b> </font>
+            <br />
+            {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
           <br/>
           <b> % received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
           <br/>
@@ -3211,65 +3263,65 @@ const USVaccineTrackerPilot = (props) => {
           <b> % received second dose: </b> {numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}
           <br/> */}
 
-              <b>Click to lock.</b>
+            <b>Click to lock.</b>
 
-              <Table celled inverted selectable  >
+            <Table celled inverted selectable  >
+              <Table.Body>
+                <Table.Row style={{ height: 25 }}>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}># partially vaccinated</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</Table.HeaderCell>
+                </Table.Row>
+                <Table.Row style={{ height: 25 }}>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % partially vaccinated</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</Table.HeaderCell>
+                </Table.Row>
+                <Table.Row style={{ height: 25 }}>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> # fully vaccinated</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
+                </Table.Row>
+                <Table.Row style={{ height: 25 }}>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % fully vaccinated</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
+          </ReactTooltip>}
+
+          {countyTooltip && <ReactTooltip offset={{ top: 40 }}>
+            <div>
+              <font size="+2"><b >{countyName}, <br /> {hoverName}</b> </font>
+              <br />
+              <font size="+1">Percent fully vaccinated</font>
+
+              <br />
+              <Table celled inverted selectable compact >
                 <Table.Body>
+
                   <Table.Row style={{ height: 25 }}>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}># partially vaccinated</Table.HeaderCell>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</Table.HeaderCell>
+                    <Table.HeaderCell style={{ fontSize: "16px" }}> All ages</Table.HeaderCell>
+                    <Table.HeaderCell style={{ textAlign: "right", fontSize: "16px", textAlign: "right" }}>{countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
                   </Table.Row>
+
                   <Table.Row style={{ height: 25 }}>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % partially vaccinated</Table.HeaderCell>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</Table.HeaderCell>
+                    <Table.HeaderCell style={{ fontSize: "16px" }}> Age 18+</Table.HeaderCell>
+                    <Table.HeaderCell style={{ textAlign: "right", fontSize: "16px", textAlign: "right" }}>{countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
                   </Table.Row>
+
                   <Table.Row style={{ height: 25 }}>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> # fully vaccinated</Table.HeaderCell>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
-                  </Table.Row>
-                  <Table.Row style={{ height: 25 }}>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % fully vaccinated</Table.HeaderCell>
-                    <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
+                    <Table.HeaderCell style={{ fontSize: "16px" }}> Age 65+</Table.HeaderCell>
+                    <Table.HeaderCell style={{ textAlign: "right", fontSize: "16px", textAlign: "right" }}>{countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
                   </Table.Row>
                 </Table.Body>
               </Table>
-            </ReactTooltip>}
-
-            {countyTooltip && <ReactTooltip offset={{ top: 40 }}>
-              <div>
-                <font size="+2"><b >{countyName}, <br /> {hoverName}</b> </font>
-                <br />
-                <font size="+1">Percent fully vaccinated</font>
-
-                <br />
-                <Table celled inverted selectable compact >
-                  <Table.Body>
-
-                    <Table.Row style={{ height: 25 }}>
-                      <Table.HeaderCell style={{ fontSize: "16px" }}> All ages</Table.HeaderCell>
-                      <Table.HeaderCell style={{ textAlign: "right", fontSize: "16px", textAlign: "right" }}>{countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesCompletePopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesCompletePopPct"]) + "%"}</Table.HeaderCell>
-                    </Table.Row>
-
-                    <Table.Row style={{ height: 25 }}>
-                      <Table.HeaderCell style={{ fontSize: "16px" }}> Age 18+</Table.HeaderCell>
-                      <Table.HeaderCell style={{ textAlign: "right", fontSize: "16px", textAlign: "right" }}>{countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete18PlusPopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesComplete18PlusPopPct"]) + "%"}</Table.HeaderCell>
-                    </Table.Row>
-
-                    <Table.Row style={{ height: 25 }}>
-                      <Table.HeaderCell style={{ fontSize: "16px" }}> Age 65+</Table.HeaderCell>
-                      <Table.HeaderCell style={{ textAlign: "right", fontSize: "16px", textAlign: "right" }}>{countyMapGeoFips && numberWithCommas(data[countyMapGeoFips]["seriesComplete65PlusPopPct"] === -1 ? "NA" : data[countyMapGeoFips]["seriesComplete65PlusPopPct"]) + "%"}</Table.HeaderCell>
-                    </Table.Row>
-                  </Table.Body>
-                </Table>
-              </div>
-            </ReactTooltip>}
+            </div>
+          </ReactTooltip>}
         </div>
       </HEProvider>
-        );
+    );
   } else {
     return <Loader active inline='centered' />
   }
 }
 
 
-        export default USVaccineTrackerPilot;
+export default USVaccineTrackerPilot;
