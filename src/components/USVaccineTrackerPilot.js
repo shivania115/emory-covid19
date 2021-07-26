@@ -1246,11 +1246,13 @@ const USVaccineTrackerPilot = (props) => {
 
 
   const componentRef = useRef();
-
+  const caseYYTickFmt = (y) => {
+    return y < 1000 ? y : (y / 1000 + 'k');
+  };
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    
-console.log((allTS));
+
+    console.log((allTS));
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -2067,34 +2069,114 @@ console.log((allTS));
                       </Grid>
                     </TabPanel>
                     <TabPanel value={value + 2} index={3}>
-                    <LineChart
-                        width={500}
-                        height={300}
-                        margin={{
-                          top: 5,
-                          right: 30,
-                          left: 20,
-                          bottom: 5
-                        }}
-                      >
+                      {/* {stateTrendFips &&
+                                <VictoryChart
+                                  minDomain={{ x: stateTrendFips ? allTS[stateTrendFips][allTS[stateTrendFips].length - 15].t : allTS["13"][allTS["13"].length - 15].t }}
+                                  maxDomain={{ y: stateTrendFips ? getMaxRange(allTS[stateTrendFips], "caseRateMean", (allTS[stateTrendFips].length - 15)).caseRateMean * 1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length - 15)).caseRateMean * 1.05 }}
+                                  width={220}
+                                  height={180}
+                                  padding={{ marginLeft: 0, right: -1, top: 150, bottom: -0.9 }}
+                                  containerComponent={<VictoryContainer responsive={false} />}>
+
+                                  <VictoryAxis
+                                    tickValues={stateTrendFips ?
+                                      [
+                                        allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) * 2 - 1].t,
+                                        allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) - 1].t,
+                                        allTS[stateTrendFips][allTS[stateTrendFips].length - 1].t]
+                                      :
+                                      [
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
+                                        allTS["13"][allTS["13"].length - 1].t]}
+                                    style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
+                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
+
+                                  <VictoryGroup
+                                    colorScale={[stateColor]}
+                                  >
+
+                                    <VictoryLine data={stateTrendFips && allTS[stateTrendFips] ? allTS[stateTrendFips] : allTS["13"]}
+                                      x='t' y='caseRateMean'
+                                    />
+
+                                  </VictoryGroup>
+                                  <VictoryLabel text={stateTrendFips ?
+                                    (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
+                                      (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
+                                        (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                    :
+                                    (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
+                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
+                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
+
+                             
+
                       
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="t" />
-                        <YAxis />
-                        <Tooltip  />
-                        <Legend />
-                        {Object.keys(allTS).map((fip)=>(
-                          <Line
-                          type="monotone"
-                         
-                          stroke="#82ca9d"
-      
-                          strokeDasharray="3 4 5 2"
-                        />
-            
-                      ))}
-                        
-                      </LineChart>
+                                  <VictoryLabel text={"Daily Cases"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
+
+
+                                </VictoryChart>} */}
+                      <VictoryChart>
+                      <VictoryAxis dependentAxis tickCount={5}
+                    style={{
+                        tickLabels: { fontSize: 13, padding: 5 }
+                    }}
+                    tickFormat={(y) => (y < 1000 ? (Math.round(y, 2) === 0.00 ? " " : y) : (y / 1000 + 'k'))}
+                />
+                      <VictoryAxis
+            // tickValues={stateTrendFips ?
+            //                           [
+            //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) * 2 - 1].t,
+            //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) - 1].t,
+            //                             allTS[stateTrendFips][allTS[stateTrendFips].length - 1].t]
+            //                           :
+            //                           [
+            //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
+            //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
+            //                             allTS["13"][allTS["13"].length - 1].t]}
+            //                         style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
+                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
+                        {Object.keys(allTS).map((fip) => {
+                          if (fip != "_nation") {
+                            return <VictoryLine
+                              data={allTS[fip]}
+                              y="dailyCases"
+                              x="t"
+                              style={{data:{stroke:"#E1E5EA"}}}
+                              strokeDasharray="3 4 5 2"
+                              events={[{
+      target: "data",
+      eventHandlers: {
+        onMouseOver: () => {
+          return [
+            {
+              target: "data",
+              mutation: () => ({style: {stroke: "black", width: 30}})
+            }, {
+              target: {fip},
+              mutation: () => ({ active: true })
+            }
+          ];
+        },
+        onMouseOut: () => {
+          return [
+            {
+              target: "data",
+              mutation: () => {}
+            }, {
+              target: {fip},
+              mutation: () => ({ active: false })
+            }
+          ];
+        }
+      }
+    }]}
+                            />
+                          }
+                        })}
+
+                      </VictoryChart>
 
                     </TabPanel>
                   </div>

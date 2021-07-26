@@ -3659,7 +3659,9 @@ export default function NationalReport(props) {
                               labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                               data={[
                                 {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentCases']},
-                                {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['5 - 11'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 11'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['12 - 15'][0]['demogLabel'], 'value': nationalDemog['age'][0]['12 - 15'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['16 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['16 - 17'][0]['percentCases']},
                                 {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentCases']},
                                 {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentCases']},
                                 {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentCases']},
@@ -3687,7 +3689,9 @@ export default function NationalReport(props) {
                               labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                               data={[
                                 {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentPop']},
-                                {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentPop']},
+                                {key: nationalDemog['age'][0]['5 - 11'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 11'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['12 - 15'][0]['demogLabel'], 'value': nationalDemog['age'][0]['12 - 15'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['16 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['16 - 17'][0]['percentCases']},
                                 {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentPop']},
                                 {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentPop']},
                                 {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentPop']},
@@ -3768,7 +3772,9 @@ export default function NationalReport(props) {
                               labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                               data={[
                                 {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentDeaths']},
-                                {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentDeaths']},
+                                {key: nationalDemog['age'][0]['5 - 11'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 11'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['12 - 15'][0]['demogLabel'], 'value': nationalDemog['age'][0]['12 - 15'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['16 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['16 - 17'][0]['percentCases']},
                                 {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentDeaths']},
                                 {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentDeaths']},
                                 {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentDeaths']},
@@ -3796,7 +3802,9 @@ export default function NationalReport(props) {
                               labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                               data={[
                                 {key: nationalDemog['age'][0]['0 - 4'][0]['demogLabel'], 'value': nationalDemog['age'][0]['0 - 4'][0]['percentPop']},
-                                {key: nationalDemog['age'][0]['5 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 17'][0]['percentPop']},
+                                {key: nationalDemog['age'][0]['5 - 11'][0]['demogLabel'], 'value': nationalDemog['age'][0]['5 - 11'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['12 - 15'][0]['demogLabel'], 'value': nationalDemog['age'][0]['12 - 15'][0]['percentCases']},
+                                {key: nationalDemog['age'][0]['16 - 17'][0]['demogLabel'], 'value': nationalDemog['age'][0]['16 - 17'][0]['percentCases']},
                                 {key: nationalDemog['age'][0]['18 - 29'][0]['demogLabel'], 'value': nationalDemog['age'][0]['18 - 29'][0]['percentPop']},
                                 {key: nationalDemog['age'][0]['30 - 39'][0]['demogLabel'], 'value': nationalDemog['age'][0]['30 - 39'][0]['percentPop']},
                                 {key: nationalDemog['age'][0]['40 - 49'][0]['demogLabel'], 'value': nationalDemog['age'][0]['40 - 49'][0]['percentPop']},
