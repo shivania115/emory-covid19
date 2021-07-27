@@ -2266,9 +2266,11 @@ const USVaccineTrackerPilot = (props) => {
                           setSelection("college");
                         }} />
                       </center>
+                      <center>
                       {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
                         aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
                         formatter={caseTickFmt} trendGroup={vTrendGroup} />}
+                        </center>
                       <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
                         Date Updated: {date}
                         {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
