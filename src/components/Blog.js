@@ -167,8 +167,9 @@ export default function AboutUs(props){
 
 
                 </Header.Subheader> */}
+                
                 <div style = {{paddingTop: 10}}>
-                       {/* <Image width='600' height='350' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />             */}
+                       <Image width='600' height='350' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.png' />            
 
                 </div>
 
@@ -222,7 +223,9 @@ export default function AboutUs(props){
                       it comes as no surprise that counties with higher population over the age of 65 years have 
                       had higher vaccination rates from the very beginning of the vaccine rollout. 
 
-
+                      <br/>
+                      <br/>
+                      <br/>
 
                       <div>
                         <center>
