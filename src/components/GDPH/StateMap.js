@@ -878,7 +878,8 @@ export default function StateMap(props) {
                 </ComposableMap>
             </Grid.Row>
             <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
             </Grid.Row>
             <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                 <Accordion defaultActiveIndex={1} panels={[
@@ -1010,7 +1011,8 @@ export default function StateMap(props) {
         </Grid.Row>
 
         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
             </Grid.Row>
         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
             <Accordion defaultActiveIndex={1} panels={[
@@ -1126,7 +1128,8 @@ export default function StateMap(props) {
 
             </Grid.Row>
             <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
             </Grid.Row>
             <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                 <Accordion defaultActiveIndex={1} panels={[
@@ -1257,7 +1260,8 @@ export default function StateMap(props) {
             </Grid.Column>
         </Grid.Row>
         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
             </Grid.Row>
         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
             <Accordion defaultActiveIndex={1} panels={[
@@ -1379,7 +1383,8 @@ export default function StateMap(props) {
 
                     </Grid.Row>
                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                        {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                     </Grid.Row>
                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                         <Accordion defaultActiveIndex={1} panels={[
@@ -1510,7 +1515,8 @@ export default function StateMap(props) {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                        {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                     </Grid.Row>
                     <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
                         <Accordion defaultActiveIndex={1} panels={[
@@ -1634,7 +1640,8 @@ export default function StateMap(props) {
 
                         </Grid.Row>
                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                            {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                         </Grid.Row>
                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                             <Accordion defaultActiveIndex={1} panels={[
@@ -1760,7 +1767,8 @@ export default function StateMap(props) {
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                            {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                         </Grid.Row>
                         <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
                             <Accordion defaultActiveIndex={1} panels={[
@@ -1885,7 +1893,8 @@ export default function StateMap(props) {
 
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                    {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2012,7 +2021,7 @@ export default function StateMap(props) {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2136,7 +2145,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2263,7 +2272,7 @@ export default function StateMap(props) {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2387,7 +2396,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2514,7 +2523,7 @@ export default function StateMap(props) {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2638,7 +2647,7 @@ export default function StateMap(props) {
 
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -2765,7 +2774,7 @@ export default function StateMap(props) {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                 </Grid.Row>
                 <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
                     <Accordion defaultActiveIndex={1} panels={[
@@ -3058,7 +3067,7 @@ export default function StateMap(props) {
 
 
     if (dataTS && dataUs) {
-
+        console.log(datades_cases);
         return (
 
             <div
@@ -3330,7 +3339,7 @@ export default function StateMap(props) {
                                             </ComposableMap>
 
                                             <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingLeft: '0.3em', paddingTop: '0.5em', paddingRight: '2em' }} >
-                                                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                             </Grid.Row>
                                             <Grid.Row>
                                                 <Accordion defaultActiveIndex={1} panels={[
@@ -3415,7 +3424,7 @@ export default function StateMap(props) {
                                                     </Grid.Row>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '2.9em', paddingRight: '2.9em' }} centered>
                                                         {/* <p style ={{fontFamily: 'lato', fontSize: 18, color:dataupColor, paddingLeft:'0.5em'}}> */}
-                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                         {/* </p> */}
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingLeft: '3.4em', paddingRight: '2.9em' }} centered>
@@ -3571,7 +3580,7 @@ export default function StateMap(props) {
                                                         </VictoryGroup>
                                                     </VictoryChart>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '1em', paddingRight: '2em' }} centered>
-                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '1em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
@@ -3716,7 +3725,7 @@ export default function StateMap(props) {
                                                         </VictoryGroup>
                                                     </VictoryChart>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
@@ -3872,7 +3881,7 @@ export default function StateMap(props) {
                                                         </VictoryGroup>
                                                     </VictoryChart>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '2em', paddingRight: '2em' }} centered>
-                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '2em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
@@ -3997,7 +4006,7 @@ export default function StateMap(props) {
                                                         </VictoryGroup>
                                                     </VictoryChart>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
@@ -4146,7 +4155,7 @@ export default function StateMap(props) {
                                                         </VictoryGroup>
                                                     </VictoryChart>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '2em', paddingRight: '2em' }} centered>
-                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '2em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
@@ -4277,7 +4286,7 @@ export default function StateMap(props) {
                                                         </VictoryGroup>
                                                     </VictoryChart>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                                    Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                     </Grid.Row>
                                                     <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                                         <Accordion defaultActiveIndex={1} panels={[
@@ -4488,7 +4497,7 @@ export default function StateMap(props) {
 
                                         </Grid.Row>
                                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -4640,7 +4649,7 @@ export default function StateMap(props) {
                                             </Grid.Column>
                                         </Grid.Row>
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                 </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                                 <Accordion defaultActiveIndex={1} panels={[
@@ -4761,7 +4770,7 @@ export default function StateMap(props) {
                                             </svg>
                                         </Grid.Row>
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0em', paddingLeft: '2em', paddingRight: '2em' }} centered>
-                                                Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                                 </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '2.9em', paddingRight: '2em' }}>
                                                 <Accordion defaultActiveIndex={1} panels={[
@@ -4931,7 +4940,7 @@ export default function StateMap(props) {
                                         </Grid.Row>
 
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2.8em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                         <Accordion defaultActiveIndex={1} panels={[
@@ -5045,7 +5054,7 @@ export default function StateMap(props) {
 
                                         </Grid.Row>
                                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -5201,7 +5210,7 @@ export default function StateMap(props) {
                                         </Grid.Row>
 
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                             </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -5312,7 +5321,7 @@ export default function StateMap(props) {
 
                                         </Grid.Row>
                                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.8em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -5468,7 +5477,7 @@ export default function StateMap(props) {
                                         </Grid.Row>
 
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                             </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -5593,7 +5602,7 @@ export default function StateMap(props) {
                                             </svg> */}
                                         </Grid.Row>
                                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -5750,7 +5759,7 @@ export default function StateMap(props) {
                                         </Grid.Row>
 
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                         <Accordion defaultActiveIndex={1} panels={[
@@ -5875,7 +5884,7 @@ export default function StateMap(props) {
                                             </svg> */}
                                         </Grid.Row>
                                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -6032,7 +6041,7 @@ minDomain={{ y: props.ylog ? 1 : 0 }}
                                         </Grid.Row>
 
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.3em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                         <Accordion defaultActiveIndex={1} panels={[
@@ -6157,7 +6166,7 @@ minDomain={{ y: props.ylog ? 1 : 0 }}
                                             </svg> */}
                                         </Grid.Row>
                                         <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                        Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                         </Grid.Row>
                                         <Grid.Row style={{ paddingTop: '0em', paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
@@ -6314,7 +6323,8 @@ minDomain={{ y: props.ylog ? 1 : 0 }}
                                         </Grid.Row>
 
                                         <Grid.Row style={{fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '0.3em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))}
+                                            {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                                            Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' :dateCur[stateFips].todaydate }
                                             </Grid.Row>
                                         <Grid.Row style={{paddingLeft: '4.9em', paddingRight: '2em' }}>
                                             <Accordion defaultActiveIndex={1} panels={[
