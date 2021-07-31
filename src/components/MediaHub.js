@@ -24,8 +24,77 @@ export default function MediaHub(props){
           </Header.Content>
         </Header>
 
+        
+
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
+
+        {/* <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Row>
+            <div style = {{paddingBottom: 10}}>
+              <Image width='390' height='290' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.png' />            
+            </div>
+          </Grid.Row>
+          <Grid.Row>
+            <div>
+              <Header as='h2'>
+                <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                  <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics'>Trends in COVID-19 Vaccine Coverage in the United States by County Characteristics</Header.Content></div>
+                  <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                    Date Published: Jul. 22, 2021 <br/> 
+                    Media Type: Blog<br/><br/>
+                    Comparing vaccination coverage across counties based on social characteristics-considering a combination of location (region, urbanicity) and population makeup (e.g., % African American, % Hispanic, % in poverty) reveals that gaps in uptake have widened over time.
+                  </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </div>
+          </Grid.Row>
+        </Grid.Column> */}
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='290' href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions' src='/podcast images/bednarczyk.jpg' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions'>“We need to use every tool in our toolbox”: A conversation with Dr. Maria Sundaram about COVID-19 restrictions, travel, and protecting children from COVID-19.</Header.Content></div>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                      Date Published: July. 16, 2021 <br/> 
+                      Media Type: Podcast<br/><br/>
+                      Dr. Maria Sundaram talks about loosening COVID-19 restrictions and traveling safely during the ongoing pandemic. We also discuss the potential for authorization of the Moderna vaccine for 12-15 year-olds and the return to school in the Fall.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='290' href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake' src='/podcast images/bednarczyk.jpg' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake'>“Going beyond the benchmarks: What it takes to get Americans vaccinated”: A conversation with Dr. Bob Bednarczyk about COVID-19 vaccine uptake.</Header.Content></div>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                      Date Published: July. 16, 2021 <br/> 
+                      Media Type: Podcast<br/><br/>
+                      Dr. Bob Bednarczyk talks about COVID-19 vaccination efforts and inequities in vaccine uptake across the United States. We discuss reasons why certain communities are lagging behind vaccination goals and innovative approaches to increasing vaccination rates in those communities.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
           <Grid.Row>
@@ -49,7 +118,7 @@ export default function MediaHub(props){
           </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/podcast images/Katie Kirkpatrick.jpeg' />            
@@ -71,7 +140,7 @@ export default function MediaHub(props){
             </Grid.Row>
           </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/podcast images/Allison Chamberlain.png' />            
