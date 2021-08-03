@@ -54,6 +54,29 @@ export default function MediaHub(props){
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='200' href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions' src='/podcast images/Maria_SunDaram.jpg' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions'>“We need to use every tool in our toolbox”: A conversation with Dr. Maria Sundaram about COVID-19 restrictions, travel, and protecting children from COVID-19.</Header.Content></div>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                      Date Published: Aug. 3, 2021 <br/> 
+                      Media Type: Podcast<br/><br/>
+                      Dr. Maria Sundaram talks about loosening COVID-19 restrictions and traveling safely during the ongoing pandemic. We also discuss the potential for authorization of the Moderna vaccine for 12-15 year-olds and the return to school in the Fall.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column>
+
+
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake' src='/podcast images/bednarczyk.jpg' />            
               </div>
             </Grid.Row>
@@ -95,7 +118,7 @@ export default function MediaHub(props){
           </Grid.Row>
         </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
                 <Image width='390' height='290' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/podcast images/Katie Kirkpatrick.jpeg' />            

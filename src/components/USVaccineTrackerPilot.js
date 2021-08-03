@@ -8,6 +8,7 @@ import ComposableMap from './ComposableMap';
 import Marker from './Marker';
 import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
+import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
 import VaccinesFAQ from './VaccineFAQ';
 // import {
@@ -29,11 +30,13 @@ import {
   VictoryBar,
   VictoryTheme,
   VictoryAxis,
-  // VictoryLegend,
+   VictoryLegend,
   VictoryLine,
   VictoryLabel,
+  VictoryTooltip,
   VictoryArea,
-  VictoryContainer
+  VictoryContainer,
+  VictoryVoronoiContainer
 } from 'victory';
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
@@ -461,7 +464,7 @@ const CustomTooltipGraph = ({ active, payload, label }) => {
   return null;
 };
 function VaccineDisparityCharts(props) {
-  console.log(props.data);
+
   const caseYTickFmt = (y) => {
     return y < 1000 ? y.toFixed(0) + "%" : (y / 1000 + 'k');
   };
@@ -842,7 +845,9 @@ const USVaccineTrackerPilot = (props) => {
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
+  const [clickTrendFips,setClickTrendFips]=useState();
 
+  const [trendHoverName, setTrendHoverName] = useState('The United States');
   const [hoverName, setHoverName] = useState('The United States');
   const [stateName, setStateName] = useState('The United States');
   const [usAbbrev, setUSabbrev] = useState('');
@@ -859,11 +864,12 @@ const USVaccineTrackerPilot = (props) => {
   const [legendMinState, setLegendMinState] = useState([]);
   const [legendSplitState, setLegendSplitState] = useState([]);
   const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-
+  const [activity, setActive] = useState(false);
   const [colorScale, setColorScale] = useState();
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
+  const [trendStateName,setTrendStateName]=useState('The United States')
 
   const [varMap, setVarMap] = useState({});
   const [vaxVarMap, setVaxVarMap] = useState({});
@@ -913,6 +919,7 @@ const USVaccineTrackerPilot = (props) => {
   }
 
   useEffect(() => {
+
     if (dataTS) {
       setCaseTicks([
         dataTS["_nation"][0].t,
@@ -938,7 +945,7 @@ const USVaccineTrackerPilot = (props) => {
     setVTrendGroup(["Counties with high proportion of African Americans",
       "Counties with low proportion of African Americans"]);
   }, []);
-  console.log(vaccDisparityData);
+
   const labelTickFmt = (tick) => {
     return (
       // <text>// </ text>
@@ -1250,9 +1257,26 @@ const USVaccineTrackerPilot = (props) => {
     return y < 1000 ? y : (y / 1000 + 'k');
   };
 
+  const CustomToolTrendtip = ({ active, payload, label }) => {
+    console.log(activity);
+    // if(activity){
+    return (
+      <div className='tooltip' style={{ background: 'white', border: '2px', borderStyle: 'solid', borderColor: '#DCDCDC', borderRadius: '2px', padding: '0.8rem' }}>
+        {/* <p style={{color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p> */}
+        {/* ${payload[hoverBar[0]]['name']}  */}
+        <p className="label" style={{ marginBottom: 3 }}>State: {trendHoverName}</p>
+        {/* <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}</p> */}
+      </div>
+    );
+    // }
+
+    return null;
+  };
+
+
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
 
-    console.log((allTS));
+    // console.log((VaxSeries));
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -2117,67 +2141,188 @@ const USVaccineTrackerPilot = (props) => {
 
 
                                 </VictoryChart>} */}
-                      <VictoryChart>
-                      <VictoryAxis dependentAxis tickCount={5}
-                    style={{
-                        tickLabels: { fontSize: 13, padding: 5 }
+                                <center>
+                                <Dropdown
+                style={{background: '#fff', 
+                        fontSize: "19px",
+                        fontWeight: 400, 
+                        theme: '#000000',
+                        width: '380px',
+                        left: '0px',
+                        text: "Select",
+                        borderTop: '0.5px solid #bdbfc1',
+                        borderLeft: '0.5px solid #bdbfc1',
+                        borderRight: '0.5px solid #bdbfc1', 
+                        borderBottom: '0.5px solid #bdbfc1',
+                        borderRadius: 0,
+                        minHeight: '1.0em',
+                        paddingBottom: '0.5em'}}
+                text= {"Selected State: " + (clickTrendFips === "_nation" ? "The United States": trendStateName)}
+                search
+                selection
+                pointing = 'top'
+                options={stateOptions}
+                 onChange={(e, { value }) => {
+                   const configMatched = configs.find(s => s.fips === value);
+                   setClickTrendFips(value);
+                   setstateTrendFips(value);
+                   setTrendHoverName(configMatched.name);
+                    setTrendStateName(configMatched.name);
+                    setActive(true);
+                    return [
+                                      {
+                                        target: "data",
+                                        mutation: () => ({ style: { stroke: "black", width: 30 } })
+                                      }, {
+                                        target: { value },
+                                        mutation: () => ({ active: true })
+                                      }
+                                    ]
+
+               }}
+
+              />
+                      <VictoryChart
+                        containerComponent={
+                          <VictoryVoronoiContainer
+                          
+                            responsive={false}
+                            flyoutStyle={{ fill: "white" }}
+                            labels={() => activity?`${trendHoverName}\n`+ `Date: ${new Date(VaxSeries[stateTrendFips][VaxSeries[stateTrendFips].length - 1].t * 1000).toLocaleDateString()}\n`+`Percent Fully Vaccinated: ${(VaxSeries[stateTrendFips][VaxSeries[stateTrendFips].length - 1].percentVaccinatedDose2).toFixed(0)} %\n`:""}
+                              labelComponent={
+                                <VictoryTooltip
+                                  orientation="top"
+                                  style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
+                                  constrainToVisibleArea
+                                  labelComponent={<VictoryLabel  textAnchor='middle' />}
+                                  flyoutStyle={{ fill: "black", fillOpacity: 0.75, stroke: "white", strokeWidth: 1 }}
+                                />
+                              }
+                              
+                          />
+                          
+
+                        }
+                        width={630}
+                        height={500}
+                      >
+                      <VictoryLegend x={125} y={50}
+  	title="Percent Fully Vaccinated"
+    centerTitle
+    orientation="horizontal"
+    gutter={20}
+    style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
+    data={activity?[
+      { name: "National Average", symbol: { fill: "red",type:"square"} },
+      { name: trendHoverName, symbol: { fill: "black",type:"square" } },
+    ]:
+    [{ name: "National Average", symbol: { fill: "red",type:"square"} }]
+    }
+  />
+                        <VictoryAxis dependentAxis crossAxis
+                        tickCount={5}
+                         theme={VictoryTheme.material}
+                          style={{
+                            tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
+                          }}
+                          tickFormat={(y) => ((Math.round(y, 2) === 0.00 ? " " : y) + "%")}
+                        />
+
+                        <VictoryAxis
+                         style={{
+                        tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
                     }}
-                    tickFormat={(y) => (y < 1000 ? (Math.round(y, 2) === 0.00 ? " " : y) : (y / 1000 + 'k'))}
-                />
-                      <VictoryAxis
-            // tickValues={stateTrendFips ?
-            //                           [
-            //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) * 2 - 1].t,
-            //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) - 1].t,
-            //                             allTS[stateTrendFips][allTS[stateTrendFips].length - 1].t]
-            //                           :
-            //                           [
-            //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
-            //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
-            //                             allTS["13"][allTS["13"].length - 1].t]}
-            //                         style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
-                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
-                        {Object.keys(allTS).map((fip) => {
+                          // tickValues={stateTrendFips ?
+                          //                           [
+                          //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) * 2 - 1].t,
+                          //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) - 1].t,
+                          //                             allTS[stateTrendFips][allTS[stateTrendFips].length - 1].t]
+                          //                           :
+                          //                           [
+                          //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
+                          //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
+                          //                             allTS["13"][allTS["13"].length - 1].t]}
+                          //                         style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
+                          tickFormat={(t) => (new Date(t*1000).getMonth()+1) + "/" +  new Date(t*1000).getDate()} />
+                          <VictoryLine
+                          data={VaxSeries["_nation"]}
+                          y="percentVaccinatedDose2"
+                          x="t"
+                          strokeDasharray="3 4 5 2"
+                          style={{data:{stroke: "red", width: 35,opacity:1.4}}}
+                          >
+
+                          </VictoryLine>
+                        {Object.keys(VaxSeries).map((fip) => {
                           if (fip != "_nation") {
+
                             return <VictoryLine
-                              data={allTS[fip]}
-                              y="dailyCases"
+                              data={VaxSeries[fip]}
+                              
+                              // labelComponent={<CustomToolTrendtip/>}
+                              y="percentVaccinatedDose2"
                               x="t"
-                              style={{data:{stroke:"#E1E5EA"}}}
+                              style={clickTrendFips==fip?{data:{stroke: "black", width: 30,opacity:1.5}}:{ data: {stroke: "#E1E5EA",opacity:0.2}}}
                               strokeDasharray="3 4 5 2"
                               events={[{
-      target: "data",
-      eventHandlers: {
-        onMouseOver: () => {
-          return [
-            {
-              target: "data",
-              mutation: () => ({style: {stroke: "black", width: 30}})
-            }, {
-              target: {fip},
-              mutation: () => ({ active: true })
-            }
-          ];
-        },
-        onMouseOut: () => {
-          return [
-            {
-              target: "data",
-              mutation: () => {}
-            }, {
-              target: {fip},
-              mutation: () => ({ active: false })
-            }
-          ];
-        }
-      }
-    }]}
+                                target: "data",
+                                eventHandlers: {
+                                  onMouseEnter:() => {
+                                          // setTooltipContent("");
+                                          const configMatched = configs.find(s => s.fips === fip);
+                                          setClickTrendFips(fip);
+                                          setstateTrendFips(fip);
+                                          setTrendHoverName(configMatched.name);
+                                          setTrendStateName(configMatched.name);
+                                          setActive(true);
+                                          return [
+                                      {
+                                        target: "data",
+                                        mutation: () => ({ style: { stroke: "black", width: 30 } })
+                                      }, {
+                                        target: { fip },
+                                        mutation: () => ({ active: true })
+                                      }
+                                    ];
+                                  
+                                        },
+                                  onMouseOver: () => {
+                                    const configMatched = configs.find(s => s.fips === fip);
+                                    setstateTrendFips(fip);
+                                    setTrendHoverName(configMatched.name);
+                                    setActive(true);
+                                    return [
+                                      {
+                                        target: "data",
+                                        mutation: () => ({ style: { stroke: "black", width: 30 } })
+                                      }, {
+                                        target: { fip },
+                                        mutation: () => ({ active: true })
+                                      }
+                                    ];
+                                  },
+                                  onMouseOut: () => {
+                                    setstateTrendFips("");
+                                    setTrendHoverName("The United States");
+                                    setActive(false);
+                                    return [
+                                      {
+                                        target: "data",
+                                        mutation: () => { }
+                                      }, {
+                                        target: { fip },
+                                        mutation: () => ({ active: false })
+                                      }
+                                    ];
+                                  }
+                                }
+                              }]}
                             />
                           }
                         })}
 
                       </VictoryChart>
-
+</center>
                     </TabPanel>
                   </div>
 
@@ -2267,10 +2412,10 @@ const USVaccineTrackerPilot = (props) => {
                         }} />
                       </center>
                       <center>
-                      {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
-                        aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
-                        formatter={caseTickFmt} trendGroup={vTrendGroup} />}
-                        </center>
+                        {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
+                          aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
+                          formatter={caseTickFmt} trendGroup={vTrendGroup} />}
+                      </center>
                       <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
                         Date Updated: {date}
                         {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}

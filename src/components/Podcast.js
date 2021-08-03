@@ -14,6 +14,282 @@ export default function AboutUs(props) {
 
     <div>
       <AppBar />
+      {podcastTitle === "Maria_Sundaram_about_COVID-19_restrictions" &&
+        <Container style={{ marginTop: "8em", minWidth: '1260px' }}>
+
+          <Breadcrumb style={{ fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt" }}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{ fontSize: "14pt" }} />
+            <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+          </Breadcrumb>
+          <div width={888}>
+
+            <Header style={{ width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400 }}>
+              <Header.Content>
+                “We need to use every tool in our toolbox”: A conversation with Dr. Maria Sundaram about COVID-19 restrictions, travel, and protecting children from COVID-19.
+
+                <Header.Subheader style={{ fontSize: "18pt", fontWeight: 300, paddingTop: "15px" }}>
+
+
+                </Header.Subheader>
+                <div style={{ paddingTop: 10 }}>
+                  <iframe src="https://anchor.fm/rsph-ched/embed/episodes/We-need-to-use-every-tool-in-our-toolbox-A-conversation-with-Dr--Maria-Sundaram-about-COVID-19-restrictions--travel--and-protecting-children-from-COVID-19-e15442k" height="150px" width="800px" frameborder="0" scrolling="no"></iframe>                </div>
+
+                <Header style={{ fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0 }}>
+
+                  <p style={{ textAlign: "left", fontWeight: 300 }}>
+
+                    By Gaëlle Sabben on July. 09, 2021
+
+                    <br />
+                    Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                    <br />
+                    From Emory University
+
+                    <br />
+
+                  </p>
+
+                  <br />
+                  <b>Transcript</b>
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:00:00] </b> Welcome back to the COVID-19 Health Equity dashboard podcast. My name is Gaëlle Sabben. Today we'll be talking about COVID-19 among younger people, with Dr. Maria Sundaram. Dr. Sundaram is an infectious disease epidemiologist and postdoctoral fellow at ICES in Toronto, Canada. She specializes in respiratory virus epidemiology and vaccines, including those against influenza and COVID-19. Dr. Sundaram welcome.
+
+
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:00:25] </b> Oh, thank you so much.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:00:27] </b>Could you tell us a little bit about your background and the work you've been doing with regard to COVID-19?
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:00:32] </b> Sure, so from 2011 to 2014 I was a research epidemiologist at Marshfield Clinic which is a small clinic in central Wisconsin and this clinic is really special because they do the yearly vaccine effectiveness estimates for flu vaccine along with four other sites across the US. So that's where I got my start in infectious disease epidemiology I got my PhD in infectious disease epidemiology at the University of Minnesota in 2018. I've been doing a couple of postdocs and being a respiratory virus epidemiologist during this really unusual pandemic time has been... It's been interesting in about 100 different ways.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:01:16] </b> What are a couple of those ways?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b> Dr. Maria Sundaram: [00:01:19] </b> One of the biggest ones is that you know we, infectious disease epidemiologists, have been beating the drum for quite a while now about the risk of a pandemic due to a respiratory virus. We kind of all assumed that that would be influenza because we know influenza has very clear demonstrated pandemic potential. I find myself wishing that more of my classes and more of the conference symposia and more of the discussion in general had focused on coronaviruses because I think in retrospect it is quite clear that they also had pandemic potential.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:01:55] </b> So, we're reaching a point in the pandemic where, particularly in the US, with increased access and increased uptake of vaccines. A lot of the restrictions are being lifted. So, I wanted to get your thoughts on the on the shift in guidance and your thoughts on, for example increases in travel or relaxing of restrictions at this point.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:02:15] </b> It's challenging to say, well, you know, like, “oh, they're good” or “oh, they're bad”. I mean, obviously, as we've seen this pandemic is very complex and this situation is constantly changing. And so, I don't want to be my sort of standard fun police and say, “Oh, you know, we really need to continue to be careful.” I think relaxing of restrictions is a very important component of the timeline of this pandemic response when we have a lot of people vaccinated when we have low community level transmission, that's when we can feel comfortable to relax some of these components, but I think what's happening in Australia right now with outbreaks due to the Delta variant despite extremely strong contact tracing strategies and other pandemic control strategies, that really illustrates to us like the importance of staying vigilant even when it kind of feels like we're done with the pandemic because the pandemic ultimately is not quite done with us yet.
+
+                  <br />
+                  <br />
+                  So, I think you know it's a little bit of like you know, yes, cautious optimism, right? I mean, if there's no community level transmission, if we have an extremely highly vaccinated population then we should be able to relax some of these restrictions, but we have to have that infrastructure in place to support that relaxation. So, we have to have the infrastructure that supports contact tracing that supports PPE for essential workers and for health care workers. You know that gives us all of these other sort of lines of defense.
+
+                  <br />
+                  <br />
+                  <br />
+
+
+                  <b>Gaëlle Sabben: [00:03:52] </b> You mentioned the Delta variant. Could you talk a little bit more about any increased risk or kind of how that's changing the situation in certain areas?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:04:04] </b> Yeah, so the Delta variant like some other variants of concern, has shown an increased transmission and so it's really very challenging to think of this variant in terms of what we already know about COVID, right? We've structured our pandemic response to a version of this virus that was less transmissible than what we're seeing now and we've also structured our vaccines to that version of the virus. That's not necessarily a bad thing, but I think it's really important, again, to remain kind of flexible and agile towards these changing environments.
+
+                  <br />
+                  <br />
+
+
+                  Delta variant is a good example of a variant that is more transmissible and therefore could cause a lot more havoc than the original version of this virus. And so again, this is kind of like another like really good reason for us to then make sure as we relax restrictions that we have all of these other control and protection mechanisms in place.
+
+                  <br />
+                  <br />
+                  <br />
+
+
+
+                  <b>Gaëlle Sabben: [00:05:01] </b> That's very helpful. The Delta variant is also coming at a time when, for example, in the US, people are really talking much more about travel, especially families that maybe have been staying home, being very careful for the last 15 months or so, and so they're feeling like with relaxing restrictions, with increased vaccines that they can take vacations, especially maybe with school-aged children during the summer. What advice would you have for a family that's trying to decide whether they should be traveling?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:05:31] </b> Oh, this is the tough one, right? And a lot of these circumstances are going to be really context specific. You know, a three-hour car ride to grandma's house is a different travel environment than like, you know, an international flight that lasts 12 hours, let's say, or you know, more than one international flight. The things that are really important to keeping in mind when we're thinking about how to travel safely are, let's kind of keep stock of all of the tools that we have to prevent COVID-19 transmission to us and from us, right? So, to us would include, like if we're all eligible. Let's make sure that all of us are fully vaccinated before we travel.
+                  <br />
+                  <br />
+                  That's a huge chunk of peace of mind, right there, but then also considering if there is a delta variant circulating in the community that we're in, or the community that we're about to travel to, or any community along the way that poses an additional risk that you know was not part of the original sort of pandemic control response strategies, right? So, it's really good again to have those additional measures in place that includes masking, that includes hand washing. That includes trying to limit your time indoors with other people. That includes trying to improve ventilation. These kinds of things as well, and then just kind of keeping in mind that whatever community you might be visiting may be more vulnerable than you.
+                  <br />
+                  <br />
+                  Vaccine equity has been a huge problem in our pandemic response. I'd say most places outside of the US do not have the same access to vaccines that Americans do, and so we cannot expect other communities to be behaving in the way that people can sometimes behave in the US with reductions in pandemic control strategies. So, I think it's also really, really important when you're traveling to consider the risk you might be posing to others and try to limit that as much as possible.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:07:26] </b> Good point and good advice for people planning that, especially with international travel. With those countries that are opening borders or relaxing restrictions for fully vaccinated individuals from certain countries, including the US. Would those be situations in which travel would be maybe less of a concern, even though the communities that people are going into might still have more restrictions or might have lower vaccine access?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:07:53] </b> So, one example could be the US and Canada. There's a lot of you know in normal times there's a lot of cross border commuting, as well as, sort of travel for vacation purposes. And I would say the majority of the Canadian population lives pretty close to the US Canada border. So, for Americans that are traveling to Canada, for example, if they're allowed to enter the country, they need to consider the fact that they may have had an opportunity to be fully vaccinated, whereas someone in the area that they're traveling to may not have had that opportunity yet. Vaccine rollout has been a little bit slower in Canada compared to the US. Depending on the community that they're going to, it might have a really high prevalence of people who have been on the short end with regard to vaccine equity, so this includes people of color as well as people who are working. What I call “essential jobs” and what we call essential jobs. But then we failed to sort of support the essential nature of those jobs, with PPE with vaccines, et cetera.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:08:54] </b> Right.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:08:55] </b> So kind of an overall assumption that because Canada is a rich country and because there is access to vaccines in Canada that the risk to Americans versus Canadians is the same. I don't think that that's correct. The risk, for example, in a in a bigger city versus a smaller community is also not comparable, and so these are kind of like these unique components that are really context specific that I think people really do need to investigate.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:09:24] </b> Sure, that's something that hopefully people will be looking at. Kind of shifting it slightly when we're thinking about families traveling. You mentioned that if people are eligible, they should be getting vaccinated. There have been fewer opportunities, potentially for younger people to get vaccinated, since the three vaccines that have been authorized in the US were primarily authorized for ages 18 and up. There's one vaccine that's been approved for 12 to 15, which is the Pfizer BioNTech.
+                  <br />
+                  <br />
+                  Moderna filed for emergency use authorization for their vaccine for that same age range recently. Do you expect that vaccine to also get authorized for younger adolescents?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Maria Sundaram: [00:10:04] </b> It's tough to know without seeing the documentation from the EUA application, whether it's likely to be, you know, to get any authorization or not, and luckily for me, that decision is above my pay grade and it's made by wonderful folks at FDA, including the people that serve on the VRBPAC committee, it's the Vaccines and Related Biologic Products Advisory Committee.
+
+                  <br />
+                  <br />
+                  That being said, I mean there are obvious advantages to making sure that children can be vaccinated. One of those is that children are what we call high degree nodes in contact networks. So, this means that when we mix together in groups of people, when people sort of like have different contacts. Children, especially children under five, are the people in a population that tend to have the most number of contacts and that makes sense? They have a bunch of friends. They have their parents and there are other family members they might have grandparents. They might have people at daycare. There's a lot of other, you know, sort of social interactions that children tend to have, and when we talk about COVID-19 and children and you know, I, I think the evidence would suggest that severe disease is not as much of a concern for COVID as it is for something like influenza or RSV, which is another respiratory virus. But thinking from a population perspective, they do still play a really important role in pandemic control because they are kind of super high contact individuals if that makes sense, so that's another really good reason to make sure that vaccines are available to children and adolescents in particular. So, I've got my fingers crossed that that works out for Moderna.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:11:52] </b> That would be great. Certainly giving more people access to preventive measures seems like it can mostly only be good. Sort of related to that, there have been a few reports and CDC came out with an MMWR last week about some reports of heart inflammation, myocarditis and pericarditis in younger people, especially, I believe young men under 16, after receipt of one of the mRNA vaccines. Could you offer some insights on this and why it might be happening?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Maria Sundaram: [00:12:25] </b> So, I think one of the most logical things is to ask “What is myocarditis?” for those who may not be familiar with this term. It is an inflammation of heart muscle. Pericarditis is very similar. It's inflammation of the area around the heart. What we know about myocarditis is that it is not completely unheard of and it happens. We know that it happens after infection with respiratory viruses. So, for example, we know that myocarditis can be caused by influenza infection so much so that we can consider influenza vaccine to almost be a vaccine against heart attacks.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:13:07] </b> Wow
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:13:08] </b> So, this is a really very strong, very well-known relationship between influenza virus and myocarditis. We know that other respiratory viruses can cause myocarditis including COVID-19 infection, so people can get myocarditis after COVID-19 infection. Outcomes of myocarditis after mNA vaccination, specifically in younger adults, specifically in younger males, are extremely rare, but they're absolutely worth investigating because we have to compare the risk of getting myocarditis after COVID-19 or the risk of other bad outcomes from COVID-19 infection to this outcome that could be associated with a vaccine. It's currently being investigated.
+
+                  <br />
+                  <br />
+                  Another really important thing to know about myocarditis is that usually people that have myocarditis, especially younger people, after their symptoms, improve, they can usually return to their just normal daily life, and we know that's not always the case for people who have COVID-19 infection. In fact, it's quite common for people that recover from COVID-19 to have longer-term effects that could last for an unknown length of time.
+                  <br />
+                  <br />
+                  So again, this is kind of one very good example of like how it's important to balance this sort of risk that we are currently investigating versus the known risk of myocarditis and other severe outcomes in this age group, in particular due to COVID-19.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:14:39] </b> Right.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Maria Sundaram: [00:14:40] </b> So, what the CDC says right now while they're investigating this is that they're continuing to recommend vaccination for everyone 12 years and up because the risk of COVID-19 illnesses and related complications is so high, even in this younger age group.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:14:57] </b>Just linking that back to the Moderna filing. Do you think that these reports of heart inflammation on younger people who would fall into the age group that would newly be eligible for Moderna? Do you think that's going to play a role in the approval process for Moderna?
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Maria Sundaram: [00:15:13] </b> Oh yeah, absolutely. I absolutely think it will. So, for EUA authorization the value of the evidence, the kind of the weight of the evidence has to be such that the benefits outweigh the risks. And one of the risks could be this myocarditis outcome, that seems like you know once your symptoms subside you can kind of go back to normal daily activities. That's something that is going to be sort of balanced with the potential benefit of vaccination in this population, and so that will certainly be weighed. It's my opinion and I suspect it will be the opinion of the VRBPAC committee as well that the benefits still outweigh the risks. But that's something that they'll have to decide, sort of a priori, explicitly.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:15:57] </b> So, it sounds like if a parent of an adolescent, or if you had an adolescent, was asking for your advice, you would still suggest that they get their kid vaccinated with one of these vaccines, should it be authorized.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Maria Sundaram: [00:16:06] </b> Yes, if I had a child who was 12 or up, I would still have them get vaccinated. You know, I think it's absolutely completely understandable to feel a little nervous about it, to have questions, to want those questions answered, and there actually are quite a good number of answers to those questions on the CDC website and on the Emory website as well. You guys have been doing a wonderful job, but, you know, it's also helpful to maybe have a conversation with your doctor, with your child’s doctor if you have more questions.
+                  <br />
+                  <br />
+                  It's important for us to say, hey like that's normal and understandable that you have questions. We as scientists should be more understanding of that than anyone else because that's all we do is ask questions and try to answer them. So, I think that's really important to acknowledge and, but it's possible to answer those questions.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:16:57] </b> Talking about travel with young people and then talking about young people getting vaccinated, it's kind of a natural next question to ask if you have any thoughts about the return to school in the fall or young people returning to school in person in the fall.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Maria Sundaram: [00:17:09] </b> The existing data support, again, that children are these, what we call “high degree nodes” in contact networks. That means that they just come in contact with a lot of people and they tend to facilitate the spread of respiratory viruses in populations as a result of that. Existing good evidence indicates that children above the age of 10 can transmit this virus potentially as efficiently as adults, even if they are at reduced risk for these severe outcomes. Existing evidence does indicate that children can have severe outcomes and that can be very scary for parents. Again, it's not the same sort of frequency or prevalence as in older age groups, but I know that you know we may have a different risk tolerance also, for the people that are our children. 
+                  <br />
+                  <br />
+                  So, these are things that are on my mind as we're discussing, you know, back to school. I think that if we do wind up going back to school in person again, we need to have this perspective that is not just about vaccination. We need to use every tool in our toolbox. So, that includes improved ventilation in schools. That may include things like cohorting. That certainly includes things like regular extremely easily accessible testing and very high-quality contact tracing in the event that an infection in the school does occur. You know, obviously at some point we will be back in school in person. We need to make sure that we can do that in the safest possible way.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:18:42] </b> So, should there be a vaccine available to, if possible, get that vaccine before going back to school in person?
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Maria Sundaram: [00:18:50] </b> Yeah.
+                 
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:18:51] </b> Well, great. Thank you so much, this is very helpful.
+                 
+                 <br />
+                 <br />
+                 <br />
+                 <b>Dr. Maria Sundaram: [00:18:55] </b> You're more than welcome.
+                 
+                 <br />
+                 <br />
+                 <br />
+
+
+
+                </Header>
+              </Header.Content>
+            </Header>
+
+
+          </div>
+          <Notes />
+
+        </Container>
+      }
+
+
+
       {podcastTitle === "Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake" &&
         <Container style={{ marginTop: "8em", minWidth: '1260px' }}>
 
@@ -189,7 +465,7 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Dr. Bob Bednarczyk: [00:14:35] </b> Initially I think many of us in public health were caught by a little bit of surprise when we saw the state of Ohio announcing their lottery system for individuals who had gotten vaccinated against COVID-19, my initial reaction was that it's a good way to motivate people who maybe aren't hesitant about the vaccine, who believe that the vaccine is worth getting, but just need that extra push to get up, get in the car, go to a vaccination site and get the vaccine. What it may not address are some of the concerns around the effectiveness of the vaccine. The safety of the vaccine or trust in the systems that have produced the vaccine. And that's where I think that, you know, we need to be cautious in the amount of money and resources that are put into some of these very large incentive programs to ensure that we're not taking that money away from core public health functions. 
+                  <b>Dr. Bob Bednarczyk: [00:14:35] </b> Initially I think many of us in public health were caught by a little bit of surprise when we saw the state of Ohio announcing their lottery system for individuals who had gotten vaccinated against COVID-19, my initial reaction was that it's a good way to motivate people who maybe aren't hesitant about the vaccine, who believe that the vaccine is worth getting, but just need that extra push to get up, get in the car, go to a vaccination site and get the vaccine. What it may not address are some of the concerns around the effectiveness of the vaccine. The safety of the vaccine or trust in the systems that have produced the vaccine. And that's where I think that, you know, we need to be cautious in the amount of money and resources that are put into some of these very large incentive programs to ensure that we're not taking that money away from core public health functions.
 
                   <br />
                   <br />
@@ -211,7 +487,7 @@ export default function AboutUs(props) {
 
                   <br />
                   <br />
-                  You know we've seen vaccine uptake increase, and I think with the data that you mentioned before, with about 53% of the entire US population having at least one dose of the vaccine, we're actually seeing about 65% of people 18 and older who have had at least one dose of the vaccine. And that recommendation has been in place for a little bit longer than for the 12- to 17-year-olds and, as of right now, individuals under 12 are not recommended for the vaccine. When we get out to the groups that we're really trying to reach, we're doing a very good job. 
+                  You know we've seen vaccine uptake increase, and I think with the data that you mentioned before, with about 53% of the entire US population having at least one dose of the vaccine, we're actually seeing about 65% of people 18 and older who have had at least one dose of the vaccine. And that recommendation has been in place for a little bit longer than for the 12- to 17-year-olds and, as of right now, individuals under 12 are not recommended for the vaccine. When we get out to the groups that we're really trying to reach, we're doing a very good job.
                   <br />
                   <br />
                   What we need to recognize now is that while vaccine numbers are going up and case numbers are going down, that doesn't mean that we can stop, that doesn't mean that we can be complacent. We've seen new variants of the virus emerge, and this gives us pause to recognize that but just because we may feel like we're done with the pandemic, the pandemic is not done with us until we can get all of the vaccine coverage up and that's why it's so important for everyone who is recommended for vaccination and able to get vaccinated to get the COVID-19 vaccine.
@@ -227,48 +503,48 @@ export default function AboutUs(props) {
 
                   <b>Dr. Bob Bednarczyk: [00:19:03] </b> So pinning, reopening to a specific vaccine coverage benchmark may miss a few important considerations. One just because 70% of a state is vaccinated doesn't mean that that other 30% are evenly distributed across the state and if those individuals are living in closer proximity to each other, if they tend to be clustered closer to each other, it's easier to see local outbreaks of disease occur among those groups, so that's one thing that I think that we need to be very aware of.
 
-<br />
-<br />
-The other thing is that if we pin everything to a singular benchmark number and we start getting closer to that number, my concern is that some people may say, well, we're so close and I really don't want to get the vaccine, but it seems like everybody else is getting it, so now I don't have to. And I don't want that to become normalized, so that's why I'm not a huge fan of linking everything to these benchmarks. I think the benchmarks are great to keep pushing us forward, but when we look at things like states reopening removing restrictions around businesses, whether it be the number of people allowed in a specific place or mask requirements, for example. It's important to know that once those restrictions are officially removed, just because the current CDC guidance says that fully vaccinated individuals can go about things without masks and without physical distancing, it doesn't mean that they have to. And if people still want to take some of those other precautions that only serves to help support the greater public health.
-<br />
-<br />
-<br />
-<b>Gaëlle Sabben: [00:20:47] </b> Lastly, bringing us back to what you were talking about at the very beginning about lessons learned from H1N1 that may or may not have been implemented for COVID, you mentioned that through this pandemic we were also learning new lessons about different issues, both for vaccines and kind of across the board. So, are there any lessons that you feel have been learned at this point that will be useful going forward, or anything else that you hope is kept in mind in terms of vaccine distribution, vaccine equity, and those kinds of areas of this pandemic for the future?
+                  <br />
+                  <br />
+                  The other thing is that if we pin everything to a singular benchmark number and we start getting closer to that number, my concern is that some people may say, well, we're so close and I really don't want to get the vaccine, but it seems like everybody else is getting it, so now I don't have to. And I don't want that to become normalized, so that's why I'm not a huge fan of linking everything to these benchmarks. I think the benchmarks are great to keep pushing us forward, but when we look at things like states reopening removing restrictions around businesses, whether it be the number of people allowed in a specific place or mask requirements, for example. It's important to know that once those restrictions are officially removed, just because the current CDC guidance says that fully vaccinated individuals can go about things without masks and without physical distancing, it doesn't mean that they have to. And if people still want to take some of those other precautions that only serves to help support the greater public health.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:20:47] </b> Lastly, bringing us back to what you were talking about at the very beginning about lessons learned from H1N1 that may or may not have been implemented for COVID, you mentioned that through this pandemic we were also learning new lessons about different issues, both for vaccines and kind of across the board. So, are there any lessons that you feel have been learned at this point that will be useful going forward, or anything else that you hope is kept in mind in terms of vaccine distribution, vaccine equity, and those kinds of areas of this pandemic for the future?
 
-<br />
-<br />
-<br />
-<b>Dr. Bob Bednarczyk: [00:21:19] </b> One of the big lessons that I think we've learned from this is that historically, much of our pandemic preparedness has focused around influenza pandemics, and now with the COVID-19 pandemic, it's highlighted for us that it's not just a situation of being concerned around influenza, where we have a vaccine that we've used for decades. It may not always be the best vaccine, but we have a long track record of using influenza vaccines and being able to adapt them pretty quickly. This pandemic I think, has shown us that there are many other possibilities of diseases that can emerge and can greatly impact us as a species, so having a broader view of what it means to be prepared is an important consideration moving forward. 
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:21:19] </b> One of the big lessons that I think we've learned from this is that historically, much of our pandemic preparedness has focused around influenza pandemics, and now with the COVID-19 pandemic, it's highlighted for us that it's not just a situation of being concerned around influenza, where we have a vaccine that we've used for decades. It may not always be the best vaccine, but we have a long track record of using influenza vaccines and being able to adapt them pretty quickly. This pandemic I think, has shown us that there are many other possibilities of diseases that can emerge and can greatly impact us as a species, so having a broader view of what it means to be prepared is an important consideration moving forward.
 
-<br />
-<br />
-I think that the ability to accelerate research that has been ongoing but may be sitting on the shelf a little bit more than we would have liked, such as the mRNA vaccines really gives us the ability to plan for future pandemics. And we've even seen a lot of vaccine manufacturers starting to think about ways to utilize this mRNA technology for other diseases that we haven't been able to successfully develop vaccines against, so I think that there are some very good opportunities that have come out of this pandemic, and I think that because of that it opens a lot of doors for greater protection of public health, not just in an emergency setting, but against maybe some of the more routine things that we face every year, like influenza.
-<br />
-<br />
-One of the hard things that has come out though with these new technologies and the mRNA vaccines is learning how to communicate with the public about them, because it is a new technology, at least to be used on this large scale, and that's raised a lot of questions and it feels like throughout most of this pandemic, those of us who do this type of response or who study infectious diseases have been in a very reactive mode of addressing the issues when they come up as opposed to having the ability to be proactive and be able to get good messaging out there, so I'm hoping that that's one of the lessons we can take from this is that need to capitalize on a greater public awareness of science right now and use this to help you know, improve public understanding of public health and disease control and prevention.
-<br />
-<br />
-<br />
-<b>Gaëlle Sabben: [00:23:58] </b> Great. Do you think there's any larger lessons that are going to be applied to tackling health disparities? Whether it's for vaccine coverage or other health disparities that you are pointing to.
+                  <br />
+                  <br />
+                  I think that the ability to accelerate research that has been ongoing but may be sitting on the shelf a little bit more than we would have liked, such as the mRNA vaccines really gives us the ability to plan for future pandemics. And we've even seen a lot of vaccine manufacturers starting to think about ways to utilize this mRNA technology for other diseases that we haven't been able to successfully develop vaccines against, so I think that there are some very good opportunities that have come out of this pandemic, and I think that because of that it opens a lot of doors for greater protection of public health, not just in an emergency setting, but against maybe some of the more routine things that we face every year, like influenza.
+                  <br />
+                  <br />
+                  One of the hard things that has come out though with these new technologies and the mRNA vaccines is learning how to communicate with the public about them, because it is a new technology, at least to be used on this large scale, and that's raised a lot of questions and it feels like throughout most of this pandemic, those of us who do this type of response or who study infectious diseases have been in a very reactive mode of addressing the issues when they come up as opposed to having the ability to be proactive and be able to get good messaging out there, so I'm hoping that that's one of the lessons we can take from this is that need to capitalize on a greater public awareness of science right now and use this to help you know, improve public understanding of public health and disease control and prevention.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:23:58] </b> Great. Do you think there's any larger lessons that are going to be applied to tackling health disparities? Whether it's for vaccine coverage or other health disparities that you are pointing to.
 
-<br />
-<br />
-<br />
-<b>Dr. Bob Bednarczyk: [00:24:07] </b> Throughout a lot of the outreach that has occurred during the COVID-19 pandemic, we've seen so much engagement of community organizations we've seen so much real work to bring people together and to bring these community partners together and what I'm hoping is that once we're able to fully emerge from COVID-19, that we don't lose all of that community engagement that that has come about, because I think that that would be a huge missed opportunity and one area where we can use these networks and we can use these linkages to address other important diseases and other areas where we see a tremendous amount of health disparities.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:24:07] </b> Throughout a lot of the outreach that has occurred during the COVID-19 pandemic, we've seen so much engagement of community organizations we've seen so much real work to bring people together and to bring these community partners together and what I'm hoping is that once we're able to fully emerge from COVID-19, that we don't lose all of that community engagement that that has come about, because I think that that would be a huge missed opportunity and one area where we can use these networks and we can use these linkages to address other important diseases and other areas where we see a tremendous amount of health disparities.
 
-<br />
-<br />
-<br />
-<b>Gaëlle Sabben: [00:24:54] </b> Well, on that note, thank you very much.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:24:54] </b> Well, on that note, thank you very much.
 
-<br />
-<br />
-<br />
-<b>Dr. Bob Bednarczyk: [00:24:56] </b> Thank you.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:24:56] </b> Thank you.
 
-<br />
-<br />
-<br />
+                  <br />
+                  <br />
+                  <br />
 
 
                 </Header>
