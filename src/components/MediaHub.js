@@ -29,27 +29,7 @@ export default function MediaHub(props){
       <Grid style={{paddingTop: 2}}>
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
-        {/* <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
-          <Grid.Row>
-            <div style = {{paddingBottom: 10}}>
-              <Image width='390' height='290' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.png' />            
-            </div>
-          </Grid.Row>
-          <Grid.Row>
-            <div>
-              <Header as='h2'>
-                <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                  <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics'>Trends in COVID-19 Vaccine Coverage in the United States by County Characteristics</Header.Content></div>
-                  <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Date Published: Jul. 22, 2021 <br/> 
-                    Media Type: Blog<br/><br/>
-                    Comparing vaccination coverage across counties based on social characteristics-considering a combination of location (region, urbanicity) and population makeup (e.g., % African American, % Hispanic, % in poverty) reveals that gaps in uptake have widened over time.
-                  </Header.Subheader>
-                </Header.Content>
-              </Header>
-            </div>
-          </Grid.Row>
-        </Grid.Column> */}
+      
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
@@ -72,6 +52,28 @@ export default function MediaHub(props){
               </div>
             </Grid.Row>
           </Grid.Column>
+
+          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+          <Grid.Row>
+            <div style = {{paddingBottom: 10}}>
+              <Image width='390' height='290' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.png' />            
+            </div>
+          </Grid.Row>
+          <Grid.Row>
+            <div>
+              <Header as='h2'>
+                <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                  <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics'>Trends in COVID-19 Vaccine Coverage in the United States by County Characteristics</Header.Content></div>
+                  <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                    Date Published: Jul. 22, 2021 <br/> 
+                    Media Type: Blog<br/><br/>
+                    Comparing vaccination coverage across counties based on social characteristics-considering a combination of location (region, urbanicity) and population makeup (e.g., % African American, % Hispanic, % in poverty) reveals that gaps in uptake have widened over time.
+                  </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </div>
+          </Grid.Row>
+        </Grid.Column>
 
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
@@ -96,7 +98,7 @@ export default function MediaHub(props){
             </Grid.Row>
           </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
           <Grid.Row>
             <div style = {{paddingBottom: 10}}>
               <Image width='390' height='290' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />            
