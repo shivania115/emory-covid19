@@ -169,7 +169,7 @@ export default function AboutUs(props){
                 </Header.Subheader> */}
                 
                 <div style = {{paddingTop: 10}}>
-                       <Image width='600' height='350' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.png' />            
+                       <Image width='600' height='350' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.PNG' />            
 
                 </div>
 

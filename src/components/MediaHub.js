@@ -34,7 +34,7 @@ export default function MediaHub(props){
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='200' href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions' src='/podcast images/Maria_SunDaram.jpg' />            
+                <Image width='390' height='200' href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions' src='/podcast images/Maria_Sundaram.jpg' />            
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -56,7 +56,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
           <Grid.Row>
             <div style = {{paddingBottom: 10}}>
-              <Image width='390' height='290' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.png' />            
+              <Image width='390' height='290' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.PNG' />            
             </div>
           </Grid.Row>
           <Grid.Row>
