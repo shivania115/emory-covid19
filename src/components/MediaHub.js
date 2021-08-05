@@ -65,7 +65,7 @@ export default function MediaHub(props){
                 <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
                   <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics'>Trends in COVID-19 Vaccine Coverage in the United States by County Characteristics</Header.Content></div>
                   <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Date Published: Jul. 22, 2021 <br/> 
+                    Date Published: Aug. 1, 2021 <br/> 
                     Media Type: Blog<br/><br/>
                     Comparing vaccination coverage across counties based on social characteristics-considering a combination of location (region, urbanicity) and population makeup (e.g., % African American, % Hispanic, % in poverty) reveals that gaps in uptake have widened over time.
                   </Header.Subheader>

@@ -177,7 +177,7 @@ export default function AboutUs(props){
 
                       <p style={{textAlign:"left", fontWeight: 300}}>
 
-                      By Star Liu & Pooja Naik, Jul. 22, 2021  &nbsp;&nbsp; |  &nbsp;&nbsp; 3-minute read
+                      By Star Liu & Pooja Naik, Aug. 1, 2021  &nbsp;&nbsp; |  &nbsp;&nbsp; 3-minute read
 
                       <br/>
                       Contributors: Gaëlle Sabben, Shivani A. Patel 
