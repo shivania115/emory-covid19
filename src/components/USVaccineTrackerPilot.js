@@ -2215,7 +2215,7 @@ const USVaccineTrackerPilot = (props) => {
     style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
     data={activity?[
       { name: "National Average", symbol: { fill: "black",type:"square"} },
-      { name: trendHoverName, symbol: { fill: "red",type:"square" } },
+      { name: trendHoverName, symbol: { fill: colorPaletteGraph[4],type:"square" } },
     ]:
     [{ name: "National Average", symbol: { fill: "black",type:"square"} }]
     }
@@ -2263,7 +2263,7 @@ const USVaccineTrackerPilot = (props) => {
                               // labelComponent={<CustomToolTrendtip/>}
                               y="percentVaccinatedDose2_avg7"
                               x="t"
-                              style={clickTrendFips==fip?{data:{stroke: "red", width: 30,opacity:1.5}}:{ data: {stroke: "#E1E5EA",opacity:0.2}}}
+                              style={clickTrendFips==fip?{data:{stroke: colorPaletteGraph[4], width: 30,opacity:1.5}}:{ data: {stroke: "#E1E5EA",opacity:0.2}}}
                               strokeDasharray="3 4 5 2"
                               events={[{
                                 target: "data",
@@ -2279,7 +2279,7 @@ const USVaccineTrackerPilot = (props) => {
                                           return [
                                       {
                                         target: "data",
-                                        mutation: () => ({ style: { stroke: "red", width: 30 } })
+                                        mutation: () => ({ style: { stroke: colorPaletteGraph[4], width: 30 } })
                                       }, {
                                         target: { fip },
                                         mutation: () => ({ active: true })
@@ -2295,7 +2295,7 @@ const USVaccineTrackerPilot = (props) => {
                                     return [
                                       {
                                         target: "data",
-                                        mutation: () => ({ style: { stroke: "red", width: 30 } })
+                                        mutation: () => ({ style: { stroke: colorPaletteGraph[4], width: 30 } })
                                       }, {
                                         target: { fip },
                                         mutation: () => ({ active: true })
