@@ -640,6 +640,7 @@ export default function StateMap(props) {
               const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();
 
               promStatic.forEach(i=> {
+                
                 if(i.tag === "nationalrawfull"){ //nationalraw
                   newDict = i.data;
                   setData(newDict); 
@@ -699,6 +700,7 @@ export default function StateMap(props) {
                   hospD = stateSeriesDict[stateSeriesDict.length-1].hospDaily;
                   percentChangeHospDaily = stateSeriesDict[stateSeriesDict.length-1].percent7dayhospDaily;
                   hospDate = stateSeriesDict[stateSeriesDict.length-1].t;
+                  
                 }
 
                 if(stateSeriesDict[stateSeriesDict.length-1].percentPositive === 0){
@@ -842,8 +844,8 @@ export default function StateMap(props) {
 
   if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
-    // console.log(hospDate);
-    console.log(dataStateTS);
+    // console.log(date);
+    
 
   return (
     <HEProvider>
@@ -1473,11 +1475,11 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Cases and deaths data as of: {date}.
                                     <br/>
-                                    Hospitalization data as of: {hospDate}.
+                                    Hospitalization data as of: {date}.
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
-                                    Race data as of: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}. 
+                                    Race data as of: {racedatadate.date}. 
                                     
                                   </text>
                           </Grid.Row>
@@ -1488,11 +1490,11 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Cases and deaths data as of: {date}.
                                     <br/>
-                                    Hospitalization data as of: {hospDate}.
+                                    Hospitalization data as of: {date}.
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
-                                    Race data as of: {racedatadate.date.substring(5,7) + "/" + racedatadate.date.substring(8,10) + "/" + racedatadate.date.substring(0,4)}. 
+                                    Race data as of: {racedatadate.date}. 
                                     
                                   </text>
                           </Grid.Row>
