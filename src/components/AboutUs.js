@@ -50,7 +50,8 @@ export default function AboutUs(props){
                     <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Daesung Choi, PhD</List.Item>
                     <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Jing Zhang, PhD</List.Item>                
                     <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Pooja Naik, B.Pharm</List.Item>
-                    <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Star Liu</List.Item>               
+                    <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Star Liu</List.Item>  
+                    <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Kevin Wu</List.Item>                 
                     <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Leanna Ehrlich, BA</List.Item>
                     <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Neil K. Mehta, PhD</List.Item>
                     <List.Item style = {{lineHeight: "18pt", fontSize: "14pt"}}>Vince Marconi, MD</List.Item>                
