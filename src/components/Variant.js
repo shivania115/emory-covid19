@@ -7,6 +7,7 @@ import ComposableMap from './ComposableMap';
 import { useParams, useHistory } from 'react-router-dom';
 import { HEProvider, useHE } from './HEProvider';
 import configs from "./state_config.json";
+import VariantFAQ from './VariantFAQ';
 import _, { set } from 'lodash';
 import {
     VictoryChart,
@@ -324,10 +325,43 @@ export default function Variant(props) {
 
                                 </ComposableMap>
                             </Grid.Column>
+                            <Grid.Column width={7} style={{paddingLeft:0}}>
+                            <Header as='h2' style={{ fontWeight: 400 }}>
+                    <Header.Content style={{ width: 550, fontSize: "20pt", textAlign: "center" }}>
+                      HIII
+
+                    </Header.Content>
+                  </Header>
+                  <Grid>
+                    <Grid.Row columns={1}>
+                    <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "20pt" }}>
+                        The U.S. map shows the estimated proportions of the most common SARS-CoV-2 (the virus that causes COVID-19) variants circulating in the United States, divided by <a href="https://www.hhs.gov/about/agencies/iea/regional-offices/index.html">HHS regions</a>. Scroll over each region to see the exact breakdown of what proportion of confirmed cases of COVID-19 in that region are due to which variants. Data can be filtered by region and variant. 
+                        
+                        </Header.Content>
+                        </Grid.Row>
+                        <Grid.Row columns={1}>
+                    <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "20pt" }}>
+                    The most prevalent variant in region _____ is _____ which is attributed to  _____% of cases. 
+                        
+                        </Header.Content>
+                        </Grid.Row>
+                  </Grid>
+
+                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
 
+                    <div id="general" style={{ height: 40 }}></div>
+                  <Grid>
+                    <Grid.Column style={{ paddingLeft: 33 }}>
+                      <Divider style={{ width: 980 }} />
 
+                    </Grid.Column>
+                  </Grid>
+                  <Grid >
+                    <VariantFAQ />
+
+                  </Grid>
                 </Container>
             </div>
         </HEProvider>
