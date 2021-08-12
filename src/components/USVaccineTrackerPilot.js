@@ -870,7 +870,7 @@ const USVaccineTrackerPilot = (props) => {
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
   const [trendStateName,setTrendStateName]=useState('The United States')
-
+  const [stateVaccAveg,setStateVaccAveg]=useState();
   const [varMap, setVarMap] = useState({});
   const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState('seriesCompletePopPct');
@@ -1086,7 +1086,8 @@ const USVaccineTrackerPilot = (props) => {
     if (metric) {
       fetch('/data/VaccineTimeseries.json').then(res => res.json())
         .then(x => { setVaxSeries(x); });
-
+      fetch('/data/vaccine7daysTimeseries.json').then(res=>res.json())
+        .then(x=> {setStateVaccAveg(x)});
       fetch('/data/vaccineData.json').then(res => res.json())
         .then(x => {
           setVaccineData(x);
@@ -1258,7 +1259,7 @@ const USVaccineTrackerPilot = (props) => {
   };
 
   const CustomToolTrendtip = ({ active, payload, label }) => {
-    console.log(activity);
+    // console.log(activity);
     // if(activity){
     return (
       <div className='tooltip' style={{ background: 'white', border: '2px', borderStyle: 'solid', borderColor: '#DCDCDC', borderRadius: '2px', padding: '0.8rem' }}>
@@ -1276,7 +1277,7 @@ const USVaccineTrackerPilot = (props) => {
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
 
-    // console.log((VaxSeries));
+    // console.log(stateVaccAveg);
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -2188,7 +2189,7 @@ const USVaccineTrackerPilot = (props) => {
                           
                             responsive={false}
                             flyoutStyle={{ fill: "white" }}
-                            labels={() => activity?`${trendHoverName}\n`+ `Date: ${new Date(VaxSeries[stateTrendFips][VaxSeries[stateTrendFips].length - 1].t * 1000).toLocaleDateString()}\n`+`Percent Fully Vaccinated: ${(VaxSeries[stateTrendFips][VaxSeries[stateTrendFips].length - 1].percentVaccinatedDose2).toFixed(0)} %\n`:""}
+                            labels={() => activity?`${trendHoverName}\n`+ `Date: ${new Date(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].t * 1000).toLocaleDateString()}\n`+`Percent Fully Vaccinated: ${(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)} %\n`:""}
                               labelComponent={
                                 <VictoryTooltip
                                   orientation="top"
@@ -2213,10 +2214,10 @@ const USVaccineTrackerPilot = (props) => {
     gutter={20}
     style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
     data={activity?[
-      { name: "National Average", symbol: { fill: "red",type:"square"} },
-      { name: trendHoverName, symbol: { fill: "black",type:"square" } },
+      { name: "National Average", symbol: { fill: "black",type:"square"} },
+      { name: trendHoverName, symbol: { fill: colorPaletteGraph[4],type:"square" } },
     ]:
-    [{ name: "National Average", symbol: { fill: "red",type:"square"} }]
+    [{ name: "National Average", symbol: { fill: "black",type:"square"} }]
     }
   />
                         <VictoryAxis dependentAxis crossAxis
@@ -2245,24 +2246,24 @@ const USVaccineTrackerPilot = (props) => {
                           //                         style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
                           tickFormat={(t) => (new Date(t*1000).getMonth()+1) + "/" +  new Date(t*1000).getDate()} />
                           <VictoryLine
-                          data={VaxSeries["_nation"]}
-                          y="percentVaccinatedDose2"
+                          data={stateVaccAveg["_nation"]}
+                          y="percentVaccinatedDose2_avg7"
                           x="t"
                           strokeDasharray="3 4 5 2"
-                          style={{data:{stroke: "red", width: 35,opacity:1.4}}}
+                          style={{data:{stroke: "black", width: 35,opacity:1.4}}}
                           >
 
                           </VictoryLine>
-                        {Object.keys(VaxSeries).map((fip) => {
+                        {Object.keys(stateVaccAveg).map((fip) => {
                           if (fip != "_nation") {
 
                             return <VictoryLine
-                              data={VaxSeries[fip]}
+                              data={stateVaccAveg[fip]}
                               
                               // labelComponent={<CustomToolTrendtip/>}
-                              y="percentVaccinatedDose2"
+                              y="percentVaccinatedDose2_avg7"
                               x="t"
-                              style={clickTrendFips==fip?{data:{stroke: "black", width: 30,opacity:1.5}}:{ data: {stroke: "#E1E5EA",opacity:0.2}}}
+                              style={clickTrendFips==fip?{data:{stroke: colorPaletteGraph[4], width: 30,opacity:1.5}}:{ data: {stroke: "#E1E5EA",opacity:0.2}}}
                               strokeDasharray="3 4 5 2"
                               events={[{
                                 target: "data",
@@ -2278,7 +2279,7 @@ const USVaccineTrackerPilot = (props) => {
                                           return [
                                       {
                                         target: "data",
-                                        mutation: () => ({ style: { stroke: "black", width: 30 } })
+                                        mutation: () => ({ style: { stroke: colorPaletteGraph[4], width: 30 } })
                                       }, {
                                         target: { fip },
                                         mutation: () => ({ active: true })
@@ -2294,7 +2295,7 @@ const USVaccineTrackerPilot = (props) => {
                                     return [
                                       {
                                         target: "data",
-                                        mutation: () => ({ style: { stroke: "black", width: 30 } })
+                                        mutation: () => ({ style: { stroke: colorPaletteGraph[4], width: 30 } })
                                       }, {
                                         target: { fip },
                                         mutation: () => ({ active: true })

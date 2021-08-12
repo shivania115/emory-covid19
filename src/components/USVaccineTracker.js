@@ -8,6 +8,7 @@ import ComposableMap from './ComposableMap';
 import Marker from './Marker';
 import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
+import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
 import VaccinesFAQ from './VaccineFAQ';
 // import {
@@ -29,15 +30,17 @@ import {
   VictoryBar,
   VictoryTheme,
   VictoryAxis,
-  // VictoryLegend,
+   VictoryLegend,
   VictoryLine,
   VictoryLabel,
+  VictoryTooltip,
   VictoryArea,
-  VictoryContainer
+  VictoryContainer,
+  VictoryVoronoiContainer
 } from 'victory';
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
-import _ from 'lodash';
+import _, { map } from 'lodash';
 import { scaleQuantile } from "d3-scale";
 import configs from "./state_config.json";
 // import ReactDOM from 'react-dom';
@@ -444,15 +447,15 @@ class Race extends PureComponent {
 const CustomTooltipGraph = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip" style = {{lineHeight: "19px"}}>
-        <p style = {{margin: 0}} className="label">{`${(new Date(label*1000).getMonth()+1) + "/" +  new Date(label*1000).getDate() + "/" + new Date(label*1000).getFullYear()}`}</p>
-        <p style = {{margin: 0, color: "#808080"}} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(1)}`}</p>
-        <p style = {{margin: 0, color: colorPaletteGraph[0]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(1)}`}</p>
-        <p style = {{margin: 0, color : colorPaletteGraph[4]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(1)}`}</p>
-        {payload.length > 3 && <p style = {{margin: 0, color : colorPaletteGraph[2]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(1)}`}</p>}
-        {payload.length > 3 && <p style = {{margin: 0, color : colorPaletteGraph[3]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(1)}`}</p>}
-        {payload.length > 5 && <p style = {{margin: 0, color : colorPaletteGraph[1]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(1)}`}</p>}
-        {payload.length > 5 && <p style = {{margin: 0, color : colorPaletteGraph[5]}} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(1)}`}</p>}
+      <div className="custom-tooltip" style={{ lineHeight: "19px" }}>
+        <p style={{ margin: 0 }} className="label">{`${(new Date(label * 1000).getMonth() + 1) + "/" + new Date(label * 1000).getDate() + "/" + new Date(label * 1000).getFullYear()}`}</p>
+        <p style={{ margin: 0, color: "#808080" }} className="intro">{`National Average percent \n vaccinated (at least 1 dose): ${(payload[0].value).toFixed(1)}`}</p>
+        <p style={{ margin: 0, color: colorPaletteGraph[0] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[1].value).toFixed(1)}`}</p>
+        <p style={{ margin: 0, color: colorPaletteGraph[4] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[2].value).toFixed(1)}`}</p>
+        {payload.length > 3 && <p style={{ margin: 0, color: colorPaletteGraph[2] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[3].value).toFixed(1)}`}</p>}
+        {payload.length > 3 && <p style={{ margin: 0, color: colorPaletteGraph[3] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[4].value).toFixed(1)}`}</p>}
+        {payload.length > 5 && <p style={{ margin: 0, color: colorPaletteGraph[1] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[5].value).toFixed(1)}`}</p>}
+        {payload.length > 5 && <p style={{ margin: 0, color: colorPaletteGraph[5] }} className="intro">{`Percent vaccinated (at least 1 dose): ${(payload[6].value).toFixed(1)}`}</p>}
         {/* <p className="desc">Anything you want can be displayed here.</p> */}
       </div>
     );
@@ -461,6 +464,7 @@ const CustomTooltipGraph = ({ active, payload, label }) => {
   return null;
 };
 function VaccineDisparityCharts(props) {
+
   const caseYTickFmt = (y) => {
     return y < 1000 ? y.toFixed(0) + "%" : (y / 1000 + 'k');
   };
@@ -470,7 +474,7 @@ function VaccineDisparityCharts(props) {
       <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
       <LineChart width={720} height={450} data={props.data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" tick={{ fontSize: 16 }} textAnchor="end" tickFormatter={props.formatter} allowDuplicatedCategory={false} angle={-35}/>
+        <XAxis dataKey="t" tick={{ fontSize: 16 }} textAnchor="end" tickFormatter={props.formatter} allowDuplicatedCategory={false} angle={-35} />
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} domain={["dataMin", "dataMax"]} />
         <Line data={props.data[props.nationalAverage]} name={props.nationalAverage} type='monotone' dataKey={props.outcome} dot={false} strokeDasharray="5 5"
           isAnimationActive={true}
@@ -495,7 +499,7 @@ function VaccineDisparityCharts(props) {
           stroke={colorPaletteGraph[5]} strokeWidth="3" />}
         <Legend payload={(props.selection === "region" || props.selection === "urbanrural") === false ?
           [
-            { id: '7', value: props.nationalAverage, type: 'line', color: '#808080'},
+            { id: '7', value: props.nationalAverage, type: 'line', color: '#808080' },
             { id: '1', value: props.trendGroup[0], type: 'square', color: colorPaletteGraph[0] },
             { id: '2', value: props.trendGroup[1], type: 'square', color: colorPaletteGraph[4] },
           ] : props.selection === "region" ?
@@ -515,7 +519,7 @@ function VaccineDisparityCharts(props) {
               { id: '5', value: props.trendGroup[4], type: 'square', color: colorPaletteGraph[1] },
               { id: '6', value: props.trendGroup[5], type: 'square', color: colorPaletteGraph[5] },
             ]
-        }  />
+        } />
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
         {/* <Tooltip labelFormatter={props.formatter} formatter={ (value) => numberWithCommas(value.toFixed(0))} active={true}/> */}
@@ -780,6 +784,8 @@ function TabPanel(props) {
   );
 }
 
+
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
@@ -808,7 +814,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // export default function USVaccineTracker(props) {
-const USVaccineTracker = (props) => {
+const USVaccineTracker= (props) => {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -820,7 +826,7 @@ const USVaccineTracker = (props) => {
   const [clicked, setClicked] = useState(false);
 
   const [activeCharacter, setActiveCharacter] = useState('');
-
+  const [dataStateTS, setStateTS] = useState();
   const history = useHistory();
   const [tooltipContent, setTooltipContent] = useState('');
 
@@ -839,7 +845,9 @@ const USVaccineTracker = (props) => {
   const [allTS, setAllTS] = useState();
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
+  const [clickTrendFips,setClickTrendFips]=useState();
 
+  const [trendHoverName, setTrendHoverName] = useState('The United States');
   const [hoverName, setHoverName] = useState('The United States');
   const [stateName, setStateName] = useState('The United States');
   const [usAbbrev, setUSabbrev] = useState('');
@@ -848,7 +856,7 @@ const USVaccineTracker = (props) => {
   const [stateFips, setStateFips] = useState();
   const [stateMapFips, setStateMapFips] = useState("_nation");
   const [countyMapGeoFips, setCountyMapGeoFips] = useState();
-
+  const [stateTrendFips, setstateTrendFips] = useState("_nation");
   const [config, setConfig] = useState();
   const [countyFips, setCountyFips] = useState('');
   const [colorScaleState, setColorScaleState] = useState();
@@ -856,12 +864,13 @@ const USVaccineTracker = (props) => {
   const [legendMinState, setLegendMinState] = useState([]);
   const [legendSplitState, setLegendSplitState] = useState([]);
   const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
-
+  const [activity, setActive] = useState(false);
   const [colorScale, setColorScale] = useState();
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
   const [legendSplit, setLegendSplit] = useState([]);
-
+  const [trendStateName,setTrendStateName]=useState('The United States')
+  const [stateVaccAveg,setStateVaccAveg]=useState();
   const [varMap, setVarMap] = useState({});
   const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState('seriesCompletePopPct');
@@ -874,7 +883,10 @@ const USVaccineTracker = (props) => {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [value2, setValue2] = React.useState(0);
   const [vTrendGroup, setVTrendGroup] = useState();
+  const [legendName, setlegendName] = useState(["Counties with high proportion of African Americans",
+    "Counties with low proportion of African Americans"]);
   const [vaccDisparityData, setVaccDisparityData] = useState();
   const [selection, setSelection] = useState('aa');
 
@@ -883,6 +895,10 @@ const USVaccineTracker = (props) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const handleChange2 = (event, newValue2) => {
+    setValue2(newValue2);
+  };
+
   const vaccineOptions = [
     {
       key: 'PercentAdministeredPartial',
@@ -903,6 +919,7 @@ const USVaccineTracker = (props) => {
   }
 
   useEffect(() => {
+
     if (dataTS) {
       setCaseTicks([
         dataTS["_nation"][0].t,
@@ -925,8 +942,8 @@ const USVaccineTracker = (props) => {
   useEffect(() => {
     fetch('/data/vaccineDisparity.json').then(res => res.json())
       .then(x => setVaccDisparityData(x));
-    setVTrendGroup(["Counties with high proportion of African American",
-      "Counties with low proportion of African American"]);
+    setVTrendGroup(["Counties with high proportion of African Americans",
+      "Counties with low proportion of African Americans"]);
   }, []);
 
   const labelTickFmt = (tick) => {
@@ -940,13 +957,13 @@ const USVaccineTracker = (props) => {
   };
 
   const caseTickFmt = (tick) => {
-    console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
+    // console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
     return (
       // <text>// </ text>
       /* {tick} */
       // monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
       (new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate()
-      
+
     );
   };
 
@@ -1040,13 +1057,37 @@ const USVaccineTracker = (props) => {
 
   }, []);
 
+  // useEffect(()=>{
+  //   if (metric) {
 
+  //     // console.log("configMatched", configMatched);
+
+  //       if (isLoggedIn === true){
+  //         // setStateName(configMatched.name);
+  //         const fetchData = async() => { 
+
+  //             //all static data
+  //             const staticQ = {all: "all"};
+  //             const promStatic = await CHED_static.find(staticQ,{projection:{}}).toArray();                  
+  //             const stateSeriesQ = {full_fips: stateTrendFips};
+  //             const promState = await CHED_series.find(stateSeriesQ,{projection:{}}).toArray();
+  //             // const promState = await CHED_series.find({}).toArray();
+  //             let stateSeriesDict = promState[0]["timeseries"+stateTrendFips];
+  //             console.log(stateSeriesDict);
+  //             setStateTS(stateSeriesDict);
+
+  //         };
+  //         fetchData();
+  //       } 
+  //   }
+  // },[isLoggedIn]);
 
   useEffect(() => {
     if (metric) {
       fetch('/data/VaccineTimeseries.json').then(res => res.json())
         .then(x => { setVaxSeries(x); });
-
+      fetch('/data/vaccine7daysTimeseries.json').then(res=>res.json())
+        .then(x=> {setStateVaccAveg(x)});
       fetch('/data/vaccineData.json').then(res => res.json())
         .then(x => {
           setVaccineData(x);
@@ -1108,6 +1149,7 @@ const USVaccineTracker = (props) => {
       if (!configMatched) {
 
       } else {
+
 
         setConfig(configMatched);
 
@@ -1177,7 +1219,7 @@ const USVaccineTracker = (props) => {
     }
 
   }, []);
- 
+
   // useEffect(()=>{
 
   //   if (isLoggedIn === true){
@@ -1207,27 +1249,47 @@ const USVaccineTracker = (props) => {
       .then(x => setDataTS(x));
 
   }, []);
-  
- 
+
+
 
 
   const componentRef = useRef();
+  const caseYYTickFmt = (y) => {
+    return y < 1000 ? y : (y / 1000 + 'k');
+  };
+
+  const CustomToolTrendtip = ({ active, payload, label }) => {
+    // console.log(activity);
+    // if(activity){
+    return (
+      <div className='tooltip' style={{ background: 'white', border: '2px', borderStyle: 'solid', borderColor: '#DCDCDC', borderRadius: '2px', padding: '0.8rem' }}>
+        {/* <p style={{color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4}}> <b> {payload[0].payload.name} </b> </p> */}
+        {/* ${payload[hoverBar[0]]['name']}  */}
+        <p className="label" style={{ marginBottom: 3 }}>State: {trendHoverName}</p>
+        {/* <p className="label" style={{marginBottom: 0}}>% Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}</p> */}
+      </div>
+    );
+    // }
+
+    return null;
+  };
 
 
-  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
-    console.log(vaccDisparityData['cutoffs'][0]['black']);
+  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries&&stateVaccAveg) {
+
+    // console.log(stateVaccAveg["_nation"][0].t);
     const description = {
-      "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % of the population is African American. Counties are considered to have a low proportion of African Americans if less than "+vaccDisparityData['cutoffs'][0]['black'].toFixed(0)+" % of the population is African American.",
-      "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than "+vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0)+" % of the population is Hispanic.",
-      "age65": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of population aged 65+. Counties with a high proportion of the population aged over 65 are those with more than "+vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0)+" % of the population of age over 65. Counties with a low proportion of the population aged 65 over have less than "+vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0)+" % of their population over age 65.",
-      "condition": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population with at least one underlying condition. Counties with a high proportion of people with underlying conditions include those where more than "+vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0)+" % of the population have an underlying condition. Counties with a low proportion of people with underlying conditions are those where less than "+vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0)+" % of the population has an underlying condition.",
-      "poverty": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population living in poverty. Counties with a high proportion of population in poverty have more than "+vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0)+" % of their population living in poverty. Counties with a low proportion in poverty are those where less than "+vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0)+" % of the population lives in poverty,",
-      "minority": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % minority population. Counties with a high proportion of minority have more than "+vaccDisparityData['cutoffs'][0]['minority'].toFixed(0)+" % of their populaiton which are racial and ethnic minorities. Counties with a low proportion of minorities have less than "+vaccDisparityData['cutoffs'][0]['minority'].toFixed(0)+" % minority population.",
-      "native": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Native American. Counties are considered to have a high proportion of Native Americans if more than "+vaccDisparityData['cutoffs'][0]['natives'].toFixed(0)+" % of the population is Native American. Counties are considered to have a low proportion of Native Americans if less than "+vaccDisparityData['cutoffs'][0]['natives'].toFixed(0)+" % of the population is Native American.",
-      "uninsured": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % uninsured population. Counties are considered to have a high proportion of uninsured population if they have more than "+vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0)+" % of their population uninsured. Counties are considered to have a low proportion of uninsured population if they have less than "+vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0)+" % uninsured population.",
+      "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
+      "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
+      "age65": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of population aged 65+. Counties with a high proportion of the population aged over 65 are those with more than " + vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0) + " % of the population of age over 65. Counties with a low proportion of the population aged 65 over have less than " + vaccDisparityData['cutoffs'][0]['age65over'].toFixed(0) + " % of their population over age 65.",
+      "condition": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population with at least one underlying condition. Counties with a high proportion of people with underlying conditions include those where more than " + vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0) + " % of the population have an underlying condition. Counties with a low proportion of people with underlying conditions are those where less than " + vaccDisparityData['cutoffs'][0]['anycondition'].toFixed(0) + " % of the population has an underlying condition.",
+      "poverty": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population living in poverty. Counties with a high proportion of population in poverty have more than " + vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0) + " % of their population living in poverty. Counties with a low proportion in poverty are those where less than " + vaccDisparityData['cutoffs'][0]['poverty'].toFixed(0) + " % of the population lives in poverty,",
+      "minority": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % minority population. Counties with a high proportion of minority have more than " + vaccDisparityData['cutoffs'][0]['minority'].toFixed(0) + " % of their populaiton which are racial and ethnic minorities. Counties with a low proportion of minorities have less than " + vaccDisparityData['cutoffs'][0]['minority'].toFixed(0) + " % minority population.",
+      "native": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Native American. Counties are considered to have a high proportion of Native Americans if more than " + vaccDisparityData['cutoffs'][0]['natives'].toFixed(0) + " % of the population is Native American. Counties are considered to have a low proportion of Native Americans if less than " + vaccDisparityData['cutoffs'][0]['natives'].toFixed(0) + " % of the population is Native American.",
+      "uninsured": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % uninsured population. Counties are considered to have a high proportion of uninsured population if they have more than " + vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0) + " % of their population uninsured. Counties are considered to have a low proportion of uninsured population if they have less than " + vaccDisparityData['cutoffs'][0]['uninsured'].toFixed(0) + " % uninsured population.",
       "region": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in different regions in the United States.",
-      "urbanrural": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by urbanicity. Inner city counties have > 1 million population or contain the entire or a large part of the population of the largest principal city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.",
-      "college": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % college education. Counties with a high proportion of educated population are those where more than "+vaccDisparityData['cutoffs'][0]['college'].toFixed(0)+" % are college educated. Counties with a low proportion of college educated population are those where less than "+vaccDisparityData['cutoffs'][0]['college'].toFixed(0)+" % are college educated.",
+      "urbanrural": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by urbanicity. Inner city counties have > 1 million population or contain the entire or a large part of the population of the largest principal city. Large suburban counties have a population > 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. Small cities have populations < 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics. (https://www.cdc.gov/nchs/data_access/urban_rural.htm)",
+      "college": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % college education. Counties with a high proportion of educated population are those where more than " + vaccDisparityData['cutoffs'][0]['college'].toFixed(0) + " % are college educated. Counties with a low proportion of college educated population are those where less than " + vaccDisparityData['cutoffs'][0]['college'].toFixed(0) + " % are college educated.",
     }
     return (
       <HEProvider>
@@ -1742,7 +1804,6 @@ const USVaccineTracker = (props) => {
 
                     </Grid.Column>
                   </Grid>
-
                   <div className={classes.root} style={{ paddingLeft: 0 }}>
                     <div style={{ paddingLeft: 20 }}>
                       <AppBarMU position="static" style={{ width: 1010 }}>
@@ -1752,111 +1813,15 @@ const USVaccineTracker = (props) => {
                             indicator: classes.customTabIndicator
                           }}
                         >
-                          <TabMU style={{ textTransform: "capitalize", fontSize: "18px" }} label="County Vaccination Trends" {...a11yProps(0)} />
-                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination" {...a11yProps(1)} />
-                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="County Vaccination Map" {...a11yProps(2)} />
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination" {...a11yProps(2)} />
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Trends" {...a11yProps(3)} />
                           {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
                         </TabsMU>
                       </AppBarMU>
                     </div>
-                    <TabPanel value={value} index={0}>
-                      <center>
-                        <Button content='African American' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of African American",
-                            "Counties with low proportion of African American"]);
-                          setSelection("aa");
-                        }} />
-                        <Button content='Hispanic' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of Hispanic",
-                            "Counties with low proportion of Hispanic"]);
-                          setSelection("hispanic");
-                        }} />
-                        <Button content='Age 65+' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of age 65+",
-                            "Counties with low proportion of age 65+"]);
-                          setSelection("age65");
-                        }} />
-                        <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion with underlying condition",
-                            "Counties with low proportion with underlying condition"]);
-                          setSelection("condition");
-                        }} />
-                        <Button content='In poverty' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion in poverty",
-                            "Counties with low proportion in poverty"]);
-                          setSelection("poverty");
-                        }} />
-                        {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
-                            setVTrendGroup(["Counties with high residential segregation", 
-                            "Counties with low residential segregation"]); 
-                            setRegion(false);
-                          }}/> */}
-                        <Button content='Minority' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of minority",
-                            "Counties with low proportion of minority"]);
-                          setSelection("minority");
-                        }} />
-                        <Button content='American Native' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of American Native",
-                            "Counties with low proportion of American Native"]);
-                          setSelection("native");
-                        }} />
-                        <Button content='Uninsured' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of uninsured",
-                            "Counties with low proportion of uninsured"]);
-                          setSelection("uninsured");
-                        }} />
-                        <Button content='Region' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties in the South", "Counties in the West",
-                            "Counties in the Northeast", "Counties in the Midwest"]);
-                          setSelection("region");
-                        }} />
-                        <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities",
-                            "Rural areas near cities", "Remote rural areas"]);
-                          setSelection("urbanrural");
-                        }} />
-                        <Button content='College' icon='users' floated="center" onClick={() => {
-                          setVTrendGroup(["Counties with high proportion of population with college education",
-                            "Counties with low proportion of population with college education"]);
-                          setSelection("college");
-                        }} />
-                      </center>
-                      {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
-                        aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
-                        formatter={caseTickFmt} trendGroup={vTrendGroup} />}
-                      <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
-                        Date Updated: {date}
-                        {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
-                      </Grid.Row>
-                      <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
-                        <Accordion defaultActiveIndex={1} panels={[
-                          {
-                            key: 'acquire-dog',
-                            title: {
-                              content: <u style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor }}>About the data</u>,
-                              icon: 'dropdown',
-                            },
-                            content: {
-                              content: (
-                                <p style={{ fontFamily: 'lato', fontSize: 18 }}>
-                                  {/* This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis).
-                                  Inner city counties have {'>'} 1 million population or contain the entire or large part of the population of the largest principle city.
-                                  Large suburban counties have a population {'>'} 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999.
-                                  Small cities have populations {'<'} 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999.
-                                  Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics. */}
-                                  {description[selection]}
-                                </p>
-                              ),
-                            },
-                          }
-                        ]
 
-                        } />
 
-                      </Grid.Row>
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
+                    <TabPanel value={value + 2} index={2}>
                       <Grid style={{ width: 1260 }}>
                         <Grid.Row columns={2} style={{ width: 1260 }}>
                           <Grid.Column style={{ width: 1000, paddingLeft: 0 }}>
@@ -1950,6 +1915,8 @@ const USVaccineTracker = (props) => {
                                         key={geo.rsmKey}
                                         geography={geo}
                                         onMouseEnter={() => {
+                                          setTooltipContent("");
+
                                           setCountyTooltip(false);
                                           const fips = geo.id.substring(0, 2);
                                           const configMatched = configs.find(s => s.fips === fips);
@@ -1957,6 +1924,7 @@ const USVaccineTracker = (props) => {
                                           setHoverName(configMatched.name)
 
                                         }}
+
 
                                         onMouseLeave={() => {
 
@@ -2125,7 +2093,361 @@ const USVaccineTracker = (props) => {
                         </Grid.Row>
                       </Grid>
                     </TabPanel>
-                    <TabPanel value={value} index={2}>
+                    <TabPanel value={value + 2} index={3}>
+                      {/* {stateTrendFips &&
+                                <VictoryChart
+                                  minDomain={{ x: stateTrendFips ? allTS[stateTrendFips][allTS[stateTrendFips].length - 15].t : allTS["13"][allTS["13"].length - 15].t }}
+                                  maxDomain={{ y: stateTrendFips ? getMaxRange(allTS[stateTrendFips], "caseRateMean", (allTS[stateTrendFips].length - 15)).caseRateMean * 1.05 : getMaxRange(allTS["13"], "caseRateMean", (allTS["13"].length - 15)).caseRateMean * 1.05 }}
+                                  width={220}
+                                  height={180}
+                                  padding={{ marginLeft: 0, right: -1, top: 150, bottom: -0.9 }}
+                                  containerComponent={<VictoryContainer responsive={false} />}>
+
+                                  <VictoryAxis
+                                    tickValues={stateTrendFips ?
+                                      [
+                                        allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) * 2 - 1].t,
+                                        allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) - 1].t,
+                                        allTS[stateTrendFips][allTS[stateTrendFips].length - 1].t]
+                                      :
+                                      [
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
+                                        allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
+                                        allTS["13"][allTS["13"].length - 1].t]}
+                                    style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
+                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
+
+                                  <VictoryGroup
+                                    colorScale={[stateColor]}
+                                  >
+
+                                    <VictoryLine data={stateTrendFips && allTS[stateTrendFips] ? allTS[stateTrendFips] : allTS["13"]}
+                                      x='t' y='caseRateMean'
+                                    />
+
+                                  </VictoryGroup>
+                                  <VictoryLabel text={stateTrendFips ?
+                                    (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
+                                      (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
+                                        (allTS[stateTrendFips][allTS[stateTrendFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                    :
+                                    (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
+                                      (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
+                                        (allTS["13"][allTS["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
+
+                             
+
+                      
+                                  <VictoryLabel text={"Daily Cases"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
+
+
+                                </VictoryChart>} */}
+                                <center>
+                                <Dropdown
+                style={{background: '#fff', 
+                        fontSize: "19px",
+                        fontWeight: 400, 
+                        theme: '#000000',
+                        width: '380px',
+                        left: '0px',
+                        text: "Select",
+                        borderTop: '0.5px solid #bdbfc1',
+                        borderLeft: '0.5px solid #bdbfc1',
+                        borderRight: '0.5px solid #bdbfc1', 
+                        borderBottom: '0.5px solid #bdbfc1',
+                        borderRadius: 0,
+                        minHeight: '1.0em',
+                        paddingBottom: '0.5em'}}
+                text= {"Selected State: " + (clickTrendFips === "_nation" ? "The United States": trendStateName)}
+                search
+                selection
+                pointing = 'top'
+                options={stateOptions}
+                 onChange={(e, { value }) => {
+                   const configMatched = configs.find(s => s.fips === value);
+                   setClickTrendFips(value);
+                   setstateTrendFips(value);
+                   setTrendHoverName(configMatched.name);
+                    setTrendStateName(configMatched.name);
+                    setActive(true);
+                    return [
+                                      {
+                                        target: "data",
+                                        mutation: () => ({ style: { stroke: "black", width: 30 } })
+                                      }, {
+                                        target: { value },
+                                        mutation: () => ({ active: true })
+                                      }
+                                    ]
+
+               }}
+
+              />
+                      <VictoryChart
+                        containerComponent={
+                          <VictoryVoronoiContainer
+                          
+                            responsive={false}
+                            flyoutStyle={{ fill: "white" }}
+                            labels={() => activity?`${trendHoverName}\n`+ `Date: ${new Date(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].t * 1000).toLocaleDateString()}\n`+`Percent Fully Vaccinated: ${(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)} %\n`:""}
+                              labelComponent={
+                                <VictoryTooltip
+                                  orientation="top"
+                                  style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
+                                  constrainToVisibleArea
+                                  labelComponent={<VictoryLabel  textAnchor='middle' />}
+                                  flyoutStyle={{ fill: "black", fillOpacity: 0.75, stroke: "white", strokeWidth: 1 }}
+                                />
+                              }
+                              
+                          />
+                          
+
+                        }
+                        width={630}
+                        height={500}
+                      >
+                      <VictoryLegend x={125} y={50}
+  	title="Percent Fully Vaccinated"
+    centerTitle
+    orientation="horizontal"
+    gutter={20}
+    style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
+    data={activity?[
+      { name: "National Average", symbol: { fill: "black",type:"square"} },
+      { name: trendHoverName, symbol: { fill: colorPaletteGraph[4],type:"square" } },
+    ]:
+    [{ name: "National Average", symbol: { fill: "black",type:"square"} }]
+    }
+  />
+                        <VictoryAxis dependentAxis crossAxis
+                        tickCount={5}
+                         
+                          style={{
+                            tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
+                          }}
+                          tickFormat={(y) => ((Math.round(y, 2) === 0.00 ? " " : y) + "%")}
+                        />
+
+                        <VictoryAxis
+                         style={{
+                          grid: { background: "#ccdee8" },
+                        tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
+                    }}
+                        tickValues={[stateVaccAveg["_nation"][0].distT,
+                        stateVaccAveg["_nation"][4].distT,
+                        stateVaccAveg["_nation"][8].distT,
+                        stateVaccAveg["_nation"][12].distT,
+                        stateVaccAveg["_nation"][16].distT,
+                        stateVaccAveg["_nation"][stateVaccAveg["_nation"].length-1].distT
+                        ]}
+        
+                          tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} /> 
+                          <VictoryLine
+                          data={stateVaccAveg["_nation"]}
+                          y="percentVaccinatedDose2_avg7"
+                          x="distT"
+                          strokeDasharray="3 4 5 2"
+                          style={{data:{stroke: "black", width: 35,opacity:1.4}}}
+                          >
+
+                          </VictoryLine>
+                        {Object.keys(stateVaccAveg).map((fip) => {
+                          if (fip != "_nation") {
+
+                            return <VictoryLine
+                              data={stateVaccAveg[fip]}
+                              
+                              // labelComponent={<CustomToolTrendtip/>}
+                              y="percentVaccinatedDose2_avg7"
+                              x="t"
+                              style={clickTrendFips==fip?{data:{stroke: colorPaletteGraph[4], width: 30,opacity:1.5}}:{ data: {stroke: "#E1E5EA",opacity:0.2}}}
+                              strokeDasharray="3 4 5 2"
+                              events={[{
+                                target: "data",
+                                eventHandlers: {
+                                  onMouseEnter:() => {
+                                          // setTooltipContent("");
+                                          const configMatched = configs.find(s => s.fips === fip);
+                                          setClickTrendFips(fip);
+                                          setstateTrendFips(fip);
+                                          setTrendHoverName(configMatched.name);
+                                          setTrendStateName(configMatched.name);
+                                          setActive(true);
+                                          return [
+                                      {
+                                        target: "data",
+                                        mutation: () => ({ style: { stroke: colorPaletteGraph[4], width: 30 } })
+                                      }, {
+                                        target: { fip },
+                                        mutation: () => ({ active: true })
+                                      }
+                                    ];
+                                  
+                                        },
+                                  onMouseOver: () => {
+                                    const configMatched = configs.find(s => s.fips === fip);
+                                    setstateTrendFips(fip);
+                                    setTrendHoverName(configMatched.name);
+                                    setActive(true);
+                                    return [
+                                      {
+                                        target: "data",
+                                        mutation: () => ({ style: { stroke: colorPaletteGraph[4], width: 30 } })
+                                      }, {
+                                        target: { fip },
+                                        mutation: () => ({ active: true })
+                                      }
+                                    ];
+                                  },
+                                  onMouseOut: () => {
+                                    setstateTrendFips("");
+                                    setTrendHoverName("The United States");
+                                    setActive(false);
+                                    return [
+                                      {
+                                        target: "data",
+                                        mutation: () => { }
+                                      }, {
+                                        target: { fip },
+                                        mutation: () => ({ active: false })
+                                      }
+                                    ];
+                                  }
+                                }
+                              }]}
+                            />
+                          }
+                        })}
+
+                      </VictoryChart>
+</center>
+                    </TabPanel>
+                  </div>
+
+                  <div style={{ height: 25 }}> </div>
+                  <Grid>
+                    <Grid.Column>
+                      <Divider horizontal style={{ fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20 }}> COVID-19 Vaccination by County </Divider>
+
+                    </Grid.Column>
+                  </Grid>
+                  <div className={classes.root} style={{ paddingLeft: 0 }}>
+                    <div style={{ paddingLeft: 20 }}>
+                      <AppBarMU position="static" style={{ width: 1010 }}>
+                        <TabsMU value={value2} onChange={handleChange2} aria-label="simple tabs example"
+                          classes={{
+                            root: classes.customTabRoot,
+                            indicator: classes.customTabIndicator
+                          }}
+                        >
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "18px" }} label="County Vaccination Trends" {...a11yProps(0)} />
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="County Vaccination Map" {...a11yProps(1)} />
+                          {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                        </TabsMU>
+                      </AppBarMU>
+                    </div>
+                    <TabPanel value={value2} index={0}>
+                      <center>
+                        <Button content='African American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of African Americans",
+                            "Counties with low proportion of African Americans"]);
+                          setSelection("aa");
+                        }} />
+                        <Button content='Hispanic' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Hispanic Americans",
+                            "Counties with low proportion of Hispanic Americans"]);
+                          setSelection("hispanic");
+                        }} />
+                        <Button content='Age 65+' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population age 65+",
+                            "Counties with low proportion of population age 65+"]);
+                          setSelection("age65");
+                        }} />
+                        <Button content='Underlying condition' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion with underlying condition",
+                            "Counties with low proportion with underlying condition"]);
+                          setSelection("condition");
+                        }} />
+                        <Button content='In poverty' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population living in poverty",
+                            "Counties with low proportion of population living in poverty"]);
+                          setSelection("poverty");
+                        }} />
+                        {/* <Button content='Residential Segregation' icon='users' floated="center" onClick={() => {
+                            setVTrendGroup(["Counties with high residential segregation", 
+                            "Counties with low residential segregation"]); 
+                            setRegion(false);
+                          }}/> */}
+                        <Button content='Minority' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of minorities",
+                            "Counties with low proportion of minorities"]);
+                          setSelection("minority");
+                        }} />
+                        <Button content='Native American' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of Native Americans",
+                            "Counties with low proportion of Native Americans"]);
+                          setSelection("native");
+                        }} />
+                        <Button content='Uninsured' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of uninsured population",
+                            "Counties with low proportion of uninsured population"]);
+                          setSelection("uninsured");
+                        }} />
+                        <Button content='Region' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties in the South", "Counties in the West",
+                            "Counties in the Northeast", "Counties in the Midwest"]);
+                          setSelection("region");
+                        }} />
+                        <Button content='Urbanicity' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Inner City", "Large suburbs", "Small suburbs", "Small cities",
+                            "Rural areas near cities", "Remote rural areas"]);
+                          setSelection("urbanrural");
+                        }} />
+                        <Button content='College' icon='users' floated="center" onClick={() => {
+                          setVTrendGroup(["Counties with high proportion of population with college education",
+                            "Counties with low proportion of population with college education"]);
+                          setSelection("college");
+                        }} />
+                      </center>
+                      <center>
+                        {vaccDisparityData && <VaccineDisparityCharts data={vaccDisparityData}
+                          aboveM={vTrendGroup[0]} belowM={vTrendGroup[1]} nationalAverage={"National Average"} selection={selection} outcome={"percentFullyVaccinated"}
+                          formatter={caseTickFmt} trendGroup={vTrendGroup} />}
+                      </center>
+                      <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '2em', paddingLeft: '4em', paddingRight: '2em' }} centered>
+                        Date Updated: {date}
+                        {/* Data updated: {dateCur[stateFips].todaydate === 'n/a' ? 'N/A' : (new Date(dateCur[stateFips].todaydate * 1000).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' }))} */}
+                      </Grid.Row>
+                      <Grid.Row style={{ paddingLeft: '4.9em', paddingRight: '2em' }}>
+                        <Accordion defaultActiveIndex={1} panels={[
+                          {
+                            key: 'acquire-dog',
+                            title: {
+                              content: <u style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor }}>About the data</u>,
+                              icon: 'dropdown',
+                            },
+                            content: {
+                              content: (
+                                <p style={{ fontFamily: 'lato', fontSize: 18 }}>
+                                  {/* This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by metropolitan status (y-axis).
+                                  Inner city counties have {'>'} 1 million population or contain the entire or large part of the population of the largest principle city.
+                                  Large suburban counties have a population {'>'} 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999.
+                                  Small cities have populations {'<'} 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999.
+                                  Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics. */}
+                                  {description[selection]}
+                                </p>
+                              ),
+                            },
+                          }
+                        ]
+
+                        } />
+
+                      </Grid.Row>
+                    </TabPanel>
+
+                    <TabPanel value={value2} index={1}>
                       <div style={{ paddingLeft: 50 }}>
                         <ComposableMap
                           projection="geoAlbersUsa"
@@ -2142,12 +2464,12 @@ const USVaccineTracker = (props) => {
                           <Geographies geography={countyGeoUrl}>
                             {({ geographies }) =>
                               <svg>
-                                {setCountyTooltip(true)}
                                 {geographies.map(geo => (
                                   <Geography
                                     key={geo.rsmKey}
                                     geography={geo}
                                     onMouseEnter={() => {
+                                      setCountyTooltip(true);
                                       setCountyMapGeoFips(geo.id);
                                       setCountyFips(geo.properties.COUNTYFP);
                                       setCountyName(fips2county[geo.id]);
@@ -2181,9 +2503,11 @@ const USVaccineTracker = (props) => {
 
                         </ComposableMap>
                       </div>
-                    </TabPanel>
 
+                    </TabPanel>
                   </div>
+
+
 
 
 
@@ -3226,5 +3550,6 @@ const USVaccineTracker = (props) => {
     return <Loader active inline='centered' />
   }
 }
+
 
 export default USVaccineTracker;

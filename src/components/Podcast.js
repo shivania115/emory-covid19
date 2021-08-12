@@ -41,8 +41,7 @@ export default function AboutUs(props) {
 
                     By Gaëlle Sabben on July. 09, 2021
 
-                    <br />
-                    Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                    
                     <br />
                     From Emory University
 
