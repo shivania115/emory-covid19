@@ -20,6 +20,9 @@ import {
     VictoryPie
 } from 'victory';
 import Slider from "@material-ui/core/Slider";
+import { var_option_mapping, GADPH_series, GADPH_static} from "../../stitch/mongodb";
+import {HEProvider, useHE} from './../HEProvider';
+import {useStitchAuth} from "./../StitchAuth";
 import LazyHero from 'react-lazy-hero';
 import { Waypoint } from 'react-waypoint'
 // import Background from '/CoronaVirus_LightBlue.jpg';
@@ -27,7 +30,7 @@ import { Waypoint } from 'react-waypoint'
 import { useParams, useHistory } from 'react-router-dom';
 import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
-import _ from 'lodash';
+import _, { forEach } from 'lodash';
 import { scaleQuantile, scaleQuantize } from "d3-scale";
 import { quantile, ascending } from 'd3';
 import fips2county from './fips2county.json'
@@ -782,6 +785,10 @@ function DiscrpChart(props) {
 }
 
 export default function StateMap(props) {
+    const {
+        isLoggedIn,
+        actions: { handleAnonymousLogin },
+      } = useStitchAuth();  
 
     // let { stateFips } = useParams();
     const stateFips = '13';
@@ -2961,6 +2968,42 @@ export default function StateMap(props) {
     const [open, setOpen] = useState(false)
     const [countyOption, setCountyOption] = useState();
 
+    // useEffect(()=>{
+    // if(isLoggedIn){
+    //     const fetchData = async() => { 
+    //         const stateSeriesQ = {fips: countyFips};
+    //     const promState = await GADPH_series.find({projection:{}}).toArray();
+    //     console.log(promState);
+    //     let stateSeriesDict = promState[0];
+        
+        
+    //     stateSeriesDict.forEach((x)=>{
+    //                 setDataTS(x);
+    //                 // var max = 0
+    //                 console.log(x);
+    //                 var dicto = {}
+    //                 for (var key in x) {
+    //                     var max = 0
+    //                     _.each(x[key], m => {
+    //                         if (m[varGraphPair[metric]['name'][0]] > max) {
+    //                             max = m[varGraphPair[metric]['name'][0]];
+    //                         }
+    //                     });
+    //                     dicto[key] = max;
+    //                     // console.log(varNameMap['cacum'].text);
+    //                 }
+    //                 // console.log(dicto);
+    //                 setLegendMaxGraph(dicto);
+    //             });
+        
+    //         }    
+    //         fetchData();
+    //     } 
+    //     else{
+    //         handleAnonymousLogin();
+    //     }
+    // },[isLoggedIn]);
+
     useEffect(() => {
         
         const configMatched = configs.find(s => s.fips === stateFips);
@@ -2993,6 +3036,7 @@ export default function StateMap(props) {
                 .then(
                     x => {
                         setDataTS(x);
+                        console.log(x);
                         // var max = 0
                         var dicto = {}
                         for (var key in x) {
@@ -3008,7 +3052,7 @@ export default function StateMap(props) {
                         // console.log(dicto);
                         setLegendMaxGraph(dicto);
                     });
-                    
+            
             fetch('/data/GDPH/index_data.json').then(res => res.json())
                 .then(x => {
                     setIndexData(x)
