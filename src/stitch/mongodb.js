@@ -13,4 +13,4 @@ const CHED_static = mongoClient.db(DB_NAME).collection("CHED_static");
 const GADPH_series=mongoClient.db(DB_NAME).collection("GADPH_series");
 
 
-export { CHED_static, GADPH_series,CHED_series};
+export { CHED_static,GADPH_series,CHED_series};
