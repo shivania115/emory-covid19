@@ -396,7 +396,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/b9jvwt0dUPQ" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>            
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/e-kwEzBWRVo" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>            
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -418,7 +418,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/IEojaw9cND4" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/zAjVaumIhLE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -440,7 +440,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop:70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/U-Aqx7vQocY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>        
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/aFS8Wk8FDlE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>        
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -463,7 +463,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop:70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/0eFjhnDQe6g" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/BKu-9fs1UgE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -485,7 +485,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/2lWS3LGZUFU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/-gbP9-5g8ac" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>
@@ -507,7 +507,7 @@ export default function MediaHub(props){
           <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
             <Grid.Row>
               <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/PmI42rHnI6U" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="390" height="236" src="https://www.youtube.com/embed/FS8vq9-FIs4" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
             </Grid.Row>
             <Grid.Row>

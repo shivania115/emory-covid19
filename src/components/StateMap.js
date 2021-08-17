@@ -1475,7 +1475,7 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Cases and deaths data as of: {date}.
                                     <br/>
-                                    Hospitalization data as of: 08/09/2021.
+                                    Hospitalization data as of: 08/12/2021.
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
@@ -1490,7 +1490,7 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Cases and deaths data as of: {date}.
                                     <br/>
-                                    Hospitalization data as of: 08/09/2021.
+                                    Hospitalization data as of: 08/12/2021.
                                     <br/>
                                     {stateName} reports distribution of deaths across non-Hispanic race categories, with {!!raceData[stateFips]["Race Missing"]? raceData[stateFips]["Race Missing"][0]["percentRaceDeaths"] + "%":!!raceData[stateFips]["Ethnicity Missing"]? raceData[stateFips]["Ethnicity Missing"][0]["percentEthnicityDeaths"] + "%" : !!raceData[stateFips]["Race & Ethnicity Missing"]? raceData[stateFips]["Race & Ethnicity Missing"][0]["percentRaceEthnicityDeaths"] + "%": "na%"} of deaths of known {!!raceData[stateFips]["Race Missing"]? "race" :!!raceData[stateFips]["Ethnicity Missing"]? "ethnicity" : !!raceData[stateFips]["Race & Ethnicity Missing"]? "race & ethnicity": "race & ethnicity"}. Here we only show race categories that constitute at least 1% of the state population and have 30 or more deaths.
                                     <br/>
