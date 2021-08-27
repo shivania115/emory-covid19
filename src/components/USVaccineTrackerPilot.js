@@ -137,7 +137,7 @@ function goToAnchor(anchor) {
 }
 const contextRef = createRef()
 const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker',
-  'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety',
+  'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety','Vaccines, Fertility, and Pregnancy',
   'Getting Vaccinated', 'After You Are Vaccinated', 'COVID-19 Vaccines FAQ', "Vaccination by Race & Ethinicity"];
 var scrollCount = 0;
 
@@ -183,12 +183,16 @@ function StickyExampleAdjacentContext(props) {
               <Menu.Item as='a' href="#safety" name={nameList[5]} active={props.activeCharacter == nameList[5] || activeItem === nameList[5]}
                 // || activeItem === 'Vaccine Safety'
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[5]}</Header></Menu.Item>
-              <Menu.Item as='a' href="#get" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
-                // || activeItem === 'Getting Vaccinated'
+              <Menu.Item as='a' href="#pregnancy" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
+                // || activeItem === 'Vaccine Safety'
+                
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[6]}</Header></Menu.Item>
-              <Menu.Item as='a' href="#after" name={nameList[7]} active={props.activeCharacter == nameList[7] || activeItem === nameList[7]}
-                // || activeItem === 'After You Are Vaccinated'
+              <Menu.Item as='a' href="#get" name={nameList[7]} active={props.activeCharacter == nameList[7] || activeItem === nameList[7]}
+                // || activeItem === 'Getting Vaccinated'
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[7]}</Header></Menu.Item>
+              <Menu.Item as='a' href="#after" name={nameList[8]} active={props.activeCharacter == nameList[8] || activeItem === nameList[8]}
+                // || activeItem === 'After You Are Vaccinated'
+                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[8]}</Header></Menu.Item>
             </Menu>
           </Sticky>
         </Rail>
