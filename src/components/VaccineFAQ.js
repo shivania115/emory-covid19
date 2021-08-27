@@ -653,7 +653,7 @@ export default function VaccinesFAQ(props) {
                   </Accordion.Content>
 
 
-                  <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
+                  {/* <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
                     index={11}
                     onClick={() => activeIndex.indexOf(11) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 11]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 11))}
@@ -667,7 +667,7 @@ export default function VaccinesFAQ(props) {
                       No. There is no evidence to suggest that the COVID-19 vaccines would increase the risk of infertility. This is a concern that began to be shared widely by non-scientific sources.
                       However, there is no connection between the virus spike protein targeted by the vaccine and human reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on fertility.
                     </p>
-                  </Accordion.Content>
+                  </Accordion.Content> */}
 
                   <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
@@ -680,7 +680,7 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(37) > 0}>
                     <p>
-                      Yes, the vaccine is safe for children as young as 12. At this time one vaccine, Pfizer-BioNTech’s two-dose vaccine, has been given Emergency Use Authorization for adolescents down to age 12. Before applying for and getting Authorization, researchers carried out closely monitored trials and showed that this vaccine is safe and effective, including for adolescents <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html" target="_blank" rel="noopener noreferrer"> [https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html] </a>. Trials are ongoing for other vaccines for younger adolescents and children. Children may have side-effects after getting a vaccine, just like adults do. They will not get a COVID-19 infection from the vaccine.
+                      Yes, the vaccine is safe for children as young as 12. At this time one vaccine, Pfizer-BioNTech’s two-dose vaccine, has been given Emergency Use Authorization for adolescents down to age 12. Before applying for and getting Authorization, researchers carried out closely monitored trials and showed that this vaccine is safe and effective, including for <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html" target="_blank" rel="noopener noreferrer"> adolescents</a>. Trials are ongoing for other vaccines for younger adolescents and children. Children may have side-effects after getting a vaccine, just like adults do. They will not get a COVID-19 infection from the vaccine.
                     </p>
                   </Accordion.Content>
 
@@ -719,21 +719,7 @@ export default function VaccinesFAQ(props) {
 
               <div style={{ paddingLeft: '2rem', paddingBottom: '0rem' }}>
                 <Accordion fluid styled exclusive={false}>
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={44}
-                    onClick={() => activeIndex.indexOf(44) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 44]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 44))}
-                  >
-                    <Icon name='dropdown' />
-                    Are there concerns about the COVID-19 vaccine and fertility?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(44) > 0}>
-                    <p>
-                    No. There is no credible scientific evidence to suggest that vaccination against COVID-19 would increase the risk of infertility in either women or men. There is no connection between the virus spike protein targeted by the vaccine and human (female or male) reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on current or future fertility.
-                    </p>
-                  </Accordion.Content>
-
+            
 
                   <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
@@ -761,7 +747,9 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(46) > 0}>
                     <p>
-                    Yes. You can get any of the available and authorized vaccines even if you are considering becoming pregnant now or in the future. The American College of Obstetricians and Gynecologists [https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care ] and CDC [https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html] recommend the COVID-19 vaccine for people trying to conceive or planning to do so. There is no need to delay pregnancy after being fully vaccinated. There is no evidence that any of the vaccines have any effect on fertility or the ability to become pregnant, either in women or men. There is also some evidence [https://jamanetwork.com/journals/jama/fullarticle/2781360] that the SARS-CoV-2 virus can affect the testes and sperm quality, meaning that a COVID-19 infection could potentially affect male fertility later.
+                    Yes. You can get any of the available and authorized vaccines even if you are considering becoming pregnant now or in the future.
+                    <a style={{ color: "#397AB9" }} href="https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care" target="_blank" rel="noopener noreferrer">  The American College of Obstetricians and Gynecologists </a> and <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer">  CDC </a>  recommend the COVID-19 vaccine for people trying to conceive or planning to do so. There is no need to delay pregnancy after being fully vaccinated. There is no evidence that any of the vaccines have any effect on fertility or the ability to become pregnant, either in women or men. There is also some 
+                    <a style={{ color: "#397AB9" }} href="https://jamanetwork.com/journals/jama/fullarticle/2781360" target="_blank" rel="noopener noreferrer">  evidence  </a> that the SARS-CoV-2 virus can affect the testes and sperm quality, meaning that a COVID-19 infection could potentially affect male fertility later.
                     </p>
                   </Accordion.Content>
 
@@ -776,7 +764,8 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(47) > 0}>
                     <p>
-                    Yes. The American College of Obstetricians and Gynecologists strongly recommends [https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care ] that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. While it may be helpful to discuss vaccination with a healthcare provider to answer any outstanding questions, there are no contraindications based on pregnancy. A pregnant person can receive any of the vaccines that have received Emergency Use Authorization.
+                    Yes. The American College of Obstetricians and Gynecologists strongly 
+                    <a style={{ color: "#397AB9" }} href="https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care" target="_blank" rel="noopener noreferrer">  recommends  </a> that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. While it may be helpful to discuss vaccination with a healthcare provider to answer any outstanding questions, there are no contraindications based on pregnancy. A pregnant person can receive any of the vaccines that have received Emergency Use Authorization.
                     </p>
                   </Accordion.Content>
 
@@ -791,9 +780,10 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(48) > 0}>
                     <p>
-                    Yes. The American College of Obstetricians and Gynecologists recommends [https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care ] that people who are breastfeeding get a
+                    Yes. The American College of Obstetricians and Gynecologists <a style={{ color: "#397AB9" }} href="https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care" target="_blank" rel="noopener noreferrer">  recommends  </a> that people who are breastfeeding get a
 
-COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine. CDC notes [https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html] that there is some recent evidence that people who received one of the mRNA vaccines have antibodies in their breastmilk, which could help to protect their babies from COVID-19.
+COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine. 
+<a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer">  CDC notes  </a> that there is some recent evidence that people who received one of the mRNA vaccines have antibodies in their breastmilk, which could help to protect their babies from COVID-19.
                     </p>
                   </Accordion.Content>
 
@@ -1390,7 +1380,7 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                      <a style={{ color: "#397AB9" }} href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised" target="_blank" rel="noopener noreferrer"> The FDA</a> reviewed data from several studies that looked at immunity to COVID-19 after vaccination among people with weakened immune systems (for example, due to a medical condition or if you are taking certain medications that weaken the immune system). The data from those studies show that the two doses were, in some cases, not enough to build a high level of immunity against the virus that causes COVID-19. They also showed that even if they are fully vaccinated, some immunocompromised people who get COVID-19 are more likely to transmit the virus to others and to get seriously sick from the virus. Therefore, <a style={{ color: "#397AB9" }} href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html" target="_blank" rel="noopener noreferrer"> the FDA authorized</a> a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech or Moderna) for people with seriously or moderately suppressed immune systems. CDC now <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> recommends</a> this third dose in certain cases.
                     </p>
                     <p>
-                    If you have a condition or are taking medication that suppresses the immune system <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> (https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html)</a>, you should speak with your healthcare provider about getting a 3rd dose of the mRNA vaccine you have received previously (meaning, for example, that if you received Moderna, you should get a 3rd dose of Moderna). If you are receiving a 3rd dose, this should happen at least 4 weeks after your 2nd dose.
+                    If you have a condition or are taking medication that <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> suppresses the immune system</a>, you should speak with your healthcare provider about getting a 3rd dose of the mRNA vaccine you have received previously (meaning, for example, that if you received Moderna, you should get a 3rd dose of Moderna). If you are receiving a 3rd dose, this should happen at least 4 weeks after your 2nd dose.
                     </p>
                     <p>
                     A 3rd dose is not recommended or authorized for any other group at this time.

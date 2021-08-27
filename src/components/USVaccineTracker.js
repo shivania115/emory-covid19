@@ -10,7 +10,7 @@ import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
-import VaccinesFAQ from './VaccineFAQ';
+import VaccinesFAQ from './VaccineFAQPilot';
 // import {
 //   ComposableMap,
 //   Geographies,
