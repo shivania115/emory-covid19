@@ -283,7 +283,7 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(34) > 0}>
                     <p style={{ marginBottom: 0 }}>
-                      The COVID-19 vaccine developed by Johnson & Johnson is part of a category of vaccines known as “non-replicating viral vector”, “adenovirus-based”, or simply “viral vector” vaccines. These vaccines contain modified virus cells to deliver information to the body’s cells.
+                      The COVID-19 vaccine developed by Johnson & Johnson is part of a category of vaccines known as <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/viralvector.html" target="_blank" rel="noopener noreferrer"> “non-replicating viral vector”, “adenovirus-based”, or simply “viral vector” vaccines</a>. These vaccines contain modified virus cells to deliver information to the body’s cells.
                       These virus cells are modified to be harmless so that they cannot cause any kind of illness, including COVID-19. They are not SARS-CoV-2 virus cells.
                     </p>
                     <p style={{ paddingTop: '1rem', paddingLeft: '0rem', paddingRight: '1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify' }}>
@@ -437,7 +437,7 @@ export default function VaccinesFAQ(props) {
                     active={activeIndex.indexOf(5) > 0}>
                     <p>
                       There are <a style={{ color: "#397AB9" }} href="https://covid19.trackvaccines.org/vaccines/" target="_blank" rel="noopener noreferrer"> currently </a>
-                      93 vaccines in various phases of testing across the world. Of these, 25 are in <a style={{ color: "#397AB9" }} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
+                      139 vaccines in various phases of testing across the world. Of these, 44 are in <a style={{ color: "#397AB9" }} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
                       clinical trials. Phase 3 trials are the large-scale studies done before a vaccine is approved. There are 12 vaccines approved for use in different countries, although only 3 have been approved for use in the United States under the Food and Drug Administration’s Emergency Use Authorization.
                     </p>
                   </Accordion.Content>
@@ -1399,7 +1399,7 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(33) > 0}>
                     <p>
-                      You may not need to quarantine, but it depends on your situation. Currently, COVID-19 recommendations
+                      You may not need to quarantine, but it depends on your situation. Currently, <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html" target="_blank" rel="noopener noreferrer">COVID-19 recommendations</a>
                       are that you should wear a mask indoors in public for 14 days after you are exposed or until you get a negative COVID-19 test. You should also get tested 3-5 days after your exposure, even if you do not have any symptoms. If your test is positive, you should isolate for 10 days.
                     </p>
                     {/* <ol style={{ paddingLeft: '4rem', lineHeight: "150%" }}>
@@ -1430,7 +1430,7 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(45) > 0}>
                     <p>
-                      <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html" target="_blank" rel="noopener noreferrer">Federal regulations</a> do require wearing a mask for anyone traveling on any form of public transport, regardless of vaccination status. This includes: bus, plane, train, subways, taxis, ride-shares, boats, ships, trolleys, and cable cars. It also includes school buses and indoor transportation hubs such as airports, train stations, and subways stations.
+                      Federal regulations do require wearing a mask for anyone <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html" target="_blank" rel="noopener noreferrer">traveling</a> on any form of public transport, regardless of vaccination status. This includes: bus, plane, train, subways, taxis, ride-shares, boats, ships, trolleys, and cable cars. It also includes school buses and indoor transportation hubs such as airports, train stations, and subways stations.
                     </p>
                     <p>
                       If you are <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/travel-during-covid19.html" target="_blank" rel="noopener noreferrer">traveling within the United States</a>, you do not need to get tested before or after traveling or to quarantine after travel. You should still monitor your health for any symptoms after travel and follow testing and isolation guidance as appropriate.
