@@ -10,7 +10,7 @@ import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
-import VaccinesFAQ from './VaccineFAQ';
+import VaccinesFAQ from './VaccineFAQPilot';
 // import {
 //   ComposableMap,
 //   Geographies,
@@ -182,7 +182,9 @@ function StickyExampleAdjacentContext(props) {
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[4]}</Header></Menu.Item>
               <Menu.Item as='a' href="#safety" name={nameList[5]} active={props.activeCharacter == nameList[5] || activeItem === nameList[5]}
                 // || activeItem === 'Vaccine Safety'
+
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[5]}</Header></Menu.Item>
+                
               <Menu.Item as='a' href="#get" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
                 // || activeItem === 'Getting Vaccinated'
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[6]}</Header></Menu.Item>

@@ -42,17 +42,17 @@ function StickyExampleAdjacentContext(props) {
                     onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>Vaccine Development</Header></Menu.Item>
                   <Menu.Item as='a' href="#safety" name='Vaccine Safety' active={activeItem === 'Vaccine Safety'}
                     // || activeItem === 'Vaccine Safety'
-                    onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>COVID-19 Vaccines, Fertility, And Pregnancy</Header></Menu.Item>
-                      <Menu.Item as='a' href="#pregnancy" name='COVID-19 Vaccines, Fertility, and Pregnancy' active={activeItem === 'COVID-19 Vaccines, Fertility, And Pregnancy'}
+                    onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>Vaccine Safety</Header></Menu.Item>
+                  <Menu.Item as='a' href="#pregnancy" name='Vaccines, Fertility, and Pregnancy' active={activeItem === 'Vaccines, Fertility, and Pregnancy'}
                     // || activeItem === 'After You Are Vaccinated'
-                    onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>COVID-19 Vaccines, Fertlity, and Pregnancy</Header></Menu.Item>
+                    onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>COVID-19 Vaccines, Fertility, And Pregnancy</Header></Menu.Item>
                   <Menu.Item as='a' href="#get" name='Getting Vaccinated' active={activeItem === 'Getting Vaccinated'}
                     // || activeItem === 'Getting Vaccinated'
                     onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>Getting Vaccinated</Header></Menu.Item>
                   <Menu.Item as='a' href="#after" name='After You Are Vaccinated' active={activeItem === 'After You Are Vaccinated'}
                     // || activeItem === 'After You Are Vaccinated'
                     onClick={(e, { name }) => { setActiveItem(name) }}><Header as='h4'>After You Are Vaccinated</Header></Menu.Item>
-            
+
                 </Menu>
                 {/* </div> */}
               </div>
@@ -131,6 +131,22 @@ export default function VaccinesFAQ(props) {
 
               <div style={{ paddingLeft: '2rem', paddingBottom: '0rem' }}>
                 <Accordion fluid styled exclusive={false}>
+
+                  <Accordion.Title id="develop" style={{ fontSize: '15pt', color: 'black' }}
+                    // active={activeIndex === 0}
+                    index={36}
+                    onClick={() => activeIndex.indexOf(36) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 36]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 36))}
+                  >
+                    <Icon name='dropdown' />
+                    Who can get vaccinated against COVID-19?
+                  </Accordion.Title>
+                  <Accordion.Content style={{ fontSize: '14pt' }}
+                    active={activeIndex.indexOf(36) > 0}>
+                    <p>
+                      At this point, anyone who is aged 12 or more is eligible to get vaccinated. Although there a few cases in which individuals should discuss vaccination with a healthcare provider before.
+                    </p>
+                  </Accordion.Content>
+
                   <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
                     index={0}
                     onClick={() => activeIndex.indexOf(0) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 0]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 0))}
@@ -267,7 +283,7 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(34) > 0}>
                     <p style={{ marginBottom: 0 }}>
-                      The COVID-19 vaccine developed by Johnson & Johnson is part of a category of vaccines known as “non-replicating viral vector”, “adenovirus-based”, or simply “viral vector” vaccines. These vaccines contain modified virus cells to deliver information to the body’s cells.
+                      The COVID-19 vaccine developed by Johnson & Johnson is part of a category of vaccines known as <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/viralvector.html" target="_blank" rel="noopener noreferrer"> “non-replicating viral vector”, “adenovirus-based”, or simply “viral vector” vaccines</a>. These vaccines contain modified virus cells to deliver information to the body’s cells.
                       These virus cells are modified to be harmless so that they cannot cause any kind of illness, including COVID-19. They are not SARS-CoV-2 virus cells.
                     </p>
                     <p style={{ paddingTop: '1rem', paddingLeft: '0rem', paddingRight: '1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify' }}>
@@ -320,24 +336,6 @@ export default function VaccinesFAQ(props) {
                       that does not mean your immune system is not reacting to the vaccine and learning how to fight the virus or that the vaccine is not working. Individuals react differently to vaccines and your body may just have a less pronounced response.
                     </p>
                   </Accordion.Content>
-
-
-                  <Accordion.Title id="develop" style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={36}
-                    onClick={() => activeIndex.indexOf(36) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 36]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 36))}
-                  >
-                    <Icon name='dropdown' />
-                    Who can get vaccinated against COVID-19?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(36) > 0}>
-                    <p>
-                      At this point, anyone who is aged 12 or more is eligible to get vaccinated. Although there a few cases in which individuals should discuss vaccination with a healthcare provider before.
-                    </p>
-                  </Accordion.Content>
-
-
                 </Accordion>
               </div>
 
@@ -439,31 +437,12 @@ export default function VaccinesFAQ(props) {
                     active={activeIndex.indexOf(5) > 0}>
                     <p>
                       There are <a style={{ color: "#397AB9" }} href="https://covid19.trackvaccines.org/vaccines/" target="_blank" rel="noopener noreferrer"> currently </a>
-                      93 vaccines in various phases of testing across the world. Of these, 25 are in <a style={{ color: "#397AB9" }} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
+                      139 vaccines in various phases of testing across the world. Of these, 44 are in <a style={{ color: "#397AB9" }} href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases" target="_blank" rel="noopener noreferrer"> Phase 3 </a>
                       clinical trials. Phase 3 trials are the large-scale studies done before a vaccine is approved. There are 12 vaccines approved for use in different countries, although only 3 have been approved for use in the United States under the Food and Drug Administration’s Emergency Use Authorization.
                     </p>
                   </Accordion.Content>
 
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 1}
-                    index={6}
-                    onClick={() => activeIndex.indexOf(6) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 6]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 6))}
-                  >
-                    <Icon name='dropdown' />
-                    Will the approved vaccines protect against new variants of the coronavirus?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(6) > 0}>
-                    <p style={{ marginBottom: 0 }}>
-                      It is hard to know exactly how effective the authorized vaccines will be against new and different variants of SARS-CoV-2, the virus that causes COVID-19.
-                      The limited <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/transmission/variant.html" target="_blank" rel="noopener noreferrer"> information </a>
-                      we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or from vaccination will still protect against death and serious illness caused by most new variants. However, this is a changing situation, and something scientists are continuing to study.
-                    </p>
-                    <p style={{ paddingTop: '1rem', paddingLeft: '0rem', paddingRight: '1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify' }}>
-                      At this time, the <a style={{ color: "#397AB9" }} href="https://www.bmj.com/content/372/bmj.n597" target="_blank" rel="noopener noreferrer"> data </a>
-                      show a mixed picture, depending on the variant in question. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. While the available vaccines, particularly the two mRNA vaccines do provide very good protection against severe illness and death, including against the most common variant, known as the Delta variant. However, some variants, including the Delta variant, could still be transmitted to others by people who are vaccinated. As a result, <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html" target="_blank" rel="noopener noreferrer"> CDC </a> recommends that even if you are vaccinated, you continue to wear a mask, especially in large groups, indoors, and in areas where transmission levels are <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> high</a> .
-                    </p>
-                  </Accordion.Content>
+
 
                   {/* <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
           // active={activeIndex === 2}
@@ -522,6 +501,28 @@ export default function VaccinesFAQ(props) {
                       Because of the global urgency to fight the COVID-19 pandemic, researchers received very large amounts of funding from governments and private sector investors. Partnerships were also developed between groups of institutions to plan ahead
                       in case the vaccines that were being developed and tested proved to be effective. In the United States, one such partnership was Operation Warp Speed. This collaboration brought together components of the Department of Health and Human Services
                       and the Department of Defense to develop, make and distribute vaccines as quickly as possible after they were tested for safety and effectiveness.
+                    </p>
+                  </Accordion.Content>
+
+
+                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
+                    // active={activeIndex === 1}
+                    index={6}
+                    onClick={() => activeIndex.indexOf(6) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 6]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 6))}
+                  >
+                    <Icon name='dropdown' />
+                    Will the approved vaccines protect against new variants of the coronavirus?
+                  </Accordion.Title>
+                  <Accordion.Content style={{ fontSize: '14pt' }}
+                    active={activeIndex.indexOf(6) > 0}>
+                    <p style={{ marginBottom: 0 }}>
+                      It is hard to know exactly how effective the authorized vaccines will be against new and different variants of SARS-CoV-2, the virus that causes COVID-19.
+                      The limited <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/transmission/variant.html" target="_blank" rel="noopener noreferrer"> information </a>
+                      we have suggests that the immune protection both from natural infection (i.e. actually getting COVID-19) or from vaccination will still protect against death and serious illness caused by most new variants. However, this is a changing situation, and something scientists are continuing to study.
+                    </p>
+                    <p style={{ paddingTop: '1rem', paddingLeft: '0rem', paddingRight: '1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify' }}>
+                      At this time, the <a style={{ color: "#397AB9" }} href="https://www.bmj.com/content/372/bmj.n597" target="_blank" rel="noopener noreferrer"> data </a>
+                      show a mixed picture, depending on the variant in question. Whether or not a vaccine is effective against a variant depends both on the specific vaccine and the specific variant. While the available vaccines, particularly the two mRNA vaccines do provide very good protection against severe illness and death, including against the most common variant, known as the Delta variant. However, some variants, including the Delta variant, could still be transmitted to others by people who are vaccinated. As a result, <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html" target="_blank" rel="noopener noreferrer"> CDC </a> recommends that even if you are vaccinated, you continue to wear a mask, especially in large groups, indoors, and in areas where transmission levels are <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#county-view" target="_blank" rel="noopener noreferrer"> high</a> .
                     </p>
                   </Accordion.Content>
                 </Accordion>
@@ -653,7 +654,7 @@ export default function VaccinesFAQ(props) {
                   </Accordion.Content>
 
 
-                  <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
+                  {/* <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
                     index={11}
                     onClick={() => activeIndex.indexOf(11) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 11]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 11))}
@@ -667,7 +668,7 @@ export default function VaccinesFAQ(props) {
                       No. There is no evidence to suggest that the COVID-19 vaccines would increase the risk of infertility. This is a concern that began to be shared widely by non-scientific sources.
                       However, there is no connection between the virus spike protein targeted by the vaccine and human reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on fertility.
                     </p>
-                  </Accordion.Content>
+                  </Accordion.Content> */}
 
                   <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
@@ -680,59 +681,34 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(37) > 0}>
                     <p>
-                      Yes, the vaccine is safe for children as young as 12. At this time one vaccine, Pfizer-BioNTech’s two-dose vaccine, has been given Emergency Use Authorization for adolescents down to age 12. Before applying for and getting Authorization, researchers carried out closely monitored trials and showed that this vaccine is safe and effective, including for adolescents <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html" target="_blank" rel="noopener noreferrer"> [https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html] </a>. Trials are ongoing for other vaccines for younger adolescents and children. Children may have side-effects after getting a vaccine, just like adults do. They will not get a COVID-19 infection from the vaccine.
+                      Yes, the vaccine is safe for children as young as 12. At this time one vaccine, Pfizer-BioNTech’s two-dose vaccine, has been given Emergency Use Authorization for adolescents down to age 12. Before applying for and getting Authorization, researchers carried out closely monitored trials and showed that this vaccine is safe and effective, including for <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html" target="_blank" rel="noopener noreferrer"> adolescents</a>. Trials are ongoing for other vaccines for younger adolescents and children. Children may have side-effects after getting a vaccine, just like adults do. They will not get a COVID-19 infection from the vaccine.
                     </p>
                   </Accordion.Content>
 
-                  <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={13}
-                    onClick={() => activeIndex.indexOf(13) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 13]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 13))}
-                  >
-                    <Icon name='dropdown' />
-                    Do I have to pay to get vaccinated against COVID-19?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(13) > 0}>
-                    <p>
-                      No. Vaccines against COVID-19 are available to everyone for <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/no-cost.html" target="_blank" rel="noopener noreferrer"> free </a>. The federal government will cover the cost of the COVID-19 vaccine and of its administration by a healthcare provider. A provider cannot charge you an office visit fee, or a fee to give you the vaccine, if the only service you get at that visit is the COVID-19 vaccine. If you have health insurance, this will cover these fees since this vaccine is recommended by the Advisory Committee on Immunization Practices. If you do not have health insurance, your provider can still be reimbursed. You cannot be charged for these fees. Vaccine providers can get reimbursed for costs associated with <a style={{ color: "#397AB9" }} href="https://www.hrsa.gov/coviduninsuredclaim" target="_blank" rel="noopener noreferrer">vaccinated uninsured people</a>.
-                    </p>
-                  </Accordion.Content>
+
                 </Accordion>
               </div>
 
 
-                
+
               <div style={{ height: 5 }}> </div>
               <Header as='h2' style={{ fontWeight: 600 }}>
                 <Header.Content>
-                COVID-19 Vaccines, Fertility, and Pregnancy
+                  COVID-19 Vaccines, Fertility, and Pregnancy
                 </Header.Content>
               </Header>
 
+       
               <Waypoint
                 onEnter={() => {
-                  setActiveCharacter('COVID-19 Vaccines, Fertility, and Pregnancy')
+                  setActiveCharacter('Vaccines, Fertility, and Pregnancy')
                   //console.log(activeCharacter)
                 }}>
               </Waypoint>
 
+
               <div style={{ paddingLeft: '2rem', paddingBottom: '0rem' }}>
                 <Accordion fluid styled exclusive={false}>
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={44}
-                    onClick={() => activeIndex.indexOf(44) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 44]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 44))}
-                  >
-                    <Icon name='dropdown' />
-                    Are there concerns about the COVID-19 vaccine and fertility?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(44) > 0}>
-                    <p>
-                    No. There is no credible scientific evidence to suggest that vaccination against COVID-19 would increase the risk of infertility in either women or men. There is no connection between the virus spike protein targeted by the vaccine and human (female or male) reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on current or future fertility.
-                    </p>
-                  </Accordion.Content>
 
 
                   <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
@@ -746,7 +722,7 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(43) > 0}>
                     <p>
-                    No. There is no credible scientific evidence to suggest that vaccination against COVID-19 would increase the risk of infertility in either women or men. There is no connection between the virus spike protein targeted by the vaccine and human (female or male) reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on current or future fertility.
+                      No. There is no credible scientific evidence to suggest that vaccination against COVID-19 would increase the risk of infertility in either women or men. There is no connection between the virus spike protein targeted by the vaccine and human (female or male) reproductive tissue. As a result, there is no reason to be concerned about any effect of these vaccines on current or future fertility.
                     </p>
                   </Accordion.Content>
 
@@ -761,7 +737,9 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(46) > 0}>
                     <p>
-                    Yes. You can get any of the available and authorized vaccines even if you are considering becoming pregnant now or in the future. The American College of Obstetricians and Gynecologists [https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care ] and CDC [https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html] recommend the COVID-19 vaccine for people trying to conceive or planning to do so. There is no need to delay pregnancy after being fully vaccinated. There is no evidence that any of the vaccines have any effect on fertility or the ability to become pregnant, either in women or men. There is also some evidence [https://jamanetwork.com/journals/jama/fullarticle/2781360] that the SARS-CoV-2 virus can affect the testes and sperm quality, meaning that a COVID-19 infection could potentially affect male fertility later.
+                      Yes. You can get any of the available and authorized vaccines even if you are considering becoming pregnant now or in the future.
+                      <a style={{ color: "#397AB9" }} href="https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care" target="_blank" rel="noopener noreferrer">  The American College of Obstetricians and Gynecologists </a> and <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer">  CDC </a>  recommend the COVID-19 vaccine for people trying to conceive or planning to do so. There is no need to delay pregnancy after being fully vaccinated. There is no evidence that any of the vaccines have any effect on fertility or the ability to become pregnant, either in women or men. There is also some
+                      <a style={{ color: "#397AB9" }} href="https://jamanetwork.com/journals/jama/fullarticle/2781360" target="_blank" rel="noopener noreferrer">  evidence  </a> that the SARS-CoV-2 virus can affect the testes and sperm quality, meaning that a COVID-19 infection could potentially affect male fertility later.
                     </p>
                   </Accordion.Content>
 
@@ -776,7 +754,8 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(47) > 0}>
                     <p>
-                    Yes. The American College of Obstetricians and Gynecologists strongly recommends [https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care ] that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. While it may be helpful to discuss vaccination with a healthcare provider to answer any outstanding questions, there are no contraindications based on pregnancy. A pregnant person can receive any of the vaccines that have received Emergency Use Authorization.
+                      Yes. The American College of Obstetricians and Gynecologists strongly
+                      <a style={{ color: "#397AB9" }} href="https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care" target="_blank" rel="noopener noreferrer">  recommends  </a> that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. While it may be helpful to discuss vaccination with a healthcare provider to answer any outstanding questions, there are no contraindications based on pregnancy. A pregnant person can receive any of the vaccines that have received Emergency Use Authorization or full approval.
                     </p>
                   </Accordion.Content>
 
@@ -791,9 +770,27 @@ export default function VaccinesFAQ(props) {
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(48) > 0}>
                     <p>
-                    Yes. The American College of Obstetricians and Gynecologists recommends [https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care ] that people who are breastfeeding get a
+                      Yes. The American College of Obstetricians and Gynecologists <a style={{ color: "#397AB9" }} href="https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2020/12/covid-19-vaccination-considerations-for-obstetric-gynecologic-care" target="_blank" rel="noopener noreferrer">  recommends  </a> that people who are breastfeeding get a
 
-COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine. CDC notes [https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html] that there is some recent evidence that people who received one of the mRNA vaccines have antibodies in their breastmilk, which could help to protect their babies from COVID-19.
+                      COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine.
+                      <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer">  CDC notes  </a> that there is some recent evidence that people who received one of the mRNA vaccines have antibodies in their breastmilk, which could help to protect their babies from COVID-19.
+                    </p>
+                  </Accordion.Content>
+
+                  <Accordion.Title style={{ fontSize: '15pt', color: 'black', lineHeight: 1.4 }}
+                    // active={activeIndex === 0}
+                    index={25}
+                    onClick={() => activeIndex.indexOf(25) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 25]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 25))}
+                  >
+                    <Icon name='dropdown' />
+                    If I am trying to become pregnant or am considering becoming pregnant in the future, should I get the COVID-19 vaccine?
+                  </Accordion.Title>
+                  <Accordion.Content style={{ fontSize: '14pt' }}
+                    active={activeIndex.indexOf(25) > 0}>
+                    <p>
+                      You may get any of the available vaccines even if you are considering becoming pregnant. The American College of Obstetricians and Gynecologists and
+                      <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer"> CDC </a>
+                      recommend the COVID-19 vaccine for people trying to become pregnant or considering becoming pregnant in the future. There is no need to delay pregnancy after being fully vaccinated.
                     </p>
                   </Accordion.Content>
 
@@ -1195,58 +1192,7 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                   </Accordion.Content>
 
 
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black', lineHeight: 1.4 }}
-                    // active={activeIndex === 0}
-                    index={25}
-                    onClick={() => activeIndex.indexOf(25) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 25]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 25))}
-                  >
-                    <Icon name='dropdown' />
-                    If I am trying to become pregnant or am considering becoming pregnant in the future, should I get the COVID-19 vaccine?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(25) > 0}>
-                    <p>
-                      You may get any of the available vaccines even if you are considering becoming pregnant. The American College of Obstetricians and Gynecologists and
-                      <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/pregnancy.html" target="_blank" rel="noopener noreferrer"> CDC </a>
-                      recommend the COVID-19 vaccine for people trying to become pregnant or considering becoming pregnant in the future. There is no need to delay pregnancy after being fully vaccinated.
-                    </p>
-                  </Accordion.Content>
 
-
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={26}
-                    onClick={() => activeIndex.indexOf(26) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 26]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 26))}
-                  >
-                    <Icon name='dropdown' />
-                    If I am already pregnant, should I get the COVID-19 vaccine?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(26) > 0}>
-                    <p>
-                      You may get any of the available vaccines even if you are currently pregnant. The
-                      <a style={{ color: "#397AB9" }} href="https://www.acog.org/en/Clinical/Clinical%20Guidance/Practice%20Advisory/Articles/2020/12/Vaccinating%20Pregnant%20and%20Lactating%20Patients%20Against%20COVID%2019" target="_blank" rel="noopener noreferrer"> American College of Obstetricians and Gynecologists </a>
-                      recommends that pregnant people who are eligible to get vaccinated get a COVID-19 vaccine. Although there are no contraindications based on pregnancy, you should discuss this decision with your healthcare provider to make sure it is right for your situation.
-                    </p>
-                  </Accordion.Content>
-
-
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={27}
-                    onClick={() => activeIndex.indexOf(27) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 27]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 27))}
-                  >
-                    <Icon name='dropdown' />
-                    Is it safe to get the COVID-19 vaccine while breastfeeding?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(27) > 0}>
-                    <p>
-                      Yes. The
-                      <a style={{ color: "#397AB9" }} href="https://www.acog.org/en/Clinical/Clinical%20Guidance/Practice%20Advisory/Articles/2020/12/Vaccinating%20Pregnant%20and%20Lactating%20Patients%20Against%20COVID%2019" target="_blank" rel="noopener noreferrer"> American College of Obstetricians and Gynecologists </a>
-                      recommends that people who are breastfeeding get a COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vaccine.
-                    </p>
-                  </Accordion.Content>
 
 
                   <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
@@ -1260,8 +1206,8 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(36) > 0}>
                     <p>
-                      <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html" target="_blank" rel="noopener noreferrer"> CDC</a> recommends
-                      that you wait at least 14 days between a COVID-19 vaccine and any other vaccine, including vaccines against flu or shingles. If you get a COVID-19 vaccine within less than 14 days of another vaccine, you do not get revaccinated; you can still complete the vaccine series (for multi-dose vaccines) as planned.
+                      Yes. As more people have gotten vaccinated, we have evidence that shows that the body’s reaction to the COVID-19 vaccine is similar whether it is received alone or at the same time as other vaccines. There is
+                      <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html" target="_blank" rel="noopener noreferrer"> no evidence </a> that you need to wait at least 14 days between a COVID-19 vaccine and other vaccines.
                     </p>
                   </Accordion.Content>
 
@@ -1276,23 +1222,9 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                   </Accordion.Title>
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(28) > 0}>
-                   You can continue taking the same precautions CDC recommends to protect yourself and others from COVID-19. This includes washing your hands, wearing a face covering, maintaining a physical distance of at least 6 feet from others, and limiting gathering in groups.
+                    You can continue taking the same precautions CDC recommends to protect yourself and others from COVID-19. This includes washing your hands, wearing a face covering, maintaining a physical distance of at least 6 feet from others, and limiting gathering in groups.
                   </Accordion.Content>
 
-                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
-                    // active={activeIndex === 0}
-                    index={29}
-                    onClick={() => activeIndex.indexOf(29) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 29]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 29))}
-                  >
-                    <Icon name='dropdown' />
-                    Do I need a COVID-19 vaccine booster?
-                  </Accordion.Title>
-                  <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(29) > 0}>
-                    <p>
-                    At this time, a vaccine booster is not recommended by CDC or by the Advisory Council on Immunization Practices (ACIP) or authorized by the FDA. This may change as more evidence and data are collected from ongoing studies about long-term immunity against COVID-19 disease after vaccination.
-                    </p>
-                  </Accordion.Content>
 
 
                   {/* <Accordion.Title style={{fontSize:'15pt', color: 'black'}}
@@ -1355,22 +1287,23 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
         </Accordion.Content> */}
 
 
-                  <Accordion.Title id="after" style={{ fontSize: '15pt', color: 'black' }}
+
+
+                  <Accordion.Title style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
-                    index={31}
-                    onClick={() => activeIndex.indexOf(31) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 31]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 31))}
+                    index={29}
+                    onClick={() => activeIndex.indexOf(29) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 29]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 29))}
                   >
                     <Icon name='dropdown' />
-                    Will I have to pay to get vaccinated against COVID-19?
+                    Do I need a COVID-19 vaccine booster?
                   </Accordion.Title>
                   <Accordion.Content style={{ fontSize: '14pt' }}
-                    active={activeIndex.indexOf(31) > 0}>
+                    active={activeIndex.indexOf(29) > 0}>
                     <p>
-                      The federal government will cover the cost of the COVID-19 vaccine. However, some healthcare providers may charge you an office visit fee, or a fee to give you the vaccine. Health insurance should cover these fees since this vaccine is recommended by the Advisory Committee on Immunization Practices.
-                      If you do not have health insurance, you may be eligible for additional help to cover the cost of the vaccine. This may be state dependent. Vaccine providers can get reimbursed for costs associated with vaccinated uninsured people through the Health Resources and Services Administration’s Provider Relief Fund.
-                      Children (if in the appropriate age range for the vaccines) can get access to vaccines through the Vaccines for Children program.
+                      At this time, a vaccine booster is not <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html" target="_blank" rel="noopener noreferrer"> recommended</a> by CDC or by the Advisory Council on Immunization Practices (ACIP) or authorized by the FDA. This may change as more evidence and data are collected from ongoing studies about long-term immunity against COVID-19 disease after vaccination.
                     </p>
                   </Accordion.Content>
+
 
                   <Accordion.Title id="after" style={{ fontSize: '15pt', color: 'black' }}
                     // active={activeIndex === 0}
@@ -1383,18 +1316,33 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(41) > 0}>
                     <p>
-                    <p>
-                      For most people, no. It depends on your health condition and on the vaccine you received.
+                      <p>
+                        For most people, no. It depends on your health condition and on the vaccine you received.
+                      </p>
+                      <p>
+                        <a style={{ color: "#397AB9" }} href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised" target="_blank" rel="noopener noreferrer"> The FDA</a> reviewed data from several studies that looked at immunity to COVID-19 after vaccination among people with weakened immune systems (for example, due to a medical condition or if you are taking certain medications that weaken the immune system). The data from those studies show that the two doses were, in some cases, not enough to build a high level of immunity against the virus that causes COVID-19. They also showed that even if they are fully vaccinated, some immunocompromised people who get COVID-19 are more likely to transmit the virus to others and to get seriously sick from the virus. Therefore, <a style={{ color: "#397AB9" }} href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html" target="_blank" rel="noopener noreferrer"> the FDA authorized</a> a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech or Moderna) for people with seriously or moderately suppressed immune systems. CDC now <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> recommends</a> this third dose in certain cases.
+                      </p>
+                      <p>
+                        If you have a condition or are taking medication that <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> suppresses the immune system</a>, you should speak with your healthcare provider about getting a 3rd dose of the mRNA vaccine you have received previously (meaning, for example, that if you received Moderna, you should get a 3rd dose of Moderna). If you are receiving a 3rd dose, this should happen at least 4 weeks after your 2nd dose.
+                      </p>
+                      <p>
+                        A 3rd dose is not recommended or authorized for any other group at this time.
+                      </p>
                     </p>
+                  </Accordion.Content>
+
+                  <Accordion.Title id="get" style={{ fontSize: '15pt', color: 'black' }}
+                    // active={activeIndex === 0}
+                    index={13}
+                    onClick={() => activeIndex.indexOf(13) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 13]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 13))}
+                  >
+                    <Icon name='dropdown' />
+                    Do I have to pay to get vaccinated against COVID-19?
+                  </Accordion.Title>
+                  <Accordion.Content style={{ fontSize: '14pt' }}
+                    active={activeIndex.indexOf(13) > 0}>
                     <p>
-                     <a style={{ color: "#397AB9" }} href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised" target="_blank" rel="noopener noreferrer"> The FDA</a> reviewed data from several studies that looked at immunity to COVID-19 after vaccination among people with weakened immune systems (for example, due to a medical condition or if you are taking certain medications that weaken the immune system). The data from those studies show that the two doses were, in some cases, not enough to build a high level of immunity against the virus that causes COVID-19. They also showed that even if they are fully vaccinated, some immunocompromised people who get COVID-19 are more likely to transmit the virus to others and to get seriously sick from the virus. Therefore, <a style={{ color: "#397AB9" }} href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html" target="_blank" rel="noopener noreferrer"> the FDA authorized</a> a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech or Moderna) for people with seriously or moderately suppressed immune systems. CDC now <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> recommends</a> this third dose in certain cases.
-                    </p>
-                    <p>
-                    If you have a condition or are taking medication that suppresses the immune system <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html" target="_blank" rel="noopener noreferrer"> (https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html)</a>, you should speak with your healthcare provider about getting a 3rd dose of the mRNA vaccine you have received previously (meaning, for example, that if you received Moderna, you should get a 3rd dose of Moderna). If you are receiving a 3rd dose, this should happen at least 4 weeks after your 2nd dose.
-                    </p>
-                    <p>
-                    A 3rd dose is not recommended or authorized for any other group at this time.
-                    </p>
+                      No. Vaccines against COVID-19 are available to everyone for <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/no-cost.html" target="_blank" rel="noopener noreferrer"> free </a>. The federal government will cover the cost of the COVID-19 vaccine and of its administration by a healthcare provider. A provider cannot charge you an office visit fee, or a fee to give you the vaccine, if the only service you get at that visit is the COVID-19 vaccine. If you have health insurance, this will cover these fees since this vaccine is recommended by the Advisory Committee on Immunization Practices. If you do not have health insurance, your provider can still be reimbursed. You cannot be charged for these fees. Vaccine providers can get reimbursed for costs associated with <a style={{ color: "#397AB9" }} href="https://www.hrsa.gov/coviduninsuredclaim" target="_blank" rel="noopener noreferrer">vaccinated uninsured people</a>.
                     </p>
                   </Accordion.Content>
                 </Accordion>
@@ -1451,7 +1399,7 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(33) > 0}>
                     <p>
-                      You may not need to quarantine, but it depends on your situation. Currently,<a style={{ color: "#397AB9" }} href="https://www.cdc.gov/vaccines/covid-19/info-by-product/clinical-considerations.html#phrecs" target="_blank" rel="noopener noreferrer"> COVID-19 recommendations </a>
+                      You may not need to quarantine, but it depends on your situation. Currently, <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html" target="_blank" rel="noopener noreferrer">COVID-19 recommendations</a>
                       are that you should wear a mask indoors in public for 14 days after you are exposed or until you get a negative COVID-19 test. You should also get tested 3-5 days after your exposure, even if you do not have any symptoms. If your test is positive, you should isolate for 10 days.
                     </p>
                     {/* <ol style={{ paddingLeft: '4rem', lineHeight: "150%" }}>
@@ -1482,12 +1430,13 @@ COVID-19 vaccine. They may continue breastfeeding after getting the COVID-19 vac
                   <Accordion.Content style={{ fontSize: '14pt' }}
                     active={activeIndex.indexOf(45) > 0}>
                     <p>
-                    <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html" target="_blank" rel="noopener noreferrer">Federal regulations</a> do require wearing a mask for anyone traveling on any form of public transport, regardless of vaccination status. This includes: bus, plane, train, subways, taxis, ride-shares, boats, ships, trolleys, and cable cars. It also includes school buses and indoor transportation hubs such as airports, train stations, and subways stations.
+                      Federal regulations do require wearing a mask for anyone <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html" target="_blank" rel="noopener noreferrer">traveling</a> on any form of public transport, regardless of vaccination status. This includes: bus, plane, train, subways, taxis, ride-shares, boats, ships, trolleys, and cable cars. It also includes school buses and indoor transportation hubs such as airports, train stations, and subways stations.
                     </p>
                     <p>
-                    If you are <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/travel-during-covid19.html" target="_blank" rel="noopener noreferrer">traveling within the United States</a>, you do not need to get tested before or after traveling or to quarantine after travel. You should still monitor your health for any symptoms after travel and follow testing and isolation guidance as appropriate.
-
-If you are traveling <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html" target="_blank" rel="noopener noreferrer">outside the United States</a>, you should check the situation at your destination to fully understand the regulations about masking, quarantine, and testing. They may be different from regulations within the United States.
+                      If you are <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/travel-during-covid19.html" target="_blank" rel="noopener noreferrer">traveling within the United States</a>, you do not need to get tested before or after traveling or to quarantine after travel. You should still monitor your health for any symptoms after travel and follow testing and isolation guidance as appropriate.
+                    </p>
+                    <p>
+                      If you are traveling <a style={{ color: "#397AB9" }} href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html" target="_blank" rel="noopener noreferrer">outside the United States</a>, you should check the situation at your destination to fully understand the regulations about masking, quarantine, and testing. They may be different from regulations within the United States.
                     </p>
                   </Accordion.Content>
                 </Accordion>

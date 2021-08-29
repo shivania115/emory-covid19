@@ -137,7 +137,7 @@ function goToAnchor(anchor) {
 }
 const contextRef = createRef()
 const nameList = ['USA Vaccination Tracker', 'State Vaccination Tracker',
-  'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety',
+  'State COVID-19 Burden', 'General Information', 'Vaccine Development', 'Vaccine Safety','Vaccines, Fertility, and Pregnancy',
   'Getting Vaccinated', 'After You Are Vaccinated', 'COVID-19 Vaccines FAQ', "Vaccination by Race & Ethinicity"];
 var scrollCount = 0;
 
@@ -183,12 +183,16 @@ function StickyExampleAdjacentContext(props) {
               <Menu.Item as='a' href="#safety" name={nameList[5]} active={props.activeCharacter == nameList[5] || activeItem === nameList[5]}
                 // || activeItem === 'Vaccine Safety'
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[5]}</Header></Menu.Item>
-              <Menu.Item as='a' href="#get" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
-                // || activeItem === 'Getting Vaccinated'
+              <Menu.Item as='a' href="#pregnancy" name={nameList[6]} active={props.activeCharacter == nameList[6] || activeItem === nameList[6]}
+                // || activeItem === 'Vaccine Safety'
+                
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[6]}</Header></Menu.Item>
-              <Menu.Item as='a' href="#after" name={nameList[7]} active={props.activeCharacter == nameList[7] || activeItem === nameList[7]}
-                // || activeItem === 'After You Are Vaccinated'
+              <Menu.Item as='a' href="#get" name={nameList[7]} active={props.activeCharacter == nameList[7] || activeItem === nameList[7]}
+                // || activeItem === 'Getting Vaccinated'
                 onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[7]}</Header></Menu.Item>
+              <Menu.Item as='a' href="#after" name={nameList[8]} active={props.activeCharacter == nameList[8] || activeItem === nameList[8]}
+                // || activeItem === 'After You Are Vaccinated'
+                onClick={(e, { name }) => { setActiveItem({ activeItem: name }) }}><Header as='h4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[8]}</Header></Menu.Item>
             </Menu>
           </Sticky>
         </Rail>
@@ -813,8 +817,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// export default function USVaccineTracker(props) {
-const USVaccineTrackerPilot = (props) => {
+// export default function USVaccineTrackerPilot(props) {
+const USVaccineTrackerPilot= (props) => {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -1275,9 +1279,9 @@ const USVaccineTrackerPilot = (props) => {
   };
 
 
-  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries) {
+  if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries&&stateVaccAveg) {
 
-    // console.log(stateVaccAveg);
+    console.log(stateVaccAveg["_nation"][0]);
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -2222,7 +2226,7 @@ const USVaccineTrackerPilot = (props) => {
   />
                         <VictoryAxis dependentAxis crossAxis
                         tickCount={5}
-                         theme={VictoryTheme.material}
+                         
                           style={{
                             tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
                           }}
@@ -2231,24 +2235,22 @@ const USVaccineTrackerPilot = (props) => {
 
                         <VictoryAxis
                          style={{
+                          grid: { background: "#ccdee8" },
                         tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
                     }}
-                          // tickValues={stateTrendFips ?
-                          //                           [
-                          //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) * 2 - 1].t,
-                          //                             allTS[stateTrendFips][allTS[stateTrendFips].length - Math.round(allTS[stateTrendFips].length / 3) - 1].t,
-                          //                             allTS[stateTrendFips][allTS[stateTrendFips].length - 1].t]
-                          //                           :
-                          //                           [
-                          //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) * 2 - 1].t,
-                          //                             allTS["13"][allTS["13"].length - Math.round(allTS["13"].length / 3) - 1].t,
-                          //                             allTS["13"][allTS["13"].length - 1].t]}
-                          //                         style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
-                          tickFormat={(t) => (new Date(t*1000).getMonth()+1) + "/" +  new Date(t*1000).getDate()} />
+                        tickValues={[stateVaccAveg["_nation"][0].distT,
+                        stateVaccAveg["_nation"][4].distT,
+                        stateVaccAveg["_nation"][8].distT,
+                        stateVaccAveg["_nation"][12].distT,
+                        stateVaccAveg["_nation"][16].distT,
+                        stateVaccAveg["_nation"][stateVaccAveg["_nation"].length-1].distT
+                        ]}
+        
+                          tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} /> 
                           <VictoryLine
                           data={stateVaccAveg["_nation"]}
                           y="percentVaccinatedDose2_avg7"
-                          x="t"
+                          x="distT"
                           strokeDasharray="3 4 5 2"
                           style={{data:{stroke: "black", width: 35,opacity:1.4}}}
                           >
