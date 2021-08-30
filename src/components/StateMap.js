@@ -763,7 +763,7 @@ export default function StateMap(props) {
 
             let seriesDict = {};
             let countyMost = '';
-            let covidmortality7dayfig = 0;
+            let covidmortality7dayfig = -1;
             if( stateFips !== "_nation"){
               //Timeseries data
               const seriesQ = { $or: [ { state: "_n" } , { state: stateFips } ] }
@@ -773,16 +773,21 @@ export default function StateMap(props) {
                 return seriesDict;
               });
               _.each(seriesDict, (v, k)=>{
-
+                console.log(k);
+                console.log(v);
                 if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
                   countyMost = k.substring(2, 5);
+                  
                   covidmortality7dayfig = v[v.length-1].covidmortality7dayfig;
+                
                 }
               });
             }
             setCountyFips(countyMost);
             if(stateFips !== "_nation"){
               setCountyName(fips2county[stateFips+countyMost]);
+              console.log(fips2county);
+              console.log(countyFips);
               setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
             }
             
