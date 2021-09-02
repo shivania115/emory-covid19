@@ -1480,7 +1480,7 @@ export default function StateMap(props) {
                                   <text style={{fontWeight: 300, fontSize: "14pt", lineHeight: "16pt"}}>
                                     Cases and deaths data as of: {date}.
                                     <br/>
-                                    Hospitalization data as of: 08/12/2021.
+                                    Hospitalization data as of: 08/26/2021.
                                     <br/>
                                     {stateName} is not reporting deaths by race or ethnicity.
                                     <br/>
