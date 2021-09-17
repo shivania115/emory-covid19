@@ -10,7 +10,7 @@ import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
-import VaccinesFAQ from './VaccineFAQPilot';
+import VaccinesFAQ from './VaccineFAQ';
 // import {
 //   ComposableMap,
 //   Geographies,
@@ -2246,7 +2246,7 @@ const USVaccineTracker= (props) => {
         
                           tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} /> 
                           <VictoryLine
-                          data={stateVaccAveg["_nation"]}
+                          data={stateVaccAveg["_nation"].slice(1)}
                           y="percentVaccinatedDose2_avg7"
                           x="distT"
                           strokeDasharray="3 4 5 2"
@@ -2256,9 +2256,9 @@ const USVaccineTracker= (props) => {
                           </VictoryLine>
                         {Object.keys(stateVaccAveg).map((fip) => {
                           if (fip != "_nation") {
-
+                            {/* console.log(stateVaccAveg[fip].slice(1)); */}
                             return <VictoryLine
-                              data={stateVaccAveg[fip]}
+                              data={stateVaccAveg[fip].slice(1)}
                               
                               // labelComponent={<CustomToolTrendtip/>}
                               y="percentVaccinatedDose2_avg7"
