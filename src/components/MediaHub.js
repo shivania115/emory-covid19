@@ -30,6 +30,27 @@ export default function MediaHub(props){
         <Grid.Row columns={3} style={{paddingBottom: 20}}> 
 
       
+        {/* <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
+            <Grid.Row>
+              <div style = {{paddingBottom: 10}}>
+                <Image width='390' height='200' href = '/media-hub/podcast/Benkeser_about_immunity' src='/podcast images/Maria_Sundaram.jpg' />            
+              </div>
+            </Grid.Row>
+            <Grid.Row>
+              <div>
+                <Header as='h2'>
+                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
+                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions'>“Antibodies are driving a lot of the protection, but it's not the whole story”: A conversation with Dr. David Benkeser about COVID-19 vaccine trials and the mechanisms of immunity.</Header.Content></div>
+                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
+                      Date Published: Sep. 17, 2021 <br/> 
+                      Media Type: Podcast<br/><br/>
+                      Dr. David Benkeser talks about analyses of COVID-19 vaccine trials data on the immune response to those vaccines. We also discuss fluctuations in antibody levels and the potential for the trial data analyses to inform decisions on additional vaccine doses.
+                    </Header.Subheader>
+                  </Header.Content>
+                </Header>
+              </div>
+            </Grid.Row>
+          </Grid.Column> */}
 
         <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
             <Grid.Row>
