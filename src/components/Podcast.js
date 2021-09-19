@@ -14,6 +14,277 @@ export default function AboutUs(props) {
 
     <div>
       <AppBar />
+
+      {podcastTitle === "Benkeser_about_immunity" &&
+        <Container style={{ marginTop: "8em", minWidth: '1260px' }}>
+
+          <Breadcrumb style={{ fontSize: "14pt", paddingTop: "14pt", paddingBottom: "14pt" }}>
+            <Breadcrumb.Section link onClick={() => history.push('/media-hub')}>Media Hub</Breadcrumb.Section>
+            <Breadcrumb.Divider style={{ fontSize: "14pt" }} />
+            <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+          </Breadcrumb>
+          <div width={888}>
+
+            <Header style={{ width: 800, marginLeft: 260, fontSize: "32pt", fontWeight: 400 }}>
+              <Header.Content>
+              “Antibodies are driving a lot of the protection, but it's not the whole story”: A conversation with Dr. David Benkeser about COVID-19 vaccine trials and the mechanisms of immunity.
+
+                <Header.Subheader style={{ fontSize: "18pt", fontWeight: 300, paddingTop: "15px" }}>
+
+
+                </Header.Subheader>
+                <div style={{ paddingTop: 10 }}>
+                  <iframe src="https://anchor.fm/rsph-ched/embed/episodes/Antibodies-are-driving-a-lot-of-the-protection--but-its-not-the-whole-story-A-conversation-with-Dr--David-Benkeser-about-COVID-19-vaccine-trials-and-the-mechanisms-of-immunity-e17h7q3" height="150px" width="800px" frameborder="0" scrolling="no"></iframe>                </div>
+      
+                <Header style={{ fontSize: "14pt", lineHeight: "16pt", fontWeight: 400, paddingTop: 0 }}>
+
+                  <p style={{ textAlign: "left", fontWeight: 300 }}>
+
+                    By Gaëlle Sabben on Sep. 17, 2021
+
+                    <br />
+                    Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                    <br />
+                    From Emory University
+
+                    <br />
+
+                  </p>
+
+                  <br />
+                  <b>Transcript</b>
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:00:00] </b> Hi, my name is Gaëlle Sabben with the COVID-19 Health Equity Dashboard Podcast.
+                  <br />
+                  <br />
+                  Today we're talking to Dr. Robert Bednarczyk, an associate professor of global health and epidemiology at the Rollins School of Public Health. Welcome Dr. Bednarczyk.
+
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:00:17] </b> Thank you, Gaëlle.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:00:19] </b> Could you tell us a little bit about your background and your work in vaccines and both during the COVID-19 pandemic and previously?
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:00:27] </b> Yes, so I've been studying the uptake of vaccines and the determinants around that uptake, including vaccine hesitancy for approximately 15 years. Now, I'm going back to [when I was] doing my doctoral studies in infectious disease epidemiology and one of the things that really came together for me was working on my PhD in epidemiology in 2009, when the H1N1 influenza pandemic occurred and that gave me the opportunity to work both with the New York State Health Department on their pandemic response as well as the other position that I was working at the time which was assistant to the Chair for the US National Vaccine Advisory Committee, so I was able to see both state and federal response to a pandemic, including a vaccine rollout and a lot of the lessons that were learned during that time have really come in handy as we've thought through the earliest stages of the COVID-19 pandemic now, leading up to the current days of mass vaccine rollout across the US.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:01:33] </b> And what are some of the lessons that you've seen applied from the H1N1 pandemic to the vaccine rollout now?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:01:39] </b> I think one of the biggest lessons is to be able to understand and embrace uncertainty, especially with as much as things change on a day-to-day basis, and in some cases a minute-to-minute basis, where we know that what we knew yesterday may not be the same as what we're going to know today, and we saw that come through in the earliest days of the pandemic, and we really saw a lot of that come through with the rollout of the vaccines, uncertainties around, vaccine availability, uncertainties around vaccine allocation, and the specific recommendations on who should be first in line to get vaccinated and how we would get vaccines out to those individuals.
+
+                  <br />
+                  <br />
+
+
+                  So, sadly I think a lot of the lessons that we learned in 2009 were in the back of people's minds, but it did feel a little bit like, through COVID-19, we've been having to reinvent a lot of these processes, and I'm hoping that we can learn from this, so that, should another pandemic occur, we'll be much better prepared to move forward much faster.
+
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:02:47] </b> You're pointing out some of the some of the lessons that were maybe learned and not applied, or that there'll be a lot more lessons to learn from COVID-19. Can you speak to any of the successes that you've seen in the vaccine rollout for COVID-19, and whether maybe some of those reflected lessons that were learned in H1N1 or maybe just new developments that have really struck you as being very positive?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:03:11] </b> In 2009 one of the big differences that we saw was that that was a pandemic that mostly affected younger individuals, primarily children and adolescents, where we have a very strong vaccination infrastructure. So, we know that we have a network of pediatricians who are available to vaccinate, we have the networks through the Vaccines for Children Programs for example, and I think that when COVID-19 emerged and we started to realize that the populations that were going to be most greatly affected were typically adults, and in many cases older adults, it changed a little bit on how we thought about some of the vaccine allocation and vaccine distribution.
+
+                  <br />
+                  <br />
+                  So, I think that's a situation where maybe some of the lessons that were learned were not as readily applicable, but I think that we did a very good job of adjusting to the situation with COVID-19 in terms of getting state immunization information systems onboard; with getting you know new vaccine distribution systems going so whereas in 2009 we saw a lot of use of traditional pediatric office-based vaccine services. Here we saw a little bit more of the rollout of mass vaccination sites, more engagement with pharmacies, and I think that some of that was really built off what had come out of 2009, where some of those systems were tested maybe for the first time. It may not have been used as widely, but it gave us a solid base to move forward on, and I think that was one of the places where we've seen some success with COVID-19 vaccine distribution.
+
+                  <br />
+                  <br />
+                  <br />
+
+
+                  <b>Gaëlle Sabben: [00:05:05] </b> That's great that’s been able to work out that way. At this point, looking at the latest data, it looks like we've reached about 53% partial or full vaccination for the US as a whole and we've got about just under 45% that are fully vaccinated. One of the goals of the new administration was to get 70% of Americans vaccinated by July 4th, which is at this point in about 2 weeks. Based on where we are now, does that number seem doable nationally to you?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:05:33] </b> I think that it is doable if we come together and if we have a very strong commitment, not just within public health, but across the entire population. A commitment to protect ourselves and protect our communities and protect our neighbors. Going out and getting vaccinated. One piece of data that I saw just this morning that I think was pointing us in the right direction is that currently 14 states have reached that 70% benchmark, so this is showing that it can be achieved. It's showing that we can reach these goals where there is a strong commitment.
+
+                  <br />
+                  <br />
+
+
+                  I think in places where we are falling behind, we have to do a better job of going out, speaking with the community, working with community leaders, reaching out through all of our networks, and not just through our public health networks, but through our community networks, our faith communities, etc. to really get the message out there that we have a safe and effective vaccine that is widely available, which I think is very different than where we were at just a few months ago where there were so many issues with making appointments and scheduling to get vaccinated.
+
+                  <br />
+                  <br />
+
+
+                  Now we have vaccine available, there still are some issues in terms of geographic equity of just individuals who may not be able to easily get to a vaccination site, but there's been work done in in that regard. You know here in DeKalb County, the DeKalb County Board of Health, for example, is running mobile vaccination clinics where they can actually go out to individuals who may be homebound individuals who may not be able to get to a vaccination center to get them vaccinated. So, seeing some of these new initiatives really gives me hope that we can reach a broader part of the population.
+
+                  <br />
+                  <br />
+                  <br />
+
+
+
+                  <b>Gaëlle Sabben: [00:07:41] </b> You mentioned that there's certain areas that, 14 states I believe you said that have reached 70%. What are some areas that you're concerned are lagging behind? So are there particular states that you're concerned about, or is it more within states there's geographically certain areas that are struggling more than others to get vaccines out or to increase vaccine uptake?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:08:03] </b> Some of the states where we've seen a lot of success tend to be more densely populated states or states with smaller populations overall where it is just easier to do that outreach, and when we see that across areas of the American South and Midwest where you don't have that same population density where it's, there's just more distance to go to get to medical care and to get to vaccination centers. I think maybe a challenge that we need to continue facing. When you consider that in light of vaccine hesitancy when you consider that in light of individuals who may not trust the vaccine or trust the systems that are supporting these vaccination efforts, it really highlights the need for doing this committed community-based outreach to speak with these individuals and to speak with these populations to really be able to listen to their concerns and answer their questions so that we hopefully can reach these goals through much greater vaccine availability and access.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:09:17] </b> So in addition to, geographically, some concerns about less densely populated states, having trouble with access or reaching people who are maybe farther from a clinic or farther from a center where they can get access to vaccines, what are the patterns, if any, that we're seeing in terms of vaccine uptake or vaccination coverage demographically? You've pointed to certain differences that were geographic, but are there demographic differences or is it kind of similar across the country?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:09:49] </b> We've seen some differences in the typical health disparities that we often observe where we are seeing lower vaccine uptake among African American and Latinx populations. But even along with that we've seen a lot of vaccine hesitancy coming from, in particular, white Evangelical Christians. So. this is showing us that these concerns about the vaccine are not limited to just one section of the population, but they are very wide ranging, and I think that when we look at these demographic differences in vaccine uptake, it helps us to identify communities where we need to do a better job of outreach, but I think it's important to remember that these communities are not identical in terms of their vaccine attitudes, even within these communities, and some people may be more accepting and some people may be less accepting even within these demographic groupings.
+
+                  <br />
+                  <br />
+                  I bring that up because it's important to not just rely on the shorthand of looking at these demographic categories and saying, “Well, this group isn't getting vaccinated enough;” we need to understand the complexity of some of that, so a lot of the work that we're doing and all of our colleagues are doing is really trying to use some of these initial demographics to help identify communities where we need to do a better job of outreach, but then not assuming that everyone is going to think or feel the same within these communities. And really, going out to the communities and speaking with them so that we can understand specific concerns that they may have so that we can better address those.
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:11:35] </b> So you're talking about hesitance and people maybe needing to be reached out to a little bit more to talk about the vaccine is do you feel like what's driving low vaccination uptake in certain areas or in certain populations is mostly due to vaccine hesitancy or is it access to vaccines? Is it a combination and   is that similar for all the different demographics that you mentioned? Are there specific issues for specific populations?
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:12:04] </b> OI think that there are some specific issues for some specific populations. With generations of systemic racism and medical maltreatment, that can lead to a lack of trust in the vaccination systems among the African American population in a greater level than we may see for other demographic groups, but again, these groupings are not going to all going to be seeing the same way and some of the concerns that we see maybe moving outside just a lack of trust in the vaccine, or a lack of belief in the safety of the vaccine, but maybe just personal risk benefit calculation. If they've made it through this far in the pandemic and they haven't gotten sick, is it really worth going out and getting vaccinated?
+                  <br />
+                  <br />
+                  I think these are personal decisions that people are making may not always be rooted in the best science. Just because you've made it through 15 months of the pandemic without getting infected doesn't mean that that that it can't happen tomorrow. And that's why it's so important for everyone to be as protected as possible, so we need to take some of those considerations into our work and also thinking about, again. access issues, the convenience of being able to get vaccinated when we look at groups like hourly workers and essential workers who may not always have access to paid sick time. You know, there's been a lot of attention paid to the side-effects after the COVID-19 vaccines, and some people may not feel that they could take a day or two off work if they ended up getting hit with a bad round of side-effects and because of that they may choose to take their chances and not vaccinating, so we need to be aware of all of these different perceptions and figure out the best way to address these concerns that may require much more tailoring as we go out and talk with different people.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:14:05] </b> That’s very helpful. Earlier you mentioned some of the more innovative ways that groups have been trying to reach communities, especially in cases of lack of access. You've mentioned mobile clinics, maybe larger vaccine clinics in certain areas that might have lower access. Are there any other, either creative or less creative ways that you've seen communities or states in the US as a whole that you think that you think are working?
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:14:35] </b> Initially I think many of us in public health were caught by a little bit of surprise when we saw the state of Ohio announcing their lottery system for individuals who had gotten vaccinated against COVID-19, my initial reaction was that it's a good way to motivate people who maybe aren't hesitant about the vaccine, who believe that the vaccine is worth getting, but just need that extra push to get up, get in the car, go to a vaccination site and get the vaccine. What it may not address are some of the concerns around the effectiveness of the vaccine. The safety of the vaccine or trust in the systems that have produced the vaccine. And that's where I think that, you know, we need to be cautious in the amount of money and resources that are put into some of these very large incentive programs to ensure that we're not taking that money away from core public health functions.
+
+                  <br />
+                  <br />
+                  Other organizations have started doing very similar types of incentives, but maybe on a smaller scale. We've seen Krispy Kreme Donuts, for example, announced that individuals who bring in their vaccination card can get free Donuts. There have been situations in Louisiana where there were crawfish giveaways for individuals who got vaccinated. There's actually even been some bars that have done a “shot for a shot” night where they had a mobile vaccination van set up and anybody who got vaccinated that night would get a free drink. And so, I think that there's been a lot of new opportunities to think outside the box and reach people where they're at.
+                  <br />
+                  <br />
+                  And I think when we look at some of these issues of convenience of maybe individual complacency, you know going to people and reaching them where they're at, that instead of making them come out to you for the vaccine, may be a useful way to boost some of our vaccine uptake.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:16:28] </b> Do you see that as being helpful for people who are hesitant for reasons other than access? For example, for people who are maybe more hesitant, unsure about the effectiveness or unsure about side effects. Have you seen any incentives or any programs put into place to really reach those people that you feel have been effective?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:16:47] </b> I think that a lot of the outreach activities that that have been occurring, you know, especially when we see for African American and Latinx communities. For example, having community events where we see leaders in these communities getting vaccinated. So, people can now start to see people who look like them getting the vaccine that can go a very long way in terms of making this more normalized and establishing vaccination as a social norm. When you combine those events with education and with ease of access, we've seen a lot of successes in that regard. I think that all of these efforts that are being put in place are really starting to have an effect.
+
+                  <br />
+                  <br />
+                  You know we've seen vaccine uptake increase, and I think with the data that you mentioned before, with about 53% of the entire US population having at least one dose of the vaccine, we're actually seeing about 65% of people 18 and older who have had at least one dose of the vaccine. And that recommendation has been in place for a little bit longer than for the 12- to 17-year-olds and, as of right now, individuals under 12 are not recommended for the vaccine. When we get out to the groups that we're really trying to reach, we're doing a very good job.
+                  <br />
+                  <br />
+                  What we need to recognize now is that while vaccine numbers are going up and case numbers are going down, that doesn't mean that we can stop, that doesn't mean that we can be complacent. We've seen new variants of the virus emerge, and this gives us pause to recognize that but just because we may feel like we're done with the pandemic, the pandemic is not done with us until we can get all of the vaccine coverage up and that's why it's so important for everyone who is recommended for vaccination and able to get vaccinated to get the COVID-19 vaccine.
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Gaëlle Sabben: [00:18:44] </b> Good point. So, as you mentioned earlier on, we've got about 14 states, they've reached the 70% threshold, and so some states have started completely opening up and removing the remaining restrictions. Do you feel like the threshold of 70% or 80% depending on the state for reopening, is a good one?
+
+                  <br />
+                  <br />
+                  <br />
+
+                  <b>Dr. Bob Bednarczyk: [00:19:03] </b> So pinning, reopening to a specific vaccine coverage benchmark may miss a few important considerations. One just because 70% of a state is vaccinated doesn't mean that that other 30% are evenly distributed across the state and if those individuals are living in closer proximity to each other, if they tend to be clustered closer to each other, it's easier to see local outbreaks of disease occur among those groups, so that's one thing that I think that we need to be very aware of.
+
+                  <br />
+                  <br />
+                  The other thing is that if we pin everything to a singular benchmark number and we start getting closer to that number, my concern is that some people may say, well, we're so close and I really don't want to get the vaccine, but it seems like everybody else is getting it, so now I don't have to. And I don't want that to become normalized, so that's why I'm not a huge fan of linking everything to these benchmarks. I think the benchmarks are great to keep pushing us forward, but when we look at things like states reopening removing restrictions around businesses, whether it be the number of people allowed in a specific place or mask requirements, for example. It's important to know that once those restrictions are officially removed, just because the current CDC guidance says that fully vaccinated individuals can go about things without masks and without physical distancing, it doesn't mean that they have to. And if people still want to take some of those other precautions that only serves to help support the greater public health.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:20:47] </b> Lastly, bringing us back to what you were talking about at the very beginning about lessons learned from H1N1 that may or may not have been implemented for COVID, you mentioned that through this pandemic we were also learning new lessons about different issues, both for vaccines and kind of across the board. So, are there any lessons that you feel have been learned at this point that will be useful going forward, or anything else that you hope is kept in mind in terms of vaccine distribution, vaccine equity, and those kinds of areas of this pandemic for the future?
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:21:19] </b> One of the big lessons that I think we've learned from this is that historically, much of our pandemic preparedness has focused around influenza pandemics, and now with the COVID-19 pandemic, it's highlighted for us that it's not just a situation of being concerned around influenza, where we have a vaccine that we've used for decades. It may not always be the best vaccine, but we have a long track record of using influenza vaccines and being able to adapt them pretty quickly. This pandemic I think, has shown us that there are many other possibilities of diseases that can emerge and can greatly impact us as a species, so having a broader view of what it means to be prepared is an important consideration moving forward.
+
+                  <br />
+                  <br />
+                  I think that the ability to accelerate research that has been ongoing but may be sitting on the shelf a little bit more than we would have liked, such as the mRNA vaccines really gives us the ability to plan for future pandemics. And we've even seen a lot of vaccine manufacturers starting to think about ways to utilize this mRNA technology for other diseases that we haven't been able to successfully develop vaccines against, so I think that there are some very good opportunities that have come out of this pandemic, and I think that because of that it opens a lot of doors for greater protection of public health, not just in an emergency setting, but against maybe some of the more routine things that we face every year, like influenza.
+                  <br />
+                  <br />
+                  One of the hard things that has come out though with these new technologies and the mRNA vaccines is learning how to communicate with the public about them, because it is a new technology, at least to be used on this large scale, and that's raised a lot of questions and it feels like throughout most of this pandemic, those of us who do this type of response or who study infectious diseases have been in a very reactive mode of addressing the issues when they come up as opposed to having the ability to be proactive and be able to get good messaging out there, so I'm hoping that that's one of the lessons we can take from this is that need to capitalize on a greater public awareness of science right now and use this to help you know, improve public understanding of public health and disease control and prevention.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:23:58] </b> Great. Do you think there's any larger lessons that are going to be applied to tackling health disparities? Whether it's for vaccine coverage or other health disparities that you are pointing to.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:24:07] </b> Throughout a lot of the outreach that has occurred during the COVID-19 pandemic, we've seen so much engagement of community organizations we've seen so much real work to bring people together and to bring these community partners together and what I'm hoping is that once we're able to fully emerge from COVID-19, that we don't lose all of that community engagement that that has come about, because I think that that would be a huge missed opportunity and one area where we can use these networks and we can use these linkages to address other important diseases and other areas where we see a tremendous amount of health disparities.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:24:54] </b> Well, on that note, thank you very much.
+
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. Bob Bednarczyk: [00:24:56] </b> Thank you.
+
+                  <br />
+                  <br />
+                  <br />
+
+
+                </Header>
+              </Header.Content>
+            </Header>
+
+
+          </div>
+          <Notes />
+
+        </Container>
+      }
+
+
+
       {podcastTitle === "Maria_Sundaram_about_COVID-19_restrictions" &&
         <Container style={{ marginTop: "8em", minWidth: '1260px' }}>
 
