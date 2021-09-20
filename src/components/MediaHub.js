@@ -1,557 +1,1097 @@
-import React from 'react'
-import AppBar from './AppBar';
-import Notes from './Notes';
-import { useParams, useHistory } from 'react-router-dom';
-import { Container, Grid, List, Divider, Image, Header, Table } from 'semantic-ui-react'
+import React from "react";
+import AppBar from "./AppBar";
+import Notes from "./Notes";
+import { useParams, useHistory } from "react-router-dom";
+import {
+  Container,
+  Grid,
+  List,
+  Divider,
+  Image,
+  Header,
+  Table,
+} from "semantic-ui-react";
 
-export default function MediaHub(props){
-    const history = useHistory();
-
+export default function MediaHub(props) {
+  const history = useHistory();
 
   return (
     <div>
-      <AppBar menu='mediaHub'/>
-      <Container style={{marginTop: '8em', minWidth: '1260px'}}>
-
-        <Header as='h2' style={{fontWeight: 400, paddingLeft: 0}}>
-          <Header.Content style = {{paddingTop: 20, fontSize: "24pt"}}>
+      <AppBar menu="mediaHub" />
+      <Container style={{ marginTop: "8em", minWidth: "1260px" }}>
+        <Header as="h2" style={{ fontWeight: 400, paddingLeft: 0 }}>
+          <Header.Content style={{ paddingTop: 20, fontSize: "24pt" }}>
             Media Hub
-
-            <Header.Subheader style={{fontWeight: 300, fontSize: "20pt", paddingTop: 20}}>
-
-              Tune in for videos, podcasts, blogs, and more on COVID-19. 
+            <Header.Subheader
+              style={{ fontWeight: 300, fontSize: "20pt", paddingTop: 20 }}
+            >
+              Tune in for videos, podcasts, blogs, and more on COVID-19.
             </Header.Subheader>
           </Header.Content>
         </Header>
 
-        
+        <Grid style={{ paddingTop: 2 }}>
+          <Grid.Row columns={3} style={{ paddingBottom: 20 }}>
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="200"
+                    href="/media-hub/podcast/Benkeser_about_immunity"
+                    src="/podcast images/Benkeser.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions"
+                        >
+                          “Antibodies are driving a lot of the protection, but
+                          it's not the whole story”: A conversation with Dr.
+                          David Benkeser about COVID-19 vaccine trials and the
+                          mechanisms of immunity.
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Sep. 17, 2021 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. David Benkeser talks about analyses of COVID-19
+                        vaccine trials data on the immune response to those
+                        vaccines. We also discuss fluctuations in antibody
+                        levels and the potential for the trial data analyses to
+                        inform decisions on additional vaccine doses.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
 
-      <Grid style={{paddingTop: 2}}>
-        <Grid.Row columns={3} style={{paddingBottom: 20}}> 
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="200"
+                    href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions"
+                    src="/podcast images/Maria_Sundaram.jpg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions"
+                        >
+                          “We need to use every tool in our toolbox”: A
+                          conversation with Dr. Maria Sundaram about COVID-19
+                          restrictions, travel, and protecting children from
+                          COVID-19.
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Aug. 3, 2021 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Maria Sundaram talks about loosening COVID-19
+                        restrictions and traveling safely during the ongoing
+                        pandemic. We also discuss the potential for
+                        authorization of the Moderna vaccine for 12-15 year-olds
+                        and the return to school in the Fall.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
 
-      
-        {/* <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='200' href = '/media-hub/podcast/Benkeser_about_immunity' src='/podcast images/Maria_Sundaram.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions'>“Antibodies are driving a lot of the protection, but it's not the whole story”: A conversation with Dr. David Benkeser about COVID-19 vaccine trials and the mechanisms of immunity.</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: Sep. 17, 2021 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. David Benkeser talks about analyses of COVID-19 vaccine trials data on the immune response to those vaccines. We also discuss fluctuations in antibody levels and the potential for the trial data analyses to inform decisions on additional vaccine doses.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column> */}
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/blog/trends_vaccine_coverage_by_county_characteristics"
+                    src="/blog images/vaccineTrends/cover.PNG"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/trends_vaccine_coverage_by_county_characteristics"
+                        >
+                          Trends in COVID-19 Vaccine Coverage in the United
+                          States by County Characteristics
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Aug. 1, 2021 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        Comparing vaccination coverage across counties based on
+                        social characteristics-considering a combination of
+                        location (region, urbanicity) and population makeup
+                        (e.g., % African American, % Hispanic, % in poverty)
+                        reveals that gaps in uptake have widened over time.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
 
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='200' href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions' src='/podcast images/Maria_Sundaram.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions'>“We need to use every tool in our toolbox”: A conversation with Dr. Maria Sundaram about COVID-19 restrictions, travel, and protecting children from COVID-19.</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: Aug. 3, 2021 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Maria Sundaram talks about loosening COVID-19 restrictions and traveling safely during the ongoing pandemic. We also discuss the potential for authorization of the Moderna vaccine for 12-15 year-olds and the return to school in the Fall.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake"
+                    src="/podcast images/bednarczyk.jpg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake"
+                        >
+                          “Going beyond the benchmarks: What it takes to get
+                          Americans vaccinated”: A conversation with Dr. Bob
+                          Bednarczyk about COVID-19 vaccine uptake.
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: July. 16, 2021 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Bob Bednarczyk talks about COVID-19 vaccination
+                        efforts and inequities in vaccine uptake across the
+                        United States. We discuss reasons why certain
+                        communities are lagging behind vaccination goals and
+                        innovative approaches to increasing vaccination rates in
+                        those communities.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
 
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
-          <Grid.Row>
-            <div style = {{paddingBottom: 10}}>
-              <Image width='390' height='290' href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics' src='/blog images/vaccineTrends/cover.PNG' />            
-            </div>
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/blog/maskmandate"
+                    src="/blog images/maskmandate/Mask Mandate blog.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/maskmandate"
+                        >
+                          Statewide Mask Mandates in the United States
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Feb. 18, 2021 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        Implementing state-wide mask mandate in the early stages
+                        of the pandemic may have been a clever move for US
+                        states resulting in lower case rates during the third
+                        wave of the pandemic compared to states with later or no
+                        mask mandates, our data suggests.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses"
+                    src="/podcast images/Katie Kirkpatrick.jpeg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses"
+                        >
+                          “You can't have good public health, but not have
+                          equity and economic growth”: A conversation with Katie
+                          Kirkpatrick about economic responses to the COVID-19
+                          pandemic.
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Jan. 11, 2021 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Katie Kirkpatrick, the president and CEO of the Metro
+                        Atlanta Chamber, talks about the ramifications of
+                        COVID-19 in the business community, from issues ranging
+                        to supply chain management to staff and customer safety,
+                        to the new MAC initiative, the Task Force to Restore
+                        Georgia's Economy.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic"
+                    src="/podcast images/Allison Chamberlain.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic"
+                        >
+                          “A teaching opportunity for many years to come”: Dr.
+                          Allison Chamberlain on public health education in the
+                          time of the COVID-19 pandemic
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Nov. 18, 2020 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Allison Chamberlain talks about blending public
+                        health academia and practice, and how institutions like
+                        Emory can step up during the pandemic to put the skills
+                        of their faculty to use. We also discuss how the
+                        COVID-19 pandemic may change public health education
+                        forever, thinking about the communication and other
+                        skills students will need to combat current and future
+                        public health threats.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution"
+                    src="/podcast images/Robert Breiman.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution"
+                        >
+                          “Information equity is a critical part of the whole
+                          picture”: Dr. Robert Breiman on COVID-19 vaccine
+                          development and distribution
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Nov. 18, 2020 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Robert Breiman talks about where different
+                        SARS-CoV-2 vaccines are in development and clinical
+                        trials, and considerations for production and
+                        distribution related to logistics and equity. How might
+                        vaccines be allocated fairly, both in consideration of
+                        essential workers and those at higher risk of developing
+                        severe COVID-19 outcomes?
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances"
+                    src="/podcast images/Vincent Macroni.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances"
+                        >
+                          Innovations in Covid-19 Treatment: Dr. Vincent Marconi
+                          on Anti-Viral and Anti-Inflammatory Advances Against
+                          Covid-19 Infection
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: October 26, 2020 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Vincent Marconi talks about the state of research
+                        around baricitinib, a JAK-STAT inhibitor that reduces
+                        inflammation and may reduce viral replication, and has
+                        played an important role in treating patients with
+                        severe Covid-19. We discuss the current state of
+                        research and considerations around underlying conditions
+                        and health equity.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="236"
+                    href="/media-hub/blog/povertyRelatedIssues"
+                    src="/blog images/pri/Image 15.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/povertyRelatedIssues"
+                        >
+                          COVID-19 and Poverty-related issues
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Edited: October 7, 2020 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        Since COVID-19 coronavirus pandemic took off in the
+                        United States in 2020, data show that poverty, lack of
+                        health insurance, socioeconomic vulnerability, and
+                        housing insecurity may all contribute to higher risk of
+                        contracting COVID-19 and having severe outcomes. As the
+                        pandemic affects businesses and employment, the cycle of
+                        poverty may be reinforced.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="236"
+                    href="/media-hub/blog/swNativeAmericanCommunities"
+                    src="/blog images/swna/Image 7.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/swNativeAmericanCommunities"
+                        >
+                          COVID-19 in SW Native American Communities
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Edited: October 1, 2020 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        Since COVID-19 coronavirus epidemic took off in the
+                        United States in 2020, data continue to show that Native
+                        Americans, particularly in the Southwest, are
+                        disproportionately impacted by infection and death. Some
+                        of the contributing factors may include high rates of
+                        poverty and chronic disease, lack of critical
+                        infrastructure like running water, isolation from health
+                        resources, crowded and multigenerational living
+                        conditions, and close-knit community support systems.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="236"
+                    href="/media-hub/blog/africanAmericanCommunity"
+                    src="/blog images/aac/Image 1.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/africanAmericanCommunity"
+                        >
+                          COVID-19 in African American Communities
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Edited: September 30, 2020 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        COVID-19 has disproportionately African Americans, with
+                        2.6 times the infection rate of white non-Hispanic
+                        people, 4.7 times the hospitalization rate, and 2.1
+                        times the death rate. African Americans have the highest
+                        rate of death of any racial or ethnic group in the
+                        United States.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="236"
+                    href="/media-hub/blog/underlyingConditions"
+                    src="/blog images/underlying/underlying_1.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/underlyingConditions"
+                        >
+                          COVID-19 and Underlying Conditions
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Edited: September 28, 2020 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        Underlying conditions like having obesity or diabetes,
+                        and being over age 65, may make individuals more likely
+                        to develop severe COVID-19 infection and be at a higher
+                        risk of hospitalization and death. For example, 42% of
+                        US adults have obesity, which may lead to higher
+                        mortality among those with COVID-19.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics"
+                    src="/podcast images/Dr. Nneka Sederstrom.jpg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics"
+                        >
+                          "We Have to Be Better": Dr. Nneka Sederstrom on Racism
+                          and Ethics During Covid-19
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: September 7, 2020 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Nneka Sederstrom discusses how COVID-19 has brought
+                        issues of structural racism in medicine to the forefront
+                        of clinical ethics and pandemic response conversations.
+                        We talk about how the process of change is accelerating
+                        as people are forced to have difficult but necessary
+                        reckonings with racism in medicine.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="290"
+                    href="/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC"
+                    src="/podcast images/JudyMonroe.jpg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC"
+                        >
+                          "You've Got to Have Trust": Dr. Judy Monroe on Lessons
+                          Learned About Pandemic Preparedness{" "}
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: August 26, 2020 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Dr. Monroe tells us about the lessons she learned about
+                        leadership and community partnerships during pandemics
+                        based on her experience as State Health Commissioner of
+                        Indiana during the 2009 H1N1 pandemic. We talk about new
+                        initiatives the CDC Foundation is spearheading or
+                        partnering with to address health equity: gathering
+                        accurate data, engaging underserved communities, working
+                        on communications campaigns, and supporting virus
+                        hotspots with needed response personnel.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="300"
+                    href="/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"
+                    src="/podcast images/CarlosdelRio.jpg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes"
+                        >
+                          Dr. Carlos Del Rio on COVID-19 Equity and Outcomes{" "}
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: August 10, 2020 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Considering health equity and disparity, how will the
+                        pandemic progress? What is our current strategy? What
+                        can be and needs to be done to change the course of the
+                        pandemic? Listen to what Dr. Carlos Del Rio has to say.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="236"
+                    href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences"
+                    src="/blog images/power five/blog1cover.jpeg"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences"
+                        >
+                          Will SARS-CoV-2 beat the Power Five Conferences?{" "}
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Edited: August 19, 2020 <br />
+                        Media Type: Blog
+                        <br />
+                        <br />
+                        With almost half of all college football players being
+                        African American, resuming the football season might put
+                        African American athletes at an occupational risk due to
+                        COVID-19. Our data highlights greater severity of
+                        COVID-19 outcomes in counties where Power Five schools
+                        are located. With that said, can a team sport like
+                        football co-exist with COVID-19?
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <iframe
+                    width="390"
+                    height="236"
+                    src="https://www.youtube.com/embed/e-kwEzBWRVo"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      COVID-19 and Population Density
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: July 30, 2020 <br />
+                        Media Type: Video
+                        <br />
+                        <br />
+                        Because the virus SARS-COV-2 is transmitted through
+                        droplets, proximity to other individuals is one of the
+                        risk factors, so in places where it is harder to
+                        practice social distancing, like densely populated urban
+                        areas, we often see higher cases per capita. At the same
+                        time, there are some states where rural communities are
+                        actually the ones experiencing disproportionate
+                        infection rates, often because of local outbreaks and
+                        exacerbating underlying conditions.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <iframe
+                    width="390"
+                    height="236"
+                    src="https://www.youtube.com/embed/zAjVaumIhLE"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      COVID-19 and Poverty-related Issues
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: July 27, 2020
+                        <br />
+                        Media Type: Video
+                        <br />
+                        <br />
+                        Poverty, lack of health insurance, socioeconomic
+                        vulnerability, and housing insecurity may all contribute
+                        to higher risk of contracting COVID-19 and having severe
+                        outcomes. As the pandemic affects businesses and
+                        employment, the cycle of poverty may be reinforced by
+                        the progression of the pandemic and worsen unemployment,
+                        poverty, and related issues like insurance and housing.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <iframe
+                    width="390"
+                    height="236"
+                    src="https://www.youtube.com/embed/aFS8Wk8FDlE"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      COVID-19 in SW Native American Communities
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: July 14, 2020 <br />
+                        Media Type: Video
+                        <br />
+                        <br />
+                        Native American communities, particularly in the
+                        Southwest, are hard-hit by COVID-19. Contributing
+                        factors may include high rates of poverty and chronic
+                        disease, lack of critical infrastructure like running
+                        water, isolation from health resources, crowded and
+                        multigenerational living conditions, and close-knit
+                        community support systems.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <iframe
+                    width="390"
+                    height="236"
+                    src="https://www.youtube.com/embed/BKu-9fs1UgE"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      COVID-19 in African American Communities
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: July 9, 2020
+                        <br />
+                        Media Type: Video
+                        <br />
+                        <br />
+                        13% of the United States population is African American,
+                        but 23% of reported COVID-19 deaths have occurred in
+                        African Americans. In Georgia, African Americans
+                        represent 32% of the state’s population but 47% of
+                        COVID-19 deaths.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <iframe
+                    width="390"
+                    height="236"
+                    src="https://www.youtube.com/embed/-gbP9-5g8ac"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2" style={{ width: 400, paddingLeft: 0 }}>
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      COVID-19 and Underlying Conditions
+                      <Header.Subheader
+                        style={{
+                          fontWeight: 300,
+                          width: 400,
+                          fontSize: "14pt",
+                        }}
+                      >
+                        Date Published: July 1, 2020
+                        <br />
+                        Media Type: Video
+                        <br />
+                        <br />
+                        Underlying conditions like having obesity or diabetes,
+                        and being over age 65, may make individuals more likely
+                        to develop severe COVID-19 infection and be at a higher
+                        risk of hospitalization and death.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <iframe
+                    width="390"
+                    height="236"
+                    src="https://www.youtube.com/embed/FS8vq9-FIs4"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2" style={{ width: 400, paddingLeft: 0 }}>
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      Dashboard Tutorial
+                      <Header.Subheader
+                        style={{
+                          fontWeight: 300,
+                          width: 400,
+                          fontSize: "14pt",
+                        }}
+                      >
+                        Date Published: June 5, 2020 <br />
+                        Media Type: Video
+                        <br />
+                        <br />
+                        Tutorial video walks you through the basics of the
+                        dashboard.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            <div>
-              <Header as='h2'>
-                <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                  <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/trends_vaccine_coverage_by_county_characteristics'>Trends in COVID-19 Vaccine Coverage in the United States by County Characteristics</Header.Content></div>
-                  <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Date Published: Aug. 1, 2021 <br/> 
-                    Media Type: Blog<br/><br/>
-                    Comparing vaccination coverage across counties based on social characteristics-considering a combination of location (region, urbanicity) and population makeup (e.g., % African American, % Hispanic, % in poverty) reveals that gaps in uptake have widened over time.
-                  </Header.Subheader>
-                </Header.Content>
-              </Header>
-            </div>
-          </Grid.Row>
-        </Grid.Column>
-
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 0}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake' src='/podcast images/bednarczyk.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Bob_Bednarczyk_about_Covid-19_Vaccine_Uptake'>“Going beyond the benchmarks: What it takes to get Americans vaccinated”: A conversation with Dr. Bob Bednarczyk about COVID-19 vaccine uptake.</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: July. 16, 2021 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Bob Bednarczyk talks about COVID-19 vaccination efforts and inequities in vaccine uptake across the United States. We discuss reasons why certain communities are lagging behind vaccination goals and innovative approaches to increasing vaccination rates in those communities.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-          <Grid.Row>
-            <div style = {{paddingBottom: 10}}>
-              <Image width='390' height='290' href = '/media-hub/blog/maskmandate' src='/blog images/maskmandate/Mask Mandate blog.png' />            
-            </div>
-          </Grid.Row>
-          <Grid.Row>
-            <div>
-              <Header as='h2'>
-                <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                  <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/blog/maskmandate'>Statewide Mask Mandates in the United States</Header.Content></div>
-                  <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                    Date Published: Feb. 18, 2021 <br/> 
-                    Media Type: Blog<br/><br/>
-                    Implementing state-wide mask mandate in the early stages of the pandemic may have been a clever move for US states resulting in lower case rates during the third wave of the pandemic compared to states with later or no mask mandates, our data suggests.
-                  </Header.Subheader>
-                </Header.Content>
-              </Header>
-            </div>
-          </Grid.Row>
-        </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses' src='/podcast images/Katie Kirkpatrick.jpeg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses'>“You can't have good public health, but not have equity and economic growth”: A conversation with Katie Kirkpatrick about economic responses to the COVID-19 pandemic.</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: Jan. 11, 2021 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Katie Kirkpatrick, the president and CEO of the Metro Atlanta Chamber, talks about the ramifications of COVID-19 in the business community, from issues ranging to supply chain management to staff and customer safety, to the new MAC initiative, the Task Force to Restore Georgia's Economy. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic' src='/podcast images/Allison Chamberlain.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic'>“A teaching opportunity for many years to come”: Dr. Allison Chamberlain on public health education in the time of the COVID-19 pandemic</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: Nov. 18, 2020 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Allison Chamberlain talks about blending public health academia and practice, and how institutions like Emory can step up during the pandemic to put the skills of their faculty to use. We also discuss how the COVID-19 pandemic may change public health education forever, thinking about the communication and other skills students will need to combat current and future public health threats. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution' src='/podcast images/Robert Breiman.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution'>“Information equity is a critical part of the whole picture”: Dr. Robert Breiman on COVID-19 vaccine development and distribution</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: Nov. 18, 2020 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Robert Breiman talks about where different SARS-CoV-2 vaccines are in development and clinical trials, and considerations for production and distribution related to logistics and equity. How might vaccines be allocated fairly, both in consideration of essential workers and those at higher risk of developing severe COVID-19 outcomes?
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances' src='/podcast images/Vincent Macroni.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances'>Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral and Anti-Inflammatory Advances Against Covid-19 Infection</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: October 26, 2020 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Vincent Marconi talks about the state of research around baricitinib, a JAK-STAT inhibitor that reduces inflammation and may reduce viral replication, and has played an important role in treating patients with severe Covid-19. We discuss the current state of research and considerations around underlying conditions and health equity. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='236' href = '/media-hub/blog/povertyRelatedIssues' src='/blog images/pri/Image 15.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/povertyRelatedIssues">COVID-19 and Poverty-related issues</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Edited: October 7, 2020 <br/> 
-                      Media Type: Blog<br/><br/>
-                      Since COVID-19 coronavirus pandemic took off in the United States in 2020, data show that poverty, lack of health insurance, socioeconomic vulnerability, and housing insecurity may all contribute to higher risk of contracting COVID-19 and having severe outcomes. As the pandemic affects businesses and employment, the cycle of poverty may be reinforced.
-
-
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-        </Grid.Column>
-
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='236' href = '/media-hub/blog/swNativeAmericanCommunities' src='/blog images/swna/Image 7.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/swNativeAmericanCommunities">COVID-19 in SW Native American Communities</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Edited: October 1, 2020 <br/> 
-                      Media Type: Blog<br/><br/>
-                      Since COVID-19 coronavirus epidemic took off in the United States in 2020, data continue to show that Native Americans, particularly in the Southwest, are disproportionately impacted by infection and death. Some of the contributing factors may include high rates of poverty and chronic disease, lack of critical infrastructure like running water, isolation from health resources, crowded and multigenerational living conditions, and close-knit community support systems. 
-
-
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-        </Grid.Column>
-
-        <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='236' href = '/media-hub/blog/africanAmericanCommunity' src='/blog images/aac/Image 1.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/africanAmericanCommunity">COVID-19 in African American Communities</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Edited: September 30, 2020 <br/> 
-                      Media Type: Blog<br/><br/>
-                      COVID-19 has disproportionately African Americans, with 2.6 times the infection rate of white non-Hispanic people, 4.7 times the hospitalization rate, and 2.1 times the death rate. African Americans have the highest rate of death of any racial or ethnic group in the United States.
-
-
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='236' href = '/media-hub/blog/underlyingConditions' src='/blog images/underlying/underlying_1.png' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/underlyingConditions">COVID-19 and Underlying Conditions</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Edited: September 28, 2020 <br/> 
-                      Media Type: Blog<br/><br/>
-                      Underlying conditions like having obesity or diabetes, and being over age 65, may make individuals more likely to develop severe COVID-19 infection and be at a higher risk of hospitalization and death. For example, 42% of US adults have obesity, which may lead to higher mortality among those with COVID-19. 
-
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics' src='/podcast images/Dr. Nneka Sederstrom.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics'>"We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics During Covid-19</Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: September 7, 2020 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Nneka Sederstrom discusses how COVID-19 has brought issues of structural racism in medicine to the forefront of clinical ethics and pandemic response conversations. We talk about how the process of change is accelerating as people are forced to have difficult but necessary reckonings with racism in medicine. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='290' href = '/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC' src='/podcast images/JudyMonroe.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC'>"You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About Pandemic Preparedness </Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: August 26, 2020 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Dr. Monroe tells us about the lessons she learned about leadership and community partnerships during pandemics based on her experience as State Health Commissioner of Indiana during the 2009 H1N1 pandemic. We talk about new initiatives the CDC Foundation is spearheading or partnering with to address health equity: gathering accurate data, engaging underserved communities, working on communications campaigns, and supporting virus hotspots with needed response personnel. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='300' href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes' src='/podcast images/CarlosdelRio.jpg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href = '/media-hub/podcast/Dr.Carlos_Del_Rio_on_COVID-19_Equity_&_Outcomes'>Dr. Carlos Del Rio on COVID-19 Equity and Outcomes </Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: August 10, 2020 <br/> 
-                      Media Type: Podcast<br/><br/>
-                      Considering health equity and disparity, how will the pandemic progress? What is our current strategy? What can be and needs to be done to change the course of the pandemic? Listen to what Dr. Carlos Del Rio has to say. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-          
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <Image width='390' height='236' href = '/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences' src='/blog images/power five/blog1cover.jpeg' />            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    <div style = {{lineHeight: "16pt", paddingTop:9}}> <Header.Content style ={{color: "#397AB9"}} href="/media-hub/blog/Will_SARS-CoV-2_beat_the_Power_Five_Conferences">Will SARS-CoV-2 beat the Power Five Conferences? </Header.Content></div>
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Edited: August 19, 2020 <br/> 
-                      Media Type: Blog<br/><br/>
-                      With almost half of all college football players being African American, resuming the football season might put African American athletes at an occupational risk due to COVID-19. Our data highlights greater severity of COVID-19 outcomes in counties where Power Five schools are located. With that said, can a team sport like football co-exist with COVID-19?
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/e-kwEzBWRVo" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>            
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    COVID-19 and Population Density
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: July 30, 2020 <br/> 
-                      Media Type: Video<br/><br/>
-                      Because the virus SARS-COV-2 is transmitted through droplets, proximity to other individuals is one of the risk factors, so in places where it is harder to practice social distancing, like densely populated urban areas, we often see higher cases per capita. At the same time, there are some states where rural communities are actually the ones experiencing disproportionate infection rates, often because of local outbreaks and exacerbating underlying conditions. 
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/zAjVaumIhLE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    COVID-19 and Poverty-related Issues
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: July 27, 2020<br/> 
-                      Media Type: Video<br/><br/>
-                      Poverty, lack of health insurance, socioeconomic vulnerability, and housing insecurity may all contribute to higher risk of contracting COVID-19 and having severe outcomes. As the pandemic affects businesses and employment, the cycle of poverty may be reinforced by the progression of the pandemic and worsen unemployment, poverty, and related issues like insurance and housing.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop:70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/aFS8Wk8FDlE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>        
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2'>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    COVID-19 in SW Native American Communities
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: July 14, 2020 <br/> 
-                      Media Type: Video<br/><br/>
-                      Native American communities, particularly in the Southwest, are hard-hit by COVID-19. Contributing factors may include high rates of poverty and chronic disease, lack of critical infrastructure like running water, isolation from health resources, crowded and multigenerational living conditions, and close-knit community support systems.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop:70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/BKu-9fs1UgE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2' >
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    COVID-19 in African American Communities
-                    <Header.Subheader style={{fontWeight: 300, fontSize: "14pt"}}>
-                      Date Published: July 9, 2020<br/> 
-                      Media Type: Video<br/><br/>
-                      13% of the United States population is African American, but 23% of reported COVID-19 deaths have occurred in African Americans. In Georgia, African Americans represent 32% of the state’s population but 47% of COVID-19 deaths.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/-gbP9-5g8ac" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2' style={{width:400, paddingLeft: 0}}>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    COVID-19 and Underlying Conditions
-                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: "14pt"}}>
-                      Date Published: July 1, 2020<br/> 
-                      Media Type: Video<br/><br/>
-                      Underlying conditions like having obesity or diabetes, and being over age 65, may make individuals more likely to develop severe COVID-19 infection and be at a higher risk of hospitalization and death.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-          <Grid.Column rows = {2} style={{paddingBottom: 20, paddingTop: 70}}>
-            <Grid.Row>
-              <div style = {{paddingBottom: 10}}>
-                <iframe width="390" height="236" src="https://www.youtube.com/embed/FS8vq9-FIs4" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-              </div>
-            </Grid.Row>
-            <Grid.Row>
-              <div>
-                <Header as='h2' style={{width:400, paddingLeft: 0}}>
-                  <Header.Content style={{fontSize: "14pt", fontWeight: 400}}>
-                    Dashboard Tutorial
-                    <Header.Subheader style={{fontWeight: 300, width: 400, fontSize: "14pt"}}>
-                      Date Published: June 5, 2020 <br/> 
-                      Media Type: Video<br/><br/>
-                      Tutorial video walks you through the basics of the dashboard.
-                    </Header.Subheader>
-                  </Header.Content>
-                </Header>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-
-
-        </Grid.Row>
-        
-      </Grid>
-      <Notes />
+        </Grid>
+        <Notes />
       </Container>
-    </div>);
+    </div>
+  );
 }
