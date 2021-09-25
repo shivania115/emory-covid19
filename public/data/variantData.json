@@ -1,106 +1,167 @@
 {
-  "9": {
-    "9": [
-      {
-        "region": "San Francisco",
-        "Alpha (B.1.1.7)": "16.2966700302725",
-        "Beta (B.1.351)": "NA",
-        "Delta (B.1.617.2)": "71.0393541876892",
-        "Gamma (P.1)": "4.89404641775984",
-        "Other Lineages": "7.76992936427851",
-        "Total Available Sequences": "1982"
-      }
-    ]
+  "01": {
+    "region": "1",
+    "Alpha": 0.05,
+    "Beta": 0.0,
+    "DeltaB16172": 99.45,
+    "DeltaAY1": 0.04,
+    "DeltaAY2": 0.02,
+    "Gamma": 0.07,
+    "Eta": 0.0,
+    "Iota": 0.01,
+    "Otherlineages": 0.25,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.11
   },
-  "8": {
-    "8": [
-      {
-        "region": "Denver",
-        "Alpha (B.1.1.7)": "32.8277356446371",
-        "Beta (B.1.351)": "NA",
-        "Delta (B.1.617.2)": "58.9382448537378",
-        "Gamma (P.1)": "4.33369447453954",
-        "Other Lineages": "3.90032502708559",
-        "Total Available Sequences": "923"
-      }
-    ]
+  "02": {
+    "region": "2",
+    "Alpha": 0.04,
+    "Beta": 0.0,
+    "DeltaB16172": 99.26,
+    "DeltaAY1": 0.17,
+    "DeltaAY2": 0.02,
+    "Gamma": 0.03,
+    "Eta": 0.0,
+    "Iota": 0.01,
+    "Otherlineages": 0.36,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.12
   },
-  "4": {
-    "4": [
-      {
-        "region": "Atlanta",
-        "Alpha (B.1.1.7)": "37.3589164785553",
-        "Beta (B.1.351)": "0.225733634311512",
-        "Delta (B.1.617.2)": "36.4559819413093",
-        "Gamma (P.1)": "4.627539503386",
-        "Other Lineages": "21.3318284424379",
-        "Total Available Sequences": "886"
-      }
-    ]
+  "03": {
+    "region": "3",
+    "Alpha": 0.09,
+    "Beta": 0.0,
+    "DeltaB16172": 99.13,
+    "DeltaAY1": 0.05,
+    "DeltaAY2": 0.05,
+    "Gamma": 0.03,
+    "Eta": 0.0,
+    "Iota": 0.01,
+    "Otherlineages": 0.54,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.11
   },
-  "5": {
-    "5": [
-      {
-        "region": "Chicago",
-        "Alpha (B.1.1.7)": "34.3065693430657",
-        "Beta (B.1.351)": "NA",
-        "Delta (B.1.617.2)": "43.0656934306569",
-        "Gamma (P.1)": "13.8686131386861",
-        "Other Lineages": "8.27250608272506",
-        "Total Available Sequences": "411"
-      }
-    ]
+  "04": {
+    "region": "4",
+    "Alpha": 0.07,
+    "Beta": 0.0,
+    "DeltaB16172": 98.98,
+    "DeltaAY1": 0.01,
+    "DeltaAY2": 0.04,
+    "Gamma": 0.05,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.71,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.14
   },
-  "7": {
-    "7": [
-      {
-        "region": "Kansas City",
-        "Alpha (B.1.1.7)": "7.13513513513514",
-        "Beta (B.1.351)": "NA",
-        "Delta (B.1.617.2)": "89.945945945946",
-        "Gamma (P.1)": "1.18918918918919",
-        "Other Lineages": "1.72972972972973",
-        "Total Available Sequences": "925"
-      }
-    ]
+  "05": {
+    "region": "5",
+    "Alpha": 0.06,
+    "Beta": 0.0,
+    "DeltaB16172": 98.42,
+    "DeltaAY1": 0.01,
+    "DeltaAY2": 0.07,
+    "Gamma": 0.06,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 1.34,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.04
   },
-  "2": {
-    "2": [
-      {
-        "region": "New York",
-        "Alpha (B.1.1.7)": "25.3644314868805",
-        "Beta (B.1.351)": "NA",
-        "Delta (B.1.617.2)": "37.3177842565598",
-        "Gamma (P.1)": "9.03790087463557",
-        "Other Lineages": "28.2798833819242",
-        "Total Available Sequences": "343"
-      }
-    ]
+  "06": {
+    "region": "6",
+    "Alpha": 0.05,
+    "Beta": 0.0,
+    "DeltaB16172": 98.99,
+    "DeltaAY1": 0.02,
+    "DeltaAY2": 0.07,
+    "Gamma": 0.03,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.75,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.09
   },
-  "6": {
-    "6": [
-      {
-        "region": "Dallas",
-        "Alpha (B.1.1.7)": "34.3220338983051",
-        "Beta (B.1.351)": "0.0423728813559322",
-        "Delta (B.1.617.2)": "42.1610169491525",
-        "Gamma (P.1)": "6.48305084745763",
-        "Other Lineages": "16.9915254237288",
-        "Total Available Sequences": "2360"
-      }
-    ]
+  "07": {
+    "region": "7",
+    "Alpha": 0.01,
+    "Beta": 0.0,
+    "DeltaB16172": 99.03,
+    "DeltaAY1": 0.04,
+    "DeltaAY2": 0.01,
+    "Gamma": 0.01,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.87,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.02
+  },
+  "08": {
+    "region": "8",
+    "Alpha": 0.02,
+    "Beta": 0.0,
+    "DeltaB16172": 99.46,
+    "DeltaAY1": 0.05,
+    "DeltaAY2": 0.1,
+    "Gamma": 0.01,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.3,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.06
+  },
+  "09": {
+    "region": "9",
+    "Alpha": 0.04,
+    "Beta": 0.0,
+    "DeltaB16172": 98.76,
+    "DeltaAY1": 0.31,
+    "DeltaAY2": 0.36,
+    "Gamma": 0.05,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.41,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.07
   },
   "10": {
-    "10": [
-      {
-        "region": "Seattle",
-        "Alpha (B.1.1.7)": "35.9262229350441",
-        "Beta (B.1.351)": "0.240577385725742",
-        "Delta (B.1.617.2)": "40.7377706495589",
-        "Gamma (P.1)": "13.2317562149158",
-        "Other Lineages": "9.86367281475541",
-        "Total Available Sequences": "1247"
-      }
-    ]
+    "region": "10",
+    "Alpha": 0.07,
+    "Beta": 0.0,
+    "DeltaB16172": 99.35,
+    "DeltaAY1": 0.07,
+    "DeltaAY2": 0.11,
+    "Gamma": 0.1,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.19,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.11
+  },
+  "USA": {
+    "region": "USA",
+    "Alpha": 0.06,
+    "Beta": 0.0,
+    "DeltaB16172": 98.94,
+    "DeltaAY1": 0.06,
+    "DeltaAY2": 0.1,
+    "Gamma": 0.05,
+    "Eta": 0.0,
+    "Iota": 0.0,
+    "Otherlineages": 0.68,
+    "Other_B16171": 0.0,
+    "Other_B16173": 0.0,
+    "B1621": 0.1
   }
 }
