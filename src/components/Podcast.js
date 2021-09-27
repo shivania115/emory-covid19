@@ -22,6 +22,763 @@ export default function AboutUs(props) {
     <div>
       <AppBar />
 
+      {podcastTitle === "Chacin_on_Covid_in_Florida" && (
+        <Container style={{ marginTop: "8em", minWidth: "1260px" }}>
+          <Breadcrumb
+            style={{
+              fontSize: "14pt",
+              paddingTop: "14pt",
+              paddingBottom: "14pt",
+            }}
+          >
+            <Breadcrumb.Section link onClick={() => history.push("/media-hub")}>
+              Media Hub
+            </Breadcrumb.Section>
+            <Breadcrumb.Divider style={{ fontSize: "14pt" }} />
+            <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+          </Breadcrumb>
+          <div width={888}>
+            <Header
+              style={{
+                width: 800,
+                marginLeft: 260,
+                fontSize: "32pt",
+                fontWeight: 400,
+              }}
+            >
+              <Header.Content>
+              Digesting COVID-19 data for public consumption: A conversation with Ms. Ana Claudia Chacin of the Miami Herald on covering Covid in Florida.
+                <Header.Subheader
+                  style={{
+                    fontSize: "18pt",
+                    fontWeight: 300,
+                    paddingTop: "15px",
+                  }}
+                ></Header.Subheader>
+                <div style={{ paddingTop: 10 }}>
+                
+                  <iframe
+                    src="https://anchor.fm/rsph-ched/embed/episodes/Digesting-COVID-19-data-for-public-consumption-A-conversation-with-Ms--Ana-Claudia-Chacin-of-the-Miami-Herald-on-covering-Covid-in-Florida-e17udc2"
+                    height="150px"
+                    width="800px"
+                    frameborder="0"
+                    scrolling="no"
+                  ></iframe>{" "}
+                </div>
+                <Header
+                  style={{
+                    fontSize: "14pt",
+                    lineHeight: "16pt",
+                    fontWeight: 400,
+                    paddingTop: 0,
+                  }}
+                >
+                  <p style={{ textAlign: "left", fontWeight: 300 }}>
+                    By Gaëlle Sabben on Sep. 17, 2021
+                    <br />
+                    Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                    <br />
+                    From Emory University
+                    <br />
+                  </p>
+                  <br />
+                  <b>Transcript</b>
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:00:00] </b> Welcome back to the COVID-19
+                  Health Equity Dashboard Podcast. I’m Gaëlle Sabben.
+                  <br />
+                  <br />
+                  So today we're speaking with Dr. David Benkeser, who is an
+                  assistant professor of Biostatistics and bioinformatics at
+                  Emory University's Rollins School of Public Health. Dr.
+                  Benkeser, welcome.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:00:17] </b> Hello, thanks for
+                  having me.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:00:19] </b> Thanks for joining us. Could
+                  you start by telling us a little bit about your background and
+                  your work in vaccines, both related to COVID-19 and beyond?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:00:28] </b> I'm an assistant
+                  professor in the Biostatistics department and since my PhD
+                  training I've worked in vaccine research starting in Seattle
+                  at University of Washington, at [the Fred Hutchinson Cancer
+                  Research Center], where I worked in the HIV Vaccine Trials
+                  Network, and so a lot of my dissertation revolved around
+                  developing statistical methods to determine whether and to
+                  what extent, the efficacy of vaccines was influenced by the
+                  genetic strain of viruses or the infecting pathogen which at
+                  the time was a fairly esoteric research area, and obviously
+                  now it's become something much more in the public eye.
+                  <br />
+                  <br />
+                  So, you know, I've had long-standing interest in that. HIV
+                  vaccines are a field where we've really struggled to bring in
+                  an effective vaccine to market for, you know, 30-40 years now.
+                  We've been trying and failing time and time again and so
+                  what's kind of grown out of that field is, unfortunately, not
+                  an efficacious vaccine, but a great network of researchers who
+                  are really well equipped to study vaccines and to learn from
+                  failure in a lot of cases. And that's sort of a lot of how my
+                  research was used before is, “We have a failed vaccine, but
+                  what can we learn to try to do a better job next time?” And
+                  so, this sort of amazing group of HIV researchers across the
+                  country, across the world had developed over the years and,
+                  when COVID happened, were selected, and many of these clinical
+                  trials networks that are funded by NIH to research HIV
+                  vaccines, were selected to be part of the COVID-19 Prevention
+                  Network, which is this clinical trials network that was used
+                  to evaluate COVID vaccines in the US, by virtue of the fact
+                  that you know we had a great group of researchers who had been
+                  working on vaccine statistics for many, many years. And so
+                  that's you know what's kind of engulfed my life for the last
+                  year and a half or so.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:02:27] </b>It's mostly that you were
+                  able to pivot from HIV to COVID and to learn to use lessons
+                  learned through HIV vaccines for application to COVID.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:02:34] </b> Yeah, and really nice
+                  to be part of successful vaccine trials, you know.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:02:39] </b> Learning from failures is
+                  important, but successes are a little more pleasant. Yeah, so
+                  is this how you got involved in the operation Warp Speed trial
+                  analysis?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:02:49] </b> Yeah, that's right. So,
+                  as part of those trials, there are these big complex
+                  agreements executed between companies who are manufacturing
+                  the vaccines and ultimately seeking them for regulatory
+                  approval, and the US government, or as part of Operation Warp
+                  Speed the government offered to basically fund the research
+                  into those trials to try to remove some of the risk from the
+                  companies. But as part of that, agreement was that some NIH
+                  researchers, and our team being included would be integrated
+                  into the conduct of those trials. In particular, one of the
+                  things that the government was very interested in was trying
+                  to use these trials to learn about vaccine correlates of
+                  protection; that was sort of one of the areas where they
+                  really wanted to leverage the expertise we had developed in
+                  HIV towards COVID vaccine trials, and something that, really,
+                  the government was quite interested in making sure that we
+                  that we got out of these trials. And so, as part of Operation
+                  Warp Speed, we started our statistical group— there's, I don't
+                  know, about a dozen of US faculty across Emory [University],
+                  [the Fred Hutchinson Cancer Research Center], and other
+                  places— began to, you know, consult with the vaccine companies
+                  to advise them on the designs that were needed to generate the
+                  right data to answer the questions that the government was
+                  interested in.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:03:57] </b> Were you working with a
+                  particular trial, particular vaccine company, or just kind of
+                  in general across the various...?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:04:03] </b> Yeah, we kind of got
+                  divvied up amongst the trials, you know. So, I worked with
+                  Astra-Zeneca's Phase 3 study in the US and currently, I guess,
+                  technically associated with the Sanofi trial, which has been a
+                  bit slower to develop – they've had some road bumps along the
+                  way. And so, we've had, you know, a couple of statisticians
+                  working closely on each of these trials, but also you know the
+                  core group of us has been dealing with issues that arch over
+                  all the trials trying to harmonize to the greatest extent
+                  possible, the study designs and data collection methods. So,
+                  [I] sort of had a small role in and all of the US
+                  government-funded trials, but mostly focusing on those two.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:04:42] </b>So, could you tell us what
+                  vaccine correlates of protection are and how that was
+                  important?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:04:48] </b> Vaccine correlates of
+                  protection are really... They're trying to get at the
+                  mechanisms, essentially, of how the vaccines work and that's
+                  important for a number of reasons. I mean, it's, of course,
+                  interesting biologically, but it has a much greater impact
+                  clinically as well, in terms of understanding, if we know how
+                  the vaccines work, what immune responses they're generating,
+                  and whether those immune responses are protective, then we can
+                  start to do really cool things with vaccines like understand
+                  how well vaccines will work in new populations. Like, for
+                  example, in kids, you know, [we] see that vaccines are working
+                  well, but that takes very expensive and very long [trials] to
+                  learn, but we learn from that that there's only particular
+                  immune responses that are really driving the efficacy. Well,
+                  we can do much smaller and faster trials in different
+                  populations like kids, make sure the vaccines are generating
+                  the right responses. Of course, make sure they're safe as
+                  well, but you know kind of avoid the hassle of running 30,000,
+                  40,000 participant trials and thereby bring vaccines to new
+                  populations much faster. And, of course, it's not just new
+                  populations, it's new vaccines as well, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:05:53] </b> Right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:05:53] </b> So, we have several
+                  highly effective vaccines, but there's still a huge global
+                  shortage, and so if we can understand, you know, which immune
+                  responses are important, it speeds up the development and
+                  approval process for new vaccines, and so that's a lot of why
+                  the US is so interested in this, right? And, in particular, at
+                  the time we weren't sure that the first vaccines were going to
+                  be such a home run, right? And, I think, in a way it's like an
+                  insurance policy that, if we had a somewhat effective vaccine,
+                  we could still deploy that while learning to refine the
+                  vaccine through a more nuanced study of immune responses.
+                  <br />
+                  <br />
+                  And so, that was, you know, motivations for you know, funding
+                  these correlate studies for making sure that the Phase 3
+                  trials were getting the right data collected at the right
+                  times with the right assays; just trying to harmonize as much
+                  as possible these studies, which is, you know, typically not
+                  something that's possible in the context of a bunch of
+                  different companies running their own separate trials, right?
+                  Like Pfizer’s going to do their own design, Moderna’s going to
+                  do their own... Well, Pfizer did do their own. They're kind of
+                  the oddball. They're not affiliated with us. But all the other
+                  we were kind of able to bring under the same umbrella, which
+                  will ultimately somewhere down the road, probably next year,
+                  will allow us to pool the data from all those trials, and
+                  really do a sort of definitive meta-analysis of this question.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:7:10] </b> That’ll be really exciting.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:07:11] </b> Yeah, yeah, looking
+                  forward to it.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:07:14] </b> So, if you can, what kind of
+                  findings did you have when you were looking at those
+                  correlates of protection?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:07:21] </b> Yeah, so I mean it's
+                  still very much ongoing; we've now submitted for publication a
+                  paper about the Moderna [trial]—they were obviously the first
+                  of the US government-funded trials to reach the finish
+                  line—and Johnson and Johnson will be next, and Astra Zeneca
+                  after that. So, it's very much an ongoing process. But yeah, I
+                  can talk about what we found so far and it's sort of funny,
+                  you know, we've invested all of this money learning about
+                  correlates of protection and a lot of time and energy spent on
+                  it while all the while if you asked any vaccinologist or
+                  immunologists what the correlate of protection was, they would
+                  have just said, “Oh, it's neutralizing antibodies. We know
+                  that.”
+                  <br />
+                  <br />
+                  And so, sort of from the very beginning, there's been this
+                  expectation that for these vaccines it would really be
+                  antibodies that would be driving the majority of the
+                  protection. It's not uncommon for vaccines that that's the
+                  case. And we had other things like Regeneron and monoclonal
+                  antibody studies that showed if you just give people directly
+                  antibodies, it can help prevent disease, so in some ways, it
+                  was sort of an expectation that neutralizing antibodies would
+                  be sort of the driver of the effect of the vaccine, but what
+                  was uncertain was the extent to which that would be true,
+                  right? Are they responsible for all of the vaccine or are
+                  there other immune mechanisms? What fraction of the vaccine’s
+                  effect can be explained by the fact that it's really good at
+                  generating antibodies.
+                  <br />
+                  <br />
+                  And so, we're starting to roll out results; so, Moderna was
+                  first and then there we did find that you know basically
+                  higher levels of antibodies induced by the vaccine were
+                  associated with lower risk of COVID, so again, it... That's
+                  nice. I was very worried about not finding that, because, we
+                  had people that sort of already accepted that, but so our
+                  analysis did confirm that, and we've started to be able to
+                  describe, try to quantify this fraction, right? We call it the
+                  “proportion mediated”. What percent of the vaccine’s effect is
+                  due to neutralizing antibody responses?
+                  <br />
+                  <br />
+                  It's a key question because it's going to help, I think,
+                  regulators sort of contextualize this because we've already
+                  done this for flu vaccines, where sort of flu vaccines we know
+                  that about 70% of flu vaccine efficacy is explained by
+                  particular immune response and that's sort of like a
+                  benchmark, maybe, for the level that COVID vaccines might need
+                  to hit in order for regulators to say, “OK, you can do these
+                  shorter trials where you just look into mean responses. You
+                  don't have to do these massive trials.” We've started to try
+                  to quantify that—like what fraction is it that's explained by
+                  neutralizing antibodies, but it's challenging. It's a little
+                  bit tricky and Moderna, in particular, is sort of a victim of
+                  their own success, and the vaccine is so effective that, in
+                  the clinical trial, there were so, so few people who ended up
+                  getting disease who got vaccinated. And really, if you think
+                  about it, those are the most interesting people for us, right?
+                  The people who got the vaccine and, nevertheless, ended up
+                  being infected and developing disease and there just weren't
+                  that many of them for Moderna and so it's really a challenging
+                  thing. And the other aspect of that is that almost everybody
+                  had an immune response in response to the Moderna vaccine, so
+                  it's you know when you're studying these questions, it's
+                  really the breakthrough cases that are the most interesting,
+                  as well as the people who didn't generate an immune response,
+                  right? Those are the kind of the non-responders if you will,
+                  right? Those are the people that we really want to try to
+                  understand a bit better, right? But there just weren't that
+                  many of them, for Moderna, it's such a highly immunogenic
+                  vaccine, like if you got it, you probably you remember I was
+                  like on my back for a whole day afterwards, right? Like the
+                  vaccines are really strong.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:10:53] </b>Yes, I can confirm.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:10:54] </b> That's right. So, I
+                  don't think we've been able to develop a completely
+                  satisfactory answer to that question just yet, but I think
+                  what we've seen so far is something that we could expect
+                  similar answer as with flu, which really is that like a
+                  majority of the vaccine’s effect is going through antibodies,
+                  but not all of it.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:11:15] </b>For people who don't
+                  understand immunology, if the immune response is not being
+                  mediated by antibodies, what other ways is it being mediated?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:11:25]</b> Right, right? And you
+                  say for the people who aren't immunologists, that's also me
+                  included. Of course, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:11:30] </b> Great! Perfect!
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:11:30] </b>So, I'll give you see my
+                  layman's understanding, right? I mean, there's a host of
+                  immune responses that your body has, you know, in response to
+                  being infected with the disease or being vaccinated, and
+                  antibodies are one of those, and they're sort of the one
+                  that's providing immediate protection. Like you get infected
+                  and you start generating antibodies pretty much right away,
+                  and basically what antibodies do, and this is, again, my very
+                  layman’s understanding is they just float around and stick to
+                  things.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:11:57] </b> Right, that's what I'm
+                  looking for.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:11:59] </b> So, the analogy that I
+                  got is like you know the virus is the hot dog and the
+                  antibodies the bun, right? And the bun just wraps around the
+                  hot dog, and then you know that that hot dog can't infect
+                  yourself. I guess. [laughs] But, of course, most people have
+                  heard of the spike protein, right? That's the guy that's
+                  sticking out that nasty thing sticking out of the surface.
+                  That's what the virus is using to grab onto your cells and
+                  insert itself and replicate. And so, what antibodies do is
+                  they essentially bind to that spike protein. They just sit
+                  there and stick on it. They can do a bit more like, they can
+                  send out chemical signals that say, “Hey come and eat this
+                  thing” to your other cells so they're doing a lot, but that's
+                  essentially their role: just sticking to the things, sticking
+                  to spike proteins so that you know that those spike proteins
+                  can't stick to your cells and infect your cells.
+                  <br />
+                  <br />
+                  That's not an uncommon way, that vaccines have been shown to
+                  provide protection is through these antibody responses. But,
+                  your immune system also developed sort of more long-term
+                  responses. They know that antibodies are only going to stick
+                  around for so long, and so you have these what we call
+                  “cellular immune responses” that are really other mechanisms
+                  whereby your immune system can fight, and, in particular, can
+                  try to remember, right? You know, sometime later you're
+                  exposed to a pathogen, right? Your body immediately recognizes
+                  it and [is] able to mount an effective immune response.
+                  There's many, many pathways, but I think you could break that
+                  down into two, which is basically antibody activity and
+                  cellular activity, and it's kind of been an open question.
+                  There's been the people who are very passionate about cellular
+                  immunity have been saying all along, “What about cellular
+                  immunity?” while the whole field has been saying, “Yay,
+                  neutralizing antibodies”. And so, I think both camps won in
+                  the end. We think at this moment antibodies are driving a lot
+                  of the protection, but it's not the whole story, and certainly
+                  as we start to talk about longer term effects of the vaccines,
+                  I think the cellular immunity people will have a lot more to
+                  say.
+                  <br />
+                  <br />
+                  And that's the other thing to remember here is that when we're
+                  talking about the proportion of the efficacy that's mediated,
+                  that's really short-term efficacy, right? These trials only
+                  lasted for, you know, a few months before we said, “Hey, wow,
+                  these are really effective! Everybody needs to get these right
+                  away.” And so, when we're talking about anything that we're
+                  learning in the context of these clinical trials, really [it]
+                  is about what the kind of protection they provide in the short
+                  term [is], whereas really, it's gonna be a while yet before we
+                  understand sort of the long-term effects and pathways that the
+                  vaccines are working through.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:14:14] </b> Hmm that makes a lot of
+                  sense. So, you were talking earlier about breakthrough cases
+                  being kind of the most interesting. From the analyses that
+                  you've done or what you know about them, has that added to the
+                  understanding of why breakthrough cases are happening in
+                  people who are fully vaccinated?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:14:29] </b> Well, certainly from
+                  our analyses, we can say that breakthrough cases tend to be
+                  more likely in people who aren't mounting as a strong immune
+                  response. So, to that extent, yeah, we have been able to
+                  understand that a little bit, [which] is that the more immune
+                  response you get, the more protected you are, which makes a
+                  lot of sense. I guess, I would just say one thing that's sort
+                  of clear is, you know in, in public health and intro stat
+                  classes very often you're like it's not good to discretize
+                  variables. Like high antibodies or low antibodies, right? You
+                  lose a lot of information in doing that. And yet, that's sort
+                  of what everybody wants to do, right? Everybody wants to know,
+                  like, “Am I protected, right? I have X antibody level. Am I
+                  good to go? Can I go out to bars?” And I think the story is a
+                  little more subtle than that, right? I mean, it would be very
+                  nice if we saw high risk of COVID and then once you're at this
+                  level no risk of COVID. But it's really a bit more subtle than
+                  that and that's something I've been trying to sort of remind
+                  people of. Just because I think people are a bit worried
+                  right? As the rise of Delta happens as you’re seeing more
+                  breakthroughs in the news and we're hearing these results come
+                  out about, you know, antibody levels and risk of COVID, people
+                  want to know, “Can I go and get tested? Right? And see if I
+                  have enough antibodies?” I think we can get closer to that as
+                  time goes on, but I don't think we're quite there yet, where,
+                  really, we have that great of an understanding that you know
+                  you could go and get your antibody levels measured and
+                  understand, “wow I need to go get a booster.” Oh, “I should be
+                  lowering risk,” or something like that. We're not probably not
+                  quite there yet, but that's really where people wish we were.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:16:02] </b> And is that something that
+                  would change over time? So, depending on how soon after you
+                  got a vaccine, if you got your antibody levels measured, you
+                  might say, well, I'm above a certain level. And in that case
+                  people would need to get their antibody levels measured over
+                  time and say, well, at this point now, I'm in the low end.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:16:21] </b> Yeah. That's where we
+                  could be, right? We're not there yet, right? So, our study
+                  really just dealt with peak antibody response. So, two weeks
+                  after the second dose, your antibodies are kicking right?
+                  Everybody had very strong immune response for the most part in
+                  non-immunocompromised populations, of course. But we don't yet
+                  have the data, at least in the context of the original
+                  clinical trials, to understand what those antibodies are doing
+                  over time. And of course, you weren't vaccinated that long
+                  ago, right? So, it's just going to take a while before we
+                  really can generate those data. and it's kind of a hard thing
+                  to study. This is a case where vaccines were a bit of a victim
+                  of their own success and that once the results came out,
+                  everybody who was on the placebo arm in these trials pretty
+                  much immediately got vaccinated. And so, we really lose the
+                  ability, we lose the randomized nature of the study to learn
+                  about these things with the highest level of rigor so that
+                  makes our jobs as statisticians a little more difficult. But
+                  of course, you know, these are things that we're going to be
+                  designing other studies to look at in the coming months and
+                  years.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:17:23] </b> ] I'm sure, I'm sure. And
+                  so, what you're not saying is that as soon as when somebody is
+                  fully vaccinated, that is peak time to go to the bar and be
+                  safe.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:17:32] </b>[Laughs] Yeah, I mean it
+                  is the best time right? If you're gonna go to a bar. But, you
+                  know, at the very least you should probably wear a mask,
+                  right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:17:40] </b> [Laughs] I appreciate it.
+                  <br />
+                  <br />
+                  When you were looking at findings were they similar in terms
+                  of mediation by age or you know other subpopulations? Or were
+                  you looking more kind of holistically across the population?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:17:53] </b> Yeah, no, we did. We
+                  did look at key subgroups absolutely and the results were sort
+                  of remarkably consistent. What we did see was that older
+                  adults tended to have lower immune responses – that's common
+                  with vaccines. But still the sort of association or the
+                  strength of association between levels of antibodies and
+                  protection was similar across those groups by age, by race,
+                  [by] ethnicity, by sex. Uhm, I think that's all that we looked
+                  at, but it was a pretty consistent story in terms of seeing
+                  that really for everybody, it seems that neutralizing
+                  responses are at least majorly predictive of whether the
+                  vaccine will work or not.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:18:32] </b> So, if you were kind of
+                  distilling the most important takeaways for the public out of
+                  the findings, what would they be?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:18:38] </b> Uhm, it's that antibody
+                  levels matter, I think. But, so the big but, right, is that
+                  that antibodies matter, but what we're really thinking about
+                  at this moment is that antibodies matter for, I think, policy
+                  making decisions about vaccines. Where we're not yet at is
+                  where, I think, antibodies should be informing
+                  individual-level risk decision-making. And, to be quite frank,
+                  I don't really think that we're at the point, you know, coming
+                  back to the policy question, I don't think we're at the point
+                  where we know that antibodies matter enough to justify
+                  boosters, and I think, that's going to be a controversial
+                  opinion, and it's a complex argument. What you'll see is that
+                  Pfizer is advocating for the need for booster because antibody
+                  levels are waning and so forth. And, personally, I think it's
+                  a bit premature to be able to say that because we haven't been
+                  able to look at these long-term antibody responses and
+                  understand how they correlate, right? What we just have is
+                  just there's a correlation, short term, and so that suggests
+                  that long term, yeah, probably more antibodies is better, but
+                  there's that other missing piece of the puzzle, right? Which
+                  is, what's the rest of your immune system doing over time? And
+                  of course, all of these data that we have previously right
+                  were in the context where there wasn't a lot of Delta
+                  circulating, right? This is the old strains of SARS-CoV-2 and
+                  so there's a lot of question marks to me about the question of
+                  how you could use these results to inform policies around
+                  boosters.
+                  <br />
+                  <br />
+                  I would fall on the more conservative end; you know, I'm a
+                  statistician. My sister, who's a consultant, always makes fun
+                  of me because she says, “All you say is ‘We need to do more
+                  studies’. All you can say is ‘Go get more data’”. And she's
+                  like, you know, in the business world where they're like,
+                  “Whatever; just make a decision to go with it!” But I do think
+                  for the boosters I think we're lacking for the data that
+                  really would inform a scientifically sound decision as to
+                  whether booster should be recommended at this moment.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:20:31] </b> Makes a lot of sense. And
+                  are these the types of analyses that were taken into account
+                  when they were making recommendations or when ACIP was looking
+                  at data to recommend a third dose for immunocompromised
+                  populations?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:20:44] </b> You know, I'm not sure
+                  right? And that's the other thing, of course, is the question
+                  of immunocompromised populations. Unfortunately, the initial
+                  trials focused on healthy populations. Johnson and Johnson
+                  will give us a little more insight because there [was] a
+                  higher proportion of individuals living with HIV enrolled in
+                  those studies. And so, we'll start to see a little bit more
+                  about immunocompromised studies, but it's going to take
+                  dedicated studies in those populations, I think, to really
+                  develop the best policies for them and in that case...
+                  <br />
+                  <br />I guess I came off very negative against boosters just
+                  now, but there is the other side of the coin, which is like,
+                  why not, right? The vaccines are generally safe, and so, in
+                  individuals where you can anticipate getting in the right
+                  level of immune response is going to be tough, I understand
+                  the perspective of “why not?” for some subpopulations, but as
+                  a national policy, I think, it should take a little bit of a
+                  higher sort of burden of proof to really recommend that,
+                  particularly in the context of, you know, global shortages.
+                  This being a discussion about vaccine equity as well, right,
+                  that should probably play a role into the policymaking.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:21:49] </b> That would be the hope.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:21:51] </b> The hope, yeah.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:21:53] </b> So, when you're thinking
+                  about questions that remain for you about COVID-19 vaccine
+                  immune response, are there any specific questions that stand
+                  out?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:22:01] </b> Oh yeah, hundreds.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:22:02] </b> OK. [Laughs]
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:22:04] </b>[Laughs] As I said,
+                  Moderna was a tough case study right as the vaccine was so
+                  good everybody had immune responses. I think, just being able
+                  to analyze data from the other trials, which is happening very
+                  soon, will be very informative because, as we know Johnson and
+                  Johnson being a one dose [vaccine regimen], immune responses
+                  tended to be lower and so I think that's going to provide a
+                  lot more information. Then of course you know we have these
+                  longitudinal measurements that are happening over time. It's
+                  just, you know, we have those samples collected already, it
+                  just the labs need to run them and the labs are working 24/7
+                  for the last year, but they'll keep working. So, the
+                  longitudinal trajectory questions of course [are] important
+                  and then bringing this all together in the end, the meta-
+                  analyses of all of these trials and, hopefully, culminating
+                  and in a regulatory sort of accelerated approval pathway for
+                  COVID vaccines, I think, could be could be hugely important.
+                  <br />
+                  <br />
+                  You know I have some own my own interest in sort of
+                  statistical methods, or, you know, ways that we can use the
+                  data that we have to try to understand how we're changing
+                  dosing schedules or dosing levels might affect the impact of
+                  vaccines. That's sort of been a longstanding question as
+                  AstraZeneca maybe stumbled onto a kernel of truth is that
+                  spacing doses might be better or giving partial doses might be
+                  better, so I have some interest in trying to learn about that
+                  using the data that we have on hand.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:23:25] </b> I have one last question
+                  going back to something you mentioned earlier about long-term
+                  effects of these studies, of harmonization of practices. I
+                  wanted to ask whether you thought that that might go beyond
+                  COVID studies. Do you think there will be a larger impact on
+                  the way that vaccine and maybe clinical trials more broadly
+                  are run in the US? Would you expect there to be more kind of
+                  knowledge sharing or more collaboration on some of these
+                  pressing issues?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:23:51] </b> That's a fascinating
+                  question, and I’d like to say yes, right? But of course,
+                  remember that this wasn't like an organic collaboration that
+                  happened. I mean, the manufacturers have been great and very
+                  open with their data sharing and everything, but you know they
+                  had like a billion reasons to engage in that collaborative
+                  process so, I would like to think so, but a lot of it comes
+                  down to the relationships that the manufacturers have and what
+                  their plans are for regulatory submissions, right? They have a
+                  product they've invested a lot of money in, and so they're
+                  very protective of that product.
+                  <br />
+                  <br />
+                  That's not going to go away just because COVID happened. But I
+                  do think, we've learned a lot about this process in terms of,
+                  and it's an ongoing process of, learning about what the public
+                  cares about understanding about vaccines. We've had some
+                  success, a lot of failures in our messaging and communication
+                  about vaccines, and I think we'll learn a lot about that,
+                  particularly in the context of outbreak settings; about how to
+                  effectively communicate with the population about what
+                  vaccines should do, what they're expected to do, what's a
+                  successful vaccine look like?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:25:01] </b> Mm-hmm
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:25:02] </b> You know, I think we've
+                  done OK with that, but certainly room to do better next time
+                  around, which hopefully doesn't happen for a very long time.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:25:08] </b>Well, that was very helpful.
+                  Thank you so much.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Dr. David Benkeser: [00:25:11] </b>You're very welcome.
+                </Header>
+              </Header.Content>
+            </Header>
+          </div>
+          <Notes />
+        </Container>
+      )}
+
       {podcastTitle === "Benkeser_about_immunity" && (
         <Container style={{ marginTop: "8em", minWidth: "1260px" }}>
           <Breadcrumb
