@@ -56,8 +56,8 @@ export default function MediaHub(props) {
                           href="/media-hub/podcast/Chacin_on_Covid_in_Florida"
                         >
                           Digesting COVID-19 data for public consumption: A
-                          conversation with Ms. Ana Claudia Chacin of the Miami
-                          Herald on covering Covid in Florida.
+                          conversation with Ms. Ana Claudia Chacin of el Nuevo
+                          Herlad/the Miami Herald on covering COVID in Florida.
                         </Header.Content>
                       </div>
                       <Header.Subheader
