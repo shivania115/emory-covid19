@@ -32,15 +32,14 @@ export default function MediaHub(props) {
 
         <Grid style={{ paddingTop: 2 }}>
           <Grid.Row columns={3} style={{ paddingBottom: 20 }}>
-
-          <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
               <Grid.Row>
                 <div style={{ paddingBottom: 10 }}>
                   <Image
                     width="390"
                     height="200"
                     href="/media-hub/podcast/Chacin_on_Covid_in_Florida"
-                    src="/podcast images/Benkeser.png"
+                    src="/podcast images/Ana Claudia.png"
                   />
                 </div>
               </Grid.Row>
@@ -56,17 +55,23 @@ export default function MediaHub(props) {
                           style={{ color: "#397AB9" }}
                           href="/media-hub/podcast/Chacin_on_Covid_in_Florida"
                         >
-                         Digesting COVID-19 data for public consumption: A conversation with Ms. Ana Claudia Chacin of the Miami Herald on covering Covid in Florida.
+                          Digesting COVID-19 data for public consumption: A
+                          conversation with Ms. Ana Claudia Chacin of the Miami
+                          Herald on covering Covid in Florida.
                         </Header.Content>
                       </div>
                       <Header.Subheader
                         style={{ fontWeight: 300, fontSize: "14pt" }}
                       >
-                        Date Published: Sep. 17, 2021 <br />
+                        Date Published: Sep. 27, 2021 <br />
                         Media Type: Podcast
                         <br />
                         <br />
-                        Ms. Ana Claudia Chacin talks about the challenges she and other journalists have faced in accessing and reporting accurate COVID-19 data in Florida. We discuss the role of media in informing the public and influencing decision-making in Florida.
+                        Ms. Ana Claudia Chacin talks about the challenges she
+                        and other journalists have faced in accessing and
+                        reporting accurate COVID-19 data in Florida. We discuss
+                        the role of media in informing the public and
+                        influencing decision-making in Florida.
                       </Header.Subheader>
                     </Header.Content>
                   </Header>

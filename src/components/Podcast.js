@@ -47,7 +47,9 @@ export default function AboutUs(props) {
               }}
             >
               <Header.Content>
-              Digesting COVID-19 data for public consumption: A conversation with Ms. Ana Claudia Chacin of the Miami Herald on covering Covid in Florida.
+                Digesting COVID-19 data for public consumption: A conversation
+                with Ms. Ana Claudia Chacin of the Miami Herald on covering
+                Covid in Florida.
                 <Header.Subheader
                   style={{
                     fontSize: "18pt",
@@ -56,7 +58,6 @@ export default function AboutUs(props) {
                   }}
                 ></Header.Subheader>
                 <div style={{ paddingTop: 10 }}>
-                
                   <iframe
                     src="https://anchor.fm/rsph-ched/embed/episodes/Digesting-COVID-19-data-for-public-consumption-A-conversation-with-Ms--Ana-Claudia-Chacin-of-the-Miami-Herald-on-covering-Covid-in-Florida-e17udc2"
                     height="150px"
@@ -74,7 +75,7 @@ export default function AboutUs(props) {
                   }}
                 >
                   <p style={{ textAlign: "left", fontWeight: 300 }}>
-                    By Gaëlle Sabben on Sep. 17, 2021
+                    By Gaëlle Sabben on Sep. 10, 2021
                     <br />
                     Contributors: K.M. Venkat Narayan, Shivani A. Patel
                     <br />
@@ -85,692 +86,529 @@ export default function AboutUs(props) {
                   <b>Transcript</b>
                   <br />
                   <br />
-                  <b>Gaëlle Sabben: [00:00:00] </b> Welcome back to the COVID-19
-                  Health Equity Dashboard Podcast. I’m Gaëlle Sabben.
-                  <br />
-                  <br />
-                  So today we're speaking with Dr. David Benkeser, who is an
-                  assistant professor of Biostatistics and bioinformatics at
-                  Emory University's Rollins School of Public Health. Dr.
-                  Benkeser, welcome.
+                  <b>Gaëlle Sabben [00:00:04]</b> So today we're speaking with
+                  Ana Claudia Chacin, who is a reporter at El Nuevo Herald and
+                  the Miami Herald. Ms. Chacin, welcome.
                   <br />
                   <br />
                   <br />
-                  <b>Dr. David Benkeser: [00:00:17] </b> Hello, thanks for
+                  <b>Ana Claudia Chacin [00:00:19]</b> Thank you so much for
                   having me.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben: [00:00:19] </b> Thanks for joining us. Could
-                  you start by telling us a little bit about your background and
-                  your work in vaccines, both related to COVID-19 and beyond?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:00:28] </b> I'm an assistant
-                  professor in the Biostatistics department and since my PhD
-                  training I've worked in vaccine research starting in Seattle
-                  at University of Washington, at [the Fred Hutchinson Cancer
-                  Research Center], where I worked in the HIV Vaccine Trials
-                  Network, and so a lot of my dissertation revolved around
-                  developing statistical methods to determine whether and to
-                  what extent, the efficacy of vaccines was influenced by the
-                  genetic strain of viruses or the infecting pathogen which at
-                  the time was a fairly esoteric research area, and obviously
-                  now it's become something much more in the public eye.
-                  <br />
-                  <br />
-                  So, you know, I've had long-standing interest in that. HIV
-                  vaccines are a field where we've really struggled to bring in
-                  an effective vaccine to market for, you know, 30-40 years now.
-                  We've been trying and failing time and time again and so
-                  what's kind of grown out of that field is, unfortunately, not
-                  an efficacious vaccine, but a great network of researchers who
-                  are really well equipped to study vaccines and to learn from
-                  failure in a lot of cases. And that's sort of a lot of how my
-                  research was used before is, “We have a failed vaccine, but
-                  what can we learn to try to do a better job next time?” And
-                  so, this sort of amazing group of HIV researchers across the
-                  country, across the world had developed over the years and,
-                  when COVID happened, were selected, and many of these clinical
-                  trials networks that are funded by NIH to research HIV
-                  vaccines, were selected to be part of the COVID-19 Prevention
-                  Network, which is this clinical trials network that was used
-                  to evaluate COVID vaccines in the US, by virtue of the fact
-                  that you know we had a great group of researchers who had been
-                  working on vaccine statistics for many, many years. And so
-                  that's you know what's kind of engulfed my life for the last
-                  year and a half or so.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:02:27] </b>It's mostly that you were
-                  able to pivot from HIV to COVID and to learn to use lessons
-                  learned through HIV vaccines for application to COVID.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:02:34] </b> Yeah, and really nice
-                  to be part of successful vaccine trials, you know.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:02:39] </b> Learning from failures is
-                  important, but successes are a little more pleasant. Yeah, so
-                  is this how you got involved in the operation Warp Speed trial
-                  analysis?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:02:49] </b> Yeah, that's right. So,
-                  as part of those trials, there are these big complex
-                  agreements executed between companies who are manufacturing
-                  the vaccines and ultimately seeking them for regulatory
-                  approval, and the US government, or as part of Operation Warp
-                  Speed the government offered to basically fund the research
-                  into those trials to try to remove some of the risk from the
-                  companies. But as part of that, agreement was that some NIH
-                  researchers, and our team being included would be integrated
-                  into the conduct of those trials. In particular, one of the
-                  things that the government was very interested in was trying
-                  to use these trials to learn about vaccine correlates of
-                  protection; that was sort of one of the areas where they
-                  really wanted to leverage the expertise we had developed in
-                  HIV towards COVID vaccine trials, and something that, really,
-                  the government was quite interested in making sure that we
-                  that we got out of these trials. And so, as part of Operation
-                  Warp Speed, we started our statistical group— there's, I don't
-                  know, about a dozen of US faculty across Emory [University],
-                  [the Fred Hutchinson Cancer Research Center], and other
-                  places— began to, you know, consult with the vaccine companies
-                  to advise them on the designs that were needed to generate the
-                  right data to answer the questions that the government was
-                  interested in.
-                  <br />
+                  <b>Gaëlle Sabben [00:00:21]</b> Thanks for joining us. I
+                  wanted to start with you telling us a little bit about
+                  yourself and about your COVID-related reporting experience if
+                  you would.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:00:31]</b> Yeah, so I've been at
+                  both Heralds, for about two years now and basically, I've been
+                  reporting on COVID since the 4th month I started. El Nuevo
+                  Herald pretty much tasked me as being the point person for
+                  coronavirus early on and that started with daily numbers
+                  reporting on until I started noticing some little
+                  discrepancies and differences between the way they were
+                  reporting the data earlier on, and that evolved into
+                  explanatory and investigative [reporting] and that kind of
+                  work.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:01:04]</b> What were some of the little
+                  discrepancies that you noticed?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:01:08]</b> So, around summer ’20, we
+                  started looking at the different datasets that the Florida
+                  Department of Health provided. They had launched their
+                  dashboard by that point and they also had back-end data, which
+                  was case line data—basically line by line each case and a
+                  little brief description of the date of onset of disease and
+                  symptoms, and all that kind of information and they also had
+                  summary reports, but a lot of those tended to be off by some
+                  numbers, and so we kind of went into digging deeper to find
+                  out what was the difference and it was little changes like:
+                  one reported up through midnight of that day [and] the next
+                  one up to the day and a half of whenever they released that
+                  report, and so we wanted to make sure we were being clear with
+                  our audience about what was going on.
                   <br />
                   <br />
-                  <b>Gaëlle Sabben: [00:03:57] </b> Were you working with a
-                  particular trial, particular vaccine company, or just kind of
-                  in general across the various...?
+                  <br />
+                  <b>Gaëlle Sabben [00:02:02]</b> So, what did you find that was
+                  going on?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin</b> [00:02:04] Well, that those were the
+                  differences and the numbers didn't match, but it was because
+                  of different, like little discrepancies in when it was being
+                  reported. And there were changes too in that sometimes the
+                  data would include resident cases and resident deaths only and
+                  then they added in non-resident deaths. But now this year that
+                  changed and about two months ago when they stopped daily
+                  reporting, they got rid of all non-resident cases and
+                  non-resident deaths so, it looked like the numbers dropped but
+                  it's because they got rid of that and it says Florida
+                  residents. But, to the normal person who's just looking at the
+                  data, they won't understand why they're seeing different
+                  numbers and we wanted to make sure that we made that clear to
+                  our readers.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:02:50]</b> How have you been
+                  communicating that with your audience? Have you been kind of
+                  going back and showing the differences?
                   <br />
                   <br />
                   <br />
-                  <b>Dr. David Benkeser: [00:04:03] </b> Yeah, we kind of got
-                  divvied up amongst the trials, you know. So, I worked with
-                  Astra-Zeneca's Phase 3 study in the US and currently, I guess,
-                  technically associated with the Sanofi trial, which has been a
-                  bit slower to develop – they've had some road bumps along the
-                  way. And so, we've had, you know, a couple of statisticians
-                  working closely on each of these trials, but also you know the
-                  core group of us has been dealing with issues that arch over
-                  all the trials trying to harmonize to the greatest extent
-                  possible, the study designs and data collection methods. So,
-                  [I] sort of had a small role in and all of the US
-                  government-funded trials, but mostly focusing on those two.
+                  <b>Ana Claudia Chacin [00:02:55]</b> Yeah, so I feel like as
+                  soon as we got a good grasp of the change, you know whether
+                  that was with our story last summer about how the data changed
+                  and how all the changes were made and once we understood what
+                  was happening and why we were seeing different numbers, we put
+                  out that story. And, more recently, there was a big change. At
+                  first the change was subtle, so they stopped all daily
+                  reporting. The Florida Department of Health, they used to have
+                  this dashboard that would update every day at a certain time.
+                  We did our daily stories, based off the cumulative [numbers]
+                  of today versus a cumulative yesterday, and those are new
+                  cases or new deaths or whatever. So, eventually we noticed
+                  that the CDC was now doing daily reports and showing those
+                  same changes, so they were reporting the deaths added or the
+                  cases added. So, we started back again with our daily
+                  reporting and made that clear to the reader that this was the
+                  CDC that the data was coming from.
                   <br />
                   <br />
+                  Then comes August 10th, when the CDC numbers completely
+                  change, and so what we saw the day before for every single day
+                  was now way different and at first glance we did not
+                  understand what happened because nobody explained it to us. We
+                  didn't get a press release from the Department of Health. We
+                  didn't get any information from the CDC. And so, we started
+                  working on our sources and talking to experts and talking to—
+                  trying to get something out of the Department of Health and
+                  CDC and eventually find out that they were now reporting by
+                  date of death. And so, we started talking about what that
+                  meant and we talked to Dr. [Shivani] Patel [of Emory’s Rollins
+                  School of Public Health] among the other experts that we spoke
+                  to and wrote that story explaining to people why it's a
+                  problem that they changed it, first of all, in the middle of a
+                  spike in deaths and in cases and then the fact that they
+                  didn't tell us that they changed it. They didn't warn the
+                  media who was responsible for dissecting these numbers. They
+                  didn't tell the public on their website and what it ends up
+                  looking like to the normal person who looks at this dashboard
+                  every day that now the CDC puts up that there’s a decline in
+                  deaths because there's a lag in the reporting process when it
+                  comes to deaths and, before, on August 9th you were maybe
+                  seeing that there were 50 deaths added on August 8th, but then
+                  all of a sudden on August 10th that number turned into four.
                   <br />
-                  <b>Gaëlle Sabben: [00:04:42] </b>So, could you tell us what
-                  vaccine correlates of protection are and how that was
-                  important?
                   <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:04:48] </b> Vaccine correlates of
-                  protection are really... They're trying to get at the
-                  mechanisms, essentially, of how the vaccines work and that's
-                  important for a number of reasons. I mean, it's, of course,
-                  interesting biologically, but it has a much greater impact
-                  clinically as well, in terms of understanding, if we know how
-                  the vaccines work, what immune responses they're generating,
-                  and whether those immune responses are protective, then we can
-                  start to do really cool things with vaccines like understand
-                  how well vaccines will work in new populations. Like, for
-                  example, in kids, you know, [we] see that vaccines are working
-                  well, but that takes very expensive and very long [trials] to
-                  learn, but we learn from that that there's only particular
-                  immune responses that are really driving the efficacy. Well,
-                  we can do much smaller and faster trials in different
-                  populations like kids, make sure the vaccines are generating
-                  the right responses. Of course, make sure they're safe as
-                  well, but you know kind of avoid the hassle of running 30,000,
-                  40,000 participant trials and thereby bring vaccines to new
-                  populations much faster. And, of course, it's not just new
-                  populations, it's new vaccines as well, right?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:05:53] </b> Right?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:05:53] </b> So, we have several
-                  highly effective vaccines, but there's still a huge global
-                  shortage, and so if we can understand, you know, which immune
-                  responses are important, it speeds up the development and
-                  approval process for new vaccines, and so that's a lot of why
-                  the US is so interested in this, right? And, in particular, at
-                  the time we weren't sure that the first vaccines were going to
-                  be such a home run, right? And, I think, in a way it's like an
-                  insurance policy that, if we had a somewhat effective vaccine,
-                  we could still deploy that while learning to refine the
-                  vaccine through a more nuanced study of immune responses.
-                  <br />
-                  <br />
-                  And so, that was, you know, motivations for you know, funding
-                  these correlate studies for making sure that the Phase 3
-                  trials were getting the right data collected at the right
-                  times with the right assays; just trying to harmonize as much
-                  as possible these studies, which is, you know, typically not
-                  something that's possible in the context of a bunch of
-                  different companies running their own separate trials, right?
-                  Like Pfizer’s going to do their own design, Moderna’s going to
-                  do their own... Well, Pfizer did do their own. They're kind of
-                  the oddball. They're not affiliated with us. But all the other
-                  we were kind of able to bring under the same umbrella, which
-                  will ultimately somewhere down the road, probably next year,
-                  will allow us to pool the data from all those trials, and
-                  really do a sort of definitive meta-analysis of this question.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:7:10] </b> That’ll be really exciting.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:07:11] </b> Yeah, yeah, looking
-                  forward to it.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:07:14] </b> So, if you can, what kind of
-                  findings did you have when you were looking at those
-                  correlates of protection?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:07:21] </b> Yeah, so I mean it's
-                  still very much ongoing; we've now submitted for publication a
-                  paper about the Moderna [trial]—they were obviously the first
-                  of the US government-funded trials to reach the finish
-                  line—and Johnson and Johnson will be next, and Astra Zeneca
-                  after that. So, it's very much an ongoing process. But yeah, I
-                  can talk about what we found so far and it's sort of funny,
-                  you know, we've invested all of this money learning about
-                  correlates of protection and a lot of time and energy spent on
-                  it while all the while if you asked any vaccinologist or
-                  immunologists what the correlate of protection was, they would
-                  have just said, “Oh, it's neutralizing antibodies. We know
-                  that.”
-                  <br />
-                  <br />
-                  And so, sort of from the very beginning, there's been this
-                  expectation that for these vaccines it would really be
-                  antibodies that would be driving the majority of the
-                  protection. It's not uncommon for vaccines that that's the
-                  case. And we had other things like Regeneron and monoclonal
-                  antibody studies that showed if you just give people directly
-                  antibodies, it can help prevent disease, so in some ways, it
-                  was sort of an expectation that neutralizing antibodies would
-                  be sort of the driver of the effect of the vaccine, but what
-                  was uncertain was the extent to which that would be true,
-                  right? Are they responsible for all of the vaccine or are
-                  there other immune mechanisms? What fraction of the vaccine’s
-                  effect can be explained by the fact that it's really good at
-                  generating antibodies.
                   <br />
+                  <b>Gaëlle Sabben [00:05:28]</b> Right, presumably eventually
+                  that would catch up, right?
                   <br />
-                  And so, we're starting to roll out results; so, Moderna was
-                  first and then there we did find that you know basically
-                  higher levels of antibodies induced by the vaccine were
-                  associated with lower risk of COVID, so again, it... That's
-                  nice. I was very worried about not finding that, because, we
-                  had people that sort of already accepted that, but so our
-                  analysis did confirm that, and we've started to be able to
-                  describe, try to quantify this fraction, right? We call it the
-                  “proportion mediated”. What percent of the vaccine’s effect is
-                  due to neutralizing antibody responses?
-                  <br />
-                  <br />
-                  It's a key question because it's going to help, I think,
-                  regulators sort of contextualize this because we've already
-                  done this for flu vaccines, where sort of flu vaccines we know
-                  that about 70% of flu vaccine efficacy is explained by
-                  particular immune response and that's sort of like a
-                  benchmark, maybe, for the level that COVID vaccines might need
-                  to hit in order for regulators to say, “OK, you can do these
-                  shorter trials where you just look into mean responses. You
-                  don't have to do these massive trials.” We've started to try
-                  to quantify that—like what fraction is it that's explained by
-                  neutralizing antibodies, but it's challenging. It's a little
-                  bit tricky and Moderna, in particular, is sort of a victim of
-                  their own success, and the vaccine is so effective that, in
-                  the clinical trial, there were so, so few people who ended up
-                  getting disease who got vaccinated. And really, if you think
-                  about it, those are the most interesting people for us, right?
-                  The people who got the vaccine and, nevertheless, ended up
-                  being infected and developing disease and there just weren't
-                  that many of them for Moderna and so it's really a challenging
-                  thing. And the other aspect of that is that almost everybody
-                  had an immune response in response to the Moderna vaccine, so
-                  it's you know when you're studying these questions, it's
-                  really the breakthrough cases that are the most interesting,
-                  as well as the people who didn't generate an immune response,
-                  right? Those are the kind of the non-responders if you will,
-                  right? Those are the people that we really want to try to
-                  understand a bit better, right? But there just weren't that
-                  many of them, for Moderna, it's such a highly immunogenic
-                  vaccine, like if you got it, you probably you remember I was
-                  like on my back for a whole day afterwards, right? Like the
-                  vaccines are really strong.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:10:53] </b>Yes, I can confirm.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:10:54] </b> That's right. So, I
-                  don't think we've been able to develop a completely
-                  satisfactory answer to that question just yet, but I think
-                  what we've seen so far is something that we could expect
-                  similar answer as with flu, which really is that like a
-                  majority of the vaccine’s effect is going through antibodies,
-                  but not all of it.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:11:15] </b>For people who don't
-                  understand immunology, if the immune response is not being
-                  mediated by antibodies, what other ways is it being mediated?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:11:25]</b> Right, right? And you
-                  say for the people who aren't immunologists, that's also me
-                  included. Of course, right?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:11:30] </b> Great! Perfect!
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:11:30] </b>So, I'll give you see my
-                  layman's understanding, right? I mean, there's a host of
-                  immune responses that your body has, you know, in response to
-                  being infected with the disease or being vaccinated, and
-                  antibodies are one of those, and they're sort of the one
-                  that's providing immediate protection. Like you get infected
-                  and you start generating antibodies pretty much right away,
-                  and basically what antibodies do, and this is, again, my very
-                  layman’s understanding is they just float around and stick to
-                  things.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:11:57] </b> Right, that's what I'm
-                  looking for.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:11:59] </b> So, the analogy that I
-                  got is like you know the virus is the hot dog and the
-                  antibodies the bun, right? And the bun just wraps around the
-                  hot dog, and then you know that that hot dog can't infect
-                  yourself. I guess. [laughs] But, of course, most people have
-                  heard of the spike protein, right? That's the guy that's
-                  sticking out that nasty thing sticking out of the surface.
-                  That's what the virus is using to grab onto your cells and
-                  insert itself and replicate. And so, what antibodies do is
-                  they essentially bind to that spike protein. They just sit
-                  there and stick on it. They can do a bit more like, they can
-                  send out chemical signals that say, “Hey come and eat this
-                  thing” to your other cells so they're doing a lot, but that's
-                  essentially their role: just sticking to the things, sticking
-                  to spike proteins so that you know that those spike proteins
-                  can't stick to your cells and infect your cells.
-                  <br />
-                  <br />
-                  That's not an uncommon way, that vaccines have been shown to
-                  provide protection is through these antibody responses. But,
-                  your immune system also developed sort of more long-term
-                  responses. They know that antibodies are only going to stick
-                  around for so long, and so you have these what we call
-                  “cellular immune responses” that are really other mechanisms
-                  whereby your immune system can fight, and, in particular, can
-                  try to remember, right? You know, sometime later you're
-                  exposed to a pathogen, right? Your body immediately recognizes
-                  it and [is] able to mount an effective immune response.
-                  There's many, many pathways, but I think you could break that
-                  down into two, which is basically antibody activity and
-                  cellular activity, and it's kind of been an open question.
-                  There's been the people who are very passionate about cellular
-                  immunity have been saying all along, “What about cellular
-                  immunity?” while the whole field has been saying, “Yay,
-                  neutralizing antibodies”. And so, I think both camps won in
-                  the end. We think at this moment antibodies are driving a lot
-                  of the protection, but it's not the whole story, and certainly
-                  as we start to talk about longer term effects of the vaccines,
-                  I think the cellular immunity people will have a lot more to
-                  say.
-                  <br />
-                  <br />
-                  And that's the other thing to remember here is that when we're
-                  talking about the proportion of the efficacy that's mediated,
-                  that's really short-term efficacy, right? These trials only
-                  lasted for, you know, a few months before we said, “Hey, wow,
-                  these are really effective! Everybody needs to get these right
-                  away.” And so, when we're talking about anything that we're
-                  learning in the context of these clinical trials, really [it]
-                  is about what the kind of protection they provide in the short
-                  term [is], whereas really, it's gonna be a while yet before we
-                  understand sort of the long-term effects and pathways that the
-                  vaccines are working through.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:14:14] </b> Hmm that makes a lot of
-                  sense. So, you were talking earlier about breakthrough cases
-                  being kind of the most interesting. From the analyses that
-                  you've done or what you know about them, has that added to the
-                  understanding of why breakthrough cases are happening in
-                  people who are fully vaccinated?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:14:29] </b> Well, certainly from
-                  our analyses, we can say that breakthrough cases tend to be
-                  more likely in people who aren't mounting as a strong immune
-                  response. So, to that extent, yeah, we have been able to
-                  understand that a little bit, [which] is that the more immune
-                  response you get, the more protected you are, which makes a
-                  lot of sense. I guess, I would just say one thing that's sort
-                  of clear is, you know in, in public health and intro stat
-                  classes very often you're like it's not good to discretize
-                  variables. Like high antibodies or low antibodies, right? You
-                  lose a lot of information in doing that. And yet, that's sort
-                  of what everybody wants to do, right? Everybody wants to know,
-                  like, “Am I protected, right? I have X antibody level. Am I
-                  good to go? Can I go out to bars?” And I think the story is a
-                  little more subtle than that, right? I mean, it would be very
-                  nice if we saw high risk of COVID and then once you're at this
-                  level no risk of COVID. But it's really a bit more subtle than
-                  that and that's something I've been trying to sort of remind
-                  people of. Just because I think people are a bit worried
-                  right? As the rise of Delta happens as you’re seeing more
-                  breakthroughs in the news and we're hearing these results come
-                  out about, you know, antibody levels and risk of COVID, people
-                  want to know, “Can I go and get tested? Right? And see if I
-                  have enough antibodies?” I think we can get closer to that as
-                  time goes on, but I don't think we're quite there yet, where,
-                  really, we have that great of an understanding that you know
-                  you could go and get your antibody levels measured and
-                  understand, “wow I need to go get a booster.” Oh, “I should be
-                  lowering risk,” or something like that. We're not probably not
-                  quite there yet, but that's really where people wish we were.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:16:02] </b> And is that something that
-                  would change over time? So, depending on how soon after you
-                  got a vaccine, if you got your antibody levels measured, you
-                  might say, well, I'm above a certain level. And in that case
-                  people would need to get their antibody levels measured over
-                  time and say, well, at this point now, I'm in the low end.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:16:21] </b> Yeah. That's where we
-                  could be, right? We're not there yet, right? So, our study
-                  really just dealt with peak antibody response. So, two weeks
-                  after the second dose, your antibodies are kicking right?
-                  Everybody had very strong immune response for the most part in
-                  non-immunocompromised populations, of course. But we don't yet
-                  have the data, at least in the context of the original
-                  clinical trials, to understand what those antibodies are doing
-                  over time. And of course, you weren't vaccinated that long
-                  ago, right? So, it's just going to take a while before we
-                  really can generate those data. and it's kind of a hard thing
-                  to study. This is a case where vaccines were a bit of a victim
-                  of their own success and that once the results came out,
-                  everybody who was on the placebo arm in these trials pretty
-                  much immediately got vaccinated. And so, we really lose the
-                  ability, we lose the randomized nature of the study to learn
-                  about these things with the highest level of rigor so that
-                  makes our jobs as statisticians a little more difficult. But
-                  of course, you know, these are things that we're going to be
-                  designing other studies to look at in the coming months and
-                  years.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:17:23] </b> ] I'm sure, I'm sure. And
-                  so, what you're not saying is that as soon as when somebody is
-                  fully vaccinated, that is peak time to go to the bar and be
-                  safe.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:17:32] </b>[Laughs] Yeah, I mean it
-                  is the best time right? If you're gonna go to a bar. But, you
-                  know, at the very least you should probably wear a mask,
-                  right?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:17:40] </b> [Laughs] I appreciate it.
-                  <br />
-                  <br />
-                  When you were looking at findings were they similar in terms
-                  of mediation by age or you know other subpopulations? Or were
-                  you looking more kind of holistically across the population?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:17:53] </b> Yeah, no, we did. We
-                  did look at key subgroups absolutely and the results were sort
-                  of remarkably consistent. What we did see was that older
-                  adults tended to have lower immune responses – that's common
-                  with vaccines. But still the sort of association or the
-                  strength of association between levels of antibodies and
-                  protection was similar across those groups by age, by race,
-                  [by] ethnicity, by sex. Uhm, I think that's all that we looked
-                  at, but it was a pretty consistent story in terms of seeing
-                  that really for everybody, it seems that neutralizing
-                  responses are at least majorly predictive of whether the
-                  vaccine will work or not.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:18:32] </b> So, if you were kind of
-                  distilling the most important takeaways for the public out of
-                  the findings, what would they be?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:18:38] </b> Uhm, it's that antibody
-                  levels matter, I think. But, so the big but, right, is that
-                  that antibodies matter, but what we're really thinking about
-                  at this moment is that antibodies matter for, I think, policy
-                  making decisions about vaccines. Where we're not yet at is
-                  where, I think, antibodies should be informing
-                  individual-level risk decision-making. And, to be quite frank,
-                  I don't really think that we're at the point, you know, coming
-                  back to the policy question, I don't think we're at the point
-                  where we know that antibodies matter enough to justify
-                  boosters, and I think, that's going to be a controversial
-                  opinion, and it's a complex argument. What you'll see is that
-                  Pfizer is advocating for the need for booster because antibody
-                  levels are waning and so forth. And, personally, I think it's
-                  a bit premature to be able to say that because we haven't been
-                  able to look at these long-term antibody responses and
-                  understand how they correlate, right? What we just have is
-                  just there's a correlation, short term, and so that suggests
-                  that long term, yeah, probably more antibodies is better, but
-                  there's that other missing piece of the puzzle, right? Which
-                  is, what's the rest of your immune system doing over time? And
-                  of course, all of these data that we have previously right
-                  were in the context where there wasn't a lot of Delta
-                  circulating, right? This is the old strains of SARS-CoV-2 and
-                  so there's a lot of question marks to me about the question of
-                  how you could use these results to inform policies around
-                  boosters.
-                  <br />
-                  <br />
-                  I would fall on the more conservative end; you know, I'm a
-                  statistician. My sister, who's a consultant, always makes fun
-                  of me because she says, “All you say is ‘We need to do more
-                  studies’. All you can say is ‘Go get more data’”. And she's
-                  like, you know, in the business world where they're like,
-                  “Whatever; just make a decision to go with it!” But I do think
-                  for the boosters I think we're lacking for the data that
-                  really would inform a scientifically sound decision as to
-                  whether booster should be recommended at this moment.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:20:31] </b> Makes a lot of sense. And
-                  are these the types of analyses that were taken into account
-                  when they were making recommendations or when ACIP was looking
-                  at data to recommend a third dose for immunocompromised
-                  populations?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:20:44] </b> You know, I'm not sure
-                  right? And that's the other thing, of course, is the question
-                  of immunocompromised populations. Unfortunately, the initial
-                  trials focused on healthy populations. Johnson and Johnson
-                  will give us a little more insight because there [was] a
-                  higher proportion of individuals living with HIV enrolled in
-                  those studies. And so, we'll start to see a little bit more
-                  about immunocompromised studies, but it's going to take
-                  dedicated studies in those populations, I think, to really
-                  develop the best policies for them and in that case...
-                  <br />
-                  <br />I guess I came off very negative against boosters just
-                  now, but there is the other side of the coin, which is like,
-                  why not, right? The vaccines are generally safe, and so, in
-                  individuals where you can anticipate getting in the right
-                  level of immune response is going to be tough, I understand
-                  the perspective of “why not?” for some subpopulations, but as
-                  a national policy, I think, it should take a little bit of a
-                  higher sort of burden of proof to really recommend that,
-                  particularly in the context of, you know, global shortages.
-                  This being a discussion about vaccine equity as well, right,
-                  that should probably play a role into the policymaking.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:21:49] </b> That would be the hope.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:21:51] </b> The hope, yeah.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:21:53] </b> So, when you're thinking
-                  about questions that remain for you about COVID-19 vaccine
-                  immune response, are there any specific questions that stand
-                  out?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:22:01] </b> Oh yeah, hundreds.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:22:02] </b> OK. [Laughs]
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:22:04] </b>[Laughs] As I said,
-                  Moderna was a tough case study right as the vaccine was so
-                  good everybody had immune responses. I think, just being able
-                  to analyze data from the other trials, which is happening very
-                  soon, will be very informative because, as we know Johnson and
-                  Johnson being a one dose [vaccine regimen], immune responses
-                  tended to be lower and so I think that's going to provide a
-                  lot more information. Then of course you know we have these
-                  longitudinal measurements that are happening over time. It's
-                  just, you know, we have those samples collected already, it
-                  just the labs need to run them and the labs are working 24/7
-                  for the last year, but they'll keep working. So, the
-                  longitudinal trajectory questions of course [are] important
-                  and then bringing this all together in the end, the meta-
-                  analyses of all of these trials and, hopefully, culminating
-                  and in a regulatory sort of accelerated approval pathway for
-                  COVID vaccines, I think, could be could be hugely important.
-                  <br />
-                  <br />
-                  You know I have some own my own interest in sort of
-                  statistical methods, or, you know, ways that we can use the
-                  data that we have to try to understand how we're changing
-                  dosing schedules or dosing levels might affect the impact of
-                  vaccines. That's sort of been a longstanding question as
-                  AstraZeneca maybe stumbled onto a kernel of truth is that
-                  spacing doses might be better or giving partial doses might be
-                  better, so I have some interest in trying to learn about that
-                  using the data that we have on hand.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:23:25] </b> I have one last question
-                  going back to something you mentioned earlier about long-term
-                  effects of these studies, of harmonization of practices. I
-                  wanted to ask whether you thought that that might go beyond
-                  COVID studies. Do you think there will be a larger impact on
-                  the way that vaccine and maybe clinical trials more broadly
-                  are run in the US? Would you expect there to be more kind of
-                  knowledge sharing or more collaboration on some of these
-                  pressing issues?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:23:51] </b> That's a fascinating
-                  question, and I’d like to say yes, right? But of course,
-                  remember that this wasn't like an organic collaboration that
-                  happened. I mean, the manufacturers have been great and very
-                  open with their data sharing and everything, but you know they
-                  had like a billion reasons to engage in that collaborative
-                  process so, I would like to think so, but a lot of it comes
-                  down to the relationships that the manufacturers have and what
-                  their plans are for regulatory submissions, right? They have a
-                  product they've invested a lot of money in, and so they're
-                  very protective of that product.
-                  <br />
-                  <br />
-                  That's not going to go away just because COVID happened. But I
-                  do think, we've learned a lot about this process in terms of,
-                  and it's an ongoing process of, learning about what the public
-                  cares about understanding about vaccines. We've had some
-                  success, a lot of failures in our messaging and communication
-                  about vaccines, and I think we'll learn a lot about that,
-                  particularly in the context of outbreak settings; about how to
-                  effectively communicate with the population about what
-                  vaccines should do, what they're expected to do, what's a
-                  successful vaccine look like?
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:25:01] </b> Mm-hmm
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:25:02] </b> You know, I think we've
-                  done OK with that, but certainly room to do better next time
-                  around, which hopefully doesn't happen for a very long time.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Gaëlle Sabben: [00:25:08] </b>Well, that was very helpful.
-                  Thank you so much.
-                  <br />
-                  <br />
-                  <br />
-                  <b>Dr. David Benkeser: [00:25:11] </b>You're very welcome.
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:05:32]</b> Yeah, 100%. It's just we
+                  wanted to put out the story so the readers [know what they’re]
+                  seeing, and why it's problematic that they're not showing
+                  both. There's value in seeing deaths by date, as well as by
+                  date added, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:05:48]</b> Right, no, absolutely. Did you
+                  get any indication of why they shifted how they were
+                  reporting?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:05:55]</b> So, there was this kind
+                  of big blowout the weekend before between, not between the CDC
+                  and DOH, but, basically, the CDC reported numbers on a Monday,
+                  that Monday before, through the weekend. That was a number
+                  that DOH then said was false. Basically, they started
+                  retweeting journalists and saying, “This is false. This is not
+                  real,” but not explaining what happened. They didn't say,
+                  “These are the real numbers.” Eventually they said, “It's a
+                  three- day cumulative that they're using, and you'll get the
+                  real numbers soon.” <br />
+                  <br />
+                  And then we learned the day after we started calling people
+                  and started trying to figure out what had happened. And it
+                  turned out that—we still don't understand what those three
+                  days were because they didn't add up in the end when they
+                  changed the numbers. But that Tuesday, August 10th, when the
+                  data changed, they said they spent the day back and forth, the
+                  CDC and DOH trying to figure out “the best way” to report and
+                  the most accurate way to report and that changed into date of
+                  occurrence data. But no one was told that this change was
+                  coming. They just said, "It's a more accurate representation
+                  of the data.”
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:07:13]</b> And to be clear the CDC is
+                  pulling the data from DOH, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:07:19]</b> Correct, yes, they say
+                  they report their numbers every day and the CDC then publishes
+                  them.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:07:25]</b> That sounds very confusing for
+                  readers as well as for you too. It kind of brings up a lot of
+                  questions about the rationale. I'm presuming the rationale is
+                  also because it's just a lower number. Do you know if they're
+                  planning on going back or are they kind of sticking with this
+                  process?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:07:41]</b> It sounds like they're
+                  going to stick with this. They've been defending it, and,
+                  after our story ran, they ran this press release saying, the
+                  facts and myths from this story, but they use their own quotes
+                  from the story to say the fact. So, this is the more accurate
+                  way of reporting except it'd be better if we got both. It'd be
+                  better if we'd been told and it would be better if we could
+                  make that clear to people, because even if you just look at
+                  that particular trend [on the] CDC site and you scroll through
+                  the states, you'll see a lot of them go up because they're
+                  reporting by date of reported death. And so, then you scroll
+                  to Florida and a handful of other states and you see that down
+                  slope, which isn't real.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:08:32]</b> I was about to ask you if
+                  there were other states that were taking a similar approach in
+                  terms of reporting.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:08:37]</b> There's very few. Ten
+                  other ones, or nine other ones.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:8:41]</b> OK, interesting, it's just
+                  interesting that they shifted halfway through.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:08:46]</b> It's interesting for
+                  Florida that they shifted. [It’s unclear if] these other
+                  states changed or they had always been reporting that way
+                  because the CDC in their footnotes they say, “For most states
+                  we report from cumulative today versus cumulative yesterday
+                  and that's our number.” But, I think New York and a few others
+                  report by date of occurrence.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:09:11]</b> In your reporting about that,
+                  did you find out why this shift in Florida happened then? Was
+                  it something that was planned? Was it something that just kind
+                  of happened?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:09:20]</b> It wasn't planned it. It
+                  was a result of this kind of Twitter fight that DOH put on
+                  because they said the CDC reported it wrong and then they met
+                  and found the most accurate way of reporting and decided to
+                  change it that way.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:09:36]</b> In terms of reporting on that,
+                  I think you mentioned that there's been some kind of
+                  additional steps to like getting more clarity about that. Can
+                  you talk a little bit more about that?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:09:45]</b> Yeah, so since we've had
+                  issues with a lot of data; assisted living facility data— we
+                  weren't able to get a hold of that [easily early] on in the
+                  pandemic. We threatened the state with a lawsuit and then that
+                  turned into a whole drama. Early on, also, one of our
+                  reporters got barred from a press conference because the day
+                  before she asked, “Why isn't there any social distancing
+                  here?” Next day they barred her and said, “If you don't want
+                  to be here. You want your social distancing...” [laughs]
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:10:19]</b> “...Social distance away from
+                  this press conference.”
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:10:22]</b> Exactly and, since then,
+                  we've threatened a few more times with a conglomerate of other
+                  media companies for specific data. And now there's one going
+                  on where, actually, a state representative filed this lawsuit
+                  to get the county-level data because when they stopped daily
+                  data, they also stopped reporting county-level data and only
+                  cases by county are reported by them once a week. There's no
+                  death data anymore.
+                  <br />
+                  <br />
+                  And so, DOH says they're reporting that to the CDC, but we're
+                  not sure if that started recently and it's not yet on the CDC
+                  site, so it's a little washy but basically these lawsuits have
+                  gone well in that we've threatened them and they've come out
+                  with the data, including variant data, as well as vaccination
+                  data by ZIP code.
+                  <br />
+                  <br />
+                  There's been issues, of course, and understanding the data and
+                  lack of data definitions and all of that and the DOH has
+                  presented some obstacles in the way that they respond to
+                  journalists. We've had issues where they just don't answer our
+                  questions or they'll answer a week later when it's not as...
+                  you know?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:11:38]</b> Not as urgent? Not as
+                  relevant?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:11:41]</b> Yeah, I would say not
+                  “not as relevant”, but we've already figured it out talking to
+                  epidemiologists. We've done our work and, of course, the
+                  official statement matters and we end up using it, but [it]
+                  comes out a little later.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:11:55]</b> So, obstacles have been mostly
+                  just not responding...?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:11:58]</b> Yeah, lack of dealing
+                  with journalists... Yeah, just obstacles in the way that they
+                  deal with them.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:12:09]</b> When you're trying to get data
+                  to report, the basic process assuming that the data are
+                  reported properly to DOH or CDC, is going to go to CDC and
+                  relying on that?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:12:19]</b> Yeah, so that's our
+                  process right now. We used to have a lot more data within
+                  reach, when we had the DOH dashboard, we had the case line
+                  data; it wasn't extensive, but we had a lot more than we do
+                  now, and now we just have that CDC data that DOH reports to
+                  them, and then once a week we have a report that's a little
+                  bit more detailed, but it's still lacking some crucial
+                  information, like that county death data that I was telling
+                  you about.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:12:50]</b> Not that more detailed report
+                  comes from Florida DOH?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:12:53]</b> It comes from Florida DOH
+                  every Friday, yes.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:12:57]</b> When you're looking for more
+                  specifics about specific aspects of the data, how do you get
+                  that information?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:13:04]</b> It depends; sometimes
+                  that information comes from epidemiologists studying the data
+                  further and understanding the trends and all of that. And at
+                  the Herald we have myself and another data reporter who kind
+                  of look at it more deeply and understand the trends. And then
+                  there's the lawsuits! There's the lawsuits, and that's how we
+                  get that vaccination data by ZIP code. That's how we get more
+                  detailed, granular things that are of public interest.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:13:34]</b> Great, it's so important to
+                  get that information out, especially, in a digestible format,
+                  right so?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:13:40]</b> Yeah, it's been tough,
+                  but you know we're doing it.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:13:45]</b> Kind of more broadly beyond
+                  COVID, and you said that you're going to be doing further
+                  reporting on data; what is the responsibility of reporting
+                  this type of data to the public through the media?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:13:56]</b> I think it's really
+                  important, as you said, to report this information in a
+                  digestible way and have the public understand what's happening
+                  currently, whether that's COVID, whether that's vaccination.
+                  We've done a few stories about vaccination by ZIP code; in
+                  Miami Dade we’re very lucky the county administration has been
+                  working with us and sending us weekly vaccination by ZIP code
+                  data, so we've been able to put out a few stories that are
+                  relevant to our community, like vaccinations are lagging among
+                  Black communities in Miami Dade, or vaccinations are lagging
+                  among Central American communities in Miami Dade, not just—
+                  South Americans are actually been better vaccinated than the
+                  median, but then you have very small pockets of really poorly
+                  vaccinated neighborhood.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:14:47]</b> That's really good that you
+                  have that granular level data.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:14:50]</b> It's been really great to
+                  inform the public and talk to those communities, find out why.
+                  A lot of the time, that's lack of transportation or, “I work
+                  in the field 10 hours a day; I don't want to go out of my way
+                  to go get vaccinated. I want to be with my family” and it's
+                  great to have our readers have that context and not just
+                  assume that certain people aren't getting it because they
+                  don't have the knowledge or they're not educated. So, there's
+                  more than that.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:15:20]</b> That's so important, and I
+                  think that the interaction between that and then [the] policy
+                  or impact that that can have is so important.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:15:29]</b> Yeah, and this
+                  administration at the county level has really responded to our
+                  work and has those stories... I think—they won't say—but I
+                  think it's helped them pinpoint these areas and maybe in one
+                  of our stories we noted that the hotel industry, according to
+                  the ZIP code data, there's a lot of hotel workers living in
+                  certain areas. They were poorly vaccinated and so they had
+                  this move to take the vaccines into the hotels for their
+                  employees and have events there to get vaccinated. So, I think
+                  that's really helped, especially here in Miami Dade, where we
+                  have access to that.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:16:11]</b> That's awesome, that's great
+                  to be able to see that impact of the work that you're doing.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:16:15]</b> It's really rewarding,
+                  yeah.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:16:17]</b> Is there any data or any kind
+                  of reporting that isn't happening that you'd like to see
+                  happening more around either COVID specifically or just like
+                  data in general? I'm not specifically asking you to do that
+                  reporting...
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:16:29]</b> Yeah...
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:19:02]</b> ...but, seeing whether it's
+                  Florida specifically or Miami or kind of more broadly in the
+                  US, just any areas where you're like “I have questions that
+                  are just not being reported on”?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:16:39]</b> Yeah, so I think we have
+                  tried really hard, but we haven't been able to get the ZIP
+                  code level data for COVID cases, and so it's been hard to
+                  report from Florida. You get the national outlook that it's
+                  hit Hispanic communities worse and Black communities worse,
+                  but it's hard to do that kind of reporting here because we're
+                  not getting that ZIP code-level information and so we're able
+                  to say, “Yes it hit Miami Dade really, really hard early on”
+                  and “Yes, Miami Dade is 60 something percent Hispanic”, but we
+                  don't know if the more Hispanic ZIP codes are the ones being
+                  hit the hardest, if that makes sense so I would love to be
+                  able to do that kind of reporting, that's more granular and
+                  being able to say with certainty that it's hitting these
+                  communities the worst.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:17:26]</b> Do you think that's something
+                  you'll be able to do?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:17:28]</b> If we get that data, but
+                  it's been hard, we've been trying for more than a year to get
+                  that data. They say that it's privacy issues that they can't
+                  give it away because of the certain way they report them and
+                  they put them in the system. It's hard to extract without
+                  giving away information, but I think we're going to keep
+                  trying and see.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:17:50]</b> And beyond COVID, is there
+                  anything that you're excited to be to be looking into? Any
+                  topics that you're excited to work on?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin [00:17:56]</b> I think in data work
+                  there's a possibility to dig into anything that's affecting a
+                  certain community more than another, and so I'm excited to
+                  explore different sides that aren't COVID for sure, whether
+                  that's income inequalities or gender gaps or financial data
+                  like political financial data or any of that. I'm excited to
+                  do more beyond COVID. Hopefully that'll be soon!
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben [00:18:25]</b> Yeah, that sounds great. Well,
+                  thank you so much! Thanks for joining me and thanks for
+                  talking about all of these issues.
+                  <b>Ana Claudia Chacin [00:18:32]</b> Thank you so much for
+                  having me.
                 </Header>
               </Header.Content>
             </Header>
