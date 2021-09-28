@@ -76,8 +76,7 @@ export default function AboutUs(props) {
                 >
                   <p style={{ textAlign: "left", fontWeight: 300 }}>
                     By Gaëlle Sabben on Sep. 10, 2021
-                    <br />
-                    Contributors: K.M. Venkat Narayan, Shivani A. Patel
+                  
                     <br />
                     From Emory University
                     <br />
