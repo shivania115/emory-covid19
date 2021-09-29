@@ -572,31 +572,31 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
     },
     {
-      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['race'][0]['NHPI'][0]['percentPop'],
+      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
       vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
         : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
           : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
     },
     {
-      name: 'American Natives', popvalue: props.demogData['race'][0]['American Native'][0]['percentPop'],
+      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
       vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
         : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
           : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
     },
     {
-      name: 'Asian', popvalue: props.demogData['race'][0]['Asian'][0]['percentPop'],
+      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
       vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
         : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
           : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
     },
     {
-      name: 'African Americans', popvalue: props.demogData['race'][0]['African American'][0]['percentPop'],
+      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
       vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
         : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
           : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
     },
     {
-      name: 'Hispanic', popvalue: props.demogData['race'][0]['Hispanic'][0]['percentPop'],
+      name: 'Hispanic', popvalue: props.demogData['vaccineRace'][0]['Hispanic'][0]['percentPop'],
       vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']
         : (props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0
           : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])
@@ -1719,36 +1719,36 @@ const USVaccineTracker= (props) => {
 
                                 {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ?
-                                    " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']) + "% of the population, and " +
+                                    (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']) + "% of the fully vaccinated."
                                     :
                                     ""} </li>}
 
                                 {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ?
-                                    " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']) + "% of the population, and " +
+                                    (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']) + "% of the fully vaccinated."
                                     :
                                     ""}</li>}
 
                                 {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ?
-                                    " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']) + "% of the population, and " +
+                                    (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'])+ "% of the fully vaccinated."
                                     :
                                     ""} </li>}
 
                                 {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ?
-                                    " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']) + "% of the population, and " +
+                                    (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']) + "% of the fully vaccinated."
                                     :
                                     ""}</li>}
 
                                 {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ?
-                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']) + "% of the population, and " +
+                                    (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']) + "% of the fully vaccinated."
                                     :
                                     ""} </li>}
 
