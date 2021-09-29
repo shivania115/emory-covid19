@@ -48,8 +48,8 @@ export default function AboutUs(props) {
             >
               <Header.Content>
                 Digesting COVID-19 data for public consumption: A conversation
-                with Ms. Ana Claudia Chacin of the Miami Herald on covering
-                Covid in Florida.
+                with Ms. Ana Claudia Chacin of el Nuevo Herald/the Miami Herald
+                on covering COVID in Florida.
                 <Header.Subheader
                   style={{
                     fontSize: "18pt",
@@ -76,34 +76,45 @@ export default function AboutUs(props) {
                 >
                   <p style={{ textAlign: "left", fontWeight: 300 }}>
                     By Gaëlle Sabben on Sep. 10, 2021
-                  
                     <br />
                     From Emory University
                     <br />
                   </p>
                   <br />
+                  <b>Update</b>
+                  <br />
+                  <br />
+                  Since this podcast was recorded on September 10th 2021, CDC
+                  started presenting&nbsp;
+                  <a href="https://covid.cdc.gov/covid-data-tracker/#county-view">
+                    data
+                  </a>
+                  &nbsp;on deaths by county.
+                  <br />
+                  <br />
+                  <br />
                   <b>Transcript</b>
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:00:04]</b> So today we're speaking with
+                  <b>Gaëlle Sabben: [00:00:04]</b> So today we're speaking with
                   Ana Claudia Chacin, who is a reporter at El Nuevo Herald and
                   the Miami Herald. Ms. Chacin, welcome.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:00:19]</b> Thank you so much for
+                  <b>Ana Claudia Chacin: [00:00:19]</b> Thank you so much for
                   having me.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:00:21]</b> Thanks for joining us. I
+                  <b>Gaëlle Sabben: [00:00:21]</b> Thanks for joining us. I
                   wanted to start with you telling us a little bit about
                   yourself and about your COVID-related reporting experience if
                   you would.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:00:31]</b> Yeah, so I've been at
+                  <b>Ana Claudia Chacin: [00:00:31]</b> Yeah, so I've been at
                   both Heralds, for about two years now and basically, I've been
                   reporting on COVID since the 4th month I started. El Nuevo
                   Herald pretty much tasked me as being the point person for
@@ -116,13 +127,13 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:01:04]</b> What were some of the little
+                  <b>Gaëlle Sabben: [00:01:04]</b> What were some of the little
                   discrepancies that you noticed?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:01:08]</b> So, around summer ’20, we
-                  started looking at the different datasets that the Florida
+                  <b>Ana Claudia Chacin: [00:01:08]</b> So, around summer ’20,
+                  we started looking at the different datasets that the Florida
                   Department of Health provided. They had launched their
                   dashboard by that point and they also had back-end data, which
                   was case line data—basically line by line each case and a
@@ -138,18 +149,18 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:02:02]</b> So, what did you find that was
-                  going on?
+                  <b>Gaëlle Sabben: [00:02:02]</b> So, what did you find that
+                  was going on?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin</b> [00:02:04] Well, that those were the
-                  differences and the numbers didn't match, but it was because
-                  of different, like little discrepancies in when it was being
-                  reported. And there were changes too in that sometimes the
-                  data would include resident cases and resident deaths only and
-                  then they added in non-resident deaths. But now this year that
-                  changed and about two months ago when they stopped daily
+                  <b>Ana Claudia Chacin: [00:02:04]</b> Well, that those were
+                  the differences and the numbers didn't match, but it was
+                  because of different, like little discrepancies in when it was
+                  being reported. And there were changes too in that sometimes
+                  the data would include resident cases and resident deaths only
+                  and then they added in non-resident deaths. But now this year
+                  that changed and about two months ago when they stopped daily
                   reporting, they got rid of all non-resident cases and
                   non-resident deaths so, it looked like the numbers dropped but
                   it's because they got rid of that and it says Florida
@@ -160,13 +171,13 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:02:50]</b> How have you been
+                  <b>Gaëlle Sabben: [00:02:50]</b> How have you been
                   communicating that with your audience? Have you been kind of
                   going back and showing the differences?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:02:55]</b> Yeah, so I feel like as
+                  <b>Ana Claudia Chacin: [00:02:55]</b> Yeah, so I feel like as
                   soon as we got a good grasp of the change, you know whether
                   that was with our story last summer about how the data changed
                   and how all the changes were made and once we understood what
@@ -212,12 +223,12 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:05:28]</b> Right, presumably eventually
+                  <b>Gaëlle Sabben: [00:05:28]</b> Right, presumably eventually
                   that would catch up, right?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:05:32]</b> Yeah, 100%. It's just we
+                  <b>Ana Claudia Chacin: [00:05:32]</b> Yeah, 100%. It's just we
                   wanted to put out the story so the readers [know what they’re]
                   seeing, and why it's problematic that they're not showing
                   both. There's value in seeing deaths by date, as well as by
@@ -225,13 +236,13 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:05:48]</b> Right, no, absolutely. Did you
-                  get any indication of why they shifted how they were
+                  <b>Gaëlle Sabben: [00:05:48]</b> Right, no, absolutely. Did
+                  you get any indication of why they shifted how they were
                   reporting?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:05:55]</b> So, there was this kind
+                  <b>Ana Claudia Chacin: [00:05:55]</b> So, there was this kind
                   of big blowout the weekend before between, not between the CDC
                   and DOH, but, basically, the CDC reported numbers on a Monday,
                   that Monday before, through the weekend. That was a number
@@ -240,7 +251,8 @@ export default function AboutUs(props) {
                   real,” but not explaining what happened. They didn't say,
                   “These are the real numbers.” Eventually they said, “It's a
                   three- day cumulative that they're using, and you'll get the
-                  real numbers soon.” <br />
+                  real numbers soon.”
+                  <br />
                   <br />
                   And then we learned the day after we started calling people
                   and started trying to figure out what had happened. And it
@@ -256,27 +268,27 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:07:13]</b> And to be clear the CDC is
+                  <b>Gaëlle Sabben: [00:07:13]</b> And to be clear the CDC is
                   pulling the data from DOH, right?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:07:19]</b> Correct, yes, they say
+                  <b>Ana Claudia Chacin: [00:07:19]</b> Correct, yes, they say
                   they report their numbers every day and the CDC then publishes
                   them.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:07:25]</b> That sounds very confusing for
-                  readers as well as for you too. It kind of brings up a lot of
-                  questions about the rationale. I'm presuming the rationale is
-                  also because it's just a lower number. Do you know if they're
-                  planning on going back or are they kind of sticking with this
-                  process?
+                  <b>Gaëlle Sabben: [00:07:25]</b> That sounds very confusing
+                  for readers as well as for you too. It kind of brings up a lot
+                  of questions about the rationale. I'm presuming the rationale
+                  is also because it's just a lower number. Do you know if
+                  they're planning on going back or are they kind of sticking
+                  with this process?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:07:41]</b> It sounds like they're
+                  <b>Ana Claudia Chacin: [00:07:41]</b> It sounds like they're
                   going to stick with this. They've been defending it, and,
                   after our story ran, they ran this press release saying, the
                   facts and myths from this story, but they use their own quotes
@@ -292,23 +304,23 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:08:32]</b> I was about to ask you if
+                  <b>Gaëlle Sabben: [00:08:32]</b> I was about to ask you if
                   there were other states that were taking a similar approach in
                   terms of reporting.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:08:37]</b> There's very few. Ten
+                  <b>Ana Claudia Chacin: [00:08:37]</b> There's very few. Ten
                   other ones, or nine other ones.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:8:41]</b> OK, interesting, it's just
+                  <b>Gaëlle Sabben: [00:8:41]</b> OK, interesting, it's just
                   interesting that they shifted halfway through.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:08:46]</b> It's interesting for
+                  <b>Ana Claudia Chacin: [00:08:46]</b> It's interesting for
                   Florida that they shifted. [It’s unclear if] these other
                   states changed or they had always been reporting that way
                   because the CDC in their footnotes they say, “For most states
@@ -318,14 +330,14 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:09:11]</b> In your reporting about that,
+                  <b>Gaëlle Sabben: [00:09:11]</b> In your reporting about that,
                   did you find out why this shift in Florida happened then? Was
                   it something that was planned? Was it something that just kind
                   of happened?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:09:20]</b> It wasn't planned it. It
+                  <b>Ana Claudia Chacin: [00:09:20]</b> It wasn't planned it. It
                   was a result of this kind of Twitter fight that DOH put on
                   because they said the CDC reported it wrong and then they met
                   and found the most accurate way of reporting and decided to
@@ -333,14 +345,14 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:09:36]</b> In terms of reporting on that,
-                  I think you mentioned that there's been some kind of
+                  <b>Gaëlle Sabben: [00:09:36]</b> In terms of reporting on
+                  that, I think you mentioned that there's been some kind of
                   additional steps to like getting more clarity about that. Can
                   you talk a little bit more about that?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:09:45]</b> Yeah, so since we've had
+                  <b>Ana Claudia Chacin: [00:09:45]</b> Yeah, so since we've had
                   issues with a lot of data; assisted living facility data— we
                   weren't able to get a hold of that [easily early] on in the
                   pandemic. We threatened the state with a lawsuit and then that
@@ -352,12 +364,12 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:10:19]</b> “...Social distance away from
+                  <b>Gaëlle Sabben: [00:10:19]</b> “...Social distance away from
                   this press conference.”
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:10:22]</b> Exactly and, since then,
+                  <b>Ana Claudia Chacin: [00:10:22]</b> Exactly and, since then,
                   we've threatened a few more times with a conglomerate of other
                   media companies for specific data. And now there's one going
                   on where, actually, a state representative filed this lawsuit
@@ -384,12 +396,12 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:11:38]</b> Not as urgent? Not as
+                  <b>Gaëlle Sabben: [00:11:38]</b> Not as urgent? Not as
                   relevant?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:11:41]</b> Yeah, I would say not
+                  <b>Ana Claudia Chacin: [00:11:41]</b> Yeah, I would say not
                   “not as relevant”, but we've already figured it out talking to
                   epidemiologists. We've done our work and, of course, the
                   official statement matters and we end up using it, but [it]
@@ -397,25 +409,25 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:11:55]</b> So, obstacles have been mostly
-                  just not responding...?
+                  <b>Gaëlle Sabben: [00:11:55]</b> So, obstacles have been
+                  mostly just not responding...?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:11:58]</b> Yeah, lack of dealing
+                  <b>Ana Claudia Chacin: [00:11:58]</b> Yeah, lack of dealing
                   with journalists... Yeah, just obstacles in the way that they
                   deal with them.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:12:09]</b> When you're trying to get data
-                  to report, the basic process assuming that the data are
+                  <b>Gaëlle Sabben: [00:12:09]</b> When you're trying to get
+                  data to report, the basic process assuming that the data are
                   reported properly to DOH or CDC, is going to go to CDC and
                   relying on that?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:12:19]</b> Yeah, so that's our
+                  <b>Ana Claudia Chacin: [00:12:19]</b> Yeah, so that's our
                   process right now. We used to have a lot more data within
                   reach, when we had the DOH dashboard, we had the case line
                   data; it wasn't extensive, but we had a lot more than we do
@@ -427,23 +439,23 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:12:50]</b> Not that more detailed report
+                  <b>Gaëlle Sabben: [00:12:50]</b> Not that more detailed report
                   comes from Florida DOH?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:12:53]</b> It comes from Florida DOH
-                  every Friday, yes.
+                  <b>Ana Claudia Chacin: [00:12:53]</b> It comes from Florida
+                  DOH every Friday, yes.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:12:57]</b> When you're looking for more
+                  <b>Gaëlle Sabben: [00:12:57]</b> When you're looking for more
                   specifics about specific aspects of the data, how do you get
                   that information?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:13:04]</b> It depends; sometimes
+                  <b>Ana Claudia Chacin: [00:13:04]</b> It depends; sometimes
                   that information comes from epidemiologists studying the data
                   further and understanding the trends and all of that. And at
                   the Herald we have myself and another data reporter who kind
@@ -454,25 +466,25 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:13:34]</b> Great, it's so important to
+                  <b>Gaëlle Sabben: [00:13:34]</b> Great, it's so important to
                   get that information out, especially, in a digestible format,
                   right so?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:13:40]</b> Yeah, it's been tough,
+                  <b>Ana Claudia: Chacin [00:13:40]</b> Yeah, it's been tough,
                   but you know we're doing it.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:13:45]</b> Kind of more broadly beyond
+                  <b>Gaëlle Sabben: [00:13:45]</b> Kind of more broadly beyond
                   COVID, and you said that you're going to be doing further
                   reporting on data; what is the responsibility of reporting
                   this type of data to the public through the media?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:13:56]</b> I think it's really
+                  <b>Ana Claudia Chacin: [00:13:56]</b> I think it's really
                   important, as you said, to report this information in a
                   digestible way and have the public understand what's happening
                   currently, whether that's COVID, whether that's vaccination.
@@ -489,30 +501,30 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:14:47]</b> That's really good that you
+                  <b>Gaëlle Sabben: [00:14:47]</b> That's really good that you
                   have that granular level data.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:14:50]</b> It's been really great to
-                  inform the public and talk to those communities, find out why.
-                  A lot of the time, that's lack of transportation or, “I work
-                  in the field 10 hours a day; I don't want to go out of my way
-                  to go get vaccinated. I want to be with my family” and it's
-                  great to have our readers have that context and not just
+                  <b>Ana Claudia Chacin: [00:14:50]</b> It's been really great
+                  to inform the public and talk to those communities, find out
+                  why. A lot of the time, that's lack of transportation or, “I
+                  work in the field 10 hours a day; I don't want to go out of my
+                  way to go get vaccinated. I want to be with my family” and
+                  it's great to have our readers have that context and not just
                   assume that certain people aren't getting it because they
                   don't have the knowledge or they're not educated. So, there's
                   more than that.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:15:20]</b> That's so important, and I
+                  <b>Gaëlle Sabben: [00:15:20]</b> That's so important, and I
                   think that the interaction between that and then [the] policy
                   or impact that that can have is so important.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:15:29]</b> Yeah, and this
+                  <b>Ana Claudia Chacin: [00:15:29]</b> Yeah, and this
                   administration at the county level has really responded to our
                   work and has those stories... I think—they won't say—but I
                   think it's helped them pinpoint these areas and maybe in one
@@ -526,17 +538,17 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:16:11]</b> That's awesome, that's great
+                  <b>Gaëlle Sabben: [00:16:11]</b> That's awesome, that's great
                   to be able to see that impact of the work that you're doing.
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:16:15]</b> It's really rewarding,
+                  <b>Ana Claudia Chacin: [00:16:15]</b> It's really rewarding,
                   yeah.
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:16:17]</b> Is there any data or any kind
+                  <b>Gaëlle Sabben: [00:16:17]</b> Is there any data or any kind
                   of reporting that isn't happening that you'd like to see
                   happening more around either COVID specifically or just like
                   data in general? I'm not specifically asking you to do that
@@ -544,18 +556,18 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:16:29]</b> Yeah...
+                  <b>Ana Claudia Chacin: [00:16:29]</b> Yeah...
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:19:02]</b> ...but, seeing whether it's
+                  <b>Gaëlle Sabben: [00:19:02]</b> ...but, seeing whether it's
                   Florida specifically or Miami or kind of more broadly in the
                   US, just any areas where you're like “I have questions that
                   are just not being reported on”?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:16:39]</b> Yeah, so I think we have
+                  <b>Ana Claudia Chacin: [00:16:39]</b> Yeah, so I think we have
                   tried really hard, but we haven't been able to get the ZIP
                   code level data for COVID cases, and so it's been hard to
                   report from Florida. You get the national outlook that it's
@@ -572,12 +584,12 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:17:26]</b> Do you think that's something
+                  <b>Gaëlle Sabben: [00:17:26]</b> Do you think that's something
                   you'll be able to do?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:17:28]</b> If we get that data, but
+                  <b>Ana Claudia Chacin: [00:17:28]</b> If we get that data, but
                   it's been hard, we've been trying for more than a year to get
                   that data. They say that it's privacy issues that they can't
                   give it away because of the certain way they report them and
@@ -587,13 +599,13 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:17:50]</b> And beyond COVID, is there
+                  <b>Gaëlle Sabben: [00:17:50]</b> And beyond COVID, is there
                   anything that you're excited to be to be looking into? Any
                   topics that you're excited to work on?
                   <br />
                   <br />
                   <br />
-                  <b>Ana Claudia Chacin [00:17:56]</b> I think in data work
+                  <b>Ana Claudia Chacin: [00:17:56]</b> I think in data work
                   there's a possibility to dig into anything that's affecting a
                   certain community more than another, and so I'm excited to
                   explore different sides that aren't COVID for sure, whether
@@ -603,10 +615,13 @@ export default function AboutUs(props) {
                   <br />
                   <br />
                   <br />
-                  <b>Gaëlle Sabben [00:18:25]</b> Yeah, that sounds great. Well,
-                  thank you so much! Thanks for joining me and thanks for
+                  <b>Gaëlle Sabben: [00:18:25]</b> Yeah, that sounds great.
+                  Well, thank you so much! Thanks for joining me and thanks for
                   talking about all of these issues.
-                  <b>Ana Claudia Chacin [00:18:32]</b> Thank you so much for
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:18:32]</b> Thank you so much for
                   having me.
                 </Header>
               </Header.Content>
