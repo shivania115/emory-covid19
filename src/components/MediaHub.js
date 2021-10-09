@@ -38,6 +38,53 @@ export default function MediaHub(props) {
                   <Image
                     width="390"
                     height="200"
+                    href="/media-hub/podcast/Chacin_on_Covid_in_Florida"
+                    src="/podcast images/Ana Claudia.png"
+                  />
+                </div>
+              </Grid.Row>
+              <Grid.Row>
+                <div>
+                  <Header as="h2">
+                    <Header.Content
+                      style={{ fontSize: "14pt", fontWeight: 400 }}
+                    >
+                      <div style={{ lineHeight: "16pt", paddingTop: 9 }}>
+                        {" "}
+                        <Header.Content
+                          style={{ color: "#397AB9" }}
+                          href="/media-hub/podcast/Chacin_on_Covid_in_Florida"
+                        >
+                          Digesting COVID-19 data for public consumption: A
+                          conversation with Ms. Ana Claudia Chacin of el Nuevo
+                          Herlad/the Miami Herald on covering COVID in Florida.
+                        </Header.Content>
+                      </div>
+                      <Header.Subheader
+                        style={{ fontWeight: 300, fontSize: "14pt" }}
+                      >
+                        Date Published: Sep. 27, 2021 <br />
+                        Media Type: Podcast
+                        <br />
+                        <br />
+                        Ms. Ana Claudia Chacin talks about the challenges she
+                        and other journalists have faced in accessing and
+                        reporting accurate COVID-19 data in Florida. We discuss
+                        the role of media in informing the public and
+                        influencing decision-making in Florida.
+                      </Header.Subheader>
+                    </Header.Content>
+                  </Header>
+                </div>
+              </Grid.Row>
+            </Grid.Column>
+
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
+              <Grid.Row>
+                <div style={{ paddingBottom: 10 }}>
+                  <Image
+                    width="390"
+                    height="200"
                     href="/media-hub/podcast/Benkeser_about_immunity"
                     src="/podcast images/Benkeser.png"
                   />
@@ -128,7 +175,7 @@ export default function MediaHub(props) {
               </Grid.Row>
             </Grid.Column>
 
-            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 0 }}>
+            <Grid.Column rows={2} style={{ paddingBottom: 20, paddingTop: 70 }}>
               <Grid.Row>
                 <div style={{ paddingBottom: 10 }}>
                   <Image

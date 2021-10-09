@@ -22,6 +22,615 @@ export default function AboutUs(props) {
     <div>
       <AppBar />
 
+      {podcastTitle === "Chacin_on_Covid_in_Florida" && (
+        <Container style={{ marginTop: "8em", minWidth: "1260px" }}>
+          <Breadcrumb
+            style={{
+              fontSize: "14pt",
+              paddingTop: "14pt",
+              paddingBottom: "14pt",
+            }}
+          >
+            <Breadcrumb.Section link onClick={() => history.push("/media-hub")}>
+              Media Hub
+            </Breadcrumb.Section>
+            <Breadcrumb.Divider style={{ fontSize: "14pt" }} />
+            <Breadcrumb.Section active>Podcast</Breadcrumb.Section>
+          </Breadcrumb>
+          <div width={888}>
+            <Header
+              style={{
+                width: 800,
+                marginLeft: 260,
+                fontSize: "32pt",
+                fontWeight: 400,
+              }}
+            >
+              <Header.Content>
+                Digesting COVID-19 data for public consumption: A conversation
+                with Ms. Ana Claudia Chacin of el Nuevo Herald/the Miami Herald
+                on covering COVID in Florida.
+                <Header.Subheader
+                  style={{
+                    fontSize: "18pt",
+                    fontWeight: 300,
+                    paddingTop: "15px",
+                  }}
+                ></Header.Subheader>
+                <div style={{ paddingTop: 10 }}>
+                  <iframe
+                    src="https://anchor.fm/rsph-ched/embed/episodes/Digesting-COVID-19-data-for-public-consumption-A-conversation-with-Ms--Ana-Claudia-Chacin-of-the-Miami-Herald-on-covering-Covid-in-Florida-e17udc2"
+                    height="150px"
+                    width="800px"
+                    frameborder="0"
+                    scrolling="no"
+                  ></iframe>{" "}
+                </div>
+                <Header
+                  style={{
+                    fontSize: "14pt",
+                    lineHeight: "16pt",
+                    fontWeight: 400,
+                    paddingTop: 0,
+                  }}
+                >
+                  <p style={{ textAlign: "left", fontWeight: 300 }}>
+                    By Gaëlle Sabben on Sep. 10, 2021
+                    <br />
+                    From Emory University
+                    <br />
+                  </p>
+                  <br />
+                  <b>Update</b>
+                  <br />
+                  <br />
+                  Since this podcast was recorded on September 10th 2021, CDC
+                  started presenting&nbsp;
+                  <a href="https://covid.cdc.gov/covid-data-tracker/#county-view">
+                    data
+                  </a>
+                  &nbsp;on deaths by county.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Transcript</b>
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:00:04]</b> So today we're speaking with
+                  Ana Claudia Chacin, who is a reporter at El Nuevo Herald and
+                  the Miami Herald. Ms. Chacin, welcome.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:00:19]</b> Thank you so much for
+                  having me.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:00:21]</b> Thanks for joining us. I
+                  wanted to start with you telling us a little bit about
+                  yourself and about your COVID-related reporting experience if
+                  you would.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:00:31]</b> Yeah, so I've been at
+                  both Heralds, for about two years now and basically, I've been
+                  reporting on COVID since the 4th month I started. El Nuevo
+                  Herald pretty much tasked me as being the point person for
+                  coronavirus early on and that started with daily numbers
+                  reporting on until I started noticing some little
+                  discrepancies and differences between the way they were
+                  reporting the data earlier on, and that evolved into
+                  explanatory and investigative [reporting] and that kind of
+                  work.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:01:04]</b> What were some of the little
+                  discrepancies that you noticed?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:01:08]</b> So, around summer ’20,
+                  we started looking at the different datasets that the Florida
+                  Department of Health provided. They had launched their
+                  dashboard by that point and they also had back-end data, which
+                  was case line data—basically line by line each case and a
+                  little brief description of the date of onset of disease and
+                  symptoms, and all that kind of information and they also had
+                  summary reports, but a lot of those tended to be off by some
+                  numbers, and so we kind of went into digging deeper to find
+                  out what was the difference and it was little changes like:
+                  one reported up through midnight of that day [and] the next
+                  one up to the day and a half of whenever they released that
+                  report, and so we wanted to make sure we were being clear with
+                  our audience about what was going on.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:02:02]</b> So, what did you find that
+                  was going on?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:02:04]</b> Well, that those were
+                  the differences and the numbers didn't match, but it was
+                  because of different, like little discrepancies in when it was
+                  being reported. And there were changes too in that sometimes
+                  the data would include resident cases and resident deaths only
+                  and then they added in non-resident deaths. But now this year
+                  that changed and about two months ago when they stopped daily
+                  reporting, they got rid of all non-resident cases and
+                  non-resident deaths so, it looked like the numbers dropped but
+                  it's because they got rid of that and it says Florida
+                  residents. But, to the normal person who's just looking at the
+                  data, they won't understand why they're seeing different
+                  numbers and we wanted to make sure that we made that clear to
+                  our readers.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:02:50]</b> How have you been
+                  communicating that with your audience? Have you been kind of
+                  going back and showing the differences?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:02:55]</b> Yeah, so I feel like as
+                  soon as we got a good grasp of the change, you know whether
+                  that was with our story last summer about how the data changed
+                  and how all the changes were made and once we understood what
+                  was happening and why we were seeing different numbers, we put
+                  out that story. And, more recently, there was a big change. At
+                  first the change was subtle, so they stopped all daily
+                  reporting. The Florida Department of Health, they used to have
+                  this dashboard that would update every day at a certain time.
+                  We did our daily stories, based off the cumulative [numbers]
+                  of today versus a cumulative yesterday, and those are new
+                  cases or new deaths or whatever. So, eventually we noticed
+                  that the CDC was now doing daily reports and showing those
+                  same changes, so they were reporting the deaths added or the
+                  cases added. So, we started back again with our daily
+                  reporting and made that clear to the reader that this was the
+                  CDC that the data was coming from.
+                  <br />
+                  <br />
+                  Then comes August 10th, when the CDC numbers completely
+                  change, and so what we saw the day before for every single day
+                  was now way different and at first glance we did not
+                  understand what happened because nobody explained it to us. We
+                  didn't get a press release from the Department of Health. We
+                  didn't get any information from the CDC. And so, we started
+                  working on our sources and talking to experts and talking to—
+                  trying to get something out of the Department of Health and
+                  CDC and eventually find out that they were now reporting by
+                  date of death. And so, we started talking about what that
+                  meant and we talked to Dr. [Shivani] Patel [of Emory’s Rollins
+                  School of Public Health] among the other experts that we spoke
+                  to and wrote that story explaining to people why it's a
+                  problem that they changed it, first of all, in the middle of a
+                  spike in deaths and in cases and then the fact that they
+                  didn't tell us that they changed it. They didn't warn the
+                  media who was responsible for dissecting these numbers. They
+                  didn't tell the public on their website and what it ends up
+                  looking like to the normal person who looks at this dashboard
+                  every day that now the CDC puts up that there’s a decline in
+                  deaths because there's a lag in the reporting process when it
+                  comes to deaths and, before, on August 9th you were maybe
+                  seeing that there were 50 deaths added on August 8th, but then
+                  all of a sudden on August 10th that number turned into four.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:05:28]</b> Right, presumably eventually
+                  that would catch up, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:05:32]</b> Yeah, 100%. It's just we
+                  wanted to put out the story so the readers [know what they’re]
+                  seeing, and why it's problematic that they're not showing
+                  both. There's value in seeing deaths by date, as well as by
+                  date added, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:05:48]</b> Right, no, absolutely. Did
+                  you get any indication of why they shifted how they were
+                  reporting?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:05:55]</b> So, there was this kind
+                  of big blowout the weekend before between, not between the CDC
+                  and DOH, but, basically, the CDC reported numbers on a Monday,
+                  that Monday before, through the weekend. That was a number
+                  that DOH then said was false. Basically, they started
+                  retweeting journalists and saying, “This is false. This is not
+                  real,” but not explaining what happened. They didn't say,
+                  “These are the real numbers.” Eventually they said, “It's a
+                  three- day cumulative that they're using, and you'll get the
+                  real numbers soon.”
+                  <br />
+                  <br />
+                  And then we learned the day after we started calling people
+                  and started trying to figure out what had happened. And it
+                  turned out that—we still don't understand what those three
+                  days were because they didn't add up in the end when they
+                  changed the numbers. But that Tuesday, August 10th, when the
+                  data changed, they said they spent the day back and forth, the
+                  CDC and DOH trying to figure out “the best way” to report and
+                  the most accurate way to report and that changed into date of
+                  occurrence data. But no one was told that this change was
+                  coming. They just said, "It's a more accurate representation
+                  of the data.”
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:07:13]</b> And to be clear the CDC is
+                  pulling the data from DOH, right?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:07:19]</b> Correct, yes, they say
+                  they report their numbers every day and the CDC then publishes
+                  them.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:07:25]</b> That sounds very confusing
+                  for readers as well as for you too. It kind of brings up a lot
+                  of questions about the rationale. I'm presuming the rationale
+                  is also because it's just a lower number. Do you know if
+                  they're planning on going back or are they kind of sticking
+                  with this process?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:07:41]</b> It sounds like they're
+                  going to stick with this. They've been defending it, and,
+                  after our story ran, they ran this press release saying, the
+                  facts and myths from this story, but they use their own quotes
+                  from the story to say the fact. So, this is the more accurate
+                  way of reporting except it'd be better if we got both. It'd be
+                  better if we'd been told and it would be better if we could
+                  make that clear to people, because even if you just look at
+                  that particular trend [on the] CDC site and you scroll through
+                  the states, you'll see a lot of them go up because they're
+                  reporting by date of reported death. And so, then you scroll
+                  to Florida and a handful of other states and you see that down
+                  slope, which isn't real.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:08:32]</b> I was about to ask you if
+                  there were other states that were taking a similar approach in
+                  terms of reporting.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:08:37]</b> There's very few. Ten
+                  other ones, or nine other ones.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:8:41]</b> OK, interesting, it's just
+                  interesting that they shifted halfway through.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:08:46]</b> It's interesting for
+                  Florida that they shifted. [It’s unclear if] these other
+                  states changed or they had always been reporting that way
+                  because the CDC in their footnotes they say, “For most states
+                  we report from cumulative today versus cumulative yesterday
+                  and that's our number.” But, I think New York and a few others
+                  report by date of occurrence.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:09:11]</b> In your reporting about that,
+                  did you find out why this shift in Florida happened then? Was
+                  it something that was planned? Was it something that just kind
+                  of happened?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:09:20]</b> It wasn't planned it. It
+                  was a result of this kind of Twitter fight that DOH put on
+                  because they said the CDC reported it wrong and then they met
+                  and found the most accurate way of reporting and decided to
+                  change it that way.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:09:36]</b> In terms of reporting on
+                  that, I think you mentioned that there's been some kind of
+                  additional steps to like getting more clarity about that. Can
+                  you talk a little bit more about that?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:09:45]</b> Yeah, so since we've had
+                  issues with a lot of data; assisted living facility data— we
+                  weren't able to get a hold of that [easily early] on in the
+                  pandemic. We threatened the state with a lawsuit and then that
+                  turned into a whole drama. Early on, also, one of our
+                  reporters got barred from a press conference because the day
+                  before she asked, “Why isn't there any social distancing
+                  here?” Next day they barred her and said, “If you don't want
+                  to be here. You want your social distancing...” [laughs]
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:10:19]</b> “...Social distance away from
+                  this press conference.”
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:10:22]</b> Exactly and, since then,
+                  we've threatened a few more times with a conglomerate of other
+                  media companies for specific data. And now there's one going
+                  on where, actually, a state representative filed this lawsuit
+                  to get the county-level data because when they stopped daily
+                  data, they also stopped reporting county-level data and only
+                  cases by county are reported by them once a week. There's no
+                  death data anymore.
+                  <br />
+                  <br />
+                  And so, DOH says they're reporting that to the CDC, but we're
+                  not sure if that started recently and it's not yet on the CDC
+                  site, so it's a little washy but basically these lawsuits have
+                  gone well in that we've threatened them and they've come out
+                  with the data, including variant data, as well as vaccination
+                  data by ZIP code.
+                  <br />
+                  <br />
+                  There's been issues, of course, and understanding the data and
+                  lack of data definitions and all of that and the DOH has
+                  presented some obstacles in the way that they respond to
+                  journalists. We've had issues where they just don't answer our
+                  questions or they'll answer a week later when it's not as...
+                  you know?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:11:38]</b> Not as urgent? Not as
+                  relevant?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:11:41]</b> Yeah, I would say not
+                  “not as relevant”, but we've already figured it out talking to
+                  epidemiologists. We've done our work and, of course, the
+                  official statement matters and we end up using it, but [it]
+                  comes out a little later.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:11:55]</b> So, obstacles have been
+                  mostly just not responding...?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:11:58]</b> Yeah, lack of dealing
+                  with journalists... Yeah, just obstacles in the way that they
+                  deal with them.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:12:09]</b> When you're trying to get
+                  data to report, the basic process assuming that the data are
+                  reported properly to DOH or CDC, is going to go to CDC and
+                  relying on that?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:12:19]</b> Yeah, so that's our
+                  process right now. We used to have a lot more data within
+                  reach, when we had the DOH dashboard, we had the case line
+                  data; it wasn't extensive, but we had a lot more than we do
+                  now, and now we just have that CDC data that DOH reports to
+                  them, and then once a week we have a report that's a little
+                  bit more detailed, but it's still lacking some crucial
+                  information, like that county death data that I was telling
+                  you about.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:12:50]</b> Not that more detailed report
+                  comes from Florida DOH?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:12:53]</b> It comes from Florida
+                  DOH every Friday, yes.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:12:57]</b> When you're looking for more
+                  specifics about specific aspects of the data, how do you get
+                  that information?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:13:04]</b> It depends; sometimes
+                  that information comes from epidemiologists studying the data
+                  further and understanding the trends and all of that. And at
+                  the Herald we have myself and another data reporter who kind
+                  of look at it more deeply and understand the trends. And then
+                  there's the lawsuits! There's the lawsuits, and that's how we
+                  get that vaccination data by ZIP code. That's how we get more
+                  detailed, granular things that are of public interest.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:13:34]</b> Great, it's so important to
+                  get that information out, especially, in a digestible format,
+                  right so?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia: Chacin [00:13:40]</b> Yeah, it's been tough,
+                  but you know we're doing it.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:13:45]</b> Kind of more broadly beyond
+                  COVID, and you said that you're going to be doing further
+                  reporting on data; what is the responsibility of reporting
+                  this type of data to the public through the media?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:13:56]</b> I think it's really
+                  important, as you said, to report this information in a
+                  digestible way and have the public understand what's happening
+                  currently, whether that's COVID, whether that's vaccination.
+                  We've done a few stories about vaccination by ZIP code; in
+                  Miami Dade we’re very lucky the county administration has been
+                  working with us and sending us weekly vaccination by ZIP code
+                  data, so we've been able to put out a few stories that are
+                  relevant to our community, like vaccinations are lagging among
+                  Black communities in Miami Dade, or vaccinations are lagging
+                  among Central American communities in Miami Dade, not just—
+                  South Americans are actually been better vaccinated than the
+                  median, but then you have very small pockets of really poorly
+                  vaccinated neighborhood.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:14:47]</b> That's really good that you
+                  have that granular level data.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:14:50]</b> It's been really great
+                  to inform the public and talk to those communities, find out
+                  why. A lot of the time, that's lack of transportation or, “I
+                  work in the field 10 hours a day; I don't want to go out of my
+                  way to go get vaccinated. I want to be with my family” and
+                  it's great to have our readers have that context and not just
+                  assume that certain people aren't getting it because they
+                  don't have the knowledge or they're not educated. So, there's
+                  more than that.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:15:20]</b> That's so important, and I
+                  think that the interaction between that and then [the] policy
+                  or impact that that can have is so important.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:15:29]</b> Yeah, and this
+                  administration at the county level has really responded to our
+                  work and has those stories... I think—they won't say—but I
+                  think it's helped them pinpoint these areas and maybe in one
+                  of our stories we noted that the hotel industry, according to
+                  the ZIP code data, there's a lot of hotel workers living in
+                  certain areas. They were poorly vaccinated and so they had
+                  this move to take the vaccines into the hotels for their
+                  employees and have events there to get vaccinated. So, I think
+                  that's really helped, especially here in Miami Dade, where we
+                  have access to that.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:16:11]</b> That's awesome, that's great
+                  to be able to see that impact of the work that you're doing.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:16:15]</b> It's really rewarding,
+                  yeah.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:16:17]</b> Is there any data or any kind
+                  of reporting that isn't happening that you'd like to see
+                  happening more around either COVID specifically or just like
+                  data in general? I'm not specifically asking you to do that
+                  reporting...
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:16:29]</b> Yeah...
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:19:02]</b> ...but, seeing whether it's
+                  Florida specifically or Miami or kind of more broadly in the
+                  US, just any areas where you're like “I have questions that
+                  are just not being reported on”?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:16:39]</b> Yeah, so I think we have
+                  tried really hard, but we haven't been able to get the ZIP
+                  code level data for COVID cases, and so it's been hard to
+                  report from Florida. You get the national outlook that it's
+                  hit Hispanic communities worse and Black communities worse,
+                  but it's hard to do that kind of reporting here because we're
+                  not getting that ZIP code-level information and so we're able
+                  to say, “Yes it hit Miami Dade really, really hard early on”
+                  and “Yes, Miami Dade is 60 something percent Hispanic”, but we
+                  don't know if the more Hispanic ZIP codes are the ones being
+                  hit the hardest, if that makes sense so I would love to be
+                  able to do that kind of reporting, that's more granular and
+                  being able to say with certainty that it's hitting these
+                  communities the worst.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:17:26]</b> Do you think that's something
+                  you'll be able to do?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:17:28]</b> If we get that data, but
+                  it's been hard, we've been trying for more than a year to get
+                  that data. They say that it's privacy issues that they can't
+                  give it away because of the certain way they report them and
+                  they put them in the system. It's hard to extract without
+                  giving away information, but I think we're going to keep
+                  trying and see.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:17:50]</b> And beyond COVID, is there
+                  anything that you're excited to be to be looking into? Any
+                  topics that you're excited to work on?
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:17:56]</b> I think in data work
+                  there's a possibility to dig into anything that's affecting a
+                  certain community more than another, and so I'm excited to
+                  explore different sides that aren't COVID for sure, whether
+                  that's income inequalities or gender gaps or financial data
+                  like political financial data or any of that. I'm excited to
+                  do more beyond COVID. Hopefully that'll be soon!
+                  <br />
+                  <br />
+                  <br />
+                  <b>Gaëlle Sabben: [00:18:25]</b> Yeah, that sounds great.
+                  Well, thank you so much! Thanks for joining me and thanks for
+                  talking about all of these issues.
+                  <br />
+                  <br />
+                  <br />
+                  <b>Ana Claudia Chacin: [00:18:32]</b> Thank you so much for
+                  having me.
+                </Header>
+              </Header.Content>
+            </Header>
+          </div>
+          <Notes />
+        </Container>
+      )}
+
       {podcastTitle === "Benkeser_about_immunity" && (
         <Container style={{ marginTop: "8em", minWidth: "1260px" }}>
           <Breadcrumb
