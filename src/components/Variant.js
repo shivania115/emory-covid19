@@ -14,6 +14,7 @@ import VariantFAQ from './VariantFAQ';
 import _, { map, set } from 'lodash';
 import Annotation from './Annotation';
 import allStates from "./allstates.json";
+import Test_Region from './Test_regions';
 import {
   VictoryChart,
   VictoryTooltip,
@@ -421,7 +422,8 @@ if (stateColor){
 
                     </svg>
                                 </Grid.Row>
-                                <ComposableMap
+                                <Test_Region/>
+                                {/* <ComposableMap
                               projection="geoAlbersUsa"
                               data-tip=""
                               width={1200}
@@ -453,8 +455,7 @@ if (stateColor){
                                           console.log(regionMatched);
                                           setHoverName(regionMatched);
                                           
-                                          // const regionMatched=regionState.find(s=>s.id==geo.id)
-                                          // setStateMathched(regionMathced);
+                                    
                                         }}
 
 
@@ -479,25 +480,7 @@ if (stateColor){
                                         
                                         fill={((colorScale && stateColor[geo.id] && (stateColor[geo.id]) > 0) ?
                                                                 colorScale[stateColor[geo.id]] :
-                                                                '#FFFFFF')}
-
-                                        
-
-                                        // fill={
-                                        //       ((colorScale && vaccineData[geo.id] && (vaccineData[geo.id][fully]) > 0) ?
-                                        //     colorScale[vaccineData[geo.id][fully]] :
-                                        //     (colorScale && vaccineData[geo.id] && vaccineData[geo.id][fully] === 0) ?
-                                        //       '#e1dce2' : '#FFFFFF')}
-                                        // {(regionState.find(s=>s.fips===geo.id)).map((n)=>{
-                                        //   console.log(n);
-                                        // })}
-
-                                        // fill={regionState.find(s=>s.id==geo.id).map((n)=>{
-                                        //   return colorScale[variantData[n.region]];
-                                        // })}
-                                         
-                                        
-                                          // fill='#FFFFFF'
+                                                                '#FFFFFF')}                                 
                                       />
                                     
 
@@ -505,10 +488,9 @@ if (stateColor){
 
                                     {geographies.map(geo => {
                                       const centroid = geoCentroid(geo);
-                                      {/* console.log(geo.id.substring(0,2));
-                                      console.log(allStates); */}
+                                    
                                       const cur = allStates.find(s => s.val === geo.id.substring(0,2));
-                                      {/* console.log(cur); */}
+                                  
                                       return (
                                         <g key={geo.rsmKey + "-name"}>
                                           {cur &&
@@ -539,7 +521,7 @@ if (stateColor){
                               </Geographies>
 
 
-                            </ComposableMap>
+                            </ComposableMap> */}
                             </Grid.Column>
                             <Grid.Column width={7} style={{paddingLeft:0}}>
                             <Header as='h2' style={{ fontWeight: 400 }}>
@@ -603,7 +585,7 @@ if (stateColor){
                                     />
                                 </VictoryChart> */}
                                 <div>
-                              {fips &&
+                              {/* {fips &&
                                 <VictoryChart
                                   // minDomain={{ x: fips ? variantTimeseries[fips][variantTimeseries[fips].length - 15].t : variantTimeseries["13"][variantTimeseries["13"].length - 15].t }}
                                   // maxDomain={{ y: fips ? getMaxRange(variantTimeseries[stateMapFips], "caseRateMean", (variantTimeseries[stateMapFips].length - 15)).caseRateMean * 1.05 : getMaxRange(variantTimeseries["13"], "caseRateMean", (variantTimeseries["13"].length - 15)).caseRateMean * 1.05 }}
@@ -678,7 +660,8 @@ if (stateColor){
                                   <VictoryLabel text={"Daily Cases"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
 
 
-                                </VictoryChart>}
+                                </VictoryChart>} */}
+                             
                             </div>
         
                                 <svg className="svgRef"
