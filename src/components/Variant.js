@@ -15,6 +15,8 @@ import _, { map, set } from 'lodash';
 import Annotation from './Annotation';
 import allStates from "./allstates.json";
 import Test_Region from './Test_regions';
+
+import { LineChart, Line, Area, Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, Cell, PieChart, Pie, LabelList, ReferenceArea, ReferenceLine } from "recharts";
 import {
   VictoryChart,
   VictoryTooltip,
@@ -23,6 +25,7 @@ import {
   VictoryGroup,
   VictoryBar,
   VictoryTheme,
+  VictoryArea,
   VictoryAxis,
   VictoryLegend,
   VictoryLine,
@@ -33,6 +36,8 @@ import {
 import regionState from "./stateRegionFip.json";
 import * as d3 from "d3";
 import { scaleQuantile } from "d3-scale";
+const stateColor = "#778899";
+const nationColor = '#b1b3b3';
 function numberWithCommas(x) {
   x = x.toString();
   var pattern = /(-?\d+)(\d{3})/;
@@ -180,6 +185,62 @@ function LatestOnThisDashboard() {
         </Grid>
     )
 }
+function CaseChart(props) {
+  const [playCount, setPlayCount] = useState(0);
+  const data = props.data;
+  const dataState = props.dataState;
+  const sfps = props.stateFips;
+  const ticks = props.ticks;
+  const variable = props.var;
+  const tickFormatter = props.tickFormatter;
+  const labelFormatter = props.labelFormatter;
+  const [animationBool, setAnimationBool] = useState(true);
+
+  const caseYTickFmt = (y) => {
+    return y < 1000 ? y : (y / 1000 + 'k');
+  };
+
+
+  return (
+    <div style={{ paddingTop: 5, paddingBottom: 70, width: 500 }}>
+      <LineChart width={500} height={180} data={data} margin={{ right: 20 }}>
+        {/* <CartesianGrid stroke='#f5f5f5'/> */}
+        <XAxis dataKey="t" ticks={ticks} tick={{ fontSize: 16 }} tickFormatter={tickFormatter} allowDuplicatedCategory={false} />
+        <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} />
+        <Line data={data["_nation"]} name="Nation" type='monotone' dataKey={variable} dot={false}
+          isAnimationActive={animationBool}
+          onAnimationEnd={() => setAnimationBool(false)}
+          animationDuration={5500}
+          animationBegin={500}
+          stroke={nationColor} strokeWidth="2" />
+        {sfps !== "_nation" && <Line data={dataState} name="State" type='monotone' dataKey={variable} dot={false}
+          isAnimationActive={animationBool}
+          onAnimationEnd={() => setAnimationBool(false)}
+          animationDuration={5500}
+          animationBegin={500}
+          stroke={stateColor} strokeWidth="2" />}
+
+        {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
+
+
+
+        <Tooltip labelFormatter={labelFormatter} formatter={variable === "covidmortality7dayfig" ? (value) => numberWithCommas(value.toFixed(1)) : (value) => numberWithCommas(value.toFixed(0))} active={true} />
+      </LineChart>
+      {/* <LineChart width={500} height={300}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="t" type="category" allowDuplicatedCategory={false} />
+        <YAxis dataKey={variable} />
+        <Tooltip />
+        <Legend />
+        
+        <Line dataKey={variable} data={data["_nation"]} name = "nation" />
+        <Line dataKey={variable} data={data[sfps]} name = "nation1"/>
+        <Line dataKey={variable} data={data[sfps+cfps]} name = "nation2"/>
+      </LineChart> */}
+      {/* <Button content='Play' icon='play' floated="right" onClick={() => {setPlayCount(playCount+1); }}/> */}
+    </div>
+  );
+}
 export default function Variant(props) {
     const [stateName, setStateName] = useState('The United States');
     const [fips, setFips] = useState('_nation');
@@ -187,10 +248,11 @@ export default function Variant(props) {
     const [activeHover,setActiveHover]=useState(false);
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
+  const [caseTicks, setCaseTicks] = useState([]);
     const[stateColor,setStateColor]=useState('');
     const [legendSplit, setLegendSplit] = useState([]);
     const [variantTimeseries,setVariantTimeseries]=useState();
-    const [stateMapFips, setStateMapFips] = useState("_nation");
+    const [stateMapFips, setStateMapFips] = useState("USA");
     const [tooltipContent, setTooltipContent] = useState('');
     const [vaccineData, setVaccineData] = useState();
     const [showState, setShowState] = useState(false);
@@ -230,7 +292,7 @@ export default function Variant(props) {
     const [metricName, setMetricName] = useState('Delta');
     const colorHighlight = '#f2a900';
     useEffect(() => {
-      fetch('/data/vaccine7daysTimeseries.json').then(res=>res.json())
+      fetch('/data/variantTimeseries.json').then(res=>res.json())
       .then(x=> {setVariantTimeseries(x)});
       fetch('/data/variantData.json').then(res => res.json())
       .then(x => {
@@ -333,9 +395,32 @@ export default function Variant(props) {
         
       }
     )
-
+    const labelTickFmt = (tick) => {
+      return (
+        // <text>// </ text>
+        /* {tick} */
+        // monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
+        new Date(tick * 1000).getFullYear() + "/" + (new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate()
+  
+      );
+    };
+  
+    const caseTickFmt = (tick) => {
+      // console.log((new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate())
+      return (
+        // <text>// </ text>
+        /* {tick} */
+        // monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()
+        (new Date(tick * 1000).getMonth() + 1) + "/" + new Date(tick * 1000).getDate()
+  
+      );
+    };
+function handleCallback(childData){
+  setStateMapFips(childData);
+}
 if (stateColor){
   console.log(variantTimeseries);
+  // console.log(stateMapFips);
   // console.log((stateColor['13']));
   // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
     return (
@@ -422,7 +507,7 @@ if (stateColor){
 
                     </svg>
                                 </Grid.Row>
-                                <Test_Region/>
+                                <Test_Region parentCallback={handleCallback}/>
                                 {/* <ComposableMap
                               projection="geoAlbersUsa"
                               data-tip=""
@@ -624,34 +709,34 @@ if (stateColor){
 
                                   />
 
-                                  <VictoryLabel text={stateMapFips ? numberWithCommas((variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].dailyCases).toFixed(0)) : numberWithCommas((variantTimeseries["13"][variantTimeseries["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
+                                  <VictoryLabel text={stateMapFips ? numberWithCommas((variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)) : numberWithCommas((variantTimeseries["13"][variantTimeseries["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
 
                                   <VictoryLabel text={stateMapFips ?
-                                    (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
-                                      (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
-                                        (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) + "%"
+                                    (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%" :
+                                      (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? ((variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)).substring(1) + "%" :
+                                        (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%"
                                     :
-                                    (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%" :
-                                      (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? ((variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0)).substring(1) + "%" :
-                                        (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
+                                    (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%" :
+                                      (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? ((variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0)).substring(1) + "%" :
+                                        (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
 
                                   <VictoryLabel text={stateMapFips ?
-                                    (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "↑" :
-                                      (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "↓" : ""
+                                    (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "↑" :
+                                      (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "↓" : ""
                                     :
-                                    (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "↑" :
-                                      (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "↓" : ""}
+                                    (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "↑" :
+                                      (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "↓" : ""}
 
 
                                     x={160} y={80} textAnchor="middle" style={{
                                       fontSize: 24, fontFamily: 'lato'
 
                                       , fill: stateMapFips ?
-                                        (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "#FF0000" :
-                                          (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "#32CD32" : ""
+                                        (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "#FF0000" :
+                                          (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "#32CD32" : ""
                                         :
-                                        (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) > 0 ? "#FF0000" :
-                                          (variantTimeseries["13"][variantTimeseries["13"].length - 1].percent14dayDailyCases).toFixed(0) < 0 ? "#32CD32" : ""
+                                        (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "#FF0000" :
+                                          (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "#32CD32" : ""
 
                                     }} />
 
@@ -661,6 +746,9 @@ if (stateColor){
 
 
                                 </VictoryChart>} */}
+                                {stateMapFips && <CaseChart data={variantTimeseries} dataState={variantTimeseries[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
+                          ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={"Delta_B"} />
+                        }
                              
                             </div>
         

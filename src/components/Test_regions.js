@@ -39,7 +39,7 @@ const colorPalette = [
 export default function Test_region(props) {
   const [colorScale, setColorScale] = useState();
   const [data, setData] = useState();
-  const [regions, setRegions] = useState('');
+  const [regions, setRegions] = useState('USA');
   const [hoverName, setHoverName] = useState('USA');
   const countyColor = "#f2a900";
 
@@ -80,6 +80,7 @@ export default function Test_region(props) {
   }, []);
   if (data) {
     console.log(data);
+    console.log(regions);
     return (
       <div>
       <Container style={{marginTop: '1.5em', minWidth: '300px'}}>
@@ -101,13 +102,16 @@ export default function Test_region(props) {
                       outline: "none",}
               }}
               onMouseEnter={() => {
-                setRegions(geo.properties.regionCode);
+                geo.properties.regionCode==10?setRegions(geo.properties.regionCode):setRegions("0"+geo.properties.regionCode);
+                
+                geo.properties.regionCode==10?props.parentCallback(geo.properties.regionCode):props.parentCallback("0"+geo.properties.regionCode);
                 // console.log(colorScale["1"]);
                 // console.log(regions);
                 // console.log(geo.properties.regionCode)
               }}
               onMouseLeave={() => {
-                setRegions("USA");             
+                setRegions("USA"); 
+                props.parentCallback("USA");            
                                         }}
                     fill={
                     (regions === geo.properties.regionCode)
@@ -124,7 +128,7 @@ export default function Test_region(props) {
       </Grid>
       </Container>
       <ReactTooltip id='map'backgroundColor='white'><Grid>
-                            <Grid.Row>
+                            {/* <Grid.Row>
                             <VictoryChart domainPadding={20}>
                             <VictoryBoxPlot
                               // boxWidth={5}
@@ -138,7 +142,7 @@ export default function Test_region(props) {
                               ]}
                             />
                             </VictoryChart>
-                            </Grid.Row>
+                            </Grid.Row> */}
                             <Grid.Row>
                             <Table celled>
     <Table.Header>
@@ -152,10 +156,10 @@ export default function Test_region(props) {
     <Table.Body>
       <Table.Row>
         <Table.Cell>
-          <Label ribbon>{data[hoverName].DeltaB16172}</Label>
+          <Label ribbon>{data[regions].DeltaB16172}</Label>
         </Table.Cell>
-        <Table.Cell>{data[hoverName].Alpha}</Table.Cell>
-        <Table.Cell>{data[hoverName].Beta}</Table.Cell>
+        <Table.Cell>{data[regions].Alpha}</Table.Cell>
+        <Table.Cell>{data[regions].Beta}</Table.Cell>
       </Table.Row>
       {/* <Table.Row>
         <Table.Cell>Cell</Table.Cell>
