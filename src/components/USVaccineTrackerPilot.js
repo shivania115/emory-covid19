@@ -209,6 +209,8 @@ const nameList = [
   "After You Are Vaccinated",
   "COVID-19 Vaccines FAQ",
   "Vaccination by Race & Ethinicity",
+  "COVID-19 Vaccines, Fertility, and Pregnancy",
+  "Booster, Additional doses",
 ];
 var scrollCount = 0;
 
@@ -363,6 +365,26 @@ function StickyExampleAdjacentContext(props) {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[5]}
                 </Header>
               </Menu.Item>
+              <Menu.Item
+                as="a"
+                href="#fertility"
+                name={nameList[10]}
+                active={
+                  props.activeCharacter == nameList[10] ||
+                  activeItem === nameList[10]
+                }
+                // || activeItem === 'fertitilty and pregnancy'
+                onClick={(e, { name }) => {
+                  setActiveItem({ activeItem: name });
+                }}
+              >
+                <Header as="h4">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {"COVID-19 Vaccines, Fertility"}
+                  <br></br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"and Pregnancy"}
+                </Header>
+              </Menu.Item>
 
               <Menu.Item
                 as="a"
@@ -379,6 +401,23 @@ function StickyExampleAdjacentContext(props) {
               >
                 <Header as="h4">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[6]}
+                </Header>
+              </Menu.Item>
+              <Menu.Item
+                as="a"
+                href="#boosters"
+                name={nameList[11]}
+                active={
+                  props.activeCharacter == nameList[11] ||
+                  activeItem === nameList[11]
+                }
+                // || activeItem === 'boosters, additional doses'
+                onClick={(e, { name }) => {
+                  setActiveItem({ activeItem: name });
+                }}
+              >
+                <Header as="h4">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameList[11]}
                 </Header>
               </Menu.Item>
               <Menu.Item

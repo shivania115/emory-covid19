@@ -123,6 +123,19 @@ function StickyExampleAdjacentContext(props) {
                   >
                     <Header as="h4">Getting Vaccinated</Header>
                   </Menu.Item>
+
+                  <Menu.Item
+                    as="a"
+                    href="#boosters"
+                    name="Boosters, Additional doses"
+                    active={activeItem === "Booster, Additional doses"}
+                    // || activeItem === 'Getting Vaccinated'
+                    onClick={(e, { name }) => {
+                      setActiveItem(name);
+                    }}
+                  >
+                    <Header as="h4">Boosters, Additional doses</Header>
+                  </Menu.Item>
                   <Menu.Item
                     as="a"
                     href="#after"
@@ -973,8 +986,8 @@ export default function VaccinesFAQPilot(props) {
                         {" "}
                         currently{" "}
                       </a>
-                      139 vaccines in various phases of testing across the
-                      world. Of these, 44 are in{" "}
+                      151 vaccines in various phases of testing across the
+                      world. Of these, 50 are in{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases"
@@ -985,11 +998,11 @@ export default function VaccinesFAQPilot(props) {
                         Phase 3{" "}
                       </a>
                       clinical trials. Phase 3 trials are the large-scale
-                      studies done before a vaccine is approved. There are 12
+                      studies done before a vaccine is approved. There are 22
                       vaccines approved for use in different countries, although
-                      only 3 have been approved for use in the United States
+                      only 2 have been approved for use in the United States
                       under the Food and Drug Administration’s Emergency Use
-                      Authorization.
+                      Authorization and one has been fully approved by the FDA.
                     </p>
                   </Accordion.Content>
 
@@ -3131,203 +3144,6 @@ export default function VaccinesFAQPilot(props) {
                   </Accordion.Content>
                 </Accordion>
               </div>
-
-              <div style={{ height: 5 }}></div>
-              <Header as="h2" style={{ fontWeight: 600 }}>
-                <Header.Content>After You Are Vaccinated</Header.Content>
-              </Header>
-
-              <center>
-                {" "}
-                <Waypoint
-                  onEnter={() => {
-                    setActiveCharacter("After You Are Vaccinated");
-                    //console.log(activeCharacter)
-                  }}
-                ></Waypoint>
-              </center>
-
-              <div style={{ paddingLeft: "2rem", paddingBottom: "0rem" }}>
-                <Accordion fluid styled exclusive={false}>
-                  <Accordion.Title
-                    style={{
-                      fontSize: "15pt",
-                      color: "black",
-                      lineHeight: "1.4",
-                    }}
-                    // active={activeIndex === 0}
-                    index={32}
-                    onClick={() =>
-                      activeIndex.indexOf(32) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 32])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 32)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    After I am fully vaccinated against COVID-19, do I still
-                    have to take other preventive measures?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(32) > 0}
-                  >
-                    <p>
-                      Yes.
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://covid19.emory.edu/_nation"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {" "}
-                        COVID-19 transmission{" "}
-                      </a>
-                      is very high in communities across the United States right
-                      now and the Delta variant transmits more easily from
-                      person to person. As such, CDC still recommends continuing
-                      to physically distance, wear a face covering, limit
-                      gatherings, and wash your hands thoroughly even once you
-                      are vaccinated, including after receiving both doses for
-                      the two-dose vaccines. Even though increasing numbers of
-                      people across the United States are fully vaccinated as
-                      the pandemic changes and transmission remains high, it is
-                      important that people continue to follow these
-                      precautions. The vaccine is the first part in a “one-two
-                      punch” that also includes physical distancing, wearing a
-                      mask, washing your hands regularly, and staying away from
-                      large gatherings.
-                    </p>
-                  </Accordion.Content>
-
-                  <Accordion.Title
-                    style={{ fontSize: "15pt", color: "black" }}
-                    // active={activeIndex === 0}
-                    index={33}
-                    onClick={() =>
-                      activeIndex.indexOf(33) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 33])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 33)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    After I am fully vaccinated, do I still need to quarantine
-                    if I am exposed to COVID-19?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(33) > 0}
-                  >
-                    <p>
-                      You may not need to quarantine, but it depends on your
-                      situation. Currently,{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        COVID-19 recommendations
-                      </a>
-                      are that you should wear a mask indoors in public for 14
-                      days after you are exposed or until you get a negative
-                      COVID-19 test. You should also get tested 3-5 days after
-                      your exposure, even if you do not have any symptoms. If
-                      your test is positive, you should isolate for 10 days.
-                    </p>
-                    {/* <ol style={{ paddingLeft: '4rem', lineHeight: "150%" }}>
-                      <li>
-                        You have been fully vaccinated (received both shots if the COVID-19 vaccine you are getting is a two-dose vaccine) more than 2 weeks ago
-                      </li>
-                      <li>
-                        You received your last COVID-19 vaccine less than 3 months ago
-                      </li>
-                      <li>
-                        AND you do not have any symptoms of COVID-19 since you were exposed.
-                      </li>
-                    </ol>
-                    <p>
-                      Transmission of COVID-19 is very high across the country so CDC still recommends quarantining if you are exposed through a close contact and do not meet all 3 of these conditions.
-                    </p> */}
-                  </Accordion.Content>
-
-                  <Accordion.Title
-                    style={{
-                      fontSize: "15pt",
-                      color: "black",
-                      lineHeight: "1.4",
-                    }}
-                    // active={activeIndex === 0}
-                    index={45}
-                    onClick={() =>
-                      activeIndex.indexOf(45) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 45])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 45)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    If I travel after I am fully vaccinated, do I still need to
-                    wear a mask or quarantine?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(45) > 0}
-                  >
-                    <p>
-                      Federal regulations do require wearing a mask for anyone{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        traveling
-                      </a>{" "}
-                      on any form of public transport, regardless of vaccination
-                      status. This includes: bus, plane, train, subways, taxis,
-                      ride-shares, boats, ships, trolleys, and cable cars. It
-                      also includes school buses and indoor transportation hubs
-                      such as airports, train stations, and subways stations.
-                    </p>
-                    <p>
-                      If you are{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/travel-during-covid19.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        traveling within the United States
-                      </a>
-                      , you do not need to get tested before or after traveling
-                      or to quarantine after travel. You should still monitor
-                      your health for any symptoms after travel and follow
-                      testing and isolation guidance as appropriate.
-                    </p>
-                    <p>
-                      If you are traveling{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        outside the United States
-                      </a>
-                      , you should check the situation at your destination to
-                      fully understand the regulations about masking,
-                      quarantine, and testing. They may be different from
-                      regulations within the United States.
-                    </p>
-                  </Accordion.Content>
-                </Accordion>
-              </div>
-
               {/* new section -------- */}
 
               <div style={{ height: 5 }}></div>
@@ -3425,10 +3241,10 @@ export default function VaccinesFAQPilot(props) {
                       received the Johnson & Johnson/ Janssen vaccine.
                     </p>
                     <p>
-                      A booster shot (i.e. a third dose of ONLY the Pfizer
-                      two-shot vaccine at least 6 months after receiving the
-                      second dose for people who were originally vaccinated with
-                      the Pfizer-BioNTech vaccine) is authorized by{" "}
+                      <b>A booster shot</b> (i.e. a third dose of ONLY the
+                      Pfizer two-shot vaccine at least 6 months after receiving
+                      the second dose for people who were originally vaccinated
+                      with the Pfizer-BioNTech vaccine) is authorized by{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
@@ -3752,6 +3568,202 @@ export default function VaccinesFAQPilot(props) {
                       recommended for similar groups who received one of the
                       other COVID-19 vaccines and guidance will be updated once
                       that has been reviewed by the FDA and CDC.
+                    </p>
+                  </Accordion.Content>
+                </Accordion>
+              </div>
+
+              <div style={{ height: 5 }}></div>
+              <Header as="h2" style={{ fontWeight: 600 }}>
+                <Header.Content>After You Are Vaccinated</Header.Content>
+              </Header>
+
+              <center>
+                {" "}
+                <Waypoint
+                  onEnter={() => {
+                    setActiveCharacter("After You Are Vaccinated");
+                    //console.log(activeCharacter)
+                  }}
+                ></Waypoint>
+              </center>
+
+              <div style={{ paddingLeft: "2rem", paddingBottom: "0rem" }}>
+                <Accordion fluid styled exclusive={false}>
+                  <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={32}
+                    onClick={() =>
+                      activeIndex.indexOf(32) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 32])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 32)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    After I am fully vaccinated against COVID-19, do I still
+                    have to take other preventive measures?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(32) > 0}
+                  >
+                    <p>
+                      Yes.
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://covid19.emory.edu/_nation"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        COVID-19 transmission{" "}
+                      </a>
+                      is very high in communities across the United States right
+                      now and the Delta variant transmits more easily from
+                      person to person. As such, CDC still recommends continuing
+                      to physically distance, wear a face covering, limit
+                      gatherings, and wash your hands thoroughly even once you
+                      are vaccinated, including after receiving both doses for
+                      the two-dose vaccines. Even though increasing numbers of
+                      people across the United States are fully vaccinated as
+                      the pandemic changes and transmission remains high, it is
+                      important that people continue to follow these
+                      precautions. The vaccine is the first part in a “one-two
+                      punch” that also includes physical distancing, wearing a
+                      mask, washing your hands regularly, and staying away from
+                      large gatherings.
+                    </p>
+                  </Accordion.Content>
+
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={33}
+                    onClick={() =>
+                      activeIndex.indexOf(33) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 33])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 33)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    After I am fully vaccinated, do I still need to quarantine
+                    if I am exposed to COVID-19?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(33) > 0}
+                  >
+                    <p>
+                      You may not need to quarantine, but it depends on your
+                      situation. Currently,{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        COVID-19 recommendations
+                      </a>
+                      are that you should wear a mask indoors in public for 14
+                      days after you are exposed or until you get a negative
+                      COVID-19 test. You should also get tested 3-5 days after
+                      your exposure, even if you do not have any symptoms. If
+                      your test is positive, you should isolate for 10 days.
+                    </p>
+                    {/* <ol style={{ paddingLeft: '4rem', lineHeight: "150%" }}>
+                      <li>
+                        You have been fully vaccinated (received both shots if the COVID-19 vaccine you are getting is a two-dose vaccine) more than 2 weeks ago
+                      </li>
+                      <li>
+                        You received your last COVID-19 vaccine less than 3 months ago
+                      </li>
+                      <li>
+                        AND you do not have any symptoms of COVID-19 since you were exposed.
+                      </li>
+                    </ol>
+                    <p>
+                      Transmission of COVID-19 is very high across the country so CDC still recommends quarantining if you are exposed through a close contact and do not meet all 3 of these conditions.
+                    </p> */}
+                  </Accordion.Content>
+
+                  <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={45}
+                    onClick={() =>
+                      activeIndex.indexOf(45) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 45])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 45)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    If I travel after I am fully vaccinated, do I still need to
+                    wear a mask or quarantine?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(45) > 0}
+                  >
+                    <p>
+                      Federal regulations do require wearing a mask for anyone{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        traveling
+                      </a>{" "}
+                      on any form of public transport, regardless of vaccination
+                      status. This includes: bus, plane, train, subways, taxis,
+                      ride-shares, boats, ships, trolleys, and cable cars. It
+                      also includes school buses and indoor transportation hubs
+                      such as airports, train stations, and subways stations.
+                    </p>
+                    <p>
+                      If you are{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/travel-during-covid19.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        traveling within the United States
+                      </a>
+                      , you do not need to get tested before or after traveling
+                      or to quarantine after travel. You should still monitor
+                      your health for any symptoms after travel and follow
+                      testing and isolation guidance as appropriate.
+                    </p>
+                    <p>
+                      If you are traveling{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        outside the United States
+                      </a>
+                      , you should check the situation at your destination to
+                      fully understand the regulations about masking,
+                      quarantine, and testing. They may be different from
+                      regulations within the United States.
                     </p>
                   </Accordion.Content>
                 </Accordion>
