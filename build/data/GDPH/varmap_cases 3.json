@@ -1,0 +1,54 @@
+{
+  "countyname": {
+    "name": "County",
+    "category": NaN
+  },
+  "total_rateC": {
+    "name": "Total",
+    "category": "Total"
+  },
+  "female_rateC": {
+    "name": "Female",
+    "category": "Sex"
+  },
+  "male_rateC": {
+    "name": "Male",
+    "category": "Sex"
+  },
+  "white_rateC": {
+    "name": "White",
+    "category": "Race/ethnicity"
+  },
+  "black_rateC": {
+    "name": "Black",
+    "category": "Race/ethnicity"
+  },
+  "hispanic_rateC": {
+    "name": "Hispanic",
+    "category": "Race/ethnicity"
+  },
+  "otherNH_rateC": {
+    "name": "Other",
+    "category": "Race/ethnicity"
+  },
+  "rate019ageC": {
+    "name": "<18 y",
+    "category": "Age"
+  },
+  "rate2044ageC": {
+    "name": "18-44 y",
+    "category": "Age"
+  },
+  "rate4564ageC": {
+    "name": "45-64 y",
+    "category": "Age"
+  },
+  "rate65ageC": {
+    "name": "65+ y",
+    "category": "Age"
+  },
+  "county": {
+    "name": "countyfip",
+    "category": NaN
+  }
+}

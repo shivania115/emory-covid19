@@ -1,0 +1,241 @@
+{
+    "seriesCompletePopPct": {
+        "variable": "seriesCompletePopPct",
+        "name": "Percent of population fully vaccinated",
+        "definition": "is the percentage of the total U.S. population that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
+        "group": "outcomes"},
+
+    "seriesCompleteYes": {
+        "variable": "seriesCompleteYes",
+        "name": "Number fully vaccinated",
+        "definition": "is the number of individuals in the United States recorded in the CDC database to have received both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received.",
+        "group": "outcomes"},
+
+    "seriesComplete18PlusPopPct": {
+        "variable": "seriesComplete18PlusPopPct",
+        "name": "Percent of population 18+ fully vaccinated",
+        "definition": "is the percentage of the total U.S. population age 18 and older that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
+        "group": "outcomes"},
+
+    "seriesComplete65PlusPopPct": {
+        "variable": "seriesComplete65PlusPopPct",
+        "name": "Percent of population 65+ fully vaccinated",
+        "definition": "is the percentage of the total U.S. population age 65 and older that has both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson according to CDC database. The total U.S. population is derived from the Census.",
+        "group": "outcomes"},
+    
+
+    "caserate7dayfig": {
+        "variable": "caserate7dayfig",
+        "name": "Average Daily COVID-19 Cases per 100K",
+        "definition": "helps us understand the average number of positive cases for COVID-19 infection over the last seven days by population of the county per 100K people.",
+        "group": "outcomes"},
+    "covidmortality7dayfig": {
+        "variable": "covidmortality7dayfig",
+        "name": "Average Daily COVID-19 Deaths per 100K",
+        "definition": "helps us understand the average number of deaths due to confirmed or presumed COVID-19 infection over the last seven days by population of the county per 100K people.",
+        "group": "outcomes"},
+
+    "caseratefig": {
+        "variable": "caseratefig",
+        "name": "Total COVID-19 Cases per 100K",
+        "definition": "helps us understand COVID-19 cases (people who have tested positive for COVID-19) by the population of the county per 100K people.",
+        "group": "outcomes"},
+    "covidmortalityfig": {
+        "variable": "covidmortalityfig",
+        "name": "Total COVID-19 Deaths per 100K",
+        "definition": "helps us understand COVID-19 deaths by population of the county per 100K people.",
+        "group": "outcomes"},
+
+    "mean7daycases": {
+        "variable": "mean7daycases",
+        "name": "Average Daily COVID-19 Cases",
+        "definition": "is the average number of positive cases for COVID-19 infection per county in the United States over the last seven days.",
+        "group": "outcomes"},
+    "mean7daydeaths": {
+        "variable": "mean7daydeaths",
+        "name": "Average Daily COVID-19 Deaths",
+        "definition": "is the average number of deaths due to confirmed or presumed COVID-19 infection per county in the United States over the last seven days.",
+        "group": "outcomes"},
+
+    "dailycases": {
+        "variable": "dailycases",
+        "name": "Daily COVID-19 Cases",
+        "definition": "is the new number of cases as of the date the data is updated.",
+        "group": "outcomes"},
+    "dailydeaths": {
+        "variable": "dailydeaths",
+        "name": "Daily COVID-19 Deaths",
+        "definition": "is the new number of deaths as of the date the data is updated.",
+        "group": "outcomes"},
+    
+    
+    "casesfig": {
+        "variable": "casesfig",
+        "name": "Total COVID-19 Cases",
+        "definition": "is the number of people who have tested positive for COVID-19 in each county.",
+        "group": "outcomes"},
+    "deathsfig": {
+        "variable": "deathsfig",
+        "name": "Total COVID-19 Deaths",
+        "definition": "is the number of people who have died of confirmed or presumed COVID-19 cases in each county.",
+        "group": "outcomes"},
+
+
+
+	"cfr": {
+        "variable": "cfr",
+        "name": "Case Fatality Ratio",
+        "definition": "definition",
+        "group": "other"},
+        
+    "black": {
+        "variable": "black",
+        "name": "Percent African American",
+        "definition": "definition",
+        "group": "exposure"},
+    "hispanic": {
+        "variable": "hispanic",
+        "name": "Percent Hispanic or Latino",
+        "definition": "definition",
+        "group": "exposure"},
+    "natives": {
+        "variable": "natives",
+        "name": "Percent Native American",
+        "definition": "definition",
+        "group": "exposure"},
+    "minority": {
+        "variable": "minority",
+        "name": "Percent Minority",
+        "definition": "definition",
+        "group": "exposure"},
+    "poverty": {
+        "variable": "poverty",
+        "name": "Percent in Poverty",
+        "definition": "definition",
+        "group": "exposure"},
+    "PCTUI": {
+        "variable": "PCTUI",
+        "name": "Percent Uninsured",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "age65over": {
+        "variable": "age65over",
+        "name": "Percent over 65 y/o",
+        "definition": "definition",
+        "group": "exposure"},
+    "groupquater": {
+        "variable": "groupquater",
+        "name": "Percent in Group Quarters",
+        "group": "exposure"},
+    "male": {
+        "variable": "male",
+        "name": "Percent Male",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "ccvi": {
+        "variable": "ccvi",
+        "name": "COVID-19 Community Vulnerability Index",
+        "definition": "definition",
+        "group": "exposure"},
+    "resSeg": {
+        "variable": "resSeg",
+        "name": "Residential Segregation Index",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "anycondition": {
+        "variable": "anycondition",
+        "name": "Percent of the population with any underlying condition",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "diabetes": {
+        "variable": "diabetes",
+        "name": "Percent of the population with Diabetes",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "heartdisease": {
+        "variable": "heartdisease",
+        "name": "Percent of the population with heart disease",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "copd": {
+        "variable": "copd",
+        "name": "Percent of the population with Chronic Obstructive Pulmonary Disease",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "ckd": {
+        "variable": "ckd",
+        "name": "Percent of the population with Chronic Kidney Disease",
+        "definition": "definition",
+        "group": "exposure"},
+    "obesity": {
+        "variable": "obesity",
+        "name": "Percent of the population with obesity",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "RPL_THEME1": {
+        "variable": "RPL_THEME1",
+        "name": "Socioeconomic Vulnerability",
+        "definition": "definition",
+        "group": "exposure"},
+    "RPL_THEME2": {
+        "variable": "RPL_THEME2",
+        "name": "Household Composition Vulnerability",
+        "definition": "definition",
+        "group": "exposure"},
+    "RPL_THEME3": {
+        "variable": "RPL_THEME3",
+        "name": "Minority/Language Vulnerability",
+        "definition": "definition",
+        "group": "exposure"},
+    "RPL_THEME4": {
+        "variable": "RPL_THEME4",
+        "name": "Housing/Transportation Vulnerability",
+        "definition": "definition",
+        "group": "exposure"},
+
+    "urbanrural": {
+        "variable": "urbanrural",
+        "name": "Urban-Rural",
+        "definition": "definition",
+        "group": "exposure"},
+    "region": {
+        "variable": "region",
+        "name": "Region",
+        "definition": "definition",
+        "group": "exposure"},
+    "Population": {
+        "variable": "Population",
+        "name": "Population",
+        "definition": "definition",
+        "group": "misc"},
+    "popden": {
+        "variable": "popden",
+        "name": "Population Density",
+        "definition": "definition",
+        "group": "misc"},
+    "hhincome": {
+        "variable": "hhincome",
+        "name": "Household Income",
+        "definition": "definition",
+        "group": "misc"},
+    "urbanrural_text": {
+        "variable": "urbanrural_text",
+        "name": "Urban-Rural",
+        "definition": "definition",
+        "group": "text"},
+    "region_text": {
+        "variable": "region_text",
+        "name": "Region",
+        "definition": "definition",
+        "group": "text"}       
+}
+
+
