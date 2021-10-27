@@ -1818,7 +1818,7 @@ const USVaccineTracker= (props) => {
                         >
                           <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Status" {...a11yProps(2)} />
                           <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Trends" {...a11yProps(3)} />
-                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Equity" {...a11yProps(4)} />
+                          {/* <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Equity" {...a11yProps(4)} /> */}
                         </TabsMU>
                       </AppBarMU>
                     </div>
@@ -2317,9 +2317,9 @@ const USVaccineTracker= (props) => {
                       </VictoryChart>
 </center>
                     </TabPanel>
-                    <TabPanel value={value + 2} index={4}>
+                    {/* <TabPanel value={value + 2} index={4}>
         asdfasdjfalsdklj
-                    </TabPanel>
+                    </TabPanel> */}
                   </div>
 
                   <div style={{ height: 25 }}> </div>
