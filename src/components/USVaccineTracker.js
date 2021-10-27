@@ -10,7 +10,7 @@ import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
-import VaccinesFAQ from './VaccineFAQ';
+import VaccinesFAQ from './VaccineFAQPilot';
 //asdjflkasjd
 // import {
 //   ComposableMap,
@@ -1816,9 +1816,9 @@ const USVaccineTracker= (props) => {
                             indicator: classes.customTabIndicator
                           }}
                         >
-                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination" {...a11yProps(2)} />
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Status" {...a11yProps(2)} />
                           <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Trends" {...a11yProps(3)} />
-                          {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                          {/* <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Equity" {...a11yProps(4)} /> */}
                         </TabsMU>
                       </AppBarMU>
                     </div>
@@ -2043,30 +2043,21 @@ const USVaccineTracker= (props) => {
                                       <td colSpan='1' style={{ width: 110, fontSize: '14px', textAlign: "center", font: "lato", fontWeight: 600, color: "#FFFFFF" }}> {stateMapFips === "_nation" ? "Select State" : usAbbrev[stateMapFips]["state_abbr"]}</td>
                                       <td colSpan='1' style={{ width: 110, fontSize: '14px', textAlign: "center", font: "lato", fontWeight: 600, color: "#FFFFFF" }}> U.S.</td>
                                     </tr>
-                                    <Table.Row textAlign='center' style={{ height: 40 }}>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Number partially vaccinated"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
-
-                                    </Table.Row>
-                                    <Table.Row textAlign='center'>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Percent partially vaccinated"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-
-                                    </Table.Row>
-                                    <Table.Row textAlign='center'>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Number fully vaccinated"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
-
-                                    </Table.Row>
+                                  
+                                
                                     <Table.Row textAlign='center'>
                                       <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Percent fully vaccinated"} </Table.HeaderCell>
                                       <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
                                       <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
 
                                     </Table.Row>
+                                    <Table.Row textAlign='center'>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Percent of the U.S population that received at least one dose"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"] + vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+
+                                    </Table.Row>
+
                                     {/* <Table.Row textAlign = 'center'>
                                   <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
                                   <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
@@ -2326,6 +2317,9 @@ const USVaccineTracker= (props) => {
                       </VictoryChart>
 </center>
                     </TabPanel>
+                    {/* <TabPanel value={value + 2} index={4}>
+        asdfasdjfalsdklj
+                    </TabPanel> */}
                   </div>
 
                   <div style={{ height: 25 }}> </div>
@@ -3498,18 +3492,12 @@ const USVaccineTracker= (props) => {
 
             <Table celled inverted selectable  >
               <Table.Body>
+              
                 <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}># partially vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % that have received at least one does</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}</Table.HeaderCell>
                 </Table.Row>
-                <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % partially vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</Table.HeaderCell>
-                </Table.Row>
-                <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> # fully vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
-                </Table.Row>
+      
                 <Table.Row style={{ height: 25 }}>
                   <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % fully vaccinated</Table.HeaderCell>
                   <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
