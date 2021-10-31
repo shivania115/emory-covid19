@@ -566,34 +566,10 @@ const SideRaceBarChart = (props) => {
 
   const data = [
     {
-      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
-    },
-    {
-      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
-    },
-    {
-      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
+      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
     },
     {
       name: 'Hispanic', popvalue: props.demogData['vaccineRace'][0]['Hispanic'][0]['percentPop'],
@@ -602,12 +578,36 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])
     },
     {
-      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
+      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
+    },
+    {
+      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
+    },
+    {
+      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
+    },
+    {
+      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
+    },
+   
+    {
+      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
     }
-
   ]
 
 

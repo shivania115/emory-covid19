@@ -566,34 +566,10 @@ const SideRaceBarChart = (props) => {
 
   const data = [
     {
-      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
-    },
-    {
-      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
-    },
-    {
-      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
+      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
     },
     {
       name: 'Hispanic', popvalue: props.demogData['vaccineRace'][0]['Hispanic'][0]['percentPop'],
@@ -602,12 +578,36 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])
     },
     {
-      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
+      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
+    },
+    {
+      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
+    },
+    {
+      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
+    },
+    {
+      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
+    },
+   
+    {
+      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
     }
-
   ]
 
 
@@ -686,6 +686,47 @@ const SideRaceBarChart = (props) => {
             //   }}
             cursor={false} />
           <Bar dataKey="vaxvalue"
+            isAnimationActive={false}>
+            {
+              data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
+              ))
+            }
+            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize} />
+            {/* valueAccessor={valueAccessor} */}
+          </Bar>
+
+
+        </BarChart>
+      </Grid.Column>
+      <Grid.Column width={props.inTab === true ? 8 : 9} style={{ paddingLeft: 0 }}>
+        <Header style={{ fontSize: '10pt' }}> <center> % Population </center> </Header>
+        <BarChart
+          layout='vertical'
+          width={props.inTab === true ? 210 : 260}
+          height={330}
+          data={data}
+          margin={{
+            top: 0,
+            right: 15,
+            left: props.inTab === true ? 30 : 35,
+            bottom: 0,
+          }}
+        >
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis type="number" />
+          {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
+          <YAxis type="category" dataKey='name' tick={{ fontSize: tickFontSize, fill: 'black' }} />
+          <Tooltip content={<CustomTooltip />}
+            // formatter={function(value, name) {
+            //     if(name === hoverBar){
+            //       return [value,name];
+            //     }else {
+            //       return null
+            //     }
+            //   }}
+            cursor={false} />
+          <Bar dataKey="popvalue"
             isAnimationActive={false}>
             {
               data.map((entry, index) => (
@@ -1714,7 +1755,7 @@ const USVaccineTrackerPilot= (props) => {
                           <Header.Subheader style={{ width: 400, color: '#000000', textAlign: 'left', fontSize: "14pt", lineHeight: "16pt", paddingTop: 16, paddingBottom: 0, paddingLeft: 6 }}>
                           
 
-                            <p style={{ paddingLeft: 40 }}>
+                            {/* <p style={{ paddingLeft: 40 }}>
                               <ul>
 
                                 {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
@@ -1756,6 +1797,45 @@ const USVaccineTrackerPilot= (props) => {
                                 {pctVacPopDisp >= 1 && <li>
                                   {(pctVacPopDisp) < 1 ? "" : " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
                                 </li>}
+
+                              </ul>
+                            </p> */}
+                            <p style={{ paddingLeft: 30 }}>
+                              <ul>
+
+                                 <li>
+                                     White Americans make up {nationalDemog['vaccineRace'][0]['White'][0]['percentPop']} % of the US population and {' '} 
+                                    {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']}  % of those fully vaccinated.
+                                    </li>
+
+                                    <li>
+                                     Hispanic Americans make up {nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']} % of the US population and {' '} 
+                                    {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']}  % of those fully vaccinated.
+                                    </li>
+
+                                    <li>
+                                     African Americans make up {nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']} % of the US population and {' '} 
+                                    {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']}  % of those fully vaccinated.
+                                    </li>
+
+                                    <li>
+                                     Native Americans make up {nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']} % of the US population and {' '} 
+                                    {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']}  % of those fully vaccinated.
+                                    </li>
+
+                                    <li>
+                                     Pacific Islanders make up {nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop']} % of the US population and {' '} 
+                                    {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']}  % of those fully vaccinated.
+                                    </li>
+                                    <li>
+                                     Others make up {nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['percentPop']} % of the US population and {' '} 
+                                    {nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']}  % of those fully vaccinated.
+                                    </li>
+
+
+                                {/* {pctVacPopDisp >= 1 && <li>
+                                  {(pctVacPopDisp) < 1 ? "" : " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
+                                </li>} */}
 
                               </ul>
                             </p>
