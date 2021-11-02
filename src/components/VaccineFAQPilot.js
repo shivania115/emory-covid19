@@ -1655,7 +1655,9 @@ export default function VaccinesFAQPilot(props) {
 
               <Waypoint
                 onEnter={() => {
-                  setActiveCharacter("Vaccines, Fertility, and Pregnancy");
+                  setActiveCharacter(
+                    "COVID-19 Vaccines, Fertility, and Pregnancy"
+                  );
                   //console.log(activeCharacter)
                 }}
               ></Waypoint>
