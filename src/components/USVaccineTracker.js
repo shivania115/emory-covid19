@@ -10,7 +10,7 @@ import Annotation from './Annotation';
 import { Waypoint } from 'react-waypoint'
 import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
-import VaccinesFAQ from './VaccineFAQ';
+import VaccinesFAQ from './VaccineFAQPilot';
 //asdjflkasjd
 // import {
 //   ComposableMap,
@@ -566,48 +566,48 @@ const SideRaceBarChart = (props) => {
 
   const data = [
     {
-      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
+      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
     },
     {
-      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['race'][0]['NHPI'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
-    },
-    {
-      name: 'American Natives', popvalue: props.demogData['race'][0]['American Native'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Asian', popvalue: props.demogData['race'][0]['Asian'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
-    },
-    {
-      name: 'African Americans', popvalue: props.demogData['race'][0]['African American'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Hispanic', popvalue: props.demogData['race'][0]['Hispanic'][0]['percentPop'],
+      name: 'Hispanic', popvalue: props.demogData['vaccineRace'][0]['Hispanic'][0]['percentPop'],
       vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']
         : (props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0
           : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])
     },
     {
-      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
+      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
+    },
+    {
+      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
+    },
+    {
+      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
+    },
+    {
+      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
+    },
+   
+    {
+      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
+      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
+        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
+          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
     }
-
   ]
 
 
@@ -1712,43 +1712,43 @@ const USVaccineTracker= (props) => {
                       <Grid.Column width={4}>
                         <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                           <Header.Subheader style={{ width: 400, color: '#000000', textAlign: 'left', fontSize: "14pt", lineHeight: "16pt", paddingTop: 16, paddingBottom: 0, paddingLeft: 6 }}>
-                            <center> <b style={{ fontSize: "22px", paddingLeft: 0 }}> Under-vaccinated Populations</b> </center>
+                          
 
                             <p style={{ paddingLeft: 40 }}>
                               <ul>
 
                                 {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ?
-                                    " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']) + "% of the US population and " +
+                                    (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']) + "% of those fully vaccinated."
                                     :
                                     ""} </li>}
 
                                 {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ?
-                                    " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']) + "% of the US population and " +
+                                    (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']) + "% of those fully vaccinated."
                                     :
                                     ""}</li>}
 
                                 {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ?
-                                    " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']) + "% of the US population and " +
+                                    (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'])+ "% of those fully vaccinated."
                                     :
                                     ""} </li>}
 
                                 {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ?
-                                    " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']) + "% of the US population and " +
+                                    (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']) + "% of those fully vaccinated."
                                     :
                                     ""}</li>}
 
                                 {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
                                   {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ?
-                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " +
-                                    (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                                    " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']) + "% of the US population and " +
+                                    (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']) + "% of those fully vaccinated."
                                     :
                                     ""} </li>}
 
@@ -1816,9 +1816,9 @@ const USVaccineTracker= (props) => {
                             indicator: classes.customTabIndicator
                           }}
                         >
-                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination" {...a11yProps(2)} />
+                          <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Status" {...a11yProps(2)} />
                           <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Trends" {...a11yProps(3)} />
-                          {/* <TabMU style = {{textTransform: "capitalize", fontSize: "19px"}} label="Item Three" {...a11yProps(2)} /> */}
+                          {/* <TabMU style={{ textTransform: "capitalize", fontSize: "19px" }} label="State Vaccination Equity" {...a11yProps(4)} /> */}
                         </TabsMU>
                       </AppBarMU>
                     </div>
@@ -2043,30 +2043,21 @@ const USVaccineTracker= (props) => {
                                       <td colSpan='1' style={{ width: 110, fontSize: '14px', textAlign: "center", font: "lato", fontWeight: 600, color: "#FFFFFF" }}> {stateMapFips === "_nation" ? "Select State" : usAbbrev[stateMapFips]["state_abbr"]}</td>
                                       <td colSpan='1' style={{ width: 110, fontSize: '14px', textAlign: "center", font: "lato", fontWeight: 600, color: "#FFFFFF" }}> U.S.</td>
                                     </tr>
-                                    <Table.Row textAlign='center' style={{ height: 40 }}>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Number partially vaccinated"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["AdministeredPartial"])} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["AdministeredPartial"])} </Table.HeaderCell>
-
-                                    </Table.Row>
-                                    <Table.Row textAlign='center'>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Percent partially vaccinated"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"]) + "%"} </Table.HeaderCell>
-
-                                    </Table.Row>
-                                    <Table.Row textAlign='center'>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Number fully vaccinated"} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Yes"])} </Table.HeaderCell>
-                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Yes"])} </Table.HeaderCell>
-
-                                    </Table.Row>
+                                  
+                                
                                     <Table.Row textAlign='center'>
                                       <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Percent fully vaccinated"} </Table.HeaderCell>
                                       <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
                                       <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
 
                                     </Table.Row>
+                                    <Table.Row textAlign='center'>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {"Percent of the U.S population that received at least one dose"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : numberWithCommas(vaccineData[stateMapFips]["PercentAdministeredPartial"] + vaccineData[stateMapFips]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {numberWithCommas(vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"]) + "%"} </Table.HeaderCell>
+
+                                    </Table.Row>
+
                                     {/* <Table.Row textAlign = 'center'>
                                   <Table.HeaderCell style={{fontSize: '19px'}}> {"Moderna Vaccine"} </Table.HeaderCell>
                                   <Table.HeaderCell style={{fontSize: '19px'}}> {numberWithCommas(vaccineData["_nation"]["Administered_Moderna"])} </Table.HeaderCell>
@@ -2326,6 +2317,9 @@ const USVaccineTracker= (props) => {
                       </VictoryChart>
 </center>
                     </TabPanel>
+                    {/* <TabPanel value={value + 2} index={4}>
+        asdfasdjfalsdklj
+                    </TabPanel> */}
                   </div>
 
                   <div style={{ height: 25 }}> </div>
@@ -3498,18 +3492,12 @@ const USVaccineTracker= (props) => {
 
             <Table celled inverted selectable  >
               <Table.Body>
+              
                 <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}># partially vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["AdministeredPartial"])}</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % that have received at least one does</Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}</Table.HeaderCell>
                 </Table.Row>
-                <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % partially vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["PercentAdministeredPartial"]) + "%"}</Table.HeaderCell>
-                </Table.Row>
-                <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> # fully vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
-                </Table.Row>
+      
                 <Table.Row style={{ height: 25 }}>
                   <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % fully vaccinated</Table.HeaderCell>
                   <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
