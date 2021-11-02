@@ -40,7 +40,7 @@ import { Waypoint } from "react-waypoint";
 import stateOptions from "./stateOptions.json";
 import ReactTooltip from "react-tooltip";
 import VaccinesFAQ from "./VaccineFAQPilot";
-import "./VaccineTracker.css";
+import "./VaccineTracker.scss";
 //asdjflkasjd
 // import {
 //   ComposableMap,
