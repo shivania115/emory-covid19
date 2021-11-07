@@ -1281,8 +1281,12 @@ const SideRaceBarChart = (props) => {
 
   return (
     <Grid>
-      <Grid.Column
+      {/* <Grid.Column
         width={props.inTab === true ? 8 : 7}
+        style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 2 : 3}
         style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1336,8 +1340,12 @@ const SideRaceBarChart = (props) => {
           </Bar>
         </BarChart>
       </Grid.Column>
-      <Grid.Column
+      {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 2 : 3}
         style={{ paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1391,8 +1399,12 @@ const SideRaceBarChart = (props) => {
           </Bar>
         </BarChart>
       </Grid.Column>
-      <Grid.Column
+      {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 2 : 3}
         style={{ paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -2836,10 +2848,10 @@ const USVaccineTrackerPilot = (props) => {
 
                   <Grid>
                     <Grid.Row
-                      columns={2}
-                      style={{ width: 1000, paddingLeft: 0 }}
+                       columns={1}
+                      style={{ width: 2000, paddingLeft: 0 }}
                     >
-                      <Grid.Column rows={3} width={10}>
+                      {/* <Grid.Column rows={3} width={10}> */}
                         {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
@@ -2867,19 +2879,19 @@ const USVaccineTrackerPilot = (props) => {
                       </Grid.Column>
                     </Grid.Row> */}
                         <Grid>
-                          <Grid.Column
+                          {/* <Grid.Column
                             style={{
                               paddingTop: "2.5rem",
                               paddingLeft: "3rem",
                             }}
-                          >
+                          > */}
                             <SideRaceBarChart
                               demogData={nationalDemog}
                               fips={"_nation"}
                               VaccineData={vaccineData}
                               inTab={false}
                             />
-                          </Grid.Column>
+                          {/* </Grid.Column> */}
                           {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
@@ -2904,8 +2916,8 @@ const USVaccineTrackerPilot = (props) => {
                     <button onClick={() => exportComponentAsPNG(componentRef)}>
                               Export As PNG
                             </button> */}
-                      </Grid.Column>
-                      <Grid.Column width={4}>
+                      {/* </Grid.Column> */}
+                      {/* <Grid.Column width={4}> */}
                         <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                           <Header.Subheader
                             style={{
@@ -3068,7 +3080,7 @@ const USVaccineTrackerPilot = (props) => {
                             </p>
                           </Header.Subheader>
                         </div>
-                      </Grid.Column>
+                      {/* </Grid.Column> */}
                     </Grid.Row>
                   </Grid>
                   <Grid.Row>
