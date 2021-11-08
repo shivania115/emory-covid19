@@ -1286,7 +1286,7 @@ const SideRaceBarChart = (props) => {
         style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
       > */}
       <Grid.Column
-        width={props.inTab === true ? 2 : 3}
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1345,7 +1345,7 @@ const SideRaceBarChart = (props) => {
         style={{ paddingLeft: 0 }}
       > */}
       <Grid.Column
-        width={props.inTab === true ? 2 : 3}
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1404,7 +1404,7 @@ const SideRaceBarChart = (props) => {
         style={{ paddingLeft: 0 }}
       > */}
       <Grid.Column
-        width={props.inTab === true ? 2 : 3}
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1590,7 +1590,7 @@ const USVaccineTrackerPilot = (props) => {
   const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState("seriesCompletePopPct");
   const [fully, setFully] = useState("PercentAdministeredPartial");
-
+  const[twoweeksvac,setTwoweeksvac]=useState(0);
   const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
   const [finalStr, setFinalStr] = useState("");
   const [vaccineProp, setVaccine] = useState();
@@ -1887,6 +1887,7 @@ const USVaccineTrackerPilot = (props) => {
         .then((x) => {
           setVaxSeries(x);
         });
+      fetch("/data/vaccLast14daysByRace.json").then((res) => res.json()).then((x)=>{setTwoweeksvac(x)});
       fetch("/data/vaccine7daysTimeseries.json")
         .then((res) => res.json())
         .then((x) => {
@@ -2101,6 +2102,7 @@ const USVaccineTrackerPilot = (props) => {
     stateVaccAveg
   ) {
     console.log(stateVaccAveg["_nation"][0]);
+    console.log(twoweeksvac);
     const description = {
       aa:
         "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " +
@@ -2888,6 +2890,7 @@ const USVaccineTrackerPilot = (props) => {
                             <SideRaceBarChart
                               demogData={nationalDemog}
                               fips={"_nation"}
+                              twoweeksvac={twoweeksvac}
                               VaccineData={vaccineData}
                               inTab={false}
                             />
@@ -2921,7 +2924,7 @@ const USVaccineTrackerPilot = (props) => {
                         <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                           <Header.Subheader
                             style={{
-                              width: 400,
+                              width: 800,
                               color: "#000000",
                               textAlign: "left",
                               fontSize: "14pt",
