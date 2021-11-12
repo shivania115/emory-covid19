@@ -1094,6 +1094,8 @@ const SideRaceBarChart = (props) => {
             ] === -9999
           ? 0
           : props.VaccineData[props.fips][0]["White"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
     },
     {
       name: "Hispanic",
@@ -1110,7 +1112,10 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]["Hispanic"][0][
               "percentVaccinated"
             ],
+      weeksvalue:
+      props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
     },
+  
     {
       name: "African Americans",
       popvalue:
@@ -1125,6 +1130,8 @@ const SideRaceBarChart = (props) => {
             ] === -9999
           ? 0
           : props.VaccineData[props.fips][0]["Black"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
     },
     {
       name: "Asian",
@@ -1139,6 +1146,8 @@ const SideRaceBarChart = (props) => {
             ] === -9999
           ? 0
           : props.VaccineData[props.fips][0]["Asian"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
     },
     {
       name: "American Natives",
@@ -1156,6 +1165,8 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]["American Native"][0][
               "percentVaccinated"
             ],
+            weeksvalue:
+            props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
     },
     {
       name: "Native Hawaiian/Pacific Islanders",
@@ -1169,6 +1180,8 @@ const SideRaceBarChart = (props) => {
             -9999
           ? 0
           : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
     },
 
     {
@@ -1187,6 +1200,8 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]["Multiple/Other"][0][
               "percentVaccinated"
             ],
+            weeksvalue:
+            props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
     },
   ];
 
@@ -1442,7 +1457,7 @@ const SideRaceBarChart = (props) => {
             //   }}
             cursor={false}
           />
-          <Bar dataKey="popvalue" isAnimationActive={false}>
+          <Bar dataKey="weeksvalue" isAnimationActive={false}>
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
             ))}
