@@ -1687,14 +1687,12 @@ export default function USMap(props) {
             </Breadcrumb>
             <Divider hidden />
             <Grid
+              stackable
               columns={9}
               style={{ width: "100%", height: "100%", overflow: "hidden" }}
             >
               <Grid.Row style={{ width: "100%", height: "100%" }}>
-                <Grid.Column
-                  width={9}
-                  style={{ width: "100%", height: "100%" }}
-                >
+                <Grid.Column mobile={18} tablet={11} computer={9}>
                   <div
                     style={{
                       fontSize: "14pt",
@@ -1892,7 +1890,7 @@ export default function USMap(props) {
                   <ComposableMap
                     projection="geoAlbersUsa"
                     data-tip=""
-                    width={630}
+                    width={1000} //630
                     height={380}
                     strokeWidth={0.1}
                     stroke="black"
