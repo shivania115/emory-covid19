@@ -1094,6 +1094,8 @@ const SideRaceBarChart = (props) => {
             ] === -9999
           ? 0
           : props.VaccineData[props.fips][0]["White"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
     },
     {
       name: "Hispanic",
@@ -1110,7 +1112,10 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]["Hispanic"][0][
               "percentVaccinated"
             ],
+      weeksvalue:
+      props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
     },
+  
     {
       name: "African Americans",
       popvalue:
@@ -1125,6 +1130,8 @@ const SideRaceBarChart = (props) => {
             ] === -9999
           ? 0
           : props.VaccineData[props.fips][0]["Black"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
     },
     {
       name: "Asian",
@@ -1139,6 +1146,8 @@ const SideRaceBarChart = (props) => {
             ] === -9999
           ? 0
           : props.VaccineData[props.fips][0]["Asian"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
     },
     {
       name: "American Natives",
@@ -1156,6 +1165,8 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]["American Native"][0][
               "percentVaccinated"
             ],
+            weeksvalue:
+            props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
     },
     {
       name: "Native Hawaiian/Pacific Islanders",
@@ -1169,6 +1180,8 @@ const SideRaceBarChart = (props) => {
             -9999
           ? 0
           : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"],
+          weeksvalue:
+          props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
     },
 
     {
@@ -1187,6 +1200,8 @@ const SideRaceBarChart = (props) => {
           : props.VaccineData[props.fips][0]["Multiple/Other"][0][
               "percentVaccinated"
             ],
+            weeksvalue:
+            props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
     },
   ];
 
@@ -1281,8 +1296,12 @@ const SideRaceBarChart = (props) => {
 
   return (
     <Grid>
-      <Grid.Column
+      {/* <Grid.Column
         width={props.inTab === true ? 8 : 7}
+        style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1336,8 +1355,12 @@ const SideRaceBarChart = (props) => {
           </Bar>
         </BarChart>
       </Grid.Column>
-      <Grid.Column
+      {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1391,8 +1414,12 @@ const SideRaceBarChart = (props) => {
           </Bar>
         </BarChart>
       </Grid.Column>
-      <Grid.Column
+      {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "10pt" }}>
@@ -1430,7 +1457,7 @@ const SideRaceBarChart = (props) => {
             //   }}
             cursor={false}
           />
-          <Bar dataKey="popvalue" isAnimationActive={false}>
+          <Bar dataKey="weeksvalue" isAnimationActive={false}>
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
             ))}
@@ -1578,7 +1605,7 @@ const USVaccineTrackerPilot = (props) => {
   const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState("seriesCompletePopPct");
   const [fully, setFully] = useState("PercentAdministeredPartial");
-
+  const[twoweeksvac,setTwoweeksvac]=useState(0);
   const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
   const [finalStr, setFinalStr] = useState("");
   const [vaccineProp, setVaccine] = useState();
@@ -1875,6 +1902,7 @@ const USVaccineTrackerPilot = (props) => {
         .then((x) => {
           setVaxSeries(x);
         });
+      fetch("/data/vaccLast14daysByRace.json").then((res) => res.json()).then((x)=>{setTwoweeksvac(x)});
       fetch("/data/vaccine7daysTimeseries.json")
         .then((res) => res.json())
         .then((x) => {
@@ -2089,6 +2117,7 @@ const USVaccineTrackerPilot = (props) => {
     stateVaccAveg
   ) {
     console.log(stateVaccAveg["_nation"][0]);
+    console.log(twoweeksvac);
     const description = {
       aa:
         "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " +
@@ -2836,10 +2865,10 @@ const USVaccineTrackerPilot = (props) => {
 
                   <Grid>
                     <Grid.Row
-                      columns={2}
-                      style={{ width: 1000, paddingLeft: 0 }}
+                       columns={1}
+                      style={{ width: 2000, paddingLeft: 0 }}
                     >
-                      <Grid.Column rows={3} width={10}>
+                      {/* <Grid.Column rows={3} width={10}> */}
                         {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
@@ -2867,19 +2896,20 @@ const USVaccineTrackerPilot = (props) => {
                       </Grid.Column>
                     </Grid.Row> */}
                         <Grid>
-                          <Grid.Column
+                          {/* <Grid.Column
                             style={{
                               paddingTop: "2.5rem",
                               paddingLeft: "3rem",
                             }}
-                          >
+                          > */}
                             <SideRaceBarChart
                               demogData={nationalDemog}
                               fips={"_nation"}
+                              twoweeksvac={twoweeksvac}
                               VaccineData={vaccineData}
                               inTab={false}
                             />
-                          </Grid.Column>
+                          {/* </Grid.Column> */}
                           {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
@@ -2904,12 +2934,12 @@ const USVaccineTrackerPilot = (props) => {
                     <button onClick={() => exportComponentAsPNG(componentRef)}>
                               Export As PNG
                             </button> */}
-                      </Grid.Column>
-                      <Grid.Column width={4}>
+                      {/* </Grid.Column> */}
+                      {/* <Grid.Column width={4}> */}
                         <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                           <Header.Subheader
                             style={{
-                              width: 400,
+                              width: 800,
                               color: "#000000",
                               textAlign: "left",
                               fontSize: "14pt",
@@ -3068,7 +3098,7 @@ const USVaccineTrackerPilot = (props) => {
                             </p>
                           </Header.Subheader>
                         </div>
-                      </Grid.Column>
+                      {/* </Grid.Column> */}
                     </Grid.Row>
                   </Grid>
                   <Grid.Row>
