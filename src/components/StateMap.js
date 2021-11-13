@@ -1459,7 +1459,7 @@ export default function StateMap(props) {
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
                     Distribution of deaths per 100K persons. 
                     <br/><br/><br/>
-                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href="https://covidtracking.com/race" target="_blank" rel="noopener noreferrer"> The COVID Racial Data Tracker </a> <br/> 
+                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a> <br/> 
 
                   </Header.Content>
                 </Grid.Column>

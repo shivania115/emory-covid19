@@ -1095,7 +1095,7 @@ const SideRaceBarChart = (props) => {
           ? 0
           : props.VaccineData[props.fips][0]["White"][0]["percentVaccinated"],
           weeksvalue:
-          props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
+          props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
     },
     {
       name: "Hispanic",
@@ -1113,7 +1113,7 @@ const SideRaceBarChart = (props) => {
               "percentVaccinated"
             ],
       weeksvalue:
-      props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
+      props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
     },
   
     {
@@ -1131,7 +1131,7 @@ const SideRaceBarChart = (props) => {
           ? 0
           : props.VaccineData[props.fips][0]["Black"][0]["percentVaccinated"],
           weeksvalue:
-          props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+          props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
     },
     {
       name: "Asian",
@@ -1147,7 +1147,7 @@ const SideRaceBarChart = (props) => {
           ? 0
           : props.VaccineData[props.fips][0]["Asian"][0]["percentVaccinated"],
           weeksvalue:
-          props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
+          props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
     },
     {
       name: "American Natives",
@@ -1166,7 +1166,7 @@ const SideRaceBarChart = (props) => {
               "percentVaccinated"
             ],
             weeksvalue:
-            props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
+            props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVastLast14']
     },
     {
       name: "Native Hawaiian/Pacific Islanders",
@@ -1181,7 +1181,7 @@ const SideRaceBarChart = (props) => {
           ? 0
           : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"],
           weeksvalue:
-          props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
+          props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
     },
 
     {
@@ -1201,7 +1201,7 @@ const SideRaceBarChart = (props) => {
               "percentVaccinated"
             ],
             weeksvalue:
-            props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
+            props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']<0?0: props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
     },
   ];
 
@@ -1235,6 +1235,7 @@ const SideRaceBarChart = (props) => {
           <p className="label" style={{ marginBottom: 0 }}>
             % Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}
           </p>
+          <p> % Vaccination last 14 days: {payload[0].payload.weeksvalue.toFixed(1)} </p>
         </div>
       );
     }
