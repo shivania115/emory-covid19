@@ -1425,7 +1425,7 @@ const SideRaceBarChart = (props) => {
       >
         <Header style={{ fontSize: "10pt" }}>
           {" "}
-          <center> % Population </center>{" "}
+          <center> % Vaccination last 14 days </center>{" "}
         </Header>
         <BarChart
           layout="vertical"

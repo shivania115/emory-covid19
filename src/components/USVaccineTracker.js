@@ -474,7 +474,7 @@ function VaccineDisparityCharts(props) {
   return (
     <div style={{ fontSize: "19px" }}>
       <br />
-      <center><p> Percent vaccinated with at least 1 dose by Vulnerable Populations</p></center>
+      <center><p> Percent vaccinated with at least 1 dose by Community Characteristics</p></center>
       <LineChart width={720} height={450} data={props.data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" tick={{ fontSize: 16 }} textAnchor="end" tickFormatter={props.formatter} allowDuplicatedCategory={false} angle={-35} />
@@ -938,6 +938,13 @@ const USVaccineTracker= (props) => {
         dataTS["_nation"][306].t,
         dataTS["_nation"][334].t,
         dataTS["_nation"][365].t,
+        dataTS["_nation"][395].t,
+        dataTS["_nation"][426].t,
+        dataTS["_nation"][456].t,
+        dataTS["_nation"][487].t,
+        dataTS["_nation"][518].t,
+        dataTS["_nation"][548].t,
+        dataTS["_nation"][579].t,
         dataTS["_nation"][dataTS["_nation"].length - 1].t]);
       //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -2218,7 +2225,7 @@ const USVaccineTracker= (props) => {
                         tickCount={5}
                          
                           style={{
-                            tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
+                            tickLabels: { fontWeight:500,fontSize: 16, padding: 5 }
                           }}
                           tickFormat={(y) => ((Math.round(y, 2) === 0.00 ? " " : y) + "%")}
                         />
@@ -2226,13 +2233,16 @@ const USVaccineTracker= (props) => {
                         <VictoryAxis
                          style={{
                           grid: { background: "#ccdee8" },
-                        tickLabels: { fontWeight:500,fontSize: 17, padding: 5 }
+                        tickLabels: { fontWeight:400,fontSize: 11, padding: 6 }
                     }}
                         tickValues={[stateVaccAveg["_nation"][0].distT,
                         stateVaccAveg["_nation"][4].distT,
                         stateVaccAveg["_nation"][8].distT,
                         stateVaccAveg["_nation"][12].distT,
                         stateVaccAveg["_nation"][16].distT,
+                        stateVaccAveg["_nation"][19].distT,
+                        stateVaccAveg["_nation"][22].distT,
+                        stateVaccAveg["_nation"][25].distT,
                         stateVaccAveg["_nation"][stateVaccAveg["_nation"].length-1].distT
                         ]}
         
