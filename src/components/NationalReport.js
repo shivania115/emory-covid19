@@ -287,6 +287,9 @@ function numberWithCommas(x) {
 const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
   "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
 ];
+// const monthNames = ["01/", "02/", "03/", "04/", "05/", "06/",
+//   "07/", "08/", "09/", "10/", "11/", "12/"
+// ];
 const fullMonthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
@@ -346,6 +349,12 @@ useEffect(()=>{
     data[306].t,
     data[334].t,
     data[365].t,
+    data[395].t,
+    data[426].t,
+    data[456].t,
+    data[487].t,
+    data[518].t,
+    data[548].t,
     data[data.length-1].t]);
   }else if(chartNo1===0 || chartNo2===2) {
     setCaseTicks([data[0].t,
@@ -361,6 +370,12 @@ useEffect(()=>{
     data[306].t,
     data[334].t,
     data[365].t,
+    data[395].t,
+    data[426].t,
+    data[456].t,
+    data[487].t,
+    data[518].t,
+    data[548].t,
     data[data.length-1].t]);
     setHeaderTime('');
     setDisabled(true);
@@ -598,7 +613,7 @@ function CaseChartStatic(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks}  tick={{fontSize: 13}} tickFormatter={tickFormatter} interval={0}/>
+      <XAxis dataKey="t" ticks={ticks}  tick={{fontSize: 12}} tickFormatter={tickFormatter} angle={-25} interval={0}/>
       {/* domain={[1585713600, 1610859600]} */}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
@@ -1104,7 +1119,7 @@ function DeathChartAll(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 13}} tickFormatter={tickFormatter} interval={0}/>
+      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 12}} angle={-25} tickFormatter={tickFormatter} interval={0}/>
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyMortality' barSize={18} 
             isAnimationActive={animationBool} 
@@ -2732,6 +2747,7 @@ export default function NationalReport(props) {
         dataTS["_nation"][183].t,
         dataTS["_nation"][214].t,
         dataTS["_nation"][244].t,
+        // heeeredataTS["_nation"]
         dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
       setCaseYTicks();
