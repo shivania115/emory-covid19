@@ -3135,30 +3135,20 @@ export default function VaccinesFAQPilot(props) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        CDC
+                        CDC.
                       </a>{" "}
-                      for{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        certain groups
-                      </a>
-                      , based on their relatively higher risk of contracting
-                      COVID-19 disease and experiencing serious illness. In this
-                      case, the booster counters the decrease in immunity that
-                      was developed after becoming fully vaccinated. Studies
-                      have shown that vaccine-induced protection from COVID-19
-                      illness decreases over time and may also be decreased by
-                      the Delta variant of SARS-CoV-2, the virus that causes
-                      COVID-19. The reduction in immunity is mostly a reduction
-                      in protection from symptomatic COVID-19 illness;
-                      protection from more serious illness and outcomes does not
-                      decrease as much over time. The groups for whom boosters
-                      are recommended differ depending on which vaccine they
-                      were originally immunized with.
+                      In this case, the booster counters the decrease in
+                      immunity that was developed after becoming fully
+                      vaccinated. Studies have shown that vaccine-induced
+                      protection from COVID-19 illness decreases over time and
+                      may also be decreased by the Delta variant of SARS-CoV-2,
+                      the virus that causes COVID-19. The reduction in immunity
+                      is mostly a reduction in protection from symptomatic
+                      COVID-19 illness; protection from more serious illness and
+                      outcomes does not decrease as much over time. A booster is
+                      recommended for everyone aged 18 and over. The recommended
+                      timing for boosters depends on which vaccine series
+                      someone orginally received.
                     </p>
                   </Accordion.Content>
                   <Accordion.Title
@@ -3275,8 +3265,8 @@ export default function VaccinesFAQPilot(props) {
                     active={activeIndex.indexOf(50) > 0}
                   >
                     <p>
-                      At this point in time, booster doses have only been
-                      reviewed and approved by the{" "}
+                      At this point in time, booster doses have been reviewed
+                      and approved by the{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
@@ -3296,94 +3286,19 @@ export default function VaccinesFAQPilot(props) {
                       </a>{" "}
                       for all 3 authorized COVID-19 vaccines (developed by
                       Pfizer-BioNTech, Moderna, and Johnson & Johnson/Janssen).
-                      Some people should get a booster and some may get a{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        booster.
-                      </a>
+                      Anyone at least 18 years of age should get a booster.
                     </p>
                     <p>
-                      You are <b>recommended</b> to get a booster dose if:{" "}
-                      <ul class="outer">
-                        <li>
-                          You received the Johnson & Johnson/ Janssen vaccine
-                        </li>
-                        <li>
-                          You received the Pfizer-BioNTech or Moderna vaccine
-                          AND fall into one of these
-                          <a
-                            style={{ color: "#397AB9" }}
-                            href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#Populations"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {" "}
-                            groups:
-                          </a>
-                        </li>
-                        <ul
-                          class="inner"
-                          style={{ paddingLeft: "4rem", lineHeight: "150%" }}
-                        >
-                          <li>People aged 65 and older</li>
-                          <li>
-                            People aged 50-64 with underlying{" "}
-                            <a
-                              style={{ color: "#397AB9" }}
-                              href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              medical conditions
-                            </a>{" "}
-                          </li>
-                          <li>
-                            People aged 18 and older in long-term care settings
-                          </li>
-                        </ul>
-                      </ul>
-                    </p>
-                    <p>
-                      You are <b>eligible</b> to get a booster shot if you
-                      received the Pfizer-BioNTech or Moderna vaccine AND fall
-                      into one of the following groups:
-                      <ul style={{ paddingLeft: "4rem", lineHeight: "150%" }}>
-                        <li>
-                          People aged 18-49 with underlying medical conditions{" "}
-                          <a
-                            style={{ color: "#397AB9" }}
-                            href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            medical conditions
-                          </a>{" "}
-                        </li>
-                        <li>
-                          People aged 18-64 who are at{" "}
-                          <a
-                            style={{ color: "#397AB9" }}
-                            href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#HighRisk"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            higher risk
-                          </a>{" "}
-                          of being exposed to COVID-19 because of their
-                          occupation or living situation (e.g. essential
-                          personnel, frontline workers, people in healthcare
-                          settings, schools, correctional facilities, homeless
-                          shelters).
-                        </li>
-                      </ul>
-                    </p>
-                    <p>
-                      If you are not sure if you can or should receive a booster
-                      shot, you should discuss with your healthcare provider.
+                      The timing of the booster is different, depending on the
+                      original vaccine someone received (called “primary
+                      series”). If you received the Johnson &Johnson/ Janssen
+                      vaccine, you should get a booster at least 2 months after
+                      your original COVID-19 vaccine. If you received either the
+                      Pfizer-BioNTech or the Moderna COVID-19 vaccine, you
+                      should get a booster at least 6 months after the second
+                      dose of your primary series. You may get a booster of any
+                      of the authorized COVID-19 vaccines, no matter which
+                      vaccine you received for your primary vaccination series.
                     </p>
                   </Accordion.Content>
 
