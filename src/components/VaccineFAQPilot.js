@@ -1470,7 +1470,7 @@ export default function VaccinesFAQPilot(props) {
                   </Accordion.Content> */}
 
                   <Accordion.Title
-                    id="get"
+                    id="fertility"
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
                     index={37}
@@ -1567,6 +1567,7 @@ export default function VaccinesFAQPilot(props) {
                   <Accordion.Title
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
+                    id="get"
                     index={46}
                     onClick={() =>
                       activeIndex.indexOf(46) < 0
@@ -2961,7 +2962,7 @@ export default function VaccinesFAQPilot(props) {
                   </Accordion.Content> */}
 
                   <Accordion.Title
-                    id="get"
+                    id="boosters"
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
                     index={13}
@@ -3019,7 +3020,7 @@ export default function VaccinesFAQPilot(props) {
               {/* new section -------- */}
 
               <div style={{ height: 5 }}></div>
-              <Header as="h2" style={{ fontWeight: 600 }}>
+              <Header  as="h2" style={{ fontWeight: 600 }}>
                 <Header.Content>Boosters, Additional doses</Header.Content>
               </Header>
 

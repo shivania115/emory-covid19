@@ -1117,7 +1117,7 @@ const SideRaceBarChart = (props) => {
     },
   
     {
-      name: "African Americans",
+      name: "African American",
       popvalue:
         props.demogData["vaccineRace"][0]["African American"][0]["percentPop"],
       vaxvalue:
@@ -1150,7 +1150,7 @@ const SideRaceBarChart = (props) => {
           props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
     },
     {
-      name: "American Natives",
+      name: "American Native",
       popvalue:
         props.demogData["vaccineRace"][0]["American Native"][0]["percentPop"],
       vaxvalue:
@@ -1169,7 +1169,7 @@ const SideRaceBarChart = (props) => {
             props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVastLast14']
     },
     {
-      name: "Native Hawaiian/Pacific Islanders",
+      name: "Native Hawaiian/Pacific Islander ",
       popvalue: props.demogData["vaccineRace"][0]["NHPI"][0]["percentPop"],
       vaxvalue:
         props.fips == "_nation"
@@ -1426,7 +1426,7 @@ const SideRaceBarChart = (props) => {
       > */}
       <Grid.Column
         width={props.inTab === true ? 4 : 5}
-        style={{ paddingLeft: 0 }}
+        style={{ marginLeft:12,marginRight:12, paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "12pt" }}>
           {" "}
@@ -2906,6 +2906,7 @@ const USVaccineTrackerPilot = (props) => {
                           color: "black",
                           fontSize: "29px",
                           paddingLeft: 20,
+                          paddingBottom:0
                         }}
                       >
                         {" "}
@@ -3012,30 +3013,34 @@ const USVaccineTrackerPilot = (props) => {
 
                   {/* <center style={{paddingLeft: 30}}><Divider style={{width: 1000}}/> </center> */}
 
-                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 15 }}>
-                    <Grid.Column style={{ width: 810, paddingLeft: 60 }}>
+                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0,paddingBottom:15 }}>
+                  <center>
+                    <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
                       <div style={{ paddingTop: "0em" }}>
+                     
                         <Header.Subheader
                           style={{
                             color: "#000000",
-                            fontSize: "14pt",
-                            paddingTop: 19,
-                            textAlign: "left",
-                            paddingLeft: 15,
-                            paddingRight:0,
-                            paddingBottom: 2,
+                         
+                            paddingTop: 8,
+                           
+                            // paddingLeft: 15,
+                           
+                            paddingBottom: 20,
                           }}
                         >
-                          <center>
+                          
                             {" "}
-                            <b style={{ fontSize: "15px" }}>
+                            <b style={{lineHeight:"1.2", fontSize: "18px" }}>
                             "Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage."
                             </b>{" "}
-                          </center>
+                        
                           <br />
                         </Header.Subheader>
+                        
                       </div>
                     </Grid.Column>
+                    </center>
                   </Grid.Row>
 
                   <Grid>
@@ -3114,7 +3119,7 @@ const USVaccineTrackerPilot = (props) => {
                         <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                           <Header.Subheader
                             style={{
-                              width: 800,
+                              width: 900,
                               color: "#000000",
                               textAlign: "left",
                               fontSize: "14pt",
@@ -3169,7 +3174,7 @@ const USVaccineTrackerPilot = (props) => {
 
                               </ul>
                             </p> */}
-                            <p style={{ paddingLeft: 30 }}>
+                            <p style={{fontSize:"15px", paddingLeft: 30 }}>
                               <ul>
                                 <li>
                                   White Americans make up{" "}
@@ -3226,6 +3231,26 @@ const USVaccineTrackerPilot = (props) => {
                                   % vaccinated in past 14 days,{" "}
                                   {
                                     nationalDemog["vaccineRace"][0]["African American"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
+                                </li>
+
+                                <li>
+                                  Asians make up{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["Asian"][0][
+                                      "seriesCompletePopPctKnown"
+                                    ]
+                                  }{" "}
+                                  % of those fully vaccinated, {" "}
+                                  {
+                                    twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+                                  }{" "}
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["Asian"][0][
                                       "percentPop"
                                     ]
                                   }{" "}
