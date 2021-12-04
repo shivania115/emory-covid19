@@ -1117,7 +1117,7 @@ const SideRaceBarChart = (props) => {
     },
   
     {
-      name: "African Americans",
+      name: "African American",
       popvalue:
         props.demogData["vaccineRace"][0]["African American"][0]["percentPop"],
       vaxvalue:
@@ -1150,7 +1150,7 @@ const SideRaceBarChart = (props) => {
           props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
     },
     {
-      name: "American Natives",
+      name: "American Native",
       popvalue:
         props.demogData["vaccineRace"][0]["American Native"][0]["percentPop"],
       vaxvalue:
@@ -1169,7 +1169,7 @@ const SideRaceBarChart = (props) => {
             props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVastLast14']
     },
     {
-      name: "Native Hawaiian/Pacific Islanders",
+      name: "Native Hawaiian/Pacific Islander ",
       popvalue: props.demogData["vaccineRace"][0]["NHPI"][0]["percentPop"],
       vaxvalue:
         props.fips == "_nation"
@@ -1235,7 +1235,7 @@ const SideRaceBarChart = (props) => {
           <p className="label" style={{ marginBottom: 0 }}>
             % Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}
           </p>
-          <p> % Vaccination last 14 days: {payload[0].payload.weeksvalue.toFixed(1)} </p>
+          <p> % Vaccination in past 14 days: {payload[0].payload.weeksvalue.toFixed(1)} </p>
         </div>
       );
     }
@@ -1251,7 +1251,7 @@ const SideRaceBarChart = (props) => {
     return (
       <g>
         {(() => {
-          if (value > 60) {
+          if (value > 40) {
             return (
               <text
                 x={x + width - 40}
@@ -1294,7 +1294,7 @@ const SideRaceBarChart = (props) => {
     pieChartRace[2],
     pieChartRace[0],
   ];
-
+//I want to get here
   return (
     <Grid>
       {/* <Grid.Column
@@ -1305,7 +1305,7 @@ const SideRaceBarChart = (props) => {
         width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
       >
-        <Header style={{ fontSize: "10pt" }}>
+        <Header style={{ fontSize: "12pt" }}>
           {" "}
           <center> % Vaccination </center>{" "}
         </Header>
@@ -1317,12 +1317,15 @@ const SideRaceBarChart = (props) => {
           margin={{
             top: 0,
             right: 15,
+            
             left: props.inTab === true ? 25 : 35,
             bottom: 0,
           }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis type="number" />
+          <XAxis 
+          // domain={[0.80]} label={[0,20,40,60,80]} 
+          type="number" />
           {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
           <YAxis
             type="category"
@@ -1355,16 +1358,190 @@ const SideRaceBarChart = (props) => {
             {/* valueAccessor={valueAccessor} */}
           </Bar>
         </BarChart>
+        <Accordion
+                        id="race"
+                        style={{
+                          paddingTop: 0,
+                          paddingLeft: 30,
+                          paddingBottom: 15,
+                        }}
+                        defaultActiveIndex={1}
+                        panels={[
+                          {
+                            key: "acquire-dog",
+                            title: {
+                              content: (
+                                <u
+                                  style={{
+                                    fontFamily: "lato",
+                                    fontSize: "15px",
+                                    color: "#397AB9",
+                                  }}
+                                >
+                                  About the data
+                                </u>
+                              ),
+                              icon: "dropdown",
+                            },
+                            content: {
+                              content: (
+                                <Header.Content
+                                  style={{
+                                    fontWeight: 300,
+                                    paddingTop: 7,
+                                    paddingLeft: 5,
+                                    fontSize: "19px",
+                                    width: 975,
+                                  }}
+                                >
+                                  Data are from the{" "}
+                                  <a
+                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    CDC COVID Data Tracker
+                                  </a>
+                                  , data as of Today <br />
+                                 
+                               
+                                  <br />
+                                  {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                                </Header.Content>
+                              ),
+                            },
+                          },
+                        ]}
+                      />
       </Grid.Column>
+      {/* <Grid.Column
+        width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+      
       {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
         style={{ paddingLeft: 0 }}
       > */}
       <Grid.Column
         width={props.inTab === true ? 4 : 5}
+        style={{ marginLeft:12,marginRight:12, paddingLeft: 0 }}
+      >
+        <Header style={{ fontSize: "12pt" }}>
+          {" "}
+          <center> % Vaccination in past 14 days </center>{" "}
+        </Header>
+        <BarChart
+          layout="vertical"
+          width={props.inTab === true ? 210 : 260}
+          height={330}
+          data={data}
+          margin={{
+            top: 0,
+            right: 15,
+            left: props.inTab === true ? 30 : 35,
+            bottom: 0,
+          }}
+        >
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis type="number" />
+          {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fontSize: tickFontSize, fill: "black" }}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
+            // formatter={function(value, name) {
+            //     if(name === hoverBar){
+            //       return [value,name];
+            //     }else {
+            //       return null
+            //     }
+            //   }}
+            cursor={false}
+          />
+          <Bar dataKey="weeksvalue" isAnimationActive={false}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
+            ))}
+            <LabelList
+              position="right"
+              content={<CustomizedLabellist />}
+              fill="black"
+              strokeWidth={strokeWidth}
+              fontWeight={fontWeight}
+              fontSize={labelSize}
+            />
+            {/* valueAccessor={valueAccessor} */}
+          </Bar>
+        </BarChart>
+ 
+                      <Accordion
+                        id="race"
+                        style={{
+                          paddingTop: 0,
+                          paddingLeft: 30,
+                          paddingBottom: 15,
+                        }}
+                        defaultActiveIndex={1}
+                        panels={[
+                          {
+                            key: "acquire-dog",
+                            title: {
+                              content: (
+                                <u
+                                  style={{
+                                    fontFamily: "lato",
+                                    fontSize: "15px",
+                                    color: "#397AB9",
+                                  }}
+                                >
+                                  About the data
+                                </u>
+                              ),
+                              icon: "dropdown",
+                            },
+                            content: {
+                              content: (
+                                <Header.Content
+                                  style={{
+                                    fontWeight: 300,
+                                    paddingTop: 7,
+                                    paddingLeft: 5,
+                                    fontSize: "19px",
+                                    width: 975,
+                                  }}
+                                >
+                                  Data are from the{" "}
+                                  <a
+                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    CDC COVID Data Tracker
+                                  </a>
+                                  , data as of Today <br />
+                                 
+                               
+                                  <br />
+                                  {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                                </Header.Content>
+                              ),
+                            },
+                          },
+                        ]}
+                      />
+             
+      </Grid.Column>
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
         style={{ paddingLeft: 0 }}
       >
-        <Header style={{ fontSize: "10pt" }}>
+        <Header style={{ fontSize: "12pt" }}>
           {" "}
           <center> % Population </center>{" "}
         </Header>
@@ -1414,65 +1591,62 @@ const SideRaceBarChart = (props) => {
             {/* valueAccessor={valueAccessor} */}
           </Bar>
         </BarChart>
-      </Grid.Column>
-      {/* <Grid.Column
-        width={props.inTab === true ? 8 : 9}
-        style={{ paddingLeft: 0 }}
-      > */}
-      <Grid.Column
-        width={props.inTab === true ? 4 : 5}
-        style={{ paddingLeft: 0 }}
-      >
-        <Header style={{ fontSize: "10pt" }}>
-          {" "}
-          <center> % Vaccination last 14 days </center>{" "}
-        </Header>
-        <BarChart
-          layout="vertical"
-          width={props.inTab === true ? 210 : 260}
-          height={330}
-          data={data}
-          margin={{
-            top: 0,
-            right: 15,
-            left: props.inTab === true ? 30 : 35,
-            bottom: 0,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis type="number" />
-          {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis
-            type="category"
-            dataKey="name"
-            tick={{ fontSize: tickFontSize, fill: "black" }}
-          />
-          <Tooltip
-            content={<CustomTooltip />}
-            // formatter={function(value, name) {
-            //     if(name === hoverBar){
-            //       return [value,name];
-            //     }else {
-            //       return null
-            //     }
-            //   }}
-            cursor={false}
-          />
-          <Bar dataKey="weeksvalue" isAnimationActive={false}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
-            ))}
-            <LabelList
-              position="right"
-              content={<CustomizedLabellist />}
-              fill="black"
-              strokeWidth={strokeWidth}
-              fontWeight={fontWeight}
-              fontSize={labelSize}
-            />
-            {/* valueAccessor={valueAccessor} */}
-          </Bar>
-        </BarChart>
+        <Accordion
+                        id="race"
+                        style={{
+                          paddingTop: 0,
+                          paddingLeft: 30,
+                          paddingBottom: 15,
+                        }}
+                        defaultActiveIndex={1}
+                        panels={[
+                          {
+                            key: "acquire-dog",
+                            title: {
+                              content: (
+                                <u
+                                  style={{
+                                    fontFamily: "lato",
+                                    fontSize: "15px",
+                                    color: "#397AB9",
+                                  }}
+                                >
+                                  About the data
+                                </u>
+                              ),
+                              icon: "dropdown",
+                            },
+                            content: {
+                              content: (
+                                <Header.Content
+                                  style={{
+                                    fontWeight: 300,
+                                    paddingTop: 7,
+                                    paddingLeft: 5,
+                                    fontSize: "19px",
+                                    width: 975,
+                                  }}
+                                >
+                                  Data are from the{" "}
+                                  <a
+                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    CDC COVID Data Tracker
+                                  </a>
+                                  , data as of Today <br />
+                                 
+                               
+                                  <br />
+                                  {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                                </Header.Content>
+                              ),
+                            },
+                          },
+                        ]}
+                      />
       </Grid.Column>
       {/* <Grid.Row>
         <Grid style={{paddingTop: '3.5rem'}}>
@@ -2732,6 +2906,7 @@ const USVaccineTrackerPilot = (props) => {
                           color: "black",
                           fontSize: "29px",
                           paddingLeft: 20,
+                          paddingBottom:0
                         }}
                       >
                         {" "}
@@ -2838,30 +3013,34 @@ const USVaccineTrackerPilot = (props) => {
 
                   {/* <center style={{paddingLeft: 30}}><Divider style={{width: 1000}}/> </center> */}
 
-                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 15 }}>
-                    <Grid.Column style={{ width: 810, paddingLeft: 60 }}>
+                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0,paddingBottom:15 }}>
+                  <center>
+                    <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
                       <div style={{ paddingTop: "0em" }}>
+                     
                         <Header.Subheader
                           style={{
                             color: "#000000",
-                            fontSize: "14pt",
-                            paddingTop: 19,
-                            textAlign: "left",
-                            paddingLeft: 190,
-                            paddingRight: "1em",
-                            paddingBottom: 0,
+                         
+                            paddingTop: 8,
+                           
+                            // paddingLeft: 15,
+                           
+                            paddingBottom: 20,
                           }}
                         >
-                          <center>
+                          
                             {" "}
-                            <b style={{ fontSize: "22px" }}>
-                              Vaccination by Race & Ethnicity
+                            <b style={{lineHeight:"1.2", fontSize: "18px" }}>
+                            "Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage."
                             </b>{" "}
-                          </center>
+                        
                           <br />
                         </Header.Subheader>
+                        
                       </div>
                     </Grid.Column>
+                    </center>
                   </Grid.Row>
 
                   <Grid>
@@ -2940,7 +3119,7 @@ const USVaccineTrackerPilot = (props) => {
                         <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                           <Header.Subheader
                             style={{
-                              width: 800,
+                              width: 900,
                               color: "#000000",
                               textAlign: "left",
                               fontSize: "14pt",
@@ -2995,101 +3174,146 @@ const USVaccineTrackerPilot = (props) => {
 
                               </ul>
                             </p> */}
-                            <p style={{ paddingLeft: 30 }}>
+                            <p style={{fontSize:"15px", paddingLeft: 30 }}>
                               <ul>
                                 <li>
                                   White Americans make up{" "}
                                   {
                                     nationalDemog["vaccineRace"][0]["White"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % of the US population and{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["White"][0][
                                       "seriesCompletePopPctKnown"
                                     ]
                                   }{" "}
-                                  % of those fully vaccinated.
+                                  % of those fully vaccinated, {" "}
+                                  {
+                                    twoweeksvac['nation']['White']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
+                                  }{" "}
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["White"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
+                              
                                 </li>
 
                                 <li>
                                   Hispanic Americans make up{" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "Hispanic"
-                                    ][0]["percentPop"]
+                                    nationalDemog["vaccineRace"][0]["Hispanic"][0][
+                                      "seriesCompletePopPctKnown"
+                                    ]
                                   }{" "}
-                                  % of the US population and{" "}
+                                  % of those fully vaccinated, {" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "Hispanic"
-                                    ][0]["seriesCompletePopPctKnown"]
+                                    twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
                                   }{" "}
-                                  % of those fully vaccinated.
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["Hispanic"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
                                 </li>
 
                                 <li>
                                   African Americans make up{" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "African American"
-                                    ][0]["percentPop"]
+                                    nationalDemog["vaccineRace"][0]["African American"][0][
+                                      "seriesCompletePopPctKnown"
+                                    ]
                                   }{" "}
-                                  % of the US population and{" "}
+                                  % of those fully vaccinated, {" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "African American"
-                                    ][0]["seriesCompletePopPctKnown"]
+                                    twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
                                   }{" "}
-                                  % of those fully vaccinated.
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["African American"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
+                                </li>
+
+                                <li>
+                                  Asians make up{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["Asian"][0][
+                                      "seriesCompletePopPctKnown"
+                                    ]
+                                  }{" "}
+                                  % of those fully vaccinated, {" "}
+                                  {
+                                    twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+                                  }{" "}
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["Asian"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
                                 </li>
 
                                 <li>
                                   Native Americans make up{" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "American Native"
-                                    ][0]["percentPop"]
+                                    nationalDemog["vaccineRace"][0]["American Native"][0][
+                                      "seriesCompletePopPctKnown"
+                                    ]
                                   }{" "}
-                                  % of the US population and{" "}
+                                  % of those fully vaccinated, {" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "American Native"
-                                    ][0]["seriesCompletePopPctKnown"]
+                                    twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
                                   }{" "}
-                                  % of those fully vaccinated.
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["American Native"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
                                 </li>
 
                                 <li>
                                   Pacific Islanders make up{" "}
                                   {
                                     nationalDemog["vaccineRace"][0]["NHPI"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % of the US population and{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["NHPI"][0][
                                       "seriesCompletePopPctKnown"
                                     ]
                                   }{" "}
-                                  % of those fully vaccinated.
+                                  % of those fully vaccinated, {" "}
+                                  {
+                                    twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
+                                  }{" "}
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["NHPI"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
                                 </li>
                                 <li>
                                   Others make up{" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "Multiple/Other"
-                                    ][0]["percentPop"]
+                                    nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                      "seriesCompletePopPctKnown"
+                                    ]
                                   }{" "}
-                                  % of the US population and{" "}
+                                  % of those fully vaccinated, {" "}
                                   {
-                                    nationalDemog["vaccineRace"][0][
-                                      "Multiple/Other"
-                                    ][0]["seriesCompletePopPctKnown"]
+                                    twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
                                   }{" "}
-                                  % of those fully vaccinated.
+                                  % vaccinated in past 14 days,{" "}
+                                  {
+                                    nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                      "percentPop"
+                                    ]
+                                  }{" "}
+                                  % population.
                                 </li>
 
                                 {/* {pctVacPopDisp >= 1 && <li>
