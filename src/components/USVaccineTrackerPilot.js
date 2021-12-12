@@ -762,14 +762,13 @@ const CustomTooltipGraph = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom-tooltip" style={{ lineHeight: "19px" }}>
-        <p style={{ margin: 0 }} className="label">{`${
-          new Date(label * 1000).getMonth() +
+        <p style={{ margin: 0 }} className="label">{`${new Date(label * 1000).getMonth() +
           1 +
           "/" +
           new Date(label * 1000).getDate() +
           "/" +
           new Date(label * 1000).getFullYear()
-        }`}</p>
+          }`}</p>
         <p
           style={{ margin: 0, color: "#808080" }}
           className="intro"
@@ -944,27 +943,27 @@ function VaccineDisparityCharts(props) {
             (props.selection === "region" ||
               props.selection === "urbanrural") === false
               ? [
-                  {
-                    id: "7",
-                    value: props.nationalAverage,
-                    type: "line",
-                    color: "#808080",
-                  },
-                  {
-                    id: "1",
-                    value: props.trendGroup[0],
-                    type: "square",
-                    color: colorPaletteGraph[0],
-                  },
-                  {
-                    id: "2",
-                    value: props.trendGroup[1],
-                    type: "square",
-                    color: colorPaletteGraph[4],
-                  },
-                ]
+                {
+                  id: "7",
+                  value: props.nationalAverage,
+                  type: "line",
+                  color: "#808080",
+                },
+                {
+                  id: "1",
+                  value: props.trendGroup[0],
+                  type: "square",
+                  color: colorPaletteGraph[0],
+                },
+                {
+                  id: "2",
+                  value: props.trendGroup[1],
+                  type: "square",
+                  color: colorPaletteGraph[4],
+                },
+              ]
               : props.selection === "region"
-              ? [
+                ? [
                   {
                     id: "7",
                     value: props.nationalAverage,
@@ -996,7 +995,7 @@ function VaccineDisparityCharts(props) {
                     color: colorPaletteGraph[3],
                   },
                 ]
-              : [
+                : [
                   {
                     id: "7",
                     value: props.nationalAverage,
@@ -1064,7 +1063,7 @@ const SideRaceBarChart = (props) => {
 
   const renderLegend = (props) => {
     const { payload } = props;
-
+    console.log(props.demogData);
     return (
       <ul>
         {payload.map((entry, index) => (
@@ -1087,15 +1086,15 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["White"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["White"][0][
-              "percentVaccinated"
-            ] === -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["White"][0]["percentVaccinated"],
-          weeksvalue:
-          props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["White"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
     },
     {
       name: "Hispanic",
@@ -1103,19 +1102,19 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["Hispanic"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["Hispanic"][0][
-              "percentVaccinated"
-            ] === -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["Hispanic"][0][
-              "percentVaccinated"
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Hispanic"][0][
+            "percentVaccinated"
             ],
       weeksvalue:
-      props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
+        props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
     },
-  
+
     {
       name: "African American",
       popvalue:
@@ -1123,15 +1122,15 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["African American"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["Black"][0][
-              "percentVaccinated"
-            ] === -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["Black"][0]["percentVaccinated"],
-          weeksvalue:
-          props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Black"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
     },
     {
       name: "Asian",
@@ -1139,15 +1138,15 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["Asian"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["Asian"][0][
-              "percentVaccinated"
-            ] === -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["Asian"][0]["percentVaccinated"],
-          weeksvalue:
-          props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Asian"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
     },
     {
       name: "American Native",
@@ -1156,17 +1155,17 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["American Native"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["American Native"][0][
-              "percentVaccinated"
-            ] === -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["American Native"][0][
-              "percentVaccinated"
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["American Native"][0][
+            "percentVaccinated"
             ],
-            weeksvalue:
-            props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVastLast14']
+      weeksvalue:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
+        // props.twoweeksvac['nation']['American Native']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['American Native']['pctAmongFullyVastLast14']
     },
     {
       name: "Native Hawaiian/Pacific Islander ",
@@ -1174,14 +1173,14 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["NHPI"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"] ===
             -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"],
-          weeksvalue:
-          props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']<0?0:props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
+            ? 0
+            : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
     },
 
     {
@@ -1191,22 +1190,23 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["Multiple/Other"][0][
-              "seriesCompletePopPctKnown"
-            ]
+          "seriesCompletePopPctKnown"
+          ]
           : props.VaccineData[props.fips][0]["Multiple/Other"][0][
-              "percentVaccinated"
-            ] === -9999
-          ? 0
-          : props.VaccineData[props.fips][0]["Multiple/Other"][0][
-              "percentVaccinated"
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Multiple/Other"][0][
+            "percentVaccinated"
             ],
-            weeksvalue:
-            props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']<0?0: props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
+      weeksvalue:
+        props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
     },
   ];
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
+      console.log(payload);
       return (
         <div
           className="tooltip"
@@ -1235,48 +1235,53 @@ const SideRaceBarChart = (props) => {
           <p className="label" style={{ marginBottom: 0 }}>
             % Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}
           </p>
-          <p> % Vaccination in past 14 days: {payload[0].payload.weeksvalue.toFixed(1)} </p>
+          <p> % Vaccination in past 14 days: {payload[0].payload.weeksvalue} </p>
         </div>
       );
     }
-
+    console.log(payload);
     return null;
   };
 
   const CustomizedLabellist = (props) => {
     const { width, height, x, y, value } = props;
+    console.log(value);
 
     // console.log('ll', props)
-
-    return (
-      <g>
-        {(() => {
-          if (value > 40) {
-            return (
-              <text
-                x={x + width - 40}
-                y={height / 2 + y + 4}
-                fill="#FFF"
-                fontSize={labelSize}
-              >
-                {value.toFixed(1)}%
-              </text>
-            );
-          } else {
-            return (
-              <text
-                x={x + width + 6}
-                y={height / 2 + y + 4}
-                fill="#000"
-                fontSize={labelSize}
-              >
-                {value.toFixed(1)}%
-              </text>
-            );
-          }
-        })()}
-      </g>
-    );
+    if (value) {
+      return (
+        <g>
+          {(() => {
+            if (value > 40) {
+              return (
+                <text
+                  x={x + width - 40}
+                  y={height / 2 + y + 4}
+                  fill="#FFF"
+                  fontSize={labelSize}
+                >
+                  {value.toFixed(1)}%
+                </text>
+              );
+            } else {
+              return (
+                <text
+                  x={x + width + 6}
+                  y={height / 2 + y + 4}
+                  fill="#000"
+                  fontSize={labelSize}
+                >
+                  {value.toFixed(1)}%
+                </text>
+              );
+            }
+          })()}
+        </g>
+      );
+    }
+    else {
+      return null;
+    }
   };
 
   const valueAccessor = (entry) => {
@@ -1294,7 +1299,8 @@ const SideRaceBarChart = (props) => {
     pieChartRace[2],
     pieChartRace[0],
   ];
-//I want to get here
+  //I want to get here
+  console.log(data);
   return (
     <Grid>
       {/* <Grid.Column
@@ -1317,15 +1323,15 @@ const SideRaceBarChart = (props) => {
           margin={{
             top: 0,
             right: 15,
-            
+
             left: props.inTab === true ? 25 : 35,
             bottom: 0,
           }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis 
-          // domain={[0.80]} label={[0,20,40,60,80]} 
-          type="number" />
+          <XAxis
+            // domain={[0.80]} label={[0,20,40,60,80]} 
+            type="number" />
           {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
           <YAxis
             type="category"
@@ -1359,74 +1365,74 @@ const SideRaceBarChart = (props) => {
           </Bar>
         </BarChart>
         <Accordion
-                        id="race"
-                        style={{
-                          paddingTop: 0,
-                          paddingLeft: 30,
-                          paddingBottom: 15,
-                        }}
-                        defaultActiveIndex={1}
-                        panels={[
-                          {
-                            key: "acquire-dog",
-                            title: {
-                              content: (
-                                <u
-                                  style={{
-                                    fontFamily: "lato",
-                                    fontSize: "15px",
-                                    color: "#397AB9",
-                                  }}
-                                >
-                                  About the data
-                                </u>
-                              ),
-                              icon: "dropdown",
-                            },
-                            content: {
-                              content: (
-                                <Header.Content
-                                  style={{
-                                    fontWeight: 300,
-                                    paddingTop: 7,
-                                    paddingLeft: 5,
-                                    fontSize: "19px",
-                                    width: 975,
-                                  }}
-                                >
-                                  Data are from the{" "}
-                                  <a
-                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    CDC COVID Data Tracker
-                                  </a>
-                                  , data as of Today <br />
-                                 
-                               
-                                  <br />
-                                  {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 300,
+                      paddingTop: 7,
+                      paddingLeft: 5,
+                      fontSize: "19px",
+                      width: 975,
+                    }}
+                  >
+                    Data are from the{" "}
+                    <a
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CDC COVID Data Tracker
+                    </a>
+                    , data as of Today <br />
+
+
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
-                                </Header.Content>
-                              ),
-                            },
-                          },
-                        ]}
-                      />
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
       </Grid.Column>
       {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
         style={{ paddingLeft: 0 }}
       > */}
-      
+
       {/* <Grid.Column
         width={props.inTab === true ? 8 : 9}
         style={{ paddingLeft: 0 }}
       > */}
       <Grid.Column
         width={props.inTab === true ? 4 : 5}
-        style={{ marginLeft:12,marginRight:12, paddingLeft: 0 }}
+        style={{ marginLeft: 12, marginRight: 12, paddingLeft: 0 }}
       >
         <Header style={{ fontSize: "12pt" }}>
           {" "}
@@ -1478,64 +1484,64 @@ const SideRaceBarChart = (props) => {
             {/* valueAccessor={valueAccessor} */}
           </Bar>
         </BarChart>
- 
-                      <Accordion
-                        id="race"
-                        style={{
-                          paddingTop: 0,
-                          paddingLeft: 30,
-                          paddingBottom: 15,
-                        }}
-                        defaultActiveIndex={1}
-                        panels={[
-                          {
-                            key: "acquire-dog",
-                            title: {
-                              content: (
-                                <u
-                                  style={{
-                                    fontFamily: "lato",
-                                    fontSize: "15px",
-                                    color: "#397AB9",
-                                  }}
-                                >
-                                  About the data
-                                </u>
-                              ),
-                              icon: "dropdown",
-                            },
-                            content: {
-                              content: (
-                                <Header.Content
-                                  style={{
-                                    fontWeight: 300,
-                                    paddingTop: 7,
-                                    paddingLeft: 5,
-                                    fontSize: "19px",
-                                    width: 975,
-                                  }}
-                                >
-                                  Data are from the{" "}
-                                  <a
-                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    CDC COVID Data Tracker
-                                  </a>
-                                  , data as of Today <br />
-                                 
-                               
-                                  <br />
-                                  {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+
+        <Accordion
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 300,
+                      paddingTop: 7,
+                      paddingLeft: 5,
+                      fontSize: "19px",
+                      width: 975,
+                    }}
+                  >
+                    Data are from the{" "}
+                    <a
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CDC COVID Data Tracker
+                    </a>
+                    , data as of Today <br />
+
+
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
-                                </Header.Content>
-                              ),
-                            },
-                          },
-                        ]}
-                      />
-             
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
+
       </Grid.Column>
       <Grid.Column
         width={props.inTab === true ? 4 : 5}
@@ -1592,61 +1598,61 @@ const SideRaceBarChart = (props) => {
           </Bar>
         </BarChart>
         <Accordion
-                        id="race"
-                        style={{
-                          paddingTop: 0,
-                          paddingLeft: 30,
-                          paddingBottom: 15,
-                        }}
-                        defaultActiveIndex={1}
-                        panels={[
-                          {
-                            key: "acquire-dog",
-                            title: {
-                              content: (
-                                <u
-                                  style={{
-                                    fontFamily: "lato",
-                                    fontSize: "15px",
-                                    color: "#397AB9",
-                                  }}
-                                >
-                                  About the data
-                                </u>
-                              ),
-                              icon: "dropdown",
-                            },
-                            content: {
-                              content: (
-                                <Header.Content
-                                  style={{
-                                    fontWeight: 300,
-                                    paddingTop: 7,
-                                    paddingLeft: 5,
-                                    fontSize: "19px",
-                                    width: 975,
-                                  }}
-                                >
-                                  Data are from the{" "}
-                                  <a
-                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    CDC COVID Data Tracker
-                                  </a>
-                                  , data as of Today <br />
-                                 
-                               
-                                  <br />
-                                  {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 300,
+                      paddingTop: 7,
+                      paddingLeft: 5,
+                      fontSize: "19px",
+                      width: 975,
+                    }}
+                  >
+                    Data are from the{" "}
+                    <a
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CDC COVID Data Tracker
+                    </a>
+                    , data as of Today <br />
+
+
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
-                                </Header.Content>
-                              ),
-                            },
-                          },
-                        ]}
-                      />
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
       </Grid.Column>
       {/* <Grid.Row>
         <Grid style={{paddingTop: '3.5rem'}}>
@@ -1780,7 +1786,7 @@ const USVaccineTrackerPilot = (props) => {
   const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState("seriesCompletePopPct");
   const [fully, setFully] = useState("PercentAdministeredPartial");
-  const[twoweeksvac,setTwoweeksvac]=useState(0);
+  const [twoweeksvac, setTwoweeksvac] = useState(0);
   const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
   const [finalStr, setFinalStr] = useState("");
   const [vaccineProp, setVaccine] = useState();
@@ -1886,10 +1892,10 @@ const USVaccineTrackerPilot = (props) => {
       .then((x) => {
         setDate(
           x.date.substring(5, 7) +
-            "/" +
-            x.date.substring(8, 10) +
-            "/" +
-            x.date.substring(0, 4)
+          "/" +
+          x.date.substring(8, 10) +
+          "/" +
+          x.date.substring(0, 4)
         );
       });
 
@@ -1898,10 +1904,10 @@ const USVaccineTrackerPilot = (props) => {
       .then((x) => {
         setVaccineDate(
           x.date.substring(5, 7) +
-            "/" +
-            x.date.substring(8, 10) +
-            "/" +
-            x.date.substring(0, 4)
+          "/" +
+          x.date.substring(8, 10) +
+          "/" +
+          x.date.substring(0, 4)
         );
       });
 
@@ -1910,10 +1916,10 @@ const USVaccineTrackerPilot = (props) => {
       .then((x) =>
         setNationalDemogDate(
           x.date.substring(5, 7) +
-            "/" +
-            x.date.substring(8, 10) +
-            "/" +
-            x.date.substring(0, 4)
+          "/" +
+          x.date.substring(8, 10) +
+          "/" +
+          x.date.substring(0, 4)
         )
       );
 
@@ -1985,7 +1991,7 @@ const USVaccineTrackerPilot = (props) => {
         }
         if (
           x["vaccineRace"][0]["African American"][0][
-            "seriesCompletePopPctKnown"
+          "seriesCompletePopPctKnown"
           ] > x["vaccineRace"][0]["African American"][0]["percentPop"]
         ) {
           listW.push("African Americans");
@@ -1998,7 +2004,7 @@ const USVaccineTrackerPilot = (props) => {
         }
         if (
           x["vaccineRace"][0]["American Native"][0][
-            "seriesCompletePopPctKnown"
+          "seriesCompletePopPctKnown"
           ] > x["vaccineRace"][0]["American Native"][0]["percentPop"]
         ) {
           listW.push("Native Americans");
@@ -2077,7 +2083,7 @@ const USVaccineTrackerPilot = (props) => {
         .then((x) => {
           setVaxSeries(x);
         });
-      fetch("/data/vaccLast14daysByRace.json").then((res) => res.json()).then((x)=>{setTwoweeksvac(x)});
+      fetch("/data/vaccLast14daysByRace.json").then((res) => res.json()).then((x) => { setTwoweeksvac(x) });
       fetch("/data/vaccine7daysTimeseries.json")
         .then((res) => res.json())
         .then((x) => {
@@ -2785,10 +2791,10 @@ const USVaccineTrackerPilot = (props) => {
                               style={{ width: 970 }}
                               percent={(
                                 vaccineData["_nation"][
-                                  "PercentAdministeredPartial"
+                                "PercentAdministeredPartial"
                                 ] +
                                 vaccineData["_nation"][
-                                  "Series_Complete_Pop_Pct"
+                                "Series_Complete_Pop_Pct"
                                 ]
                               ).toFixed(1)}
                               size="large"
@@ -2906,7 +2912,7 @@ const USVaccineTrackerPilot = (props) => {
                           color: "black",
                           fontSize: "29px",
                           paddingLeft: 20,
-                          paddingBottom:0
+                          paddingBottom: 0
                         }}
                       >
                         {" "}
@@ -3013,43 +3019,43 @@ const USVaccineTrackerPilot = (props) => {
 
                   {/* <center style={{paddingLeft: 30}}><Divider style={{width: 1000}}/> </center> */}
 
-                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0,paddingBottom:15 }}>
-                  <center>
-                    <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
-                      <div style={{ paddingTop: "0em" }}>
-                     
-                        <Header.Subheader
-                          style={{
-                            color: "#000000",
-                         
-                            paddingTop: 8,
-                           
-                            // paddingLeft: 15,
-                           
-                            paddingBottom: 20,
-                          }}
-                        >
-                          
+                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0, paddingBottom: 15 }}>
+                    <center>
+                      <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
+                        <div style={{ paddingTop: "0em" }}>
+
+                          <Header.Subheader
+                            style={{
+                              color: "#000000",
+
+                              paddingTop: 8,
+
+                              // paddingLeft: 15,
+
+                              paddingBottom: 20,
+                            }}
+                          >
+
                             {" "}
-                            <b style={{lineHeight:"1.2", fontSize: "18px" }}>
-                            "Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage."
+                            <b style={{ lineHeight: "1.2", fontSize: "18px" }}>
+                              "Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage."
                             </b>{" "}
-                        
-                          <br />
-                        </Header.Subheader>
-                        
-                      </div>
-                    </Grid.Column>
+
+                            <br />
+                          </Header.Subheader>
+
+                        </div>
+                      </Grid.Column>
                     </center>
                   </Grid.Row>
 
                   <Grid>
                     <Grid.Row
-                       columns={1}
+                      columns={1}
                       style={{ width: 2000, paddingLeft: 0 }}
                     >
                       {/* <Grid.Column rows={3} width={10}> */}
-                        {/* <Grid.Row style = {{width: 550}}>
+                      {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
                           <svg width="550" height="80">
@@ -3075,22 +3081,22 @@ const USVaccineTrackerPilot = (props) => {
                         </div>
                       </Grid.Column>
                     </Grid.Row> */}
-                        <Grid>
-                          {/* <Grid.Column
+                      <Grid>
+                        {/* <Grid.Column
                             style={{
                               paddingTop: "2.5rem",
                               paddingLeft: "3rem",
                             }}
                           > */}
-                            <SideRaceBarChart
-                              demogData={nationalDemog}
-                              fips={"_nation"}
-                              twoweeksvac={twoweeksvac}
-                              VaccineData={vaccineData}
-                              inTab={false}
-                            />
-                          {/* </Grid.Column> */}
-                          {/* <Grid.Row style = {{width: 900}}>
+                        <SideRaceBarChart
+                          demogData={nationalDemog}
+                          fips={"_nation"}
+                          twoweeksvac={twoweeksvac}
+                          VaccineData={vaccineData}
+                          inTab={false}
+                        />
+                        {/* </Grid.Column> */}
+                        {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
                               <svg width="450" height="145">
@@ -3109,27 +3115,27 @@ const USVaccineTrackerPilot = (props) => {
                             </div>
                           </Grid.Column>
                       </Grid.Row> */}
-                        </Grid>
-                        {/* <toPrint ref={componentRef} />
+                      </Grid>
+                      {/* <toPrint ref={componentRef} />
                     <button onClick={() => exportComponentAsPNG(componentRef)}>
                               Export As PNG
                             </button> */}
                       {/* </Grid.Column> */}
                       {/* <Grid.Column width={4}> */}
-                        <div style={{ paddingTop: 0, paddingLeft: 0 }}>
-                          <Header.Subheader
-                            style={{
-                              width: 900,
-                              color: "#000000",
-                              textAlign: "left",
-                              fontSize: "14pt",
-                              lineHeight: "16pt",
-                              paddingTop: 16,
-                              paddingBottom: 0,
-                              paddingLeft: 6,
-                            }}
-                          >
-                            {/* <p style={{ paddingLeft: 40 }}>
+                      <div style={{ paddingTop: 0, paddingLeft: 0 }}>
+                        <Header.Subheader
+                          style={{
+                            width: 900,
+                            color: "#000000",
+                            textAlign: "left",
+                            fontSize: "14pt",
+                            lineHeight: "16pt",
+                            paddingTop: 16,
+                            paddingBottom: 0,
+                            paddingLeft: 6,
+                          }}
+                        >
+                          {/* <p style={{ paddingLeft: 40 }}>
                               <ul>
 
                                 {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
@@ -3174,155 +3180,155 @@ const USVaccineTrackerPilot = (props) => {
 
                               </ul>
                             </p> */}
-                            <p style={{fontSize:"15px", paddingLeft: 30 }}>
-                              <ul>
-                                <li>
-                                  White Americans make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["White"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['White']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["White"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                              
-                                </li>
+                          <p style={{ fontSize: "15px", paddingLeft: 30 }}>
+                            <ul>
+                              <li>
+                                White Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["White"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["White"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
 
-                                <li>
-                                  Hispanic Americans make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["Hispanic"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["Hispanic"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                                </li>
+                              </li>
 
-                                <li>
-                                  African Americans make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["African American"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["African American"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                                </li>
+                              <li>
+                                Hispanic Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Hispanic"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Hispanic"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
 
-                                <li>
-                                  Asians make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["Asian"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["Asian"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                                </li>
+                              <li>
+                                African Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["African American"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['African American']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["African American"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
 
-                                <li>
-                                  Native Americans make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["American Native"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["American Native"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                                </li>
+                              <li>
+                                Asians make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Asian"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Asian"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
 
-                                <li>
-                                  Pacific Islanders make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["NHPI"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["NHPI"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                                </li>
-                                <li>
-                                  Others make up{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
-                                      "seriesCompletePopPctKnown"
-                                    ]
-                                  }{" "}
-                                  % of those fully vaccinated, {" "}
-                                  {
-                                    twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']<0?0:twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
-                                  }{" "}
-                                  % vaccinated in past 14 days,{" "}
-                                  {
-                                    nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
-                                      "percentPop"
-                                    ]
-                                  }{" "}
-                                  % population.
-                                </li>
+                              <li>
+                                Native Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["American Native"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["American Native"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
 
-                                {/* {pctVacPopDisp >= 1 && <li>
+                              <li>
+                                Pacific Islanders make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["NHPI"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["NHPI"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+                              <li>
+                                Others make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+
+                              {/* {pctVacPopDisp >= 1 && <li>
                                   {(pctVacPopDisp) < 1 ? "" : " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
                                 </li>} */}
-                              </ul>
-                            </p>
-                          </Header.Subheader>
-                        </div>
+                            </ul>
+                          </p>
+                        </Header.Subheader>
+                      </div>
                       {/* </Grid.Column> */}
                     </Grid.Row>
                   </Grid>
@@ -3626,19 +3632,19 @@ const USVaccineTrackerPilot = (props) => {
                                         fill={
                                           stateMapFips ===
                                             geo.id.substring(0, 2) ||
-                                          fips === geo.id.substring(0, 2)
+                                            fips === geo.id.substring(0, 2)
                                             ? colorHighlight
                                             : colorScale &&
                                               vaccineData[geo.id] &&
                                               vaccineData[geo.id][fully] > 0
-                                            ? colorScale[
-                                                vaccineData[geo.id][fully]
+                                              ? colorScale[
+                                              vaccineData[geo.id][fully]
                                               ]
-                                            : colorScale &&
-                                              vaccineData[geo.id] &&
-                                              vaccineData[geo.id][fully] === 0
-                                            ? "#e1dce2"
-                                            : "#FFFFFF"
+                                              : colorScale &&
+                                                vaccineData[geo.id] &&
+                                                vaccineData[geo.id][fully] === 0
+                                                ? "#e1dce2"
+                                                : "#FFFFFF"
                                         }
                                       />
                                     ))}
@@ -3878,8 +3884,8 @@ const USVaccineTrackerPilot = (props) => {
                                         {stateMapFips === "_nation"
                                           ? "Select State"
                                           : usAbbrev[stateMapFips][
-                                              "state_abbr"
-                                            ]}
+                                          "state_abbr"
+                                          ]}
                                       </td>
                                       <td
                                         colSpan="1"
@@ -3917,10 +3923,10 @@ const USVaccineTrackerPilot = (props) => {
                                         {stateMapFips === "_nation"
                                           ? ""
                                           : numberWithCommas(
-                                              vaccineData[stateMapFips][
-                                                "PercentAdministeredPartial"
-                                              ]
-                                            ) + "%"}{" "}
+                                            vaccineData[stateMapFips][
+                                            "PercentAdministeredPartial"
+                                            ]
+                                          ) + "%"}{" "}
                                       </Table.HeaderCell>
                                       <Table.HeaderCell
                                         style={{
@@ -3931,7 +3937,7 @@ const USVaccineTrackerPilot = (props) => {
                                         {" "}
                                         {numberWithCommas(
                                           vaccineData["_nation"][
-                                            "PercentAdministeredPartial"
+                                          "PercentAdministeredPartial"
                                           ]
                                         ) + "%"}{" "}
                                       </Table.HeaderCell>
@@ -3957,10 +3963,10 @@ const USVaccineTrackerPilot = (props) => {
                                         {stateMapFips === "_nation"
                                           ? ""
                                           : numberWithCommas(
-                                              vaccineData[stateMapFips][
-                                                "Series_Complete_Pop_Pct"
-                                              ]
-                                            ) + "%"}{" "}
+                                            vaccineData[stateMapFips][
+                                            "Series_Complete_Pop_Pct"
+                                            ]
+                                          ) + "%"}{" "}
                                       </Table.HeaderCell>
                                       <Table.HeaderCell
                                         style={{
@@ -3971,7 +3977,7 @@ const USVaccineTrackerPilot = (props) => {
                                         {" "}
                                         {numberWithCommas(
                                           vaccineData["_nation"][
-                                            "Series_Complete_Pop_Pct"
+                                          "Series_Complete_Pop_Pct"
                                           ]
                                         ) + "%"}{" "}
                                       </Table.HeaderCell>
@@ -3998,13 +4004,13 @@ const USVaccineTrackerPilot = (props) => {
                                         {stateMapFips === "_nation"
                                           ? ""
                                           : numberWithCommas(
-                                              vaccineData[stateMapFips][
-                                                "PercentAdministeredPartial"
-                                              ] +
-                                                vaccineData[stateMapFips][
-                                                  "Series_Complete_Pop_Pct"
-                                                ]
-                                            ) + "%"}{" "}
+                                            vaccineData[stateMapFips][
+                                            "PercentAdministeredPartial"
+                                            ] +
+                                            vaccineData[stateMapFips][
+                                            "Series_Complete_Pop_Pct"
+                                            ]
+                                          ) + "%"}{" "}
                                       </Table.HeaderCell>
                                       <Table.HeaderCell
                                         style={{
@@ -4015,11 +4021,11 @@ const USVaccineTrackerPilot = (props) => {
                                         {" "}
                                         {numberWithCommas(
                                           vaccineData["_nation"][
-                                            "PercentAdministeredPartial"
+                                          "PercentAdministeredPartial"
                                           ] +
-                                            vaccineData["_nation"][
-                                              "Series_Complete_Pop_Pct"
-                                            ]
+                                          vaccineData["_nation"][
+                                          "Series_Complete_Pop_Pct"
+                                          ]
                                         ) + "%"}{" "}
                                       </Table.HeaderCell>
                                     </Table.Row>
@@ -4056,10 +4062,10 @@ const USVaccineTrackerPilot = (props) => {
                                         {stateMapFips === "_nation"
                                           ? ""
                                           : numberWithCommas(
-                                              vaccineData[stateMapFips][
-                                                "Dist_new"
-                                              ].toFixed(0)
-                                            )}{" "}
+                                            vaccineData[stateMapFips][
+                                              "Dist_new"
+                                            ].toFixed(0)
+                                          )}{" "}
                                       </Table.HeaderCell>
                                       <Table.HeaderCell
                                         style={{
@@ -4191,18 +4197,18 @@ const USVaccineTrackerPilot = (props) => {
                               labels={() =>
                                 activity
                                   ? `${trendHoverName}\n` +
-                                    `Date: ${new Date(
-                                      stateVaccAveg[stateTrendFips][
-                                        stateVaccAveg[stateTrendFips].length - 1
-                                      ].t * 1000
-                                    ).toLocaleDateString()}\n` +
-                                    `Percent Fully Vaccinated: ${stateVaccAveg[
-                                      stateTrendFips
-                                    ][
+                                  `Date: ${new Date(
+                                    stateVaccAveg[stateTrendFips][
                                       stateVaccAveg[stateTrendFips].length - 1
-                                    ].percentVaccinatedDose2_avg7.toFixed(
-                                      0
-                                    )} %\n`
+                                    ].t * 1000
+                                  ).toLocaleDateString()}\n` +
+                                  `Percent Fully Vaccinated: ${stateVaccAveg[
+                                    stateTrendFips
+                                  ][
+                                    stateVaccAveg[stateTrendFips].length - 1
+                                  ].percentVaccinatedDose2_avg7.toFixed(
+                                    0
+                                  )} %\n`
                                   : ""
                               }
                               labelComponent={
@@ -4245,24 +4251,24 @@ const USVaccineTrackerPilot = (props) => {
                             data={
                               activity
                                 ? [
-                                    {
-                                      name: "National Average",
-                                      symbol: { fill: "black", type: "square" },
+                                  {
+                                    name: "National Average",
+                                    symbol: { fill: "black", type: "square" },
+                                  },
+                                  {
+                                    name: trendHoverName,
+                                    symbol: {
+                                      fill: colorPaletteGraph[4],
+                                      type: "square",
                                     },
-                                    {
-                                      name: trendHoverName,
-                                      symbol: {
-                                        fill: colorPaletteGraph[4],
-                                        type: "square",
-                                      },
-                                    },
-                                  ]
+                                  },
+                                ]
                                 : [
-                                    {
-                                      name: "National Average",
-                                      symbol: { fill: "black", type: "square" },
-                                    },
-                                  ]
+                                  {
+                                    name: "National Average",
+                                    symbol: { fill: "black", type: "square" },
+                                  },
+                                ]
                             }
                           />
                           <VictoryAxis
@@ -4331,18 +4337,18 @@ const USVaccineTrackerPilot = (props) => {
                                   style={
                                     clickTrendFips == fip
                                       ? {
-                                          data: {
-                                            stroke: colorPaletteGraph[4],
-                                            width: 30,
-                                            opacity: 1.5,
-                                          },
-                                        }
+                                        data: {
+                                          stroke: colorPaletteGraph[4],
+                                          width: 30,
+                                          opacity: 1.5,
+                                        },
+                                      }
                                       : {
-                                          data: {
-                                            stroke: "#E1E5EA",
-                                            opacity: 0.2,
-                                          },
-                                        }
+                                        data: {
+                                          stroke: "#E1E5EA",
+                                          opacity: 0.2,
+                                        },
+                                      }
                                   }
                                   strokeDasharray="3 4 5 2"
                                   events={[
@@ -4411,7 +4417,7 @@ const USVaccineTrackerPilot = (props) => {
                                           return [
                                             {
                                               target: "data",
-                                              mutation: () => {},
+                                              mutation: () => { },
                                             },
                                             {
                                               target: { fip },
@@ -4747,8 +4753,8 @@ const USVaccineTrackerPilot = (props) => {
                                         : colorScaleState &&
                                           data[geo.id] &&
                                           data[geo.id][metric] > 0
-                                        ? colorScaleState[data[geo.id][metric]]
-                                        : "#FFFFFF"
+                                          ? colorScaleState[data[geo.id][metric]]
+                                          : "#FFFFFF"
                                     }
                                   />
                                 ))}
@@ -4795,22 +4801,22 @@ const USVaccineTrackerPilot = (props) => {
                                   minDomain={{
                                     x: stateMapFips
                                       ? allTS[stateMapFips][
-                                          allTS[stateMapFips].length - 15
-                                        ].t
+                                        allTS[stateMapFips].length - 15
+                                      ].t
                                       : allTS["13"][allTS["13"].length - 15].t,
                                   }}
                                   maxDomain={{
                                     y: stateMapFips
                                       ? getMaxRange(
-                                          allTS[stateMapFips],
-                                          "caseRateMean",
-                                          allTS[stateMapFips].length - 15
-                                        ).caseRateMean * 1.05
+                                        allTS[stateMapFips],
+                                        "caseRateMean",
+                                        allTS[stateMapFips].length - 15
+                                      ).caseRateMean * 1.05
                                       : getMaxRange(
-                                          allTS["13"],
-                                          "caseRateMean",
-                                          allTS["13"].length - 15
-                                        ).caseRateMean * 1.05,
+                                        allTS["13"],
+                                        "caseRateMean",
+                                        allTS["13"].length - 15
+                                      ).caseRateMean * 1.05,
                                   }}
                                   width={220}
                                   height={180}
@@ -4828,44 +4834,44 @@ const USVaccineTrackerPilot = (props) => {
                                     tickValues={
                                       stateMapFips
                                         ? [
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
-                                                Math.round(
-                                                  allTS[stateMapFips].length / 3
-                                                ) *
-                                                  2 -
-                                                1
-                                            ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
-                                                Math.round(
-                                                  allTS[stateMapFips].length / 3
-                                                ) -
-                                                1
-                                            ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].t,
-                                          ]
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length -
+                                            Math.round(
+                                              allTS[stateMapFips].length / 3
+                                            ) *
+                                            2 -
+                                            1
+                                          ].t,
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length -
+                                            Math.round(
+                                              allTS[stateMapFips].length / 3
+                                            ) -
+                                            1
+                                          ].t,
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length - 1
+                                          ].t,
+                                        ]
                                         : [
-                                            allTS["13"][
-                                              allTS["13"].length -
-                                                Math.round(
-                                                  allTS["13"].length / 3
-                                                ) *
-                                                  2 -
-                                                1
-                                            ].t,
-                                            allTS["13"][
-                                              allTS["13"].length -
-                                                Math.round(
-                                                  allTS["13"].length / 3
-                                                ) -
-                                                1
-                                            ].t,
-                                            allTS["13"][allTS["13"].length - 1]
-                                              .t,
-                                          ]
+                                          allTS["13"][
+                                            allTS["13"].length -
+                                            Math.round(
+                                              allTS["13"].length / 3
+                                            ) *
+                                            2 -
+                                            1
+                                          ].t,
+                                          allTS["13"][
+                                            allTS["13"].length -
+                                            Math.round(
+                                              allTS["13"].length / 3
+                                            ) -
+                                            1
+                                          ].t,
+                                          allTS["13"][allTS["13"].length - 1]
+                                            .t,
+                                        ]
                                     }
                                     style={{
                                       grid: { background: "#ccdee8" },
@@ -4907,15 +4913,15 @@ const USVaccineTrackerPilot = (props) => {
                                     text={
                                       stateMapFips
                                         ? numberWithCommas(
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].dailyCases.toFixed(0)
-                                          )
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length - 1
+                                          ].dailyCases.toFixed(0)
+                                        )
                                         : numberWithCommas(
-                                            allTS["13"][
-                                              allTS["13"].length - 1
-                                            ].dailyCases.toFixed(0)
-                                          )
+                                          allTS["13"][
+                                            allTS["13"].length - 1
+                                          ].dailyCases.toFixed(0)
+                                        )
                                     }
                                     x={80}
                                     y={80}
@@ -4931,50 +4937,50 @@ const USVaccineTrackerPilot = (props) => {
                                     text={
                                       stateMapFips
                                         ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) >
+                                          allTS[stateMapFips].length - 1
+                                        ].percent14dayDailyCases.toFixed(0) >
                                           0
                                           ? allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyCases.toFixed(
-                                              0
-                                            ) + "%"
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyCases.toFixed(
+                                            0
+                                          ) + "%"
                                           : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyCases.toFixed(
-                                              0
-                                            ) < 0
-                                          ? allTS[stateMapFips][
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyCases.toFixed(
+                                            0
+                                          ) < 0
+                                            ? allTS[stateMapFips][
                                               allTS[stateMapFips].length - 1
                                             ].percent14dayDailyCases
                                               .toFixed(0)
                                               .substring(1) + "%"
-                                          : allTS[stateMapFips][
+                                            : allTS[stateMapFips][
                                               allTS[stateMapFips].length - 1
                                             ].percent14dayDailyCases.toFixed(
                                               0
                                             ) + "%"
                                         : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) >
+                                          allTS["13"].length - 1
+                                        ].percent14dayDailyCases.toFixed(0) >
                                           0
-                                        ? allTS["13"][
+                                          ? allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyCases.toFixed(0) +
                                           "%"
-                                        : allTS["13"][
+                                          : allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyCases.toFixed(0) <
-                                          0
-                                        ? allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyCases
-                                            .toFixed(0)
-                                            .substring(1) + "%"
-                                        : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) +
-                                          "%"
+                                            0
+                                            ? allTS["13"][
+                                              allTS["13"].length - 1
+                                            ].percent14dayDailyCases
+                                              .toFixed(0)
+                                              .substring(1) + "%"
+                                            : allTS["13"][
+                                              allTS["13"].length - 1
+                                            ].percent14dayDailyCases.toFixed(0) +
+                                            "%"
                                     }
                                     x={197}
                                     y={80}
@@ -4990,28 +4996,28 @@ const USVaccineTrackerPilot = (props) => {
                                     text={
                                       stateMapFips
                                         ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) >
+                                          allTS[stateMapFips].length - 1
+                                        ].percent14dayDailyCases.toFixed(0) >
                                           0
                                           ? "↑"
                                           : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyCases.toFixed(
-                                              0
-                                            ) < 0
-                                          ? "↓"
-                                          : ""
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyCases.toFixed(
+                                            0
+                                          ) < 0
+                                            ? "↓"
+                                            : ""
                                         : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) >
+                                          allTS["13"].length - 1
+                                        ].percent14dayDailyCases.toFixed(0) >
                                           0
-                                        ? "↑"
-                                        : allTS["13"][
+                                          ? "↑"
+                                          : allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyCases.toFixed(0) <
-                                          0
-                                        ? "↓"
-                                        : ""
+                                            0
+                                            ? "↓"
+                                            : ""
                                     }
                                     x={160}
                                     y={80}
@@ -5022,28 +5028,28 @@ const USVaccineTrackerPilot = (props) => {
 
                                       fill: stateMapFips
                                         ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) >
+                                          allTS[stateMapFips].length - 1
+                                        ].percent14dayDailyCases.toFixed(0) >
                                           0
                                           ? "#FF0000"
                                           : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyCases.toFixed(
-                                              0
-                                            ) < 0
-                                          ? "#32CD32"
-                                          : ""
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyCases.toFixed(
+                                            0
+                                          ) < 0
+                                            ? "#32CD32"
+                                            : ""
                                         : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyCases.toFixed(0) >
+                                          allTS["13"].length - 1
+                                        ].percent14dayDailyCases.toFixed(0) >
                                           0
-                                        ? "#FF0000"
-                                        : allTS["13"][
+                                          ? "#FF0000"
+                                          : allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyCases.toFixed(0) <
-                                          0
-                                        ? "#32CD32"
-                                        : "",
+                                            0
+                                            ? "#32CD32"
+                                            : "",
                                     }}
                                   />
 
@@ -5091,18 +5097,18 @@ const USVaccineTrackerPilot = (props) => {
                                   minDomain={{
                                     x: stateMapFips
                                       ? allTS[stateMapFips][
-                                          allTS[stateMapFips].length - 15
-                                        ].t
+                                        allTS[stateMapFips].length - 15
+                                      ].t
                                       : allTS["13"][allTS["13"].length - 15].t,
                                   }}
                                   maxDomain={{
                                     y: stateMapFips
                                       ? getMax(
-                                          allTS[stateMapFips],
-                                          "mortalityMean"
-                                        ).mortalityMean + 0.8
+                                        allTS[stateMapFips],
+                                        "mortalityMean"
+                                      ).mortalityMean + 0.8
                                       : getMax(allTS["13"], "mortalityMean")
-                                          .mortalityMean + 0.8,
+                                        .mortalityMean + 0.8,
                                   }}
                                   width={220}
                                   height={180}
@@ -5120,44 +5126,44 @@ const USVaccineTrackerPilot = (props) => {
                                     tickValues={
                                       stateMapFips
                                         ? [
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
-                                                Math.round(
-                                                  allTS[stateMapFips].length / 3
-                                                ) *
-                                                  2 -
-                                                1
-                                            ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
-                                                Math.round(
-                                                  allTS[stateMapFips].length / 3
-                                                ) -
-                                                1
-                                            ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].t,
-                                          ]
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length -
+                                            Math.round(
+                                              allTS[stateMapFips].length / 3
+                                            ) *
+                                            2 -
+                                            1
+                                          ].t,
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length -
+                                            Math.round(
+                                              allTS[stateMapFips].length / 3
+                                            ) -
+                                            1
+                                          ].t,
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length - 1
+                                          ].t,
+                                        ]
                                         : [
-                                            allTS["13"][
-                                              allTS["13"].length -
-                                                Math.round(
-                                                  allTS["13"].length / 3
-                                                ) *
-                                                  2 -
-                                                1
-                                            ].t,
-                                            allTS["13"][
-                                              allTS["13"].length -
-                                                Math.round(
-                                                  allTS["13"].length / 3
-                                                ) -
-                                                1
-                                            ].t,
-                                            allTS["13"][allTS["13"].length - 1]
-                                              .t,
-                                          ]
+                                          allTS["13"][
+                                            allTS["13"].length -
+                                            Math.round(
+                                              allTS["13"].length / 3
+                                            ) *
+                                            2 -
+                                            1
+                                          ].t,
+                                          allTS["13"][
+                                            allTS["13"].length -
+                                            Math.round(
+                                              allTS["13"].length / 3
+                                            ) -
+                                            1
+                                          ].t,
+                                          allTS["13"][allTS["13"].length - 1]
+                                            .t,
+                                        ]
                                     }
                                     style={{ tickLabels: { fontSize: 10 } }}
                                     tickFormat={(t) =>
@@ -5198,15 +5204,15 @@ const USVaccineTrackerPilot = (props) => {
                                     text={
                                       stateMapFips
                                         ? numberWithCommas(
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].dailyMortality.toFixed(0)
-                                          )
+                                          allTS[stateMapFips][
+                                            allTS[stateMapFips].length - 1
+                                          ].dailyMortality.toFixed(0)
+                                        )
                                         : numberWithCommas(
-                                            allTS["13"][
-                                              allTS["13"].length - 1
-                                            ].dailyMortality.toFixed(0)
-                                          )
+                                          allTS["13"][
+                                            allTS["13"].length - 1
+                                          ].dailyMortality.toFixed(0)
+                                        )
                                     }
                                     x={80}
                                     y={80}
@@ -5222,43 +5228,43 @@ const USVaccineTrackerPilot = (props) => {
                                     text={
                                       stateMapFips
                                         ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
-                                          ].percent14dayDailyDeaths.toFixed(0) >
+                                          allTS[stateMapFips].length - 1
+                                        ].percent14dayDailyDeaths.toFixed(0) >
                                           0
                                           ? allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyDeaths.toFixed(
-                                              0
-                                            ) + "%"
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyDeaths.toFixed(
+                                            0
+                                          ) + "%"
                                           : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyDeaths.toFixed(
-                                              0
-                                            ) < 0
-                                          ? allTS[stateMapFips][
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyDeaths.toFixed(
+                                            0
+                                          ) < 0
+                                            ? allTS[stateMapFips][
                                               allTS[stateMapFips].length - 1
                                             ].percent14dayDailyDeaths
                                               .toFixed(0)
                                               .substring(1) + "%"
-                                          : "0%"
+                                            : "0%"
                                         : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyDeaths.toFixed(0) >
+                                          allTS["13"].length - 1
+                                        ].percent14dayDailyDeaths.toFixed(0) >
                                           0
-                                        ? allTS["13"][
+                                          ? allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) +
                                           "%"
-                                        : allTS["13"][
+                                          : allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) <
-                                          0
-                                        ? allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyDeaths
-                                            .toFixed(0)
-                                            .substring(1) + "%"
-                                        : "0%"
+                                            0
+                                            ? allTS["13"][
+                                              allTS["13"].length - 1
+                                            ].percent14dayDailyDeaths
+                                              .toFixed(0)
+                                              .substring(1) + "%"
+                                            : "0%"
                                     }
                                     x={197}
                                     y={80}
@@ -5274,28 +5280,28 @@ const USVaccineTrackerPilot = (props) => {
                                     text={
                                       stateMapFips
                                         ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
-                                          ].percent14dayDailyDeaths.toFixed(0) >
+                                          allTS[stateMapFips].length - 1
+                                        ].percent14dayDailyDeaths.toFixed(0) >
                                           0
                                           ? "↑"
                                           : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyDeaths.toFixed(
-                                              0
-                                            ) < 0
-                                          ? "↓"
-                                          : ""
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyDeaths.toFixed(
+                                            0
+                                          ) < 0
+                                            ? "↓"
+                                            : ""
                                         : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyDeaths.toFixed(0) >
+                                          allTS["13"].length - 1
+                                        ].percent14dayDailyDeaths.toFixed(0) >
                                           0
-                                        ? "↑"
-                                        : allTS["13"][
+                                          ? "↑"
+                                          : allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) <
-                                          0
-                                        ? "↓"
-                                        : ""
+                                            0
+                                            ? "↓"
+                                            : ""
                                     }
                                     x={160}
                                     y={80}
@@ -5306,28 +5312,28 @@ const USVaccineTrackerPilot = (props) => {
 
                                       fill: stateMapFips
                                         ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
-                                          ].percent14dayDailyDeaths.toFixed(0) >
+                                          allTS[stateMapFips].length - 1
+                                        ].percent14dayDailyDeaths.toFixed(0) >
                                           0
                                           ? "#FF0000"
                                           : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
-                                            ].percent14dayDailyDeaths.toFixed(
-                                              0
-                                            ) < 0
-                                          ? "#32CD32"
-                                          : ""
+                                            allTS[stateMapFips].length - 1
+                                          ].percent14dayDailyDeaths.toFixed(
+                                            0
+                                          ) < 0
+                                            ? "#32CD32"
+                                            : ""
                                         : allTS["13"][
-                                            allTS["13"].length - 1
-                                          ].percent14dayDailyDeaths.toFixed(0) >
+                                          allTS["13"].length - 1
+                                        ].percent14dayDailyDeaths.toFixed(0) >
                                           0
-                                        ? "#FF0000"
-                                        : allTS["13"][
+                                          ? "#FF0000"
+                                          : allTS["13"][
                                             allTS["13"].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) <
-                                          0
-                                        ? "#32CD32"
-                                        : "",
+                                            0
+                                            ? "#32CD32"
+                                            : "",
                                     }}
                                   />
 
@@ -5538,7 +5544,7 @@ const USVaccineTrackerPilot = (props) => {
                                         ][0]["demogLabel"],
                                         value:
                                           nationalDemog["race"][0][
-                                            "American Native"
+                                          "American Native"
                                           ][0]["deathrate"],
                                       },
                                       {
@@ -5547,7 +5553,7 @@ const USVaccineTrackerPilot = (props) => {
                                         ][0]["demogLabel"],
                                         value:
                                           nationalDemog["race"][0]["Asian"][0][
-                                            "deathrate"
+                                          "deathrate"
                                           ],
                                       },
                                       {
@@ -5556,7 +5562,7 @@ const USVaccineTrackerPilot = (props) => {
                                         ][0]["demogLabel"],
                                         value:
                                           nationalDemog["race"][0][
-                                            "Hispanic"
+                                          "Hispanic"
                                           ][0]["deathrate"],
                                       },
                                       {
@@ -5565,7 +5571,7 @@ const USVaccineTrackerPilot = (props) => {
                                         ][0]["demogLabel"],
                                         value:
                                           nationalDemog["race"][0][
-                                            "African American"
+                                          "African American"
                                           ][0]["deathrate"],
                                       },
                                       {
@@ -5574,7 +5580,7 @@ const USVaccineTrackerPilot = (props) => {
                                         ][0]["demogLabel"],
                                         value:
                                           nationalDemog["race"][0]["White"][0][
-                                            "deathrate"
+                                          "deathrate"
                                           ],
                                       },
                                     ]}
@@ -5616,7 +5622,7 @@ const USVaccineTrackerPilot = (props) => {
 
                             {stateMapFips !== "_nation" &&
                               !raceData[stateMapFips][
-                                "Non-Hispanic African American"
+                              "Non-Hispanic African American"
                               ] &&
                               !!raceData[stateMapFips]["White Alone"] &&
                               stateMapFips !== "38" && (
@@ -5652,7 +5658,7 @@ const USVaccineTrackerPilot = (props) => {
                                         )}
                                       {stateMapFips &&
                                         !raceData[stateMapFips][
-                                          "Non-Hispanic African American"
+                                        "Non-Hispanic African American"
                                         ] &&
                                         stateMapFips !== "38" &&
                                         stateMapFips !== "02" && (
@@ -5664,57 +5670,57 @@ const USVaccineTrackerPilot = (props) => {
                                               ((!!raceData[stateMapFips][
                                                 "Asian Alone"
                                               ] &&
-                                              raceData[stateMapFips][
+                                                raceData[stateMapFips][
                                                 "Asian Alone"
-                                              ][0]["deathrateRace"] >= 0 &&
-                                              raceData[stateMapFips][
+                                                ][0]["deathrateRace"] >= 0 &&
+                                                raceData[stateMapFips][
                                                 "Asian Alone"
-                                              ][0]["deaths"] > 30 &&
-                                              raceData[stateMapFips][
+                                                ][0]["deaths"] > 30 &&
+                                                raceData[stateMapFips][
                                                 "Asian Alone"
-                                              ][0]["percentPop"] >= 1
+                                                ][0]["percentPop"] >= 1
                                                 ? 1
                                                 : 0) +
                                                 (!!raceData[stateMapFips][
                                                   "American Natives Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                  raceData[stateMapFips][
                                                   "American Natives Alone"
-                                                ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                  ][0]["deathrateRace"] >= 0 &&
+                                                  raceData[stateMapFips][
                                                   "American Natives Alone"
-                                                ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                  ][0]["deaths"] > 30 &&
+                                                  raceData[stateMapFips][
                                                   "American Natives Alone"
-                                                ][0]["percentPop"] >= 1
+                                                  ][0]["percentPop"] >= 1
                                                   ? 1
                                                   : 0) +
                                                 (!!raceData[stateMapFips][
                                                   "African American Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                  raceData[stateMapFips][
                                                   "African American Alone"
-                                                ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                  ][0]["deathrateRace"] >= 0 &&
+                                                  raceData[stateMapFips][
                                                   "African American Alone"
-                                                ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                  ][0]["deaths"] > 30 &&
+                                                  raceData[stateMapFips][
                                                   "African American Alone"
-                                                ][0]["percentPop"] >= 1
+                                                  ][0]["percentPop"] >= 1
                                                   ? 1
                                                   : 0) +
                                                 (!!raceData[stateMapFips][
                                                   "White Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                  raceData[stateMapFips][
                                                   "White Alone"
-                                                ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                  ][0]["deathrateRace"] >= 0 &&
+                                                  raceData[stateMapFips][
                                                   "White Alone"
-                                                ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                  ][0]["deaths"] > 30 &&
+                                                  raceData[stateMapFips][
                                                   "White Alone"
-                                                ][0]["percentPop"] >= 1
+                                                  ][0]["percentPop"] >= 1
                                                   ? 1
                                                   : 0))
                                             }
@@ -5770,13 +5776,13 @@ const USVaccineTrackerPilot = (props) => {
                                               {"American Natives Alone" in
                                                 raceData[stateMapFips] &&
                                                 raceData[stateMapFips][
-                                                  "American Natives Alone"
+                                                "American Natives Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "American Natives Alone"
+                                                "American Natives Alone"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "American Natives Alone"
+                                                "American Natives Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -5793,15 +5799,15 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "American\n Natives",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "American Natives Alone"
+                                                          "American Natives Alone"
                                                           ][0]["deathrateRace"],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "American Natives Alone"
+                                                          "American Natives Alone"
                                                           ][0]["deathrateRace"]
                                                         ),
                                                       },
@@ -5829,13 +5835,13 @@ const USVaccineTrackerPilot = (props) => {
                                               {"Asian Alone" in
                                                 raceData[stateMapFips] &&
                                                 raceData[stateMapFips][
-                                                  "Asian Alone"
+                                                "Asian Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Asian Alone"
+                                                "Asian Alone"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Asian Alone"
+                                                "Asian Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -5853,15 +5859,15 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "Asian",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["Asian Alone"][0][
-                                                            "deathrateRace"
+                                                          "deathrateRace"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["Asian Alone"][0][
-                                                            "deathrateRace"
+                                                          "deathrateRace"
                                                           ]
                                                         ),
                                                       },
@@ -5889,13 +5895,13 @@ const USVaccineTrackerPilot = (props) => {
                                               {"African American Alone" in
                                                 raceData[stateMapFips] &&
                                                 raceData[stateMapFips][
-                                                  "African American Alone"
+                                                "African American Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "African American Alone"
+                                                "African American Alone"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "African American Alone"
+                                                "African American Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -5912,15 +5918,15 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "African\n American",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "African American Alone"
+                                                          "African American Alone"
                                                           ][0]["deathrateRace"],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "African American Alone"
+                                                          "African American Alone"
                                                           ][0]["deathrateRace"]
                                                         ),
                                                       },
@@ -5948,13 +5954,13 @@ const USVaccineTrackerPilot = (props) => {
                                               {"White Alone" in
                                                 raceData[stateMapFips] &&
                                                 raceData[stateMapFips][
-                                                  "White Alone"
+                                                "White Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "White Alone"
+                                                "White Alone"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "White Alone"
+                                                "White Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -5972,15 +5978,15 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "White",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["White Alone"][0][
-                                                            "deathrateRace"
+                                                          "deathrateRace"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["White Alone"][0][
-                                                            "deathrateRace"
+                                                          "deathrateRace"
                                                           ]
                                                         ),
                                                       },
@@ -6090,79 +6096,79 @@ const USVaccineTrackerPilot = (props) => {
                                             {!(
                                               stateMapFips &&
                                               !!raceData[stateMapFips][
-                                                "White Alone"
+                                              "White Alone"
                                               ] &&
                                               stateMapFips !== "38" &&
                                               !(
                                                 raceData[stateMapFips][
-                                                  "Hispanic"
+                                                "Hispanic"
                                                 ][0]["deathrateEthnicity"] <
-                                                  0 ||
+                                                0 ||
                                                 (!raceData[stateMapFips][
                                                   "Hispanic"
                                                 ] &&
                                                   !raceData[stateMapFips][
-                                                    "Non Hispanic"
+                                                  "Non Hispanic"
                                                   ] &&
                                                   !raceData[stateMapFips][
-                                                    "Non-Hispanic African American"
+                                                  "Non-Hispanic African American"
                                                   ] &&
                                                   !raceData[stateMapFips][
-                                                    "Non-Hispanic American Natives"
+                                                  "Non-Hispanic American Natives"
                                                   ] &&
                                                   !raceData[stateMapFips][
-                                                    "Non-Hispanic Asian"
+                                                  "Non-Hispanic Asian"
                                                   ] &&
                                                   !raceData[stateMapFips][
-                                                    "Non-Hispanic White"
+                                                  "Non-Hispanic White"
                                                   ])
                                               )
                                             ) && (
-                                              <center>
-                                                {" "}
-                                                <Header.Content
-                                                  x={0}
-                                                  y={20}
-                                                  style={{
-                                                    fontSize: "14pt",
-                                                    paddingLeft: 20,
-                                                    fontWeight: 400,
-                                                    width: 250,
-                                                  }}
-                                                >
+                                                <center>
                                                   {" "}
-                                                  <br /> <br /> None Reported
-                                                </Header.Content>{" "}
-                                              </center>
-                                            )}
+                                                  <Header.Content
+                                                    x={0}
+                                                    y={20}
+                                                    style={{
+                                                      fontSize: "14pt",
+                                                      paddingLeft: 20,
+                                                      fontWeight: 400,
+                                                      width: 250,
+                                                    }}
+                                                  >
+                                                    {" "}
+                                                    <br /> <br /> None Reported
+                                                  </Header.Content>{" "}
+                                                </center>
+                                              )}
                                           </div>
                                         )}
                                       {stateMapFips &&
                                         !!raceData[stateMapFips][
-                                          "White Alone"
+                                        "White Alone"
                                         ] &&
                                         stateMapFips !== "38" &&
                                         !(
                                           raceData[stateMapFips]["Hispanic"][0][
-                                            "deathrateEthnicity"
+                                          "deathrateEthnicity"
                                           ] < 0 ||
                                           (!raceData[stateMapFips][
                                             "Hispanic"
                                           ] &&
                                             !raceData[stateMapFips][
-                                              "Non Hispanic"
+                                            "Non Hispanic"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic African American"
+                                            "Non-Hispanic African American"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic American Natives"
+                                            "Non-Hispanic American Natives"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic Asian"
+                                            "Non-Hispanic Asian"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic White"
+                                            "Non-Hispanic White"
                                             ])
                                         ) && (
                                           <VictoryChart
@@ -6172,29 +6178,29 @@ const USVaccineTrackerPilot = (props) => {
                                               !!raceData[stateMapFips][
                                                 "Hispanic"
                                               ] &&
-                                              !!raceData[stateMapFips][
+                                                !!raceData[stateMapFips][
                                                 "Non Hispanic"
-                                              ]
+                                                ]
                                                 ? 81
                                                 : 3 *
-                                                  (!!raceData[stateMapFips][
-                                                    "Hispanic"
+                                                (!!raceData[stateMapFips][
+                                                  "Hispanic"
+                                                ] +
+                                                  !!raceData[stateMapFips][
+                                                  "Non Hispanic"
                                                   ] +
-                                                    !!raceData[stateMapFips][
-                                                      "Non Hispanic"
-                                                    ] +
-                                                    !!raceData[stateMapFips][
-                                                      "Non-Hispanic African American"
-                                                    ] +
-                                                    !!raceData[stateMapFips][
-                                                      "Non-Hispanic American Natives"
-                                                    ] +
-                                                    !!raceData[stateMapFips][
-                                                      "Non-Hispanic Asian"
-                                                    ] +
-                                                    !!raceData[stateMapFips][
-                                                      "Non-Hispanic White"
-                                                    ])
+                                                  !!raceData[stateMapFips][
+                                                  "Non-Hispanic African American"
+                                                  ] +
+                                                  !!raceData[stateMapFips][
+                                                  "Non-Hispanic American Natives"
+                                                  ] +
+                                                  !!raceData[stateMapFips][
+                                                  "Non-Hispanic Asian"
+                                                  ] +
+                                                  !!raceData[stateMapFips][
+                                                  "Non-Hispanic White"
+                                                  ])
                                             }
                                             domainPadding={20}
                                             minDomain={{
@@ -6207,9 +6213,9 @@ const USVaccineTrackerPilot = (props) => {
                                                 !!raceData[stateMapFips][
                                                   "Hispanic"
                                                 ] &&
-                                                !!raceData[stateMapFips][
+                                                  !!raceData[stateMapFips][
                                                   "Non Hispanic"
-                                                ]
+                                                  ]
                                                   ? 13
                                                   : 10,
                                               bottom: 1,
@@ -6258,15 +6264,15 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non-Hispanic American Natives"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6284,19 +6290,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "American\n Natives",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic American Natives"
+                                                          "Non-Hispanic American Natives"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic American Natives"
+                                                          "Non-Hispanic American Natives"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6325,15 +6331,15 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non-Hispanic Asian"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6351,19 +6357,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "Asian",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic Asian"
+                                                          "Non-Hispanic Asian"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic Asian"
+                                                          "Non-Hispanic Asian"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6392,17 +6398,17 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non Hispanic"
                                               ] &&
                                                 !!raceData[stateMapFips][
-                                                  "White Alone"
+                                                "White Alone"
                                                 ] &&
                                                 raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ][0]["deathrateEthnicity"] >=
-                                                  0 &&
+                                                0 &&
                                                 raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6420,15 +6426,15 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "Non Hispanic",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["Non Hispanic"][0][
-                                                            "deathrateEthnicity"
+                                                          "deathrateEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["Non Hispanic"][0][
-                                                            "deathrateEthnicity"
+                                                          "deathrateEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6460,80 +6466,80 @@ const USVaccineTrackerPilot = (props) => {
                                                   "Hispanic"
                                                 ] &&
                                                   !!raceData[stateMapFips][
-                                                    "White Alone"
+                                                  "White Alone"
                                                   ] &&
                                                   raceData[stateMapFips][
-                                                    "Hispanic"
+                                                  "Hispanic"
                                                   ][0]["deathrateEthnicity"] >=
-                                                    0 &&
+                                                  0 &&
                                                   raceData[stateMapFips][
-                                                    "Hispanic"
+                                                  "Hispanic"
                                                   ][0]["deaths"] > 30 &&
                                                   raceData[stateMapFips][
-                                                    "Hispanic"
+                                                  "Hispanic"
                                                   ][0]["percentPop"] >= 1)) && (
-                                                <VictoryBar
-                                                  barWidth={10}
-                                                  barRatio={0.1}
-                                                  horizontal
-                                                  labels={({ datum }) =>
-                                                    numberWithCommas(
-                                                      parseFloat(
-                                                        datum.value
-                                                      ).toFixed(0)
-                                                    )
-                                                  }
-                                                  data={[
-                                                    {
-                                                      key: "Hispanic",
-                                                      value:
-                                                        raceData[stateMapFips][
+                                                  <VictoryBar
+                                                    barWidth={10}
+                                                    barRatio={0.1}
+                                                    horizontal
+                                                    labels={({ datum }) =>
+                                                      numberWithCommas(
+                                                        parseFloat(
+                                                          datum.value
+                                                        ).toFixed(0)
+                                                      )
+                                                    }
+                                                    data={[
+                                                      {
+                                                        key: "Hispanic",
+                                                        value:
+                                                          raceData[stateMapFips][
                                                           "Hispanic"
-                                                        ][0][
+                                                          ][0][
                                                           "deathrateEthnicity"
-                                                        ],
-                                                      label: numberWithCommas(
-                                                        raceData[stateMapFips][
+                                                          ],
+                                                        label: numberWithCommas(
+                                                          raceData[stateMapFips][
                                                           "Hispanic"
-                                                        ][0][
+                                                          ][0][
                                                           "deathrateEthnicity"
-                                                        ]
-                                                      ),
-                                                    },
-                                                  ]}
-                                                  labelComponent={
-                                                    <VictoryLabel
-                                                      dx={5}
-                                                      style={{
-                                                        fontFamily: "lato",
-                                                        fontSize: "19px",
-                                                        fill: "#000000",
-                                                      }}
-                                                    />
-                                                  }
-                                                  style={{
-                                                    data: {
-                                                      fill: "#004071",
-                                                    },
-                                                  }}
-                                                  x="key"
-                                                  y="value"
-                                                />
-                                              )}
+                                                          ]
+                                                        ),
+                                                      },
+                                                    ]}
+                                                    labelComponent={
+                                                      <VictoryLabel
+                                                        dx={5}
+                                                        style={{
+                                                          fontFamily: "lato",
+                                                          fontSize: "19px",
+                                                          fill: "#000000",
+                                                        }}
+                                                      />
+                                                    }
+                                                    style={{
+                                                      data: {
+                                                        fill: "#004071",
+                                                      },
+                                                    }}
+                                                    x="key"
+                                                    y="value"
+                                                  />
+                                                )}
 
                                               {!!raceData[stateMapFips][
                                                 "Non-Hispanic African American"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6551,19 +6557,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "African\n American",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic African American"
+                                                          "Non-Hispanic African American"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic African American"
+                                                          "Non-Hispanic African American"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6592,15 +6598,15 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non-Hispanic White"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6618,19 +6624,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "White",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic White"
+                                                          "Non-Hispanic White"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic White"
+                                                          "Non-Hispanic White"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6659,30 +6665,30 @@ const USVaccineTrackerPilot = (props) => {
                                         )}
                                       {stateMapFips !== "_nation" &&
                                         !!raceData[stateMapFips][
-                                          "White Alone"
+                                        "White Alone"
                                         ] &&
                                         stateMapFips !== "38" &&
                                         !(
                                           raceData[stateMapFips]["Hispanic"][0][
-                                            "deathrateEthnicity"
+                                          "deathrateEthnicity"
                                           ] < 0 ||
                                           (!raceData[stateMapFips][
                                             "Hispanic"
                                           ] &&
                                             !raceData[stateMapFips][
-                                              "Non Hispanic"
+                                            "Non Hispanic"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic African American"
+                                            "Non-Hispanic African American"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic American Natives"
+                                            "Non-Hispanic American Natives"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic Asian"
+                                            "Non-Hispanic Asian"
                                             ] &&
                                             !raceData[stateMapFips][
-                                              "Non-Hispanic White"
+                                            "Non-Hispanic White"
                                             ])
                                         ) && (
                                           <div
@@ -6715,7 +6721,7 @@ const USVaccineTrackerPilot = (props) => {
                                 "Non-Hispanic African American"
                               ] ||
                                 !!raceData[stateMapFips][
-                                  "Non-Hispanic White"
+                                "Non-Hispanic White"
                                 ]) &&
                               stateMapFips !== "38" && (
                                 <Grid.Row columns={1}>
@@ -6725,27 +6731,27 @@ const USVaccineTrackerPilot = (props) => {
                                       paddingBottom:
                                         13 +
                                         2 *
-                                          (!raceData[stateMapFips]["Hispanic"] +
-                                            !raceData[stateMapFips][
-                                              "Non Hispanic"
-                                            ] +
-                                            !raceData[stateMapFips][
-                                              "Non-Hispanic African American"
-                                            ] +
-                                            !raceData[stateMapFips][
-                                              "Non-Hispanic American Natives"
-                                            ] +
-                                            !raceData[stateMapFips][
-                                              "Non-Hispanic Asian"
-                                            ] +
-                                            !raceData[stateMapFips][
-                                              "Non-Hispanic White"
-                                            ]),
+                                        (!raceData[stateMapFips]["Hispanic"] +
+                                          !raceData[stateMapFips][
+                                          "Non Hispanic"
+                                          ] +
+                                          !raceData[stateMapFips][
+                                          "Non-Hispanic African American"
+                                          ] +
+                                          !raceData[stateMapFips][
+                                          "Non-Hispanic American Natives"
+                                          ] +
+                                          !raceData[stateMapFips][
+                                          "Non-Hispanic Asian"
+                                          ] +
+                                          !raceData[stateMapFips][
+                                          "Non-Hispanic White"
+                                          ]),
                                     }}
                                   >
                                     {stateMapFips &&
                                       !raceData[stateMapFips][
-                                        "White Alone"
+                                      "White Alone"
                                       ] && (
                                         <div
                                           style={{ marginTop: 10, width: 400 }}
@@ -6783,19 +6789,19 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Hispanic"
                                               ] +
                                                 !!raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ] +
                                                 !!raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ] +
                                                 !!raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ] +
                                                 !!raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ] +
                                                 !!raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ])
                                             }
                                             domainPadding={20}
@@ -6809,9 +6815,9 @@ const USVaccineTrackerPilot = (props) => {
                                                 !!raceData[stateMapFips][
                                                   "Hispanic"
                                                 ] &&
-                                                !!raceData[stateMapFips][
+                                                  !!raceData[stateMapFips][
                                                   "Non Hispanic"
-                                                ]
+                                                  ]
                                                   ? 12
                                                   : 10,
                                               bottom: 1,
@@ -6860,15 +6866,15 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non-Hispanic American Natives"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic American Natives"
+                                                "Non-Hispanic American Natives"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6886,19 +6892,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "American Natives",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic American Natives"
+                                                          "Non-Hispanic American Natives"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic American Natives"
+                                                          "Non-Hispanic American Natives"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6927,15 +6933,15 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non-Hispanic Asian"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic Asian"
+                                                "Non-Hispanic Asian"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -6953,19 +6959,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "Asian",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic Asian"
+                                                          "Non-Hispanic Asian"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic Asian"
+                                                          "Non-Hispanic Asian"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -6994,17 +7000,17 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non Hispanic"
                                               ] &&
                                                 !!raceData[stateMapFips][
-                                                  "White Alone"
+                                                "White Alone"
                                                 ] &&
                                                 raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ][0]["deathrateEthnicity"] >=
-                                                  0 &&
+                                                0 &&
                                                 raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non Hispanic"
+                                                "Non Hispanic"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -7022,15 +7028,15 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "Non Hispanic",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["Non Hispanic"][0][
-                                                            "deathrateEthnicity"
+                                                          "deathrateEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ]["Non Hispanic"][0][
-                                                            "deathrateEthnicity"
+                                                          "deathrateEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -7062,80 +7068,80 @@ const USVaccineTrackerPilot = (props) => {
                                                   "Hispanic"
                                                 ] &&
                                                   !!raceData[stateMapFips][
-                                                    "White Alone"
+                                                  "White Alone"
                                                   ] &&
                                                   raceData[stateMapFips][
-                                                    "Hispanic"
+                                                  "Hispanic"
                                                   ][0]["deathrateEthnicity"] >=
-                                                    0 &&
+                                                  0 &&
                                                   raceData[stateMapFips][
-                                                    "Hispanic"
+                                                  "Hispanic"
                                                   ][0]["deaths"] > 30 &&
                                                   raceData[stateMapFips][
-                                                    "Hispanic"
+                                                  "Hispanic"
                                                   ][0]["percentPop"] >= 1)) && (
-                                                <VictoryBar
-                                                  barWidth={10}
-                                                  barRatio={0.1}
-                                                  horizontal
-                                                  labels={({ datum }) =>
-                                                    numberWithCommas(
-                                                      parseFloat(
-                                                        datum.value
-                                                      ).toFixed(0)
-                                                    )
-                                                  }
-                                                  data={[
-                                                    {
-                                                      key: "Hispanic",
-                                                      value:
-                                                        raceData[stateMapFips][
+                                                  <VictoryBar
+                                                    barWidth={10}
+                                                    barRatio={0.1}
+                                                    horizontal
+                                                    labels={({ datum }) =>
+                                                      numberWithCommas(
+                                                        parseFloat(
+                                                          datum.value
+                                                        ).toFixed(0)
+                                                      )
+                                                    }
+                                                    data={[
+                                                      {
+                                                        key: "Hispanic",
+                                                        value:
+                                                          raceData[stateMapFips][
                                                           "Hispanic"
-                                                        ][0][
+                                                          ][0][
                                                           "deathrateEthnicity"
-                                                        ],
-                                                      label: numberWithCommas(
-                                                        raceData[stateMapFips][
+                                                          ],
+                                                        label: numberWithCommas(
+                                                          raceData[stateMapFips][
                                                           "Hispanic"
-                                                        ][0][
+                                                          ][0][
                                                           "deathrateEthnicity"
-                                                        ]
-                                                      ),
-                                                    },
-                                                  ]}
-                                                  labelComponent={
-                                                    <VictoryLabel
-                                                      dx={5}
-                                                      style={{
-                                                        fontFamily: "lato",
-                                                        fontSize: "19px",
-                                                        fill: "#000000",
-                                                      }}
-                                                    />
-                                                  }
-                                                  style={{
-                                                    data: {
-                                                      fill: "#004071",
-                                                    },
-                                                  }}
-                                                  x="key"
-                                                  y="value"
-                                                />
-                                              )}
+                                                          ]
+                                                        ),
+                                                      },
+                                                    ]}
+                                                    labelComponent={
+                                                      <VictoryLabel
+                                                        dx={5}
+                                                        style={{
+                                                          fontFamily: "lato",
+                                                          fontSize: "19px",
+                                                          fill: "#000000",
+                                                        }}
+                                                      />
+                                                    }
+                                                    style={{
+                                                      data: {
+                                                        fill: "#004071",
+                                                      },
+                                                    }}
+                                                    x="key"
+                                                    y="value"
+                                                  />
+                                                )}
 
                                               {!!raceData[stateMapFips][
                                                 "Non-Hispanic African American"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic African American"
+                                                "Non-Hispanic African American"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -7153,19 +7159,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "African American",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic African American"
+                                                          "Non-Hispanic African American"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic African American"
+                                                          "Non-Hispanic African American"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -7194,15 +7200,15 @@ const USVaccineTrackerPilot = (props) => {
                                                 "Non-Hispanic White"
                                               ] &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ][0][
-                                                  "deathrateRaceEthnicity"
+                                                "deathrateRaceEthnicity"
                                                 ] >= 0 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ][0]["deaths"] > 30 &&
                                                 raceData[stateMapFips][
-                                                  "Non-Hispanic White"
+                                                "Non-Hispanic White"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
                                                     barWidth={10}
@@ -7220,19 +7226,19 @@ const USVaccineTrackerPilot = (props) => {
                                                         key: "White",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic White"
+                                                          "Non-Hispanic White"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                          stateMapFips
                                                           ][
-                                                            "Non-Hispanic White"
+                                                          "Non-Hispanic White"
                                                           ][0][
-                                                            "deathrateRaceEthnicity"
+                                                          "deathrateRaceEthnicity"
                                                           ]
                                                         ),
                                                       },
@@ -7262,7 +7268,7 @@ const USVaccineTrackerPilot = (props) => {
                                       )}
                                     {stateMapFips &&
                                       !raceData[stateMapFips][
-                                        "White Alone"
+                                      "White Alone"
                                       ] && (
                                         <div
                                           style={{
@@ -7434,10 +7440,10 @@ const USVaccineTrackerPilot = (props) => {
                                                           ? -30
                                                           : stateMapFips &&
                                                             !raceData[
-                                                              stateMapFips
+                                                            stateMapFips
                                                             ]["White Alone"]
-                                                          ? -40
-                                                          : -30,
+                                                            ? -40
+                                                            : -30,
                                                       paddingLeft: 0,
                                                     }}
                                                   >
@@ -7479,22 +7485,22 @@ const USVaccineTrackerPilot = (props) => {
 
                                                     {stateMapFips !== "38" &&
                                                       !raceData[stateMapFips][
-                                                        "Non-Hispanic African American"
+                                                      "Non-Hispanic African American"
                                                       ] &&
                                                       !!raceData[stateMapFips][
-                                                        "White Alone"
+                                                      "White Alone"
                                                       ] &&
                                                       !raceData[stateMapFips][
-                                                        "Non Hispanic"
+                                                      "Non Hispanic"
                                                       ] &&
                                                       !raceData[stateMapFips][
-                                                        "Non-Hispanic American Natives"
+                                                      "Non-Hispanic American Natives"
                                                       ] &&
                                                       !raceData[stateMapFips][
-                                                        "Non-Hispanic Asian"
+                                                      "Non-Hispanic Asian"
                                                       ] &&
                                                       !raceData[stateMapFips][
-                                                        "Non-Hispanic White"
+                                                      "Non-Hispanic White"
                                                       ] && (
                                                         <Header.Content
                                                           style={{
@@ -7550,29 +7556,29 @@ const USVaccineTrackerPilot = (props) => {
 
                                                     {stateMapFips !== "38" &&
                                                       !!raceData[stateMapFips][
-                                                        "White Alone"
+                                                      "White Alone"
                                                       ] &&
                                                       !!raceData[stateMapFips][
-                                                        "White Alone"
+                                                      "White Alone"
                                                       ] &&
                                                       !(
                                                         !raceData[stateMapFips][
-                                                          "Hispanic"
+                                                        "Hispanic"
                                                         ] &&
                                                         !raceData[stateMapFips][
-                                                          "Non Hispanic"
+                                                        "Non Hispanic"
                                                         ] &&
                                                         !raceData[stateMapFips][
-                                                          "Non-Hispanic African American"
+                                                        "Non-Hispanic African American"
                                                         ] &&
                                                         !raceData[stateMapFips][
-                                                          "Non-Hispanic American Natives"
+                                                        "Non-Hispanic American Natives"
                                                         ] &&
                                                         !raceData[stateMapFips][
-                                                          "Non-Hispanic Asian"
+                                                        "Non-Hispanic Asian"
                                                         ] &&
                                                         !raceData[stateMapFips][
-                                                          "Non-Hispanic White"
+                                                        "Non-Hispanic White"
                                                         ]
                                                       ) && (
                                                         <Header.Content
@@ -7643,9 +7649,9 @@ const USVaccineTrackerPilot = (props) => {
                                                         "Non-Hispanic African American"
                                                       ] ||
                                                         !!raceData[
-                                                          stateMapFips
+                                                        stateMapFips
                                                         ][
-                                                          "Non-Hispanic White"
+                                                        "Non-Hispanic White"
                                                         ]) && (
                                                         <Header.Content
                                                           style={{
@@ -8080,8 +8086,8 @@ const USVaccineTrackerPilot = (props) => {
                             ] === -1
                               ? "NA"
                               : data[countyMapGeoFips][
-                                  "seriesComplete18PlusPopPct"
-                                ]
+                              "seriesComplete18PlusPopPct"
+                              ]
                           ) + "%"}
                       </Table.HeaderCell>
                     </Table.Row>
@@ -8105,8 +8111,8 @@ const USVaccineTrackerPilot = (props) => {
                             ] === -1
                               ? "NA"
                               : data[countyMapGeoFips][
-                                  "seriesComplete65PlusPopPct"
-                                ]
+                              "seriesComplete65PlusPopPct"
+                              ]
                           ) + "%"}
                       </Table.HeaderCell>
                     </Table.Row>
