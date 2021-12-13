@@ -1300,7 +1300,7 @@ const SideRaceBarChart = (props) => {
     pieChartRace[0],
   ];
   //I want to get here
-  console.log(data);
+  console.log(props.date);
   return (
     <Grid>
       {/* <Grid.Column
@@ -1393,24 +1393,42 @@ const SideRaceBarChart = (props) => {
                 content: (
                   <Header.Content
                     style={{
-                      fontWeight: 300,
+                      fontWeight: 500,
                       paddingTop: 7,
                       paddingLeft: 5,
-                      fontSize: "19px",
-                      width: 975,
+                      fontSize: "12px",
+                    
                     }}
                   >
-                    Data are from the{" "}
+                  <ul>
+                    <li>Data were obtained from the{" "}
+                    
                     <a
-                      href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      CDC COVID Data Tracker
+                      CDC
                     </a>
-                    , data as of Today <br />
-
-
+                    , on {props.date} <br />
+                    </li>
+                    <li>
+                    The graphic is based on data from 199,313,022 people who are fully vaccinated. Race/Ethnicity is available for 146,313,321 (73.2%) people fully vaccinated.
+                    </li>
+                    <li>
+                    Each bar represents the cumulative percentage of people who are fully vaccinated in the specified race/ethnicity group. This is a measure of vaccination coverage by race/ethnicity at the present time.<br/>
+                    e.g. White Americans make up{" "}
+                                {
+                                  props.demogData["vaccineRace"][0]["White"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of fully vaccinated persons in the United States.
+                    </li>
+                    <li>
+                    If the bar for % vaccinated is shorter than the % population bar, it implies that the proportion of fully vaccinated people in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population.
+                    </li>
+</ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1514,24 +1532,36 @@ const SideRaceBarChart = (props) => {
                 content: (
                   <Header.Content
                     style={{
-                      fontWeight: 300,
+                      fontWeight: 500,
                       paddingTop: 7,
-                      paddingLeft: 5,
-                      fontSize: "19px",
-                      width: 975,
+                      paddingLeft: 0,
+                      fontSize: "12px",
+                     
                     }}
                   >
-                    Data are from the{" "}
+                  <ul>
+                    <li>Data were obtained from the{" "}
+                    
                     <a
-                      href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      CDC COVID Data Tracker
+                      CDC
                     </a>
-                    , data as of Today <br />
-
-
+                    , on  {props.date} <br />
+                    </li>
+                    <li>
+                    The graphic is based on data from 236,018,871 people who are with at least one dose administered.  Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.  
+                    </li>
+                    <li>
+                    Each bar represents the percentage of people who initiated vaccination in last 14 days in the specified race/ethnicity group. This is a measure of new vaccination uptake in the past two weeks. <br/>
+                    e.g. White Americans make up 51.3% of people who initiated vaccination in the last 14 days.  
+                    </li>
+                    <li>
+                    If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population 
+                    </li>
+</ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1626,24 +1656,33 @@ const SideRaceBarChart = (props) => {
                 content: (
                   <Header.Content
                     style={{
-                      fontWeight: 300,
+                      fontWeight: 500,
                       paddingTop: 7,
-                      paddingLeft: 5,
-                      fontSize: "19px",
-                      width: 975,
+                      paddingLeft: 0,
+                      fontSize: "12px",
+                     
                     }}
                   >
-                    Data are from the{" "}
+                  <ul>
+                    <li>Data were obtained from the{" "}
+                    
                     <a
-                      href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      CDC COVID Data Tracker
+                      CDC
                     </a>
-                    , data as of Today <br />
-
-
+                    , on {props.date}<br />
+                    </li>
+                    <li>
+                    Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base 
+                    </li>
+                    <li>
+                    Each bar represents the percentage of the US population that belongs to the specific race/ethnic group. 
+                    </li>
+                  
+</ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -2298,7 +2337,7 @@ const USVaccineTrackerPilot = (props) => {
     stateVaccAveg
   ) {
     console.log(stateVaccAveg["_nation"][0]);
-    console.log(twoweeksvac);
+    console.log(nationalDemog);
     const description = {
       aa:
         "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " +
@@ -3090,6 +3129,7 @@ const USVaccineTrackerPilot = (props) => {
                           > */}
                         <SideRaceBarChart
                           demogData={nationalDemog}
+                          date={date}
                           fips={"_nation"}
                           twoweeksvac={twoweeksvac}
                           VaccineData={vaccineData}
