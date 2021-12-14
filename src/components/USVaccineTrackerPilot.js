@@ -1317,7 +1317,7 @@ const SideRaceBarChart = (props) => {
         </Header>
         <BarChart
           layout="vertical"
-          width={props.inTab === true ? 200 : 260}
+          width={props.inTab === true ? 250 : 290}
           height={330}
           data={data}
           margin={{
@@ -1458,7 +1458,7 @@ const SideRaceBarChart = (props) => {
         </Header>
         <BarChart
           layout="vertical"
-          width={props.inTab === true ? 210 : 260}
+          width={props.inTab === true ? 250 : 290}
           height={330}
           data={data}
           margin={{
@@ -1552,11 +1552,11 @@ const SideRaceBarChart = (props) => {
                     , on  {props.date} <br />
                     </li>
                     <li>
-                    The graphic is based on data from 236,018,871 people who are with at least one dose administered.  Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.  
+                    The graphic is based on data from 236,018,871 people with at least one dose administered. Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.  
                     </li>
                     <li>
                     Each bar represents the percentage of people who initiated vaccination in last 14 days in the specified race/ethnicity group. This is a measure of new vaccination uptake in the past two weeks. <br/>
-                    e.g. White Americans make up 51.3% of people who initiated vaccination in the last 14 days.  
+                    e.g. White Americans make up {props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']}% of people who initiated vaccination in the last 14 days.  
                     </li>
                     <li>
                     If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population 
@@ -1583,7 +1583,7 @@ const SideRaceBarChart = (props) => {
         </Header>
         <BarChart
           layout="vertical"
-          width={props.inTab === true ? 210 : 260}
+          width={props.inTab === true ? 250 : 290}
           height={330}
           data={data}
           margin={{
@@ -3066,19 +3066,19 @@ const USVaccineTrackerPilot = (props) => {
                           <Header.Subheader
                             style={{
                               color: "#000000",
-
+                              width: 810,
                               paddingTop: 8,
+                              fontSize:"14pt",
+                               paddingLeft: 55,
 
-                              // paddingLeft: 15,
-
-                              paddingBottom: 20,
+                              paddingBottom: 25,
                             }}
                           >
 
                             {" "}
-                            <b style={{ lineHeight: "1.2", fontSize: "18px" }}>
-                              "Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage."
-                            </b>{" "}
+                          
+                              Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage.
+                            {" "}
 
                             <br />
                           </Header.Subheader>
