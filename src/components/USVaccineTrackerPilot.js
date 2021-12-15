@@ -1428,7 +1428,7 @@ const SideRaceBarChart = (props) => {
                     <li>
                     If the bar for % vaccinated is shorter than the % population bar, it implies that the proportion of fully vaccinated people in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population.
                     </li>
-</ul>
+    </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1561,7 +1561,7 @@ const SideRaceBarChart = (props) => {
                     <li>
                     If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population 
                     </li>
-</ul>
+      </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1682,7 +1682,7 @@ const SideRaceBarChart = (props) => {
                     Each bar represents the percentage of the US population that belongs to the specific race/ethnic group. 
                     </li>
                   
-</ul>
+      </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}

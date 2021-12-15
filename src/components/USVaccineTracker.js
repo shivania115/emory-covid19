@@ -533,11 +533,10 @@ function VaccineDisparityCharts(props) {
 }
 
 const SideRaceBarChart = (props) => {
-
   // https://codesandbox.io/s/recharts-issue-template-70kry?file=/src/index.js
 
   const [hoverBar, setHoverBar] = useState();
-  const [activeIndex, setActiveIndex] = useState(-1)
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   // const valueAccessor = attribute => ({ payload }) => {
   //   return payload[attribute] < 3 ? null : ( payload[attribute]=== undefined ? null : (payload[attribute]/barRatio).toFixed(1)+'%');
@@ -546,137 +545,283 @@ const SideRaceBarChart = (props) => {
 
   const renderLegend = (props) => {
     const { payload } = props;
-
+    console.log(props.demogData);
     return (
       <ul>
-        {
-          payload.map((entry, index) => (
-            <li key={`item-${index}`}>{entry.value}</li>
-          ))
-        }
+        {payload.map((entry, index) => (
+          <li key={`item-${index}`}>{entry.value}</li>
+        ))}
       </ul>
     );
-  }
+  };
 
-  let barSize = 50
-  let strokeWidth = 0.6
-  let labelSize = '11px'
-  let fontWeight = 500
-  let tickFontSize = props.inTab === true ? 10 : 12
+  let barSize = 50;
+  let strokeWidth = 0.6;
+  let labelSize = "11px";
+  let fontWeight = 500;
+  let tickFontSize = props.inTab === true ? 10 : 12;
 
   const data = [
     {
-      name: 'White', popvalue: props.demogData['race'][0]['White'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['White'][0]['percentVaccinated'])
+      name: "White",
+      popvalue: props.demogData["race"][0]["White"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["White"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["White"][0][
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["White"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
     },
     {
-      name: 'Hispanic', popvalue: props.demogData['vaccineRace'][0]['Hispanic'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Hispanic'][0]['percentVaccinated'])
+      name: "Hispanic",
+      popvalue: props.demogData["vaccineRace"][0]["Hispanic"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["Hispanic"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["Hispanic"][0][
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Hispanic"][0][
+            "percentVaccinated"
+            ],
+      weeksvalue:
+        props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
     },
-    {
-      name: 'African Americans', popvalue: props.demogData['vaccineRace'][0]['African American'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Black'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Asian', popvalue: props.demogData['vaccineRace'][0]['Asian'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Asian'][0]['percentVaccinated'])
-    },
-    {
-      name: 'American Natives', popvalue: props.demogData['vaccineRace'][0]['American Native'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['American Native'][0]['percentVaccinated'])
-    },
-    {
-      name: 'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['vaccineRace'][0]['NHPI'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated'])
-    },
-   
-    {
-      name: 'Multiple/Other', popvalue: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop'],
-      vaxvalue: props.fips == '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-        : (props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0
-          : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'])
-    }
-  ]
 
+    {
+      name: "African American",
+      popvalue:
+        props.demogData["vaccineRace"][0]["African American"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["African American"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["Black"][0][
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Black"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+    },
+    {
+      name: "Asian",
+      popvalue: props.demogData["vaccineRace"][0]["Asian"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["Asian"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["Asian"][0][
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Asian"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14']
+    },
+    {
+      name: "American Native",
+      popvalue:
+        props.demogData["vaccineRace"][0]["American Native"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["American Native"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["American Native"][0][
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["American Native"][0][
+            "percentVaccinated"
+            ],
+      weeksvalue:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
+        // props.twoweeksvac['nation']['American Native']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['American Native']['pctAmongFullyVastLast14']
+    },
+    {
+      name: "Native Hawaiian/Pacific Islander ",
+      popvalue: props.demogData["vaccineRace"][0]["NHPI"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["NHPI"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"] ===
+            -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["NHPI"][0]["percentVaccinated"],
+      weeksvalue:
+        props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
+    },
 
+    {
+      name: "Multiple/Other",
+      popvalue:
+        props.demogData["vaccineRace"][0]["Multiple/Other"][0]["percentPop"],
+      vaxvalue:
+        props.fips == "_nation"
+          ? props.demogData["vaccineRace"][0]["Multiple/Other"][0][
+          "seriesCompletePopPctKnown"
+          ]
+          : props.VaccineData[props.fips][0]["Multiple/Other"][0][
+            "percentVaccinated"
+          ] === -9999
+            ? 0
+            : props.VaccineData[props.fips][0]["Multiple/Other"][0][
+            "percentVaccinated"
+            ],
+      weeksvalue:
+        props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
+    },
+  ];
 
   const CustomTooltip = ({ active, payload, label }) => {
-
     if (active && payload && payload.length) {
-
+      console.log(payload);
       return (
-        <div className='tooltip' style={{ background: 'white', border: '2px', borderStyle: 'solid', borderColor: '#DCDCDC', borderRadius: '2px', padding: '0.8rem' }}>
-          <p style={{ color: sideBySideColor[data.indexOf(payload[0].payload)], marginBottom: 4 }}> <b> {payload[0].payload.name} </b> </p>
+        <div
+          className="tooltip"
+          style={{
+            background: "white",
+            border: "2px",
+            borderStyle: "solid",
+            borderColor: "#DCDCDC",
+            borderRadius: "2px",
+            padding: "0.8rem",
+          }}
+        >
+          <p
+            style={{
+              color: sideBySideColor[data.indexOf(payload[0].payload)],
+              marginBottom: 4,
+            }}
+          >
+            {" "}
+            <b> {payload[0].payload.name} </b>{" "}
+          </p>
           {/* ${payload[hoverBar[0]]['name']}  */}
-          <p className="label" style={{ marginBottom: 3 }}>% Population: {payload[0].payload.popvalue.toFixed(1)}</p>
-          <p className="label" style={{ marginBottom: 0 }}>% Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}</p>
+          <p className="label" style={{ marginBottom: 3 }}>
+            % Population: {payload[0].payload.popvalue.toFixed(1)}
+          </p>
+          <p className="label" style={{ marginBottom: 0 }}>
+            % Vaccinated: {payload[0].payload.vaxvalue.toFixed(1)}
+          </p>
+          <p> % Vaccination in past 14 days: {payload[0].payload.weeksvalue} </p>
         </div>
       );
     }
-
+    console.log(payload);
     return null;
   };
 
   const CustomizedLabellist = (props) => {
     const { width, height, x, y, value } = props;
+    console.log(value);
 
     // console.log('ll', props)
-
-    return (
-      <g>
-        {(() => {
-          if (value > 60) {
-            return <text x={x + width - 40} y={height / 2 + y + 4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
-          } else {
-            return <text x={x + width + 6} y={height / 2 + y + 4} fill="#000" fontSize={labelSize}>{value.toFixed(1)}%</text>
-          }
-        })()}
-      </g>
-    )
-  }
-
+    if (value) {
+      return (
+        <g>
+          {(() => {
+            if (value > 40) {
+              return (
+                <text
+                  x={x + width - 40}
+                  y={height / 2 + y + 4}
+                  fill="#FFF"
+                  fontSize={labelSize}
+                >
+                  {value.toFixed(1)}%
+                </text>
+              );
+            } else {
+              return (
+                <text
+                  x={x + width + 6}
+                  y={height / 2 + y + 4}
+                  fill="#000"
+                  fontSize={labelSize}
+                >
+                  {value.toFixed(1)}%
+                </text>
+              );
+            }
+          })()}
+        </g>
+      );
+    }
+    else {
+      return null;
+    }
+  };
 
   const valueAccessor = (entry) => {
-    return entry ? (entry.value.toFixed(1) + '%') : null;
+    return entry ? entry.value.toFixed(1) + "%" : null;
   };
 
   // console.log('active index', activeIndex);
 
-  const sideBySideColor = [pieChartRace[6], pieChartRace[5], pieChartRace[4], pieChartRace[3], pieChartRace[1], pieChartRace[2], pieChartRace[0]]
-
+  const sideBySideColor = [
+    pieChartRace[6],
+    pieChartRace[5],
+    pieChartRace[4],
+    pieChartRace[3],
+    pieChartRace[1],
+    pieChartRace[2],
+    pieChartRace[0],
+  ];
+  //I want to get here
+  console.log(props.date);
   return (
     <Grid>
-      <Grid.Column width={props.inTab === true ? 8 : 7} style={{ paddingLeft: '0.5rem', paddingRight: 0 }}>
-        <Header style={{ fontSize: '10pt' }}> <center> % Vaccination </center> </Header>
+      {/* <Grid.Column
+        width={props.inTab === true ? 8 : 7}
+        style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
+        style={{ paddingLeft: "0.5rem", paddingRight: 0 }}
+      >
+        <Header style={{ fontSize: "12pt" }}>
+          {" "}
+          <center> % Vaccination </center>{" "}
+        </Header>
         <BarChart
-          layout='vertical'
-          width={props.inTab === true ? 200 : 260}
+          layout="vertical"
+          width={props.inTab === true ? 270 : 300}
           height={330}
           data={data}
           margin={{
             top: 0,
-            right: 15,
+            right: 18,
+
             left: props.inTab === true ? 25 : 35,
             bottom: 0,
           }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis type="number" />
+          <XAxis
+            // domain={[0.80]} label={[0,20,40,60,80]} 
+            type="number" />
           {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis type="category" dataKey='name' tick={{ fontSize: tickFontSize, fill: 'black' }} />
-          <Tooltip content={<CustomTooltip />}
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fontSize: tickFontSize, fill: "black" }}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
             // formatter={function(value, name) {
             //     if(name === hoverBar){
             //       return [value,name];
@@ -684,26 +829,243 @@ const SideRaceBarChart = (props) => {
             //       return null
             //     }
             //   }}
-            cursor={false} />
-          <Bar dataKey="vaxvalue"
-            isAnimationActive={false}>
-            {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
-              ))
-            }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize} />
+            cursor={false}
+          />
+          <Bar dataKey="vaxvalue" isAnimationActive={false}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
+            ))}
+            <LabelList
+              position="right"
+              content={<CustomizedLabellist />}
+              fill="black"
+              strokeWidth={strokeWidth}
+              fontWeight={fontWeight}
+              fontSize={labelSize}
+            />
             {/* valueAccessor={valueAccessor} */}
           </Bar>
-
-
         </BarChart>
+        <Accordion
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 500,
+                      paddingTop: 7,
+                      paddingLeft: 5,
+                      fontSize: "12px",
+                    
+                    }}
+                  >
+                  <ul>
+                    <li>Data were obtained from the{" "}
+                    
+                    <a
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CDC
+                    </a>
+                    , on {props.date} <br />
+                    </li>
+                    <li>
+                    The graphic is based on data from 199,313,022 people who are fully vaccinated. Race/Ethnicity is available for 146,313,321 (73.2%) people fully vaccinated.
+                    </li>
+                    <li>
+                    Each bar represents the cumulative percentage of people who are fully vaccinated in the specified race/ethnicity group. This is a measure of vaccination coverage by race/ethnicity at the present time.<br/>
+                    e.g. White Americans make up{" "}
+                                {
+                                  props.demogData["vaccineRace"][0]["White"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of fully vaccinated persons in the United States.
+                    </li>
+                    <li>
+                    If the bar for % vaccinated is shorter than the % population bar, it implies that the proportion of fully vaccinated people in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population.
+                    </li>
+    </ul>
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
       </Grid.Column>
-      <Grid.Column width={props.inTab === true ? 8 : 9} style={{ paddingLeft: 0 }}>
-        <Header style={{ fontSize: '10pt' }}> <center> % Population </center> </Header>
+      {/* <Grid.Column
+        width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+
+      {/* <Grid.Column
+        width={props.inTab === true ? 8 : 9}
+        style={{ paddingLeft: 0 }}
+      > */}
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
+        style={{ marginLeft: 12, marginRight: 12, paddingLeft: 0 }}
+      >
+        <Header style={{ fontSize: "12pt" }}>
+          {" "}
+          <center> % Vaccination in past 14 days </center>{" "}
+        </Header>
         <BarChart
-          layout='vertical'
-          width={props.inTab === true ? 210 : 260}
+          layout="vertical"
+          width={props.inTab === true ? 270 : 300}
+          height={330}
+          data={data}
+          margin={{
+            top: 0,
+            right: 18,
+            left: props.inTab === true ? 30 : 35,
+            bottom: 0,
+          }}
+        >
+          {/* <CartesianGrid strokeDasharray="3 3" /> */}
+          <XAxis type="number" />
+          {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fontSize: tickFontSize, fill: "black" }}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
+            // formatter={function(value, name) {
+            //     if(name === hoverBar){
+            //       return [value,name];
+            //     }else {
+            //       return null
+            //     }
+            //   }}
+            cursor={false}
+          />
+          <Bar dataKey="weeksvalue" isAnimationActive={false}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
+            ))}
+            <LabelList
+              position="right"
+              content={<CustomizedLabellist />}
+              fill="black"
+              strokeWidth={strokeWidth}
+              fontWeight={fontWeight}
+              fontSize={labelSize}
+            />
+            {/* valueAccessor={valueAccessor} */}
+          </Bar>
+        </BarChart>
+
+        <Accordion
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 500,
+                      paddingTop: 7,
+                      paddingLeft: 0,
+                      fontSize: "12px",
+                     
+                    }}
+                  >
+                  <ul>
+                    <li>Data were obtained from the{" "}
+                    
+                    <a
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CDC
+                    </a>
+                    , on  {props.date} <br />
+                    </li>
+                    <li>
+                    The graphic is based on data from 236,018,871 people with at least one dose administered. Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.  
+                    </li>
+                    <li>
+                    Each bar represents the percentage of people who initiated vaccination in last 14 days in the specified race/ethnicity group. This is a measure of new vaccination uptake in the past two weeks. <br/>
+                    e.g. White Americans make up {props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']}% of people who initiated vaccination in the last 14 days.  
+                    </li>
+                    <li>
+                    If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population 
+                    </li>
+      </ul>
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
+
+      </Grid.Column>
+      <Grid.Column
+        width={props.inTab === true ? 4 : 5}
+        style={{ paddingLeft: 0 }}
+      >
+        <Header style={{ fontSize: "12pt" }}>
+          {" "}
+          <center> % Population </center>{" "}
+        </Header>
+        <BarChart
+          layout="vertical"
+          width={props.inTab === true ? 270 : 300}
           height={330}
           data={data}
           margin={{
@@ -716,8 +1078,13 @@ const SideRaceBarChart = (props) => {
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis type="number" />
           {/* domain={[dataMin => 0, dataMax => (dataMax.toFixed(0))]} */}
-          <YAxis type="category" dataKey='name' tick={{ fontSize: tickFontSize, fill: 'black' }} />
-          <Tooltip content={<CustomTooltip />}
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fontSize: tickFontSize, fill: "black" }}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
             // formatter={function(value, name) {
             //     if(name === hoverBar){
             //       return [value,name];
@@ -725,20 +1092,88 @@ const SideRaceBarChart = (props) => {
             //       return null
             //     }
             //   }}
-            cursor={false} />
-          <Bar dataKey="popvalue"
-            isAnimationActive={false}>
-            {
-              data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
-              ))
-            }
-            <LabelList position="right" content={<CustomizedLabellist />} fill='black' strokeWidth={strokeWidth} fontWeight={fontWeight} fontSize={labelSize} />
+            cursor={false}
+          />
+          <Bar dataKey="popvalue" isAnimationActive={false}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={sideBySideColor[index]} />
+            ))}
+            <LabelList
+              position="right"
+              content={<CustomizedLabellist />}
+              fill="black"
+              strokeWidth={strokeWidth}
+              fontWeight={fontWeight}
+              fontSize={labelSize}
+            />
             {/* valueAccessor={valueAccessor} */}
           </Bar>
-
-
         </BarChart>
+        <Accordion
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 500,
+                      paddingTop: 7,
+                      paddingLeft: 0,
+                      fontSize: "12px",
+                     
+                    }}
+                  >
+                  <ul>
+                    <li>Data were obtained from the{" "}
+                    
+                    <a
+                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CDC
+                    </a>
+                    , on {props.date}<br />
+                    </li>
+                    <li>
+                    Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base 
+                    </li>
+                    <li>
+                    Each bar represents the percentage of the US population that belongs to the specific race/ethnic group. 
+                    </li>
+                  
+      </ul>
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
       </Grid.Column>
       {/* <Grid.Row>
         <Grid style={{paddingTop: '3.5rem'}}>
@@ -756,9 +1191,8 @@ const SideRaceBarChart = (props) => {
         </Grid>
         </Grid.Row> */}
     </Grid>
-
-  )
-}
+  );
+};
 
 
 const toPrint = React.forwardRef((props, ref) => (
@@ -878,7 +1312,7 @@ const USVaccineTracker= (props) => {
   const [vaxVarMap, setVaxVarMap] = useState({});
   const [metric, setMetric] = useState('seriesCompletePopPct');
   const [fully, setFully] = useState('PercentAdministeredPartial');
-
+  const [twoweeksvac, setTwoweeksvac] = useState(0);
   const [pctVacPopDisp, setPctVacPopDisp] = useState(0);
   const [finalStr, setFinalStr] = useState('');
   const [vaccineProp, setVaccine] = useState();
@@ -1096,6 +1530,7 @@ const USVaccineTracker= (props) => {
     if (metric) {
       fetch('/data/VaccineTimeseries.json').then(res => res.json())
         .then(x => { setVaxSeries(x); });
+        fetch("/data/vaccLast14daysByRace.json").then((res) => res.json()).then((x) => { setTwoweeksvac(x) });
       fetch('/data/vaccine7daysTimeseries.json').then(res=>res.json())
         .then(x=> {setStateVaccAveg(x)});
       fetch('/data/vaccineData.json').then(res => res.json())
@@ -1532,8 +1967,20 @@ const USVaccineTracker= (props) => {
                   <div style={{ height: 25 }}> </div>
                   <Grid>
                     <Grid.Column>
-                      <Divider horizontal style={{ fontWeight: 400, width: 1000, color: 'black', fontSize: '29px', paddingLeft: 20 }}> COVID-19 Vaccination by Race & Ethnicity </Divider>
-
+                      <Divider
+                        horizontal
+                        style={{
+                          fontWeight: 400,
+                          width: 1000,
+                          color: "black",
+                          fontSize: "29px",
+                          paddingLeft: 20,
+                          paddingBottom: 0
+                        }}
+                      >
+                        {" "}
+                        COVID-19 Vaccination by Race & Ethnicity{" "}
+                      </Divider>
                     </Grid.Column>
                   </Grid>
 
@@ -1635,26 +2082,43 @@ const USVaccineTracker= (props) => {
 
                   {/* <center style={{paddingLeft: 30}}><Divider style={{width: 1000}}/> </center> */}
 
-                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 15 }}>
-                    <Grid.Column style={{ width: 810, paddingLeft: 60 }}>
-                      <div style={{ paddingTop: '0em' }}>
-                        <Header.Subheader style={{ color: '#000000', fontSize: "14pt", paddingTop: 19, textAlign: "left", paddingLeft: 190, paddingRight: "1em", paddingBottom: 0 }}>
-                          <center> <b style={{ fontSize: "22px" }}>Vaccination by Race & Ethnicity</b> </center>
-                          <br />
-                        </Header.Subheader>
-                      </div>
-                    </Grid.Column>
+                  <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0, paddingBottom: 15 }}>
+                    {/* <center> */}
+                      <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
+                        <div style={{ paddingTop: "0em" }}>
 
+                          <Header.Subheader
+                            style={{
+                              color: "#000000",
+                              width: 910,
+                              paddingTop: 8,
+                              fontSize:"14pt",
+                              //  paddingLeft:,
+
+                              paddingBottom: 25,
+                            }}
+                          >
+
+                            {" "}
+                          
+                              Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage.
+                            {" "}
+
+                            <br />
+                          </Header.Subheader>
+
+                        </div>
+                      </Grid.Column>
+                    {/* </center> */}
                   </Grid.Row>
 
-
-
                   <Grid>
-
-                    <Grid.Row columns={2} style={{ width: 1000, paddingLeft: 0 }} >
-                      <Grid.Column rows={3} width={10} >
-
-                        {/* <Grid.Row style = {{width: 550}}>
+                    <Grid.Row
+                      columns={1}
+                      style={{ width: 2000, paddingLeft: 0 }}
+                    >
+                      {/* <Grid.Column rows={3} width={10}> */}
+                      {/* <Grid.Row style = {{width: 550}}>
                       <Grid.Column style = {{width: 550, paddingLeft: 0}}>
                         <div>
                           <svg width="550" height="80">
@@ -1680,16 +2144,23 @@ const USVaccineTracker= (props) => {
                         </div>
                       </Grid.Column>
                     </Grid.Row> */}
-                        <Grid >
-                          <Grid.Column style={{ paddingTop: '2.5rem', paddingLeft: '3rem' }}>
-                            <SideRaceBarChart
-                              demogData={nationalDemog}
-                              fips={"_nation"}
-                              VaccineData={vaccineData}
-                              inTab={false}
-                            />
-                          </Grid.Column>
-                          {/* <Grid.Row style = {{width: 900}}>
+                      <Grid>
+                        {/* <Grid.Column
+                            style={{
+                              paddingTop: "2.5rem",
+                              paddingLeft: "3rem",
+                            }}
+                          > */}
+                        <SideRaceBarChart
+                          demogData={nationalDemog}
+                          date={date}
+                          fips={"_nation"}
+                          twoweeksvac={twoweeksvac}
+                          VaccineData={vaccineData}
+                          inTab={false}
+                        />
+                        {/* </Grid.Column> */}
+                        {/* <Grid.Row style = {{width: 900}}>
                         <Grid.Column style = {{width: 450, paddingLeft: 0}}>
                             <div>
                               <svg width="450" height="145">
@@ -1708,20 +2179,27 @@ const USVaccineTracker= (props) => {
                             </div>
                           </Grid.Column>
                       </Grid.Row> */}
-                        </Grid>
-                        {/* <toPrint ref={componentRef} />
+                      </Grid>
+                      {/* <toPrint ref={componentRef} />
                     <button onClick={() => exportComponentAsPNG(componentRef)}>
                               Export As PNG
                             </button> */}
-
-
-                      </Grid.Column>
-                      <Grid.Column width={4}>
-                        <div style={{ paddingTop: 0, paddingLeft: 0 }}>
-                          <Header.Subheader style={{ width: 400, color: '#000000', textAlign: 'left', fontSize: "14pt", lineHeight: "16pt", paddingTop: 16, paddingBottom: 0, paddingLeft: 6 }}>
-                          
-
-                            <p style={{ paddingLeft: 40 }}>
+                      {/* </Grid.Column> */}
+                      {/* <Grid.Column width={4}> */}
+                      <div style={{ paddingTop: 0, paddingLeft: 0 }}>
+                        <Header.Subheader
+                          style={{
+                            width: 1100,
+                            color: "#000000",
+                            textAlign: "left",
+                            fontSize: "14pt",
+                            lineHeight: "16pt",
+                            paddingTop: 16,
+                            paddingBottom: 0,
+                            paddingLeft: 6,
+                          }}
+                        >
+                          {/* <p style={{ paddingLeft: 40 }}>
                               <ul>
 
                                 {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
@@ -1765,48 +2243,238 @@ const USVaccineTracker= (props) => {
                                 </li>}
 
                               </ul>
-                            </p>
+                            </p> */}
+                          <p style={{ fontSize: "18px", paddingLeft: 30 }}>
+                            <ul>
+                              <li>
+                                White Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["White"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['White']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["White"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
 
-                          </Header.Subheader>
-                        </div>
-                      </Grid.Column>
+                              </li>
+
+                              <li>
+                                Hispanic Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Hispanic"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['Hispanic']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Hispanic"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+
+                              <li>
+                                African Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["African American"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['African American']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["African American"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+
+                              <li>
+                                Asian Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Asian"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['Asian']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['African American']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Asian"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+
+                              <li>
+                                Native Americans make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["American Native"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["American Native"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+
+                              <li>
+                                Pacific Islanders make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["NHPI"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['NHPI']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["NHPI"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+                              <li>
+                                Others make up{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  "seriesCompletePopPctKnown"
+                                  ]
+                                }{" "}
+                                % of those fully vaccinated, {" "}
+                                {
+                                  twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14'] < 0 ? 0 : twoweeksvac['nation']['Non Hispanic Multiple Races']['pctAmongFullyVasLast14']
+                                }{" "}
+                                % vaccinated in past 14 days,{" "}
+                                {
+                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  "percentPop"
+                                  ]
+                                }{" "}
+                                % population.
+                              </li>
+
+                              {/* {pctVacPopDisp >= 1 && <li>
+                                  {(pctVacPopDisp) < 1 ? "" : " " + finalStr + " make up a larger proportion of those fully vaccinated than of the population."}
+                                </li>} */}
+                            </ul>
+                          </p>
+                        </Header.Subheader>
+                      </div>
+                      {/* </Grid.Column> */}
                     </Grid.Row>
-
                   </Grid>
                   <Grid.Row>
-                    <Accordion id="vaccine" style={{ paddingTop: 0, paddingLeft: 30, paddingBottom: 15 }} defaultActiveIndex={1} panels={[
-                      {
-                        key: 'acquire-dog',
-                        title: {
-                          content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9" }}>About the data</u>,
-                          icon: 'dropdown',
+                    <Accordion
+                      id="vaccine"
+                      style={{
+                        paddingTop: 0,
+                        paddingLeft: 30,
+                        paddingBottom: 15,
+                      }}
+                      defaultActiveIndex={1}
+                      panels={[
+                        {
+                          key: "acquire-dog",
+                          title: {
+                            content: (
+                              <u
+                                style={{
+                                  fontFamily: "lato",
+                                  fontSize: "19px",
+                                  color: "#397AB9",
+                                }}
+                              >
+                                About the data
+                              </u>
+                            ),
+                            icon: "dropdown",
+                          },
+                          content: {
+                            content: (
+                              <Header.Content
+                                style={{
+                                  fontFamily: "lato",
+                                  fontSize: "19px",
+                                  fontWeight: 300,
+                                  paddingTop: 7,
+                                  paddingLeft: 5,
+                                  fontSize: "19px",
+                                  width: 975,
+                                }}
+                              >
+                                Race & Ethnicity data as of {nationalDemogDate}.
+                                <br />
+                                The demographics of vaccinated adults is
+                                obtained from the U.S.
+                                <a
+                                  href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {" "}
+                                  CDC COVID Data Tracker
+                                </a>
+                                . The U.S. CDC reports distribution of
+                                vaccination across non-Hispanic race categories.
+                                Race & ethnicity was known for{" "}
+                                {nationalDemog["vaccineRace"][0]["Unknown"][0][
+                                  "seriesCompletePopPctUs"
+                                ].toFixed(0) + "%"}{" "}
+                                of fully vaccinated adults.
+                                <br />
+                                The CDC notes that “These demographic data only
+                                represent the geographic areas that contributed
+                                data and might differ by populations prioritized
+                                within each state or jurisdiction’s vaccination
+                                phase. Every geographic area has a different
+                                racial and ethnic composition, and not all are
+                                in the same vaccination phase.” For comparison
+                                purposes, we show the demographics of the U.S.
+                                population. Note that the demographics of the
+                                total population will include some areas that
+                                are not represented in the vaccination data. The
+                                numbers are therefore our best estimation of
+                                vaccination coverage by race.
+                              </Header.Content>
+                            ),
+                          },
                         },
-                        content: {
-                          content: (
-                            <Header.Content style={{ fontFamily: 'lato', fontSize: "19px", fontWeight: 300, paddingTop: 7, paddingLeft: 5, fontSize: "19px", width: 975 }}>
-                              Race & Ethnicity data as of {nationalDemogDate}.
-                              <br />
-                              The demographics of vaccinated adults is obtained from the U.S.
-                              <a href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic" target="_blank" rel="noopener noreferrer"> CDC COVID Data Tracker</a>.
-                              The U.S. CDC reports distribution of vaccination across non-Hispanic race categories. Race & ethnicity was known for {(nationalDemog['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctUs']).toFixed(0) + "%"} of fully vaccinated adults.
-                              <br />
-                              The CDC notes that “These demographic data only represent the geographic areas that
-                              contributed data and might differ by populations prioritized within each state or
-                              jurisdiction’s vaccination phase. Every geographic area has a different racial and
-                              ethnic composition, and not all are in the same vaccination phase.” For comparison
-                              purposes, we show the demographics of the U.S. population. Note that the demographics of the total
-                              population will include some areas that are not represented in the vaccination data.
-                              The numbers are therefore our best estimation of vaccination coverage by race.
-
-                            </Header.Content>
-                          ),
-                        },
-                      }
-                    ]
-                    } />
-
+                      ]}
+                    />
                   </Grid.Row>
-
                   <div style={{ height: 25 }}> </div>
                   <Grid>
                     <Grid.Column>
