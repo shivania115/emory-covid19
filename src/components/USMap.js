@@ -107,7 +107,7 @@ function LatestOnThisDashboard() {
         
       </Grid.Column> */}
 
-      <Grid.Column style={{ width: 190 }}>
+      {/* <Grid.Column style={{ width: 190 }}>
         <Image width={175} height={95} href="/national-report" src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
       </Grid.Column>
       <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
@@ -130,7 +130,7 @@ function LatestOnThisDashboard() {
         For FAQs on COVID-19 Vaccines...
         <a href="/Vaccine-Tracker">click to access</a>.
 
-      </Grid.Column>
+      </Grid.Column> */}
 
       <Grid.Column style={{ width: 190 }}>
         <Image width={175} height={95} href="/Georgia" src='/LatestOnThisDashboard/GADash.png' />
@@ -147,6 +147,55 @@ function LatestOnThisDashboard() {
 
 
       <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/Chacin_on_Covid_in_Florida" src='/podcast images/Ana Claudia.png' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b>Digesting COVID-19 data<br /></b>
+
+        Ms. Ana Claudia Chacin talks about the challenges she and other journalists have faced in accessing and reporting accurate COVID-19 data in Florida.
+        <a href="/media-hub/podcast/Chacin_on_Covid_in_Florida">for more</a>.
+      </Grid.Column>
+
+      <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/Benkeser_about_immunity" src='/podcast images/Benkeser.png' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b> “Antibodies are driving a lot of the protection, but it's not the whole story”<br /></b>
+
+        Dr. David Benkeser talks about analyses of COVID-19
+                        vaccine trials data on the immune response to those
+                        vaccines.
+        <a href="/media-hub/podcast/Benkeser_about_immunity">for more</a>.
+      </Grid.Column>
+
+    
+
+      <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions" src='/podcast images/Maria_Sundaram.jpg' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b> “We need to use every tool in our toolbox”<br /></b>
+
+        Dr. Maria Sundaram talks about loosening COVID-19
+                        restrictions and traveling safely during the ongoing
+                        pandemic.
+        <a href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions">for more</a>.
+      </Grid.Column>
+
+      <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/trends_vaccine_coverage_by_county_characteristics" src='/blog images/vaccineTrends/cover.PNG' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b>Trends in COVID-19 Vaccine Coverage in the United
+                          States by County Characteristics<br /></b>
+
+                          Comparing vaccination coverage across counties based on
+                        social characteristics-considering
+
+        <a href="/media-hub/podcast/trends_vaccine_coverage_by_county_characteristics">for more</a>.
+      </Grid.Column>
+
+  <Grid.Column style={{ width: 190 }}>
         <Image width={165} height={95} href="/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
       </Grid.Column>
       <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
@@ -154,27 +203,6 @@ function LatestOnThisDashboard() {
 
         State-wide mask mandate in the early stages of the pandemic may have been clever for US states, lowering case rates during the third wave of the pandemic compared to...
         <a href="/media-hub/blog/maskmandate">for more</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image width={165} height={95} href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>“You can't have good public health, but not have equity and economic growth”<br /></b>
-
-        Katie Kirkpatrick discusses the economic responses to COVID-19 & ramifications in the business community...
-        <a href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">for more</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image width={165} height={95} href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>“A teaching opportunity for many years to come”<br /></b>
-
-        Dr. Allison Chamberlain talks about public health education in the time of the COVID-19 pandemic, blending public health...
-
-        <a href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">for more</a>.
       </Grid.Column>
 
       <Grid.Column style={{ width: 190 }}>
@@ -221,6 +249,7 @@ function LatestOnThisDashboard() {
     </Grid>
   )
 }
+
 
 const SideRaceBarChart = (props) => {
 

@@ -373,6 +373,10 @@ export default function StateMap(props) {
           dataTS["_nation"][395].t,
           dataTS["_nation"][426].t,
           dataTS["_nation"][456].t,
+          dataTS["_nation"][487].t,
+          dataTS["_nation"][518].t,
+          dataTS["_nation"][548].t,
+          dataTS["_nation"][579].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -1459,7 +1463,7 @@ export default function StateMap(props) {
                   <Header.Content style={{fontWeight: 300, fontSize: "14pt"}}>
                     Distribution of deaths per 100K persons. 
                     <br/><br/><br/>
-                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href="https://covidtracking.com/race" target="_blank" rel="noopener noreferrer"> The COVID Racial Data Tracker </a> <br/> 
+                    <i>Data source</i>: <a style ={{color: "#397AB9"}} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a> <br/> 
 
                   </Header.Content>
                 </Grid.Column>

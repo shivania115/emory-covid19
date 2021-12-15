@@ -28,125 +28,6 @@ const contextRef = createRef();
 // const nameList = ['General Information', 'Vaccine Development', 'Vaccine Safety', 'Getting Vaccinated', 'After You Are Vaccinated'];
 // let scrollCount = 0;
 
-function StickyExampleAdjacentContext(props) {
-  const contextRef = createRef();
-  const [activeItem, setActiveItem] = useState("General Information");
-  var activeCharacter = props.activeCharacter;
-  //const { activeItem } = sTate
-  // useEffect(() => {
-  //     setActiveItem(nameList[scrollCount])
-  // }, [scrollCount])
-
-  console.log(props.activeCharacter);
-
-  return (
-    <div>
-      <Ref innerRef={contextRef}>
-        <Rail attached size="mini">
-          <Sticky offset={180} position="fixed" context={contextRef}>
-            <div style={{ width: 240, overflow: "hidden" }}>
-              <div
-                style={{
-                  height: 600,
-                  width: 250,
-                  overflowY: "scroll",
-                  overflowX: "hidden",
-                }}
-              >
-                {/* <div style={{height: "100%", width: 240}}> */}
-                <Menu
-                  //   size='small'
-                  style={{ width: 240, marginTop: "2rem", fontSize: "14pt" }}
-                  // compact
-                  pointing
-                  secondary
-                  vertical
-                >
-                  <Menu.Item
-                    as="a"
-                    name="General Information"
-                    active={activeItem === "General Information"}
-                    // || activeItem === 'General Information'
-                    onClick={(e, { name }) => {
-                      setActiveItem(name);
-                    }}
-                  >
-                    <Header as="h4">General Information</Header>
-                  </Menu.Item>
-                  <Menu.Item
-                    as="a"
-                    href="#develop"
-                    name="Vaccine Development"
-                    active={activeItem === "Vaccine Development"}
-                    // || activeItem === 'Vaccine Development'
-                    onClick={(e, { name }) => {
-                      setActiveItem(name);
-                    }}
-                  >
-                    <Header as="h4">Vaccine Development</Header>
-                  </Menu.Item>
-                  <Menu.Item
-                    as="a"
-                    href="#safety"
-                    name="Vaccine Safety"
-                    active={activeItem === "Vaccine Safety"}
-                    // || activeItem === 'Vaccine Safety'
-                    onClick={(e, { name }) => {
-                      setActiveItem(name);
-                    }}
-                  >
-                    <Header as="h4">Vaccine Safety</Header>
-                  </Menu.Item>
-                  <Menu.Item
-                    as="a"
-                    href="#pregnancy"
-                    name="Vaccines, Fertility, and Pregnancy"
-                    active={activeItem === "Vaccines, Fertility, and Pregnancy"}
-                    // || activeItem === 'After You Are Vaccinated'
-                    onClick={(e, { name }) => {
-                      setActiveItem(name);
-                    }}
-                  >
-                    <Header as="h4">
-                      COVID-19 Vaccines, Fertility, And Pregnancy
-                    </Header>
-                  </Menu.Item>
-                  <Menu.Item
-                    as="a"
-                    href="#get"
-                    name="Getting Vaccinated"
-                    active={activeItem === "Getting Vaccinated"}
-                    // || activeItem === 'Getting Vaccinated'
-                    onClick={(e, { name }) => {
-                      setActiveItem(name);
-                    }}
-                  >
-                    <Header as="h4">Getting Vaccinated</Header>
-                  </Menu.Item>
-                  <Menu.Item
-                    as="a"
-                    href="#after"
-                    name="After You Are Vaccinated"
-                    active={activeItem === "After You Are Vaccinated"}
-                    // || activeItem === 'After You Are Vaccinated'
-                    onClick={(e, { name }) => {
-                      setActiveItem(name);
-                    }}
-                  >
-                    <Header as="h4">After You Are Vaccinated</Header>
-                  </Menu.Item>
-                </Menu>
-                {/* </div> */}
-              </div>
-            </div>
-          </Sticky>
-        </Rail>
-      </Ref>
-    </div>
-  );
-  // }
-}
-
 export default function VaccinesFAQPilot(props) {
   const [activeCharacter, setActiveCharacter] = useState("");
   const [activeIndex, setActiveIndex] = useState([-1]);
@@ -262,8 +143,8 @@ export default function VaccinesFAQPilot(props) {
                     active={activeIndex.indexOf(36) > 0}
                   >
                     <p>
-                      At this point, anyone who is aged 12 or more is eligible
-                      to get vaccinated. Although there a few cases in which
+                      At this point, anyone who is aged 5 or more is eligible to
+                      get vaccinated. Although there a few cases in which
                       individuals should discuss vaccination with a healthcare
                       provider before.
                     </p>
@@ -443,7 +324,7 @@ export default function VaccinesFAQPilot(props) {
                         <Table.Body>
                           <Table.Row>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
-                              Approved for individuals aged 12 years and older
+                              Approved for individuals aged 5 years and older
                             </Table.Cell>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
                               Approved for individuals aged 18 years and older
@@ -454,7 +335,8 @@ export default function VaccinesFAQPilot(props) {
                           </Table.Row>
                           <Table.Row>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
-                              2 doses, 3 weeks apart
+                              2 doses, 3 weeks apart,{" "}
+                              <i>lower dose for children 5- 11 years old</i>
                             </Table.Cell>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
                               2 doses, 4 weeks apart
@@ -973,8 +855,8 @@ export default function VaccinesFAQPilot(props) {
                         {" "}
                         currently{" "}
                       </a>
-                      139 vaccines in various phases of testing across the
-                      world. Of these, 44 are in{" "}
+                      151 vaccines in various phases of testing across the
+                      world. Of these, 50 are in{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases"
@@ -985,11 +867,11 @@ export default function VaccinesFAQPilot(props) {
                         Phase 3{" "}
                       </a>
                       clinical trials. Phase 3 trials are the large-scale
-                      studies done before a vaccine is approved. There are 12
+                      studies done before a vaccine is approved. There are 22
                       vaccines approved for use in different countries, although
-                      only 3 have been approved for use in the United States
+                      only 2 have been approved for use in the United States
                       under the Food and Drug Administration’s Emergency Use
-                      Authorization.
+                      Authorization and one has been fully approved by the FDA.
                     </p>
                   </Accordion.Content>
 
@@ -1588,7 +1470,7 @@ export default function VaccinesFAQPilot(props) {
                   </Accordion.Content> */}
 
                   <Accordion.Title
-                    id="get"
+                    id="fertility"
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
                     index={37}
@@ -1608,10 +1490,10 @@ export default function VaccinesFAQPilot(props) {
                     active={activeIndex.indexOf(37) > 0}
                   >
                     <p>
-                      Yes, the vaccine is safe for children as young as 12. At
+                      Yes, the vaccine is safe for children as young as 5. At
                       this time one vaccine, Pfizer-BioNTech’s two-dose vaccine,
-                      has been given Emergency Use Authorization for adolescents
-                      down to age 12. Before applying for and getting
+                      has been given Emergency Use Authorization for children
+                      down to age 5. Before applying for and getting
                       Authorization, researchers carried out closely monitored
                       trials and showed that this vaccine is safe and effective,
                       including for{" "}
@@ -1622,12 +1504,13 @@ export default function VaccinesFAQPilot(props) {
                         rel="noopener noreferrer"
                       >
                         {" "}
-                        adolescents
+                        adolescents{" "}
                       </a>
-                      . Trials are ongoing for other vaccines for younger
-                      adolescents and children. Children may have side-effects
-                      after getting a vaccine, just like adults do. They will
-                      not get a COVID-19 infection from the vaccine.
+                      and, at a lower dose, for children aged 5-11. Trials are
+                      ongoing for other vaccines for younger adolescents and
+                      children. Children may have side-effects after getting a
+                      vaccine, just like adults do. They will not get a COVID-19
+                      infection from the vaccine.
                     </p>
                   </Accordion.Content>
                 </Accordion>
@@ -1642,7 +1525,9 @@ export default function VaccinesFAQPilot(props) {
 
               <Waypoint
                 onEnter={() => {
-                  setActiveCharacter("Vaccines, Fertility, and Pregnancy");
+                  setActiveCharacter(
+                    "COVID-19 Vaccines, Fertility, and Pregnancy"
+                  );
                   //console.log(activeCharacter)
                 }}
               ></Waypoint>
@@ -1682,6 +1567,7 @@ export default function VaccinesFAQPilot(props) {
                   <Accordion.Title
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
+                    id="get"
                     index={46}
                     onClick={() =>
                       activeIndex.indexOf(46) < 0
@@ -3076,7 +2962,7 @@ export default function VaccinesFAQPilot(props) {
                   </Accordion.Content> */}
 
                   <Accordion.Title
-                    id="get"
+                    id="boosters"
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
                     index={13}
@@ -3129,6 +3015,418 @@ export default function VaccinesFAQPilot(props) {
                       .
                     </p>
                   </Accordion.Content>
+                </Accordion>
+              </div>
+              {/* new section -------- */}
+
+              <div style={{ height: 5 }}></div>
+              <Header  as="h2" style={{ fontWeight: 600 }}>
+                <Header.Content>Boosters, Additional doses</Header.Content>
+              </Header>
+
+              <center>
+                {" "}
+                <Waypoint
+                  onEnter={() => {
+                    setActiveCharacter("Boosters, Additional doses");
+                    //console.log(activeCharacter)
+                  }}
+                ></Waypoint>
+              </center>
+
+              <div style={{ paddingLeft: "2rem", paddingBottom: "0rem" }}>
+                <Accordion fluid styled exclusive={false}>
+                  <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={49}
+                    onClick={() =>
+                      activeIndex.indexOf(49) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 49])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 49)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    What is the difference between an additional dose of a
+                    COVID-19 vaccine and a booster?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(49) > 0}
+                  >
+                    <p>
+                      Right now, the FDA and CDC have authorized and recommended
+                      additional doses of the Pfizer-BioNTech (Comirnaty),
+                      Moderna, and Johnson & Johnson (Janssen) vaccines in
+                      certain circumstances. While both terms currently refer to
+                      a third shot (or, in the case of the Johnson & Johnson, a
+                      second dose), there are some differences in why an
+                      “additional dose” or a “booster dose” are recommended.
+                    </p>
+
+                    <p>
+                      An <b>additional dose</b> of vaccine (i.e. a third dose of
+                      the Pfizer or Moderna two-shot vaccines in this case,
+                      received 28 days at least after the second dose) is
+                      authorized by{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        FDA
+                      </a>{" "}
+                      outside the United States and recommended by{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        CDC
+                      </a>{" "}
+                      for people who have moderately or severely compromised
+                      immune systems, who may not have built up high enough
+                      immunity from the first two shots. The goal of this
+                      additional dose is to help their immune system build up a
+                      stronger immune response than they built up from the first
+                      two doses. This will provide a similar level of protection
+                      in immunocompromised people as in seen in those who are
+                      not immuncompromised. People with compromised immune
+                      systems include those immunocompromised due to certain
+                      treatments or medical condition or following{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        organ transplants
+                      </a>{" "}
+                      At this time, there are no authorizations or
+                      recommendations for additional doses for people who
+                      received the Johnson & Johnson/ Janssen vaccine.
+                    </p>
+                    <p>
+                      <b>A booster shot</b> (i.e. a third dose at least 6 months
+                      after receiving the second dose for people who were
+                      originally vaccinated with EITHER the Pfizer-BioNTech or
+                      Moderna two-shot vaccines or a second dose at least 2
+                      months after receiving the Johnson & Johnson vaccine) is
+                      authorized by{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        FDA
+                      </a>{" "}
+                      and recommended by{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/media/releases/2021/p0924-booster-recommendations-.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        CDC.
+                      </a>{" "}
+                      In this case, the booster counters the decrease in
+                      immunity that was developed after becoming fully
+                      vaccinated. Studies have shown that vaccine-induced
+                      protection from COVID-19 illness decreases over time and
+                      may also be decreased by the Delta variant of SARS-CoV-2,
+                      the virus that causes COVID-19. The reduction in immunity
+                      is mostly a reduction in protection from symptomatic
+                      COVID-19 illness; protection from more serious illness and
+                      outcomes does not decrease as much over time. A booster is
+                      recommended for everyone aged 18 and over. The recommended
+                      timing for boosters depends on which vaccine series
+                      someone orginally received.
+                    </p>
+                  </Accordion.Content>
+                  <Accordion.Title
+                    id="after"
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={41}
+                    onClick={() =>
+                      activeIndex.indexOf(41) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 41])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 41)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    Do I need an additional dose of a COVID-19 vaccine?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(41) > 0}
+                  >
+                    <p>
+                      <p>
+                        For most people, no. It depends on your health condition
+                        and on the vaccine you received.
+                      </p>
+                      <p>
+                        <a
+                          style={{ color: "#397AB9" }}
+                          href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {" "}
+                          The FDA
+                        </a>{" "}
+                        reviewed data from several studies that looked at
+                        immunity to COVID-19 after vaccination among people with
+                        weakened immune systems (for example, due to a medical
+                        condition or if you are taking certain medications that
+                        weaken the immune system). The data from those studies
+                        show that the two doses were, in some cases, not enough
+                        to build a high level of immunity against the virus that
+                        causes COVID-19. They also showed that even if they are
+                        fully vaccinated, some immunocompromised people who get
+                        COVID-19 are more likely to transmit the virus to others
+                        and to get seriously sick from the virus. Therefore,{" "}
+                        <a
+                          style={{ color: "#397AB9" }}
+                          href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {" "}
+                          the FDA authorized
+                        </a>{" "}
+                        a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech
+                        or Moderna) for people with seriously or moderately
+                        suppressed immune systems. CDC now{" "}
+                        <a
+                          style={{ color: "#397AB9" }}
+                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {" "}
+                          recommends
+                        </a>{" "}
+                        this third dose in certain cases.
+                      </p>
+                      <p>
+                        If you have a condition or are taking medication that{" "}
+                        <a
+                          style={{ color: "#397AB9" }}
+                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {" "}
+                          suppresses the immune system
+                        </a>
+                        , you should speak with your healthcare provider about
+                        getting a 3rd dose of the mRNA vaccine you have received
+                        previously (meaning, for example, that if you received
+                        Moderna, you should get a 3rd dose of Moderna). If you
+                        are receiving a 3rd dose, this should happen at least 4
+                        weeks after your 2nd dose.
+                      </p>
+                      <p>
+                        A 3rd dose is not recommended or authorized for any
+                        other group at this time.
+                      </p>
+                    </p>
+                  </Accordion.Content>
+
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={50}
+                    onClick={() =>
+                      activeIndex.indexOf(50) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 50])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 50)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    Who can get a COVID-19 vaccine booster?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(50) > 0}
+                  >
+                    <p>
+                      At this point in time, booster doses have been reviewed
+                      and approved by the{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        FDA
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        CDC
+                      </a>{" "}
+                      for all 3 authorized COVID-19 vaccines (developed by
+                      Pfizer-BioNTech, Moderna, and Johnson & Johnson/Janssen).
+                      Anyone at least 18 years of age should get a booster.
+                    </p>
+                    <p>
+                      The timing of the booster is different, depending on the
+                      original vaccine someone received (called “primary
+                      series”). If you received the Johnson &Johnson/ Janssen
+                      vaccine, you should get a booster at least 2 months after
+                      your original COVID-19 vaccine. If you received either the
+                      Pfizer-BioNTech or the Moderna COVID-19 vaccine, you
+                      should get a booster at least 6 months after the second
+                      dose of your primary series. You may get a booster of any
+                      of the authorized COVID-19 vaccines, no matter which
+                      vaccine you received for your primary vaccination series.
+                    </p>
+                  </Accordion.Content>
+
+                  <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={51}
+                    onClick={() =>
+                      activeIndex.indexOf(51) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 51])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 51)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    If I have not gotten a vaccine booster, am I still
+                    considered “fully vaccinated”?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(51) > 0}
+                  >
+                    <p>
+                      Yes. The term “fully vaccinated” refers to getting the
+                      full original vaccine dosage: two shots of either Moderna
+                      or Pfizer-BioNTech or one shot of Johnson & Johnson. You
+                      do not have to get a booster (or a third dose, if you are
+                      immunocompromised) to be considered{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#FAQs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        fully vaccinated.
+                      </a>{" "}
+                      In fact, boosters are only authorized and recommended for
+                      individuals who were originally vaccinated with the
+                      Pfizer-BionNTech vaccine at this point.
+                    </p>
+                  </Accordion.Content>
+
+                  <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={45}
+                    onClick={() =>
+                      activeIndex.indexOf(45) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 45])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 45)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    Can I “mix and match” my original vaccine and booster dose?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(45) > 0}
+                  >
+                    <p>
+                      After carefully reviewing the data around getting a
+                      booster that matches the original vaccine type people
+                      received and one that was from a different manufacturer or
+                      a different vaccine type (e.g. Pfizer-BioNTech followed by
+                      Johnson & Johnson),{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        CDC
+                      </a>{" "}
+                      has approved a “mix and match” approach for people who
+                      have a preference for a different vaccine from the one
+                      they originally received. If you are unsure about which
+                      booster to get, you should discuss with your healthcare
+                      provider.
+                    </p>
+                  </Accordion.Content>
+
+                  {/* <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={52}
+                    onClick={() =>
+                      activeIndex.indexOf(52) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 52])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 52)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    Can I get a booster if I was originally vaccinated with a
+                    non-Pfizer-BioNTech COVID-19 vaccine?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(52) > 0}
+                  >
+                    <p>
+                      At this time, vaccine boosters have only been authorized
+                      by the FDA for the Pfizer-BioNTech vaccine. It is likely
+                      that other COVID-19 vaccines will also present data and
+                      seek authorization for boosters but that is not currently
+                      the case. It seems likely that boosters will be
+                      recommended for similar groups who received one of the
+                      other COVID-19 vaccines and guidance will be updated once
+                      that has been reviewed by the FDA and CDC.
+                    </p>
+                  </Accordion.Content> */}
                 </Accordion>
               </div>
 
@@ -3323,435 +3621,6 @@ export default function VaccinesFAQPilot(props) {
                       fully understand the regulations about masking,
                       quarantine, and testing. They may be different from
                       regulations within the United States.
-                    </p>
-                  </Accordion.Content>
-                </Accordion>
-              </div>
-
-              {/* new section -------- */}
-
-              <div style={{ height: 5 }}></div>
-              <Header as="h2" style={{ fontWeight: 600 }}>
-                <Header.Content>Boosters, Additional doses</Header.Content>
-              </Header>
-
-              <center>
-                {" "}
-                <Waypoint
-                  onEnter={() => {
-                    setActiveCharacter("Boosters, Additional doses");
-                    //console.log(activeCharacter)
-                  }}
-                ></Waypoint>
-              </center>
-
-              <div style={{ paddingLeft: "2rem", paddingBottom: "0rem" }}>
-                <Accordion fluid styled exclusive={false}>
-                  <Accordion.Title
-                    style={{
-                      fontSize: "15pt",
-                      color: "black",
-                      lineHeight: "1.4",
-                    }}
-                    // active={activeIndex === 0}
-                    index={49}
-                    onClick={() =>
-                      activeIndex.indexOf(49) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 49])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 49)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    What is the difference between an additional dose of a
-                    COVID-19 vaccine and a booster?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(49) > 0}
-                  >
-                    <p>
-                      Right now, the FDA and CDC have authorized and recommended
-                      additional doses of the Pfizer-BioNTech (Comirnaty) or
-                      Moderna vaccines in certain circumstances. While both
-                      terms currently refer to a third shot, there are some
-                      differences in why an “additional dose” or a “booster
-                      dose” are recommended.
-                    </p>
-
-                    <p>
-                      An <b>additional dose</b> of vaccine (i.e. a third dose of
-                      the Pfizer or Moderna two-shot vaccines in this case,
-                      received 28 days at least after the second dose) is
-                      authorized by{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        FDA
-                      </a>{" "}
-                      outside the United States and recommended by{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        CDC
-                      </a>{" "}
-                      for people who have moderately or severely compromised
-                      immune systems, who may not have built up high enough
-                      immunity from the first two shots. The goal of this
-                      additional dose is to help their immune system build up a
-                      stronger immune response than they built up from the first
-                      two doses. This will provide a similar level of protection
-                      in immunocompromised people as in seen in those who are
-                      not immuncompromised. People with compromised immune
-                      systems include those immunocompromised due to certain
-                      treatments or medical condition or following{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        organ transplants
-                      </a>{" "}
-                      At this time, there are no authorizations or
-                      recommendations for additional doses for people who
-                      received the Johnson & Johnson/ Janssen vaccine.
-                    </p>
-                    <p>
-                      A booster shot (i.e. a third dose of ONLY the Pfizer
-                      two-shot vaccine at least 6 months after receiving the
-                      second dose for people who were originally vaccinated with
-                      the Pfizer-BioNTech vaccine) is authorized by{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        FDA
-                      </a>{" "}
-                      and recommended by{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/media/releases/2021/p0924-booster-recommendations-.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        CDC
-                      </a>{" "}
-                      for{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        certain groups
-                      </a>
-                      , based on their relatively higher risk of contracting
-                      COVID-19 disease and experiencing serious illness. In this
-                      case, the booster counters the decrease in immunity that
-                      was developed after becoming fully vaccinated. Studies
-                      have shown that vaccine-induced protection from COVID-19
-                      illness decreases over time and may also be decreased by
-                      the Delta variant of SARS-CoV-2, the virus that causes
-                      COVID-19. The reduction in immunity is mostly a reduction
-                      in protection from symptomatic COVID-19 illness;
-                      protection from more serious illness and outcomes does not
-                      decrease as much over time. At this time booster shots
-                      have not been authorized by the FDA for either Moderna or
-                      Johnson & Johnson/Janssen vaccines
-                    </p>
-                  </Accordion.Content>
-                  <Accordion.Title
-                    id="after"
-                    style={{ fontSize: "15pt", color: "black" }}
-                    // active={activeIndex === 0}
-                    index={41}
-                    onClick={() =>
-                      activeIndex.indexOf(41) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 41])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 41)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    Do I need an additional dose of a COVID-19 vaccine?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(41) > 0}
-                  >
-                    <p>
-                      <p>
-                        For most people, no. It depends on your health condition
-                        and on the vaccine you received.
-                      </p>
-                      <p>
-                        <a
-                          style={{ color: "#397AB9" }}
-                          href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {" "}
-                          The FDA
-                        </a>{" "}
-                        reviewed data from several studies that looked at
-                        immunity to COVID-19 after vaccination among people with
-                        weakened immune systems (for example, due to a medical
-                        condition or if you are taking certain medications that
-                        weaken the immune system). The data from those studies
-                        show that the two doses were, in some cases, not enough
-                        to build a high level of immunity against the virus that
-                        causes COVID-19. They also showed that even if they are
-                        fully vaccinated, some immunocompromised people who get
-                        COVID-19 are more likely to transmit the virus to others
-                        and to get seriously sick from the virus. Therefore,{" "}
-                        <a
-                          style={{ color: "#397AB9" }}
-                          href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {" "}
-                          the FDA authorized
-                        </a>{" "}
-                        a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech
-                        or Moderna) for people with seriously or moderately
-                        suppressed immune systems. CDC now{" "}
-                        <a
-                          style={{ color: "#397AB9" }}
-                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {" "}
-                          recommends
-                        </a>{" "}
-                        this third dose in certain cases.
-                      </p>
-                      <p>
-                        If you have a condition or are taking medication that{" "}
-                        <a
-                          style={{ color: "#397AB9" }}
-                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {" "}
-                          suppresses the immune system
-                        </a>
-                        , you should speak with your healthcare provider about
-                        getting a 3rd dose of the mRNA vaccine you have received
-                        previously (meaning, for example, that if you received
-                        Moderna, you should get a 3rd dose of Moderna). If you
-                        are receiving a 3rd dose, this should happen at least 4
-                        weeks after your 2nd dose.
-                      </p>
-                      <p>
-                        A 3rd dose is not recommended or authorized for any
-                        other group at this time.
-                      </p>
-                    </p>
-                  </Accordion.Content>
-
-                  <Accordion.Title
-                    style={{ fontSize: "15pt", color: "black" }}
-                    // active={activeIndex === 0}
-                    index={50}
-                    onClick={() =>
-                      activeIndex.indexOf(50) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 50])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 50)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    Who can get a COVID-19 vaccine booster?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(50) > 0}
-                  >
-                    <p>
-                      At this point in time, booster doses have only been
-                      reviewed and approved by the{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        FDA
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        CDC
-                      </a>{" "}
-                      for the COVID-19 vaccine developed by Pfizer-BioNTech.
-                      Some people are should get a booster and some may get a
-                      booster.
-                    </p>
-                    <p>
-                      You are recommended to get a booster dose if you fall into
-                      one of the following{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#Populations"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        groups:
-                      </a>{" "}
-                      <ul style={{ paddingLeft: "4rem", lineHeight: "150%" }}>
-                        <li>People aged 65 and older</li>
-                        <li>
-                          People aged 50-64 with underlying{" "}
-                          <a
-                            style={{ color: "#397AB9" }}
-                            href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            medical conditions
-                          </a>{" "}
-                        </li>
-                        <li>
-                          People aged 18 and older in long-term care settings
-                        </li>
-                      </ul>
-                    </p>
-                    <p>
-                      You are eligible to get a booster shot if you fall into
-                      one of the following groups:
-                      <ul style={{ paddingLeft: "4rem", lineHeight: "150%" }}>
-                        <li>
-                          People aged 18-49 with underlying medical conditions{" "}
-                          <a
-                            style={{ color: "#397AB9" }}
-                            href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            medical conditions
-                          </a>{" "}
-                        </li>
-                        <li>
-                          People aged 18-64 who are at{" "}
-                          <a
-                            style={{ color: "#397AB9" }}
-                            href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#HighRisk"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            higher risk
-                          </a>{" "}
-                          of being exposed to COVID-19 because of their
-                          occupation or living situation (e.g. essential
-                          personnel, frontline workers, people in healthcare
-                          settings, schools, correctional facilities, homeless
-                          shelters).
-                        </li>
-                      </ul>
-                    </p>
-                    <p>
-                      If you are not sure if you can or should receive a booster
-                      shot, you should discuss with your healthcare provider.
-                    </p>
-                  </Accordion.Content>
-
-                  <Accordion.Title
-                    style={{
-                      fontSize: "15pt",
-                      color: "black",
-                      lineHeight: "1.4",
-                    }}
-                    // active={activeIndex === 0}
-                    index={51}
-                    onClick={() =>
-                      activeIndex.indexOf(51) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 51])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 51)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    If I have not gotten a vaccine booster, am I still
-                    considered “fully vaccinated”?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(51) > 0}
-                  >
-                    <p>
-                      Yes. The term “fully vaccinated” refers to getting the
-                      full original vaccine dosage: two shots of either Moderna
-                      or Pfizer-BioNTech or one shot of Johnson & Johnson. You
-                      do not have to get a booster (or a third dose, if you are
-                      immunocompromised) to be considered{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#FAQs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        fully vaccinated.
-                      </a>{" "}
-                      In fact, boosters are only authorized and recommended for
-                      individuals who were originally vaccinated with the
-                      Pfizer-BionNTech vaccine at this point.
-                    </p>
-                  </Accordion.Content>
-
-                  <Accordion.Title
-                    style={{
-                      fontSize: "15pt",
-                      color: "black",
-                      lineHeight: "1.4",
-                    }}
-                    // active={activeIndex === 0}
-                    index={52}
-                    onClick={() =>
-                      activeIndex.indexOf(52) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 52])
-                        : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 52)
-                          )
-                    }
-                  >
-                    <Icon name="dropdown" />
-                    Can I get a booster if I was originally vaccinated with a
-                    non-Pfizer-BioNTech COVID-19 vaccine?
-                  </Accordion.Title>
-                  <Accordion.Content
-                    style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(52) > 0}
-                  >
-                    <p>
-                      At this time, vaccine boosters have only been authorized
-                      by the FDA for the Pfizer-BioNTech vaccine. It is likely
-                      that other COVID-19 vaccines will also present data and
-                      seek authorization for boosters but that is not currently
-                      the case. It seems likely that boosters will be
-                      recommended for similar groups who received one of the
-                      other COVID-19 vaccines and guidance will be updated once
-                      that has been reviewed by the FDA and CDC.
                     </p>
                   </Accordion.Content>
                 </Accordion>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Grid, Dropdown, Breadcrumb, Header, Loader, Divider, Image, Accordion, Icon, Tab } from 'semantic-ui-react'
-import AppBar from './AppBar';
+import AppBar from './AppBarPilot';
 import { geoCentroid } from "d3-geo";
 import Geographies from './Geographies';
 import Geography from './Geography';
@@ -107,7 +107,7 @@ function LatestOnThisDashboard() {
         
       </Grid.Column> */}
 
-      <Grid.Column style={{ width: 190 }}>
+      {/* <Grid.Column style={{ width: 190 }}>
         <Image width={175} height={95} href="/national-report" src='/HomeIcons/Emory_Icons_LatestBlog_v1.jpg' />
       </Grid.Column>
       <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
@@ -130,7 +130,7 @@ function LatestOnThisDashboard() {
         For FAQs on COVID-19 Vaccines...
         <a href="/Vaccine-Tracker">click to access</a>.
 
-      </Grid.Column>
+      </Grid.Column> */}
 
       <Grid.Column style={{ width: 190 }}>
         <Image width={175} height={95} href="/Georgia" src='/LatestOnThisDashboard/GADash.png' />
@@ -147,6 +147,55 @@ function LatestOnThisDashboard() {
 
 
       <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/Chacin_on_Covid_in_Florida" src='/podcast images/Ana Claudia.png' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b>Digesting COVID-19 data<br /></b>
+
+        Ms. Ana Claudia Chacin talks about the challenges she and other journalists have faced in accessing and reporting accurate COVID-19 data in Florida.
+        <a href="/media-hub/podcast/Chacin_on_Covid_in_Florida">for more</a>.
+      </Grid.Column>
+
+      <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/Benkeser_about_immunity" src='/podcast images/Benkeser.png' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b> “Antibodies are driving a lot of the protection, but it's not the whole story”<br /></b>
+
+        Dr. David Benkeser talks about analyses of COVID-19
+                        vaccine trials data on the immune response to those
+                        vaccines.
+        <a href="/media-hub/podcast/Benkeser_about_immunity">for more</a>.
+      </Grid.Column>
+
+    
+
+      <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions" src='/podcast images/Maria_Sundaram.jpg' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b> “We need to use every tool in our toolbox”<br /></b>
+
+        Dr. Maria Sundaram talks about loosening COVID-19
+                        restrictions and traveling safely during the ongoing
+                        pandemic.
+        <a href="/media-hub/podcast/Maria_Sundaram_about_COVID-19_restrictions">for more</a>.
+      </Grid.Column>
+
+      <Grid.Column style={{ width: 190 }}>
+        <Image width={165} height={95} href="/media-hub/podcast/trends_vaccine_coverage_by_county_characteristics" src='/blog images/vaccineTrends/cover.PNG' />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b>Trends in COVID-19 Vaccine Coverage in the United
+                          States by County Characteristics<br /></b>
+
+                          Comparing vaccination coverage across counties based on
+                        social characteristics-considering
+
+        <a href="/media-hub/podcast/trends_vaccine_coverage_by_county_characteristics">for more</a>.
+      </Grid.Column>
+
+  <Grid.Column style={{ width: 190 }}>
         <Image width={165} height={95} href="/media-hub/blog/maskmandate" src='/blog images/maskmandate/Mask Mandate blog.png' />
       </Grid.Column>
       <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
@@ -154,27 +203,6 @@ function LatestOnThisDashboard() {
 
         State-wide mask mandate in the early stages of the pandemic may have been clever for US states, lowering case rates during the third wave of the pandemic compared to...
         <a href="/media-hub/blog/maskmandate">for more</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image width={165} height={95} href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses" src='/podcast images/Katie Kirkpatrick.jpeg' />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>“You can't have good public health, but not have equity and economic growth”<br /></b>
-
-        Katie Kirkpatrick discusses the economic responses to COVID-19 & ramifications in the business community...
-        <a href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">for more</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image width={165} height={95} href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic" src='/podcast images/Allison Chamberlain.png' />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>“A teaching opportunity for many years to come”<br /></b>
-
-        Dr. Allison Chamberlain talks about public health education in the time of the COVID-19 pandemic, blending public health...
-
-        <a href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">for more</a>.
       </Grid.Column>
 
       <Grid.Column style={{ width: 190 }}>
@@ -260,34 +288,10 @@ const SideRaceBarChart = (props) => {
 
     [
       {
-        name: 'Non Hispanic Multiple Races',
-        popDist:  (props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['popDistribution']),
-        covideathDistribution: (props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['covideathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['covideathDistribution'])
-      },
-      {
-        name: 'African American',
-        popDist: (props.stateDeath[props.fips]['African American'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['African American'][0]['popDistribution']),
-        covideathDistribution: (props.stateDeath[props.fips]['African American'][0]['covideathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['African American'][0]['covideathDistribution'])
-      },
-      {
-        name: 'American Native',
-        popDist: (props.stateDeath[props.fips]['American Natives'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['American Natives'][0]['popDistribution']),
-        covideathDistribution:  (props.stateDeath[props.fips]['American Natives'][0]['covideathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['American Natives'][0]['covideathDistribution'])
-      },
-      {
-        name: 'Asian',
-        popDist: (props.stateDeath[props.fips]['Asian'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Asian'][0]['popDistribution']),
-        covideathDistribution:(props.stateDeath[props.fips]['Asian'][0]['covideathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['Asian'][0]['covideathDistribution'])
-      },
-      {
-        name: 'NHPI',
-        popDist:  (props.stateDeath[props.fips]['NHPI'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['NHPI'][0]['popDistribution']),
-        covideathDistribution:  (props.stateDeath[props.fips]['NHPI'][0]['covideathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['NHPI'][0]['covideathDistribution'])
+        name: 'White',
+        popDist: (props.stateDeath[props.fips]['White'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['White'][0]['popDistribution']),
+        covideathDistribution: (props.stateDeath[props.fips]['White'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['White'][0]['covideathDistribution'])
       },
       {
         name: 'Hispanic',
@@ -296,10 +300,35 @@ const SideRaceBarChart = (props) => {
             : props.stateDeath[props.fips]['Hispanic'][0]['covideathDistribution'])
       },
       {
-        name: 'White',
-        popDist: (props.stateDeath[props.fips]['White'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['White'][0]['popDistribution']),
-        covideathDistribution: (props.stateDeath[props.fips]['White'][0]['covideathDistribution'] === -9999 ? 0
-            : props.stateDeath[props.fips]['White'][0]['covideathDistribution'])
+        name: 'African American',
+        popDist: (props.stateDeath[props.fips]['African American'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['African American'][0]['popDistribution']),
+        covideathDistribution: (props.stateDeath[props.fips]['African American'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['African American'][0]['covideathDistribution'])
+      },
+      {
+        name: 'Asian',
+        popDist: (props.stateDeath[props.fips]['Asian'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Asian'][0]['popDistribution']),
+        covideathDistribution:(props.stateDeath[props.fips]['Asian'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['Asian'][0]['covideathDistribution'])
+      },
+      {
+        name: 'American Native',
+        popDist: (props.stateDeath[props.fips]['American Natives'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['American Natives'][0]['popDistribution']),
+        covideathDistribution:  (props.stateDeath[props.fips]['American Natives'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['American Natives'][0]['covideathDistribution'])
+      },
+
+      {
+        name: 'NHPI',
+        popDist:  (props.stateDeath[props.fips]['NHPI'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['NHPI'][0]['popDistribution']),
+        covideathDistribution:  (props.stateDeath[props.fips]['NHPI'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['NHPI'][0]['covideathDistribution'])
+      },
+      {
+        name: 'Non Hispanic Multiple Races',
+        popDist:  (props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['popDistribution'] === -9999 ? 0 : props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['popDistribution']),
+        covideathDistribution: (props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['covideathDistribution'] === -9999 ? 0
+            : props.stateDeath[props.fips]['Non Hispanic Multiple Races'][0]['covideathDistribution'])
       },
     ]
 
@@ -382,7 +411,7 @@ const SideRaceBarChart = (props) => {
       <g>
         {(() => {
           if (value === 0) {
-            return <text x={x + width + 6} y={height / 2 + y + 4} fill="#000" fontSize={labelSize}>NA</text>
+            return <text x={x + width + 6} y={height / 2 + y + 4} fill="#000" fontSize={labelSize}>Not Reported</text>
           } else if (value > 60) {
             return <text x={x + width - 40} y={height / 2 + y + 4} fill="#FFF" fontSize={labelSize}>{value.toFixed(1)}%</text>
           } else {
@@ -401,7 +430,7 @@ const SideRaceBarChart = (props) => {
       <g>
         {(() => {
           if (value === 0) {
-            return <text x={x + width + 6} y={height / 2 + y + 4} fill="#000" fontSize={labelSize}>NA</text>
+            return <text x={x + width + 6} y={height / 2 + y + 4} fill="#000" fontSize={labelSize}>Not Reported</text>
           } else if (value > 60) {
             return <text x={x + width - 40} y={height / 2 + y + 4} fill="#FFF" fontSize={labelSize}>{value}%</text>
           } else {
@@ -927,13 +956,13 @@ export default function USMapPilot(props) {
                 barRatio={0.6}
                 labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
                 data={[
-                  { key: "White", 'value': ((stateDeath[fips]["White"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["White"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["White"][0]['coviddeathRate'])),label:(stateDeath[fips]["White"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["White"][0]['coviddeathRate'].toFixed(0)))},
-                  { key: "African American", 'value': ((stateDeath[fips]["African American"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["African American"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["African American"][0]['coviddeathRate'])),label:(stateDeath[fips]["African American"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["African American"][0]['coviddeathRate'].toFixed(0))) },
+                  { key: "Multiple Races", 'value': ((stateDeath[fips]["Non Hispanic Multiple Races"][0]['populacoviddeathRatetion'] == '-9999'||stateDeath[fips]["Non Hispanic Multiple Races"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Non Hispanic Multiple Races"][0]['coviddeathRate'])),label:(stateDeath[fips]["Non Hispanic Multiple Races"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["Non Hispanic Multiple Races"][0]['coviddeathRate'].toFixed(0))) },
+                  { key: "NHPI", 'value': ((stateDeath[fips]["NHPI"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["NHPI"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["NHPI"][0]['coviddeathRate'])),label:(stateDeath[fips]["NHPI"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["NHPI"][0]['coviddeathRate'].toFixed(0))) },
                   { key: "American Native", 'value': ((stateDeath[fips]["American Natives"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["American Natives"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["American Natives"][0]['coviddeathRate'])),label:(stateDeath[fips]["American Natives"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["American Natives"][0]['coviddeathRate'].toFixed(0)))},
                   { key: "Asian", 'value': ((stateDeath[fips]["Asian"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["Asian"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Asian"][0]['coviddeathRate'])),label:(stateDeath[fips]["Asian"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["Asian"][0]['coviddeathRate'].toFixed(0))) },
-                  { key: "NHPI", 'value': ((stateDeath[fips]["NHPI"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["NHPI"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["NHPI"][0]['coviddeathRate'])),label:(stateDeath[fips]["NHPI"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["NHPI"][0]['coviddeathRate'].toFixed(0))) },
-                  { key: "Multiple Races", 'value': ((stateDeath[fips]["Non Hispanic Multiple Races"][0]['populacoviddeathRatetion'] == '-9999'||stateDeath[fips]["Non Hispanic Multiple Races"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Non Hispanic Multiple Races"][0]['coviddeathRate'])),label:(stateDeath[fips]["Non Hispanic Multiple Races"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["Non Hispanic Multiple Races"][0]['coviddeathRate'].toFixed(0))) },
-                  { key: "Hispanic", 'value':((stateDeath[fips]["Hispanic"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["Hispanic"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Hispanic"][0]['coviddeathRate'])),label:(stateDeath[fips]["Hispanic"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["Hispanic"][0]['coviddeathRate'].toFixed(0)))}
+                  { key: "African American", 'value': ((stateDeath[fips]["African American"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["African American"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["African American"][0]['coviddeathRate'])),label:(stateDeath[fips]["African American"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["African American"][0]['coviddeathRate'].toFixed(0))) },
+                  { key: "Hispanic", 'value':((stateDeath[fips]["Hispanic"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["Hispanic"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["Hispanic"][0]['coviddeathRate'])),label:(stateDeath[fips]["Hispanic"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["Hispanic"][0]['coviddeathRate'].toFixed(0)))},
+                  { key: "White", 'value': ((stateDeath[fips]["White"][0]['coviddeathRate'] == '-9999'||stateDeath[fips]["White"][0]['covidDeaths']=='-9999')? 0 : (stateDeath[fips]["White"][0]['coviddeathRate'])),label:(stateDeath[fips]["White"][0]['coviddeathRate'] == '-9999'?'Not Reported':numberWithCommas(stateDeath[fips]["White"][0]['coviddeathRate'].toFixed(0)))}
                 ]}
                 labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "18px", fill: "#000000" }} />}
                 style={{
@@ -954,7 +983,7 @@ export default function USMapPilot(props) {
         </Grid.Row>
         <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
                       <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
-                      The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for 95% of deaths in the nation. NHPI: Native Hawaiians and Pacific Islanders.
+                      The chart shows race and ethnicity groups that constitute at least 1% of the state population and have 30 or more deaths. Race and ethnicity data are known for 95% of deaths in the nation. Rates are not reported for race & ethnic groups with {'<'} 30 deaths recorded or groups that constitute at least 1% of the state population. NHPI: Native Hawaiians and Pacific Islanders.
                         <br />
                         <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
                         <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
@@ -973,7 +1002,7 @@ export default function USMapPilot(props) {
         />
         <Grid.Row style={{ paddingTop: 22, paddingBottom: 53 }}>
                       <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "18pt" }}>
-                        The percentage of COVID-19 deaths by race in {stateName=="The United States"?"the United States":stateName} is shown on the left, and the percentage of the population by race in {stateName=="The United States"?"the United States":stateName} is shown on the right. NHPI: Native Hawaiians and Pacific Islanders.
+                        The percentage of COVID-19 deaths by race in {stateName=="The United States"?"the United States":stateName} is shown on the left, and the percentage of the population by race in {stateName=="The United States"?"the United States":stateName} is shown on the right. Race and ethnicity data are known for 95% of deaths in the nation. Rates are not reported for race & ethnic groups with {'<'} 30 deaths recorded or groups that constitute at least 1% of the state population. NHPI: Native Hawaiians and Pacific Islanders.
                         <br />
                         <br /> <i>Data source</i>: <a style={{ color: "#397AB9" }} href="https://covid.cdc.gov/covid-data-tracker/#demographics" target="_blank" rel="noopener noreferrer"> The CDC </a>
                         <br /><b>Deaths by Race & Ethnicity data as of:</b> {racedatadate.date}.<br />
@@ -1016,7 +1045,7 @@ export default function USMapPilot(props) {
               <Grid.Row style={{ width: "100%", height: "100%" }}>
                 <Grid.Column width={9} style={{ width: "100%", height: "100%" }}>
                   <div style={{ fontSize: "14pt", paddingTop: 5, paddingBottom: 20 }}>
-                    See Dashboard Guide (<a style={{ color: "#397AB9" }} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style={{ color: "#397AB9" }} href="https://youtu.be/PmI42rHnI6U" target="_blank" rel="noopener noreferrer"> YouTube </a>)
+                    See Dashboard Guide (<a style={{ color: "#397AB9" }} href="Dashboard user guide.pdf" target="_blank" rel="noopener noreferrer"> PDF </a> / <a style={{ color: "#397AB9" }} href="https://youtu.be/fV1mzyUIjis" target="_blank" rel="noopener noreferrer"> YouTube </a>)
 
                   </div>
                   <Header as='h2' style={{ fontWeight: 400, fontSize: "18pt" }}>
