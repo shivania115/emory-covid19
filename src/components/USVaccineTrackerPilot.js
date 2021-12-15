@@ -1317,12 +1317,12 @@ const SideRaceBarChart = (props) => {
         </Header>
         <BarChart
           layout="vertical"
-          width={props.inTab === true ? 250 : 290}
+          width={props.inTab === true ? 270 : 300}
           height={330}
           data={data}
           margin={{
             top: 0,
-            right: 15,
+            right: 18,
 
             left: props.inTab === true ? 25 : 35,
             bottom: 0,
@@ -1428,7 +1428,7 @@ const SideRaceBarChart = (props) => {
                     <li>
                     If the bar for % vaccinated is shorter than the % population bar, it implies that the proportion of fully vaccinated people in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population.
                     </li>
-</ul>
+    </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1458,12 +1458,12 @@ const SideRaceBarChart = (props) => {
         </Header>
         <BarChart
           layout="vertical"
-          width={props.inTab === true ? 250 : 290}
+          width={props.inTab === true ? 270 : 300}
           height={330}
           data={data}
           margin={{
             top: 0,
-            right: 15,
+            right: 18,
             left: props.inTab === true ? 30 : 35,
             bottom: 0,
           }}
@@ -1561,7 +1561,7 @@ const SideRaceBarChart = (props) => {
                     <li>
                     If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population 
                     </li>
-</ul>
+      </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1583,7 +1583,7 @@ const SideRaceBarChart = (props) => {
         </Header>
         <BarChart
           layout="vertical"
-          width={props.inTab === true ? 250 : 290}
+          width={props.inTab === true ? 270 : 300}
           height={330}
           data={data}
           margin={{
@@ -1682,7 +1682,7 @@ const SideRaceBarChart = (props) => {
                     Each bar represents the percentage of the US population that belongs to the specific race/ethnic group. 
                     </li>
                   
-</ul>
+      </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -3059,17 +3059,17 @@ const USVaccineTrackerPilot = (props) => {
                   {/* <center style={{paddingLeft: 30}}><Divider style={{width: 1000}}/> </center> */}
 
                   <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0, paddingBottom: 15 }}>
-                    <center>
+                    {/* <center> */}
                       <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
                         <div style={{ paddingTop: "0em" }}>
 
                           <Header.Subheader
                             style={{
                               color: "#000000",
-                              width: 810,
+                              width: 910,
                               paddingTop: 8,
                               fontSize:"14pt",
-                               paddingLeft: 55,
+                              //  paddingLeft:,
 
                               paddingBottom: 25,
                             }}
@@ -3085,7 +3085,7 @@ const USVaccineTrackerPilot = (props) => {
 
                         </div>
                       </Grid.Column>
-                    </center>
+                    {/* </center> */}
                   </Grid.Row>
 
                   <Grid>
@@ -3165,7 +3165,7 @@ const USVaccineTrackerPilot = (props) => {
                       <div style={{ paddingTop: 0, paddingLeft: 0 }}>
                         <Header.Subheader
                           style={{
-                            width: 900,
+                            width: 1100,
                             color: "#000000",
                             textAlign: "left",
                             fontSize: "14pt",
@@ -3220,7 +3220,7 @@ const USVaccineTrackerPilot = (props) => {
 
                               </ul>
                             </p> */}
-                          <p style={{ fontSize: "15px", paddingLeft: 30 }}>
+                          <p style={{ fontSize: "18px", paddingLeft: 30 }}>
                             <ul>
                               <li>
                                 White Americans make up{" "}
@@ -3284,7 +3284,7 @@ const USVaccineTrackerPilot = (props) => {
                               </li>
 
                               <li>
-                                Asians make up{" "}
+                                Asian Americans make up{" "}
                                 {
                                   nationalDemog["vaccineRace"][0]["Asian"][0][
                                   "seriesCompletePopPctKnown"
