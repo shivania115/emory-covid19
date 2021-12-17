@@ -45,7 +45,18 @@ export default function Test_region(props) {
 
   const metric = "DeltaB16172";
 
-  
+  const colorCode={
+    "1":"#FFE400",
+    "2":"#516BEB",
+    "3":"#DE834D",
+    "4":"#5584AC",
+    "5":"#DAD992",
+    "6":"#0B4619",
+    "7":"#CEE5D0",
+    "8":"#FF9292",
+    "9":"#9D84B7",
+    "10":"#7CD1B8"
+  }
   useEffect(() => {
     fetch("/data/variantData.json")
       .then(res => res.json())
@@ -114,9 +125,9 @@ export default function Test_region(props) {
                 props.parentCallback("USA");            
                                         }}
                     fill={
-                    (regions === geo.properties.regionCode)
+                    (regions === (geo.properties.regionCode!=10?("0"+geo.properties.regionCode):geo.properties.regionCode))
                       ? countyColor
-                      : colorScale[geo.properties.regionCode]
+                      : colorCode[geo.properties.regionCode]
                         
                       }
                 />     
@@ -148,7 +159,7 @@ export default function Test_region(props) {
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Delta %</Table.HeaderCell>
-        <Table.HeaderCell>Alpha %</Table.HeaderCell>
+        <Table.HeaderCell>Omicron %</Table.HeaderCell>
         <Table.HeaderCell>Beta %</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
@@ -158,7 +169,7 @@ export default function Test_region(props) {
         <Table.Cell>
           <Label ribbon>{data[regions].DeltaB16172}</Label>
         </Table.Cell>
-        <Table.Cell>{data[regions].Alpha}</Table.Cell>
+        <Table.Cell>{data[regions].Omicron}</Table.Cell>
         <Table.Cell>{data[regions].Beta}</Table.Cell>
       </Table.Row>
       {/* <Table.Row>

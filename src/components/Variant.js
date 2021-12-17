@@ -286,9 +286,13 @@ export default function Variant(props) {
       const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3.0.0/states-10m.json"
     const [colorScale, setColorScale] = useState();
     const history = useHistory();
-    const [varMap, setVarMap] = useState({});
-    const [metric, setMetric] = useState('caserate7dayfig');
-    const [metricOptions, setMetricOptions] = useState('caserate7dayfig');
+    // const [varMap, setVarMap] = useState(["DeltaB16172,Omicron"]);
+    const options=[
+      {value:"DeltaB16172",label:"Delta"},
+      {value:"Omicron",label:"Omicron"}
+    ]
+    const [metric, setMetric] = useState('DeltaB16172');
+    const [metricOptions, setMetricOptions] = useState('DeltaB16172');
     const [metricName, setMetricName] = useState('Delta');
     const colorHighlight = '#f2a900';
     useEffect(() => {
@@ -300,6 +304,7 @@ export default function Variant(props) {
         
       let stateValue = {}
       regionState.map((y)=>{
+        console.log(y);
         stateValue[y.id.toString()]=x[y.region].DeltaB16172;
         setStateColor(stateValue);
       });
@@ -313,14 +318,14 @@ export default function Variant(props) {
           }),
             d => (
               
-              d['DeltaB16172'] > 0)),
-            d => d['DeltaB16172']))
+              d[metric] > 0)),
+            d => d[metric]))
           .range(colorPalette);
 
         let scaleMap = {}
         _.each(x, d => {
-          if (d['DeltaB16172'] >= 0) {
-            scaleMap[d['DeltaB16172']] = cs(d['DeltaB16172'])
+          if (d[metric] >= 0) {
+            scaleMap[d[metric]] = cs(d[metric])
           }
         });
         console.log(scaleMap);
@@ -329,10 +334,10 @@ export default function Variant(props) {
         var max = 0
         var min = 100
         _.each(x, d => {
-          if (d['DeltaB16172'] > max ) {
-            max = d['DeltaB16172']
-          } else if ( d['DeltaB16172'] < min && d['DeltaB16172'] >= 0) {
-            min = d['DeltaB16172']
+          if (d[metric] > max ) {
+            max = d[metric]
+          } else if ( d[metric] < min && d[metric] >= 0) {
+            min = d[metric]
           }
         });
         if (max > 999999) {
@@ -348,15 +353,18 @@ export default function Variant(props) {
         setLegendSplit(cs.quantiles());
       });
      
+      // setMetricOptions(varMap.filter(varMap.map(x)=>{
+      //   x
+      // }))
       
-        fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
-            .then(x => {
-                setVarMap(x);
-                setMetricOptions(_.filter(_.map(x, d => {
-                    return { key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group };
-                }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
-            });
-    },[]);
+      //   fetch('/data/rawdata/variable_mapping.json').then(res => res.json())
+      //       .then(x => {
+      //           setVarMap(x);
+      //           setMetricOptions(_.filter(_.map(x, d => {
+      //               return { key: d.id, value: d.variable, text: d.name, def: d.definition, group: d.group };
+      //           }), d => (d.text !== "Urban-Rural Status" && d.group === "outcomes")));
+      //       });
+    },[metric]);
     useEffect(
       ()=>{
             var w=500;
@@ -468,11 +476,12 @@ if (stateColor){
                                         pointing='top'
                                         search
                                         selection
-                                        //   options={metricOptions}
+                                          options={options}
 
                                         onChange={(e, { value }) => {
                                             setMetric(value);
-                                            setMetricName(varMap[value]['name']);
+                                            
+                                            setMetricName(value);
                                         }}
                                     />
 
@@ -747,7 +756,7 @@ if (stateColor){
 
                                 </VictoryChart>} */}
                                 {stateMapFips && <CaseChart data={variantTimeseries} dataState={variantTimeseries[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
-                          ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={"Delta_B"} />
+                          ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={metric} />
                         }
                              
                             </div>
