@@ -1016,7 +1016,7 @@ export default function USMap(props) {
 
   if (data && allTS && metric && raceData) {
     // console.log(isJson(JSON.stringify(data)));
-    //console.log(data);
+    // console.log(data);
 
     return (
       <HEProvider>
