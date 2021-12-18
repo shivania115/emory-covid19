@@ -427,8 +427,9 @@ function handleCallback(childData){
   setStateMapFips(childData);
 }
 if (stateColor){
-  console.log(variantTimeseries);
+  // console.log(variantTimeseries);
   // console.log(stateMapFips);
+  console.log(variantData[stateMapFips])
   // console.log((stateColor['13']));
   // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
     return (
@@ -485,7 +486,7 @@ if (stateColor){
                                         }}
                                     />
 
-                                    <svg width="260" height="80">
+                                    {/* <svg width="260" height="80">
 
                       {_.map(legendSplit, (splitpoint, i) => {
                         if (legendSplit[i] < 1) {
@@ -514,7 +515,7 @@ if (stateColor){
                       <text x={217} y={50} style={{ fontSize: '0.7em' }}> None </text>
                       <text x={217} y={59} style={{ fontSize: '0.7em' }}> Reported </text>
 
-                    </svg>
+                    </svg> */}
                                 </Grid.Row>
                                 <Test_Region parentCallback={handleCallback}/>
                                 {/* <ComposableMap
@@ -620,7 +621,7 @@ if (stateColor){
                             <Grid.Column width={7} style={{paddingLeft:0}}>
                             <Header as='h2' style={{ fontWeight: 400 }}>
                     <Header.Content style={{ width: 550, fontSize: "20pt", textAlign: "center" }}>
-                      HIII
+                      Variant Regional Map
 
                     </Header.Content>
                   </Header>
@@ -633,7 +634,7 @@ if (stateColor){
                         </Grid.Row>
                         <Grid.Row columns={1}>
                     <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "20pt" }}>
-                    The most prevalent variant in region _____ is _____ which is attributed to  _____% of cases. 
+                    The most prevalent variant in region <b>{stateMapFips}</b> is <b>Delta</b> which is attributed to <b>{variantData[stateMapFips].DeltaB16172}</b> % of cases. 
                         
                         </Header.Content>
                         </Grid.Row>

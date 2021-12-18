@@ -158,19 +158,22 @@ export default function Test_region(props) {
                             <Table celled>
     <Table.Header>
       <Table.Row>
+      <Table.HeaderCell>Region</Table.HeaderCell>
         <Table.HeaderCell>Delta %</Table.HeaderCell>
         <Table.HeaderCell>Omicron %</Table.HeaderCell>
-        <Table.HeaderCell>Beta %</Table.HeaderCell>
+        
       </Table.Row>
     </Table.Header>
 
     <Table.Body>
       <Table.Row>
+      <Table.Cell>
+      <Label ribbon>{regions}</Label></Table.Cell>
         <Table.Cell>
-          <Label ribbon>{data[regions].DeltaB16172}</Label>
+          {data[regions].DeltaB16172}
         </Table.Cell>
         <Table.Cell>{data[regions].Omicron}</Table.Cell>
-        <Table.Cell>{data[regions].Beta}</Table.Cell>
+       
       </Table.Row>
       {/* <Table.Row>
         <Table.Cell>Cell</Table.Cell>

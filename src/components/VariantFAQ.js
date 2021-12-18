@@ -136,8 +136,10 @@ export default function VariantFAQ(props) {
                                     <Accordion.Content style={{ fontSize: '14pt' }}
                                         active={activeIndex.indexOf(0) > 0}>
                                         <p style={{ marginBottom: 0 }}>
-                                            A: A virus naturally develops mutations, or genetic changes, as it spreads throughout a population. A variant is a virus that has one or more genetic changes that make it different from other versions of the virus that are circulating. Some variants may persist, others may not; this depends on the type of mutation and whether it helps the virus to spread more efficiently. Variants of SARS-CoV-2 are expected to continue to emerge as transmission continues around the world. Some will emerge and disappear, and others will emerge and continue to spread and may replace previous variants. For example, the variant of the virus that caused the first U.S. COVID-19 cases in January 2020 is no longer detected among variants circulating in the country. (CDC)
-
+                                        A <a href="https://www.cdc.gov/coronavirus/2019-ncov/variants/understanding-variants.html">variant</a> is a version of a virus that has one or more genetic changes that make it different from other versions of the virus that are circulating. <a href="https://www.cdc.gov/coronavirus/2019-ncov/variants/variant-classifications.html">Variants</a> of SARS-CoV-2 are expected to continue to emerge as transmission continues around the world and the immune response to the virus evolves. Some will emerge and disappear, and others will emerge and continue to spread and may replace previous variants. For example, the variant of the virus that caused the first U.S. COVID-19 cases in January 2020 is no longer detected among variants circulating in the country. 
+                                          <br/>
+                                          <br/>
+                                          Genetic changes, or mutations, in viruses are natural as a virus reproduces itself within an individual. Most of these mutations have no impact on transmissibility of the virus or severity of infection and are never observed. Sometimes, these mutations increase transmissibility or change the severity of the infection; for example, a mutation may help the virus avoid an immune response, transmit between persons more efficiently, or reproduce itself more abundantly. These mutations can allow this version of the virus to spread more easily throughout a population. Some variants may continue to spread for a long time, others may not; this depends on the type of mutation and whether it improves the virus’s survival and reproduction advantage. 
                                         </p>
                                     </Accordion.Content>
 
@@ -148,20 +150,20 @@ export default function VariantFAQ(props) {
                                         onClick={() => activeIndex.indexOf(1) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 1]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 1))}
                                     >
                                         <Icon name='dropdown' />
-                                        What is the difference between different classifications of variants?
+                                        What is the difference between a Variant of Interest and a Variant of Concern?
 
                                     </Accordion.Title>
                                     <Accordion.Content style={{ fontSize: '14pt' }}
                                         active={activeIndex.indexOf(1) > 0}>
                                         <p>
-                                            A: There are currently two existing types of COVID-19 virus variants: Variants of Interest (VOIs) and Variants of Concern (VOCs).
+                                            A: When new variants of a virus are identified, a proportion have the potential to become threats to public health. SARS-CoV-2 variants are classified as either Variants of Interest (VOIs) and Variants of Concern (VOCs). Whether a variant is <a href="https://www.who.int/en/activities/tracking-SARS-CoV-2-variants/">classified</a> as a VOI or a VOC depends on the level of risk it poses to global public health.
                                         </p>
 
                                         <p>
-                                            VOIs have genetic changes that affect the virus’ transmissibility, its potential to cause severe disease, and its response to treatment, vaccines, and tests. They have also been identified as causing a large number of cases or number of clusters of cases, or may have the potential to be a significant risk to public health. VOIs have limited expansion/ prevalence in the US or other countries.
+                                          <b>VOIs</b> have genetic changes that affect the virus’ transmissibility, its potential to cause severe disease, and its response to treatment, vaccines, and tests. They have also been identified as causing a large number of cases or clusters of cases, or may have the potential to be a significant risk to public health. VOIs have limited expansion/prevalence in the US or other countries.
                                         </p>
                                         <p>
-                                            In addition to maintaining the characteristics of  VOIs, VOCs also show traits such as: being more easily transmitted, causing more severe disease (e.g., increased hospitalizations or deaths), responding less effectively to treatments or vaccines, or not being detected during diagnostic tests (e.g., rapid tests). VOCs do not inherently cause more serious illness than the original strain of SARS-CoV-2. However, by infecting more people or responding less well to treatments that are available, they have a greater opportunity to thereby increase hospitalizations and death. Variants of Concern (VOCs) are being closely monitored in the US and elsewhere.
+                                        <b>VOCs</b> have the traits of VOIs but also show additional traits such as being more easily transmitted, causing more severe disease (e.g., increased hospitalizations or deaths), responding less effectively to treatments or vaccines, or not being detected during diagnostic tests (e.g., rapid tests). VOCs do not inherently cause more serious illness than the original strain of SARS-CoV-2. However, by infecting more people or responding less well to treatments that are available, VOCs have the potential to increase the hospitalizations and death rates. VOCs are being closely monitored in the <a href="https://www.cdc.gov/coronavirus/2019-ncov/variants/variant-classifications.html">US</a> and <a href="https://www.who.int/en/activities/tracking-SARS-CoV-2-variants/">elsewhere</a>.
                                         </p>
                                     </Accordion.Content>
 
@@ -193,9 +195,12 @@ export default function VariantFAQ(props) {
                                             <li>
                                                 Delta: B.1.617.2, first identified in India
                                             </li>
+                                            <li>
+                                              Omicron: B1.1.529, first identified in several countries, including South Africa.
+                                            </li>
                                         </ul>
                                         <p style={{ paddingTop: '1rem', paddingLeft: '0rem', paddingRight: '1rem', marginBottom: 0, fontWeight: 400, fontSize: "14pt", textAlign: 'justify' }}>
-                                            Currently, all VOCs are present in the USA. There are other variants, known as Variants of Interest (VOIs), being monitored by WHO and CDC. These currently include Eta, Iota, Kappa, and Lambda.
+                                        Currently, <b>only</b> Delta and Omicron are present in the US. There are other variants, known as Variants of Interest (VOIs), being monitored by WHO and CDC. These currently include Kappa and Mu, although neither has been detected in the <a href="https://www.cdc.gov/coronavirus/2019-ncov/variants/variant-classifications.html#anchor_1632158885160">US</a>.
                                         </p>
                                     </Accordion.Content>
 
@@ -206,12 +211,12 @@ export default function VariantFAQ(props) {
                                         onClick={() => activeIndex.indexOf(3) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 3]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 3))}
                                     >
                                         <Icon name='dropdown' />
-                                        How can I tell if I am positive for COVID-19 from the Delta variant?
+                                        If I test positive for COVID-19, how I can tell what variant caused my infection? 
                                     </Accordion.Title>
                                     <Accordion.Content style={{ fontSize: '14pt' }}
                                         active={activeIndex.indexOf(3) > 0}>
                                         <p style={{ marginBottom: 0 }}>
-                                            That information may not be readily available. The diagnostic tests that are used to determine if a person has COVID-19 are not designed to tell you what variant is causing the infection. Detecting the Delta variant, or other variants, requires a special type of testing called genomic sequencing. Due to the volume of COVID-19 cases, sequencing is not done on all viral samples. However, because the Delta variant now accounts for the majority of COVID-19 cases in the United States, there is a strong likelihood that a positive test result indicates infection with the Delta variant. (From <a href='https://www.dshs.state.tx.us/coronavirus/variant-faqs.aspx'>Texas DSHS</a>)
+                                        That information may not be readily available. The tests that are routinely used to determine if a person has COVID-19 are not designed to tell you what variant is causing the infection. Detecting the Delta variant, or other variants, requires a special type of testing called genomic sequencing. Due to the volume of COVID-19 cases, sequencing is not done on the samples from all tests.
                                         </p>
                                     </Accordion.Content>
 
@@ -222,12 +227,16 @@ export default function VariantFAQ(props) {
                                         onClick={() => activeIndex.indexOf(34) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 34]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 34))}
                                     >
                                         <Icon name='dropdown' />
-                                        Who is most at risk of contracting the Delta variant?
+                                        Who is most at risk of contracting the Delta variant or Omicron variant? 
                                     </Accordion.Title>
                                     <Accordion.Content style={{ fontSize: '14pt' }}
                                         active={activeIndex.indexOf(34) > 0}>
                                         <p style={{ marginBottom: 0 }}>
-                                            Unvaccinated or partially vaccinated individuals (i.e. people who have only received 1 of a two-shot vaccine) are most at risk of contracting COVID-19, regardless of the specific variant. The Delta variant is more transmissible than other variants and therefore it is able to spread more quickly and more easily in unvaccinated or partially vaccinated communities. The best way to protect yourself and those around you from becoming infected with the Delta variant is to become fully vaccinated. All Americans over the age of 12 are currently eligible to receive a COVID-19 vaccination at no cost to them. To find a location nearest you, visit <a href="https://www.vaccines.gov/">vaccines.gov</a>.
+                                        Unvaccinated or partially vaccinated individuals (i.e. people who have only received 1 of a two-shot vaccine) are most at risk of contracting COVID-19, regardless of the specific variant. 
+                                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/variants/delta-variant.html">The Delta variant</a> and <a href="https://www.cdc.gov/coronavirus/2019-ncov/science/science-briefs/scientific-brief-omicron-variant.html">Omicron variant</a> are more transmissible than other variants. 
+                                        This means that they  are more transmissible than other variants and therefore it is able to spread more quickly and more easily in unvaccinated or even <a href="https://www.nejm.org/doi/10.1056/NEJMoa2108891">partially vaccinated</a> communities. 
+                                        The best way to protect yourself and those around you from becoming infected with the Delta or Omicron variant is to become fully vaccinated. All Americans over the age of 5 are currently eligible to receive a COVID-19 <a href="https://covid19.emory.edu/Vaccine-Tracker">vaccination</a> at no cost to them.
+                                         To find a location nearest you, visit <a href="vaccines.gov"></a>vaccines.gov.
                                         </p>
                                     </Accordion.Content>
 
@@ -238,12 +247,16 @@ export default function VariantFAQ(props) {
                                         onClick={() => activeIndex.indexOf(4) < 0 ? setActiveIndex(activeIndex => [...activeIndex, 4]) : setActiveIndex(activeIndex => activeIndex.filter(item => item !== 4))}
                                     >
                                         <Icon name='dropdown' />
-                                        Do the COVID-19 vaccines that are currently available protect against COVID-19 variants?
+                                        Do the COVID-19 vaccines that are currently available protect against COVID-19 variants? 
                                     </Accordion.Title>
                                     <Accordion.Content style={{ fontSize: '14pt' }}
                                         active={activeIndex.indexOf(4) > 0}>
                                         <p>
-                                            Yes, current research suggests that vaccines offer protection against severe hospitalization and death from all variants of SARS-CoV-2. There is some evidence that the current vaccines are not as effective against asymptomatic or mild cases of COVID-19 caused by the Delta variant. It is possible that someone who is fully vaccinated may, therefore, transmit COVID-19 (due to the Delta variant) to others.  The best protection against infection, hospitalization, or death from any COVID-19 variant is becoming fully vaccinated.
+                                        Yes, current research suggests that vaccines offer protection against severe disease, hospitalization, and death from all variants of SARS-CoV-2. There is some evidence that the current vaccines are not as effective against asymptomatic or mild cases of COVID-19 caused by the Delta variant. It is possible that someone who is fully vaccinated may, therefore, transmit COVID-19 (due to the Delta variant) to others. As we learn more about the Omicron variant, we will better understand how effective current vaccines and treatments are against this variant. 
+                                        </p>
+                                        <br/>
+                                        <p>
+                                        There is some <a href="https://www.medrxiv.org/content/10.1101/2021.11.11.21266068v2">early evidence </a> to suggest that the current vaccines could also be less effective against cases of COVID-19 caused by the Omicron variant, but this has yet to be determined. However, vaccines are likely to continue to provide strong protection against serious illness and death. The best protection against infection, hospitalization, or death from any COVID-19 variant is becoming fully vaccinated. 
                                         </p>
                                     </Accordion.Content>
                             </Accordion>
@@ -1224,10 +1237,8 @@ export default function VariantFAQ(props) {
               </Header>
 
               <p style={{ fontSize: '14pt', paddingLeft: '0rem' }}>
-                Robert A. Bednarczyk, PhD (Assistant Professor, Emory University Rollins School of Public Health) <br />
                 Vincent Marconi, MD (Professor, Emory University School of Medicine, Division of Infectious Diseases; Emory University Rollins School of Public Health) <br />
-                Maria Sundaram, MSPH, PhD (Postdoctoral Fellow, ICES/ University of Toronto Dalla Lana School of Public Health <br />
-                Henry M. Wu, MD (Associate Professor, Emory University School of Medicine, Division of Infectious Diseases)
+      
               </p>
 
 
