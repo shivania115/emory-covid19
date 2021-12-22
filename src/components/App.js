@@ -25,6 +25,7 @@ import { StitchAuthProvider, useStitchAuth } from "./StitchAuth";
 import USMapPilot from "./USMapPilot";
 // import USMapPilot from "./USMapPilot";
 import NationalReport from "./NationalReport";
+import Variant from "./Variant";
 import OtherTools from "./OtherTools";
 
 import {
@@ -76,6 +77,9 @@ function AppUI() {
           {/* Main urls */}
           <Route path='/national-report'>
             <NationalReport />
+          </Route>
+          <Route path='/variants123321'>
+             <Variant/>
           </Route>
           <Route path='/other-tools'>
             <OtherTools />
