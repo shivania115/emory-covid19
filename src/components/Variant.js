@@ -426,7 +426,7 @@ export default function Variant(props) {
 function handleCallback(childData){
   setStateMapFips(childData);
 }
-if (stateColor){
+if (stateColor&&variantTimeseries){
   // console.log(variantTimeseries);
   // console.log(stateMapFips);
   console.log(variantData[stateMapFips])
