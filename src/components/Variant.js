@@ -302,12 +302,12 @@ export default function Variant(props) {
       .then(x => {
         setrVariantData(x);
         
-      let stateValue = {}
-      regionState.map((y)=>{
-        console.log(y);
-        stateValue[y.id.toString()]=x[y.region].DeltaB16172;
-        setStateColor(stateValue);
-      });
+      // let stateValue = {}
+      // regionState.map((y)=>{
+      //   console.log(y);
+      //   stateValue[y.id.toString()]=x[y.region].DeltaB16172;
+      //   setStateColor(stateValue);
+      // });
         
        
         const cs = scaleQuantile()
@@ -426,10 +426,12 @@ export default function Variant(props) {
 function handleCallback(childData){
   setStateMapFips(childData);
 }
-if (stateColor&&variantTimeseries){
+if (variantData&&variantTimeseries){
   // console.log(variantTimeseries);
-  // console.log(stateMapFips);
-  console.log(variantData[stateMapFips])
+  console.log(stateMapFips);
+  console.log(variantTimeseries);
+  console.log(variantData['USA'].DeltaB16172)
+  // console.log(variantData[stateMapFips])
   // console.log((stateColor['13']));
   // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
     return (
@@ -634,7 +636,7 @@ if (stateColor&&variantTimeseries){
                         </Grid.Row>
                         <Grid.Row columns={1}>
                     <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "20pt" }}>
-                    The most prevalent variant in region <b>{stateMapFips}</b> is <b>Delta</b> which is attributed to <b>{variantData[stateMapFips].DeltaB16172}</b> % of cases. 
+                    The most prevalent variant in region <b>{stateMapFips}</b> is <b>{variantData[stateMapFips].DeltaB16172>variantData[stateMapFips].Omicron?"Delta":"Omicron"}</b> which is attributed to <b>{variantData[stateMapFips].DeltaB16172>variantData[stateMapFips].Omicron?variantData[stateMapFips].DeltaB16172:variantData[stateMapFips].Omicron}</b> % of cases. 
                         
                         </Header.Content>
                         </Grid.Row>
