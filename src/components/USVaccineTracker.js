@@ -1356,8 +1356,9 @@ const USVaccineTracker= (props) => {
   }
 
   useEffect(() => {
-
+    
     if (dataTS) {
+      console.log(dataTS);
       setCaseTicks([
         dataTS["_nation"][0].t,
         dataTS["_nation"][30].t,
@@ -1378,7 +1379,7 @@ const USVaccineTracker= (props) => {
         dataTS["_nation"][487].t,
         dataTS["_nation"][518].t,
         dataTS["_nation"][548].t,
-        dataTS["_nation"][579].t,
+        // dataTS["_nation"][579].t,
         dataTS["_nation"][dataTS["_nation"].length - 1].t]);
       //console.log("dataTS", dataTS["_nation"][0].t);
     }
@@ -1692,7 +1693,7 @@ const USVaccineTracker= (props) => {
   useEffect(() => {
     fetch('/data/timeseriesAll.json').then(res => res.json())
       .then(x => setDataTS(x));
-
+      
   }, []);
 
 
@@ -1722,7 +1723,7 @@ const USVaccineTracker= (props) => {
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries&&stateVaccAveg) {
 
-    console.log(stateVaccAveg["_nation"][0]);
+    console.log(allTS);
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",

@@ -376,7 +376,7 @@ export default function StateMap(props) {
           dataTS["_nation"][487].t,
           dataTS["_nation"][518].t,
           dataTS["_nation"][548].t,
-          dataTS["_nation"][579].t,
+          // dataTS["_nation"][579].t,
           dataTS["_nation"][dataTS["_nation"].length-1].t]);
           //console.log("dataTS", dataTS["_nation"][0].t);
     }
