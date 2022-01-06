@@ -288,12 +288,12 @@ export default function Variant(props) {
     const history = useHistory();
     // const [varMap, setVarMap] = useState(["DeltaB16172,Omicron"]);
     const options=[
-      {value:"DeltaB16172",label:"Delta"},
-      {value:"Omicron",label:"Omicron"}
+      {value:"Omicron",label:"Omicron"},
+      {value:"DeltaB16172",label:"Delta"}
     ]
-    const [metric, setMetric] = useState('DeltaB16172');
-    const [metricOptions, setMetricOptions] = useState('DeltaB16172');
-    const [metricName, setMetricName] = useState('Delta');
+    const [metric, setMetric] = useState('Omicron');
+    const [metricOptions, setMetricOptions] = useState('Omicron');
+    const [metricName, setMetricName] = useState('Omicron');
     const colorHighlight = '#f2a900';
     useEffect(() => {
       fetch('/data/variantTimeseries.json').then(res=>res.json())
@@ -428,9 +428,9 @@ function handleCallback(childData){
 }
 if (variantData&&variantTimeseries){
   // console.log(variantTimeseries);
-  console.log(stateMapFips);
-  console.log(variantTimeseries);
-  console.log(variantData['USA'].DeltaB16172)
+  // console.log(stateMapFips);
+  // console.log(variantTimeseries);
+  // console.log(variantData['USA'].DeltaB16172)
   // console.log(variantData[stateMapFips])
   // console.log((stateColor['13']));
   // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);

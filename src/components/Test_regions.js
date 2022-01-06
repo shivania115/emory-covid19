@@ -41,22 +41,34 @@ export default function Test_region(props) {
   const [data, setData] = useState();
   const [regions, setRegions] = useState('USA');
   const [hoverName, setHoverName] = useState('USA');
-  const countyColor = "#f2a900";
+  const countyColor = "#ffffb3";
 
   const metric = "DeltaB16172";
 
   const colorCode={
-    "1":"#FFE400",
-    "2":"#516BEB",
-    "3":"#DE834D",
-    "4":"#5584AC",
-    "5":"#DAD992",
+    "1":"#8dd3c7",
+    "2":"#fccde5",
+    "3":"#bebada",
+    "4":"#ff7f00",
+    "5":"#b3de69",
     "6":"#0B4619",
-    "7":"#CEE5D0",
+    "7":"#5584AC",
     "8":"#FF9292",
     "9":"#9D84B7",
     "10":"#7CD1B8"
   }
+  // const colorCode={
+  //   "1":"#8dd3c7",
+  //   "2":"#ffffb3",
+  //   "3":"#bebada",
+  //   "4":"#fb8072",
+  //   "5":"#80b1d3",
+  //   "6":"#fdb462",
+  //   "7":"#b3de69",
+  //   "8":"#fccde5",
+  //   "9":"#d9d9d9",
+  //   "10":"#bc80bd"
+  // }
   useEffect(() => {
     fetch("/data/variantData.json")
       .then(res => res.json())
