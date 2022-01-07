@@ -102,7 +102,7 @@ function CaseChart(props){
     <div style={{paddingTop: 5, paddingBottom: 70, width: 780}}>
       <LineChart width={720} height={180} data = {data} margin={{right: 20}}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
+        <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 16}} angle={-20} tickFormatter={tickFormatter} allowDuplicatedCategory={false}/>
         <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
         <Line data={data["_nation"]} name="Nation" type='monotone' dataKey={variable} dot={false} 
               isAnimationActive={animationBool} 
@@ -355,30 +355,32 @@ export default function StateMap(props) {
   const [caseTicks, setCaseTicks] = useState([]);
 
   useEffect(() => {
-    if (dataTS && stateFips !== "_nation"){
+    
+    if (dataTS&&stateFips !== "_nation") {
+      // console.log(dataTS);
       setCaseTicks([
-          dataTS["_nation"][0].t,
-          dataTS["_nation"][30].t,
-          dataTS["_nation"][61].t,
-          dataTS["_nation"][91].t,
-          dataTS["_nation"][122].t,
-          dataTS["_nation"][153].t,
-          dataTS["_nation"][183].t,
-          dataTS["_nation"][214].t,
-          dataTS["_nation"][244].t,
-          dataTS["_nation"][275].t,
-          dataTS["_nation"][306].t,
-          dataTS["_nation"][334].t,
-          dataTS["_nation"][365].t,
-          dataTS["_nation"][395].t,
-          dataTS["_nation"][426].t,
-          dataTS["_nation"][456].t,
-          dataTS["_nation"][487].t,
-          dataTS["_nation"][518].t,
-          dataTS["_nation"][548].t,
-          // dataTS["_nation"][579].t,
-          dataTS["_nation"][dataTS["_nation"].length-1].t]);
-          //console.log("dataTS", dataTS["_nation"][0].t);
+        dataTS["_nation"][0].t,//4
+        dataTS["_nation"][30].t,
+        dataTS["_nation"][61].t,
+        dataTS["_nation"][91].t,
+        dataTS["_nation"][122].t,
+        dataTS["_nation"][153].t,
+        dataTS["_nation"][183].t,
+        dataTS["_nation"][214].t,
+        dataTS["_nation"][244].t,
+        dataTS["_nation"][275].t,
+        dataTS["_nation"][305].t,//5
+        dataTS["_nation"][336].t,//6
+        dataTS["_nation"][366].t,//7
+        dataTS["_nation"][397].t,//8
+        dataTS["_nation"][428].t,//9
+        dataTS["_nation"][458].t,//10
+        dataTS["_nation"][489].t,//11
+        dataTS["_nation"][519].t,//12
+        dataTS["_nation"][549].t,//1
+        // dataTS["_nation"][580].t,//2
+        dataTS["_nation"][dataTS["_nation"].length - 1].t]);
+      //console.log("dataTS", dataTS["_nation"][0].t);
     }
   }, [dataTS]);
 
