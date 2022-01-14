@@ -200,28 +200,36 @@ function CaseChart(props) {
     return y < 1000 ? y : (y / 1000 + 'k');
   };
 
-
+console.log(data);
   return (
     <div style={{ paddingTop: 5, paddingBottom: 70, width: 500 }}>
       <LineChart width={500} height={180} data={data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis dataKey="t" ticks={ticks} tick={{ fontSize: 16 }} tickFormatter={tickFormatter} allowDuplicatedCategory={false} />
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} />
-        <Line data={data["_nation"]} name="Nation" type='monotone' dataKey={variable} dot={false}
+  
+       <Line data={dataState} name="State" type='monotone' dataKey='Omicron' dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
           animationBegin={500}
-          stroke={nationColor} strokeWidth="2" />
-        {sfps !== "_nation" && <Line data={dataState} name="State" type='monotone' dataKey={variable} dot={false}
+          stroke='#007dba' strokeWidth="2" />
+          <Line data={dataState} name="State" type='monotone' dataKey='DeltaB16172' dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
           animationBegin={500}
-          stroke={stateColor} strokeWidth="2" />}
+          stroke='#99528c' strokeWidth="2" />
+
+            {/* <Line data={data["_nation"]} name="Nation" type='monotone' dataKey='DeltaB16172' dot={false}
+          isAnimationActive={animationBool}
+          onAnimationEnd={() => setAnimationBool(false)}
+          animationDuration={5500}
+          animationBegin={500}
+          stroke={nationColor} strokeWidth="2" /> */}
 
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
-
+      
 
 
         <Tooltip labelFormatter={labelFormatter} formatter={variable === "covidmortality7dayfig" ? (value) => numberWithCommas(value.toFixed(1)) : (value) => numberWithCommas(value.toFixed(0))} active={true} />
@@ -456,7 +464,7 @@ if (variantData&&variantTimeseries){
                             <Grid.Column width={9} style={{ width: "100%", height: "100%" }}>
                                 <Grid.Row columns={2} style={{ width: 680, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0 }}>
 
-                                    <Dropdown
+                                    {/* <Dropdown
                                         style={{
                                             background: '#fff',
                                             fontSize: "14pt",
@@ -486,7 +494,7 @@ if (variantData&&variantTimeseries){
                                             
                                             setMetricName(value);
                                         }}
-                                    />
+                                    /> */}
 
                                     {/* <svg width="260" height="80">
 

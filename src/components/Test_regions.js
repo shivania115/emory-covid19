@@ -45,30 +45,31 @@ export default function Test_region(props) {
 
   const metric = "DeltaB16172";
 
-  const colorCode={
-    "1":"#8dd3c7",
-    "2":"#fccde5",
-    "3":"#bebada",
-    "4":"#ff7f00",
-    "5":"#b3de69",
-    "6":"#0B4619",
-    "7":"#5584AC",
-    "8":"#FF9292",
-    "9":"#9D84B7",
-    "10":"#7CD1B8"
-  }
   // const colorCode={
   //   "1":"#8dd3c7",
-  //   "2":"#ffffb3",
+  //   "2":"#fccde5",
   //   "3":"#bebada",
-  //   "4":"#fb8072",
-  //   "5":"#80b1d3",
-  //   "6":"#fdb462",
-  //   "7":"#b3de69",
-  //   "8":"#fccde5",
-  //   "9":"#d9d9d9",
-  //   "10":"#bc80bd"
+  //   "4":"#ff7f00",
+  //   "5":"#b3de69",
+  //   "6":"#0B4619",
+  //   "7":"#5584AC",
+  //   "8":"#FF9292",
+  //   "9":"#9D84B7",
+  //   "10":"#7CD1B8"
   // }
+
+  const colorCode={
+    "1":"#e1dce2",
+    "2":"#e1dce2",
+    "3":"#e1dce2",
+    "4":"#e1dce2",
+    "5":"#e1dce2",
+    "6":"#e1dce2",
+    "7":"#e1dce2",
+    "8":"#e1dce2",
+    "9":"#e1dce2",
+    "10":"#e1dce2"
+  }
   useEffect(() => {
     fetch("/data/variantData.json")
       .then(res => res.json())
@@ -118,7 +119,7 @@ export default function Test_region(props) {
                 style={{
                   default: {
                       stroke: "#607D8B",
-                      strokeWidth: 0.95,
+                      strokeWidth: 2.95,
                       outline: "none",
                   },
                   pressed: {
