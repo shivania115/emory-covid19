@@ -208,13 +208,13 @@ console.log(data);
         <XAxis dataKey="t" ticks={ticks} tick={{ fontSize: 16 }} tickFormatter={tickFormatter} allowDuplicatedCategory={false} />
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} />
   
-       <Line data={dataState} name="State" type='monotone' dataKey='Omicron' dot={false}
+       <Line data={dataState} name="Omicron" type='monotone' dataKey='Omicron' dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
           animationBegin={500}
           stroke='#007dba' strokeWidth="2" />
-          <Line data={dataState} name="State" type='monotone' dataKey='DeltaB16172' dot={false}
+          <Line data={dataState} name="Delta" type='monotone' dataKey='DeltaB16172' dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
@@ -251,8 +251,8 @@ console.log(data);
 }
 export default function Variant(props) {
     const [stateName, setStateName] = useState('The United States');
-    const [fips, setFips] = useState('_nation');
-    const [stateFips, setStateFips] = useState();
+    const [fips, setFips] = useState('USA');
+    
     const [activeHover,setActiveHover]=useState(false);
   const [legendMax, setLegendMax] = useState([]);
   const [legendMin, setLegendMin] = useState([]);
@@ -434,6 +434,9 @@ export default function Variant(props) {
 function handleCallback(childData){
   setStateMapFips(childData);
 }
+function handleClick(childData){
+setFips(childData);
+}
 if (variantData&&variantTimeseries){
   // console.log(variantTimeseries);
   // console.log(stateMapFips);
@@ -527,7 +530,7 @@ if (variantData&&variantTimeseries){
 
                     </svg> */}
                                 </Grid.Row>
-                                <Test_Region parentCallback={handleCallback}/>
+                                <Test_Region parentClick={handleClick} parentCallback={handleCallback}/>
                                 {/* <ComposableMap
                               projection="geoAlbersUsa"
                               data-tip=""
@@ -766,7 +769,9 @@ if (variantData&&variantTimeseries){
 
 
                                 </VictoryChart>} */}
-                                {stateMapFips && <CaseChart data={variantTimeseries} dataState={variantTimeseries[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
+                                
+                                {fips=="USA"?(stateMapFips && <CaseChart data={variantTimeseries} dataState={variantTimeseries[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
+                          ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={metric} />):<CaseChart data={variantTimeseries} dataState={variantTimeseries[fips]} lineColor={[colorPalette[1]]} stateFips={fips}
                           ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={metric} />
                         }
                              

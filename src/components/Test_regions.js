@@ -40,8 +40,9 @@ export default function Test_region(props) {
   const [colorScale, setColorScale] = useState();
   const [data, setData] = useState();
   const [regions, setRegions] = useState('USA');
+  const [clickedRegions,setClickedRegions]=useState('USA');
   const [hoverName, setHoverName] = useState('USA');
-  const countyColor = "#ffffb3";
+  const countyColor = "#f2a900";
 
   const metric = "DeltaB16172";
 
@@ -125,6 +126,11 @@ export default function Test_region(props) {
                   pressed: {
                       outline: "none",}
               }}
+              onClick={()=>{
+                (geo.properties.regionCode==clickedRegions||("0"+geo.properties.regionCode)==clickedRegions)?setClickedRegions("USA"):
+                geo.properties.regionCode==10?setClickedRegions(geo.properties.regionCode):setClickedRegions("0"+geo.properties.regionCode);
+                (geo.properties.regionCode==clickedRegions||("0"+geo.properties.regionCode)==clickedRegions)?props.parentCallback("USA"):geo.properties.regionCode==10?props.parentCallback(geo.properties.regionCode):props.parentCallback("0"+geo.properties.regionCode);
+              }}
               onMouseEnter={() => {
                 geo.properties.regionCode==10?setRegions(geo.properties.regionCode):setRegions("0"+geo.properties.regionCode);
                 
@@ -135,12 +141,12 @@ export default function Test_region(props) {
               }}
               onMouseLeave={() => {
                 setRegions("USA"); 
-                props.parentCallback("USA");            
+                props.parentCallback(clickedRegions);            
                                         }}
                     fill={
                     (regions === (geo.properties.regionCode!=10?("0"+geo.properties.regionCode):geo.properties.regionCode))
                       ? countyColor
-                      : colorCode[geo.properties.regionCode]
+                      : (clickedRegions=== (geo.properties.regionCode!=10?("0"+geo.properties.regionCode):geo.properties.regionCode)?countyColor:colorCode[geo.properties.regionCode])
                         
                       }
                 />     
