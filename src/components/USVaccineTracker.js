@@ -1377,7 +1377,7 @@ const USVaccineTracker= (props) => {
         dataTS["_nation"][428].t,//9
         dataTS["_nation"][458].t,//10
         dataTS["_nation"][489].t,//11
-        dataTS["_nation"][519].t,//12
+        // dataTS["_nation"][519].t,//12
         dataTS["_nation"][549].t,//1
         // dataTS["_nation"][580].t,//2
         dataTS["_nation"][dataTS["_nation"].length - 1].t]);
@@ -2902,20 +2902,25 @@ const USVaccineTracker= (props) => {
                         <VictoryAxis
                          style={{
                           grid: { background: "#ccdee8" },
-                        tickLabels: { fontWeight:400,fontSize: 11, padding: 6 }
+                        tickLabels: { fontWeight:400,fontSize: 14, padding: 6},
+                        color: "#7C99AC"
                     }}
                         tickValues={[stateVaccAveg["_nation"][0].distT,
                         stateVaccAveg["_nation"][4].distT,
-                        stateVaccAveg["_nation"][8].distT,
-                        stateVaccAveg["_nation"][12].distT,
+                        stateVaccAveg["_nation"][7].distT,
+                        stateVaccAveg["_nation"][10].distT,
+                        stateVaccAveg["_nation"][13].distT,
                         stateVaccAveg["_nation"][16].distT,
                         stateVaccAveg["_nation"][19].distT,
                         stateVaccAveg["_nation"][22].distT,
-                        stateVaccAveg["_nation"][25].distT,
+                        stateVaccAveg["_nation"][24].distT,
+                        stateVaccAveg["_nation"][27].distT,
+                        stateVaccAveg["_nation"][30].distT,
+                        stateVaccAveg["_nation"][33].distT,
                         stateVaccAveg["_nation"][stateVaccAveg["_nation"].length-1].distT
                         ]}
         
-                          tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} /> 
+                          tickFormat={caseTickFmt} /> 
                           <VictoryLine
                           data={stateVaccAveg["_nation"].slice(1)}
                           y="percentVaccinatedDose2_avg7"
