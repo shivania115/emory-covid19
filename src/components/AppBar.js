@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 export default function AppBar(props) {
 
   const history = useHistory();
-
+  console.log(props.menu);
   return (
     <ErrorBoundary>
       <Menu borderless inverted fixed='top'
@@ -39,17 +39,19 @@ export default function AppBar(props) {
             active={props.menu==='vaccineTracker'} 
             onClick={() => history.push('/Vaccine-Tracker')}
             name='vaccineTracker'>
-            Vaccination Tracker
+            Vaccination 
+            <br></br>
+            Surveillance
           </Menu.Item>
           
           {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='selectState'} 
-            onClick={() => history.push('/_nation')}
-            name='selectState'>
-            Find State
-          </Menu.Item>
+            active={props.menu==='variants'} 
+            onClick={() => history.push('/variants123321')}
+            name='variants'>
+            Variant Map
+          </Menu.Item> */}
 
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='mapState'} 
             onClick={() => history.push('/map-state')}
             name='mapState'>
