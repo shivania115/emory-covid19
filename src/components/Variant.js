@@ -197,7 +197,7 @@ function CaseChart(props) {
   const [animationBool, setAnimationBool] = useState(true);
 
   const caseYTickFmt = (y) => {
-    return y < 1000 ? y : (y / 1000 + 'k');
+    return (y  + '%');
   };
 
 console.log(data);
@@ -205,7 +205,7 @@ console.log(data);
     <div style={{ paddingTop: 5, paddingBottom: 70, width: 500 }}>
       <LineChart width={500} height={180} data={data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
-        <XAxis dataKey="t" ticks={ticks} tick={{ fontSize: 16 }} tickFormatter={tickFormatter} allowDuplicatedCategory={false} />
+        <XAxis angle={0} dataKey="t" ticks={ticks} tick={{ marginTop:2,fontSize: 13 }} tickFormatter={tickFormatter} allowDuplicatedCategory={false} />
         <YAxis tickFormatter={caseYTickFmt} tick={{ fontSize: 16 }} />
   
        <Line data={dataState} name="Omicron" type='monotone' dataKey='Omicron' dot={false}
@@ -448,7 +448,7 @@ if (variantData&&variantTimeseries){
     return (
         <HEProvider>
             <div>
-                <AppBar menu='countyReport' />
+                <AppBar menu='variants' />
                 <Container style={{ marginTop: '8em', minWidth: '1260px' }}>
                     <Grid style={{ height: 130, overflow: "hidden" }}>
 
@@ -464,8 +464,8 @@ if (variantData&&variantTimeseries){
                     <Divider hidden />
                     <Grid columns={9} style={{ width: "100%", height: "100%", overflow: "hidden" }}>
                         <Grid.Row style={{ width: "100%", height: "100%" }}>
-                            <Grid.Column width={9} style={{ width: "100%", height: "100%" }}>
-                                <Grid.Row columns={2} style={{ width: 680, padding: 0, paddingTop: 0, paddingRight: 0, paddingBottom: 0 }}>
+                            <Grid.Column width={9} style={{ width: "100%", height: "100%",paddingRight:40 }}>
+                                <Grid.Row columns={2} style={{ width: 680, padding: 0, paddingTop: 0, paddingRight: 100, paddingBottom: 0 }}>
 
                                     {/* <Dropdown
                                         style={{
@@ -531,107 +531,9 @@ if (variantData&&variantTimeseries){
                     </svg> */}
                                 </Grid.Row>
                                 <Test_Region parentClick={handleClick} parentCallback={handleCallback}/>
-                                {/* <ComposableMap
-                              projection="geoAlbersUsa"
-                              data-tip=""
-                              width={1200}
-                              height={450}
-                              strokeWidth={0.1}
-                              stroke='black'
-                              offsetX={-380}
-                              projectionConfig={{ scale: 800 }}
-
-
-                            >
-                              <Geographies geography={geoUrl}>
-                                {({ geographies }) =>
-                                  <svg>
-                                    {setStateFips(fips)}
-                                    {geographies.map(geo => (
-                                      
-                                      <Geography
-                                        key={geo.rsmKey}
-                                        geography={geo}
-                                        onMouseEnter={() => {
-                                          setTooltipContent("");
-
-                                          setActiveHover(true);
-                                          const fips = geo.id.substring(0, 2);
-                                           setRegionMatched(regionState.find(s => s.id === fips).region);
-                                          setFips(fips);
-                                        
-                                          console.log(regionMatched);
-                                          setHoverName(regionMatched);
-                                          
-                                    
-                                        }}
-
-
-                                        onMouseLeave={() => {
-                                          setActiveHover(false);
-                                          setTooltipContent("");
-                                          setFips("_nation");
-                                          setRegionMatched("USA");
-                                          setHoverName("The United States");
-                                        }}
-
-                                        onClick={() => {
-                                          const configMatched = configs.find(s => s.fips === fips);
-                                          setStateName(configMatched.name);
-                                          setStateMapFips(geo.id.substring(0, 2));
-
-                                          setClicked(true);
-                                          setShowState(true);
-
-                                        }}
-
-                                        
-                                        fill={((colorScale && stateColor[geo.id] && (stateColor[geo.id]) > 0) ?
-                                                                colorScale[stateColor[geo.id]] :
-                                                                '#FFFFFF')}                                 
-                                      />
-                                    
-
-                                    ))}
-
-                                    {geographies.map(geo => {
-                                      const centroid = geoCentroid(geo);
-                                    
-                                      const cur = allStates.find(s => s.val === geo.id.substring(0,2));
-                                  
-                                      return (
-                                        <g key={geo.rsmKey + "-name"}>
-                                          {cur &&
-                                            centroid[0] > -160 &&
-                                            centroid[0] < -67 &&
-                                            (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                                              <Marker coordinates={centroid}>
-                                                <text y="2" fontSize={14} textAnchor="middle">
-                                                  {cur.id}
-                                                </text>
-                                              </Marker>
-                                            ) : (
-                                              <Annotation
-                                                subject={centroid}
-                                                dx={offsets[cur.id][0]}
-                                                dy={offsets[cur.id][1]}
-                                              >
-                                                <text x={4} fontSize={14} alignmentBaseline="middle">
-                                                  {cur.id}
-                                                </text>
-                                              </Annotation>
-                                            ))}
-                                        </g>
-                                      );
-                                    })}
-                                  </svg>
-                                }
-                              </Geographies>
-
-
-                            </ComposableMap> */}
+                               
                             </Grid.Column>
-                            <Grid.Column width={7} style={{paddingLeft:0}}>
+                            <Grid.Column width={7} style={{paddingLeft:20}}>
                             <Header as='h2' style={{ fontWeight: 400 }}>
                     <Header.Content style={{ width: 550, fontSize: "20pt", textAlign: "center" }}>
                       Variant Regional Map
@@ -652,124 +554,8 @@ if (variantData&&variantTimeseries){
                         </Header.Content>
                         </Grid.Row>
                         <Grid.Row>
-                        {/* line graph */}
-                        {/* <VictoryChart
-                                    theme={VictoryTheme.material}
-                                    width={630}
-                                    height={230}
-                                    domainPadding={20}
-                                    minDomain={{ y: props.ylog ? 1 : 0 }}
-                                    padding={{ left: 160, right: 100, top: 10, bottom: 10 }}
-                                    style={{ fontSize: "14pt" }}
-                                    containerComponent={<VictoryContainer responsive={false} />}
-                                >
-                                    <VictoryAxis style={{ ticks: { stroke: "#FFFFFF" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, labels: { fill: '#000000', fontSize: "20px" }, tickLabels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' } }} />
-                                    <VictoryAxis dependentAxis
-                                        label='COVID-19 Cases per 100,000 Residents'
-                                        style={{
-                                            ticks: { stroke: "transparent" }, grid: { stroke: "transparent" }, axis: { stroke: "#000000" }, axisLabel: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' },
-                                            labels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' }, tickLabels: { fontSize: "0px", fill: '#000000', padding: 10, fontFamily: 'lato' }
-                                        }} />
-                                    <VictoryBar
-                                        horizontal
-                                        barRatio={0.75}
-                                        labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
-                                        data={[
-                                            { key: "Very low CCVI", 'value': (data_index['cvi_index']["low20"]['casescumR'] / data_index['cvi_index']["low20"]['casescumR']) * data_index['cvi_index']["low20"]['casescumR'] || 0, 'ez': data_index['cvi_index']["low20"]['county_list'] },
-                                            { key: "Low CCVI", 'value': (data_index['cvi_index']["Q2"]['casescumR'] / data_index['cvi_index']["Q2"]['casescumR']) * data_index['cvi_index']["Q2"]['casescumR'] || 0, 'ez': data_index['cvi_index']["Q2"]['county_list'] },
-                                            { key: "Moderate CCVI", 'value': (data_index['cvi_index']["Q3"]['casescumR'] / data_index['cvi_index']["Q3"]['casescumR']) * data_index['cvi_index']["Q3"]['casescumR'] || 0, 'ez': data_index['cvi_index']["Q3"]['county_list'] },
-                                            { key: "High CCVI", 'value': (data_index['cvi_index']["Q4"]['casescumR'] / data_index['cvi_index']["Q4"]['casescumR']) * data_index['cvi_index']["Q4"]['casescumR'] || 0, 'ez': data_index['cvi_index']["Q4"]['county_list'] },
-                                            { key: "Very high CCVI", 'value': (data_index['cvi_index']["high20"]['casescumR'] / data_index['cvi_index']["high20"]['casescumR']) * data_index['cvi_index']["high20"]['casescumR'] || 0, 'ez': data_index['cvi_index']["high20"]['county_list'] }
-                                        ]}
-                                        labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "18px", fill: "#000000" }} />}
-                                        style={{
-                                            data: {
-                                                fill: ({ datum }) => datum.ez.includes(countyFipscvi) ? countyColor : casesColor[1]
-                                            }
-                                        }}
-        
-                                        x="key"
-                                        y="value"
-                                    />
-                                </VictoryChart> */}
                                 <div>
-                              {/* {fips &&
-                                <VictoryChart
-                                  // minDomain={{ x: fips ? variantTimeseries[fips][variantTimeseries[fips].length - 15].t : variantTimeseries["13"][variantTimeseries["13"].length - 15].t }}
-                                  // maxDomain={{ y: fips ? getMaxRange(variantTimeseries[stateMapFips], "caseRateMean", (variantTimeseries[stateMapFips].length - 15)).caseRateMean * 1.05 : getMaxRange(variantTimeseries["13"], "caseRateMean", (variantTimeseries["13"].length - 15)).caseRateMean * 1.05 }}
-                                  width={220}
-                                  height={180}
-                                  padding={{ marginLeft: 0, right: -1, top: 150, bottom: -0.9 }}
-                                  containerComponent={<VictoryContainer responsive={false} />}>
-
-                                  <VictoryAxis
-                                    tickValues={fips ?
-                                      [
-                                        variantTimeseries[fips][variantTimeseries[fips].length - Math.round(variantTimeseries[fips].length / 3) * 2 - 1].t,
-                                        variantTimeseries[fips][variantTimeseries[fips].length - Math.round(variantTimeseries[fips].length / 3) - 1].t,
-                                        variantTimeseries[fips][variantTimeseries[fips].length - 1].t]
-                                      :
-                                      [
-                                        variantTimeseries["13"][variantTimeseries["13"].length - Math.round(variantTimeseries["13"].length / 3) * 2 - 1].t,
-                                        variantTimeseries["13"][variantTimeseries["13"].length - Math.round(variantTimeseries["13"].length / 3) - 1].t,
-                                        variantTimeseries["13"][variantTimeseries["13"].length - 1].t]}
-                                    style={{ grid: { background: "#ccdee8" }, tickLabels: { fontSize: 10 } }}
-                                    tickFormat={(t) => new Date(t * 1000).toLocaleDateString()} />
-
-                                  <VictoryGroup
-                                    colorScale={[stateColor]}
-                                  >
-
-                                    <VictoryLine data={stateMapFips && variantTimeseries[stateMapFips] ? variantTimeseries[stateMapFips] : variantTimeseries["13"]}
-                                      x='t' y='caseRateMean'
-                                    />
-
-                                  </VictoryGroup>
-                                  <VictoryArea
-                                    style={{ data: { fill: "#00BFFF", fillOpacity: 0.1 } }}
-                                    data={stateMapFips && variantTimeseries[stateMapFips] ? variantTimeseries[stateMapFips] : variantTimeseries["13"]}
-                                    x='t' y='caseRateMean'
-
-                                  />
-
-                                  <VictoryLabel text={stateMapFips ? numberWithCommas((variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)) : numberWithCommas((variantTimeseries["13"][variantTimeseries["13"].length - 1].dailyCases).toFixed(0))} x={80} y={80} textAnchor="middle" style={{ fontSize: 40, fontFamily: 'lato', fill: "#004071" }} />
-
-                                  <VictoryLabel text={stateMapFips ?
-                                    (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%" :
-                                      (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? ((variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)).substring(1) + "%" :
-                                        (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%"
-                                    :
-                                    (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%" :
-                                      (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? ((variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0)).substring(1) + "%" :
-                                        (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) + "%"} x={197} y={80} textAnchor="middle" style={{ fontSize: 24, fontFamily: 'lato', fill: "#004071" }} />
-
-                                  <VictoryLabel text={stateMapFips ?
-                                    (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "↑" :
-                                      (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "↓" : ""
-                                    :
-                                    (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "↑" :
-                                      (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "↓" : ""}
-
-
-                                    x={160} y={80} textAnchor="middle" style={{
-                                      fontSize: 24, fontFamily: 'lato'
-
-                                      , fill: stateMapFips ?
-                                        (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "#FF0000" :
-                                          (variantTimeseries[stateMapFips][variantTimeseries[stateMapFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "#32CD32" : ""
-                                        :
-                                        (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) > 0 ? "#FF0000" :
-                                          (variantTimeseries["13"][variantTimeseries["13"].length - 1].percentVaccinatedDose2_avg7).toFixed(0) < 0 ? "#32CD32" : ""
-
-                                    }} />
-
-                                  <VictoryLabel text={"14-day"} x={197} y={100} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
-                                  <VictoryLabel text={"change"} x={197} y={110} textAnchor="middle" style={{ fontSize: 12, fontFamily: 'lato', fill: "#004071" }} />
-                                  <VictoryLabel text={"Daily Cases"} x={110} y={20} textAnchor="middle" style={{ fontSize: "22px", fontFamily: 'lato' }} />
-
-
-                                </VictoryChart>} */}
-                                
+                              
                                 {fips=="USA"?(stateMapFips && <CaseChart data={variantTimeseries} dataState={variantTimeseries[stateMapFips]} lineColor={[colorPalette[1]]} stateFips={stateMapFips}
                           ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={metric} />):<CaseChart data={variantTimeseries} dataState={variantTimeseries[fips]} lineColor={[colorPalette[1]]} stateFips={fips}
                           ticks={caseTicks} tickFormatter={caseTickFmt} labelFormatter={labelTickFmt} var={metric} />
@@ -777,12 +563,7 @@ if (variantData&&variantTimeseries){
                              
                             </div>
         
-                                <svg className="svgRef"
-                                width={300}
-                                  height={100}
-                                  ref={d3graph}>
-                                  
-                                </svg>
+                          
                         </Grid.Row>
                   </Grid>
 

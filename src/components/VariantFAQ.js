@@ -75,7 +75,7 @@ export default function VariantFAQ(props) {
     return (
         <div>
 
-            <AppBar menu='vaccineTracker' />
+            <AppBar menu='variants' />
             <Container style={{ marginTop: '0em', minWidth: '1260px', overflow: "hidden" }}>
 
                 <Grid>
