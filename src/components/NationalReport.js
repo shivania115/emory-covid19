@@ -787,7 +787,7 @@ function CaseChartAll(props){
       <ComposedChart width={750} height={420} data={data}
         margin={{top: 30, right: 60, bottom: 20, left: 30}}>
       <CartesianGrid stroke='#f5f5f5'/>
-      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 13}} tickFormatter={tickFormatter} interval={0}/>
+      <XAxis dataKey="t" ticks={ticks} tick={{fontSize: 13}} tickFormatter={tickFormatter} angle={-30} interval={0}/>
       {/* domain={[1585713600, 1610859600]} */}
       <YAxis tickFormatter={caseYTickFmt} tick={{fontSize: 16}}/>
       <Bar name="New cases" dataKey='dailyCases' barSize={10}
