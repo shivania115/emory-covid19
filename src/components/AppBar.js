@@ -32,7 +32,9 @@ export default function AppBar(props) {
             active={props.menu==='nationalReport'} 
             onClick={() => history.push('/national-report')}
             name='nationalReport'>
-            National Report
+            National
+            <br></br>
+             Report
           </Menu.Item>
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
