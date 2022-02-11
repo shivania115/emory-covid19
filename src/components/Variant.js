@@ -202,7 +202,7 @@ function CaseChart(props) {
 
 console.log(data);
   return (
-    <div style={{ paddingTop: 5, paddingBottom: 70, width: 500 }}>
+    <div style={{ paddingTop: 5, paddingBottom: 10, width: 500 }}>
       <LineChart width={500} height={180} data={data} margin={{ right: 20 }}>
         {/* <CartesianGrid stroke='#f5f5f5'/> */}
         <XAxis angle={0} dataKey="t" ticks={ticks} tick={{ marginTop:2,fontSize: 13 }} tickFormatter={tickFormatter} allowDuplicatedCategory={false} />
@@ -271,6 +271,18 @@ export default function Variant(props) {
     const d3graph = React.useRef(null);
     const[regionMatched,setRegionMatched]=useState('USA')
     const [stateMatched,setStateMathched]=useState([]);
+    const regionDescribe={
+      "01": "Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont.",
+      "02":"New Jersey, New York, Puerto Rico, and the Virgin Islands ",
+      "03":"Delaware, District of Columbia, Maryland, Pennsylvania, Virginia, and West Virginia",
+      "04":"Alabama, Florida, Georgia, Kentucky, Mississippi, North Carolina, South Carolina, and Tennessee",
+      "05":"Illinois, Indiana, Michigan, Minnesota, Ohio, and Wisconsin",
+      "06":"Arkansas, Louisiana, New Mexico, Oklahoma, and Texas",
+      "07":"Iowa, Kansas, Missouri, and Nebraska",
+      "08":"Colorado, Montana, North Dakota, South Dakota, Utah, and Wyoming",
+      "09":"Arizona, California, Hawaii, Nevada, American Samoa, Commonwealth of the Northern Mariana Islands, Federated States of Micronesia, Guam, Marshall Islands, and Republic of Palau",
+      "10":"Alaska, Idaho, Oregon, and Washington"
+}
     const colorPalette = [
       "#e1dce2",
       "#d3b6cd",
@@ -549,7 +561,7 @@ if (variantData&&variantTimeseries){
                         </Grid.Row>
                         <Grid.Row columns={1}>
                     <Header.Content style={{ fontWeight: 300, fontSize: "14pt", paddingTop: 7, lineHeight: "20pt" }}>
-                    The most prevalent variant in region <b>{stateMapFips}</b> is <b>{variantData[stateMapFips].DeltaB16172>variantData[stateMapFips].Omicron?"Delta":"Omicron"}</b> which is attributed to <b>{variantData[stateMapFips].DeltaB16172>variantData[stateMapFips].Omicron?variantData[stateMapFips].DeltaB16172:variantData[stateMapFips].Omicron}</b> % of cases. 
+                    Currently, the most common variant in region <b>{stateMapFips}</b> is <b>{variantData[stateMapFips].DeltaB16172>variantData[stateMapFips].Omicron?"Delta":"Omicron"}</b> which accounts for <b>{variantData[stateMapFips].DeltaB16172>variantData[stateMapFips].Omicron?variantData[stateMapFips].DeltaB16172:variantData[stateMapFips].Omicron}</b> % of cases. 
                         
                         </Header.Content>
                         </Grid.Row>
@@ -563,7 +575,12 @@ if (variantData&&variantTimeseries){
                              
                             </div>
         
-                          
+                        </Grid.Row>
+                        <Grid.Row>
+                        <Header.Content style={{ fontWeight: 300, fontSize: "14pt", lineHeight: "20pt" }}>
+                    {stateMapFips!="USA"? "Region "+stateMapFips+ " inlcudes : " +regionDescribe[stateMapFips]:""}
+                    
+                        </Header.Content>
                         </Grid.Row>
                   </Grid>
 
