@@ -578,7 +578,7 @@ if (variantData&&variantTimeseries){
                         </Grid.Row>
                         <Grid.Row>
                         <Header.Content style={{ fontWeight: 300, fontSize: "14pt", lineHeight: "20pt" }}>
-                    {stateMapFips!="USA"? "Region "+stateMapFips+ " inlcudes : " +regionDescribe[stateMapFips]:""}
+                    {stateMapFips!="USA"? "Region "+stateMapFips+ " includes : " +regionDescribe[stateMapFips]:""}
                     
                         </Header.Content>
                         </Grid.Row>
