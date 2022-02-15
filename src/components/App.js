@@ -78,7 +78,7 @@ function AppUI() {
           <Route path='/national-report'>
             <NationalReport />
           </Route>
-          <Route path='/variants123321'>
+          <Route path='/variants'>
              <Variant/>
           </Route>
           <Route path='/other-tools'>

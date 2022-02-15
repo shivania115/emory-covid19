@@ -46,12 +46,12 @@ export default function AppBar(props) {
             Surveillance
           </Menu.Item>
           
-          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='variants'} 
-            onClick={() => history.push('/variants123321')}
+            onClick={() => history.push('/variants')}
             name='variants'>
             Variant Map
-          </Menu.Item> */}
+          </Menu.Item>
 
           {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='mapState'} 
