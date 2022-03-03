@@ -156,7 +156,7 @@ function BarChart(props) {
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 95, right: 30, top: 30, bottom: 20}}
-      containerComponent={<VictoryContainer responsive={false}/>}
+      containerComponent={<VictoryContainer renderInPortal={false} esponsive={false}/>}
     >
       {props.title !== "Community Vulnerability Index" && props.title !== "Any Condition" && <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
@@ -192,7 +192,7 @@ function BarChart(props) {
       scale={{y: props.ylog?'log':'linear'}}
       minDomain={{y: props.ylog?1:0}}
       padding={{left: 105, right: 30, top: 30, bottom: 20}}
-      containerComponent={<VictoryContainer responsive={false}/>}
+      containerComponent={<VictoryContainer renderInPortal={false} responsive={false}/>}
     >
       <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/>
       <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent", fill: "#000000"}, tickLabels: {stroke: "#000000", fill: "#000000", fontSize: "16px", fontFamily: 'lato'}}}  />
@@ -228,7 +228,7 @@ function TopChart(params) {
         height={180}    
         parent= {{background: "#ccdee8"}}   
         padding={{marginleft: 0, right: -1, top: 150, bottom: -0.9}}
-        containerComponent={<VictoryContainer responsive={false}/>}>
+        containerComponent={<VictoryContainer renderInPortal={false} responsive={false}/>}>
         
         <VictoryAxis
           tickValues={params.sFips !== "_nation"? [
@@ -779,8 +779,6 @@ export default function StateMap(props) {
                 return seriesDict;
               });
               _.each(seriesDict, (v, k)=>{
-                console.log(k);
-                console.log(v);
                 if (k.length===5 && v.length > 0 && v[v.length-1].covidmortality7dayfig > covidmortality7dayfig){
                   countyMost = k.substring(2, 5);
                   
@@ -792,8 +790,7 @@ export default function StateMap(props) {
             setCountyFips(countyMost);
             if(stateFips !== "_nation"){
               setCountyName(fips2county[stateFips+countyMost]);
-              console.log(fips2county);
-              console.log(countyFips);
+
               setBarCountyName((fips2county[stateFips+countyMost]).match(/\S+/)[0]);
             }
             
@@ -1079,7 +1076,7 @@ export default function StateMap(props) {
                       width={235}
                       height={180}       
                       padding={{left: 0, right: -1, top: 150, bottom: -0.9}}
-                      containerComponent={<VictoryContainer responsive={false}/>}>
+                      containerComponent={<VictoryContainer renderInPortal={false} responsive={false}/>}>
 
                       
                       <VictoryAxis
@@ -1161,7 +1158,7 @@ export default function StateMap(props) {
                         minDomain={{y: props.ylog?1:0}}
                         padding={{left: 90, right: 35, top: 0, bottom: -2}}
                         style = {{fontSize: "14pt"}}
-                        containerComponent={<VictoryContainer responsive={false}/>}
+                        containerComponent={<VictoryContainer renderInPortal={false} responsive={false}/>}
                       >
 
                         <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
@@ -1282,7 +1279,7 @@ export default function StateMap(props) {
                         minDomain={{y: props.ylog?1:0}}
                         padding={{left: 90, right: 35, top: 0, bottom: -2}}
                         style = {{fontSize: "14pt"}}
-                        containerComponent={<VictoryContainer responsive={false}/>}
+                        containerComponent={<VictoryContainer renderInPortal={false} responsive={false}/>}
                       >
 
                         <VictoryAxis style={{ticks:{stroke: "#000000"}, grid: {stroke: "transparent"}, axis: {stroke: "#000000"}, labels: {fill: '#000000', fontSize: "19px"}, tickLabels: {fontSize: "16px", fill: '#000000', fontFamily: 'lato'}}} />
