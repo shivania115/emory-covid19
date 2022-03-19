@@ -591,36 +591,38 @@ function ChartGraph(props) {
 function DiscrpMap(props) {
     if (props.name === 'casescum') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 The map shows the total number of COVID-19 cases recorded in each county. The darker shading indicates a greater number of cases.
                 This number represents confirmed cases only, defined as an individual with a positive molecular test. Only molecular test results
                 are used in identifying confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
-
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
                     <List.Item as='li'>Faxed case reports</List.Item>
                     <List.Item as='li'>Calls from providers to DPH</List.Item>
                 </List>
-            </p>
+                </div>
         )
     }
     if (props.name === 'labcasescum') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 The map shows the total number of laboratory positive cases (PCR and Antigen Positive) recorded in each county. The darker shading indicates a greater number of cases.
                 This number represents confirmed cases only, defined as an individual with a positive molecular test. Only molecular test results
                 are used in identifying confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
-
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
                     <List.Item as='li'>Faxed case reports</List.Item>
                     <List.Item as='li'>Calls from providers to DPH</List.Item>
                 </List>
-            </p>
+                </div>
         )
     }
     if (props.name === 'deathscum') {
@@ -634,18 +636,21 @@ function DiscrpMap(props) {
     }
     if (props.name === 'casescumR') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 The map shows the total number of COVID-19 cases per 100,000 residents recorded in each county. The darker shading indicates a greater number
                 of cases per 100,000 residents. This number represents confirmed cases only, defined as an individual with a positive molecular test. Only molecular
                 test results are used in identifying confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
                     <List.Item as='li'>Faxed case reports</List.Item>
                     <List.Item as='li'>Calls from providers to DPH</List.Item>
                 </List>
-            </p>
+          
+            </div>
         )
     }
     if (props.name === 'deathscumR') {
@@ -658,19 +663,21 @@ function DiscrpMap(props) {
     }
     if (props.name === 'casescum14dayR') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 The map shows the number of new COVID-19 cases per 100,000 residents recorded in the last two weeks for each county. The darker shading indicates a greater number of cases per 100,000
                 residents in the last two weeks. This number represents confirmed cases only, defined as an individual with a positive molecular test. Only molecular test results are used in identifying
                 confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
-
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
                     <List.Item as='li'>Faxed case reports</List.Item>
                     <List.Item as='li'>Calls from providers to DPH</List.Item>
                 </List>
-            </p>
+            
+            </div>
         )
     }
 }
@@ -678,13 +685,14 @@ function DiscrpMap(props) {
 function DiscrpChart(props) {
     if (props.name === 'casescum') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 This chart shows the daily number of new confirmed COVID-19 cases in {props.county}. The vertical bars show the
                 number of new daily cases while the line shows the 7-day moving average of new daily cases. The daily COVID-19
                 case numbers represent confirmed cases only, defined as an individual with a positive molecular test. Only molecular
                 test results are used in identifying confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
-
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
@@ -694,18 +702,19 @@ function DiscrpChart(props) {
                 <br></br>
                 The date refers to the date the case was reported to DPH.
                 {/* The daily number reflects the date the case was first reported to DPH. */}
-            </p>
+                </div>
         )
     }
     if (props.name === 'labcasescum') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 This chart shows the daily number of laboratory positive cases (PCR and Antigen Positive) in {props.county}. The vertical bars show the
                 number of new daily cases while the line shows the 7-day moving average of new daily cases. The daily COVID-19
                 case numbers represent confirmed cases only, defined as an individual with a positive molecular test. Only molecular
                 test results are used in identifying confirmed cases. These test results are reported through multiple sources including:
                 <br></br>
-
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
@@ -715,7 +724,7 @@ function DiscrpChart(props) {
                 <br></br>
                 The date refers to the date the case was reported to DPH.
                 {/* The daily number reflects the date the case was first reported to DPH. */}
-            </p>
+                </div>
         )
     }
     if (props.name === 'deathscum') {
@@ -731,12 +740,14 @@ function DiscrpChart(props) {
     }
     if (props.name === 'casescumR') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                 This chart shows the daily number of new confirmed COVID-19 cases per 100,000 residents in {props.county}. The vertical bars show the number of new
                 daily cases per 100,000 residents while the line shows the 7-day moving average of new daily cases. The daily COVID-19 case numbers represent
                 confirmed cases only, defined as an individual with a positive molecular test. Only molecular test results are used in identifying confirmed cases.
                 These test results are reported through multiple sources including:
                 <br></br>
+                </p>
                 <List as='ul'>
                     <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                     <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
@@ -745,7 +756,7 @@ function DiscrpChart(props) {
                 </List>
                 The date refers to the date the case was reported to DPH.
                 {/* The daily number reflects the date the case was first reported to DPH. */}
-            </p>
+                </div>
         )
     }
     if (props.name === 'deathscumR') {
@@ -761,14 +772,15 @@ function DiscrpChart(props) {
     }
     if (props.name === 'casescum14dayR') {
         return (
+            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
-                <p style={{ fontFamily: 'lato', fontSize: 18 }}>
+         
                     This chart shows the daily number of new confirmed COVID-19 cases in {props.county}. The vertical bars show the
                     number of new daily cases while the line shows the 7-day moving average of new daily cases. The daily COVID-19
                     case numbers represent confirmed cases only, defined as an individual with a positive molecular test. Only molecular
                     test results are used in identifying confirmed cases. These test results are reported through multiple sources including:
                     <br></br>
-
+                    </p>
                     <List as='ul'>
                         <List.Item as='li'>Electronic Lab Reporting (ELR)</List.Item>
                         <List.Item as='li'>State Electronic Notifiable Disease Surveillance System (SendSS)</List.Item>
@@ -778,8 +790,9 @@ function DiscrpChart(props) {
                     <br></br>
                     The date refers to the date the case was reported to DPH.
                     {/* The daily number reflects the date the case was first reported to DPH. */}
-                </p>
-            </p>
+                
+       
+            </div>
         )
     }
 }
@@ -1283,9 +1296,11 @@ export default function StateMap(props) {
                                     },
                                     content: {
                                         content: (
+                                            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
                                             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                 Socioeconomic Status is a measure of county-level relative income, employment and education, and the rate of uninsured people (range: 0 to 1; higher values indicate more vulnerability).
                                                 <br></br>
+                                                </p>
                                                 <List as='ul'>
                                                     <List.Item as='li'>This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by Socioeconomic Status ranking.</List.Item>
                                                     <List.Item as='li'>The y-axis displays Socioeconomic Status rankings based on quintiles (groups of 20%). The x-axis displays the average number
@@ -1294,8 +1309,8 @@ export default function StateMap(props) {
                                                     <List.Item as='li'>Data and descriptions can be found <a href="https://www.precisionforcoviddata.org/" target="_blank">here</a></List.Item>
 
                                                 </List>
-
-                                            </p>
+                                                </div>
+                                            
                                         ),
                                     },
                                 }
@@ -1540,9 +1555,11 @@ export default function StateMap(props) {
                                     },
                                     content: {
                                         content: (
+                                            <div style={{ fontFamily: 'lato', fontSize: 18 }} >
                                             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                 Minority Status & Language is a measure of county-level relative minorities and non-English speaking people within a community (range: 0 to 1; higher values indicate more vulnerability).
                                                 <br></br>
+                                                </p>
                                                 <List as='ul'>
                                                     <List.Item as='li'>This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by Minority Status and Language ranking.</List.Item>
                                                     <List.Item as='li'>The y-axis displays Minority Status and Language rankings based on quintiles (groups of 20%). The x-axis displays the average number
@@ -1553,7 +1570,8 @@ export default function StateMap(props) {
                                                 </List>
 
 
-                                            </p>
+                                            
+                                            </div>
                                         ),
                                     },
                                 }
@@ -1793,9 +1811,11 @@ export default function StateMap(props) {
                                     },
                                     content: {
                                         content: (
+                                            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
                                             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                 Household & Transportation is a measure of county-level relative proportion of residents with crowded housing, access to indoor plumbing, vehicle ownership, and the presence of dependents (range: 0 to 1; higher values indicate more vulnerability).
                                                 <br></br>
+                                                </p>
                                                 <List as='ul'>
                                                     <List.Item as='li'>This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by Housing Type, Transportation, Household Composition & Disability ranking.</List.Item>
                                                     <List.Item as='li'>The y-axis displays Housing Type, Transportation, Household Composition & Disability rankings based on quintiles (groups of 20%). The x-axis displays the average number
@@ -1804,10 +1824,10 @@ export default function StateMap(props) {
                                                     <List.Item as='li'>Data and descriptions can be found <a href="https://www.precisionforcoviddata.org/" target="_blank">here</a></List.Item>
 
                                                 </List>
+                                                </div>
 
 
-
-                                            </p>
+                                         
                                         ),
                                     },
                                 }
@@ -2047,9 +2067,11 @@ export default function StateMap(props) {
                                     },
                                     content: {
                                         content: (
+                                            <div style={{ fontFamily: 'lato', fontSize: 18 }}>
                                             <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                 Epidemiological Factors is a measure of county-level relative proportion of individuals with underlying conditions including respiratory conditions, heart conditions, obesity, diabetes, and conditions related to immunodeficiency (range: 0 to 1; higher values indicate more vulnerability).
                                                 <br></br>
+                                                </p>
                                                 <List as='ul'>
                                                     <List.Item as='li'>This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 100,000 residents by Epidemiological Factors ranking.</List.Item>
                                                     <List.Item as='li'>The y-axis displays Epidemiological Factors rankings based on quintiles (groups of 20%). The x-axis displays the average number
@@ -2058,9 +2080,9 @@ export default function StateMap(props) {
                                                     <List.Item as='li'>Data and descriptions can be found <a href="https://www.precisionforcoviddata.org/" target="_blank">here</a></List.Item>
 
                                                 </List>
+                                                </div>
 
-
-                                            </p>
+                                           
                                         ),
                                     },
                                 }
@@ -3012,7 +3034,7 @@ useEffect(() => {
             // console.log(seriesDict);
             setDataTS(seriesDict);
 
-            // console.log(series);
+             console.log(series);
         }
         fetchData();
         // dataTS.forEach((x)=>{
@@ -3036,7 +3058,6 @@ useEffect(() => {
         handleAnonymousLogin();
     }
 }, [isLoggedIn]);
-console.log(dataTS);
 useEffect(() => {
 
     const configMatched = configs.find(s => s.fips === stateFips);
@@ -3146,7 +3167,7 @@ useEffect(() => {
 
 
 if (dataTS && dataUs) {
-    console.log(datades_cases);
+
     return (
         <HEProvider>
             <div
@@ -3308,7 +3329,7 @@ if (dataTS && dataUs) {
                                                         options={countyOption}
                                                         onChange={(e, { value }) => {
                                                             countyFips1.current = value
-                                                            console.log(value)
+                                                        
                                                             countyName1.current = fips2county['13' + value]
                                                             setCountyName(fips2county['13' + value])
                                                             setCountyFips(value);
@@ -3403,7 +3424,7 @@ if (dataTS && dataUs) {
                                                                 setCountyFips(countyFips1.current)
                                                                 countyFips1.current = countyFips
                                                                 countyName1.current = 'Georgia'
-                                                                console.log(countyFips1.current)
+                                                              
                                                                 // clearTimeout(delayHandler)
                                                                 setCountyName('Georgia');
                                                                 setTooltipContent("")
@@ -3671,11 +3692,12 @@ if (dataTS && dataUs) {
                                                                 },
                                                                 content: {
                                                                     content: (
-                                                                        <p style={{ fontFamily: 'lato', fontSize: 18 }}>
+                                                                        <div style={{ fontFamily: 'lato', fontSize: 18 }}>
+                                                                        <p >
 
                                                                             This chart shows the percentage of cases and percentage of the population by age for Georgia.
                                                                             <br></br>
-
+                                                                        </p>
                                                                             <List as='ul'>
                                                                                 <List.Item as='li'>The chart excludes data from {datades_cases['13']['age4catPmiss'].toFixed(2)}% of
                                                                                     confirmed cases who were missing information on age.</List.Item>
@@ -3683,7 +3705,8 @@ if (dataTS && dataUs) {
                                                                                     molecular test. </List.Item>
                                                                                 <List.Item as='li'>Only molecular test results are used in identifying confirmed cases.</List.Item>
                                                                             </List>
-                                                                        </p>
+                                                                            </div>
+                                                                        
                                                                         //                                                         <p style={{   fontFamily: 'lato', fontSize: 18 }}>
 
                                                                         //                                                             This chart shows the percentage of cases and percentage of the population by age for Georgia. The chart excludes data from {datades_cases['13']['age4catPmiss'].toFixed(2)}% of
@@ -3816,23 +3839,25 @@ if (dataTS && dataUs) {
                                                                 },
                                                                 content: {
                                                                     content: (
+                                                                        <div style={{ fontFamily: 'lato', fontSize: 18 }}> 
                                                                         <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                             This chart shows the percentage of deaths and percentage of the population by age for Georgia.
                                                                             <br></br>
-
+                                                                            </p>
                                                                             <List as='ul'>
                                                                                 <List.Item as='li'>The chart excludes data from {datades_deaths['13']['age4catPmiss'].toFixed(2)}% of confirmed deaths who were missing information on age.</List.Item>
                                                                                 <List.Item as='li'>The number of deaths includes
                                                                                     confirmed COVID-19 cases that were either reported to DPH as deceased by healthcare providers, medical examiners/coroners, or identified by
                                                                                     death certificates with COVID-19 indicated as the cause of death. </List.Item>
                                                                             </List>
-                                                                        </p>
+                                                                       
                                                                         //             <p style={{   fontFamily: 'lato', fontSize: 18 }}>
                                                                         //                 This chart shows the percentage of deaths and percentage of the population by age for Georgia. The chart excludes data from {datades_deaths['13']['age4catPmiss'].toFixed(2)}% of confirmed deaths who were missing information on age. The number of deaths includes
                                                                         // confirmed COVID-19 cases that were either reported to DPH as deceased by healthcare providers, medical examiners/coroners, or identified by
                                                                         // death certificates with COVID-19 indicated as the cause of death.
 
                                                                         //             </p>
+                                                                        </div>
 
                                                                     ),
                                                                 },
@@ -3972,16 +3997,18 @@ if (dataTS && dataUs) {
                                                                 },
                                                                 content: {
                                                                     content: (
+                                                                        <div style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                         <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                             This chart shows the percentage of cases and percentage of the population by sex for Georgia.
                                                                             <br></br>
-
+                                                                            </p>
                                                                             <List as='ul'>
                                                                                 <List.Item as='li'>The chart excludes data from {datades_cases['13']['femalePmiss'].toFixed(2)}% of confirmed cases who were missing information on sex.</List.Item>
                                                                                 <List.Item as='li'>The COVID-19 case numbers represent confirmed cases only, defined as an individual with a positive molecular test.</List.Item>
                                                                                 <List.Item as='li'>Only molecular test results are used in identifying confirmed cases.</List.Item>
                                                                             </List>
-                                                                        </p>
+                                                                        
+                                                                        </div>
                                                                     ),
                                                                 },
                                                             }
@@ -4097,16 +4124,18 @@ if (dataTS && dataUs) {
                                                                 },
                                                                 content: {
                                                                     content: (
+                                                                        <div style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                         <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                             This chart shows the percentage of deaths and percentage of the population by sex for Georgia.
                                                                             <br></br>
-
+                                                                            </p>
                                                                             <List as='ul'>
                                                                                 <List.Item as='li'>The chart excludes data from {datades_deaths['13']['femalePmiss'].toFixed(2)}% of confirmed deaths who were missing information on sex.</List.Item>
                                                                                 <List.Item as='li'>The number of deaths includes confirmed COVID-19 cases that were either reported to DPH as deceased by healthcare providers, medical examiners/coroners, or identified by
                                                                                     death certificates with COVID-19 indicated as the cause of death.</List.Item>
                                                                             </List>
-                                                                        </p>
+                                                                        
+                                                                        </div>
                                                                     ),
                                                                 },
                                                             }
@@ -4246,17 +4275,19 @@ if (dataTS && dataUs) {
                                                                 },
                                                                 content: {
                                                                     content: (
+                                                                        <div>
                                                                         <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                             This chart shows the percentage of cases and percentage of the population by race/ethnicity for Georgia.
                                                                             <br></br>
-
+                                                                            </p>
                                                                             <List as='ul'>
                                                                                 <List.Item as='li'>NH = non-Hispanic </List.Item>
                                                                                 <List.Item as='li'>The chart excludes data from {datades_cases['13']['race_3Pmiss'].toFixed(2)}% of confirmed cases who were missing information on race/ethnicity.</List.Item>
                                                                                 <List.Item as='li'>The COVID-19 case numbers represent confirmed cases only, defined as an individual with a positive molecular test.</List.Item>
                                                                                 <List.Item as='li'>Only molecular test results are used in identifying confirmed cases.</List.Item>
                                                                             </List>
-                                                                        </p>
+                                                                        
+                                                                        </div>
                                                                     ),
                                                                 },
                                                             }
@@ -4377,18 +4408,19 @@ if (dataTS && dataUs) {
                                                                 },
                                                                 content: {
                                                                     content: (
+                                                                        <div>
                                                                         <p style={{ fontFamily: 'lato', fontSize: 18 }}>
                                                                             This chart shows the percentage of deaths and percentage of the population by race/ethnicity for Georgia.
 
                                                                             <br></br>
-
+                                                                            </p>
                                                                             <List as='ul'>
                                                                                 <List.Item as='li'>NH = non-Hispanic </List.Item>
                                                                                 <List.Item as='li'>The chart excludes data from {datades_deaths['13']['race_3Pmiss'].toFixed(2)}% of confirmed deaths who were missing information on race/ethnicity.</List.Item>
                                                                                 <List.Item as='li'>The number of deaths includes confirmed COVID-19 cases that were either reported to DPH as deceased by healthcare providers, medical examiners/coroners, or identified by
                                                                                     death certificates with COVID-19 indicated as the cause of death.</List.Item>
                                                                             </List>
-                                                                        </p>
+                                                                            </div>
                                                                     ),
                                                                 },
                                                             }
