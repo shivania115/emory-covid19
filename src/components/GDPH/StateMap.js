@@ -17,7 +17,8 @@ import {
     VictoryLine,
     VictoryLabel,
     VictoryScatter,
-    VictoryPie
+    VictoryPie,
+    VictoryPortal
 } from 'victory';
 import Slider from "@material-ui/core/Slider";
 import { var_option_mapping, GADPH_series, GADPH_static, CHED_static, CHED_series } from "../../stitch/mongodb";
@@ -402,6 +403,7 @@ function ChartGraph(props) {
                     }
                     labelComponent={
                         <VictoryTooltip
+                        renderInPortal={false}
                             orientation="top"
                             style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
                             constrainToVisibleArea
@@ -424,12 +426,14 @@ function ChartGraph(props) {
                             `${varGraphPair[metric]['legend'][1]}: ${Math.round(datum[varGraphPair[metric]['name'][1]], 2)}\n`,
                             `${varGraphPair[metric]['legend'][0]}: ${Math.round(datum[varGraphPair[metric]['name'][0]], 2)}`
                         ]}
+                   
                         labelComponent={
                             <VictoryTooltip
+                            renderInPortal={false}
                                 orientation="top"
                                 style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
                                 constrainToVisibleArea
-                                labelComponent={<VictoryLabel dx={-100} textAnchor='start' />}
+                                labelComponent={<VictoryPortal><VictoryLabel dx={-100} textAnchor='start' /></VictoryPortal>}
                                 flyoutStyle={{ fill: "black", fillOpacity: 0.75, stroke: "#FFFFFF", strokeWidth: 0 }}
                             />
                         }
@@ -500,6 +504,7 @@ function ChartGraph(props) {
                         }
                         labelComponent={
                             <VictoryTooltip
+                            renderInPortal={false}
                                 orientation="top"
                                 style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
                                 constrainToVisibleArea
@@ -518,6 +523,7 @@ function ChartGraph(props) {
                         ]}
                         labelComponent={
                             <VictoryTooltip
+                            renderInPortal={false}
                                 // orientation="top"
                                 style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
                                 constrainToVisibleArea
@@ -536,6 +542,7 @@ function ChartGraph(props) {
                         ]}
                         labelComponent={
                             <VictoryTooltip
+                            renderInPortal={false}
                                 // orientation="top"
                                 style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
                                 constrainToVisibleArea
@@ -561,6 +568,7 @@ function ChartGraph(props) {
                             ]}
                             labelComponent={
                                 <VictoryTooltip
+                                renderInPortal={false}
                                     // orientation="top"
                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'white' }}
                                     constrainToVisibleArea
@@ -3636,6 +3644,7 @@ if (dataTS && dataUs) {
                                                                 { key: "45-64", 'value': data_cases['13']["4564ageC_P"] || 0, 'colors': '1' },
                                                                 { key: "65+", 'value': data_cases['13']["65ageC_P"] || 0, 'colors': '1' }]}
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -3662,6 +3671,7 @@ if (dataTS && dataUs) {
                                                                     `Percentage of GA Population: ${numberWithCommas(parseFloat(datum.value * 100).toFixed(0))}%`
                                                                 }
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -3784,6 +3794,7 @@ if (dataTS && dataUs) {
                                                                 { key: "45-64", 'value': data_deaths['13']["4564ageC_P"] || 0, 'colors': '3' },
                                                                 { key: "65+", 'value': data_deaths['13']["65ageC_P"] || 0, 'colors': '3' }]}
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -3810,6 +3821,7 @@ if (dataTS && dataUs) {
                                                                     `Percentage of GA Population: ${numberWithCommas(parseFloat(datum.value * 100).toFixed(0))}%`
                                                                 }
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -3943,6 +3955,7 @@ if (dataTS && dataUs) {
                                                                     { key: "Male", 'value': data_cases['13']["maleC_P"] || 0, 'colors': '1' },
                                                                     { key: "Female", 'value': data_cases['13']["femaleC_P"] || 0, 'colors': '1' }]}
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -3968,6 +3981,7 @@ if (dataTS && dataUs) {
                                                                     `Percentage of GA Population: ${numberWithCommas(parseFloat(datum.value * 100).toFixed(0))}%`
                                                                 }
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -4069,6 +4083,7 @@ if (dataTS && dataUs) {
                                                                     { key: "Male", 'value': data_deaths['13']["maleC_P"] || 0, 'colors': '3' },
                                                                     { key: "Female", 'value': data_deaths['13']["femaleC_P"] || 0, 'colors': '3' }]}
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -4094,6 +4109,7 @@ if (dataTS && dataUs) {
                                                                     `Percentage of GA Population: ${numberWithCommas(parseFloat(datum.value * 100).toFixed(0))}%`
                                                                 }
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -4219,6 +4235,7 @@ if (dataTS && dataUs) {
                                                                 { key: "Hispanic", 'value': data_cases['13']["hispanicC_P"] || 0, 'colors': '1' },
                                                                 { key: "NH Other", 'value': data_cases['13']["otherNHC_P"] || 0, 'colors': '1' }]}
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -4245,6 +4262,7 @@ if (dataTS && dataUs) {
                                                                     `Percentage of GA Population: ${numberWithCommas(parseFloat(datum.value * 100).toFixed(0))}%`
                                                                 }
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -4352,6 +4370,7 @@ if (dataTS && dataUs) {
                                                                 { key: "Hispanic", 'value': data_deaths['13']["hispanicC_P"] || 0, 'colors': '3' },
                                                                 { key: "NH Other", 'value': data_deaths['13']["otherNHC_P"] || 0, 'colors': '3' }]}
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea
@@ -4378,6 +4397,7 @@ if (dataTS && dataUs) {
                                                                     `Percentage of GA Population: ${numberWithCommas(parseFloat(datum.value * 100).toFixed(0))}%`
                                                                 }
                                                                 labelComponent={<VictoryTooltip
+                                                                    renderInPortal={false}
                                                                     orientation="top"
                                                                     style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 14, fill: 'black' }}
                                                                     constrainToVisibleArea

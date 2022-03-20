@@ -23,12 +23,13 @@ import {
 
 import { useParams, useHistory } from 'react-router-dom';
 import LazyHero from 'react-lazy-hero';
-
+import { useStitchAuth } from "../StitchAuth";
 import Notes from './Notes';
 import ReactTooltip from "react-tooltip";
 import fips2county from './fips2county.json'
 import configs from "./state_config.json";
 import configscounty from "./county_config.json";
+import { var_option_mapping, GADPH_series, GADPH_static, CHED_static, CHED_series } from "../../stitch/mongodb";
 import _ from 'lodash';
 import { scaleQuantile, scaleQuantize } from "d3-scale";
 
@@ -309,6 +310,10 @@ function BarChart(props) {
 }
 
 export default function CountyReport() {
+  const {
+    isLoggedIn,
+    actions: { handleAnonymousLogin },
+} = useStitchAuth();
   const [stateFips, setStateFip] = useState('13')
   let {countyFips} = useParams();
   const allZero = arr => arr.every(v => Math.round(v, 2) === 0.00)
@@ -377,7 +382,62 @@ export default function CountyReport() {
   };
 
   const [delayHandler, setDelayHandler] = useState(null)
+  useEffect(() => {
+    if (isLoggedIn === true) {
+        const fetchData = async () => {
+            const series = { all: "all" };
+            const promState = await GADPH_series.find(series, { projection: {} }).toArray();
+            // console.log(GADPH_series);
+            // console.log(promState);
+            let stateSeriesDict = promState[0];
+            // setDataTS(promState);
+            let seriesDict = {};
+            _.map(promState, i => {
+                seriesDict[i[Object.keys(i)[3]]] = i[Object.keys(i)[4]];
+                return seriesDict;
+            });
+            _.each(seriesDict, (v, k) => {
+                var dicto = {}
+                for (var key in v) {
+                    var max = 0
+                    _.each(k[stateFips + countyFips], d => {
+                      if (d['cases'] > max) {
+                                  max = d['cases'];
+                                 }
+                    });
+                    dicto[key] = max;
+                    // console.log(varNameMap['cacum'].text);
+                }
+                // console.log(dicto);
+                setLegendMaxGraph(dicto);
+            });
+            // console.log(seriesDict);
+            setDataTS(seriesDict);
 
+             console.log(series);
+        }
+        fetchData();
+        // dataTS.forEach((x)=>{
+        //     //    series[x["full_fips"]]=x;
+        //         var dicto = {}
+        //         for (var key in x) {
+        //             var max = 0
+        //             _.each(x[key], m => {
+        //                 if (m[varGraphPair[metric]['name'][0]] > max) {
+        //                     max = m[varGraphPair[metric]['name'][0]];
+        //                 }
+        //             });
+        //             dicto[key] = max;
+        //             // console.log(varNameMap['cacum'].text);
+        //         }
+        //         // console.log(dicto);
+        //         setLegendMaxGraph(dicto);
+        //     });
+    }
+    else {
+        handleAnonymousLogin();
+    }
+}, [isLoggedIn]);
   useEffect(() => {
 
     const configMatched = configscounty.find(s => s.countyfips === countyFips);
@@ -419,28 +479,28 @@ export default function CountyReport() {
       fetch('/data/GDPH/zipcode.json').then(res => res.json())
         .then(x => setDataZip(x));
 
-      fetch('/data/GDPH/timeseries13' + '.json').then(res => res.json())
-        .then(x => setDataTS(x));
+      // fetch('/data/GDPH/timeseries13' + '.json').then(res => res.json())
+      //   .then(x => setDataTS(x));
 
       fetch('/data/GDPH/mapout' + '.json').then(res => res.json())
         .then(x => setDataMapOut(x));
 
-      fetch('/data/GDPH/timeseries13' + '.json').then(res => res.json())
-        .then(
-          x => {
-            var max = 0
-            var length = 0
-            _.each(x[stateFips + countyFips], d => {
-              length = length + 1
-              // console.log(d);
-              if (d['cases'] > max) {
-                max = d['cases'];
-              }
+      // fetch('/data/GDPH/timeseries13' + '.json').then(res => res.json())
+      //   .then(
+      //     x => {
+      //       var max = 0
+      //       var length = 0
+      //       _.each(x[stateFips + countyFips], d => {
+      //         length = length + 1
+      //         // console.log(d);
+      //         if (d['cases'] > max) {
+      //           max = d['cases'];
+      //         }
 
-            });
-            setLegendMaxGraph(max.toFixed(0));
-            // console.log(max.toFixed(0));
-          });
+      //       });
+      //       setLegendMaxGraph(max.toFixed(0));
+      //       // console.log(max.toFixed(0));
+      //     });
 
       fetch('/data/GDPH/zipcode.json').then(res => res.json())
         .then(x => {
@@ -1369,6 +1429,9 @@ export default function CountyReport() {
       </div>
     );
   } else {
+    console.log(data);
+    console.log(dataTS);
+    console.log(varMap);
     return <Loader active inline='centered' />
   }
 
