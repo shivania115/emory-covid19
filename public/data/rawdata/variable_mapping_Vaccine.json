@@ -1,8 +1,8 @@
 {
-    "Population": {
-        "variable": "Population",
-        "name": "Population",
-        "definition": "definition",
+    "Census2019": {
+        "variable": "Census2019",
+        "name": "Census2019",
+        "definition": "population",
         "group": "outcomes"},
     "Doses_Distributed": {
         "variable": "Doses_Distributed",
@@ -19,9 +19,9 @@
         "name": "Distributed Per 100,000",
         "definition": "definition",
         "group": "outcomes"},
-    "Admin_Per_100k_18Plus": {
-        "variable": "Admin_Per_100k_18Plus",
-        "name": "Adults administered Per 100,000",
+    "Admin_Per_100K": {
+        "variable": "Admin_Per_100K",
+        "name": "people of all ages administered Per 100,000",
         "definition": "definition",
         "group": "outcomes"},
     "Administered_Dose1": {
