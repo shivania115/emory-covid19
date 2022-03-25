@@ -462,20 +462,25 @@ function ChartGraph(props) {
                     tickValues={[
                         // 1583035200, 1585713600, 1588305600, 1590984000, 1593576000
                         dataTS['13001'][0].t,
-                        dataTS["13001"][31].t,
+                    
                         dataTS["13001"][61].t,
-                        dataTS["13001"][92].t,
+                 
                         dataTS["13001"][122].t,
-                        dataTS["13001"][153].t,
+                 
                         dataTS["13001"][184].t,
-                        dataTS["13001"][214].t,
+                      
                         dataTS["13001"][245].t,
-                        dataTS["13001"][275].t,
+                   
                         dataTS["13001"][306].t,
-                        dataTS["13001"][337].t,
+                   
                         dataTS["13001"][365].t,
-                        dataTS["13001"][396].t,
+                    
                         dataTS["13001"][426].t,
+                   
+                        dataTS["13001"][487].t,
+                        dataTS['13001'][549].t,
+                        dataTS['13001'][610].t,
+                        dataTS['13001'][671].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                     ]}
 
@@ -3173,9 +3178,8 @@ useEffect(() => {
 
 }, []);
 
-
-if (dataTS && dataUs) {
-
+//return the page
+if (dateCur&&dataUs&&data_index&&data_deaths&&data&&legendSplit&&data_cases&&data_deaths&&datades_cases&&datades_deaths&&dataCha) {
     return (
         <HEProvider>
             <div
@@ -3378,12 +3382,13 @@ if (dataTS && dataUs) {
 
                                                 </Header.Content>
                                             </Header>
-                                            <SvgMap name={metric}
+                                            {dataTS?<SvgMap name={metric}
                                                 legendSplit={legendSplit}
                                                 legendSplit1={legendSplit1}
                                                 legendMin={legendMin}
                                                 legendMax={legendMax}
-                                            />
+                                            />:<Loader active inline='centered' />}
+                                           
                                             {/* <Header.Subheader style={{paddingLeft:'1em', fontFamily: 'lato', fontSize: "10pt", paddingTop: 1, color: 'black' }}>
                                                         Click map below to see county-level data.
                                         </Header.Subheader> */}
@@ -3519,7 +3524,7 @@ if (dataTS && dataUs) {
                                                                 <text x={75} y={68} style={{ fontSize: 16 }}> {varGraphPair[metric]['legend'][0]} </text>}
 
                                                         </svg>
-                                                        <ChartGraph
+                                                        {dataTS? <ChartGraph
                                                             name={varGraphPair}
                                                             metric={metric}
                                                             stateFips={stateFips}
@@ -3528,7 +3533,17 @@ if (dataTS && dataUs) {
                                                             data2={dataTS}
 
                                                             countyname={countyName1.current}
-                                                        />
+                                                        />:<Loader active inline='centered' />}
+                                                        {/* <ChartGraph
+                                                            name={varGraphPair}
+                                                            metric={metric}
+                                                            stateFips={stateFips}
+                                                            countyFips={countyFips}
+                                                            // data1={ _.takeRight(dataTS[stateFips + countyFips1.current], 14)}
+                                                            data2={dataTS}
+
+                                                            countyname={countyName1.current}
+                                                        /> */}
                                                     </Grid.Row>
                                                     <Grid.Row style={{ fontFamily: 'lato', fontSize: 18, color: dataupColor, paddingTop: '1.5em', paddingLeft: '2.9em', paddingRight: '2.9em' }} centered>
                                                         {/* <p style ={{fontFamily: 'lato', fontSize: 18, color:dataupColor, paddingLeft:'0.5em'}}> */}
