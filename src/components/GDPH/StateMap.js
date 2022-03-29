@@ -3047,7 +3047,7 @@ useEffect(() => {
             // console.log(seriesDict);
             setDataTS(seriesDict);
 
-             console.log(series);
+            //  console.log(series);
         }
         fetchData();
         // dataTS.forEach((x)=>{
