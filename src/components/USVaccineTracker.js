@@ -895,7 +895,7 @@ const SideRaceBarChart = (props) => {
                     , on {props.date} <br />
                     </li>
                     <li>
-                    The graphic is based on data from 199,313,022 people who are fully vaccinated. Race/Ethnicity is available for 146,313,321 (73.2%) people fully vaccinated.
+                    The graphic is based on data from {props.twoweeksvac['nation']['White']['totalFull']} people who are fully vaccinated. Race/Ethnicity is available for {props.twoweeksvac['nation']['White']['raceAvailableFull']} ({props.twoweeksvac['nation']['White']['pctRaceAvailableFull']}%) people fully vaccinated.
                     </li>
                     <li>
                     Each bar represents the cumulative percentage of people who are fully vaccinated in the specified race/ethnicity group. This is a measure of vaccination coverage by race/ethnicity at the present time.<br/>
@@ -1034,7 +1034,7 @@ const SideRaceBarChart = (props) => {
                     , on  {props.date} <br />
                     </li>
                     <li>
-                    The graphic is based on data from 236,018,871 people with at least one dose administered. Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.  
+                    The graphic is based on data from {props.twoweeksvac['nation']['White']['totalAtleastOne']} people with at least one dose administered. Race/Ethnicity is available for {props.twoweeksvac['nation']['White']['raceAvailableAtleastOne']} ({props.twoweeksvac['nation']['White']['pctRaceAvailableAtleastOne']}%) people with at least one dose administered.  
                     </li>
                     <li>
                     Each bar represents the percentage of people who initiated vaccination in last 14 days in the specified race/ethnicity group. This is a measure of new vaccination uptake in the past two weeks. <br/>
