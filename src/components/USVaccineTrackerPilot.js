@@ -826,6 +826,7 @@ const CustomTooltipGraph = ({ active, payload, label }) => {
 
   return null;
 };
+
 function VaccineDisparityCharts(props) {
   const caseYTickFmt = (y) => {
     return y < 1000 ? y.toFixed(0) + "%" : y / 1000 + "k";
@@ -1164,8 +1165,8 @@ const SideRaceBarChart = (props) => {
             : props.VaccineData[props.fips][0]["American Native"][0][
             "percentVaccinated"
             ],
-      weeksvalue:props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
-        // props.twoweeksvac['nation']['American Native']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['American Native']['pctAmongFullyVastLast14']
+      weeksvalue: props.twoweeksvac['nation']['American Natives']['pctAmongFullyVasLast14']
+      // props.twoweeksvac['nation']['American Native']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['American Native']['pctAmongFullyVastLast14']
     },
     {
       name: "Native Hawaiian/Pacific Islander ",
@@ -1186,10 +1187,10 @@ const SideRaceBarChart = (props) => {
     {
       name: "Multiple/Other",
       popvalue:
-        props.demogData["vaccineRace"][0]["Multiple/Other"][0]["percentPop"],
+        props.demogData["vaccineRace"][0]["Multiracial"][0]["percentPop"],
       vaxvalue:
         props.fips == "_nation"
-          ? props.demogData["vaccineRace"][0]["Multiple/Other"][0][
+          ? props.demogData["vaccineRace"][0]["Multiracial"][0][
           "seriesCompletePopPctKnown"
           ]
           : props.VaccineData[props.fips][0]["Multiple/Other"][0][
@@ -1239,7 +1240,7 @@ const SideRaceBarChart = (props) => {
         </div>
       );
     }
-    console.log(payload);
+
     return null;
   };
 
@@ -1397,38 +1398,38 @@ const SideRaceBarChart = (props) => {
                       paddingTop: 7,
                       paddingLeft: 5,
                       fontSize: "12px",
-                    
+
                     }}
                   >
-                  <ul>
-                    <li>Data were obtained from the{" "}
-                    
-                    <a
-                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      CDC
-                    </a>
-                    , on {props.date} <br />
-                    </li>
-                    <li>
-                    The graphic is based on data from 199,313,022 people who are fully vaccinated. Race/Ethnicity is available for 146,313,321 (73.2%) people fully vaccinated.
-                    </li>
-                    <li>
-                    Each bar represents the cumulative percentage of people who are fully vaccinated in the specified race/ethnicity group. This is a measure of vaccination coverage by race/ethnicity at the present time.<br/>
-                    e.g. White Americans make up{" "}
-                                {
-                                  props.demogData["vaccineRace"][0]["White"][0][
-                                  "seriesCompletePopPctKnown"
-                                  ]
-                                }{" "}
-                                % of fully vaccinated persons in the United States.
-                    </li>
-                    <li>
-                    If the bar for % vaccinated is shorter than the % population bar, it implies that the proportion of fully vaccinated people in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population.
-                    </li>
-    </ul>
+                    <ul>
+                      <li>Data were obtained from the{" "}
+
+                        <a
+                          href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          CDC
+                        </a>
+                        , on {props.date} <br />
+                      </li>
+                      <li>
+                        The graphic is based on data from 199,313,022 people who are fully vaccinated. Race/Ethnicity is available for 146,313,321 (73.2%) people fully vaccinated.
+                      </li>
+                      <li>
+                        Each bar represents the cumulative percentage of people who are fully vaccinated in the specified race/ethnicity group. This is a measure of vaccination coverage by race/ethnicity at the present time.<br />
+                        e.g. White Americans make up{" "}
+                        {
+                          props.demogData["vaccineRace"][0]["White"][0][
+                          "seriesCompletePopPctKnown"
+                          ]
+                        }{" "}
+                        % of fully vaccinated persons in the United States.
+                      </li>
+                      <li>
+                        If the bar for % vaccinated is shorter than the % population bar, it implies that the proportion of fully vaccinated people in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population.
+                      </li>
+                    </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1536,32 +1537,32 @@ const SideRaceBarChart = (props) => {
                       paddingTop: 7,
                       paddingLeft: 0,
                       fontSize: "12px",
-                     
+
                     }}
                   >
-                  <ul>
-                    <li>Data were obtained from the{" "}
-                    
-                    <a
-                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      CDC
-                    </a>
-                    , on  {props.date} <br />
-                    </li>
-                    <li>
-                    The graphic is based on data from 236,018,871 people with at least one dose administered. Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.  
-                    </li>
-                    <li>
-                    Each bar represents the percentage of people who initiated vaccination in last 14 days in the specified race/ethnicity group. This is a measure of new vaccination uptake in the past two weeks. <br/>
-                    e.g. White Americans make up {props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']}% of people who initiated vaccination in the last 14 days.  
-                    </li>
-                    <li>
-                    If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population 
-                    </li>
-      </ul>
+                    <ul>
+                      <li>Data were obtained from the{" "}
+
+                        <a
+                          href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          CDC
+                        </a>
+                        , on  {props.date} <br />
+                      </li>
+                      <li>
+                        The graphic is based on data from 236,018,871 people with at least one dose administered. Race/Ethnicity is available for 165,331,893 (70.1%) people with at least one dose administered.
+                      </li>
+                      <li>
+                        Each bar represents the percentage of people who initiated vaccination in last 14 days in the specified race/ethnicity group. This is a measure of new vaccination uptake in the past two weeks. <br />
+                        e.g. White Americans make up {props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['White']['pctAmongFullyVasLast14']}% of people who initiated vaccination in the last 14 days.
+                      </li>
+                      <li>
+                        If the bar for %vaccination last 14 days is shorter than the % population bar, it implies that the proportion of people who initiated vaccination in the last 14 days in that racial/ethnic group is lower than would be expected based on the that racial/ethnic group’s representation in the U.S. population
+                      </li>
+                    </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1660,29 +1661,29 @@ const SideRaceBarChart = (props) => {
                       paddingTop: 7,
                       paddingLeft: 0,
                       fontSize: "12px",
-                     
+
                     }}
                   >
-                  <ul>
-                    <li>Data were obtained from the{" "}
-                    
-                    <a
-                      href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      CDC
-                    </a>
-                    , on {props.date}<br />
-                    </li>
-                    <li>
-                    Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base 
-                    </li>
-                    <li>
-                    Each bar represents the percentage of the US population that belongs to the specific race/ethnic group. 
-                    </li>
-                  
-      </ul>
+                    <ul>
+                      <li>Data were obtained from the{" "}
+
+                        <a
+                          href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          CDC
+                        </a>
+                        , on {props.date}<br />
+                      </li>
+                      <li>
+                        Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base
+                      </li>
+                      <li>
+                        Each bar represents the percentage of the US population that belongs to the specific race/ethnic group.
+                      </li>
+
+                    </ul>
                     <br />
                     {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
                             <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
@@ -1787,7 +1788,7 @@ const USVaccineTrackerPilot = (props) => {
 
   const [countyName, setCountyName] = useState();
   const [countyTooltip, setCountyTooltip] = useState(false);
-
+  const [ageSeries, setAgeSeries] = useState();
   const [data, setData] = useState();
   const [dataTS, setDataTS] = useState();
   const [VaxSeries, setVaxSeries] = useState();
@@ -1796,7 +1797,7 @@ const USVaccineTrackerPilot = (props) => {
   const [raceData, setRaceData] = useState();
   const [nationalDemog, setNationalDemog] = useState();
   const [clickTrendFips, setClickTrendFips] = useState();
-  const [ageVaccine,setAgeVaccine]=useState();
+  const [ageVaccine, setAgeVaccine] = useState();
   const [trendHoverName, setTrendHoverName] = useState("The United States");
   const [hoverName, setHoverName] = useState("The United States");
   const [stateName, setStateName] = useState("The United States");
@@ -1947,10 +1948,13 @@ const USVaccineTrackerPilot = (props) => {
           x.date.substring(0, 4)
         );
       });
+    fetch("/data/vaccineSeriesAge.json")
+      .then((res) => res.json())
+      .then((x) => { setAgeSeries(x) });
 
     fetch('/data/vaccineAge.json')
-    .then((res)=>res.json())
-    .then((x)=>{setAgeVaccine(x)});
+      .then((res) => res.json())
+      .then((x) => { setAgeVaccine(x) });
 
     fetch("/data/vaccinedate.json")
       .then((res) => res.json())
@@ -2348,10 +2352,11 @@ const USVaccineTrackerPilot = (props) => {
     dataTS &&
     stateMapFips &&
     VaxSeries &&
-    stateVaccAveg
+    stateVaccAveg&&
+    ageSeries
   ) {
     console.log(stateVaccAveg["_nation"][0]);
-    console.log(nationalDemog);
+    console.log(ageSeries["_nation"].slice(1));
     const description = {
       aa:
         "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " +
@@ -3074,31 +3079,31 @@ const USVaccineTrackerPilot = (props) => {
 
                   <Grid.Row columns={1} style={{ width: 1000, paddingTop: 0, paddingBottom: 15 }}>
                     {/* <center> */}
-                      <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
-                        <div style={{ paddingTop: "0em" }}>
+                    <Grid.Column style={{ width: 850, paddingLeft: 60 }}>
+                      <div style={{ paddingTop: "0em" }}>
 
-                          <Header.Subheader
-                            style={{
-                              color: "#000000",
-                              width: 910,
-                              paddingTop: 8,
-                              fontSize:"14pt",
-                              //  paddingLeft:,
+                        <Header.Subheader
+                          style={{
+                            color: "#000000",
+                            width: 910,
+                            paddingTop: 8,
+                            fontSize: "14pt",
+                            //  paddingLeft:,
 
-                              paddingBottom: 25,
-                            }}
-                          >
+                            paddingBottom: 25,
+                          }}
+                        >
 
-                            {" "}
-                          
-                              Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage.
-                            {" "}
+                          {" "}
 
-                            <br />
-                          </Header.Subheader>
+                          Comparing the racial and ethnic breakdown of all vaccinated individuals, recently vaccinated individuals, and the total US population can help identify groups that require addition efforts to achieve full vaccination coverage.
+                          {" "}
 
-                        </div>
-                      </Grid.Column>
+                          <br />
+                        </Header.Subheader>
+
+                      </div>
+                    </Grid.Column>
                     {/* </center> */}
                   </Grid.Row>
 
@@ -3359,7 +3364,7 @@ const USVaccineTrackerPilot = (props) => {
                               <li>
                                 Others make up{" "}
                                 {
-                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  nationalDemog["vaccineRace"][0]["Multiracial"][0][
                                   "seriesCompletePopPctKnown"
                                   ]
                                 }{" "}
@@ -3369,7 +3374,7 @@ const USVaccineTrackerPilot = (props) => {
                                 }{" "}
                                 % vaccinated in past 14 days,{" "}
                                 {
-                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  nationalDemog["vaccineRace"][0]["Multiracial"][0][
                                   "percentPop"
                                   ]
                                 }{" "}
@@ -4341,28 +4346,28 @@ const USVaccineTrackerPilot = (props) => {
                             }
                           />
 
-                    <VictoryAxis
-                         style={{
-                          grid: { background: "#ccdee8" },
-                        tickLabels: { fontWeight:400,fontSize: 14, padding: 6},
-                        color: "#7C99AC"
-                    }}
-                        tickValues={[stateVaccAveg["_nation"][0].distT,
-                        stateVaccAveg["_nation"][4].distT,
-                        stateVaccAveg["_nation"][7].distT,
-                        stateVaccAveg["_nation"][10].distT,
-                        stateVaccAveg["_nation"][13].distT,
-                        stateVaccAveg["_nation"][16].distT,
-                        stateVaccAveg["_nation"][19].distT,
-                        stateVaccAveg["_nation"][22].distT,
-                        stateVaccAveg["_nation"][24].distT,
-                        stateVaccAveg["_nation"][27].distT,
-                        stateVaccAveg["_nation"][30].distT,
-                        stateVaccAveg["_nation"][33].distT,
-                        stateVaccAveg["_nation"][stateVaccAveg["_nation"].length-1].distT
-                        ]}
-        
-                          tickFormat={caseTickFmt} /> 
+                          <VictoryAxis
+                            style={{
+                              grid: { background: "#ccdee8" },
+                              tickLabels: { fontWeight: 400, fontSize: 14, padding: 6 },
+                              color: "#7C99AC"
+                            }}
+                            tickValues={[stateVaccAveg["_nation"][0].distT,
+                            stateVaccAveg["_nation"][4].distT,
+                            stateVaccAveg["_nation"][7].distT,
+                            stateVaccAveg["_nation"][10].distT,
+                            stateVaccAveg["_nation"][13].distT,
+                            stateVaccAveg["_nation"][16].distT,
+                            stateVaccAveg["_nation"][19].distT,
+                            stateVaccAveg["_nation"][22].distT,
+                            stateVaccAveg["_nation"][24].distT,
+                            stateVaccAveg["_nation"][27].distT,
+                            stateVaccAveg["_nation"][30].distT,
+                            stateVaccAveg["_nation"][33].distT,
+                            stateVaccAveg["_nation"][stateVaccAveg["_nation"].length - 1].distT
+                            ]}
+
+                            tickFormat={caseTickFmt} />
                           <VictoryLine
                             data={stateVaccAveg["_nation"].slice(1)}
                             y="percentVaccinatedDose2_avg7"
@@ -4491,109 +4496,397 @@ const USVaccineTrackerPilot = (props) => {
                       </center>
                     </TabPanel>
                     <TabPanel value={value + 2} index={4}>
-                    <center>
-                    <Header.Content style = {{paddingLeft: 50, width: 450}}>
-      <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
-        <b>Percentage of COVID-19 Vaccination by Age In {trendStateName}</b>
-      </Header.Content>
-  </Header.Content>
+                  
                     <Dropdown
-                          style={{
-                            background: "#fff",
-                            fontSize: "19px",
-                            fontWeight: 400,
-                            theme: "#000000",
-                            width: "380px",
-                            left: "0px",
-                            text: "Select",
-                            borderTop: "0.5px solid #bdbfc1",
-                            borderLeft: "0.5px solid #bdbfc1",
-                            borderRight: "0.5px solid #bdbfc1",
-                            borderBottom: "0.5px solid #bdbfc1",
-                            borderRadius: 0,
-                            minHeight: "1.0em",
-                            paddingBottom: "0.5em",
-                          }}
-                          text={
-                            "Selected State: " +
-                            (clickTrendFips === "_nation"
-                              ? "The United States"
-                              : trendStateName)
-                          }
-                          search
-                          selection
-                          pointing="top"
-                          options={stateOptions}
-                          onChange={(e, { value }) => {
-                            const configMatched = configs.find(
-                              (s) => s.fips === value
-                            );
-                            setClickTrendFips(value);
-                            setstateTrendFips(value);
-                            setTrendHoverName(configMatched.name);
-                            setTrendStateName(configMatched.name);
-                            setActive(true);
-                            return [
-                              {
-                                target: "data",
-                                mutation: () => ({
-                                  style: { stroke: "black", width: 30 },
-                                }),
-                              },
-                              {
-                                target: { value },
-                                mutation: () => ({ active: true }),
-                              },
-                            ];
-                          }}
-                        />
-                       
-                    <div style={{paddingLeft: "6em", paddingRight: "0em"}}>
-                    
-              <VictoryChart
-                  theme={VictoryTheme.material}
-                  width={350}
-                  height={300}
-                  domainPadding={25}
-                  minDomain={{y: props.ylog?1:0}}
-                  padding={{left: 50, right: 40, top: 50, bottom: 1}}
-                  style = {{fontSize: "14pt"}}
-                  containerComponent={<VictoryContainer responsive={false}/>}
-                >
-                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
-                  <VictoryGroup offset={0}>
-                  <VictoryBar
-                    horizontal
-                    barWidth={20}
-                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
-                    data={[
-                      {key: "5+", 'value': stateTrendFips=='_nation'?ageVaccine["01"][0]['Series_Complete_5PlusPop_Pct']:ageVaccine[stateTrendFips][0]['Series_Complete_5PlusPop_Pct']},
-                      {key: "12+", 'value': stateTrendFips=='_nation'?ageVaccine["01"][0]['Series_Complete_12PlusPop_Pct']:ageVaccine[stateTrendFips][0]['Series_Complete_12PlusPop_Pct']},
-                      {key: "18+", 'value':stateTrendFips=='_nation'?ageVaccine["01"][0]['Series_Complete_18PlusPop_Pct']:ageVaccine[stateTrendFips][0]['Series_Complete_18PlusPop_Pct']},
-                      {key: "65+", 'value':stateTrendFips=='_nation'?ageVaccine["01"][0]['Series_Complete_65PlusPop_Pct']: ageVaccine[stateTrendFips][0]['Series_Complete_65PlusPop_Pct']},
-      
-                    ]}
-                    labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
-                    style={{
-                      data: {
-                        fill: casesColor[1]
-                      }
-                    }}
-                    x="key"
-                    y="value"
-                  />
+                                style={{
+                                  background: "#fff",
+                                  fontSize: "19px",
+                                  fontWeight: 400,
+                                  theme: "#000000",
+                                  width: "380px",
+                                  left: "0px",
+                                  text: "Select",
+                                  borderTop: "0.5px solid #bdbfc1",
+                                  borderLeft: "0.5px solid #bdbfc1",
+                                  borderRight: "0.5px solid #bdbfc1",
+                                  borderBottom: "0.5px solid #bdbfc1",
+                                  borderRadius: 0,
+                                  minHeight: "1.0em",
+                                  paddingBottom: "0.5em",
+                                }}
+                                text={
+                                  "Selected State: " +
+                                  (clickTrendFips === "_nation"
+                                    ? "The United States"
+                                    : trendStateName)
+                                }
+                                search
+                                selection
+                                pointing="top"
+                                options={stateOptions}
+                                onChange={(e, { value }) => {
+                                  const configMatched = configs.find(
+                                    (s) => s.fips === value
+                                  );
+                                  setClickTrendFips(value);
+                                  setstateTrendFips(value);
+                                  setTrendHoverName(configMatched.name);
+                                  setTrendStateName(configMatched.name);
+                                  setActive(true);
+                                  return [
+                                    {
+                                      target: "data",
+                                      mutation: () => ({
+                                        style: { stroke: "black", width: 30 },
+                                      }),
+                                    },
+                                    {
+                                      target: { value },
+                                      mutation: () => ({ active: true }),
+                                    },
+                                  ];
+                                }}
+                              />
+                        <Grid style={{ width: 1100 }}>
+                          <Grid.Row columns={2} style={{ width: 1100 }}>
+                         
+                            <Grid.Column >
 
-                  </VictoryGroup>
-                </VictoryChart>
-  <Header.Content style = {{paddingLeft: 0, width: 450}}>
-      <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom:28, fontSize: "14pt", lineHeight: "18pt"}}>
-        <b>Percentage of COVID-19 Vaccination by Age</b>
-      </Header.Content>
-  </Header.Content>
-  
-</div>
-</center>
+                              <Header.Content style={{ paddingLeft: 50, width: 450 }}>
+                                <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "14pt", lineHeight: "18pt" }}>
+                                  <b>Percentage of COVID-19 Vaccination by Age In {trendStateName}</b>
+                                </Header.Content>
+                              </Header.Content>
+                            
+
+                              <div style={{ paddingLeft: "0em", paddingRight: "0em" }}>
+
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={350}
+                                  height={300}
+                                  domainPadding={25}
+                                  minDomain={{ y: props.ylog ? 1 : 0 }}
+                                  padding={{ left: 50, right: 10, top: 50, bottom: 1 }}
+                                  style={{ fontSize: "14pt" }}
+                                  containerComponent={<VictoryContainer responsive={false} />}
+                                >
+                                  <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "20px" }, tickLabels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' } }} />
+                                  <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, tickLabels: { fontSize: "20px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
+                                  <VictoryGroup offset={0}>
+                                    <VictoryBar
+                                      horizontal
+                                      barWidth={20}
+                                      labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1 ? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
+                                      data={[
+                                        { key: "5+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_5PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_5PlusPop_Pct'] },
+                                        { key: "12+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_12PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_12PlusPop_Pct'] },
+                                        { key: "18+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_18PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_18PlusPop_Pct'] },
+                                        { key: "65+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_65PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_65PlusPop_Pct'] },
+
+                                      ]}
+                                      labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }} />}
+                                      style={{
+                                        data: {
+                                          fill: casesColor[1]
+                                        }
+                                      }}
+                                      x="key"
+                                      y="value"
+                                    />
+
+                                  </VictoryGroup>
+                                </VictoryChart>
+                                <Header.Content style={{ paddingLeft: 0, width: 450 }}>
+                                  <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "14pt", lineHeight: "18pt" }}>
+                                    <b>Percentage of COVID-19 Vaccination by Age</b>
+                                  </Header.Content>
+                                </Header.Content>
+
+                              </div>
+                            </Grid.Column>
+                            {/* Age line graph starts here */}
+                            <Grid.Column style={{ width: 2000, paddingLeft: 0 }}>
+                              <VictoryChart
+                                // containerComponent={
+                                //   <VictoryVoronoiContainer
+                                //     responsive={false}
+                                //     flyoutStyle={{ fill: "white" }}
+                                //     labels={() =>
+                                //       activity
+                                //         ? `${trendHoverName}\n` +
+                                //         `Date: ${new Date(
+                                //           ageSeries[stateTrendFips][
+                                //             ageSeries[stateTrendFips].length - 1
+                                //           ].t * 1000
+                                //         ).toLocaleDateString()}\n` +
+                                //         `Percent Fully Vaccinated: ${ageSeries[
+                                //           stateTrendFips
+                                //         ][
+                                //           ageSeries[stateTrendFips].length - 1
+                                //         ].Series_Complete_5PlusPop_Pct.toFixed(
+                                //           0
+                                //         )} %\n`
+                                //         : ""
+                                //     }
+                                //     labelComponent={
+                                //       <VictoryTooltip
+                                //         orientation="top"
+                                //         style={{
+                                //           fontWeight: 600,
+                                //           fontFamily: "lato",
+                                //           fontSize: 14,
+                                //           fill: "white",
+                                //         }}
+                                //         constrainToVisibleArea
+                                //         labelComponent={
+                                //           <VictoryLabel textAnchor="middle" />
+                                //         }
+                                //         flyoutStyle={{
+                                //           fill: "black",
+                                //           fillOpacity: 0.75,
+                                //           stroke: "white",
+                                //           strokeWidth: 1,
+                                //         }}
+                                //       />
+                                //     }
+                                //   />
+                                // }
+                                width={630}
+                                height={500}
+                              >
+                                {/* <VictoryLegend
+                                  x={125}
+                                  y={50}
+                                  title="Percent Fully Vaccinated"
+                                  centerTitle
+                                  orientation="horizontal"
+                                  gutter={20}
+                                  style={{
+                                    border: { stroke: "black" },
+                                    title: { fontSize: 20 },
+                                  }}
+                                  data={
+                                    activity
+                                      ? [
+                                        {
+                                          name: "National Average",
+                                          symbol: { fill: "black", type: "square" },
+                                        },
+                                        {
+                                          name: trendHoverName,
+                                          symbol: {
+                                            fill: colorPaletteGraph[4],
+                                            type: "square",
+                                          },
+                                        },
+                                      ]
+                                      : [
+                                        {
+                                          name: "National Average",
+                                          symbol: { fill: "black", type: "square" },
+                                        },
+                                      ]
+                                  }
+                                /> */}
+                                <VictoryAxis
+                                  dependentAxis
+                                  crossAxis
+                                  tickCount={5}
+                                  style={{
+                                    tickLabels: {
+                                      fontWeight: 500,
+                                      fontSize: 17,
+                                      padding: 5,
+                                    },
+                                  }}
+                                  tickFormat={(y) =>
+                                    (Math.round(y, 2) === 0.0 ? " " : y) + "%"
+                                  }
+                                />
+
+                                <VictoryAxis
+                                  style={{
+                                    grid: { background: "#ccdee8" },
+                                    tickLabels: { fontWeight: 400, fontSize: 14, padding: 6 },
+                                    color: "#7C99AC"
+                                  }}
+                                  tickValues={[ageSeries["_nation"][0].t,
+                                  ageSeries["_nation"][30].t,
+                                  ageSeries["_nation"][60].t,
+                                  ageSeries["_nation"][90].t,
+                                  ageSeries["_nation"][120].t,
+                                  ageSeries["_nation"][150].t,
+                                  ageSeries["_nation"][180].t,
+                                  ageSeries["_nation"][210].t,
+                                  ageSeries["_nation"][240].t,
+                                  ageSeries["_nation"][270].t,
+                                  ageSeries["_nation"][300].t,
+                                  ageSeries["_nation"][330].t,
+                                  ageSeries["_nation"][ageSeries["_nation"].length - 1].t
+                                  ]}
+
+                                  tickFormat={caseTickFmt} />
+                                <VictoryLine
+                                  data={ageSeries["_nation"].slice(1)}
+                                  y="Series_Complete_5PlusPop_Pct"
+                                  x="t"
+                                  strokeDasharray="3 4 5 2"
+                                  style={{
+                                    data: {
+                                      stroke: "black",
+                                      width: 25,
+                                      opacity: 1.4,
+                                    },
+                                  }}
+                                ></VictoryLine>
+                                <VictoryLine
+                                  data={ageSeries["_nation"].slice(1)}
+                                  y="Series_Complete_12PlusPop_Pct"
+                                  x="t"
+                                  strokeDasharray="3 4 5 2"
+                                  style={{
+                                    data: {
+                                      stroke: "red",
+                                      width: 25,
+                                      opacity: 1.4,
+                                    },
+                                  }}
+                                ></VictoryLine>
+                                <VictoryLine
+                                  data={ageSeries["_nation"].slice(1)}
+                                  y="Series_Complete_18PlusPop_Pct"
+                                  x="t"
+                                  strokeDasharray="3 4 5 2"
+                                  style={{
+                                    data: {
+                                      stroke: pieChartRace[0],
+                                      width: 25,
+                                      opacity: 1.4,
+                                    },
+                                  }}
+                                ></VictoryLine>
+                                <VictoryLine
+                                  data={ageSeries["_nation"].slice(1)}
+                                  y="Series_Complete_65PlusPop_Pct"
+                                  x="t"
+                                  strokeDasharray="3 4 5 2"
+                                  style={{
+                                    data: {
+                                      stroke: pieChartRace[1],
+                                      width: 25,
+                                      opacity: 1.4,
+                                    },
+                                  }}
+                                ></VictoryLine>
+                           
+                                {/* <VictoryLine
+          data={ageSeries[fip].slice(1)}
+          // labelComponent={<CustomToolTrendtip/>}
+          y="Series_Complete_5PlusPop_Pct"
+          x="t"
+          style={
+            clickTrendFips == fip
+              ? {
+                data: {
+                  stroke: colorPaletteGraph[4],
+                  width: 30,
+                  opacity: 1.5,
+                },
+              }
+              : {
+                data: {
+                  stroke: "#E1E5EA",
+                  opacity: 0.2,
+                },
+              }
+          }
+          strokeDasharray="3 4 5 2"
+          events={[
+            {
+              target: "data",
+              eventHandlers: {
+                onMouseEnter: () => {
+                  // setTooltipContent("");
+                  const configMatched = configs.find(
+                    (s) => s.fips === fip
+                  );
+                  setClickTrendFips(fip);
+                  setstateTrendFips(fip);
+                  setTrendHoverName(configMatched.name);
+                  setTrendStateName(configMatched.name);
+                  setActive(true);
+                  return [
+                    {
+                      target: "data",
+                      mutation: () => ({
+                        style: {
+                          stroke: colorPaletteGraph[4],
+                          width: 30,
+                        },
+                      }),
+                    },
+                    {
+                      target: { fip },
+                      mutation: () => ({
+                        active: true,
+                      }),
+                    },
+                  ];
+                },
+                onMouseOver: () => {
+                  const configMatched = configs.find(
+                    (s) => s.fips === fip
+                  );
+                  setstateTrendFips(fip);
+                  setTrendHoverName(configMatched.name);
+                  setActive(true);
+                  return [
+                    {
+                      target: "data",
+                      mutation: () => ({
+                        style: {
+                          stroke: colorPaletteGraph[4],
+                          width: 30,
+                        },
+                      }),
+                    },
+                    {
+                      target: { fip },
+                      mutation: () => ({
+                        active: true,
+                      }),
+                    },
+                  ];
+                },
+                onMouseOut: () => {
+                  setstateTrendFips("");
+                  setTrendHoverName(
+                    "The United States"
+                  );
+                  setActive(false);
+                  return [
+                    {
+                      target: "data",
+                      mutation: () => { },
+                    },
+                    {
+                      target: { fip },
+                      mutation: () => ({
+                        active: false,
+                      }),
+                    },
+                  ];
+                },
+              },
+            },
+          ]}
+        /> */}
+                              </VictoryChart>
+                            </Grid.Column>
+                          </Grid.Row>
+                        </Grid>
+                 
                     </TabPanel>
                   </div>
 

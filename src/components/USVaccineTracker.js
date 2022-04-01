@@ -668,10 +668,10 @@ const SideRaceBarChart = (props) => {
     {
       name: "Multiple/Other",
       popvalue:
-        props.demogData["vaccineRace"][0]["Multiple/Other"][0]["percentPop"],
+        props.demogData["vaccineRace"][0]["Multiracial"][0]["percentPop"],
       vaxvalue:
         props.fips == "_nation"
-          ? props.demogData["vaccineRace"][0]["Multiple/Other"][0][
+          ? props.demogData["vaccineRace"][0]["Multiracial"][0][
           "seriesCompletePopPctKnown"
           ]
           : props.VaccineData[props.fips][0]["Multiple/Other"][0][
@@ -1723,7 +1723,7 @@ const USVaccineTracker= (props) => {
 
   if (data && allTS && vaccineData && fips && dataTS && stateMapFips && VaxSeries&&stateVaccAveg) {
 
-    console.log(allTS);
+    console.log(nationalDemog);
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -2370,7 +2370,7 @@ const USVaccineTracker= (props) => {
                               <li>
                                 Others make up{" "}
                                 {
-                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  nationalDemog["vaccineRace"][0]["Multiracial"][0][
                                   "seriesCompletePopPctKnown"
                                   ]
                                 }{" "}
@@ -2380,7 +2380,7 @@ const USVaccineTracker= (props) => {
                                 }{" "}
                                 % vaccinated in past 14 days,{" "}
                                 {
-                                  nationalDemog["vaccineRace"][0]["Multiple/Other"][0][
+                                  nationalDemog["vaccineRace"][0]["Multiracial"][0][
                                   "percentPop"
                                   ]
                                 }{" "}
