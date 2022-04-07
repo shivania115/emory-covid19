@@ -355,7 +355,7 @@ export default function CountyReport() {
 
 
   if (data && varMap && dataTS) {
-    console.log(342 + ((dataTS["_nation"].length - 344)/4).toFixed(0) - 1);
+    
   return (
     <HEProvider> 
       <div>

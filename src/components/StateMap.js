@@ -853,7 +853,7 @@ export default function StateMap(props) {
   if (stateFips === "_nation" || (data && metric && trendOptions && trendline)) {
   // if (stateFips === "_nation" || (data && metric && trendOptions && trendline && dataTS)) {
     // console.log(date);
-    
+    console.log(raceData);
 
   return (
     <HEProvider>
