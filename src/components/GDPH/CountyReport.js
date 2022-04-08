@@ -898,20 +898,21 @@ export default function CountyReport() {
                         tickValues={[
                           // 1583035200, 1585713600, 1588305600, 1590984000, 1593576000
                           dataTS['13001'][0].t,
-                        dataTS["13001"][31].t,
+                        // dataTS["13001"][31].t,
                         dataTS["13001"][61].t,
-                        dataTS["13001"][92].t,
+                        // dataTS["13001"][92].t,
                         dataTS["13001"][122].t,
-                        dataTS["13001"][153].t,
+                        // dataTS["13001"][153].t,
                         dataTS["13001"][184].t,
-                        dataTS["13001"][214].t,
+                        // dataTS["13001"][214].t,
                         dataTS["13001"][245].t,
-                        dataTS["13001"][275].t,
+                        // dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
-                        dataTS["13001"][337].t,
+                        // dataTS["13001"][337].t,
                         dataTS["13001"][365].t,
-                        dataTS["13001"][396].t,
+                        // dataTS["13001"][396].t,
                         dataTS["13001"][426].t,
+                        dataTS['13001'][487].t,
                         // dataTS["13001"][365].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}
@@ -979,20 +980,21 @@ export default function CountyReport() {
                         tickFormat={(t) => new Date(t * 1000).toLocaleDateString('en-Us', { month: 'numeric', day: 'numeric' })}
                         tickValues={[
                           dataTS['13001'][0].t,
-                        dataTS["13001"][31].t,
+                        // dataTS["13001"][31].t,
                         dataTS["13001"][61].t,
-                        dataTS["13001"][92].t,
+                        // dataTS["13001"][92].t,
                         dataTS["13001"][122].t,
-                        dataTS["13001"][153].t,
+                        // dataTS["13001"][153].t,
                         dataTS["13001"][184].t,
-                        dataTS["13001"][214].t,
+                        // dataTS["13001"][214].t,
                         dataTS["13001"][245].t,
-                        dataTS["13001"][275].t,
+                        // dataTS["13001"][275].t,
                         dataTS["13001"][306].t,
-                        dataTS["13001"][337].t,
+                        // dataTS["13001"][337].t,
                         dataTS["13001"][365].t,
-                        dataTS["13001"][396].t,
+                        // dataTS["13001"][396].t,
                         dataTS["13001"][426].t,
+                        dataTS["13001"][487].t,
                         dataTS["13001"][dataTS["13001"].length - 1].t
                         ]}
 

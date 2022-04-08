@@ -145,8 +145,9 @@ function CaseChart(props){
 }
 
 function BarChart(props) {
-  
+
   if (props.stateFips !== "_nation") {
+   
   return (
     <VictoryChart
       theme={VictoryTheme.material}
@@ -154,9 +155,9 @@ function BarChart(props) {
       height={115}       
       domainPadding={10}
       scale={{y: props.ylog?'log':'linear'}}
-      minDomain={{y: props.ylog?1:0}}
+      // minDomain={{y: props.ylog?1:0}}
       padding={{left: 95, right: 30, top: 30, bottom: 20}}
-      containerComponent={<VictoryContainer renderInPortal={false} esponsive={false}/>}
+      containerComponent={<VictoryContainer renderInPortal={true} responsive={false}/>}
     >
       {props.title !== "Community Vulnerability Index" && props.title !== "Any Condition" && <VictoryLabel text={props.title} x={100} y={10} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
       {props.title === "Community Vulnerability Index" && <VictoryLabel text="COVID-19 Community" x={100} y={7} textAnchor="middle" style={{fontSize: "16px", fontFamily: 'lato'}}/> }
@@ -188,9 +189,9 @@ function BarChart(props) {
       theme={VictoryTheme.material}
       width={190}
       height={100}       
-      domainPadding={10}
-      scale={{y: props.ylog?'log':'linear'}}
-      minDomain={{y: props.ylog?1:0}}
+      // domainPadding={10}
+      // scale={{y: props.ylog?'log':'linear'}}
+      // minDomain={{y: props.ylog?1:0}}
       padding={{left: 105, right: 30, top: 30, bottom: 20}}
       containerComponent={<VictoryContainer renderInPortal={false} responsive={false}/>}
     >
@@ -1878,9 +1879,7 @@ export default function StateMap(props) {
                   </Grid>
                   
                 </Grid.Column>
-                <Grid.Row>
-                  
-                </Grid.Row>
+               
 
               </Grid.Row>            
             </Grid>

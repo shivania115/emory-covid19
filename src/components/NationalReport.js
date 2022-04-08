@@ -1563,7 +1563,7 @@ const RaceBarChart = (props) => {
       space: 0.5,
       american_natives: props.demogData['race'][0]['American Native'][0]['percentPop']*barRatio,
       NHPI: props.demogData['race'][0]['NHPI'][0]['percentPop']*barRatio,
-      multiOther: props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop']*barRatio,
+      multiOther: props.demogData['vaccineRace'][0]['Multiracial'][0]['percentPop']*barRatio,
     },
     {
       name: '% Cases',
@@ -1589,8 +1589,8 @@ const RaceBarChart = (props) => {
                : props.VaccineData[props.fips][0]['NHPI'][0]['percentVaccinated']*barRatio),
 
       multiOther: props.fips == '_nation' ? props.demogData['race'][0]['Multiple/Other'][0]['percentCases']*barRatio
-      :(props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated'] === -9999 ? 0 
-         : props.VaccineData[props.fips][0]['Multiple/Other'][0]['percentVaccinated']*barRatio)
+      :(props.VaccineData[props.fips][0]['Multiracial'][0]['percentVaccinated'] === -9999 ? 0 
+         : props.VaccineData[props.fips][0]['Multiracial'][0]['percentVaccinated']*barRatio)
     }
   ]
 
@@ -1746,9 +1746,9 @@ const CustomTooltip = ({ active, payload, label }) => {
             isAnimationActive={false}> 
           </Bar>
 
-          <Bar name='Multiple/Other' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
+          <Bar name='Multiracial' id='multiOther' barSize={barSize} dataKey="multiOther" stackId="a" fill={pieChartRace[6]}
             isAnimationActive={false}
-            onMouseEnter={()=>{setHoverBar([6,'multiOther', 'Multiple/Other']); setActiveIndex(6)}}
+            onMouseEnter={()=>{setHoverBar([6,'multiOther', 'Multiracial']); setActiveIndex(6)}}
             onMouseLeave={()=>setActiveIndex(-1)}>
             {/* {
               data.map((entry, index) => (
@@ -1826,7 +1826,7 @@ const SideRaceBarChart = (props) => {
   const data = [
     {name:'Multiple/Other', popvalue: props.demogData['race'][0]['Multiple/Other'][0]['percentPop'],
     vaxvalue: props.vacc === false ? props.demogData['race'][0]['Multiple/Other'][0]['percentCases'] :
-              props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown'] },
+              props.demogData['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] },
     {name:'Native Hawaiian/Pacific Islanders', popvalue: props.demogData['race'][0]['NHPI'][0]['percentPop'],
     vaxvalue: props.vacc === false ? props.demogData['race'][0]['NHPI'][0]['percentCases'] :
               props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']},
@@ -2233,6 +2233,7 @@ export default function NationalReport(props) {
       fetch('/data/nationalDemogdata.json').then(res => res.json())
         .then(x => {
           setNationalDemog(x); 
+          console.log(x);
           var listW = [];
           var count = (x['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['White'][0]['percentPop']) 
           + 
@@ -2246,7 +2247,9 @@ export default function NationalReport(props) {
           +
           (x['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['NHPI'][0]['percentPop'])
           +
-          (x['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Multiple/Other'][0]['percentPop']);
+          (x['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Unknown'][0]['percentPop'])
+          +
+          (x['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Multiracial'][0]['percentPop']);
 
           setPctVacPopDisp(count);
 
@@ -2268,8 +2271,11 @@ export default function NationalReport(props) {
           if(x['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['NHPI'][0]['percentPop']){
             listW.push("Native Hawaiian and Pacific Islanders");
           }
-          if(x['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Multiple/Other'][0]['percentPop']){
-            listW.push("Americans of Multiple/Other races");
+          if(x['vaccineRace'][0]['Unknown'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Unknown'][0]['percentPop']){
+            listW.push("Unknown");
+          }
+          if(x['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] >= x['vaccineRace'][0]['Multiracial'][0]['percentPop']){
+            listW.push("Americans of Multiple races");
           }
           var joinedStr = listW.join();
           console.log(joinedStr);
@@ -3053,10 +3059,10 @@ export default function NationalReport(props) {
                           :
                             ""} </li>}
 
-                          {nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['percentPop'] && <li>
-                            {nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['percentPop'] ? 
-                            " Native Americans make up " + (nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                          {nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop'] && <li>
+                            {nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop'] ? 
+                            " Native Americans make up " + (nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                            (nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
                           :
                             ""} </li>}
 
@@ -3354,7 +3360,7 @@ export default function NationalReport(props) {
                                   (nationalDemog['race'][0]['NHPI'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
                                   {/* <br/><br/> */}
                               </li>
-                              <li> Multiple/Other: {(nationalDemog['race'][0]['Multiple/Other'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
+                              <li> Multi-Racial: {(nationalDemog['race'][0]['Multiple/Other'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1? "": 
                                   (nationalDemog['race'][0]['Multiple/Other'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) + " "}
                                   {(nationalDemog['race'][0]['Multiple/Other'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) == 1 ? "equal" :
                                   (nationalDemog['race'][0]['Multiple/Other'][0]['caserate']/nationalDemog['race'][0]['White'][0]['caserate']).toFixed(1) < 1? "times lower" : "times higher"} risk
