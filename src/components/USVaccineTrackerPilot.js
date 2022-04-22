@@ -66,6 +66,7 @@ import {
   VictoryLabel,
   VictoryTooltip,
   VictoryArea,
+  VictoryScatter,
   VictoryContainer,
   VictoryVoronoiContainer,
 } from "victory";
@@ -4608,6 +4609,11 @@ const USVaccineTrackerPilot = (props) => {
                             {/* Age line graph starts here */}
                             <Grid.Column style={{ width: 2000, paddingLeft: 0 }}>
                               <VictoryChart
+                              theme={VictoryTheme.material}
+                              animate={{
+  duration: 2000,
+  onLoad: { duration: 1000 }
+}}
                                 // containerComponent={
                                 //   <VictoryVoronoiContainer
                                 //     responsive={false}
@@ -4700,6 +4706,7 @@ const USVaccineTrackerPilot = (props) => {
                                       padding: 5,
                                     },
                                   }}
+                                  theme={VictoryTheme.material}
                                   tickFormat={(y) =>
                                     (Math.round(y, 2) === 0.0 ? " " : y) + "%"
                                   }
@@ -4711,23 +4718,27 @@ const USVaccineTrackerPilot = (props) => {
                                     tickLabels: { fontWeight: 400, fontSize: 14, padding: 6 },
                                     color: "#7C99AC"
                                   }}
+                                  theme={VictoryTheme.material}
                                   tickValues={[ageSeries["_nation"][0].t,
-                                  ageSeries["_nation"][30].t,
-                                  ageSeries["_nation"][60].t,
-                                  ageSeries["_nation"][90].t,
-                                  ageSeries["_nation"][120].t,
-                                  ageSeries["_nation"][150].t,
-                                  ageSeries["_nation"][180].t,
-                                  ageSeries["_nation"][210].t,
-                                  ageSeries["_nation"][240].t,
-                                  ageSeries["_nation"][270].t,
-                                  ageSeries["_nation"][300].t,
-                                  ageSeries["_nation"][330].t,
+                                  ageSeries["_nation"][45].t,
+                                  ageSeries["_nation"][76].t,
+                                  ageSeries["_nation"][106].t,
+                                  ageSeries["_nation"][137].t,
+                                  ageSeries["_nation"][167].t,
+                                  ageSeries["_nation"][198].t,
+                                  ageSeries["_nation"][229].t,
+                                  ageSeries["_nation"][259].t,
+                                  ageSeries["_nation"][290].t,
+                                  ageSeries["_nation"][320].t,
+                                  ageSeries["_nation"][351].t,
+                                  ageSeries["_nation"][382].t,
+                                  ageSeries["_nation"][410].t,
+                                  // ageSeries["_nation"][441].t,
                                   ageSeries["_nation"][ageSeries["_nation"].length - 1].t
                                   ]}
 
                                   tickFormat={caseTickFmt} />
-                                <VictoryLine
+                                <VictoryScatter
                                   data={ageSeries["_nation"].slice(1)}
                                   y="Series_Complete_5PlusPop_Pct"
                                   x="t"
@@ -4735,12 +4746,13 @@ const USVaccineTrackerPilot = (props) => {
                                   style={{
                                     data: {
                                       stroke: "black",
-                                      width: 25,
+                                      width: 50,
+                                      strokeWidth:1,
                                       opacity: 1.4,
                                     },
                                   }}
-                                ></VictoryLine>
-                                <VictoryLine
+                                ></VictoryScatter>
+                                <VictoryScatter
                                   data={ageSeries["_nation"].slice(1)}
                                   y="Series_Complete_12PlusPop_Pct"
                                   x="t"
@@ -4748,12 +4760,13 @@ const USVaccineTrackerPilot = (props) => {
                                   style={{
                                     data: {
                                       stroke: "red",
+                                      strokeWidth:1,
                                       width: 25,
-                                      opacity: 1.4,
+                                      opacity: 2,
                                     },
                                   }}
-                                ></VictoryLine>
-                                <VictoryLine
+                                ></VictoryScatter>
+                                <VictoryScatter
                                   data={ageSeries["_nation"].slice(1)}
                                   y="Series_Complete_18PlusPop_Pct"
                                   x="t"
@@ -4762,11 +4775,12 @@ const USVaccineTrackerPilot = (props) => {
                                     data: {
                                       stroke: pieChartRace[0],
                                       width: 25,
+                                      strokeWidth:1,
                                       opacity: 1.4,
                                     },
                                   }}
-                                ></VictoryLine>
-                                <VictoryLine
+                                ></VictoryScatter>
+                                <VictoryScatter
                                   data={ageSeries["_nation"].slice(1)}
                                   y="Series_Complete_65PlusPop_Pct"
                                   x="t"
@@ -4775,10 +4789,11 @@ const USVaccineTrackerPilot = (props) => {
                                     data: {
                                       stroke: pieChartRace[1],
                                       width: 25,
+                                      strokeWidth:1,
                                       opacity: 1.4,
                                     },
                                   }}
-                                ></VictoryLine>
+                                ></VictoryScatter>
                            
                                 {/* <VictoryLine
           data={ageSeries[fip].slice(1)}
