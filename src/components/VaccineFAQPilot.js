@@ -3253,12 +3253,8 @@ export default function VaccinesFAQPilot(props) {
                     active={activeIndex.indexOf(49) > 0}
                   >
                     <p>
-                      Right now, the FDA and CDC have authorized and recommended
-                      additional doses of the Pfizer-BioNTech (Comirnaty) or
-                      Moderna vaccines in certain circumstances. While both
-                      terms currently refer to a third shot, there are some
-                      differences in why an “additional dose” or a “booster
-                      dose” are recommended.
+                    Right now, the FDA and CDC have authorized and recommended additional doses of the Pfizer-BioNTech (Comirnaty) or Moderna (Spikevax) vaccines in certain circumstances. 
+                    While both terms currently refer to a third shot, there are some differences in why an “additional dose” or a “booster dose” are recommended.
                     </p>
 
                     <p>
@@ -3299,17 +3295,16 @@ export default function VaccinesFAQPilot(props) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        organ transplants
+                        organ transplants.
                       </a>{" "}
                       At this time, there are no authorizations or
                       recommendations for additional doses for people who
                       received the Johnson & Johnson/ Janssen vaccine.
                     </p>
                     <p>
-                      <b>A booster shot</b> (i.e. a third dose of ONLY the
-                      Pfizer two-shot vaccine at least 6 months after receiving
-                      the second dose for people who were originally vaccinated
-                      with the Pfizer-BioNTech vaccine) is authorized by{" "}
+                      <b>A booster shot</b> (i.e. another dose of one of the available vaccines at least 5 months after getting a full primary 
+                      series ofeither the Pfizer-BioNTech or Moderna two-shot vaccines or at least 2 months after the Johnson &Johnson/ Janssen one-shot vaccine) 
+                      is authorized by{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
@@ -3327,28 +3322,10 @@ export default function VaccinesFAQPilot(props) {
                       >
                         CDC
                       </a>{" "}
-                      for{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        certain groups
-                      </a>
-                      , based on their relatively higher risk of contracting
-                      COVID-19 disease and experiencing serious illness. In this
-                      case, the booster counters the decrease in immunity that
-                      was developed after becoming fully vaccinated. Studies
-                      have shown that vaccine-induced protection from COVID-19
-                      illness decreases over time and may also be decreased by
-                      the Delta variant of SARS-CoV-2, the virus that causes
-                      COVID-19. The reduction in immunity is mostly a reduction
-                      in protection from symptomatic COVID-19 illness;
-                      protection from more serious illness and outcomes does not
-                      decrease as much over time. At this time booster shots
-                      have not been authorized by the FDA for either Moderna or
-                      Johnson & Johnson/Janssen vaccines
+                      for everyone. In this case, the booster counters the decrease in immunity that was developed after becoming fully vaccinated. 
+                      Studies have shown that vaccine-induced protection from COVID-19 illness decreases over time and may also be decreased by newer variants of SARS-CoV-2, the virus that causes COVID-19. 
+                      The reduction in immunity is primarily a reduction in protection from symptomatic COVID-19 illness; however, protection from more serious illness and outcomes does also decrease somewhat over time.
+                       In some cases, a second booster is also recommended. 
                     </p>
                   </Accordion.Content>
                   <Accordion.Title
@@ -3373,8 +3350,7 @@ export default function VaccinesFAQPilot(props) {
                   >
                     <p>
                       <p>
-                        For most people, no. It depends on your health condition
-                        and on the vaccine you received.
+                        For most people, no. It depends on your age, your health condition, and on the vaccine you received.
                       </p>
                       <p>
                         <a
@@ -3386,17 +3362,12 @@ export default function VaccinesFAQPilot(props) {
                           {" "}
                           The FDA
                         </a>{" "}
-                        reviewed data from several studies that looked at
-                        immunity to COVID-19 after vaccination among people with
-                        weakened immune systems (for example, due to a medical
-                        condition or if you are taking certain medications that
-                        weaken the immune system). The data from those studies
-                        show that the two doses were, in some cases, not enough
-                        to build a high level of immunity against the virus that
-                        causes COVID-19. They also showed that even if they are
-                        fully vaccinated, some immunocompromised people who get
-                        COVID-19 are more likely to transmit the virus to others
-                        and to get seriously sick from the virus. Therefore,{" "}
+                        reviewed data from several studies that looked at immunity to COVID-19 after vaccination among people with weakened immune systems (for example, due to a medical condition or if you are taking certain medications that weaken the immune system). 
+                        The data from those studies show that the two doses of the Pfizer-BioNTech or Moderna vaccines and the one dose of Johnson & Johnson/ Janssen were, in some cases, not enough to build a high level of immunity against the virus that causes COVID-19. 
+                        They also showed that even if they are fully vaccinated, some immunocompromised people who get COVID-19 are more likely to transmit the virus to others and to get seriously sick from the virus. 
+                        </p>
+                        <p>
+                        Therefore,{" "}
                         <a
                           style={{ color: "#397AB9" }}
                           href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
@@ -3406,9 +3377,7 @@ export default function VaccinesFAQPilot(props) {
                           {" "}
                           the FDA authorized
                         </a>{" "}
-                        a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech
-                        or Moderna) for people with seriously or moderately
-                        suppressed immune systems. CDC now{" "}
+                        and
                         <a
                           style={{ color: "#397AB9" }}
                           href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
@@ -3416,32 +3385,31 @@ export default function VaccinesFAQPilot(props) {
                           rel="noopener noreferrer"
                         >
                           {" "}
-                          recommends
+                          CDC recommends
                         </a>{" "}
-                        this third dose in certain cases.
-                      </p>
-                      <p>
-                        If you have a condition or are taking medication that{" "}
-                        <a
-                          style={{ color: "#397AB9" }}
-                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {" "}
-                          suppresses the immune system
-                        </a>
-                        , you should speak with your healthcare provider about
-                        getting a 3rd dose of the mRNA vaccine you have received
-                        previously (meaning, for example, that if you received
-                        Moderna, you should get a 3rd dose of Moderna). If you
-                        are receiving a 3rd dose, this should happen at least 4
-                        weeks after your 2nd dose.
-                      </p>
-                      <p>
-                        A 3rd dose is not recommended or authorized for any
-                        other group at this time.
-                      </p>
+                        the following additional doses 
+                        to ensure you are fully vaccinated if you are immunocompromised:
+                       </p>
+                       <ul
+                      style={{
+                        paddingLeft: "6rem",
+                        fontSize: "14pt",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      <li>
+                      <b>Children aged 5-11 years</b> who are moderately or severely immunocompromised should get a total of 3 doses of Pfizer-BioNTech vaccine spaced 3 weeks between doses #1 and #2 and at least 4 weeks between doses #2 and #3.
+                      </li>
+                      <li>
+                      <b>People aged 12 years and older</b> who are moderately or severely immunocompromised and are receiving the Pfizer-BioNTech vaccine should get a total of 3 doses spaced 3 weeks between doses #1 and #2 and at least 4 weeks between doses #2 and #3. They should then get a booster dose at least 3 months after the third dose.
+                      </li>
+                      <li>
+                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and are receiving the Moderna vaccine should get a total of 3 doses spaced 4 weeks between doses #1 and #2 and at least 4 weeks between doses #2 and #3. They should then get a booster dose at least 3 months after the third dose.
+                      </li>
+                      <li>
+                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and have received the Johnson & Johnson/Janssen vaccine should get a total of 2 doses spaced 4 weeks between doses #1 and #2. The second dose should be either the Pfizer-BioNTech or the Moderna vaccine. They should then get a booster dose at least 2 months after the second dose.
+                      </li>
+                    </ul>
                     </p>
                   </Accordion.Content>
 
@@ -3570,6 +3538,34 @@ export default function VaccinesFAQPilot(props) {
                       If you received either the Pfizer-BioNTech or the Moderna COVID-19 vaccine, you should get a booster at least 5 months after the second dose of your primary series. 
                       You may get a booster of any of the authorized COVID-19 vaccines, no matter which vaccine you received for your primary vaccination series.
                       </p>
+                      <p>
+                      If you are moderately or severely immunocompromised, you should get a booster at least 3 months after you finish your mRNA vaccine primary series or at least 2 months after you get your additional dose if your first vaccine was the Johnson & Johnson/Janssen vaccine.
+                      </p>
+                      <p>
+                      In some cases, it is recommended that you get a second vaccine booster. This includes you if you:
+                      <ul
+                      style={{
+                        paddingLeft: "6rem",
+                        fontSize: "14pt",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      <li>
+                      Are aged 50 years or older and got your first booster 4 months or more ago.
+                      </li>
+                      <li>
+                      Are moderately or severely immunocompromised, 12 years or older, and  got your first booster 4 months or more ago.
+                      </li>
+                      <li>
+                      Got 2 doses of the Johnson & Johnson/Janssen vaccine 4 months or more ago.
+                      </li>
+                     
+                    </ul>
+                      </p>
+                      <p>
+                      Only second boosters of the two mRNA vaccines (Pfizer-BioNTech or Moderna) are approved.
+                      </p>
+
                   </Accordion.Content>
 
                   <Accordion.Title
@@ -3676,7 +3672,7 @@ export default function VaccinesFAQPilot(props) {
                   >
                     <p>
                     After carefully reviewing the data around getting a booster that matches the original vaccine type people received and one that was from a different manufacturer or a different vaccine type (e.g. Pfizer-BioNTech followed by Johnson & Johnson), 
-                    <a
+                    {" "}<a
                         style={{ color: "#397AB9" }}
                         href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
                         target="_blank"
@@ -3736,30 +3732,33 @@ If you are unsure about which booster to get, you should discuss with your healt
                     active={activeIndex.indexOf(32) > 0}
                   >
                     <p>
-                      Yes.
+                      Yes. COVID-19
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://covid19.emory.edu/_nation"
+                        href="https://covid.cdc.gov/covid-data-tracker/#county-view?list_select_state=all_states&list_select_county=all_counties&data-type=CommunityLevels"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         {" "}
-                        COVID-19 transmission{" "}
+                      community levels{" "}
                       </a>
-                      is very high in communities across the United States right
-                      now and the Delta variant transmits more easily from
-                      person to person. As such, CDC still recommends continuing
-                      to physically distance, wear a face covering, limit
-                      gatherings, and wash your hands thoroughly even once you
-                      are vaccinated, including after receiving both doses for
-                      the two-dose vaccines. Even though increasing numbers of
-                      people across the United States are fully vaccinated as
-                      the pandemic changes and transmission remains high, it is
-                      important that people continue to follow these
-                      precautions. The vaccine is the first part in a “one-two
-                      punch” that also includes physical distancing, wearing a
-                      mask, washing your hands regularly, and staying away from
-                      large gatherings.
+                      and 
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://covid.cdc.gov/covid-data-tracker/#county-view?list_select_state=all_states&list_select_county=all_counties&data-type=Risk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                      transmission levels{" "}
+                      </a>
+                      continue to wax and wane across the United States and some emerging variants transmit more easily from person to person. 
+                      As such, CDC still recommends continuing to physically distance and wear a face covering, especially when in larger gatherings and indoor spaces, even once you are fully vaccinated and have received a booster vaccine dose.
+                      You should also continue to wash your hands thoroughly. 
+                    </p>
+                    <p>
+                    Even though increasing numbers of people across the United States are fully vaccinated as the pandemic changes and community levels of COVID-19 change, it is important that people continue to follow these precautions. 
+                    The vaccine is the first part in a “one-two punch” that also includes physical distancing, wearing a mask, washing your hands regularly, and minimizing large gatherings.
                     </p>
                   </Accordion.Content>
 
@@ -3784,21 +3783,29 @@ If you are unsure about which booster to get, you should discuss with your healt
                     active={activeIndex.indexOf(33) > 0}
                   >
                     <p>
-                      You may not need to quarantine, but it depends on your
-                      situation. Currently,{" "}
+                      You may not need to quarantine, but it 
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html#"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        COVID-19 recommendations
+                        {" "}
+                        depends{" "}
                       </a>
-                      are that you should wear a mask indoors in public for 14
-                      days after you are exposed or until you get a negative
-                      COVID-19 test. You should also get tested 3-5 days after
-                      your exposure, even if you do not have any symptoms. If
-                      your test is positive, you should isolate for 10 days.
+                      on your situation. Currently, COVID-19 recommendations are slightly different whether you are fully vaccinated (meaning that you have also received a booster) or not.
+                    </p>
+                    <p>
+                    If you are not fully vaccinated (meaning that you have received your primary vaccine series but have not received a booster vaccine dose or that you have not been vaccinated), you should stay home and quarantine for at least 5 days after you are exposed. You also should not travel during those 5 days. 
+                    </p>
+                    <p>
+                    If you are fully vaccinated (including receiving appropriate booster doses), you do not need to quarantine unless you develop COVID-19 symptoms.
+                    </p>
+                    <p>
+                    Whether you are fully vaccinated or not, you should wear a mask indoors when around others or in public for 10 days after you are exposed or until you get a negative COVID-19 test. You should also avoid traveling and, if you do, take precautions to protect others. If you develop symptoms, you need to isolate from others and get tested as soon as you can. 
+                    </p>
+                    <p>
+                    Everyone who has been exposed to someone with COVID-19 should get tested  at least 5 days after exposure, even if you do not have any symptoms. If your test is positive, you should quarantine for 5 days.
                     </p>
                     {/* <ol style={{ paddingLeft: '4rem', lineHeight: "150%" }}>
                       <li>
@@ -3833,7 +3840,7 @@ If you are unsure about which booster to get, you should discuss with your healt
                     }
                   >
                     <Icon name="dropdown" />
-                    If I travel after I am fully vaccinated, do I still need to
+                    If I travel after I am fully vaccinated (including a booster dose), do I still need to
                     wear a mask or quarantine?
                   </Accordion.Title>
                   <Accordion.Content
@@ -3842,19 +3849,18 @@ If you are unsure about which booster to get, you should discuss with your healt
                   >
                     <p>
                       Federal regulations do require wearing a mask for anyone{" "}
+                      
+                      While federal regulations no longer require wearing a mask for
+                      {" "} 
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        traveling
-                      </a>{" "}
-                      on any form of public transport, regardless of vaccination
-                      status. This includes: bus, plane, train, subways, taxis,
-                      ride-shares, boats, ships, trolleys, and cable cars. It
-                      also includes school buses and indoor transportation hubs
-                      such as airports, train stations, and subways stations.
+                        travel
+                      </a>{" "} 
+                      , either in transportation hubs or on public transport, CDC still recommends mask wearing in those settings.
                     </p>
                     <p>
                       If you are{" "}
