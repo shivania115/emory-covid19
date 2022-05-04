@@ -3286,7 +3286,7 @@ export default function VaccinesFAQPilot(props) {
                       stronger immune response than they built up from the first
                       two doses. This will provide a similar level of protection
                       in immunocompromised people as in seen in those who are
-                      not immuncompromised. People with compromised immune
+                      not immunocompromised. People with compromised immune
                       systems include those immunocompromised due to certain
                       treatments or medical condition or following{" "}
                       <a
@@ -3303,7 +3303,7 @@ export default function VaccinesFAQPilot(props) {
                     </p>
                     <p>
                       <b>A booster shot</b> (i.e. another dose of one of the available vaccines at least 5 months after getting a full primary 
-                      series ofeither the Pfizer-BioNTech or Moderna two-shot vaccines or at least 2 months after the Johnson &Johnson/ Janssen one-shot vaccine) 
+                      series of either the Pfizer-BioNTech or Moderna two-shot vaccines or at least 2 months after the Johnson &Johnson/ Janssen one-shot vaccine) 
                       is authorized by{" "}
                       <a
                         style={{ color: "#397AB9" }}
@@ -3325,7 +3325,17 @@ export default function VaccinesFAQPilot(props) {
                       for everyone. In this case, the booster counters the decrease in immunity that was developed after becoming fully vaccinated. 
                       Studies have shown that vaccine-induced protection from COVID-19 illness decreases over time and may also be decreased by newer variants of SARS-CoV-2, the virus that causes COVID-19. 
                       The reduction in immunity is primarily a reduction in protection from symptomatic COVID-19 illness; however, protection from more serious illness and outcomes does also decrease somewhat over time.
-                       In some cases, a second booster is also recommended. 
+                       In some 
+                       {" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                      cases
+                      </a>{" "}
+                       , a second booster is also recommended. 
                     </p>
                   </Accordion.Content>
                   <Accordion.Title
@@ -3398,16 +3408,16 @@ export default function VaccinesFAQPilot(props) {
                       }}
                     >
                       <li>
-                      <b>Children aged 5-11 years</b> who are moderately or severely immunocompromised should get a total of 3 doses of Pfizer-BioNTech vaccine spaced 3 weeks between doses #1 and #2 and at least 4 weeks between doses #2 and #3.
+                      <b>Children aged 5-11 years</b> who are moderately or severely immunocompromised should get a total of <u>3 doses</u> of Pfizer-BioNTech vaccine spaced <u>3 weeks</u> between doses #1 and #2 and <u>at least 4 weeks</u> between doses #2 and #3.
                       </li>
                       <li>
-                      <b>People aged 12 years and older</b> who are moderately or severely immunocompromised and are receiving the Pfizer-BioNTech vaccine should get a total of 3 doses spaced 3 weeks between doses #1 and #2 and at least 4 weeks between doses #2 and #3. They should then get a booster dose at least 3 months after the third dose.
+                      <b>People aged 12 years and older</b> who are moderately or severely immunocompromised and are receiving the Pfizer-BioNTech vaccine should get a total of <u>3 doses</u> spaced <u>3 weeks</u> between doses #1 and #2 and at least <u>4 weeks</u> between doses #2 and #3. They should then get a booster dose <u>at least 3 months</u> after the third dose.
                       </li>
                       <li>
-                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and are receiving the Moderna vaccine should get a total of 3 doses spaced 4 weeks between doses #1 and #2 and at least 4 weeks between doses #2 and #3. They should then get a booster dose at least 3 months after the third dose.
+                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and are receiving the Moderna vaccine should get a total of <u>3 doses</u> spaced <u>4 weeks</u> between doses #1 and #2 and at least <u>4 weeks</u> between doses #2 and #3. They should then get a booster dose <u>at least 3 months</u> after the third dose.
                       </li>
                       <li>
-                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and have received the Johnson & Johnson/Janssen vaccine should get a total of 2 doses spaced 4 weeks between doses #1 and #2. The second dose should be either the Pfizer-BioNTech or the Moderna vaccine. They should then get a booster dose at least 2 months after the second dose.
+                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and have received the Johnson & Johnson/Janssen vaccine should get a total of <u>2 doses</u> spaced <u>4 weeks</u> between doses #1 and #2. The second dose should be either the Pfizer-BioNTech or the Moderna vaccine. They should then get a booster dose <u>at least 2 months</u> after the second dose.
                       </li>
                     </ul>
                     </p>
@@ -3542,7 +3552,18 @@ export default function VaccinesFAQPilot(props) {
                       If you are moderately or severely immunocompromised, you should get a booster at least 3 months after you finish your mRNA vaccine primary series or at least 2 months after you get your additional dose if your first vaccine was the Johnson & Johnson/Janssen vaccine.
                       </p>
                       <p>
-                      In some cases, it is recommended that you get a second vaccine booster. This includes you if you:
+                      In some 
+                      {" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                       cases
+                      </a>{" "}
+                      
+                      , it is recommended that you get a second vaccine booster. This includes you if you:
                       <ul
                       style={{
                         paddingLeft: "6rem",
@@ -3551,10 +3572,19 @@ export default function VaccinesFAQPilot(props) {
                       }}
                     >
                       <li>
-                      Are aged 50 years or older and got your first booster 4 months or more ago.
+                      Are aged 50 years or older <b>and</b> got your first booster 4 months or more ago.
                       </li>
                       <li>
-                      Are moderately or severely immunocompromised, 12 years or older, and  got your first booster 4 months or more ago.
+                      Are 
+                      {" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html#mod"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                       moderately or severely immunocompromised
+                      </a>, 12 years or older, <b>and</b> got your first booster 4 months or more ago.
                       </li>
                       <li>
                       Got 2 doses of the Johnson & Johnson/Janssen vaccine 4 months or more ago.
@@ -3585,8 +3615,8 @@ export default function VaccinesFAQPilot(props) {
                     }
                   >
                     <Icon name="dropdown" />
-                    If I have not gotten a vaccine booster, am I still
-                    considered “fully vaccinated”?
+                    If I have not gotten a vaccine booster, 
+                    am I still considered “fully vaccinated” or “up to date” with my vaccines?
                   </Accordion.Title>
                   <Accordion.Content
                     style={{ fontSize: "14pt" }}
@@ -3802,7 +3832,7 @@ If you are unsure about which booster to get, you should discuss with your healt
                     If you are fully vaccinated (including receiving appropriate booster doses), you do not need to quarantine unless you develop COVID-19 symptoms.
                     </p>
                     <p>
-                    Whether you are fully vaccinated or not, you should wear a mask indoors when around others or in public for 10 days after you are exposed or until you get a negative COVID-19 test. You should also avoid traveling and, if you do, take precautions to protect others. If you develop symptoms, you need to isolate from others and get tested as soon as you can. 
+                    <u>Whether you are fully vaccinated or not,</u> you should wear a mask indoors when around others or in public for 10 days after you are exposed or until you get a negative COVID-19 test. You should also avoid traveling and, if you do, take precautions to protect others. If you develop symptoms, you need to isolate from others and get tested as soon as you can. 
                     </p>
                     <p>
                     Everyone who has been exposed to someone with COVID-19 should get tested  at least 5 days after exposure, even if you do not have any symptoms. If your test is positive, you should quarantine for 5 days.
@@ -3850,7 +3880,7 @@ If you are unsure about which booster to get, you should discuss with your healt
                     <p>
                       Federal regulations do require wearing a mask for anyone{" "}
                       
-                      While federal regulations no longer require wearing a mask for
+                      While Federal regulations no longer require wearing a mask for
                       {" "} 
                       <a
                         style={{ color: "#397AB9" }}
