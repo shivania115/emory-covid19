@@ -68,6 +68,7 @@ import {
   VictoryArea,
   VictoryScatter,
   VictoryContainer,
+  VictoryCursorContainer,
   VictoryVoronoiContainer,
 } from "victory";
 import { useParams, useHistory } from "react-router-dom";
@@ -127,7 +128,9 @@ const colorPaletteGraph = [
   "#000000",
   "#8f4814",
 ];
-
+const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+];
 function getMax(arr, prop) {
   var max;
   for (var i = 0; i < arr.length; i++) {
@@ -2382,7 +2385,7 @@ const USVaccineTrackerPilot = (props) => {
       //   {/* <p className="desc">Anything you want can be displayed here.</p> */}
         
       // </div>
-     "Percent Fully Vaccinated For Age 5-12:" + (d.datum._y).toFixed(1) 
+     d.datum.childName +" : " +(d.datum._y).toFixed(1) 
     //  "\n Percent Fully Vaccinated For Age 5-12:" + (d.datum.Series_Complete_5Plus).toFixed(1) +
     //  "\n Percent Fully Vaccinated For Age 5-12:" + (d.datum.Series_Complete_5Plus).toFixed(1) +
     //  "\n Percent Fully Vaccinated For Age 5-12:" + (d.datum.Series_Complete_5Plus).toFixed(1) 
@@ -4593,27 +4596,30 @@ const USVaccineTrackerPilot = (props) => {
                           ];
                         }}
                       />
-                      <Grid style={{ width: 1100 }}>
-                        <Grid.Row columns={2} style={{ width: 1100 }}>
-
-                          <Grid.Column >
-
-                            <Header.Content style={{ paddingLeft: 50, width: 450 }}>
+                      <Grid style={{ width: 900 }}>
+                      <center>
+                      <Header.Content style={{ paddingLeft: 50, width: 450 }}>
                               <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "14pt", lineHeight: "18pt" }}>
                                 <b>Percentage of COVID-19 Vaccination by Age In {trendStateName}</b>
                               </Header.Content>
                             </Header.Content>
+                            </center>
+                        <Grid.Row columns={2} style={{ width: 1100 }}>
+
+                          <Grid.Column >
+
+                            
 
 
                             <div style={{ paddingLeft: "0em", paddingRight: "0em" }}>
 
                               <VictoryChart
                                 theme={VictoryTheme.material}
-                                width={350}
+                                width={320}
                                 height={300}
                                 domainPadding={25}
                                 minDomain={{ y: props.ylog ? 1 : 0 }}
-                                padding={{ left: 50, right: 10, top: 50, bottom: 1 }}
+                                padding={{ left: 80, right: 10, top: 50, bottom: 1 }}
                                 style={{ fontSize: "14pt" }}
                                 containerComponent={<VictoryContainer responsive={false} />}
                               >
@@ -4625,9 +4631,9 @@ const USVaccineTrackerPilot = (props) => {
                                     barWidth={20}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1 ? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                                     data={[
-                                      { key: "5+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_5PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_5PlusPop_Pct'] },
-                                      { key: "12+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_12PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_12PlusPop_Pct'] },
-                                      { key: "18+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_18PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_18PlusPop_Pct'] },
+                                      { key: "5-12", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_5PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_5PlusPop_Pct'] },
+                                      { key: "12-18", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_12PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_12PlusPop_Pct'] },
+                                      { key: "18-65", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_18PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_18PlusPop_Pct'] },
                                       { key: "65+", 'value': stateTrendFips == '_nation' ? ageVaccine["01"]['Series_Complete_65PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_65PlusPop_Pct'] },
 
                                     ]}
@@ -4645,14 +4651,14 @@ const USVaccineTrackerPilot = (props) => {
                               </VictoryChart>
                               <Header.Content style={{ paddingLeft: 0, width: 450 }}>
                                 <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "14pt", lineHeight: "18pt" }}>
-                                  <b>Percentage of COVID-19 Vaccination by Age</b>
+                                  <b>Percent Fully Vaccinated By Age As Of {vaccineDate}</b>
                                 </Header.Content>
                               </Header.Content>
 
                             </div>
                           </Grid.Column>
                           {/* Age line graph starts here */}
-                          <Grid.Column style={{ width: 2000, paddingLeft: 0 }}>
+                          <Grid.Column style={{ width: 1000, paddingLeft: 0 }}>
                             <VictoryChart
                               theme={VictoryTheme.material}
                               animate={{
@@ -4665,7 +4671,9 @@ const USVaccineTrackerPilot = (props) => {
                                   voronoiDimension="x"
                                   // labels={(d)=>"Percent Fully Vaccinated For Age 5-12:" + (d.datum.y).toFixed(1)  }
                                   labels={labelAge}
-                                  labelComponent={<VictoryLabel  textAnchor='middle' />}
+                                  labelComponent={<VictoryTooltip
+                                    style={{ fontWeight: 600, fontFamily: 'lato', fontSize: 20, fill: 'black' }}
+              />}
                                 />
                               }
                               // containerComponent={
@@ -4769,37 +4777,41 @@ const USVaccineTrackerPilot = (props) => {
                               <VictoryAxis
                                 style={{
                                   grid: { background: "#ccdee8" },
-                                  tickLabels: { fontWeight: 400, fontSize: 14, padding: 6 },
+                                  tickLabels: { fontWeight: 400, fontSize: 15, padding: 6 },
                                   color: "#7C99AC"
                                 }}
                                 theme={VictoryTheme.material}
+                                tickFormat={(t) => monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()+"\n"+new Date(t*1000).getFullYear()}
                                 tickValues={[ageSeries["_nation"][0].t,
                                 ageSeries["_nation"][45].t,
-                                ageSeries["_nation"][76].t,
-                                ageSeries["_nation"][106].t,
-                                ageSeries["_nation"][137].t,
+                                //ageSeries["_nation"][76].t,
+                                 ageSeries["_nation"][106].t,
+                                //ageSeries["_nation"][137].t,
                                 ageSeries["_nation"][167].t,
-                                ageSeries["_nation"][198].t,
+                                //ageSeries["_nation"][198].t,
                                 ageSeries["_nation"][229].t,
-                                ageSeries["_nation"][259].t,
+                                //ageSeries["_nation"][259].t,
                                 ageSeries["_nation"][290].t,
-                                ageSeries["_nation"][320].t,
+                                //ageSeries["_nation"][320].t,
                                 ageSeries["_nation"][351].t,
-                                ageSeries["_nation"][382].t,
+                                //ageSeries["_nation"][382].t,
                                 ageSeries["_nation"][410].t,
                                 // ageSeries["_nation"][441].t,
                                 ageSeries["_nation"][ageSeries["_nation"].length - 1].t
                                 ]}
 
-                                tickFormat={caseTickFmt} />
+                                // tickFormat={caseTickFmt} 
+
+                                />
                               <VictoryScatter
                                 data={ageSeries["_nation"].slice(1)}
                                 y="Series_Complete_5PlusPop_Pct"
                                 x="t"
+                                name="Age 5-12"
                                 strokeDasharray="3 4 5 2"
                                 style={{
                                   data: {
-                                    stroke: "black",
+                                    stroke: colorPaletteGraph[4],
                                     width: 50,
                                     strokeWidth: 1,
                                     opacity: 1.4,
@@ -4810,10 +4822,11 @@ const USVaccineTrackerPilot = (props) => {
                                 data={ageSeries["_nation"].slice(1)}
                                 y="Series_Complete_12PlusPop_Pct"
                                 x="t"
+                                name="Age 12-18"
                                 strokeDasharray="3 4 5 2"
                                 style={{
                                   data: {
-                                    stroke: "red",
+                                    stroke: colorPaletteGraph[0],
                                     strokeWidth: 1,
                                     width: 25,
                                     opacity: 2,
@@ -4824,10 +4837,10 @@ const USVaccineTrackerPilot = (props) => {
                                 data={ageSeries["_nation"].slice(1)}
                                 y="Series_Complete_18PlusPop_Pct"
                                 x="t"
-                                strokeDasharray="3 4 5 2"
+                                name="Age 18-65"
                                 style={{
                                   data: {
-                                    stroke: pieChartRace[0],
+                                    stroke: colorPaletteGraph[1],
                                     width: 25,
                                     strokeWidth: 1,
                                     opacity: 1.4,
@@ -4838,10 +4851,11 @@ const USVaccineTrackerPilot = (props) => {
                                 data={ageSeries["_nation"].slice(1)}
                                 y="Series_Complete_65PlusPop_Pct"
                                 x="t"
+                                name="Age 65+"
                                 strokeDasharray="3 4 5 2"
                                 style={{
                                   data: {
-                                    stroke: pieChartRace[1],
+                                    stroke: colorPaletteGraph[3],
                                     width: 25,
                                     strokeWidth: 1,
                                     opacity: 1.4,
@@ -4951,9 +4965,24 @@ const USVaccineTrackerPilot = (props) => {
             },
           ]}
         /> */}
-
+        <VictoryLegend
+  	title="Percent Fully Vaccinated By Age"
+    centerTitle
+    orientation="horizontal"
+    gutter={20}
+    style={{ border: { stroke: "none" }, title: {fontSize: 25 } }}
+    data={[
+      { name: "5-12", symbol: { fill: colorPaletteGraph[4],type:"square"} },
+      { name: "12-18", symbol: { fill: colorPaletteGraph[0],type:"square" } },
+      { name: "18-65", symbol: { fill: colorPaletteGraph[1],type:"square" } },
+      { name: "65+", symbol: { fill: colorPaletteGraph[3],type:"square" } },
+      
+    ]
+    }
+  />
+        
                             </VictoryChart>
-
+                            
                           </Grid.Column>
                         </Grid.Row>
                       </Grid>

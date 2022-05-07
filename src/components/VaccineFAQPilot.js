@@ -3210,12 +3210,6 @@ export default function VaccinesFAQPilot(props) {
                 </Accordion>
               </div>
               {/* new section -------- */}
-
-              <div style={{ height: 5 }}></div>
-              <Header as="h2" style={{ fontWeight: 600 }}>
-                <Header.Content>Boosters, Additional doses</Header.Content>
-              </Header>
-
               <center>
                 {" "}
                 <Waypoint
@@ -3225,6 +3219,13 @@ export default function VaccinesFAQPilot(props) {
                   }}
                 ></Waypoint>
               </center>
+              <div style={{ height: 5 }}></div>
+              <Header as="h2" style={{ fontWeight: 600 }}
+              id='boosters'>
+                <Header.Content>Boosters, Additional doses</Header.Content>
+              </Header>
+
+             
 
               <div style={{ paddingLeft: "2rem", paddingBottom: "0rem" }}>
                 <Accordion fluid styled exclusive={false}>
@@ -3236,6 +3237,7 @@ export default function VaccinesFAQPilot(props) {
                     }}
                     // active={activeIndex === 0}
                     index={49}
+                    
                     onClick={() =>
                       activeIndex.indexOf(49) < 0
                         ? setActiveIndex((activeIndex) => [...activeIndex, 49])
@@ -3380,7 +3382,7 @@ export default function VaccinesFAQPilot(props) {
                         Therefore,{" "}
                         <a
                           style={{ color: "#397AB9" }}
-                          href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
+                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -3427,6 +3429,7 @@ export default function VaccinesFAQPilot(props) {
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
                     index={50}
+                    
                     onClick={() =>
                       activeIndex.indexOf(50) < 0
                         ? setActiveIndex((activeIndex) => [...activeIndex, 50])
@@ -3623,22 +3626,10 @@ export default function VaccinesFAQPilot(props) {
                     active={activeIndex.indexOf(51) > 0}
                   >
                     <p>
-                      Yes. The term “fully vaccinated” refers to getting the
-                      full original vaccine dosage: two shots of either Moderna
-                      or Pfizer-BioNTech or one shot of Johnson & Johnson. You
-                      do not have to get a booster (or a third dose, if you are
-                      immunocompromised) to be considered{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#FAQs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        fully vaccinated.
-                      </a>{" "}
-                      In fact, boosters are only authorized and recommended for
-                      individuals who were originally vaccinated with the
-                      Pfizer-BionNTech vaccine at this point.
+                    It depends on when you were vaccinated. 
+                    The terms “fully vaccinated” or “up to date” refer to getting the full recommended vaccine dosage: two shots of either Moderna or Pfizer-BioNTech or one shot of Johnson & Johnson, plus a booster as recommended. 
+                    If you are not yet due for a booster, then having completed your primary series means you are fully vaccinated. 
+                    If you are due for a booster or you are immunocompromised and have not gotten the additional doses, then you are not considered to be up to date on your COVID-19 vaccine. 
                     </p>
                   </Accordion.Content>
 
@@ -3685,6 +3676,7 @@ export default function VaccinesFAQPilot(props) {
                     }}
                     // active={activeIndex === 0}
                     index={52}
+                    
                     onClick={() =>
                       activeIndex.indexOf(52) < 0
                         ? setActiveIndex((activeIndex) => [...activeIndex, 52])
@@ -3878,9 +3870,9 @@ If you are unsure about which booster to get, you should discuss with your healt
                     active={activeIndex.indexOf(45) > 0}
                   >
                     <p>
-                      Federal regulations do require wearing a mask for anyone{" "}
                       
-                      While Federal regulations no longer require wearing a mask for
+                      
+                      While federal regulations no longer require wearing a mask for
                       {" "} 
                       <a
                         style={{ color: "#397AB9" }}
@@ -3911,7 +3903,7 @@ If you are unsure about which booster to get, you should discuss with your healt
                       If you are traveling{" "}
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/international-travel/index.html"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -3938,7 +3930,7 @@ If you are unsure about which booster to get, you should discuss with your healt
                 Medicine, Division of Infectious Diseases; Emory University
                 Rollins School of Public Health) <br />
                 Maria Sundaram, MSPH, PhD (Postdoctoral Fellow, ICES/ University
-                of Toronto Dalla Lana School of Public Health <br />
+                of Toronto Dalla Lana School of Public Health) <br />
                 Henry M. Wu, MD (Associate Professor, Emory University School of
                 Medicine, Division of Infectious Diseases)
               </p>
