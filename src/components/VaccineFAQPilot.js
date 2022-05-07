@@ -3929,8 +3929,8 @@ If you are unsure about which booster to get, you should discuss with your healt
                 Vincent Marconi, MD (Professor, Emory University School of
                 Medicine, Division of Infectious Diseases; Emory University
                 Rollins School of Public Health) <br />
-                Maria Sundaram, MSPH, PhD (Postdoctoral Fellow, ICES/ University
-                of Toronto Dalla Lana School of Public Health) <br />
+                Maria Sundaram, MSPH PhD (Associate Research Scientist in the Center for Clinical Epidemiology and Population Health at Marshfield Clinic Research Institute)
+                <br />
                 Henry M. Wu, MD (Associate Professor, Emory University School of
                 Medicine, Division of Infectious Diseases)
               </p>
