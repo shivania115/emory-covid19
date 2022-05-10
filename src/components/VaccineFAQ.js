@@ -345,6 +345,50 @@ export default function VaccinesFAQ(props) {
                       .
                     </p>
                     <p
+                    style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        marginBottom: 0,
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    >
+
+                    The vaccines developed by 
+                    <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/comirnaty-and-pfizer-biontech-covid-19-vaccine"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >{" "}Pfizer-BioNTech{" "}
+                      </a>
+                    and 
+                    <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/spikevax-and-moderna-covid-19-vaccine"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        Moderna{" "}
+                      </a>
+                    have received full FDA approval for people aged 18 and older. 
+                    The vaccine developed by 
+                    <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/janssen-covid-19-vaccine"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        Johnson & Johnson{" "}
+                      </a>
+                    is currently available under Emergency Use Authorization.
+                    </p>
+                
+                    <p
                       style={{
                         paddingTop: "1rem",
                         paddingLeft: "0rem",
@@ -456,7 +500,7 @@ export default function VaccinesFAQ(props) {
                         <Table.Body>
                           <Table.Row>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
-                              Approved for individuals aged 12 years and older
+                            Approved for individuals aged 5 years and older
                             </Table.Cell>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
                               Approved for individuals aged 18 years and older
@@ -467,13 +511,24 @@ export default function VaccinesFAQ(props) {
                           </Table.Row>
                           <Table.Row>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
-                              2 doses, 3 weeks apart
+                            2 doses, 3 weeks apart, lower dose for children 5- 11 years old
                             </Table.Cell>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
                               2 doses, 4 weeks apart
                             </Table.Cell>
                             <Table.Cell style={{ lineHeight: "14pt" }}>
                               1 dose
+                            </Table.Cell>
+                          </Table.Row>
+                          <Table.Row>
+                          <Table.Cell style={{ lineHeight: "14pt" }}>
+                          Booster dose for individuals 12 years and older: 5 months after 2nd dose
+                            </Table.Cell>
+                            <Table.Cell style={{ lineHeight: "14pt" }}>
+                            Booster dose for individuals 18 years and older: 5 months after 2nd dose
+                            </Table.Cell>
+                            <Table.Cell style={{ lineHeight: "14pt" }}>
+                            Booster dose for individuals 18 years and over: 2 months after 1st dose
                             </Table.Cell>
                           </Table.Row>
                         </Table.Body>
@@ -986,8 +1041,8 @@ export default function VaccinesFAQ(props) {
                         {" "}
                         currently{" "}
                       </a>
-                      151 vaccines in various phases of testing across the
-                      world. Of these, 50 are in{" "}
+                      178 vaccines in various phases of testing across the
+                      world. Of these, 65 are in{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://covid19.trackvaccines.org/trials-vaccine-testing/#trial-phases"
@@ -998,11 +1053,11 @@ export default function VaccinesFAQ(props) {
                         Phase 3{" "}
                       </a>
                       clinical trials. Phase 3 trials are the large-scale
-                      studies done before a vaccine is approved. There are 22
+                      studies done before a vaccine is approved. There are 33
                       vaccines approved for use in different countries, although
-                      only 2 have been approved for use in the United States
+                      only 3 have been approved for use in the United States
                       under the Food and Drug Administration’s Emergency Use
-                      Authorization and one has been fully approved by the FDA.
+                      Authorization and two have been fully approved by the FDA.
                     </p>
                   </Accordion.Content>
 
@@ -1113,7 +1168,17 @@ export default function VaccinesFAQ(props) {
                       Speed. This collaboration brought together components of
                       the Department of Health and Human Services and the
                       Department of Defense to develop, make and distribute
-                      vaccines as quickly as possible after they were tested for
+                      vaccines as quickly as possible after they were 
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/distributing/steps-ensure-safety.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        tested {" "}
+                      </a>
+                      for
                       safety and effectiveness.
                     </p>
                   </Accordion.Content>
@@ -1185,9 +1250,9 @@ export default function VaccinesFAQ(props) {
                       specific variant. While the available vaccines,
                       particularly the two mRNA vaccines do provide very good
                       protection against severe illness and death, including
-                      against the most common variant, known as the Delta
-                      variant. However, some variants, including the Delta
-                      variant, could still be transmitted to others by people
+                      against the most common variant, known as the Delta and Omicron
+                      variants. However, some variants, including the Delta and Omicron
+                      variants, could still be transmitted to others by people
                       who are vaccinated. As a result,{" "}
                       <a
                         style={{ color: "#397AB9" }}
@@ -1266,10 +1331,10 @@ export default function VaccinesFAQ(props) {
                       Administration issues Emergency Use Authorization only
                       when a panel of doctors agrees that the benefits of the
                       treatment very clearly outweigh the risk. The Food and
-                      Drug Administration issued Emergency Use Authorization of
-                      the COVID-19 vaccine because there are no other treatments
+                      Drug Administration issued Emergency Use Authorization for the 
+                      vaccines against COVID-19 because there are no other treatments
                       available and a panel of doctors decided there was enough
-                      information that the benefits of the vaccine are greater
+                      information that the benefits of the vaccines are greater
                       than the risks.
                     </p>
                   </Accordion.Content>
@@ -3145,12 +3210,6 @@ export default function VaccinesFAQ(props) {
                 </Accordion>
               </div>
               {/* new section -------- */}
-
-              <div style={{ height: 5 }}></div>
-              <Header as="h2" style={{ fontWeight: 600 }}>
-                <Header.Content>Boosters, Additional doses</Header.Content>
-              </Header>
-
               <center>
                 {" "}
                 <Waypoint
@@ -3160,6 +3219,13 @@ export default function VaccinesFAQ(props) {
                   }}
                 ></Waypoint>
               </center>
+              <div style={{ height: 5 }}></div>
+              <Header as="h2" style={{ fontWeight: 600 }}
+              id='boosters'>
+                <Header.Content>Boosters, Additional doses</Header.Content>
+              </Header>
+
+             
 
               <div style={{ paddingLeft: "2rem", paddingBottom: "0rem" }}>
                 <Accordion fluid styled exclusive={false}>
@@ -3171,6 +3237,7 @@ export default function VaccinesFAQ(props) {
                     }}
                     // active={activeIndex === 0}
                     index={49}
+                    
                     onClick={() =>
                       activeIndex.indexOf(49) < 0
                         ? setActiveIndex((activeIndex) => [...activeIndex, 49])
@@ -3188,12 +3255,8 @@ export default function VaccinesFAQ(props) {
                     active={activeIndex.indexOf(49) > 0}
                   >
                     <p>
-                      Right now, the FDA and CDC have authorized and recommended
-                      additional doses of the Pfizer-BioNTech (Comirnaty) or
-                      Moderna vaccines in certain circumstances. While both
-                      terms currently refer to a third shot, there are some
-                      differences in why an “additional dose” or a “booster
-                      dose” are recommended.
+                    Right now, the FDA and CDC have authorized and recommended additional doses of the Pfizer-BioNTech (Comirnaty) or Moderna (Spikevax) vaccines in certain circumstances. 
+                    While both terms currently refer to a third shot, there are some differences in why an “additional dose” or a “booster dose” are recommended.
                     </p>
 
                     <p>
@@ -3225,7 +3288,7 @@ export default function VaccinesFAQ(props) {
                       stronger immune response than they built up from the first
                       two doses. This will provide a similar level of protection
                       in immunocompromised people as in seen in those who are
-                      not immuncompromised. People with compromised immune
+                      not immunocompromised. People with compromised immune
                       systems include those immunocompromised due to certain
                       treatments or medical condition or following{" "}
                       <a
@@ -3234,17 +3297,16 @@ export default function VaccinesFAQ(props) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        organ transplants
+                        organ transplants.
                       </a>{" "}
                       At this time, there are no authorizations or
                       recommendations for additional doses for people who
                       received the Johnson & Johnson/ Janssen vaccine.
                     </p>
                     <p>
-                      <b>A booster shot</b> (i.e. a third dose of ONLY the
-                      Pfizer two-shot vaccine at least 6 months after receiving
-                      the second dose for people who were originally vaccinated
-                      with the Pfizer-BioNTech vaccine) is authorized by{" "}
+                      <b>A booster shot</b> (i.e. another dose of one of the available vaccines at least 5 months after getting a full primary 
+                      series of either the Pfizer-BioNTech or Moderna two-shot vaccines or at least 2 months after the Johnson &Johnson/ Janssen one-shot vaccine) 
+                      is authorized by{" "}
                       <a
                         style={{ color: "#397AB9" }}
                         href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
@@ -3262,28 +3324,20 @@ export default function VaccinesFAQ(props) {
                       >
                         CDC
                       </a>{" "}
-                      for{" "}
+                      for everyone. In this case, the booster counters the decrease in immunity that was developed after becoming fully vaccinated. 
+                      Studies have shown that vaccine-induced protection from COVID-19 illness decreases over time and may also be decreased by newer variants of SARS-CoV-2, the virus that causes COVID-19. 
+                      The reduction in immunity is primarily a reduction in protection from symptomatic COVID-19 illness; however, protection from more serious illness and outcomes does also decrease somewhat over time.
+                       In some 
+                       {" "}
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        certain groups
-                      </a>
-                      , based on their relatively higher risk of contracting
-                      COVID-19 disease and experiencing serious illness. In this
-                      case, the booster counters the decrease in immunity that
-                      was developed after becoming fully vaccinated. Studies
-                      have shown that vaccine-induced protection from COVID-19
-                      illness decreases over time and may also be decreased by
-                      the Delta variant of SARS-CoV-2, the virus that causes
-                      COVID-19. The reduction in immunity is mostly a reduction
-                      in protection from symptomatic COVID-19 illness;
-                      protection from more serious illness and outcomes does not
-                      decrease as much over time. At this time booster shots
-                      have not been authorized by the FDA for either Moderna or
-                      Johnson & Johnson/Janssen vaccines
+                      cases
+                      </a>{" "}
+                       , a second booster is also recommended. 
                     </p>
                   </Accordion.Content>
                   <Accordion.Title
@@ -3308,8 +3362,7 @@ export default function VaccinesFAQ(props) {
                   >
                     <p>
                       <p>
-                        For most people, no. It depends on your health condition
-                        and on the vaccine you received.
+                        For most people, no. It depends on your age, your health condition, and on the vaccine you received.
                       </p>
                       <p>
                         <a
@@ -3321,29 +3374,22 @@ export default function VaccinesFAQ(props) {
                           {" "}
                           The FDA
                         </a>{" "}
-                        reviewed data from several studies that looked at
-                        immunity to COVID-19 after vaccination among people with
-                        weakened immune systems (for example, due to a medical
-                        condition or if you are taking certain medications that
-                        weaken the immune system). The data from those studies
-                        show that the two doses were, in some cases, not enough
-                        to build a high level of immunity against the virus that
-                        causes COVID-19. They also showed that even if they are
-                        fully vaccinated, some immunocompromised people who get
-                        COVID-19 are more likely to transmit the virus to others
-                        and to get seriously sick from the virus. Therefore,{" "}
+                        reviewed data from several studies that looked at immunity to COVID-19 after vaccination among people with weakened immune systems (for example, due to a medical condition or if you are taking certain medications that weaken the immune system). 
+                        The data from those studies show that the two doses of the Pfizer-BioNTech or Moderna vaccines and the one dose of Johnson & Johnson/ Janssen were, in some cases, not enough to build a high level of immunity against the virus that causes COVID-19. 
+                        They also showed that even if they are fully vaccinated, some immunocompromised people who get COVID-19 are more likely to transmit the virus to others and to get seriously sick from the virus. 
+                        </p>
+                        <p>
+                        Therefore,{" "}
                         <a
                           style={{ color: "#397AB9" }}
-                          href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
+                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/expect.html"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           {" "}
                           the FDA authorized
                         </a>{" "}
-                        a 3rd shot of one of the mRNA vaccines (Pfizer-BioNTech
-                        or Moderna) for people with seriously or moderately
-                        suppressed immune systems. CDC now{" "}
+                        and
                         <a
                           style={{ color: "#397AB9" }}
                           href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
@@ -3351,32 +3397,31 @@ export default function VaccinesFAQ(props) {
                           rel="noopener noreferrer"
                         >
                           {" "}
-                          recommends
+                          CDC recommends
                         </a>{" "}
-                        this third dose in certain cases.
-                      </p>
-                      <p>
-                        If you have a condition or are taking medication that{" "}
-                        <a
-                          style={{ color: "#397AB9" }}
-                          href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {" "}
-                          suppresses the immune system
-                        </a>
-                        , you should speak with your healthcare provider about
-                        getting a 3rd dose of the mRNA vaccine you have received
-                        previously (meaning, for example, that if you received
-                        Moderna, you should get a 3rd dose of Moderna). If you
-                        are receiving a 3rd dose, this should happen at least 4
-                        weeks after your 2nd dose.
-                      </p>
-                      <p>
-                        A 3rd dose is not recommended or authorized for any
-                        other group at this time.
-                      </p>
+                        the following additional doses 
+                        to ensure you are fully vaccinated if you are immunocompromised:
+                       </p>
+                       <ul
+                      style={{
+                        paddingLeft: "6rem",
+                        fontSize: "14pt",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      <li>
+                      <b>Children aged 5-11 years</b> who are moderately or severely immunocompromised should get a total of <u>3 doses</u> of Pfizer-BioNTech vaccine spaced <u>3 weeks</u> between doses #1 and #2 and <u>at least 4 weeks</u> between doses #2 and #3.
+                      </li>
+                      <li>
+                      <b>People aged 12 years and older</b> who are moderately or severely immunocompromised and are receiving the Pfizer-BioNTech vaccine should get a total of <u>3 doses</u> spaced <u>3 weeks</u> between doses #1 and #2 and at least <u>4 weeks</u> between doses #2 and #3. They should then get a booster dose <u>at least 3 months</u> after the third dose.
+                      </li>
+                      <li>
+                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and are receiving the Moderna vaccine should get a total of <u>3 doses</u> spaced <u>4 weeks</u> between doses #1 and #2 and at least <u>4 weeks</u> between doses #2 and #3. They should then get a booster dose <u>at least 3 months</u> after the third dose.
+                      </li>
+                      <li>
+                      <b>People aged 18 years and older</b> who are moderately or severely immunocompromised and have received the Johnson & Johnson/Janssen vaccine should get a total of <u>2 doses</u> spaced <u>4 weeks</u> between doses #1 and #2. The second dose should be either the Pfizer-BioNTech or the Moderna vaccine. They should then get a booster dose <u>at least 2 months</u> after the second dose.
+                      </li>
+                    </ul>
                     </p>
                   </Accordion.Content>
 
@@ -3384,6 +3429,7 @@ export default function VaccinesFAQ(props) {
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
                     index={50}
+                    
                     onClick={() =>
                       activeIndex.indexOf(50) < 0
                         ? setActiveIndex((activeIndex) => [...activeIndex, 50])
@@ -3419,11 +3465,11 @@ export default function VaccinesFAQ(props) {
                       >
                         CDC
                       </a>{" "}
-                      for the COVID-19 vaccine developed by Pfizer-BioNTech.
-                      Some people are should get a booster and some may get a
-                      booster.
+                      for all 3 authorized COVID-19 vaccines (developed by Pfizer-BioNTech, Moderna, and Johnson & Johnson/Janssen). 
+                      Anyone at least 18 years of age who received any vaccine should get a booster. 
+                      In addition, anyone at least 12 years of age who received the Pfizer-BioNTech vaccine should get a booster.
                     </p>
-                    <p>
+                    {/* <p>
                       You are recommended to get a booster dose if you fall into
                       one of the following{" "}
                       <a
@@ -3488,7 +3534,71 @@ export default function VaccinesFAQ(props) {
                     <p>
                       If you are not sure if you can or should receive a booster
                       shot, you should discuss with your healthcare provider.
-                    </p>
+                    </p> */}
+                    <p>
+                    The timing of the  
+                    {" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        booster
+                      </a>{" "}is different,
+                     depending on the original vaccine someone received (called “primary series”). 
+                     If you received the Johnson &Johnson/ Janssen vaccine, you should get a booster at least 2 months after your original COVID-19 vaccine.
+                      If you received either the Pfizer-BioNTech or the Moderna COVID-19 vaccine, you should get a booster at least 5 months after the second dose of your primary series. 
+                      You may get a booster of any of the authorized COVID-19 vaccines, no matter which vaccine you received for your primary vaccination series.
+                      </p>
+                      <p>
+                      If you are moderately or severely immunocompromised, you should get a booster at least 3 months after you finish your mRNA vaccine primary series or at least 2 months after you get your additional dose if your first vaccine was the Johnson & Johnson/Janssen vaccine.
+                      </p>
+                      <p>
+                      In some 
+                      {" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                       cases
+                      </a>{" "}
+                      
+                      , it is recommended that you get a second vaccine booster. This includes you if you:
+                      <ul
+                      style={{
+                        paddingLeft: "6rem",
+                        fontSize: "14pt",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      <li>
+                      Are aged 50 years or older <b>and</b> got your first booster 4 months or more ago.
+                      </li>
+                      <li>
+                      Are 
+                      {" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html#mod"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                       moderately or severely immunocompromised
+                      </a>, 12 years or older, <b>and</b> got your first booster 4 months or more ago.
+                      </li>
+                      <li>
+                      Got 2 doses of the Johnson & Johnson/Janssen vaccine 4 months or more ago.
+                      </li>
+                     
+                    </ul>
+                      </p>
+                      <p>
+                      Only second boosters of the two mRNA vaccines (Pfizer-BioNTech or Moderna) are approved.
+                      </p>
+
                   </Accordion.Content>
 
                   <Accordion.Title
@@ -3508,34 +3618,22 @@ export default function VaccinesFAQ(props) {
                     }
                   >
                     <Icon name="dropdown" />
-                    If I have not gotten a vaccine booster, am I still
-                    considered “fully vaccinated”?
+                    If I have not gotten a vaccine booster, 
+                    am I still considered “fully vaccinated” or “up to date” with my vaccines?
                   </Accordion.Title>
                   <Accordion.Content
                     style={{ fontSize: "14pt" }}
                     active={activeIndex.indexOf(51) > 0}
                   >
                     <p>
-                      Yes. The term “fully vaccinated” refers to getting the
-                      full original vaccine dosage: two shots of either Moderna
-                      or Pfizer-BioNTech or one shot of Johnson & Johnson. You
-                      do not have to get a booster (or a third dose, if you are
-                      immunocompromised) to be considered{" "}
-                      <a
-                        style={{ color: "#397AB9" }}
-                        href="(https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#FAQs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        fully vaccinated.
-                      </a>{" "}
-                      In fact, boosters are only authorized and recommended for
-                      individuals who were originally vaccinated with the
-                      Pfizer-BionNTech vaccine at this point.
+                    It depends on when you were vaccinated. 
+                    The terms “fully vaccinated” or “up to date” refer to getting the full recommended vaccine dosage: two shots of either Moderna or Pfizer-BioNTech or one shot of Johnson & Johnson, plus a booster as recommended. 
+                    If you are not yet due for a booster, then having completed your primary series means you are fully vaccinated. 
+                    If you are due for a booster or you are immunocompromised and have not gotten the additional doses, then you are not considered to be up to date on your COVID-19 vaccine. 
                     </p>
                   </Accordion.Content>
 
-                  <Accordion.Title
+                  {/* <Accordion.Title
                     style={{
                       fontSize: "15pt",
                       color: "black",
@@ -3569,7 +3667,48 @@ export default function VaccinesFAQ(props) {
                       other COVID-19 vaccines and guidance will be updated once
                       that has been reviewed by the FDA and CDC.
                     </p>
+                  </Accordion.Content> */}
+                  <Accordion.Title
+                    style={{
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
+                    }}
+                    // active={activeIndex === 0}
+                    index={52}
+                    
+                    onClick={() =>
+                      activeIndex.indexOf(52) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 52])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 52)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    Can I “mix and match” my original vaccine and booster dose?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(52) > 0}
+                  >
+                    <p>
+                    After carefully reviewing the data around getting a booster that matches the original vaccine type people received and one that was from a different manufacturer or a different vaccine type (e.g. Pfizer-BioNTech followed by Johnson & Johnson), 
+                    {" "}<a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                       CDC
+                      </a>{" "} has approved a “mix and match” approach for people who have a preference for a different vaccine from the one they originally received. In fact, CDC does recommend that regardless of which
+
+vaccine someone received originally, they strongly consider getting one of the mRNA vaccines for their booster (either Moderna or Pfizer/BioNTech for individuals 18 and older, Pfizer-BioNTech for those aged 12-17).
+
+If you are unsure about which booster to get, you should discuss with your healthcare provider.
+                    </p>
                   </Accordion.Content>
+
                 </Accordion>
               </div>
 
@@ -3615,30 +3754,33 @@ export default function VaccinesFAQ(props) {
                     active={activeIndex.indexOf(32) > 0}
                   >
                     <p>
-                      Yes.
+                      Yes. COVID-19
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://covid19.emory.edu/_nation"
+                        href="https://covid.cdc.gov/covid-data-tracker/#county-view?list_select_state=all_states&list_select_county=all_counties&data-type=CommunityLevels"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         {" "}
-                        COVID-19 transmission{" "}
+                      community levels{" "}
                       </a>
-                      is very high in communities across the United States right
-                      now and the Delta variant transmits more easily from
-                      person to person. As such, CDC still recommends continuing
-                      to physically distance, wear a face covering, limit
-                      gatherings, and wash your hands thoroughly even once you
-                      are vaccinated, including after receiving both doses for
-                      the two-dose vaccines. Even though increasing numbers of
-                      people across the United States are fully vaccinated as
-                      the pandemic changes and transmission remains high, it is
-                      important that people continue to follow these
-                      precautions. The vaccine is the first part in a “one-two
-                      punch” that also includes physical distancing, wearing a
-                      mask, washing your hands regularly, and staying away from
-                      large gatherings.
+                      and 
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://covid.cdc.gov/covid-data-tracker/#county-view?list_select_state=all_states&list_select_county=all_counties&data-type=Risk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                      transmission levels{" "}
+                      </a>
+                      continue to wax and wane across the United States and some emerging variants transmit more easily from person to person. 
+                      As such, CDC still recommends continuing to physically distance and wear a face covering, especially when in larger gatherings and indoor spaces, even once you are fully vaccinated and have received a booster vaccine dose.
+                      You should also continue to wash your hands thoroughly. 
+                    </p>
+                    <p>
+                    Even though increasing numbers of people across the United States are fully vaccinated as the pandemic changes and community levels of COVID-19 change, it is important that people continue to follow these precautions. 
+                    The vaccine is the first part in a “one-two punch” that also includes physical distancing, wearing a mask, washing your hands regularly, and minimizing large gatherings.
                     </p>
                   </Accordion.Content>
 
@@ -3663,21 +3805,29 @@ export default function VaccinesFAQ(props) {
                     active={activeIndex.indexOf(33) > 0}
                   >
                     <p>
-                      You may not need to quarantine, but it depends on your
-                      situation. Currently,{" "}
+                      You may not need to quarantine, but it 
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html#"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        COVID-19 recommendations
+                        {" "}
+                        depends{" "}
                       </a>
-                      are that you should wear a mask indoors in public for 14
-                      days after you are exposed or until you get a negative
-                      COVID-19 test. You should also get tested 3-5 days after
-                      your exposure, even if you do not have any symptoms. If
-                      your test is positive, you should isolate for 10 days.
+                      on your situation. Currently, COVID-19 recommendations are slightly different whether you are fully vaccinated (meaning that you have also received a booster) or not.
+                    </p>
+                    <p>
+                    If you are not fully vaccinated (meaning that you have received your primary vaccine series but have not received a booster vaccine dose or that you have not been vaccinated), you should stay home and quarantine for at least 5 days after you are exposed. You also should not travel during those 5 days. 
+                    </p>
+                    <p>
+                    If you are fully vaccinated (including receiving appropriate booster doses), you do not need to quarantine unless you develop COVID-19 symptoms.
+                    </p>
+                    <p>
+                    <u>Whether you are fully vaccinated or not,</u> you should wear a mask indoors when around others or in public for 10 days after you are exposed or until you get a negative COVID-19 test. You should also avoid traveling and, if you do, take precautions to protect others. If you develop symptoms, you need to isolate from others and get tested as soon as you can. 
+                    </p>
+                    <p>
+                    Everyone who has been exposed to someone with COVID-19 should get tested  at least 5 days after exposure, even if you do not have any symptoms. If your test is positive, you should quarantine for 5 days.
                     </p>
                     {/* <ol style={{ paddingLeft: '4rem', lineHeight: "150%" }}>
                       <li>
@@ -3712,7 +3862,7 @@ export default function VaccinesFAQ(props) {
                     }
                   >
                     <Icon name="dropdown" />
-                    If I travel after I am fully vaccinated, do I still need to
+                    If I travel after I am fully vaccinated (including a booster dose), do I still need to
                     wear a mask or quarantine?
                   </Accordion.Title>
                   <Accordion.Content
@@ -3720,20 +3870,19 @@ export default function VaccinesFAQ(props) {
                     active={activeIndex.indexOf(45) > 0}
                   >
                     <p>
-                      Federal regulations do require wearing a mask for anyone{" "}
+                      
+                      
+                      While federal regulations no longer require wearing a mask for
+                      {" "} 
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/face-masks-public-transportation.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        traveling
-                      </a>{" "}
-                      on any form of public transport, regardless of vaccination
-                      status. This includes: bus, plane, train, subways, taxis,
-                      ride-shares, boats, ships, trolleys, and cable cars. It
-                      also includes school buses and indoor transportation hubs
-                      such as airports, train stations, and subways stations.
+                        travel
+                      </a>{" "} 
+                      , either in transportation hubs or on public transport, CDC still recommends mask wearing in those settings.
                     </p>
                     <p>
                       If you are{" "}
@@ -3754,7 +3903,7 @@ export default function VaccinesFAQ(props) {
                       If you are traveling{" "}
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/international-travel/index.html"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -3780,8 +3929,8 @@ export default function VaccinesFAQ(props) {
                 Vincent Marconi, MD (Professor, Emory University School of
                 Medicine, Division of Infectious Diseases; Emory University
                 Rollins School of Public Health) <br />
-                Maria Sundaram, MSPH, PhD (Postdoctoral Fellow, ICES/ University
-                of Toronto Dalla Lana School of Public Health <br />
+                Maria Sundaram, MSPH PhD (Associate Research Scientist in the Center for Clinical Epidemiology and Population Health at Marshfield Clinic Research Institute)
+                <br />
                 Henry M. Wu, MD (Associate Professor, Emory University School of
                 Medicine, Division of Infectious Diseases)
               </p>
