@@ -673,7 +673,10 @@ const SideRaceBarChart = (props) => {
         props.fips == "_nation"
           ? props.demogData["vaccineRace"][0]["Multiracial"][0][
           "seriesCompletePopPctKnown"
-          ]
+          ]+ (props.demogData["vaccineRace"][0]["Unknown"][0][
+            "seriesCompletePopPctKnown"
+            ]==-9999?0:props.demogData["vaccineRace"][0]["Unknown"][0][
+              "seriesCompletePopPctKnown"])
           : props.VaccineData[props.fips][0]["Multiple/Other"][0][
             "percentVaccinated"
           ] === -9999
