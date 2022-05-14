@@ -4978,7 +4978,7 @@ const USVaccineTrackerPilot = (props) => {
     centerTitle
     orientation="horizontal"
     gutter={20}
-    style={{ border: { stroke: "none" }, title: {fontSize: 25 } }}
+    style={{ border: { stroke: "none" }, title: {fontSize: 25 }}}
     data={[
       { name: "5-12", symbol: { fill: colorPaletteGraph[4],type:"square"} },
       { name: "12-18", symbol: { fill: colorPaletteGraph[0],type:"square" } },
