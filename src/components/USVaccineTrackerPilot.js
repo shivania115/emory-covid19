@@ -4613,7 +4613,9 @@ const USVaccineTrackerPilot = (props) => {
                           <Grid.Column >
                           <Header.Content style={{ paddingLeft: 0, width: 450 }}>
                                 <Header.Content style={{ fontWeight: 300, paddingRight:10, paddingTop: 20, paddingBottom: 28, fontSize: "13pt", lineHeight: "18pt" }}>
-                                  <b>Percent Fully Vaccinated against COVID-19 By Age As Of {vaccineDate} In {trendStateName}</b>
+                                  <b>Percent Fully Vaccinated against COVID-19</b>
+                                  <br></br>
+                                  <b>By Age As Of {vaccineDate} In {trendStateName}</b>
                               
                                 </Header.Content>
                               </Header.Content>
@@ -4621,7 +4623,7 @@ const USVaccineTrackerPilot = (props) => {
 
                               <VictoryChart
                                 theme={VictoryTheme.material}
-                                width={320}
+                                width={340}
                                 height={300}
                                 domainPadding={25}
                                 minDomain={{ y: props.ylog ? 1 : 0 }}
@@ -4629,8 +4631,8 @@ const USVaccineTrackerPilot = (props) => {
                                 style={{ fontSize: "14pt" }}
                                 containerComponent={<VictoryContainer responsive={false} />}
                               >
-                                <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "20px" }, tickLabels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' } }} />
-                                <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, tickLabels: { fontSize: "20px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
+                                <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "16px" }, tickLabels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' } }} />
+                                <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, tickLabels: { fontSize: "16px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
                                 <VictoryGroup offset={0}>
                                   <VictoryBar
                                     horizontal
@@ -4643,7 +4645,7 @@ const USVaccineTrackerPilot = (props) => {
                                       { key: "65+", 'value': stateTrendFips == '_nation' ? ageVaccine["_nation"]['Series_Complete_65PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_65PlusPop_Pct'] },
 
                                     ]}
-                                    labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }} />}
+                                    labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000" }} />}
                                     style={{
                                       data: {
                                         fill: casesColor[1]
@@ -4978,7 +4980,7 @@ const USVaccineTrackerPilot = (props) => {
     centerTitle
     orientation="horizontal"
     gutter={20}
-    style={{ border: { stroke: "none" }, title: {fontSize: 25 }}}
+    style={{ marginBottom:30,border: { stroke: "none" }, labels:{fontSize:20},title: {fontSize: 60 }}}
     data={[
       { name: "5-12", symbol: { fill: colorPaletteGraph[4],type:"square"} },
       { name: "12-18", symbol: { fill: colorPaletteGraph[0],type:"square" } },
