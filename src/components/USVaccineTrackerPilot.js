@@ -4611,14 +4611,14 @@ const USVaccineTrackerPilot = (props) => {
                         <Grid.Row columns={2} style={{ width: 1100 }}>
 
                           <Grid.Column >
-                          <Header.Content style={{ paddingLeft: 0, width: 450 }}>
+                         
                                 <Header.Content style={{ fontWeight: 300, paddingRight:10, paddingTop: 20, paddingBottom: 28, fontSize: "13pt", lineHeight: "18pt" }}>
                                   <b>Percent Fully Vaccinated against COVID-19</b>
                                   <br></br>
                                   <b>By Age As Of {vaccineDate} In {trendStateName}</b>
                               
                                 </Header.Content>
-                              </Header.Content>
+                           
                             <div style={{ paddingLeft: "0em", paddingRight: "0em" }}>
 
                               <VictoryChart
@@ -4645,7 +4645,7 @@ const USVaccineTrackerPilot = (props) => {
                                       { key: "65+", 'value': stateTrendFips == '_nation' ? ageVaccine["_nation"]['Series_Complete_65PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_65PlusPop_Pct'] },
 
                                     ]}
-                                    labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "16px", fill: "#000000" }} />}
+                                    labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "18px", fill: "#000000" }} />}
                                     style={{
                                       data: {
                                         fill: casesColor[1]
@@ -4657,18 +4657,84 @@ const USVaccineTrackerPilot = (props) => {
 
                                 </VictoryGroup>
                               </VictoryChart>
-                            
+                              <Accordion
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 500,
+                      paddingTop: 7,
+                      paddingLeft: 0,
+                      fontSize: "12px",
+
+                    }}
+                  >
+                    <ul>
+                      <li>Data were obtained from the{" "}
+
+                        <a
+                          href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          CDC
+                        </a>
+                        , on {vaccineDate}<br />
+                      </li>
+                      <li>
+                        Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base
+                      </li>
+                      <li>
+                      Each bar represents the percentage of people who are fully vaccination (primary doses) in the specified age group as of {vaccineDate}.
+                      </li>
+
+                    </ul>
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
 
                             </div>
                           </Grid.Column>
                           {/* Age line graph starts here */}
                     
                           <Grid.Column style={{ width: 1000, paddingLeft: 0 }}>
-                          <Header.Content style={{ paddingLeft: 0, width: 450 }}>
-                                <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "13pt", lineHeight: "18pt" }}>
+                     
+                                <Header.Content style={{
+                                     fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "13pt", lineHeight: "18pt" }}>
                                   <b>Trends in Vaccination by Age in {trendStateName}</b>
                                 </Header.Content>
-                              </Header.Content>
+                            
+                              <div style={{ paddingLeft: "0em", paddingRight: "0em" }}>
                             <VictoryChart
                              
                               theme={VictoryTheme.material}
@@ -4980,7 +5046,7 @@ const USVaccineTrackerPilot = (props) => {
     centerTitle
     orientation="horizontal"
     gutter={20}
-    style={{ marginBottom:30,border: { stroke: "none" }, labels:{fontSize:20},title: {fontSize: 60 }}}
+    style={{ marginBottom:30,border: { stroke: "none" }, labels:{fontSize:25},title: {fontSize: 60 }}}
     data={[
       { name: "5-12", symbol: { fill: colorPaletteGraph[4],type:"square"} },
       { name: "12-18", symbol: { fill: colorPaletteGraph[0],type:"square" } },
@@ -4992,11 +5058,72 @@ const USVaccineTrackerPilot = (props) => {
   />
         
                             </VictoryChart>
-                            <Header.Content style={{ paddingLeft: 0, width: 450 }}>
-                                <Header.Content style={{ fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "9pt", lineHeight: "18pt" }}>
-                                  <b>Percent Fully Vaccinated against COVID-19 By Age As Of {vaccineDate}</b>
-                                </Header.Content>
-                              </Header.Content>
+                            <Accordion
+          id="race"
+          style={{
+            paddingTop: 0,
+            paddingLeft: 30,
+            paddingBottom: 15,
+          }}
+          defaultActiveIndex={1}
+          panels={[
+            {
+              key: "acquire-dog",
+              title: {
+                content: (
+                  <u
+                    style={{
+                      fontFamily: "lato",
+                      fontSize: "15px",
+                      color: "#397AB9",
+                    }}
+                  >
+                    About the data
+                  </u>
+                ),
+                icon: "dropdown",
+              },
+              content: {
+                content: (
+                  <Header.Content
+                    style={{
+                      fontWeight: 500,
+                      paddingTop: 7,
+                      paddingLeft: 0,
+                      fontSize: "12px",
+
+                    }}
+                  >
+                    <ul>
+                      <li>Data were obtained from the{" "}
+
+                        <a
+                          href="https://covid.cdc.gov/covid-data-tracker/#vaccination-demographic"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          CDC
+                        </a>
+                        , on {vaccineDate}<br />
+                      </li>
+                      <li>
+                        Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base
+                      </li>
+                      <li>
+                        The lines show the percentage of the US population fully vaccinated that belongs to the specific age group over time.
+                      </li>
+
+                    </ul>
+                    <br />
+                    {/* <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/> */}
+                  </Header.Content>
+                ),
+              },
+            },
+          ]}
+        />
+        </div>
                           </Grid.Column>
                         </Grid.Row>
                       </Grid>
