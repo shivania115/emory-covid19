@@ -355,6 +355,12 @@ useEffect(()=>{
     data[487].t,
     data[518].t,
     data[548].t,
+    data[579].t,
+    data[609].t,
+    data[640].t,
+    data[671].t,
+    data[699].t,
+    data[730].t,
     data[data.length-1].t]);
   }else if(chartNo1===0 || chartNo2===2) {
     setCaseTicks([data[0].t,
@@ -376,6 +382,12 @@ useEffect(()=>{
     data[487].t,
     data[518].t,
     data[548].t,
+    data[579].t,
+    data[609].t,
+    data[640].t,
+    data[671].t,
+    data[699].t,
+    data[730].t,
     data[data.length-1].t]);
     setHeaderTime('');
     setDisabled(true);
