@@ -116,7 +116,9 @@ const colorPalette = [
   "#99528c",
   "#633c70",
 ];
-
+const monthNames = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
+  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+];
 const mortalityColor = [
   "#0270A1",
   "#024174"
@@ -2857,6 +2859,7 @@ const USVaccineTracker= (props) => {
 
               />
                       <VictoryChart
+                      theme={VictoryTheme.material}
                         containerComponent={
                           <VictoryVoronoiContainer
                           
@@ -2905,25 +2908,26 @@ const USVaccineTracker= (props) => {
                         <VictoryAxis
                          style={{
                           grid: { background: "#ccdee8" },
-                        tickLabels: { fontWeight:400,fontSize: 14, padding: 6},
+                        tickLabels: { fontWeight:400,fontSize: 12, padding: 6},
                         color: "#7C99AC"
                     }}
                         tickValues={[stateVaccAveg["_nation"][0].distT,
                         stateVaccAveg["_nation"][4].distT,
-                        stateVaccAveg["_nation"][7].distT,
+                        // stateVaccAveg["_nation"][7].distT,
                         stateVaccAveg["_nation"][10].distT,
-                        stateVaccAveg["_nation"][13].distT,
+                        // stateVaccAveg["_nation"][13].distT,
                         stateVaccAveg["_nation"][16].distT,
-                        stateVaccAveg["_nation"][19].distT,
+                        // stateVaccAveg["_nation"][19].distT,
                         stateVaccAveg["_nation"][22].distT,
-                        stateVaccAveg["_nation"][24].distT,
-                        stateVaccAveg["_nation"][27].distT,
+                        // stateVaccAveg["_nation"][24].distT,
+                        // stateVaccAveg["_nation"][27].distT,
                         stateVaccAveg["_nation"][30].distT,
-                        stateVaccAveg["_nation"][33].distT,
+                        stateVaccAveg["_nation"][35].distT,
+                        stateVaccAveg["_nation"][41].distT,
                         stateVaccAveg["_nation"][stateVaccAveg["_nation"].length-1].distT
                         ]}
         
-                          tickFormat={caseTickFmt} /> 
+                        tickFormat={(t) => monthNames[new Date(t*1000).getMonth()] + " " +  new Date(t*1000).getDate()+"\n"+new Date(t*1000).getFullYear()} /> 
                           <VictoryLine
                           data={stateVaccAveg["_nation"].slice(1)}
                           y="percentVaccinatedDose2_avg7"

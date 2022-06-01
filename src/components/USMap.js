@@ -772,7 +772,10 @@ export default function USMap(props) {
         var min = 100
         _.each(x, d => {
           if (d[metric] > max && d.fips.length === 5) {
-            max = d[metric]
+            max = d[metric];
+            console.log(metric);
+            console.log(d.fips);
+            console.log(max);
           } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0) {
             min = d[metric]
           }
