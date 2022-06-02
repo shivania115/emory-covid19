@@ -4705,9 +4705,7 @@ const USVaccineTrackerPilot = (props) => {
                         </a>
                         , on {vaccineDate}<br />
                       </li>
-                      <li>
-                        Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base
-                      </li>
+                      
                       <li>
                       Each bar represents the percentage of people who are fully vaccination (primary doses) in the specified age group as of {vaccineDate}.
                       </li>
@@ -5106,9 +5104,7 @@ const USVaccineTrackerPilot = (props) => {
                         </a>
                         , on {vaccineDate}<br />
                       </li>
-                      <li>
-                        Population estimates for all territories and protectorates (excluding Puerto Rico) is from the 2020 US Census International Data Base
-                      </li>
+                     
                       <li>
                         The lines show the percentage of the US population fully vaccinated that belongs to the specific age group over time.
                       </li>
