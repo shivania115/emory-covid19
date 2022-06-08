@@ -4164,34 +4164,8 @@ const USVaccineTrackerPilot = (props) => {
                                         {" "}
                                         {"Distributed on " + vaccineDate}{" "}
                                       </Table.HeaderCell>
-                                      <Table.HeaderCell
-                                        style={{
-                                          fontSize: "14px",
-                                          fontWeight: 600,
-                                        }}
-                                      >
-                                        {" "}
-                                        {stateMapFips === "_nation"
-                                          ? ""
-                                          : numberWithCommas(
-                                            vaccineData[stateMapFips][
-                                              "Dist_new"
-                                            ].toFixed(0)
-                                          )}{" "}
-                                      </Table.HeaderCell>
-                                      <Table.HeaderCell
-                                        style={{
-                                          fontSize: "14px",
-                                          fontWeight: 600,
-                                        }}
-                                      >
-                                        {" "}
-                                        {numberWithCommas(
-                                          vaccineData["_nation"][
-                                            "Dist_new"
-                                          ].toFixed(0)
-                                        )}{" "}
-                                      </Table.HeaderCell>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {stateMapFips === "_nation" ? "" : (vaccineData[stateMapFips]["Dist_new"]?numberWithCommas(vaccineData[stateMapFips]["Dist_new"].toFixed(0)):"Not Updated")} </Table.HeaderCell>
+                                      <Table.HeaderCell style={{ fontSize: '14px', fontWeight: 600 }}> {vaccineData[stateMapFips]["Dist_new"]?numberWithCommas(vaccineData["_nation"]["Dist_new"].toFixed(0)):"Not Updated"} </Table.HeaderCell>
                                     </Table.Row>
                                   </Table.Header>
                                 </Table>
