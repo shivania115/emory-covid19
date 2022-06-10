@@ -2891,9 +2891,10 @@ const USVaccineTracker= (props) => {
     style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
     data={activity?[
       { name: "National Average", symbol: { fill: "black",type:"square"} },
-      { name: trendHoverName, symbol: { fill: colorPaletteGraph[4],type:"square" } },
-    ]:
-    [{ name: "National Average", symbol: { fill: "black",type:"square"} }]
+      { name: trendHoverName, symbol: { fill: colorPaletteGraph[4],type:"square" } } ]:
+      (trendStateName === "The United States" ? [{ name: "National Average", symbol: { fill: "black",type:"square"} }]: [
+      { name: "National Average", symbol: { fill: "black",type:"square"} },
+      { name: trendStateName, symbol: { fill: colorPaletteGraph[4],type:"square" } } ])
     }
   />
                         <VictoryAxis dependentAxis crossAxis
