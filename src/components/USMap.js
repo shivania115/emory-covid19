@@ -1020,7 +1020,7 @@ export default function USMap(props) {
   if (data && allTS && metric && raceData) {
     // console.log(isJson(JSON.stringify(data)));
     // console.log(data);
-
+console.log(allTS['_nation'][allTS['_nation'].length - 1].percent14dayDailyCases.toFixed(0));
     return (
       <HEProvider>
         <div>
