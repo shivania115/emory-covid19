@@ -4130,11 +4130,17 @@ export default function NationalReport(props) {
                         </Header.Subheader>
                       <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
+                  
+                          <Grid.Column style={{paddingLeft:0}}>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              Community Vulnerability Ranking <br/>
+                              by County
+                              </Header.Content>
+                              </Header>      
                             <div >
                               <br/>
-
+                           
                               <svg width="260" height="80">
                                 
                                 {_.map(legendSplitccvi, (splitpoint, i) => {
@@ -4160,15 +4166,15 @@ export default function NationalReport(props) {
                                 <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
 
-                                <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
+                                {/* <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text> */}
                               
 
                               </svg>
 
                               <br/><br/><br/>
-                              
+                                                  
 
                               <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/ccvi.png' />            
 
@@ -4363,8 +4369,13 @@ export default function NationalReport(props) {
 
                       {ccvi && <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
+                          <Grid.Column style={{ paddingLeft:0}}>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              Population in Poverty <br/>
+                              by County
+                              </Header.Content>
+                              </Header>    
                             <div >
                               
                               <svg width="260" height="80">
@@ -4391,10 +4402,6 @@ export default function NationalReport(props) {
                                 <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
                                 <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
-
-                                <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
                               
 
                               </svg>
@@ -4621,8 +4628,13 @@ export default function NationalReport(props) {
                     
                       {poverty && <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
+                          <Grid.Column style={{ paddingLeft:0}}>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                             Metropolitan Status <br/>
+                             By County
+                              </Header.Content>
+                              </Header>    
                             
 
                             <div >
@@ -4641,10 +4653,6 @@ export default function NationalReport(props) {
                                   return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
-
-                                <rect x={230} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={252} y={30} style={{fontSize: '0.8em'}}> None </text>
-                                <text x={252} y={40} style={{fontSize: '0.8em'}}> Reported </text>
                               
 
                               </svg>
@@ -4904,9 +4912,9 @@ export default function NationalReport(props) {
                                 })} 
 
 
-                                <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                                {/* <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
                                 <text x={152} y={30} style={{fontSize: '0.8em'}}> None </text>
-                                <text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text>
+                                <text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text> */}
 
 
                                 </svg>
@@ -5123,8 +5131,13 @@ export default function NationalReport(props) {
                       
                       {region && <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
+                          <Grid.Column style={{paddingLeft:0}}>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                            African American Population <br/>
+                             By County
+                              </Header.Content>
+                              </Header>    
                             <div >
                               
                               <svg width="260" height="80">
@@ -5152,9 +5165,7 @@ export default function NationalReport(props) {
                                 <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
 
-                                <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                            
                               
 
                               </svg>
@@ -5383,8 +5394,13 @@ export default function NationalReport(props) {
 
                       {black && <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
+                          <Grid.Column style={{paddingLeft:0}}>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                            Residentiakl Segregation <br/>
+                             By County
+                              </Header.Content>
+                              </Header>    
                             <div >
                               
                               <svg width="260" height="80">
@@ -5643,7 +5659,12 @@ export default function NationalReport(props) {
                       {Comorb && <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
                           <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
-
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                            Any Underlying Comorbidity <br/>
+                             By County
+                              </Header.Content>
+                              </Header>    
                             <div >
                               
                               <svg width="260" height="80">
@@ -5671,9 +5692,7 @@ export default function NationalReport(props) {
                                 <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
 
-                                <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                        
                               
 
                               </svg>
