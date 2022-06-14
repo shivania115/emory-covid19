@@ -5428,9 +5428,9 @@ export default function NationalReport(props) {
                                 <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
 
 
-                                <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
                                 <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
-                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text>
+                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text> */}
                               
 
                               </svg>
