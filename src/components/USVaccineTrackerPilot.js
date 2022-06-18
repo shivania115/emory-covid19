@@ -4584,28 +4584,28 @@ const USVaccineTrackerPilot = (props) => {
                             </center> */}
                         <Grid.Row columns={2} style={{ width: 1100 }}>
 
-                          <Grid.Column >
+                          <Grid.Column>
                          
                                 <Header.Content style={{ fontWeight: 300, paddingRight:10, paddingTop: 20, paddingBottom: 28, fontSize: "13pt", lineHeight: "18pt" }}>
-                                  <b>Percent Fully Vaccinated against COVID-19</b>
+                                  <b>Percent fully vaccinated against COVID-19</b>
                                   <br></br>
-                                  <b>By Age As Of {vaccineDate} In {trendStateName}</b>
+                                  <b>by age as Of {vaccineDate} in {trendStateName}</b>
                               
                                 </Header.Content>
                            
-                            <div style={{ paddingLeft: "0em", paddingRight: "0em" }}>
+                            <div style={{ paddingLeft: "0em", paddingRight: "0em" ,marginRight:90}}>
 
                               <VictoryChart
                                 theme={VictoryTheme.material}
-                                width={340}
-                                height={300}
+                                width={400}
+                                height={320}
                                 domainPadding={25}
                                 minDomain={{ y: props.ylog ? 1 : 0 }}
-                                padding={{ left: 80, right: 10, top: 50, bottom: 1 }}
-                                style={{ fontSize: "14pt" }}
+                                padding={{ left: 70, right: 10, top: 30, bottom: 1 }}
+                                style={{ fontSize: "12pt" }}
                                 containerComponent={<VictoryContainer responsive={false} />}
                               >
-                                <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "16px" }, tickLabels: { fontSize: "20px", fill: '#000000', fontFamily: 'lato' } }} />
+                                <VictoryAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, labels: { fill: '#000000', fontSize: "16px" }, tickLabels: { fontSize: "18px", fill: '#000000', fontFamily: 'lato' } }} />
                                 <VictoryAxis dependentAxis style={{ ticks: { stroke: "#000000" }, axis: { stroke: "#000000" }, grid: { stroke: "transparent" }, tickLabels: { fontSize: "16px", fill: '#000000', padding: 10, fontFamily: 'lato' } }} />
                                 <VictoryGroup offset={0}>
                                   <VictoryBar
@@ -4637,6 +4637,7 @@ const USVaccineTrackerPilot = (props) => {
             paddingTop: 0,
             paddingLeft: 30,
             paddingBottom: 15,
+            marginTop:15
           }}
           defaultActiveIndex={1}
           panels={[
@@ -4649,6 +4650,7 @@ const USVaccineTrackerPilot = (props) => {
                       fontFamily: "lato",
                       fontSize: "15px",
                       color: "#397AB9",
+              
                     }}
                   >
                     About the data
@@ -4681,7 +4683,7 @@ const USVaccineTrackerPilot = (props) => {
                       </li>
                       
                       <li>
-                      Each bar represents the percentage of people who are fully vaccination (primary doses) in the specified age group as of {vaccineDate}.
+                      Each bar represents the percentage of people who are fully vaccinated (all doses in the primary series) in the specified age group as of {vaccineDate}.
                       </li>
 
                     </ul>
@@ -4704,11 +4706,13 @@ const USVaccineTrackerPilot = (props) => {
                                 <Header.Content style={{
                                      fontWeight: 300, paddingTop: 20, paddingBottom: 28, fontSize: "13pt", lineHeight: "18pt" }}>
                                   <b>Trends in Vaccination by Age in {trendStateName}</b>
+                                  <br></br>
+                                  <br></br>
                                 </Header.Content>
                             
                               <div style={{ paddingLeft: "0em", paddingRight: "0em" }}>
                             <VictoryChart
-                             
+                             padding={{ left: 100, right: 10, top: 50, bottom: 100 }}
                               theme={VictoryTheme.material}
                               animate={{
                                 duration: 2000,
@@ -4725,52 +4729,9 @@ const USVaccineTrackerPilot = (props) => {
               />}
                                 />
                               }
-                              // containerComponent={
-                              //   <VictoryVoronoiContainer
-                              //     responsive={false}
-                              //     flyoutStyle={{ fill: "white" }}
-                              //     labels={() =>
-                              //       activity
-                              //         ? `${trendHoverName}\n` +
-                              //         `Date: ${new Date(
-                              //           ageSeries[stateTrendFips][
-                              //             ageSeries[stateTrendFips].length - 1
-                              //           ].t * 1000
-                              //         ).toLocaleDateString()}\n` +
-                              //         `Percent Fully Vaccinated: ${ageSeries[
-                              //           stateTrendFips
-                              //         ][
-                              //           ageSeries[stateTrendFips].length - 1
-                              //         ].Series_Complete_5PlusPop_Pct.toFixed(
-                              //           0
-                              //         )} %\n`
-                              //         : ""
-                              //     }
-                              //     labelComponent={
-                              //       <VictoryTooltip
-                              //         orientation="top"
-                              //         style={{
-                              //           fontWeight: 600,
-                              //           fontFamily: "lato",
-                              //           fontSize: 14,
-                              //           fill: "white",
-                              //         }}
-                              //         constrainToVisibleArea
-                              //         labelComponent={
-                              //           <VictoryLabel textAnchor="middle" />
-                              //         }
-                              //         flyoutStyle={{
-                              //           fill: "black",
-                              //           fillOpacity: 0.75,
-                              //           stroke: "white",
-                              //           strokeWidth: 1,
-                              //         }}
-                              //       />
-                              //     }
-                              //   />
-                              // }
-                              width={630}
-                              height={500}
+                 
+                              width={730}
+                              height={600}
                             >
                               {/* <VictoryLegend
                                   x={125}
@@ -4812,11 +4773,11 @@ const USVaccineTrackerPilot = (props) => {
                                 tickCount={5}
                                 style={{
                                   tickLabels: {
-                                    fontWeight: 500,
-                                    fontSize: 17,
-                                    padding: 5,
+                                    fontSize: "28px", padding: 10, fontFamily: 'lato' 
                                   },
+                                 
                                 }}
+                               
                                 theme={VictoryTheme.material}
                                 tickFormat={(y) =>
                                   (Math.round(y, 2) === 0.0 ? " " : y) + "%"
@@ -4826,7 +4787,7 @@ const USVaccineTrackerPilot = (props) => {
                               <VictoryAxis
                                 style={{
                                   grid: { background: "#ccdee8" },
-                                  tickLabels: { fontWeight: 400, fontSize: 15, padding: 6 },
+                                  tickLabels: { fontWeight: 400, fontSize: 18, padding: 6 },
                                   color: "#7C99AC"
                                 }}
                                 theme={VictoryTheme.material}
@@ -4846,6 +4807,7 @@ const USVaccineTrackerPilot = (props) => {
                                 //ageSeries["_nation"][382].t,
                                 ageSeries["_nation"][410].t,
                                 // ageSeries["_nation"][441].t,
+                                ageSeries['_nation'][471].t,
                                 ageSeries["_nation"][ageSeries["_nation"].length - 1].t
                                 ]}
 
@@ -5080,7 +5042,7 @@ const USVaccineTrackerPilot = (props) => {
                       </li>
                      
                       <li>
-                        The lines show the percentage of the US population fully vaccinated that belongs to the specific age group over time.
+                      Each line shows the percentage of people in {trendStateName} who are fully vaccinated (all doses in the primary series) in the specified age group over time.
                       </li>
 
                     </ul>
