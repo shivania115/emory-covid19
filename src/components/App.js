@@ -24,6 +24,7 @@ import GDPHDataSources from "./GDPH/DataSources";
 import { StitchAuthProvider, useStitchAuth } from "./StitchAuth";
 import USMapPilot from "./USMapPilot";
 // import USMapPilot from "./USMapPilot";
+import NationalReportPilot from "./NationalReportPilot";
 import NationalReport from "./NationalReport";
 import Variant from "./Variant";
 import OtherTools from "./OtherTools";
@@ -73,10 +74,13 @@ function AppUI() {
           </Route>
           <Route path='/Georgia' component={GDPHStateMap} />
 
-
+          
           {/* Main urls */}
           <Route path='/national-report'>
             <NationalReport />
+          </Route>
+          <Route path="/national-report123321">
+          <NationalReportPilot/>
           </Route>
           <Route path='/variants'>
              <Variant/>
