@@ -4134,36 +4134,35 @@ export default function NationalReportPilot(props) {
                           <Grid.Column style={{paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              Community Vulnerability Ranking <br/>
+                              Community Vulnerability Ranking 
                               by County
                               </Header.Content>
                               </Header>      
                             <div >
-                              <br/>
                            
-                              <svg width="260" height="80">
+                              <svg width="260" height="80" style={{paddingTop:0,marginTop:0}}>
                                 
                                 {_.map(legendSplitccvi, (splitpoint, i) => {
                                   if(legendSplitccvi[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
                                   }else if(legendSplitccvi[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitccvi[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinccvi}</text>
-                                <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxccvi}</text>
+                                <text x={50} y={30} style={{fontSize: '0.6em'}}>{legendMinccvi}</text>
+                                <text x={170} y={30} style={{fontSize: '0.6em'}}>{legendMaxccvi}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+20*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                                <text x={50} y={74} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.6em'}}>High</text>
 
 
                                 {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
@@ -4173,15 +4172,55 @@ export default function NationalReportPilot(props) {
 
                               </svg>
 
-                              <br/><br/><br/>
+
                                                   
 
-                              <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/ccvi.png' />            
+                              <Image width='550' height='250' style = {{paddingLeft: 0,paddingTop:0}} src='/NationalReportImages/ccvi2.png' />            
+                              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Cases by <br/> Community Vulnerability Index
+                              </Header.Content>
+                            </Header>
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={180}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                    data={[
+                                          {key: nationalBarChart['caserate'][0]['ccvi'][0]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][0]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
+                                          {key: nationalBarChart['caserate'][0]['ccvi'][1]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][1]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
+                                          {key: nationalBarChart['caserate'][0]['ccvi'][2]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][2]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
+                                          {key: nationalBarChart['caserate'][0]['ccvi'][3]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][3]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
+                                          {key: nationalBarChart['caserate'][0]['ccvi'][4]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][4]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0}
 
+
+
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
                             </div>
                             <Grid>
                               <Grid.Row>
-                                <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -4217,7 +4256,7 @@ export default function NationalReportPilot(props) {
 
 
                           </Grid.Column>
-                          <Grid.Column style = {{paddingLeft: 0}}>
+                          <Grid.Column style = {{paddingLeft: 100}}>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
                               COVID-19 Cases by <br/> Community Vulnerability Index
