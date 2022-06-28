@@ -2115,6 +2115,7 @@ export default function NationalReportPilot(props) {
   const [legendMaxObesity, setLegendMaxObesity] = useState([]);
   const [legendMinObesity, setLegendMinObesity] = useState([]);
   const [legendSplitObesity, setLegendSplitObesity] = useState([]);
+  const [ccvidata,setccvi]=useState();
 
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
@@ -2160,6 +2161,7 @@ export default function NationalReportPilot(props) {
       .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10));});
     fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
       .then(x => {setVaxVarMap(x);});
+      fetch('/data/ccvi_vac.json').then(res=>res.json()).then(x=>setccvi(x));
     fetch('/data/vaccineData.json').then(res => res.json())
       .then(x => {
         setVaccineData(x);
@@ -4178,7 +4180,7 @@ export default function NationalReportPilot(props) {
                               <Image width='550' height='250' style = {{paddingLeft: 0,paddingTop:0}} src='/NationalReportImages/ccvi2.png' />            
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              COVID-19 Cases by <br/> Community Vulnerability Index
+                              COVID-19 Vaccination by <br/> Community Vulnerability Index
                               </Header.Content>
                             </Header>
                                 <VictoryChart
@@ -4196,13 +4198,13 @@ export default function NationalReportPilot(props) {
                                   <VictoryBar
                                     horizontal
                                     barRatio={0.80}
-                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0))}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
                                     data={[
-                                          {key: nationalBarChart['caserate'][0]['ccvi'][0]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][0]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
-                                          {key: nationalBarChart['caserate'][0]['ccvi'][1]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][1]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
-                                          {key: nationalBarChart['caserate'][0]['ccvi'][2]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][2]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
-                                          {key: nationalBarChart['caserate'][0]['ccvi'][3]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][3]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0},
-                                          {key: nationalBarChart['caserate'][0]['ccvi'][4]['label'], 'value': (nationalBarChart['caserate'][0]['ccvi'][4]['measure']/nationalBarChart['caserate'][0]['ccvi'][0]['measure'])*nationalBarChart['caserate'][0]['ccvi'][0]['measure'] || 0}
+                                          {key: "High", 'value': ccvidata['High']['vac_percent']},
+                                          {key: "High-Mid", 'value': ccvidata['High-Mod']['vac_percent']},
+                                          {key: "Low", 'value': ccvidata['Low']['vac_percent']},
+                                          {key:"Low-Mid", 'value': ccvidata['Low-Mod']['vac_percent']}
+                                        
 
 
 
