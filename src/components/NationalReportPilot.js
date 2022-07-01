@@ -4202,6 +4202,7 @@ export default function NationalReportPilot(props) {
                                     data={[
                                           {key: "High", 'value': ccvidata['High']['vac_percent']},
                                           {key: "High-Mid", 'value': ccvidata['High-Mod']['vac_percent']},
+                                          {key:"Moderate",'value':ccvidata['Moderate']['vac_percent']},
                                           {key: "Low", 'value': ccvidata['Low']['vac_percent']},
                                           {key:"Low-Mid", 'value': ccvidata['Low-Mod']['vac_percent']}
                                         
