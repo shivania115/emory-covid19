@@ -1762,7 +1762,7 @@ const USVaccineTracker = (props) => {
     );
   };
 
-  if (data && allTS && vaccineData && fips && dataTS && ageSeries&&stateMapFips && VaxSeries && stateVaccAveg) {
+  if (data && allTS && vaccineData && fips &&ageVaccine&& dataTS && ageSeries&&stateMapFips && VaxSeries && stateVaccAveg) {
 
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
@@ -1844,7 +1844,7 @@ const USVaccineTracker = (props) => {
                         <Header style={{ textAlign: "center" }}>
                           {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                           <Header.Content style={{ paddingBottom: 5 }}>
-                            <br /><br /><p style={{ width: 240, fontSize: "28px", fontFamily: 'lato', color: "#000000" }}>{numberWithCommas(vaccineData["_nation"]["Doses_Distributed"])}</p><br />
+                            <br /><br /><p style={{ width: 240, fontSize: "28px", fontFamily: 'lato', color: "#000000" }}>{vaccineData["_nation"]['Doses_Distributed']?numberWithCommas(vaccineData["_nation"]["Doses_Distributed"]):'Not Reported'}</p><br />
                           </Header.Content>
                         </Header>
                       </div>
@@ -1855,7 +1855,7 @@ const USVaccineTracker = (props) => {
                         <Header style={{ textAlign: "center" }}>
                           {/* <p style={{fontSize: "24px", fontFamily: 'lato', color: "#004071", textAlign: "center"}}> Number received <br/> first dose <br/><br/></p> */}
                           <Header.Content style={{ paddingBottom: 5 }}>
-                            <br /><br /><p style={{ width: 240, fontSize: "28px", fontFamily: 'lato', color: "#000000" }}>{numberWithCommas(vaccineData["_nation"]["Doses_Administered"])}</p><br />
+                            <br /><br /><p style={{ width: 240, fontSize: "28px", fontFamily: 'lato', color: "#000000" }}>{vaccineData['_nation']['Doses_Administered']?numberWithCommas(vaccineData["_nation"]["Doses_Administered"]):'Not Reported'}</p><br />
                           </Header.Content>
                         </Header>
                       </div>
@@ -1947,7 +1947,7 @@ const USVaccineTracker = (props) => {
                             </Header>
                           </div>
                           <Header.Content style={{ paddingBottom: 0, paddingTop: 0 }}>
-                            <Progress style={{ width: 970 }} percent={((vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1))} size='large' color='green' progress />
+                            <Progress style={{ width: 970 }} percent={vaccineData['_nation']["PercentAdministeredPartial"]?(vaccineData["_nation"]["PercentAdministeredPartial"]).toFixed(1):'Not Reported'} size='large' color='green' progress />
                           </Header.Content>
 
                           <div>

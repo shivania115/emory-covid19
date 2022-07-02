@@ -1,22 +1,22 @@
 {
     "High": {
-        "ccvi": "High",
-        "vac_percent": "61.91"
-    },
-    "High-Mod": {
-        "ccvi": "High-Mod",
-        "vac_percent": "58.63"
+        "ccvi_cat": "High",
+        "vac_percent": "58.66"
     },
     "Low": {
-        "ccvi": "Low",
-        "vac_percent": "68.1090909090909"
-    },
-    "Low-Mod": {
-        "ccvi": "Low-Mod",
-        "vac_percent": "68.9"
+        "ccvi_cat": "Low",
+        "vac_percent": "68.94"
     },
     "Moderate": {
-        "ccvi": "Moderate",
-        "vac_percent": "69.1555555555556"
+        "ccvi_cat": "Moderate",
+        "vac_percent": "69.1777777777778"
+    },
+    "Very High": {
+        "ccvi_cat": "Very High",
+        "vac_percent": "61.96"
+    },
+    "Very Low": {
+        "ccvi_cat": "Very Low",
+        "vac_percent": "68.1727272727273"
     }
 }
