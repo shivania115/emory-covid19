@@ -4135,36 +4135,36 @@ export default function NationalReportPilot(props) {
                   
                           <Grid.Column style={{paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              <Header.Content style = {{padding: 0, width: 500}}>
                               Community Vulnerability Ranking 
                               by County
                               </Header.Content>
                               </Header>      
                             <div >
                            
-                              <svg width="260" height="80" style={{paddingTop:0,marginTop:0}}>
+                              <svg width="260" height="73" style={{paddingTop:0,marginTop:0}}>
                                 
                                 {_.map(legendSplitccvi, (splitpoint, i) => {
                                   if(legendSplitccvi[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
                                   }else if(legendSplitccvi[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitccvi[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={30} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={30} style={{fontSize: '0.6em'}}>{legendMinccvi}</text>
-                                <text x={170} y={30} style={{fontSize: '0.6em'}}>{legendMaxccvi}</text>
+                                <text x={50} y={25} style={{fontSize: '0.6em'}}>{legendMinccvi}</text>
+                                <text x={170} y={25} style={{fontSize: '0.6em'}}>{legendMaxccvi}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+19*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.6em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.6em'}}>High</text>
+                                <text x={50} y={71} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+19 * (colorPalette.length - 1)} y={71} style={{fontSize: '0.6em'}}>High</text>
 
 
                                 {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
@@ -4177,7 +4177,38 @@ export default function NationalReportPilot(props) {
 
                                                   
 
-                              <Image width='550' height='250' style = {{paddingLeft: 0,paddingTop:0}} src='/NationalReportImages/ccvi2.png' />            
+                              <Image width='400' height='230' style = {{paddingLeft: 0,paddingTop:0}} src='/NationalReportImages/ccvi2.png' /> 
+                              <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This map shows each U.S. county according to its Community Vulnerability ranking. 
+                                                      County rankings are based on quintiles of the CCVI. The ranking classified counties 
+                                                      into five groups designed to be of equal size, so that the lowest quintile contains 
+                                                      the counties with values in the 0%-20% range for this county characteristic, and the highest 
+                                                      quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                      <br/>
+                                                      <br/>
+                                                      <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://precisionforcovid.org/ccvi" target = "_blank" rel="noopener noreferrer"> Surgo Foundation </a>
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
+
+                                    } />           
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
                               COVID-19 Vaccination by <br/> Community Vulnerability Index
@@ -4186,7 +4217,7 @@ export default function NationalReportPilot(props) {
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={220}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
                                   padding={{left: 130, right: 90, top: 5, bottom: 1}}
@@ -4200,15 +4231,11 @@ export default function NationalReportPilot(props) {
                                     barRatio={0.80}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
                                     data={[
-                                          {key: "High", 'value': ccvidata['High']['vac_percent']},
-                                          {key: "High-Mid", 'value': ccvidata['High-Mod']['vac_percent']},
-                                          {key:"Moderate",'value':ccvidata['Moderate']['vac_percent']},
-                                          {key: "Low", 'value': ccvidata['Low']['vac_percent']},
-                                          {key:"Low-Mid", 'value': ccvidata['Low-Mod']['vac_percent']}
-                                        
-
-
-
+                                      {key:'Very Low', 'value':parseFloat(ccvidata['Very Low']['vac_percent'])},
+                                      {key:"Low", 'value': parseFloat(ccvidata['Low']['vac_percent'])},
+                                      {key:"Moderate",'value':parseFloat(ccvidata['Moderate']['vac_percent'])},
+                                      {key: "High", 'value': parseFloat(ccvidata['High']['vac_percent'])},
+                                      {key: "Very High", 'value': parseFloat(ccvidata['Very High']['vac_percent'])}
                                     ]}
                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                     style={{
@@ -4220,6 +4247,12 @@ export default function NationalReportPilot(props) {
                                     y="value"
                                   />
                                 </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
                             </div>
                             <Grid>
                               <Grid.Row>
@@ -4227,7 +4260,7 @@ export default function NationalReportPilot(props) {
                                       {
                                           key: 'acquire-dog',
                                           title: {
-                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
                                               icon: 'dropdown',
                                           },
                                           content: {
@@ -4259,16 +4292,19 @@ export default function NationalReportPilot(props) {
 
 
                           </Grid.Column>
+                          
                           <Grid.Column style = {{paddingLeft: 100}}>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
                               COVID-19 Cases by <br/> Community Vulnerability Index
                               </Header.Content>
                             </Header>
+                            <br/>
+                              
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={215}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
                                   padding={{left: 130, right: 90, top: 5, bottom: 1}}
@@ -4308,9 +4344,44 @@ export default function NationalReportPilot(props) {
                                     <b>COVID-19 Cases per 100K</b>
                                   </Header.Content>
                                 </Header.Content>
-                                
                                 <br/>
-                                <br/>
+                                <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
+                                                        (top chart) or deaths (bottom chart) per 100K that occurred in each group of 
+                                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                                        to be of equal size, so that the lowest quintile contains the counties with values 
+                                                        in the 0%-20% range for this county characteristic, and the very high CCVI contains 
+                                                        counties with values in the 80%-100% range for this county characteristic. Low CCVI 
+                                                        indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
+                                                        range, and high CCVI indicates counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                        
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                        
 
                                 <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -4320,7 +4391,7 @@ export default function NationalReportPilot(props) {
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={210}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
                                   padding={{left: 130, right: 90, top: 5, bottom: 1}}
@@ -4353,7 +4424,7 @@ export default function NationalReportPilot(props) {
                                     y="value"
                                   />
                                 </VictoryChart>
-
+                              
                                 <Header.Content style = {{width: 550}}>
                                     <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:14, fontSize: "14pt", lineHeight: "18pt"}}>
                                       <b>COVID-19 Deaths per 100K</b>
