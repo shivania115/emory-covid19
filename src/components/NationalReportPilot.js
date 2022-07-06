@@ -4268,14 +4268,17 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This map shows each U.S. county according to its Community Vulnerability ranking. 
-                                                      County rankings are based on quintiles of the CCVI. The ranking classified counties 
-                                                      into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                      the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                      quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                      This chart shows the percentage of COVID-19 vaccination by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
+                                                       that occurred in each group of 
+                                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                                        to be of equal size, so that the lowest quintile contains the counties with values 
+                                                        in the 0%-20% range for this county characteristic, and the very high CCVI contains 
+                                                        counties with values in the 80%-100% range for this county characteristic. Low CCVI 
+                                                        indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
+                                                        range, and high CCVI indicates counties in the 60%-80% range.
                                                       <br/>
-                                                      <br/>
-                                                      <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://precisionforcovid.org/ccvi" target = "_blank" rel="noopener noreferrer"> Surgo Foundation </a>
+                                               
                                                       <br/>
                                                       For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
                                                       </Header.Subheader>
@@ -4357,10 +4360,9 @@ export default function NationalReportPilot(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                                        per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                                        This chart shows the number of COVID-19 cases per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
-                                                        (top chart) or deaths (bottom chart) per 100K that occurred in each group of 
+                                                        (top chart) per 100K that occurred in each group of 
                                                         counties ranked by CCVI. The ranking classified counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
                                                         in the 0%-20% range for this county characteristic, and the very high CCVI contains 
@@ -4443,10 +4445,9 @@ export default function NationalReportPilot(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        This chart shows the number of COVID-19 deaths (bottom chart) 
                                                         per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
-                                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
-                                                        (top chart) or deaths (bottom chart) per 100K that occurred in each group of 
+                                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 deaths (bottom chart) per 100K that occurred in each group of 
                                                         counties ranked by CCVI. The ranking classified counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
                                                         in the 0%-20% range for this county characteristic, and the very high CCVI contains 
