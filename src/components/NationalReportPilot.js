@@ -4133,7 +4133,7 @@ export default function NationalReportPilot(props) {
                       <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
                   
-                          <Grid.Column style={{paddingLeft:0}}>
+                          <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{padding: 0, width: 500}}>
                               Community Vulnerability Ranking 
@@ -4176,8 +4176,10 @@ export default function NationalReportPilot(props) {
 
 
                                                   
-
-                              <Image width='400' height='230' style = {{paddingLeft: 0,paddingTop:0}} src='/NationalReportImages/ccvi2.png' /> 
+                              
+                                <Image width='400' height='230' style = {{paddingLeft:30,paddingTop:0}} src='/NationalReportImages/ccvi2.png' /> 
+                                
+                             
                               <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
@@ -4268,7 +4270,7 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of COVID-19 vaccination by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
                                                        that occurred in each group of 
                                                         counties ranked by CCVI. The ranking classified counties into five groups designed 
