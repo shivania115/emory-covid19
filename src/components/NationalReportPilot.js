@@ -4177,7 +4177,7 @@ export default function NationalReportPilot(props) {
 
                                                   
                               
-                                <Image width='400' height='230' style = {{paddingLeft:30,paddingTop:0}} src='/NationalReportImages/ccvi2.png' /> 
+                                <Image width='480' height='230' style = {{paddingLeft:70,paddingTop:0}} src='/NationalReportImages/ccvi2.png' /> 
                                 
                              
                               <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
