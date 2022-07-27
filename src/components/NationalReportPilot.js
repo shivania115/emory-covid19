@@ -2116,7 +2116,7 @@ export default function NationalReportPilot(props) {
   const [legendMinObesity, setLegendMinObesity] = useState([]);
   const [legendSplitObesity, setLegendSplitObesity] = useState([]);
   const [ccvidata,setccvi]=useState();
-
+  const [barData,setVacBar]=useState();
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
   const [caseYTicks, setCaseYTicks] = useState([]);
@@ -2162,6 +2162,7 @@ export default function NationalReportPilot(props) {
     fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
       .then(x => {setVaxVarMap(x);});
       fetch('/data/ccvi_vac.json').then(res=>res.json()).then(x=>setccvi(x));
+      fetch('/data/vac_by_bar.json').then(res=>res.json()).then(x=>setVacBar(x));
     fetch('/data/vaccineData.json').then(res => res.json())
       .then(x => {
         setVaccineData(x);
@@ -4256,9 +4257,8 @@ export default function NationalReportPilot(props) {
                                   </Header.Content>
                                 </Header.Content>
                             </div>
-                            <Grid>
-                              <Grid.Row>
-                                <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                     
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -4292,8 +4292,7 @@ export default function NationalReportPilot(props) {
                                     ]
 
                                     } />
-                              </Grid.Row>
-                            </Grid>
+                          
 
 
                           </Grid.Column>
@@ -4490,8 +4489,7 @@ export default function NationalReportPilot(props) {
                           <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{padding: 0, width: 500}}>
-                              Population in Poverty <br/>
-                              by County
+                              Population in Poverty by County
                               </Header.Content>
                               </Header>      
                             <div >
@@ -4567,7 +4565,7 @@ export default function NationalReportPilot(props) {
                                     } />           
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              COVID-19 Vaccination by <br/> Community Vulnerability Index
+                              COVID-19 Vaccination by <br/> Poverty
                               </Header.Content>
                             </Header>
                                 <VictoryChart
@@ -4587,11 +4585,11 @@ export default function NationalReportPilot(props) {
                                     barRatio={0.80}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
                                     data={[
-                                      {key:'Very Low', 'value':parseFloat(ccvidata['Very Low']['vac_percent'])},
-                                      {key:"Low", 'value': parseFloat(ccvidata['Low']['vac_percent'])},
-                                      {key:"Moderate",'value':parseFloat(ccvidata['Moderate']['vac_percent'])},
-                                      {key: "High", 'value': parseFloat(ccvidata['High']['vac_percent'])},
-                                      {key: "Very High", 'value': parseFloat(ccvidata['Very High']['vac_percent'])}
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][4]['measure'])}
                                     ]}
                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                     style={{
@@ -4612,7 +4610,7 @@ export default function NationalReportPilot(props) {
                             </div>
                             <Grid>
                               <Grid.Row>
-                                <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -4650,24 +4648,30 @@ export default function NationalReportPilot(props) {
                             </Grid>
 
                           </Grid.Column>
+
+
+
+                          
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
                               COVID-19 Cases by Percentage of <br/> Population in Poverty
                               </Header.Content>
                             </Header>
-                                <VictoryChart
-                                  theme={VictoryTheme.material}
-                                  width={530}
-                                  height={180}
-                                  domainPadding={20}
-                                  minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                  style = {{fontSize: "14pt"}}
-                                  containerComponent={<VictoryContainer responsive={false}/>}
-                                >
-                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <br/>
+                              
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                   <VictoryBar
                                     horizontal
                                     barRatio={0.80}
@@ -4699,9 +4703,48 @@ export default function NationalReportPilot(props) {
                                     <b>COVID-19 Cases per 100K</b>
                                   </Header.Content>
                                 </Header.Content>
-                                  
-                                  <br/>
-                                  <br/>
+                                <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        per 100K residents by county ranking on percentage of population in poverty. The 
+                                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
+                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
+                            
+                          
 
                                 <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -4711,10 +4754,10 @@ export default function NationalReportPilot(props) {
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={210}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
                                   style = {{fontSize: "14pt"}}
                                   containerComponent={<VictoryContainer responsive={false}/>}
                                 >
@@ -5386,7 +5429,7 @@ export default function NationalReportPilot(props) {
                                     } />           
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              COVID-19 Vaccination by <br/> Community Vulnerability Index
+                              COVID-19 Vaccination by <br/> African American Population
                               </Header.Content>
                             </Header>
                                 <VictoryChart
@@ -5406,11 +5449,11 @@ export default function NationalReportPilot(props) {
                                     barRatio={0.80}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
                                     data={[
-                                      {key:'Very Low', 'value':parseFloat(ccvidata['Very Low']['vac_percent'])},
-                                      {key:"Low", 'value': parseFloat(ccvidata['Low']['vac_percent'])},
-                                      {key:"Moderate",'value':parseFloat(ccvidata['Moderate']['vac_percent'])},
-                                      {key: "High", 'value': parseFloat(ccvidata['High']['vac_percent'])},
-                                      {key: "Very High", 'value': parseFloat(ccvidata['Very High']['vac_percent'])}
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][4]['measure'])}
                                     ]}
                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                     style={{
@@ -5431,7 +5474,7 @@ export default function NationalReportPilot(props) {
                             </div>
                             <Grid>
                               <Grid.Row>
-                                <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -5475,18 +5518,20 @@ export default function NationalReportPilot(props) {
                               COVID-19 Cases by Percentage of <br/> African American Population
                               </Header.Content>
                             </Header>
-                            <VictoryChart
-                              theme={VictoryTheme.material}
-                              width={530}
-                              height={180}
-                              domainPadding={20}
-                              minDomain={{y: props.ylog?1:0}}
-                              padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                              style = {{fontSize: "14pt"}}
-                              containerComponent={<VictoryContainer responsive={false}/>}
-                            >
-                              <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                              <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <br/>
+                              
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                               <VictoryBar
                                 horizontal
                                 barRatio={0.80}
@@ -5518,9 +5563,47 @@ export default function NationalReportPilot(props) {
                                 <b>COVID-19 Cases per 100K</b>
                               </Header.Content>
                             </Header.Content>
-                              
-                              <br/>
-                              <br/>
+                            <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        per 100K residents by county ranking on percentage of population in poverty. The 
+                                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
+                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
+                             
 
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -5528,17 +5611,17 @@ export default function NationalReportPilot(props) {
                               </Header.Content>
                             </Header>
                             <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={210}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -5627,7 +5710,7 @@ export default function NationalReportPilot(props) {
                           <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{padding: 0, width: 500}}>
-                              Residentiakl Segregation
+                              Residential Segregation
                               by County
                               </Header.Content>
                               </Header>      
@@ -5704,7 +5787,7 @@ export default function NationalReportPilot(props) {
                                     } />           
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              COVID-19 Vaccination by <br/> Community Vulnerability Index
+                              COVID-19 Vaccination by <br/> Residential Segregation Index
                               </Header.Content>
                             </Header>
                                 <VictoryChart
@@ -5724,11 +5807,11 @@ export default function NationalReportPilot(props) {
                                     barRatio={0.80}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
                                     data={[
-                                      {key:'Very Low', 'value':parseFloat(ccvidata['Very Low']['vac_percent'])},
-                                      {key:"Low", 'value': parseFloat(ccvidata['Low']['vac_percent'])},
-                                      {key:"Moderate",'value':parseFloat(ccvidata['Moderate']['vac_percent'])},
-                                      {key: "High", 'value': parseFloat(ccvidata['High']['vac_percent'])},
-                                      {key: "Very High", 'value': parseFloat(ccvidata['Very High']['vac_percent'])}
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][4]['measure'])}
                                     ]}
                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                     style={{
@@ -5749,7 +5832,7 @@ export default function NationalReportPilot(props) {
                             </div>
                             <Grid>
                               <Grid.Row>
-                                <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -5793,13 +5876,15 @@ export default function NationalReportPilot(props) {
                               COVID-19 Cases by <br/> Residential Segregation Index
                               </Header.Content>
                             </Header>
+                            <br/>
+                              
                               <VictoryChart
                                 theme={VictoryTheme.material}
                                 width={530}
-                                height={180}
+                                height={215}
                                 domainPadding={20}
                                 minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
                                 style = {{fontSize: "14pt"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
@@ -5836,27 +5921,65 @@ export default function NationalReportPilot(props) {
                                   <b>COVID-19 Cases per 100K</b>
                                 </Header.Content>
                               </Header.Content>
-                                
-                                <br/>
-                                <br/>
+                              <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        per 100K residents by county ranking on percentage of population in poverty. The 
+                                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
+                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
+                            
 
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
                                   COVID-19 Deaths by  <br/> Residential Segregation Index
                               </Header.Content>
                             </Header>
-                              <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={210}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -6022,31 +6145,33 @@ export default function NationalReportPilot(props) {
                                     } />           
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              COVID-19 Vaccination by <br/> Community Vulnerability Index
+                              COVID-19 Vaccination by <br/> Underlying Comorbidity
                               </Header.Content>
                             </Header>
-                                <VictoryChart
-                                  theme={VictoryTheme.material}
-                                  width={530}
-                                  height={220}
-                                  domainPadding={20}
-                                  minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
-                                  style = {{fontSize: "14pt"}}
-                                  containerComponent={<VictoryContainer responsive={false}/>}
-                                >
-                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <br/>
+                              
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                   <VictoryBar
                                     horizontal
                                     barRatio={0.80}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
                                     data={[
-                                      {key:'Very Low', 'value':parseFloat(ccvidata['Very Low']['vac_percent'])},
-                                      {key:"Low", 'value': parseFloat(ccvidata['Low']['vac_percent'])},
-                                      {key:"Moderate",'value':parseFloat(ccvidata['Moderate']['vac_percent'])},
-                                      {key: "High", 'value': parseFloat(ccvidata['High']['vac_percent'])},
-                                      {key: "Very High", 'value': parseFloat(ccvidata['Very High']['vac_percent'])}
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][4]['measure'])}
                                     ]}
                                     labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
                                     style={{
@@ -6067,7 +6192,7 @@ export default function NationalReportPilot(props) {
                             </div>
                             <Grid>
                               <Grid.Row>
-                                <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -6111,13 +6236,15 @@ export default function NationalReportPilot(props) {
                               COVID-19 Cases by <br/> Any Underlying Comorbidity
                               </Header.Content>
                             </Header>
+                            <br/>
+                              
                               <VictoryChart
                                 theme={VictoryTheme.material}
                                 width={530}
-                                height={180}
+                                height={215}
                                 domainPadding={20}
                                 minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
                                 style = {{fontSize: "14pt"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
@@ -6154,9 +6281,46 @@ export default function NationalReportPilot(props) {
                                   <b>COVID-19 Cases per 100K</b>
                                 </Header.Content>
                               </Header.Content>
-                                
-                                <br/>
-                                <br/>
+                              <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        per 100K residents by county ranking on percentage of population in poverty. The 
+                                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
+                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
 
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -6164,17 +6328,17 @@ export default function NationalReportPilot(props) {
                                 </Header.Content>
                               </Header>
                               <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={210}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
