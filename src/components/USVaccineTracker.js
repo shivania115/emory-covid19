@@ -548,7 +548,7 @@ const SideRaceBarChart = (props) => {
 
   const renderLegend = (props) => {
     const { payload } = props;
-    console.log(props.demogData);
+
     return (
       <ul>
         {payload.map((entry, index) => (
@@ -694,7 +694,6 @@ const SideRaceBarChart = (props) => {
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
-      console.log(payload);
       return (
         <div
           className="tooltip"
@@ -727,13 +726,13 @@ const SideRaceBarChart = (props) => {
         </div>
       );
     }
-    console.log(payload);
+ 
     return null;
   };
 
   const CustomizedLabellist = (props) => {
     const { width, height, x, y, value } = props;
-    console.log(value);
+ 
 
     // console.log('ll', props)
     if (value) {
@@ -788,7 +787,7 @@ const SideRaceBarChart = (props) => {
     pieChartRace[0],
   ];
   //I want to get here
-  console.log(props.date);
+ 
   return (
     <Grid>
       {/* <Grid.Column
@@ -1300,6 +1299,7 @@ const USVaccineTracker = (props) => {
   const [stateMapFips, setStateMapFips] = useState("_nation");
   const [countyMapGeoFips, setCountyMapGeoFips] = useState();
   const [stateTrendFips, setstateTrendFips] = useState("_nation");
+  const [ageFip,setAgeFip]=useState("_nation");
   const [config, setConfig] = useState();
   const [countyFips, setCountyFips] = useState('');
   const [colorScaleState, setColorScaleState] = useState();
@@ -1734,7 +1734,7 @@ const USVaccineTracker = (props) => {
     return null;
   };
   const labelAge = (d) => {
-    console.log(d);
+   
     if (d.datum.childName == 'Age 5-12') {
       return monthNames[new Date(d.datum.t * 1000).getMonth()] + " " + new Date(d.datum.t * 1000).getDate() + " " + new Date(d.datum.t * 1000).getFullYear() + "\n " + d.datum.childName + " : " + (d.datum._y).toFixed(1)
     }
@@ -1763,7 +1763,7 @@ const USVaccineTracker = (props) => {
   };
 
   if (data && allTS && vaccineData && fips &&ageVaccine&& dataTS && ageSeries&&stateMapFips && VaxSeries && stateVaccAveg) {
-
+   
     const description = {
       "aa": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is African American. Counties are considered to have a high proportion of African Americans if more than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American. Counties are considered to have a low proportion of African Americans if less than " + vaccDisparityData['cutoffs'][0]['black'].toFixed(0) + " % of the population is African American.",
       "hispanic": "The chart shows the average percentage of the population that has received at least one dose of the COVID-19 vaccine in the counties grouped by % of the population that is Hispanic. Counties are considered to have a high proportion of Hispanic Americans if more than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic. Counties are considered to have a low proportion of Hispanic Americans if less than " + vaccDisparityData['cutoffs'][0]['hispanic'].toFixed(0) + " % of the population is Hispanic.",
@@ -2863,7 +2863,7 @@ const USVaccineTracker = (props) => {
 
                               responsive={false}
                               flyoutStyle={{ fill: "white" }}
-                              labels={() => activity ? `${trendHoverName}\n` + `Date: ${new Date(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].t * 1000).toLocaleDateString()}\n` + `Percent Fully Vaccinated: ${(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)} %\n` : ""}
+                              labels={() => activity ? `${trendHoverName}\n` + `Date: ${new Date(stateVaccAveg[stateTrendFips][0].t * 1000).toLocaleDateString()}\n` + `Percent Fully Vaccinated: ${(stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].percentVaccinatedDose2_avg7).toFixed(0)} %\n` : ""}
                               labelComponent={
                                 <VictoryTooltip
                                   orientation="top"
@@ -2985,7 +2985,7 @@ const USVaccineTracker = (props) => {
                                       ];
                                     },
                                     onMouseOut: () => {
-                                      setstateTrendFips("");
+                                      setstateTrendFips("_nation");
                                       setTrendHoverName("The United States");
                                       setActive(false);
                                       return [
@@ -3040,9 +3040,9 @@ const USVaccineTracker = (props) => {
                           const configMatched = configs.find(
                             (s) => s.fips === value
                           );
-                          setClickTrendFips(value);
-                          setstateTrendFips(value);
-                          setTrendHoverName(configMatched.name);
+                          // setClickTrendFips(value);
+                          setAgeFip(value);
+                          // setTrendHoverName(configMatched.name);
                           setTrendStateName(configMatched.name);
                           setActive(true);
                           return [
@@ -3098,10 +3098,10 @@ const USVaccineTracker = (props) => {
                                     barWidth={20}
                                     labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0) <= 1 ? parseFloat(datum.value).toFixed(1) : parseFloat(datum.value).toFixed(0)) + "%"}
                                     data={[
-                                      { key: "5-12", 'value': stateTrendFips == '_nation' ? ageVaccine["_nation"]['Series_Complete_5PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_5PlusPop_Pct'] },
-                                      { key: "12-18", 'value': stateTrendFips == '_nation' ? ageVaccine["_nation"]['Series_Complete_12PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_12PlusPop_Pct'] },
-                                      { key: "18-65", 'value': stateTrendFips == '_nation' ? ageVaccine["_nation"]['Series_Complete_18PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_18PlusPop_Pct'] },
-                                      { key: "65+", 'value': stateTrendFips == '_nation' ? ageVaccine["_nation"]['Series_Complete_65PlusPop_Pct'] : ageVaccine[stateTrendFips]['Series_Complete_65PlusPop_Pct'] },
+                                      { key: "5-12", 'value': ageFip == '_nation' ? ageVaccine["_nation"]['Series_Complete_5PlusPop_Pct'] : ageVaccine[ageFip]['Series_Complete_5PlusPop_Pct'] },
+                                      { key: "12-18", 'value': ageFip == '_nation' ? ageVaccine["_nation"]['Series_Complete_12PlusPop_Pct'] : ageVaccine[ageFip]['Series_Complete_12PlusPop_Pct'] },
+                                      { key: "18-65", 'value': ageFip == '_nation' ? ageVaccine["_nation"]['Series_Complete_18PlusPop_Pct'] : ageVaccine[ageFip]['Series_Complete_18PlusPop_Pct'] },
+                                      { key: "65+", 'value': ageFip == '_nation' ? ageVaccine["_nation"]['Series_Complete_65PlusPop_Pct'] : ageVaccine[ageFip]['Series_Complete_65PlusPop_Pct'] },
 
                                     ]}
                                     labelComponent={<VictoryLabel dx={0} style={{ fontFamily: 'lato', fontSize: "18px", fill: "#000000" }} />}
@@ -3301,7 +3301,7 @@ const USVaccineTracker = (props) => {
 
                                 />
                                 <VictoryScatter
-                                  data={ageSeries[stateTrendFips].slice(1)}
+                                  data={ageSeries[ageFip].slice(1)}
                                   y="Series_Complete_5PlusPop_Pct"
                                   x="t"
                                   name="Age 5-12"
@@ -3316,7 +3316,7 @@ const USVaccineTracker = (props) => {
                                   }}
                                 ></VictoryScatter>
                                 <VictoryScatter
-                                  data={ageSeries[stateTrendFips].slice(1)}
+                                  data={ageSeries[ageFip].slice(1)}
                                   y="Series_Complete_12PlusPop_Pct"
                                   x="t"
                                   name="Age 12-18"
@@ -3331,7 +3331,7 @@ const USVaccineTracker = (props) => {
                                   }}
                                 ></VictoryScatter>
                                 <VictoryScatter
-                                  data={ageSeries[stateTrendFips].slice(1)}
+                                  data={ageSeries[ageFip].slice(1)}
                                   y="Series_Complete_18PlusPop_Pct"
                                   x="t"
                                   name="Age 18-65"
@@ -3345,7 +3345,7 @@ const USVaccineTracker = (props) => {
                                   }}
                                 ></VictoryScatter>
                                 <VictoryScatter
-                                  data={ageSeries[stateTrendFips].slice(1)}
+                                  data={ageSeries[ageFip].slice(1)}
                                   y="Series_Complete_65PlusPop_Pct"
                                   x="t"
                                   name="Age 65+"
