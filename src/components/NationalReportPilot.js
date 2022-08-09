@@ -4194,7 +4194,7 @@ export default function NationalReportPilot(props) {
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                       This map shows each U.S. county according to its Community Vulnerability ranking. 
-                                                      County rankings are based on quintiles of the CCVI. The ranking classified counties 
+                                                      County rankings are based on quintiles of the CCVI. The ranking classifies counties 
                                                       into five groups designed to be of equal size, so that the lowest quintile contains 
                                                       the counties with values in the 0%-20% range for this county characteristic, and the highest 
                                                       quintile contains counties with values in the 80%-100% range for this county characteristic.
@@ -4270,10 +4270,10 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination. The y-axis displays CCVI rankings based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by CCVI. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
-                                                       that occurred in each group of 
-                                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                                       across US
+                                                        counties ranked by CCVI. The ranking classifies counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
                                                         in the 0%-20% range for this county characteristic, and the very high CCVI contains 
                                                         counties with values in the 80%-100% range for this county characteristic. Low CCVI 
@@ -4364,7 +4364,7 @@ export default function NationalReportPilot(props) {
                                                         This chart shows the number of COVID-19 cases per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
                                                         (top chart) per 100K that occurred in each group of 
-                                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                                        counties ranked by CCVI. The ranking classifies counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
                                                         in the 0%-20% range for this county characteristic, and the very high CCVI contains 
                                                         counties with values in the 80%-100% range for this county characteristic. Low CCVI 
@@ -4449,7 +4449,7 @@ export default function NationalReportPilot(props) {
                                                         This chart shows the number of COVID-19 deaths (bottom chart) 
                                                         per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the average number of COVID-19 deaths (bottom chart) per 100K that occurred in each group of 
-                                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                                        counties ranked by CCVI. The ranking classifies counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
                                                         in the 0%-20% range for this county characteristic, and the very high CCVI contains 
                                                         counties with values in the 80%-100% range for this county characteristic. Low CCVI 
@@ -4545,7 +4545,7 @@ export default function NationalReportPilot(props) {
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its percentage of population in poverty. 
-                                                County rankings are based on quintiles of percentage of population in poverty. The ranking classified counties 
+                                                County rankings are based on quintiles of percentage of population in poverty. The ranking classifies counties 
                                                 into five groups designed to be of equal size, so that the lowest quintile contains 
                                                 the counties with values in the 0%-20% range for this county characteristic, and the highest 
                                                 quintile contains counties with values in the 80%-100% range for this county characteristic.
@@ -4622,11 +4622,11 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination. The y-axis displays population in poverty based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by poverty. The y-axis displays population in poverty based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
-                                                       that occurred in each group of 
+                                                       across US
                                                         counties ranked by percentage population in poverty. 
-                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the 
                                                         "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
                                                         range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
@@ -4723,7 +4723,7 @@ export default function NationalReportPilot(props) {
                                                         y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
                                                         The x-axis displays the average number of COVID-19 cases (top chart)
                                                         per 100K that occurred in each group of counties ranked by percentage population in poverty. 
-                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the 
                                                         "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
                                                         range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
@@ -4812,7 +4812,7 @@ export default function NationalReportPilot(props) {
                                                         y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
                                                         The x-axis displays the average number of COVID-19 deaths (bottom chart) 
                                                         per 100K that occurred in each group of counties ranked by percentage population in poverty. 
-                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the 
                                                         "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
                                                         range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
@@ -5188,7 +5188,7 @@ export default function NationalReportPilot(props) {
                                             <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                This map shows each U.S. county according to its geographic region.
+                                                This map shows US by geographic region.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/geographies/reference-maps/2010/geo/2010-census-regions-and-divisions-of-the-united-states.html" target = "_blank" rel="noopener noreferrer"> United States Census Bureau</a>
@@ -5410,10 +5410,9 @@ export default function NationalReportPilot(props) {
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its percentage of African American population. 
-                                                County rankings are based on quintiles of percentage of African American population. The ranking classified counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of percentage of African American population. 
+                                                The ranking classified counties into five groups designed to be of equal size, 
+                                                so that the lowest quintile contains the counties with values in the 0%-20% range for this county characteristic, and the highest quintile contains counties with values in the 80%-100% range for this county characteristic.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target = "_blank" rel="noopener noreferrer"> American Community Survey</a> by the U.S. Census Bureau
@@ -5487,11 +5486,11 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination. The y-axis displays African American population based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by percentage African American. The y-axis displays African American population based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
-                                                       that occurred in each group of 
+                                                      across US
                                                         counties ranked by percentage African 
-                                                    American. The ranking classified counties into five groups designed to be of equal size, 
+                                                    American. The ranking classifies counties into five groups designed to be of equal size, 
                                                     so that the "very low % African American" group contains the counties with values in the 0%-20% 
                                                     range for this county characteristic, and the "very high % African American" group contains 
                                                     counties with values in the 80%-100% range for this county characteristic. Low % 
@@ -5580,17 +5579,11 @@ export default function NationalReportPilot(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart)
-                                                        per 100K residents by county ranking on percentage of population in poverty. The 
-                                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
-                                                        The x-axis displays the average number of COVID-19 cases (top chart)
-                                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
-                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
-                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
-                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
-                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
-                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
-                                                        counties in the 60%-80% range.
+                                                        This chart shows the number of COVID-19 cases (top chart) per 100K residents by percentage African American population ranking. 
+                                                        The y-axis displays percentage African American population rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart) per 100K that occurred in each group of counties ranked by percentage percentage African American. 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the "very low % African American" group contains the counties with values in the 0%-20% range for this county characteristic, 
+                                                        and the "very high % African American" group contains counties with values in the 80%-100% range for this county characteristic. Low % African American indicates counties in the 20%-40% range, moderate % African American indicates counties in the 40%-60% range, and high % African American indicates counties in the 60%-80% range.
                                                         <br/>
                                                         <br/>
                                                         For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
@@ -5673,7 +5666,7 @@ export default function NationalReportPilot(props) {
                                                     displays percentage African American population rankings based on quintiles (groups of 20%). 
                                                     The x-axis displays the average number of COVID-19 deaths (bottom chart) 
                                                     per 100K that occurred in each group of counties ranked by percentage percentage African 
-                                                    American. The ranking classified counties into five groups designed to be of equal size, 
+                                                    American. The ranking classifies counties into five groups designed to be of equal size, 
                                                     so that the "very low % African American" group contains the counties with values in the 0%-20% 
                                                     range for this county characteristic, and the "very high % African American" group contains 
                                                     counties with values in the 80%-100% range for this county characteristic. Low % 
@@ -5770,7 +5763,7 @@ export default function NationalReportPilot(props) {
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its racial segregation ranking. 
-                                                County rankings are based on quintiles of the racial segregation index. The ranking classified counties 
+                                                County rankings are based on quintiles of the racial segregation index. The ranking classifies counties 
                                                 into five groups designed to be of equal size, so that the lowest quintile contains 
                                                 the counties with values in the 0%-20% range for this county characteristic, and the highest 
                                                 quintile contains counties with values in the 80%-100% range for this county characteristic.
@@ -5847,11 +5840,11 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination. The y-axis displays residential segregation rankings based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by residential segregation. The y-axis displays residential segregation rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
-                                                       that occurred in each group of 
+                                                       across US
                                                         counties ranked by residential segregation. The ranking 
-                                                        classified counties into five groups designed to be of equal size, so that the "very 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
                                                         low segregation" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high segregation" group contains counties with values in the 
                                                         80%-100% range for this county characteristic. Low segregation indicates counties in 
@@ -5944,7 +5937,7 @@ export default function NationalReportPilot(props) {
                                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
                                                         average number of COVID-19 cases (top chart) per 100K 
                                                         that occurred in each group of counties ranked by residential segregation. The ranking 
-                                                        classified counties into five groups designed to be of equal size, so that the "very 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
                                                         low segregation" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high segregation" group contains counties with values in the 
                                                         80%-100% range for this county characteristic. Low segregation indicates counties in 
@@ -6032,7 +6025,7 @@ export default function NationalReportPilot(props) {
                                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
                                                         average number of COVID-19 deaths (bottom chart) per 100K 
                                                         that occurred in each group of counties ranked by residential segregation. The ranking 
-                                                        classified counties into five groups designed to be of equal size, so that the "very 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
                                                         low segregation" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high segregation" group contains counties with values in the 
                                                         80%-100% range for this county characteristic. Low segregation indicates counties in 
@@ -6129,7 +6122,7 @@ export default function NationalReportPilot(props) {
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 
                                                 This map shows each U.S. county according to percentage of population with underlying conditions. 
-                                                County rankings are based on quintiles of percentage of population with underlying conditions. The ranking classified counties 
+                                                County rankings are based on quintiles of percentage of population with underlying conditions. The ranking classifies counties 
                                                 into five groups designed to be of equal size, so that the lowest quintile contains 
                                                 the counties with values in the 0%-20% range for this county characteristic, and the highest 
                                                 quintile contains counties with values in the 80%-100% range for this county characteristic.
@@ -6208,11 +6201,10 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination. The y-axis displays CCVI rankings based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by underlying comorbidity. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
-                                                       that occurred in each group of 
-                                                        counties ranked by percent of population with any underlying comorbidity. The ranking 
-                                                      classified counties into five groups designed to be of equal size, so that the population with "very 
+                                                       across US counties ranked by percent of population with any underlying comorbidity. The ranking 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
                                                       low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
                                                       characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
                                                       80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
@@ -6305,7 +6297,7 @@ export default function NationalReportPilot(props) {
                                                       displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
                                                       average number of COVID-19 cases (top chart) per 100K 
                                                       that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
-                                                      classified counties into five groups designed to be of equal size, so that the population with "very 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
                                                       low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
                                                       characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
                                                       80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
@@ -6393,7 +6385,7 @@ export default function NationalReportPilot(props) {
                                                       displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
                                                       average number of COVID-19 deaths (bottom chart) per 100K 
                                                       that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
-                                                      classified counties into five groups designed to be of equal size, so that the population with "very 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
                                                       low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
                                                       characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
                                                       80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
