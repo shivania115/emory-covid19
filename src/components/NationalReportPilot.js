@@ -4270,7 +4270,7 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by CCVI. The y-axis displays CCVI rankings based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by COVID-19 Community Vulnerability Index (CCVI). The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
                                                        across US
                                                         counties ranked by CCVI. The ranking classifies counties into five groups designed 
@@ -4361,7 +4361,7 @@ export default function NationalReportPilot(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                                        This chart shows the number of COVID-19 cases per 100K residents by COVID-19 Community Vulnerability Index (CCVI) ranking. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
                                                         (top chart) per 100K that occurred in each group of 
                                                         counties ranked by CCVI. The ranking classifies counties into five groups designed 
@@ -4447,7 +4447,7 @@ export default function NationalReportPilot(props) {
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                         This chart shows the number of COVID-19 deaths (bottom chart) 
-                                                        per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
+                                                        per 100K residents by COVID-19 Community Vulnerability Index (CCVI) ranking. The y-axis displays CCVI rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the average number of COVID-19 deaths (bottom chart) per 100K that occurred in each group of 
                                                         counties ranked by CCVI. The ranking classifies counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
@@ -4844,7 +4844,7 @@ export default function NationalReportPilot(props) {
                       </Header.Subheader>
                     
                       {poverty && <Grid>
-                        <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                        <Grid.Row columns={2} style={{paddingTop: 8, width: 1200, paddingLeft: 60}}>
                           <Grid.Column style={{ paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -4853,28 +4853,28 @@ export default function NationalReportPilot(props) {
                               </Header.Content>
                               </Header>    
                             
-
+                        
+                        
                             <div >
-                              
-                              <svg width="550" height="145">
+                            <Grid>
+                            <Grid.Row columns={2} >
+                            <Grid.Column width={5}>
+                              <svg  >
 
-                                <text x={80} y={35} style={{fontSize: '0.8em'}}> Remote rural area</text>                    
-                                <text x={80} y={55} style={{fontSize: '0.8em'}}> Rural areas near cities</text>                    
-                                <text x={80} y={75} style={{fontSize: '0.8em'}}> Small cities</text>                    
-                                <text x={80} y={95} style={{fontSize: '0.8em'}}> Small suburbs</text>                    
-                                <text x={80} y={115} style={{fontSize: '0.8em'}}> Large suburbs</text>                    
-                                <text x={80} y={135} style={{fontSize: '0.8em'}}> Inner City</text>                    
-
-
+                                <text x={26} y={35} style={{fontSize: '0.8em'}}> Remote rural area</text>                    
+                                <text x={26} y={55} style={{fontSize: '0.8em'}}> Rural areas near cities</text>                    
+                                <text x={26} y={75} style={{fontSize: '0.8em'}}> Small cities</text>                    
+                                <text x={26} y={95} style={{fontSize: '0.8em'}}> Small suburbs</text>                    
+                                <text x={26} y={115} style={{fontSize: '0.8em'}}> Large suburbs</text>                    
+                                <text x={26} y={135} style={{fontSize: '0.8em'}}> Inner City</text>                    
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={3} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
-                              
-
+                          
                               </svg>
 
-                              <br/><br/><br/>
+                           
                                 {/* <ComposableMap 
                                   projection="geoAlbersUsa" 
                                   data-tip=""
@@ -4915,12 +4915,17 @@ export default function NationalReportPilot(props) {
                                   
 
                                 </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural.png' />
-                                
+                                </Grid.Column>
+                                <Grid.Column width={11}>
+                                <Image height='230' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural2.png' />
+                                    </Grid.Column>
+                                    </Grid.Row>
+                                    </Grid>
                             </div>
                             <Grid>
+                           
                             <Grid.Row>
-                              <Accordion style = {{paddingTop: 50, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                              <Accordion style = {{paddingTop:25,paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                 {
                                     key: 'acquire-dog',
                                     title: {
@@ -4954,10 +4959,87 @@ export default function NationalReportPilot(props) {
                               ]
 
                               } />
-
-
                             </Grid.Row>
                           </Grid>
+
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by <br/> Metropolitan Status
+                              </Header.Content>
+                            </Header>
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={220}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 230, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      
+                                      {key:'Inner City', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][0]['measure'])},
+                                      {key:"Large suburbs", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][1]['measure'])},
+                                      {key:"Remote rural areas",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][2]['measure'])},
+                                      {key: "Rural areas near cities", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][3]['measure'])},
+                                      {key: "Small cities", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][4]['measure'])},
+                                      {key: "Small suburbs", 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][5]['measure'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                    
+                     
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by Metropolitan Status (y-axis). 
+                                                      Inner city counties have &#60; 1 million population or contain the entire or large part of the population of the largest principle city. 
+                                                      Large suburban counties have a population &#60; 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. 
+                                                      Small cities have populations &#62; 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. 
+                                                      Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
+
+                                    } />
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4965,18 +5047,18 @@ export default function NationalReportPilot(props) {
                               COVID-19 Cases by <br/>  Metropolitan Status
                               </Header.Content>
                             </Header>
-                              <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 250, right: 90, top: 15, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={215}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 230, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -5002,34 +5084,69 @@ export default function NationalReportPilot(props) {
                                   y="value"
                                 />
                               </VictoryChart>
-
                               <Header.Content style = {{width: 550}}>
-                                
-                                <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                                  <b>COVID-19 Cases per 100K</b>
+                                    <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:10, fontSize: "14pt", lineHeight: "18pt"}}>
+                                      <b>COVID-19 Cases per 100K</b>
+                                    </Header.Content>
                                 </Header.Content>
-                              </Header.Content>
+                            
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart)
+                                                        per 100K residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
+                                                        million population or contain the entire or large part of the population of the largest 
+                                                        principle city. Large suburban counties have a population &#60; 1 million, but do not qualify 
+                                                        as inner city. Small suburban counties have a population of 250,000-999,999. Small cities 
+                                                        have populations &#62; 250,000 and are near large cities. Rural areas near cities have an 
+                                                        urbanized area with population between 10,000-49,999. Remote rural counties have 
+                                                        populations less than 10,000 individuals. This urban-rural classification scheme is 
+                                                        from the National Center for Health Statistics.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
                                 
-                                <br/>
-                                <br/>
+      
 
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                 <Header.Content style = {{paddingLeft: 0, width: 500}}>
                                   COVID-19 Deaths by <br/> Metropolitan Status
                                 </Header.Content>
                               </Header>
-                                <VictoryChart
-                                  theme={VictoryTheme.material}
-                                  width={530}
-                                  height={180}
-                                  domainPadding={20}
-                                  minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 250, right: 90, top: 15, bottom: 1}}
-                                  style = {{fontSize: "14pt"}}
-                                  containerComponent={<VictoryContainer responsive={false}/>}
-                                >
-                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 230, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                   <VictoryBar
                                     horizontal
                                     barRatio={0.80}
@@ -5074,7 +5191,7 @@ export default function NationalReportPilot(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        This chart shows the number of COVID-19 deaths (bottom chart) 
                                                         per 100K residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
                                                         million population or contain the entire or large part of the population of the largest 
                                                         principle city. Large suburban counties have a population &#60; 1 million, but do not qualify 
@@ -6201,7 +6318,7 @@ export default function NationalReportPilot(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by underlying comorbidity. The y-axis displays CCVI rankings based on 
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by underlying comorbidity. The y-axis displays underlying comorbidity rankings based on 
                                                         quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
                                                        across US counties ranked by percent of population with any underlying comorbidity. The ranking 
                                                       classifies counties into five groups designed to be of equal size, so that the population with "very 
