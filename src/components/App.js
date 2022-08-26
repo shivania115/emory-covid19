@@ -28,7 +28,7 @@ import NationalReportPilot from "./NationalReportPilot";
 import NationalReport from "./NationalReport";
 import Variant from "./Variant";
 import OtherTools from "./OtherTools";
-
+import DecisionAid from "./DecisionAid.js";
 import {
   BrowserRouter as Router,
   Switch,
@@ -102,6 +102,9 @@ function AppUI() {
           </Route>
           <Route path='/map-state'>
             <MapYourState />
+          </Route>
+          <Route path="/decision-aid">
+      <DecisionAid/>
           </Route>
           <Route path='/media-hub/blog/:blogTitle'>
             <Blog />
