@@ -14,6 +14,7 @@ import Decision from "../icons/Decision";
 import "./StepFlow.css";
 
 export default function StepFlow() {
+
   return (
     <div
       style={{
@@ -35,6 +36,7 @@ export default function StepFlow() {
         }}
       >
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
+        <a href="/decision-aid/about">
           <div
             className="icon"
             style={{
@@ -48,13 +50,17 @@ export default function StepFlow() {
           >
             <Information />
           </div>
-          <div style={{ textAlign: "center", marginTop: "10px" }}>
+          </a>
+          <div style={{ textAlign: "center", marginTop: "10px" }}
+          >
             <b>Start:</b>
             <p>About this decision aid</p>
           </div>
+        
         </li>
 
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
+        <a href="/decision-aid/step1">
           <div
             className="icon"
             style={{
@@ -68,12 +74,14 @@ export default function StepFlow() {
           >
             <Covid />
           </div>
+          </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 1:</b>
             <p>Learn about the virus and the vaccines</p>
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
+        <a  href="/decision-aid/step2">
           <div
             className="icon"
             style={{
@@ -87,12 +95,15 @@ export default function StepFlow() {
           >
             <Medicine />
           </div>
+          </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 2:</b>
             <p>Compare the risks and benefits</p>
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
+        <a  href="/decision-aid/step3">
+
           <div
             className="icon"
             style={{
@@ -106,12 +117,14 @@ export default function StepFlow() {
           >
             <Children />
           </div>
+          </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 3:</b>
             <p>Check your child's personal risk profile</p>
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
+        <a  href="/decision-aid/step4">
           <div
             className="icon"
             style={{
@@ -125,12 +138,14 @@ export default function StepFlow() {
           >
             <Family />
           </div>
+          </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 4:</b>
             <p>Consider what matter most for your family</p>
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
+        <a  href="/decision-aid/step5">
           <div
             className="icon"
             style={{
@@ -144,6 +159,7 @@ export default function StepFlow() {
           >
             <Decision />
           </div>
+          </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 5:</b>
             <p>Make your decision</p>

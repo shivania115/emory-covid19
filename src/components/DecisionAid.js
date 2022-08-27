@@ -113,13 +113,39 @@ import TabMU from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import StepFlow from "./DecisionAid/StepFlow";
-
+import Compare from "./DecisionAid/compare";
+import About from "./DecisionAid/about";
+import PersonalRisk from "./DecisionAid/personalRisk";
+import VaccFAQ from "./DecisionAid/vaccFAQ";
+import DecisionTable from "./DecisionAid/decisionTable";
+import FinalDecision from "./DecisionAid/finalDecision";
 const DecisionAid = (props) => {
+  const history=useHistory();
+  let{step='about'}=useParams();
   return (
     <HEProvider>
       <AppBar menu="vaccineTracker" />
       {/* <br style={{ height: "200px" }}></br> */}
       <StepFlow />
+      {step=="about"&&(
+        <About/>
+      )}
+      {step=="step1"&&(
+        <VaccFAQ/>
+      )}
+      {step=="step2"&&(
+        <Compare/>
+      )}
+      {step=="step3"&&(
+        <PersonalRisk/>
+      )}
+      {step=="step4"&&(
+        <DecisionTable/>
+      )}
+      {step=="step5"&&(
+        <FinalDecision/>
+      )}
+      
     </HEProvider>
   );
 };

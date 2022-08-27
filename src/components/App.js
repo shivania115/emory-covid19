@@ -103,7 +103,7 @@ function AppUI() {
           <Route path='/map-state'>
             <MapYourState />
           </Route>
-          <Route path="/decision-aid">
+          <Route path="/decision-aid/:step">
       <DecisionAid/>
           </Route>
           <Route path='/media-hub/blog/:blogTitle'>
