@@ -2786,7 +2786,7 @@ export default function NationalReportPilot(props) {
 
 
   if (data && dataTS && varMap) {
-    // console.log(demog_descriptives['AgeDescription']);
+    console.log(barData);
   return (
     <HEProvider>
       <div>
@@ -5232,28 +5232,37 @@ export default function NationalReportPilot(props) {
                           <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
 
                             <div >
-                              
-                            <svg width="550" height="130">
+                              <Grid>
+                                <Grid.Row>
+                                  <Grid.Column width={5}>
+                        
+                                  <svg width="550" height="130">
 
-                                <text x={80} y={35} style={{fontSize: '0.8em'}}> South</text>                    
-                                <text x={80} y={55} style={{fontSize: '0.8em'}}> West</text>                    
-                                <text x={80} y={75} style={{fontSize: '0.8em'}}> Northeast</text>                    
-                                <text x={80} y={95} style={{fontSize: '0.8em'}}> Midwest</text>                    
-
-
-                                {_.map(colorPalette.slice(2), (color, i) => {
-                                    return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                                })} 
+<text x={26} y={35} style={{fontSize: '0.8em'}}> South</text>                    
+<text x={26} y={55} style={{fontSize: '0.8em'}}> West</text>                    
+<text x={26} y={75} style={{fontSize: '0.8em'}}> Northeast</text>                    
+<text x={26} y={95} style={{fontSize: '0.8em'}}> Midwest</text>                    
 
 
-                                {/* <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={152} y={30} style={{fontSize: '0.8em'}}> None </text>
-                                <text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text> */}
+{_.map(colorPalette.slice(2), (color, i) => {
+    return <rect key={i} x={3} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+})} 
 
 
-                                </svg>
+{/* <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+<text x={152} y={30} style={{fontSize: '0.8em'}}> None </text>
+<text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text> */}
 
-                                <br/><br/><br/>
+
+</svg>
+                                  </Grid.Column>
+                                  <Grid.Column width={11}>
+                                  <Image height='210' style = {{paddingLeft: 0}} src='/NationalReportImages/region2.png' />
+                                  </Grid.Column>
+                                </Grid.Row>
+                              </Grid>
+                          
+
                                 {/* <ComposableMap 
                                   projection="geoAlbersUsa" 
                                   data-tip=""
@@ -5289,8 +5298,9 @@ export default function NationalReportPilot(props) {
                                   
 
                                 </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/region.png' />
+                              
                             </div>
+
                             <Grid>
                             <Grid.Row>
                               <Accordion style = {{paddingTop: 25, paddingLeft: 60}} defaultActiveIndex={1} panels={[
@@ -5323,6 +5333,79 @@ export default function NationalReportPilot(props) {
 
                             </Grid.Row>
                           </Grid>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by Region
+                              </Header.Content>
+                            </Header>
+                            <VictoryChart
+                              theme={VictoryTheme.material}
+                              width={530}
+                              height={180}
+                              domainPadding={20}
+                              minDomain={{y: props.ylog?1:0}}
+                              padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                              style = {{fontSize: "14pt"}}
+                              containerComponent={<VictoryContainer responsive={false}/>}
+                            >
+                              <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                              <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key: "Midwest", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][3]['measure'])},
+                                      {key:"Northeast",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][2]['measure'])},
+                                      {key:"South", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][0]['measure'])},
+                                      {key:'West', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][1]['measure'])},
+        
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                    
+                     
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination geographic region (y-axis). 
+                                                  
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
+
+                                    } />
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5373,9 +5456,36 @@ export default function NationalReportPilot(props) {
                                 <b>COVID-19 Cases per 100K</b>
                               </Header.Content>
                             </Header.Content>
-                                  
-                                  <br/>
-                                  <br/>
+                            <Grid.Row>
+                              <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                    {
+                                        key: 'acquire-dog',
+                                        title: {
+                                            content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                            icon: 'dropdown',
+                                        },
+                                        content: {
+                                            content: (
+                                                <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                  <Header.Content  style={{fontSize: "19px"}}>
+                                                    <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                    This chart shows the number of COVID-19 cases (top chart)
+                                                    per 100K residents by geographic region (y-axis).
+                                                    <br/>
+                                                    <br/>
+                                                    For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                    </Header.Subheader>
+                                                  </Header.Content>
+                                                </Header>
+                                            ),
+                                          },
+                                      }
+                                  ]} 
+                              />
+                            </Grid.Row>
+         
+                         
 
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                 <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -5437,7 +5547,7 @@ export default function NationalReportPilot(props) {
                                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                   <Header.Content  style={{fontSize: "19px"}}>
                                                     <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                    This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                    This chart shows the number of COVID-19 and deaths (bottom chart) 
                                                     per 100K residents by geographic region (y-axis).
                                                     <br/>
                                                     <br/>
