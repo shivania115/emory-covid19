@@ -28,27 +28,17 @@ import {
   Message,
   Transition,
   List,
+  HeaderContent,
 } from "semantic-ui-react";
 import AppBar from "./AppBar";
-import { geoCentroid } from "d3-geo";
-import Geographies from "./Geographies";
-import Geography from "./Geography";
-import ComposableMap from "./ComposableMap";
-import Marker from "./Marker";
-import Annotation from "./Annotation";
-import { Waypoint } from "react-waypoint";
-import stateOptions from "./stateOptions.json";
-import ReactTooltip from "react-tooltip";
-import VaccinesFAQ from "./VaccineFAQPilot";
-//asdjflkasjd
-// import {
-//   ComposableMap,
-//   Geographies,
-//   Geography,
-//   Marker,
-//   Annotation
-// } from "react-simple-maps";
-import allStates from "./allstates.json";
+import ErrorBoundary from "react-error-boundary";
+import Information from "./icons/Information";
+import Covid from "./icons/Covid";
+import Medicine from "./icons/Medicine";
+import Children from "./icons/Children";
+import Family from "./icons/Family";
+import Decision from "./icons/Decision";
+
 
 // import FileSaver from "file-saver";
 // import { getPngData, useRechartToPng } from "recharts-to-png";
@@ -119,14 +109,155 @@ import PersonalRisk from "./DecisionAid/personalRisk";
 import VaccFAQ from "./DecisionAid/vaccFAQ";
 import DecisionTable from "./DecisionAid/decisionTable";
 import FinalDecision from "./DecisionAid/finalDecision";
+import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
+
+function AppBar2(props) {
+
+  const history = useHistory();
+  console.log(props.menu);
+  return (
+    <ErrorBoundary>
+      <Menu borderless inverted fixed='top'
+        style={{backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
+                backgroundSize: 'cover',
+                fontSize: "14pt"}}>
+        <Container style={{width: "70%"}}>
+          <Menu.Item as='a' header onClick={() => history.push('/')} style = {{paddingLeft: 0, paddingRight: 95}}>
+            <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
+            COVID-19 Health Equity<br/>Interactive Dashboard
+            </span>
+          </Menu.Item>
+
+          {/* <Menu.Item 
+            active={props.menu==='countyReport'} 
+            content='Home'
+            onClick={() => history.push('/')}
+            name='countyReport'/> */}
+
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='nationalReport'} 
+            onClick={() => history.push('/decision-aid/about')}
+            name='nationalReport'>
+            <Header style={{color:"#fff",fontWeight:400}}>
+    
+            <HeaderContent>
+            Start:
+            </HeaderContent>
+            <HeaderSubHeader style={{color:"#fff"}}>
+            About this decision aid
+            </HeaderSubHeader>
+            </Header>
+         
+          </Menu.Item>
+
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='vaccineTracker'} 
+            onClick={() => history.push('/decision-aid/step1')}
+            name='vaccineTracker'>
+           <Header style={{color:"#fff",fontWeight:400}}>
+    
+    <HeaderContent>
+    STEP 1: 
+    </HeaderContent>
+    <HeaderSubHeader style={{color:"#fff"}}>
+    Learn about the virus 
+    <br></br>
+    and the vaccines
+    </HeaderSubHeader>
+    </Header>
+          </Menu.Item>
+          
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='variants'} 
+            onClick={() => history.push('/decision-aid/step2')}
+            name='variants'>
+              <Header style={{color:"#fff",fontWeight:400}}>
+    
+    <HeaderContent>
+  STEP 2:
+    </HeaderContent>
+    <HeaderSubHeader style={{color:"#fff"}}>
+    Compare the risks 
+    <br></br>
+    and benefits
+    </HeaderSubHeader>
+    </Header>
+          </Menu.Item>
+
+          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='mapState'} 
+            onClick={() => history.push('/map-state')}
+            name='mapState'>
+            Map State
+          </Menu.Item> */}
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='otherTools'} 
+            onClick={() => history.push('/decision-aid/step3')}
+            name='otherTools'>
+            <Header style={{color:"#fff",fontWeight:400}}>
+    
+    <HeaderContent>
+    STEP 3:
+    </HeaderContent>
+    <HeaderSubHeader style={{color:"#fff"}}>
+    Check your child's 
+    <br></br>
+    personal risk profile
+    </HeaderSubHeader>
+    </Header>
+          </Menu.Item>
+
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='mediaHub'} 
+            onClick={() => history.push('/decision-aid/step4')}
+            name='mediaHub'>
+           <Header style={{color:"#fff",fontWeight:400}}>
+    
+    <HeaderContent>
+    STEP 4:
+    </HeaderContent>
+    <HeaderSubHeader style={{color:"#fff"}}>
+    Consider what matter 
+    <br></br>
+    most for your family
+    </HeaderSubHeader>
+    </Header>
+          </Menu.Item>
+
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 55}}
+            active={props.menu==='dataSources'} 
+            onClick={() => history.push('/decision-aid/step5')}
+            name='dataSources'>
+             <Header style={{color:"#fff",fontWeight:400}}>
+    
+    <HeaderContent>
+    STEP 5
+    </HeaderContent>
+    <HeaderSubHeader style={{color:"#fff"}}>
+    Make your decision
+    </HeaderSubHeader>
+    </Header>
+          </Menu.Item>
+
+          <Menu.Menu position='right'>
+            <Menu.Item as='a' header>
+              <Image size='small' src='/logo_white.png' />
+            </Menu.Item>
+          </Menu.Menu>
+        </Container>
+      </Menu>
+    </ErrorBoundary>
+  );
+}
 const DecisionAid = (props) => {
   const history=useHistory();
   let{step='about'}=useParams();
   return (
     <HEProvider>
-      <AppBar menu="vaccineTracker" />
+      <AppBar2 menu="nationalReport" />
       {/* <br style={{ height: "200px" }}></br> */}
-      <StepFlow />
+      {/* <StepFlow /> */}
+      <Container style={{marginTop:"8em"}}>
       {step=="about"&&(
         <About/>
       )}
@@ -145,6 +276,8 @@ const DecisionAid = (props) => {
       {step=="step5"&&(
         <FinalDecision/>
       )}
+      </Container>
+
       
     </HEProvider>
   );

@@ -30,12 +30,9 @@ import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/Hea
 function VaccFAQ() {
     const [activeIndex, setActiveIndex] = useState([-1]);
     return (
-        <Grid>
+        <Grid style={{width:"100%"}}>
             <Grid.Row>
-                <GridColumn width={3}>
-
-                </GridColumn>
-                <Grid.Column width={4}>
+                <Grid.Column width={7}>
                     <Header
                         as="h2"
                         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
@@ -57,7 +54,7 @@ function VaccFAQ() {
                         </HeaderSubHeader>
                     </Header>
                 </Grid.Column>
-                <Grid.Column width={6}>
+                <Grid.Column width={9}>
                     <Accordion style={{marginLeft:"4rem",marginTop:30}} fluid styled exclusive={false}>
                         <Accordion.Title
                             id="develop"
@@ -443,10 +440,7 @@ function VaccFAQ() {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <GridColumn width={3}>
-
-                </GridColumn>
-                <Grid.Column width={4}>
+                <Grid.Column width={7}>
                     <Header
                         as="h2"
                         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
@@ -469,9 +463,6 @@ function VaccFAQ() {
                             Vaccination means your child will be less likely to catch COVID-19 and pass it on to others. There is still a small chance that they will catch the virus, but if they do, their symptoms will usually be mild.
                         </HeaderSubHeader>
                     </Header>
-                </Grid.Column>
-                <Grid.Column width={6}>
-
                 </Grid.Column>
             </Grid.Row>
         </Grid>

@@ -38,12 +38,12 @@ function PersonalRisk(){
     return(
         <Grid>
             <Grid.Row>
-                <Grid.Column width={4}></Grid.Column>
-                <Grid.Column width={2}>
+                <Grid.Column width={3}></Grid.Column>
+                <Grid.Column width={3}>
                 <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
 }}/>
                 </Grid.Column>
-                <Grid.Column width={6}>
+                <Grid.Column width={10}>
                 <Header
                         as="h2"
                         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
@@ -87,12 +87,12 @@ function PersonalRisk(){
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column width={4}></Grid.Column>
-                <Grid.Column width={2}>
+                <Grid.Column width={3}></Grid.Column>
+                <Grid.Column width={3}>
                 <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
 }}/>
                 </Grid.Column>
-                <Grid.Column width={6}>
+                <Grid.Column width={10}>
                 <Header
                         as="h2"
                         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
@@ -122,12 +122,12 @@ function PersonalRisk(){
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column width={4}></Grid.Column>
-                <Grid.Column width={2}>
+                <Grid.Column width={3}></Grid.Column>
+                <Grid.Column width={3}>
                 <FontAwesomeIcon icon={faClock} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
 }}/>
                 </Grid.Column>
-                <Grid.Column width={6}>
+                <Grid.Column width={10}>
                 <Header
                         as="h2"
                         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
