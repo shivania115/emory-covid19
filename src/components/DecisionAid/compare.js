@@ -6,6 +6,8 @@ import {
   Ref,
   Sticky,
   Divider,
+  Radio,
+  Segment,
   Accordion,
   Icon,
   Header,
@@ -16,6 +18,7 @@ import {
   GridColumn
 } from "semantic-ui-react";
 import Covid from "../icons/Covid";
+import { blue } from '@mui/material/colors';
 import Medicine from "../icons/Medicine";
 import React, {
   useEffect,
@@ -26,8 +29,13 @@ import React, {
   useContext,
   useMemo,
 } from "react";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
-function compare() {
+function Compare(props) {
+  const [vaccine, setVaccine] = useState('pfizer');
+
   const panes = [
     {
       menuItem: { content: <p style={{ fontSize: "15pt" }}>PERCENTAGE OF PEOPLE</p> }, render: () =>
@@ -608,7 +616,6 @@ function compare() {
     }
 
   ]
-
   return (
 
     <div class="ui two column centered grid" >
@@ -619,6 +626,8 @@ function compare() {
         >
           <Header.Content>
             Which vaccine would you like to know more about?
+
+
             <Header.Subheader
               style={{
                 paddingTop: "1.5rem",
@@ -642,6 +651,19 @@ function compare() {
             </Header.Subheader>
           </Header.Content>
         </Header>
+        <ToggleButtonGroup
+      color='primary'
+      value={vaccine}
+      size="large"
+      exclusive
+      onChange={(e,value)=>{setVaccine(value)}}
+      aria-label="Platform"
+     style={{padding:10}}
+    >
+      <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="pfizer">Pfizer/BioNTech</ToggleButton>
+      <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="moderna">Moderna</ToggleButton>
+    </ToggleButtonGroup>
+            
         <Accordion
                   id="race"
                   style={{
@@ -677,11 +699,10 @@ function compare() {
 
                             }}
                           >
-                              The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'.
-
-It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your child’s immune system. The genetic code is quickly broken down by the body and cleared away. Your child can not catch COVID-19 from Comirnaty (Pfizer).
-
-After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if your child catches COVID-19 after they've been vaccinated, their illness will usually be mild.
+                          {vaccine=='pfizer'? "The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your child’s immune system. The genetic code is quickly broken down by the body and cleared away. Your child can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if your child catches COVID-19 after they've been vaccinated, their illness will usually be mild.":
+"The vaccine developed by Moderna is known as ‘Spikevax’ or 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your child’s immune system. The genetic code is quickly broken down by the body and cleared away. Your child can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be less effective against more recent variants, such as the Delta and Omicron variants, but it will still protect your child against serious illness, hospitalisation and death.1"
+}
+                             
                           </Header.Content>
                         ),
                       },
@@ -700,4 +721,4 @@ After the second dose, Comirnaty (Pfizer) is around 90% effective against the De
 
   );
 }
-export default compare;
+export default Compare;

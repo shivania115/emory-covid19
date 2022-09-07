@@ -4854,7 +4854,7 @@ export default function NationalReportPilot(props) {
                               </Header>    
                             
                         
-                        
+                              <br></br>
                             <div >
                             <Grid>
                             <Grid.Row columns={2} >
@@ -4917,13 +4917,15 @@ export default function NationalReportPilot(props) {
                                 </ComposableMap> */}
                                 </Grid.Column>
                                 <Grid.Column width={11}>
-                                <Image height='230' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural2.png' />
+                                <Image height='200' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural2.png' />
                                     </Grid.Column>
                                     </Grid.Row>
                                     </Grid>
                             </div>
+                         
+                            <br></br>
                             <Grid>
-                           
+                        
                             <Grid.Row>
                               <Accordion style = {{paddingTop:25,paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                 {
