@@ -33,6 +33,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
+
+const colorPalette = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
 function Compare(props) {
   const [vaccine, setVaccine] = useState('pfizer');
 
@@ -242,7 +244,7 @@ function Compare(props) {
       menuItem: { content: <p style={{ fontSize: "15pt" }}>NUMBER OF PEOPLE</p> }, render: () =>
         <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
           <Grid>
-            <Grid.Row>
+            <Grid.Row style={{paddingTop:0}}>
               <GridColumn width={6}> <Header
                 as="h4"
                 style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
@@ -270,7 +272,7 @@ function Compare(props) {
           <hr />
 
           <Grid  style={{paddingTop:20}}>
-            <Grid.Row>
+            <Grid.Row style={{paddingTop:0,marginBottom:0,paddingBottom:0}}>
               <GridColumn width={6}> <Header
                 as="h4"
                 style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
@@ -287,6 +289,7 @@ function Compare(props) {
 
                 <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
                   <Header.Content>
                     With COVID-19
@@ -295,8 +298,9 @@ function Compare(props) {
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
-                  <Header.Content>
+                  <Header.Content >
                     With Vaccination
 
                   </Header.Content>
@@ -304,22 +308,24 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 15 }} reverse percent={32} color='red'></Progress>
+                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
                 <Progress percent={32} color='blue' ></Progress>
               </GridColumn>
               <GridColumn width={2}>
               <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
-                  <Header.Content style={{color:"red"}}>
+                  <Header.Content style={{color:"#e02c2c"}}>
                    3 in 100 
 
                   </Header.Content>
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
-                  <Header.Content style={{color:"blue"}}>
+                  <Header.Content style={{color:"#0E6EB8"}}>
                    2 in 100
 
                   </Header.Content>
@@ -375,8 +381,8 @@ function Compare(props) {
 
           </Grid>
           <hr />
-          <Grid  style={{paddingTop:20}}>
-            <Grid.Row>
+          <Grid  style={{paddingTop:5}}>
+            <Grid.Row >
               <GridColumn width={6}> <Header
                 as="h4"
                 style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
@@ -393,6 +399,7 @@ function Compare(props) {
 
                 <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
                   <Header.Content>
                     With COVID-19
@@ -401,6 +408,7 @@ function Compare(props) {
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
                   <Header.Content>
                     With Vaccination
@@ -410,22 +418,24 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 15 }} reverse percent={32} color='red'></Progress>
+                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
                 <Progress percent={32} color='blue' ></Progress>
               </GridColumn>
               <GridColumn width={2}>
               <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
-                  <Header.Content style={{color:"red"}}>
+                  <Header.Content style={{color:"#e02c2c"}}>
                    3 in 100 
 
                   </Header.Content>
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
-                  <Header.Content style={{color:"blue"}}>
+                  <Header.Content style={{color:"#0E6EB8"}}>
                    2 in 100
 
                   </Header.Content>
@@ -434,8 +444,8 @@ function Compare(props) {
             </Grid.Row>
           </Grid>
           <hr />
-          <Grid  style={{paddingTop:20}}>
-            <Grid.Row>
+          <Grid  style={{paddingTop:5,paddingBottom:0,marginBottom:0}}>
+            <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
               <GridColumn width={6}> <Header
                 as="h4"
                 style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
@@ -452,6 +462,7 @@ function Compare(props) {
 
                 <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
                   <Header.Content>
                     With COVID-19
@@ -460,6 +471,7 @@ function Compare(props) {
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
                   <Header.Content>
                     With Vaccination
@@ -469,22 +481,24 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 15 }}  reverse percent={32} color='red'></Progress>
+                <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
                 <Progress  percent={32} color='blue' ></Progress>
               </GridColumn>
               <GridColumn width={2}>
               <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
-                  <Header.Content style={{color:"red"}}>
+                  <Header.Content style={{color:"#e02c2c"}}>
                    3 in 100 
 
                   </Header.Content>
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
-                  <Header.Content style={{color:"blue"}}>
+                  <Header.Content style={{color:"#0E6EB8"}}>
                    2 in 100
 
                   </Header.Content>
@@ -493,7 +507,7 @@ function Compare(props) {
             </Grid.Row>
           </Grid>
           <hr />
-          <Grid style={{paddingTop:20}}>
+          <Grid style={{paddingTop:5}}>
             <Grid.Row>
               <GridColumn width={6}> <Header
                 as="h4"
@@ -511,6 +525,7 @@ function Compare(props) {
 
                 <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
                   <Header.Content>
                     With COVID-19
@@ -519,6 +534,7 @@ function Compare(props) {
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
                   <Header.Content>
                     With Vaccination
@@ -528,22 +544,24 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 15 }} reverse percent={32} color='red'></Progress>
+                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
                 <Progress percent={32} color='blue' ></Progress>
               </GridColumn>
               <GridColumn width={2}>
               <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
-                  <Header.Content style={{color:"red"}}>
+                  <Header.Content  style={{color:"#e02c2c"}}>
                    3 in 100 
 
                   </Header.Content>
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
-                  <Header.Content style={{color:"blue"}}>
+                  <Header.Content style={{color:"#0E6EB8"}}>
                    2 in 100
 
                   </Header.Content>
@@ -552,7 +570,7 @@ function Compare(props) {
             </Grid.Row>
           </Grid>
           <hr />
-          <Grid style={{paddingTop:20}}>
+          <Grid style={{paddingTop:5}}>
             <Grid.Row>
               <GridColumn width={6}> <Header
                 as="h4"
@@ -570,6 +588,7 @@ function Compare(props) {
 
                 <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
                   <Header.Content>
                     With COVID-19
@@ -578,6 +597,7 @@ function Compare(props) {
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
                   <Header.Content>
                     With Vaccination
@@ -587,22 +607,24 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 15 }}  reverse percent={32} color='red'></Progress>
+                <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
                 <Progress  percent={32} color='blue' ></Progress>
               </GridColumn>
               <GridColumn width={2}>
               <Header
                   as="h4"
+                  style={{marginTop:"1%"}}
                 >
-                  <Header.Content style={{color:"red"}}>
+                  <Header.Content style={{color:"#e02c2c"}}>
                    3 in 100 
 
                   </Header.Content>
                 </Header>
                 <Header
                   as="h4"
+                  style={{marginTop:"8%"}}
                 >
-                  <Header.Content style={{color:"blue"}}>
+                  <Header.Content style={{color:"#0E6EB8"}}>
                    2 in 100
 
                   </Header.Content>

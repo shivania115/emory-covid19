@@ -122,7 +122,7 @@ function AppBar2(props) {
                 backgroundSize: 'cover',
                 fontSize: "14pt"}}>
         <Container style={{width: "70%"}}>
-          <Menu.Item as='a' header onClick={() => history.push('/')} style = {{paddingLeft: 0, paddingRight: 95}}>
+          <Menu.Item as='a' header onClick={() => history.push('/')} style = {{paddingLeft: 0, paddingRight: "3%"}}>
             <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
             COVID-19 Health Equity<br/>Interactive Dashboard
             </span>
