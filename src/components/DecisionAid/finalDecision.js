@@ -47,7 +47,7 @@ function FinalDecision(){
                         </Header.Content>
       </Header>
       <br></br>
-      <Checkbox style={{fontSize:"1.25rem"}} label='I have decided to get the COVID-19 vaccine for my child'/>
+      <Checkbox style={{fontSize:"1.25rem"}} label='I have decided to get the COVID-19 vaccine'/>
       <br></br>
          <br></br>
       <Checkbox style={{fontSize:"1.25rem"}} label='I need to discuss the decision further with my family and doctor'/>
@@ -56,7 +56,7 @@ function FinalDecision(){
       <Checkbox style={{fontSize:"1.25rem"}} label='I need to learn more about COVID-19 and the COVID-19 vaccine'/>
       <br></br>
       <br></br>
-      <Checkbox style={{fontSize:"1.25rem"}} label='I have decided not to give my child the COVID-19 vaccine'/>
+      <Checkbox style={{fontSize:"1.25rem"}} label='I have decided not get the COVID-19 vaccine'/>
       <br></br>
       <br></br>
       <Checkbox style={{fontSize:"1.25rem"}} label='Other'/>

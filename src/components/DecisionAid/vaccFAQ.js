@@ -460,7 +460,7 @@ function VaccFAQ() {
                         }}>
                             COVID-19 vaccines train our bodies to recognise and fight the virus. They do this by teaching our immune system to read the genetic code for an important part of the virus, called the spike protein.
 
-                            Vaccination means your child will be less likely to catch COVID-19 and pass it on to others. There is still a small chance that they will catch the virus, but if they do, their symptoms will usually be mild.
+                            Vaccination means you will be less likely to catch COVID-19 and pass it on to others. There is still a small chance that you will catch the virus, but if you do, your symptoms will usually be mild.
                         </HeaderSubHeader>
                     </Header>
                 </Grid.Column>

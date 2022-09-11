@@ -34,6 +34,7 @@ import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/Hea
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck ,faClock,faQuestionCircle} from '@fortawesome/free-regular-svg-icons'
 
+
 function PersonalRisk(){
     return(
         <Grid>
@@ -50,7 +51,7 @@ function PersonalRisk(){
                     >
 
                         <Header.Content>
-                        Your child may be at a higher risk of severe COVID-19 and ongoing COVID-related problems if they:
+                        You may be at a higher risk of severe COVID-19 and ongoing COVID-related problems if you:
                         </Header.Content>
                         <HeaderSubHeader style={{
                             paddingBottom: "0rem",
@@ -99,7 +100,7 @@ function PersonalRisk(){
                     >
 
                         <Header.Content>
-                        COVID-19 vaccination may not be recommended for your child if they:
+                        COVID-19 vaccination may not be recommended for you if you:
                         </Header.Content>
                         <HeaderSubHeader style={{
                             paddingBottom: "0rem",
@@ -134,7 +135,7 @@ function PersonalRisk(){
                     >
 
                         <Header.Content>
-                        Discuss the best timing of COVID-19 vaccination with your doctor if your child:
+                        Discuss the best timing of COVID-19 vaccination with your doctor if you:
                         </Header.Content>
                         <HeaderSubHeader style={{
                             paddingBottom: "0rem",

@@ -121,7 +121,7 @@ function AppBar2(props) {
         style={{backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
                 backgroundSize: 'cover',
                 fontSize: "14pt"}}>
-        <Container style={{width: "70%"}}>
+        <Container style={{width: "90%"}}>
           <Menu.Item as='a' header onClick={() => history.push('/')} style = {{paddingLeft: 0, paddingRight: "3%"}}>
             <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
             COVID-19 Health Equity<br/>Interactive Dashboard
@@ -135,25 +135,27 @@ function AppBar2(props) {
             name='countyReport'/> */}
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='nationalReport'} 
+            active={props.menu==='about'} 
             onClick={() => history.push('/decision-aid/about')}
-            name='nationalReport'>
+            name='about'>
             <Header style={{color:"#fff",fontWeight:400}}>
     
             <HeaderContent>
             Start:
             </HeaderContent>
             <HeaderSubHeader style={{color:"#fff"}}>
-            About this decision aid
+            About this 
+            <br></br>
+            decision aid
             </HeaderSubHeader>
             </Header>
          
           </Menu.Item>
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='vaccineTracker'} 
+            active={props.menu==='step1'} 
             onClick={() => history.push('/decision-aid/step1')}
-            name='vaccineTracker'>
+            name='step1'>
            <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
@@ -168,9 +170,9 @@ function AppBar2(props) {
           </Menu.Item>
           
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='variants'} 
+            active={props.menu==='step2'} 
             onClick={() => history.push('/decision-aid/step2')}
-            name='variants'>
+            name='step2'>
               <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
@@ -191,16 +193,16 @@ function AppBar2(props) {
             Map State
           </Menu.Item> */}
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='otherTools'} 
+            active={props.menu==='step3'} 
             onClick={() => history.push('/decision-aid/step3')}
-            name='otherTools'>
+            name='step3'>
             <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
     STEP 3:
     </HeaderContent>
     <HeaderSubHeader style={{color:"#fff"}}>
-    Check your child's 
+    Check your 
     <br></br>
     personal risk profile
     </HeaderSubHeader>
@@ -208,9 +210,9 @@ function AppBar2(props) {
           </Menu.Item>
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='mediaHub'} 
+            active={props.menu==='step4'} 
             onClick={() => history.push('/decision-aid/step4')}
-            name='mediaHub'>
+            name='step4'>
            <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
@@ -225,16 +227,18 @@ function AppBar2(props) {
           </Menu.Item>
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 55}}
-            active={props.menu==='dataSources'} 
+            active={props.menu==='step5'} 
             onClick={() => history.push('/decision-aid/step5')}
-            name='dataSources'>
+            name='step5'>
              <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
     STEP 5
     </HeaderContent>
     <HeaderSubHeader style={{color:"#fff"}}>
-    Make your decision
+    Make your 
+    <br></br>
+    decision
     </HeaderSubHeader>
     </Header>
           </Menu.Item>
@@ -252,9 +256,10 @@ function AppBar2(props) {
 const DecisionAid = (props) => {
   const history=useHistory();
   let{step='about'}=useParams();
+
   return (
     <HEProvider>
-      <AppBar2 menu="nationalReport" />
+      <AppBar2 menu={step} />
       {/* <br style={{ height: "200px" }}></br> */}
       {/* <StepFlow /> */}
       <Container style={{marginTop:"8em"}}>

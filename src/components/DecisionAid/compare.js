@@ -20,6 +20,7 @@ import {
 import Covid from "../icons/Covid";
 import { blue } from '@mui/material/colors';
 import Medicine from "../icons/Medicine";
+
 import React, {
   useEffect,
   useState,
@@ -40,7 +41,7 @@ function Compare(props) {
 
   const panes = [
     {
-      menuItem: { content: <p style={{ fontSize: "15pt" }}>PERCENTAGE OF PEOPLE</p> }, render: () =>
+      menuItem: { content: <p style={{ fontSize: "100%" }}>PERCENTAGE OF PEOPLE</p> }, render: () =>
         <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
           <Grid>
             <Grid.Row>
@@ -241,10 +242,10 @@ function Compare(props) {
         </div>
     },
     {
-      menuItem: { content: <p style={{ fontSize: "15pt" }}>NUMBER OF PEOPLE</p> }, render: () =>
+      menuItem: { content: <p style={{ fontSize: "100%" }}>NUMBER OF PEOPLE</p> }, render: () =>
         <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
           <Grid>
-            <Grid.Row style={{paddingTop:0}}>
+            <Grid.Row style={{paddingTop:20}}>
               <GridColumn width={6}> <Header
                 as="h4"
                 style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
@@ -333,12 +334,12 @@ function Compare(props) {
               </GridColumn>
             </Grid.Row>
 
-
+    <Grid.Row>
             <Accordion
               id="race"
               style={{
                 paddingTop: 0,
-
+                width:"100%",
                 paddingBottom: 15,
               }}
               defaultActiveIndex={1}
@@ -361,22 +362,262 @@ function Compare(props) {
                   },
                   content: {
                     content: (
-                      <Header.Content
-                        style={{
-                          fontWeight: 500,
+          
+          <Grid  style={{paddingTop:0}}>
+            <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+              <GridColumn width={6}> <Header
+                as="h5"
+                style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
+              >
+                <Header.Content>
+                injection pain, redness, swelling
+                </Header.Content>
+                <HeaderSubHeader>
+                  Number of People
+                </HeaderSubHeader>
+              </Header>
+              </GridColumn>
+              <GridColumn width={3}>
 
-                          fontSize: "12px",
+                <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content>
+                    With COVID-19
 
-                        }}
-                      >
-                        hello world!
-                      </Header.Content>
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content>
+                    With Vaccination
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
+                <Progress percent={32} color='blue' ></Progress>
+              </GridColumn>
+              <GridColumn width={2}>
+              <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content style={{color:"#e02c2c"}}>
+                   3 in 100 
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content style={{color:"#0E6EB8"}}>
+                   2 in 100
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+        
+        
+       
+            <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+              <GridColumn width={6}> <Header
+                as="h4"
+                style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+              >
+                <Header.Content>
+                fever
+                </Header.Content>
+                <HeaderSubHeader>
+                  Number of People
+                </HeaderSubHeader>
+              </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+
+                <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content>
+                    With COVID-19
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content>
+                    With Vaccination
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
+                <Progress  percent={32} color='blue' ></Progress>
+              </GridColumn>
+              <GridColumn width={2}>
+              <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content style={{color:"#e02c2c"}}>
+                   3 in 100 
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content style={{color:"#0E6EB8"}}>
+                   2 in 100
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+     
+
+            <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+              <GridColumn width={6}> <Header
+                as="h4"
+                style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+              >
+                <Header.Content>
+                cough
+                </Header.Content>
+                <HeaderSubHeader>
+                  Number of People
+                </HeaderSubHeader>
+              </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+
+                <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content>
+                    With COVID-19
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content>
+                    With Vaccination
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
+                <Progress percent={32} color='blue' ></Progress>
+              </GridColumn>
+              <GridColumn width={2}>
+              <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content  style={{color:"#e02c2c"}}>
+                   3 in 100 
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content style={{color:"#0E6EB8"}}>
+                   2 in 100
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+      
+            <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+              <GridColumn width={6}> <Header
+                as="h4"
+                style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+              >
+                <Header.Content>
+              fatigue
+                </Header.Content>
+                <HeaderSubHeader>
+                  Number of People
+                </HeaderSubHeader>
+              </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+
+                <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content>
+                    With COVID-19
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content>
+                    With Vaccination
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
+                <Progress  percent={32} color='blue' ></Progress>
+              </GridColumn>
+              <GridColumn width={2}>
+              <Header
+                  as="h4"
+                  style={{marginTop:"1%"}}
+                >
+                  <Header.Content style={{color:"#e02c2c"}}>
+                   3 in 100 
+
+                  </Header.Content>
+                </Header>
+                <Header
+                  as="h4"
+                  style={{marginTop:"8%"}}
+                >
+                  <Header.Content style={{color:"#0E6EB8"}}>
+                   2 in 100
+
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+ </Grid>
+   
                     ),
                   },
                 },
               ]}
             />
-
+            </Grid.Row>
 
 
           </Grid>
@@ -721,8 +962,8 @@ function Compare(props) {
 
                             }}
                           >
-                          {vaccine=='pfizer'? "The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your child’s immune system. The genetic code is quickly broken down by the body and cleared away. Your child can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if your child catches COVID-19 after they've been vaccinated, their illness will usually be mild.":
-"The vaccine developed by Moderna is known as ‘Spikevax’ or 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your child’s immune system. The genetic code is quickly broken down by the body and cleared away. Your child can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be less effective against more recent variants, such as the Delta and Omicron variants, but it will still protect your child against serious illness, hospitalisation and death.1"
+                          {vaccine=='pfizer'? "The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if you catches COVID-19 after you've been vaccinated, your illness will usually be mild.":
+"The vaccine developed by Moderna is known as ‘Spikevax’ or 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be less effective against more recent variants, such as the Delta and Omicron variants, but it will still protect you against serious illness, hospitalisation and death.1"
 }
                              
                           </Header.Content>

@@ -30,6 +30,7 @@ import {
     createRef,
     PureComponent,
   } from "react";
+  import Slider from '@mui/material/Slider';
   import { Link} from 'react-router-dom';
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,7 +44,7 @@ function decisionTable(){
                     >
 
                         <Header.Content>
-                        If my child gets the COVID-19 vaccine
+                        If I gets the COVID-19 vaccine
                         </Header.Content>
       </Header>
       <table class="ui striped table">
@@ -58,16 +59,20 @@ function decisionTable(){
       </thead>
       <tbody>
         <tr>
-          <td>If my child gets the COVID-19 vaccine they will be better protected against COVID-19 and serious related health problems</td>
-          <td>
-          <Checkbox />
+          <td>If I gets the COVID-19 vaccine I will be better protected against COVID-19 and serious related health problems</td>
+          <td colspan="3">
+          <Slider defaultValue={50} aria-label="Default" />
           </td>
-          <td> <Checkbox /></td>
-          <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine they will be able to see family and friends more safely
+          <td>If I gets the COVID-19 vaccine I will be able to see family and friends more safely
 </td>
+          <td colspan="3">
+          <Slider defaultValue={50} aria-label="Default" />
+          </td>
+        </tr>
+        <tr>
+          <td>If I gets the COVID-19 vaccine and I still catch COVID-19, my symptoms will be milder</td>
           <td>
           <Checkbox />
           </td>
@@ -75,7 +80,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine and they still catch COVID-19, their symptoms will be milder</td>
+          <td>If I gets the COVID-19 vaccine I will be free to travel around Australia or overseas</td>
           <td>
           <Checkbox />
           </td>
@@ -83,7 +88,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine they will be free to travel around Australia or overseas</td>
+          <td>If I gets the COVID-19 vaccine I will be able to travel and move around the community more freely</td>
           <td>
           <Checkbox />
           </td>
@@ -91,7 +96,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine they will be able to travel and move around the community more freely</td>
+          <td>If I gets the COVID-19 vaccine I won’t have to worry about being judged for not getting I vaccinated</td>
           <td>
           <Checkbox />
           </td>
@@ -99,7 +104,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine I won’t have to worry about being judged for not getting my child vaccinated</td>
+          <td>If I gets the COVID-19 vaccine I may experience side effects from the COVID-19 vaccine</td>
           <td>
           <Checkbox />
           </td>
@@ -107,7 +112,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine they may experience side effects from the COVID-19 vaccine</td>
+          <td>If I gets the COVID-19 vaccine I may have to take time off school to get the vaccine or recover from side effects</td>
           <td>
           <Checkbox />
           </td>
@@ -115,7 +120,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine they may have to take time off school to get the vaccine or recover from side effects</td>
+          <td>If I gets the COVID-19 vaccine I will have to make the effort to find, book and attend an appointment</td>
           <td>
           <Checkbox />
           </td>
@@ -123,15 +128,7 @@ function decisionTable(){
           <td> <Checkbox /></td>
         </tr>
         <tr>
-          <td>If my child gets the COVID-19 vaccine I will have to make the effort to find, book and attend an appointment</td>
-          <td>
-          <Checkbox />
-          </td>
-          <td> <Checkbox /></td>
-          <td> <Checkbox /></td>
-        </tr>
-        <tr>
-          <td>If my child gets the COVID-19 vaccine I will worry about being judged by people who disapprove of my decision
+          <td>If I gets the COVID-19 vaccine I will worry about being judged by people who disapprove of my decision
 </td>
           <td>
           <Checkbox />
