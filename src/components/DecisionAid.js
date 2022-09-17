@@ -155,11 +155,28 @@ function AppBar2(props) {
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='step1'} 
             onClick={() => history.push('/decision-aid/step1')}
-            name='step1'>
+            name='step4'>
            <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
-    STEP 1: 
+    STEP 1:
+    </HeaderContent>
+    <HeaderSubHeader style={{color:"#fff"}}>
+    Consider what matter 
+    <br></br>
+    most for your family
+    </HeaderSubHeader>
+    </Header>
+          </Menu.Item>
+
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='step2'} 
+            onClick={() => history.push('/decision-aid/step2')}
+            name='step2'>
+           <Header style={{color:"#fff",fontWeight:400}}>
+    
+    <HeaderContent>
+    STEP 2: 
     </HeaderContent>
     <HeaderSubHeader style={{color:"#fff"}}>
     Learn about the virus 
@@ -170,13 +187,13 @@ function AppBar2(props) {
           </Menu.Item>
           
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step2'} 
-            onClick={() => history.push('/decision-aid/step2')}
-            name='step2'>
+            active={props.menu==='step3'} 
+            onClick={() => history.push('/decision-aid/step3')}
+            name='step3'>
               <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
-  STEP 2:
+  STEP 3:
     </HeaderContent>
     <HeaderSubHeader style={{color:"#fff"}}>
     Compare the risks 
@@ -193,13 +210,13 @@ function AppBar2(props) {
             Map State
           </Menu.Item> */}
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step3'} 
-            onClick={() => history.push('/decision-aid/step3')}
-            name='step3'>
+            active={props.menu==='step4'} 
+            onClick={() => history.push('/decision-aid/step4')}
+            name='step4'>
             <Header style={{color:"#fff",fontWeight:400}}>
     
     <HeaderContent>
-    STEP 3:
+    STEP 4:
     </HeaderContent>
     <HeaderSubHeader style={{color:"#fff"}}>
     Check your 
@@ -209,22 +226,7 @@ function AppBar2(props) {
     </Header>
           </Menu.Item>
 
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step4'} 
-            onClick={() => history.push('/decision-aid/step4')}
-            name='step4'>
-           <Header style={{color:"#fff",fontWeight:400}}>
-    
-    <HeaderContent>
-    STEP 4:
-    </HeaderContent>
-    <HeaderSubHeader style={{color:"#fff"}}>
-    Consider what matter 
-    <br></br>
-    most for your family
-    </HeaderSubHeader>
-    </Header>
-          </Menu.Item>
+       
 
           <Menu.Item style = {{paddingLeft: 15, paddingRight: 55}}
             active={props.menu==='step5'} 
@@ -266,17 +268,18 @@ const DecisionAid = (props) => {
       {step=="about"&&(
         <About/>
       )}
-      {step=="step1"&&(
+      {step=="step2"&&(
         <VaccFAQ/>
       )}
-      {step=="step2"&&(
+      {step=="step3"&&(
         <Compare/>
       )}
-      {step=="step3"&&(
-        <PersonalRisk/>
+      {step=="step1"&&(
+        <DecisionTable/>
       )}
       {step=="step4"&&(
-        <DecisionTable/>
+        <PersonalRisk/>
+        
       )}
       {step=="step5"&&(
         <FinalDecision/>

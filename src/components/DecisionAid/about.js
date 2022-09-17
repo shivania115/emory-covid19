@@ -60,7 +60,7 @@ import { faCircleCheck ,faTimesCircle,faQuestionCircle} from '@fortawesome/free-
                     
                     <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"3rem",marginRight:"20pt",color:  "#024174", 
 }}/>
-        I get the COVID-19 vaccine now
+        Get the COVID-19 vaccine now
         </HeaderSubHeader>
         <HeaderSubHeader  style={{
                       paddingTop: "2rem",
@@ -73,7 +73,7 @@ import { faCircleCheck ,faTimesCircle,faQuestionCircle} from '@fortawesome/free-
                     }}>
                      <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"3rem",marginRight:"20pt",color:  "#024174", 
 }}/>
-    I wait to get the COVID-19 vaccine
+   Wait to get the COVID-19 vaccine
         </HeaderSubHeader>
         <HeaderSubHeader  style={{
                       paddingTop: "2rem",
@@ -86,7 +86,7 @@ import { faCircleCheck ,faTimesCircle,faQuestionCircle} from '@fortawesome/free-
                     }}>
                      <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:"3rem",marginRight:"20pt",color:  "#024174", 
 }}/>
-        I don’t get the COVID-19 vaccine
+       Don't get the COVID-19 vaccine at all
         </HeaderSubHeader>
       </Header>
       <Link  to="/decision-aid/step1" >

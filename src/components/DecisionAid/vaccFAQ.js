@@ -50,7 +50,7 @@ function VaccFAQ() {
                             fontSize: "1rem",
                             color: "black",
                         }}>
-                            COVID-19 is caused by the SARS-CoV-2 virus. There have been millions of confirmed cases of COVID-19 in Australia, including hundreds of thousands of children.1 Thousands of people have lost their lives, including children.1 Most children who catch COVID-19 will get better; however, some children get so sick they need to go to hospital or be cared for by hospital staff in a 'hospital at home' program. Children with existing health issues are more likely to require hospitalisation.
+                            There have been millions of confirmed cases of COVID-19 in Australia. Thousands of people have lost their lives.1 Most people who catch COVID-19 will get better; however, some will get so sick they need to go to hospital or be cared for by hospital staff in a 'hospital at home' program. A small number will still feel sick three months or more after they first catch COVID-19.
                         </HeaderSubHeader>
                     </Header>
                 </Grid.Column>
@@ -458,9 +458,9 @@ function VaccFAQ() {
                             fontSize: "1rem",
                             color: "black",
                         }}>
-                            COVID-19 vaccines train our bodies to recognise and fight the virus. They do this by teaching our immune system to read the genetic code for an important part of the virus, called the spike protein.
+                           COVID-19 vaccines train our bodies to recognise and fight the virus. They do this by teaching our immune system to read the genetic code for an important part of the virus, called the spike protein. 
 
-                            Vaccination means you will be less likely to catch COVID-19 and pass it on to others. There is still a small chance that you will catch the virus, but if you do, your symptoms will usually be mild.
+Vaccination means you will be less likely to catch COVID-19 and pass it on to others. There is still a small chance that you will catch the virus, but if you do, your symptoms will usually be mild.
                         </HeaderSubHeader>
                     </Header>
                 </Grid.Column>
