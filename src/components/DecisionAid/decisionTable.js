@@ -31,13 +31,26 @@ import React, {
   PureComponent,
 } from "react";
 import Slider from '@mui/material/Slider';
+import {useStitchAuth} from "../StitchAuth";
+import { var_option_mapping, decision_aid,CHED_static} from "../../stitch/mongodb";
 import { Link } from 'react-router-dom';
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faClock, faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 function DecitionTable() {
-  const [info,setInfo]=useState([50]);
+  const [info,setInfo]=useState([50,50,50,50,50,50,50,50,50,50,50,50]);
+  const {
+    isLoggedIn,
+    actions: { handleAnonymousLogin },
+  } = useStitchAuth();  
 
+  function handleSubmit(){
+    if (isLoggedIn==true){
+      // const k = decision_aid.find({all:'all'}).toArray();
+      // console.log(k);
+      decision_aid.insertOne({'type':'slider','rating':info});
+    }
+  }
   function handleChange(index, value){
     setInfo(previousState=>{
       const sliders = [...previousState];
@@ -56,7 +69,7 @@ function DecitionTable() {
       >
 
         <Header.Content>
-          If I gets the COVID-19 vaccine
+          If I get the COVID-19 vaccine
         </Header.Content>
       </Header>
       <table class="ui striped table">
@@ -82,55 +95,55 @@ function DecitionTable() {
             <td>If I get the COVID-19 vaccine I will help to increase the overall vaccination rate and restrictions will end sooner.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={1} onChange={(event, value)=>handleChange(1,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I gets the COVID-19 vaccine and I still catch COVID-19, my symptoms will be milder</td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={2} onChange={(event, value)=>handleChange(2,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I get the COVID-19 vaccine I will be able to see my family and friends.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={3} onChange={(event, value)=>handleChange(3,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I get the COVID-19 vaccine and I still catch COVID-19, my symptoms will be milder.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={4} onChange={(event, value)=>handleChange(4,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I get the COVID-19 vaccine I will be able to return to work.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={5} onChange={(event, value)=>handleChange(5,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I get the COVID-19 vaccine I will be able to travel and move around my community more freely.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={6} onChange={(event, value)=>handleChange(6,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I get the COVID-19 vaccine I won’t have to worry about being judged by my family or friends for not getting the vaccine.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={7} onChange={(event, value)=>handleChange(7,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
             <td>If I get the COVID-19 vaccine I may experience side effects from the COVID-19 vaccine.
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={8} onChange={(event, value)=>handleChange(8,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
@@ -138,7 +151,7 @@ function DecitionTable() {
 
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={9} onChange={(event, value)=>handleChange(9,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
@@ -146,7 +159,7 @@ function DecitionTable() {
 
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={10} onChange={(event, value)=>handleChange(10,value)} aria-label="Default" />
             </td>
           </tr>
           <tr>
@@ -154,12 +167,12 @@ function DecitionTable() {
 
             </td>
             <td colspan="3">
-              <Slider defaultValue={50} aria-label="Default" />
+              <Slider defaultValue={50} key={11} onChange={(event, value)=>handleChange(11,value)} aria-label="Default" />
             </td>
           </tr>
         </tbody>
       </table>
-      <button style={{float:'right',marginBottom:"3rem"}} class="ui large primary button">
+      <button onClick={handleSubmit} style={{float:'right',marginBottom:"3rem"}} class="ui large primary button">
       Submit
     </button>
     </div>

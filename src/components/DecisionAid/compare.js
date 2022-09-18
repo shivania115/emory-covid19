@@ -176,7 +176,7 @@ function Compare(props) {
         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
         //   >
         //     <Header.Content>
-        //       HOSPITALISATION
+        //       HOSPITALIZATION
         //     </Header.Content>
         //   </Header>
         //   <Grid>
@@ -680,7 +680,7 @@ function Compare(props) {
               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
             >
               <Header.Content>
-              HOSPITALISATION
+              HOSPITALIZATION
               </Header.Content>
               <HeaderSubHeader>
                 Percentage of People
@@ -1316,7 +1316,7 @@ function Compare(props) {
                 style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
               >
                 <Header.Content>
-                HOSPITALISATION
+                HOSPITALIZATION
                 </Header.Content>
                 <HeaderSubHeader>
                   Number of People
