@@ -20,7 +20,7 @@ import {
 import Covid from "../icons/Covid";
 import { blue } from '@mui/material/colors';
 import Medicine from "../icons/Medicine";
-
+import styled from 'styled-components'
 import React, {
   useEffect,
   useState,
@@ -358,7 +358,7 @@ function Compare(props) {
               style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
             >
               <Header.Content>
-              injection pain, redness, swelling
+               redness
               </Header.Content>
               <HeaderSubHeader>
                 Percentage of People
@@ -388,8 +388,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-              <Progress percent={32} color='blue' ></Progress>
+              <Progress style={{marginBottom:10}} reverse percent={0} color='red'></Progress>
+              <Progress percent={4.5} color='blue' ></Progress>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -397,7 +397,7 @@ function Compare(props) {
                 style={{marginTop:"1%"}}
               >
                 <Header.Content style={{color:"#e02c2c"}}>
-                 3 in 100 
+                 not applicable
 
                 </Header.Content>
               </Header>
@@ -406,7 +406,7 @@ function Compare(props) {
                 style={{marginTop:"8%"}}
               >
                 <Header.Content style={{color:"#0E6EB8"}}>
-                 2 in 100
+                 4.5 %
 
                 </Header.Content>
               </Header>
@@ -452,7 +452,7 @@ function Compare(props) {
 
             <GridColumn width={5}>
               <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
-              <Progress  percent={32} color='blue' ></Progress>
+              <Progress  percent={3.7} color='blue' ></Progress>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -469,7 +469,7 @@ function Compare(props) {
                 style={{marginTop:"8%"}}
               >
                 <Header.Content style={{color:"#0E6EB8"}}>
-                 2 in 100
+                 3.7 %
 
                 </Header.Content>
               </Header>
@@ -483,7 +483,7 @@ function Compare(props) {
               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
             >
               <Header.Content>
-              cough
+              headachea
               </Header.Content>
               <HeaderSubHeader>
                 Percentage of People
@@ -514,7 +514,7 @@ function Compare(props) {
 
             <GridColumn width={5}>
               <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-              <Progress percent={32} color='blue' ></Progress>
+              <Progress percent={41.9} color='blue' ></Progress>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -531,7 +531,7 @@ function Compare(props) {
                 style={{marginTop:"8%"}}
               >
                 <Header.Content style={{color:"#0E6EB8"}}>
-                 2 in 100
+                41.9 %
 
                 </Header.Content>
               </Header>
@@ -575,7 +575,7 @@ function Compare(props) {
 
             <GridColumn width={5}>
               <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
-              <Progress  percent={32} color='blue' ></Progress>
+              <Progress  percent={47.4} color='blue' ></Progress>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -592,7 +592,7 @@ function Compare(props) {
                 style={{marginTop:"8%"}}
               >
                 <Header.Content style={{color:"#0E6EB8"}}>
-                 2 in 100
+                47.4 %
 
                 </Header.Content>
               </Header>
