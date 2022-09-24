@@ -32,13 +32,17 @@ import React, {
 } from "react";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 
 const colorPalette = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
 function Compare(props) {
   const [vaccine, setVaccine] = useState('pfizer');
-
+  const StyledProgressBar = styled(Progress)`
+  &&&  .bar {
+    ${'' /* background-color: ${props => props.color || 'green'} !important; */}
+    min-width: 0;
+  }
+`;
   const panes = [
     {
       menuItem: { content: <p style={{ fontSize: "100%" }}>PERCENTAGE OF PEOPLE</p> }, render: () =>
@@ -297,8 +301,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-              <Progress percent={32} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+              <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -388,8 +392,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{marginBottom:10}} reverse percent={0} color='red'></Progress>
-              <Progress percent={4.5} color='blue' ></Progress>
+              <StyledProgressBar style={{marginBottom:10}} reverse percent={0} color='red'></StyledProgressBar>
+              <StyledProgressBar percent={4.5} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -451,8 +455,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
-              <Progress  percent={3.7} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={32} color='red'></StyledProgressBar>
+              <StyledProgressBar  percent={3.7} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -513,8 +517,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-              <Progress percent={41.9} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+              <StyledProgressBar percent={41.9} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -574,8 +578,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
-              <Progress  percent={47.4} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10}} color="red" percent={32}></StyledProgressBar>
+              <StyledProgressBar  percent={47.4} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -647,8 +651,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-              <Progress percent={32} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+              <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -710,8 +714,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
-              <Progress  percent={32} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={32} color='red'></StyledProgressBar>
+              <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -773,8 +777,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-              <Progress percent={32} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+              <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -836,8 +840,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
-              <Progress  percent={32} color='blue' ></Progress>
+              <StyledProgressBar style={{ marginBottom: 10}} color="red" percent={32}></StyledProgressBar>
+              <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -933,8 +937,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-                <Progress percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1024,8 +1028,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-                <Progress percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1087,8 +1091,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
-                <Progress  percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1149,8 +1153,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-                <Progress percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1210,8 +1214,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
-                <Progress  percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10}} color="red" percent={32}></StyledProgressBar>
+                <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1283,8 +1287,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-                <Progress percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1346,8 +1350,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }}  reverse percent={32} color='red'></Progress>
-                <Progress  percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1409,8 +1413,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10 }} reverse percent={32} color='red'></Progress>
-                <Progress percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10 }} reverse percent={32} color='red'></StyledProgressBar>
+                <StyledProgressBar percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header
@@ -1472,8 +1476,8 @@ function Compare(props) {
               </GridColumn>
 
               <GridColumn width={5}>
-                <Progress style={{ marginBottom: 10}} color="red" percent={32}></Progress>
-                <Progress  percent={32} color='blue' ></Progress>
+                <StyledProgressBar style={{ marginBottom: 10}} color="red" percent={32}></StyledProgressBar>
+                <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
               <Header

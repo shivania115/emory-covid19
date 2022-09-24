@@ -560,7 +560,12 @@ function CaseChartStatic(props){
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
   };
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   console.log('data ', data)
 
   const radius = 10;
@@ -644,7 +649,7 @@ function CaseChartStatic(props){
             isAnimationActive={false} 
             stroke={lineColor}
             strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       </Grid.Column>
     
@@ -722,7 +727,12 @@ function CaseChartAll(props){
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
   const labelWidth = '12rem'
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
 
@@ -838,7 +848,7 @@ function CaseChartAll(props){
             animationDuration={3500} 
             stroke={lineColor}
             strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       </Grid.Column>
     
@@ -919,12 +929,16 @@ function CaseChart90(props){
   const barColor = props.barColor;
   const lineColor = props.lineColor;
   const ticks = props.tick;
-  const tickFormatter = props.tickFormatter;
   const barName = props.barName;
   const lineName = props.lineName;
-
+  const tickFormatter=props.formatter;
   const [animationBool, setAnimationBool] = useState(true);
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
   };
@@ -974,7 +988,7 @@ function CaseChart90(props){
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
       <Transition visible={visible1} animation='scale' duration={200}>
@@ -995,10 +1009,15 @@ function CaseChart14(props){
   const barColor = props.barColor;
   const lineColor = props.lineColor;
   const ticks = props.tick;
-  const tickFormatter = props.tickFormatter;
   const barName = props.barName;
   const lineName = props.lineName;
-
+  const tickFormatter=props.formatter;
+  const tooltickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   const [animationBool, setAnimationBool] = useState(true);
 
   const caseYTickFmt = (y) => {
@@ -1049,7 +1068,7 @@ function CaseChart14(props){
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
@@ -1075,7 +1094,12 @@ function DeathChartAll(props){
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
   const labelWidth = '12rem'
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
 
@@ -1162,7 +1186,7 @@ function DeathChartAll(props){
             animationDuration={3500} 
             stroke={lineColor}
             strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       </Grid.Column>
     
@@ -2997,7 +3021,14 @@ export default function NationalReportPilot(props) {
                   <Header.Content style = {{paddingLeft: 54}}>
                     COVID-19 Vaccination By Race & Ethnicity
                     <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
-                      <center > <b style = {{fontSize:"18pt"}}>Vaccination by Race & Ethnicity</b> </center>
+                      <center > <b style = {{fontSize:"18pt"}}>Vaccination by Race & Ethnicity</b> 
+                      <br></br>
+                      <br></br>
+                      <p style = {{color:'grey',fontSize:"10pt"}}>% vaccination is among those that are fully vaccinated</p> 
+        
+                      <p style = {{color:'grey',fontSize:"10pt"}}> % population 
+                      is among the total population present in the country</p> 
+                      </center> 
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -3027,57 +3058,59 @@ export default function NationalReportPilot(props) {
                   <Grid.Column style = {{width: 400}}>
                     <div style={{paddingTop: 0, paddingLeft: 30}}>
                       <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
-                        <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
+                        <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> 
+                        </center> 
                         
                         <p style = {{paddingLeft: 40}}>
                           <ul>
-                            
+                            {/* props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] */}
+                            {/* props.demogData['race'][0]['White'][0]['percentPop'] */}
                           {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
-                            " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+                            " White Americans make up " + (nationalDemog['race'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                            (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up fully vaccinated population." 
                           :
                             ""} </li>}
 
                             {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
                               {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
                             " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+                            (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population." 
                           :
                             ""}</li>}
 
                           {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
                             {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
                             " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
                           {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
                             " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""}</li>}
 
                           {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
                             " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
                           {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop'] ? 
                             " Native Americans make up " + (nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
                           {nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop'] ? 
                             " Native Americans make up " + (nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
