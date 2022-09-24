@@ -38,6 +38,8 @@ import {
   faClock,
   faQuestionCircle,
 } from "@fortawesome/free-regular-svg-icons";
+import { useCookie } from "react-use";
+import { decision_aid } from "../../stitch/mongodb";
 
 function FinalDecision() {
   const choices = [
@@ -54,6 +56,27 @@ function FinalDecision() {
     false,
     false,
   ]);
+  const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
+  console.log(cookies);
+  function handleSubmit() {
+    const cookies_arr = cookies.slice(1, -1).split(",");
+    const num_arr = [];
+
+    cookies_arr.forEach((str) => {
+      num_arr.push(Number(str));
+    });
+    console.log(num_arr);
+    console.log(checkedBoxes);
+    try {
+      decision_aid.insertOne({
+        step1: { type: "slider", value: num_arr },
+        step2: { type: "check box", value: checkedBoxes },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <div style={{ marginLeft: "20%", width: "60%" }}>
       <Header
@@ -71,7 +94,9 @@ function FinalDecision() {
           return (
             <Checkbox
               onClick={(e) => {
-                e.preventDefault();
+                var temp = [false, false, false, false, false];
+                temp[index] = true;
+                setCheckedBoxes(temp);
               }}
               checked={checkedBoxes[index]}
               style={{
@@ -84,9 +109,13 @@ function FinalDecision() {
           );
         })}
       </div>
-
       <Link to="/decision-aid/about">
-        <button style={{ marginTop: "3rem" }} class="ui large primary button">
+        <button
+          onClick={handleSubmit}
+          type="submit"
+          style={{ marginTop: "3rem" }}
+          class="ui large primary button"
+        >
           Submit
         </button>
       </Link>
