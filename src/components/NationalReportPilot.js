@@ -3669,7 +3669,7 @@ export default function NationalReportPilot(props) {
                         
                         <br/>
                         <br/>
-                        Deaths increase in prevalence with age and are highest in the {Object.keys(demog_descriptives['Age'][1]["deaths"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][1]["deaths"][Object.keys(demog_descriptives['Age'][1]["deaths"])[0]]).toFixed(0))}% of all deaths), 
+                        The prevalence of death increases with age and are highest in the {Object.keys(demog_descriptives['Age'][1]["deaths"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][1]["deaths"][Object.keys(demog_descriptives['Age'][1]["deaths"])[0]]).toFixed(0))}% of all deaths), 
                         {demog_descriptives['AgeDescription'][0]["DeathsDescription"] != "" ? 
                         " Deaths are disproportionately high in the " + demog_descriptives['AgeDescription'][1]["DeathsDescription"] + ", compared to those age groups' shares of the U.S. population.":""} 
 
@@ -4227,10 +4227,9 @@ export default function NationalReportPilot(props) {
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                       This map shows each U.S. county according to its Community Vulnerability ranking. 
-                                                      County rankings are based on quintiles of the CCVI. The ranking classifies counties 
-                                                      into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                      the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                      quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                      County rankings are based on quintiles of the COVID-19 Community Vulnerability Index (CCVI). The ranking classifies counties into five groups designed to be of equal size, so that the lowest quintile contains the counties with values in the 0%-20% range for this county characteristic, 
+                                                      and the very high CCVI contains counties with values in the 80%-100% range for this county characteristic. 
+                                                      Low CCVI indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% range, and high CCVI indicates counties in the 60%-80% range.
                                                       <br/>
                                                       <br/>
                                                       <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://precisionforcovid.org/ccvi" target = "_blank" rel="noopener noreferrer"> Surgo Foundation </a>
@@ -4578,10 +4577,12 @@ export default function NationalReportPilot(props) {
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its percentage of population in poverty. 
-                                                County rankings are based on quintiles of percentage of population in poverty. The ranking classifies counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of percentage of population in poverty. The ranking classifies counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target = "_blank" rel="noopener noreferrer"> American Community Survey</a> by the U.S. Census Bureau
@@ -5673,8 +5674,13 @@ export default function NationalReportPilot(props) {
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its percentage of African American population. 
                                                 County rankings are based on quintiles of percentage of African American population. 
-                                                The ranking classified counties into five groups designed to be of equal size, 
-                                                so that the lowest quintile contains the counties with values in the 0%-20% range for this county characteristic, and the highest quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                The ranking classifies counties into five groups designed to be of equal size, 
+                                                    so that the "very low % African American" group contains the counties with values in the 0%-20% 
+                                                    range for this county characteristic, and the "very high % African American" group contains 
+                                                    counties with values in the 80%-100% range for this county characteristic. Low % 
+                                                    African American indicates counties in the 20%-40% range, moderate % African American 
+                                                    indicates counties in the 40%-60% range, and high % African American indicates counties 
+                                                    in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target = "_blank" rel="noopener noreferrer"> American Community Survey</a> by the U.S. Census Bureau
@@ -6025,10 +6031,13 @@ export default function NationalReportPilot(props) {
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its racial segregation ranking. 
-                                                County rankings are based on quintiles of the racial segregation index. The ranking classifies counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of the racial segregation index. The ranking 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
+                                                        low segregation" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high segregation" group contains counties with values in the 
+                                                        80%-100% range for this county characteristic. Low segregation indicates counties in 
+                                                        the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
+                                                        high segregation indicates counties in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.countyhealthrankings.org/explore-health-rankings/measures-data-sources/county-health-rankings-model/health-factors/social-and-economic-factors/family-social-support/residential-segregation-blackwhite" target = "_blank" rel="noopener noreferrer"> Robert Wood Johnson Foundation program</a> 
@@ -6384,10 +6393,13 @@ export default function NationalReportPilot(props) {
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 
                                                 This map shows each U.S. county according to percentage of population with underlying conditions. 
-                                                County rankings are based on quintiles of percentage of population with underlying conditions. The ranking classifies counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of percentage of population with underlying conditions. The ranking 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
+                                                      low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
+                                                      characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
+                                                      80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
+                                                      the 20%-40% range, moderate percentage of population with any underlying comorbidity indicates counties in the 40%-60% range, and 
+                                                      high percentage of population with any underlying comorbidity indicates counties in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://stacks.cdc.gov/" target = "_blank" rel="noopener noreferrer"> CDC Stacks Public Health Publicatiions</a> 
