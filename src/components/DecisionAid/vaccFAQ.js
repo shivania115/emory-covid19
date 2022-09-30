@@ -314,46 +314,138 @@ COVID-19 vaccines train our bodies to recognize and fight the virus. (maybe remo
                     </p>
                   </Accordion.Content>
                   <Accordion.Title
-                    id="get"
                     style={{ fontSize: "15pt", color: "black" }}
                     // active={activeIndex === 0}
-                    index={37}
+                    index={10}
                     onClick={() =>
-                      activeIndex.indexOf(37) < 0
-                        ? setActiveIndex((activeIndex) => [...activeIndex, 37])
+                      activeIndex.indexOf(10) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 10])
                         : setActiveIndex((activeIndex) =>
-                            activeIndex.filter((item) => item !== 37)
+                            activeIndex.filter((item) => item !== 10)
                           )
                     }
                   >
                     <Icon name="dropdown" />
-                    Are the COVID-19 vaccines safe for children?
+                    Are the approved COVID-19 vaccines safe?
                   </Accordion.Title>
                   <Accordion.Content
                     style={{ fontSize: "14pt" }}
-                    active={activeIndex.indexOf(37) > 0}
+                    active={activeIndex.indexOf(10) > 0}
                   >
-                    <p>
-                      Yes, the vaccine is safe for children as young as 12. At
-                      this time one vaccine, Pfizer-BioNTech’s two-dose vaccine,
-                      has been given Emergency Use Authorization for adolescents
-                      down to age 12. Before applying for and getting
-                      Authorization, researchers carried out closely monitored
-                      trials and showed that this vaccine is safe and effective,
-                      including for{" "}
+                    <p style={{ marginBottom: 0 }}>
+                      Yes. Any vaccine that is approved for use is thoroughly
+                      tested to make sure that it is both effective and safe.
+                      Tests for safety already happen in Phase I, Phase II, and
+                      Phase III clinical trials. However, vaccines continue to
+                      be tested for safety after they are approved for use, in
+                      what are called “Phase IV” studies. All the vaccines for
+                      COVID-19 are being developed through careful scientific
+                      studies, which follow strict standards set by the Food and
+                      Drug Administration (FDA). During vaccine development and
+                      testing, researchers carefully study whether each vaccine
+                      effectively reduces the chances of getting COVID-19 or
+                      getting sick from COVID-19. Researchers have tested the
+                      vaccines on thousands of study participants during Phases
+                      I-III. Researchers also track whether a vaccine causes
+                      side effects, the kind of side effects people experience,
+                      and how serious those are. All of the side effects are
+                      reported to doctors making the decision about whether the
+                      vaccine is safe.
+                    </p>
+
+                    <p
+                      style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        marginBottom: "0",
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    >
+                      There are very strict standards about whether a vaccine is
+                      authorized as safe by the Food and Drug Administration.
+                      Before a COVID-19 vaccine is approved, scientists must
+                      show that any risks of side effects from the vaccine are
+                      outweighed by its benefits and by the potential harm of
+                      getting sick from COVID-19. You can find additional
+                      information about COVID-19 vaccine safety on the{" "}
                       <a
                         style={{ color: "#397AB9" }}
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/adolescents.html"
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         {" "}
-                        adolescents
+                        CDC’s website{" "}
                       </a>
-                      . Trials are ongoing for other vaccines for younger
-                      adolescents and children. Children may have side-effects
-                      after getting a vaccine, just like adults do. They will
-                      not get a COVID-19 infection from the vaccine.
+                      and the full documents shared with the FDA{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/media/144434/download"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        here{" "}
+                      </a>{" "}
+                      for the Moderna vaccine,
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/media/144245/download"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        here{" "}
+                      </a>{" "}
+                      for the Pfizer-BioNTech vaccine, and{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.fda.gov/media/146217/download"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        here{" "}
+                      </a>
+                      for the Johnson & Johnson vaccine. Vaccine safety
+                      monitoring does not stop once a vaccine is approved. It
+                      continues on a larger scale with Phase IV studies as well
+                      as nationwide vaccine safety reporting systems.
+                    </p>
+
+                    <p
+                      style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    >
+                      There are multiple systems used to track any reports of
+                      any adverse side effects or reactions. The Vaccine Safety
+                      Datalink which helps to determine whether the reactions
+                      reported using the Vaccine Adverse Event Reporting System
+                      (VAERS) are related to a vaccine. The Clinical
+                      Immunization Safety Assessment Project also helps to track
+                      and evaluate issues of vaccine safety. You can find out
+                      more about these and other different systems at CDC, the
+                      Food and Drug Administration, and other groups used to
+                      monitor and assess safety{" "}
+                      <a
+                        style={{ color: "#397AB9" }}
+                        href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        here{" "}
+                      </a>
+                      .
                     </p>
                   </Accordion.Content>
                   <Accordion.Title
@@ -465,6 +557,30 @@ COVID-19 vaccines train our bodies to recognize and fight the virus. (maybe remo
                       cases
                       </a>{" "}
                        , a second booster is also recommended. 
+                    </p>
+                  </Accordion.Content>
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={13}
+                    onClick={() =>
+                      activeIndex.indexOf(13) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 13])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 13)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    Can the vaccine make me sick with COVID-19?
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(13) > 0}
+                  >
+                    <p>
+                      No. The COVID-19 vaccines do not contain COVID-19 virus
+                      particles that could cause the disease.
                     </p>
                   </Accordion.Content>
                         </Accordion>
