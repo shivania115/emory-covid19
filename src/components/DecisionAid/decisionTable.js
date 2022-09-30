@@ -49,7 +49,7 @@ import { useCookie } from "react-use";
 
 function DecitionTable() {
   const [info, setInfo] = useState([
-    50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
   const {
     isLoggedIn,
@@ -83,6 +83,9 @@ function DecitionTable() {
         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
       >
         <Header.Content>If I get the COVID-19 vaccine</Header.Content>
+        <HeaderSubHeader>
+        Rank each of the following statements in importance to you 
+        </HeaderSubHeader>
       </Header>
       <table class="ui striped table">
         <thead>
@@ -101,7 +104,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={0}
                 aria-label="Default"
                 onChange={(event, value) => handleChange(0, value)}
@@ -115,7 +118,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={1}
                 onChange={(event, value) => handleChange(1, value)}
                 aria-label="Default"
@@ -129,7 +132,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={2}
                 onChange={(event, value) => handleChange(2, value)}
                 aria-label="Default"
@@ -143,7 +146,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={3}
                 onChange={(event, value) => handleChange(3, value)}
                 aria-label="Default"
@@ -157,7 +160,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={4}
                 onChange={(event, value) => handleChange(4, value)}
                 aria-label="Default"
@@ -170,7 +173,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={5}
                 onChange={(event, value) => handleChange(5, value)}
                 aria-label="Default"
@@ -184,7 +187,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={6}
                 onChange={(event, value) => handleChange(6, value)}
                 aria-label="Default"
@@ -198,7 +201,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={7}
                 onChange={(event, value) => handleChange(7, value)}
                 aria-label="Default"
@@ -212,7 +215,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={8}
                 onChange={(event, value) => handleChange(8, value)}
                 aria-label="Default"
@@ -226,7 +229,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={9}
                 onChange={(event, value) => handleChange(9, value)}
                 aria-label="Default"
@@ -240,7 +243,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={10}
                 onChange={(event, value) => handleChange(10, value)}
                 aria-label="Default"
@@ -254,7 +257,7 @@ function DecitionTable() {
             </td>
             <td colspan="3">
               <Slider
-                defaultValue={50}
+                defaultValue={0}
                 key={11}
                 onChange={(event, value) => handleChange(11, value)}
                 aria-label="Default"
@@ -269,7 +272,7 @@ function DecitionTable() {
           style={{ float: "right", marginBottom: "3rem" }}
           class="ui large primary button"
         >
-          Submit
+          Next
         </button>
       </Link>
     </div>

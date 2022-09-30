@@ -39,7 +39,7 @@ function VaccFAQ() {
                     >
 
                         <Header.Content>
-                            COVID-19
+                            COVID-19 Vaccination
                         </Header.Content>
                         <HeaderSubHeader style={{
                             paddingTop: "2rem",
@@ -50,9 +50,40 @@ function VaccFAQ() {
                             fontSize: "1rem",
                             color: "black",
                         }}>
-                            There have been millions of confirmed cases of COVID-19 in Australia. Thousands of people have lost their lives.1 Most people who catch COVID-19 will get better; however, some will get so sick they need to go to hospital or be cared for by hospital staff in a 'hospital at home' program. A small number will still feel sick three months or more after they first catch COVID-19.
+COVID-19 vaccines train our bodies to recognize and fight the virus. (maybe remove the following sentence and add ref “How does vaccine work?” for further explanation) They do this by teaching our immune system to target an important part of the virus
+
                         </HeaderSubHeader>
+                        <HeaderSubHeader style={{
+                            paddingTop: "2rem",
+
+                            paddingBottom: "0rem",
+                            lineHeight: "20pt",
+
+                            fontSize: "1rem",
+                            color: "black",
+                        }}>
+                        Vaccination means you will be less likely to catch COVID-19 and pass it on to others. In the small chance that you catch the virus, your symptoms will usually be mild. 
+</HeaderSubHeader>
+<HeaderSubHeader style={{
+                            paddingTop: "2rem",
+
+                            paddingBottom: "0rem",
+                            lineHeight: "20pt",
+
+                            fontSize: "1rem",
+                            color: "black",
+                        }}>
+                The vaccines mostly widely available for adults in US are:
+</HeaderSubHeader>
                     </Header>
+                    <ul>
+                      <li>
+                        Pfizer/BioNTech
+                      </li>
+                      <li>
+                        Moderna
+                      </li>
+                    </ul>
                 </Grid.Column>
                 <Grid.Column width={9}>
                     <Accordion style={{marginLeft:"4rem",marginTop:30}} fluid styled exclusive={false}>
@@ -439,7 +470,7 @@ function VaccFAQ() {
                         </Accordion>
                 </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
+            {/* <Grid.Row>
                 <Grid.Column width={7}>
                     <Header
                         as="h2"
@@ -464,7 +495,7 @@ Vaccination means you will be less likely to catch COVID-19 and pass it on to ot
                         </HeaderSubHeader>
                     </Header>
                 </Grid.Column>
-            </Grid.Row>
+            </Grid.Row> */}
         </Grid>
     )
 }

@@ -560,7 +560,12 @@ function CaseChartStatic(props){
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
   };
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   console.log('data ', data)
 
   const radius = 10;
@@ -644,7 +649,7 @@ function CaseChartStatic(props){
             isAnimationActive={false} 
             stroke={lineColor}
             strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       </Grid.Column>
     
@@ -722,7 +727,12 @@ function CaseChartAll(props){
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
   const labelWidth = '12rem'
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
 
@@ -838,7 +848,7 @@ function CaseChartAll(props){
             animationDuration={3500} 
             stroke={lineColor}
             strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       </Grid.Column>
     
@@ -919,12 +929,16 @@ function CaseChart90(props){
   const barColor = props.barColor;
   const lineColor = props.lineColor;
   const ticks = props.tick;
-  const tickFormatter = props.tickFormatter;
   const barName = props.barName;
   const lineName = props.lineName;
-
+  const tickFormatter=props.formatter;
   const [animationBool, setAnimationBool] = useState(true);
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   const caseYTickFmt = (y) => {
     return y<1000?y:(y/1000+'k');
   };
@@ -974,7 +988,7 @@ function CaseChart90(props){
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
       <Transition visible={visible1} animation='scale' duration={200}>
@@ -995,10 +1009,15 @@ function CaseChart14(props){
   const barColor = props.barColor;
   const lineColor = props.lineColor;
   const ticks = props.tick;
-  const tickFormatter = props.tickFormatter;
   const barName = props.barName;
   const lineName = props.lineName;
-
+  const tickFormatter=props.formatter;
+  const tooltickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   const [animationBool, setAnimationBool] = useState(true);
 
   const caseYTickFmt = (y) => {
@@ -1049,7 +1068,7 @@ function CaseChart14(props){
             isAnimationActive={animationBool} 
             animationDuration={3500} 
             stroke={lineColor} strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       {/* <Brush dataKey='t'/> */}
       </ComposedChart>
       {/* <Button content='Play' icon='play' floated="right" disabled={disabled} onClick={() => {setPlayCount(playCount+1);}}/> */}
@@ -1075,7 +1094,12 @@ function DeathChartAll(props){
   const ticks = props.tick;
   const tickFormatter = props.tickFormatter;
   const labelWidth = '12rem'
-
+  const tooltiptickFormatter= (tick) => { 
+    return (
+        monthNames[new Date(tick*1000).getMonth()] + " " +  new Date(tick*1000).getDate()+"\n"+
+        new Date(tick*1000).getFullYear()
+      );
+  };
   // const ytickFormatter = props.ytickFormatter;
   const [animationBool, setAnimationBool] = useState(true);
 
@@ -1162,7 +1186,7 @@ function DeathChartAll(props){
             animationDuration={3500} 
             stroke={lineColor}
             strokeWidth="2" />
-      <Tooltip labelFormatter={tickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
+      <Tooltip labelFormatter={tooltiptickFormatter} formatter={(value) => numberWithCommas(value.toFixed(0))} wrapperStyle={{zIndex: 10}}/>
       </ComposedChart>
       </Grid.Column>
     
@@ -2115,7 +2139,8 @@ export default function NationalReport(props) {
   const [legendMaxObesity, setLegendMaxObesity] = useState([]);
   const [legendMinObesity, setLegendMinObesity] = useState([]);
   const [legendSplitObesity, setLegendSplitObesity] = useState([]);
-
+  const [ccvidata,setccvi]=useState();
+  const [barData,setVacBar]=useState();
   // --------------------------
   const [caseTicks, setCaseTicks] = useState([]);
   const [caseYTicks, setCaseYTicks] = useState([]);
@@ -2160,6 +2185,8 @@ export default function NationalReport(props) {
       .then(x => {setVaccineDate(x.date.substring(5,7) + "/" + x.date.substring(8,10));});
     fetch('/data/rawdata/variable_mapping_Vaccine.json').then(res => res.json())
       .then(x => {setVaxVarMap(x);});
+      fetch('/data/ccvi_vac.json').then(res=>res.json()).then(x=>setccvi(x));
+      fetch('/data/vac_by_bar.json').then(res=>res.json()).then(x=>setVacBar(x));
     fetch('/data/vaccineData.json').then(res => res.json())
       .then(x => {
         setVaccineData(x);
@@ -2783,7 +2810,7 @@ export default function NationalReport(props) {
 
 
   if (data && dataTS && varMap) {
-    // console.log(demog_descriptives['AgeDescription']);
+    console.log(barData);
   return (
     <HEProvider>
       <div>
@@ -2994,7 +3021,14 @@ export default function NationalReport(props) {
                   <Header.Content style = {{paddingLeft: 54}}>
                     COVID-19 Vaccination By Race & Ethnicity
                     <Header.Subheader style={{ width: 810, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:28, paddingLeft: 2 }}>
-                      <center > <b style = {{fontSize:"18pt"}}>Vaccination by Race & Ethnicity</b> </center>
+                      <center > <b style = {{fontSize:"18pt"}}>Vaccination by Race & Ethnicity</b> 
+                      <br></br>
+                      <br></br>
+                      <p style = {{color:'grey',fontSize:"10pt"}}>% vaccination is among those that are fully vaccinated</p> 
+        
+                      <p style = {{color:'grey',fontSize:"10pt"}}> % population 
+                      is among the total population present in the country</p> 
+                      </center> 
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -3024,57 +3058,59 @@ export default function NationalReport(props) {
                   <Grid.Column style = {{width: 400}}>
                     <div style={{paddingTop: 0, paddingLeft: 30}}>
                       <Header.Subheader style={{width: 400, color: '#000000', textAlign:'left' , fontSize:"14pt", lineHeight: "16pt", paddingTop:16, paddingBottom:0, paddingLeft: 6}}>
-                        <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> </center> 
+                        <center> <b style= {{fontSize: "22px", paddingLeft: 0}}> Under-vaccinated Populations</b> 
+                        </center> 
                         
                         <p style = {{paddingLeft: 40}}>
                           <ul>
-                            
+                            {/* props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] */}
+                            {/* props.demogData['race'][0]['White'][0]['percentPop'] */}
                           {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['White'][0]['percentPop'] ? 
-                            " White Americans make up " + (nationalDemog['vaccineRace'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+                            " White Americans make up " + (nationalDemog['race'][0]['White'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
+                            (nationalDemog['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up fully vaccinated population." 
                           :
                             ""} </li>}
 
                             {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] && <li>
                               {nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop'] ? 
                             " Hispanic Americans make up " + (nationalDemog['vaccineRace'][0]['Hispanic'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated." 
+                            (nationalDemog['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population." 
                           :
                             ""}</li>}
 
                           {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] && <li> 
                             {nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['African American'][0]['percentPop'] ? 
                             " African Americans make up " + (nationalDemog['vaccineRace'][0]['African American'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
                           {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop'] ? 
                             " Asian Americans make up " + (nationalDemog['vaccineRace'][0]['Asian'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""}</li>}
 
                           {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop'] ? 
                             " Native Americans make up " + (nationalDemog['vaccineRace'][0]['American Native'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
                           {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop'] ? 
                             " Native Americans make up " + (nationalDemog['vaccineRace'][0]['NHPI'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
                           {nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop'] && <li>
                             {nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown'] < nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop'] ? 
                             " Native Americans make up " + (nationalDemog['vaccineRace'][0]['Multiracial'][0]['percentPop']).toFixed(0) + "% of the population, but only " + 
-                            (nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% of the fully vaccinated."
+                            (nationalDemog['vaccineRace'][0]['Multiracial'][0]['seriesCompletePopPctKnown']).toFixed(0) + "% make up the fully vaccinated population."
                           :
                             ""} </li>}
 
@@ -3633,7 +3669,7 @@ export default function NationalReport(props) {
                         
                         <br/>
                         <br/>
-                        Deaths increase in prevalence with age and are highest in the {Object.keys(demog_descriptives['Age'][1]["deaths"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][1]["deaths"][Object.keys(demog_descriptives['Age'][1]["deaths"])[0]]).toFixed(0))}% of all deaths), 
+                        The prevalence of death increases with age and are highest in the {Object.keys(demog_descriptives['Age'][1]["deaths"])[0]} age group ({numberWithCommas((demog_descriptives['Age'][1]["deaths"][Object.keys(demog_descriptives['Age'][1]["deaths"])[0]]).toFixed(0))}% of all deaths), 
                         {demog_descriptives['AgeDescription'][0]["DeathsDescription"] != "" ? 
                         " Deaths are disproportionately high in the " + demog_descriptives['AgeDescription'][1]["DeathsDescription"] + ", compared to those age groups' shares of the U.S. population.":""} 
 
@@ -4131,39 +4167,38 @@ export default function NationalReport(props) {
                       <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
                   
-                          <Grid.Column style={{paddingLeft:0}}>
+                          <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              Community Vulnerability Ranking <br/>
+                              <Header.Content style = {{padding: 0, width: 500}}>
+                              Community Vulnerability Ranking 
                               by County
                               </Header.Content>
                               </Header>      
                             <div >
-                              <br/>
                            
-                              <svg width="260" height="80">
+                              <svg width="260" height="73" style={{paddingTop:0,marginTop:0}}>
                                 
                                 {_.map(legendSplitccvi, (splitpoint, i) => {
                                   if(legendSplitccvi[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(1)}</text>                    
                                   }else if(legendSplitccvi[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitccvi[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitccvi[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitccvi[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinccvi}</text>
-                                <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxccvi}</text>
+                                <text x={50} y={25} style={{fontSize: '0.6em'}}>{legendMinccvi}</text>
+                                <text x={170} y={25} style={{fontSize: '0.6em'}}>{legendMaxccvi}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+19*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                                <text x={50} y={71} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+19 * (colorPalette.length - 1)} y={71} style={{fontSize: '0.6em'}}>High</text>
 
 
                                 {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
@@ -4173,15 +4208,13 @@ export default function NationalReport(props) {
 
                               </svg>
 
-                              <br/><br/><br/>
+
                                                   
-
-                              <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/ccvi.png' />            
-
-                            </div>
-                            <Grid>
-                              <Grid.Row>
-                                <Accordion style = {{paddingTop: 100, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                              
+                                <Image width='480' height='230' style = {{paddingLeft:70,paddingTop:0}} src='/NationalReportImages/ccvi2.png' /> 
+                                
+                             
+                              <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                       {
                                           key: 'acquire-dog',
                                           title: {
@@ -4194,10 +4227,9 @@ export default function NationalReport(props) {
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                       This map shows each U.S. county according to its Community Vulnerability ranking. 
-                                                      County rankings are based on quintiles of the CCVI. The ranking classified counties 
-                                                      into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                      the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                      quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                      County rankings are based on quintiles of the COVID-19 Community Vulnerability Index (CCVI). The ranking classifies counties into five groups designed to be of equal size, so that the lowest quintile contains the counties with values in the 0%-20% range for this county characteristic, 
+                                                      and the very high CCVI contains counties with values in the 80%-100% range for this county characteristic. 
+                                                      Low CCVI indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% range, and high CCVI indicates counties in the 60%-80% range.
                                                       <br/>
                                                       <br/>
                                                       <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://precisionforcovid.org/ccvi" target = "_blank" rel="noopener noreferrer"> Surgo Foundation </a>
@@ -4211,22 +4243,104 @@ export default function NationalReport(props) {
                                         }
                                     ]
 
-                                    } />
-                              </Grid.Row>
-                            </Grid>
-
-
-                          </Grid.Column>
-                          <Grid.Column style = {{paddingLeft: 0}}>
-                            <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                                    } />           
+                              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              COVID-19 Cases by <br/> Community Vulnerability Index
+                              COVID-19 Vaccination by <br/> Community Vulnerability Index
                               </Header.Content>
                             </Header>
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={220}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key:'Very Low', 'value':parseFloat(ccvidata['Very Low']['vac_percent'])},
+                                      {key:"Low", 'value': parseFloat(ccvidata['Low']['vac_percent'])},
+                                      {key:"Moderate",'value':parseFloat(ccvidata['Moderate']['vac_percent'])},
+                                      {key: "High", 'value': parseFloat(ccvidata['High']['vac_percent'])},
+                                      {key: "Very High", 'value': parseFloat(ccvidata['Very High']['vac_percent'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                            </div>
+                     
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by COVID-19 Community Vulnerability Index (CCVI). The y-axis displays CCVI rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
+                                                       across US
+                                                        counties ranked by CCVI. The ranking classifies counties into five groups designed 
+                                                        to be of equal size, so that the lowest quintile contains the counties with values 
+                                                        in the 0%-20% range for this county characteristic, and the very high CCVI contains 
+                                                        counties with values in the 80%-100% range for this county characteristic. Low CCVI 
+                                                        indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
+                                                        range, and high CCVI indicates counties in the 60%-80% range.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
+
+                                    } />
+                          
+
+
+                          </Grid.Column>
+                          
+                          <Grid.Column style = {{paddingLeft: 100}}>
+                            <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Cases by <br/> Community Vulnerability Index
+                              </Header.Content>
+                            </Header>
+                            <br/>
+                              
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={215}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
                                   padding={{left: 130, right: 90, top: 5, bottom: 1}}
@@ -4266,9 +4380,43 @@ export default function NationalReport(props) {
                                     <b>COVID-19 Cases per 100K</b>
                                   </Header.Content>
                                 </Header.Content>
-                                
                                 <br/>
-                                <br/>
+                                <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases per 100K residents by COVID-19 Community Vulnerability Index (CCVI) ranking. The y-axis displays CCVI rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
+                                                        (top chart) per 100K that occurred in each group of 
+                                                        counties ranked by CCVI. The ranking classifies counties into five groups designed 
+                                                        to be of equal size, so that the lowest quintile contains the counties with values 
+                                                        in the 0%-20% range for this county characteristic, and the very high CCVI contains 
+                                                        counties with values in the 80%-100% range for this county characteristic. Low CCVI 
+                                                        indicates counties in the 20%-40% range, moderate CCVI indicates counties in the 40%-60% 
+                                                        range, and high CCVI indicates counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                        
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                        
 
                                 <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -4278,7 +4426,7 @@ export default function NationalReport(props) {
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={210}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
                                   padding={{left: 130, right: 90, top: 5, bottom: 1}}
@@ -4311,7 +4459,7 @@ export default function NationalReport(props) {
                                     y="value"
                                   />
                                 </VictoryChart>
-
+                              
                                 <Header.Content style = {{width: 550}}>
                                     <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:14, fontSize: "14pt", lineHeight: "18pt"}}>
                                       <b>COVID-19 Deaths per 100K</b>
@@ -4330,11 +4478,10 @@ export default function NationalReport(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
-                                                        per 100K residents by CCVI ranking. The y-axis displays CCVI rankings based on 
-                                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 cases 
-                                                        (top chart) or deaths (bottom chart) per 100K that occurred in each group of 
-                                                        counties ranked by CCVI. The ranking classified counties into five groups designed 
+                                                        This chart shows the number of COVID-19 deaths (bottom chart) 
+                                                        per 100K residents by COVID-19 Community Vulnerability Index (CCVI) ranking. The y-axis displays CCVI rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the average number of COVID-19 deaths (bottom chart) per 100K that occurred in each group of 
+                                                        counties ranked by CCVI. The ranking classifies counties into five groups designed 
                                                         to be of equal size, so that the lowest quintile contains the counties with values 
                                                         in the 0%-20% range for this county characteristic, and the very high CCVI contains 
                                                         counties with values in the 80%-100% range for this county characteristic. Low CCVI 
@@ -4367,98 +4514,75 @@ export default function NationalReport(props) {
                             <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Population in poverty</b> </center> 
                       </Header.Subheader>
 
-                      {ccvi && <Grid>
+                      {ccvi && 
+                        <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{ paddingLeft:0}}>
+                  
+                          <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                              Population in Poverty <br/>
-                              by County
+                              <Header.Content style = {{padding: 0, width: 500}}>
+                              Population in Poverty by County
                               </Header.Content>
-                              </Header>    
+                              </Header>      
                             <div >
-                              
-                              <svg width="260" height="80">
+                           
+                              <svg width="260" height="73" style={{paddingTop:0,marginTop:0}}>
                                 
                                 {_.map(legendSplitPoverty, (splitpoint, i) => {
                                   if(legendSplitPoverty[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitPoverty[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitPoverty[i].toFixed(1)}</text>                    
                                   }else if(legendSplitPoverty[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitPoverty[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitPoverty[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitPoverty[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitPoverty[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitPoverty[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitPoverty[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitPoverty[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinPoverty}</text>
-                                <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxPoverty}</text>
+                                <text x={50} y={25} style={{fontSize: '0.6em'}}>{legendMinPoverty}</text>
+                                <text x={170} y={25} style={{fontSize: '0.6em'}}>{legendMaxPoverty}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+19*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                                <text x={50} y={71} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+19 * (colorPalette.length - 1)} y={71} style={{fontSize: '0.6em'}}>High</text>
 
+
+                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
+                                {/* <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text> */}
                               
 
                               </svg>
 
-                              <br/><br/><br/>
-                                {/* <ComposableMap 
-                                  projection="geoAlbersUsa" 
-                                  data-tip=""
-                                  width={520} 
-                                  height={300}
-                                  strokeWidth= {0.1}
-                                  stroke= 'black'
-                                  projectionConfig={{scale: 580}}
-                                  style = {{paddingLeft: 50}}
-                                  >
-                                  <Geographies geography={geoUrl}>
-                                    {({ geographies }) => 
-                                      <svg>
-                                        {geographies.map(geo => (
-                                          <Geography
-                                            key={geo.rsmKey}
-                                            geography={geo}
-                                            fill={
-                                            ((colorPoverty && data[geo.id] && (data[geo.id][poverty]) > 0)?
-                                                colorPoverty[data[geo.id][poverty]]: 
-                                                (colorPoverty && data[geo.id] && data[geo.id][poverty] === 0)?
-                                                  '#FFFFFF':'#FFFFFF')}
-                                            
-                                          />
-                                        ))}
-                                      </svg>
-                                    }
-                                  </Geographies>
-                                  
 
-                                </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/poverty.png' />
-                            </div>
-                            <Grid>
-                            <Grid.Row>
-                            <Accordion style = {{paddingTop: 120, paddingLeft: 60}} defaultActiveIndex={1} panels={[
-                                {
-                                    key: 'acquire-dog',
-                                    title: {
-                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
-                                        icon: 'dropdown',
-                                    },
-                                    content: {
-                                        content: (
-                                            <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                  
+                              
+                                <Image width='480' height='230' style = {{paddingLeft:70,paddingTop:0}} src='/NationalReportImages/poverty2.png' /> 
+                                
+                             
+                              <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its percentage of population in poverty. 
-                                                County rankings are based on quintiles of percentage of population in poverty. The ranking classified counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of percentage of population in poverty. The ranking classifies counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target = "_blank" rel="noopener noreferrer"> American Community Survey</a> by the U.S. Census Bureau
@@ -4467,34 +4591,122 @@ export default function NationalReport(props) {
                                                 </Header.Subheader>
                                               </Header.Content>
                                             </Header>
-                                        ),
-                                      },
-                                  }
-                              ]
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                              } />
+                                    } />           
+                              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by <br/> Poverty
+                              </Header.Content>
+                            </Header>
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={220}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['poverty'][4]['measure'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                            </div>
+                            <Grid>
+                              <Grid.Row>
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by poverty. The y-axis displays population in poverty based on 
+                                                        quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
+                                                       across US
+                                                        counties ranked by percentage population in poverty. 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                            </Grid.Row>
-                          </Grid>
+                                    } />
+                              </Grid.Row>
+                            </Grid>
+
                           </Grid.Column>
+
+
+
+                          
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
                               COVID-19 Cases by Percentage of <br/> Population in Poverty
                               </Header.Content>
                             </Header>
-                                <VictoryChart
-                                  theme={VictoryTheme.material}
-                                  width={530}
-                                  height={180}
-                                  domainPadding={20}
-                                  minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                  style = {{fontSize: "14pt"}}
-                                  containerComponent={<VictoryContainer responsive={false}/>}
-                                >
-                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <br/>
+                              
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                   <VictoryBar
                                     horizontal
                                     barRatio={0.80}
@@ -4526,9 +4738,48 @@ export default function NationalReport(props) {
                                     <b>COVID-19 Cases per 100K</b>
                                   </Header.Content>
                                 </Header.Content>
-                                  
-                                  <br/>
-                                  <br/>
+                                <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart)
+                                                        per 100K residents by county ranking on percentage of population in poverty. The 
+                                                        y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart)
+                                                        per 100K that occurred in each group of counties ranked by percentage population in poverty. 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the 
+                                                        "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
+                                                        range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
+                                                        moderate % in poverty indicates counties in the 40%-60% range, and high % in poverty indicates 
+                                                        counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
+                            
+                          
 
                                 <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -4538,10 +4789,10 @@ export default function NationalReport(props) {
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   width={530}
-                                  height={180}
+                                  height={210}
                                   domainPadding={20}
                                   minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
                                   style = {{fontSize: "14pt"}}
                                   containerComponent={<VictoryContainer responsive={false}/>}
                                 >
@@ -4590,12 +4841,12 @@ export default function NationalReport(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        This chart shows the number of COVID-19 deaths (bottom chart) 
                                                         per 100K residents by county ranking on percentage of population in poverty. The 
                                                         y-axis displays percentage population in poverty rankings based on quintiles (groups of 20%). 
-                                                        The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                                        The x-axis displays the average number of COVID-19 deaths (bottom chart) 
                                                         per 100K that occurred in each group of counties ranked by percentage population in poverty. 
-                                                        The ranking classified counties into five groups designed to be of equal size, so that the 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the 
                                                         "very low % in poverty" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high % in poverty" group contains counties with values in the 80%-100% 
                                                         range for this county characteristic. Low % in poverty indicates counties in the 20%-40% range, 
@@ -4627,7 +4878,7 @@ export default function NationalReport(props) {
                       </Header.Subheader>
                     
                       {poverty && <Grid>
-                        <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
+                        <Grid.Row columns={2} style={{paddingTop: 8, width: 1200, paddingLeft: 60}}>
                           <Grid.Column style={{ paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -4636,28 +4887,28 @@ export default function NationalReport(props) {
                               </Header.Content>
                               </Header>    
                             
-
+                        
+                              <br></br>
                             <div >
-                              
-                              <svg width="550" height="145">
+                            <Grid>
+                            <Grid.Row columns={2} >
+                            <Grid.Column width={5}>
+                              <svg  >
 
-                                <text x={80} y={35} style={{fontSize: '0.8em'}}> Remote rural area</text>                    
-                                <text x={80} y={55} style={{fontSize: '0.8em'}}> Rural areas near cities</text>                    
-                                <text x={80} y={75} style={{fontSize: '0.8em'}}> Small cities</text>                    
-                                <text x={80} y={95} style={{fontSize: '0.8em'}}> Small suburbs</text>                    
-                                <text x={80} y={115} style={{fontSize: '0.8em'}}> Large suburbs</text>                    
-                                <text x={80} y={135} style={{fontSize: '0.8em'}}> Inner City</text>                    
-
-
+                                <text x={26} y={35} style={{fontSize: '0.8em'}}> Remote rural area</text>                    
+                                <text x={26} y={55} style={{fontSize: '0.8em'}}> Rural areas near cities</text>                    
+                                <text x={26} y={75} style={{fontSize: '0.8em'}}> Small cities</text>                    
+                                <text x={26} y={95} style={{fontSize: '0.8em'}}> Small suburbs</text>                    
+                                <text x={26} y={115} style={{fontSize: '0.8em'}}> Large suburbs</text>                    
+                                <text x={26} y={135} style={{fontSize: '0.8em'}}> Inner City</text>                    
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={3} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
-                              
-
+                          
                               </svg>
 
-                              <br/><br/><br/>
+                           
                                 {/* <ComposableMap 
                                   projection="geoAlbersUsa" 
                                   data-tip=""
@@ -4698,12 +4949,19 @@ export default function NationalReport(props) {
                                   
 
                                 </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural.png' />
-                                
+                                </Grid.Column>
+                                <Grid.Column width={11}>
+                                <Image height='200' style = {{paddingLeft: 0}} src='/NationalReportImages/urbanrural2.png' />
+                                    </Grid.Column>
+                                    </Grid.Row>
+                                    </Grid>
                             </div>
+                         
+                            <br></br>
                             <Grid>
+                        
                             <Grid.Row>
-                              <Accordion style = {{paddingTop: 50, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                              <Accordion style = {{paddingTop:25,paddingLeft: 60}} defaultActiveIndex={1} panels={[
                                 {
                                     key: 'acquire-dog',
                                     title: {
@@ -4737,10 +4995,87 @@ export default function NationalReport(props) {
                               ]
 
                               } />
-
-
                             </Grid.Row>
                           </Grid>
+
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by <br/> Metropolitan Status
+                              </Header.Content>
+                            </Header>
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={220}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 230, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      
+                                      {key:'Inner City', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][0]['measure'])},
+                                      {key:"Large suburbs", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][1]['measure'])},
+                                      {key:"Remote rural areas",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][2]['measure'])},
+                                      {key: "Rural areas near cities", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][3]['measure'])},
+                                      {key: "Small cities", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][4]['measure'])},
+                                      {key: "Small suburbs", 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['urbanrural'][5]['measure'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                    
+                     
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by Metropolitan Status (y-axis). 
+                                                      Inner city counties have &#60; 1 million population or contain the entire or large part of the population of the largest principle city. 
+                                                      Large suburban counties have a population &#60; 1 million, but do not qualify as inner city. Small suburban counties have a population of 250,000-999,999. 
+                                                      Small cities have populations &#62; 250,000 and are near large cities. Rural areas near cities have an urbanized area with population between 10,000-49,999. 
+                                                      Remote rural counties have populations less than 10,000 individuals. This urban-rural classification scheme is from the National Center for Health Statistics.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
+
+                                    } />
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -4748,18 +5083,18 @@ export default function NationalReport(props) {
                               COVID-19 Cases by <br/>  Metropolitan Status
                               </Header.Content>
                             </Header>
-                              <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 250, right: 90, top: 15, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={215}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 230, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -4785,34 +5120,69 @@ export default function NationalReport(props) {
                                   y="value"
                                 />
                               </VictoryChart>
-
                               <Header.Content style = {{width: 550}}>
-                                
-                                <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
-                                  <b>COVID-19 Cases per 100K</b>
+                                    <Header.Content style={{ paddingLeft: 140,fontWeight: 300, paddingTop: 20, paddingBottom:10, fontSize: "14pt", lineHeight: "18pt"}}>
+                                      <b>COVID-19 Cases per 100K</b>
+                                    </Header.Content>
                                 </Header.Content>
-                              </Header.Content>
+                            
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart)
+                                                        per 100K residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
+                                                        million population or contain the entire or large part of the population of the largest 
+                                                        principle city. Large suburban counties have a population &#60; 1 million, but do not qualify 
+                                                        as inner city. Small suburban counties have a population of 250,000-999,999. Small cities 
+                                                        have populations &#62; 250,000 and are near large cities. Rural areas near cities have an 
+                                                        urbanized area with population between 10,000-49,999. Remote rural counties have 
+                                                        populations less than 10,000 individuals. This urban-rural classification scheme is 
+                                                        from the National Center for Health Statistics.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
                                 
-                                <br/>
-                                <br/>
+      
 
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                 <Header.Content style = {{paddingLeft: 0, width: 500}}>
                                   COVID-19 Deaths by <br/> Metropolitan Status
                                 </Header.Content>
                               </Header>
-                                <VictoryChart
-                                  theme={VictoryTheme.material}
-                                  width={530}
-                                  height={180}
-                                  domainPadding={20}
-                                  minDomain={{y: props.ylog?1:0}}
-                                  padding={{left: 250, right: 90, top: 15, bottom: 1}}
-                                  style = {{fontSize: "14pt"}}
-                                  containerComponent={<VictoryContainer responsive={false}/>}
-                                >
-                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 230, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                   <VictoryBar
                                     horizontal
                                     barRatio={0.80}
@@ -4857,7 +5227,7 @@ export default function NationalReport(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                        This chart shows the number of COVID-19 deaths (bottom chart) 
                                                         per 100K residents by metropolitan status (y-axis). Inner city counties have &#60; 1 
                                                         million population or contain the entire or large part of the population of the largest 
                                                         principle city. Large suburban counties have a population &#60; 1 million, but do not qualify 
@@ -4898,28 +5268,37 @@ export default function NationalReport(props) {
                           <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
 
                             <div >
-                              
-                            <svg width="550" height="130">
+                              <Grid>
+                                <Grid.Row>
+                                  <Grid.Column width={5}>
+                        
+                                  <svg width="550" height="130">
 
-                                <text x={80} y={35} style={{fontSize: '0.8em'}}> South</text>                    
-                                <text x={80} y={55} style={{fontSize: '0.8em'}}> West</text>                    
-                                <text x={80} y={75} style={{fontSize: '0.8em'}}> Northeast</text>                    
-                                <text x={80} y={95} style={{fontSize: '0.8em'}}> Midwest</text>                    
-
-
-                                {_.map(colorPalette.slice(2), (color, i) => {
-                                    return <rect key={i} x={50} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
-                                })} 
+<text x={26} y={35} style={{fontSize: '0.8em'}}> South</text>                    
+<text x={26} y={55} style={{fontSize: '0.8em'}}> West</text>                    
+<text x={26} y={75} style={{fontSize: '0.8em'}}> Northeast</text>                    
+<text x={26} y={95} style={{fontSize: '0.8em'}}> Midwest</text>                    
 
 
-                                {/* <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={152} y={30} style={{fontSize: '0.8em'}}> None </text>
-                                <text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text> */}
+{_.map(colorPalette.slice(2), (color, i) => {
+    return <rect key={i} x={3} y={20+20*i} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+})} 
 
 
-                                </svg>
+{/* <rect x={130} y={20} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
+<text x={152} y={30} style={{fontSize: '0.8em'}}> None </text>
+<text x={152} y={40} style={{fontSize: '0.8em'}}> Reported </text> */}
 
-                                <br/><br/><br/>
+
+</svg>
+                                  </Grid.Column>
+                                  <Grid.Column width={11}>
+                                  <Image height='210' style = {{paddingLeft: 0}} src='/NationalReportImages/region2.png' />
+                                  </Grid.Column>
+                                </Grid.Row>
+                              </Grid>
+                          
+
                                 {/* <ComposableMap 
                                   projection="geoAlbersUsa" 
                                   data-tip=""
@@ -4955,8 +5334,9 @@ export default function NationalReport(props) {
                                   
 
                                 </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/region.png' />
+                              
                             </div>
+
                             <Grid>
                             <Grid.Row>
                               <Accordion style = {{paddingTop: 25, paddingLeft: 60}} defaultActiveIndex={1} panels={[
@@ -4971,7 +5351,7 @@ export default function NationalReport(props) {
                                             <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                This map shows each U.S. county according to its geographic region.
+                                                This map shows US by geographic region.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/geographies/reference-maps/2010/geo/2010-census-regions-and-divisions-of-the-united-states.html" target = "_blank" rel="noopener noreferrer"> United States Census Bureau</a>
@@ -4989,6 +5369,79 @@ export default function NationalReport(props) {
 
                             </Grid.Row>
                           </Grid>
+                          <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by Region
+                              </Header.Content>
+                            </Header>
+                            <VictoryChart
+                              theme={VictoryTheme.material}
+                              width={530}
+                              height={180}
+                              domainPadding={20}
+                              minDomain={{y: props.ylog?1:0}}
+                              padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                              style = {{fontSize: "14pt"}}
+                              containerComponent={<VictoryContainer responsive={false}/>}
+                            >
+                              <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                              <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key: "Midwest", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][3]['measure'])},
+                                      {key:"Northeast",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][2]['measure'])},
+                                      {key:"South", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][0]['measure'])},
+                                      {key:'West', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['region'][1]['measure'])},
+        
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                    
+                     
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination geographic region (y-axis). 
+                                                  
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
+
+                                    } />
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5039,9 +5492,36 @@ export default function NationalReport(props) {
                                 <b>COVID-19 Cases per 100K</b>
                               </Header.Content>
                             </Header.Content>
-                                  
-                                  <br/>
-                                  <br/>
+                            <Grid.Row>
+                              <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                    {
+                                        key: 'acquire-dog',
+                                        title: {
+                                            content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                            icon: 'dropdown',
+                                        },
+                                        content: {
+                                            content: (
+                                                <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                  <Header.Content  style={{fontSize: "19px"}}>
+                                                    <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                    This chart shows the number of COVID-19 cases (top chart)
+                                                    per 100K residents by geographic region (y-axis).
+                                                    <br/>
+                                                    <br/>
+                                                    For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                    </Header.Subheader>
+                                                  </Header.Content>
+                                                </Header>
+                                            ),
+                                          },
+                                      }
+                                  ]} 
+                              />
+                            </Grid.Row>
+         
+                         
 
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                 <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -5103,7 +5583,7 @@ export default function NationalReport(props) {
                                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                   <Header.Content  style={{fontSize: "19px"}}>
                                                     <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                    This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                    This chart shows the number of COVID-19 and deaths (bottom chart) 
                                                     per 100K residents by geographic region (y-axis).
                                                     <br/>
                                                     <br/>
@@ -5129,100 +5609,78 @@ export default function NationalReport(props) {
                             <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>African American population</b> </center> 
                       </Header.Subheader>
                       
-                      {region && <Grid>
+                      {region && 
+                        <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingLeft:0}}>
+                  
+                          <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                            African American Population <br/>
-                             By County
+                              <Header.Content style = {{padding: 0, width: 500}}>
+                              African American Population
+                              by County
                               </Header.Content>
-                              </Header>    
+                              </Header>      
                             <div >
-                              
-                              <svg width="260" height="80">
+                           
+                              <svg width="260" height="73" style={{paddingTop:0,marginTop:0}}>
                                 
                                 {_.map(legendSplitBlack, (splitpoint, i) => {
                                   if(legendSplitBlack[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitBlack[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}>  {legendSplitBlack[i].toFixed(1)}</text>                    
                                   }else if(legendSplitBlack[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitBlack[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitBlack[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitBlack[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitBlack[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitBlack[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitBlack[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitBlack[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinBlack}</text>
-                                <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxBlack}</text>
+                                <text x={50} y={25} style={{fontSize: '0.6em'}}>{legendMinBlack}</text>
+                                <text x={170} y={25} style={{fontSize: '0.6em'}}>{legendMaxBlack}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+19*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                                <text x={50} y={71} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+19 * (colorPalette.length - 1)} y={71} style={{fontSize: '0.6em'}}>High</text>
 
 
-                            
+                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
+                                {/* <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text> */}
                               
 
                               </svg>
 
-                              <br/><br/><br/>
-                                {/* <ComposableMap 
-                                  projection="geoAlbersUsa" 
-                                  data-tip=""
-                                  width={520} 
-                                  height={300}
-                                  strokeWidth= {0.1}
-                                  stroke= 'black'
-                                  projectionConfig={{scale: 580}}
-                                  style = {{paddingLeft: 50}}
-                                  >
-                                  <Geographies geography={geoUrl}>
-                                    {({ geographies }) => 
-                                      <svg>
-                                        {geographies.map(geo => (
-                                          <Geography
-                                            key={geo.rsmKey}
-                                            geography={geo}
-                                            fill={
-                                            ((colorBlack && data[geo.id] && (data[geo.id][black]) > 0)?
-                                                colorBlack[data[geo.id][black]]: 
-                                                (colorBlack && data[geo.id] && data[geo.id][black] === 0)?
-                                                  '#FFFFFF':'#FFFFFF')}
-                                            
-                                          />
-                                        ))}
-                                      </svg>
-                                    }
-                                  </Geographies>
-                                  
 
-                                </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/black.png' />
-                            </div>
-                            <Grid>
-                            <Grid.Row>
-                              <Accordion style = {{paddingTop: 119, paddingLeft: 60}} defaultActiveIndex={1} panels={[
-                                {
-                                    key: 'acquire-dog',
-                                    title: {
-                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
-                                        icon: 'dropdown',
-                                    },
-                                    content: {
-                                        content: (
-                                            <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                  
+                              
+                                <Image width='480' height='230' style = {{paddingLeft:70,paddingTop:0}} src='/NationalReportImages/black2.png' /> 
+                                
+                             
+                              <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its percentage of African American population. 
-                                                County rankings are based on quintiles of percentage of African American population. The ranking classified counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of percentage of African American population. 
+                                                The ranking classifies counties into five groups designed to be of equal size, 
+                                                    so that the "very low % African American" group contains the counties with values in the 0%-20% 
+                                                    range for this county characteristic, and the "very high % African American" group contains 
+                                                    counties with values in the 80%-100% range for this county characteristic. Low % 
+                                                    African American indicates counties in the 20%-40% range, moderate % African American 
+                                                    indicates counties in the 40%-60% range, and high % African American indicates counties 
+                                                    in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/" target = "_blank" rel="noopener noreferrer"> American Community Survey</a> by the U.S. Census Bureau
@@ -5231,15 +5689,98 @@ export default function NationalReport(props) {
                                                 </Header.Subheader>
                                               </Header.Content>
                                             </Header>
-                                        ),
-                                      },
-                                  }
-                              ]
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                              } />
+                                    } />           
+                              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by <br/> African American Population
+                              </Header.Content>
+                            </Header>
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={220}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['black'][4]['measure'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                            </div>
+                            <Grid>
+                              <Grid.Row>
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by percentage African American. The y-axis displays African American population based on 
+                                                        quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
+                                                      across US
+                                                        counties ranked by percentage African 
+                                                    American. The ranking classifies counties into five groups designed to be of equal size, 
+                                                    so that the "very low % African American" group contains the counties with values in the 0%-20% 
+                                                    range for this county characteristic, and the "very high % African American" group contains 
+                                                    counties with values in the 80%-100% range for this county characteristic. Low % 
+                                                    African American indicates counties in the 20%-40% range, moderate % African American 
+                                                    indicates counties in the 40%-60% range, and high % African American indicates counties 
+                                                    in the 60%-80% range.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                            </Grid.Row>
-                          </Grid> 
+                                    } />
+                              </Grid.Row>
+                            </Grid>
+
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5247,18 +5788,20 @@ export default function NationalReport(props) {
                               COVID-19 Cases by Percentage of <br/> African American Population
                               </Header.Content>
                             </Header>
-                            <VictoryChart
-                              theme={VictoryTheme.material}
-                              width={530}
-                              height={180}
-                              domainPadding={20}
-                              minDomain={{y: props.ylog?1:0}}
-                              padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                              style = {{fontSize: "14pt"}}
-                              containerComponent={<VictoryContainer responsive={false}/>}
-                            >
-                              <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                              <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <br/>
+                              
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                               <VictoryBar
                                 horizontal
                                 barRatio={0.80}
@@ -5290,9 +5833,41 @@ export default function NationalReport(props) {
                                 <b>COVID-19 Cases per 100K</b>
                               </Header.Content>
                             </Header.Content>
-                              
-                              <br/>
-                              <br/>
+                            <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) per 100K residents by percentage African American population ranking. 
+                                                        The y-axis displays percentage African American population rankings based on quintiles (groups of 20%). 
+                                                        The x-axis displays the average number of COVID-19 cases (top chart) per 100K that occurred in each group of counties ranked by percentage percentage African American. 
+                                                        The ranking classifies counties into five groups designed to be of equal size, so that the "very low % African American" group contains the counties with values in the 0%-20% range for this county characteristic, 
+                                                        and the "very high % African American" group contains counties with values in the 80%-100% range for this county characteristic. Low % African American indicates counties in the 20%-40% range, moderate % African American indicates counties in the 40%-60% range, and high % African American indicates counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
+                             
 
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                               <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -5300,17 +5875,17 @@ export default function NationalReport(props) {
                               </Header.Content>
                             </Header>
                             <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={210}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -5354,12 +5929,12 @@ export default function NationalReport(props) {
                                                 <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                   <Header.Content  style={{fontSize: "19px"}}>
                                                     <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                    This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) 
+                                                    This chart shows the number of COVID-19 deaths (bottom chart) 
                                                     per 100K residents by percentage African American population ranking. The y-axis 
                                                     displays percentage African American population rankings based on quintiles (groups of 20%). 
-                                                    The x-axis displays the average number of COVID-19 cases (top chart) or deaths (bottom chart) 
+                                                    The x-axis displays the average number of COVID-19 deaths (bottom chart) 
                                                     per 100K that occurred in each group of counties ranked by percentage percentage African 
-                                                    American. The ranking classified counties into five groups designed to be of equal size, 
+                                                    American. The ranking classifies counties into five groups designed to be of equal size, 
                                                     so that the "very low % African American" group contains the counties with values in the 0%-20% 
                                                     range for this county characteristic, and the "very high % African American" group contains 
                                                     counties with values in the 80%-100% range for this county characteristic. Low % 
@@ -5392,102 +5967,77 @@ export default function NationalReport(props) {
                             <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Residential Segregation Index</b> </center> 
                       </Header.Subheader>
 
-                      {black && <Grid>
+                      {black && 
+                        <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingLeft:0}}>
+                  
+                          <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                            Residentiakl Segregation <br/>
-                             By County
+                              <Header.Content style = {{padding: 0, width: 500}}>
+                              Residential Segregation
+                              by County
                               </Header.Content>
-                              </Header>    
+                              </Header>      
                             <div >
-                              
-                              <svg width="260" height="80">
+                           
+                              <svg width="260" height="73" style={{paddingTop:0,marginTop:0}}>
                                 
                                 {_.map(legendSplitResSeg, (splitpoint, i) => {
                                   if(legendSplitResSeg[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitResSeg[i].toFixed(1)}</text>                    
                                   }else if(legendSplitResSeg[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitResSeg[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitResSeg[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitResSeg[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitResSeg[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinResSeg}</text>
-                                <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxResSeg}</text>
+                                <text x={50} y={25} style={{fontSize: '0.6em'}}>{legendMinResSeg}</text>
+                                <text x={170} y={25} style={{fontSize: '0.6em'}}>{legendMaxResSeg}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+19*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                                <text x={50} y={71} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+19 * (colorPalette.length - 1)} y={71} style={{fontSize: '0.6em'}}>High</text>
 
 
-                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                    
-                                <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
+                                {/* <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
                                 <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text> */}
                               
 
                               </svg>
 
-                              <br/><br/><br/>
-                                {/* <ComposableMap 
-                                  projection="geoAlbersUsa" 
-                                  data-tip=""
-                                  width={520} 
-                                  height={300}
-                                  strokeWidth= {0.1}
-                                  stroke= 'black'
-                                  projectionConfig={{scale: 580}}
-                                  style = {{paddingLeft: 50}}
-                                  >
-                                  <Geographies geography={geoUrl}>
-                                    {({ geographies }) => 
-                                      <svg>
-                                        {geographies.map(geo => (
-                                          <Geography
-                                            key={geo.rsmKey}
-                                            geography={geo}
-                                            fill={
-                                            ((colorResSeg && data[geo.id] && (data[geo.id][resSeg]) > 0)?
-                                                colorResSeg[data[geo.id][resSeg]]: 
-                                                (colorResSeg && data[geo.id] && data[geo.id][resSeg] === 0)?
-                                                  '#FFFFFF':'#FFFFFF')}
-                                            
-                                          />
-                                        ))}
-                                      </svg>
-                                    }
-                                  </Geographies>
-                                  
 
-                                </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/resSeg.png' />
-                            </div>
-                            <Grid>
-                            <Grid.Row>
-                              <Accordion style = {{paddingTop: 119, paddingLeft: 60}} defaultActiveIndex={1} panels={[
-                                {
-                                    key: 'acquire-dog',
-                                    title: {
-                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
-                                        icon: 'dropdown',
-                                    },
-                                    content: {
-                                        content: (
-                                            <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                  
+                              
+                                <Image width='480' height='230' style = {{paddingLeft:70,paddingTop:0}} src='/NationalReportImages/resSeg2.png' /> 
+                                
+                             
+                              <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 This map shows each U.S. county according to its racial segregation ranking. 
-                                                County rankings are based on quintiles of the racial segregation index. The ranking classified counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of the racial segregation index. The ranking 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
+                                                        low segregation" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high segregation" group contains counties with values in the 
+                                                        80%-100% range for this county characteristic. Low segregation indicates counties in 
+                                                        the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
+                                                        high segregation indicates counties in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://www.countyhealthrankings.org/explore-health-rankings/measures-data-sources/county-health-rankings-model/health-factors/social-and-economic-factors/family-social-support/residential-segregation-blackwhite" target = "_blank" rel="noopener noreferrer"> Robert Wood Johnson Foundation program</a> 
@@ -5496,15 +6046,97 @@ export default function NationalReport(props) {
                                                 </Header.Subheader>
                                               </Header.Content>
                                             </Header>
-                                        ),
-                                      },
-                                  }
-                              ]
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                              } />
+                                    } />           
+                              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by <br/> Residential Segregation Index
+                              </Header.Content>
+                            </Header>
+                                <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={220}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['resSeg'][4]['measure'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                            </div>
+                            <Grid>
+                              <Grid.Row>
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by residential segregation. The y-axis displays residential segregation rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
+                                                       across US
+                                                        counties ranked by residential segregation. The ranking 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
+                                                        low segregation" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high segregation" group contains counties with values in the 
+                                                        80%-100% range for this county characteristic. Low segregation indicates counties in 
+                                                        the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
+                                                        high segregation indicates counties in the 60%-80% range.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                            </Grid.Row>
-                          </Grid>
+                                    } />
+                              </Grid.Row>
+                            </Grid>
+
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5512,13 +6144,15 @@ export default function NationalReport(props) {
                               COVID-19 Cases by <br/> Residential Segregation Index
                               </Header.Content>
                             </Header>
+                            <br/>
+                              
                               <VictoryChart
                                 theme={VictoryTheme.material}
                                 width={530}
-                                height={180}
+                                height={215}
                                 domainPadding={20}
                                 minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
                                 style = {{fontSize: "14pt"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
@@ -5555,27 +6189,65 @@ export default function NationalReport(props) {
                                   <b>COVID-19 Cases per 100K</b>
                                 </Header.Content>
                               </Header.Content>
-                                
-                                <br/>
-                                <br/>
+                              <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) per 
+                                                        100K residents by residential segregation index. The y-axis displays residential 
+                                                        segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                                        average number of COVID-19 cases (top chart) per 100K 
+                                                        that occurred in each group of counties ranked by residential segregation. The ranking 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
+                                                        low segregation" group contains the counties with values in the 0%-20% range for this county 
+                                                        characteristic, and the "very high segregation" group contains counties with values in the 
+                                                        80%-100% range for this county characteristic. Low segregation indicates counties in 
+                                                        the 20%-40% range, moderate segregation indicates counties in the 40%-60% range, and 
+                                                        high segregation indicates counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
+                            
 
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
                                   COVID-19 Deaths by  <br/> Residential Segregation Index
                               </Header.Content>
                             </Header>
-                              <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                            <VictoryChart
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={210}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -5619,12 +6291,12 @@ export default function NationalReport(props) {
                                                     <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                       <Header.Content  style={{fontSize: "19px"}}>
                                                         <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                        This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                                        This chart shows the number of COVID-19 deaths (bottom chart) per 
                                                         100K residents by residential segregation index. The y-axis displays residential 
                                                         segregation rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                                        average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
+                                                        average number of COVID-19 deaths (bottom chart) per 100K 
                                                         that occurred in each group of counties ranked by residential segregation. The ranking 
-                                                        classified counties into five groups designed to be of equal size, so that the "very 
+                                                        classifies counties into five groups designed to be of equal size, so that the "very 
                                                         low segregation" group contains the counties with values in the 0%-20% range for this county 
                                                         characteristic, and the "very high segregation" group contains counties with values in the 
                                                         80%-100% range for this county characteristic. Low segregation indicates counties in 
@@ -5656,101 +6328,78 @@ export default function NationalReport(props) {
                             <center> <b style= {{fontSize: "18pt", paddingLeft: 134}}>Any Underlying Comorbidity</b> </center> 
                       </Header.Subheader>
 
-                      {Comorb && <Grid>
+                      {Comorb && 
+                        <Grid>
                         <Grid.Row columns={2} style={{paddingTop: 8, width: 1000, paddingLeft: 60}}>
-                          <Grid.Column style={{paddingTop:10, paddingLeft:0}}>
+                  
+                          <Grid.Column style={{paddingRight:0,paddingLeft:0}}>
                           <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
-                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
-                            Any Underlying Comorbidity <br/>
-                             By County
+                              <Header.Content style = {{padding: 0, width: 500}}>
+                              Any Underlying Comorbidity
+                              By County
                               </Header.Content>
-                              </Header>    
+                              </Header>      
                             <div >
-                              
-                              <svg width="260" height="80">
+                           
+                              <svg width="260" height="73" style={{paddingTop:0,marginTop:0}}>
                                 
-                                {_.map(legendSplitResSeg, (splitpoint, i) => {
+                                {_.map(legendSplitComorb, (splitpoint, i) => {
                                   if(legendSplitComorb[i] < 1){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitComorb[i].toFixed(1)}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitComorb[i].toFixed(1)}</text>                    
                                   }else if(legendSplitComorb[i] > 999999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitComorb[i]/1000000).toFixed(0) + "M"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitComorb[i]/1000000).toFixed(0) + "M"}</text>                    
                                   }else if(legendSplitComorb[i] > 999){
-                                    return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {(legendSplitComorb[i]/1000).toFixed(0) + "K"}</text>                    
+                                    return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {(legendSplitComorb[i]/1000).toFixed(0) + "K"}</text>                    
                                   }
-                                  return <text key = {i} x={70 + 20 * (i)} y={35} style={{fontSize: '0.7em'}}> {legendSplitComorb[i].toFixed(0)}</text>                    
+                                  return <text key = {i} x={70 + 19 * (i)} y={25} style={{fontSize: '0.6em'}}> {legendSplitComorb[i].toFixed(0)}</text>                    
                                 })} 
-                                <text x={50} y={35} style={{fontSize: '0.7em'}}>{legendMinComorb}</text>
-                                <text x={170} y={35} style={{fontSize: '0.7em'}}>{legendMaxComorb}</text>
+                                <text x={50} y={25} style={{fontSize: '0.6em'}}>{legendMinComorb}</text>
+                                <text x={170} y={25} style={{fontSize: '0.6em'}}>{legendMaxComorb}</text>
 
 
                                 {_.map(colorPalette, (color, i) => {
-                                  return <rect key={i} x={50+20*i} y={40} width="20" height="20" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
+                                  return <rect key={i} x={50+20*i} y={40} width="19" height="19" style={{fill: color, strokeWidth:1, stroke: color}}/>                    
                                 })} 
 
 
-                                <text x={50} y={74} style={{fontSize: '0.8em'}}>Low</text>
-                                <text x={50+20 * (colorPalette.length - 1)} y={74} style={{fontSize: '0.8em'}}>High</text>
+                                <text x={50} y={71} style={{fontSize: '0.6em'}}>Low</text>
+                                <text x={50+19 * (colorPalette.length - 1)} y={71} style={{fontSize: '0.6em'}}>High</text>
 
 
-                        
+                                {/* <rect x={195} y={40} width="20" height="20" style={{fill: "#FFFFFF", strokeWidth:0.5, stroke: "#000000"}}/>                     */}
+                                {/* <text x={217} y={50} style={{fontSize: '0.7em'}}> None </text>
+                                <text x={217} y={59} style={{fontSize: '0.7em'}}> Reported </text> */}
                               
 
                               </svg>
 
-                              <br/><br/><br/>
-                                {/* <ComposableMap 
-                                  projection="geoAlbersUsa" 
-                                  data-tip=""
-                                  width={520} 
-                                  height={300}
-                                  strokeWidth= {0.1}
-                                  stroke= 'black'
-                                  projectionConfig={{scale: 580}}
-                                  style = {{paddingLeft: 50}}
-                                  >
-                                  <Geographies geography={geoUrl}>
-                                    {({ geographies }) => 
-                                      <svg>
-                                        {geographies.map(geo => (
-                                          <Geography
-                                            key={geo.rsmKey}
-                                            geography={geo}
-                                            fill={
-                                            ((colorComorb && data[geo.id] && (data[geo.id][Comorb]) > 0)?
-                                                colorComorb[data[geo.id][Comorb]]: 
-                                                (colorComorb && data[geo.id] && data[geo.id][Comorb] === 0)?
-                                                  '#FFFFFF':'#FFFFFF')}
-                                            
-                                          />
-                                        ))}
-                                      </svg>
-                                    }
-                                  </Geographies>
-                                  
 
-                                </ComposableMap> */}
-                                <Image width='520' height='386' style = {{paddingLeft: 0}} src='/NationalReportImages/anycondition.png' />
-                            </div>
-                            <Grid>
-                            <Grid.Row>
-                              <Accordion style = {{paddingTop: 119, paddingLeft: 70}} defaultActiveIndex={1} panels={[
-                                {
-                                    key: 'acquire-dog',
-                                    title: {
-                                        content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
-                                        icon: 'dropdown',
-                                    },
-                                    content: {
-                                        content: (
-                                            <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                  
+                              
+                                <Image width='480' height='230' style = {{paddingLeft:70,paddingTop:0}} src='/NationalReportImages/anycondition2.png' /> 
+                                
+                             
+                              <Accordion style = {{paddingTop:20, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the map</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                               <Header.Content  style={{fontSize: "19px"}}>
                                                 <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
                                                 
                                                 This map shows each U.S. county according to percentage of population with underlying conditions. 
-                                                County rankings are based on quintiles of percentage of population with underlying conditions. The ranking classified counties 
-                                                into five groups designed to be of equal size, so that the lowest quintile contains 
-                                                the counties with values in the 0%-20% range for this county characteristic, and the highest 
-                                                quintile contains counties with values in the 80%-100% range for this county characteristic.
+                                                County rankings are based on quintiles of percentage of population with underlying conditions. The ranking 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
+                                                      low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
+                                                      characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
+                                                      80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
+                                                      the 20%-40% range, moderate percentage of population with any underlying comorbidity indicates counties in the 40%-60% range, and 
+                                                      high percentage of population with any underlying comorbidity indicates counties in the 60%-80% range.
                                                 <br/>
                                                 <br/>
                                                 <i>Data source</i>: <a style ={{color: "#397AB9"}} href = "https://stacks.cdc.gov/" target = "_blank" rel="noopener noreferrer"> CDC Stacks Public Health Publicatiions</a> 
@@ -5759,15 +6408,98 @@ export default function NationalReport(props) {
                                                 </Header.Subheader>
                                               </Header.Content>
                                             </Header>
-                                        ),
-                                      },
-                                  }
-                              ]
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                              } />
+                                    } />           
+                              <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
+                              <Header.Content style = {{paddingLeft: 0, width: 500}}>
+                              COVID-19 Vaccination by <br/> Underlying Comorbidity
+                              </Header.Content>
+                            </Header>
+                            <br/>
+                              
+                              <VictoryChart
+                                theme={VictoryTheme.material}
+                                width={530}
+                                height={215}
+                                domainPadding={20}
+                                minDomain={{y: props.ylog?1:0}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                style = {{fontSize: "14pt"}}
+                                containerComponent={<VictoryContainer responsive={false}/>}
+                              >
+                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  <VictoryBar
+                                    horizontal
+                                    barRatio={0.80}
+                                    labels={({ datum }) => numberWithCommas(parseFloat(datum.value).toFixed(0)+"%")}
+                                    data={[
+                                      {key:'Very Low', 'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][0]['measure'])},
+                                      {key:"Low", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][1]['measure'])},
+                                      {key:"Moderate",'value':parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][2]['measure'])},
+                                      {key: "High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][3]['measure'])},
+                                      {key: "Very High", 'value': parseFloat(barData['Series_Complete_Pop_Pct'][0]['any condition'][4]['measure'])}
+                                    ]}
+                                    labelComponent={<VictoryLabel dx={5} style={{ fontFamily: 'lato', fontSize: "20px", fill: "#000000" }}/>}
+                                    style={{
+                                      data: {
+                                        fill: casesColor[1]
+                                      }
+                                    }}
+                                    x="key"
+                                    y="value"
+                                  />
+                                </VictoryChart>
+                                <Header.Content style = {{width: 550}}>
+                                  
+                                  <Header.Content style={{fontWeight: 300, paddingLeft: 140, paddingTop: 20, paddingBottom:0, fontSize: "14pt", lineHeight: "18pt"}}>
+                                    <b>COVID-19 Percent Vaccination</b>
+                                  </Header.Content>
+                                </Header.Content>
+                            </div>
+                            <Grid>
+                              <Grid.Row>
+                                <Accordion style = {{paddingTop:0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                      {
+                                          key: 'acquire-dog',
+                                          title: {
+                                              content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                              icon: 'dropdown',
+                                          },
+                                          content: {
+                                              content: (
+                                                  <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                    <Header.Content  style={{fontSize: "19px"}}>
+                                                      <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                      This chart shows the percentage of the population with a full dose of the COVID-19 vaccination by underlying comorbidity. The y-axis displays underlying comorbidity rankings based on 
+                                                        quintiles (groups of 20%). The x-axis displays the percentage of COVID-19 vaccination 
+                                                       across US counties ranked by percent of population with any underlying comorbidity. The ranking 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
+                                                      low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
+                                                      characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
+                                                      80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
+                                                      the 20%-40% range, moderate percentage of population with any underlying comorbidity indicates counties in the 40%-60% range, and 
+                                                      high percentage of population with any underlying comorbidity indicates counties in the 60%-80% range.
+                                                      <br/>
+                                               
+                                                      <br/>
+                                                      For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                      </Header.Subheader>
+                                                    </Header.Content>
+                                                  </Header>
+                                              ),
+                                            },
+                                        }
+                                    ]
 
-                            </Grid.Row>
-                          </Grid>
+                                    } />
+                              </Grid.Row>
+                            </Grid>
+
                           </Grid.Column>
                           <Grid.Column>
                             <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
@@ -5775,13 +6507,15 @@ export default function NationalReport(props) {
                               COVID-19 Cases by <br/> Any Underlying Comorbidity
                               </Header.Content>
                             </Header>
+                            <br/>
+                              
                               <VictoryChart
                                 theme={VictoryTheme.material}
                                 width={530}
-                                height={180}
+                                height={215}
                                 domainPadding={20}
                                 minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
+                                padding={{left: 130, right: 90, top: 5, bottom: 1}}
                                 style = {{fontSize: "14pt"}}
                                 containerComponent={<VictoryContainer responsive={false}/>}
                               >
@@ -5818,9 +6552,46 @@ export default function NationalReport(props) {
                                   <b>COVID-19 Cases per 100K</b>
                                 </Header.Content>
                               </Header.Content>
-                                
-                                <br/>
-                                <br/>
+                              <br/>
+                                <Grid.Row>
+                                  <Accordion style = {{paddingTop: 0, paddingLeft: 60}} defaultActiveIndex={1} panels={[
+                                        {
+                                            key: 'acquire-dog',
+                                            title: {
+                                                content: <u style={{ fontFamily: 'lato', fontSize: "19px", color: "#397AB9"}}>About the chart</u>,
+                                                icon: 'dropdown',
+                                            },
+                                            content: {
+                                                content: (
+                                                    <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
+                                                      <Header.Content  style={{fontSize: "19px"}}>
+                                                        <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
+                                                        This chart shows the number of COVID-19 cases (top chart) per 
+                                                      100K residents by percent of population with any underlying comorbidity. The y-axis 
+                                                      displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
+                                                      average number of COVID-19 cases (top chart) per 100K 
+                                                      that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
+                                                      low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
+                                                      characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
+                                                      80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 
+                                                      the 20%-40% range, moderate percentage of population with any underlying comorbidity indicates counties in the 40%-60% range, and 
+                                                      high percentage of population with any underlying comorbidity indicates counties in the 60%-80% range.
+                                                        <br/>
+                                                        <br/>
+                                                        For a complete table of definitions, click <a style ={{color: "#397AB9"}} href="https://covid19.emory.edu/data-sources" target="_blank" rel="noopener noreferrer"> here. </a>
+                                                    
+                                                        
+                                                        
+                                                        </Header.Subheader>
+                                                      </Header.Content>
+                                                    </Header>
+                                                ),
+                                              },
+                                          }
+                                      ]} 
+                                  />
+                                </Grid.Row>
 
                               <Header as='h2' style={{textAlign:'center',fontSize:"18pt", lineHeight: "16pt"}}>
                                   <Header.Content style = {{paddingLeft: 0, width: 500}}>
@@ -5828,17 +6599,17 @@ export default function NationalReport(props) {
                                 </Header.Content>
                               </Header>
                               <VictoryChart
-                                theme={VictoryTheme.material}
-                                width={530}
-                                height={180}
-                                domainPadding={20}
-                                minDomain={{y: props.ylog?1:0}}
-                                padding={{left: 120, right: 90, top: 5, bottom: 1}}
-                                style = {{fontSize: "14pt"}}
-                                containerComponent={<VictoryContainer responsive={false}/>}
-                              >
-                                <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
-                                <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
+                                  theme={VictoryTheme.material}
+                                  width={530}
+                                  height={210}
+                                  domainPadding={20}
+                                  minDomain={{y: props.ylog?1:0}}
+                                  padding={{left: 130, right: 90, top: 5, bottom: 1}}
+                                  style = {{fontSize: "14pt"}}
+                                  containerComponent={<VictoryContainer responsive={false}/>}
+                                >
+                                  <VictoryAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, labels: {fill: '#000000', fontSize: "20px"}, tickLabels: {fontSize: "20px", fill: '#000000', fontFamily: 'lato'}}} />
+                                  <VictoryAxis dependentAxis style={{ticks:{stroke: "#000000"}, axis: {stroke: "#000000"}, grid: {stroke: "transparent"}, tickLabels: {fontSize: "20px", fill: '#000000', padding: 10,  fontFamily: 'lato'}}}/>
                                 <VictoryBar
                                   horizontal
                                   barRatio={0.80}
@@ -5883,12 +6654,12 @@ export default function NationalReport(props) {
                                                   <Header as='h2' style={{fontWeight: 400, paddingLeft: 5, paddingTop: 0, paddingBottom: 20}}>
                                                     <Header.Content  style={{fontSize: "19px"}}>
                                                       <Header.Subheader style={{color: '#000000', width: 420, fontWeight: 300, fontSize: "19px", textAlign:'justify'}}>
-                                                      This chart shows the number of COVID-19 cases (top chart) and deaths (bottom chart) per 
+                                                      This chart shows the number of COVID-19 deaths (bottom chart) per 
                                                       100K residents by percent of population with any underlying comorbidity. The y-axis 
                                                       displays percent of population with any underlying comorbidity rankings based on quintiles (groups of 20%). The x-axis displays the 
-                                                      average number of COVID-19 cases (top chart) or deaths (bottom chart) per 100K 
+                                                      average number of COVID-19 deaths (bottom chart) per 100K 
                                                       that occurred in each group of counties ranked by percent of population with any underlying comorbidity. The ranking 
-                                                      classified counties into five groups designed to be of equal size, so that the population with "very 
+                                                      classifies counties into five groups designed to be of equal size, so that the population with "very 
                                                       low percentage of any underlying comorbidity" group contains the counties with values in the 0%-20% range for this county 
                                                       characteristic, and the population with "very high percentage of any underlying comorbidity" group contains counties with values in the 
                                                       80%-100% range for this county characteristic. Low percentage of population with any underlying comorbidity indicates counties in 

@@ -105,6 +105,7 @@ import Box from "@material-ui/core/Box";
 import StepFlow from "./DecisionAid/StepFlow";
 import Compare from "./DecisionAid/compare";
 import About from "./DecisionAid/about";
+import LandingPage from "./DecisionAid/landingPage";
 import PersonalRisk from "./DecisionAid/personalRisk";
 import VaccFAQ from "./DecisionAid/vaccFAQ";
 import DecisionTable from "./DecisionAid/decisionTable";
@@ -266,7 +267,7 @@ const DecisionAid = (props) => {
       {/* <StepFlow /> */}
       <Container style={{marginTop:"8em"}}>
       {step=="about"&&(
-        <About/>
+        <LandingPage/>
       )}
       {step=="step2"&&(
         <VaccFAQ/>
