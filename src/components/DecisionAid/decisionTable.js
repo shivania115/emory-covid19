@@ -22,6 +22,7 @@ import {
   Message,
   Transition,
   List,
+  Checkbox
 } from "semantic-ui-react";
 import React, {
   useEffect,
@@ -50,8 +51,7 @@ import { useCookie } from "react-use";
 
 function DecitionTable() {
 
-  const [info, setInfo] = useState([
-    0, 0, 0, 0, 0]);
+  const [info, setInfo] = useState([0, 0, 0, 0, 0]);
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -87,37 +87,122 @@ function DecitionTable() {
       value: "2",
     },
   ];
+
+  const AgeOptions = ['18-29', '30-49', '50-69', '70+'];
+  const genderOptions = ['Female', 'Male', 'Non-binary', 'Rather not say'];
+  const ethnicOptions = ['White/Caucasian', 'Hispanic/Latino', 'Black/African American', 'Native American/American Indian', 'Asian/Pacific Islander', 'Other'];
+  const educationOptions = ['Elementary', 'High school degree or equivalent', 'Some college', 'Bachelor’s degree (e.g. BA, BS)', 'Master’s degree (e.g. MA, MS, Med)', 'Doctorate (e.g. PhD, EdD)', 'Other'];
+
+  const handleChangeAgeChecked = (e, {value}) => {
+    console.log(value);
+    setAgeChecked(value);
+  }
+  //which index is currently being checked
+  const[ ageChecked, setAgeChecked ] = useState();
+  const[ genderChecked, setGenderChecked ] = useState();
+  const[ ethnicChecked, setEthnicChecked ] = useState();
+  const[ educationChecked, setEducationChecked ] = useState();
+
   return (
     <div style={{ marginLeft: "10%", width: "85%" }}>
     <Divider></Divider>
-      <Form size='large'>
+        <div>
+        <label>Age group:</label>
+        {AgeOptions.map((option, index) => {
+          return (
+            <Checkbox
+              onClick={(e) => {
+                setAgeChecked(index);
+              }}
+              checked={ageChecked === index}
+              style={{
+                fontSize: "1.25rem",
+                display: "block",
+                marginTop: "10px",
+              }}
+              label={option}
+            />
+          );
+        })}
+      </div>
+      <div>
+        <label>Which best describes your gender?</label>
+        {genderOptions.map((option, index) => {
+          return (
+            <Checkbox
+              onClick={(e) => {
+                setGenderChecked(index);
+              }}
+              checked={genderChecked === index}
+              style={{
+                fontSize: "1.25rem",
+                display: "block",
+                marginTop: "10px",
+              }}
+              label={option}
+            />
+          );
+        })}
+      </div>
+      <div>
+        <label>Which best describes your ethnic group?</label>
+        {ethnicOptions.map((option, index) => {
+          return (
+            <Checkbox
+              onClick={(e) => {
+                setGenderChecked(index);
+              }}
+              checked={ethnicChecked === index}
+              style={{
+                fontSize: "1.25rem",
+                display: "block",
+                marginTop: "10px",
+              }}
+              label={option}
+            />
+          );
+        })}
+      </div>
+      
+      {/* <Form size='large'>
       <Form.Group unstackable widths={3}>
         <Form.Group grouped  >
       <label>Age group:</label>
-      <Form.Field
+      <Form.Input
         label='18-29'
         control='input'
         type='checkbox'
         name='htmlRadios'
-      
+        value = '1'
+        checked = {ageChecked === '1'}
+        onChange = {handleChangeAgeChecked}
       />
       <Form.Field
         label='30-49'
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '2'
+        checked = {ageChecked === '2'}
+        onChange = {(e, {value}) => {setAgeChecked(value)} }
       />
       <Form.Field
         label='50-69'
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '3'
+        checked = {ageChecked === '3'}
+        onChange = {(e, value) => {setAgeChecked(value)} }
       />
       <Form.Field
         label='70+'
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '4'
+        checked = {ageChecked === '4'}
+        onChange = {(e, value) => {setAgeChecked(value)} }
       />
     </Form.Group>
     <Form.Group style={{marginRight:30}} grouped>
@@ -127,24 +212,36 @@ function DecitionTable() {
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '1'
+        checked = {genderChecked === '1'}
+        onChange = {(e, value) => {setGenderChecked(value)} }
       />
       <Form.Field
         label='Male'
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '2'
+        checked = {genderChecked === '2'}
+        onChange = {(e, value) => {setGenderChecked(value)} }
       />
        <Form.Field
         label='Non-binary'
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '3'
+        checked = {genderChecked === '3'}
+        onChange = {(e, value) => {setGenderChecked(value)} }
       />
        <Form.Field
         label='Rather not say'
         control='input'
         type='checkbox'
         name='htmlRadios'
+        value = '4'
+        checked = {genderChecked === '4'}
+        onChange = {(e, value) => {setGenderChecked(value)} }
       />
     </Form.Group>
     <Form.Group grouped>
@@ -305,7 +402,7 @@ function DecitionTable() {
     </Form.Group>
     </Form.Group>
    
-    </Form>
+    </Form> */}
     <Divider></Divider>
       <Header
         as="h2"
