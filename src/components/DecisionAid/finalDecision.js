@@ -31,6 +31,7 @@ import React, {
   PureComponent,
 } from "react";
 import { Link } from "react-router-dom";
+import Slider from "@mui/material/Slider";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -40,8 +41,11 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { useCookie } from "react-use";
 import { decision_aid } from "../../stitch/mongodb";
+import TextField from '@mui/material/TextField';
+
 
 function FinalDecision() {
+  var link=<a src='https://dph.georgia.gov/covid-vaccine'>credible source</a>;
   const choices = [
     "I have decided to get the COVID-19 vaccine",
     "I need to discuss the decision further with my family and doctor",
@@ -53,22 +57,22 @@ function FinalDecision() {
     {
       next: "Get in touch with your doctor, pharmacist or vaccine hub and make an appointment to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the ‘send’ button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team.",
+        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team.",
     },
     {
       next: "Make time to talk to your family about the benefits and risks of getting a COVID-19 vaccine. Also make an appointment with your doctor so you can talk through any concerns you may have.",
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the ‘send’ button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
+        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
     },
     {
       next: "It is important that you get information about the benefits and risks of COVID-19 vaccination from credible sources. Your doctor will be able to answer your questions. They will also be able to recommend other good sources of information. The Useful Links section on this page also lists a number of reliable information sources.",
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the ‘send’ button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
+        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
     },
     {
       next: "Do what you can to stay safe and healthy. Social distancing, mask-wearing and frequent hand-washing can help reduce your risk of catching the virus. You may also find that you are not able to work in certain workplaces where vaccinations are compulsory. You could find it useful to revisit this Decision Aid in the future.",
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the ‘send’ button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
+        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
     },
   ];
   const [checkedBoxes, setCheckedBoxes] = useState([
@@ -78,6 +82,8 @@ function FinalDecision() {
     false,
     false,
   ]);
+  const [confidence, setConfidence] = useState(0);
+  const [other,setOther]=useState('');
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   const [choiceIndex, setChoiceIndex] = useState(null);
   console.log(cookies);
@@ -99,6 +105,11 @@ function FinalDecision() {
       console.log(e);
     }
   }
+  function handleChange(index, value) {
+    setConfidence(value);
+    console.log(other);
+  }
+
 
   console.log(choiceIndex);
   console.log(recommendations);
@@ -135,7 +146,27 @@ function FinalDecision() {
             />
           );
         })}
+        { choiceIndex === 4 && (
+        <>
+          <TextField style={{marginTop:"2%"}} size="small" onChange={(e)=>{setOther(e.target.value)}}></TextField>
+        </>
+      )}
       </div>
+      <Header
+        as="h4"
+        style={{ paddingTop: 30, fontWeight: 500, fontSize: "1.5rem" }}
+      >
+        <Header.Content>
+          How confident are you with the vaccine now?
+        </Header.Content>
+      </Header>
+      <Slider
+        defaultValue={0}
+        key={3}
+        style={{width:"85%"}}
+        onChange={(event, value) => handleChange(3, value)}
+        aria-label="Default"
+      />
       <Link to="/decision-aid/about">
         <button
           onClick={handleSubmit}
@@ -157,11 +188,8 @@ function FinalDecision() {
           </div>
         </>
       )}
-      {choiceIndex && choiceIndex === 4 && (
-        <>
-          <input></input>
-        </>
-      )}
+
+
     </div>
   );
 }

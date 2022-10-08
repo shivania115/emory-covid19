@@ -809,7 +809,9 @@ function Compare(props) {
               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
             >
               <Header.Content>
-              HOSPITALIZATION
+              HOSPITALIZATION 
+              <br></br>
+            with COVID-19
               </Header.Content>
               <HeaderSubHeader>
                 Percentage of People
@@ -823,7 +825,7 @@ function Compare(props) {
                 style={{marginTop:"1%"}}
               >
                 <Header.Content>
-                  With COVID-19
+                  Without Vaccination
 
                 </Header.Content>
               </Header>
@@ -839,8 +841,8 @@ function Compare(props) {
             </GridColumn>
 
             <GridColumn width={5}>
-              <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={32} color='red'></StyledProgressBar>
-              <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={12.2} color='red'></StyledProgressBar>
+            <StyledProgressBar  percent={6.8} color='blue' ></StyledProgressBar>
             </GridColumn>
             <GridColumn width={2}>
             <Header
@@ -848,7 +850,7 @@ function Compare(props) {
                 style={{marginTop:"1%"}}
               >
                 <Header.Content style={{color:"#e02c2c"}}>
-                 3 in 100 
+                 12.2 %
 
                 </Header.Content>
               </Header>
@@ -857,7 +859,7 @@ function Compare(props) {
                 style={{marginTop:"8%"}}
               >
                 <Header.Content style={{color:"#0E6EB8"}}>
-                 2 in 100
+                6.8 %
 
                 </Header.Content>
               </Header>
@@ -1560,7 +1562,9 @@ function Compare(props) {
             style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
           >
             <Header.Content>
-            HOSPITALIZATION
+            HOSPITALIZATION 
+            <br></br>
+            with COVID-19
             </Header.Content>
             <HeaderSubHeader>
               Percentage of People
@@ -1574,7 +1578,7 @@ function Compare(props) {
               style={{marginTop:"1%"}}
             >
               <Header.Content>
-                With COVID-19
+                Without Vaccination
 
               </Header.Content>
             </Header>
@@ -1590,8 +1594,8 @@ function Compare(props) {
           </GridColumn>
 
           <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={32} color='red'></StyledProgressBar>
-            <StyledProgressBar  percent={32} color='blue' ></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom: 10 }}  reverse percent={12.2} color='red'></StyledProgressBar>
+            <StyledProgressBar  percent={6.8} color='blue' ></StyledProgressBar>
           </GridColumn>
           <GridColumn width={2}>
           <Header
@@ -1599,7 +1603,7 @@ function Compare(props) {
               style={{marginTop:"1%"}}
             >
               <Header.Content style={{color:"#e02c2c"}}>
-               3 in 100 
+              122 in 1000
 
               </Header.Content>
             </Header>
@@ -1608,7 +1612,7 @@ function Compare(props) {
               style={{marginTop:"8%"}}
             >
               <Header.Content style={{color:"#0E6EB8"}}>
-               2 in 100
+               68 in 1000
 
               </Header.Content>
             </Header>
@@ -1787,7 +1791,7 @@ function Compare(props) {
       value={vaccine}
       size="large"
       exclusive
-      onChange={(e,value)=>{setVaccine(value)}}
+      onChange={(e,value)=>{vaccine!=value&&setVaccine(value)}}
       aria-label="Platform"
      style={{padding:10}}
     >
