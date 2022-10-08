@@ -22,8 +22,9 @@ import {
   Message,
   Transition,
   List,
-  Checkbox
+  Checkbox,
 } from "semantic-ui-react";
+import Toastify from "toastify-js";
 import React, {
   useEffect,
   useState,
@@ -39,7 +40,7 @@ import {
   decision_aid,
   CHED_static,
 } from "../../stitch/mongodb";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -48,25 +49,65 @@ import {
   faQuestionCircle,
 } from "@fortawesome/free-regular-svg-icons";
 import { useCookie } from "react-use";
+import "./DecisionAid.css";
+import "toastify-js/src/toastify.css";
 
 function DecitionTable() {
-
-  const [info, setInfo] = useState([0, 0, 0, 0, 0]);
+  const navigate = useNavigate();
+  //info contains slider information
+  const [info, setInfo] = useState([50, 50, 50, 50, 50]);
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
   } = useStitchAuth();
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   function handleSubmit() {
-    // if (isLoggedIn == true) {
-    // const k = decision_aid.find({all:'all'}).toArray();
-    // console.log(k);
-    // decision_aid.insertOne({ type: "slider", rating: info });
+    console.log(
+      !ageChecked ||
+        !genderChecked ||
+        !ethnicChecked ||
+        !educationChecked ||
+        !occupationChecked
+    );
+    if (
+      ageChecked === null ||
+      genderChecked === null ||
+      ethnicChecked === null ||
+      educationChecked === null ||
+      occupationChecked === null
+    ) {
+      Toastify({
+        text: "Please fill out all fields before going to the next section",
+        gravity: "bottom",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        duration: -1,
+      }).showToast();
+      return;
+    }
 
-    // }
+    const age = AgeOptions[ageChecked];
+    const gender = GenderOptions[genderChecked];
+    const ethnicity = EthnicOptions[ethnicChecked];
+    const occupation = OccupationOptions[occupationChecked];
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    setCookie(info, { path: "/", expires: tomorrow });
+    const cookie = {
+      demographic: {
+        age: age,
+        gender: gender,
+        ethnicity: ethnicity,
+        occupation: occupation,
+      },
+      vaccine_survey: {
+        effective: info[0],
+        important: info[1],
+        negative_stories: info[2],
+        concerned_reactions: info[3],
+        childhood_vaccines: info[4],
+      },
+    };
+    setCookie(cookie, { path: "/", expires: tomorrow });
+    return navigate("/decision-aid/step2");
   }
   function handleChange(index, value) {
     setInfo((previousState) => {
@@ -88,329 +129,154 @@ function DecitionTable() {
     },
   ];
 
-  const AgeOptions = ['18-29', '30-49', '50-69', '70+'];
-  const genderOptions = ['Female', 'Male', 'Non-binary', 'Rather not say'];
-  const ethnicOptions = ['White/Caucasian', 'Hispanic/Latino', 'Black/African American', 'Native American/American Indian', 'Asian/Pacific Islander', 'Other'];
-  const educationOptions = ['Elementary', 'High school degree or equivalent', 'Some college', 'Bachelor’s degree (e.g. BA, BS)', 'Master’s degree (e.g. MA, MS, Med)', 'Doctorate (e.g. PhD, EdD)', 'Other'];
+  const AgeOptions = ["18-29", "30-49", "50-69", "70+"];
+  const GenderOptions = ["Female", "Male", "Non-binary", "Rather not say"];
+  const EthnicOptions = [
+    "White/Caucasian",
+    "Hispanic/Latino",
+    "Black/African American",
+    "Native American/American Indian",
+    "Asian/Pacific Islander",
+    "Other",
+  ];
+  const EducationOptions = [
+    "Elementary",
+    "High school degree or equivalent",
+    "Some college",
+    "Bachelor’s degree (e.g. BA, BS)",
+    "Master’s degree (e.g. MA, MS, Med)",
+    "Doctorate (e.g. PhD, EdD)",
+    "Other",
+  ];
+  const OccupationOptions = [
+    "Educator",
+    "Business Professional",
+    "Self-Employed",
+    "Medical/Healthcare Professional",
+    "Gvoernment/Civil Services",
+    "Clerical/Secretary Support/Customer Service/Retail",
+    "Technology/Engineering",
+    "Transportation",
+    "Full-Time Student",
+    "Homemaker",
+    "Retired",
+  ];
 
-  const handleChangeAgeChecked = (e, {value}) => {
-    console.log(value);
-    setAgeChecked(value);
-  }
   //which index is currently being checked
-  const[ ageChecked, setAgeChecked ] = useState();
-  const[ genderChecked, setGenderChecked ] = useState();
-  const[ ethnicChecked, setEthnicChecked ] = useState();
-  const[ educationChecked, setEducationChecked ] = useState();
+  const [ageChecked, setAgeChecked] = useState();
+  const [genderChecked, setGenderChecked] = useState();
+  const [ethnicChecked, setEthnicChecked] = useState();
+  const [educationChecked, setEducationChecked] = useState();
+  const [occupationChecked, setOccupationChecked] = useState();
 
   return (
     <div style={{ marginLeft: "10%", width: "85%" }}>
-    <Divider></Divider>
-        <div>
-        <label>Age group:</label>
-        {AgeOptions.map((option, index) => {
-          return (
-            <Checkbox
-              onClick={(e) => {
-                setAgeChecked(index);
-              }}
-              checked={ageChecked === index}
-              style={{
-                fontSize: "1.25rem",
-                display: "block",
-                marginTop: "10px",
-              }}
-              label={option}
-            />
-          );
-        })}
-      </div>
-      <div>
-        <label>Which best describes your gender?</label>
-        {genderOptions.map((option, index) => {
-          return (
-            <Checkbox
-              onClick={(e) => {
-                setGenderChecked(index);
-              }}
-              checked={genderChecked === index}
-              style={{
-                fontSize: "1.25rem",
-                display: "block",
-                marginTop: "10px",
-              }}
-              label={option}
-            />
-          );
-        })}
-      </div>
-      <div>
-        <label>Which best describes your ethnic group?</label>
-        {ethnicOptions.map((option, index) => {
-          return (
-            <Checkbox
-              onClick={(e) => {
-                setGenderChecked(index);
-              }}
-              checked={ethnicChecked === index}
-              style={{
-                fontSize: "1.25rem",
-                display: "block",
-                marginTop: "10px",
-              }}
-              label={option}
-            />
-          );
-        })}
-      </div>
-      
-      {/* <Form size='large'>
-      <Form.Group unstackable widths={3}>
-        <Form.Group grouped  >
-      <label>Age group:</label>
-      <Form.Input
-        label='18-29'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '1'
-        checked = {ageChecked === '1'}
-        onChange = {handleChangeAgeChecked}
-      />
-      <Form.Field
-        label='30-49'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '2'
-        checked = {ageChecked === '2'}
-        onChange = {(e, {value}) => {setAgeChecked(value)} }
-      />
-      <Form.Field
-        label='50-69'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '3'
-        checked = {ageChecked === '3'}
-        onChange = {(e, value) => {setAgeChecked(value)} }
-      />
-      <Form.Field
-        label='70+'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '4'
-        checked = {ageChecked === '4'}
-        onChange = {(e, value) => {setAgeChecked(value)} }
-      />
-    </Form.Group>
-    <Form.Group style={{marginRight:30}} grouped>
-      <label>Which best describes your gender?</label>
-      <Form.Field
-        label='Female'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '1'
-        checked = {genderChecked === '1'}
-        onChange = {(e, value) => {setGenderChecked(value)} }
-      />
-      <Form.Field
-        label='Male'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '2'
-        checked = {genderChecked === '2'}
-        onChange = {(e, value) => {setGenderChecked(value)} }
-      />
-       <Form.Field
-        label='Non-binary'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '3'
-        checked = {genderChecked === '3'}
-        onChange = {(e, value) => {setGenderChecked(value)} }
-      />
-       <Form.Field
-        label='Rather not say'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-        value = '4'
-        checked = {genderChecked === '4'}
-        onChange = {(e, value) => {setGenderChecked(value)} }
-      />
-    </Form.Group>
-    <Form.Group grouped>
-      <label>Which best describes your ethnic group?</label>
-      <Form.Field
-        label='White/Caucasian'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Hispanic/Latino'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-        <Form.Field
-        label='Black/African American'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Native American/American Indian'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-        <Form.Field
-        label='Asian/Pacific Islander'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Other'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-    </Form.Group>
-    </Form.Group>
-    <Form.Group unstackable widths={2}>
-    <Form.Group style={{marginRight:40}} grouped>
-      <label>Which best describes your highest level of education?</label>
-      <Form.Field
-        label='Elementary'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='High school degree or equivalent'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-        <Form.Field
-        label='Some college'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-        <Form.Field
-        label='Bachelor’s degree (e.g. BA, BS)'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-        <Form.Field
-        label='Master’s degree (e.g. MA, MS, Med)'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-        <Form.Field
-        label='Doctorate (e.g. PhD, EdD)'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Other'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-    </Form.Group>
-
-    <Form.Group style={{marginRight:20}} grouped>
-      <label>Which best describes your occupation?</label>
-      <Form.Field
-        label='Educator'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Business Professional'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-       <Form.Field
-        label='Self-Employed'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Medical/Healthcare Professional'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-       <Form.Field
-        label='Government/Civil Services'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Clerical/Secretary Support/Customer Service/Retail'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-       <Form.Field
-        label='Technology/Engineering'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Transportation'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-         <Form.Field
-        label='Full-Time Student'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-       <Form.Field
-        label='Homemaker'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-      <Form.Field
-        label='Retired'
-        control='input'
-        type='checkbox'
-        name='htmlRadios'
-      />
-    </Form.Group>
-    </Form.Group>
-   
-    </Form> */}
-    <Divider></Divider>
+      <Divider></Divider>
+      <Form>
+        <div className="checkbox">
+          <label>Age group:</label>
+          {AgeOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setAgeChecked(index);
+                }}
+                checked={ageChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your gender?</label>
+          {GenderOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setGenderChecked(index);
+                }}
+                checked={genderChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your ethnic group?</label>
+          {EthnicOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setEthnicChecked(index);
+                }}
+                checked={ethnicChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your highest level of education?</label>
+          {EducationOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setEducationChecked(index);
+                }}
+                checked={educationChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your occupation?</label>
+          {OccupationOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setOccupationChecked(index);
+                }}
+                checked={occupationChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+      </Form>
+      <Divider></Divider>
       <Header
         as="h2"
         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
       >
         <Header.Content>COVID-19 Vaccine Survey</Header.Content>
         <HeaderSubHeader>
-       Toggle to tell us about your opinions on each statements. 
+          Toggle to tell us about your opinions on each statements.
         </HeaderSubHeader>
       </Header>
       <table class="ui striped table">
@@ -424,9 +290,7 @@ function DecitionTable() {
         </thead>
         <tbody>
           <tr>
-            <td>
-             COVID-19 vaccines are effective.
-            </td>
+            <td>COVID-19 vaccines are effective.</td>
             <td colspan="3">
               <Slider
                 defaultValue={50}
@@ -438,7 +302,7 @@ function DecitionTable() {
           </tr>
           <tr>
             <td>
-             Vaccines are important for the health of others in my community.
+              Vaccines are important for the health of others in my community.
             </td>
             <td colspan="3">
               <Slider
@@ -451,7 +315,8 @@ function DecitionTable() {
           </tr>
           <tr>
             <td>
-              I have heard negative stories that worry me about receiving the COVID-19 vaccine.
+              I have heard negative stories that worry me about receiving the
+              COVID-19 vaccine.
             </td>
             <td colspan="3">
               <Slider
@@ -464,7 +329,8 @@ function DecitionTable() {
           </tr>
           <tr>
             <td>
-             I am concerned about serious reactions I may have after receiving the COVID-19 vaccine. 
+              I am concerned about serious reactions I may have after receiving
+              the COVID-19 vaccine.
             </td>
             <td colspan="3">
               <Slider
@@ -476,9 +342,7 @@ function DecitionTable() {
             </td>
           </tr>
           <tr>
-            <td>
-            I believe childhood vaccines are important and effective. 
-            </td>
+            <td>I believe childhood vaccines are important and effective.</td>
             <td colspan="3">
               <Slider
                 defaultValue={50}
@@ -587,15 +451,14 @@ function DecitionTable() {
           </tr> */}
         </tbody>
       </table>
-      <Link to="/decision-aid/step2">
-        <button
-          onClick={handleSubmit}
-          style={{ float: "right", marginBottom: "3rem" }}
-          class="ui large primary button"
-        >
-          Next
-        </button>
-      </Link>
+
+      <button
+        onClick={handleSubmit}
+        style={{ float: "right", marginBottom: "3rem" }}
+        class="ui large primary button"
+      >
+        Next
+      </button>
     </div>
   );
 }

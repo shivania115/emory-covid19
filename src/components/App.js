@@ -11,8 +11,8 @@ import DataSources from "./DataSources";
 import Privacy from "./Privacy";
 import Blog from "./Blog";
 import Podcast from "./Podcast";
-import 'semantic-ui-css/semantic.min.css'
-import { HEProvider } from './HEProvider';
+import "semantic-ui-css/semantic.min.css";
+import { HEProvider } from "./HEProvider";
 import USVaccineTracker from "./USVaccineTracker";
 import USVaccineTrackerPilot from "./USVaccineTrackerPilot";
 import VaccineFAQ from "./VaccineFAQ";
@@ -31,15 +31,13 @@ import OtherTools from "./OtherTools";
 import DecisionAid from "./DecisionAid.js";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Redirect
+  Navigate,
 } from "react-router-dom";
-
 
 App.propTypes = {};
 export default function App() {
-
   return (
     <StitchAuthProvider>
       <AppUI />
@@ -61,85 +59,56 @@ function AppUI() {
   return (
     <HEProvider>
       <Router>
-        <Switch>
+        <Routes>
           {/* GDPH urls */}
-          <Route path='/Georgia/data-sources'>
-            <GDPHDataSources />
-          </Route>
-          <Route path='/Georgia/about-team'>
-            <GDPHAboutUs />
-          </Route>
-          <Route path='/Georgia/:countyFips'>
-            <GDPHCountyReport />
-          </Route>
-          <Route path='/Georgia' component={GDPHStateMap} />
+          <Route
+            path="/Georgia/data-sources"
+            element={<GDPHDataSources />}
+          ></Route>
+          <Route path="/Georgia/about-team" element={<GDPHAboutUs />}></Route>
+          <Route
+            path="/Georgia/:countyFips"
+            element={<GDPHCountyReport />}
+          ></Route>
+          <Route path="/Georgia" component={<GDPHStateMap />} />
 
-          
           {/* Main urls */}
-          <Route path='/national-report'>
-            <NationalReport />
-          </Route>
-          <Route path="/national-report123321">
-          <NationalReportPilot/>
-          </Route>
-          <Route path='/variants'>
-             <Variant/>
-          </Route>
-          <Route path='/other-tools'>
-            <OtherTools />
-          </Route>
-          <Route path='/Vaccine-Tracker-Pilot03022021'>
-            <USVaccineTrackerPilot />
-          </Route>
-          <Route path='/US-Map-Pilot-12312'>
-            <USMapPilot />
-          </Route>
-          <Route path='/Vaccine-Tracker'>
-            <USVaccineTracker />
-          </Route>
-          <Route path='/vaccine-map'>
-            <VaccineMap />
-          </Route>
-          <Route path='/map-state'>
-            <MapYourState />
-          </Route>
-          <Route path="/decision-aid/:step">
-      <DecisionAid/>
-          </Route>
-          <Route path='/media-hub/blog/:blogTitle'>
-            <Blog />
-          </Route>
-          <Route path='/media-hub/podcast/:podcastTitle'>
-            <Podcast />
-          </Route>
-          <Route path='/media-hub'>
-            <MediaHub />
-          </Route>
-          <Route path='/about-team'>
-            <AboutUs />
-          </Route>
-          <Route path='/privacy'>
-            <Privacy />
-          </Route>
-          <Route path='/data-sources'>
-            <DataSources />
-          </Route>
+          <Route path="/national-report" element={<NationalReport />}></Route>
+          <Route
+            path="/national-report123321"
+            element={<NationalReportPilot />}
+          ></Route>
+          <Route path="/variants" element={<Variant />}></Route>
+          <Route path="/other-tools" element="<OtherTools />"></Route>
+          <Route
+            path="/Vaccine-Tracker-Pilot03022021"
+            element={<USVaccineTrackerPilot />}
+          ></Route>
+          <Route path="/US-Map-Pilot-12312" element={<USMapPilot />}></Route>
+          <Route path="/Vaccine-Tracker" element={<USVaccineTracker />}></Route>
+          <Route path="/vaccine-map" element={<VaccineMap />}></Route>
+          <Route path="/map-state" element={<MapYourState />}></Route>
 
-          <Route path='/:stateFips/:countyFips'>
-            <CountyReport />
-          </Route>
-          <Route path='/:stateFips'>
-            <StateMap />
-          </Route>
-          <Route path='/'>
-            <USMap />
-          </Route>
-          <Route path="*">
-            <Redirect to='/' />
-          </Route>
-        </Switch>
+          <Route path="/decision-aid/:step" element={<DecisionAid />}></Route>
+          <Route path="/media-hub/blog/:blogTitle" element={<Blog />}></Route>
+          <Route
+            path="/media-hub/podcast/:podcastTitle"
+            element={<Podcast />}
+          ></Route>
+          <Route path="/media-hub" element={<MediaHub />}></Route>
+          <Route path="/about-team" element={<AboutUs />}></Route>
+          <Route path="/privacy" element={<Privacy />}></Route>
+          <Route path="/data-sources" element={<DataSources />}></Route>
+
+          <Route
+            path="/:stateFips/:countyFips"
+            element={<CountyReport />}
+          ></Route>
+          <Route path="/:stateFips" element={<StateMap />}></Route>
+          <Route path="/" element={<USMap />}></Route>
+          <Route path="*" element={<Navigate to="/" />}></Route>
+        </Routes>
       </Router>
     </HEProvider>
   );
 }
-

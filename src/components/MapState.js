@@ -4,7 +4,7 @@ import AppBar from "./AppBar";
 import Geographies from "./Geographies";
 import Geography from "./Geography";
 import ComposableMap from "./ComposableMap";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Notes from "./Notes";
 import ReactTooltip from "react-tooltip";
 import stateOptions from "./stateOptions.json";

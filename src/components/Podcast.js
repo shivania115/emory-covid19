@@ -1,6 +1,6 @@
 import AppBar from "./AppBar";
 import Notes from "./Notes";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import {
@@ -15,7 +15,7 @@ import {
 } from "semantic-ui-react";
 
 export default function AboutUs(props) {
-  const history = useHistory();
+  const history = useNavigate();
   let { podcastTitle } = useParams();
 
   return (

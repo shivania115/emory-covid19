@@ -41,11 +41,10 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { useCookie } from "react-use";
 import { decision_aid } from "../../stitch/mongodb";
-import TextField from '@mui/material/TextField';
-
+import TextField from "@mui/material/TextField";
 
 function FinalDecision() {
-  var link=<a src='https://dph.georgia.gov/covid-vaccine'>credible source</a>;
+  var link = <a src="https://dph.georgia.gov/covid-vaccine">credible source</a>;
   const choices = [
     "I have decided to get the COVID-19 vaccine",
     "I need to discuss the decision further with my family and doctor",
@@ -75,31 +74,23 @@ function FinalDecision() {
         "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
     },
   ];
-  const [checkedBoxes, setCheckedBoxes] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
   const [confidence, setConfidence] = useState(0);
-  const [other,setOther]=useState('');
+  const [other, setOther] = useState("");
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   const [choiceIndex, setChoiceIndex] = useState(null);
-  console.log(cookies);
   function handleSubmit() {
-    const cookies_arr = cookies.slice(1, -1).split(",");
-    const num_arr = [];
-
-    cookies_arr.forEach((str) => {
-      num_arr.push(Number(str));
-    });
-    console.log(num_arr);
-    console.log(checkedBoxes);
+    const step2 = JSON.parse(cookies);
+    var decision_choice = choices[choiceIndex];
+    if (choiceIndex === 4) {
+      decision_choice = decision_choice + ": " + other;
+    }
     try {
       decision_aid.insertOne({
-        step1: { type: "slider", value: num_arr },
-        step2: { type: "check box", value: checkedBoxes },
+        step2: {
+          demographic: step2.demographic,
+          vaccine_survey: step2.vaccine_survey,
+        },
+        step5: { final_decision: decision_choice, confidence: confidence },
       });
     } catch (e) {
       console.log(e);
@@ -107,12 +98,7 @@ function FinalDecision() {
   }
   function handleChange(index, value) {
     setConfidence(value);
-    console.log(other);
   }
-
-
-  console.log(choiceIndex);
-  console.log(recommendations);
 
   return (
     <div style={{ marginLeft: "20%", width: "60%" }}>
@@ -131,12 +117,9 @@ function FinalDecision() {
           return (
             <Checkbox
               onClick={(e) => {
-                var temp = [false, false, false, false, false];
-                temp[index] = true;
-                setCheckedBoxes(temp);
                 setChoiceIndex(index);
               }}
-              checked={checkedBoxes[index]}
+              checked={choiceIndex === index}
               style={{
                 fontSize: "1.25rem",
                 display: "block",
@@ -146,11 +129,17 @@ function FinalDecision() {
             />
           );
         })}
-        { choiceIndex === 4 && (
-        <>
-          <TextField style={{marginTop:"2%"}} size="small" onChange={(e)=>{setOther(e.target.value)}}></TextField>
-        </>
-      )}
+        {choiceIndex === 4 && (
+          <>
+            <TextField
+              style={{ marginTop: "2%" }}
+              size="small"
+              onChange={(e) => {
+                setOther(e.target.value);
+              }}
+            ></TextField>
+          </>
+        )}
       </div>
       <Header
         as="h4"
@@ -163,7 +152,7 @@ function FinalDecision() {
       <Slider
         defaultValue={0}
         key={3}
-        style={{width:"85%"}}
+        style={{ width: "85%" }}
         onChange={(event, value) => handleChange(3, value)}
         aria-label="Default"
       />
@@ -188,8 +177,6 @@ function FinalDecision() {
           </div>
         </>
       )}
-
-
     </div>
   );
 }

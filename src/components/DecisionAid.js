@@ -39,7 +39,6 @@ import Children from "./icons/Children";
 import Family from "./icons/Family";
 import Decision from "./icons/Decision";
 
-
 // import FileSaver from "file-saver";
 // import { getPngData, useRechartToPng } from "recharts-to-png";
 // import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
@@ -59,7 +58,7 @@ import {
   VictoryContainer,
   VictoryVoronoiContainer,
 } from "victory";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Notes from "./Notes";
 import _, { map } from "lodash";
 import { scaleQuantile } from "d3-scale";
@@ -113,19 +112,31 @@ import FinalDecision from "./DecisionAid/finalDecision";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 
 function AppBar2(props) {
-
-  const history = useHistory();
+  const navigate = useNavigate();
   console.log(props.menu);
   return (
     <ErrorBoundary>
-      <Menu borderless inverted fixed='top'
-        style={{backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
-                backgroundSize: 'cover',
-                fontSize: "14pt"}}>
-        <Container style={{width: "90%"}}>
-          <Menu.Item as='a' header onClick={() => history.push('/')} style = {{paddingLeft: 0, paddingRight: "3%"}}>
-            <span style={{fontWeight: 400, color: '#fff', lineHeight: 1.3}}>
-            COVID-19 Health Equity<br/>Interactive Dashboard
+      <Menu
+        borderless
+        inverted
+        fixed="top"
+        style={{
+          backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
+          backgroundSize: "cover",
+          fontSize: "14pt",
+        }}
+      >
+        <Container style={{ width: "90%" }}>
+          <Menu.Item
+            as="a"
+            header
+            onClick={() => navigate("/")}
+            style={{ paddingLeft: 0, paddingRight: "3%" }}
+          >
+            <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
+              COVID-19 Health Equity
+              <br />
+              Interactive Dashboard
             </span>
           </Menu.Item>
 
@@ -135,73 +146,68 @@ function AppBar2(props) {
             onClick={() => history.push('/')}
             name='countyReport'/> */}
 
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='about'} 
-            onClick={() => history.push('/decision-aid/about')}
-            name='about'>
-            <Header style={{color:"#fff",fontWeight:400}}>
-    
-            <HeaderContent>
-            Start:
-            </HeaderContent>
-            <HeaderSubHeader style={{color:"#fff"}}>
-            About this 
-            <br></br>
-            decision aid
-            </HeaderSubHeader>
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            active={props.menu === "about"}
+            onClick={() => navigate("/decision-aid/about")}
+            name="about"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>Start:</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                About this
+                <br></br>
+                decision aid
+              </HeaderSubHeader>
             </Header>
-         
           </Menu.Item>
 
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step1'} 
-            onClick={() => history.push('/decision-aid/step1')}
-            name='step4'>
-           <Header style={{color:"#fff",fontWeight:400}}>
-    
-    <HeaderContent>
-    STEP 1:
-    </HeaderContent>
-    <HeaderSubHeader style={{color:"#fff"}}>
-    Consider what matter 
-    <br></br>
-    most for your family
-    </HeaderSubHeader>
-    </Header>
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            active={props.menu === "step1"}
+            onClick={() => navigate("/decision-aid/step1")}
+            name="step4"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>STEP 1:</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                Consider what matter
+                <br></br>
+                most for your family
+              </HeaderSubHeader>
+            </Header>
           </Menu.Item>
 
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step2'} 
-            onClick={() => history.push('/decision-aid/step2')}
-            name='step2'>
-           <Header style={{color:"#fff",fontWeight:400}}>
-    
-    <HeaderContent>
-    STEP 2: 
-    </HeaderContent>
-    <HeaderSubHeader style={{color:"#fff"}}>
-    Learn about the virus 
-    <br></br>
-    and the vaccines
-    </HeaderSubHeader>
-    </Header>
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            active={props.menu === "step2"}
+            onClick={() => navigate("/decision-aid/step2")}
+            name="step2"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>STEP 2:</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                Learn about the virus
+                <br></br>
+                and the vaccines
+              </HeaderSubHeader>
+            </Header>
           </Menu.Item>
-          
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step3'} 
-            onClick={() => history.push('/decision-aid/step3')}
-            name='step3'>
-              <Header style={{color:"#fff",fontWeight:400}}>
-    
-    <HeaderContent>
-  STEP 3:
-    </HeaderContent>
-    <HeaderSubHeader style={{color:"#fff"}}>
-    Compare the risks 
-    <br></br>
-    and benefits
-    </HeaderSubHeader>
-    </Header>
+
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            active={props.menu === "step3"}
+            onClick={() => navigate("/decision-aid/step3")}
+            name="step3"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>STEP 3:</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                Compare the risks
+                <br></br>
+                and benefits
+              </HeaderSubHeader>
+            </Header>
           </Menu.Item>
 
           {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
@@ -210,45 +216,41 @@ function AppBar2(props) {
             name='mapState'>
             Map State
           </Menu.Item> */}
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='step4'} 
-            onClick={() => history.push('/decision-aid/step4')}
-            name='step4'>
-            <Header style={{color:"#fff",fontWeight:400}}>
-    
-    <HeaderContent>
-    STEP 4:
-    </HeaderContent>
-    <HeaderSubHeader style={{color:"#fff"}}>
-    Check your 
-    <br></br>
-    personal risk profile
-    </HeaderSubHeader>
-    </Header>
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            active={props.menu === "step4"}
+            onClick={() => navigate("/decision-aid/step4")}
+            name="step4"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>STEP 4:</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                Check your
+                <br></br>
+                personal risk profile
+              </HeaderSubHeader>
+            </Header>
           </Menu.Item>
 
-       
-
-          <Menu.Item style = {{paddingLeft: 15, paddingRight: 55}}
-            active={props.menu==='step5'} 
-            onClick={() => history.push('/decision-aid/step5')}
-            name='step5'>
-             <Header style={{color:"#fff",fontWeight:400}}>
-    
-    <HeaderContent>
-    STEP 5
-    </HeaderContent>
-    <HeaderSubHeader style={{color:"#fff"}}>
-    Make your 
-    <br></br>
-    decision
-    </HeaderSubHeader>
-    </Header>
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 55 }}
+            active={props.menu === "step5"}
+            onClick={() => navigate("/decision-aid/step5")}
+            name="step5"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>STEP 5</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                Make your
+                <br></br>
+                decision
+              </HeaderSubHeader>
+            </Header>
           </Menu.Item>
 
-          <Menu.Menu position='right'>
-            <Menu.Item as='a' header>
-              <Image size='small' src='/logo_white.png' />
+          <Menu.Menu position="right">
+            <Menu.Item as="a" header>
+              <Image size="small" src="/logo_white.png" />
             </Menu.Item>
           </Menu.Menu>
         </Container>
@@ -257,37 +259,22 @@ function AppBar2(props) {
   );
 }
 const DecisionAid = (props) => {
-  const history=useHistory();
-  let{step='about'}=useParams();
+  const navigate = useNavigate();
+  let { step = "about" } = useParams();
 
   return (
     <HEProvider>
       <AppBar2 menu={step} />
       {/* <br style={{ height: "200px" }}></br> */}
       {/* <StepFlow /> */}
-      <Container style={{marginTop:"8em"}}>
-      {step=="about"&&(
-        <LandingPage/>
-      )}
-      {step=="step2"&&(
-        <VaccFAQ/>
-      )}
-      {step=="step3"&&(
-        <Compare/>
-      )}
-      {step=="step1"&&(
-        <DecisionTable/>
-      )}
-      {step=="step4"&&(
-        <PersonalRisk/>
-        
-      )}
-      {step=="step5"&&(
-        <FinalDecision/>
-      )}
+      <Container style={{ marginTop: "8em" }}>
+        {step == "about" && <LandingPage />}
+        {step == "step2" && <VaccFAQ />}
+        {step == "step3" && <Compare />}
+        {step == "step1" && <DecisionTable />}
+        {step == "step4" && <PersonalRisk />}
+        {step == "step5" && <FinalDecision />}
       </Container>
-
-      
     </HEProvider>
   );
 };

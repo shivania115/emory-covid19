@@ -1,7 +1,7 @@
 import React from "react";
 import AppBar from "./AppBar";
 import Notes from "./Notes";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -13,7 +13,7 @@ import {
 } from "semantic-ui-react";
 
 export default function MediaHub(props) {
-  const history = useHistory();
+  const history = useNavigate();
 
   return (
     <div>
