@@ -64,10 +64,10 @@ function DecitionTable() {
   function handleSubmit() {
     console.log(
       !ageChecked ||
-        !genderChecked ||
-        !ethnicChecked ||
-        !educationChecked ||
-        !occupationChecked
+      !genderChecked ||
+      !ethnicChecked ||
+      !educationChecked ||
+      !occupationChecked
     );
     if (
       ageChecked === null ||
@@ -171,104 +171,7 @@ function DecitionTable() {
 
   return (
     <div style={{ marginLeft: "10%", width: "85%" }}>
-      <Divider></Divider>
-      <Form>
-        <div className="checkbox">
-          <label>Age group:</label>
-          {AgeOptions.map((option, index) => {
-            return (
-              <Checkbox
-                onClick={(e) => {
-                  setAgeChecked(index);
-                }}
-                checked={ageChecked === index}
-                style={{
-                  fontSize: "1 rem",
-                  display: "block",
-                  marginTop: "10px",
-                }}
-                label={option}
-              />
-            );
-          })}
-        </div>
-        <div className="checkbox">
-          <label>Which best describes your gender?</label>
-          {GenderOptions.map((option, index) => {
-            return (
-              <Checkbox
-                onClick={(e) => {
-                  setGenderChecked(index);
-                }}
-                checked={genderChecked === index}
-                style={{
-                  fontSize: "1 rem",
-                  display: "block",
-                  marginTop: "10px",
-                }}
-                label={option}
-              />
-            );
-          })}
-        </div>
-        <div className="checkbox">
-          <label>Which best describes your ethnic group?</label>
-          {EthnicOptions.map((option, index) => {
-            return (
-              <Checkbox
-                onClick={(e) => {
-                  setEthnicChecked(index);
-                }}
-                checked={ethnicChecked === index}
-                style={{
-                  fontSize: "1 rem",
-                  display: "block",
-                  marginTop: "10px",
-                }}
-                label={option}
-              />
-            );
-          })}
-        </div>
-        <div className="checkbox">
-          <label>Which best describes your highest level of education?</label>
-          {EducationOptions.map((option, index) => {
-            return (
-              <Checkbox
-                onClick={(e) => {
-                  setEducationChecked(index);
-                }}
-                checked={educationChecked === index}
-                style={{
-                  fontSize: "1 rem",
-                  display: "block",
-                  marginTop: "10px",
-                }}
-                label={option}
-              />
-            );
-          })}
-        </div>
-        <div className="checkbox">
-          <label>Which best describes your occupation?</label>
-          {OccupationOptions.map((option, index) => {
-            return (
-              <Checkbox
-                onClick={(e) => {
-                  setOccupationChecked(index);
-                }}
-                checked={occupationChecked === index}
-                style={{
-                  fontSize: "1 rem",
-                  display: "block",
-                  marginTop: "10px",
-                }}
-                label={option}
-              />
-            );
-          })}
-        </div>
-      </Form>
+
       <Divider></Divider>
       <Header
         as="h2"
@@ -451,10 +354,113 @@ function DecitionTable() {
           </tr> */}
         </tbody>
       </table>
-
+      <Divider></Divider>
+      <Form>
+        <Header
+          as="h2"
+          style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+        >
+          <Header.Content>Optional</Header.Content>
+        </Header>
+        <div className="checkbox">
+          <label>Age group:</label>
+          {AgeOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setAgeChecked(index);
+                }}
+                checked={ageChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your gender?</label>
+          {GenderOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setGenderChecked(index);
+                }}
+                checked={genderChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your ethnic group?</label>
+          {EthnicOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setEthnicChecked(index);
+                }}
+                checked={ethnicChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your highest level of education?</label>
+          {EducationOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setEducationChecked(index);
+                }}
+                checked={educationChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+        <div className="checkbox">
+          <label>Which best describes your occupation?</label>
+          {OccupationOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setOccupationChecked(index);
+                }}
+                checked={occupationChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
+      </Form>
       <button
         onClick={handleSubmit}
-        style={{ float: "right", marginBottom: "3rem" }}
+        style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
         class="ui large primary button"
       >
         Next

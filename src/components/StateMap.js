@@ -823,7 +823,7 @@ export default function StateMap(props) {
   //   const configMatched = configs.find(s => s.fips === stateFips);
 
   //     if (!configMatched){
-  //       history.push('/_nation');
+  //       history('/_nation');
   //     }else{
 
   //       setConfig(configMatched);
@@ -926,7 +926,7 @@ export default function StateMap(props) {
       const configMatched = configs.find((s) => s.fips === stateFips);
       // console.log("configMatched", configMatched);
       if (!configMatched) {
-        history.push("/_nation");
+        history("/_nation");
       } else {
         if (isLoggedIn === true) {
           let newDict = {};
@@ -1227,7 +1227,7 @@ export default function StateMap(props) {
             {config && (
               <div>
                 <Breadcrumb style={{ fontSize: "14pt", paddingTop: "14pt" }}>
-                  <Breadcrumb.Section link onClick={() => history.push("/")}>
+                  <Breadcrumb.Section link onClick={() => history("/")}>
                     United States
                   </Breadcrumb.Section>
                   <Breadcrumb.Divider style={{ fontSize: "14pt" }} />
@@ -3017,7 +3017,7 @@ export default function StateMap(props) {
                                 geography={geo}
                                 onClick={() => {
                                   if (stateFips !== "_nation") {
-                                    history.push(
+                                    history(
                                       "/" +
                                         stateFips +
                                         "/" +

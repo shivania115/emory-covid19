@@ -23,7 +23,7 @@ export default function AppBar(props) {
           <Menu.Item
             as="a"
             header
-            onClick={() => history.push("/")}
+            onClick={() => history("/")}
             style={{ paddingLeft: 15, paddingRight: 15 }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
@@ -36,13 +36,13 @@ export default function AppBar(props) {
           {/* <Menu.Item 
             active={props.menu==='countyReport'} 
             content='Home'
-            onClick={() => history.push('/')}
+            onClick={() => history('/')}
             name='countyReport'/> */}
 
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "nationalReport"}
-            onClick={() => history.push("/national-report")}
+            onClick={() => history("/national-report")}
             name="nationalReport"
           >
             National
@@ -53,7 +53,7 @@ export default function AppBar(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "vaccineTracker"}
-            onClick={() => history.push("/Vaccine-Tracker")}
+            onClick={() => history("/Vaccine-Tracker")}
             name="vaccineTracker"
           >
             Vaccination
@@ -64,7 +64,7 @@ export default function AppBar(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "variants"}
-            onClick={() => history.push("/variants")}
+            onClick={() => history("/variants")}
             name="variants"
           >
             Variant Map
@@ -72,14 +72,14 @@ export default function AppBar(props) {
 
           {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='mapState'} 
-            onClick={() => history.push('/map-state')}
+            onClick={() => history('/map-state')}
             name='mapState'>
             Map State
           </Menu.Item> */}
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "otherTools"}
-            onClick={() => history.push("/other-tools")}
+            onClick={() => history("/other-tools")}
             name="otherTools"
           >
             Other Tools
@@ -88,7 +88,7 @@ export default function AppBar(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "mediaHub"}
-            onClick={() => history.push("/media-hub")}
+            onClick={() => history("/media-hub")}
             name="mediaHub"
           >
             Media Hub
@@ -97,7 +97,7 @@ export default function AppBar(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "dataSources"}
-            onClick={() => history.push("/data-sources")}
+            onClick={() => history("/data-sources")}
             name="dataSources"
           >
             Data Sources &<br />
@@ -108,7 +108,7 @@ export default function AppBar(props) {
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "aboutUs"}
             content="About"
-            onClick={() => history.push("/about-team")}
+            onClick={() => history("/about-team")}
             name="aboutUs"
           />
 

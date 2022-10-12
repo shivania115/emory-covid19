@@ -52,9 +52,9 @@ import { faCircleCheck ,faTimesCircle,faQuestionCircle} from '@fortawesome/free-
         <HeaderSubHeader  style={{
                       paddingTop: "1.5rem",
                       paddingLeft: "2rem",
-                      paddingBottom: "0rem",
+                      paddingBottom: "1rem",
                       lineHeight: "20pt",
-                      fontWeight: 400,
+                      fontWeight: 500,
                       fontSize: "2rem",
                       color: "black",
                     }}>
@@ -67,9 +67,9 @@ import { faCircleCheck ,faTimesCircle,faQuestionCircle} from '@fortawesome/free-
       </Header>
       <List as='ul' >
       <List.Item style={{paddingTop: "1rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Understand about COVID-19 infection and the available vaccine options</List.Item>
-      <List.Item style={{paddingTop: "1rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Compare the risks and benefits of vaccination</List.Item>
-      <List.Item style={{paddingTop: "1rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Your personal risk of getting the COVID-19 infection</List.Item>
-      <List.Item style={{paddingTop: "1rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Assist in decision making regarding vaccination.</List.Item>
+      <List.Item style={{paddingTop: "0.5rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Compare the risks and benefits of vaccination</List.Item>
+      <List.Item style={{paddingTop: "0.5rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Your personal risk of getting the COVID-19 infection</List.Item>
+      <List.Item style={{paddingTop: "0.5rem",paddingBottom: "0.5rem",lineHeight: "20pt",fontWeight: 400,fontSize: "1.5rem"}} as='li'>Assist in decision making regarding vaccination.</List.Item>
         </List>
         {/* <Image size='large' src='/DA_pic/vaccine.jpg' >
         </Image> */}

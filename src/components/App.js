@@ -79,7 +79,7 @@ function AppUI() {
             element={<NationalReportPilot />}
           ></Route>
           <Route path="/variants" element={<Variant />}></Route>
-          <Route path="/other-tools" element="<OtherTools />"></Route>
+          <Route path="/other-tools" element={<OtherTools />}></Route>
           <Route
             path="/Vaccine-Tracker-Pilot03022021"
             element={<USVaccineTrackerPilot />}
