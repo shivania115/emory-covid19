@@ -165,7 +165,7 @@ function AppBar2(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step1"}
-            onClick={() => navigate("/decision-aid/step1")}
+            // onClick={() => navigate("/decision-aid/step1")}
             name="step4"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
@@ -181,7 +181,7 @@ function AppBar2(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step2"}
-            onClick={() => navigate("/decision-aid/step2")}
+            // onClick={() => navigate("/decision-aid/step2")}
             name="step2"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
@@ -197,7 +197,7 @@ function AppBar2(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step3"}
-            onClick={() => navigate("/decision-aid/step3")}
+            // onClick={() => navigate("/decision-aid/step3")}
             name="step3"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
@@ -219,7 +219,7 @@ function AppBar2(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step4"}
-            onClick={() => navigate("/decision-aid/step4")}
+            // onClick={() => navigate("/decision-aid/step4")}
             name="step4"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
@@ -235,7 +235,7 @@ function AppBar2(props) {
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 55 }}
             active={props.menu === "step5"}
-            onClick={() => navigate("/decision-aid/step5")}
+            // onClick={() => navigate("/decision-aid/step5")}
             name="step5"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>

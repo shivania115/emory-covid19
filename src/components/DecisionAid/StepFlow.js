@@ -12,8 +12,10 @@ import Children from "../icons/Children";
 import Family from "../icons/Family";
 import Decision from "../icons/Decision";
 import "./StepFlow.css";
+import { useNavigate } from "react-router-dom";
 
 export default function StepFlow() {
+  const navigate = useNavigate();
 
   return (
     <div
@@ -166,6 +168,7 @@ export default function StepFlow() {
           </div>
         </li>
       </ul>
+    
     </div>
   );
 }

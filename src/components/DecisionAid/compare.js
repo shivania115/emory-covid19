@@ -33,9 +33,11 @@ import React, {
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
+import { useNavigate } from "react-router-dom";
 
 const colorPalette = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
 function Compare(props) {
+  const navigate = useNavigate();
   const [vaccine, setVaccine] = useState('pfizer');
   const StyledProgressBar = styled(Progress)`
   &&&  .bar {
@@ -1753,105 +1755,114 @@ function Compare(props) {
   ]
   return (
 
-    <div class="ui two column centered grid" >
-      <div style={{ maxWidth: "100%" }}>
-        <Header
-          as="h1"
-          style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
-        >
-          <Header.Content>
-            Which vaccine would you like to know more about?
-
-
-            <Header.Subheader
-              style={{
-                paddingTop: "1.5rem",
-                paddingLeft: "0rem",
-                paddingBottom: "0rem",
-                lineHeight: "20pt",
-                fontWeight: 400,
-                fontSize: "12pt",
-                color: "black",
-              }}
-            >
-              This is a resource guide to answer common questions about
-              the COVID-19 vaccines. This guide is based on the best
-              available information as of {Date().slice(4, 10)}, 2021.
-              Before taking the vaccine, please consult your healthcare
-              provider. If you have any questions or concerns beyond those
-              addressed here, we recommend the following resources for
-              additional information:
-              {/* {Date().slice(4,10)} */}
-
-            </Header.Subheader>
-          </Header.Content>
-        </Header>
-        <ToggleButtonGroup
-      color='primary'
-      value={vaccine}
-      size="large"
-      exclusive
-      onChange={(e,value)=>{vaccine!=value&&setVaccine(value)}}
-      aria-label="Platform"
-     style={{padding:10}}
-    >
-      <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="pfizer">Pfizer/BioNTech</ToggleButton>
-      <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="moderna">Moderna</ToggleButton>
-    </ToggleButtonGroup>
-            
-        <Accordion
-                  id="race"
-                  style={{
-                    paddingTop: 0,
-
-                    paddingBottom: 15,
-                  }}
-                  defaultActiveIndex={1}
-                  panels={[
-                    {
-                      key: "acquire-dog",
-                      title: {
-                        content: (
-                          <u
-                            style={{
-                              fontFamily: "lato",
-                              fontSize: "1.5rem",
-                              
-                            }}
-                          >
-                            About the Vaccine
-                          </u>
-                        ),
-                        icon: "dropdown",
-                      },
-                      content: {
-                        content: (
-                          <Header.Content
-                            style={{
-                              fontWeight: 400,
-
-                              fontSize: "15px",
-
-                            }}
-                          >
-                          {vaccine=='pfizer'? "The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if you catches COVID-19 after you've been vaccinated, your illness will usually be mild.":
-"Spikevax is a vaccine developed by Moderna. It is also known as 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by your body and cleared away. You can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be slightly less effective against more recent variants, such as the Delta variant, but it will still protect you against serious illness and reduce your risk of hospitalisation and death."
-}
-                             
-                          </Header.Content>
-                        ),
-                      },
-                    },
-                  ]}
-                />
+    <div>
+      <div class="ui two column centered grid" >
+        <div style={{ maxWidth: "100%" }}>
+          <Header
+            as="h1"
+            style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
+          >
+            <Header.Content>
+              Which vaccine would you like to know more about?
+              <Header.Subheader
+                style={{
+                  paddingTop: "1.5rem",
+                  paddingLeft: "0rem",
+                  paddingBottom: "0rem",
+                  lineHeight: "20pt",
+                  fontWeight: 400,
+                  fontSize: "12pt",
+                  color: "black",
+                }}
+              >
+                This is a resource guide to answer common questions about
+                the COVID-19 vaccines. This guide is based on the best
+                available information as of {Date().slice(4, 10)}, 2021.
+                Before taking the vaccine, please consult your healthcare
+                provider. If you have any questions or concerns beyond those
+                addressed here, we recommend the following resources for
+                additional information:
+                {/* {Date().slice(4,10)} */}
+              </Header.Subheader>
+            </Header.Content>
+          </Header>
+          <ToggleButtonGroup
+        color='primary'
+        value={vaccine}
+        size="large"
+        exclusive
+        onChange={(e,value)=>{vaccine!=value&&setVaccine(value)}}
+        aria-label="Platform"
+       style={{padding:10}}
+      >
+        <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="pfizer">Pfizer/BioNTech</ToggleButton>
+        <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="moderna">Moderna</ToggleButton>
+      </ToggleButtonGroup>
       
-        <div class="ui attached tabular menu">
-          <Tab style={{ width: "100%" }} panes={panes} renderActiveOnly />
+          <Accordion
+                    id="race"
+                    style={{
+                      paddingTop: 0,
+                      paddingBottom: 15,
+                    }}
+                    defaultActiveIndex={1}
+                    panels={[
+                      {
+                        key: "acquire-dog",
+                        title: {
+                          content: (
+                            <u
+                              style={{
+                                fontFamily: "lato",
+                                fontSize: "1.5rem",
+      
+                              }}
+                            >
+                              About the Vaccine
+                            </u>
+                          ),
+                          icon: "dropdown",
+                        },
+                        content: {
+                          content: (
+                            <Header.Content
+                              style={{
+                                fontWeight: 400,
+                                fontSize: "15px",
+                              }}
+                            >
+                            {vaccine=='pfizer'? "The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if you catches COVID-19 after you've been vaccinated, your illness will usually be mild.":
+      "Spikevax is a vaccine developed by Moderna. It is also known as 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by your body and cleared away. You can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be slightly less effective against more recent variants, such as the Delta variant, but it will still protect you against serious illness and reduce your risk of hospitalisation and death."
+      }
+      
+                            </Header.Content>
+                          ),
+                        },
+                      },
+                    ]}
+                  />
+      
+          <div class="ui attached tabular menu">
+            <Tab style={{ width: "100%" }} panes={panes} renderActiveOnly />
+          </div>
         </div>
-
-
       </div>
-
+      <div style= {{paddingTop: 30}}>
+        <button
+          onClick={()=> {navigate("/decision-aid/step2")}}
+          style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+          class="ui large primary button"
+        >
+          Previous
+        </button>
+        <button
+          onClick={()=> {navigate("/decision-aid/step4")}}
+          style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+          class="ui large primary button"
+        >
+          Next
+        </button>
+      </div>
     </div>
 
   );

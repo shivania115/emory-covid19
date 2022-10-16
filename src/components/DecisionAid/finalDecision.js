@@ -30,7 +30,7 @@ import React, {
   createRef,
   PureComponent,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,8 +42,10 @@ import {
 import { useCookie } from "react-use";
 import { decision_aid } from "../../stitch/mongodb";
 import TextField from "@mui/material/TextField";
+import snarkdown from 'snarkdown';
 
 function FinalDecision() {
+  const navigate = useNavigate();
   var link = <a src="https://dph.georgia.gov/covid-vaccine">credible source</a>;
   const choices = [
     "I have decided to get the COVID-19 vaccine",
@@ -54,7 +56,7 @@ function FinalDecision() {
   ];
   const recommendations = [
     {
-      next: "Get in touch with your doctor, pharmacist or vaccine hub and make an appointment to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
+      next: "Get in touch with your doctor, pharmacist or vaccine hub and make an <a src='https://dph.georgia.gov/covid-vaccine'>appointment</a> to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
       share:
         "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team.",
     },
@@ -156,6 +158,13 @@ function FinalDecision() {
         onChange={(event, value) => handleChange(3, value)}
         aria-label="Default"
       />
+              <button
+          onClick={()=> {navigate("/decision-aid/step4")}}
+          style={{ marginTop: "3rem" }}
+          class="ui large primary button"
+        >
+          Previous
+        </button>
       <Link to="/decision-aid/about">
         <button
           onClick={handleSubmit}
@@ -169,14 +178,15 @@ function FinalDecision() {
 
       {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
-          <div>
+          <div style={{paddingTop: 30}}>
             <b>Your next step</b>
-            <p>{recommendations[choiceIndex].next}</p>
+            <p>{snarkdown( recommendations[choiceIndex].next) }</p>
             <b>Share your decision with us</b>
             <p>{recommendations[choiceIndex].share}</p>
           </div>
         </>
       )}
+
     </div>
   );
 }

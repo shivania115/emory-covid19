@@ -62,28 +62,28 @@ function DecitionTable() {
   } = useStitchAuth();
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   function handleSubmit() {
-    console.log(
-      !ageChecked ||
-      !genderChecked ||
-      !ethnicChecked ||
-      !educationChecked ||
-      !occupationChecked
-    );
-    if (
-      ageChecked === null ||
-      genderChecked === null ||
-      ethnicChecked === null ||
-      educationChecked === null ||
-      occupationChecked === null
-    ) {
-      Toastify({
-        text: "Please fill out all fields before going to the next section",
-        gravity: "bottom",
-        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-        duration: -1,
-      }).showToast();
-      return;
-    }
+    // console.log(
+    //   ageChecked === null ||
+    //   genderChecked === null ||
+    //   ethnicChecked === null ||
+    //   educationChecked === null ||
+    //   occupationChecked === null
+    // );
+    // if (
+    //   ageChecked === null ||
+    //   genderChecked === null ||
+    //   ethnicChecked === null ||
+    //   educationChecked === null ||
+    //   occupationChecked === null
+    // ) {
+    //   Toastify({
+    //     text: "Please fill out all fields before going to the next section",
+    //     gravity: "bottom",
+    //     backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    //     duration: -1,
+    //   }).showToast();
+    //   return;
+    // }
 
     const age = AgeOptions[ageChecked];
     const gender = GenderOptions[genderChecked];
@@ -355,7 +355,7 @@ function DecitionTable() {
         </tbody>
       </table>
       <Divider></Divider>
-      <Form>
+      <Form style={{paddingBottom: 30}}>
         <Header
           as="h2"
           style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
@@ -465,6 +465,14 @@ function DecitionTable() {
       >
         Next
       </button>
+      <button
+        onClick={navigate("/decision-aid/about")}
+        style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+        class="ui large primary button"
+      >
+        Previous
+      </button>
+      
     </div>
   );
 }
