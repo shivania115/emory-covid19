@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  createRef,
-  PureComponent,
-} from "react";
+
 import {
   Container,
   Breadcrumb,
@@ -56,7 +50,6 @@ import snarkdown from 'snarkdown';
 
 function FinalDecision() {
   const navigate = useNavigate();
-  var link = <a src="https://dph.georgia.gov/covid-vaccine">credible source</a>;
   const choices = [
     "I have decided to get the COVID-19 vaccine",
     "I need to discuss the decision further with my family and doctor",
@@ -66,17 +59,17 @@ function FinalDecision() {
   ];
   const recommendations = [
     {
-      next: "Get in touch with your doctor, pharmacist or vaccine hub and make an <a src='https://dph.georgia.gov/covid-vaccine'>appointment</a> to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
+      next: "Get in touch with your doctor, pharmacist or vaccine hub and make an [Appointment](https://www.cvs.com/minuteclinic/services/covid-19-vaccine/in-person-visit) to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
       share:
         "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team.",
     },
     {
-      next: "Make time to talk to your family about the benefits and risks of getting a COVID-19 vaccine. Also make an appointment with your doctor so you can talk through any concerns you may have.",
+      next: "Make time to talk to your family about the benefits and risks of getting a COVID-19 vaccine. Also make an [appointment](https://dph.georgia.gov/covid-vaccine) with your doctor so you can talk through any concerns you may have.",
       share:
         "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
     },
     {
-      next: "It is important that you get information about the benefits and risks of COVID-19 vaccination from credible sources. Your doctor will be able to answer your questions. They will also be able to recommend other good sources of information. The Useful Links section on this page also lists a number of reliable information sources.",
+      next: "It is important that you get information about the benefits and risks of COVID-19 vaccination from credible sources. Your doctor will be able to answer your questions. They will also be able to recommend other good sources of information. You can also learn more at [Emory COVID-19 Dashboard](https://covid19.emory.edu/Vaccine-Tracker).",
       share:
         "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
     },
@@ -203,7 +196,7 @@ function FinalDecision() {
         <>
           <div style={{paddingTop: 30}}>
             <b>Your next step</b>
-            <p>{snarkdown( recommendations[choiceIndex].next) }</p>
+            <p dangerouslySetInnerHTML={{__html: snarkdown( recommendations[choiceIndex].next)}}></p>
             <b>Share your decision with us</b>
             <p>{recommendations[choiceIndex].share}</p>
           </div>
