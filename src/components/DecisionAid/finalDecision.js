@@ -1,3 +1,10 @@
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  createRef,
+  PureComponent,
+} from "react";
 import {
   Container,
   Breadcrumb,
@@ -23,13 +30,10 @@ import {
   Transition,
   List,
 } from "semantic-ui-react";
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  createRef,
-  PureComponent,
-} from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import { Link } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
@@ -78,6 +82,7 @@ function FinalDecision() {
   const [other, setOther] = useState("");
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   const [choiceIndex, setChoiceIndex] = useState(null);
+  const [submitted,setSubmitted]=useState(false);
   function handleSubmit() {
     const step2 = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
@@ -95,6 +100,17 @@ function FinalDecision() {
     } catch (e) {
       console.log(e);
     }
+    setSubmitted(true);
+    toast.success('Thank you for your time!', {
+      position: "bottom-center",
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
   }
   function handleChange(index, value) {
     setConfidence(value);
@@ -156,7 +172,8 @@ function FinalDecision() {
         onChange={(event, value) => handleChange(3, value)}
         aria-label="Default"
       />
-      <Link to="/decision-aid/about">
+      {!submitted? 
+
         <button
           onClick={handleSubmit}
           type="submit"
@@ -165,8 +182,9 @@ function FinalDecision() {
         >
           Submit
         </button>
-      </Link>
-
+  
+      :
+<ToastContainer />}
       {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
           <div>

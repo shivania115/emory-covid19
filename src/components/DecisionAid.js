@@ -6,7 +6,6 @@ import React, {
   PureComponent,
 } from "react";
 import {
-  Container,
   Breadcrumb,
   Dropdown,
   Header,
@@ -29,6 +28,7 @@ import {
   Transition,
   List,
   HeaderContent,
+  Responsive
 } from "semantic-ui-react";
 import AppBar from "./AppBar";
 import ErrorBoundary from "react-error-boundary";
@@ -110,7 +110,21 @@ import VaccFAQ from "./DecisionAid/vaccFAQ";
 import DecisionTable from "./DecisionAid/decisionTable";
 import FinalDecision from "./DecisionAid/finalDecision";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
-
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+function AppBar3(props){
+  return(
+    <ErrorBoundary>
+  <Container>
+      <Navbar expand="lg" variant="light" bg="light">
+        <Container>
+          <Navbar.Brand href="#">Navbar</Navbar.Brand>
+        </Container>
+      </Navbar>
+    </Container>
+    </ErrorBoundary>
+  )
+}
 function AppBar2(props) {
   const navigate = useNavigate();
   console.log(props.menu);
@@ -118,17 +132,20 @@ function AppBar2(props) {
     <ErrorBoundary>
       <Menu
         borderless
+        doubling
+        
         inverted
         fixed="top"
         style={{
           backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
           backgroundSize: "cover",
           fontSize: "14pt",
+          overflowX:"scroll"
         }}
       >
-        <Container style={{ width: "90%" }}>
-          <Menu.Item
-            as="a"
+        <Container >
+          <Responsive
+            as={Menu.Item}
             header
             onClick={() => navigate("/")}
             style={{ paddingLeft: 0, paddingRight: "3%" }}
@@ -138,15 +155,12 @@ function AppBar2(props) {
               <br />
               Interactive Dashboard
             </span>
-          </Menu.Item>
+          </Responsive>
 
-          {/* <Menu.Item 
-            active={props.menu==='countyReport'} 
-            content='Home'
-            onClick={() => history.push('/')}
-            name='countyReport'/> */}
+ 
 
-          <Menu.Item
+          <Responsive
+          as={Menu.Item}
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "about"}
             onClick={() => navigate("/decision-aid/about")}
@@ -160,14 +174,17 @@ function AppBar2(props) {
                 decision aid
               </HeaderSubHeader>
             </Header>
-          </Menu.Item>
 
-          <Menu.Item
+          </Responsive>
+
+          <Responsive
+          as={Menu.Item}
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step1"}
             onClick={() => navigate("/decision-aid/step1")}
             name="step4"
           >
+
             <Header style={{ color: "#fff", fontWeight: 400 }}>
               <HeaderContent>STEP 1:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
@@ -176,9 +193,10 @@ function AppBar2(props) {
                 most for your family
               </HeaderSubHeader>
             </Header>
-          </Menu.Item>
+          </Responsive>
 
-          <Menu.Item
+          <Responsive
+          as={Menu.Item}
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step2"}
             onClick={() => navigate("/decision-aid/step2")}
@@ -192,9 +210,11 @@ function AppBar2(props) {
                 and the vaccines
               </HeaderSubHeader>
             </Header>
-          </Menu.Item>
 
-          <Menu.Item
+          </Responsive>
+
+          <Responsive
+          as={Menu.Item}
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step3"}
             onClick={() => navigate("/decision-aid/step3")}
@@ -208,15 +228,16 @@ function AppBar2(props) {
                 and benefits
               </HeaderSubHeader>
             </Header>
-          </Menu.Item>
+          </Responsive>
 
-          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+          {/* <Responsive style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='mapState'} 
             onClick={() => history.push('/map-state')}
             name='mapState'>
             Map State
-          </Menu.Item> */}
-          <Menu.Item
+          </Responsive> */}
+          <Responsive
+          as={Menu.Item}
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step4"}
             onClick={() => navigate("/decision-aid/step4")}
@@ -230,9 +251,10 @@ function AppBar2(props) {
                 personal risk profile
               </HeaderSubHeader>
             </Header>
-          </Menu.Item>
+          </Responsive>
 
-          <Menu.Item
+          <Responsive
+          as={Menu.Item}
             style={{ paddingLeft: 15, paddingRight: 55 }}
             active={props.menu === "step5"}
             onClick={() => navigate("/decision-aid/step5")}
@@ -246,12 +268,12 @@ function AppBar2(props) {
                 decision
               </HeaderSubHeader>
             </Header>
-          </Menu.Item>
+          </Responsive>
 
           <Menu.Menu position="right">
-            <Menu.Item as="a" header>
+            <Responsive as={Menu.Item} header>
               <Image size="small" src="/logo_white.png" />
-            </Menu.Item>
+            </Responsive>
           </Menu.Menu>
         </Container>
       </Menu>

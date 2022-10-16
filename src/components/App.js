@@ -29,6 +29,7 @@ import NationalReport from "./NationalReport";
 import Variant from "./Variant";
 import OtherTools from "./OtherTools";
 import DecisionAid from "./DecisionAid.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Routes,

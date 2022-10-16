@@ -1714,10 +1714,10 @@ export default function USMap(props) {
                 </div>
               </div>
             </Grid>
-            <Breadcrumb style={{ fontSize: "14pt", paddingTop: "14pt" }}>
+            {/* <Breadcrumb style={{ fontSize: "14pt", paddingTop: "14pt" }}>
               <Breadcrumb.Section active>United States</Breadcrumb.Section>
               <Breadcrumb.Divider style={{ fontSize: "14pt" }} />
-            </Breadcrumb>
+            </Breadcrumb> */}
             <Divider hidden />
             <Grid
               columns={9}

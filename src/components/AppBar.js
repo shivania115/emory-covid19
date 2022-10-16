@@ -1,7 +1,6 @@
 import React from "react";
 import ErrorBoundary from "react-error-boundary";
 import { Container, Menu, Image } from "semantic-ui-react";
-
 import { useNavigate } from "react-router-dom";
 
 export default function AppBar(props) {
@@ -19,7 +18,7 @@ export default function AppBar(props) {
           fontSize: "14pt",
         }}
       >
-        <Container style={{ width: "1305px" }}>
+        <Container style={{ width: "70%" }}>
           <Menu.Item
             as="a"
             header
