@@ -466,7 +466,7 @@ function DecitionTable() {
         Next
       </button>
       <button
-        onClick={navigate("/decision-aid/about")}
+        onClick={()=>navigate("/decision-aid/about")}
         style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
         class="ui large primary button"
       >

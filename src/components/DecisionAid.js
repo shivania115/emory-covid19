@@ -144,8 +144,8 @@ function AppBar2(props) {
         }}
       >
         <Container >
-          <Responsive
-            as={Menu.Item}
+          <Menu.Item
+            
             header
             onClick={() => navigate("/")}
             style={{ paddingLeft: 0, paddingRight: "3%" }}
@@ -155,12 +155,12 @@ function AppBar2(props) {
               <br />
               Interactive Dashboard
             </span>
-          </Responsive>
+          </Menu.Item>
 
  
 
-          <Responsive
-          as={Menu.Item}
+          <Menu.Item
+          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "about"}
             onClick={() => navigate("/decision-aid/about")}
@@ -175,10 +175,10 @@ function AppBar2(props) {
               </HeaderSubHeader>
             </Header>
 
-          </Responsive>
+          </Menu.Item>
 
-          <Responsive
-          as={Menu.Item}
+          <Menu.Item
+         
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step1"}
             // onClick={() => navigate("/decision-aid/step1")}
@@ -193,10 +193,10 @@ function AppBar2(props) {
                 most for your family
               </HeaderSubHeader>
             </Header>
-          </Responsive>
+          </Menu.Item>
 
-          <Responsive
-          as={Menu.Item}
+          <Menu.Item
+          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step2"}
             // onClick={() => navigate("/decision-aid/step2")}
@@ -211,10 +211,10 @@ function AppBar2(props) {
               </HeaderSubHeader>
             </Header>
 
-          </Responsive>
+          </Menu.Item>
 
-          <Responsive
-          as={Menu.Item}
+          <Menu.Item
+          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step3"}
             // onClick={() => navigate("/decision-aid/step3")}
@@ -228,16 +228,16 @@ function AppBar2(props) {
                 and benefits
               </HeaderSubHeader>
             </Header>
-          </Responsive>
+          </Menu.Item>
 
-          {/* <Responsive style = {{paddingLeft: 15, paddingRight: 15}}
+          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
             active={props.menu==='mapState'} 
             onClick={() => history.push('/map-state')}
             name='mapState'>
             Map State
-          </Responsive> */}
-          <Responsive
-          as={Menu.Item}
+          </Menu.Item> */}
+          <Menu.Item
+          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step4"}
             // onClick={() => navigate("/decision-aid/step4")}
@@ -251,10 +251,10 @@ function AppBar2(props) {
                 personal risk profile
               </HeaderSubHeader>
             </Header>
-          </Responsive>
+          </Menu.Item>
 
-          <Responsive
-          as={Menu.Item}
+          <Menu.Item
+          
             style={{ paddingLeft: 15, paddingRight: 55 }}
             active={props.menu === "step5"}
             // onClick={() => navigate("/decision-aid/step5")}
@@ -268,12 +268,12 @@ function AppBar2(props) {
                 decision
               </HeaderSubHeader>
             </Header>
-          </Responsive>
+          </Menu.Item>
 
           <Menu.Menu position="right">
-            <Responsive as={Menu.Item} header>
+            <Menu.Item  header>
               <Image size="small" src="/logo_white.png" />
-            </Responsive>
+            </Menu.Item>
           </Menu.Menu>
         </Container>
       </Menu>
