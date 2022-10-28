@@ -5,7 +5,7 @@ import { Container, Menu, Image, Divider } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 
 export default function AppBar(props) {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <ErrorBoundary>
@@ -20,14 +20,14 @@ export default function AppBar(props) {
         }}
       >
         <Container style={{ width: "1305px" }}>
-          <Menu.Item as="a" header onClick={() => history.push("/")}>
+          <Menu.Item as="a" header onClick={() => navigate("/")}>
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
               <strong>COVID-19 Health Equity</strong>
               <br />
               <strong>Interactive Dashboard</strong>
             </span>
           </Menu.Item>
-          <Menu.Item as="a" header onClick={() => history.push("/Georgia")}>
+          <Menu.Item as="a" header onClick={() => navigate("/Georgia")}>
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
               <strong>Georgia COVID-19</strong>
               <br></br>
@@ -36,19 +36,19 @@ export default function AppBar(props) {
           </Menu.Item>
           <Menu.Item
             content="Home"
-            onClick={() => history.push("/Georgia")}
+            onClick={() => navigate("/Georgia")}
             name="countyReport"
           />
           <Menu.Item
             active={props.menu === "dataSources"}
             content="Data Sources"
-            onClick={() => history.push("/Georgia/data-sources")}
+            onClick={() => navigate("/Georgia/data-sources")}
             name="dataSources"
           />
           <Menu.Item
             active={props.menu === "aboutUs"}
             content="Contact Us"
-            onClick={() => history.push("/Georgia/about-team")}
+            onClick={() => navigate("/Georgia/about-team")}
             name="aboutUs"
           />
 
