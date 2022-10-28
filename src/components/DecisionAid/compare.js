@@ -1425,7 +1425,7 @@ function Compare(props) {
             style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
           >
             <Header.Content>
-            fatigue
+            chronic fatigue syndrome
             </Header.Content>
             <HeaderSubHeader>
               Number of People
@@ -1463,16 +1463,16 @@ function Compare(props) {
           </GridColumn>
 
           <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={40} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20 }} percent={43} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={24} color='blue' ></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={45} color='red'></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom:20 }} percent={0} color='blue' ></StyledProgressBar>
+            <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
           </GridColumn>
           <GridColumn width={2}>
           <Header
               as="h4"
             >
               <Header.Content  style={{color:"#e02c2c"}}>
-              40 in 100
+              45 in 100
 
               </Header.Content>
             </Header>
@@ -1481,7 +1481,7 @@ function Compare(props) {
               style={{marginTop:"0%"}}
             >
               <Header.Content style={{color:"#0E6EB8"}}>
-             43 in 100
+             zero
 
               </Header.Content>
             </Header>
@@ -1490,7 +1490,7 @@ function Compare(props) {
               style={{marginTop:"0%"}}
             >
               <Header.Content style={{color:"#0E6EB8"}}>
-             24 in 100
+            zero
 
               </Header.Content>
             </Header>

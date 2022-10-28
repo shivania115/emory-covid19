@@ -15,7 +15,6 @@ import {
     Sticky,
     Ref,
     Segment,
-    Accordion,
     Icon,
     Menu,
     Message,
@@ -32,8 +31,12 @@ import {
   import { Link, useNavigate} from 'react-router-dom';
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck ,faClock,faQuestionCircle,faUserCircle,faArrowAltCircleLeft} from '@fortawesome/free-regular-svg-icons'
-
+import { faCircleCheck ,faClock,faQuestionCircle,faUserCircle,faArrowAltCircleLeft,faArrowAltCircleDown} from '@fortawesome/free-regular-svg-icons'
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function PersonalRisk(){
     const navigate = useNavigate();
@@ -63,7 +66,57 @@ function PersonalRisk(){
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
-                    <Header
+                    <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon/>}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Header
+                            as="h2"
+                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                        >
+                            <Header.Content>
+                            You may be at a higher risk of severe COVID-19 and its health problems if:
+                            </Header.Content>
+                            </Header>
+        </AccordionSummary>
+        <AccordionDetails>
+        <ul style={{ paddingBottom: "0rem",
+                                lineHeight: "20pt",
+                                fontSize: "1rem",
+                                color: "black",}}>
+                                <li>
+                                you are aged 70 years or older (noting that risk increases with age, even if you're under 70 years of age)
+                                </li>
+                                <li>
+                                you have had an organ transplant and are on immune-suppressive therapy
+                                </li>
+                                <li>
+                                you have had a bone marrow transplant in the last 24 months
+                                </li>
+                                <li>
+                                you are having certain cancer treatments such as chemotherapy or radiotherapy
+                                </li>
+                                <li>
+                                you have a long-term health problem such as chronic lung disease, kidney failure, liver disease, heart disease, diabetes or high blood pressure
+                                </li>
+                                <li>
+                                you have challenges with your weight, such as obesity
+                                </li>
+                                <li>
+                                you have a compromised immune system
+                                </li>
+                                <li>
+                                you are pregnant
+                                </li>
+                                <li>
+                                you have a disability that requires help with daily living activities.
+                                </li>
+                               </ul>
+        </AccordionDetails>
+      </Accordion>
+                    {/* <Header
                             as="h2"
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
                         >
@@ -76,6 +129,7 @@ function PersonalRisk(){
                                 fontSize: "1rem",
                                 color: "black",
                             }}>
+                            
                                <ul>
                                 <li>
                                 you are aged 70 years or older (noting that risk increases with age, even if you're under 70 years of age)
@@ -106,7 +160,7 @@ function PersonalRisk(){
                                 </li>
                                </ul>
                             </HeaderSubHeader>
-                        </Header>
+                        </Header> */}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -116,7 +170,48 @@ function PersonalRisk(){
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
-                    <Header
+                    <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon/>}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Header
+                            as="h2"
+                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                        >
+                            <Header.Content>
+                            COVID-19 vaccination may not be recommended for you if:
+                            </Header.Content>
+                            </Header>
+        </AccordionSummary>
+        <AccordionDetails>
+        <ul style={{ paddingBottom: "0rem",
+                                lineHeight: "20pt",
+                                fontSize: "1rem",
+                                color: "black",}}>
+                                <li>
+                                you have a past history of heparin-induced thrombocytopenia syndrome (HITS) or cerebral venous sinus thrombosis (CVST) (relevant for the AstraZeneca vaccine)
+                                </li>
+                                <li>
+                                you have had a history of idiopathic splanchnic (mesenteric, portal, splenic) venous thrombosis (relevant for the AstraZeneca vaccine)
+                                </li>
+                                <li>
+                                you have a history of inflammatory cardiac illness within the past three months (for the Pfizer and Moderna vaccines). People with these conditions can still receive a Pfizer or Moderna vaccine; however, your GP or cardiologist will recommend the best timing for vaccination
+                                </li>
+                              <li>
+                              you have had a severe allergic reaction (anaphylaxis) to a previous dose or an ingredient
+                              </li>
+                              <li>
+                              you have had any other serious adverse event attributed to a previous dose
+                              </li>
+                              <li>
+                              you have had a current acute illness, including a fever.
+                              </li>
+                               </ul>
+        </AccordionDetails>
+      </Accordion>
+                    {/* <Header
                             as="h2"
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
                         >
@@ -150,7 +245,7 @@ function PersonalRisk(){
                               </li>
                                </ul>
                             </HeaderSubHeader>
-                        </Header>
+                        </Header> */}
                     </Grid.Column>
                 </Grid.Row>
                 {/* <Grid.Row>
