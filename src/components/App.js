@@ -17,7 +17,7 @@ import USVaccineTracker from "./USVaccineTracker";
 import USVaccineTrackerPilot from "./USVaccineTrackerPilot";
 import VaccineFAQ from "./VaccineFAQ";
 import VaccineMap from "./VaccineMap";
-import GDPHStateMap from "./GDPH/StateMap";
+import {default as GDPHStateMap} from "./GDPH/StateMap";
 import GDPHCountyReport from "./GDPH/CountyReport";
 import GDPHAboutUs from "./GDPH/AboutUs";
 import GDPHDataSources from "./GDPH/DataSources";

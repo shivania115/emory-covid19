@@ -1580,7 +1580,7 @@ function DiscrpChart(props) {
   }
 }
 
-export default function StateMap(props) {
+function StateMap(props) {
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
@@ -1596,7 +1596,7 @@ export default function StateMap(props) {
     const initialState = "";
     return initialState;
   });
-
+  console.log("here in this file");
   const panes = [
     {
       menuItem: {
@@ -6820,7 +6820,7 @@ export default function StateMap(props) {
     const configMatched = configs.find((s) => s.fips === stateFips);
     // console.log(configMatched.fips);
     if (!configMatched) {
-      history.push("/");
+      history("/");
     } else {
       setConfig(configMatched);
       // console.log(countyFips);
@@ -6939,6 +6939,7 @@ export default function StateMap(props) {
   }, []);
 
   //return the page
+
   if (
     dateCur &&
     dataUs &&
@@ -7066,7 +7067,7 @@ export default function StateMap(props) {
             {config && (
               <div>
                 {/* <Breadcrumb>
-                                <Breadcrumb.Section link onClick={() => history.push('/')}></Breadcrumb.Section>
+                                <Breadcrumb.Section link onClick={() => history('/')}></Breadcrumb.Section>
             <Breadcrumb.Divider />
                                 <Breadcrumb.Section active>{stateName}</Breadcrumb.Section>
                                 <Breadcrumb.Divider />
@@ -7283,7 +7284,7 @@ export default function StateMap(props) {
                                   key={geo.rsmKey}
                                   geography={geo}
                                   onClick={() => {
-                                    history.push(
+                                    history(
                                       "/Georgia/" + geo.properties.COUNTYFP
                                     );
                                     // console.log(geo.properties.COUNTYFP);
@@ -14864,6 +14865,8 @@ export default function StateMap(props) {
       </HEProvider>
     );
   } else {
+    console.log("heree");
     return <Loader active inline="centered" />;
   }
 }
+export default StateMap;

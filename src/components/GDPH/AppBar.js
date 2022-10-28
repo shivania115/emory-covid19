@@ -20,14 +20,14 @@ export default function AppBar(props) {
         }}
       >
         <Container style={{ width: "1305px" }}>
-          <Menu.Item as="a" header onClick={() => history.push("/")}>
+          <Menu.Item as="a" header onClick={() => history("/")}>
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
               <strong>COVID-19 Health Equity</strong>
               <br />
               <strong>Interactive Dashboard</strong>
             </span>
           </Menu.Item>
-          <Menu.Item as="a" header onClick={() => history.push("/Georgia")}>
+          <Menu.Item as="a" header onClick={() => history("/Georgia")}>
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
               <strong>Georgia COVID-19</strong>
               <br></br>
@@ -36,19 +36,19 @@ export default function AppBar(props) {
           </Menu.Item>
           <Menu.Item
             content="Home"
-            onClick={() => history.push("/Georgia")}
+            onClick={() => history("/Georgia")}
             name="countyReport"
           />
           <Menu.Item
             active={props.menu === "dataSources"}
             content="Data Sources"
-            onClick={() => history.push("/Georgia/data-sources")}
+            onClick={() => history("/Georgia/data-sources")}
             name="dataSources"
           />
           <Menu.Item
             active={props.menu === "aboutUs"}
             content="Contact Us"
-            onClick={() => history.push("/Georgia/about-team")}
+            onClick={() => history("/Georgia/about-team")}
             name="aboutUs"
           />
 

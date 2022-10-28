@@ -1979,7 +1979,7 @@ export default function USMap(props) {
                         width: 640,
                       }}
                     >
-                      <b>Data as of:</b> {date}, updated every weekday.
+                      <b>Data as of:</b> {date}
                     </Header.Content>
                     <Grid.Row>
                       {stateFips && (
