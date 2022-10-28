@@ -71,7 +71,7 @@ function AppUI() {
             path="/Georgia/:countyFips"
             element={<GDPHCountyReport />}
           ></Route>
-          <Route path="/Georgia" component={<GDPHStateMap />} />
+          <Route path="/Georgia" element={<GDPHStateMap />} />
 
           {/* Main urls */}
           <Route path="/national-report" element={<NationalReport />}></Route>
