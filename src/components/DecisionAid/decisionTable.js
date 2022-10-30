@@ -89,10 +89,12 @@ function DecitionTable() {
     const gender = GenderOptions[genderChecked];
     const ethnicity = EthnicOptions[ethnicChecked];
     const occupation = OccupationOptions[occupationChecked];
+    const vaccinated=VaccinateOptions[vaccinated];
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     const cookie = {
       demographic: {
+        vaccinated:vaccinated,
         age: age,
         gender: gender,
         ethnicity: ethnicity,
@@ -128,9 +130,9 @@ function DecitionTable() {
       value: "2",
     },
   ];
-
+const VaccinateOptions=['Yes','No'];
   const AgeOptions = ["18-29", "30-49", "50-69", "70+"];
-  const GenderOptions = ["Female", "Male", "Non-binary", "Rather not say"];
+  const GenderOptions = ["Woman", "Man", "Non-binary", "Rather not say"];
   const EthnicOptions = [
     "White/Caucasian",
     "Hispanic/Latino",
@@ -168,20 +170,41 @@ function DecitionTable() {
   const [ethnicChecked, setEthnicChecked] = useState();
   const [educationChecked, setEducationChecked] = useState();
   const [occupationChecked, setOccupationChecked] = useState();
+  const [vaccinated,setVaccinated]=useState();
 
   return (
-    <div style={{ marginLeft: "10%", width: "85%" }}>
-
+    <div style={{ marginLeft: "10%", width: "85%" ,fontFamily: "lato",}}>
       <Divider></Divider>
+      <div className="checkbox">
+          <label>Are you Vaccinated?</label>
+          {VaccinateOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setVaccinated(index);
+                }}
+                checked={vaccinated === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
       <Header
         as="h2"
         style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
       >
         <Header.Content>COVID-19 Vaccine Survey</Header.Content>
-        <HeaderSubHeader>
+
+        <HeaderSubHeader >
           Toggle to tell us about your opinions on each statements.
         </HeaderSubHeader>
       </Header>
+   
       <table class="ui striped table">
         <thead>
           <tr>
@@ -356,12 +379,6 @@ function DecitionTable() {
       </table>
       <Divider></Divider>
       <Form style={{paddingBottom: 30}}>
-        <Header
-          as="h2"
-          style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
-        >
-          <Header.Content>Optional</Header.Content>
-        </Header>
         <div className="checkbox">
           <label>Age group:</label>
           {AgeOptions.map((option, index) => {

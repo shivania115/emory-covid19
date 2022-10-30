@@ -49,6 +49,9 @@ import TextField from "@mui/material/TextField";
 import snarkdown from 'snarkdown';
 
 function FinalDecision() {
+  function valueLabelFormat(){
+    return "asdlfkas"
+  } 
   const navigate = useNavigate();
   const choices = [
     "I have decided to get the COVID-19 vaccine",
@@ -119,9 +122,39 @@ function FinalDecision() {
 
   return (
     <div style={{ marginLeft: "20%", width: "60%" }}>
+    <Grid >
+       <Header
+        as="h4"
+        style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
+      >
+        <Header.Content>
+        How likely are you to get the COVID-19 vaccine?
+        </Header.Content>
+      </Header>
+      <Slider
+        defaultValue={0}
+        key={3}
+        style={{ width: "85%" }}
+        onChange={(event, value) => handleChange(3, value)}
+        aria-label="Default"
+      />
+
+      <Grid.Row>
+        <Grid.Column width={7}>
+       0%
+        </Grid.Column>
+        <Grid.Column width={7}>
+        50%
+        </Grid.Column>
+        <Grid.Column width={1}>
+          100%
+        </Grid.Column>
+      </Grid.Row>
+      </Grid>
+
       <Header
         as="h4"
-        style={{ paddingTop: 30, fontWeight: 500, fontSize: "1.5rem" }}
+        style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
       >
         <Header.Content>
           We hope the information in this decision aid has helped you to make a
@@ -158,21 +191,7 @@ function FinalDecision() {
           </>
         )}
       </div>
-      <Header
-        as="h4"
-        style={{ paddingTop: 30, fontWeight: 500, fontSize: "1.5rem" }}
-      >
-        <Header.Content>
-          How confident are you with the vaccine now?
-        </Header.Content>
-      </Header>
-      <Slider
-        defaultValue={0}
-        key={3}
-        style={{ width: "85%" }}
-        onChange={(event, value) => handleChange(3, value)}
-        aria-label="Default"
-      />
+   
               <button
           onClick={()=> {navigate("/decision-aid/step4")}}
           style={{ marginTop: "3rem" }}
@@ -204,6 +223,7 @@ function FinalDecision() {
       )}
 
     </div>
+    
   );
 }
 export default FinalDecision;

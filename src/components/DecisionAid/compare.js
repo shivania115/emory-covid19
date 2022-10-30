@@ -1017,7 +1017,7 @@ function Compare(props) {
           </Header></GridColumn>
           <GridColumn width={3}>CONDITIONS</GridColumn>
 
-          <GridColumn width={7}><Covid></Covid>Percentage of people<Medicine ></Medicine></GridColumn>
+          <GridColumn width={7}><Covid></Covid>Numble of People<Medicine ></Medicine></GridColumn>
         </Grid.Row>
 
       </Grid>
@@ -1034,7 +1034,7 @@ function Compare(props) {
             with COVID-19
             </Header.Content>
             <HeaderSubHeader>
-              Percentage of People
+              Number of People
             </HeaderSubHeader>
           </Header>
           </GridColumn>
@@ -1087,6 +1087,16 @@ function Compare(props) {
             
           </GridColumn>
         </Grid.Row>
+        <Grid.Row>
+        <GridColumn width={4}>
+
+        </GridColumn>
+        <GridColumn width={8}>
+       * The data is taken from <a href='https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20'>JAMA Internal Medicine</a>, it displays the hospilization rate of COVID-19 patients with vaccine and without vaccine. 
+        </GridColumn>
+        
+
+        </Grid.Row>
       </Grid>
       <hr/>
       <Grid  style={{paddingTop:5}}>
@@ -1099,7 +1109,7 @@ function Compare(props) {
              ICU-LEVEL CARE
             </Header.Content>
             <HeaderSubHeader>
-              Number of people
+              Number of People
             </HeaderSubHeader>
           </Header>
           </GridColumn>
@@ -1890,7 +1900,7 @@ function Compare(props) {
             style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
           >
             <Header.Content>
-              Which vaccine would you like to know more about?
+            Your health risks with and without vaccine
               <Header.Subheader
                 style={{
                   paddingTop: "1.5rem",
