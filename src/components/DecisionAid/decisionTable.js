@@ -63,32 +63,7 @@ function DecitionTable() {
     actions: { handleAnonymousLogin },
   } = useStitchAuth();
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
-
-  function handleSubmit() {
-    if (
-      ageChecked === undefined ||
-      genderChecked === undefined ||
-      ethnicChecked === undefined ||
-      educationChecked === undefined ||
-      occupationChecked === undefined ||
-      vaccinated === undefined ||
-      booster === undefined
-    ) {
-      // Toastify({
-      //   text: "You didn't complete the survey. Are you sure you want to continue? Click on this popup to continue.",
-      //   gravity: "top",
-      //   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-      //   duration: -1,
-      //   close: true,
-      //   offset: {
-      //     y: 100,
-      //   },
-      // }).showToast();
-      setShow(true);
-
-      return;
-    }
-
+  function parseCookie() {
     const age = AgeOptions[ageChecked];
     const gender = GenderOptions[genderChecked];
     const ethnicity = EthnicOptions[ethnicChecked];
@@ -113,6 +88,32 @@ function DecitionTable() {
       },
     };
     setCookie(cookie, { path: "/", expires: tomorrow });
+  }
+
+  function handleSubmit() {
+    // console.log(
+    //   ageChecked === undefined ||
+    //     genderChecked === undefined ||
+    //     ethnicChecked === undefined ||
+    //     educationChecked === undefined ||
+    //     occupationChecked === undefined ||
+    //     vaccinated === undefined ||
+    //     booster === undefined
+    // );
+    if (
+      ageChecked === undefined ||
+      genderChecked === undefined ||
+      ethnicChecked === undefined ||
+      educationChecked === undefined ||
+      occupationChecked === undefined ||
+      vaccinated === undefined ||
+      booster === undefined
+    ) {
+      parseCookie();
+      setShow(true);
+      return;
+    }
+    parseCookie();
     return navigate("/decision-aid/step2");
   }
   function handleChange(index, value) {
