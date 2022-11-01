@@ -50,7 +50,7 @@ function VaccFAQ() {
                               fontSize: "1rem",
                               color: "black",
                           }}>
-          COVID-19 vaccines train our bodies to recognize and fight the virus. (maybe remove the following sentence and add ref “How does vaccine work?” for further explanation) They do this by teaching our immune system to target an important part of the virus
+          COVID-19 vaccines train our bodies to recognize and fight the virus. They do this by teaching our immune system to target an important part of the virus
                           </HeaderSubHeader>
                           <HeaderSubHeader style={{
                               paddingTop: "2rem",
