@@ -78,6 +78,8 @@ function DecitionTable() {
         gender: gender,
         ethnicity: ethnicity,
         occupation: occupation,
+        vaccinated: vaccinated ? false : true,
+        booster_taken: booster ? false : true,
       },
       vaccine_survey: {
         effective: info[0],
@@ -136,6 +138,7 @@ function DecitionTable() {
     },
   ];
   const VaccinateOptions = ["Yes", "No"];
+  const BoosterOptions = ["Yes", "No"];
   const AgeOptions = ["18-29", "30-49", "50-69", "70+"];
   const GenderOptions = ["Woman", "Man", "Non-binary", "Rather not say"];
   const EthnicOptions = [
@@ -167,6 +170,7 @@ function DecitionTable() {
     "Full-Time Student",
     "Homemaker",
     "Retired",
+    "Other/Not Listed",
   ];
 
   //which index is currently being checked
@@ -218,7 +222,7 @@ function DecitionTable() {
         </div>
         <div className="checkbox">
           <label>Have you received any COVID-19 booster vaccines?</label>
-          {VaccinateOptions.map((option, index) => {
+          {BoosterOptions.map((option, index) => {
             return (
               <Checkbox
                 onClick={(e) => {

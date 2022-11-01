@@ -1,4 +1,3 @@
-
 import {
   Container,
   Breadcrumb,
@@ -24,8 +23,8 @@ import {
   Transition,
   List,
 } from "semantic-ui-react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import React, {
   useEffect,
@@ -46,12 +45,12 @@ import {
 import { useCookie } from "react-use";
 import { decision_aid } from "../../stitch/mongodb";
 import TextField from "@mui/material/TextField";
-import snarkdown from 'snarkdown';
+import snarkdown from "snarkdown";
 
 function FinalDecision() {
-  function valueLabelFormat(){
-    return "asdlfkas"
-  } 
+  function valueLabelFormat() {
+    return "asdlfkas";
+  }
   const navigate = useNavigate();
   const choices = [
     "I have decided to get the COVID-19 vaccine",
@@ -85,8 +84,9 @@ function FinalDecision() {
   const [confidence, setConfidence] = useState(0);
   const [other, setOther] = useState("");
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
+  // console.log(cookies);
   const [choiceIndex, setChoiceIndex] = useState(null);
-  const [submitted,setSubmitted]=useState(false);
+  const [submitted, setSubmitted] = useState(false);
   function handleSubmit() {
     const step2 = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
@@ -105,7 +105,7 @@ function FinalDecision() {
       console.log(e);
     }
     setSubmitted(true);
-    toast.success('Thank you for your time!', {
+    toast.success("Thank you for your time!", {
       position: "bottom-center",
       autoClose: 10000,
       hideProgressBar: false,
@@ -114,7 +114,7 @@ function FinalDecision() {
       draggable: true,
       progress: undefined,
       theme: "colored",
-      });
+    });
   }
   function handleChange(index, value) {
     setConfidence(value);
@@ -122,34 +122,28 @@ function FinalDecision() {
 
   return (
     <div style={{ marginLeft: "20%", width: "60%" }}>
-    <Grid >
-       <Header
-        as="h4"
-        style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
-      >
-        <Header.Content>
-        How likely are you to get the COVID-19 vaccine?
-        </Header.Content>
-      </Header>
-      <Slider
-        defaultValue={0}
-        key={3}
-        style={{ width: "85%" }}
-        onChange={(event, value) => handleChange(3, value)}
-        aria-label="Default"
-      />
+      <Grid>
+        <Header
+          as="h4"
+          style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
+        >
+          <Header.Content>
+            How likely are you to get the COVID-19 vaccine?
+          </Header.Content>
+        </Header>
+        <Slider
+          defaultValue={0}
+          key={3}
+          style={{ width: "85%" }}
+          onChange={(event, value) => handleChange(3, value)}
+          aria-label="Default"
+        />
 
-      <Grid.Row>
-        <Grid.Column width={7}>
-       0%
-        </Grid.Column>
-        <Grid.Column width={7}>
-        50%
-        </Grid.Column>
-        <Grid.Column width={1}>
-          100%
-        </Grid.Column>
-      </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={7}>0%</Grid.Column>
+          <Grid.Column width={7}>50%</Grid.Column>
+          <Grid.Column width={1}>100%</Grid.Column>
+        </Grid.Row>
       </Grid>
 
       <Header
@@ -191,15 +185,17 @@ function FinalDecision() {
           </>
         )}
       </div>
-   
-              <button
-          onClick={()=> {navigate("/decision-aid/step4")}}
-          style={{ marginTop: "3rem" }}
-          class="ui large primary button"
-        >
-          Previous
-        </button>
-{!submitted?
+
+      <button
+        onClick={() => {
+          navigate("/decision-aid/step4");
+        }}
+        style={{ marginTop: "3rem" }}
+        class="ui large primary button"
+      >
+        Previous
+      </button>
+      {!submitted ? (
         <button
           onClick={handleSubmit}
           type="submit"
@@ -208,22 +204,24 @@ function FinalDecision() {
         >
           Submit
         </button>
-  
-      :
-<ToastContainer />}
+      ) : (
+        <ToastContainer />
+      )}
       {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
-          <div style={{paddingTop: 30}}>
+          <div style={{ paddingTop: 30 }}>
             <b>Your next step</b>
-            <p dangerouslySetInnerHTML={{__html: snarkdown( recommendations[choiceIndex].next)}}></p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: snarkdown(recommendations[choiceIndex].next),
+              }}
+            ></p>
             <b>Share your decision with us</b>
             <p>{recommendations[choiceIndex].share}</p>
           </div>
         </>
       )}
-
     </div>
-    
   );
 }
 export default FinalDecision;
