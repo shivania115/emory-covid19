@@ -55,6 +55,15 @@ import Button from "react-bootstrap/Button";
 import { CloseButton } from "react-bootstrap";
 
 function DecitionTable() {
+   //which index is currently being checked
+   const [ageChecked, setAgeChecked] = useState();
+   const [genderChecked, setGenderChecked] = useState();
+   const [ethnicChecked, setEthnicChecked] = useState();
+   const [educationChecked, setEducationChecked] = useState();
+   const [occupationChecked, setOccupationChecked] = useState();
+   const [vaccinated, setVaccinated] = useState();
+   const [booster, setBooster] = useState();
+   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   //info contains slider information
   const [info, setInfo] = useState([50, 50, 50, 50, 50]);
@@ -70,9 +79,10 @@ function DecitionTable() {
       genderChecked === undefined ||
       ethnicChecked === undefined ||
       educationChecked === undefined ||
-      occupationChecked === undefined ||
-      vaccinated === undefined ||
-      booster === undefined
+      occupationChecked === undefined 
+      // ||
+      // vaccinated === undefined ||
+      // booster === undefined
     ) {
       // Toastify({
       //   text: "You didn't complete the survey. Are you sure you want to continue? Click on this popup to continue.",
@@ -85,6 +95,14 @@ function DecitionTable() {
       //   },
       // }).showToast();
       setShow(true);
+      console.log(ageChecked);
+      console.log(genderChecked);
+      console.log(ethnicChecked);
+      console.log(educationChecked);
+      console.log(occupationChecked);
+      console.log(vaccinated);
+      console.log(booster);
+
 
       return;
     }
@@ -94,6 +112,8 @@ function DecitionTable() {
     const ethnicity = EthnicOptions[ethnicChecked];
     const occupation = OccupationOptions[occupationChecked];
     const vaccinated = VaccinateOptions[vaccinated];
+    const education=EducationOptions[educationChecked];
+    const booster=VaccinateOptions[booster];
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     const cookie = {
@@ -103,6 +123,8 @@ function DecitionTable() {
         gender: gender,
         ethnicity: ethnicity,
         occupation: occupation,
+        booster:booster,
+        education:education
       },
       vaccine_survey: {
         effective: info[0],
@@ -113,6 +135,7 @@ function DecitionTable() {
       },
     };
     setCookie(cookie, { path: "/", expires: tomorrow });
+    console.log(cookie);
     return navigate("/decision-aid/step2");
   }
   function handleChange(index, value) {
@@ -159,24 +182,17 @@ function DecitionTable() {
     "Business Professional",
     "Self-Employed",
     "Medical/Healthcare Professional",
-    "Gvoernment/Civil Services",
+    "Government/Civil Services",
     "Clerical/Secretary Support/Customer Service/Retail",
     "Technology/Engineering",
     "Transportation",
     "Full-Time Student",
     "Homemaker",
     "Retired",
+    "Other/Not listed"
   ];
 
-  //which index is currently being checked
-  const [ageChecked, setAgeChecked] = useState();
-  const [genderChecked, setGenderChecked] = useState();
-  const [ethnicChecked, setEthnicChecked] = useState();
-  const [educationChecked, setEducationChecked] = useState();
-  const [occupationChecked, setOccupationChecked] = useState();
-  const [vaccinated, setVaccinated] = useState();
-  const [booster, setBooster] = useState();
-  const [show, setShow] = useState(false);
+ 
   return (
     <>
       <div
@@ -196,12 +212,13 @@ function DecitionTable() {
             Toggle to tell us about your opinions on each statements.
           </HeaderSubHeader>
         </Header>
+        <Form style={{ paddingBottom: 30 }}>
         <div className="checkbox" style={{ paddingTop: "20px" }}>
-          <label>Are you Vaccinated?</label>
+          <label>Are you Vaccinated? Have you received COVID-19 vaccine?</label>
           {VaccinateOptions.map((option, index) => {
             return (
               <Checkbox
-                onClick={(e) => {
+                onClick={() => {
                   setVaccinated(index);
                 }}
                 checked={vaccinated === index}
@@ -220,7 +237,7 @@ function DecitionTable() {
           {VaccinateOptions.map((option, index) => {
             return (
               <Checkbox
-                onClick={(e) => {
+                onClick={() => {
                   setBooster(index);
                 }}
                 checked={booster === index}
@@ -234,8 +251,9 @@ function DecitionTable() {
             );
           })}
         </div>
+        </Form>
         <Divider></Divider>
-        <table class="ui striped table">
+        <table className="ui striped table">
           <thead>
             <tr>
               <th></th>

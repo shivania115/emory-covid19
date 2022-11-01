@@ -1002,7 +1002,7 @@ function Compare(props) {
 
 //     },
     {
-      menuItem: { content: <p style={{ fontSize: "100%" }}>NUMBER OF PEOPLE</p> }, render: () =>
+      menuItem: {}, render: () =>
       <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
       <Grid>
         <Grid.Row style={{paddingTop:20}}>
@@ -1117,7 +1117,6 @@ function Compare(props) {
 
             <Header
               as="h4"
-              style={{marginTop:"1%"}}
             >
               <Header.Content>
                 With COVID-19
@@ -1126,10 +1125,19 @@ function Compare(props) {
             </Header>
             <Header
               as="h4"
-              style={{marginTop:"8%"}}
+              style={{marginTop:"4%"}}
             >
               <Header.Content>
-                With Vaccination
+                With Pfizer Vaccine
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"4%"}}
+            >
+              <Header.Content>
+                With Moderna Vaccine
 
               </Header.Content>
             </Header>
@@ -1137,12 +1145,12 @@ function Compare(props) {
 
           <GridColumn width={5}>
             <StyledProgressBar style={{ marginBottom:20 }} reverse percent={4.7} color='red'></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom:20 }} percent={0} color='blue' ></StyledProgressBar>
             <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
           </GridColumn>
           <GridColumn width={2}>
           <Header
               as="h4"
-              style={{marginTop:"1%"}}
             >
               <Header.Content style={{color:"#e02c2c"}}>
                47 in 1000
@@ -1151,7 +1159,16 @@ function Compare(props) {
             </Header>
             <Header
               as="h4"
-              style={{marginTop:"8%"}}
+              style={{marginTop:"0%"}}
+            >
+              <Header.Content style={{color:"#0E6EB8"}}>
+               zero
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"0%"}}
             >
               <Header.Content style={{color:"#0E6EB8"}}>
                zero
@@ -1271,86 +1288,6 @@ function Compare(props) {
                 content: (
       
       <Grid  style={{paddingTop:0}}>
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h5"
-            style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-             injection pain,redness, swelling
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"2%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"2%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccination
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{marginBottom:20}} reverse percent={0} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{marginBottom:20}} percent={43} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={33} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-               not applicable
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              43 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               33 in 100
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-    
-    
-   
         <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
           <GridColumn width={6}> <Header
             as="h4"
@@ -1743,8 +1680,83 @@ function Compare(props) {
               </Header.Content>
             </Header>
           </GridColumn>
-          
-          
+        </Grid.Row>
+        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
+          <GridColumn width={6}> <Header
+            as="h5"
+            style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
+          >
+            <Header.Content>
+            local redness and swelling at the injection site
+            </Header.Content>
+            <HeaderSubHeader>
+              Number of People
+            </HeaderSubHeader>
+          </Header>
+          </GridColumn>
+          <GridColumn width={3}>
+
+            <Header
+              as="h4"
+            >
+              <Header.Content>
+                With COVID-19
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"2%"}}
+            >
+              <Header.Content>
+                With Pfizer Vaccine
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"2%"}}
+            >
+              <Header.Content>
+                With Moderna Vaccination
+
+              </Header.Content>
+            </Header>
+          </GridColumn>
+
+          <GridColumn width={5}>
+            <StyledProgressBar style={{marginBottom:20}} reverse percent={0} color='red'></StyledProgressBar>
+            <StyledProgressBar style={{marginBottom:20}} percent={43} color='blue' ></StyledProgressBar>
+            <StyledProgressBar percent={33} color='blue' ></StyledProgressBar>
+          </GridColumn>
+          <GridColumn width={2}>
+          <Header
+              as="h4"
+            >
+              <Header.Content style={{color:"#e02c2c"}}>
+               not applicable
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"0%"}}
+            >
+              <Header.Content style={{color:"#0E6EB8"}}>
+              43 in 100
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"0%"}}
+            >
+              <Header.Content style={{color:"#0E6EB8"}}>
+               33 in 100
+
+              </Header.Content>
+            </Header>
+          </GridColumn>
         </Grid.Row>
 </Grid>
 
@@ -1777,7 +1789,6 @@ function Compare(props) {
 
             <Header
               as="h4"
-              style={{marginTop:"1%"}}
             >
               <Header.Content>
                 With COVID-19
@@ -1786,10 +1797,19 @@ function Compare(props) {
             </Header>
             <Header
               as="h4"
-              style={{marginTop:"8%"}}
+              style={{marginTop:"4%"}}
             >
               <Header.Content>
-                With Vaccination
+                With Pfizer Vaccine
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"4%"}}
+            >
+              <Header.Content>
+                With Moderna Vaccine
 
               </Header.Content>
             </Header>
@@ -1797,12 +1817,12 @@ function Compare(props) {
 
           <GridColumn width={5}>
             <StyledProgressBar style={{ marginBottom:20 }} reverse percent={20} color='red'></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom:20 }} percent={0} color='blue' ></StyledProgressBar>
             <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
           </GridColumn>
           <GridColumn width={2}>
           <Header
               as="h4"
-              style={{marginTop:"1%"}}
             >
               <Header.Content  style={{color:"#e02c2c"}}>
                20 in 100
@@ -1811,7 +1831,16 @@ function Compare(props) {
             </Header>
             <Header
               as="h4"
-              style={{marginTop:"8%"}}
+              style={{marginTop:"0%"}}
+            >
+              <Header.Content style={{color:"#0E6EB8"}}>
+               zero
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"0%"}}
             >
               <Header.Content style={{color:"#0E6EB8"}}>
                zero
@@ -1840,7 +1869,7 @@ function Compare(props) {
 
             <Header
               as="h4"
-              style={{marginTop:"1%"}}
+      
             >
               <Header.Content>
                 With COVID-19
@@ -1849,10 +1878,19 @@ function Compare(props) {
             </Header>
             <Header
               as="h4"
-              style={{marginTop:"8%"}}
+              style={{marginTop:"4%"}}
             >
               <Header.Content>
-                With Vaccination
+                With Pfizer Vaccine
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"4%"}}
+            >
+              <Header.Content>
+                With Moderna Vaccine
 
               </Header.Content>
             </Header>
@@ -1860,12 +1898,12 @@ function Compare(props) {
 
           <GridColumn width={5}>
             <StyledProgressBar style={{ marginBottom:20}} color="red" percent={2}></StyledProgressBar>
+            <StyledProgressBar style={{ marginBottom:20}} percent={0} color='blue' ></StyledProgressBar>
             <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
           </GridColumn>
           <GridColumn width={2}>
           <Header
               as="h4"
-              style={{marginTop:"1%"}}
             >
               <Header.Content style={{color:"#e02c2c"}}>
              2 in 100
@@ -1874,7 +1912,16 @@ function Compare(props) {
             </Header>
             <Header
               as="h4"
-              style={{marginTop:"8%"}}
+              style={{marginTop:"0%"}}
+            >
+              <Header.Content style={{color:"#0E6EB8"}}>
+              zero
+
+              </Header.Content>
+            </Header>
+            <Header
+              as="h4"
+              style={{marginTop:"0%"}}
             >
               <Header.Content style={{color:"#0E6EB8"}}>
               zero
@@ -1883,7 +1930,9 @@ function Compare(props) {
             </Header>
           </GridColumn>
         </Grid.Row>
+        
       </Grid>
+
       <hr />
     </div>
 
