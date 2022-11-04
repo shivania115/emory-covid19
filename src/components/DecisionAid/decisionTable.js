@@ -23,7 +23,6 @@ import {
   List,
   Checkbox,
 } from "semantic-ui-react";
-import Toastify from "toastify-js";
 import React, {
   useEffect,
   useState,
@@ -32,7 +31,8 @@ import React, {
   PureComponent,
 } from "react";
 import Slider from "@mui/material/Slider";
-
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
 import { useStitchAuth } from "../StitchAuth";
 import {
   var_option_mapping,
@@ -52,17 +52,24 @@ import "./DecisionAid.css";
 import "toastify-js/src/toastify.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { CloseButton } from "react-bootstrap";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function DecitionTable() {
   const navigate = useNavigate();
   //info contains slider information
-  const [info, setInfo] = useState([50, 50, 50, 50, 50]);
   const {
     isLoggedIn,
     actions: { handleAnonymousLogin },
   } = useStitchAuth();
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
+  function RadioTableFilled() {
+    for (let i = 0; i < 5; i++) {
+      if (!radioSelectedValue[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
   function parseCookie() {
     const age = AgeOptions[ageChecked];
     const gender = GenderOptions[genderChecked];
@@ -82,26 +89,17 @@ function DecitionTable() {
         booster_taken: booster ? false : true,
       },
       vaccine_survey: {
-        effective: info[0],
-        important: info[1],
-        negative_stories: info[2],
-        concerned_reactions: info[3],
-        childhood_vaccines: info[4],
+        effective: radioSelectedValue[0],
+        important: radioSelectedValue[1],
+        negative_stories: radioSelectedValue[2],
+        concerned_reactions: radioSelectedValue[3],
+        childhood_vaccines: radioSelectedValue[4],
       },
     };
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
 
   function handleSubmit() {
-    // console.log(
-    //   ageChecked === undefined ||
-    //     genderChecked === undefined ||
-    //     ethnicChecked === undefined ||
-    //     educationChecked === undefined ||
-    //     occupationChecked === undefined ||
-    //     vaccinated === undefined ||
-    //     booster === undefined
-    // );
     if (
       ageChecked === undefined ||
       genderChecked === undefined ||
@@ -109,7 +107,8 @@ function DecitionTable() {
       educationChecked === undefined ||
       occupationChecked === undefined ||
       vaccinated === undefined ||
-      booster === undefined
+      booster === undefined ||
+      !RadioTableFilled()
     ) {
       parseCookie();
       setShow(true);
@@ -118,13 +117,13 @@ function DecitionTable() {
     parseCookie();
     return navigate("/decision-aid/step2");
   }
-  function handleChange(index, value) {
-    setInfo((previousState) => {
-      const sliders = [...previousState];
-      sliders[index] = value;
-      return sliders;
+
+  function handleRadioChange(index, event) {
+    setRadioSelectedValue((previousState) => {
+      const radios = [...previousState];
+      radios[index] = event.target.value;
+      return radios;
     });
-    // console.log(info);
   }
 
   const options = [
@@ -182,6 +181,8 @@ function DecitionTable() {
   const [vaccinated, setVaccinated] = useState();
   const [booster, setBooster] = useState();
   const [show, setShow] = useState(false);
+
+  const [radioSelectedValue, setRadioSelectedValue] = useState([]);
   return (
     <>
       <div
@@ -241,24 +242,72 @@ function DecitionTable() {
         </div>
         <Divider></Divider>
         <table class="ui striped table">
-          <thead>
+          <thead style={{ textAlign: "center" }}>
             <tr>
               <th></th>
-              <th>Strongly Disagree</th>
-              <th>Neither Agree nor Disagree</th>
-              <th>Strongly Agree</th>
+              <div>
+                <th style={{ width: "20%" }}>Strongly Disagree</th>
+                <th style={{ width: "20%" }}>Slightly Disagree</th>
+                <th style={{ width: "20%" }}>Neither Agree nor Disagree</th>
+                <th style={{ width: "20%" }}>Slightly Agree</th>
+                <th style={{ width: "20%" }}> Strongly Agree</th>
+              </div>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>COVID-19 vaccines are effective.</td>
-              <td colspan="3">
-                <Slider
+              <td colspan="5">
+                {/* <Slider
                   defaultValue={50}
                   key={0}
                   aria-label="Default"
                   onChange={(event, value) => handleChange(0, value)}
-                />
+                /> */}
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[0] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(0, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[0] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(0, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[0] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(0, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[0] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(0, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[0] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(0, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
               </td>
             </tr>
             <tr>
@@ -266,12 +315,50 @@ function DecitionTable() {
                 Vaccines are important for the health of others in my community.
               </td>
               <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={1}
-                  onChange={(event, value) => handleChange(1, value)}
-                  aria-label="Default"
-                />
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[1] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(1, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[1] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(1, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[1] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(1, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[1] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(1, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[1] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(1, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
               </td>
             </tr>
             <tr>
@@ -280,12 +367,50 @@ function DecitionTable() {
                 COVID-19 vaccine.
               </td>
               <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={2}
-                  onChange={(event, value) => handleChange(2, value)}
-                  aria-label="Default"
-                />
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[2] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(2, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[2] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(2, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[2] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(2, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[2] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(2, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[2] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(2, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
               </td>
             </tr>
             <tr>
@@ -294,122 +419,101 @@ function DecitionTable() {
                 receiving the COVID-19 vaccine.
               </td>
               <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={3}
-                  onChange={(event, value) => handleChange(3, value)}
-                  aria-label="Default"
-                />
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[3] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(3, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[3] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(3, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[3] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(3, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[3] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(3, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[3] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(3, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
               </td>
             </tr>
             <tr>
               <td>I believe childhood vaccines are important and effective.</td>
               <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={4}
-                  onChange={(event, value) => handleChange(4, value)}
-                  aria-label="Default"
-                />
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[4] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(4, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[4] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(4, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[4] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(4, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[4] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(4, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[4] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(4, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
               </td>
             </tr>
-            {/* <tr>
-              <td>
-                If I get the COVID-19 vaccine I will be able to return to work.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={5}
-                  onChange={(event, value) => handleChange(5, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                If I get the COVID-19 vaccine I will be able to travel and move
-                around my community more freely.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={6}
-                  onChange={(event, value) => handleChange(6, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                If I get the COVID-19 vaccine I won’t have to worry about being
-                judged by my family or friends for not getting the vaccine.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={7}
-                  onChange={(event, value) => handleChange(7, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                If I get the COVID-19 vaccine I may experience side effects from
-                the COVID-19 vaccine.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={8}
-                  onChange={(event, value) => handleChange(8, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                If I get the COVID-19 vaccine I may have to take time off work to
-                get the vaccine or recover from side effects.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={9}
-                  onChange={(event, value) => handleChange(9, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                If I get the COVID-19 vaccine I will have to make the effort to
-                find, book, and attend an appointment.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={10}
-                  onChange={(event, value) => handleChange(10, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                If I get the COVID-19 vaccine I will have to worry about being
-                judged by my family or friends for getting the vaccine.
-              </td>
-              <td colspan="3">
-                <Slider
-                  defaultValue={50}
-                  key={11}
-                  onChange={(event, value) => handleChange(11, value)}
-                  aria-label="Default"
-                />
-              </td>
-            </tr> */}
           </tbody>
         </table>
         <Divider></Divider>
