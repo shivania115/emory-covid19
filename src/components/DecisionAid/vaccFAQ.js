@@ -104,7 +104,7 @@ function VaccFAQ() {
                           >
                               <p>
                                   At this point, anyone who is aged 12 or more is eligible
-                                  to get vaccinated. Although there a few cases in which
+                                  to get vaccinated. Although there are a few cases in which
                                   individuals should discuss vaccination with a healthcare
                                   provider before.
                               </p>

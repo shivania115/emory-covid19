@@ -45,15 +45,15 @@ function PersonalRisk(){
             <Grid>
             <Grid.Row>
             <Grid.Column width={3}></Grid.Column>
-            <Grid.Column width={3}> <FontAwesomeIcon icon={faUserCircle} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
+            <Grid.Column width={3}> <FontAwesomeIcon icon={faUserCircle} style={{fontSize:"9rem",marginTop:"10%",color:  "#024174", 
             }}/></Grid.Column>
              <Grid.Column width={10}>
              <Header
                             as="h2"
-                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
                         >
                          <Header.Content>
-                         <a href='https://www.mdcalc.com/calc/10348/covid-risk'>Calculate your personal mortality risk within 30 days of contracting COVID-19. <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{fontSize:"2rem",marginTop:"3%",color:  "#024174", }}/></a>
+                         <a target='_blank' href='https://www.mdcalc.com/calc/10348/covid-risk'>Calculate your personal mortality risk within 30 days of contracting COVID-19. <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{fontSize:"2rem",marginTop:"3%",color:  "#024174", }}/></a>
                             </Header.Content>
                         </Header>
             
@@ -62,7 +62,7 @@ function PersonalRisk(){
                 <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
+                    <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"9rem",marginTop:"10%",color:  "#024174", 
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
@@ -74,7 +74,7 @@ function PersonalRisk(){
         >
           <Header
                             as="h2"
-                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
                         >
                             <Header.Content>
                             You may be at a higher risk of severe COVID-19 and its health problems if:
@@ -166,7 +166,7 @@ function PersonalRisk(){
                 <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
+                    <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"9rem",marginTop:"10%",color:  "#024174", 
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
@@ -178,7 +178,7 @@ function PersonalRisk(){
         >
           <Header
                             as="h2"
-                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
                         >
                             <Header.Content>
                             COVID-19 vaccination may not be recommended for you if:

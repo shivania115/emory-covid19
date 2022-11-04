@@ -125,7 +125,7 @@ function FinalDecision() {
       <Grid>
         <Header
           as="h4"
-          style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
+          style={{ paddingTop: 80, fontWeight: 550, fontSize: "1.5rem" }}
         >
           <Header.Content>
             How likely are you to get the COVID-19 vaccine?
@@ -185,7 +185,20 @@ function FinalDecision() {
           </>
         )}
       </div>
-
+ {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
+        <>
+          <div style={{ paddingTop: 30 }}>
+            <b>Your next step</b>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: snarkdown(recommendations[choiceIndex].next),
+              }}
+            ></p>
+            <b>Share your decision with us</b>
+            <p>{recommendations[choiceIndex].share}</p>
+          </div>
+        </>
+      )}
       <button
         onClick={() => {
           navigate("/decision-aid/step4");
@@ -207,20 +220,7 @@ function FinalDecision() {
       ) : (
         <ToastContainer />
       )}
-      {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
-        <>
-          <div style={{ paddingTop: 30 }}>
-            <b>Your next step</b>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: snarkdown(recommendations[choiceIndex].next),
-              }}
-            ></p>
-            <b>Share your decision with us</b>
-            <p>{recommendations[choiceIndex].share}</p>
-          </div>
-        </>
-      )}
+     
     </div>
   );
 }

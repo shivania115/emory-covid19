@@ -2011,17 +2011,20 @@ function Compare(props) {
                         },
                         content: {
                           content: (
-                            <Header.Content
-                              style={{
-                                fontWeight: 400,
-                                fontSize: "15px",
-                              }}
-                            >
-                            {vaccine=='pfizer'? "The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if you catches COVID-19 after you've been vaccinated, your illness will usually be mild.":
-      "Spikevax is a vaccine developed by Moderna. It is also known as 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by your body and cleared away. You can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be slightly less effective against more recent variants, such as the Delta variant, but it will still protect you against serious illness and reduce your risk of hospitalisation and death."
-      }
+                           <ul>
+                            <li>
+                            The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if you catches COVID-19 after you've been vaccinated, your illness will usually be mild.
+                            </li>
+                            <li>
+                            Spikevax is a vaccine developed by Moderna. It is also known as 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by your body and cleared away. You can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be slightly less effective against more recent variants, such as the Delta variant, but it will still protect you against serious illness and reduce your risk of hospitalisation and death.
+                            </li>
+                           </ul>
+                            
+                          
+    
       
-                            </Header.Content>
+      
+                          
                           ),
                         },
                       },
