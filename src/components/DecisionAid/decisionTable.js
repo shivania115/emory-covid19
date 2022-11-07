@@ -614,30 +614,30 @@ function DecitionTable() {
             })}
           </div>
         </Form>
-        <button
-          onClick={handleSubmit}
-          style={{
-            float: "right",
-            size: "5rem",
-            marginTop: "1rem",
-            marginBottom: "4rem",
-          }}
-          class="ui large primary button"
-        >
-          Next
-        </button>
-        <button
-          onClick={() => navigate("/decision-aid/about")}
-          style={{
-            float: "left",
-            size: "5rem",
-            marginTop: "1rem",
-            marginBottom: "4rem",
-          }}
-          class="ui large primary button"
-        >
-          Previous
-        </button>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <button
+            onClick={() => navigate("/decision-aid/about")}
+            style={{
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleSubmit}
+            style={{
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            Next
+          </button>
+        </div>
       </div>
       <Modal
         show={show}

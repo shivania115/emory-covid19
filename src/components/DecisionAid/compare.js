@@ -1,4 +1,3 @@
-
 import {
   Container,
   Grid,
@@ -15,12 +14,12 @@ import {
   Menu,
   Tab,
   Progress,
-  GridColumn
+  GridColumn,
 } from "semantic-ui-react";
 import Covid from "../icons/Covid";
-import { blue } from '@mui/material/colors';
+import { blue } from "@mui/material/colors";
 import Medicine from "../icons/Medicine";
-import styled from 'styled-components'
+import styled from "styled-components";
 import React, {
   useEffect,
   useState,
@@ -30,1926 +29,1785 @@ import React, {
   useContext,
   useMemo,
 } from "react";
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { useNavigate } from "react-router-dom";
 
-const colorPalette = ['#007dba', '#808080', '#a45791', '#008000', '#e8ab3b', '#000000', '#8f4814'];
+const colorPalette = [
+  "#007dba",
+  "#808080",
+  "#a45791",
+  "#008000",
+  "#e8ab3b",
+  "#000000",
+  "#8f4814",
+];
 function Compare(props) {
   const navigate = useNavigate();
-  const [vaccine, setVaccine] = useState('pfizer');
+  const [vaccine, setVaccine] = useState("pfizer");
   const StyledProgressBar = styled(Progress)`
-  &&&  
-  .bar {
-    ${'' /* background-color: ${props => props.color || 'green'} !important; */}
-    min-width: 0;
-  
-  }
-`;
+    &&& .bar {
+      ${
+        "" /* background-color: ${props => props.color || 'green'} !important; */
+      }
+      min-width: 0;
+    }
+  `;
   const panes = [
     // {
-      // menuItem: 
-//       { content: <p style={{ fontSize: "100%" }}>PERCENTAGE OF PEOPLE</p> }, render: () =>
-//         // <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Covid></Covid></GridColumn>
-//         //       <GridColumn width={8}> <Header
-//         //         as="h4"
-//         //         style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //       >
-
-//         //         <Header.Content>
-//         //           HEALTH RISKS
-//         //         </Header.Content>
-//         //       </Header></GridColumn>
-//         //       <GridColumn width={4}><Medicine></Medicine></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}>With COVID-19</GridColumn>
-//         //       <GridColumn width={8}>Percentage of people</GridColumn>
-//         //       <GridColumn width={4}>With Vaccine</GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       SYMPTOMS 
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}></GridColumn>
-//         //       <GridColumn width={8}>
-//         //         <Accordion
-//         //           id="race"
-//         //           style={{
-//         //             paddingTop: 0,
-
-//         //             paddingBottom: 15,
-//         //           }}
-//         //           defaultActiveIndex={1}
-//         //           panels={[
-//         //             {
-//         //               key: "acquire-dog",
-//         //               title: {
-//         //                 content: (
-//         //                   <u
-//         //                     style={{
-//         //                       fontFamily: "lato",
-//         //                       fontSize: "15px",
-//         //                       color: "#397AB9",
-//         //                     }}
-//         //                   >
-//         //                     CLICK TO SEE INDIVIDUAL SYMPTOMS
-//         //                   </u>
-//         //                 ),
-//         //                 icon: "dropdown",
-//         //               },
-//         //               content: {
-//         //                 content: (
-//         //                   <Header.Content
-//         //                     style={{
-//         //                       fontWeight: 500,
-
-//         //                       fontSize: "12px",
-
-//         //                     }}
-//         //                   >
-//         //                     hello world!
-//         //                   </Header.Content>
-//         //                 ),
-//         //               },
-//         //             },
-//         //           ]}
-//         //         />
-//         //       </GridColumn>
-//         //       <GridColumn width={4}></GridColumn>
-//         //     </Grid.Row>
-
-
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       MULTISYSTEM INFLAMMATORY SYNDROME
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       SEVERE ALLERGIC REACTIONS
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       HOSPITALIZATION
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       INTENSIVE CARE
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       SYMPTOMS AFTER 1 MONTH
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         //   <Header
-//         //     as="h4"
-//         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//         //   >
-//         //     <Header.Content>
-//         //       DEATH
-//         //     </Header.Content>
-//         //   </Header>
-//         //   <Grid>
-//         //     <Grid.Row>
-//         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
-//         //       <GridColumn width={8}>%</GridColumn>
-//         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
-//         //     </Grid.Row>
-
-//         //   </Grid>
-//         //   <hr />
-//         // </div>
-//         <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
-//         <Grid>
-//           <Grid.Row style={{paddingTop:20}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//             >
-
-//               <Header.Content>
-//                 HEALTH RISKS
-//               </Header.Content>
-//             </Header></GridColumn>
-//             <GridColumn width={3}>CONDITIONS</GridColumn>
-
-//             <GridColumn width={7}><Covid></Covid>Percentage of people<Medicine ></Medicine></GridColumn>
-//           </Grid.Row>
-
-//         </Grid>
-//         <hr />
-
-//         <Grid  style={{paddingTop:20}}>
-//           <Grid.Row style={{paddingTop:0,marginBottom:0,paddingBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//             >
-//               <Header.Content>
-//                 SYMPTOMS
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content >
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <Progress size="large" style={{ marginBottom:20 }} reverse percent={90} color='red'></Progress>
-//               <StyledProgressBar percent={vaccine== 'pfizer'?56:38} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                  90 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 {vaccine== 'pfizer'?'56 %':'38 %'}
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-
-//   <Grid.Row>
-//           <Accordion
-//             id="race"
-//             style={{
-//               paddingTop: 0,
-//               width:"100%",
-//               paddingBottom: 15,
-//             }}
-//             defaultActiveIndex={1}
-//             panels={[
-//               {
-//                 key: "acquire-dog",
-//                 title: {
-//                   content: (
-//                     <u
-//                       style={{
-//                         fontFamily: "lato",
-//                         fontSize: "15px",
-//                         color: "#397AB9",
-//                       }}
-//                     >
-//                       CLICK TO SEE INDIVIDUAL SYMPTOMS
-//                     </u>
-//                   ),
-//                   icon: "dropdown",
-//                 },
-//                 content: {
-//                   content: (
-        
-//         <Grid  style={{paddingTop:0}}>
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h5"
-//               style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
-//             >
-//               <Header.Content>
-//                injection pain,redness, swelling
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar size='big' style={{marginBottom:20}} reverse percent={0} color='red'></StyledProgressBar>
-//               <StyledProgressBar percent={vaccine=='pfizer'?43:33} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                  not applicable
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                  {vaccine== 'pfizer'?'43 %':'33 %'}
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-      
-      
-     
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-//             >
-//               <Header.Content>
-//               fever
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar size='large' style={{ marginBottom:20 }}  reverse percent={86} color='red'></StyledProgressBar>
-//               <StyledProgressBar  percent={vaccine=='pfizer'?13:6} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-                 
-//                     86 %
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 {vaccine== 'pfizer'?'13 %':'6 %'}
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-   
-
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-//             >
-//               <Header.Content>
-//               fatigue
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={40} color='red'></StyledProgressBar>
-//               <StyledProgressBar percent={vaccine=='pfizer'?43:24} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content  style={{color:"#e02c2c"}}>
-//                 40 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 {vaccine=='pfizer'?'43 %':'24 %'}
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-    
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-//             >
-//               <Header.Content>
-//             shortness of breath
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20}} color="red" percent={20}></StyledProgressBar>
-//               <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                  20 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 0 %
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-            
-            
-//           </Grid.Row>
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-//             >
-//               <Header.Content>
-//               muscle or joint pain
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={26} color='red'></StyledProgressBar>
-//               <StyledProgressBar percent={vaccine=='pfizer'?34:18} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content  style={{color:"#e02c2c"}}>
-//                 26 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 {vaccine=='pfizer'?'34 %':'18 %'}
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-    
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-//             >
-//               <Header.Content>
-//             sore throat
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20}} color="red" percent={12}></StyledProgressBar>
-//               <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                  12 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 0 %
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-            
-            
-//           </Grid.Row>
-// </Grid>
- 
-//                   ),
-//                 },
-//               },
-//             ]}
-//           />
-//           </Grid.Row>
-
-
-//         </Grid>
-//         <hr />
-//         <Grid  style={{paddingTop:5}}>
-//           <Grid.Row >
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//             >
-//               <Header.Content>
-//                INTENSIVE CARE
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of people
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={4.7} color='red'></StyledProgressBar>
-//               <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                  4.7 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                  0 %
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-//         </Grid>
-//         <hr />
-//         <Grid  style={{paddingTop:5,paddingBottom:0,marginBottom:0}}>
-//           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//             >
-//               <Header.Content>
-//               HOSPITALIZATION 
-//               <br></br>
-//             with COVID-19
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   Without Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//             <StyledProgressBar style={{ marginBottom:20 }}  reverse percent={12.2} color='red'></StyledProgressBar>
-//             <StyledProgressBar  percent={6.8} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                  12.2 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                 6.8 %
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-//         </Grid>
-//         <hr />
-//         <Grid style={{paddingTop:5}}>
-//           <Grid.Row>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//             >
-//               <Header.Content>
-//               SYMPTOMS AFTER 1 MONTH
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={20} color='red'></StyledProgressBar>
-//               <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content  style={{color:"#e02c2c"}}>
-//                  20 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                  0 %
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-//         </Grid>
-//         <hr />
-//         <Grid style={{paddingTop:5}}>
-//           <Grid.Row>
-//             <GridColumn width={6}> <Header
-//               as="h4"
-//               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-//             >
-//               <Header.Content>
-//               DEATH
-//               </Header.Content>
-//               <HeaderSubHeader>
-//                 Percentage of People
-//               </HeaderSubHeader>
-//             </Header>
-//             </GridColumn>
-//             <GridColumn width={3}>
-
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content>
-//                   With COVID-19
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content>
-//                   With Vaccination
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-
-//             <GridColumn width={5}>
-//               <StyledProgressBar style={{ marginBottom:20}} color="red" percent={2}></StyledProgressBar>
-//               <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
-//             </GridColumn>
-//             <GridColumn width={2}>
-//             <Header
-//                 as="h4"
-//                 style={{marginTop:"1%"}}
-//               >
-//                 <Header.Content style={{color:"#e02c2c"}}>
-//                 2 %
-
-//                 </Header.Content>
-//               </Header>
-//               <Header
-//                 as="h4"
-//                 style={{marginTop:"8%"}}
-//               >
-//                 <Header.Content style={{color:"#0E6EB8"}}>
-//                  0 %
-
-//                 </Header.Content>
-//               </Header>
-//             </GridColumn>
-//           </Grid.Row>
-//         </Grid>
-//         <hr />
-//       </div>
-
-//     },
+    // menuItem:
+    //       { content: <p style={{ fontSize: "100%" }}>PERCENTAGE OF PEOPLE</p> }, render: () =>
+    //         // <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Covid></Covid></GridColumn>
+    //         //       <GridColumn width={8}> <Header
+    //         //         as="h4"
+    //         //         style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //       >
+
+    //         //         <Header.Content>
+    //         //           HEALTH RISKS
+    //         //         </Header.Content>
+    //         //       </Header></GridColumn>
+    //         //       <GridColumn width={4}><Medicine></Medicine></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}>With COVID-19</GridColumn>
+    //         //       <GridColumn width={8}>Percentage of people</GridColumn>
+    //         //       <GridColumn width={4}>With Vaccine</GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       SYMPTOMS
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}></GridColumn>
+    //         //       <GridColumn width={8}>
+    //         //         <Accordion
+    //         //           id="race"
+    //         //           style={{
+    //         //             paddingTop: 0,
+
+    //         //             paddingBottom: 15,
+    //         //           }}
+    //         //           defaultActiveIndex={1}
+    //         //           panels={[
+    //         //             {
+    //         //               key: "acquire-dog",
+    //         //               title: {
+    //         //                 content: (
+    //         //                   <u
+    //         //                     style={{
+    //         //                       fontFamily: "lato",
+    //         //                       fontSize: "15px",
+    //         //                       color: "#397AB9",
+    //         //                     }}
+    //         //                   >
+    //         //                     CLICK TO SEE INDIVIDUAL SYMPTOMS
+    //         //                   </u>
+    //         //                 ),
+    //         //                 icon: "dropdown",
+    //         //               },
+    //         //               content: {
+    //         //                 content: (
+    //         //                   <Header.Content
+    //         //                     style={{
+    //         //                       fontWeight: 500,
+
+    //         //                       fontSize: "12px",
+
+    //         //                     }}
+    //         //                   >
+    //         //                     hello world!
+    //         //                   </Header.Content>
+    //         //                 ),
+    //         //               },
+    //         //             },
+    //         //           ]}
+    //         //         />
+    //         //       </GridColumn>
+    //         //       <GridColumn width={4}></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       MULTISYSTEM INFLAMMATORY SYNDROME
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       SEVERE ALLERGIC REACTIONS
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       HOSPITALIZATION
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       INTENSIVE CARE
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       SYMPTOMS AFTER 1 MONTH
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         //   <Header
+    //         //     as="h4"
+    //         //     style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //         //   >
+    //         //     <Header.Content>
+    //         //       DEATH
+    //         //     </Header.Content>
+    //         //   </Header>
+    //         //   <Grid>
+    //         //     <Grid.Row>
+    //         //       <GridColumn width={4}><Progress progress reverse percent={32} color='red' /></GridColumn>
+    //         //       <GridColumn width={8}>%</GridColumn>
+    //         //       <GridColumn width={4}><Progress progress percent={32} color='blue' /></GridColumn>
+    //         //     </Grid.Row>
+
+    //         //   </Grid>
+    //         //   <hr />
+    //         // </div>
+    //         <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
+    //         <Grid>
+    //           <Grid.Row style={{paddingTop:20}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //             >
+
+    //               <Header.Content>
+    //                 HEALTH RISKS
+    //               </Header.Content>
+    //             </Header></GridColumn>
+    //             <GridColumn width={3}>CONDITIONS</GridColumn>
+
+    //             <GridColumn width={7}><Covid></Covid>Percentage of people<Medicine ></Medicine></GridColumn>
+    //           </Grid.Row>
+
+    //         </Grid>
+    //         <hr />
+
+    //         <Grid  style={{paddingTop:20}}>
+    //           <Grid.Row style={{paddingTop:0,marginBottom:0,paddingBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //             >
+    //               <Header.Content>
+    //                 SYMPTOMS
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content >
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <Progress size="large" style={{ marginBottom:20 }} reverse percent={90} color='red'></Progress>
+    //               <StyledProgressBar percent={vaccine== 'pfizer'?56:38} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                  90 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 {vaccine== 'pfizer'?'56 %':'38 %'}
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+
+    //   <Grid.Row>
+    //           <Accordion
+    //             id="race"
+    //             style={{
+    //               paddingTop: 0,
+    //               width:"100%",
+    //               paddingBottom: 15,
+    //             }}
+    //             defaultActiveIndex={1}
+    //             panels={[
+    //               {
+    //                 key: "acquire-dog",
+    //                 title: {
+    //                   content: (
+    //                     <u
+    //                       style={{
+    //                         fontFamily: "lato",
+    //                         fontSize: "15px",
+    //                         color: "#397AB9",
+    //                       }}
+    //                     >
+    //                       CLICK TO SEE INDIVIDUAL SYMPTOMS
+    //                     </u>
+    //                   ),
+    //                   icon: "dropdown",
+    //                 },
+    //                 content: {
+    //                   content: (
+
+    //         <Grid  style={{paddingTop:0}}>
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h5"
+    //               style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
+    //             >
+    //               <Header.Content>
+    //                injection pain,redness, swelling
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar size='big' style={{marginBottom:20}} reverse percent={0} color='red'></StyledProgressBar>
+    //               <StyledProgressBar percent={vaccine=='pfizer'?43:33} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                  not applicable
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                  {vaccine== 'pfizer'?'43 %':'33 %'}
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+    //             >
+    //               <Header.Content>
+    //               fever
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar size='large' style={{ marginBottom:20 }}  reverse percent={86} color='red'></StyledProgressBar>
+    //               <StyledProgressBar  percent={vaccine=='pfizer'?13:6} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+
+    //                     86 %
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 {vaccine== 'pfizer'?'13 %':'6 %'}
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+    //             >
+    //               <Header.Content>
+    //               fatigue
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={40} color='red'></StyledProgressBar>
+    //               <StyledProgressBar percent={vaccine=='pfizer'?43:24} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content  style={{color:"#e02c2c"}}>
+    //                 40 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 {vaccine=='pfizer'?'43 %':'24 %'}
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+    //             >
+    //               <Header.Content>
+    //             shortness of breath
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20}} color="red" percent={20}></StyledProgressBar>
+    //               <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                  20 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 0 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //           </Grid.Row>
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+    //             >
+    //               <Header.Content>
+    //               muscle or joint pain
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={26} color='red'></StyledProgressBar>
+    //               <StyledProgressBar percent={vaccine=='pfizer'?34:18} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content  style={{color:"#e02c2c"}}>
+    //                 26 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 {vaccine=='pfizer'?'34 %':'18 %'}
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
+    //             >
+    //               <Header.Content>
+    //             sore throat
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20}} color="red" percent={12}></StyledProgressBar>
+    //               <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                  12 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 0 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //           </Grid.Row>
+    // </Grid>
+
+    //                   ),
+    //                 },
+    //               },
+    //             ]}
+    //           />
+    //           </Grid.Row>
+
+    //         </Grid>
+    //         <hr />
+    //         <Grid  style={{paddingTop:5}}>
+    //           <Grid.Row >
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //             >
+    //               <Header.Content>
+    //                INTENSIVE CARE
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of people
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={4.7} color='red'></StyledProgressBar>
+    //               <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                  4.7 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                  0 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+    //         </Grid>
+    //         <hr />
+    //         <Grid  style={{paddingTop:5,paddingBottom:0,marginBottom:0}}>
+    //           <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //             >
+    //               <Header.Content>
+    //               HOSPITALIZATION
+    //               <br></br>
+    //             with COVID-19
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   Without Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //             <StyledProgressBar style={{ marginBottom:20 }}  reverse percent={12.2} color='red'></StyledProgressBar>
+    //             <StyledProgressBar  percent={6.8} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                  12.2 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                 6.8 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+    //         </Grid>
+    //         <hr />
+    //         <Grid style={{paddingTop:5}}>
+    //           <Grid.Row>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //             >
+    //               <Header.Content>
+    //               SYMPTOMS AFTER 1 MONTH
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20 }} reverse percent={20} color='red'></StyledProgressBar>
+    //               <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content  style={{color:"#e02c2c"}}>
+    //                  20 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                  0 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+    //         </Grid>
+    //         <hr />
+    //         <Grid style={{paddingTop:5}}>
+    //           <Grid.Row>
+    //             <GridColumn width={6}> <Header
+    //               as="h4"
+    //               style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+    //             >
+    //               <Header.Content>
+    //               DEATH
+    //               </Header.Content>
+    //               <HeaderSubHeader>
+    //                 Percentage of People
+    //               </HeaderSubHeader>
+    //             </Header>
+    //             </GridColumn>
+    //             <GridColumn width={3}>
+
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With COVID-19
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content>
+    //                   With Vaccination
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+
+    //             <GridColumn width={5}>
+    //               <StyledProgressBar style={{ marginBottom:20}} color="red" percent={2}></StyledProgressBar>
+    //               <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
+    //             </GridColumn>
+    //             <GridColumn width={2}>
+    //             <Header
+    //                 as="h4"
+    //                 style={{marginTop:"1%"}}
+    //               >
+    //                 <Header.Content style={{color:"#e02c2c"}}>
+    //                 2 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //               <Header
+    //                 as="h4"
+    //                 style={{marginTop:"8%"}}
+    //               >
+    //                 <Header.Content style={{color:"#0E6EB8"}}>
+    //                  0 %
+
+    //                 </Header.Content>
+    //               </Header>
+    //             </GridColumn>
+    //           </Grid.Row>
+    //         </Grid>
+    //         <hr />
+    //       </div>
+
+    //     },
     {
-      menuItem: {}, render: () =>
-      <div class="ui bottom attached segment active tab" style={{ width: '100%' }}>
-      <Grid>
-        <Grid.Row style={{paddingTop:20}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-          >
-
-            <Header.Content>
-              HEALTH RISKS
-            </Header.Content>
-          </Header></GridColumn>
-          <GridColumn width={3}>CONDITIONS</GridColumn>
-
-          <GridColumn width={7}><Covid></Covid>Numble of People<Medicine ></Medicine></GridColumn>
-        </Grid.Row>
-
-      </Grid>
-      <hr />
-      <Grid  style={{paddingTop:5,paddingBottom:0,marginBottom:0}}>
-        <Grid.Row style={{paddingBottom:0,marginBottom:0}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-          >
-            <Header.Content>
-            HOSPITALIZATION 
-         
-            with COVID-19
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-       
-            >
-              <Header.Content>
-                Without Vaccination
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"6%"}}
-            >
-              <Header.Content>
-                With Vaccination
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }}  reverse percent={12.2} color='red'></StyledProgressBar>
-            <StyledProgressBar  percent={6.8} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-        
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-              122 in 1000
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"5%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               68 in 1000
-
-              </Header.Content>
-            </Header>
-    
-            
-          </GridColumn>
-        </Grid.Row>
-        <Grid.Row>
-        <GridColumn width={4}>
-
-        </GridColumn>
-        <GridColumn width={8}>
-       * The data is taken from <a href='https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20'>JAMA Internal Medicine</a>, it displays the hospilization rate of COVID-19 patients with vaccine and without vaccine. 
-        </GridColumn>
-        
-
-        </Grid.Row>
-      </Grid>
-      <hr/>
-      <Grid  style={{paddingTop:5}}>
-        <Grid.Row >
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-          >
-            <Header.Content>
-             ICU-LEVEL CARE
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={4.7} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20 }} percent={0} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-               47 in 1000
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               zero
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               zero
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-      </Grid>
-      <hr/>
-      <Grid  style={{paddingTop:20}}>
-        <Grid.Row style={{paddingTop:0,marginBottom:0,paddingBottom:0}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-          >
-            <Header.Content>
-              SYMPTOMS
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"6%"}}
-            >
-              <Header.Content >
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"6%"}}
-            >
-              <Header.Content >
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={90} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20 }} percent={56} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={38} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-               90 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"6%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              56 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"6%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              38 in 100
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-
-<Grid.Row>
-        <Accordion
-          id="race"
-          style={{
-            paddingTop: 0,
-            width:"100%",
-            paddingBottom: 15,
-          }}
-          defaultActiveIndex={1}
-          panels={[
-            {
-              key: "acquire-dog",
-              title: {
-                content: (
-                  <u
-                    style={{
-                      fontFamily: "lato",
-                      fontSize: "15px",
-                      color: "#397AB9",
-                    }}
-                  >
-                    CLICK TO SEE INDIVIDUAL SYMPTOMS
-                  </u>
-                ),
-                icon: "dropdown",
-              },
-              content: {
-                content: (
-      
-      <Grid  style={{paddingTop:0}}>
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-            fever
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }}  reverse percent={86} color='red'></StyledProgressBar>
-            <StyledProgressBar  style={{ marginBottom:20 }} percent={13} color='blue' ></StyledProgressBar>
-            <StyledProgressBar  percent={6} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{marginTop:0,color:"#e02c2c"}}>
-                  86 in 100
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-             13 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-            6 in 100
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
- 
-
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-            chronic fatigue syndrome
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={45} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20 }} percent={0} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content  style={{color:"#e02c2c"}}>
-              45 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-             zero
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-            zero
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-  
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-          shortness of breath
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20}} color="red" percent={20}></StyledProgressBar>
-            <StyledProgressBar  style={{ marginBottom:20}} percent={0} color='blue' ></StyledProgressBar>
-            <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-               20 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              zero
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              zero
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-          
-          
-        </Grid.Row>
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-            muscle or joint pain
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-              style={{marginTop:"1%"}}
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"8%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"8%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={26} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20 }} percent={34} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={18} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-      
-            >
-              <Header.Content  style={{color:"#e02c2c"}}>
-              26 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-            34 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-         18 in 100
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-  
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-          sore throat
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20}} color="red" percent={12}></StyledProgressBar>
-            <StyledProgressBar  style={{ marginBottom:20}} percent={0} color='blue' ></StyledProgressBar>
-            <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-
-            >
-              <Header.Content style={{marginTop:"0%",color:"#e02c2c"}}>
-               12 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              zero
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              zero
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-        <Grid.Row style={{paddingBottom:0,marginBottom:"1%"}}>
-          <GridColumn width={6}> <Header
-            as="h5"
-            style={{ paddingTop: 5, fontWeight: 400, fontSize: "12pt" }}
-          >
-            <Header.Content>
-            local redness and swelling at the injection site
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"2%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"2%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccination
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{marginBottom:20}} reverse percent={0} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{marginBottom:20}} percent={43} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={33} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-               not applicable
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              43 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               33 in 100
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-</Grid>
-
-                ),
-              },
-            },
-          ]}
-        />
-        </Grid.Row>
-
-
-      </Grid>
-      <hr />
-     
-      <Grid style={{paddingTop:5}}>
-        <Grid.Row>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-          >
-            <Header.Content>
-            SYMPTOMS AFTER 1 MONTH
-            </Header.Content>
-            <HeaderSubHeader>
-              Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20 }} reverse percent={20} color='red'></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20 }} percent={0} color='blue' ></StyledProgressBar>
-            <StyledProgressBar percent={0} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content  style={{color:"#e02c2c"}}>
-               20 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               zero
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-               zero
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-      </Grid>
-      <hr />
-      <Grid style={{paddingTop:5}}>
-        <Grid.Row>
-          <GridColumn width={6}> <Header
-            as="h4"
-            style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-          >
-            <Header.Content>
-            DEATH
-            </Header.Content>
-            <HeaderSubHeader>
-             Number of People
-            </HeaderSubHeader>
-          </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-
-            <Header
-              as="h4"
-      
-            >
-              <Header.Content>
-                With COVID-19
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Pfizer Vaccine
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"4%"}}
-            >
-              <Header.Content>
-                With Moderna Vaccine
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar style={{ marginBottom:20}} color="red" percent={2}></StyledProgressBar>
-            <StyledProgressBar style={{ marginBottom:20}} percent={0} color='blue' ></StyledProgressBar>
-            <StyledProgressBar  percent={0} color='blue' ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2}>
-          <Header
-              as="h4"
-            >
-              <Header.Content style={{color:"#e02c2c"}}>
-             2 in 100
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              zero
-
-              </Header.Content>
-            </Header>
-            <Header
-              as="h4"
-              style={{marginTop:"0%"}}
-            >
-              <Header.Content style={{color:"#0E6EB8"}}>
-              zero
-
-              </Header.Content>
-            </Header>
-          </GridColumn>
-        </Grid.Row>
-        
-      </Grid>
-
-      <hr />
-    </div>
-
-    }
-
-  ]
+      menuItem: {},
+      render: () => (
+        <div
+          class="ui bottom attached segment active tab"
+          style={{ width: "100%" }}
+        >
+          <Grid>
+            <Grid.Row style={{ paddingTop: 20 }}>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>HEALTH RISKS</Header.Content>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>CONDITIONS</GridColumn>
+
+              <GridColumn width={7}>
+                <Covid></Covid>Numble of People<Medicine></Medicine>
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+          <hr />
+          <Grid style={{ paddingTop: 5, paddingBottom: 0, marginBottom: 0 }}>
+            <Grid.Row style={{ paddingBottom: 0, marginBottom: 0 }}>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>HOSPITALIZATION with COVID-19</Header.Content>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>Without Vaccination</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "6%" }}>
+                  <Header.Content>With Vaccination</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  reverse
+                  percent={12.2}
+                  color="red"
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  percent={6.8}
+                  color="blue"
+                ></StyledProgressBar>
+              </GridColumn>
+              <GridColumn width={2}>
+                <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    122 in 1000
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "5%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    68 in 1000
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+            <Grid.Row>
+              <GridColumn width={4}></GridColumn>
+              <GridColumn width={8}>
+                * The data is taken from{" "}
+                <a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20">
+                  JAMA Internal Medicine
+                </a>
+                , it displays the hospilization rate of COVID-19 patients with
+                vaccine and without vaccine.
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+          <hr />
+          <Grid style={{ paddingTop: 5 }}>
+            <Grid.Row>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>ICU-LEVEL CARE</Header.Content>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>With COVID-19</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>With Pfizer Vaccine</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>With Moderna Vaccine</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  reverse
+                  percent={4.7}
+                  color="red"
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  percent={0}
+                  color="blue"
+                ></StyledProgressBar>
+                <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
+              </GridColumn>
+              <GridColumn width={2}>
+                <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    47 in 1000
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+          <hr />
+          <Grid style={{ paddingTop: 20 }}>
+            <Grid.Row
+              style={{ paddingTop: 0, marginBottom: 0, paddingBottom: 0 }}
+            >
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>SYMPTOMS</Header.Content>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>With COVID-19</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "6%" }}>
+                  <Header.Content>With Pfizer Vaccine</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "6%" }}>
+                  <Header.Content>With Moderna Vaccine</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  reverse
+                  percent={90}
+                  color="red"
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  percent={56}
+                  color="blue"
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  percent={38}
+                  color="blue"
+                ></StyledProgressBar>
+              </GridColumn>
+              <GridColumn width={2}>
+                <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    90 in 100
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "6%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    56 in 100
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "6%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    38 in 100
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+
+            <Grid.Row>
+              <Accordion
+                id="race"
+                style={{
+                  paddingTop: 0,
+                  width: "100%",
+                  paddingBottom: 15,
+                }}
+                defaultActiveIndex={1}
+                panels={[
+                  {
+                    key: "acquire-dog",
+                    title: {
+                      content: (
+                        <u
+                          style={{
+                            fontFamily: "lato",
+                            fontSize: "15px",
+                            color: "#397AB9",
+                          }}
+                        >
+                          CLICK TO SEE INDIVIDUAL SYMPTOMS
+                        </u>
+                      ),
+                      icon: "dropdown",
+                    },
+                    content: {
+                      content: (
+                        <Grid style={{ paddingTop: 0 }}>
+                          <Grid.Row
+                            style={{ paddingBottom: 0, marginBottom: "1%" }}
+                          >
+                            <GridColumn width={6}>
+                              {" "}
+                              <Header
+                                as="h4"
+                                style={{
+                                  paddingTop: 10,
+                                  fontWeight: 400,
+                                  fontSize: "12pt",
+                                }}
+                              >
+                                <Header.Content>fever</Header.Content>
+                                <HeaderSubHeader>
+                                  Number of People
+                                </HeaderSubHeader>
+                              </Header>
+                            </GridColumn>
+                            <GridColumn width={3}>
+                              <Header as="h4">
+                                <Header.Content>With COVID-19</Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Pfizer Vaccine
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Moderna Vaccine
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+
+                            <GridColumn width={5}>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                reverse
+                                percent={86}
+                                color="red"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                percent={13}
+                                color="blue"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                percent={6}
+                                color="blue"
+                              ></StyledProgressBar>
+                            </GridColumn>
+                            <GridColumn width={2}>
+                              <Header as="h4">
+                                <Header.Content
+                                  style={{ marginTop: 0, color: "#e02c2c" }}
+                                >
+                                  86 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  13 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  6 in 100
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+                          </Grid.Row>
+
+                          <Grid.Row
+                            style={{ paddingBottom: 0, marginBottom: "1%" }}
+                          >
+                            <GridColumn width={6}>
+                              {" "}
+                              <Header
+                                as="h4"
+                                style={{
+                                  paddingTop: 10,
+                                  fontWeight: 400,
+                                  fontSize: "12pt",
+                                }}
+                              >
+                                <Header.Content>
+                                  chronic fatigue syndrome
+                                </Header.Content>
+                                <HeaderSubHeader>
+                                  Number of People
+                                </HeaderSubHeader>
+                              </Header>
+                            </GridColumn>
+                            <GridColumn width={3}>
+                              <Header as="h4">
+                                <Header.Content>With COVID-19</Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Pfizer Vaccine
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Moderna Vaccine
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+
+                            <GridColumn width={5}>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                reverse
+                                percent={45}
+                                color="red"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                percent={0}
+                                color="blue"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                percent={0}
+                                color="blue"
+                              ></StyledProgressBar>
+                            </GridColumn>
+                            <GridColumn width={2}>
+                              <Header as="h4">
+                                <Header.Content style={{ color: "#e02c2c" }}>
+                                  45 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  zero
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  zero
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+                          </Grid.Row>
+
+                          <Grid.Row
+                            style={{ paddingBottom: 0, marginBottom: "1%" }}
+                          >
+                            <GridColumn width={6}>
+                              {" "}
+                              <Header
+                                as="h4"
+                                style={{
+                                  paddingTop: 10,
+                                  fontWeight: 400,
+                                  fontSize: "12pt",
+                                }}
+                              >
+                                <Header.Content>
+                                  shortness of breath
+                                </Header.Content>
+                                <HeaderSubHeader>
+                                  Number of People
+                                </HeaderSubHeader>
+                              </Header>
+                            </GridColumn>
+                            <GridColumn width={3}>
+                              <Header as="h4">
+                                <Header.Content>With COVID-19</Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Pfizer Vaccine
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Moderna Vaccine
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+
+                            <GridColumn width={5}>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                color="red"
+                                percent={20}
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                percent={0}
+                                color="blue"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                percent={0}
+                                color="blue"
+                              ></StyledProgressBar>
+                            </GridColumn>
+                            <GridColumn width={2}>
+                              <Header as="h4">
+                                <Header.Content style={{ color: "#e02c2c" }}>
+                                  20 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  zero
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  zero
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+                          </Grid.Row>
+                          <Grid.Row
+                            style={{ paddingBottom: 0, marginBottom: "1%" }}
+                          >
+                            <GridColumn width={6}>
+                              {" "}
+                              <Header
+                                as="h4"
+                                style={{
+                                  paddingTop: 10,
+                                  fontWeight: 400,
+                                  fontSize: "12pt",
+                                }}
+                              >
+                                <Header.Content>
+                                  muscle or joint pain
+                                </Header.Content>
+                                <HeaderSubHeader>
+                                  Number of People
+                                </HeaderSubHeader>
+                              </Header>
+                            </GridColumn>
+                            <GridColumn width={3}>
+                              <Header as="h4" style={{ marginTop: "1%" }}>
+                                <Header.Content>With COVID-19</Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "8%" }}>
+                                <Header.Content>
+                                  With Pfizer Vaccine
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "8%" }}>
+                                <Header.Content>
+                                  With Moderna Vaccine
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+
+                            <GridColumn width={5}>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                reverse
+                                percent={26}
+                                color="red"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                percent={34}
+                                color="blue"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                percent={18}
+                                color="blue"
+                              ></StyledProgressBar>
+                            </GridColumn>
+                            <GridColumn width={2}>
+                              <Header as="h4">
+                                <Header.Content style={{ color: "#e02c2c" }}>
+                                  26 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  34 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  18 in 100
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+                          </Grid.Row>
+
+                          <Grid.Row
+                            style={{ paddingBottom: 0, marginBottom: "1%" }}
+                          >
+                            <GridColumn width={6}>
+                              {" "}
+                              <Header
+                                as="h4"
+                                style={{
+                                  paddingTop: 10,
+                                  fontWeight: 400,
+                                  fontSize: "12pt",
+                                }}
+                              >
+                                <Header.Content>sore throat</Header.Content>
+                                <HeaderSubHeader>
+                                  Number of People
+                                </HeaderSubHeader>
+                              </Header>
+                            </GridColumn>
+                            <GridColumn width={3}>
+                              <Header as="h4">
+                                <Header.Content>With COVID-19</Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Pfizer Vaccine
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "4%" }}>
+                                <Header.Content>
+                                  With Moderna Vaccine
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+
+                            <GridColumn width={5}>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                color="red"
+                                percent={12}
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                percent={0}
+                                color="blue"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                percent={0}
+                                color="blue"
+                              ></StyledProgressBar>
+                            </GridColumn>
+                            <GridColumn width={2}>
+                              <Header as="h4">
+                                <Header.Content
+                                  style={{ marginTop: "0%", color: "#e02c2c" }}
+                                >
+                                  12 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  zero
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  zero
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+                          </Grid.Row>
+                          <Grid.Row
+                            style={{ paddingBottom: 0, marginBottom: "1%" }}
+                          >
+                            <GridColumn width={6}>
+                              {" "}
+                              <Header
+                                as="h5"
+                                style={{
+                                  paddingTop: 5,
+                                  fontWeight: 400,
+                                  fontSize: "12pt",
+                                }}
+                              >
+                                <Header.Content>
+                                  local redness and swelling at the injection
+                                  site
+                                </Header.Content>
+                                <HeaderSubHeader>
+                                  Number of People
+                                </HeaderSubHeader>
+                              </Header>
+                            </GridColumn>
+                            <GridColumn width={3}>
+                              <Header as="h4">
+                                <Header.Content>With COVID-19</Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "2%" }}>
+                                <Header.Content>
+                                  With Pfizer Vaccine
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "2%" }}>
+                                <Header.Content>
+                                  With Moderna Vaccination
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+
+                            <GridColumn width={5}>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                reverse
+                                percent={0}
+                                color="red"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                style={{ marginBottom: 20 }}
+                                percent={43}
+                                color="blue"
+                              ></StyledProgressBar>
+                              <StyledProgressBar
+                                percent={33}
+                                color="blue"
+                              ></StyledProgressBar>
+                            </GridColumn>
+                            <GridColumn width={2}>
+                              <Header as="h4">
+                                <Header.Content style={{ color: "#e02c2c" }}>
+                                  not applicable
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  43 in 100
+                                </Header.Content>
+                              </Header>
+                              <Header as="h4" style={{ marginTop: "0%" }}>
+                                <Header.Content style={{ color: "#0E6EB8" }}>
+                                  33 in 100
+                                </Header.Content>
+                              </Header>
+                            </GridColumn>
+                          </Grid.Row>
+                        </Grid>
+                      ),
+                    },
+                  },
+                ]}
+              />
+            </Grid.Row>
+          </Grid>
+          <hr />
+
+          <Grid style={{ paddingTop: 5 }}>
+            <Grid.Row>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>SYMPTOMS AFTER 1 MONTH</Header.Content>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>With COVID-19</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>With Pfizer Vaccine</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>With Moderna Vaccine</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  reverse
+                  percent={20}
+                  color="red"
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  percent={0}
+                  color="blue"
+                ></StyledProgressBar>
+                <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
+              </GridColumn>
+              <GridColumn width={2}>
+                <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    20 in 100
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+          <hr />
+          <Grid style={{ paddingTop: 5 }}>
+            <Grid.Row>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>DEATH</Header.Content>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>With COVID-19</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>With Pfizer Vaccine</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>With Moderna Vaccine</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  color="red"
+                  percent={2}
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  percent={0}
+                  color="blue"
+                ></StyledProgressBar>
+                <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
+              </GridColumn>
+              <GridColumn width={2}>
+                <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    2 in 100
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+
+          <hr />
+        </div>
+      ),
+    },
+  ];
   return (
-
     <div>
-      <div class="ui two column centered grid" >
+      <div class="ui two column centered grid">
         <div style={{ maxWidth: "100%" }}>
           <Header
             as="h1"
             style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
           >
             <Header.Content>
-            Your health risks with and without vaccine
+              Your health risks with and without vaccine
               <Header.Subheader
                 style={{
                   paddingTop: "1.5rem",
@@ -1961,13 +1819,12 @@ function Compare(props) {
                   color: "black",
                 }}
               >
-                This is a resource guide to answer common questions about
-                the COVID-19 vaccines. This guide is based on the best
-                available information as of {Date().slice(4, 10)}, 2021.
-                Before taking the vaccine, please consult your healthcare
-                provider. If you have any questions or concerns beyond those
-                addressed here, we recommend the following resources for
-                additional information:
+                This is a resource guide to answer common questions about the
+                COVID-19 vaccines. This guide is based on the best available
+                information as of {Date().slice(4, 10)}, 2021. Before taking the
+                vaccine, please consult your healthcare provider. If you have
+                any questions or concerns beyond those addressed here, we
+                recommend the following resources for additional information:
                 {/* {Date().slice(4,10)} */}
               </Header.Subheader>
             </Header.Content>
@@ -1984,76 +1841,100 @@ function Compare(props) {
         <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="pfizer">Pfizer/BioNTech</ToggleButton>
         <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="moderna">Moderna</ToggleButton>
       </ToggleButtonGroup> */}
-      
+
           <Accordion
-                    id="race"
-                    style={{
-                      paddingTop: 0,
-                      paddingBottom: 15,
-                    }}
-                    defaultActiveIndex={1}
-                    panels={[
-                      {
-                        key: "acquire-dog",
-                        title: {
-                          content: (
-                            <u
-                              style={{
-                                fontFamily: "lato",
-                                fontSize: "1.5rem",
-      
-                              }}
-                            >
-                              About the Vaccine
-                            </u>
-                          ),
-                          icon: "dropdown",
-                        },
-                        content: {
-                          content: (
-                           <ul>
-                            <li>
-                            The vaccine made by Pfizer and BioNTech is known as 'Comirnaty', or BNT162b2, or most commonly as 'the Pfizer vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by the body and cleared away. You can not catch COVID-19 from Comirnaty (Pfizer). After the second dose, Comirnaty (Pfizer) is around 90% effective against the Delta variant in children.1-2  Effectiveness against Omicron is still unknown but if you catches COVID-19 after you've been vaccinated, your illness will usually be mild.
-                            </li>
-                            <li>
-                            Spikevax is a vaccine developed by Moderna. It is also known as 'the Moderna vaccine'. It is an mRNA vaccine which means it uses genetic code from a part of the virus to train your immune system. The genetic code is quickly broken down by your body and cleared away. You can not catch COVID-19 from Spikevax (Moderna). After the second dose, Spikevax (Moderna) is about 94% effective against COVID-19.1 It may be slightly less effective against more recent variants, such as the Delta variant, but it will still protect you against serious illness and reduce your risk of hospitalisation and death.
-                            </li>
-                           </ul>
-                            
-                          
-    
-      
-      
-                          
-                          ),
-                        },
-                      },
-                    ]}
-                  />
-      
+            id="race"
+            style={{
+              paddingTop: 0,
+              paddingBottom: 15,
+            }}
+            defaultActiveIndex={1}
+            panels={[
+              {
+                key: "acquire-dog",
+                title: {
+                  content: (
+                    <u
+                      style={{
+                        fontFamily: "lato",
+                        fontSize: "1.5rem",
+                      }}
+                    >
+                      About the Vaccine
+                    </u>
+                  ),
+                  icon: "dropdown",
+                },
+                content: {
+                  content: (
+                    <ul>
+                      <li>
+                        The vaccine made by Pfizer and BioNTech is known as
+                        'Comirnaty', or BNT162b2, or most commonly as 'the
+                        Pfizer vaccine'. It is an mRNA vaccine which means it
+                        uses genetic code from a part of the virus to train your
+                        immune system. The genetic code is quickly broken down
+                        by the body and cleared away. You can not catch COVID-19
+                        from Comirnaty (Pfizer). After the second dose,
+                        Comirnaty (Pfizer) is around 90% effective against the
+                        Delta variant in children.1-2 Effectiveness against
+                        Omicron is still unknown but if you catches COVID-19
+                        after you've been vaccinated, your illness will usually
+                        be mild.
+                      </li>
+                      <li>
+                        Spikevax is a vaccine developed by Moderna. It is also
+                        known as 'the Moderna vaccine'. It is an mRNA vaccine
+                        which means it uses genetic code from a part of the
+                        virus to train your immune system. The genetic code is
+                        quickly broken down by your body and cleared away. You
+                        can not catch COVID-19 from Spikevax (Moderna). After
+                        the second dose, Spikevax (Moderna) is about 94%
+                        effective against COVID-19.1 It may be slightly less
+                        effective against more recent variants, such as the
+                        Delta variant, but it will still protect you against
+                        serious illness and reduce your risk of hospitalisation
+                        and death.
+                      </li>
+                    </ul>
+                  ),
+                },
+              },
+            ]}
+          />
+
           <div class="ui attached tabular menu">
             <Tab style={{ width: "100%" }} panes={panes} renderActiveOnly />
           </div>
         </div>
       </div>
-      <div style= {{paddingTop: 30}}>
+      <div
+        style={{
+          paddingTop: 30,
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <button
-          onClick={()=> {navigate("/decision-aid/step2")}}
-          style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+          onClick={() => {
+            navigate("/decision-aid/step2");
+          }}
+          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
           class="ui large primary button"
         >
           Previous
         </button>
         <button
-          onClick={()=> {navigate("/decision-aid/step4")}}
-          style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+          onClick={() => {
+            navigate("/decision-aid/step4");
+          }}
+          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
           class="ui large primary button"
         >
           Next
         </button>
       </div>
     </div>
-
   );
 }
 export default Compare;
