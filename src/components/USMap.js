@@ -1952,7 +1952,7 @@ export default function USMap(props) {
                                 setStateName("The United States");
                               }}
                               onClick={() => {
-                                history.push("/" + geo.id.substring(0, 2) + "");
+                                history("/" + geo.id.substring(0, 2) + "");
                               }}
                               fill={
                                 fips === geo.id.substring(0, 2)

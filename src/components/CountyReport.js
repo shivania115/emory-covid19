@@ -389,7 +389,7 @@ export default function CountyReport() {
   useEffect(() => {
     const configMatched = configs.find((s) => s.fips === stateFips);
     if (!configMatched || !fips2county[stateFips + countyFips]) {
-      history.push("/");
+      history("/");
     } else {
       setConfig(configMatched);
       setStateName(configMatched.name);
@@ -525,6 +525,7 @@ export default function CountyReport() {
   }, [isLoggedIn]);
 
   if (data && varMap && dataTS) {
+    console.log(dataTS)
     return (
       <HEProvider>
         <div>
@@ -538,7 +539,7 @@ export default function CountyReport() {
                   <Breadcrumb.Section
                     style={{ color: "#397AB9" }}
                     link
-                    onClick={() => history.push("/")}
+                    onClick={() => history("/")}
                   >
                     United States
                   </Breadcrumb.Section>
@@ -546,7 +547,7 @@ export default function CountyReport() {
                   <Breadcrumb.Section
                     style={{ color: "#397AB9" }}
                     link
-                    onClick={() => history.push("/" + stateFips)}
+                    onClick={() => history("/" + stateFips)}
                   >
                     {stateName}
                   </Breadcrumb.Section>
@@ -1240,9 +1241,9 @@ export default function CountyReport() {
                                 dataTS["_nation"][122].t,
                                 // dataTS["_nation"][183].t,
                                 dataTS["_nation"][244].t,
-                                dataTS["_nation"][305].t,
-                                dataTS["_nation"][428].t,
-                                dataTS["_nation"][550].t,
+                                dataTS["_nation"][334].t,
+                                dataTS["_nation"][426].t,
+                                dataTS["_nation"][548].t,
                                 dataTS["_nation"][dataTS["_nation"].length - 1]
                                   .t,
                               ]}
@@ -1275,11 +1276,13 @@ export default function CountyReport() {
                                 countyColor,
                               ]}
                             >
+                            {/* come here */}
                               <VictoryLine
                                 data={dataTS["_nation"]}
                                 x="t"
                                 y="caserate7dayfig"
                                 labels={({ datum }) =>
+                                
                                   `${
                                     monthNames[
                                       new Date(datum.t * 1000).getMonth()
@@ -1312,7 +1315,7 @@ export default function CountyReport() {
                                 }}
                               />
                               <VictoryLine
-                                data={dataTS[stateFips]}
+                                data={dataTS[""+stateFips]}
                                 x="t"
                                 y="caserate7dayfig"
                                 labels={({ datum }) =>
@@ -1349,7 +1352,7 @@ export default function CountyReport() {
                               />
                               <VictoryLine
                                 data={
-                                  dataTS[stateFips + countyFips]
+                                  dataTS[""+stateFips + countyFips]
                                     ? dataTS[stateFips + countyFips]
                                     : dataTS["99999"]
                                 }

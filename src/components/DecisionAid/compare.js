@@ -33,7 +33,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { useNavigate } from "react-router-dom";
-
+import DraggableBar from "./beliefElicidation.js";
 const colorPalette = [
   "#007dba",
   "#808080",
@@ -1802,6 +1802,7 @@ function Compare(props) {
     <div>
       <div class="ui two column centered grid">
         <div style={{ maxWidth: "100%" }}>
+        <DraggableBar></DraggableBar>
           <Header
             as="h1"
             style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
