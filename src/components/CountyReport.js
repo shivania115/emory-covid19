@@ -1175,37 +1175,37 @@ export default function CountyReport() {
                               bottom: 40,
                             }}
                             containerComponent={<VictoryVoronoiContainer />}
-                            maxDomain={{
-                              y:
-                                getMax(dataTS["_nation"], "caserate7dayfig") >
-                                getMax(dataTS[stateFips], "caserate7dayfig")
-                                  ? getMax(
-                                      dataTS["_nation"],
-                                      "caserate7dayfig"
-                                    ) > getMax(dataTS[stateFips + countyFips])
-                                    ? getMax(
-                                        dataTS["_nation"],
-                                        "caserate7dayfig"
-                                      ) * 1.1
-                                    : getMax(dataTS[stateFips + countyFips]) *
-                                      1.1
-                                  : getMax(
-                                      dataTS[stateFips],
-                                      "caserate7dayfig"
-                                    ) >
-                                    getMax(
-                                      dataTS[stateFips + countyFips],
-                                      "caserate7dayfig"
-                                    )
-                                  ? getMax(
-                                      dataTS[stateFips],
-                                      "caserate7dayfig"
-                                    ) * 1.1
-                                  : getMax(
-                                      dataTS[stateFips + countyFips],
-                                      "caserate7dayfig"
-                                    ) * 1.1,
-                            }}
+                            // maxDomain={{
+                            //   y:
+                            //     getMax(dataTS["_nation"], "caserate7dayfig") >
+                            //     getMax(dataTS[stateFips], "caserate7dayfig")
+                            //       ? getMax(
+                            //           dataTS["_nation"],
+                            //           "caserate7dayfig"
+                            //         ) > getMax(dataTS[stateFips + countyFips])
+                            //         ? getMax(
+                            //             dataTS["_nation"],
+                            //             "caserate7dayfig"
+                            //           ) * 1.1
+                            //         : getMax(dataTS[stateFips + countyFips]) *
+                            //           1.1
+                            //       : getMax(
+                            //           dataTS[stateFips],
+                            //           "caserate7dayfig"
+                            //         ) >
+                            //         getMax(
+                            //           dataTS[stateFips + countyFips],
+                            //           "caserate7dayfig"
+                            //         )
+                            //       ? getMax(
+                            //           dataTS[stateFips],
+                            //           "caserate7dayfig"
+                            //         ) * 1.1
+                            //       : getMax(
+                            //           dataTS[stateFips + countyFips],
+                            //           "caserate7dayfig"
+                            //         ) * 1.1,
+                            // }}
                           >
                             <VictoryAxis
                               style={{
@@ -1473,43 +1473,43 @@ export default function CountyReport() {
                               bottom: 40,
                             }}
                             containerComponent={<VictoryVoronoiContainer />}
-                            maxDomain={{
-                              y:
-                                getMax(
-                                  dataTS["_nation"],
-                                  "covidmortality7dayfig"
-                                ) >
-                                getMax(
-                                  dataTS[stateFips],
-                                  "covidmortality7dayfig"
-                                )
-                                  ? getMax(
-                                      dataTS["_nation"],
-                                      "covidmortality7dayfig"
-                                    ) > getMax(dataTS[stateFips + countyFips])
-                                    ? getMax(
-                                        dataTS["_nation"],
-                                        "covidmortality7dayfig"
-                                      ) * 1.5
-                                    : getMax(dataTS[stateFips + countyFips]) *
-                                      1.5
-                                  : getMax(
-                                      dataTS[stateFips],
-                                      "covidmortality7dayfig"
-                                    ) >
-                                    getMax(
-                                      dataTS[stateFips + countyFips],
-                                      "covidmortality7dayfig"
-                                    )
-                                  ? getMax(
-                                      dataTS[stateFips],
-                                      "covidmortality7dayfig"
-                                    ) * 1.5
-                                  : getMax(
-                                      dataTS[stateFips + countyFips],
-                                      "covidmortality7dayfig"
-                                    ) * 1.5,
-                            }}
+                            // maxDomain={{
+                            //   y:
+                            //     getMax(
+                            //       dataTS["_nation"],
+                            //       "covidmortality7dayfig"
+                            //     ) >
+                            //     getMax(
+                            //       dataTS[stateFips],
+                            //       "covidmortality7dayfig"
+                            //     )
+                            //       ? getMax(
+                            //           dataTS["_nation"],
+                            //           "covidmortality7dayfig"
+                            //         ) > getMax(dataTS[stateFips + countyFips])
+                            //         ? getMax(
+                            //             dataTS["_nation"],
+                            //             "covidmortality7dayfig"
+                            //           ) * 1.5
+                            //         : getMax(dataTS[stateFips + countyFips]) *
+                            //           1.5
+                            //       : getMax(
+                            //           dataTS[stateFips],
+                            //           "covidmortality7dayfig"
+                            //         ) >
+                            //         getMax(
+                            //           dataTS[stateFips + countyFips],
+                            //           "covidmortality7dayfig"
+                            //         )
+                            //       ? getMax(
+                            //           dataTS[stateFips],
+                            //           "covidmortality7dayfig"
+                            //         ) * 1.5
+                            //       : getMax(
+                            //           dataTS[stateFips + countyFips],
+                            //           "covidmortality7dayfig"
+                            //         ) * 1.5,
+                            // }}
                           >
                             <VictoryAxis
                               style={{
@@ -1900,39 +1900,39 @@ export default function CountyReport() {
                           <VictoryChart
                             theme={VictoryTheme.material}
                             minDomain={{ x: dataTS["_nation"][342].t }}
-                            maxDomain={{
-                              x: dataTS["_nation"][dataTS["_nation"].length - 2]
-                                .t,
-                              y:
-                                getMax(dataTS["_nation"], "percentPositive") >
-                                getMax(dataTS[stateFips], "percentPositive")
-                                  ? getMax(
-                                      dataTS["_nation"],
-                                      "percentPositive"
-                                    ) > getMax(dataTS[stateFips + countyFips])
-                                    ? getMax(
-                                        dataTS["_nation"],
-                                        "percentPositive"
-                                      ) * 1.2
-                                    : getMax(dataTS[stateFips + countyFips]) *
-                                      1.2
-                                  : getMax(
-                                      dataTS[stateFips],
-                                      "percentPositive"
-                                    ) >
-                                    getMax(
-                                      dataTS[stateFips + countyFips],
-                                      "percentPositive"
-                                    )
-                                  ? getMax(
-                                      dataTS[stateFips],
-                                      "percentPositive"
-                                    ) * 1.2
-                                  : getMax(
-                                      dataTS[stateFips + countyFips],
-                                      "percentPositive"
-                                    ) * 1.2,
-                            }}
+                            // maxDomain={{
+                            //   x: dataTS["_nation"][dataTS["_nation"].length - 2]
+                            //     .t,
+                            //   y:
+                            //     getMax(dataTS["_nation"], "percentPositive") >
+                            //     getMax(dataTS[stateFips], "percentPositive")
+                            //       ? getMax(
+                            //           dataTS["_nation"],
+                            //           "percentPositive"
+                            //         ) > getMax(dataTS[stateFips + countyFips])
+                            //         ? getMax(
+                            //             dataTS["_nation"],
+                            //             "percentPositive"
+                            //           ) * 1.2
+                            //         : getMax(dataTS[stateFips + countyFips]) *
+                            //           1.2
+                            //       : getMax(
+                            //           dataTS[stateFips],
+                            //           "percentPositive"
+                            //         ) >
+                            //         getMax(
+                            //           dataTS[stateFips + countyFips],
+                            //           "percentPositive"
+                            //         )
+                            //       ? getMax(
+                            //           dataTS[stateFips],
+                            //           "percentPositive"
+                            //         ) * 1.2
+                            //       : getMax(
+                            //           dataTS[stateFips + countyFips],
+                            //           "percentPositive"
+                            //         ) * 1.2,
+                            // }}
                             width={550}
                             height={200}
                             padding={{

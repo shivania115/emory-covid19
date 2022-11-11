@@ -644,22 +644,26 @@ export default function StateMap(props) {
         dataTS["_nation"][61].t,
         dataTS["_nation"][91].t,
         dataTS["_nation"][122].t,
-        dataTS["_nation"][153].t,
-        dataTS["_nation"][183].t,
+        dataTS["_nation"][154].t,
+        dataTS["_nation"][183].t,//10
         dataTS["_nation"][214].t,
         dataTS["_nation"][244].t,
         dataTS["_nation"][275].t,
-        dataTS["_nation"][305].t, //5
-        dataTS["_nation"][336].t, //6
-        dataTS["_nation"][366].t, //7
-        dataTS["_nation"][397].t, //8
-        dataTS["_nation"][428].t, //9
-        dataTS["_nation"][458].t, //10
-        dataTS["_nation"][489].t, //11
-        dataTS["_nation"][519].t, //12
-        dataTS["_nation"][549].t, //1
-
-        //dataTS["_nation"][580].t,//2
+        dataTS["_nation"][306].t, 
+        dataTS["_nation"][336].t, 
+        dataTS["_nation"][366].t, 
+        dataTS["_nation"][397].t, 
+        dataTS["_nation"][429].t, 
+        dataTS["_nation"][457].t, 
+        dataTS["_nation"][487].t, 
+        dataTS["_nation"][517].t, 
+        dataTS["_nation"][548].t, 
+        dataTS["_nation"][609].t,
+        dataTS["_nation"][671].t,//2
+        dataTS["_nation"][730].t,//4
+        dataTS["_nation"][791].t,//6
+        dataTS["_nation"][852].t,//8
+        dataTS["_nation"][913].t,
         dataTS["_nation"][dataTS["_nation"].length - 1].t,
       ]);
       //console.log("dataTS", dataTS["_nation"][0].t);
@@ -2812,7 +2816,7 @@ export default function StateMap(props) {
 
                 <Grid>
                   <Grid.Row style={{ width: 1260 }}>
-                    <Grid.Column style={{ width: 450 }}>
+                    <Grid.Column width={6} style={{ width: 450 }}>
                       <Dropdown
                         style={{
                           background: "#fff",
@@ -3147,7 +3151,8 @@ export default function StateMap(props) {
                       </Grid>
                     </Grid.Column>
                     <Grid.Column
-                      style={{ padding: 0, paddingLeft: 40, width: 810 }}
+                      width={10} 
+                      // style={{ padding: 0, paddingLeft: 40, width: 810 }}
                     >
                       <Header as="h2" style={{ fontWeight: 400, width: 800 }}>
                         <Header.Content style={{ fontSize: "22px" }}>
@@ -3189,7 +3194,7 @@ export default function StateMap(props) {
                               width: 800,
                             }}
                           >
-                            <Grid.Column>
+                            <Grid.Column  >
                               {/* <Header.Content x={0} y={20} style={{fontSize: '14pt', width: 400, paddingLeft: 15, paddingBottom: 5, fontWeight: 400}}>Average Daily COVID-19 Cases /100K </Header.Content> */}
                               <Dropdown
                                 style={{

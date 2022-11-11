@@ -17,7 +17,9 @@ import {
     GridColumn,
   } from "semantic-ui-react";
   import ProgressBar from 'react-bootstrap/ProgressBar';
+  import Slider from "@mui/material/Slider";
   import styled from "styled-components";
+  import DragScaleBar from './DragScaleBar';
   import React, {
     useEffect,
     useState,
@@ -34,6 +36,7 @@ import {
   import Typography from '@mui/material/Typography';
   import Button from '@mui/material/Button';
 import { useSetState } from "react-use";
+import { useCookie } from "react-use";
   const style = {
     position: 'absolute',
     top: '50%',
@@ -45,30 +48,30 @@ import { useSetState } from "react-use";
     boxShadow: 24,
     p: 4,
   };
-  const StyledProgressBar = styled(Progress)`
-    &&& .bar {
-      ${
-        "" /* background-color: ${props => props.color || 'green'} !important; */
-      }
-      min-width: 0;
-    }
-  `;
+
   
   function DraggableBar(){
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [symptoms,setSymptoms]=useState(50);
-  function increment(){
-    if (symptoms<100){
-        setSymptoms(symptoms+5);
+  const [symptomsCOVID,setSymptomsCOVID]=useState(50);
+  const [symptomsVac,setSymptomsVac]=useState(50);
+  const [hospilizationNoVac,sethospilizationNoVac]=useState(50);
+  const [hospilizationVac,sethospilizationVac]=useState(50);
+
+  //edit the handle submit functino to add the info in cookie
+  function handleSubmit() {
+    setOpen(false);
+    const belief={
+      belief: {
+        symptomsVac: symptomsVac,
+       symptomsCOVID: symptomsCOVID,
+       hospilizationNoVac: hospilizationNoVac,
+       hospilizationVac: hospilizationVac,
+      }
     }
   }
-  function decrement(){
-    if (symptoms>0){
-        setSymptoms(symptoms-5);
-    }
-  }
+  console.log(symptoms);
     return(
         <Modal
         open={open}
@@ -77,17 +80,75 @@ import { useSetState } from "react-use";
       >
         <Box sx={style}>
        
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-           Tell us about your belief!
+        <Header
+            as="h1"
+            style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
+          >
+            <Header.Content>
+            Tell us about your belief!
+              {/* <Header.Subheader
+                style={{
+                  paddingTop: "1.5rem",
+                  paddingLeft: "0rem",
+                  paddingBottom: "0rem",
+                  lineHeight: "20pt",
+                  fontWeight: 400,
+                  fontSize: "12pt",
+                  color: "black",
+                }}
+              >
+                This is a resource guide to answer common questions about the
+                COVID-19 vaccines. This guide is based on the best available
+                information as of {Date().slice(4, 10)}, 2021. Before taking the
+                vaccine, please consult your healthcare provider. If you have
+                any questions or concerns beyond those addressed here, we
+                recommend the following resources for additional information:
+            
+              </Header.Subheader> */}
+            </Header.Content>
+          </Header>
+          {/* <StyledProgressBar progress='percent' percent={symptoms}></StyledProgressBar> */}
+          <Grid style={{paddingLeft:"2%"}}>
+          <Grid.Row>
+              <Grid.Column width={6}>
+              What do you think is the percent of symptoms after a month for vaccination(COVID-19)?
+              </Grid.Column>
+              <Grid.Column width={8}>
+              <DragScaleBar handleValue={num => setSymptoms(num)} initValue={50} width={500} fillColor="#2285d0" ></DragScaleBar>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={6}>
+              What do you think is the percent of symptoms after a month for COVID-19?
+              </Grid.Column>
+              <Grid.Column width={8}>
+              <DragScaleBar handleValue={num => setSymptomsCOVID(num)} initValue={50} width={500} fillColor="#dc2c2c" ></DragScaleBar>
+              </Grid.Column>
+            </Grid.Row>
+           
+            <Grid.Row>
+              <Grid.Column width={6}>
+              What do you think is the hospilization rate of COVID-19 for people WITH vaccination?
+              </Grid.Column>
+              <Grid.Column width={8}>
+              <DragScaleBar handleValue={num => sethospilizationVac(num)} initValue={50} width={500} fillColor="#2285d0" ></DragScaleBar>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={6}>
+              What do you think is the hospilization rate of COVID-19 for people WITHOUT vaccination?
+              </Grid.Column>
+              <Grid.Column width={8}>
+              <DragScaleBar handleValue={num => sethospilizationNoVac(num)} initValue={50} width={500} fillColor="#dc2c2c" ></DragScaleBar>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+    
+         
+          <Typography id="modal-modal-description" style={{marginTop:"5%"}} sx={{ mt: 2 }}>
+           Submit your response and let's see the real data.
           </Typography>
-          <StyledProgressBar progress='percent' percent={symptoms}></StyledProgressBar>
-          <ProgressBar style={{height:"2rem"}} label={`${symptoms}%`} animated now={symptoms} variant="info"></ProgressBar>
-          <Button onClick={decrement}>Decrement</Button>
-          <Button onClick={increment}>Increment</Button>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-          <Button onClick={handleClose} variant="outlined">
+          <Button onClick={handleSubmit} variant="outlined">
         Submit
       </Button>
         </Box>
