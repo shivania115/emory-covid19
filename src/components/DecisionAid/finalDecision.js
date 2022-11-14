@@ -88,7 +88,7 @@ function FinalDecision() {
   const [choiceIndex, setChoiceIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   function handleSubmit() {
-    const step2 = JSON.parse(cookies);
+    const cookie = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
     if (choiceIndex === 4) {
       decision_choice = decision_choice + ": " + other;
@@ -96,9 +96,10 @@ function FinalDecision() {
     try {
       decision_aid.insertOne({
         step2: {
-          demographic: step2.demographic,
-          vaccine_survey: step2.vaccine_survey,
+          demographic: cookie.step2.demographic,
+          vaccine_survey: cookie.step2.vaccine_survey,
         },
+        step3_belief: cookie.step3,
         step5: { final_decision: decision_choice, confidence: confidence },
       });
     } catch (e) {
@@ -185,7 +186,7 @@ function FinalDecision() {
           </>
         )}
       </div>
- {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
+      {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
           <div style={{ paddingTop: 30 }}>
             <b>Your next step</b>
@@ -220,7 +221,6 @@ function FinalDecision() {
       ) : (
         <ToastContainer />
       )}
-     
     </div>
   );
 }

@@ -79,21 +79,23 @@ function DecitionTable() {
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     const cookie = {
-      demographic: {
-        vaccinated: vaccinated,
-        age: age,
-        gender: gender,
-        ethnicity: ethnicity,
-        occupation: occupation,
-        vaccinated: vaccinated ? false : true,
-        booster_taken: booster ? false : true,
-      },
-      vaccine_survey: {
-        effective: radioSelectedValue[0],
-        important: radioSelectedValue[1],
-        negative_stories: radioSelectedValue[2],
-        concerned_reactions: radioSelectedValue[3],
-        childhood_vaccines: radioSelectedValue[4],
+      step2: {
+        demographic: {
+          vaccinated: vaccinated,
+          age: age,
+          gender: gender,
+          ethnicity: ethnicity,
+          occupation: occupation,
+          vaccinated: vaccinated ? false : true,
+          booster_taken: booster ? false : true,
+        },
+        vaccine_survey: {
+          effective: radioSelectedValue[0],
+          important: radioSelectedValue[1],
+          negative_stories: radioSelectedValue[2],
+          concerned_reactions: radioSelectedValue[3],
+          childhood_vaccines: radioSelectedValue[4],
+        },
       },
     };
     setCookie(cookie, { path: "/", expires: tomorrow });
