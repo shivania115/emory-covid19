@@ -1185,10 +1185,10 @@ const SideRaceBarChart = (props) => {
     {
       name: "Multiple/Other",
       popvalue:
-        props.demogData["vaccineRace"][0]["Multiracial"][0]["percentPop"],
+        props.demogData["vaccineRace"][0]["Multiple/Other"][0]["percentPop"],
       vaxvalue:
         props.fips == "_nation"
-          ? props.demogData["vaccineRace"][0]["Multiracial"][0][
+          ? props.demogData["vaccineRace"][0]["Multiple/Other"][0][
               "seriesCompletePopPctKnown"
             ] +
             (props.demogData["vaccineRace"][0]["Unknown"][0][
@@ -1312,7 +1312,7 @@ const SideRaceBarChart = (props) => {
     pieChartRace[0],
   ];
   //I want to get here
-
+  console.log(data);
   return (
     <Grid>
       {/* <Grid.Column
@@ -2529,6 +2529,10 @@ const USVaccineTracker = (props) => {
         vaccDisparityData["cutoffs"][0]["college"].toFixed(0) +
         " % are college educated.",
     };
+    console.log(nationalDemog);
+  //  console.log(nationalDemog["vaccineRace"][0][
+  //   "Multiple/Other"
+  // ][0]["seriesCompletePopPctKnown"]);
     return (
       <HEProvider>
         <div>
@@ -3510,7 +3514,7 @@ const USVaccineTracker = (props) => {
                                 Others make up{" "}
                                 {
                                   nationalDemog["vaccineRace"][0][
-                                    "Multiracial"
+                                    "Multiple/Other"
                                   ][0]["seriesCompletePopPctKnown"]
                                 }{" "}
                                 % of those fully vaccinated,{" "}
@@ -3524,7 +3528,7 @@ const USVaccineTracker = (props) => {
                                 % vaccinated in past 14 days,{" "}
                                 {
                                   nationalDemog["vaccineRace"][0][
-                                    "Multiracial"
+                                    "Multiple/Other"
                                   ][0]["percentPop"]
                                 }{" "}
                                 % population.
