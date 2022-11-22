@@ -1159,7 +1159,7 @@ const SideRaceBarChart = (props) => {
               "percentVaccinated"
             ],
       weeksvalue:
-        props.twoweeksvac["nation"]["American Natives"][
+        props.twoweeksvac["nation"]["American Native"][
           "pctAmongFullyVasLast14"
         ],
       // props.twoweeksvac['nation']['American Native']['pctAmongFullyVasLast14'] < 0 ? 0 : props.twoweeksvac['nation']['American Native']['pctAmongFullyVastLast14']
@@ -1206,11 +1206,11 @@ const SideRaceBarChart = (props) => {
               "percentVaccinated"
             ],
       weeksvalue:
-        props.twoweeksvac["nation"]["Non Hispanic Multiple Races"][
+        props.twoweeksvac["nation"]["Multiple/Other"][
           "pctAmongFullyVasLast14"
         ] < 0
           ? 0
-          : props.twoweeksvac["nation"]["Non Hispanic Multiple Races"][
+          : props.twoweeksvac["nation"]["Multiple/Other"][
               "pctAmongFullyVasLast14"
             ],
     },
@@ -3471,11 +3471,11 @@ const USVaccineTracker = (props) => {
                                   ][0]["seriesCompletePopPctKnown"]
                                 }{" "}
                                 % of those fully vaccinated,{" "}
-                                {twoweeksvac["nation"]["American Natives"][
+                                {twoweeksvac["nation"]["American Native"][
                                   "pctAmongFullyVasLast14"
                                 ] < 0
                                   ? 0
-                                  : twoweeksvac["nation"]["American Natives"][
+                                  : twoweeksvac["nation"]["American Native"][
                                       "pctAmongFullyVasLast14"
                                     ]}{" "}
                                 % vaccinated in past 14 days,{" "}
@@ -3519,11 +3519,11 @@ const USVaccineTracker = (props) => {
                                 }{" "}
                                 % of those fully vaccinated,{" "}
                                 {twoweeksvac["nation"][
-                                  "Non Hispanic Multiple Races"
+                                  "Multiple/Other"
                                 ]["pctAmongFullyVasLast14"] < 0
                                   ? 0
                                   : twoweeksvac["nation"][
-                                      "Non Hispanic Multiple Races"
+                                      "Multiple/Other"
                                     ]["pctAmongFullyVasLast14"]}{" "}
                                 % vaccinated in past 14 days,{" "}
                                 {
