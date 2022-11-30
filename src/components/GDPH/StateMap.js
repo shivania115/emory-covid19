@@ -1069,6 +1069,7 @@ function ChartGraph(props) {
             dataTS["13001"][549].t,
             dataTS["13001"][610].t,
             dataTS["13001"][671].t,
+            dataTS["13001"][702].t,
             dataTS["13001"][dataTS["13001"].length - 1].t,
           ]}
         />

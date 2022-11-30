@@ -30,6 +30,7 @@ import Variant from "./Variant";
 import OtherTools from "./OtherTools";
 import DecisionAid from "./DecisionAid.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ExcessDeath from "./ExcessDeath";
 import {
   BrowserRouter as Router,
   Routes,
@@ -86,11 +87,13 @@ function AppUI() {
             element={<USVaccineTrackerPilot />}
           ></Route>
           <Route path="/US-Map-Pilot-12312" element={<USMapPilot />}></Route>
+          
           <Route path="/Vaccine-Tracker" element={<USVaccineTracker />}></Route>
           <Route path="/vaccine-map" element={<VaccineMap />}></Route>
           <Route path="/map-state" element={<MapYourState />}></Route>
 
           <Route path="/decision-aid/:step" element={<DecisionAid />}></Route>
+          <Route path="/ExcessDeath" element={<ExcessDeath />}></Route>
           <Route path="/media-hub/blog/:blogTitle" element={<Blog />}></Route>
           <Route
             path="/media-hub/podcast/:podcastTitle"
