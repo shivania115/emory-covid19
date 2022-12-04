@@ -30,6 +30,7 @@ import {
   List,
 } from "semantic-ui-react";
 import AppBar from "./AppBar";
+import {ProgressBar} from 'react-bootstrap';
 import { geoCentroid } from "d3-geo";
 import Geographies from "./Geographies";
 import Geography from "./Geography";
@@ -1876,6 +1877,8 @@ const USVaccineTracker = (props) => {
   const [fips, setFips] = useState("_nation");
   const [stateFips, setStateFips] = useState();
   const [stateMapFips, setStateMapFips] = useState("_nation");
+  const [burdenStateFip,setburdenStateFip]=useState("_nation");
+  const [burdenStateName,setburdenStateName]=useState("The United States");
   const [countyMapGeoFips, setCountyMapGeoFips] = useState();
   const [stateTrendFips, setstateTrendFips] = useState("_nation");
   const [ageFip, setAgeFip] = useState("_nation");
@@ -2886,9 +2889,20 @@ const USVaccineTracker = (props) => {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 970 }}
-                              percent={
+             
+                               <ProgressBar
+                style={{ height:30,width: 970 ,marginBottom:30}}
+                label={`${
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }%`}
+                variant="success" 
+                now={
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ]
@@ -2897,10 +2911,7 @@ const USVaccineTracker = (props) => {
                                     ].toFixed(1)
                                   : "Not Reported"
                               }
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -2931,15 +2942,16 @@ const USVaccineTracker = (props) => {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 970 }}
-                              percent={vaccineData["_nation"][
+                           <ProgressBar
+                style={{ height:30,width: 970 ,marginBottom:30}}
+                label={`${vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}%`}
+                variant="success" 
+                now={vaccineData["_nation"][
                                 "Series_Complete_Pop_Pct"
                               ].toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -2971,9 +2983,18 @@ const USVaccineTracker = (props) => {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 970 }}
-                              percent={(
+                           <ProgressBar
+                style={{ height:30,width: 970,marginBottom:30 }}
+                label={`${(
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ]
+                              ).toFixed(1)}%`}
+                variant="success" 
+                now={(
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ] +
@@ -2981,10 +3002,8 @@ const USVaccineTracker = (props) => {
                                   "Series_Complete_Pop_Pct"
                                 ]
                               ).toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
+                          
                           </Header.Content>
                         </Header>
                       </div>
@@ -5623,7 +5642,6 @@ mutation: () => ({
                   </div>
 
                   <div style={{ height: 55 }}> </div>
-
                   <Grid>
                     <Grid.Column>
                       <Divider
@@ -5638,7 +5656,56 @@ mutation: () => ({
                         }}
                       >
                         {" "}
-                        COVID-19 Burden in {stateName}{" "}
+                        COVID-19 Burden in  <Dropdown
+                          style={{
+                            background: "#fff",
+                            fontSize: "19px",
+                            fontWeight: 400,
+                            theme: "#000000",
+                            width: "380px",
+                            left: "0px",
+                            text: "Select",
+                            borderTop: "0.5px solid #bdbfc1",
+                            borderLeft: "0.5px solid #bdbfc1",
+                            borderRight: "0.5px solid #bdbfc1",
+                            borderBottom: "0.5px solid #bdbfc1",
+                            borderRadius: 0,
+                            minHeight: "1.0em",
+                            paddingBottom: "0.5em",
+                          }}
+                          text={
+                            
+                            (clickTrendFips === "_nation"
+                              ? "The United States"
+                              : burdenStateName)
+                          }
+                          search
+                          selection
+                          pointing="top"
+                          options={stateOptions}
+                          onChange={(e, { value }) => {
+                            const configMatched = configs.find(
+                              (s) => s.fips === value
+                            );
+                            setburdenStateFip(value);
+                            setburdenStateName(configMatched.name);
+                            setActive(true);
+                            return [
+                              {
+                                target: "data",
+                                mutation: () => ({
+                                  style: { stroke: "black", width: 30 },
+                                }),
+                              },
+                              {
+                                target: { value },
+                                mutation: () => ({ active: true }),
+                              },
+                            ];
+                          }}
+                        /> 
+                        {/* {stateName} */}
+                        {" "}
                       </Divider>
                     </Grid.Column>
                   </Grid>
@@ -5652,21 +5719,21 @@ mutation: () => ({
                         >
                           <Grid.Column style={{ width: 240, paddingLeft: 15 }}>
                             <div>
-                              {stateMapFips && (
+                              {burdenStateFip && (
                                 <VictoryChart
                                   minDomain={{
-                                    x: stateMapFips
-                                      ? allTS[stateMapFips][
-                                          allTS[stateMapFips].length - 15
+                                    x: burdenStateFip
+                                      ? allTS[burdenStateFip][
+                                          allTS[burdenStateFip].length - 15
                                         ].t
                                       : allTS["13"][allTS["13"].length - 15].t,
                                   }}
                                   maxDomain={{
-                                    y: stateMapFips
+                                    y: burdenStateFip
                                       ? getMaxRange(
-                                          allTS[stateMapFips],
+                                          allTS[burdenStateFip],
                                           "caseRateMean",
-                                          allTS[stateMapFips].length - 15
+                                          allTS[burdenStateFip].length - 15
                                         ).caseRateMean * 1.05
                                       : getMaxRange(
                                           allTS["13"],
@@ -5688,25 +5755,25 @@ mutation: () => ({
                                 >
                                   <VictoryAxis
                                     tickValues={
-                                      stateMapFips
+                                      burdenStateFip
                                         ? [
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length -
                                                 Math.round(
-                                                  allTS[stateMapFips].length / 3
+                                                  allTS[burdenStateFip].length / 3
                                                 ) *
                                                   2 -
                                                 1
                                             ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length -
                                                 Math.round(
-                                                  allTS[stateMapFips].length / 3
+                                                  allTS[burdenStateFip].length / 3
                                                 ) -
                                                 1
                                             ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].t,
                                           ]
                                         : [
@@ -5741,8 +5808,8 @@ mutation: () => ({
                                   <VictoryGroup colorScale={[stateColor]}>
                                     <VictoryLine
                                       data={
-                                        stateMapFips && allTS[stateMapFips]
-                                          ? allTS[stateMapFips]
+                                        burdenStateFip && allTS[burdenStateFip]
+                                          ? allTS[burdenStateFip]
                                           : allTS["13"]
                                       }
                                       x="t"
@@ -5757,8 +5824,8 @@ mutation: () => ({
                                       },
                                     }}
                                     data={
-                                      stateMapFips && allTS[stateMapFips]
-                                        ? allTS[stateMapFips]
+                                      burdenStateFip && allTS[burdenStateFip]
+                                        ? allTS[burdenStateFip]
                                         : allTS["13"]
                                     }
                                     x="t"
@@ -5767,10 +5834,10 @@ mutation: () => ({
 
                                   <VictoryLabel
                                     text={
-                                      stateMapFips
+                                      burdenStateFip
                                         ? numberWithCommas(
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].dailyCases.toFixed(0)
                                           )
                                         : numberWithCommas(
@@ -5791,28 +5858,28 @@ mutation: () => ({
 
                                   <VictoryLabel
                                     text={
-                                      stateMapFips
-                                        ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
+                                      burdenStateFip
+                                        ? allTS[burdenStateFip][
+                                            allTS[burdenStateFip].length - 1
                                           ].percent14dayDailyCases.toFixed(0) >
                                           0
-                                          ? allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          ? allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyCases.toFixed(
                                               0
                                             ) + "%"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyCases.toFixed(
                                               0
                                             ) < 0
-                                          ? allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          ? allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyCases
                                               .toFixed(0)
                                               .substring(1) + "%"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyCases.toFixed(
                                               0
                                             ) + "%"
@@ -5850,14 +5917,14 @@ mutation: () => ({
 
                                   <VictoryLabel
                                     text={
-                                      stateMapFips
-                                        ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
+                                      burdenStateFip
+                                        ? allTS[burdenStateFip][
+                                            allTS[burdenStateFip].length - 1
                                           ].percent14dayDailyCases.toFixed(0) >
                                           0
                                           ? "↑"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyCases.toFixed(
                                               0
                                             ) < 0
@@ -5882,14 +5949,14 @@ mutation: () => ({
                                       fontSize: 24,
                                       fontFamily: "lato",
 
-                                      fill: stateMapFips
-                                        ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
+                                      fill: burdenStateFip
+                                        ? allTS[burdenStateFip][
+                                            allTS[burdenStateFip].length - 1
                                           ].percent14dayDailyCases.toFixed(0) >
                                           0
                                           ? "#FF0000"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyCases.toFixed(
                                               0
                                             ) < 0
@@ -5947,20 +6014,20 @@ mutation: () => ({
                           </Grid.Column>
                           <Grid.Column style={{ width: 240, paddingLeft: 55 }}>
                             <div>
-                              {stateMapFips && (
+                              {burdenStateFip && (
                                 <VictoryChart
                                   theme={VictoryTheme.material}
                                   minDomain={{
-                                    x: stateMapFips
-                                      ? allTS[stateMapFips][
-                                          allTS[stateMapFips].length - 15
+                                    x: burdenStateFip
+                                      ? allTS[burdenStateFip][
+                                          allTS[burdenStateFip].length - 15
                                         ].t
                                       : allTS["13"][allTS["13"].length - 15].t,
                                   }}
                                   maxDomain={{
-                                    y: stateMapFips
+                                    y: burdenStateFip
                                       ? getMax(
-                                          allTS[stateMapFips],
+                                          allTS[burdenStateFip],
                                           "mortalityMean"
                                         ).mortalityMean + 0.8
                                       : getMax(allTS["13"], "mortalityMean")
@@ -5980,25 +6047,25 @@ mutation: () => ({
                                 >
                                   <VictoryAxis
                                     tickValues={
-                                      stateMapFips
+                                      burdenStateFip
                                         ? [
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length -
                                                 Math.round(
-                                                  allTS[stateMapFips].length / 3
+                                                  allTS[burdenStateFip].length / 3
                                                 ) *
                                                   2 -
                                                 1
                                             ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length -
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length -
                                                 Math.round(
-                                                  allTS[stateMapFips].length / 3
+                                                  allTS[burdenStateFip].length / 3
                                                 ) -
                                                 1
                                             ].t,
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].t,
                                           ]
                                         : [
@@ -6030,8 +6097,8 @@ mutation: () => ({
                                   <VictoryGroup colorScale={[stateColor]}>
                                     <VictoryLine
                                       data={
-                                        stateMapFips && allTS[stateMapFips]
-                                          ? allTS[stateMapFips]
+                                        burdenStateFip && allTS[burdenStateFip]
+                                          ? allTS[burdenStateFip]
                                           : allTS["13"]
                                       }
                                       x="t"
@@ -6048,8 +6115,8 @@ mutation: () => ({
                                       },
                                     }}
                                     data={
-                                      stateMapFips && allTS[stateMapFips]
-                                        ? allTS[stateMapFips]
+                                      burdenStateFip && allTS[burdenStateFip]
+                                        ? allTS[burdenStateFip]
                                         : allTS["13"]
                                     }
                                     x="t"
@@ -6058,10 +6125,10 @@ mutation: () => ({
 
                                   <VictoryLabel
                                     text={
-                                      stateMapFips
+                                      burdenStateFip
                                         ? numberWithCommas(
-                                            allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                            allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].dailyMortality.toFixed(0)
                                           )
                                         : numberWithCommas(
@@ -6082,23 +6149,23 @@ mutation: () => ({
 
                                   <VictoryLabel
                                     text={
-                                      stateMapFips
-                                        ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
+                                      burdenStateFip
+                                        ? allTS[burdenStateFip][
+                                            allTS[burdenStateFip].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) >
                                           0
-                                          ? allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          ? allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyDeaths.toFixed(
                                               0
                                             ) + "%"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyDeaths.toFixed(
                                               0
                                             ) < 0
-                                          ? allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          ? allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyDeaths
                                               .toFixed(0)
                                               .substring(1) + "%"
@@ -6134,14 +6201,14 @@ mutation: () => ({
 
                                   <VictoryLabel
                                     text={
-                                      stateMapFips
-                                        ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
+                                      burdenStateFip
+                                        ? allTS[burdenStateFip][
+                                            allTS[burdenStateFip].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) >
                                           0
                                           ? "↑"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyDeaths.toFixed(
                                               0
                                             ) < 0
@@ -6166,14 +6233,14 @@ mutation: () => ({
                                       fontSize: 24,
                                       fontFamily: "lato",
 
-                                      fill: stateMapFips
-                                        ? allTS[stateMapFips][
-                                            allTS[stateMapFips].length - 1
+                                      fill: burdenStateFip
+                                        ? allTS[burdenStateFip][
+                                            allTS[burdenStateFip].length - 1
                                           ].percent14dayDailyDeaths.toFixed(0) >
                                           0
                                           ? "#FF0000"
-                                          : allTS[stateMapFips][
-                                              allTS[stateMapFips].length - 1
+                                          : allTS[burdenStateFip][
+                                              allTS[burdenStateFip].length - 1
                                             ].percent14dayDailyDeaths.toFixed(
                                               0
                                             ) < 0
@@ -6306,14 +6373,14 @@ mutation: () => ({
                               >
                                 Disparities in COVID-19 Mortality <br />{" "}
                                 <b>
-                                  {stateMapFips !== "_nation"
-                                    ? stateName
+                                  {burdenStateFip !== "_nation"
+                                    ? burdenStateName
                                     : "Nation"}
                                 </b>
                               </Header.Content>
                             </Header>
 
-                            {stateMapFips && stateMapFips === "_nation" && (
+                            {burdenStateFip && burdenStateFip === "_nation" && (
                               <div style={{ marginTop: 13 }}>
                                 <Header.Content
                                   x={0}
@@ -6331,7 +6398,7 @@ mutation: () => ({
                               </div>
                             )}
 
-                            {stateMapFips && stateMapFips === "_nation" && (
+                            {burdenStateFip && burdenStateFip === "_nation" && (
                               <div
                                 style={{
                                   paddingLeft: "0em",
@@ -6476,22 +6543,22 @@ mutation: () => ({
                               </div>
                             )}
 
-                            {stateMapFips !== "_nation" &&
-                              !raceData[stateMapFips][
+                            {burdenStateFip !== "_nation" &&
+                              !raceData[burdenStateFip][
                                 "Non-Hispanic African American"
                               ] &&
-                              !!raceData[stateMapFips]["White Alone"] &&
-                              stateMapFips !== "38" && (
+                              !!raceData[burdenStateFip]["White Alone"] &&
+                              burdenStateFip !== "38" && (
                                 <Grid>
                                   <Grid.Row
                                     columns={2}
                                     style={{ height: 273, paddingBottom: 0 }}
                                   >
                                     <Grid.Column style={{ paddingLeft: 20 }}>
-                                      {!raceData[stateMapFips][
+                                      {!raceData[burdenStateFip][
                                         "Non-Hispanic African American"
                                       ] &&
-                                        stateMapFips !== "02" && (
+                                      burdenStateFip !== "02" && (
                                           <div
                                             style={{
                                               marginTop: 10,
@@ -6512,69 +6579,69 @@ mutation: () => ({
                                             </Header.Content>
                                           </div>
                                         )}
-                                      {stateMapFips &&
-                                        !raceData[stateMapFips][
+                                      {burdenStateFip &&
+                                        !raceData[burdenStateFip][
                                           "Non-Hispanic African American"
                                         ] &&
-                                        stateMapFips !== "38" &&
-                                        stateMapFips !== "02" && (
+                                        burdenStateFip !== "38" &&
+                                        burdenStateFip !== "02" && (
                                           <VictoryChart
                                             theme={VictoryTheme.material}
                                             width={250}
                                             height={
                                               40 *
-                                              ((!!raceData[stateMapFips][
+                                              ((!!raceData[burdenStateFip][
                                                 "Asian Alone"
                                               ] &&
-                                              raceData[stateMapFips][
+                                              raceData[burdenStateFip][
                                                 "Asian Alone"
                                               ][0]["deathrateRace"] >= 0 &&
-                                              raceData[stateMapFips][
+                                              raceData[burdenStateFip][
                                                 "Asian Alone"
                                               ][0]["deaths"] > 30 &&
-                                              raceData[stateMapFips][
+                                              raceData[burdenStateFip][
                                                 "Asian Alone"
                                               ][0]["percentPop"] >= 1
                                                 ? 1
                                                 : 0) +
-                                                (!!raceData[stateMapFips][
+                                                (!!raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ][0]["percentPop"] >= 1
                                                   ? 1
                                                   : 0) +
-                                                (!!raceData[stateMapFips][
+                                                (!!raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ][0]["percentPop"] >= 1
                                                   ? 1
                                                   : 0) +
-                                                (!!raceData[stateMapFips][
+                                                (!!raceData[burdenStateFip][
                                                   "White Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "White Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "White Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "White Alone"
                                                 ][0]["percentPop"] >= 1
                                                   ? 1
@@ -6630,14 +6697,14 @@ mutation: () => ({
                                             />
                                             <VictoryGroup>
                                               {"American Natives Alone" in
-                                                raceData[stateMapFips] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip] &&
+                                                raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "American Natives Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -6655,13 +6722,13 @@ mutation: () => ({
                                                         key: "American\n Natives",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "American Natives Alone"
                                                           ][0]["deathrateRace"],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "American Natives Alone"
                                                           ][0]["deathrateRace"]
@@ -6689,14 +6756,14 @@ mutation: () => ({
                                                 )}
 
                                               {"Asian Alone" in
-                                                raceData[stateMapFips] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip] &&
+                                                raceData[burdenStateFip][
                                                   "Asian Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Asian Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Asian Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -6715,13 +6782,13 @@ mutation: () => ({
                                                         key: "Asian",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Asian Alone"][0][
                                                             "deathrateRace"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Asian Alone"][0][
                                                             "deathrateRace"
                                                           ]
@@ -6749,14 +6816,14 @@ mutation: () => ({
                                                 )}
 
                                               {"African American Alone" in
-                                                raceData[stateMapFips] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip] &&
+                                                raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "African American Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -6774,13 +6841,13 @@ mutation: () => ({
                                                         key: "African\n American",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "African American Alone"
                                                           ][0]["deathrateRace"],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "African American Alone"
                                                           ][0]["deathrateRace"]
@@ -6808,14 +6875,14 @@ mutation: () => ({
                                                 )}
 
                                               {"White Alone" in
-                                                raceData[stateMapFips] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip] &&
+                                                raceData[burdenStateFip][
                                                   "White Alone"
                                                 ][0]["deathrateRace"] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "White Alone"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "White Alone"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -6834,13 +6901,13 @@ mutation: () => ({
                                                         key: "White",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["White Alone"][0][
                                                             "deathrateRace"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["White Alone"][0][
                                                             "deathrateRace"
                                                           ]
@@ -6869,11 +6936,11 @@ mutation: () => ({
                                             </VictoryGroup>
                                           </VictoryChart>
                                         )}
-                                      {!raceData[stateMapFips][
+                                      {!raceData[burdenStateFip][
                                         "Non-Hispanic African American"
                                       ] &&
-                                        stateMapFips !== "38" &&
-                                        stateMapFips !== "02" && (
+                                        burdenStateFip !== "38" &&
+                                        burdenStateFip !== "02" && (
                                           <div
                                             style={{
                                               marginTop: 10,
@@ -6896,7 +6963,7 @@ mutation: () => ({
                                           </div>
                                         )}
 
-                                      {stateMapFips === "02" && (
+                                      {burdenStateFip === "02" && (
                                         <div
                                           style={{ marginTop: 10, width: 250 }}
                                         >
@@ -6931,10 +6998,10 @@ mutation: () => ({
                                       )}
                                     </Grid.Column>
                                     <Grid.Column style={{ paddingLeft: 50 }}>
-                                      {!!raceData[stateMapFips][
+                                      {!!raceData[burdenStateFip][
                                         "White Alone"
                                       ] &&
-                                        stateMapFips !== "38" && (
+                                        burdenStateFip !== "38" && (
                                           <div style={{ marginTop: 10 }}>
                                             <Header.Content
                                               x={0}
@@ -6950,32 +7017,32 @@ mutation: () => ({
                                               Deaths by Ethnicity
                                             </Header.Content>
                                             {!(
-                                              stateMapFips &&
-                                              !!raceData[stateMapFips][
+                                              burdenStateFip &&
+                                              !!raceData[burdenStateFip][
                                                 "White Alone"
                                               ] &&
-                                              stateMapFips !== "38" &&
+                                              burdenStateFip !== "38" &&
                                               !(
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Hispanic"
                                                 ][0]["deathrateEthnicity"] <
                                                   0 ||
-                                                (!raceData[stateMapFips][
+                                                (!raceData[burdenStateFip][
                                                   "Hispanic"
                                                 ] &&
-                                                  !raceData[stateMapFips][
+                                                  !raceData[burdenStateFip][
                                                     "Non Hispanic"
                                                   ] &&
-                                                  !raceData[stateMapFips][
+                                                  !raceData[burdenStateFip][
                                                     "Non-Hispanic African American"
                                                   ] &&
-                                                  !raceData[stateMapFips][
+                                                  !raceData[burdenStateFip][
                                                     "Non-Hispanic American Natives"
                                                   ] &&
-                                                  !raceData[stateMapFips][
+                                                  !raceData[burdenStateFip][
                                                     "Non-Hispanic Asian"
                                                   ] &&
-                                                  !raceData[stateMapFips][
+                                                  !raceData[burdenStateFip][
                                                     "Non-Hispanic White"
                                                   ])
                                               )
@@ -6999,31 +7066,31 @@ mutation: () => ({
                                             )}
                                           </div>
                                         )}
-                                      {stateMapFips &&
-                                        !!raceData[stateMapFips][
+                                      {burdenStateFip &&
+                                        !!raceData[burdenStateFip][
                                           "White Alone"
                                         ] &&
-                                        stateMapFips !== "38" &&
+                                        burdenStateFip !== "38" &&
                                         !(
-                                          raceData[stateMapFips]["Hispanic"][0][
+                                          raceData[burdenStateFip]["Hispanic"][0][
                                             "deathrateEthnicity"
                                           ] < 0 ||
-                                          (!raceData[stateMapFips][
+                                          (!raceData[burdenStateFip][
                                             "Hispanic"
                                           ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non Hispanic"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic African American"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic American Natives"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic Asian"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic White"
                                             ])
                                         ) && (
@@ -7031,30 +7098,30 @@ mutation: () => ({
                                             theme={VictoryTheme.material}
                                             width={250}
                                             height={
-                                              !!raceData[stateMapFips][
+                                              !!raceData[burdenStateFip][
                                                 "Hispanic"
                                               ] &&
-                                              !!raceData[stateMapFips][
+                                              !!raceData[burdenStateFip][
                                                 "Non Hispanic"
                                               ]
                                                 ? 81
                                                 : 3 *
-                                                  (!!raceData[stateMapFips][
+                                                  (!!raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ] +
-                                                    !!raceData[stateMapFips][
+                                                    !!raceData[burdenStateFip][
                                                       "Non Hispanic"
                                                     ] +
-                                                    !!raceData[stateMapFips][
+                                                    !!raceData[burdenStateFip][
                                                       "Non-Hispanic African American"
                                                     ] +
-                                                    !!raceData[stateMapFips][
+                                                    !!raceData[burdenStateFip][
                                                       "Non-Hispanic American Natives"
                                                     ] +
-                                                    !!raceData[stateMapFips][
+                                                    !!raceData[burdenStateFip][
                                                       "Non-Hispanic Asian"
                                                     ] +
-                                                    !!raceData[stateMapFips][
+                                                    !!raceData[burdenStateFip][
                                                       "Non-Hispanic White"
                                                     ])
                                             }
@@ -7066,10 +7133,10 @@ mutation: () => ({
                                               left: 130,
                                               right: 35,
                                               top:
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Hispanic"
                                                 ] &&
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ]
                                                   ? 13
@@ -7116,18 +7183,18 @@ mutation: () => ({
                                             />
 
                                             <VictoryGroup>
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic American Natives"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7146,7 +7213,7 @@ mutation: () => ({
                                                         key: "American\n Natives",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic American Natives"
                                                           ][0][
@@ -7154,7 +7221,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic American Natives"
                                                           ][0][
@@ -7183,18 +7250,18 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic Asian"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7213,7 +7280,7 @@ mutation: () => ({
                                                         key: "Asian",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic Asian"
                                                           ][0][
@@ -7221,7 +7288,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic Asian"
                                                           ][0][
@@ -7250,20 +7317,20 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non Hispanic"
                                               ] &&
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "White Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ][0]["deathrateEthnicity"] >=
                                                   0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7282,13 +7349,13 @@ mutation: () => ({
                                                         key: "Non Hispanic",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Non Hispanic"][0][
                                                             "deathrateEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Non Hispanic"][0][
                                                             "deathrateEthnicity"
                                                           ]
@@ -7315,23 +7382,23 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {(!!raceData[stateMapFips][
+                                              {(!!raceData[burdenStateFip][
                                                 "Hispanic"
                                               ] ||
-                                                (!!raceData[stateMapFips][
+                                                (!!raceData[burdenStateFip][
                                                   "Hispanic"
                                                 ] &&
-                                                  !!raceData[stateMapFips][
+                                                  !!raceData[burdenStateFip][
                                                     "White Alone"
                                                   ] &&
-                                                  raceData[stateMapFips][
+                                                  raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ][0]["deathrateEthnicity"] >=
                                                     0 &&
-                                                  raceData[stateMapFips][
+                                                  raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ][0]["deaths"] > 30 &&
-                                                  raceData[stateMapFips][
+                                                  raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ][0]["percentPop"] >= 1)) && (
                                                 <VictoryBar
@@ -7349,13 +7416,13 @@ mutation: () => ({
                                                     {
                                                       key: "Hispanic",
                                                       value:
-                                                        raceData[stateMapFips][
+                                                        raceData[burdenStateFip][
                                                           "Hispanic"
                                                         ][0][
                                                           "deathrateEthnicity"
                                                         ],
                                                       label: numberWithCommas(
-                                                        raceData[stateMapFips][
+                                                        raceData[burdenStateFip][
                                                           "Hispanic"
                                                         ][0][
                                                           "deathrateEthnicity"
@@ -7383,18 +7450,18 @@ mutation: () => ({
                                                 />
                                               )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic African American"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7413,7 +7480,7 @@ mutation: () => ({
                                                         key: "African\n American",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic African American"
                                                           ][0][
@@ -7421,7 +7488,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic African American"
                                                           ][0][
@@ -7450,18 +7517,18 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic White"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7480,7 +7547,7 @@ mutation: () => ({
                                                         key: "White",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic White"
                                                           ][0][
@@ -7488,7 +7555,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic White"
                                                           ][0][
@@ -7519,31 +7586,31 @@ mutation: () => ({
                                             </VictoryGroup>
                                           </VictoryChart>
                                         )}
-                                      {stateMapFips !== "_nation" &&
-                                        !!raceData[stateMapFips][
+                                      {burdenStateFip !== "_nation" &&
+                                        !!raceData[burdenStateFip][
                                           "White Alone"
                                         ] &&
-                                        stateMapFips !== "38" &&
+                                        burdenStateFip !== "38" &&
                                         !(
-                                          raceData[stateMapFips]["Hispanic"][0][
+                                          raceData[burdenStateFip]["Hispanic"][0][
                                             "deathrateEthnicity"
                                           ] < 0 ||
-                                          (!raceData[stateMapFips][
+                                          (!raceData[burdenStateFip][
                                             "Hispanic"
                                           ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non Hispanic"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic African American"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic American Natives"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic Asian"
                                             ] &&
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic White"
                                             ])
                                         ) && (
@@ -7572,14 +7639,14 @@ mutation: () => ({
                                 </Grid>
                               )}
 
-                            {stateMapFips !== "_nation" &&
-                              (!!raceData[stateMapFips][
+                            {burdenStateFip !== "_nation" &&
+                              (!!raceData[burdenStateFip][
                                 "Non-Hispanic African American"
                               ] ||
-                                !!raceData[stateMapFips][
+                                !!raceData[burdenStateFip][
                                   "Non-Hispanic White"
                                 ]) &&
-                              stateMapFips !== "38" && (
+                              burdenStateFip !== "38" && (
                                 <Grid.Row columns={1}>
                                   <Grid.Column
                                     style={{
@@ -7587,26 +7654,26 @@ mutation: () => ({
                                       paddingBottom:
                                         13 +
                                         2 *
-                                          (!raceData[stateMapFips]["Hispanic"] +
-                                            !raceData[stateMapFips][
+                                          (!raceData[burdenStateFip]["Hispanic"] +
+                                            !raceData[burdenStateFip][
                                               "Non Hispanic"
                                             ] +
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic African American"
                                             ] +
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic American Natives"
                                             ] +
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic Asian"
                                             ] +
-                                            !raceData[stateMapFips][
+                                            !raceData[burdenStateFip][
                                               "Non-Hispanic White"
                                             ]),
                                     }}
                                   >
-                                    {stateMapFips &&
-                                      !raceData[stateMapFips][
+                                    {burdenStateFip &&
+                                      !raceData[burdenStateFip][
                                         "White Alone"
                                       ] && (
                                         <div
@@ -7626,9 +7693,9 @@ mutation: () => ({
                                           </Header.Content>
                                         </div>
                                       )}
-                                    {stateMapFips &&
-                                      !raceData[stateMapFips]["White Alone"] &&
-                                      stateMapFips !== "38" && (
+                                    {burdenStateFip &&
+                                      !raceData[burdenStateFip]["White Alone"] &&
+                                      burdenStateFip !== "38" && (
                                         <div
                                           style={{
                                             paddingLeft: "1em",
@@ -7641,22 +7708,22 @@ mutation: () => ({
                                             width={400}
                                             height={
                                               32 *
-                                              (!!raceData[stateMapFips][
+                                              (!!raceData[burdenStateFip][
                                                 "Hispanic"
                                               ] +
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ] +
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ] +
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ] +
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ] +
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ])
                                             }
@@ -7668,10 +7735,10 @@ mutation: () => ({
                                               left: 160,
                                               right: 35,
                                               top:
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Hispanic"
                                                 ] &&
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ]
                                                   ? 12
@@ -7718,18 +7785,18 @@ mutation: () => ({
                                             />
 
                                             <VictoryGroup>
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic American Natives"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic American Natives"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7748,7 +7815,7 @@ mutation: () => ({
                                                         key: "American Natives",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic American Natives"
                                                           ][0][
@@ -7756,7 +7823,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic American Natives"
                                                           ][0][
@@ -7785,18 +7852,18 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic Asian"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic Asian"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7815,7 +7882,7 @@ mutation: () => ({
                                                         key: "Asian",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic Asian"
                                                           ][0][
@@ -7823,7 +7890,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic Asian"
                                                           ][0][
@@ -7852,20 +7919,20 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non Hispanic"
                                               ] &&
-                                                !!raceData[stateMapFips][
+                                                !!raceData[burdenStateFip][
                                                   "White Alone"
                                                 ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ][0]["deathrateEthnicity"] >=
                                                   0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non Hispanic"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -7884,13 +7951,13 @@ mutation: () => ({
                                                         key: "Non Hispanic",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Non Hispanic"][0][
                                                             "deathrateEthnicity"
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Non Hispanic"][0][
                                                             "deathrateEthnicity"
                                                           ]
@@ -7917,23 +7984,23 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {(!!raceData[stateMapFips][
+                                              {(!!raceData[burdenStateFip][
                                                 "Hispanic"
                                               ] ||
-                                                (!!raceData[stateMapFips][
+                                                (!!raceData[burdenStateFip][
                                                   "Hispanic"
                                                 ] &&
-                                                  !!raceData[stateMapFips][
+                                                  !!raceData[burdenStateFip][
                                                     "White Alone"
                                                   ] &&
-                                                  raceData[stateMapFips][
+                                                  raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ][0]["deathrateEthnicity"] >=
                                                     0 &&
-                                                  raceData[stateMapFips][
+                                                  raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ][0]["deaths"] > 30 &&
-                                                  raceData[stateMapFips][
+                                                  raceData[burdenStateFip][
                                                     "Hispanic"
                                                   ][0]["percentPop"] >= 1)) && (
                                                 <VictoryBar
@@ -7951,13 +8018,13 @@ mutation: () => ({
                                                     {
                                                       key: "Hispanic",
                                                       value:
-                                                        raceData[stateMapFips][
+                                                        raceData[burdenStateFip][
                                                           "Hispanic"
                                                         ][0][
                                                           "deathrateEthnicity"
                                                         ],
                                                       label: numberWithCommas(
-                                                        raceData[stateMapFips][
+                                                        raceData[burdenStateFip][
                                                           "Hispanic"
                                                         ][0][
                                                           "deathrateEthnicity"
@@ -7985,18 +8052,18 @@ mutation: () => ({
                                                 />
                                               )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic African American"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic African American"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -8015,7 +8082,7 @@ mutation: () => ({
                                                         key: "African American",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic African American"
                                                           ][0][
@@ -8023,7 +8090,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic African American"
                                                           ][0][
@@ -8052,18 +8119,18 @@ mutation: () => ({
                                                   />
                                                 )}
 
-                                              {!!raceData[stateMapFips][
+                                              {!!raceData[burdenStateFip][
                                                 "Non-Hispanic White"
                                               ] &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ][0][
                                                   "deathrateRaceEthnicity"
                                                 ] >= 0 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ][0]["deaths"] > 30 &&
-                                                raceData[stateMapFips][
+                                                raceData[burdenStateFip][
                                                   "Non-Hispanic White"
                                                 ][0]["percentPop"] >= 1 && (
                                                   <VictoryBar
@@ -8082,7 +8149,7 @@ mutation: () => ({
                                                         key: "White",
                                                         value:
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic White"
                                                           ][0][
@@ -8090,7 +8157,7 @@ mutation: () => ({
                                                           ],
                                                         label: numberWithCommas(
                                                           raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Non-Hispanic White"
                                                           ][0][
@@ -8122,8 +8189,8 @@ mutation: () => ({
                                           </VictoryChart>
                                         </div>
                                       )}
-                                    {stateMapFips &&
-                                      !raceData[stateMapFips][
+                                    {burdenStateFip &&
+                                      !raceData[burdenStateFip][
                                         "White Alone"
                                       ] && (
                                         <div
@@ -8151,7 +8218,7 @@ mutation: () => ({
                                 </Grid.Row>
                               )}
 
-                            {stateMapFips === "38" && (
+                            {burdenStateFip === "38" && (
                               <Grid.Row columns={1}>
                                 <Grid.Column
                                   style={{
@@ -8191,7 +8258,7 @@ mutation: () => ({
                             )}
                             <Grid>
                               <Grid.Row>
-                                {stateMapFips && (
+                                {burdenStateFip && (
                                   <Accordion
                                     style={{ paddingTop: 30, paddingLeft: 25 }}
                                     defaultActiveIndex={1}
@@ -8231,8 +8298,8 @@ mutation: () => ({
                                                 {" "}
                                                 here.{" "}
                                               </a>
-                                              {stateMapFips &&
-                                                stateMapFips === "_nation" && (
+                                              {burdenStateFip &&
+                                                burdenStateFip === "_nation" && (
                                                   <Grid.Row
                                                     style={{
                                                       paddingTop: 0,
@@ -8287,23 +8354,23 @@ mutation: () => ({
                                                     </Header.Content>
                                                   </Grid.Row>
                                                 )}
-                                              {stateMapFips &&
-                                                stateMapFips !== "_nation" && (
+                                              {burdenStateFip &&
+                                                burdenStateFip !== "_nation" && (
                                                   <Grid.Row
                                                     style={{
                                                       top:
-                                                        stateMapFips === "38"
+                                                        burdenStateFip === "38"
                                                           ? -30
-                                                          : stateMapFips &&
+                                                          : burdenStateFip &&
                                                             !raceData[
-                                                              stateMapFips
+                                                              burdenStateFip
                                                             ]["White Alone"]
                                                           ? -40
                                                           : -30,
                                                       paddingLeft: 0,
                                                     }}
                                                   >
-                                                    {stateMapFips === "38" && (
+                                                    {burdenStateFip === "38" && (
                                                       <Header.Content
                                                         style={{
                                                           fontWeight: 300,
@@ -8313,7 +8380,7 @@ mutation: () => ({
                                                           width: 450,
                                                         }}
                                                       >
-                                                        {stateName} is not
+                                                        {burdenStateName} is not
                                                         reporting deaths by race
                                                         or ethnicity.
                                                         <br />
@@ -8339,23 +8406,23 @@ mutation: () => ({
                                                       </Header.Content>
                                                     )}
 
-                                                    {stateMapFips !== "38" &&
-                                                      !raceData[stateMapFips][
+                                                    {burdenStateFip !== "38" &&
+                                                      !raceData[burdenStateFip][
                                                         "Non-Hispanic African American"
                                                       ] &&
-                                                      !!raceData[stateMapFips][
+                                                      !!raceData[burdenStateFip][
                                                         "White Alone"
                                                       ] &&
-                                                      !raceData[stateMapFips][
+                                                      !raceData[burdenStateFip][
                                                         "Non Hispanic"
                                                       ] &&
-                                                      !raceData[stateMapFips][
+                                                      !raceData[burdenStateFip][
                                                         "Non-Hispanic American Natives"
                                                       ] &&
-                                                      !raceData[stateMapFips][
+                                                      !raceData[burdenStateFip][
                                                         "Non-Hispanic Asian"
                                                       ] &&
-                                                      !raceData[stateMapFips][
+                                                      !raceData[burdenStateFip][
                                                         "Non-Hispanic White"
                                                       ] && (
                                                         <Header.Content
@@ -8367,7 +8434,7 @@ mutation: () => ({
                                                             width: 450,
                                                           }}
                                                         >
-                                                          {stateName} reports
+                                                          {burdenStateName} reports
                                                           deaths by race. The
                                                           chart shows race
                                                           groups that
@@ -8377,12 +8444,12 @@ mutation: () => ({
                                                           or more deaths. Race
                                                           data are known for{" "}
                                                           {raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Race Missing"][0][
                                                             "percentRaceDeaths"
                                                           ] + "%"}{" "}
                                                           of deaths in{" "}
-                                                          {stateName}.
+                                                          {burdenStateName}.
                                                           <br />
                                                           <br />{" "}
                                                           <i>
@@ -8410,30 +8477,30 @@ mutation: () => ({
                                                         </Header.Content>
                                                       )}
 
-                                                    {stateMapFips !== "38" &&
-                                                      !!raceData[stateMapFips][
+                                                    {burdenStateFip !== "38" &&
+                                                      !!raceData[burdenStateFip][
                                                         "White Alone"
                                                       ] &&
-                                                      !!raceData[stateMapFips][
+                                                      !!raceData[burdenStateFip][
                                                         "White Alone"
                                                       ] &&
                                                       !(
-                                                        !raceData[stateMapFips][
+                                                        !raceData[burdenStateFip][
                                                           "Hispanic"
                                                         ] &&
-                                                        !raceData[stateMapFips][
+                                                        !raceData[burdenStateFip][
                                                           "Non Hispanic"
                                                         ] &&
-                                                        !raceData[stateMapFips][
+                                                        !raceData[burdenStateFip][
                                                           "Non-Hispanic African American"
                                                         ] &&
-                                                        !raceData[stateMapFips][
+                                                        !raceData[burdenStateFip][
                                                           "Non-Hispanic American Natives"
                                                         ] &&
-                                                        !raceData[stateMapFips][
+                                                        !raceData[burdenStateFip][
                                                           "Non-Hispanic Asian"
                                                         ] &&
-                                                        !raceData[stateMapFips][
+                                                        !raceData[burdenStateFip][
                                                           "Non-Hispanic White"
                                                         ]
                                                       ) && (
@@ -8446,7 +8513,7 @@ mutation: () => ({
                                                             width: 450,
                                                           }}
                                                         >
-                                                          {stateName} reports
+                                                          {burdenStateName} reports
                                                           deaths by race and
                                                           ethnicity separately.
                                                           The chart shows race
@@ -8457,7 +8524,7 @@ mutation: () => ({
                                                           or more deaths. Race
                                                           data are known for{" "}
                                                           {raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ]["Race Missing"][0][
                                                             "percentRaceDeaths"
                                                           ] + "%"}{" "}
@@ -8465,14 +8532,14 @@ mutation: () => ({
                                                           ethnicity data are
                                                           known for{" "}
                                                           {raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Ethnicity Missing"
                                                           ][0][
                                                             "percentEthnicityDeaths"
                                                           ] + "%"}{" "}
                                                           of deaths in{" "}
-                                                          {stateName}.
+                                                          {burdenStateName}.
                                                           <br />
                                                           <br />{" "}
                                                           <i>
@@ -8500,12 +8567,12 @@ mutation: () => ({
                                                         </Header.Content>
                                                       )}
 
-                                                    {stateMapFips !== "38" &&
-                                                      (!!raceData[stateMapFips][
+                                                    {burdenStateFip !== "38" &&
+                                                      (!!raceData[burdenStateFip][
                                                         "Non-Hispanic African American"
                                                       ] ||
                                                         !!raceData[
-                                                          stateMapFips
+                                                          burdenStateFip
                                                         ][
                                                           "Non-Hispanic White"
                                                         ]) && (
@@ -8518,7 +8585,7 @@ mutation: () => ({
                                                             width: 450,
                                                           }}
                                                         >
-                                                          {stateName} reports
+                                                          {burdenStateName} reports
                                                           deaths by combined
                                                           race and ethnicity
                                                           groups. The chart
@@ -8531,14 +8598,14 @@ mutation: () => ({
                                                           and ethnicity data are
                                                           known for{" "}
                                                           {raceData[
-                                                            stateMapFips
+                                                            burdenStateFip
                                                           ][
                                                             "Race & Ethnicity Missing"
                                                           ][0][
                                                             "percentRaceEthnicityDeaths"
                                                           ] + "%"}{" "}
                                                           of deaths in{" "}
-                                                          {stateName}.
+                                                          {burdenStateName}.
                                                           <br />
                                                           <br />{" "}
                                                           <i>
@@ -8566,10 +8633,10 @@ mutation: () => ({
                                                         </Header.Content>
                                                       )}
 
-                                                    {!raceData[stateMapFips][
+                                                    {!raceData[burdenStateFip][
                                                       "Non-Hispanic African American"
                                                     ] &&
-                                                      stateMapFips !== "02" && (
+                                                      burdenStateFip !== "02" && (
                                                         <div
                                                           style={{
                                                             marginTop: 10,
@@ -8637,19 +8704,19 @@ mutation: () => ({
                           />
                           <text x={102} y={20} style={{ fontSize: "22px" }}>
                             {" "}
-                            {stateMapFips === "_nation" || stateMapFips === "72"
+                            {burdenStateFip === "_nation" || burdenStateFip === "72"
                               ? "Select State"
-                              : stateName}{" "}
+                              : burdenStateName}{" "}
                           </text>
                         </svg>
                       </div>
                       <div style={{ width: 500, height: 180 }}>
-                        {stateMapFips && (
+                        {burdenStateFip && (
                           <CaseChart
                             data={dataTS}
-                            dataState={dataTS[stateMapFips]}
+                            dataState={dataTS[burdenStateFip]}
                             lineColor={[colorPalette[1]]}
-                            stateFips={stateMapFips}
+                            stateFips={burdenStateFip}
                             ticks={caseTicks}
                             tickFormatter={caseTickFmt}
                             labelFormatter={labelTickFmt}
@@ -8701,19 +8768,19 @@ mutation: () => ({
                           />
                           <text x={102} y={20} style={{ fontSize: "22px" }}>
                             {" "}
-                            {stateMapFips === "_nation" || stateMapFips === "72"
+                            {burdenStateFip === "_nation" || burdenStateFip === "72"
                               ? "Select State"
-                              : stateName}{" "}
+                              : burdenStateName }{" "}
                           </text>
                         </svg>
                       </div>
                       <div style={{ width: 500, height: 180 }}>
-                        {stateMapFips && (
+                        {burdenStateFip && (
                           <CaseChart
                             data={dataTS}
-                            dataState={dataTS[stateMapFips]}
+                            dataState={dataTS[burdenStateFip]}
                             lineColor={[colorPalette[1]]}
-                            stateFips={stateMapFips}
+                            stateFips={burdenStateFip}
                             ticks={caseTicks}
                             tickFormatter={caseTickFmt}
                             labelFormatter={labelTickFmt}

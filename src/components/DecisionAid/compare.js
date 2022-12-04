@@ -35,6 +35,7 @@ import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/Hea
 import { useNavigate } from "react-router-dom";
 import DraggableBar from "./beliefElicidation.js";
 import { useCookie } from "react-use";
+import {ProgressBar} from 'react-bootstrap';
 const colorPalette = [
   "#007dba",
   "#808080",
@@ -45,8 +46,19 @@ const colorPalette = [
   "#8f4814",
 ];
 function Compare(props) {
+  
   const navigate = useNavigate();
   const [vaccine, setVaccine] = useState("pfizer");
+  const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
+  const [hospilizationVac,sethospilizationVac]=useState(0);
+  const [hospilizationNoVac,sethospilizationNoVac]=useState(0);
+  const cookie = JSON.parse(cookies);
+  useEffect(() => {
+    console.log(cookie.step3);
+    cookie.step3?sethospilizationVac(cookie.step3.hospilizationVac):sethospilizationVac(10);
+    cookie.step3?sethospilizationNoVac(cookie.step3.hospilizationNoVac):sethospilizationNoVac(10);
+    console.log(hospilizationVac);
+  }, [cookies]);
   const StyledProgressBar = styled(Progress)`
     &&& .bar {
       ${
@@ -96,34 +108,52 @@ function Compare(props) {
                 <Header as="h4">
                   <Header.Content>Without Vaccination</Header.Content>
                 </Header>
-                <Header as="h4" style={{ marginTop: "6%" }}>
+                <Header as="h4" style={{ marginTop: "18%" }}>
                   <Header.Content>With Vaccination</Header.Content>
                 </Header>
               </GridColumn>
 
               <GridColumn width={5}>
+             
                 <StyledProgressBar
-                  style={{ marginBottom: 20 }}
+                  style={{ marginBottom: 0 }}
                   reverse
                   percent={12.2}
                   color="red"
                 ></StyledProgressBar>
+                <ProgressBar
+                style={{ marginBottom: 20,marginTop:5 }}
+                striped
+                variant="warning" now={hospilizationNoVac}
+                ></ProgressBar>
                 <StyledProgressBar
                   percent={6.8}
+                  style={{ marginBottom: 0 }}
                   color="blue"
                 ></StyledProgressBar>
+                <ProgressBar
+                  style={{ marginBottom: 20,marginTop:5 }}
+                striped
+                now={hospilizationVac}
+                variant="warning" 
+                ></ProgressBar>
+  
               </GridColumn>
               <GridColumn width={2}>
-                <Header as="h4">
-                  <Header.Content style={{ color: "#e02c2c" }}>
+             <p style={{marginBottom:0,color: "#e02c2c" }}>122 in 1000</p>
+             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginBottom:0,color: "#0E6EB8" }}>68 in 1000</p>
+             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+                {/* <Header as="h5">
+                  <Header.Content style={{ margin:0,color: "#e02c2c" }}>
                     122 in 1000
                   </Header.Content>
                 </Header>
-                <Header as="h4" style={{ marginTop: "5%" }}>
+                <Header as="h5" style={{ marginTop: "5%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
                     68 in 1000
                   </Header.Content>
-                </Header>
+                </Header> */}
               </GridColumn>
             </Grid.Row>
             <Grid.Row>
@@ -858,7 +888,8 @@ function Compare(props) {
     <div>
       <div class="ui two column centered grid">
         <div style={{ maxWidth: "100%" }}>
-          <DraggableBar></DraggableBar>
+          <DraggableBar 
+            ></DraggableBar>
           <Header
             as="h1"
             style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}

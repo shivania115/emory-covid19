@@ -45,7 +45,7 @@ function PersonalRisk(){
             <Grid>
             <Grid.Row>
             <Grid.Column width={3}></Grid.Column>
-            <Grid.Column width={3}> <FontAwesomeIcon icon={faUserCircle} style={{fontSize:"9rem",marginTop:"10%",color:  "#024174", 
+            <Grid.Column width={3}> <FontAwesomeIcon icon={faUserCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
             }}/></Grid.Column>
              <Grid.Column width={10}>
              <Header
@@ -62,7 +62,7 @@ function PersonalRisk(){
                 <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"9rem",marginTop:"10%",color:  "#024174", 
+                    <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
@@ -166,7 +166,7 @@ function PersonalRisk(){
                 <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"9rem",marginTop:"10%",color:  "#024174", 
+                    <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>

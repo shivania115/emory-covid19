@@ -49,7 +49,7 @@ const style = {
   p: 4,
 };
 
-function DraggableBar() {
+function DraggableBar(props) {
   const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const [symptoms, setSymptoms] = useState(50);
@@ -75,7 +75,7 @@ function DraggableBar() {
       hospilizationNoVac: hospilizationNoVac,
       hospilizationVac: hospilizationVac,
     };
-    // setBelief(belief);
+
     parseCookie(belief);
     setOpen(false);
   }
