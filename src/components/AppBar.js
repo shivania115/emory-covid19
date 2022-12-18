@@ -18,12 +18,12 @@ export default function AppBar(props) {
           fontSize: "14pt",
         }}
       >
-        <Container style={{ width: "70%" }}>
+        <Container style={{ width: "80%" }}>
           <Menu.Item
             as="a"
             header
             onClick={() => history("/")}
-            style={{ paddingLeft: 15, paddingRight: 15 }}
+            style={{ paddingLeft: 10, paddingRight: 15 }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
               COVID-19 Health Equity

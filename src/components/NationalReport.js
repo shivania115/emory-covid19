@@ -29,6 +29,7 @@ import {
   Transition,
   List,
 } from "semantic-ui-react";
+import {ProgressBar} from 'react-bootstrap';
 import AppBar from "./AppBar";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { geoCentroid } from "d3-geo";
@@ -4567,14 +4568,14 @@ export default function NationalReport(props) {
   };
 
   if (data && dataTS && varMap) {
-    console.log(barData);
+    
     return (
       <HEProvider>
         <div>
           <AppBar menu="nationalReport" />
           <Container
             id="title"
-            style={{ marginTop: "8em", minWidth: "1260px" }}
+            style={{ marginTop: "8em", minWidth: "1260px"}}
           >
             <div>
               <br />
@@ -4917,7 +4918,7 @@ export default function NationalReport(props) {
                                 fontSize: "22px",
                                 fontFamily: "lato",
                                 color: "#004071",
-                                width: 900,
+                                width: 975,
                               }}
                             >
                               Percent of the U.S. population partially
@@ -4940,15 +4941,29 @@ export default function NationalReport(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 900 }}
-                              percent={vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ].toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+             
+                               <ProgressBar
+                style={{ height:30,width: 970 ,marginBottom:30}}
+                label={`${
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }%`}
+                variant="success" 
+                now={
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }
+                ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -4957,7 +4972,7 @@ export default function NationalReport(props) {
                                 fontSize: "22px",
                                 fontFamily: "lato",
                                 color: "#004071",
-                                width: 900,
+                                width: 975,
                               }}
                             >
                               Percent of the U.S. population fully vaccinated
@@ -4979,15 +4994,16 @@ export default function NationalReport(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 900 }}
-                              percent={vaccineData["_nation"][
+                           <ProgressBar
+                style={{ height:30,width: 970 ,marginBottom:30}}
+                label={`${vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}%`}
+                variant="success" 
+                now={vaccineData["_nation"][
                                 "Series_Complete_Pop_Pct"
                               ].toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -4996,7 +5012,7 @@ export default function NationalReport(props) {
                                 fontSize: "22px",
                                 fontFamily: "lato",
                                 color: "#004071",
-                                width: 900,
+                                width: 975,
                               }}
                             >
                               Percent of the U.S. population that received at
@@ -5019,9 +5035,18 @@ export default function NationalReport(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 900 }}
-                              percent={(
+                           <ProgressBar
+                style={{ height:30,width: 970,marginBottom:30 }}
+                label={`${(
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ]
+                              ).toFixed(1)}%`}
+                variant="success" 
+                now={(
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ] +
@@ -5029,10 +5054,8 @@ export default function NationalReport(props) {
                                   "Series_Complete_Pop_Pct"
                                 ]
                               ).toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
+                          
                           </Header.Content>
                         </Header>
                       </div>
