@@ -1221,7 +1221,7 @@ const SideRaceBarChart = (props) => {
     if (active && payload && payload.length) {
       return (
         <div
-          className="tooltip"
+     
           style={{
             background: "white",
             border: "2px",

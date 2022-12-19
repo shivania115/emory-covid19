@@ -3008,7 +3008,6 @@ const RaceBarChart = (props) => {
 
       return (
         <div
-          className="tooltip"
           style={{
             background: "white",
             border: "2px",
@@ -3456,7 +3455,7 @@ const SideRaceBarChart = (props) => {
     if (active && payload && payload.length) {
       return (
         <div
-          className="tooltip"
+         
           style={{
             background: "white",
             border: "2px",

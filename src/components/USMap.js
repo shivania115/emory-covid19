@@ -521,61 +521,12 @@ const SideRaceBarChart = (props) => {
       },
     ];
 
-  // // if(props.fips !== '_nation' && props.vaccRaceState[props.fips]["stateReports"] !== "Non-Hispanic Races only") {
-  //   const data_wo_his = [
-  //     // { name:'Multiple/Other',
-  //     // popvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['percentPop']
-  //     // : (props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999 ? 0 : props.vaccRaceState[props.fips]['Other race'][0]['percentPop']=== -9999),
-  //     // vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Multiple/Other'][0]['seriesCompletePopPctKnown']
-  //     // :(props.vaccRaceState[props.fips]['Other race'][0]['percentVaccinated'] === -9999 ? 0
-  //     //   : props.vaccRaceState[props.fips]['Other race'][0]['percentVaccinated'])},
-  //     // {name:'Native Hawaiian/Pacific Islanders',
-  //     // popvalue: props.fips === '_nation' ? props.demogData['race'][0]['NHPI'][0]['percentPop']
-  //     // : (props.vaccRaceState[props.fips]['NHPI'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['NHPI'][0]['percentPop']),
-  //     // vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['NHPI'][0]['seriesCompletePopPctKnown']
-  //     // :(props.vaccRaceState[props.fips]['NHPI'][0]['percentVaccinated'] === -9999 ? 0
-  //     //     : props.vaccRaceState[props.fips]['NHPI'][0]['percentVaccinated'])},
-  //     // {name:'American Natives',
-  //     // popvalue: props.fips === '_nation' ? props.demogData['race'][0]['American Native'][0]['percentPop']
-  //     // : (props.vaccRaceState[props.fips]['American Native'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['American Native'][0]['percentPop']),
-  //     // vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['American Native'][0]['seriesCompletePopPctKnown']
-  //     // :(props.vaccRaceState[props.fips]['American Native'][0]['percentVaccinated'] === -9999 ? 0
-  //     //   : props.vaccRaceState[props.fips]['American Native'][0]['percentVaccinated'])},
-  //     {name: 'Asian',
-  //     popvalue: props.fips === '_nation' ? props.demogData['race'][0]['Asian'][0]['percentPop']
-  //     : (props.vaccRaceState[props.fips]['Asian'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['Asian'][0]['percentPop']),
-  //     vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Asian'][0]['seriesCompletePopPctKnown']
-  //     :(props.vaccRaceState[props.fips]['Asian'][0]['percentVaccinated'] === -9999 ? 0
-  //         : props.vaccRaceState[props.fips]['Asian'][0]['percentVaccinated'])},
-  //     {name: 'African Americans',
-  //     popvalue : props.fips === '_nation' ? props.demogData['race'][0]['African American'][0]['percentPop']
-  //     : (props.vaccRaceState[props.fips]['African American'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['African American'][0]['percentPop']),
-  //     vaxvalue : props.fips === '_nation' ? props.demogData['vaccineRace'][0]['African American'][0]['seriesCompletePopPctKnown']
-  //     :(props.vaccRaceState[props.fips]['African American'][0]['percentVaccinated'] === -9999 ? 0
-  //         : props.vaccRaceState[props.fips]['African American'][0]['percentVaccinated'])},
-  //     {name: 'White',
-  //     popvalue: props.fips === '_nation' ? props.demogData['race'][0]['White'][0]['percentPop']
-  //     : (props.vaccRaceState[props.fips]['White'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['White'][0]['percentPop']),
-  //     vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['White'][0]['seriesCompletePopPctKnown']
-  //     :(props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'] === -9999 ? 0
-  //       : props.vaccRaceState[props.fips]['White'][0]['percentVaccinated'])}
-  //   ]
-  // }
-
-  // const eth_data = [
-  //   {name: 'Hispanic',
-  //   popvalue: props.fips === '_nation' ? props.demogData['race'][0]['Hispanic'][0]['percentPop']
-  //   : (props.vaccRaceState[props.fips]['Hispanic'][0]['percentPop']===-9999 ? 0 : props.vaccRaceState[props.fips]['Hispanic'][0]['percentPop']),
-  //   vaxvalue: props.fips === '_nation' ? props.demogData['vaccineRace'][0]['Hispanic'][0]['seriesCompletePopPctKnown']
-  //   :(props.vaccRaceState[props.fips]['Hispanic'][0]['percentVaccinated'] === -9999 ? 0
-  //       : props.vaccRaceState[props.fips]['Hispanic'][0]['percentVaccinated'])}
-  // ]
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div
-          className="tooltip"
+      
           style={{
             background: "white",
             border: "2px",
@@ -585,31 +536,41 @@ const SideRaceBarChart = (props) => {
             padding: "0.8rem",
           }}
         >
-          <p style={{ marginBottom: 4 }}>
+          <p 
+          style={{
+              color: sideBySideColor[data.indexOf(payload[0].payload)],
+              marginBottom: 4,
+            }}
+         >
             {" "}
             <b> {payload[0].payload.name} </b>{" "}
           </p>
           {/* color: sideBySideColor[data.indexOf(payload[0].payload)] */}
           <p className="label" style={{ marginBottom: 0 }}>
             % Covid Death:{" "}
-            {payload[0].payload.vaxvalue === 0
+            {/* {payload[0].payload.vaxvalue === 0
               ? "NA"
               : props.fips === "_nation"
               ? payload[0].payload.covideathDistribution.toFixed(1)
-              : payload[0].payload.covideathDistribution}
+              : payload[0].payload.covideathDistribution} */}
+              {props.fips === "_nation"
+              ? payload[0].payload.popDist.toFixed(1)
+              : payload[0].payload.popDist}
           </p>
           <p className="label" style={{ marginBottom: 3 }}>
             % Population:{" "}
-            {payload[0].payload.popvalue === 0
+            {/* {payload[0].payload.popvalue === 0
               ? "NA"
               : props.fips === "_nation"
+              ? payload[0].payload.popDist.toFixed(1)
+              : payload[0].payload.popDist} */}
+              {props.fips === "_nation"
               ? payload[0].payload.popDist.toFixed(1)
               : payload[0].payload.popDist}
           </p>
         </div>
       );
     }
-
     return null;
   };
 
