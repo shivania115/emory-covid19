@@ -701,6 +701,13 @@ function ChartSection(props) {
         data[671].t,
         data[699].t,
         data[730].t,
+        data[760].t,
+        data[791].t,
+        data[821].t,
+        data[852].t,
+        data[883].t,
+        data[913].t,
+        data[944].t,
         data[data.length - 1].t,
       ]);
     } else if (chartNo1 === 0 || chartNo2 === 2) {
@@ -730,6 +737,13 @@ function ChartSection(props) {
         data[671].t,
         data[699].t,
         data[730].t,
+        data[760].t,
+        data[791].t,
+        data[821].t,
+        data[852].t,
+        data[883].t,
+        data[913].t,
+        data[944].t,
         data[data.length - 1].t,
       ]);
       setHeaderTime("");
@@ -4548,6 +4562,8 @@ export default function NationalReport(props) {
         dataTS["_nation"][183].t,
         dataTS["_nation"][214].t,
         dataTS["_nation"][244].t,
+        dataTS['_nation'][274].t,
+        dataTS['_nation'][305].t,
         // heeeredataTS["_nation"]
         dataTS["_nation"][dataTS["_nation"].length - 1].t,
       ]);

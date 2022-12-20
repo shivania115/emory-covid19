@@ -6,7 +6,7 @@ import React, {
     PureComponent,
   } from "react";
   import { VictoryChart,VictoryArea,VictoryTheme,VictoryVoronoiContainer,VictoryLabel, VictoryLine } from 'victory';
-  import {Image, Grid,Divider} from 'semantic-ui-react';
+  import {Image, Grid,Divider,Header,Container} from 'semantic-ui-react';
   import AppBar from "./AppBar";
   function LatestOnThisDashboard() {
     return (
@@ -286,6 +286,29 @@ import React, {
           }}
         />
       </VictoryChart> */}
+      <Container
+     style={{width:'85%'}}>
+      <Header
+            as="h1"
+            style={{textAlign:'center',paddingTop: 80, fontWeight: 400, fontSize: "24pt" }}
+          >
+            <Header.Content>
+              Excess Death Across The US.
+              <Header.Subheader
+                style={{
+                  paddingTop: "1rem",
+                  paddingLeft: "0rem",
+                  paddingBottom: "0rem",
+                  lineHeight: "20pt",
+                  fontWeight: 400,
+                  fontSize: "12pt",
+                  color: "black",
+                }}
+              >
+                Description of Excess Death.
+              </Header.Subheader>
+            </Header.Content>
+          </Header>
       <Grid style={{padding:'3%'}}>
         <Grid.Row>
         <img src="/USplot1.png"></img>
@@ -294,7 +317,7 @@ import React, {
         <img src="/USplot2.png"></img>
         </Grid.Row>
       </Grid>
-      
+      </Container>
       </div>
          
 

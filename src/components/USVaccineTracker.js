@@ -1955,18 +1955,21 @@ const USVaccineTracker = (props) => {
         dataTS["_nation"][122].t,
         dataTS["_nation"][153].t,
         dataTS["_nation"][183].t,
-        dataTS["_nation"][214].t,
+  
         dataTS["_nation"][244].t,
         dataTS["_nation"][275].t,
         dataTS["_nation"][305].t, //5
-        dataTS["_nation"][336].t, //6
+        dataTS["_nation"][334].t, //6
         dataTS["_nation"][366].t, //7
-        dataTS["_nation"][397].t, //8
-        dataTS["_nation"][428].t, //9
-        dataTS["_nation"][458].t, //10
+        dataTS["_nation"][395].t, //8
+        dataTS["_nation"][430].t, //9
+        dataTS["_nation"][456].t, //10
         dataTS["_nation"][489].t, //11
-        // dataTS["_nation"][519].t,//12
-        dataTS["_nation"][549].t, //1
+        dataTS["_nation"][548].t, //1
+        dataTS["_nation"][640].t,
+        dataTS["_nation"][730].t,
+        dataTS["_nation"][821].t,
+        dataTS['_nation'][913].t,
         // dataTS["_nation"][580].t,//2
         dataTS["_nation"][dataTS["_nation"].length - 1].t,
       ]);
@@ -4347,7 +4350,7 @@ const USVaccineTracker = (props) => {
                                 activity
                                   ? `${trendHoverName}\n` +
                                     `Date: ${new Date(
-                                      stateVaccAveg[stateTrendFips][0].t * 1000
+                                      stateVaccAveg[stateTrendFips][stateVaccAveg[stateTrendFips].length - 1].t * 1000
                                     ).toLocaleDateString()}\n` +
                                     `Percent Fully Vaccinated: ${stateVaccAveg[
                                       stateTrendFips
@@ -4472,6 +4475,8 @@ const USVaccineTracker = (props) => {
                               stateVaccAveg["_nation"][30].distT,
                               stateVaccAveg["_nation"][35].distT,
                               stateVaccAveg["_nation"][41].distT,
+                              stateVaccAveg["_nation"][46].distT,
+                              stateVaccAveg["_nation"][48].distT,
                               stateVaccAveg["_nation"][
                                 stateVaccAveg["_nation"].length - 1
                               ].distT,
@@ -5033,6 +5038,9 @@ const USVaccineTracker = (props) => {
                                     ageSeries["_nation"][410].t,
                                     // ageSeries["_nation"][441].t,
                                     ageSeries["_nation"][471].t,
+                                    ageSeries["_nation"][522].t,
+                                    ageSeries["_nation"][533].t,
+                                    
                                     ageSeries["_nation"][
                                       ageSeries["_nation"].length - 1
                                     ].t,
