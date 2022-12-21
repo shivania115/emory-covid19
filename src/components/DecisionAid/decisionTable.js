@@ -164,7 +164,7 @@ function DecitionTable() {
     "Business Professional",
     "Self-Employed",
     "Medical/Healthcare Professional",
-    "Gvoernment/Civil Services",
+    "Government/Civil Services",
     "Clerical/Secretary Support/Customer Service/Retail",
     "Technology/Engineering",
     "Transportation",

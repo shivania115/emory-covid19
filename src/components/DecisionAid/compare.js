@@ -53,12 +53,12 @@ function Compare(props) {
   const [hospilizationVac,sethospilizationVac]=useState(0);
   const [hospilizationNoVac,sethospilizationNoVac]=useState(0);
   const cookie = JSON.parse(cookies);
-  useEffect(() => {
-    console.log(cookie.step3);
-    cookie.step3?sethospilizationVac(cookie.step3.hospilizationVac):sethospilizationVac(10);
-    cookie.step3?sethospilizationNoVac(cookie.step3.hospilizationNoVac):sethospilizationNoVac(10);
-    console.log(hospilizationVac);
-  }, [cookies]);
+  // useEffect(() => {
+  //   console.log(cookie.step3);
+  //   cookie.step3?sethospilizationVac(cookie.step3.hospilizationVac):sethospilizationVac(10);
+  //   cookie.step3?sethospilizationNoVac(cookie.step3.hospilizationNoVac):sethospilizationNoVac(10);
+  //   console.log(hospilizationVac);
+  // }, [cookies]);
   const StyledProgressBar = styled(Progress)`
     &&& .bar {
       ${
@@ -889,6 +889,8 @@ function Compare(props) {
       <div class="ui two column centered grid">
         <div style={{ maxWidth: "100%" }}>
           <DraggableBar 
+          sethospilizationVac={sethospilizationVac}
+          sethospilizationNoVac={sethospilizationNoVac}
             ></DraggableBar>
           <Header
             as="h1"

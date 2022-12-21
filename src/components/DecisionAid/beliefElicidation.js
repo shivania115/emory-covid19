@@ -75,7 +75,8 @@ function DraggableBar(props) {
       hospilizationNoVac: hospilizationNoVac,
       hospilizationVac: hospilizationVac,
     };
-
+    props.sethospilizationNoVac(hospilizationNoVac);
+    props.sethospilizationVac(hospilizationVac);
     parseCookie(belief);
     setOpen(false);
   }
@@ -121,6 +122,20 @@ function DraggableBar(props) {
         </Header>
         {/* <StyledProgressBar progress='percent' percent={symptoms}></StyledProgressBar> */}
         <Grid style={{ paddingLeft: "2%", fontWeight: 600 }}>
+        <Grid.Row>
+            <Grid.Column width={6}>
+              What do you think is the percent of symptoms after a month for
+              COVID-19?
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <DragScaleBar
+                handleValue={(num) => setSymptomsCOVID(num)}
+                initValue={50}
+                width={500}
+                fillColor="#dc2c2c"
+              ></DragScaleBar>
+            </Grid.Column>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={6}>
               What do you think is the percent of symptoms after a month for
@@ -135,35 +150,7 @@ function DraggableBar(props) {
               ></DragScaleBar>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            <Grid.Column width={6}>
-              What do you think is the percent of symptoms after a month for
-              COVID-19?
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <DragScaleBar
-                handleValue={(num) => setSymptomsCOVID(num)}
-                initValue={50}
-                width={500}
-                fillColor="#dc2c2c"
-              ></DragScaleBar>
-            </Grid.Column>
-          </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={6}>
-              What do you think is the hospilization rate of COVID-19 for people
-              WITH vaccination?
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <DragScaleBar
-                handleValue={(num) => sethospilizationVac(num)}
-                initValue={50}
-                width={500}
-                fillColor="#2285d0"
-              ></DragScaleBar>
-            </Grid.Column>
-          </Grid.Row>
+         
           <Grid.Row>
             <Grid.Column width={6}>
               What do you think is the hospilization rate of COVID-19 for people
@@ -178,6 +165,21 @@ function DraggableBar(props) {
               ></DragScaleBar>
             </Grid.Column>
           </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={6}>
+              What do you think is the hospilization rate of COVID-19 for people
+              WITH vaccination?
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <DragScaleBar
+                handleValue={(num) => sethospilizationVac(num)}
+                initValue={50}
+                width={500}
+                fillColor="#2285d0"
+              ></DragScaleBar>
+            </Grid.Column>
+          </Grid.Row>
+          
         </Grid>
 
         <Typography
