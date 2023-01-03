@@ -554,8 +554,8 @@ const SideRaceBarChart = (props) => {
               ? payload[0].payload.covideathDistribution.toFixed(1)
               : payload[0].payload.covideathDistribution} */}
               {props.fips === "_nation"
-              ? payload[0].payload.popDist.toFixed(1)
-              : payload[0].payload.popDist}
+              ? payload[0].payload.covideathDistribution.toFixed(1)
+              : payload[0].payload.covideathDistribution}
           </p>
           <p className="label" style={{ marginBottom: 3 }}>
             % Population:{" "}
