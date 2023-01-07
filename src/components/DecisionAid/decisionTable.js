@@ -53,8 +53,32 @@ import "toastify-js/src/toastify.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
+import i18n from "i18next";
+import { initReactI18next,useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./span/translation";
+import { TRANSLATIONS_EN } from "./en/translation";
+ 
+i18n
+ .use(LanguageDetector)
+ .use(initReactI18next)
+ .init({
+   resources: {
+     en: {
+       translation: TRANSLATIONS_EN
+     },
+     span: {
+       translation: TRANSLATIONS_SPAN
+     }
+   }
+ });
+
+ 
 function DecitionTable() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   //info contains slider information
   const {
@@ -183,7 +207,7 @@ function DecitionTable() {
   const [vaccinated, setVaccinated] = useState();
   const [booster, setBooster] = useState();
   const [show, setShow] = useState(false);
-
+  const [language,setLanguage]=useState('en');
   const [radioSelectedValue, setRadioSelectedValue] = useState([]);
   return (
     <>
@@ -195,17 +219,29 @@ function DecitionTable() {
           paddingBottom: "30px",
         }}
       >
+        <ToggleButtonGroup
+        color='primary'
+        value={language}
+        size="small"
+        exclusive
+        onChange={(e,value)=>{language!=value&&i18n.changeLanguage(value)&&setLanguage(value)}}
+        aria-label="Platform"
+        style={{paddingBottom:0,paddingTop:20}}
+      >
+        <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="en">English</ToggleButton>
+        <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="span">Spanish</ToggleButton>
+      </ToggleButtonGroup>
         <Header
           as="h2"
-          style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+          style={{  fontWeight: 1000, fontSize: "2rem" }}
         >
           <Header.Content>COVID-19 Vaccine Survey</Header.Content>
           <HeaderSubHeader>
             Toggle to tell us about your opinions on each statements.
           </HeaderSubHeader>
         </Header>
-        <div className="checkbox" style={{ paddingTop: "20px" }}>
-          <label>Are you Vaccinated?</label>
+        <div className="checkbox" style={{ paddingTop: "15px" }}>
+          <label>Are you Vaccinated?  {t("welcome")} </label>
           {VaccinateOptions.map((option, index) => {
             return (
               <Checkbox

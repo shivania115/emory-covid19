@@ -4,31 +4,31 @@
       "ccvi": [
         {
           "var": "ccvi",
-          "measure": 53.0925867507886,
+          "measure": 53.3141955835962,
           "quintGroup": "[0,0.2]",
           "label": "Very Low"
         },
         {
           "var": "ccvi",
-          "measure": 56.3250819672131,
+          "measure": 56.5095081967213,
           "quintGroup": "(0.2,0.4]",
           "label": "Low"
         },
         {
           "var": "ccvi",
-          "measure": 53.2944078947368,
+          "measure": 53.4960526315789,
           "quintGroup": "(0.4,0.6]",
           "label": "Moderate"
         },
         {
           "var": "ccvi",
-          "measure": 51.5951298701299,
+          "measure": 51.7899350649351,
           "quintGroup": "(0.6,0.8]",
           "label": "High"
         },
         {
           "var": "ccvi",
-          "measure": 50.0706375838926,
+          "measure": 50.238255033557,
           "quintGroup": "(0.8,1]",
           "label": "Very High"
         }
@@ -36,31 +36,31 @@
       "black": [
         {
           "var": "black",
-          "measure": 50.1975570032573,
+          "measure": 50.3915309446254,
           "quintGroup": "[0,0.494]",
           "label": "Very Low"
         },
         {
           "var": "black",
-          "measure": 53.7800986842105,
+          "measure": 53.9620065789474,
           "quintGroup": "(0.494,1.25]",
           "label": "Low"
         },
         {
           "var": "black",
-          "measure": 53.8808510638298,
+          "measure": 54.0397708674304,
           "quintGroup": "(1.25,3.72]",
           "label": "Moderate"
         },
         {
           "var": "black",
-          "measure": 55.120487804878,
+          "measure": 55.3356097560976,
           "quintGroup": "(3.72,13.6]",
           "label": "High"
         },
         {
           "var": "black",
-          "measure": 51.4720779220779,
+          "measure": 51.6935064935065,
           "quintGroup": "(13.6,87.4]",
           "label": "Very High"
         }
@@ -68,31 +68,31 @@
       "poverty": [
         {
           "var": "poverty",
-          "measure": 57.4968801313629,
+          "measure": 57.7270935960591,
           "quintGroup": "[2.3,10.2]",
           "label": "Very Low"
         },
         {
           "var": "poverty",
-          "measure": 54.8236928104575,
+          "measure": 55.0294117647059,
           "quintGroup": "(10.2,13.3]",
           "label": "Low"
         },
         {
           "var": "poverty",
-          "measure": 51.8848534201954,
+          "measure": 52.042345276873,
           "quintGroup": "(13.3,16.2]",
           "label": "Moderate"
         },
         {
           "var": "poverty",
-          "measure": 50.3627450980392,
+          "measure": 50.5617647058824,
           "quintGroup": "(16.2,20.1]",
           "label": "High"
         },
         {
           "var": "poverty",
-          "measure": 49.8657467532468,
+          "measure": 50.0448051948052,
           "quintGroup": "(20.1,55.1]",
           "label": "Very High"
         }
@@ -100,37 +100,37 @@
       "urbanrural": [
         {
           "var": "urbanrural",
-          "measure": 71.9838709677419,
+          "measure": 72.4,
           "quintGroup": "1",
           "label": "Inner city"
         },
         {
           "var": "urbanrural",
-          "measure": 58.9354107648725,
+          "measure": 59.2019830028329,
           "quintGroup": "2",
           "label": "Large suburbs"
         },
         {
           "var": "urbanrural",
-          "measure": 57.4177595628415,
+          "measure": 57.620218579235,
           "quintGroup": "3",
           "label": "Remote rural areas"
         },
         {
           "var": "urbanrural",
-          "measure": 54.5489913544669,
+          "measure": 54.7743515850144,
           "quintGroup": "4",
           "label": "Rural areas near cities"
         },
         {
           "var": "urbanrural",
-          "measure": 52.2530063291139,
+          "measure": 52.4439873417722,
           "quintGroup": "5",
           "label": "Small cities"
         },
         {
           "var": "urbanrural",
-          "measure": 48.935736196319,
+          "measure": 49.0911042944785,
           "quintGroup": "6",
           "label": "Small suburbs"
         }
@@ -138,25 +138,25 @@
       "region": [
         {
           "var": "region",
-          "measure": 49.7498192335503,
+          "measure": 49.9431670281996,
           "quintGroup": "1",
           "label": "South"
         },
         {
           "var": "region",
-          "measure": 57.7294258373206,
+          "measure": 57.8301435406699,
           "quintGroup": "2",
           "label": "West"
         },
         {
           "var": "region",
-          "measure": 66.7957746478873,
+          "measure": 67.1985915492958,
           "quintGroup": "3",
           "label": "Northeast"
         },
         {
           "var": "region",
-          "measure": 52.2707619047619,
+          "measure": 52.4614285714286,
           "quintGroup": "4",
           "label": "Midwest"
         }
@@ -164,31 +164,31 @@
       "resSeg": [
         {
           "var": "resSeg",
-          "measure": 49.2182692307692,
+          "measure": 49.4144230769231,
           "quintGroup": "[0,31]",
           "label": "Very Low"
         },
         {
           "var": "resSeg",
-          "measure": 52.1340796019901,
+          "measure": 52.3171641791045,
           "quintGroup": "(31,42]",
           "label": "Low"
         },
         {
           "var": "resSeg",
-          "measure": 55.8024509803922,
+          "measure": 56.0227941176471,
           "quintGroup": "(42,50]",
           "label": "Moderate"
         },
         {
           "var": "resSeg",
-          "measure": 57.9353535353535,
+          "measure": 58.1787878787879,
           "quintGroup": "(50,60]",
           "label": "High"
         },
         {
           "var": "resSeg",
-          "measure": 57.2630026809651,
+          "measure": 57.4372654155496,
           "quintGroup": "(60,90]",
           "label": "Very High"
         }
@@ -196,31 +196,31 @@
       "any condition": [
         {
           "var": "any condition",
-          "measure": 62.6902960526316,
+          "measure": 62.9398026315789,
           "quintGroup": "[22,41.8]",
           "label": "Very Low"
         },
         {
           "var": "any condition",
-          "measure": 53.6804523424879,
+          "measure": 53.8739903069467,
           "quintGroup": "(41.8,45.7]",
           "label": "Low"
         },
         {
           "var": "any condition",
-          "measure": 51.21472,
+          "measure": 51.40064,
           "quintGroup": "(45.7,48.7]",
           "label": "Moderate"
         },
         {
           "var": "any condition",
-          "measure": 48.0041666666667,
+          "measure": 48.1826666666667,
           "quintGroup": "(48.7,52.1]",
           "label": "High"
         },
         {
           "var": "any condition",
-          "measure": 48.8416666666667,
+          "measure": 49.0062091503268,
           "quintGroup": "(52.1,66.2]",
           "label": "Very High"
         }

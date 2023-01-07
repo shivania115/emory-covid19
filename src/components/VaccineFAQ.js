@@ -169,7 +169,7 @@ export default function VaccinesFAQ(props) {
     <div>
       <AppBar menu="vaccineTracker" />
       <Container
-        style={{ marginTop: "0em", minWidth: "1260px", overflow: "hidden" }}
+        style={{ marginTop: "0em"}}
       >
         <Grid>
           {/* <Grid.Column width={2} style={{zIndex: 10}}>
@@ -179,7 +179,7 @@ export default function VaccinesFAQ(props) {
         </Grid.Column> */}
 
           <Grid.Column width={14}>
-            <div style={{ paddingLeft: "2rem", paddingRight: "8rem" }}>
+            <div style={{ paddingLeft: "2rem"}}>
               <Header
                 as="h1"
                 style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
