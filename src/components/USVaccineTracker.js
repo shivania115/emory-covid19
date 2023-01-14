@@ -2700,7 +2700,7 @@ const USVaccineTracker = (props) => {
                                 color: "#000000",
                               }}
                             >
-                              {vaccineData["_nation"]["Doses_Distributed"]
+                              {vaccineData["_nation"]["Doses_Distributed"]!==-9999
                                 ? numberWithCommas(
                                     vaccineData["_nation"]["Doses_Distributed"]
                                   )
@@ -2735,7 +2735,7 @@ const USVaccineTracker = (props) => {
                                 color: "#000000",
                               }}
                             >
-                              {vaccineData["_nation"]["Doses_Administered"]
+                              {vaccineData["_nation"]["Doses_Administered"]!==-9999
                                 ? numberWithCommas(
                                     vaccineData["_nation"]["Doses_Administered"]
                                   )

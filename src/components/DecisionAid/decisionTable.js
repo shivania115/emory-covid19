@@ -162,40 +162,40 @@ function DecitionTable() {
       value: "2",
     },
   ];
-  const VaccinateOptions = ["Yes", "No"];
-  const BoosterOptions = ["Yes", "No"];
+  const VaccinateOptions = [t("yes"), t("no")];
+  const BoosterOptions = [t("yes"), t("No")];
   const AgeOptions = ["18-29", "30-49", "50-69", "70+"];
-  const GenderOptions = ["Woman", "Man", "Non-binary", "Rather not say"];
+  const GenderOptions = [t("female"), t("male"), t("non_binary"), t("not_say")];
   const EthnicOptions = [
-    "White/Caucasian",
-    "Hispanic/Latino",
-    "Black/African American",
-    "Native American/American Indian",
-    "Asian/Pacific Islander",
-    "Other",
+    t("white"),
+    t("hispanic"),
+    t("black"),
+    t("native"),
+    t("asian"),
+    t("other")
   ];
   const EducationOptions = [
-    "Elementary",
-    "High school degree or equivalent",
-    "Some college",
-    "Bachelor’s degree (e.g. BA, BS)",
-    "Master’s degree (e.g. MA, MS, Med)",
-    "Doctorate (e.g. PhD, EdD)",
-    "Other",
+    t("elementary"),
+    t("highschool"),
+    t("college"),
+    t("bachelor"),
+    t("master"),
+    t("doctor"),
+    t("other")
   ];
   const OccupationOptions = [
-    "Educator",
-    "Business Professional",
-    "Self-Employed",
-    "Medical/Healthcare Professional",
-    "Government/Civil Services",
-    "Clerical/Secretary Support/Customer Service/Retail",
-    "Technology/Engineering",
-    "Transportation",
-    "Full-Time Student",
-    "Homemaker",
-    "Retired",
-    "Other/Not Listed",
+    t("educator"),
+    t("buissiness"),
+    t("self_employed"),
+    t("medical"),
+    t("government"),
+    t("customer"),
+    t("technology"),
+    t("transportation"),
+    t("student"),
+    t("home"),
+    t("retired"),
+    t("other")
   ];
 
   //which index is currently being checked
@@ -241,7 +241,7 @@ function DecitionTable() {
           </HeaderSubHeader>
         </Header>
         <div className="checkbox" style={{ paddingTop: "15px" }}>
-          <label>Are you Vaccinated?  {t("welcome")} </label>
+          <label>{t("step1_ques1")} </label>
           {VaccinateOptions.map((option, index) => {
             return (
               <Checkbox
@@ -260,7 +260,7 @@ function DecitionTable() {
           })}
         </div>
         <div className="checkbox">
-          <label>Have you received any COVID-19 booster vaccines?</label>
+          <label>{t("step1_ques2")}</label>
           {BoosterOptions.map((option, index) => {
             return (
               <Checkbox
@@ -557,7 +557,7 @@ function DecitionTable() {
         <Divider></Divider>
         <Form style={{ paddingBottom: 30 }}>
           <div className="checkbox">
-            <label>Age group:</label>
+            <label>{t('step1_ques3')}</label>
             {AgeOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -576,7 +576,7 @@ function DecitionTable() {
             })}
           </div>
           <div className="checkbox">
-            <label>Which best describes your gender?</label>
+            <label>{t('step1_ques4')}</label>
             {GenderOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -595,7 +595,7 @@ function DecitionTable() {
             })}
           </div>
           <div className="checkbox">
-            <label>Which best describes your ethnic group?</label>
+            <label>{t('step1_ques5')}</label>
             {EthnicOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -614,7 +614,7 @@ function DecitionTable() {
             })}
           </div>
           <div className="checkbox">
-            <label>Which best describes your highest level of education?</label>
+            <label>{t('step1_ques6')}</label>
             {EducationOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -633,7 +633,7 @@ function DecitionTable() {
             })}
           </div>
           <div className="checkbox">
-            <label>Which best describes your occupation?</label>
+            <label>{t('step1_ques7')}</label>
             {OccupationOptions.map((option, index) => {
               return (
                 <Checkbox

@@ -4815,9 +4815,11 @@ export default function NationalReport(props) {
                                 color: "#000000",
                               }}
                             >
-                              {numberWithCommas(
-                                vaccineData["_nation"]["Doses_Distributed"]
-                              )}
+                             {vaccineData["_nation"]["Doses_Distributed"]!==-9999
+                                ? numberWithCommas(
+                                    vaccineData["_nation"]["Doses_Distributed"]
+                                  )
+                                : "Not Reported"}
                             </p>
                             <br />
                           </Header.Content>
@@ -4847,9 +4849,11 @@ export default function NationalReport(props) {
                                 color: "#000000",
                               }}
                             >
-                              {numberWithCommas(
-                                vaccineData["_nation"]["Doses_Administered"]
-                              )}
+                                {vaccineData["_nation"]["Doses_Administered"]!==-9999
+                                ? numberWithCommas(
+                                    vaccineData["_nation"]["Doses_Administered"]
+                                  )
+                                : "Not Reported"}
                             </p>
                             <br />
                           </Header.Content>
