@@ -52,6 +52,8 @@ function Compare(props) {
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   const [hospilizationVac,sethospilizationVac]=useState(0);
   const [hospilizationNoVac,sethospilizationNoVac]=useState(0);
+  const [symptomsCOVID,setSymptomsCOVID]=useState(0);
+  const [symptomsVac, setSymptomsVac]=useState(0);
   const cookie = JSON.parse(cookies);
   // useEffect(() => {
   //   console.log(cookie.step3);
@@ -533,6 +535,7 @@ function Compare(props) {
                                   zero
                                 </Header.Content>
                               </Header>
+                             
                             </GridColumn>
                           </Grid.Row>
                           <Grid.Row
@@ -778,30 +781,47 @@ function Compare(props) {
                 <Header as="h4">
                   <Header.Content>With COVID-19</Header.Content>
                 </Header>
-                <Header as="h4" style={{ marginTop: "4%" }}>
+               
+                <Header as="h4" style={{ marginTop: "18%" }}>
                   <Header.Content>With Pfizer Vaccine</Header.Content>
                 </Header>
-                <Header as="h4" style={{ marginTop: "4%" }}>
+                <Header as="h4" style={{ marginTop: "18%" }}>
                   <Header.Content>With Moderna Vaccine</Header.Content>
                 </Header>
               </GridColumn>
 
               <GridColumn width={5}>
-                <StyledProgressBar
-                  style={{ marginBottom: 20 }}
+              <StyledProgressBar
+                  style={{ marginBottom: 0 }}
                   reverse
                   percent={20}
                   color="red"
                 ></StyledProgressBar>
+                <ProgressBar
+                style={{ marginBottom: 20,marginTop:5 }}
+                striped
+                variant="warning" now={symptomsCOVID}
+                ></ProgressBar>
                 <StyledProgressBar
-                  style={{ marginBottom: 20 }}
                   percent={0}
+                  style={{ marginBottom: 0 }}
                   color="blue"
                 ></StyledProgressBar>
-                <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
+                   <ProgressBar
+                  style={{ marginBottom: 20,marginTop:5 }}
+                striped
+                now={symptomsVac}
+                variant="warning" 
+                ></ProgressBar>
+                 <StyledProgressBar
+                  percent={0}
+                  style={{ marginBottom: 0 }}
+                  color="blue"
+                ></StyledProgressBar>
+             
               </GridColumn>
               <GridColumn width={2}>
-                <Header as="h4">
+                {/* <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     20 in 100
                   </Header.Content>
@@ -815,7 +835,12 @@ function Compare(props) {
                   <Header.Content style={{ color: "#0E6EB8" }}>
                     zero
                   </Header.Content>
-                </Header>
+                </Header> */}
+                <p style={{marginBottom:0,color: "#e02c2c" }}>20 in 100</p>
+             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginBottom:0,color: "#0E6EB8" }}>zero</p>
+             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginTop:0,color: "#0E6EB8" }}>zero</p>
               </GridColumn>
             </Grid.Row>
           </Grid>
@@ -891,6 +916,8 @@ function Compare(props) {
           <DraggableBar 
           sethospilizationVac={sethospilizationVac}
           sethospilizationNoVac={sethospilizationNoVac}
+          setSymptomsCOVID={setSymptomsCOVID}
+          setSymptomsVac={setSymptomsVac}
             ></DraggableBar>
           <Header
             as="h1"

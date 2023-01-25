@@ -77,6 +77,8 @@ function DraggableBar(props) {
     };
     props.sethospilizationNoVac(hospilizationNoVac);
     props.sethospilizationVac(hospilizationVac);
+    props.setSymptomsCOVID(symptomsCOVID);
+    props.setSymptomsVac(symptomsVac);
     parseCookie(belief);
     setOpen(false);
   }
