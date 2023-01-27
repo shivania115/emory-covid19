@@ -46,6 +46,7 @@ const style = {
   height: "80%",
   bgcolor: "background.paper",
   boxShadow: 24,
+  overflowY: "scroll",
   p: 4,
 };
 
@@ -93,7 +94,7 @@ function DraggableBar(props) {
         <Header
           as="h1"
           style={{
-            paddingTop: 30,
+            paddingTop: 20,
             fontWeight: 700,
             fontSize: "24pt",
             paddingBottom: 30,
@@ -186,7 +187,7 @@ function DraggableBar(props) {
 
         <Typography
           id="modal-modal-description"
-          style={{ marginTop: "5%", textAlign: "center", fontWeight: 600 }}
+          style={{ marginTop: "2%", textAlign: "center", fontWeight: 600 }}
           sx={{ mt: 2 }}
         >
           Submit your response and let's see the real data.
