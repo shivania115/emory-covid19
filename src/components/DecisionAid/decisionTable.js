@@ -66,6 +66,7 @@ i18n
  .use(LanguageDetector)
  .use(initReactI18next)
  .init({
+  fallbackLng: 'en',
    resources: {
      en: {
        translation: TRANSLATIONS_EN
@@ -221,10 +222,16 @@ function DecitionTable() {
       >
         <ToggleButtonGroup
         color='primary'
-        value={language}
+        value={i18n.language}
         size="small"
         exclusive
-        onChange={(e,value)=>{language!=value&&i18n.changeLanguage(value)&&setLanguage(value)}}
+        onChange={(e,value)=>{
+        i18n.changeLanguage(value)
+        // console.log(value);
+        // if(language!=value){
+        //   i18n.changeLanguage(value);
+        //   setLanguage(value);}
+        }}
         aria-label="Platform"
         style={{paddingBottom:0,paddingTop:20}}
       >
