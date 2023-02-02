@@ -146,7 +146,7 @@ function DraggableBar(props) {
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
-                handleValue={(num) => setSymptoms(num)}
+                handleValue={(num) => setSymptomsVac(num)}
                 initValue={50}
                 width={500}
                 fillColor="#2285d0"

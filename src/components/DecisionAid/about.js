@@ -33,7 +33,26 @@ import {
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck ,faTimesCircle,faQuestionCircle} from '@fortawesome/free-regular-svg-icons'
-
+import i18n from "i18next";
+import { initReactI18next,useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./span/translation";
+import { TRANSLATIONS_EN } from "./en/translation";
+ 
+i18n
+ .use(LanguageDetector)
+ .use(initReactI18next)
+ .init({
+  fallbackLng: 'en',
+   resources: {
+     en: {
+       translation: TRANSLATIONS_EN
+     },
+     span: {
+       translation: TRANSLATIONS_SPAN
+     }
+   }
+ });
   function About(){
     return(
       <div style={{height:"100%"}}>

@@ -102,7 +102,7 @@ import TabMU from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import StepFlow from "./DecisionAid/StepFlow";
-import Compare from "./DecisionAid/compare";
+import CompareNoElicit from "./DecisionAid/compare_nobelief";
 import About from "./DecisionAid/about";
 import LandingPage from "./DecisionAid/landingPage";
 import PersonalRisk from "./DecisionAid/personalRisk";
@@ -292,7 +292,7 @@ const DecisionAid = (props) => {
       <Container style={{ marginTop: "8em" }}>
         {step == "about" && <LandingPage />}
         {step == "step2" && <VaccFAQ />}
-        {step == "step3" && <Compare />}
+        {step == "step3" && <CompareNoElicit />}
         {step == "step1" && <DecisionTable />}
         {step == "step4" && <PersonalRisk />}
         {step == "step5" && <FinalDecision />}

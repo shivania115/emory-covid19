@@ -220,7 +220,7 @@ function DecitionTable() {
           paddingBottom: "30px",
         }}
       >
-        <ToggleButtonGroup
+        {/* <ToggleButtonGroup
         color='primary'
         value={i18n.language}
         size="small"
@@ -237,7 +237,7 @@ function DecitionTable() {
       >
         <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="en">English</ToggleButton>
         <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="span">Spanish</ToggleButton>
-      </ToggleButtonGroup>
+      </ToggleButtonGroup> */}
         <Header
           as="h2"
           style={{  fontWeight: 1000, fontSize: "2rem" }}

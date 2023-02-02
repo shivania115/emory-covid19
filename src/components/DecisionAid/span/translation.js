@@ -1,4 +1,7 @@
 export const TRANSLATIONS_SPAN = {
+    landingpage:'COVID19 Vaccine Decision Aid',
+    lp1:'Esta es una nueva herramienta de apoyo a la toma de decisiones que está diseñada para ayudarlo a:',
+
     step1_ques1:"¿Estás vacunada?",
     yes:"Sí",
     no:"No",
