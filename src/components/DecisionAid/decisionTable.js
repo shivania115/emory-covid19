@@ -291,17 +291,17 @@ function DecitionTable() {
             <tr>
               <th></th>
               <div>
-                <th style={{ width: "20%" }}>Strongly Disagree</th>
-                <th style={{ width: "20%" }}>Slightly Disagree</th>
-                <th style={{ width: "20%" }}>Neither Agree nor Disagree</th>
-                <th style={{ width: "20%" }}>Slightly Agree</th>
-                <th style={{ width: "20%" }}> Strongly Agree</th>
+                <th style={{ width: "20%" }}>{t('stronglydisagree')}</th>
+                <th style={{ width: "20%" }}>{t('slightlydisagree')}</th>
+                <th style={{ width: "20%" }}>{t('neither')}</th>
+                <th style={{ width: "20%" }}>{t('slightlyagree')}</th>
+                <th style={{ width: "20%" }}> {t('stronglyagree')}</th>
               </div>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>COVID-19 vaccines are effective.</td>
+              <td>{t('table_ques1')}</td>
               <td colspan="5">
                 {/* <Slider
                   defaultValue={50}
@@ -357,7 +357,7 @@ function DecitionTable() {
             </tr>
             <tr>
               <td>
-                Vaccines are important for the health of others in my community.
+                {t('table_ques2')}
               </td>
               <td colspan="3">
                 <RadioGroup
@@ -408,8 +408,7 @@ function DecitionTable() {
             </tr>
             <tr>
               <td>
-                I have heard negative stories that worry me about receiving the
-                COVID-19 vaccine.
+                {t('table_ques3')}
               </td>
               <td colspan="3">
                 <RadioGroup
@@ -460,8 +459,7 @@ function DecitionTable() {
             </tr>
             <tr>
               <td>
-                I am concerned about serious reactions I may have after
-                receiving the COVID-19 vaccine.
+                {t('table_ques4')}
               </td>
               <td colspan="3">
                 <RadioGroup
@@ -511,7 +509,7 @@ function DecitionTable() {
               </td>
             </tr>
             <tr>
-              <td>I believe childhood vaccines are important and effective.</td>
+              <td>{t('table_ques5')}</td>
               <td colspan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -669,7 +667,7 @@ function DecitionTable() {
             }}
             class="ui large primary button"
           >
-            Previous
+            {t('prev')}
           </button>
           <button
             onClick={handleSubmit}
@@ -680,7 +678,7 @@ function DecitionTable() {
             }}
             class="ui large primary button"
           >
-            Next
+            {t('next')}
           </button>
         </div>
       </div>
@@ -711,17 +709,17 @@ function DecitionTable() {
           </div>
         </Modal.Header>
         <Modal.Body>
-          You didn't complete the survey. Are you sure you want to continue?
+          {t('alert')}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
-            Close
+            {t('close')}
           </Button>
           <Button
             variant="primary"
             onClick={() => navigate("/decision-aid/step2")}
           >
-            Continue to Next Section
+            {t('continue')}
           </Button>
         </Modal.Footer>
       </Modal>

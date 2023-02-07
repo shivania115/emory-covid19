@@ -36,6 +36,11 @@ import { useNavigate } from "react-router-dom";
 import MultipleChoice from "./multiplechoice.js";
 import { useCookie } from "react-use";
 import {ProgressBar} from 'react-bootstrap';
+import i18n from "i18next";
+import { initReactI18next,useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./span/translation";
+import { TRANSLATIONS_EN } from "./en/translation";
 const colorPalette = [
   "#007dba",
   "#808080",
@@ -45,6 +50,20 @@ const colorPalette = [
   "#000000",
   "#8f4814",
 ];
+i18n
+ .use(LanguageDetector)
+ .use(initReactI18next)
+ .init({
+  fallbackLng: 'en',
+   resources: {
+     en: {
+       translation: TRANSLATIONS_EN
+     },
+     span: {
+       translation: TRANSLATIONS_SPAN
+     }
+   }
+ });
 function CompareNoElicit(props) {
   
   const navigate = useNavigate();
@@ -55,6 +74,7 @@ function CompareNoElicit(props) {
   const [symptomsCOVID,setSymptomsCOVID]=useState(0);
   const [symptomsVac, setSymptomsVac]=useState(0);
   const cookie = JSON.parse(cookies);
+  const { t } = useTranslation();
   // useEffect(() => {
   //   console.log(cookie.step3);
   //   cookie.step3?sethospilizationVac(cookie.step3.hospilizationVac):sethospilizationVac(10);
@@ -81,7 +101,7 @@ function CompareNoElicit(props) {
             <Grid.Row style={{ paddingTop: 20 }}>
               <GridColumn width={6}>
                 {" "}
-                <MultipleChoice></MultipleChoice>
+                {/* <MultipleChoice></MultipleChoice> */}
                 <Header
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
@@ -914,7 +934,7 @@ function CompareNoElicit(props) {
             style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
           >
             <Header.Content>
-              Your health risks with and without vaccine
+              {t('step3_title')}
               <Header.Subheader
                 style={{
                   paddingTop: "1.5rem",
@@ -926,12 +946,7 @@ function CompareNoElicit(props) {
                   color: "black",
                 }}
               >
-                This is a resource guide to answer common questions about the
-                COVID-19 vaccines. This guide is based on the best available
-                information as of {Date().slice(4, 10)}, 2021. Before taking the
-                vaccine, please consult your healthcare provider. If you have
-                any questions or concerns beyond those addressed here, we
-                recommend the following resources for additional information:
+                {t('step3_subtitle')}
                 {/* {Date().slice(4,10)} */}
               </Header.Subheader>
             </Header.Content>
@@ -1029,7 +1044,7 @@ function CompareNoElicit(props) {
           style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
           class="ui large primary button"
         >
-          Previous
+          {t('prev')}
         </button>
         <button
           onClick={() => {
@@ -1038,7 +1053,7 @@ function CompareNoElicit(props) {
           style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
           class="ui large primary button"
         >
-          Next
+          {t('next')}
         </button>
       </div>
     </div>

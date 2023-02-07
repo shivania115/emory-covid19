@@ -37,9 +37,30 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import i18n from "i18next";
+import { initReactI18next,useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./span/translation";
+import { TRANSLATIONS_EN } from "./en/translation";
+ 
+i18n
+ .use(LanguageDetector)
+ .use(initReactI18next)
+ .init({
+  fallbackLng: 'en',
+   resources: {
+     en: {
+       translation: TRANSLATIONS_EN
+     },
+     span: {
+       translation: TRANSLATIONS_SPAN
+     }
+   }
+ });
 
 function PersonalRisk(){
     const navigate = useNavigate();
+    const { t } = useTranslation();
     return(
         <div>
             <Grid>
@@ -291,14 +312,14 @@ function PersonalRisk(){
           style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
           class="ui large primary button"
         >
-          Previous
+          {t('prev')}
         </button>
         <button
           onClick={()=> {navigate("/decision-aid/step5")}}
           style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
           class="ui large primary button"
         >
-          Next
+          {t('next')}
         </button>
       </div>
         </div>

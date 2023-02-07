@@ -103,6 +103,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import StepFlow from "./DecisionAid/StepFlow";
 import CompareNoElicit from "./DecisionAid/compare_nobelief";
+import Compare from "./DecisionAid/compare";
 import About from "./DecisionAid/about";
 import LandingPage from "./DecisionAid/landingPage";
 import PersonalRisk from "./DecisionAid/personalRisk";

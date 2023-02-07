@@ -10,6 +10,7 @@ import {
     Icon,
     Header,
     Table,
+    Loader,
     Menu,
     Tab,
     Progress,
@@ -28,14 +29,47 @@ import React, {
 } from "react";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { useNavigate } from "react-router-dom";
+import {ProgressBar} from 'react-bootstrap';
+import i18n from "i18next";
+import { initReactI18next,useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./span/translation";
+import { TRANSLATIONS_EN } from "./en/translation";
+ 
+i18n
+ .use(LanguageDetector)
+ .use(initReactI18next)
+ .init({
+  fallbackLng: 'en',
+   resources: {
+     en: {
+       translation: TRANSLATIONS_EN
+     },
+     span: {
+       translation: TRANSLATIONS_SPAN
+     }
+   }
+ });
+
 function VaccFAQ() {
     const [activeIndex, setActiveIndex] = useState([-1]);
     const navigate = useNavigate();
+    const [vaccineData, setVaccineData] = useState();
+    const { t } = useTranslation();
+  useEffect(() => {
+    fetch("/data/vaccineData.json")
+     .then((res) => res.json())
+     .then((x) => 
+     setVaccineData(x)
+    )
+  },[]);
+console.log(vaccineData);
+if(vaccineData){
     return (
         <div>
           <Grid style={{width:"100%"}}>
               <Grid.Row>
-                  <Grid.Column width={7}>
+                  <Grid.Column width={8}>
                       <Header
                           as="h2"
                           style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
@@ -43,6 +77,258 @@ function VaccFAQ() {
                           <Header.Content>
                               COVID-19 Vaccination
                           </Header.Content>
+                      
+                    <Grid.Row>
+                    <Grid.Column
+                      style={{ width: 600, paddingTop: 18 }}
+                    >
+                      <div style={{ width: 600 }}>
+                        <Header>
+                          <div>
+                            <Header
+                              style={{
+                                fontSize: "18px",
+                                fontFamily: "lato",
+                                color: "#004071",
+                                width: 705,
+                              }}
+                            >
+                              Percent of the U.S. population partially
+                              vaccinated
+                              <br />
+                              <Header.Content
+                                style={{
+                                  paddingBottom: 5,
+                                  fontWeight: 300,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  fontSize: "15px",
+                                }}
+                              >
+                                One of two doses of Pfizer or Moderna vaccine
+                                received
+                              </Header.Content>
+                            </Header>
+                          </div>
+                          <Header.Content
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                          >
+             
+                               <ProgressBar
+                style={{ height:30,width: 600 ,marginBottom:30}}
+                label={`${
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }%`}
+                variant="success" 
+                now={
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }
+                ></ProgressBar>
+                          </Header.Content>
+
+                          <div>
+                            <Header
+                              style={{
+                                fontSize: "18px",
+                                fontFamily: "lato",
+                                color: "#004071",
+                                width: 975,
+                              }}
+                            >
+                              Percent of the U.S. population fully vaccinated
+                              <br />
+                              <Header.Content
+                                style={{
+                                  paddingBottom: 5,
+                                  fontWeight: 300,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  fontSize: "15px",
+                                }}
+                              >
+                                Both doses of Pfizer or Moderna vaccine or one
+                                and only dose of Johnson and Johnson received
+                              </Header.Content>
+                            </Header>
+                          </div>
+                          <Header.Content
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                          >
+                           <ProgressBar
+                style={{ height:30,width: 600 ,marginBottom:30}}
+                label={`${vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}%`}
+                variant="success" 
+                now={vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}
+                ></ProgressBar>
+                          </Header.Content>
+
+                          <div>
+                            <Header
+                              style={{
+                                fontSize: "18px",
+                                fontFamily: "lato",
+                                color: "#004071",
+                                width: 975,
+                              }}
+                            >
+                              Percent of the U.S. population that received at
+                              least one dose
+                              <br />
+                              <Header.Content
+                                style={{
+                                  paddingBottom: 5,
+                                  fontWeight: 300,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  fontSize: "15px",
+                                }}
+                              >
+                                One or more doses of any of the authorized
+                                vaccines received
+                              </Header.Content>
+                            </Header>
+                          </div>
+                          <Header.Content
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                          >
+                           <ProgressBar
+                style={{ height:30,width: 600,marginBottom:30 }}
+                label={`${(
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ]
+                              ).toFixed(1)}%`}
+                variant="success" 
+                now={(
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ]
+                              ).toFixed(1)}
+                ></ProgressBar>
+                          
+                          </Header.Content>
+                        </Header>
+                      </div>
+                    </Grid.Column>
+                  </Grid.Row>
+                 
+                  {/* <Grid.Row>
+                    { (
+                      <Accordion
+                        id="race"
+                        style={{
+                          paddingTop: 0,
+                          paddingLeft: 30,
+                          paddingBottom: 15,
+                        }}
+                        defaultActiveIndex={1}
+                        panels={[
+                          {
+                            key: "acquire-dog",
+                            title: {
+                              content: (
+                                <u
+                                  style={{
+                                    fontFamily: "lato",
+                                    fontSize: "15px",
+                                    color: "#397AB9",
+                                  }}
+                                >
+                                  About the data
+                                </u>
+                              ),
+                              icon: "dropdown",
+                            },
+                            content: {
+                              content: (
+                                <Header.Content
+                                  style={{
+                                    fontWeight: 300,
+                                    paddingTop: 7,
+                                    paddingLeft: 5,
+                                    fontSize: "15px",
+                                    width: 975,
+                                  }}
+                                >
+                                  Data are from the{" "}
+                                  <a
+                                    href="https://covid.cdc.gov/covid-data-tracker/#vaccinations"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    CDC COVID Data Tracker
+                                  </a>
+                                  , data as of {vaccineDate} <br />
+                                  <b>
+                                    <em>
+                                      {" "}
+                                      {vaxVarMap["Doses_Distributed"].name}{" "}
+                                    </em>
+                                  </b>{" "}
+                                  {vaxVarMap["Doses_Distributed"].definition}{" "}
+                                  <br />
+                                  <b>
+                                    <em>
+                                      {" "}
+                                      {
+                                        vaxVarMap["Doses_Administered"].name
+                                      }{" "}
+                                    </em>
+                                  </b>{" "}
+                                  {vaxVarMap["Doses_Administered"].definition}{" "}
+                                  <br />
+                                  <b>
+                                    <em>
+                                      {" "}
+                                      {
+                                        vaxVarMap["Administered_Dose1"].name
+                                      }{" "}
+                                    </em>
+                                  </b>{" "}
+                                  {vaxVarMap["Administered_Dose1"].definition}{" "}
+                                  <br />
+                                  <b>
+                                    <em>
+                                      {" "}
+                                      {
+                                        vaxVarMap["Series_Complete_Yes"].name
+                                      }{" "}
+                                    </em>
+                                  </b>{" "}
+                                  {vaxVarMap["Series_Complete_Yes"].definition}{" "}
+                                  <br />
+                                  <b><em> {vaxVarMap["percentVaccinatedDose1"].name} </em></b> {vaxVarMap["percentVaccinatedDose1"].definition} <br/>
+                            <b><em> {vaxVarMap["Series_Complete_Pop_Pct"].name} </em></b> {vaxVarMap["Series_Complete_Pop_Pct"].definition} <br/>
+                                </Header.Content>
+                              ),
+                            },
+                          },
+                        ]}
+                      />
+                    )}
+                  </Grid.Row> */}
                           <HeaderSubHeader style={{
                               paddingTop: "2rem",
                               paddingBottom: "0rem",
@@ -80,7 +366,7 @@ function VaccFAQ() {
                         </li>
                       </ul>
                   </Grid.Column>
-                  <Grid.Column width={9}>
+                  <Grid.Column width={8}>
                       <Accordion style={{marginLeft:"4rem",marginTop:30}} fluid styled exclusive={false}>
                           <Accordion.Title
                               id="develop"
@@ -603,17 +889,22 @@ function VaccFAQ() {
         style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
         class="ui large primary button"
       >
-        Previous
+       {t('prev')}
       </button>
       <button
         onClick={()=> {navigate("/decision-aid/step3")}}
         style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
         class="ui large primary button"
       >
-        Next
+        {t('next')}
       </button>
         </div>
 
-    )
+    )}
+    else{
+   
+        return <Loader active inline="centered" />;
+   
+    }
 }
 export default VaccFAQ;
