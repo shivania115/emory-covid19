@@ -309,12 +309,15 @@ import React, {
               </Header.Subheader>
             </Header.Content>
           </Header>
-      <Grid style={{padding:'3%'}}>
+      <Grid stype={{width:'100%'}}>
         <Grid.Row>
+        <Grid.Column width={10}>
         <img src="/USplot1.png"></img>
-        </Grid.Row>
-        <Grid.Row>
         <img src="/USplot2.png"></img>
+        </Grid.Column>
+        <Grid.Column  width={6}>
+        <img src="/barplot.png"></img>
+        </Grid.Column>
         </Grid.Row>
       </Grid>
       </Container>
