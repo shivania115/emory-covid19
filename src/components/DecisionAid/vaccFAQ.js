@@ -34,6 +34,7 @@ import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
+import snarkdown from "snarkdown";
 
 i18n
   .use(LanguageDetector)
@@ -399,57 +400,77 @@ function VaccFAQ() {
                   }
                 >
                   <Icon name="dropdown" />
-                  What COVID-19 vaccines are approved for use in the United
-                  States?
+
+                  {t("step2_3")}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(0) > 0}
                 >
                   <p style={{ marginBottom: 0 }}>
-                    At this time, three vaccines have been approved for use by
-                    the United States Food and Drug Administration (
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-vaccines"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      FDA
-                    </a>
-                    ): one developed by the company{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/pfizer-biontech-covid-19-vaccine"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      Pfizer-BioNTech
-                    </a>
-                    , one by{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/moderna-covid-19-vaccine"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      Moderna{" "}
-                    </a>
-                    , and one by
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/media/146305/download"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      Janssen Biotech, Johnson & Johnson’s vaccine division
-                    </a>
-                    .
+                    {t("step2_4")}
+                    <ul>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_5")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_6")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_7")),
+                        }}
+                      ></li>
+                    </ul>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: snarkdown(t("step2_8")),
+                      }}
+                    ></p>
+                    <ul>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_9")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_10")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_11")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_12")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_13")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_14")),
+                        }}
+                      ></li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_15")),
+                        }}
+                      ></li>
+                    </ul>
+                    {t("step2_16")}
                   </p>
-                  <p
+                  {/* <p
                     style={{
                       paddingTop: "1rem",
                       paddingLeft: "0rem",
@@ -522,7 +543,7 @@ function VaccFAQ() {
                     </a>
                     and indicated that the Johnson & Johnson vaccine can again
                     be distributed.
-                  </p>
+                  </p> */}
                 </Accordion.Content>
 
                 <Accordion.Title
@@ -538,17 +559,25 @@ function VaccFAQ() {
                   }
                 >
                   <Icon name="dropdown" />
-                  Is the COVID-19 vaccine effective in protecting people against
-                  getting COVID-19?
+                  {t("step2_17")}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(12) > 0}
                 >
-                  <p style={{ marginBottom: 0 }}>
-                    Yes. The clinical trials for each approved vaccine showed
-                    that the vaccine was effective in protecting vaccinated
-                    people from getting sick with COVID-19 disease.
+                  <p style={{ marginBottom: 0 }}>{t("step2_18")}</p>
+                  <p
+                    style={{
+                      paddingTop: "1rem",
+                      paddingLeft: "0rem",
+                      paddingRight: "1rem",
+                      marginBottom: "0",
+                      fontWeight: 400,
+                      fontSize: "14pt",
+                      textAlign: "justify",
+                    }}
+                  >
+                    {t("step2_19")}
                   </p>
                   <p
                     style={{
@@ -561,25 +590,7 @@ function VaccFAQ() {
                       textAlign: "justify",
                     }}
                   >
-                    For both the Pfizer-BioNTech and Moderna vaccines, 2 doses
-                    are required to be fully protected from COVID-19.
-                    Individuals are not considered to be “vaccinated” until
-                    after they receive their 2<sup>nd</sup> dose.
-                  </p>
-                  <p
-                    style={{
-                      paddingTop: "1rem",
-                      paddingLeft: "0rem",
-                      paddingRight: "1rem",
-                      marginBottom: "0",
-                      fontWeight: 400,
-                      fontSize: "14pt",
-                      textAlign: "justify",
-                    }}
-                  >
-                    For the Johnson & Johnson vaccine, only one dose is needed.
-                    For all vaccines, it takes around 2 weeks after vaccination
-                    to be fully protected.
+                    {t("step2_20")}
                   </p>
                 </Accordion.Content>
                 <Accordion.Title
@@ -847,16 +858,13 @@ function VaccFAQ() {
                   }
                 >
                   <Icon name="dropdown" />
-                  Can the vaccine make me sick with COVID-19?
+                  {t("step2_21")}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(13) > 0}
                 >
-                  <p>
-                    No. The COVID-19 vaccines do not contain COVID-19 virus
-                    particles that could cause the disease.
-                  </p>
+                  <p>{t("step2_22")}</p>
                 </Accordion.Content>
               </Accordion>
             </Grid.Column>

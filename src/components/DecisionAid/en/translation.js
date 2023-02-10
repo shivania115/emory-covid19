@@ -71,4 +71,41 @@ export const TRANSLATIONS_EN = {
   step2_1: "Who can get vaccined against COVID-19?",
   step2_2:
     "At this point, anyone who is aged 12 or more is eligible to get vaccinated. Although there are a few cases in which individuals should discuss vaccination with a healthcare provider before.",
+  step2_3: "What COVID-19 vaccines are approved for use in the United States?",
+  step2_4:
+    "At this time, There are four approved or authorized vaccines in the United States.",
+  ste2_5:
+    "Pfizer-BioNTech and Moderna COVID-19 vaccines are [mRNA vaccines](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html).",
+  step2_6:
+    "Novavax COVID-19 vaccine is a [protein subunit vaccine](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html).",
+  step2_7:
+    "Johnson & Johnson’s Janssen (J&J/Janssen) COVID-19 vaccine is a [viral vector vaccine](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html) and can be given in some situations.",
+  step2_8:
+    "These vaccines are given as a shot in the muscle of the upper arm or in the thigh of a young child. COVID-19 vaccine ingredients are considered safe for most people. Nearly all of the ingredients in COVID-19 vaccines are ingredients found in many foods—fats, sugar, and salts. **None of the COVID-19 vaccines affect or interact with our DNA** and the following are not included in the vaccines:",
+  step2_9:
+    "**No preservatives** such as thimerosal or mercury or any other preservatives.",
+  step2_10: "**No antibiotics** such as sulfonamide or any other antibiotics.",
+  step2_11:
+    "**No medicines or therapeutics** such as ivermectin or any other medications.",
+  step2_12:
+    "**No tissues** such as aborted fetal cells, gelatin, or any materials from any animal.",
+  step2_13:
+    "**No food proteins** such as eggs or egg products, gluten, peanuts, tree nuts, nut products, or any nut byproducts. (COVID-19 vaccines are not manufactured in facilities that produce food products).",
+  step2_14:
+    "**No metals** such as iron, nickel, cobalt, titanium, or rare earth alloys. They also do not have any manufactured products like microelectronics, electrodes, carbon nanotubes or other nanostructures, or nanowire semiconductors.",
+  step2_15:
+    "**No latex**. The vial stoppers used to hold the vaccine also do not contain latex.",
+  step2_16:
+    "After the body produces an immune response, it discards all of the vaccine ingredients, just as it would discard any substance that cells no longer need. This process is a part of normal body functioning.",
+  step2_17:
+    " Is the COVID-19 vaccine effective in protecting people against getting COVID-19?",
+  step2_18:
+    "Yes. The clinical trials for each approved vaccine showed that the vaccine was effective in protecting vaccinated people from getting sick with COVID-19 disease.",
+  step2_19:
+    "For both the Pfizer-BioNTech and Moderna vaccines, 2 doses are required to be fully protected from COVID-19. Individuals are not considered to be “vaccinated” until after they receive their 2nd dose.",
+  step2_20:
+    "For the Johnson & Johnson vaccine, only one dose is needed. For all vaccines, it takes around 2 weeks after vaccination to be fully protected.",
+  step2_21: "Can the vaccine make me sick with COVID-19?",
+  step2_22:
+    "No. The COVID-19 vaccines do not contain COVID-19 virus particles that could cause the disease.",
 };

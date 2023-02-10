@@ -71,4 +71,42 @@ export const TRANSLATIONS_SPAN = {
   step2_1: "Quien puede ser vacunado contra el COVID-19?",
   step2_2:
     "En este momento, cualquier persona que sea mayor de los 12 anos puede ser vacunado/a y no importa su estatus migratorio (this last part is saying that your migratory status does not matter for the COVID-19 vaccine). Hay algunos casos donde la persona interesada deberia discutir su decision de vscunarse con su doctor general antes de recibir la vacuna.",
+  step2_3:
+    "Cuales vacunas contra el COVID-19 son aprobadas para uso y distribucion en los Estados Unidos (EEUU)? ",
+  step2_4: "Hay cuatro vacunas aprobadas o autorizadas en los Estados Unidos. ",
+  step2_5:
+    "Las vacunas contra el COVID-19 de Pfizer-BioNTech y Moderna son [vacunas de ARNm](https://espanol.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html).",
+  step2_6:
+    "La vacuna contra el COVID-19 de Novavax es una [vacuna de subunidades proteicas](https://espanol.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html).",
+  step2_7:
+    "La vacuna contra el COVID-19 Janssen de Johnson & Johnson (J&J/Janssen) es una [vacuna de vector viral](https://espanol.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html) y se puede administrar en determinadas situaciones.",
+  step2_8:
+    "Estas vacunas se administran como inyecciones en el músculo de la parte superior del brazo o en el muslo si se trata de un niño pequeño. Se considera que los ingredientes de la vacuna contra el COVID-19 son seguros para la mayoría de las personas. Casi todos los ingredientes de las vacunas contra el COVID-19 son ingredientes presentes en muchos alimentos, como grasas, azúcares y sales. **Ninguna de las vacunas contra el COVID-19 afectan ni interactúan con nuestro ADN** y además:",
+  step2_9:
+    "**No contienen conservantes** como timerosal o mercurio, ni otros conservantes.",
+  step2_10:
+    "**No contienen antibióticos** como sulfonamida u otros antibióticos.",
+  step2_11:
+    "**No contienen medicamentos ni otros productos terapéuticos** como ivermectina u otros medicamentos.",
+  step2_12:
+    "**No contienen tejido** como células de fetos abortados ni otros materiales de ningún animal",
+  step2_13:
+    "**No contienen proteínas de alimentos** como huevo o derivados del huevo, gluten, cacahuates, nueces, derivados de frutos secos ni productos secundarios a los frutos secos. (Las vacunas contra el COVID-19 no se fabrican en instalaciones que producen o procesan alimentos).",
+  step2_14:
+    "**No contienen metales** como hierro, níquel, cobalto, titanio ni aleaciones de tierras raras. Tampoco contienen ningún producto manufacturado como artículos de microelectrónica, electrodos, nanotubos de carbono ni otras nanoestructuras o nanocables semiconductores.",
+  step2_15:
+    "**No contienen látex**. Los tapones de los viales de la vacuna tampoco contienen látex.",
+  step2_16:
+    "Una vez que el organismo produce una respuesta inmunitaria, descarta todos los ingredientes de la vacuna, del mismo modo que descartaría cualquier sustancia que las células ya no necesitan. Este proceso forma parte del funcionamiento normal del organismo",
+  step2_17:
+    "Las vacunas contra el COVID-19 son efectivas en protjer a las personas contra el covid-19? ",
+  step2_18:
+    "Si. Los ensayos clinicos que si hicieron para comprobar cada vacuna demostraron que la vacuna es efectiva para protejer a los que estan vacunados de enfermarzen con el COVID-19. ",
+  step2_19:
+    "Para las dos vacunas de Pfizer-BioNTech y Moderna, 2 dosis de la vacuna son necesarias para estar protejido contra el CVOID-19. Personas no son consideradas “vacunados” hasta que reciban su segunda dosis de la vacuna.",
+  step2_20:
+    "Para la vacuna de Johnson y Johnson, solo ne necesita una dosis para estar protejida plenamente contra el COVID-19. Para todas la vacunas, dos semanas son necesarias para que el cuerpo este completamente protejido del COVID-19 despues de vacunarse. ",
+  step2_21: "Me puede enfermar la vacuna con el mismo virus COVID-19?",
+  step2_22:
+    "No. Las vacunas del COVID-19 no contienen particular del virus COVID-19 que puedan producir la enfermedad.",
 };
