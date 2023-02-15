@@ -5,8 +5,9 @@ import React, {
     createRef,
     PureComponent,
   } from "react";
+
   import { VictoryChart,VictoryArea,VictoryTheme,VictoryVoronoiContainer,VictoryLabel, VictoryLine } from 'victory';
-  import {Image, Grid,Divider,Header,Container} from 'semantic-ui-react';
+  import {Image, Grid,Divider,Header,Container,Accordion} from 'semantic-ui-react';
   import AppBar from "./AppBar";
   function LatestOnThisDashboard() {
     return (
@@ -293,7 +294,7 @@ import React, {
             style={{textAlign:'center',paddingTop: 80, fontWeight: 400, fontSize: "24pt" }}
           >
             <Header.Content>
-              Excess Death Across The US.
+            Excess Deaths Associated with the COVID-19 Pandemic
               <Header.Subheader
                 style={{
                   paddingTop: "1rem",
@@ -305,8 +306,52 @@ import React, {
                   color: "black",
                 }}
               >
-                Description of Excess Death.
+                Excess deaths are the number of additional deaths that occurred during the pandemic as compared with prior time points. Excess deaths are used to measure the full toll of the pandemic and include all deaths -- not just deaths directly due to the SARS-Cov-2 virus.
               </Header.Subheader>
+              <Accordion
+                        id="race"
+                        style={{
+                          paddingTop: 0,
+                          paddingLeft: 30,
+                          paddingBottom: 15,
+                        }}
+                        defaultActiveIndex={1}
+                        panels={[
+                          {
+                            key: "acquire-dog",
+                            title: {
+                              content: (
+                                <u
+                                  style={{
+                                    fontFamily: "lato",
+                                    fontSize: "17px",
+                                    color: "#397AB9",
+                                  }}
+                                >
+                                  About the data
+                                </u>
+                              ),
+                              icon: "dropdown",
+                            },
+                            content: {
+                              content: (
+                                <Header.Content
+                                  style={{
+                                    fontWeight: 400,
+                                    paddingTop: 0,
+                                    paddingLeft: 5,
+                                    fontSize: "15px",
+                                    width: "80%",
+                                  }}
+                                >
+                                  "Excess Deaths Associated with COVID-19" from National Center for Health Statistics.
+The CDC estimated expected deaths using Farrington surveillance algorithms. See [website] for full details.
+                                </Header.Content>
+                              ),
+                            },
+                          },
+                        ]}
+                      />
             </Header.Content>
           </Header>
       <Grid stype={{width:'100%'}}>
