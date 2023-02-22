@@ -29,6 +29,7 @@ import NationalReport from "./NationalReport";
 import Variant from "./Variant";
 import OtherTools from "./OtherTools";
 import DecisionAid from "./DecisionAid.js";
+import DecisionAid_elicit from "./DecisionAid_elicit.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ExcessDeath from "./ExcessDeath";
 import {
@@ -93,6 +94,7 @@ function AppUI() {
           <Route path="/map-state" element={<MapYourState />}></Route>
 
           <Route path="/decision-aid/:step" element={<DecisionAid />}></Route>
+          <Route path="/decision-aid_elicit/:step" element={<DecisionAid_elicit />}></Route>
           <Route path="/ExcessDeath" element={<ExcessDeath />}></Route>
           <Route path="/media-hub/blog/:blogTitle" element={<Blog />}></Route>
           <Route

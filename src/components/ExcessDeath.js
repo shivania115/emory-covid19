@@ -345,7 +345,7 @@ import React, {
                                   }}
                                 >
                                   "Excess Deaths Associated with COVID-19" from National Center for Health Statistics.
-The CDC estimated expected deaths using Farrington surveillance algorithms. See [website] for full details.
+The CDC estimated expected deaths using Farrington surveillance algorithms. See <a href="https://www.cdc.gov/nchs/nvss/vsrr/covid19/excess_deaths.htm">website</a> for full details.
                                 </Header.Content>
                               ),
                             },

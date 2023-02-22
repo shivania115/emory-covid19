@@ -126,7 +126,7 @@ function Compare(props) {
                 <ProgressBar
                 style={{ marginBottom: 20,marginTop:5 }}
                 striped
-                variant="warning" now={hospilizationNoVac}
+                variant="danger" now={hospilizationNoVac}
                 ></ProgressBar>
                 <StyledProgressBar
                   percent={6.8}
@@ -137,15 +137,15 @@ function Compare(props) {
                   style={{ marginBottom: 20,marginTop:5 }}
                 striped
                 now={hospilizationVac}
-                variant="warning" 
+                variant="blue" 
                 ></ProgressBar>
   
               </GridColumn>
               <GridColumn width={2}>
              <p style={{marginBottom:0,color: "#e02c2c" }}>122 in 1000</p>
-             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginTop:0,color:"#e02c2c"}}>Your Belief</p>
              <p style={{marginBottom:0,color: "#0E6EB8" }}>68 in 1000</p>
-             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginTop:0,color:"#0E6EB8"}}>Your Belief</p>
                 {/* <Header as="h5">
                   <Header.Content style={{ margin:0,color: "#e02c2c" }}>
                     122 in 1000
@@ -800,7 +800,7 @@ function Compare(props) {
                 <ProgressBar
                 style={{ marginBottom: 20,marginTop:5 }}
                 striped
-                variant="warning" now={symptomsCOVID}
+                variant="danger" now={symptomsCOVID}
                 ></ProgressBar>
                 <StyledProgressBar
                   percent={0}
@@ -811,7 +811,7 @@ function Compare(props) {
                   style={{ marginBottom: 20,marginTop:5 }}
                 striped
                 now={symptomsVac}
-                variant="warning" 
+                variant="blue" 
                 ></ProgressBar>
                  <StyledProgressBar
                   percent={0}
@@ -837,9 +837,9 @@ function Compare(props) {
                   </Header.Content>
                 </Header> */}
                 <p style={{marginBottom:0,color: "#e02c2c" }}>20 in 100</p>
-             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginTop:0,color:"#e02c2c"}}>Your Belief</p>
              <p style={{marginBottom:0,color: "#0E6EB8" }}>zero</p>
-             <p style={{marginTop:0,color:"#FFBF00"}}>Your Belief</p>
+             <p style={{marginTop:0,color:"#0E6EB8"}}>Your Belief</p>
              <p style={{marginTop:0,color: "#0E6EB8" }}>zero</p>
               </GridColumn>
             </Grid.Row>
