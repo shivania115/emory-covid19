@@ -242,9 +242,9 @@ function DecitionTable() {
           as="h2"
           style={{  fontWeight: 1000, fontSize: "2rem" }}
         >
-          <Header.Content>COVID-19 Vaccine Survey</Header.Content>
+          <Header.Content>{t('survey')}</Header.Content>
           <HeaderSubHeader>
-            Toggle to tell us about your opinions on each statements.
+            {t('toggle')}
           </HeaderSubHeader>
         </Header>
         <div className="checkbox" style={{ paddingTop: "15px" }}>

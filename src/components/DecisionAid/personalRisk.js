@@ -74,7 +74,7 @@ function PersonalRisk(){
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
                         >
                          <Header.Content>
-                         <a target='_blank' href='https://www.mdcalc.com/calc/10348/covid-risk'>Calculate your personal mortality risk within 30 days of contracting COVID-19. <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{fontSize:"2rem",marginTop:"3%",color:  "#024174", }}/></a>
+                         <a target='_blank' href='https://www.mdcalc.com/calc/10348/covid-risk'>{t('step4_1header')} <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{fontSize:"2rem",marginTop:"3%",color:  "#024174", }}/></a>
                             </Header.Content>
                         </Header>
             
@@ -98,7 +98,7 @@ function PersonalRisk(){
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
                         >
                             <Header.Content>
-                            You may be at a higher risk of severe COVID-19 and its health problems if:
+                           {t('step4_2header')}
                             </Header.Content>
                             </Header>
         </AccordionSummary>
@@ -108,31 +108,31 @@ function PersonalRisk(){
                                 fontSize: "1rem",
                                 color: "black",}}>
                                 <li>
-                                you are aged 70 years or older (noting that risk increases with age, even if you're under 70 years of age)
+                               {t('step4_11')}
                                 </li>
                                 <li>
-                                you have had an organ transplant and are on immune-suppressive therapy
+                                {t('step4_12')}
                                 </li>
                                 <li>
-                                you have had a bone marrow transplant in the last 24 months
+                                {t('step4_13')}
                                 </li>
                                 <li>
-                                you are having certain cancer treatments such as chemotherapy or radiotherapy
+                                {t('step4_14')}
                                 </li>
                                 <li>
-                                you have a long-term health problem such as chronic lung disease, kidney failure, liver disease, heart disease, diabetes or high blood pressure
+                                {t('step4_15')}
                                 </li>
                                 <li>
-                                you have challenges with your weight, such as obesity
+                                {t('step4_16')}
                                 </li>
                                 <li>
-                                you have a compromised immune system
+                               {t('step4_17')}
                                 </li>
                                 <li>
-                                you are pregnant
+                                {t('step4_18')}
                                 </li>
                                 <li>
-                                you have a disability that requires help with daily living activities.
+                                {t('step4_19')}
                                 </li>
                                </ul>
         </AccordionDetails>
@@ -202,7 +202,7 @@ function PersonalRisk(){
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
                         >
                             <Header.Content>
-                            COVID-19 vaccination may not be recommended for you if:
+                            {t('step4_3header')}
                             </Header.Content>
                             </Header>
         </AccordionSummary>
@@ -212,22 +212,22 @@ function PersonalRisk(){
                                 fontSize: "1rem",
                                 color: "black",}}>
                                 <li>
-                                you have a past history of heparin-induced thrombocytopenia syndrome (HITS) or cerebral venous sinus thrombosis (CVST) (relevant for the AstraZeneca vaccine)
+                                {t('step4_31')}
                                 </li>
                                 <li>
-                                you have had a history of idiopathic splanchnic (mesenteric, portal, splenic) venous thrombosis (relevant for the AstraZeneca vaccine)
+                                {t('step4_32')}
                                 </li>
                                 <li>
-                                you have a history of inflammatory cardiac illness within the past three months (for the Pfizer and Moderna vaccines). People with these conditions can still receive a Pfizer or Moderna vaccine; however, your GP or cardiologist will recommend the best timing for vaccination
+                                {t('step4_33')}
                                 </li>
                               <li>
-                              you have had a severe allergic reaction (anaphylaxis) to a previous dose or an ingredient
+                              {t('step4_34')}
                               </li>
                               <li>
-                              you have had any other serious adverse event attributed to a previous dose
+                             {t('step4_35')}
                               </li>
                               <li>
-                              you have had a current acute illness, including a fever.
+                              {t('step4_36')}
                               </li>
                                </ul>
         </AccordionDetails>

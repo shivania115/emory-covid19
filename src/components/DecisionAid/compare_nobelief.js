@@ -128,43 +128,47 @@ function CompareNoElicit(props) {
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
-                <Header  as="h4">
-                  <Header.Content>Without Vaccination</Header.Content>
+                <Header as="h4">
+                  <Header.Content>Unvaccinated</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Vaccination</Header.Content>
+                  <Header.Content>Fully Vaccinated</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
                 </Header>
               </GridColumn>
 
               <GridColumn width={5}>
-             
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   reverse
-                  percent={12.2}
+                  percent={2.8}
                   color="red"
                 ></StyledProgressBar>
-      
                 <StyledProgressBar
-                  percent={6.8}
                   style={{ marginBottom: 20 }}
+                  percent={0.8}
                   color="blue"
                 ></StyledProgressBar>
-             
-  
+                <StyledProgressBar percent={0.7} color="blue"></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
-              <Header as="h4">
+                <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    122 in 1000
+                    28 in 1000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                  68 in 1000
+                    8 in 1000
                   </Header.Content>
                 </Header>
-             
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    7 in 1000
+                  </Header.Content>
+                </Header>
               </GridColumn>
             </Grid.Row>
             <Grid.Row>
@@ -194,13 +198,13 @@ function CompareNoElicit(props) {
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>With COVID-19</Header.Content>
+                  <Header.Content>Unvaccinated</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Pfizer Vaccine</Header.Content>
+                  <Header.Content>Fully Vaccinated</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Moderna Vaccine</Header.Content>
+                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -208,12 +212,12 @@ function CompareNoElicit(props) {
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   reverse
-                  percent={4.7}
+                  percent={0.5}
                   color="red"
                 ></StyledProgressBar>
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
-                  percent={0}
+                  percent={0.12}
                   color="blue"
                 ></StyledProgressBar>
                 <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
@@ -221,17 +225,17 @@ function CompareNoElicit(props) {
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    47 in 1000
+                    50 in 10000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
+                    12 in 10000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
+                    8 in 100000
                   </Header.Content>
                 </Header>
               </GridColumn>
@@ -869,13 +873,13 @@ function CompareNoElicit(props) {
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>With COVID-19</Header.Content>
+                  <Header.Content>Unvaccinated</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Pfizer Vaccine</Header.Content>
+                  <Header.Content>Fully Vaccinated</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Moderna Vaccine</Header.Content>
+                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -883,29 +887,29 @@ function CompareNoElicit(props) {
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   color="red"
-                  percent={2}
+                  percent={0.3}
                 ></StyledProgressBar>
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
-                  percent={0}
+                  percent={0.08}
                   color="blue"
                 ></StyledProgressBar>
-                <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
+                <StyledProgressBar percent={0.07} color="blue"></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    2 in 100
+                    30 in 10000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
+                    8 in 10000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
+                    7 in 10000
                   </Header.Content>
                 </Header>
               </GridColumn>

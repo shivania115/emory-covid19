@@ -113,6 +113,25 @@ import FinalDecision from "./DecisionAid/finalDecision";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import i18n from "i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./DecisionAid/span/translation";
+import { TRANSLATIONS_EN } from "./DecisionAid/en/translation";
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en",
+    resources: {
+      en: {
+        translation: TRANSLATIONS_EN,
+      },
+      span: {
+        translation: TRANSLATIONS_SPAN,
+      },
+    },
+  });
 function AppBar3(props){
   return(
     <ErrorBoundary>
@@ -127,6 +146,7 @@ function AppBar3(props){
   )
 }
 function AppBar2(props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   console.log(props.menu);
   return (
@@ -144,7 +164,7 @@ function AppBar2(props) {
           overflowX:"scroll"
         }}
       >
-        <Container >
+        <Container style={{ whiteSpace: 'pre-line' }}>
           <Menu.Item
             
             header
@@ -152,9 +172,7 @@ function AppBar2(props) {
             style={{ paddingLeft: 0, paddingRight: "3%" }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
-              COVID-19 Health Equity
-              <br />
-              Interactive Dashboard
+              {t('mainDashboard')}
             </span>
           </Menu.Item>
 
@@ -168,11 +186,9 @@ function AppBar2(props) {
             name="about"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>Start:</HeaderContent>
+              <HeaderContent>{t('about')}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                About this
-                <br></br>
-                decision aid
+                {t('about_des')}
               </HeaderSubHeader>
             </Header>
 
@@ -187,11 +203,9 @@ function AppBar2(props) {
           >
 
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>STEP 1:</HeaderContent>
+              <HeaderContent>{t('step1')}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                Consider what matter
-                <br></br>
-                most for your family
+                {t('step1_des')}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
@@ -204,11 +218,9 @@ function AppBar2(props) {
             name="step2"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>STEP 2:</HeaderContent>
+              <HeaderContent>{t('step2')}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                Learn about the virus
-                <br></br>
-                and the vaccines
+                {t('step2_des')}
               </HeaderSubHeader>
             </Header>
 
@@ -222,11 +234,9 @@ function AppBar2(props) {
             name="step3"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>STEP 3:</HeaderContent>
+              <HeaderContent>{t('step3')}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                Compare the risks
-                <br></br>
-                and benefits
+                {t('step3_des')}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
@@ -245,11 +255,9 @@ function AppBar2(props) {
             name="step4"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>STEP 4:</HeaderContent>
+              <HeaderContent>{t('step4')}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                Check your
-                <br></br>
-                personal risk profile
+               {t('step4_des')}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
@@ -262,11 +270,9 @@ function AppBar2(props) {
             name="step5"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>STEP 5</HeaderContent>
+              <HeaderContent>{t('step5')}</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                Make your
-                <br></br>
-                decision
+               {t('step5_des')}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>

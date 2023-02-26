@@ -46,39 +46,59 @@ import { useCookie } from "react-use";
 import { decision_aid } from "../../stitch/mongodb";
 import TextField from "@mui/material/TextField";
 import snarkdown from "snarkdown";
+import i18n from "i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { TRANSLATIONS_SPAN } from "./span/translation";
+import { TRANSLATIONS_EN } from "./en/translation";
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en",
+    resources: {
+      en: {
+        translation: TRANSLATIONS_EN,
+      },
+      span: {
+        translation: TRANSLATIONS_SPAN,
+      },
+    },
+  });
 
 function FinalDecision() {
+  const { t } = useTranslation();
   function valueLabelFormat() {
     return "asdlfkas";
   }
   const navigate = useNavigate();
   const choices = [
-    "I have decided to get the COVID-19 vaccine",
-    "I need to discuss the decision further with my family and doctor",
-    "I need to learn more about COVID-19 and the COVID-19 vaccine",
-    "I have decided not get the COVID-19 vaccine",
-    "Other",
+    t('step5_option1'),
+    t('step5_option2'),
+    t('step5_option3'),
+    t('step5_option4'),
+    t('step5_option5'),
   ];
   const recommendations = [
     {
-      next: "Get in touch with your doctor, pharmacist or vaccine hub and make an [Appointment](https://www.cvs.com/minuteclinic/services/covid-19-vaccine/in-person-visit) to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
+      next: t('step5_1next'),
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team.",
+      t('step5_1share'),
     },
     {
-      next: "Make time to talk to your family about the benefits and risks of getting a COVID-19 vaccine. Also make an [appointment](https://dph.georgia.gov/covid-vaccine) with your doctor so you can talk through any concerns you may have.",
+      next: t('step5_2next'),
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
+        t('step5_2share'),
     },
     {
-      next: "It is important that you get information about the benefits and risks of COVID-19 vaccination from credible sources. Your doctor will be able to answer your questions. They will also be able to recommend other good sources of information. You can also learn more at [Emory COVID-19 Dashboard](https://covid19.emory.edu/Vaccine-Tracker).",
+      next: t('step5_3next'),
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
+       t('step5_3share'),
     },
     {
-      next: "Do what you can to stay safe and healthy. Social distancing, mask-wearing and frequent hand-washing can help reduce your risk of catching the virus. You may also find that you are not able to work in certain workplaces where vaccinations are compulsory. You could find it useful to revisit this Decision Aid in the future.",
+      next: t('step5_4next'),
       share:
-        "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
+      t('step5_4share'),
     },
   ];
   const [confidence, setConfidence] = useState(0);
@@ -87,6 +107,7 @@ function FinalDecision() {
   // console.log(cookies);
   const [choiceIndex, setChoiceIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+ 
   function handleSubmit() {
     const cookie = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
@@ -129,7 +150,7 @@ function FinalDecision() {
           style={{ paddingTop: 80, fontWeight: 550, fontSize: "1.5rem" }}
         >
           <Header.Content>
-            How likely are you to get the COVID-19 vaccine?
+            {t('step5_1header')}
           </Header.Content>
         </Header>
         <Slider
@@ -152,9 +173,7 @@ function FinalDecision() {
         style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
       >
         <Header.Content>
-          We hope the information in this decision aid has helped you to make a
-          decision. Select from the options below to see what your next steps
-          will be.
+         {t('step5_2header')}
         </Header.Content>
       </Header>
       <div>
@@ -189,13 +208,13 @@ function FinalDecision() {
       {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
           <div style={{ paddingTop: 30 }}>
-            <b>Your next step</b>
+            <b>{t('step5_next')}</b>
             <p
               dangerouslySetInnerHTML={{
                 __html: snarkdown(recommendations[choiceIndex].next),
               }}
             ></p>
-            <b>Share your decision with us</b>
+            <b>{t('step5_share')}</b>
             <p>{recommendations[choiceIndex].share}</p>
           </div>
         </>
@@ -207,7 +226,7 @@ function FinalDecision() {
         style={{ marginTop: "3rem" }}
         class="ui large primary button"
       >
-        Previous
+        {t('prev')}
       </button>
       {!submitted ? (
         <button
@@ -216,7 +235,7 @@ function FinalDecision() {
           style={{ marginTop: "3rem" }}
           class="ui large primary button"
         >
-          Submit
+          {t('submit')}
         </button>
       ) : (
         <ToastContainer />

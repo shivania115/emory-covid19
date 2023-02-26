@@ -72,7 +72,7 @@ function VaccFAQ() {
                 as="h2"
                 style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
               >
-                <Header.Content>COVID-19 Vaccination</Header.Content>
+                <Header.Content>{t('vaccination')}</Header.Content>
 
                 <Grid.Row>
                   <Grid.Column style={{ width: 600, paddingTop: 18 }}>
@@ -87,7 +87,7 @@ function VaccFAQ() {
                               width: 705,
                             }}
                           >
-                            Percent of the U.S. population partially vaccinated
+                            {t('percentbar_h1')}
                             <br />
                             <Header.Content
                               style={{
@@ -98,8 +98,7 @@ function VaccFAQ() {
                                 fontSize: "15px",
                               }}
                             >
-                              One of two doses of Pfizer or Moderna vaccine
-                              received
+                             {t('percentbar_sub1')}
                             </Header.Content>
                           </Header>
                         </div>
@@ -139,7 +138,7 @@ function VaccFAQ() {
                               width: 975,
                             }}
                           >
-                            Percent of the U.S. population fully vaccinated
+                            {t('percentbar_h2')}
                             <br />
                             <Header.Content
                               style={{
@@ -150,8 +149,7 @@ function VaccFAQ() {
                                 fontSize: "15px",
                               }}
                             >
-                              Both doses of Pfizer or Moderna vaccine or one and
-                              only dose of Johnson and Johnson received
+                              {t('percentbar_sub2')}
                             </Header.Content>
                           </Header>
                         </div>
@@ -179,9 +177,11 @@ function VaccFAQ() {
                               width: 975,
                             }}
                           >
-                            Percent of the U.S. population that received at
-                            least one dose
-                            <br />
+                          <div style={{ whiteSpace: 'pre-line' }}>
+                          {t('percentbar_h3')}
+                          </div>
+                            
+                     
                             <Header.Content
                               style={{
                                 paddingBottom: 5,
@@ -191,8 +191,7 @@ function VaccFAQ() {
                                 fontSize: "15px",
                               }}
                             >
-                              One or more doses of any of the authorized
-                              vaccines received
+                             {t('percentbar_sub3')}
                             </Header.Content>
                           </Header>
                         </div>
@@ -200,7 +199,7 @@ function VaccFAQ() {
                           style={{ paddingBottom: 0, paddingTop: 0 }}
                         >
                           <ProgressBar
-                            style={{ height: 30, width: 600, marginBottom: 30 }}
+                            style={{ height: 30, width: 600 }}
                             label={`${(
                               vaccineData["_nation"][
                                 "PercentAdministeredPartial"
@@ -325,9 +324,7 @@ function VaccFAQ() {
                     color: "black",
                   }}
                 >
-                  COVID-19 vaccines train our bodies to recognize and fight the
-                  virus. They do this by teaching our immune system to target an
-                  important part of the virus
+                  {t('step2_left1')}
                 </HeaderSubHeader>
                 <HeaderSubHeader
                   style={{
@@ -338,9 +335,7 @@ function VaccFAQ() {
                     color: "black",
                   }}
                 >
-                  Vaccination means you will be less likely to catch COVID-19
-                  and pass it on to others. In the small chance that you catch
-                  the virus, your symptoms will usually be mild.
+                {t('step2_left2')}
                 </HeaderSubHeader>
                 <HeaderSubHeader
                   style={{
@@ -351,7 +346,7 @@ function VaccFAQ() {
                     color: "black",
                   }}
                 >
-                  The vaccines mostly widely available for adults in US are:
+                 {t('step2_left3')}
                 </HeaderSubHeader>
               </Header>
               <ul>
@@ -606,33 +601,19 @@ function VaccFAQ() {
                   }
                 >
                   <Icon name="dropdown" />
-                  Are the approved COVID-19 vaccines safe?
+                  {t('step2_23q')}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(10) > 0}
                 >
                   <p style={{ marginBottom: 0 }}>
-                    Yes. Any vaccine that is approved for use is thoroughly
-                    tested to make sure that it is both effective and safe.
-                    Tests for safety already happen in Phase I, Phase II, and
-                    Phase III clinical trials. However, vaccines continue to be
-                    tested for safety after they are approved for use, in what
-                    are called “Phase IV” studies. All the vaccines for COVID-19
-                    are being developed through careful scientific studies,
-                    which follow strict standards set by the Food and Drug
-                    Administration (FDA). During vaccine development and
-                    testing, researchers carefully study whether each vaccine
-                    effectively reduces the chances of getting COVID-19 or
-                    getting sick from COVID-19. Researchers have tested the
-                    vaccines on thousands of study participants during Phases
-                    I-III. Researchers also track whether a vaccine causes side
-                    effects, the kind of side effects people experience, and how
-                    serious those are. All of the side effects are reported to
-                    doctors making the decision about whether the vaccine is
-                    safe.
+                    {t('step2_23')}
                   </p>
                   <p
+                   dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_24")),
+                        }}
                     style={{
                       paddingTop: "1rem",
                       paddingLeft: "0rem",
@@ -643,88 +624,25 @@ function VaccFAQ() {
                       textAlign: "justify",
                     }}
                   >
-                    There are very strict standards about whether a vaccine is
-                    authorized as safe by the Food and Drug Administration.
-                    Before a COVID-19 vaccine is approved, scientists must show
-                    that any risks of side effects from the vaccine are
-                    outweighed by its benefits and by the potential harm of
-                    getting sick from COVID-19. You can find additional
-                    information about COVID-19 vaccine safety on the{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      CDC’s website{" "}
-                    </a>
-                    and the full documents shared with the FDA{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/media/144434/download"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      here{" "}
-                    </a>{" "}
-                    for the Moderna vaccine,
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/media/144245/download"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      here{" "}
-                    </a>{" "}
-                    for the Pfizer-BioNTech vaccine, and{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/media/146217/download"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      here{" "}
-                    </a>
-                    for the Johnson & Johnson vaccine. Vaccine safety monitoring
-                    does not stop once a vaccine is approved. It continues on a
-                    larger scale with Phase IV studies as well as nationwide
-                    vaccine safety reporting systems.
+               
                   </p>
                   <p
+                   dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_25")),
+                        }}
                     style={{
                       paddingTop: "1rem",
                       paddingLeft: "0rem",
                       paddingRight: "1rem",
+                      marginBottom: "0",
                       fontWeight: 400,
                       fontSize: "14pt",
                       textAlign: "justify",
                     }}
                   >
-                    There are multiple systems used to track any reports of any
-                    adverse side effects or reactions. The Vaccine Safety
-                    Datalink which helps to determine whether the reactions
-                    reported using the Vaccine Adverse Event Reporting System
-                    (VAERS) are related to a vaccine. The Clinical Immunization
-                    Safety Assessment Project also helps to track and evaluate
-                    issues of vaccine safety. You can find out more about these
-                    and other different systems at CDC, the Food and Drug
-                    Administration, and other groups used to monitor and assess
-                    safety{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      here{" "}
-                    </a>
-                    .
+               
                   </p>
+
                 </Accordion.Content>
                 <Accordion.Title
                   style={{
@@ -743,106 +661,27 @@ function VaccFAQ() {
                   }
                 >
                   <Icon name="dropdown" />
-                  What is the difference between an additional dose of a
-                  COVID-19 vaccine and a booster?
+                 {t('step2_26q')}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(49) > 0}
                 >
-                  <p>
-                    Right now, the FDA and CDC have authorized and recommended
-                    additional doses of the Pfizer-BioNTech (Comirnaty) or
-                    Moderna (Spikevax) vaccines in certain circumstances. While
-                    both terms currently refer to a third shot, there are some
-                    differences in why an “additional dose” or a “booster dose”
-                    are recommended.
+                  <p 
+                   dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_26")),
+                        }}>
+                
                   </p>
-                  <p>
-                    An <b>additional dose</b> of vaccine (i.e. a third dose of
-                    the Pfizer or Moderna two-shot vaccines in this case,
-                    received 28 days at least after the second dose) is
-                    authorized by{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      FDA
-                    </a>{" "}
-                    outside the United States and recommended by{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      CDC
-                    </a>{" "}
-                    for people who have moderately or severely compromised
-                    immune systems, who may not have built up high enough
-                    immunity from the first two shots. The goal of this
-                    additional dose is to help their immune system build up a
-                    stronger immune response than they built up from the first
-                    two doses. This will provide a similar level of protection
-                    in immunocompromised people as in seen in those who are not
-                    immunocompromised. People with compromised immune systems
-                    include those immunocompromised due to certain treatments or
-                    medical condition or following{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      organ transplants.
-                    </a>{" "}
-                    At this time, there are no authorizations or recommendations
-                    for additional doses for people who received the Johnson &
-                    Johnson/ Janssen vaccine.
+                  <p  dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_27")),
+                        }}>
+               
                   </p>
-                  <p>
-                    <b>A booster shot</b> (i.e. another dose of one of the
-                    available vaccines at least 5 months after getting a full
-                    primary series of either the Pfizer-BioNTech or Moderna
-                    two-shot vaccines or at least 2 months after the Johnson
-                    &Johnson/ Janssen one-shot vaccine) is authorized by{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      FDA
-                    </a>{" "}
-                    and recommended by{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.cdc.gov/media/releases/2021/p0924-booster-recommendations-.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      CDC
-                    </a>{" "}
-                    for everyone. In this case, the booster counters the
-                    decrease in immunity that was developed after becoming fully
-                    vaccinated. Studies have shown that vaccine-induced
-                    protection from COVID-19 illness decreases over time and may
-                    also be decreased by newer variants of SARS-CoV-2, the virus
-                    that causes COVID-19. The reduction in immunity is primarily
-                    a reduction in protection from symptomatic COVID-19 illness;
-                    however, protection from more serious illness and outcomes
-                    does also decrease somewhat over time. In some{" "}
-                    <a
-                      style={{ color: "#397AB9" }}
-                      href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      cases
-                    </a>{" "}
-                    , a second booster is also recommended.
+                  <p  dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_28")),
+                        }}>
+          
                   </p>
                 </Accordion.Content>
                 <Accordion.Title
