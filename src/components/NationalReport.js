@@ -4583,7 +4583,7 @@ export default function NationalReport(props) {
   };
 
   if (data && dataTS && varMap) {
-    
+    console.log(vaccineData);
     return (
       <HEProvider>
         <div>

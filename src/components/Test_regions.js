@@ -44,7 +44,7 @@ export default function Test_region(props) {
   const [hoverName, setHoverName] = useState('USA');
   const countyColor = "#f2a900";
 
-  const metric = "DeltaB16172";
+  const metric = "Delta";
 
   // const colorCode={
   //   "1":"#8dd3c7",
@@ -179,7 +179,8 @@ export default function Test_region(props) {
       <Table.Row>
       <Table.HeaderCell>Region</Table.HeaderCell>
         <Table.HeaderCell>Delta %</Table.HeaderCell>
-        <Table.HeaderCell>Omicron %</Table.HeaderCell>
+        <Table.HeaderCell>Omicron XBB%</Table.HeaderCell>
+        <Table.HeaderCell>Omicron Others %</Table.HeaderCell>
         
       </Table.Row>
     </Table.Header>
@@ -189,9 +190,10 @@ export default function Test_region(props) {
       <Table.Cell>
       <Label ribbon>{regions}</Label></Table.Cell>
         <Table.Cell>
-          {data[regions].DeltaB16172}
+          {data[regions].Delta}
         </Table.Cell>
-        <Table.Cell>{data[regions].Omicron}</Table.Cell>
+        <Table.Cell>{data[regions].XBB}</Table.Cell>
+        <Table.Cell>{data[regions].Omicron_other}</Table.Cell>
        
       </Table.Row>
       {/* <Table.Row>

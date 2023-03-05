@@ -318,7 +318,7 @@ function CaseChart(props) {
     return y + "%";
   };
 
-  console.log(data);
+
   return (
     <div style={{ paddingTop: 5, paddingBottom: 10, width: 500 }}>
       <LineChart width={500} height={180} data={data} margin={{ right: 20 }}>
@@ -335,9 +335,9 @@ function CaseChart(props) {
 
         <Line
           data={dataState}
-          name="Omicron"
+          name="Omicron_XBB"
           type="monotone"
-          dataKey="Omicron"
+          dataKey="XBB"
           dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
@@ -350,7 +350,7 @@ function CaseChart(props) {
           data={dataState}
           name="Delta"
           type="monotone"
-          dataKey="DeltaB16172"
+          dataKey="Delta"
           dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
@@ -359,8 +359,20 @@ function CaseChart(props) {
           stroke="#99528c"
           strokeWidth="2"
         />
-
-        {/* <Line data={data["_nation"]} name="Nation" type='monotone' dataKey='DeltaB16172' dot={false}
+      <Line
+          data={dataState}
+          name="Omicron_Other"
+          type="monotone"
+          dataKey="Omicron_other"
+          dot={false}
+          isAnimationActive={animationBool}
+          onAnimationEnd={() => setAnimationBool(false)}
+          animationDuration={5500}
+          animationBegin={500}
+          stroke="#d3b6cd"
+          strokeWidth="2"
+        />
+        {/* <Line data={data["_nation"]} name="Nation" type='monotone' dataKey='Delta' dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
@@ -411,7 +423,7 @@ export default function Variant(props) {
   const [showState, setShowState] = useState(false);
   const [variantData, setrVariantData] = useState();
   const [clicked, setClicked] = useState(false);
-  const [hoverName, setHoverName] = useState("The United States");
+  const [hoverName, setHoverName] = useState("USA");
   const [fully, setFully] = useState("");
   const d3graph = React.useRef(null);
   const [regionMatched, setRegionMatched] = useState("USA");
@@ -452,10 +464,10 @@ export default function Variant(props) {
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3.0.0/states-10m.json";
   const [colorScale, setColorScale] = useState();
   const history = useNavigate();
-  // const [varMap, setVarMap] = useState(["DeltaB16172,Omicron"]);
+  // const [varMap, setVarMap] = useState(["Delta,Omicron"]);
   const options = [
     { value: "Omicron", label: "Omicron" },
-    { value: "DeltaB16172", label: "Delta" },
+    { value: "Delta", label: "Delta" },
   ];
   const [metric, setMetric] = useState("Omicron");
   const [metricOptions, setMetricOptions] = useState("Omicron");
@@ -475,7 +487,7 @@ export default function Variant(props) {
         // let stateValue = {}
         // regionState.map((y)=>{
         //   console.log(y);
-        //   stateValue[y.id.toString()]=x[y.region].DeltaB16172;
+        //   stateValue[y.id.toString()]=x[y.region].Delta;
         //   setStateColor(stateValue);
         // });
 
@@ -501,9 +513,9 @@ export default function Variant(props) {
             scaleMap[d[metric]] = cs(d[metric]);
           }
         });
-        console.log(scaleMap);
+      
         setColorScale(scaleMap);
-        console.log(colorScale);
+   
         var max = 0;
         var min = 100;
         _.each(x, (d) => {
@@ -553,8 +565,8 @@ export default function Variant(props) {
           data[regionMatched][0].t,
           data[regionMatched][data[regionMatched].length - 1].t,
         ]);
-      const yMinValue = d3.min(data[regionMatched], (d) => d.DeltaB16172);
-      const yMaxValue = d3.max(data[regionMatched], (d) => d.DeltaB16172);
+      const yMinValue = d3.min(data[regionMatched], (d) => d.Delta);
+      const yMaxValue = d3.max(data[regionMatched], (d) => d.Delta);
       const yScale = d3
         .scaleLinear()
         .domain([legendMin, legendMax])
@@ -624,10 +636,11 @@ export default function Variant(props) {
     // console.log(variantTimeseries);
     // console.log(stateMapFips);
     // console.log(variantTimeseries);
-    // console.log(variantData['USA'].DeltaB16172)
+    // console.log(variantData['USA'].Delta)
     // console.log(variantData[stateMapFips])
     // console.log((stateColor['13']));
     // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
+    console.log(variantData[hoverName].Delta)
     return (
       <HEProvider>
         <div>
@@ -778,17 +791,17 @@ export default function Variant(props) {
                         Currently, the most common variant in region{" "}
                         <b>{stateMapFips}</b> is{" "}
                         <b>
-                          {variantData[stateMapFips].DeltaB16172 >
-                          variantData[stateMapFips].Omicron
+                          {variantData[stateMapFips].Delta >
+                          variantData[stateMapFips].XBB
                             ? "Delta"
-                            : "Omicron"}
+                            : "Omicron_XBB"}
                         </b>{" "}
                         which accounts for{" "}
                         <b>
-                          {variantData[stateMapFips].DeltaB16172 >
-                          variantData[stateMapFips].Omicron
-                            ? variantData[stateMapFips].DeltaB16172
-                            : variantData[stateMapFips].Omicron}
+                          {variantData[stateMapFips].Delta >
+                          variantData[stateMapFips].XBB
+                            ? variantData[stateMapFips].Delta
+                            : variantData[stateMapFips].XBB}
                         </b>{" "}
                         % of cases.
                       </Header.Content>
@@ -873,7 +886,7 @@ export default function Variant(props) {
               % Delta
               </Grid.Row>
               <Grid.Row>
-              {numberWithCommas(variantData[hoverName].DeltaB16172)+"%"}
+              {numberWithCommas(variantData[hoverName].Delta)+"%"}
               </Grid.Row>
             </Grid> */}
 
@@ -900,7 +913,7 @@ export default function Variant(props) {
                         textAlign: "right",
                       }}
                     >
-                      {variantData[hoverName].DeltaB16172 + "%"}
+                      {variantData[hoverName].Delta + "%"}
                     </Table.Cell>
                   </Table.Row>
                   <Table.Row>
