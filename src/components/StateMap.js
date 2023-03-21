@@ -1500,7 +1500,7 @@ export default function StateMap(props) {
                           }}
                         >
                           {" "}
-                          Percent Tested Positive
+                          % Tested Positive
                         </center>
 
                         <div style={{ width: 235, background: "#e5f2f7" }}>
