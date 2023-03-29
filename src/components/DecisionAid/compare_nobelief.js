@@ -39,6 +39,9 @@ import {ProgressBar} from 'react-bootstrap';
 import i18n from "i18next";
 import { initReactI18next,useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle,faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import ReactTooltip from 'react-tooltip';
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
 const colorPalette = [
@@ -123,7 +126,9 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>HOSPITALIZATION with COVID-19</Header.Content>
+                  <Header.Content>HOSPITALIZATION with COVID-19
+                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`The data is taken from <a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`} />
+                  </Header.Content>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
               </GridColumn>
@@ -143,20 +148,21 @@ function CompareNoElicit(props) {
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   reverse
-                  percent={2.8}
+                  percent={28}
                   color="red"
                 ></StyledProgressBar>
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
-                  percent={0.8}
+                  percent={8}
                   color="blue"
                 ></StyledProgressBar>
-                <StyledProgressBar percent={0.7} color="blue"></StyledProgressBar>
+                <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     28 in 1000
+                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1000."  />
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
@@ -192,7 +198,9 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>ICU-LEVEL CARE</Header.Content>
+                  <Header.Content>ICU-LEVEL CARE
+                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-tip="This data comes from..." />
+                  </Header.Content>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
               </GridColumn>
@@ -212,20 +220,21 @@ function CompareNoElicit(props) {
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   reverse
-                  percent={0.5}
+                  percent={50}
                   color="red"
                 ></StyledProgressBar>
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
-                  percent={0.12}
+                  percent={12}
                   color="blue"
                 ></StyledProgressBar>
-                <StyledProgressBar percent={0} color="blue"></StyledProgressBar>
+                <StyledProgressBar percent={8} color="blue"></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     50 in 10000
+                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
@@ -235,7 +244,7 @@ function CompareNoElicit(props) {
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 100000
+                    8 in 10000
                   </Header.Content>
                 </Header>
               </GridColumn>
@@ -867,7 +876,10 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>DEATH</Header.Content>
+                  <Header.Content>DEATH
+                  <ReactTooltip sticky={true} place="right" effect="solid" />
+                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-tip="This data comes from..." />
+                  </Header.Content>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
               </GridColumn>
@@ -887,19 +899,21 @@ function CompareNoElicit(props) {
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   color="red"
-                  percent={0.3}
+                  percent={30}
                 ></StyledProgressBar>
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
-                  percent={0.08}
+                  percent={8}
                   color="blue"
                 ></StyledProgressBar>
-                <StyledProgressBar percent={0.07} color="blue"></StyledProgressBar>
+                <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
               </GridColumn>
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     30 in 10000
+ 
+                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
