@@ -84,6 +84,9 @@ function CompareNoElicit(props) {
   //   cookie.step3?sethospilizationNoVac(cookie.step3.hospilizationNoVac):sethospilizationNoVac(10);
   //   console.log(hospilizationVac);
   // }, [cookies]);
+  const handleClick = (e) => {
+    e.stopPropagation(); // prevent the click event from bubbling up to the document
+  };
   const StyledProgressBar = styled(Progress)`
     &&& .bar {
       ${
@@ -127,9 +130,11 @@ function CompareNoElicit(props) {
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
                   <Header.Content>HOSPITALIZATION with COVID-19
-                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`The data is taken from <a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`} />
+                  <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`The data is taken from <a  href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`} />
+                  </sup>
                   </Header.Content>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>       
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
@@ -162,7 +167,10 @@ function CompareNoElicit(props) {
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     28 in 1000
+                    <sup style={{ verticalAlign: 'super' }}>
                     <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1000."  />
+                    </sup>
+                   
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
@@ -177,17 +185,15 @@ function CompareNoElicit(props) {
                 </Header>
               </GridColumn>
             </Grid.Row>
-            <Grid.Row>
+            {/* <Grid.Row>
               <GridColumn width={4}></GridColumn>
               <GridColumn width={8}>
-                * The data is taken from{" "}
                 <a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20">
-                  JAMA Internal Medicine
+                  Link Here.
                 </a>
-                , it displays the hospilization rate of COVID-19 patients with
-                vaccine and without vaccine.
+              
               </GridColumn>
-            </Grid.Row>
+            </Grid.Row> */}
           </Grid>
           <hr />
           <Grid style={{ paddingTop: 5 }}>
@@ -199,7 +205,10 @@ function CompareNoElicit(props) {
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
                   <Header.Content>ICU-LEVEL CARE
-                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-tip="This data comes from..." />
+                  <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '}/>
+                  </sup>
+                 
                   </Header.Content>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
@@ -234,7 +243,9 @@ function CompareNoElicit(props) {
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     50 in 10000
+                    <sup style={{ verticalAlign: 'super' }}>
                     <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
+                    </sup>
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
@@ -261,11 +272,20 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>SYMPTOMS</Header.Content>
+                  <Header.Content>SYMPTOMS
+                  <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`Each of the trials were run in tandem timelines with different cohorts. The statistic represents the PREVALENCE rates of symptoms linked to COVID-19 run with clinical trial cohorts for each respective vaccines. 
+                  <br></br>  <a href="https://www.nejm.org/doi/full/10.1056/nejmoa2002032">Link to data about COVID-19 symptoms.</a>
+                  <br></br>  <a href="https://www.fda.gov/media/157233/download">Link to data about the Moderna Vaccine.</a>
+                  <br></br>  <a href="https://www.fda.gov/media/153713/download">Link to data about the Pfizer Vaccine.</a>
+                  `} />
+                  </sup>
+                  </Header.Content>
+                  
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
               </GridColumn>
-              <GridColumn width={3}>
+              {/* <GridColumn width={3}>
                 <Header as="h4">
                   <Header.Content>With COVID-19</Header.Content>
                 </Header>
@@ -275,9 +295,9 @@ function CompareNoElicit(props) {
                 <Header as="h4" style={{ marginTop: "6%" }}>
                   <Header.Content>With Moderna Vaccine</Header.Content>
                 </Header>
-              </GridColumn>
+              </GridColumn> */}
 
-              <GridColumn width={5}>
+              {/* <GridColumn width={5}>
                 <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   reverse
@@ -310,7 +330,7 @@ function CompareNoElicit(props) {
                     38 in 100
                   </Header.Content>
                 </Header>
-              </GridColumn>
+              </GridColumn> */}
             </Grid.Row>
 
             <Grid.Row>
@@ -381,16 +401,16 @@ function CompareNoElicit(props) {
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
                                 reverse
-                                percent={86}
+                                percent={56.2}
                                 color="red"
                               ></StyledProgressBar>
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
-                                percent={13}
+                                percent={17.4}
                                 color="blue"
                               ></StyledProgressBar>
                               <StyledProgressBar
-                                percent={6}
+                                percent={15.8}
                                 color="blue"
                               ></StyledProgressBar>
                             </GridColumn>
@@ -399,17 +419,17 @@ function CompareNoElicit(props) {
                                 <Header.Content
                                   style={{ marginTop: 0, color: "#e02c2c" }}
                                 >
-                                  86 in 100
+                                  562 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  13 in 100
+                                  174 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  6 in 100
+                                  158 in 1000
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -429,7 +449,7 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                  chronic fatigue syndrome
+                                 cough
                                 </Header.Content>
                                 <HeaderSubHeader>
                                   Number of People
@@ -456,7 +476,7 @@ function CompareNoElicit(props) {
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
                                 reverse
-                                percent={45}
+                                percent={67.8}
                                 color="red"
                               ></StyledProgressBar>
                               <StyledProgressBar
@@ -472,17 +492,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  45 in 100
+                                  678 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  zero
+                                  Not Reported
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  zero
+                                  Not Reported
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -529,7 +549,7 @@ function CompareNoElicit(props) {
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
                                 color="red"
-                                percent={20}
+                                percent={18.7}
                               ></StyledProgressBar>
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
@@ -544,17 +564,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  20 in 100
+                                  187 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  zero
+                                  Not Reported
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  zero
+                                  Not Reported
                                 </Header.Content>
                               </Header>
                              
@@ -574,7 +594,7 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                  muscle or joint pain
+                                  Myalgia (muscle or joint pain)
                                 </Header.Content>
                                 <HeaderSubHeader>
                                   Number of People
@@ -601,33 +621,33 @@ function CompareNoElicit(props) {
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
                                 reverse
-                                percent={26}
+                                percent={14.9}
                                 color="red"
                               ></StyledProgressBar>
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
-                                percent={34}
+                                percent={23.7}
                                 color="blue"
                               ></StyledProgressBar>
                               <StyledProgressBar
-                                percent={18}
+                                percent={21.3}
                                 color="blue"
                               ></StyledProgressBar>
                             </GridColumn>
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  26 in 100
+                                  149 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  34 in 100
+                                  237 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  18 in 100
+                                  213 in 1000
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -672,7 +692,7 @@ function CompareNoElicit(props) {
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
                                 color="red"
-                                percent={12}
+                                percent={13.9}
                               ></StyledProgressBar>
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
@@ -689,17 +709,17 @@ function CompareNoElicit(props) {
                                 <Header.Content
                                   style={{ marginTop: "0%", color: "#e02c2c" }}
                                 >
-                                  12 in 100
+                                  139 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  zero
+                                  Not Reported
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  zero
+                                  Not Reported
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -718,7 +738,7 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                  local redness and swelling at the injection
+                                  local swelling at the injection
                                   site
                                 </Header.Content>
                                 <HeaderSubHeader>
@@ -751,11 +771,11 @@ function CompareNoElicit(props) {
                               ></StyledProgressBar>
                               <StyledProgressBar
                                 style={{ marginBottom: 20 }}
-                                percent={43}
+                                percent={8.5}
                                 color="blue"
                               ></StyledProgressBar>
                               <StyledProgressBar
-                                percent={33}
+                                percent={6.3}
                                 color="blue"
                               ></StyledProgressBar>
                             </GridColumn>
@@ -767,12 +787,12 @@ function CompareNoElicit(props) {
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  43 in 100
+                                  85 in 1000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  33 in 100
+                                  63 in 1000
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -795,20 +815,20 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>SYMPTOMS AFTER 1 MONTH</Header.Content>
+                  <Header.Content>Long-COVID</Header.Content>
+                  <sup style={{ verticalAlign: 'super' }}>
+                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={"Some people who have been infected with the virus that causes COVID-19 can experience long-term effects from their infection, known as Post-COVID Conditions (PCC) or Long COVID. The data comes from a article that can be accessed through The article was published in the International Journal of Environmental Research and Public Health and can be accessed <a href='doi:10.3390/ijerph191912422.'>here</a>."} />
+                    </sup>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>With COVID-19</Header.Content>
+                  <Header.Content>Unvaccinated</Header.Content>
                 </Header>
                
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Pfizer Vaccine</Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>With Moderna Vaccine</Header.Content>
+                  <Header.Content>Vaccinated</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -816,21 +836,16 @@ function CompareNoElicit(props) {
               <StyledProgressBar
                   style={{ marginBottom: 20 }}
                   reverse
-                  percent={20}
+                  percent={24.2}
                   color="red"
                 ></StyledProgressBar>
          
                 <StyledProgressBar
-                  percent={0}
+                  percent={14.5}
                   style={{ marginBottom: 20 }}
                   color="blue"
                 ></StyledProgressBar>
               
-                 <StyledProgressBar
-                  percent={0}
-                  style={{ marginBottom: 20 }}
-                  color="blue"
-                ></StyledProgressBar>
              
               </GridColumn>
               <GridColumn width={2}>
@@ -851,19 +866,18 @@ function CompareNoElicit(props) {
                 </Header> */}
              <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    20 in 100
+                   242 in 1000
+                    <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1000 people." />
+                  </sup>
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
+                  145 in 1000
                   </Header.Content>
                 </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
-                  </Header.Content>
-                </Header>
+              
               </GridColumn>
             </Grid.Row>
           </Grid>
@@ -877,8 +891,11 @@ function CompareNoElicit(props) {
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
                   <Header.Content>DEATH
-                  <ReactTooltip sticky={true} place="right" effect="solid" />
-                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-tip="This data comes from..." />
+                  <ReactTooltip className='extraClass'  sticky={true} place="right" effect="solid"  delayHide={1000}  />
+                    <sup style={{ verticalAlign: 'super' }}>
+                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '}/>
+
+                    </sup>
                   </Header.Content>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>
@@ -912,8 +929,10 @@ function CompareNoElicit(props) {
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
                     30 in 10000
- 
-                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
+                    <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
+                  </sup>
+                   
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>

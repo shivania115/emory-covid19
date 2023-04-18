@@ -24,10 +24,11 @@ import ReactTooltip from "react-tooltip";
 import Marker from "./Marker";
 import configs from "./state_config.json";
 import VariantFAQ from "./VariantFAQ";
-import _, { map, set } from "lodash";
+import _, { map, reverse, set } from "lodash";
 import Annotation from "./Annotation";
 import allStates from "./allstates.json";
 import Test_Region from "./Test_regions";
+import InputRange from 'react-input-range';
 
 import {
   LineChart,
@@ -66,6 +67,7 @@ import {
 } from "victory";
 import regionState from "./stateRegionFip.json";
 import * as d3 from "d3";
+import Slider from "@material-ui/core/Slider";
 import { scaleQuantile } from "d3-scale";
 const stateColor = "#778899";
 const nationColor = "#b1b3b3";
@@ -303,6 +305,85 @@ function LatestOnThisDashboard() {
     </Grid>
   );
 }
+
+function HorizontalPercentageStackedBarChart (props) {
+  const data = Object.entries(props.data).reduce((acc, [name, timeseriesData]) => {
+    const addedDates = new Set(); // Keep track of which dates we've already added
+    Object.entries(timeseriesData).forEach(([date, value]) => {
+      const date1 = props.tickFormatter(value.t)
+      if (!addedDates.has(date1)) {
+        acc.push({ date1, name, value });
+        addedDates.add(date1);
+      }
+    });
+    return acc;
+  }, []);
+  data.sort((a, b) => new Date(a.date1)- new Date(b.date1));
+
+  const uniqueDates = [...new Set(data.map((item) => item.date1))];
+  const [selectedDate, setSelectedDate] = useState(uniqueDates.length - 1);
+
+  const filteredData = data.filter(
+    (item) => item.date1 === uniqueDates[selectedDate]
+  );
+  const chartData = filteredData.map((item) => ({
+    name: item.name,
+    Delta: item.value.Delta,
+    Omicron_other:item.value.Omicron_other,
+    XBB:item.value.XBB,
+    Other:item.value.Other
+  }));
+
+  const handleSliderChange = (event, newValue) => {
+    setSelectedDate(newValue);
+    console.log(newValue)
+  };
+  // const data=props.data.slice(-10);
+  const caseYTickFmt = (y) => {
+    return y + "%";
+  };
+ 
+
+// console.log(uniqueDates[selectedDate])
+  return (
+    <div>
+    <h1>{uniqueDates[selectedDate]}</h1>
+       <Slider
+        value={selectedDate}
+        onChange={handleSliderChange}
+        step={1}
+        min={0}
+        max={uniqueDates.length - 1}
+      
+      />
+      {/* <BarChart width={500} height={500} data={data}>
+      <CartesianGrid  />
+      <XAxis dataKey="t" ticks={props.ticks} tickFormatter={props.tickFormatter} />
+      <YAxis  tickFormatter={caseYTickFmt} />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="XBB" stackId='a' fill="#8884d8" />
+      <Bar dataKey="Omicron_other" stackId='a' fill="#82ca9d" />
+      <Bar dataKey="Delta" stackId='a' fill="#ffc658" />
+    </BarChart> */}
+    <BarChart width={500} height={500} data={chartData}>
+      <CartesianGrid  />
+      <XAxis 
+      dataKey='name'
+      />
+      <YAxis domain={[0, 100.1]} tickFormatter={caseYTickFmt} />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="XBB" stackId='a' fill="#007dba" />
+      <Bar dataKey="Omicron_other" stackId='a' fill="#a45791" />
+      <Bar dataKey="Delta" stackId='a' fill="#e8ab3b" />
+      <Bar dataKey="Other" stackId='a' fill="red" />
+    </BarChart>
+    </div>
+  );
+};
+
+
 function CaseChart(props) {
   const [playCount, setPlayCount] = useState(0);
   const data = props.data;
@@ -313,7 +394,7 @@ function CaseChart(props) {
   const tickFormatter = props.tickFormatter;
   const labelFormatter = props.labelFormatter;
   const [animationBool, setAnimationBool] = useState(true);
-
+  
   const caseYTickFmt = (y) => {
     return y + "%";
   };
@@ -356,7 +437,7 @@ function CaseChart(props) {
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
           animationBegin={500}
-          stroke="#99528c"
+          stroke="#e8ab3b"
           strokeWidth="2"
         />
       <Line
@@ -369,7 +450,7 @@ function CaseChart(props) {
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
           animationBegin={500}
-          stroke="#d3b6cd"
+          stroke="#a45791"
           strokeWidth="2"
         />
         {/* <Line data={data["_nation"]} name="Nation" type='monotone' dataKey='Delta' dot={false}
@@ -428,6 +509,8 @@ export default function Variant(props) {
   const d3graph = React.useRef(null);
   const [regionMatched, setRegionMatched] = useState("USA");
   const [stateMatched, setStateMathched] = useState([]);
+  
+  
   const regionDescribe = {
     "01": "Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont.",
     "02": "New Jersey, New York, Puerto Rico, and the Virgin Islands ",
@@ -623,7 +706,9 @@ export default function Variant(props) {
       new Date(tick * 1000).getMonth() +
       1 +
       "/" +
-      new Date(tick * 1000).getDate()
+      new Date(tick * 1000).getDate()+
+      "/"+
+    new Date(tick * 1000).getFullYear()
     );
   };
   function handleCallback(childData) {
@@ -744,7 +829,12 @@ export default function Variant(props) {
                     parentClick={handleClick}
                     parentCallback={handleCallback}
                   />
+               
                 </Grid.Column>
+                {/* <HorizontalPercentageStackedBarChart ticks={caseTicks}
+                            tickFormatter={caseTickFmt}  data={variantTimeseries[stateMapFips]}></HorizontalPercentageStackedBarChart> */}
+                            {/* <HorizontalPercentageStackedBarChart ticks={caseTicks}
+                            tickFormatter={caseTickFmt}  data={variantTimeseries}></HorizontalPercentageStackedBarChart>    */}
                 <Grid.Column width={7} style={{ paddingLeft: 20 }}>
                   <Header as="h2" style={{ fontWeight: 400 }}>
                     <Header.Content

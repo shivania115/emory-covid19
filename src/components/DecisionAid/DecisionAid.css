@@ -5,3 +5,12 @@ label {
 .checkbox {
     margin-top: 1.5rem;
 }
+.extraClass {
+    font-size: 15px !important;
+    pointer-events: auto !important;
+    &:hover {
+   visibility: visible !important;
+   opacity: 1 !important;
+    }
+   }
+
