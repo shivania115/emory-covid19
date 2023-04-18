@@ -1,68 +1,79 @@
 {
-  "04": {
-    "region": "4",
+  "01": {
+    "region": "1",
     "Delta": 0.0,
-    "XBB": 89.77,
-    "Omicron_other": 9.46
+    "XBB": 95.58,
+    "Omicron_other": 4.43,
+    "Other": 0.0
   },
   "10": {
     "region": "10",
     "Delta": 0.0,
-    "XBB": 78.77,
-    "Omicron_other": 19.25
+    "XBB": 80.24,
+    "Omicron_other": 19.25,
+    "Other": 0.49
   },
-  "09": {
-    "region": "9",
+  "02": {
+    "region": "2",
     "Delta": 0.0,
-    "XBB": 86.43,
-    "Omicron_other": 12.72
+    "XBB": 94.91,
+    "Omicron_other": 5.08,
+    "Other": 0.0
+  },
+  "03": {
+    "region": "3",
+    "Delta": 0.0,
+    "XBB": 91.43,
+    "Omicron_other": 8.17,
+    "Other": 0.39
+  },
+  "04": {
+    "region": "4",
+    "Delta": 0.0,
+    "XBB": 90.48,
+    "Omicron_other": 9.46,
+    "Other": 0.07
+  },
+  "05": {
+    "region": "5",
+    "Delta": 0.0,
+    "XBB": 88.22,
+    "Omicron_other": 11.2,
+    "Other": 0.6
   },
   "06": {
     "region": "6",
     "Delta": 0.0,
-    "XBB": 85.63,
-    "Omicron_other": 12.62
+    "XBB": 86.96,
+    "Omicron_other": 12.62,
+    "Other": 0.42
+  },
+  "07": {
+    "region": "7",
+    "Delta": 0.0,
+    "XBB": 83.8,
+    "Omicron_other": 16.09,
+    "Other": 0.1
   },
   "08": {
     "region": "8",
     "Delta": 0.0,
     "XBB": 92.84,
-    "Omicron_other": 7.15
+    "Omicron_other": 7.15,
+    "Other": 0.0
   },
-  "01": {
-    "region": "1",
+  "09": {
+    "region": "9",
     "Delta": 0.0,
-    "XBB": 93.41,
-    "Omicron_other": 4.43
-  },
-  "03": {
-    "region": "3",
-    "Delta": 0.0,
-    "XBB": 90.93,
-    "Omicron_other": 8.17
-  },
-  "05": {
-    "region": "5",
-    "Delta": 0.0,
-    "XBB": 86.82,
-    "Omicron_other": 11.2
-  },
-  "07": {
-    "region": "7",
-    "Delta": 0.0,
-    "XBB": 80.35,
-    "Omicron_other": 16.09
-  },
-  "02": {
-    "region": "2",
-    "Delta": 0.0,
-    "XBB": 94.21,
-    "Omicron_other": 5.08
+    "XBB": 87.16,
+    "Omicron_other": 12.72,
+    "Other": 0.13
   },
   "USA": {
     "region": "USA",
     "Delta": 0.0,
-    "XBB": 88.02,
-    "Omicron_other": 10.56
+    "XBB": 89.18,
+    "Omicron_other": 10.56,
+    "Other": 0.26
   }
 }
