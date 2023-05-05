@@ -131,7 +131,7 @@ function CompareNoElicit(props) {
                 >
                   <Header.Content>HOSPITALIZATION with COVID-19
                   <sup style={{ verticalAlign: 'super' }}>
-                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`The data is taken from <a  href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`} />
+                  <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`The data is taken from <a target='_blank' href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`} />
                   </sup>
                   </Header.Content>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>       
@@ -275,9 +275,9 @@ function CompareNoElicit(props) {
                   <Header.Content>SYMPTOMS
                   <sup style={{ verticalAlign: 'super' }}>
                   <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`Each of the trials were run in tandem timelines with different cohorts. The statistic represents the PREVALENCE rates of symptoms linked to COVID-19 run with clinical trial cohorts for each respective vaccines. 
-                  <br></br>  <a href="https://www.nejm.org/doi/full/10.1056/nejmoa2002032">Link to data about COVID-19 symptoms.</a>
-                  <br></br>  <a href="https://www.fda.gov/media/157233/download">Link to data about the Moderna Vaccine.</a>
-                  <br></br>  <a href="https://www.fda.gov/media/153713/download">Link to data about the Pfizer Vaccine.</a>
+                  <br></br>  <a target='_blank' href="https://www.nejm.org/doi/full/10.1056/nejmoa2002032">Link to data about COVID-19 symptoms.</a>
+                  <br></br>  <a target='_blank' href="https://www.fda.gov/media/157233/download">Link to data about the Moderna Vaccine.</a>
+                  <br></br>  <a target='_blank' href="https://www.fda.gov/media/153713/download">Link to data about the Pfizer Vaccine.</a>
                   `} />
                   </sup>
                   </Header.Content>
@@ -817,7 +817,7 @@ function CompareNoElicit(props) {
                 >
                   <Header.Content>Long-COVID</Header.Content>
                   <sup style={{ verticalAlign: 'super' }}>
-                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={"Some people who have been infected with the virus that causes COVID-19 can experience long-term effects from their infection, known as Post-COVID Conditions (PCC) or Long COVID. The data comes from a article that can be accessed through The article was published in the International Journal of Environmental Research and Public Health and can be accessed <a href='doi:10.3390/ijerph191912422.'>here</a>."} />
+                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={"Some people who have been infected with the virus that causes COVID-19 can experience long-term effects from their infection, known as Post-COVID Conditions (PCC) or Long COVID. The data comes from a article that can be accessed through The article was published in the International Journal of Environmental Research and Public Health and can be accessed <a target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/36231717/'>here</a>."} />
                     </sup>
                   <HeaderSubHeader>Number of People</HeaderSubHeader>
                 </Header>

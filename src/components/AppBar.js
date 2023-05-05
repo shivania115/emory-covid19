@@ -69,12 +69,12 @@ export default function AppBar(props) {
             Variant Map
           </Menu.Item>
 
-          {/* <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
-            active={props.menu==='mapState'} 
-            onClick={() => history('/map-state')}
-            name='mapState'>
-            Map State
-          </Menu.Item> */}
+          <Menu.Item style = {{paddingLeft: 15, paddingRight: 15}}
+            active={props.menu==='ExcessDeath'} 
+            onClick={() => history('/ExcessDeath')}
+            name='ExcessDeath'>
+           Excess Death
+          </Menu.Item>
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "otherTools"}
@@ -84,14 +84,14 @@ export default function AppBar(props) {
             Other Tools
           </Menu.Item>
 
-          <Menu.Item
+          {/* <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "mediaHub"}
             onClick={() => history("/media-hub")}
             name="mediaHub"
           >
             Media Hub
-          </Menu.Item>
+          </Menu.Item> */}
 
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}

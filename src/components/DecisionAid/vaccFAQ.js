@@ -77,7 +77,52 @@ function VaccFAQ() {
                 <Grid.Row>
                   <Grid.Column style={{ width: 600, paddingTop: 18 }}>
                     <div style={{ width: 600 }}>
+
                       <Header>
+
+                      <div>
+                          <Header
+                            style={{
+                              fontSize: "18px",
+                              fontFamily: "lato",
+                              color: "#004071",
+                              width: 975,
+                            }}
+                          >
+                          <div style={{ whiteSpace: 'pre-line' }}>
+                          {t('percentbar_h3')}
+                          </div>
+                            
+                     
+                            <Header.Content
+                              style={{
+                                paddingBottom: 5,
+                                fontWeight: 300,
+                                paddingTop: 0,
+                                paddingLeft: 0,
+                                fontSize: "15px",
+                              }}
+                            >
+                             {t('percentbar_sub3')}
+                            </Header.Content>
+                          </Header>
+                        </div>
+                        <Header.Content
+                          style={{ paddingBottom: 0, paddingTop: 0 }}
+                        >
+                          <ProgressBar
+                            style={{ height: 30, width: 600 }}
+                            label={`${(100 - (vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"])).toFixed(1)}%`}
+                            variant="success"
+                            now={(
+                              100-
+                              (vaccineData["_nation"][
+                                "PercentAdministeredPartial"
+                              ] +
+                              vaccineData["_nation"]["Series_Complete_Pop_Pct"])
+                            ).toFixed(1)}
+                          ></ProgressBar>
+                        </Header.Content>
                         <div>
                           <Header
                             style={{
@@ -168,53 +213,7 @@ function VaccFAQ() {
                           ></ProgressBar>
                         </Header.Content>
 
-                        <div>
-                          <Header
-                            style={{
-                              fontSize: "18px",
-                              fontFamily: "lato",
-                              color: "#004071",
-                              width: 975,
-                            }}
-                          >
-                          <div style={{ whiteSpace: 'pre-line' }}>
-                          {t('percentbar_h3')}
-                          </div>
-                            
-                     
-                            <Header.Content
-                              style={{
-                                paddingBottom: 5,
-                                fontWeight: 300,
-                                paddingTop: 0,
-                                paddingLeft: 0,
-                                fontSize: "15px",
-                              }}
-                            >
-                             {t('percentbar_sub3')}
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content
-                          style={{ paddingBottom: 0, paddingTop: 0 }}
-                        >
-                          <ProgressBar
-                            style={{ height: 30, width: 600 }}
-                            label={`${(
-                              vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ] +
-                              vaccineData["_nation"]["Series_Complete_Pop_Pct"]
-                            ).toFixed(1)}%`}
-                            variant="success"
-                            now={(
-                              vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ] +
-                              vaccineData["_nation"]["Series_Complete_Pop_Pct"]
-                            ).toFixed(1)}
-                          ></ProgressBar>
-                        </Header.Content>
+                       
                       </Header>
                     </div>
                   </Grid.Column>
@@ -667,12 +666,12 @@ function VaccFAQ() {
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(49) > 0}
                 >
-                  <p 
+                  {/* <p 
                    dangerouslySetInnerHTML={{
                           __html: snarkdown(t("step2_26")),
                         }}>
                 
-                  </p>
+                  </p> */}
                   <p  dangerouslySetInnerHTML={{
                           __html: snarkdown(t("step2_27")),
                         }}>

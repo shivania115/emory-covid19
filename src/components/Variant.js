@@ -347,7 +347,24 @@ function HorizontalPercentageStackedBarChart (props) {
 // console.log(uniqueDates[selectedDate])
   return (
     <div>
-    <h1>{uniqueDates[selectedDate]}</h1>
+    <Header>
+
+    </Header>
+    <Header as="h3" style={{ fontWeight: 400, textAlign: "center", }}>
+                    <Header.Content
+                      style={{
+                        width: 550,
+                        fontSize: "15pt",
+                       
+                      }}
+                    >
+                  {uniqueDates[selectedDate]}
+                    </Header.Content>
+                    <Header.Subheader>
+                    Slide to select the date
+                    </Header.Subheader>
+                  </Header>
+
        <Slider
         value={selectedDate}
         onChange={handleSliderChange}
@@ -373,7 +390,9 @@ function HorizontalPercentageStackedBarChart (props) {
       />
       <YAxis domain={[0, 100.1]} tickFormatter={caseYTickFmt} />
       <Tooltip />
-      <Legend />
+      <Legend  wrapperStyle={{
+      fontSize: "18px"
+    }}/>
       <Bar dataKey="XBB" stackId='a' fill="#007dba" />
       <Bar dataKey="Omicron_other" stackId='a' fill="#a45791" />
       <Bar dataKey="Delta" stackId='a' fill="#e8ab3b" />
@@ -833,8 +852,7 @@ export default function Variant(props) {
                 </Grid.Column>
                 {/* <HorizontalPercentageStackedBarChart ticks={caseTicks}
                             tickFormatter={caseTickFmt}  data={variantTimeseries[stateMapFips]}></HorizontalPercentageStackedBarChart> */}
-                            {/* <HorizontalPercentageStackedBarChart ticks={caseTicks}
-                            tickFormatter={caseTickFmt}  data={variantTimeseries}></HorizontalPercentageStackedBarChart>    */}
+                        
                 <Grid.Column width={7} style={{ paddingLeft: 20 }}>
                   <Header as="h2" style={{ fontWeight: 400 }}>
                     <Header.Content
@@ -942,6 +960,8 @@ export default function Variant(props) {
                       </Header.Content>
                     </Grid.Row>
                   </Grid>
+                      <HorizontalPercentageStackedBarChart ticks={caseTicks}
+                            tickFormatter={caseTickFmt}  data={variantTimeseries}></HorizontalPercentageStackedBarChart>   
                 </Grid.Column>
               </Grid.Row>
             </Grid>

@@ -77,22 +77,22 @@ export const TRANSLATIONS_EN = {
   close: "Close",
   step3_title: "Your health risks with and without vaccine",
   step3_subtitle:
-    "This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of Feb 07, 2021. Before taking the vaccine, please consult your healthcare provider. If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:",
+    "This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of March 2023, but the time period of comparison may change by statistics. Before taking the vaccine, please consult your healthcare provider. If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:",
   next: "Next",
   prev: "Previous",
   percentbar_h1:"Percent of the U.S. population partially vaccinated",
   percentbar_sub1:"One of two doses of Pfizer or Moderna vaccine received",
   percentbar_h2:"Percent of the U.S. population fully vaccinated",
   percentbar_sub2:"Both doses of Pfizer or Moderna vaccine or one and only dose of Johnson and Johnson received",
-  percentbar_h3:"Percent of the U.S. population that received at least one dose ",
-  percentbar_sub3:" One or more doses of any of the authorized vaccines received ",
+  percentbar_h3:"Percent of the U.S. population unvaccinated ",
+  percentbar_sub3:"None of the authorized vaccines received ",
   step2_1: "Who can get vaccined against COVID-19?",
   step2_2:
-    "At this point, anyone who is aged 12 or more is eligible to get vaccinated. Although there are a few cases in which individuals should discuss vaccination with a healthcare provider before.",
+    "Anyone 6 months or older is eligible to receive a COVID-19 Vaccine.",
   step2_3: "What COVID-19 vaccines are approved for use in the United States?",
   step2_4:
     "At this time, There are four approved or authorized vaccines in the United States.",
-  ste2_5:
+  step2_5:
     "Pfizer-BioNTech and Moderna COVID-19 vaccines are [mRNA vaccines](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html).",
   step2_6:
     "Novavax COVID-19 vaccine is a [protein subunit vaccine](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/how-they-work.html).",
@@ -118,7 +118,7 @@ export const TRANSLATIONS_EN = {
   step2_17:
     " Is the COVID-19 vaccine effective in protecting people against getting COVID-19?",
   step2_18:
-    "Yes. The clinical trials for each approved vaccine showed that the vaccine was effective in protecting vaccinated people from getting sick with COVID-19 disease.",
+    "Yes, COVID 19-vaccines are effective at protecting people from getting seriously ill, being hospitalized, and dying. Vaccination remains the safest strategy for avoiding hospitalizations, long-term health outcomes, and death.",
   step2_19:
     "For both the Pfizer-BioNTech and Moderna vaccines, 2 doses are required to be fully protected from COVID-19. Individuals are not considered to be “vaccinated” until after they receive their 2nd dose.",
   step2_20:
@@ -135,8 +135,9 @@ export const TRANSLATIONS_EN = {
     step2_25:" There are multiple systems used to track any reports of any adverse side effects or reactions. The Vaccine Safety Datalink which helps to determine whether the reactions reported using the Vaccine Adverse Event Reporting System (VAERS) are related to a vaccine. The Clinical Immunization Safety Assessment Project also helps to track and evaluate issues of vaccine safety. You can find out more about these and other different systems at CDC, the Food and Drug Administration, and other groups used to monitor and assess safety [here](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety.html).",
 step2_26q:'What is the difference between an additional dose of COVID-19 vaccine and a booster?',
 step2_26:' Right now, the FDA and CDC have authorized and recommended additional doses of the Pfizer-BioNTech (Comirnaty) or Moderna (Spikevax) vaccines in certain circumstances. While both terms currently refer to a third shot, there are some differences in why an “additional dose” or a “booster dose” are recommended.',  
-step2_27:'An additional dose of vaccine (i.e. a third dose of the Pfizer or Moderna two-shot vaccines in this case, received 28 days at least after the second dose) is authorized by [FDA](https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised) outside the United States and recommended by [CDC](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html) for people who have moderately or severely compromised immune systems, who may not have built up high enough immunity from the first two shots. The goal of this additional dose is to help their immune system build up a stronger immune response than they built up from the first two doses. This will provide a similar level of protection in immunocompromised people as in seen in those who are not immunocompromised. People with compromised immune systems include those immunocompromised due to certain treatments or medical condition or following [organ transplants](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html)At this time, there are no authorizations or recommendations for additional doses for people who received the Johnson & Johnson/ Janssen vaccine.',
-step2_28:'A booster shot (i.e. another dose of one of the available vaccines at least 5 months after getting a full primary series of either the Pfizer-BioNTech or Moderna two-shot vaccines or at least 2 months after the Johnson &Johnson/ Janssen one-shot vaccine) is authorized by [FDA](https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations) and recommended by [CDC](https://www.cdc.gov/media/releases/2021/p0924-booster-recommendations-.html) for everyone. In this case, the booster counters the decrease in immunity that was developed after becoming fully vaccinated. Studies have shown that vaccine-induced protection from COVID-19 illness decreases over time and may also be decreased by newer variants of SARS-CoV-2, the virus that causes COVID-19. The reduction in immunity is primarily a reduction in protection from symptomatic COVID-19 illness;however, protection from more serious illness and outcomes does also decrease somewhat over time. In some [cases](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster), a second booster is also recommended.' ,
+step2_27:'An additional dose of vaccine (i.e. a third dose of the Pfizer or Moderna two-shot vaccines in this case, received 28 days at least after the second dose) is authorized by [FDA](https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised) outside the United States and recommended by [CDC](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html) for people who have moderately or severely compromised immune systems, who may not have built up high enough immunity from the first two shots.',
+// step2_28:'A booster shot (i.e. another dose of one of the available vaccines at least 5 months after getting a full primary series of either the Pfizer-BioNTech or Moderna two-shot vaccines or at least 2 months after the Johnson &Johnson/ Janssen one-shot vaccine) is authorized by [FDA](https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations) and recommended by [CDC](https://www.cdc.gov/media/releases/2021/p0924-booster-recommendations-.html) for everyone. In this case, the booster counters the decrease in immunity that was developed after becoming fully vaccinated. Studies have shown that vaccine-induced protection from COVID-19 illness decreases over time and may also be decreased by newer variants of SARS-CoV-2, the virus that causes COVID-19. The reduction in immunity is primarily a reduction in protection from symptomatic COVID-19 illness;however, protection from more serious illness and outcomes does also decrease somewhat over time. In some [cases](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster), a second booster is also recommended.' ,
+step2_28:'People ages 6 months and older are recommended to receive an updated booster dose at least 2 months after receiving first two vaccinations or from last booster shot. Two COVID-19 vaccine manufacturers, Pfizer and Moderna, have developed updated COVID-19 boosters. The booster counters the decrease in immunity that was developed after becoming fully vaccinated. Studies have shown that vaccine-induced protection from COVID-19 illness decreases over time and may also be decreased by newer variants of SARS-CoV-2, the virus that causes COVID-19. The reduction in immunity is primarily a reduction in protection from symptomatic COVID-19 illness; however, protection from more serious illness and outcomes does also decrease somewhat over time. For more information about booster doses, please visit this [page](https://www-cdc-gov.proxy.library.emory.edu/coronavirus/2019-ncov/vaccines/stay-up-to-date.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fvaccines%2Fbooster-shot.html).',
 step4_1header:'Calculate your personal mortality risk within 30 days of contracting COVID-19.',
 step4_2header:'You may be at a higher risk of severe COVID-19 and its health problems if:',
 step4_11:"you are aged 70 years or older (noting that risk increases with age, even if you're under 70 years of age)",
@@ -155,7 +156,7 @@ step4_33:'you have a history of inflammatory cardiac illness within the past thr
 step4_34:"you have had a severe allergic reaction (anaphylaxis) to a previous dose or an ingredient",
 step4_35:"you have had any other serious adverse event attributed to a previous dose",
 step4_36:"you have had a current acute illness, including a fever.",
-step5_1header:'How likely are you to get the COVID-19 vaccine?',
+step5_1header:'How likely are you to get the COVID-19 Vaccine or booster?',
 step5_2header:'We hope the information in this decision aid has helped you to make a decision. Select from the options below to see what your next steps will be.',
 step5_option1:"I have decided to get the COVID-19 vaccine",
 step5_1next:"Get in touch with your doctor, pharmacist or vaccine hub and make an [Appointment](https://www.cvs.com/minuteclinic/services/covid-19-vaccine/in-person-visit) to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",

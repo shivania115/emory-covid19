@@ -240,6 +240,29 @@ function FinalDecision() {
       ) : (
         <ToastContainer />
       )}
+
+      <Header
+          as="h4"
+          style={{ paddingTop: 10, fontWeight: 550, fontSize: "1.5rem" }}
+        >
+          <Header.Content>
+            Vaccination Resources
+          </Header.Content>
+        </Header>
+      <ul style={{fontSize:'1.25rem',paddingTop:5,paddingLeft:0}}>
+        <li>
+          <a href='https://www.vaccines.gov/search/' target='_blank'>Government website </a>to find vaccination centers closest to you
+        </li>
+        <li>
+        <a href='https://gta-vras.powerappsportals.us/en-US/ ' target='_blank'>COVID-19 or monkeypox vaccine locator </a>for the state of Georgia.
+        </li>
+        <li>
+        <a href='https://www.cvs.com/vaccine/intake/store/schedule-options' target='_blank'>CVS link</a> to schedule an appointment
+        </li>
+        <li>
+        We would like to acknowledge <a href='https://www.ncirs.org.au/covid-19-decision-aid-for-adults' target='_blank'>the National Centre of Immunisation Research and Surveillance (NCIRS), Australia, </a>for their valuable contributions in developing their COVID-19 Vaccine Decision Aid. We have adapted and customized their model and design to create our own decision aid for the US population. We recognize the importance of their work in informing vaccine decision-making globally and appreciate their willingness to share their expertise and knowledge.
+        </li>
+      </ul>
     </div>
   );
 }

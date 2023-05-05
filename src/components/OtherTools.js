@@ -36,12 +36,12 @@ export default function OtherTools(props){
                     <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to visualize state-wide outcomes and characteristics.</Header.Content>
 
                   </Grid.Column>
-                  {/* <Grid.Column>
-                    <Image width='300' height='236' href = '/variants' src='/HomeIcons/Emory_Icons_MapState_v1.jpg' />
-                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Variant Map </Header.Subheader>
-                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to visualize variants' impacts on differet states.</Header.Content>
+                  <Grid.Column>
+                    <Image width='300' height='236' href = '/media-hub' src='/HomeIcons/Emory_Icons_MapState_v1.jpg' />
+                    <Header.Subheader style = {{fontSize: "20pt", paddingTop: 10, fontWeight: 400}}> Media Hub </Header.Subheader>
+                    <Header.Content style = {{fontSize: "14pt"}}> <br/>Click on icon to find blogs and podcasts.</Header.Content>
 
-                  </Grid.Column> */}
+                  </Grid.Column>
 
                   
                   

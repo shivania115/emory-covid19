@@ -164,7 +164,23 @@ function LatestOnThisDashboard() {
         <a href="/Vaccine-Tracker">click to access</a>.
 
       </Grid.Column> */}
-
+      <Grid.Column style={{ width: 190 }}>
+        <Image
+          width={175}
+          height={95}
+          href="/ExcessDeath"
+          src="/USplot1.png"
+        />
+      </Grid.Column>
+      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
+        <b>
+          {" "}
+          COVID-19 Excess Death Tracking
+          <br />{" "}
+        </b>
+        The Excess Death page demonstrate the number of additional deaths that occurred during the pandemic as compared with prior time points. 
+        <a href="/ExcessDeath"> Click to Access</a>.
+      </Grid.Column>
       <Grid.Column style={{ width: 190 }}>
         <Image
           width={175}

@@ -240,7 +240,7 @@ import React, {
   export default function ExcessDeath(){
     return(
         <div>
-            <AppBar menu="variants" />
+            <AppBar menu="ExcessDeath" />
             {/* <Grid style={{ height: 130, overflow: "hidden",marginTop: "8em", minWidth: "1260px"  }}>
               <div style={{ paddingBottom: 8 }}></div>
 
