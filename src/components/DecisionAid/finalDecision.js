@@ -240,8 +240,7 @@ function FinalDecision() {
       ) : (
         <ToastContainer />
       )}
-
-      <Header
+{submitted?<div><Header
           as="h4"
           style={{ paddingTop: 10, fontWeight: 550, fontSize: "1.5rem" }}
         >
@@ -259,10 +258,13 @@ function FinalDecision() {
         <li>
         <a href='https://www.cvs.com/vaccine/intake/store/schedule-options' target='_blank'>CVS link</a> to schedule an appointment
         </li>
-        <li>
-        We would like to acknowledge <a href='https://www.ncirs.org.au/covid-19-decision-aid-for-adults' target='_blank'>the National Centre of Immunisation Research and Surveillance (NCIRS), Australia, </a>for their valuable contributions in developing their COVID-19 Vaccine Decision Aid. We have adapted and customized their model and design to create our own decision aid for the US population. We recognize the importance of their work in informing vaccine decision-making globally and appreciate their willingness to share their expertise and knowledge.
+        <li  dangerouslySetInnerHTML={{
+                __html: snarkdown(t('step5_acknowledgement')),
+              }}>
+       
         </li>
-      </ul>
+      </ul></div>:<div></div>}
+      
     </div>
   );
 }

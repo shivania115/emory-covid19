@@ -95,10 +95,7 @@ function CompareNoElicit(props) {
       min-width: 0;
     }
   `;
-  const panes = [
-    {
-      menuItem: {},
-      render: () => (
+  const Panes =  () => (
         <div
           class="ui bottom attached segment active tab"
           style={{ width: "100%" }}
@@ -166,21 +163,21 @@ function CompareNoElicit(props) {
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    28 in 1000
+                    28 in 1,000
                     <sup style={{ verticalAlign: 'super' }}>
-                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1000."  />
+                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1,000."  />
                     </sup>
                    
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 1000
+                    8 in 1,000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    7 in 1000
+                    7 in 1,000
                   </Header.Content>
                 </Header>
               </GridColumn>
@@ -242,25 +239,170 @@ function CompareNoElicit(props) {
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    50 in 10000
+                    50 in 10,000
                     <sup style={{ verticalAlign: 'super' }}>
-                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
+                    <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10,000 people." />
                     </sup>
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    12 in 10000
+                    12 in 10,000
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 10000
+                    8 in 10,000
                   </Header.Content>
                 </Header>
               </GridColumn>
             </Grid.Row>
           </Grid>
+          <hr />
+  
+
+          <Grid style={{ paddingTop: 5 }}>
+            <Grid.Row>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>Long-COVID</Header.Content>
+                  <sup style={{ verticalAlign: 'super' }}>
+                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={"Some people who have been infected with the virus that causes COVID-19 can experience long-term effects from their infection, known as Post-COVID Conditions (PCC) or Long COVID. The data comes from a article that can be accessed through The article was published in  <a target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/36231717/'> the International Journal of Environmental Research and Public Health</a>."} />
+                    </sup>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>Unvaccinated</Header.Content>
+                </Header>
+               
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>Vaccinated</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+              <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  reverse
+                  percent={24.2}
+                  color="red"
+                ></StyledProgressBar>
+         
+                <StyledProgressBar
+                  percent={14.5}
+                  style={{ marginBottom: 20 }}
+                  color="blue"
+                ></StyledProgressBar>
+              
+             
+              </GridColumn>
+              <GridColumn width={2}>
+                {/* <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    20 in 100
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    zero
+                  </Header.Content>
+                </Header> */}
+             <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                   242 in 1,000
+                    <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1,000 people." />
+                  </sup>
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                  145 in 1,000
+                  </Header.Content>
+                </Header>
+              
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+          <hr />
+          <Grid style={{ paddingTop: 5 }}>
+            <Grid.Row>
+              <GridColumn width={6}>
+                {" "}
+                <Header
+                  as="h4"
+                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+                >
+                  <Header.Content>DEATH
+                  <ReactTooltip className='extraClass'  sticky={true} place="right" effect="solid"  delayHide={1000}  />
+                    <sup style={{ verticalAlign: 'super' }}>
+                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '}/>
+
+                    </sup>
+                  </Header.Content>
+                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                </Header>
+              </GridColumn>
+              <GridColumn width={3}>
+                <Header as="h4">
+                  <Header.Content>Unvaccinated</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>Fully Vaccinated</Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "4%" }}>
+                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
+                </Header>
+              </GridColumn>
+
+              <GridColumn width={5}>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  color="red"
+                  percent={30}
+                ></StyledProgressBar>
+                <StyledProgressBar
+                  style={{ marginBottom: 20 }}
+                  percent={8}
+                  color="blue"
+                ></StyledProgressBar>
+                <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
+              </GridColumn>
+              <GridColumn width={2}>
+                <Header as="h4">
+                  <Header.Content style={{ color: "#e02c2c" }}>
+                    30 in 10,000
+                    <sup style={{ verticalAlign: 'super' }}>
+                  <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10,000 people." />
+                  </sup>
+                   
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    8 in 10,000
+                  </Header.Content>
+                </Header>
+                <Header as="h4" style={{ marginTop: "0%" }}>
+                  <Header.Content style={{ color: "#0E6EB8" }}>
+                    7 in 10,000
+                  </Header.Content>
+                </Header>
+              </GridColumn>
+            </Grid.Row>
+          </Grid>
+
           <hr />
           <Grid style={{ paddingTop: 20 }}>
             <Grid.Row
@@ -419,17 +561,17 @@ function CompareNoElicit(props) {
                                 <Header.Content
                                   style={{ marginTop: 0, color: "#e02c2c" }}
                                 >
-                                  562 in 1000
+                                  562 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  174 in 1000
+                                  174 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  158 in 1000
+                                  158 in 1,000
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -492,7 +634,7 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  678 in 1000
+                                  678 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
@@ -564,7 +706,7 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  187 in 1000
+                                  187 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
@@ -637,17 +779,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  149 in 1000
+                                  149 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  237 in 1000
+                                  237 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  213 in 1000
+                                  213 in 1,000
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -709,7 +851,7 @@ function CompareNoElicit(props) {
                                 <Header.Content
                                   style={{ marginTop: "0%", color: "#e02c2c" }}
                                 >
-                                  139 in 1000
+                                  139 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
@@ -787,12 +929,12 @@ function CompareNoElicit(props) {
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  85 in 1000
+                                  85 in 1,000
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  63 in 1000
+                                  63 in 1,000
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -806,154 +948,9 @@ function CompareNoElicit(props) {
             </Grid.Row>
           </Grid>
           <hr />
-
-          <Grid style={{ paddingTop: 5 }}>
-            <Grid.Row>
-              <GridColumn width={6}>
-                {" "}
-                <Header
-                  as="h4"
-                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-                >
-                  <Header.Content>Long-COVID</Header.Content>
-                  <sup style={{ verticalAlign: 'super' }}>
-                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={"Some people who have been infected with the virus that causes COVID-19 can experience long-term effects from their infection, known as Post-COVID Conditions (PCC) or Long COVID. The data comes from a article that can be accessed through The article was published in the International Journal of Environmental Research and Public Health and can be accessed <a target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/36231717/'>here</a>."} />
-                    </sup>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
-                </Header>
-              </GridColumn>
-              <GridColumn width={3}>
-                <Header as="h4">
-                  <Header.Content>Unvaccinated</Header.Content>
-                </Header>
-               
-                <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Vaccinated</Header.Content>
-                </Header>
-              </GridColumn>
-
-              <GridColumn width={5}>
-              <StyledProgressBar
-                  style={{ marginBottom: 20 }}
-                  reverse
-                  percent={24.2}
-                  color="red"
-                ></StyledProgressBar>
-         
-                <StyledProgressBar
-                  percent={14.5}
-                  style={{ marginBottom: 20 }}
-                  color="blue"
-                ></StyledProgressBar>
-              
-             
-              </GridColumn>
-              <GridColumn width={2}>
-                {/* <Header as="h4">
-                  <Header.Content style={{ color: "#e02c2c" }}>
-                    20 in 100
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
-                  </Header.Content>
-                </Header> */}
-             <Header as="h4">
-                  <Header.Content style={{ color: "#e02c2c" }}>
-                   242 in 1000
-                    <sup style={{ verticalAlign: 'super' }}>
-                  <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1000 people." />
-                  </sup>
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                  145 in 1000
-                  </Header.Content>
-                </Header>
-              
-              </GridColumn>
-            </Grid.Row>
-          </Grid>
-          <hr />
-          <Grid style={{ paddingTop: 5 }}>
-            <Grid.Row>
-              <GridColumn width={6}>
-                {" "}
-                <Header
-                  as="h4"
-                  style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-                >
-                  <Header.Content>DEATH
-                  <ReactTooltip className='extraClass'  sticky={true} place="right" effect="solid"  delayHide={1000}  />
-                    <sup style={{ verticalAlign: 'super' }}>
-                    <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '}/>
-
-                    </sup>
-                  </Header.Content>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
-                </Header>
-              </GridColumn>
-              <GridColumn width={3}>
-                <Header as="h4">
-                  <Header.Content>Unvaccinated</Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated</Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
-                </Header>
-              </GridColumn>
-
-              <GridColumn width={5}>
-                <StyledProgressBar
-                  style={{ marginBottom: 20 }}
-                  color="red"
-                  percent={30}
-                ></StyledProgressBar>
-                <StyledProgressBar
-                  style={{ marginBottom: 20 }}
-                  percent={8}
-                  color="blue"
-                ></StyledProgressBar>
-                <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
-              </GridColumn>
-              <GridColumn width={2}>
-                <Header as="h4">
-                  <Header.Content style={{ color: "#e02c2c" }}>
-                    30 in 10000
-                    <sup style={{ verticalAlign: 'super' }}>
-                  <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10000 people." />
-                  </sup>
-                   
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 10000
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    7 in 10000
-                  </Header.Content>
-                </Header>
-              </GridColumn>
-            </Grid.Row>
-          </Grid>
-
-          <hr />
         </div>
-      ),
-    },
-  ];
+      )
+
   // const [belief, setBelief] = useState();
 
   return (
@@ -1036,7 +1033,7 @@ function CompareNoElicit(props) {
                         by the body and cleared away. You can not catch COVID-19
                         from Comirnaty (Pfizer). After the second dose,
                         Comirnaty (Pfizer) is around 90% effective against the
-                        Delta variant in children.1-2 Effectiveness against
+                        Delta variant in children. 1-2 Effectiveness against
                         Omicron is still unknown but if you catches COVID-19
                         after you've been vaccinated, your illness will usually
                         be mild.
@@ -1049,7 +1046,7 @@ function CompareNoElicit(props) {
                         quickly broken down by your body and cleared away. You
                         can not catch COVID-19 from Spikevax (Moderna). After
                         the second dose, Spikevax (Moderna) is about 94%
-                        effective against COVID-19.1 It may be slightly less
+                        effective against COVID-19. It may be slightly less
                         effective against more recent variants, such as the
                         Delta variant, but it will still protect you against
                         serious illness and reduce your risk of hospitalisation
@@ -1061,9 +1058,10 @@ function CompareNoElicit(props) {
               },
             ]}
           />
-
+         <FontAwesomeIcon icon={faExclamationTriangle} style={{color: 'red'}} />
+<em>Not all statistics share the same baseline. Some report cases out of 1,000 while others report cases out of 10,000</em>
           <div class="ui attached tabular menu">
-            <Tab style={{ width: "100%" }} panes={panes} renderActiveOnly />
+              <Panes></Panes>
           </div>
         </div>
       </div>

@@ -74,9 +74,9 @@ export const TRANSLATIONS_SPAN = {
   alert: "No completaste la encuesta. Estás seguro de que quieres continuar?",
   continue: "Continuar a la siguiente sección",
   close: "Cerrar",
-  step3_title: "Your health risks with and without vaccine",
+  step3_title: "Sus riesgos sanitarios con y sin vacunación",
   step3_subtitle:
-    "This is a resource guide to answer common questions about the COVID-19 vaccines. This guide is based on the best available information as of Feb 07, 2021. Before taking the vaccine, please consult your healthcare provider. If you have any questions or concerns beyond those addressed here, we recommend the following resources for additional information:",
+    "Esta es una guía de recursos para responder preguntas comunes sobre las vacunas contra COVID-19. Esta guía se basa en la mejor información disponible hasta marzo de 2023, pero el período de comparación puede cambiar según las estadísticas. Antes de tomar la vacuna, consulte a su proveedor de atención médica. Si tiene alguna pregunta o inquietud más allá de las abordadas aquí, recomendamos los siguientes recursos para obtener información adicional:",
   next: "Siguiente",
   prev: "Anterior",
   percentbar_h1:"Porcentaje de la población de E.E.U.U que esta parcialmente vacunada",
@@ -87,7 +87,7 @@ export const TRANSLATIONS_SPAN = {
   percentbar_sub3:"Ningunas de las vacunas aprobadas recibidas. ",
   step2_1: "Quien puede ser vacunado contra el COVID-19?",
   step2_2:
-    "Cualquier persona que sea mayor de los 6 meses puede ser vacunado/a.",
+    "En este momento, cualquier persona mayor de 6 meses es elegible para recibir una vacuna contra el COVID-19. En algunos casos medicos, se le recomienda a la persona interesada que hable con su doctor general antes de recibir cualquier vacuna.",
   step2_3:
     "Cuales vacunas contra el COVID-19 son aprobadas para uso y distribucion en los Estados Unidos (EEUU)? ",
   step2_4: "Hay cuatro vacunas aprobadas o autorizadas en los Estados Unidos. ",
@@ -155,7 +155,7 @@ step4_19:"Tiene una discapacidad que requiere ayuda con las actividades diarias.
     step4_34:"Ha tenido una reacción alérgica grave (anafilaxis) a una dosis anterior o a un ingrediente.",
     step4_35:"Ha tenido cualquier otro evento adverso grave atribuido a una dosis anterior.",
     step4_36:"Tiene una enfermedad aguda actual, incluyendo fiebre.",
-    step5_1header:'¿Qué tan probable es que usted se vacune contra el COVID-19?',
+    step5_1header:'¿Cuán probable es que reciba usted la vacuna o dosis de refuerzo contra COVID-19?',
     step5_2header:'Esperamos que la información en esta herramienta de decisión le haya ayudado a tomar una decisión. Seleccione una de las opciones a continuación para ver cuáles serán sus próximos pasos.',
     step5_option1:"He decidido recibir la vacuna COVID-19.",
     step5_1next:"Póngase en contacto con su médico, farmacéutico o centro de vacunación y haga una [cita](https://www.cvs.com/minuteclinic/services/covid-19-vaccine/in-person-visit) para recibir la vacuna COVID-19. Para obtener información sobre los servicios de vacunación administrados por el gobierno, consulte con su Departamento de Salud local.",
@@ -172,5 +172,7 @@ step4_19:"Tiene una discapacidad que requiere ayuda con las actividades diarias.
     step5_option5:"Otro",
     step5_next:"Su próximo paso",
     step5_share:"Comparta su decisión con nosotros",
+    step5_resource:"Recursos de vacunación",
+    step5_acknowledgement:"Nos gustaría reconocer [al Centro Nacional de Investigación y Vigilancia de Inmunizaciones (NCIRS), Australia,](https://www.ncirs.org.au/covid-19-decision-aid-for-adults) por sus valiosas contribuciones en el desarrollo de su Ayuda para la toma de decisiones sobre la vacuna COVID-19. Hemos adaptado y personalizado su modelo y diseño para crear nuestra propia ayuda de decisión para la población estadounidense. Reconocemos la importancia de su trabajo en la toma de decisiones sobre vacunas a nivel mundial y agradecemos su disposición a compartir su experiencia y conocimiento.",
     submit:"Enviar"
   };

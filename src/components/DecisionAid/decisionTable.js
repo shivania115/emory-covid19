@@ -186,7 +186,7 @@ function DecitionTable() {
   ];
   const OccupationOptions = [
     t("educator"),
-    t("buissiness"),
+    t("business"),
     t("self_employed"),
     t("medical"),
     t("government"),

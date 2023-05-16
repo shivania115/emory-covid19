@@ -27,7 +27,7 @@ export const TRANSLATIONS_EN = {
   slightlyagree: "Slightly Agree",
   stronglyagree: "Strongly Agree",
   survey:"COVID-19 Vaccine Survey",
-  toggle:"Tell us about your opinions on each statements.",
+  toggle:"Please share your background and thoughts below. This step is optional.",
   table_ques1: "COVID-19 vaccines are effective.",
   table_ques2:
     "Vaccines are important for the health of others in my community.",
@@ -57,9 +57,9 @@ export const TRANSLATIONS_EN = {
   elementary: "Elementary",
   highschool: "High school degree or equivalent",
   college: "Some College",
-  bachelor: "Bachelor's degree (Ex. BA, BS)",
+  bachelor: "Bachelor's degree (e.g. BA, BS)",
   master: "Masters degree (MA, MS, Med)",
-  doctor: "Doctorate (ex. PhD, EdD)",
+  doctor: "Doctorate or other professional degree (e.g., PhD, MD, JD)",
   step1_ques7: "Which best describes your occupation?",
   educator: "Educator",
   business: "Business professional",
@@ -157,7 +157,7 @@ step4_34:"you have had a severe allergic reaction (anaphylaxis) to a previous do
 step4_35:"you have had any other serious adverse event attributed to a previous dose",
 step4_36:"you have had a current acute illness, including a fever.",
 step5_1header:'How likely are you to get the COVID-19 Vaccine or booster?',
-step5_2header:'We hope the information in this decision aid has helped you to make a decision. Select from the options below to see what your next steps will be.',
+step5_2header:'We hope the information in this decision aid has helped you to make a decision. Select from the options below to indicate what your next steps will be.',
 step5_option1:"I have decided to get the COVID-19 vaccine",
 step5_1next:"Get in touch with your doctor, pharmacist or vaccine hub and make an [Appointment](https://www.cvs.com/minuteclinic/services/covid-19-vaccine/in-person-visit) to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
 step5_1share: "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team.",
@@ -173,5 +173,7 @@ step5_4share:"You can help us to improve this Decision Aid in the future by shar
 step5_option5:"Other",
 step5_next:"Your next setp",
 step5_share:"Share your decision with us",
+step5_resource:"Vaccination Resources",
+step5_acknowledgement:"We would like to acknowledge [the National Centre of Immunisation Research and Surveillance (NCIRS), Australia,](https://www.ncirs.org.au/covid-19-decision-aid-for-adults)for their valuable contributions in developing their COVID-19 Vaccine Decision Aid. We have adapted and customized their model and design to create our own decision aid for the US population. We recognize the importance of their work in informing vaccine decision-making globally and appreciate their willingness to share their expertise and knowledge.",
 submit:"Submit"
 };
