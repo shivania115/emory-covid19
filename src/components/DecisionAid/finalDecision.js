@@ -129,8 +129,7 @@ function FinalDecision() {
     setSubmitted(true);
     toast.success("Thank you for your time!", {
       position: "bottom-center",
-      autoClose: 10000,
-      hideProgressBar: false,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
@@ -202,6 +201,10 @@ function FinalDecision() {
                 setOther(e.target.value);
               }}
             ></TextField>
+            <br></br>
+            <br></br>
+               <b>{t('step5_share')}</b>
+            <p>{recommendations[0].share}</p>
           </>
         )}
       </div>
