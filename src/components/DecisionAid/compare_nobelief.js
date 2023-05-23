@@ -109,12 +109,12 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>HEALTH RISKS</Header.Content>
+                  <Header.Content>{t('step3_risk')}</Header.Content>
                 </Header>
               </GridColumn>
-              <GridColumn width={3}>CONDITIONS</GridColumn>
+              <GridColumn width={3}>{t('step3_conditions')}</GridColumn>
 
-              <GridColumn width={7}>Numble of People</GridColumn>
+              <GridColumn width={7}>{t('step3_number')}</GridColumn>
             </Grid.Row>
           </Grid>
           <hr />
@@ -126,23 +126,23 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>HOSPITALIZATION with COVID-19
+                  <Header.Content>{t('step3_hospitalization')}
                   <sup style={{ verticalAlign: 'super' }}>
                   <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`The data is taken from <a target='_blank' href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`} />
                   </sup>
                   </Header.Content>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>       
+                  <HeaderSubHeader>{t('step3_number')}</HeaderSubHeader>       
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>Unvaccinated</Header.Content>
+                  <Header.Content>{t('step3_novac')}</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated</Header.Content>
+                  <Header.Content>{t('step3_vac')}</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
+                  <Header.Content>{t('step3_vac')}</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -163,7 +163,7 @@ function CompareNoElicit(props) {
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    28 in 1,000
+                   {t('t28')}
                     <sup style={{ verticalAlign: 'super' }}>
                     <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1,000."  />
                     </sup>
@@ -172,12 +172,12 @@ function CompareNoElicit(props) {
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 1,000
+                  {t('t8')}
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    7 in 1,000
+                   {t('t7')}
                   </Header.Content>
                 </Header>
               </GridColumn>
@@ -201,24 +201,24 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>ICU-LEVEL CARE
+                  <Header.Content>{t('step3_ICU')}
                   <sup style={{ verticalAlign: 'super' }}>
                   <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '}/>
                   </sup>
                  
                   </Header.Content>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                  <HeaderSubHeader>{t('step3_number')}</HeaderSubHeader>
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>Unvaccinated</Header.Content>
+                  <Header.Content>{t('step3_novac')}</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated</Header.Content>
+                  <Header.Content>{t('step3_vac')}</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
+                  <Header.Content>{t('step3_boost')}</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -239,7 +239,7 @@ function CompareNoElicit(props) {
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    50 in 10,000
+                    {t('tt50')}
                     <sup style={{ verticalAlign: 'super' }}>
                     <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10,000 people." />
                     </sup>
@@ -247,12 +247,12 @@ function CompareNoElicit(props) {
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    12 in 10,000
+                    {t('tt12')}
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 10,000
+                    {t('tt8')}
                   </Header.Content>
                 </Header>
               </GridColumn>
@@ -269,20 +269,20 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>Long-COVID</Header.Content>
+                  <Header.Content>{t('step3_long')}</Header.Content>
                   <sup style={{ verticalAlign: 'super' }}>
                     <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={"Some people who have been infected with the virus that causes COVID-19 can experience long-term effects from their infection, known as Post-COVID Conditions (PCC) or Long COVID. The data comes from a article that can be accessed through The article was published in  <a target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/36231717/'> the International Journal of Environmental Research and Public Health</a>."} />
                     </sup>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                  <HeaderSubHeader>{t('step3_number')}</HeaderSubHeader>
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>Unvaccinated</Header.Content>
+                  <Header.Content>{t('step3_novac')}</Header.Content>
                 </Header>
                
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Vaccinated</Header.Content>
+                  <Header.Content>{t('step3_vac')}</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -320,7 +320,7 @@ function CompareNoElicit(props) {
                 </Header> */}
              <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                   242 in 1,000
+                  {t('t242')}
                     <sup style={{ verticalAlign: 'super' }}>
                   <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 1,000 people." />
                   </sup>
@@ -328,7 +328,7 @@ function CompareNoElicit(props) {
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                  145 in 1,000
+                  {t('t145')}
                   </Header.Content>
                 </Header>
               
@@ -344,25 +344,25 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>DEATH
+                  <Header.Content>{t('step3_death')}
                   <ReactTooltip className='extraClass'  sticky={true} place="right" effect="solid"  delayHide={1000}  />
                     <sup style={{ verticalAlign: 'super' }}>
                     <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '}/>
 
                     </sup>
                   </Header.Content>
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                  <HeaderSubHeader>{t('step3_number')}</HeaderSubHeader>
                 </Header>
               </GridColumn>
               <GridColumn width={3}>
                 <Header as="h4">
-                  <Header.Content>Unvaccinated</Header.Content>
+                  <Header.Content>{t('step3_novac')}</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated</Header.Content>
+                  <Header.Content>{t('step3_vac')}</Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "4%" }}>
-                  <Header.Content>Fully Vaccinated with Booster</Header.Content>
+                  <Header.Content>{t('step3_boost')}</Header.Content>
                 </Header>
               </GridColumn>
 
@@ -382,7 +382,7 @@ function CompareNoElicit(props) {
               <GridColumn width={2}>
                 <Header as="h4">
                   <Header.Content style={{ color: "#e02c2c" }}>
-                    30 in 10,000
+                    {t('tt30')}
                     <sup style={{ verticalAlign: 'super' }}>
                   <FontAwesomeIcon icon={faExclamationTriangle} data-tip="The ratio is out of 10,000 people." />
                   </sup>
@@ -391,12 +391,12 @@ function CompareNoElicit(props) {
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    8 in 10,000
+                    {t('tt8')}
                   </Header.Content>
                 </Header>
                 <Header as="h4" style={{ marginTop: "0%" }}>
                   <Header.Content style={{ color: "#0E6EB8" }}>
-                    7 in 10,000
+                   {t('tt7')}
                   </Header.Content>
                 </Header>
               </GridColumn>
@@ -414,7 +414,7 @@ function CompareNoElicit(props) {
                   as="h4"
                   style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
                 >
-                  <Header.Content>SYMPTOMS
+                  <Header.Content>{t('step3_symptoms')}
                   <sup style={{ verticalAlign: 'super' }}>
                   <FontAwesomeIcon color='#ADD8E6' size='xs' icon={faInfoCircle} data-html={true} data-tip={`Each of the trials were run in tandem timelines with different cohorts. The statistic represents the PREVALENCE rates of symptoms linked to COVID-19 run with clinical trial cohorts for each respective vaccines. 
                   <br></br>  <a target='_blank' href="https://www.nejm.org/doi/full/10.1056/nejmoa2002032">Link to data about COVID-19 symptoms.</a>
@@ -424,7 +424,7 @@ function CompareNoElicit(props) {
                   </sup>
                   </Header.Content>
                   
-                  <HeaderSubHeader>Number of People</HeaderSubHeader>
+                  <HeaderSubHeader>{t('step3_number')}</HeaderSubHeader>
                 </Header>
               </GridColumn>
               {/* <GridColumn width={3}>
@@ -496,7 +496,7 @@ function CompareNoElicit(props) {
                             color: "#397AB9",
                           }}
                         >
-                          CLICK TO SEE INDIVIDUAL SYMPTOMS
+                          {t('clicktoview')}
                         </u>
                       ),
                       icon: "dropdown",
@@ -517,24 +517,24 @@ function CompareNoElicit(props) {
                                   fontSize: "12pt",
                                 }}
                               >
-                                <Header.Content>fever</Header.Content>
+                                <Header.Content>{t('step3_fever')}</Header.Content>
                                 <HeaderSubHeader>
-                                  Number of People
+                                 {t('step3_number')}
                                 </HeaderSubHeader>
                               </Header>
                             </GridColumn>
                             <GridColumn width={3}>
                               <Header as="h4">
-                                <Header.Content>With COVID-19</Header.Content>
+                                <Header.Content>{t('step3_withCOVID')}</Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Pfizer Vaccine
+                                  {t('step3_withPfizer')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Moderna Vaccine
+                                  {t('step3_withModerna')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -561,17 +561,17 @@ function CompareNoElicit(props) {
                                 <Header.Content
                                   style={{ marginTop: 0, color: "#e02c2c" }}
                                 >
-                                  562 in 1,000
+                                  {t('t562')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  174 in 1,000
+                                  {t('t174')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  158 in 1,000
+                                 {t('t158')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -591,25 +591,25 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                 cough
+                                 {t('step3_cough')}
                                 </Header.Content>
                                 <HeaderSubHeader>
-                                  Number of People
+                                  {t('step3_number')}
                                 </HeaderSubHeader>
                               </Header>
                             </GridColumn>
                             <GridColumn width={3}>
                               <Header as="h4">
-                                <Header.Content>With COVID-19</Header.Content>
+                                <Header.Content>{t('step3_withCOVID')}</Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Pfizer Vaccine
+                                  {t('step3_withPfizer')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Moderna Vaccine
+                                 {t('step3_withModerna')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -634,17 +634,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  678 in 1,000
+                                  {t('t678')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  Not Reported
+                                  {t('notreport')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  Not Reported
+                                  {t('notreport')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -664,25 +664,25 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                  shortness of breath
+                                 {t('step3_shortness')}
                                 </Header.Content>
                                 <HeaderSubHeader>
-                                  Number of People
+                                  {t('step3_number')}
                                 </HeaderSubHeader>
                               </Header>
                             </GridColumn>
                             <GridColumn width={3}>
                               <Header as="h4">
-                                <Header.Content>With COVID-19</Header.Content>
+                                <Header.Content>{t('step3_withCOVID')}</Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Pfizer Vaccine
+                                  {t('step3_withPfizer')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Moderna Vaccine
+                                  {t('step3_withModerna')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -706,17 +706,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  187 in 1,000
+                                  {t('t187')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  Not Reported
+                                  {t('notreport')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  Not Reported
+                                  {t('notreport')}
                                 </Header.Content>
                               </Header>
                              
@@ -736,25 +736,25 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                  Myalgia (muscle or joint pain)
+                                  {t('step3_myalgia')}
                                 </Header.Content>
                                 <HeaderSubHeader>
-                                  Number of People
+                                  {t('step3_number')}
                                 </HeaderSubHeader>
                               </Header>
                             </GridColumn>
                             <GridColumn width={3}>
                               <Header as="h4" style={{ marginTop: "1%" }}>
-                                <Header.Content>With COVID-19</Header.Content>
+                                <Header.Content>{t('step3_withCOVID')}</Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "8%" }}>
                                 <Header.Content>
-                                  With Pfizer Vaccine
+                                 {t('step3_withPfizer')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "8%" }}>
                                 <Header.Content>
-                                  With Moderna Vaccine
+                                  {t('step3_withModerna')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -779,17 +779,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  149 in 1,000
+                                  {t('t149')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  237 in 1,000
+                                {t('t237')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  213 in 1,000
+                                {t('t213')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -808,24 +808,24 @@ function CompareNoElicit(props) {
                                   fontSize: "12pt",
                                 }}
                               >
-                                <Header.Content>sore throat</Header.Content>
+                                <Header.Content>{t('step3_sore')}</Header.Content>
                                 <HeaderSubHeader>
-                                  Number of People
+                                  {t('step3_number')}
                                 </HeaderSubHeader>
                               </Header>
                             </GridColumn>
                             <GridColumn width={3}>
                               <Header as="h4">
-                                <Header.Content>With COVID-19</Header.Content>
+                                <Header.Content>{t('step3_withCOVID')}</Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Pfizer Vaccine
+                                  {t('step3_withPfizer')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "4%" }}>
                                 <Header.Content>
-                                  With Moderna Vaccine
+                                  {t('step3_withModerna')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -851,17 +851,17 @@ function CompareNoElicit(props) {
                                 <Header.Content
                                   style={{ marginTop: "0%", color: "#e02c2c" }}
                                 >
-                                  139 in 1,000
+                                  {t('t139')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  Not Reported
+                                 {t('notreport')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  Not Reported
+                                  {t('notreport')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -880,26 +880,25 @@ function CompareNoElicit(props) {
                                 }}
                               >
                                 <Header.Content>
-                                  local swelling at the injection
-                                  site
+                                  {t('step3_swell')}
                                 </Header.Content>
                                 <HeaderSubHeader>
-                                  Number of People
+                                 {t('step3_number')}
                                 </HeaderSubHeader>
                               </Header>
                             </GridColumn>
                             <GridColumn width={3}>
                               <Header as="h4">
-                                <Header.Content>With COVID-19</Header.Content>
+                                <Header.Content>{t('step3_withCOVID')}</Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "2%" }}>
                                 <Header.Content>
-                                  With Pfizer Vaccine
+                                {t('step3_withPfizer')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "2%" }}>
                                 <Header.Content>
-                                  With Moderna Vaccination
+                                {t('step3_withModerna')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -924,17 +923,17 @@ function CompareNoElicit(props) {
                             <GridColumn width={2}>
                               <Header as="h4">
                                 <Header.Content style={{ color: "#e02c2c" }}>
-                                  not applicable
+                                  {t('notapply')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  85 in 1,000
+                                  {t('t85')}
                                 </Header.Content>
                               </Header>
                               <Header as="h4" style={{ marginTop: "0%" }}>
                                 <Header.Content style={{ color: "#0E6EB8" }}>
-                                  63 in 1,000
+                                 {t('t63')}
                                 </Header.Content>
                               </Header>
                             </GridColumn>
@@ -1016,7 +1015,8 @@ function CompareNoElicit(props) {
                         fontSize: "1.5rem",
                       }}
                     >
-                      About the Vaccine
+                    {t('aboutVaccine')}
+                    
                     </u>
                   ),
                   icon: "dropdown",
