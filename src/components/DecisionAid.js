@@ -28,7 +28,7 @@ import {
   Transition,
   List,
   HeaderContent,
-  Responsive
+  Responsive,
 } from "semantic-ui-react";
 import AppBar from "./AppBar";
 import ErrorBoundary from "react-error-boundary";
@@ -111,8 +111,8 @@ import VaccFAQ from "./DecisionAid/vaccFAQ";
 import DecisionTable from "./DecisionAid/decisionTable";
 import FinalDecision from "./DecisionAid/finalDecision";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 import i18n from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -132,18 +132,18 @@ i18n
       },
     },
   });
-function AppBar3(props){
-  return(
+function AppBar3(props) {
+  return (
     <ErrorBoundary>
-  <Container>
-      <Navbar expand="lg" variant="light" bg="light">
-        <Container>
-          <Navbar.Brand href="#">Navbar</Navbar.Brand>
-        </Container>
-      </Navbar>
-    </Container>
+      <Container>
+        <Navbar expand="lg" variant="light" bg="light">
+          <Container>
+            <Navbar.Brand href="#">Navbar</Navbar.Brand>
+          </Container>
+        </Navbar>
+      </Container>
     </ErrorBoundary>
-  )
+  );
 }
 function AppBar2(props) {
   const { t } = useTranslation();
@@ -154,89 +154,78 @@ function AppBar2(props) {
       <Menu
         borderless
         doubling
-        
         inverted
         fixed="top"
         style={{
           backgroundImage: 'url("/Emory_COVID_header_LightBlue.jpg")',
           backgroundSize: "cover",
           fontSize: "14pt",
-          overflowX:"scroll"
+          overflowX: "scroll",
         }}
       >
-        <Container style={{ whiteSpace: 'pre-line' }}>
+        <Container style={{ whiteSpace: "pre-line" }}>
           <Menu.Item
-            
             header
             onClick={() => navigate("/")}
             style={{ paddingLeft: 0, paddingRight: "3%" }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
-              {t('mainDashboard')}
+              {t("mainDashboard")}
             </span>
           </Menu.Item>
 
- 
-
           <Menu.Item
-          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "about"}
             onClick={() => navigate("/decision-aid/about")}
             name="about"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t('about')}:</HeaderContent>
+              <HeaderContent>{t("about")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                {t('about_des')}
+                {t("about_des")}
               </HeaderSubHeader>
             </Header>
-
           </Menu.Item>
 
           <Menu.Item
-         
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step1"}
             // onClick={() => navigate("/decision-aid/step1")}
             name="step4"
           >
-
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t('step1')}:</HeaderContent>
+              <HeaderContent>{t("step1")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                {t('step1_des')}
+                {t("step1_des")}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
 
           <Menu.Item
-          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step2"}
             // onClick={() => navigate("/decision-aid/step2")}
             name="step2"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t('step2')}:</HeaderContent>
+              <HeaderContent>{t("step2")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                {t('step2_des')}
+                {t("step2_des")}
               </HeaderSubHeader>
             </Header>
-
           </Menu.Item>
 
           <Menu.Item
-          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step3"}
             // onClick={() => navigate("/decision-aid/step3")}
             name="step3"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t('step3')}:</HeaderContent>
+              <HeaderContent>{t("step3")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-                {t('step3_des')}
+                {t("step3_des")}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
@@ -248,37 +237,35 @@ function AppBar2(props) {
             Map State
           </Menu.Item> */}
           <Menu.Item
-          
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step4"}
             // onClick={() => navigate("/decision-aid/step4")}
             name="step4"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t('step4')}:</HeaderContent>
+              <HeaderContent>{t("step4")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-               {t('step4_des')}
+                {t("step4_des")}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
 
           <Menu.Item
-          
             style={{ paddingLeft: 15, paddingRight: 55 }}
             active={props.menu === "step5"}
             // onClick={() => navigate("/decision-aid/step5")}
             name="step5"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t('step5')}</HeaderContent>
+              <HeaderContent>{t("step5")}</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
-               {t('step5_des')}
+                {t("step5_des")}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
 
           <Menu.Menu position="right">
-            <Menu.Item  header>
+            <Menu.Item header>
               <Image size="small" src="/logo_white.png" />
             </Menu.Item>
           </Menu.Menu>
@@ -296,7 +283,7 @@ const DecisionAid = (props) => {
       <AppBar2 menu={step} />
       {/* <br style={{ height: "200px" }}></br> */}
       {/* <StepFlow /> */}
-      <Container style={{ marginTop: "8em" }}>
+      <Container style={{ marginTop: "8em", width: "95vw" }}>
         {step == "about" && <LandingPage />}
         {step == "step2" && <VaccFAQ />}
         {step == "step3" && <CompareNoElicit />}
