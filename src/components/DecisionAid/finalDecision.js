@@ -136,6 +136,7 @@ function FinalDecision() {
       progress: undefined,
       theme: "colored",
     });
+   navigate("/decision-aid/step6")
   }
   function handleChange(index, value) {
     setConfidence(value);
@@ -241,9 +242,9 @@ function FinalDecision() {
           {t('submit')}
         </button>
       ) : (
-        <ToastContainer />
+        <div></div>
       )}
-      {submitted ? (
+      {/* {submitted ? (
   <div>
     <Header as="h4" style={{ paddingTop: 10, fontWeight: 550, fontSize: "1.5rem" }}>
       <Header.Content>
@@ -259,7 +260,7 @@ function FinalDecision() {
   </div>
 ) : (
   <div></div>
-)}
+)} */}
 
       
     </div>

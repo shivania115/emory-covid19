@@ -110,6 +110,7 @@ import PersonalRisk from "./DecisionAid/personalRisk";
 import VaccFAQ from "./DecisionAid/vaccFAQ";
 import DecisionTable from "./DecisionAid/decisionTable";
 import FinalDecision from "./DecisionAid/finalDecision";
+import Resources from "./DecisionAid/resources";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -290,6 +291,7 @@ const DecisionAid = (props) => {
         {step == "step1" && <DecisionTable />}
         {step == "step4" && <PersonalRisk />}
         {step == "step5" && <FinalDecision />}
+        {step == "step6" && <Resources />}
       </Container>
     </HEProvider>
   );

@@ -248,6 +248,7 @@ function DecitionTable() {
           </HeaderSubHeader>
         </Header>
         <div className="checkbox" style={{ paddingTop: "15px" }}>
+        
           <label>{t("step1_ques1")} </label>
           {VaccinateOptions.map((option, index) => {
             return (
@@ -286,6 +287,7 @@ function DecitionTable() {
           })}
         </div>
         <Divider></Divider>
+        {t('table_des')}
         <table class="ui striped table">
           <thead style={{ textAlign: "center" }}>
             <tr>

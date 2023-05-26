@@ -27,6 +27,7 @@ export const TRANSLATIONS_SPAN = {
   stronglyagree: "En Fuerto Acuedo",
   survey:"Encuesta de Vacunas COVID-19",
   toggle:"Cuéntenos sus opiniones sobre cada una de las afirmaciones.",
+  table_des:"Seleccione la opción que más se acerque a su opinión sobre cada afirmación",
   table_ques1: "Las Vacunas contra el COVID-19 son efectivas.",
   table_ques2:
     "Las vacunas son importantes para la salud de los demas en mi comunidad.",
@@ -35,7 +36,7 @@ export const TRANSLATIONS_SPAN = {
   table_ques4:
     "Yo estoy preocupado(a) de alguna reaccion seria que pueda ocurrir despues de recibir la vacuna del COVID-19.",
   table_ques5: "Yo pienso que las vacunas durante el crecimiento de un niño es importante y efectivo.",
-  step1_ques1: "¿Estás vacunada?",
+  step1_ques1: "¿Estás vacunada contra el COVID-19?",
   yes: "Sí",
   no: "No",
   step1_ques2: "¿Ha recibido alguna vacuna de refuerzo contra el COVID-19?",
@@ -120,7 +121,7 @@ export const TRANSLATIONS_SPAN = {
   step2_18:
     "Si. Los ensayos clinicos que si hicieron para comprobar cada vacuna demostraron que la vacuna es efectiva para protejer a los que estan vacunados de enfermarzen con el COVID-19. ",
   step2_19:
-    "Para las dos vacunas de Pfizer-BioNTech y Moderna, 2 dosis de la vacuna son necesarias para estar protejido contra el CVOID-19. Personas no son consideradas “vacunados” hasta que reciban su segunda dosis de la vacuna.",
+    "Para las dos vacunas de Pfizer-BioNTech y Moderna, dos dosis de la vacuna son necesarias para estar protejido contra el CVOID-19. Personas no son consideradas “vacunados” hasta que reciban su segunda dosis de la vacuna.",
   step2_20:
     "Para la vacuna de Johnson y Johnson, solo ne necesita una dosis para estar protejida plenamente contra el COVID-19. Para todas la vacunas, dos semanas son necesarias para que el cuerpo este completamente protejido del COVID-19 despues de vacunarse. ",
   step2_21: "Me puede enfermar la vacuna con el mismo virus COVID-19?",
@@ -137,7 +138,7 @@ export const TRANSLATIONS_SPAN = {
     step2_26:'En este momento, la FDA y el CDC han autorizado y recomendado dosis adicionales de las vacunas Pfizer-BioNTech (Comirnaty) o Moderna (Spikevax) en ciertas circunstancias. Aunque ambos términos se refieren actualmente a una tercera dosis, hay algunas diferencias en por qué se recomiendan una "dosis adicional" o una "dosis de refuerzo".',  
     step2_27:'Una dosis adicional de vacuna (es decir, una tercera dosis de las vacunas de dos dosis Pfizer o Moderna en este caso, recibida al menos 28 días después de la segunda dosis) está autorizada por la [FDA](https://www.fda.gov/news-events/press-announcements/coronavirus-covid-19-update-fda-authorizes-additional-vaccine-dose-certain-immunocompromised) fuera de los Estados Unidos y recomendada por [el CDC](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html) para personas que tienen sistemas inmunológicos moderada o gravemente comprometidos, quienes pueden no haber desarrollado una inmunidad suficientemente alta a partir de las dos primeras dosis. El objetivo de esta dosis adicional es ayudar a su sistema inmunológico a desarrollar una respuesta inmune más fuerte de lo que desarrolló a partir de las dos primeras dosis. Esto proporcionará un nivel de protección similar en personas inmunocomprometidas al observado en aquellas que no están inmunocomprometidas. Las personas con sistemas inmunológicos comprometidos incluyen aquellas que tienen inmunocompromiso debido a ciertos tratamientos o condiciones médicas o después de [trasplantes de órganos](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/recommendations/immuno.html). En este momento, no hay autorizaciones ni recomendaciones de dosis adicionales para personas que recibieron la vacuna Johnson & Johnson / Janssen.',
     step2_28:'Una dosis de refuerzo (es decir, otra dosis de una de las vacunas disponibles al menos 5 meses después de completar la serie primaria completa de las vacunas Pfizer-BioNTech o Moderna de dos dosis o al menos 2 meses después de la vacuna Johnson & Johnson / Janssen de una dosis) está autorizada por la [FDA](https://www.fda.gov/news-events/press-announcements/fda-authorizes-booster-dose-pfizer-biontech-covid-19-vaccine-certain-populations) y recomendada por el [CDC](https://www.cdc.gov/media/releases/2021/p0924-booster-recommendations-.html) para todas las personas. En este caso, el refuerzo contrarresta la disminución de la inmunidad que se desarrolló después de completar la vacunación. Los estudios han demostrado que la protección inducida por la vacuna contra la enfermedad COVID-19 disminuye con el tiempo y también puede disminuir debido a variantes más nuevas del virus SARS-CoV-2, que causa COVID-19. La disminución de la inmunidad es principalmente una reducción en la protección contra la enfermedad COVID-19 sintomática; sin embargo, la protección contra enfermedades más graves y sus consecuencias también disminuye en cierta medida con el tiempo. En algunos [casos](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/booster-shot.html#second-booster), también se recomienda un segundo refuerzo.' ,
-    aboutVaccine:'About the Vaccine',
+    aboutVaccine:'Sobre la vacuna',
 step3_pfizer:"La vacuna desarrollada por Pfizer y BioNTech se conoce como 'Comirnaty' o BNT162b2, y en el comercio se conoce como 'la vacuna de Pfizer'. Es una vacuna de ARNm, lo que significa que utiliza código genético de una parte del virus para entrenar tu sistema inmunológico. El código genético se descompone rápidamente por el cuerpo y se elimina. No puedes contraer COVID-19 por Comirnaty (Pfizer). Después de la segunda dosis, Comirnaty (Pfizer) es aproximadamente un 90% efectiva contra la variante Delta en niños. La efectividad contra la variante Ómicron aún se desconoce, pero si contraes COVID-19 después de haberte vacunado, por lo general, la enfermedad será leve.",
 step3_moderna:"Spikevax es una vacuna desarrollada por Moderna. También se conoce como 'la vacuna de Moderna'. Es una vacuna de ARNm, lo que significa que utiliza código genético de una parte del virus para entrenar tu sistema inmunológico. El código genético se descompone rápidamente por tu cuerpo y se elimina. No puedes contraer COVID-19 por Spikevax (Moderna). Después de la segunda dosis, Spikevax (Moderna) es aproximadamente un 94% efectiva contra COVID-19. Puede ser ligeramente menos efectiva contra variantes más recientes, como la variante Delta, pero aún te protegerá contra enfermedades graves y reducirá tu riesgo de hospitalización y muerte.",
 step3_warning:"Attencion: No todas las estadísticas comparten la misma base de referencia. Algunas informan los casos por cada 1,000, mientras que otros datos informan los casos por cada 10,000. ",
@@ -203,8 +204,8 @@ step4_19:"Tiene una discapacidad que requiere ayuda con las actividades diarias.
     step4_31:"Tiene antecedentes de síndrome de trombocitopenia inducido por heparina (HITS) o trombosis de senos venosos cerebrales (CVST) (relevante para la vacuna AstraZeneca).",
     step4_32:"Ha tenido antecedentes de trombosis venosa esplácnica idiopática (mesentérica, portal, esplénica) (relevante para la vacuna AstraZeneca).",
     step4_33:'Tiene antecedentes de enfermedad inflamatoria cardíaca en los últimos tres meses (para las vacunas Pfizer y Moderna). Las personas con estas condiciones aún pueden recibir la vacuna Pfizer o Moderna; sin embargo, su médico de cabecera o cardiólogo recomendará el mejor momento para la vacunación.',
-    step4_34:"Ha tenido una reacción alérgica grave (anafilaxis) a una dosis anterior o a un ingrediente.",
-    step4_35:"Ha tenido cualquier otro evento adverso grave atribuido a una dosis anterior.",
+    step4_34:"Ha tenido una reacción alérgica grave (anafilaxis) a una dosis anterior contra el COVID-19 o a un ingrediente.",
+    step4_35:"Ha tenido cualquier otro evento adverso grave atribuido a una dosis anterior contra el COVID-19.",
     step4_36:"Tiene una enfermedad aguda actual, incluyendo fiebre.",
     step5_1header:'¿Cuán probable es que reciba usted la vacuna o dosis de refuerzo contra COVID-19?',
     step5_2header:'Esperamos que la información en esta herramienta de decisión le haya ayudado a tomar una decisión. Seleccione una de las opciones a continuación para ver cuáles serán sus próximos pasos.',
