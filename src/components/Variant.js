@@ -28,7 +28,7 @@ import _, { map, reverse, set } from "lodash";
 import Annotation from "./Annotation";
 import allStates from "./allstates.json";
 import Test_Region from "./Test_regions";
-import InputRange from 'react-input-range';
+import InputRange from "react-input-range";
 import LatestOnThisDashboard from "./LatestOnThisDashboard";
 
 import {
@@ -79,20 +79,22 @@ function numberWithCommas(x) {
   return x;
 }
 
-
-function HorizontalPercentageStackedBarChart (props) {
-  const data = Object.entries(props.data).reduce((acc, [name, timeseriesData]) => {
-    const addedDates = new Set(); // Keep track of which dates we've already added
-    Object.entries(timeseriesData).forEach(([date, value]) => {
-      const date1 = props.tickFormatter(value.t)
-      if (!addedDates.has(date1)) {
-        acc.push({ date1, name, value });
-        addedDates.add(date1);
-      }
-    });
-    return acc;
-  }, []);
-  data.sort((a, b) => new Date(a.date1)- new Date(b.date1));
+function HorizontalPercentageStackedBarChart(props) {
+  const data = Object.entries(props.data).reduce(
+    (acc, [name, timeseriesData]) => {
+      const addedDates = new Set(); // Keep track of which dates we've already added
+      Object.entries(timeseriesData).forEach(([date, value]) => {
+        const date1 = props.tickFormatter(value.t);
+        if (!addedDates.has(date1)) {
+          acc.push({ date1, name, value });
+          addedDates.add(date1);
+        }
+      });
+      return acc;
+    },
+    []
+  );
+  data.sort((a, b) => new Date(a.date1) - new Date(b.date1));
 
   const uniqueDates = [...new Set(data.map((item) => item.date1))];
   const [selectedDate, setSelectedDate] = useState(uniqueDates.length - 1);
@@ -103,49 +105,43 @@ function HorizontalPercentageStackedBarChart (props) {
   const chartData = filteredData.map((item) => ({
     name: item.name,
     Delta: item.value.Delta,
-    Omicron_other:item.value.Omicron_other,
-    XBB:item.value.XBB,
-    Other:item.value.Other
+    Omicron_other: item.value.Omicron_other,
+    XBB: item.value.XBB,
+    Other: item.value.Other,
   }));
 
   const handleSliderChange = (event, newValue) => {
     setSelectedDate(newValue);
-    console.log(newValue)
+    console.log(newValue);
   };
   // const data=props.data.slice(-10);
   const caseYTickFmt = (y) => {
     return y + "%";
   };
- 
 
-// console.log(uniqueDates[selectedDate])
+  // console.log(uniqueDates[selectedDate])
   return (
     <div>
-    <Header>
+      <Header></Header>
+      <Header as="h3" style={{ fontWeight: 400, textAlign: "center" }}>
+        <Header.Content
+          style={{
+            width: 550,
+            fontSize: "15pt",
+          }}
+        >
+          {uniqueDates[selectedDate]}
+        </Header.Content>
+        <Header.Subheader>Slide to select the date</Header.Subheader>
+      </Header>
 
-    </Header>
-    <Header as="h3" style={{ fontWeight: 400, textAlign: "center", }}>
-                    <Header.Content
-                      style={{
-                        width: 550,
-                        fontSize: "15pt",
-                       
-                      }}
-                    >
-                  {uniqueDates[selectedDate]}
-                    </Header.Content>
-                    <Header.Subheader>
-                    Slide to select the date
-                    </Header.Subheader>
-                  </Header>
-
-       <Slider
+      <Slider
         value={selectedDate}
         onChange={handleSliderChange}
         step={1}
         min={0}
         max={uniqueDates.length - 1}
-        style={{ width: '95%' }}
+        style={{ width: "95%" }}
       />
       {/* <BarChart width={500} height={500} data={data}>
       <CartesianGrid  />
@@ -157,25 +153,24 @@ function HorizontalPercentageStackedBarChart (props) {
       <Bar dataKey="Omicron_other" stackId='a' fill="#82ca9d" />
       <Bar dataKey="Delta" stackId='a' fill="#ffc658" />
     </BarChart> */}
-    <BarChart width={500} height={400} data={chartData}>
-      <CartesianGrid  />
-      <XAxis 
-      dataKey='name'
-      />
-      <YAxis domain={[0, 100]} tickFormatter={caseYTickFmt} />
-      <Tooltip />
-      <Legend  wrapperStyle={{
-      fontSize: "18px"
-    }}/>
-      <Bar dataKey="XBB" stackId='a' fill="#007dba" />
-      <Bar dataKey="Omicron_other" stackId='a' fill="#a45791" />
-      <Bar dataKey="Delta" stackId='a' fill="#e8ab3b" />
-      <Bar dataKey="Other" stackId='a' fill="red" />
-    </BarChart>
+      <BarChart width={500} height={400} data={chartData}>
+        <CartesianGrid />
+        <XAxis dataKey="name" />
+        <YAxis domain={[0, 100]} tickFormatter={caseYTickFmt} />
+        <Tooltip />
+        <Legend
+          wrapperStyle={{
+            fontSize: "18px",
+          }}
+        />
+        <Bar dataKey="XBB" stackId="a" fill="#007dba" />
+        <Bar dataKey="Omicron_other" stackId="a" fill="#a45791" />
+        <Bar dataKey="Delta" stackId="a" fill="#e8ab3b" />
+        <Bar dataKey="Other" stackId="a" fill="red" />
+      </BarChart>
     </div>
   );
-};
-
+}
 
 function CaseChart(props) {
   const [playCount, setPlayCount] = useState(0);
@@ -187,11 +182,10 @@ function CaseChart(props) {
   const tickFormatter = props.tickFormatter;
   const labelFormatter = props.labelFormatter;
   const [animationBool, setAnimationBool] = useState(true);
-  
+
   const caseYTickFmt = (y) => {
     return y + "%";
   };
-
 
   return (
     <div style={{ paddingTop: 5, paddingBottom: 10, width: 500 }}>
@@ -233,7 +227,7 @@ function CaseChart(props) {
           stroke="#e8ab3b"
           strokeWidth="2"
         />
-      <Line
+        <Line
           data={dataState}
           name="Omicron_Other"
           type="monotone"
@@ -246,7 +240,7 @@ function CaseChart(props) {
           stroke="#a45791"
           strokeWidth="2"
         />
-         <Line
+        <Line
           data={dataState}
           name="Other"
           type="monotone"
@@ -309,8 +303,7 @@ export default function Variant(props) {
   const d3graph = React.useRef(null);
   const [regionMatched, setRegionMatched] = useState("USA");
   const [stateMatched, setStateMathched] = useState([]);
-  
-  
+
   const regionDescribe = {
     "01": "Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont.",
     "02": "New Jersey, New York, Puerto Rico, and the Virgin Islands ",
@@ -396,9 +389,9 @@ export default function Variant(props) {
             scaleMap[d[metric]] = cs(d[metric]);
           }
         });
-      
+
         setColorScale(scaleMap);
-   
+
         var max = 0;
         var min = 100;
         _.each(x, (d) => {
@@ -506,9 +499,9 @@ export default function Variant(props) {
       new Date(tick * 1000).getMonth() +
       1 +
       "/" +
-      new Date(tick * 1000).getDate()+
-      "/"+
-    new Date(tick * 1000).getFullYear()
+      new Date(tick * 1000).getDate() +
+      "/" +
+      new Date(tick * 1000).getFullYear()
     );
   };
   function handleCallback(childData) {
@@ -525,7 +518,7 @@ export default function Variant(props) {
     // console.log(variantData[stateMapFips])
     // console.log((stateColor['13']));
     // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
-    console.log(variantTimeseries)
+    console.log(variantData[hoverName].Delta);
     return (
       <HEProvider>
         <div>
@@ -562,62 +555,59 @@ export default function Variant(props) {
                     >
                       Variant Regional Map
                     </Header.Content>
-                 
-             
-                      <Header.Content
-                        style={{
-                          fontWeight: 300,
-                          fontSize: "14pt",
-                          paddingTop: 7,
-                          lineHeight: "20pt",
-                        }}
-                      >
-                        The U.S. map shows the estimated proportions of the most
-                        common SARS-CoV-2 (the virus that causes COVID-19)
-                        variants circulating in the United States, divided by{" "}
-                        <a href="https://www.hhs.gov/about/agencies/iea/regional-offices/index.html">
-                          HHS regions
-                        </a>
-                        . Scroll over each region to see the exact breakdown of
-                        what proportion of confirmed cases of COVID-19 in that
-                        region are due to which variants. Data can be filtered
-                        by region and variant.
-                      </Header.Content>
-                     
-                      <Header.Content
-                        style={{
-                          fontWeight: 300,
-                          fontSize: "14pt",
-                          paddingTop: 7,
-                          lineHeight: "20pt",
-                        }}
-                      >
-                        Currently, the most common variant in region{" "}
-                        <b>{stateMapFips}</b> is{" "}
-                        <b>
-                          {variantData[stateMapFips].Delta >
-                          variantData[stateMapFips].XBB
-                            ? "Delta"
-                            : "Omicron_XBB"}
-                        </b>{" "}
-                        which accounts for{" "}
-                        <b>
-                          {variantData[stateMapFips].Delta >
-                          variantData[stateMapFips].XBB
-                            ? variantData[stateMapFips].Delta
-                            : variantData[stateMapFips].XBB}
-                        </b>{" "}
-                        % of cases.
-                      </Header.Content>
-                  
-                    </Header>
+
+                    <Header.Content
+                      style={{
+                        fontWeight: 300,
+                        fontSize: "14pt",
+                        paddingTop: 7,
+                        lineHeight: "20pt",
+                      }}
+                    >
+                      The U.S. map shows the estimated proportions of the most
+                      common SARS-CoV-2 (the virus that causes COVID-19)
+                      variants circulating in the United States, divided by{" "}
+                      <a href="https://www.hhs.gov/about/agencies/iea/regional-offices/index.html">
+                        HHS regions
+                      </a>
+                      . Scroll over each region to see the exact breakdown of
+                      what proportion of confirmed cases of COVID-19 in that
+                      region are due to which variants. Data can be filtered by
+                      region and variant.
+                    </Header.Content>
+
+                    <Header.Content
+                      style={{
+                        fontWeight: 300,
+                        fontSize: "14pt",
+                        paddingTop: 7,
+                        lineHeight: "20pt",
+                      }}
+                    >
+                      Currently, the most common variant in region{" "}
+                      <b>{stateMapFips}</b> is{" "}
+                      <b>
+                        {variantData[stateMapFips].Delta >
+                        variantData[stateMapFips].XBB
+                          ? "Delta"
+                          : "Omicron_XBB"}
+                      </b>{" "}
+                      which accounts for{" "}
+                      <b>
+                        {variantData[stateMapFips].Delta >
+                        variantData[stateMapFips].XBB
+                          ? variantData[stateMapFips].Delta
+                          : variantData[stateMapFips].XBB}
+                      </b>{" "}
+                      % of cases.
+                    </Header.Content>
+                  </Header>
                   <Test_Region
                     parentClick={handleClick}
                     parentCallback={handleCallback}
                   />
-                </Grid.Column>         
+                </Grid.Column>
                 <Grid.Column width={7} style={{ paddingLeft: 20 }}>
-                
                   <Grid>
                     {/* <Grid.Row columns={1}>
                       <Header.Content
@@ -640,9 +630,12 @@ export default function Variant(props) {
                         by region and variant.
                       </Header.Content>
                     </Grid.Row> */}
-                    <HorizontalPercentageStackedBarChart ticks={caseTicks}
-                            tickFormatter={caseTickFmt}  data={variantTimeseries}></HorizontalPercentageStackedBarChart>  
-                    
+                    <HorizontalPercentageStackedBarChart
+                      ticks={caseTicks}
+                      tickFormatter={caseTickFmt}
+                      data={variantTimeseries}
+                    ></HorizontalPercentageStackedBarChart>
+
                     <Grid.Row>
                       <div>
                         {fips == "USA" ? (
@@ -689,7 +682,6 @@ export default function Variant(props) {
                       </Header.Content>
                     </Grid.Row>
                   </Grid>
-                       
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -710,7 +702,7 @@ export default function Variant(props) {
                 <b>{hoverName}</b>{" "}
               </font>
               <br />
-              <Table celled inverted selectable>         
+              <Table celled inverted selectable>
                 <Table.Body>
                   <Table.Row>
                     <Table.HeaderCell
