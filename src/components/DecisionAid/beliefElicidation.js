@@ -55,6 +55,7 @@ function DraggableBar(props) {
   const handleOpen = () => setOpen(true);
   const [symptoms, setSymptoms] = useState(50);
   const [symptomsCOVID, setSymptomsCOVID] = useState(50);
+  const [currentStep, setCurrentStep] = useState(1);
   const [symptomsVac, setSymptomsVac] = useState(50);
   const [hospilizationNoVac, sethospilizationNoVac] = useState(50);
   const [hospilizationVac, sethospilizationVac] = useState(50);
@@ -67,6 +68,10 @@ function DraggableBar(props) {
     cookie["step3"] = belief;
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
+
+  const handleNext = () => {
+    setCurrentStep(currentStep + 1);
+  };
 
   //edit the handle submit functino to add the info in cookie
   function handleSubmit() {
@@ -83,7 +88,81 @@ function DraggableBar(props) {
     parseCookie(belief);
     setOpen(false);
   }
-  console.log(symptoms);
+  console.log(symptomsCOVID);
+  const renderQuestion = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <Grid.Row>
+            <Grid.Column width={6}>
+              What do you think is the percent of symptoms after a month for COVID-19?
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <DragScaleBar
+                handleValue={(num) => setSymptomsCOVID(num)}
+                active={false}
+                initValue={symptomsCOVID}
+                width={500}
+                fillColor="#dc2c2c"
+              />
+            </Grid.Column>
+          </Grid.Row>
+        );
+      case 2:
+        return (
+          <Grid.Row>
+            <Grid.Column width={6}>
+              What do you think is the percent of symptoms after a month for vaccination (COVID-19)?
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <DragScaleBar
+                handleValue={(num) => setSymptomsVac(num)}
+                initValue={symptomsVac}
+                active={false}
+                width={500}
+                fillColor="#2285d0"
+              />
+            </Grid.Column>
+          </Grid.Row>
+        );
+      case 3:
+        return (
+          <Grid.Row>
+            <Grid.Column width={6}>
+              What do you think is the hospitalization rate of COVID-19 for people WITHOUT vaccination?
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <DragScaleBar
+                handleValue={(num) => sethospilizationNoVac(num)}
+                initValue={hospilizationNoVac}
+                active={false}
+                width={500}
+                fillColor="#dc2c2c"
+              />
+            </Grid.Column>
+          </Grid.Row>
+        );
+      case 4:
+        return (
+          <Grid.Row>
+            <Grid.Column width={6}>
+              What do you think is the hospitalization rate of COVID-19 for people WITH vaccination?
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <DragScaleBar
+                handleValue={(num) => sethospilizationVac(num)}
+                initValue={hospilizationVac}
+                active={false}
+                width={500}
+                fillColor="#2285d0"
+              />
+            </Grid.Column>
+          </Grid.Row>
+        );
+      default:
+        return null;
+    }
+  };
   return (
     <Modal
       open={open}
@@ -101,109 +180,47 @@ function DraggableBar(props) {
           }}
         >
           <Header.Content>
-            Tell us about your belief!
-            {/* <Header.Subheader
+            Let's start by understanding your thoughts!
+            <Header.Subheader
                 style={{
-                  paddingTop: "1.5rem",
+
                   paddingLeft: "0rem",
                   paddingBottom: "0rem",
                   lineHeight: "20pt",
                   fontWeight: 400,
-                  fontSize: "12pt",
-                  color: "black",
+                  fontSize: "10pt",
+       
                 }}
               >
-                This is a resource guide to answer common questions about the
-                COVID-19 vaccines. This guide is based on the best available
-                information as of {Date().slice(4, 10)}, 2021. Before taking the
-                vaccine, please consult your healthcare provider. If you have
-                any questions or concerns beyond those addressed here, we
-                recommend the following resources for additional information:
+               Drag the slider to indicate your belief
             
-              </Header.Subheader> */}
+              </Header.Subheader>
           </Header.Content>
         </Header>
         {/* <StyledProgressBar progress='percent' percent={symptoms}></StyledProgressBar> */}
-        <Grid style={{ paddingLeft: "2%", fontWeight: 600 }}>
-        <Grid.Row>
-            <Grid.Column width={6}>
-              What do you think is the percent of symptoms after a month for
-              COVID-19?
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <DragScaleBar
-                handleValue={(num) => setSymptomsCOVID(num)}
-                initValue={50}
-                width={500}
-                fillColor="#dc2c2c"
-              ></DragScaleBar>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column width={6}>
-              What do you think is the percent of symptoms after a month for
-              vaccination(COVID-19)?
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <DragScaleBar
-                handleValue={(num) => setSymptomsVac(num)}
-                initValue={50}
-                width={500}
-                fillColor="#2285d0"
-              ></DragScaleBar>
-            </Grid.Column>
-          </Grid.Row>
-         
-          <Grid.Row>
-            <Grid.Column width={6}>
-              What do you think is the hospilization rate of COVID-19 for people
-              WITHOUT vaccination?
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <DragScaleBar
-                handleValue={(num) => sethospilizationNoVac(num)}
-                initValue={50}
-                width={500}
-                fillColor="#dc2c2c"
-              ></DragScaleBar>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column width={6}>
-              What do you think is the hospilization rate of COVID-19 for people
-              WITH vaccination?
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <DragScaleBar
-                handleValue={(num) => sethospilizationVac(num)}
-                initValue={50}
-                width={500}
-                fillColor="#2285d0"
-              ></DragScaleBar>
-            </Grid.Column>
-          </Grid.Row>
-          
-        </Grid>
-
-        <Typography
-          id="modal-modal-description"
-          style={{ marginTop: "2%", textAlign: "center", fontWeight: 600 }}
-          sx={{ mt: 2 }}
-        >
-          Submit your response and let's see the real data.
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "15px",
-            fontWeight: 600,
-          }}
-        >
-          <Button onClick={handleSubmit} variant="outlined">
-            Submit
-          </Button>
-        </div>
+        <Grid style={{ paddingLeft: '2%', fontWeight: 600 }}>
+      {renderQuestion()}
+      <Grid.Row>
+        <Grid.Column width={6}>
+          {currentStep > 1 && (
+            <Button floated="left" onClick={() => setCurrentStep(currentStep - 1)}>
+              Previous
+            </Button>
+          )}
+        </Grid.Column>
+        <Grid.Column width={8}>
+          {currentStep < 4 ? (
+            <Button floated="right" onClick={handleNext}>
+              Next
+            </Button>
+          ) : (
+            <Button floated="right" onClick={handleSubmit}>
+              Submit
+            </Button>
+          )}
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
       </Box>
     </Modal>
   );

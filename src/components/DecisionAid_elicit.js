@@ -164,7 +164,7 @@ function AppBar2(props) {
           
             style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "about"}
-            onClick={() => navigate("/decision-aid/about")}
+            onClick={() => navigate("/decision-aid_elicit/about")}
             name="about"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
@@ -291,12 +291,12 @@ const DecisionAid_elicit = (props) => {
       {/* <br style={{ height: "200px" }}></br> */}
       {/* <StepFlow /> */}
       <Container style={{ marginTop: "8em" }}>
-        {step == "about" && <LandingPage />}
-        {step == "step2" && <VaccFAQ />}
-        {step == "step3" && <Compare />}
-        {step == "step1" && <DecisionTable />}
-        {step == "step4" && <PersonalRisk />}
-        {step == "step5" && <FinalDecision />}
+        {step == "about" && <LandingPage elicit={true}/>}
+        {step == "step2" && <VaccFAQ elicit={true}/>}
+        {step == "step3" && <Compare elicit={true}/>}
+        {step == "step1" && <DecisionTable elicit={true}/>}
+        {step == "step4" && <PersonalRisk elicit={true}/>}
+        {step == "step5" && <FinalDecision elicit={true}/>}
       </Container>
     </HEProvider>
   );

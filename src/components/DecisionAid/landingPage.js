@@ -42,6 +42,7 @@ import { initReactI18next,useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
+import { useParams,useLocation } from 'react-router-dom';
  
 i18n
  .use(LanguageDetector)
@@ -57,9 +58,12 @@ i18n
      }
    }
  });
-  function LandingPage(){
+  function LandingPage(props){
     const { t } = useTranslation();
-    console.log(i18n.language);
+   const location=useLocation();
+   const currentPath=location.pathname;
+    console.log(currentPath);
+    console.log(props.elicit)
     return(
       <div style={{height:"100%",width:"100%",backgroundImage: "url(/DA_pic/vaccine2.png)"}} >
      
@@ -116,13 +120,22 @@ i18n
         </List>
         {/* <Image size='large' src='/DA_pic/vaccine.jpg' >
         </Image> */}
-      <Link  to="/decision-aid/step1" >
+      {props.elicit?
+        <Link  to="/decision-aid_elicit/step1" >
       <button style={{marginTop:"3rem",marginBottom:"10%"}} class="ui massive primary button">
       {t('start')}
     </button>
     </Link>
+      :<Link  to="/decision-aid/step1" >
+      <button style={{marginTop:"3rem",marginBottom:"10%"}} class="ui massive primary button">
+      {t('start')}
+    </button>
+    </Link>
+      }
       </center>
+    
       </div>
+    
     )
   }
   export default LandingPage;

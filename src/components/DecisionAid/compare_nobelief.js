@@ -148,7 +148,7 @@ function CompareNoElicit(props) {
               <Header.Content>{t("step3_vac")}</Header.Content>
             </Header>
             <Header as="h4" style={{ marginTop: "4%" }}>
-              <Header.Content>{t("step3_vac")}</Header.Content>
+              <Header.Content>{t("step3_boost")}</Header.Content>
             </Header>
           </GridColumn>
 
