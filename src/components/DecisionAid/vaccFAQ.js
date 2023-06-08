@@ -51,7 +51,7 @@ i18n
     },
   });
 
-function VaccFAQ() {
+function VaccFAQ(props) {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState([-1]);
   const navigate = useNavigate();
@@ -731,7 +731,39 @@ function VaccFAQ() {
                   </Grid.Column>
               </Grid.Row> */}
         </Grid>
-
+        {props.elicit?
+        <div>
+          <button
+          onClick={() => {
+            navigate("/decision-aid_elicit/step1");
+          }}
+          style={{
+            float: "left",
+            size: "5rem",
+            marginTop: "1rem",
+            marginBottom: "4rem",
+          }}
+          class="ui large primary button"
+        >
+          {t("prev")}
+        </button>
+        <button
+          onClick={() => {
+            navigate("/decision-aid_elicit/step3");
+          }}
+          style={{
+            float: "right",
+            size: "5rem",
+            marginTop: "1rem",
+            marginBottom: "4rem",
+          }}
+          class="ui large primary button"
+        >
+          {t("next")}
+        </button>
+        </div>
+        : 
+        <div>
         <button
           onClick={() => {
             navigate("/decision-aid/step1");
@@ -759,7 +791,8 @@ function VaccFAQ() {
           class="ui large primary button"
         >
           {t("next")}
-        </button>
+        </button></div>}
+        
       </div>
     );
   } else {

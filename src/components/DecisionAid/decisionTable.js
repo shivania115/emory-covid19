@@ -78,7 +78,7 @@ i18n
  });
 
  
-function DecitionTable() {
+function DecitionTable(props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   //info contains slider information
@@ -142,7 +142,8 @@ function DecitionTable() {
       return;
     }
     parseCookie();
-    return navigate("/decision-aid/step2");
+    props.elicit? navigate("/decision-aid/step2"): navigate("/decision-aid_elicit/step2");;
+    // return navigate("/decision-aid/step2");
   }
 
   function handleRadioChange(index, event) {
@@ -659,6 +660,32 @@ function DecitionTable() {
             })}
           </div>
         </Form>
+        {props.elicit?
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <button
+            onClick={() => navigate("/decision-aid_elicit/about")}
+            style={{
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            {t('prev')}
+          </button>
+          <button
+            onClick={handleSubmit}
+            style={{
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            {t('next')}
+          </button>
+        </div>
+        :
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <button
             onClick={() => navigate("/decision-aid/about")}
@@ -683,6 +710,8 @@ function DecitionTable() {
             {t('next')}
           </button>
         </div>
+        }
+      
       </div>
       <Modal
         show={show}
@@ -717,12 +746,20 @@ function DecitionTable() {
           <Button variant="secondary" onClick={() => setShow(false)}>
             {t('close')}
           </Button>
+          {props.elicit?
+            <Button
+            variant="primary"
+            onClick={() => navigate("/decision-aid_elicit/step2")}
+          >
+            {t('continue')}
+          </Button>:
           <Button
             variant="primary"
             onClick={() => navigate("/decision-aid/step2")}
           >
             {t('continue')}
-          </Button>
+          </Button>}
+         
         </Modal.Footer>
       </Modal>
     </>

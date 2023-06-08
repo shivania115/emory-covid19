@@ -22,7 +22,7 @@ export default function AppBar(props) {
           <Menu.Item
             as="a"
             header
-            onClick={() => history("/")}
+            onClick={() => history("/US-Map")}
             style={{ paddingLeft: 10, paddingRight: 15 }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>

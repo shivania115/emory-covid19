@@ -285,13 +285,13 @@ const DecisionAid = (props) => {
       {/* <br style={{ height: "200px" }}></br> */}
       {/* <StepFlow /> */}
       <Container style={{ marginTop: "8em", width: "95vw" }}>
-        {step == "about" && <LandingPage />}
-        {step == "step2" && <VaccFAQ />}
-        {step == "step3" && <CompareNoElicit />}
-        {step == "step1" && <DecisionTable />}
-        {step == "step4" && <PersonalRisk />}
-        {step == "step5" && <FinalDecision />}
-        {step == "step6" && <Resources />}
+        {step == "about" && <LandingPage elicit={false} />}
+        {step == "step2" && <VaccFAQ elicit={false}/>}
+        {step == "step3" && <CompareNoElicit elicit={false}/>}
+        {step == "step1" && <DecisionTable elicit={false}/>}
+        {step == "step4" && <PersonalRisk elicit={false}/>}
+        {step == "step5" && <FinalDecision elicit={false}/>}
+        {step == "step6" && <Resources elicit={false}/>}
       </Container>
     </HEProvider>
   );
