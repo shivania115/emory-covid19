@@ -518,7 +518,7 @@ export default function Variant(props) {
     // console.log(variantData[stateMapFips])
     // console.log((stateColor['13']));
     // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
-    console.log(variantData[hoverName].Delta);
+    console.log(variantTimeseries);
     return (
       <HEProvider>
         <div>
