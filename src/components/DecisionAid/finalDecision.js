@@ -73,32 +73,29 @@ function FinalDecision() {
   }
   const navigate = useNavigate();
   const choices = [
-    t('step5_option1'),
-    t('step5_option2'),
-    t('step5_option3'),
-    t('step5_option4'),
-    t('step5_option5'),
+    t("step5_option1"),
+    t("step5_option2"),
+    t("step5_option3"),
+    t("step5_option4"),
+    t("step5_option5"),
   ];
+
   const recommendations = [
     {
-      next: t('step5_1next'),
-      share:
-      t('step5_1share'),
+      next: t("step5_1next"),
+      share: t("step5_1share"),
     },
     {
-      next: t('step5_2next'),
-      share:
-        t('step5_2share'),
+      next: t("step5_2next"),
+      share: t("step5_2share"),
     },
     {
-      next: t('step5_3next'),
-      share:
-       t('step5_3share'),
+      next: t("step5_3next"),
+      share: t("step5_3share"),
     },
     {
-      next: t('step5_4next'),
-      share:
-      t('step5_4share'),
+      next: t("step5_4next"),
+      share: t("step5_4share"),
     },
   ];
   const [confidence, setConfidence] = useState(0);
@@ -107,7 +104,35 @@ function FinalDecision() {
   // console.log(cookies);
   const [choiceIndex, setChoiceIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
- 
+
+  function italicizeWords(text) {
+    const words = [
+      "get",
+      "not",
+      "get",
+      "discuss",
+      "learn",
+      "more",
+      "recibir",
+      "discutir",
+      "obtener",
+      "más",
+      "información",
+      "no",
+    ];
+    var textArray = text.split(" ");
+    var result = [];
+    for (var i = 0; i < textArray.length; i++) {
+      if (words.includes(textArray[i])) {
+        result.push(<strong>{textArray[i]}</strong>);
+        result.push(" ");
+      } else {
+        result.push(textArray[i] + " ");
+      }
+    }
+    return result;
+  }
+
   function handleSubmit() {
     const cookie = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
@@ -129,14 +154,14 @@ function FinalDecision() {
     setSubmitted(true);
     toast.success("Thank you for your time!", {
       position: "bottom-center",
-      autoClose: 10000,
-      hideProgressBar: false,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
       theme: "colored",
     });
+   navigate("/decision-aid/step6")
   }
   function handleChange(index, value) {
     setConfidence(value);
@@ -149,9 +174,7 @@ function FinalDecision() {
           as="h4"
           style={{ paddingTop: 80, fontWeight: 550, fontSize: "1.5rem" }}
         >
-          <Header.Content>
-            {t('step5_1header')}
-          </Header.Content>
+          <Header.Content>{t("step5_1header")}</Header.Content>
         </Header>
         <Slider
           defaultValue={0}
@@ -172,11 +195,9 @@ function FinalDecision() {
         as="h4"
         style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
       >
-        <Header.Content>
-         {t('step5_2header')}
-        </Header.Content>
+        <Header.Content>{t("step5_2header")}</Header.Content>
       </Header>
-      <div>
+      <div style={{ lineHeight: 1.6 }}>
         {choices.map((choice, index) => {
           return (
             <Checkbox
@@ -187,10 +208,11 @@ function FinalDecision() {
               style={{
                 fontSize: "1.25rem",
                 display: "block",
-                marginTop: "10px",
+
+                lineHeight: 1.2,
               }}
-              label={choice}
-            />
+              label={italicizeWords(choice)}
+            ></Checkbox>
           );
         })}
         {choiceIndex === 4 && (
@@ -202,19 +224,23 @@ function FinalDecision() {
                 setOther(e.target.value);
               }}
             ></TextField>
+            <br></br>
+            <br></br>
+            <b>{t("step5_share")}</b>
+            <p>{recommendations[0].share}</p>
           </>
         )}
       </div>
       {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
           <div style={{ paddingTop: 30 }}>
-            <b>{t('step5_next')}</b>
+            <b>{t("step5_next")}</b>
             <p
               dangerouslySetInnerHTML={{
                 __html: snarkdown(recommendations[choiceIndex].next),
               }}
             ></p>
-            <b>{t('step5_share')}</b>
+            <b>{t("step5_share")}</b>
             <p>{recommendations[choiceIndex].share}</p>
           </div>
         </>
@@ -226,7 +252,7 @@ function FinalDecision() {
         style={{ marginTop: "3rem" }}
         class="ui large primary button"
       >
-        {t('prev')}
+        {t("prev")}
       </button>
       {!submitted ? (
         <button
@@ -235,34 +261,30 @@ function FinalDecision() {
           style={{ marginTop: "3rem" }}
           class="ui large primary button"
         >
-          {t('submit')}
+          {t("submit")}
         </button>
       ) : (
-        <ToastContainer />
+        <div></div>
       )}
+      {/* {submitted ? (
+  <div>
+    <Header as="h4" style={{ paddingTop: 10, fontWeight: 550, fontSize: "1.5rem" }}>
+      <Header.Content>
+        {t('step5_resources')}
+      </Header.Content>
+    </Header>
+    <ul style={{ fontSize: '1.25rem', paddingTop: 5, paddingLeft: 0 }}>
+      <li dangerouslySetInnerHTML={{ __html: snarkdown(t('step5_bullet1')) }}></li>
+      <li dangerouslySetInnerHTML={{ __html: snarkdown(t('step5_bullet2')) }}></li>
+      <li dangerouslySetInnerHTML={{ __html: snarkdown(t('step5_bullet3')) }}></li>
+      <li dangerouslySetInnerHTML={{ __html: snarkdown(t('step5_acknowledgement')) }}></li>
+    </ul>
+  </div>
+) : (
+  <div></div>
+)} */}
 
-      <Header
-          as="h4"
-          style={{ paddingTop: 10, fontWeight: 550, fontSize: "1.5rem" }}
-        >
-          <Header.Content>
-            Vaccination Resources
-          </Header.Content>
-        </Header>
-      <ul style={{fontSize:'1.25rem',paddingTop:5,paddingLeft:0}}>
-        <li>
-          <a href='https://www.vaccines.gov/search/' target='_blank'>Government website </a>to find vaccination centers closest to you
-        </li>
-        <li>
-        <a href='https://gta-vras.powerappsportals.us/en-US/ ' target='_blank'>COVID-19 or monkeypox vaccine locator </a>for the state of Georgia.
-        </li>
-        <li>
-        <a href='https://www.cvs.com/vaccine/intake/store/schedule-options' target='_blank'>CVS link</a> to schedule an appointment
-        </li>
-        <li>
-        We would like to acknowledge <a href='https://www.ncirs.org.au/covid-19-decision-aid-for-adults' target='_blank'>the National Centre of Immunisation Research and Surveillance (NCIRS), Australia, </a>for their valuable contributions in developing their COVID-19 Vaccine Decision Aid. We have adapted and customized their model and design to create our own decision aid for the US population. We recognize the importance of their work in informing vaccine decision-making globally and appreciate their willingness to share their expertise and knowledge.
-        </li>
-      </ul>
+      
     </div>
   );
 }

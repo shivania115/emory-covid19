@@ -32,6 +32,7 @@ import {
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck ,faClock,faQuestionCircle,faUserCircle,faArrowAltCircleLeft,faArrowAltCircleDown} from '@fortawesome/free-regular-svg-icons'
+import { faExclamationCircle,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -83,7 +84,7 @@ function PersonalRisk(){
                 <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faCircleCheck} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
+                    <FontAwesomeIcon icon={faExclamationCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
@@ -187,7 +188,7 @@ function PersonalRisk(){
                 <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faQuestionCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
+                    <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
             }}/>
                     </Grid.Column>
                     <Grid.Column width={10}>

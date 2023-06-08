@@ -29,6 +29,7 @@ import Annotation from "./Annotation";
 import allStates from "./allstates.json";
 import Test_Region from "./Test_regions";
 import InputRange from 'react-input-range';
+import LatestOnThisDashboard from "./LatestOnThisDashboard";
 
 import {
   LineChart,
@@ -77,234 +78,7 @@ function numberWithCommas(x) {
   while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
   return x;
 }
-function LatestOnThisDashboard() {
-  return (
-    <Grid>
-      <Grid.Column style={{ width: 110, fontSize: "16pt", lineHeight: "18pt" }}>
-        <b>The Latest on this Dashboard</b>
-      </Grid.Column>
-      <Grid.Column style={{ width: 20 }}></Grid.Column>
 
-      {/* <Grid.Column style={{width: 190}}>
-          <Image width = {175} height = {95} src='/HomeIcons/Emory_Icons_NationalReport_v1.jpg' />
-        </Grid.Column>
-        <Grid.Column style={{width: 250, fontSize: "8pt"}}>
-          <b> National Report <br/> </b>
-  
-          The National Report tab takes you to a detailed overview of the impact of COVID-19 in the U.S.. 
-          How has the pandemic been trending?  
-          Who are the most vulnerable communities...
-          <a href = "/national-report">for more</a>. 
-          
-        </Grid.Column> */}
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={175}
-          height={95}
-          href="/national-report"
-          src="/HomeIcons/Emory_Icons_LatestBlog_v1.jpg"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          {" "}
-          National Report <br />{" "}
-        </b>
-        The National Report offers a detailed overview of the impact of COVID-19
-        in the U.S.. How has the pandemic been trending? Who are the most
-        vulnerable communities...
-        <a href="/national-report">click to access</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={175}
-          height={95}
-          href="/Vaccine-Tracker"
-          src="/HomeIcons/Emory_Icons_NationalReport_v1.jpg"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          {" "}
-          COVID-19 Vaccination Tracker <br />{" "}
-        </b>
-        The COVID-19 Vaccionation Tracker tab takes you to an overview of
-        current vaccination status in the U.S. and in each state. For FAQs on
-        COVID-19 Vaccines...
-        <a href="/Vaccine-Tracker">click to access</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={175}
-          height={95}
-          href="/Georgia"
-          src="/LatestOnThisDashboard/GADash.png"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          {" "}
-          Georgia COVID-19 Health Equity Dashboard
-          <br />{" "}
-        </b>
-        The Georgia COVID-19 Health Equity dashboard is a tool to dynamically
-        track and compare the burden of cases and deaths across counties in
-        Georgia.
-        <a href="/Georgia"> Click to Access</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/blog/maskmandate"
-          src="/blog images/maskmandate/Mask Mandate blog.png"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          Statewide Mask Mandates in the United States
-          <br />
-        </b>
-        State-wide mask mandate in the early stages of the pandemic may have
-        been clever for US states, lowering case rates during the third wave of
-        the pandemic compared to...
-        <a href="/media-hub/blog/maskmandate">for more</a>.
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses"
-          src="/podcast images/Katie Kirkpatrick.jpeg"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          “You can't have good public health, but not have equity and economic
-          growth”
-          <br />
-        </b>
-        Katie Kirkpatrick discusses the economic responses to COVID-19 &
-        ramifications in the business community...
-        <a href="/media-hub/podcast/Katie_Kirkpatrick_on_economic_responses">
-          for more
-        </a>
-        .
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic"
-          src="/podcast images/Allison Chamberlain.png"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          “A teaching opportunity for many years to come”
-          <br />
-        </b>
-        Dr. Allison Chamberlain talks about public health education in the time
-        of the COVID-19 pandemic, blending public health...
-        <a href="/media-hub/podcast/Allison_Chamberlain_on_public_health_education_pandemic">
-          for more
-        </a>
-        .
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution"
-          src="/podcast images/Robert Breiman.png"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          “Information equity is a critical part of the whole picture”
-          <br />
-        </b>
-        Dr. Robert Breiman talks about SARS-CoV-2 vaccine development,
-        distribution, and clinical trials...
-        <a href="/media-hub/podcast/Robert_Breiman_on_COVID-19_vaccine_development_and_distribution">
-          for more
-        </a>
-        .
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances"
-          src="/podcast images/Vincent Macroni.png"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          Innovations in Covid-19 Treatment: Dr. Vincent Marconi on Anti-Viral
-          and Anti-Inflammatory Advances Against COVID-19 <br />
-        </b>
-        Dr. Vincent Marconi talks about the state of research around
-        baricitinib...
-        <a href="/media-hub/podcast/Dr._Vincent_Marconi_on_Anti-Viral_and_Anti-Inflammatory_Advances">
-          for more
-        </a>
-        .
-      </Grid.Column>
-
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics"
-          src="/podcast images/Dr. Nneka Sederstrom.jpg"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          "We Have to Be Better": Dr. Nneka Sederstrom on Racism and Ethics
-          During Covid-19 <br />
-        </b>
-        Dr. Nneka Sederstrom discusses how Covid-19 has brought issues of
-        structural racism in medicine to the forefront of clinical ethics and
-        pandemic...
-        <a href="/media-hub/podcast/Dr._Nneka_Sederstrom_on_Racism_and_Ethics">
-          for more
-        </a>
-        .
-      </Grid.Column>
-      <Grid.Column style={{ width: 190 }}>
-        <Image
-          width={165}
-          height={95}
-          href="/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC"
-          src="/podcast images/JudyMonroe.jpg"
-        />
-      </Grid.Column>
-      <Grid.Column style={{ width: 250, fontSize: "8pt" }}>
-        <b>
-          "You've Got to Have Trust": Dr. Judy Monroe on Lessons Learned About
-          Pandemic Preparedness <br />
-        </b>
-        In a podcast, Dr. Monroe tells us about the lessons she learned about
-        leadership and community partnerships during pandemics based on her
-        experience as...
-        <a href="/media-hub/podcast/Dr.Judy_Monroe_on_Lesson_Learned_&_CDC">
-          for more
-        </a>
-        .
-      </Grid.Column>
-    </Grid>
-  );
-}
 
 function HorizontalPercentageStackedBarChart (props) {
   const data = Object.entries(props.data).reduce((acc, [name, timeseriesData]) => {
@@ -371,7 +145,7 @@ function HorizontalPercentageStackedBarChart (props) {
         step={1}
         min={0}
         max={uniqueDates.length - 1}
-      
+        style={{ width: '95%' }}
       />
       {/* <BarChart width={500} height={500} data={data}>
       <CartesianGrid  />
@@ -383,7 +157,7 @@ function HorizontalPercentageStackedBarChart (props) {
       <Bar dataKey="Omicron_other" stackId='a' fill="#82ca9d" />
       <Bar dataKey="Delta" stackId='a' fill="#ffc658" />
     </BarChart> */}
-    <BarChart width={500} height={500} data={chartData}>
+    <BarChart width={500} height={400} data={chartData}>
       <CartesianGrid  />
       <XAxis 
       dataKey='name'
@@ -472,12 +246,19 @@ function CaseChart(props) {
           stroke="#a45791"
           strokeWidth="2"
         />
-        {/* <Line data={data["_nation"]} name="Nation" type='monotone' dataKey='Delta' dot={false}
+         <Line
+          data={dataState}
+          name="Other"
+          type="monotone"
+          dataKey="Other"
+          dot={false}
           isAnimationActive={animationBool}
           onAnimationEnd={() => setAnimationBool(false)}
           animationDuration={5500}
           animationBegin={500}
-          stroke={nationColor} strokeWidth="2" /> */}
+          stroke="red"
+          strokeWidth="2"
+        />
 
         {/* <ReferenceLine x={data["_nation"][275].t} stroke="red" label="2021" /> */}
 
@@ -771,89 +552,6 @@ export default function Variant(props) {
                   width={9}
                   style={{ width: "100%", height: "100%", paddingRight: 40 }}
                 >
-                  <Grid.Row
-                    columns={2}
-                    style={{
-                      width: 680,
-                      padding: 0,
-                      paddingTop: 0,
-                      paddingRight: 100,
-                      paddingBottom: 0,
-                    }}
-                  >
-                    {/* <Dropdown
-                                        style={{
-                                            background: '#fff',
-                                            fontSize: "14pt",
-                                            fontWeight: 400,
-                                            theme: '#000000',
-                                            width: '420px',
-                                            top: '2px',
-                                            left: '0px',
-                                            text: "Select",
-                                            borderTop: 'none',
-                                            borderLeft: '0px solid #FFFFFF',
-                                            borderRight: '0px',
-                                            borderBottom: '0.5px solid #bdbfc1',
-                                            borderRadius: 0,
-                                            minHeight: '1.0em',
-                                            paddingRight: 0,
-                                            paddingBottom: '0.5em'
-                                        }}
-                                        text={metricName}
-                                        pointing='top'
-                                        search
-                                        selection
-                                          options={options}
-
-                                        onChange={(e, { value }) => {
-                                            setMetric(value);
-                                            
-                                            setMetricName(value);
-                                        }}
-                                    /> */}
-
-                    {/* <svg width="260" height="80">
-
-                      {_.map(legendSplit, (splitpoint, i) => {
-                        if (legendSplit[i] < 1) {
-                          return <text key={i} x={70 + 20 * (i)} y={35} style={{ fontSize: '0.7em' }}> {legendSplit[i].toFixed(1)}</text>
-                        } else if (legendSplit[i] > 999999) {
-                          return <text key={i} x={70 + 20 * (i)} y={35} style={{ fontSize: '0.7em' }}> {(legendSplit[i] / 1000000).toFixed(0) + "M"}</text>
-                        } else if (legendSplit[i] > 999) {
-                          return <text key={i} x={70 + 20 * (i)} y={35} style={{ fontSize: '0.7em' }}> {(legendSplit[i] / 1000).toFixed(0) + "K"}</text>
-                        }
-                        return <text key={i} x={70 + 20 * (i)} y={35} style={{ fontSize: '0.7em' }}> {legendSplit[i].toFixed(0)}</text>
-                      })}
-                      <text x={50} y={35} style={{ fontSize: '0.7em' }}>{legendMin}</text>
-                      <text x={170} y={35} style={{ fontSize: '0.7em' }}>{legendMax}</text>
-
-
-                      {_.map(colorPalette, (color, i) => {
-                        return <rect key={i} x={50 + 20 * i} y={40} width="20" height="20" style={{ fill: color, strokeWidth: 1, stroke: color }} />
-                      })}
-
-
-                      <text x={50} y={74} style={{ fontSize: '0.8em' }}>Low</text>
-                      <text x={50 + 20 * (colorPalette.length - 1)} y={74} style={{ fontSize: '0.8em' }}>High</text>
-
-
-                      <rect x={195} y={40} width="20" height="20" style={{ fill: "#FFFFFF", strokeWidth: 0.5, stroke: "#000000" }} />
-                      <text x={217} y={50} style={{ fontSize: '0.7em' }}> None </text>
-                      <text x={217} y={59} style={{ fontSize: '0.7em' }}> Reported </text>
-
-                    </svg> */}
-                  </Grid.Row>
-                  <Test_Region
-                    parentClick={handleClick}
-                    parentCallback={handleCallback}
-                  />
-               
-                </Grid.Column>
-                {/* <HorizontalPercentageStackedBarChart ticks={caseTicks}
-                            tickFormatter={caseTickFmt}  data={variantTimeseries[stateMapFips]}></HorizontalPercentageStackedBarChart> */}
-                        
-                <Grid.Column width={7} style={{ paddingLeft: 20 }}>
                   <Header as="h2" style={{ fontWeight: 400 }}>
                     <Header.Content
                       style={{
@@ -864,9 +562,8 @@ export default function Variant(props) {
                     >
                       Variant Regional Map
                     </Header.Content>
-                  </Header>
-                  <Grid>
-                    <Grid.Row columns={1}>
+                 
+             
                       <Header.Content
                         style={{
                           fontWeight: 300,
@@ -886,8 +583,7 @@ export default function Variant(props) {
                         region are due to which variants. Data can be filtered
                         by region and variant.
                       </Header.Content>
-                    </Grid.Row>
-                    <Grid.Row columns={1}>
+                     
                       <Header.Content
                         style={{
                           fontWeight: 300,
@@ -913,7 +609,40 @@ export default function Variant(props) {
                         </b>{" "}
                         % of cases.
                       </Header.Content>
-                    </Grid.Row>
+                  
+                    </Header>
+                  <Test_Region
+                    parentClick={handleClick}
+                    parentCallback={handleCallback}
+                  />
+                </Grid.Column>         
+                <Grid.Column width={7} style={{ paddingLeft: 20 }}>
+                
+                  <Grid>
+                    {/* <Grid.Row columns={1}>
+                      <Header.Content
+                        style={{
+                          fontWeight: 300,
+                          fontSize: "14pt",
+                          paddingTop: 7,
+                          lineHeight: "20pt",
+                        }}
+                      >
+                        The U.S. map shows the estimated proportions of the most
+                        common SARS-CoV-2 (the virus that causes COVID-19)
+                        variants circulating in the United States, divided by{" "}
+                        <a href="https://www.hhs.gov/about/agencies/iea/regional-offices/index.html">
+                          HHS regions
+                        </a>
+                        . Scroll over each region to see the exact breakdown of
+                        what proportion of confirmed cases of COVID-19 in that
+                        region are due to which variants. Data can be filtered
+                        by region and variant.
+                      </Header.Content>
+                    </Grid.Row> */}
+                    <HorizontalPercentageStackedBarChart ticks={caseTicks}
+                            tickFormatter={caseTickFmt}  data={variantTimeseries}></HorizontalPercentageStackedBarChart>  
+                    
                     <Grid.Row>
                       <div>
                         {fips == "USA" ? (
@@ -960,8 +689,7 @@ export default function Variant(props) {
                       </Header.Content>
                     </Grid.Row>
                   </Grid>
-                      <HorizontalPercentageStackedBarChart ticks={caseTicks}
-                            tickFormatter={caseTickFmt}  data={variantTimeseries}></HorizontalPercentageStackedBarChart>   
+                       
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -982,33 +710,7 @@ export default function Variant(props) {
                 <b>{hoverName}</b>{" "}
               </font>
               <br />
-              {/* <b> # received first dose: </b> {numberWithCommas(vaccineData[fips]["Administered_Dose1"])}
-          <br/>
-          <b> % received first dose: </b> {numberWithCommas(vaccineData[fips]["percentVaccinatedDose1"]) + "%"}
-          <br/>
-          <b> # received second dose: </b> {numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}
-          <br/>
-          <b> % received second dose: </b> {numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}
-          <br/> */}
-
-              {/* <Grid>
-              <Grid.Row>
-              % Delta
-              </Grid.Row>
-              <Grid.Row>
-              {numberWithCommas(variantData[hoverName].Delta)+"%"}
-              </Grid.Row>
-            </Grid> */}
-
-              <Table celled inverted selectable>
-                {/* <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Header</Table.HeaderCell>
-                <Table.HeaderCell>Header</Table.HeaderCell>
-                <Table.HeaderCell>Header</Table.HeaderCell>
-              </Table.Row>
-              </Table.Header> */}
-
+              <Table celled inverted selectable>         
                 <Table.Body>
                   <Table.Row>
                     <Table.HeaderCell
@@ -1043,14 +745,6 @@ export default function Variant(props) {
                       {variantData[hoverName].Alpha + "%"}
                     </Table.Cell>
                   </Table.Row>
-                  {/* <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> # fully vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Yes"])}</Table.HeaderCell>
-                </Table.Row>
-                <Table.Row style={{ height: 25 }}>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px" }}> % fully vaccinated</Table.HeaderCell>
-                  <Table.HeaderCell style={{ fontSize: "16px", lineHeight: "16px", textAlign: "right" }}>{numberWithCommas(vaccineData[fips]["Series_Complete_Pop_Pct"]) + "%"}</Table.HeaderCell>
-                </Table.Row> */}
                 </Table.Body>
               </Table>
             </ReactTooltip>
