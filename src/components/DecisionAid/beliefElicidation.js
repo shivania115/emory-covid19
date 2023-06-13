@@ -88,14 +88,13 @@ function DraggableBar(props) {
     parseCookie(belief);
     setOpen(false);
   }
-  console.log(symptomsCOVID);
   const renderQuestion = () => {
     switch (currentStep) {
       case 1:
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-              What do you think is the percent of symptoms after a month for COVID-19?
+             How many unvaccinated individuals out of 10,000 diagnosed with COVID-19 require ICU-level care?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -112,7 +111,7 @@ function DraggableBar(props) {
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-              What do you think is the percent of symptoms after a month for vaccination (COVID-19)?
+            How many fully vaccinated (with booster) individuals out of 10,000 diagnosed with COVID-19 require ICU-level care?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -129,7 +128,7 @@ function DraggableBar(props) {
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-              What do you think is the hospitalization rate of COVID-19 for people WITHOUT vaccination?
+            How many unvaccinated individuals out of 1,000 who were diagnosed with COVID-19 require hospitalization?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -146,7 +145,7 @@ function DraggableBar(props) {
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-              What do you think is the hospitalization rate of COVID-19 for people WITH vaccination?
+            How many fully vaccinated individuals(with booster) out of 1,000 who were diagnosed with COVID-19 require hospitalization?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar

@@ -2,7 +2,23 @@ import React from 'react'
 import './DragScaleBar.css'
 
 class DragScaleBar extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (prevProps.initValue !== this.props.initValue) {
+      var initPercentage = this.props.initValue >= 100 ? 0.98 : this.props.initValue / 100;
+      var init = this.props.width * initPercentage;
+      if (isNaN(init)) init = 0;
+
+      // Update the Draggable component's props
+      var draggable = this.refs.draggable;
+      draggable.setState({
+        posX: init,
+        max: this.props.width,
+      });
+    }
+  }
+  
     render() {
+      // console.log(this.props)
         var BoxClass = this.props.outBorder===false? 'Box':'Box black-border'
         return(
             <div style={{width: this.props.width||'400px', margin: 'auto'}}>
@@ -10,7 +26,7 @@ class DragScaleBar extends React.Component {
                 onClick={this.handleClick}
                 style={{borderColor: this.props.outBorderColor||'#505050'}}
                 >
-                    <Draggable width={(this.props.width||400)*0.9} {...this.props} />
+                    <Draggable ref="draggable" width={(this.props.width||400)*0.9} {...this.props} />
                 </div>
             </div>
         )
@@ -122,6 +138,7 @@ class Draggable extends React.Component {
       super(props);
       var initPercentage = this.props.initValue >= 100 ? 0.98 : this.props.initValue / 100;
       var init = this.props.width * initPercentage;
+      // console.log(initPercentage)
     //   if (isNaN(init)) init = 0;
     // this.state.activeDrag=props.active;
       this.state = {
@@ -131,22 +148,10 @@ class Draggable extends React.Component {
         posX: init,
         max: this.props.width,   
       };
+      // console.log(props);
     }
-    // componentDidUpdate(prevProps) {
-    //   if (prevProps.initValue !== this.props.initValue) {
-    //     var initPercentage = this.props.initValue >= 100 ? 0.98 : this.props.initValue / 100;
-    //     var init = this.props.width * initPercentage;
-    //     if (isNaN(init)) init = 0;
-  
-    //     this.setState({
-    //       activeDrag: false,
-    //       originalX: 0,
-    //       translateX: 0,
-    //       posX: init, // Update posX with the new initValue
-    //       max: this.props.width,
-    //     });
-    //   }
-    // }
+
+
     handleMouseDown = (e) => {
       window.addEventListener('mousemove', this.handleMouseMove);
       window.addEventListener('mouseup', this.handleMouseUp);
@@ -211,7 +216,7 @@ class Draggable extends React.Component {
       const X = this.state.posX || 0;
       var draggableClass = this.props.dragBorder === true ? 'Draggable black-border' : 'Draggable';
       var fillBarClass = this.props.fillBorder === true ? 'FillBar black-border' : 'FillBar';
-
+    
       return (
     
        <div className='DraggableWrapper'>
