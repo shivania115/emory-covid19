@@ -29,7 +29,7 @@ import {
   Transition,
   List,
 } from "semantic-ui-react";
-import {ProgressBar} from 'react-bootstrap';
+import { ProgressBar } from "react-bootstrap";
 import AppBar from "./AppBar";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { geoCentroid } from "d3-geo";
@@ -677,73 +677,73 @@ function ChartSection(props) {
     if (chartNo1 === -1) {
       setCaseTicks([
         data[0].t,
-        data[30].t,
-        data[61].t,
+        // data[30].t,
+        // data[61].t,
         data[91].t,
-        data[122].t,
-        data[153].t,
+        // data[122].t,
+        // data[153].t,
         data[183].t,
-        data[214].t,
-        data[244].t,
+        // data[214].t,
+        // data[244].t,
         data[275].t,
-        data[306].t,
-        data[334].t,
+        // data[306].t,
+        // data[334].t,
         data[365].t,
-        data[395].t,
-        data[426].t,
+        // data[395].t,
+        // data[426].t,
         data[456].t,
-        data[487].t,
-        data[518].t,
+        // data[487].t,
+        // data[518].t,
         data[548].t,
-        data[579].t,
-        data[609].t,
+        // data[579].t,
+        // data[609].t,
         data[640].t,
-        data[671].t,
-        data[699].t,
+        // data[671].t,
+        // data[699].t,
         data[730].t,
-        data[760].t,
-        data[791].t,
+        // data[760].t,
+        // data[791].t,
         data[821].t,
-        data[852].t,
-        data[883].t,
+        // data[852].t,
+        // data[883].t,
         data[913].t,
-        data[944].t,
+        // data[944].t,
         data[data.length - 1].t,
       ]);
     } else if (chartNo1 === 0 || chartNo2 === 2) {
       setCaseTicks([
         data[0].t,
-        data[30].t,
-        data[61].t,
+        // data[30].t,
+        // data[61].t,
         data[91].t,
-        data[122].t,
-        data[153].t,
+        // data[122].t,
+        // data[153].t,
         data[183].t,
-        data[214].t,
-        data[244].t,
+        // data[214].t,
+        // data[244].t,
         data[275].t,
-        data[306].t,
-        data[334].t,
+        // data[306].t,
+        // data[334].t,
         data[365].t,
-        data[395].t,
-        data[426].t,
+        // data[395].t,
+        // data[426].t,
         data[456].t,
-        data[487].t,
-        data[518].t,
+        // data[487].t,
+        // data[518].t,
         data[548].t,
-        data[579].t,
-        data[609].t,
+        // data[579].t,
+        // data[609].t,
         data[640].t,
-        data[671].t,
-        data[699].t,
+        // data[671].t,
+        // data[699].t,
         data[730].t,
-        data[760].t,
-        data[791].t,
+        // data[760].t,
+        // data[791].t,
         data[821].t,
-        data[852].t,
-        data[883].t,
+        // data[852].t,
+        // data[883].t,
         data[913].t,
-        data[944].t,
+        // data[944].t,
         data[data.length - 1].t,
       ]);
       setHeaderTime("");
@@ -1296,9 +1296,9 @@ function CaseChartStatic(props) {
           <XAxis
             dataKey="t"
             ticks={ticks}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, dy: 15 }} //changed axis position
             tickFormatter={tickFormatter}
-            angle={-25}
+            angle={-30}
             interval={0}
           />
           {/* domain={[1585713600, 1610859600]} */}
@@ -1601,7 +1601,7 @@ function CaseChartAll(props) {
           <XAxis
             dataKey="t"
             ticks={ticks}
-            tick={{ fontSize: 13 }}
+            tick={{ fontSize: 13, dy: 15 }}
             tickFormatter={tickFormatter}
             angle={-30}
             interval={0}
@@ -1872,7 +1872,8 @@ function CaseChart90(props) {
         margin={{ top: 30, right: 60, bottom: 20, left: 30 }}
       >
         <CartesianGrid stroke="#f5f5f5" />
-        <XAxis
+        {/* TODO: currently showing time stamp (seconds from 1970) */}
+        {/* <XAxis
           dataKey="t"
           type="number"
           domain={[data[data.length - 90].t, "dataMax"]}
@@ -1881,7 +1882,23 @@ function CaseChart90(props) {
           tick={{ fontSize: 16 }}
           tickFormatter={tickFormatter}
           allowDataOverflow={true}
-        />
+        /> */}
+
+        {/* This now only renders the X Axis as a line with a label "May. 23, 2023". It's hardcoded for now */}
+        <XAxis
+          dataKey="t"
+          type="number"
+          domain={[data[data.length - 90].t, "dataMax"]}
+          padding={{ left: 3, right: 3 }}
+          ticks={ticks}
+          tick={{ fill: "transparent", fontSize: 16 }}
+          tickLine={{ stroke: "transparent" }}
+          allowDataOverflow={true}
+        >
+          <Label value="May. 23, 2023" offset={-20} position="insideRight" />
+          <Label value="Dec. 24, 2022" offset={-30} position="insideLeft" />
+        </XAxis>
+
         {/* ticks={ticks} tick={{fontSize: 16}} tickFormatter={tickFormatter} data[data.length-1].t-90*/}
         <YAxis
           tickFormatter={caseYTickFmt}
@@ -2190,7 +2207,7 @@ function DeathChartAll(props) {
           <XAxis
             dataKey="t"
             ticks={ticks}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, dy: 15 }}
             angle={-25}
             tickFormatter={tickFormatter}
             interval={0}
@@ -3469,7 +3486,6 @@ const SideRaceBarChart = (props) => {
     if (active && payload && payload.length) {
       return (
         <div
-         
           style={{
             background: "white",
             border: "2px",
@@ -4017,7 +4033,9 @@ export default function NationalReport(props) {
             x["vaccineRace"][0]["NHPI"][0]["percentPop"]) +
           (x["vaccineRace"][0]["Unknown"][0]["seriesCompletePopPctKnown"] >=
             x["vaccineRace"][0]["Unknown"][0]["percentPop"]) +
-          (x["vaccineRace"][0]["Multiple/Other"][0]["seriesCompletePopPctKnown"] >=
+          (x["vaccineRace"][0]["Multiple/Other"][0][
+            "seriesCompletePopPctKnown"
+          ] >=
             x["vaccineRace"][0]["Multiple/Other"][0]["percentPop"]);
 
         setPctVacPopDisp(count);
@@ -4067,8 +4085,9 @@ export default function NationalReport(props) {
           listW.push("Unknown");
         }
         if (
-          x["vaccineRace"][0]["Multiple/Other"][0]["seriesCompletePopPctKnown"] >=
-          x["vaccineRace"][0]["Multiple/Other"][0]["percentPop"]
+          x["vaccineRace"][0]["Multiple/Other"][0][
+            "seriesCompletePopPctKnown"
+          ] >= x["vaccineRace"][0]["Multiple/Other"][0]["percentPop"]
         ) {
           listW.push("Americans of Multiple races");
         }
@@ -4562,8 +4581,8 @@ export default function NationalReport(props) {
         dataTS["_nation"][183].t,
         dataTS["_nation"][214].t,
         dataTS["_nation"][244].t,
-        dataTS['_nation'][274].t,
-        dataTS['_nation'][305].t,
+        dataTS["_nation"][274].t,
+        dataTS["_nation"][305].t,
         // heeeredataTS["_nation"]
         dataTS["_nation"][dataTS["_nation"].length - 1].t,
       ]);
@@ -4571,14 +4590,26 @@ export default function NationalReport(props) {
       setCaseYTicks();
     }
   }, [dataTS]);
-
   //console.log(caseTicks);
 
+  //without year
+  // const caseTickFmt = (tick) => {
+  //   return (
+  //     monthNames[new Date(tick * 1000).getMonth()] +
+  //     " " +
+  //     new Date(tick * 1000).getDate()
+  //   );
+  // };
+
+  //with year
   const caseTickFmt = (tick) => {
+    const date = new Date(tick * 1000); // create the Date object once for efficiency
     return (
-      monthNames[new Date(tick * 1000).getMonth()] +
+      monthNames[date.getMonth()] +
       " " +
-      new Date(tick * 1000).getDate()
+      date.getDate() +
+      ", " +
+      date.getFullYear() // add the year
     );
   };
 
@@ -4590,7 +4621,7 @@ export default function NationalReport(props) {
           <AppBar menu="nationalReport" />
           <Container
             id="title"
-            style={{ marginTop: "8em", minWidth: "1260px"}}
+            style={{ marginTop: "8em", minWidth: "1260px" }}
           >
             <div>
               <br />
@@ -4815,7 +4846,8 @@ export default function NationalReport(props) {
                                 color: "#000000",
                               }}
                             >
-                             {vaccineData["_nation"]["Doses_Distributed"]!==-9999
+                              {vaccineData["_nation"]["Doses_Distributed"] !==
+                              -9999
                                 ? numberWithCommas(
                                     vaccineData["_nation"]["Doses_Distributed"]
                                   )
@@ -4849,7 +4881,8 @@ export default function NationalReport(props) {
                                 color: "#000000",
                               }}
                             >
-                                {vaccineData["_nation"]["Doses_Administered"]!==-9999
+                              {vaccineData["_nation"]["Doses_Administered"] !==
+                              -9999
                                 ? numberWithCommas(
                                     vaccineData["_nation"]["Doses_Administered"]
                                   )
@@ -4960,10 +4993,13 @@ export default function NationalReport(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-             
-                               <ProgressBar
-                style={{ height:30,width: 970 ,marginBottom:30}}
-                label={`${
+                            <ProgressBar
+                              style={{
+                                height: 30,
+                                width: 970,
+                                marginBottom: 30,
+                              }}
+                              label={`${
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ]
@@ -4972,8 +5008,8 @@ export default function NationalReport(props) {
                                     ].toFixed(1)
                                   : "Not Reported"
                               }%`}
-                variant="success" 
-                now={
+                              variant="success"
+                              now={
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ]
@@ -4982,7 +5018,7 @@ export default function NationalReport(props) {
                                     ].toFixed(1)
                                   : "Not Reported"
                               }
-                ></ProgressBar>
+                            ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -5013,16 +5049,20 @@ export default function NationalReport(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                           <ProgressBar
-                style={{ height:30,width: 970 ,marginBottom:30}}
-                label={`${vaccineData["_nation"][
+                            <ProgressBar
+                              style={{
+                                height: 30,
+                                width: 970,
+                                marginBottom: 30,
+                              }}
+                              label={`${vaccineData["_nation"][
                                 "Series_Complete_Pop_Pct"
                               ].toFixed(1)}%`}
-                variant="success" 
-                now={vaccineData["_nation"][
+                              variant="success"
+                              now={vaccineData["_nation"][
                                 "Series_Complete_Pop_Pct"
                               ].toFixed(1)}
-                ></ProgressBar>
+                            ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -5054,9 +5094,13 @@ export default function NationalReport(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                           <ProgressBar
-                style={{ height:30,width: 970,marginBottom:30 }}
-                label={`${(
+                            <ProgressBar
+                              style={{
+                                height: 30,
+                                width: 970,
+                                marginBottom: 30,
+                              }}
+                              label={`${(
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ] +
@@ -5064,8 +5108,8 @@ export default function NationalReport(props) {
                                   "Series_Complete_Pop_Pct"
                                 ]
                               ).toFixed(1)}%`}
-                variant="success" 
-                now={(
+                              variant="success"
+                              now={(
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ] +
@@ -5073,8 +5117,7 @@ export default function NationalReport(props) {
                                   "Series_Complete_Pop_Pct"
                                 ]
                               ).toFixed(1)}
-                ></ProgressBar>
-                          
+                            ></ProgressBar>
                           </Header.Content>
                         </Header>
                       </div>
