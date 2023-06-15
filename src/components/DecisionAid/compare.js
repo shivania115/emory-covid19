@@ -1066,7 +1066,7 @@ const ProgressBarWrapper = styled.div`
   return (
     <div>
       <div class="ui two column centered grid">
-        <div style={{}}>
+        <div >
           <DraggableBar 
           sethospilizationVac={sethospilizationVac}
           sethospilizationNoVac={sethospilizationNoVac}

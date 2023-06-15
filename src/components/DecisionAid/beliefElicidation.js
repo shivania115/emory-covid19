@@ -43,7 +43,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "80%",
-  height: "80%",
+  height: "75%",
   bgcolor: "background.paper",
   boxShadow: 24,
   overflowY: "scroll",
@@ -93,8 +93,8 @@ function DraggableBar(props) {
       case 1:
         return (
           <Grid.Row>
-            <Grid.Column width={6}>
-             How many unvaccinated individuals out of 10,000 diagnosed with COVID-19 require ICU-level care?
+            <Grid.Column width={6}> 
+             How many unvaccinated individuals out of 10,000 diagnosed with COVID-19 do you think require ICU-level care?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -104,6 +104,10 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#dc2c2c"
               />
+            
+             <p style={{ textAlign:'center',paddingTop:20}}>
+             Your Belief: {symptomsCOVID.toFixed(0)} individuals in 10,000
+             </p>
             </Grid.Column>
           </Grid.Row>
         );
@@ -111,7 +115,7 @@ function DraggableBar(props) {
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-            How many fully vaccinated (with booster) individuals out of 10,000 diagnosed with COVID-19 require ICU-level care?
+            How many fully vaccinated (with booster) individuals out of 10,000 diagnosed with COVID-19 do you think require ICU-level care?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -121,6 +125,10 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#2285d0"
               />
+      
+                <p style={{ textAlign:'center',paddingTop:20}}>
+             Your Belief: {symptomsVac.toFixed(0)} individuals in 10,000
+             </p>
             </Grid.Column>
           </Grid.Row>
         );
@@ -128,7 +136,7 @@ function DraggableBar(props) {
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-            How many unvaccinated individuals out of 1,000 who were diagnosed with COVID-19 require hospitalization?
+            How many unvaccinated individuals out of 10,000 diagnosed with COVID-19 do you think require hospitalization?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -138,14 +146,19 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#dc2c2c"
               />
+          
+            <p style={{ textAlign:'center',paddingTop:20}}>
+             Your Belief: {hospilizationNoVac.toFixed(0)} individuals in 10,000
+             </p>
             </Grid.Column>
+           
           </Grid.Row>
         );
       case 4:
         return (
           <Grid.Row>
             <Grid.Column width={6}>
-            How many fully vaccinated individuals(with booster) out of 1,000 who were diagnosed with COVID-19 require hospitalization?
+            How many fully vaccinated (with booster) individuals out of 10,000 diagnosed with COVID-19 do you think require hospitalization?
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -155,7 +168,11 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#2285d0"
               />
+               <p style={{ textAlign:'center',paddingTop:20}}>
+             Your Belief: {hospilizationVac.toFixed(0)} individuals in 10,000
+             </p>
             </Grid.Column>
+           
           </Grid.Row>
         );
       default:
