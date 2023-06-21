@@ -36,7 +36,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useSetState } from "react-use";
+import ReactTooltip from "react-tooltip";
 import { useCookie } from "react-use";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faExclamationTriangle,
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
 const style = {
   position: "absolute",
   top: "50%",
@@ -89,12 +95,32 @@ function DraggableBar(props) {
     setOpen(false);
   }
   const renderQuestion = () => {
+  
     switch (currentStep) {
       case 1:
         return (
           <Grid.Row>
+            <ReactTooltip
+    className="extraClass"
+    sticky={true}
+    place="right"
+    effect="solid"
+    delayHide={1000}
+  />
             <Grid.Column width={6}> 
              How many unvaccinated individuals out of 10,000 diagnosed with COVID-19 do you think require ICU-level care?
+             <sup style={{ verticalAlign: "super",color: "#e02c2c" }}>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    data-tip="The bar goes from 0/10,000 to 100/10,00 because the maximum incidence rate observed is 100/10,000."
+                  />
+                </sup>
+             {/* <Header as="h4">
+              <Header.Content style={{ color: "#e02c2c" }}>
+               asdf
+                
+              </Header.Content>
+            </Header> */}
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -104,7 +130,10 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#dc2c2c"
               />
-            
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+      </div>
              <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {symptomsCOVID.toFixed(0)} individuals in 10,000
              </p>
@@ -114,10 +143,24 @@ function DraggableBar(props) {
       case 2:
         return (
           <Grid.Row>
+           <ReactTooltip
+    className="extraClass"
+    sticky={true}
+    place="right"
+    effect="solid"
+    delayHide={1000}
+  />
             <Grid.Column width={6}>
             How many fully vaccinated (with booster) individuals out of 10,000 diagnosed with COVID-19 do you think require ICU-level care?
+            <sup style={{ verticalAlign: "super",color: "#e02c2c" }}>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    data-tip="The bar goes from 0/10,000 to 100/10,00 because the maximum incidence rate observed is 100/10,000."
+                  />
+                </sup>
             </Grid.Column>
             <Grid.Column width={8}>
+           
               <DragScaleBar
                 handleValue={(num) => setSymptomsVac(num)}
                 initValue={symptomsVac}
@@ -125,7 +168,10 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#2285d0"
               />
-      
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+      </div>
                 <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {symptomsVac.toFixed(0)} individuals in 10,000
              </p>
@@ -135,8 +181,21 @@ function DraggableBar(props) {
       case 3:
         return (
           <Grid.Row>
+           <ReactTooltip
+    className="extraClass"
+    sticky={true}
+    place="right"
+    effect="solid"
+    delayHide={1000}
+  />
             <Grid.Column width={6}>
             How many unvaccinated individuals out of 10,000 diagnosed with COVID-19 do you think require hospitalization?
+            <sup style={{ verticalAlign: "super",color: "#e02c2c" }}>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    data-tip="The bar goes from 0/10,000 to 100/10,00 because the maximum incidence rate observed is 100/10,000."
+                  />
+                </sup>
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -146,7 +205,10 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#dc2c2c"
               />
-          
+         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+      </div>
             <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {hospilizationNoVac.toFixed(0)} individuals in 10,000
              </p>
@@ -157,8 +219,21 @@ function DraggableBar(props) {
       case 4:
         return (
           <Grid.Row>
+           <ReactTooltip
+    className="extraClass"
+    sticky={true}
+    place="right"
+    effect="solid"
+    delayHide={1000}
+  />
             <Grid.Column width={6}>
             How many fully vaccinated (with booster) individuals out of 10,000 diagnosed with COVID-19 do you think require hospitalization?
+            <sup style={{ verticalAlign: "super",color: "#e02c2c" }}>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    data-tip="The bar goes from 0/10,000 to 100/10,00 because the maximum incidence rate observed is 100/10,000."
+                  />
+                </sup>
             </Grid.Column>
             <Grid.Column width={8}>
               <DragScaleBar
@@ -168,6 +243,10 @@ function DraggableBar(props) {
                 width={500}
                 fillColor="#2285d0"
               />
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
+        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+      </div>
                <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {hospilizationVac.toFixed(0)} individuals in 10,000
              </p>
@@ -185,6 +264,7 @@ function DraggableBar(props) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
+   
       <Box sx={style}>
         <Header
           as="h1"
