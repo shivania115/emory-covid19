@@ -59,7 +59,7 @@ i18n
    }
  });
 
-function PersonalRisk(){
+function PersonalRisk(props){
     const navigate = useNavigate();
     const { t } = useTranslation();
     return(
@@ -307,22 +307,45 @@ function PersonalRisk(){
                     </Grid.Column>
                 </Grid.Row> */}
             </Grid>
-            <div style= {{paddingTop: 30}}>
-        <button
-          onClick={()=> {navigate("/decision-aid/step3")}}
-          style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
-        >
-          {t('prev')}
-        </button>
-        <button
-          onClick={()=> {navigate("/decision-aid/step5")}}
-          style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
-        >
-          {t('next')}
-        </button>
-      </div>
+            {props.elicit?
+              <div style= {{paddingTop: 30}}>
+
+    
+<button
+  onClick={()=> {navigate("/decision-aid_elicit/step3")}}
+  style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+  class="ui large primary button"
+>
+  {t('prev')}
+</button>
+<button
+  onClick={()=> {navigate("/decision-aid_elicit/step5")}}
+  style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+  class="ui large primary button"
+>
+  {t('next')}
+</button>
+</div>
+           :
+           <div style= {{paddingTop: 30}}>
+
+    
+<button
+  onClick={()=> {navigate("/decision-aid/step3")}}
+  style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+  class="ui large primary button"
+>
+  {t('prev')}
+</button>
+<button
+  onClick={()=> {navigate("/decision-aid/step5")}}
+  style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
+  class="ui large primary button"
+>
+  {t('next')}
+</button>
+</div>
+      }
         </div>
 
     )

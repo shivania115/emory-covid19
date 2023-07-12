@@ -112,7 +112,7 @@ function HorizontalPercentageStackedBarChart(props) {
 
   const handleSliderChange = (event, newValue) => {
     setSelectedDate(newValue);
-    console.log(newValue);
+
   };
   // const data=props.data.slice(-10);
   const caseYTickFmt = (y) => {
@@ -457,11 +457,11 @@ export default function Variant(props) {
       var line = d3
         .line()
         .x(function (d) {
-          console.log(d);
+      
           return xScale;
         })
         .y(function (d) {
-          console.log(d);
+       
           return yScale;
         })
         .curve(d3.curveMonotoneX);
@@ -518,7 +518,7 @@ export default function Variant(props) {
     // console.log(variantData[stateMapFips])
     // console.log((stateColor['13']));
     // console.log(colorScale[stateColor[13]['Delta (B.1.617.2)']]);
-    console.log(variantTimeseries);
+    // console.log(variantTimeseries);
     return (
       <HEProvider>
         <div>

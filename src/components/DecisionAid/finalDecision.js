@@ -66,7 +66,7 @@ i18n
     },
   });
 
-function FinalDecision() {
+function FinalDecision(props) {
   const { t } = useTranslation();
   function valueLabelFormat() {
     return "asdlfkas";
@@ -245,6 +245,17 @@ function FinalDecision() {
           </div>
         </>
       )}
+      {props.elicit?
+        <button
+        onClick={() => {
+          navigate("/decision-aid_elicit/step4");
+        }}
+        style={{ marginTop: "3rem" }}
+        class="ui large primary button"
+      >
+        {t("prev")}
+      </button>
+      :
       <button
         onClick={() => {
           navigate("/decision-aid/step4");
@@ -254,6 +265,8 @@ function FinalDecision() {
       >
         {t("prev")}
       </button>
+      }
+     
       {!submitted ? (
         <button
           onClick={handleSubmit}

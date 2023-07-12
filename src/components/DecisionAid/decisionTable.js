@@ -142,7 +142,7 @@ function DecitionTable(props) {
       return;
     }
     parseCookie();
-    props.elicit? navigate("/decision-aid/step2"): navigate("/decision-aid_elicit/step2");;
+    props.elicit? navigate("/decision-aid_elicit/step2"): navigate("/decision-aid/step2");;
     // return navigate("/decision-aid/step2");
   }
 

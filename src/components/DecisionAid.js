@@ -167,7 +167,7 @@ function AppBar2(props) {
         <Container style={{ whiteSpace: "pre-line" }}>
           <Menu.Item
             header
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/US-Map")}
             style={{ paddingLeft: 0, paddingRight: "3%" }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>

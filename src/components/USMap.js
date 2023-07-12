@@ -321,7 +321,7 @@ const SideRaceBarChart = (props) => {
   };
 
   const CustomizedLabellist = (props) => {
-    console.log(props);
+
     const { width, height, x, y, value } = props;
     return (
       <g>
@@ -414,7 +414,6 @@ const SideRaceBarChart = (props) => {
     return entry ? entry.value.toFixed(1) + "%" : null;
   };
 
-  // console.log('active index', activeIndex);
 
   const sideBySideColor = [
     pieChartRace[6],
@@ -901,9 +900,7 @@ export default function USMap(props) {
         _.each(x, (d) => {
           if (d[metric] > max && d.fips.length === 5) {
             max = d[metric];
-            console.log(metric);
-            console.log(d.fips);
-            console.log(max);
+      
           } else if (d.fips.length === 5 && d[metric] < min && d[metric] >= 0) {
             min = d[metric];
           }
@@ -1398,13 +1395,6 @@ export default function USMap(props) {
   ];
 
   if (data && allTS && metric && raceData) {
-    // console.log(isJson(JSON.stringify(data)));
-    // console.log(data);
-    console.log(
-      allTS["_nation"][
-        allTS["_nation"].length - 1
-      ].percent14dayDailyCases.toFixed(0)
-    );
     return (
       <HEProvider>
         <div>
