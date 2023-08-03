@@ -55,6 +55,41 @@ const style = {
   overflowY: "scroll",
   p: 4,
 };
+const Fraction = ({ numerator, denominator }) => {
+  const fractionStyle = {
+    fontSize: '13px',
+    color: '#333',
+    position: 'relative',
+  };
+
+  const lineStyle = {
+    borderTop: '1px solid #333',
+    width: '100%',
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+  };
+
+  const numeratorStyle = {
+    display: 'block',
+    width: '100%',
+    textAlign: 'center',
+  };
+
+  const denominatorStyle = {
+    display: 'block',
+    width: '100%',
+    textAlign: 'center',
+  };
+
+  return (
+    <div style={fractionStyle}>
+      <span style={numeratorStyle}>{numerator}</span>
+      <span style={lineStyle}></span>
+      <span style={denominatorStyle}>{denominator}</span>
+    </div>
+  );
+};
 
 function DraggableBar(props) {
   const [open, setOpen] = useState(true);
@@ -131,8 +166,10 @@ function DraggableBar(props) {
                 fillColor="#dc2c2c"
               />
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+
+      
+        <span style={{ color: "#333"}}><Fraction numerator={0} denominator="10,000" /></span>
+        <span style={{ color: "#333"}}><Fraction numerator={100} denominator="10,000" /></span>
       </div>
              <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {symptomsCOVID.toFixed(0)} individuals in 10,000
@@ -169,8 +206,8 @@ function DraggableBar(props) {
                 fillColor="#2285d0"
               />
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+        <span style={{ color: "#333"}}><Fraction numerator={0} denominator="10,000" /></span>
+        <span style={{ color: "#333"}}><Fraction numerator={100} denominator="10,000" /></span>
       </div>
                 <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {symptomsVac.toFixed(0)} individuals in 10,000
@@ -206,8 +243,8 @@ function DraggableBar(props) {
                 fillColor="#dc2c2c"
               />
          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+         <span style={{ color: "#333"}}><Fraction numerator={0} denominator="10,000" /></span>
+        <span style={{ color: "#333"}}><Fraction numerator={100} denominator="10,000" /></span>
       </div>
             <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {hospilizationNoVac.toFixed(0)} individuals in 10,000
@@ -244,8 +281,8 @@ function DraggableBar(props) {
                 fillColor="#2285d0"
               />
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>0/10,000 individuals</span>
-        <span style={{ fontSize: "10px" ,color: "#333"}}>100/10,000 individuals</span>
+              <span style={{ color: "#333"}}><Fraction numerator={0} denominator="10,000" /></span>
+        <span style={{ color: "#333"}}><Fraction numerator={100} denominator="10,000" /></span>
       </div>
                <p style={{ textAlign:'center',paddingTop:20}}>
              Your Belief: {hospilizationVac.toFixed(0)} individuals in 10,000
@@ -299,18 +336,18 @@ function DraggableBar(props) {
       <Grid.Row>
         <Grid.Column width={6}>
           {currentStep > 1 && (
-            <Button floated="left" onClick={() => setCurrentStep(currentStep - 1)}>
+            <Button variant="contained" onClick={() => setCurrentStep(currentStep - 1)}>
               Previous
             </Button>
           )}
         </Grid.Column>
         <Grid.Column width={8}>
           {currentStep < 4 ? (
-            <Button floated="right" onClick={handleNext}>
+            <Button variant="contained" style={{float: 'right'}} onClick={handleNext}>
               Next
             </Button>
           ) : (
-            <Button floated="right" onClick={handleSubmit}>
+            <Button variant="contained" style={{float: 'right'}} onClick={handleSubmit}>
               Submit
             </Button>
           )}

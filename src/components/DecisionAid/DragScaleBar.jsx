@@ -142,7 +142,7 @@ class Draggable extends React.Component {
     //   if (isNaN(init)) init = 0;
     // this.state.activeDrag=props.active;
       this.state = {
-        activeDrag: false,
+        activeDrag:true,
         originalX: 0,
         translateX: 0,
         posX: init,

@@ -72,6 +72,18 @@ function FinalDecision(props) {
     return "asdlfkas";
   }
   const navigate = useNavigate();
+  const usageOptions=[
+    'Yes',
+    'No'
+  ];
+
+const usefulOptions=[
+  "Not at all useful",
+  "Slightly useful",
+  "Moderately useful",
+  "Very useful",
+  "Extremely useful"
+]
   const choices = [
     t("step5_option1"),
     t("step5_option2"),
@@ -104,7 +116,8 @@ function FinalDecision(props) {
   // console.log(cookies);
   const [choiceIndex, setChoiceIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-
+  const [useChecked,setuseChecked]=useState();
+  const [usefulnessChecked,setusefullnessChecked]=useState();
   function italicizeWords(text) {
     const words = [
       "get",
@@ -169,6 +182,46 @@ function FinalDecision(props) {
 
   return (
     <div style={{ marginLeft: "20%", width: "60%" }}>
+
+    {/* mimic what is written below, and do it for all the questions and options */}
+  <div className="checkbox">
+            <label>Did you use the decision-aid tool provided on the website before taking this post-study questionnaire? </label>
+            {usageOptions.map((option, index) => {
+              return (
+                <Checkbox
+                  onClick={(e) => {
+                    setuseChecked(index);
+                  }}
+                  checked={useChecked === index}
+                  style={{
+                    fontSize: "1 rem",
+                    display: "block",
+                    marginTop: "10px",
+                  }}
+                  label={option}
+                />
+              );
+            })}
+          </div>
+          <div className="checkbox">
+            <label>How useful did you find the decision-aid tool in understanding the risks and potential benefits of COVID-19 vaccines?  </label>
+            {usageOptions.map((option, index) => {
+              return (
+                <Checkbox
+                  onClick={(e) => {
+                    setusefullnessChecked(index);
+                  }}
+                  checked={useChecked === index}
+                  style={{
+                    fontSize: "1 rem",
+                    display: "block",
+                    marginTop: "10px",
+                  }}
+                  label={option}
+                />
+              );
+            })}
+          </div>
       <Grid>
         <Header
           as="h4"

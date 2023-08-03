@@ -289,7 +289,7 @@ function DecitionTable(props) {
         </div>
         <Divider></Divider>
         {t('table_des')}
-        <table class="ui striped table">
+        <table className="ui striped table">
           <thead style={{ textAlign: "center" }}>
             <tr>
               <th></th>
@@ -301,11 +301,12 @@ function DecitionTable(props) {
                 <th style={{ width: "20%" }}> {t('stronglyagree')}</th>
               </div>
             </tr>
+
           </thead>
           <tbody>
             <tr>
               <td>{t('table_ques1')}</td>
-              <td colspan="5">
+              <td colSpan="5">
                 {/* <Slider
                   defaultValue={50}
                   key={0}
@@ -362,7 +363,7 @@ function DecitionTable(props) {
               <td>
                 {t('table_ques2')}
               </td>
-              <td colspan="3">
+              <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"
@@ -413,7 +414,7 @@ function DecitionTable(props) {
               <td>
                 {t('table_ques3')}
               </td>
-              <td colspan="3">
+              <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"
@@ -464,7 +465,7 @@ function DecitionTable(props) {
               <td>
                 {t('table_ques4')}
               </td>
-              <td colspan="3">
+              <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"
@@ -513,7 +514,7 @@ function DecitionTable(props) {
             </tr>
             <tr>
               <td>{t('table_ques5')}</td>
-              <td colspan="3">
+              <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"
@@ -669,7 +670,7 @@ function DecitionTable(props) {
               marginTop: "1rem",
               marginBottom: "4rem",
             }}
-            class="ui large primary button"
+            className="ui large primary button"
           >
             {t('prev')}
           </button>
@@ -680,7 +681,7 @@ function DecitionTable(props) {
               marginTop: "1rem",
               marginBottom: "4rem",
             }}
-            class="ui large primary button"
+            className="ui large primary button"
           >
             {t('next')}
           </button>
@@ -694,7 +695,7 @@ function DecitionTable(props) {
               marginTop: "1rem",
               marginBottom: "4rem",
             }}
-            class="ui large primary button"
+            className="ui large primary button"
           >
             {t('prev')}
           </button>
@@ -705,7 +706,7 @@ function DecitionTable(props) {
               marginTop: "1rem",
               marginBottom: "4rem",
             }}
-            class="ui large primary button"
+            className="ui large primary button"
           >
             {t('next')}
           </button>
@@ -733,7 +734,7 @@ function DecitionTable(props) {
             >
               <path
                 fill="#BEBEBE"
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"
               />
             </svg>
