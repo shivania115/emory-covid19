@@ -74,8 +74,6 @@ function FinalDecision() {
     return "asdlfkas";
   }
   const navigate = useNavigate();
-<<<<<<< Updated upstream
-=======
 
   const usageOptions = ["Yes", "No"];
   const usefulOptions = [
@@ -113,7 +111,6 @@ function FinalDecision() {
 
   //
 
->>>>>>> Stashed changes
   const choices = [
     t("step5_option1"),
     t("step5_option2"),
@@ -146,8 +143,6 @@ function FinalDecision() {
   // console.log(cookies);
   const [choiceIndex, setChoiceIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-<<<<<<< Updated upstream
-=======
   const [useChecked, setuseChecked] = useState();
   const [usefulnessChecked, setusefullnessChecked] = useState();
   //q3
@@ -175,7 +170,6 @@ function FinalDecision() {
   const [feelingsScale, setFeelingsScale] = useState(10);
   const [additionalComments, setAdditionalComments] = useState("");
   //
->>>>>>> Stashed changes
 
   function italicizeWords(text) {
     const words = [
@@ -263,8 +257,6 @@ function FinalDecision() {
 
   return (
     <div style={{ marginLeft: "20%", width: "60%" }}>
-<<<<<<< Updated upstream
-=======
       {/* mimic what is written below, and do it for all the questions and options */}
       {/* q1 */}
       <div className="checkbox">
@@ -767,7 +759,6 @@ function FinalDecision() {
         ></textarea>
       </div>
 
->>>>>>> Stashed changes
       <Grid>
         <Header
           as="h4"
@@ -844,7 +835,6 @@ function FinalDecision() {
           </div>
         </>
       )}
-<<<<<<< Updated upstream
       <button
         onClick={() => {
           navigate("/decision-aid/step4");
@@ -854,30 +844,6 @@ function FinalDecision() {
       >
         {t("prev")}
       </button>
-=======
-      {props.elicit ? (
-        <button
-          onClick={() => {
-            navigate("/decision-aid_elicit/step4");
-          }}
-          style={{ marginTop: "3rem" }}
-          class="ui large primary button"
-        >
-          {t("prev")}
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step4");
-          }}
-          style={{ marginTop: "3rem" }}
-          class="ui large primary button"
-        >
-          {t("prev")}
-        </button>
-      )}
-
->>>>>>> Stashed changes
       {!submitted ? (
         <button
           onClick={handleSubmit}
