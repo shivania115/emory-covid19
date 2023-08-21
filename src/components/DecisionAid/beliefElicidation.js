@@ -106,7 +106,7 @@ function DraggableBar(props) {
     tomorrow.setDate(tomorrow.getDate() + 1);
 
     let cookie = JSON.parse(cookies);
-    cookie["step3"] = belief;
+    cookie = { ...cookie, ...belief };
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
 
@@ -117,10 +117,10 @@ function DraggableBar(props) {
   //edit the handle submit functino to add the info in cookie
   function handleSubmit() {
     const belief = {
-      symptomsVac: symptomsVac,
-      symptomsCOVID: symptomsCOVID,
-      hospilizationNoVac: hospilizationNoVac,
-      hospilizationVac: hospilizationVac,
+      step3_elicit_symptomsVac: symptomsVac,
+      step3_elicit_symptomsCOVID: symptomsCOVID,
+      step3_elicit_hospilizationNoVac: hospilizationNoVac,
+      step3_elicit_hospilizationVac: hospilizationVac,
     };
     props.sethospilizationNoVac(hospilizationNoVac);
     props.sethospilizationVac(hospilizationVac);

@@ -83,7 +83,7 @@ function Compare(props) {
   const cookie = JSON.parse(cookies);
   const { t } = useTranslation();
   useEffect(() => {
-    console.log(cookie.step3);
+    console.log(cookie);
     cookie.step3?sethospilizationVac(cookie.step3.hospilizationVac):sethospilizationVac(10);
     cookie.step3?sethospilizationNoVac(cookie.step3.hospilizationNoVac):sethospilizationNoVac(10);
     cookie.step3?setSymptomsCOVID(cookie.step3.symptomsCOVID):setSymptomsCOVID(10);

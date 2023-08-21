@@ -88,7 +88,7 @@ function DecitionTable(props) {
   } = useStitchAuth();
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   function RadioTableFilled() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       if (!radioSelectedValue[i]) {
         return false;
       }
@@ -101,28 +101,48 @@ function DecitionTable(props) {
     const ethnicity = EthnicOptions[ethnicChecked];
     const occupation = OccupationOptions[occupationChecked];
     const vaccinated = VaccinateOptions[vaccinated];
+    const informed=VaccinateOptions[informedChecked];
+    const sources=selectedSources.map(index => SourcesOptions[index]);;
+   
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const cookie = {
-      step2: {
-        demographic: {
-          vaccinated: vaccinated,
-          age: age,
-          gender: gender,
-          ethnicity: ethnicity,
-          occupation: occupation,
-          vaccinated: vaccinated ? false : true,
-          booster_taken: booster ? false : true,
-        },
-        vaccine_survey: {
-          effective: radioSelectedValue[0],
-          important: radioSelectedValue[1],
-          negative_stories: radioSelectedValue[2],
-          concerned_reactions: radioSelectedValue[3],
-          childhood_vaccines: radioSelectedValue[4],
-        },
-      },
-    };
+    const cookie={
+      step2_demograhpic_vaccinated: vaccinated ? false : true,
+      step2_demographic_booster_taken: booster ? false : true,
+      step2_demographic_informed:informed,
+      step2_demographic_age:age,
+      step2_demographic_gender:gender,
+      step2_demographic_ethnicity:ethnicity,
+      step2_demographic_occupation:occupation,
+      step2_survey_effective: radioSelectedValue[0],
+      step2_survey_important: radioSelectedValue[1],
+      step2_survey_negative_stories: radioSelectedValue[2],
+      step2_survey_concerned_reactions: radioSelectedValue[3],
+      step2_survey_childhood_vaccines: radioSelectedValue[4],
+      step2_survey_trust:radioSelectedValue[5],
+      step2_survey_online_tools:radioSelectedValue[6],
+      step2_survey_source:sources
+    }
+    // const cookie = {
+    //   step2: {
+    //     demographic: {
+    //       vaccinated: vaccinated,
+    //       age: age,
+    //       gender: gender,
+    //       ethnicity: ethnicity,
+    //       occupation: occupation,
+    //       vaccinated: vaccinated ? false : true,
+    //       booster_taken: booster ? false : true,
+    //     },
+    //     vaccine_survey: {
+    //       effective: radioSelectedValue[0],
+    //       important: radioSelectedValue[1],
+    //       negative_stories: radioSelectedValue[2],
+    //       concerned_reactions: radioSelectedValue[3],
+    //       childhood_vaccines: radioSelectedValue[4],
+    //     },
+    //   },
+    // };
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
 
@@ -135,6 +155,8 @@ function DecitionTable(props) {
       occupationChecked === undefined ||
       vaccinated === undefined ||
       booster === undefined ||
+      informedChecked === undefined ||
+      selectedSources==undefined||
       !RadioTableFilled()
     ) {
       parseCookie();
@@ -165,6 +187,7 @@ function DecitionTable(props) {
     },
   ];
   const VaccinateOptions = [t("yes"), t("no")];
+  
   const BoosterOptions = [t("yes"), t("No")];
   const AgeOptions = ["18-29", "30-49", "50-69", "70+"];
   const GenderOptions = [t("female"), t("male"), t("non_binary"), t("not_say")];
@@ -199,6 +222,15 @@ function DecitionTable(props) {
     t("retired"),
     t("other")
   ];
+  const SourcesOptions = [
+    "Healthcare professionals",
+    "Government websites",
+    "News media",
+    "Social media",
+   "Friends/family",
+    "Other"
+    
+  ];
 
   //which index is currently being checked
   const [ageChecked, setAgeChecked] = useState();
@@ -207,10 +239,24 @@ function DecitionTable(props) {
   const [educationChecked, setEducationChecked] = useState();
   const [occupationChecked, setOccupationChecked] = useState();
   const [vaccinated, setVaccinated] = useState();
+  const[informedChecked,setInformedChecked]=useState();
   const [booster, setBooster] = useState();
   const [show, setShow] = useState(false);
+  const [selectedSources, setSelectedSources] = useState([]);
+
   const [language,setLanguage]=useState('en');
   const [radioSelectedValue, setRadioSelectedValue] = useState([]);
+  const handleCheckboxChange = (index) => {
+
+    if (selectedSources.includes(index)) {
+  
+      setSelectedSources(selectedSources.filter((item) => item !== index));
+    } else {
+
+      setSelectedSources([...selectedSources, index]);
+    }
+
+  };
   return (
     <>
       <div
@@ -287,6 +333,26 @@ function DecitionTable(props) {
             );
           })}
         </div>
+        <div className="checkbox" style={{ paddingTop: "15px" }}>
+        
+        <label>Have you received any information or education about COVID-19 vaccines before this study?  </label>
+        {VaccinateOptions.map((option, index) => {
+          return (
+            <Checkbox
+              onClick={(e) => {
+                setInformedChecked(index);
+              }}
+              checked={informedChecked === index}
+              style={{
+                fontSize: "1 rem",
+                display: "block",
+                marginTop: "10px",
+              }}
+              label={option}
+            />
+          );
+        })}
+      </div>
         <Divider></Divider>
         {t('table_des')}
         <table className="ui striped table">
@@ -561,6 +627,104 @@ function DecitionTable(props) {
                 </RadioGroup>
               </td>
             </tr>
+            <tr>
+              <td> I trust the information provided by healthcare authorities and experts regarding COVID-19 vaccines</td>
+              <td colSpan="3">
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[5] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(5, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[5] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(5, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[5] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(5, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[5] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(5, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[5] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(5, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
+              </td>
+            </tr>
+            <tr>
+              <td> I am likely to use an online decision-aid tool to learn more about the risks and potential benefits of COVID-19 vaccines</td>
+              <td colSpan="3">
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingLeft: "5%",
+                    paddingRight: "5%",
+                  }}
+                >
+                  <Radio
+                    checked={radioSelectedValue[6] === "Strongly Disagree"}
+                    onChange={(e) => handleRadioChange(6, e)}
+                    value="Strongly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[6] === "Slightly Disagree"}
+                    onChange={(e) => handleRadioChange(6, e)}
+                    value="Slightly Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={
+                      radioSelectedValue[6] === "Neither Agree nor Disagree"
+                    }
+                    onChange={(e) => handleRadioChange(6, e)}
+                    value="Neither Agree nor Disagree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[6] === "Slightly Agree"}
+                    onChange={(e) => handleRadioChange(6, e)}
+                    value="Slightly Agree"
+                    name="radio-buttons"
+                  />
+                  <Radio
+                    checked={radioSelectedValue[6] === "Strongly Agree"}
+                    onChange={(e) => handleRadioChange(6, e)}
+                    value="Strongly Agree"
+                    name="radio-buttons"
+                  />
+                </RadioGroup>
+              </td>
+            </tr>
           </tbody>
         </table>
         <Divider></Divider>
@@ -660,6 +824,27 @@ function DecitionTable(props) {
               );
             })}
           </div>
+          <div className="checkbox">
+      <label>
+      What are your main sources of information about COVID-19 and vaccines? (Select all that apply) {" "}
+      </label>
+      {SourcesOptions.map((option, index) => {
+        return (
+          <Checkbox
+            key={index}
+            onClick={() => handleCheckboxChange(index)}
+            checked={selectedSources.includes(index)}
+            style={{
+              fontSize: "1rem",
+              display: "block",
+              marginTop: "10px",
+            }}
+            label={option}
+          />
+        );
+      })}
+    </div>
+          
         </Form>
         {props.elicit?
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -741,13 +926,13 @@ function DecitionTable(props) {
           </div>
         </Modal.Header>
         <Modal.Body>
-          {t('alert')}
+          Please finish the survey before moving on.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
             {t('close')}
           </Button>
-          {props.elicit?
+          {/* {props.elicit?
             <Button
             variant="primary"
             onClick={() => navigate("/decision-aid_elicit/step2")}
@@ -759,7 +944,7 @@ function DecitionTable(props) {
             onClick={() => navigate("/decision-aid/step2")}
           >
             {t('continue')}
-          </Button>}
+          </Button>} */}
          
         </Modal.Footer>
       </Modal>
