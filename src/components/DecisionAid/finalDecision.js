@@ -25,6 +25,7 @@ import {
 } from "semantic-ui-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-bootstrap/Modal";
 
 import React, {
   useEffect,
@@ -119,6 +120,15 @@ function FinalDecision() {
     t("step5_option5"),
   ];
 
+  //separating last q
+  const boosterChoices = [
+    "I have decided to get the COVID-19 booster",
+    "I need to discuss the decision further with my family and doctor",
+    "I need to learn more about COVID-19 and the COVID-19 booster",
+    "I have dicided not to get the COVID-19 booster",
+    "Other",
+  ];
+
   const recommendations = [
     {
       next: t("step5_1next"),
@@ -169,7 +179,11 @@ function FinalDecision() {
   const [understandingScale, setUnderstandingScale] = useState(10);
   const [feelingsScale, setFeelingsScale] = useState(10);
   const [additionalComments, setAdditionalComments] = useState("");
-  //
+  const [collectEmail, setCollectEmail] = useState("");
+  //q booster choices
+  const [boosterChoicesChecked, setBoosterChoicesChecked] = useState();
+
+  const [show, setShow] = useState(false);
 
   function italicizeWords(text) {
     const words = [
@@ -200,6 +214,26 @@ function FinalDecision() {
   }
 
   function handleSubmit() {
+    //step 1: validate inputs
+    if (
+      //ALERT TODO:
+      useChecked === undefined ||
+      usefulnessChecked === undefined ||
+      willingness === undefined ||
+      vaccineWillingnessChecked === undefined ||
+      userFriendliness === undefined ||
+      vaccineWillingnessChecked === undefined ||
+      enoughInfoChecked === undefined ||
+      addressConcernChecked === undefined ||
+      potentialRiskInfoChekced === undefined ||
+      recommendationLikelinessChecked === undefined ||
+      boosterChoicesChecked === undefined
+    ) {
+      setShow(true); // Show the modal if any validation fails
+      return; // Exit the function immediately if validation fails
+    }
+
+    //end of step 1
     let cookie = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
 
@@ -207,9 +241,8 @@ function FinalDecision() {
       decision_choice = decision_choice + ": " + other;
     }
     try {
-      
-      const post_study_questionnaire= {
-        step5_final_decision: decision_choice, 
+      const post_study_questionnaire = {
+        step5_final_decision: decision_choice,
         step5_confidence: confidence,
         step5_q1: usageOptions[useChecked],
         step5_q2: usefulOptions[usefulnessChecked],
@@ -220,18 +253,21 @@ function FinalDecision() {
         step5_q7: influentialAspect,
         step5_q8: addressConcernOptions[addressConcernChecked],
         step5_q9: potentialRiskInfoOptions[potentialRiskInfoChekced],
-        step5_q10: recommendationLikelinessOptions[recommendationLikelinessChecked],
-        step5_q11_thinking:thinkingScale,
-        step5_q11_pace:paceScale,
+        step5_q10:
+          recommendationLikelinessOptions[recommendationLikelinessChecked],
+        step5_q11_thinking: thinkingScale,
+        step5_q11_pace: paceScale,
         step5_q11_work: workScale,
         step5_q11_understanding: understandingScale,
         step5_q11_feelings: feelingsScale,
         q12_comments: additionalComments,
-      }
+        step5_email: collectEmail,
+        step5_booster: boosterChoicesChecked,
+      };
       console.log(cookie);
       cookie = { ...cookie, ...post_study_questionnaire };
       console.log(cookie);
-      decision_aid.insertOne({cookie})
+      decision_aid.insertOne({ cookie });
       // decision_aid.insertOne({
       //   step2: {
       //     demographic: cookie.step2.demographic,
@@ -558,7 +594,7 @@ function FinalDecision() {
       </div>
 
       {/* q11 */}
-      {/* <div className="slider">
+      {/* < className="slider">
         <label>
           11. We will next ask about your experience with the ease of using the
           decision-aid tool. Please rate the following questions on a scale of 0
@@ -807,46 +843,108 @@ function FinalDecision() {
         </Grid.Row>
       </Grid>
 
-      <Header
-        as="h4"
-        style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
-      >
-        <Header.Content>{t("step5_2header")}</Header.Content>
-      </Header>
-      <div style={{ lineHeight: 1.6 }}>
-        {choices.map((choice, index) => {
-          return (
-            <Checkbox
-              onClick={(e) => {
-                setChoiceIndex(index);
-              }}
-              checked={choiceIndex === index}
-              style={{
-                fontSize: "1.25rem",
-                display: "block",
+      {/* vaccine */}
+      <div>
+        <Header
+          as="h4"
+          style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
+        >
+          <Header.Content>{t("step5_2header")}</Header.Content>
+        </Header>
+        <div style={{ lineHeight: 1.6 }}>
+          {choices.map((choice, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setChoiceIndex(index);
+                }}
+                checked={choiceIndex === index}
+                style={{
+                  fontSize: "1.25rem",
+                  display: "block",
 
-                lineHeight: 1.2,
-              }}
-              label={italicizeWords(choice)}
-            ></Checkbox>
-          );
-        })}
-        {choiceIndex === 4 && (
-          <>
-            <TextField
-              style={{ marginTop: "2%" }}
-              size="small"
-              onChange={(e) => {
-                setOther(e.target.value);
-              }}
-            ></TextField>
-            <br></br>
-            <br></br>
-            <b>{t("step5_share")}</b>
-            <p>{recommendations[0].share}</p>
-          </>
-        )}
+                  lineHeight: 1.2,
+                }}
+                label={italicizeWords(choice)}
+              ></Checkbox>
+            );
+          })}
+          {choiceIndex === 4 && (
+            <>
+              <TextField
+                style={{ marginTop: "2%" }}
+                size="small"
+                onChange={(e) => {
+                  setOther(e.target.value);
+                }}
+              ></TextField>
+              <br></br>
+              <br></br>
+              <b>{t("step5_share")}</b>
+              <p>{recommendations[0].share}</p>
+            </>
+          )}
+        </div>
       </div>
+
+      {/* booster */}
+      <div>
+        <Header
+          as="h4"
+          style={{ paddingTop: 30, fontWeight: 550, fontSize: "1.5rem" }}
+        >
+          <Header.Content>
+            {
+              "We hope the information presented here has helped you to make an informed decision regarding COVID-19 booster:"
+            }
+          </Header.Content>
+        </Header>
+        <div style={{ lineHeight: 1.6 }}>
+          {boosterChoices.map((choice, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setBoosterChoicesChecked(index); //setchoice
+                }}
+                checked={boosterChoicesChecked === index}
+                style={{
+                  fontSize: "1.25rem",
+                  display: "block",
+
+                  lineHeight: 1.2,
+                }}
+                label={italicizeWords(choice)}
+              ></Checkbox>
+            );
+          })}
+          {choiceIndex === 4 && (
+            <>
+              <TextField
+                style={{ marginTop: "2%" }}
+                size="small"
+                onChange={(e) => {
+                  setOther(e.target.value);
+                }}
+              ></TextField>
+              <br></br>
+              <br></br>
+              <b>{t("step5_share")}</b>
+              <p>{recommendations[0].share}</p>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Email collection */}
+      <div className="open-ended-response" style={{ marginTop: "20px" }}>
+        <span></span>
+        <label>Please provide email:</label>
+        <textarea
+          onChange={(e) => setCollectEmail(e.target.value)}
+          style={{ width: "100%", height: "100px" }}
+        ></textarea>
+      </div>
+
       {(choiceIndex || choiceIndex === 0) && choiceIndex !== 4 && (
         <>
           <div style={{ paddingTop: 30 }}>
@@ -899,6 +997,40 @@ function FinalDecision() {
 ) : (
   <div></div>
 )} */}
+
+      {/* For validating all questions are filled */}
+      <Modal
+        show={show}
+        onHide={() => {
+          setShow(false);
+        }}
+      >
+        <Modal.Header style={{ display: "flex", justifyContent: "end" }}>
+          <div
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <path
+              fill="#BEBEBE"
+              fillRule="evenodd"
+              d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"
+            />
+          </div>
+        </Modal.Header>
+        <Modal.Body>Please complete all questions before submit.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShow(false)}>
+            {t("close")}
+          </Button>{" "}
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

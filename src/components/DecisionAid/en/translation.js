@@ -238,7 +238,7 @@ export const TRANSLATIONS_EN = {
   step5_1header: "How likely are you to get the COVID-19 vaccine or booster?",
   step5_2header:
     "We hope the information presented here has helped you to make an informed decision regarding COVID-19 vaccination:",
-  step5_option1: "I have decided to get the COVID-19 vaccine or booster",
+  step5_option1: "I have decided to get the COVID-19 vaccine",
   step5_1next:
     "Get in touch with your doctor, pharmacist or vaccine hub and make an [Appointment](https://www.cvs.com/minuteclinic/services/covid-19-vaccine/in-person-visit) to get the COVID-19 vaccine. For information about government-run vaccination services, check with your local Department of Health.",
   step5_1share:
@@ -249,13 +249,12 @@ export const TRANSLATIONS_EN = {
     "Make time to talk to your family about the benefits and risks of getting a COVID-19 vaccine. Also make an [appointment](https://dph.georgia.gov/covid-vaccine) with your doctor so you can talk through any concerns you may have.",
   step5_2share:
     "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
-  step5_option3:
-    "I need to learn more about COVID-19 and the COVID-19 vaccine (or booster)",
+  step5_option3: "I need to learn more about COVID-19 and the COVID-19 vaccine",
   step5_3next:
     "It is important that you get information about the benefits and risks of COVID-19 vaccination from credible sources. Your doctor will be able to answer your questions. They will also be able to recommend other good sources of information. You can also learn more at [Emory COVID-19 Dashboard](https://covid19.emory.edu/Vaccine-Tracker).",
   step5_3share:
     "You can help us to improve this Decision Aid in the future by sharing your decision with us. Just click the 'submit' button below. The information you share will be anonymous and confidential and will only be shared with the Decision Aid team. ",
-  step5_option4: "I have decided not to get the COVID-19 vaccine or booster",
+  step5_option4: "I have decided not to get the COVID-19 vaccine",
   step5_4next:
     "Do what you can to stay safe and healthy. Social distancing, mask-wearing and frequent hand-washing can help reduce your risk of catching the virus. You may also find that you are not able to work in certain workplaces where vaccinations are compulsory. You could find it useful to revisit this Decision Aid in the future.",
   step5_4share:
