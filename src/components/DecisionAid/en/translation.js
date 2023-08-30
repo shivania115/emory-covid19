@@ -14,7 +14,8 @@ export const TRANSLATIONS_EN = {
   step5: "Step 5",
   step5_des: "Make your\ndecision",
   vaccination: "COVID-19 Vaccination Status",
-  landingpage: "COVID19 Vaccine Decision Aid",
+  landingpage:
+    "We want to help you make a decision about COVID-19 Vaccines and Boosters",
   lp1: "This is a new decision-support tool that is designed to help you:",
   lp2: "Understand about COVID-19 infection and the available vaccine options",
   lp3: "Compare the risks and benefits of vaccination",

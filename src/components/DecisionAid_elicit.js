@@ -113,6 +113,7 @@ import FinalDecision from "./DecisionAid/finalDecision";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+
 function AppBar3(props){
   return(
     <ErrorBoundary>
@@ -148,7 +149,7 @@ function AppBar2(props) {
           <Menu.Item
             
             header
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/US-Map")}
             style={{ paddingLeft: 0, paddingRight: "3%" }}
           >
             <span style={{ fontWeight: 400, color: "#fff", lineHeight: 1.3 }}>
