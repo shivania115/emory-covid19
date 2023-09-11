@@ -19,7 +19,7 @@ import {
 import Covid from "../icons/Covid";
 import { blue } from "@mui/material/colors";
 import Medicine from "../icons/Medicine";
-import styled,{ css }  from "styled-components";
+import styled, { css } from "styled-components";
 import React, {
   useEffect,
   useState,
@@ -72,61 +72,70 @@ i18n
     },
   });
 function Compare(props) {
-  
   const navigate = useNavigate();
   const [vaccine, setVaccine] = useState("pfizer");
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
-  const [hospilizationVac,sethospilizationVac]=useState(0);
-  const [hospilizationNoVac,sethospilizationNoVac]=useState(0);
-  const [symptomsCOVID,setSymptomsCOVID]=useState(0);
-  const [symptomsVac, setSymptomsVac]=useState(0);
+  const [hospilizationVac, sethospilizationVac] = useState(0);
+  const [hospilizationNoVac, sethospilizationNoVac] = useState(0);
+  const [symptomsCOVID, setSymptomsCOVID] = useState(0);
+  const [symptomsVac, setSymptomsVac] = useState(0);
   const cookie = JSON.parse(cookies);
   const { t } = useTranslation();
   useEffect(() => {
     console.log(cookie);
-    cookie.step3?sethospilizationVac(cookie.step3.hospilizationVac):sethospilizationVac(10);
-    cookie.step3?sethospilizationNoVac(cookie.step3.hospilizationNoVac):sethospilizationNoVac(10);
-    cookie.step3?setSymptomsCOVID(cookie.step3.symptomsCOVID):setSymptomsCOVID(10);
-    cookie.step3?setSymptomsVac(cookie.step3.symptomsVac):setSymptomsVac(10);
+    cookie.step3
+      ? sethospilizationVac(cookie.step3.hospilizationVac)
+      : sethospilizationVac(10);
+    cookie.step3
+      ? sethospilizationNoVac(cookie.step3.hospilizationNoVac)
+      : sethospilizationNoVac(10);
+    cookie.step3
+      ? setSymptomsCOVID(cookie.step3.symptomsCOVID)
+      : setSymptomsCOVID(10);
+    cookie.step3
+      ? setSymptomsVac(cookie.step3.symptomsVac)
+      : setSymptomsVac(10);
     console.log(hospilizationVac);
   }, [cookies]);
   console.log(hospilizationNoVac);
   const StyledProgressBar = styled(Progress)`
-  &&& .bar {
-    ${
-      "" /* background-color: ${props => props.color || 'green'} !important; */
+    &&& .bar {
+      ${
+        "" /* background-color: ${props => props.color || 'green'} !important; */
+      }
+      min-width: 0;
     }
-    min-width: 0;
-  }
-`;
+  `;
 
-const ProgressBarWrapper = styled.div`
-  position: relative;
+  const ProgressBarWrapper = styled.div`
+    position: relative;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: ${({ markPosition }) => markPosition}; /* Use the markPosition prop value for left position */
-    transform: translateX(-50%);
-    width: 4px; /* Adjust the width of the mark */
-    height: 100%;
-    background-color: black; /* Adjust the color of the mark */
-    z-index: 1; 
-  }
-  &::after {
-    content: ${({ caption }) => `'${caption}'`}; /* Use the caption prop value as the content of the caption */
-    position: absolute;
-    top: -20px; /* Adjust the top position of the caption */
-    left: ${({ markPosition }) => markPosition}; /* Use the markPosition prop value for left position */
-    transform: translateX(-50%);
-    white-space: nowrap;
-    color: black; /* Adjust the color of the caption */
-    font-size: 14px; /* Adjust the font size of the caption */
-    z-index: 2;
-  }
-
-`;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: ${({ markPosition }) =>
+        markPosition}; /* Use the markPosition prop value for left position */
+      transform: translateX(-50%);
+      width: 4px; /* Adjust the width of the mark */
+      height: 100%;
+      background-color: black; /* Adjust the color of the mark */
+      z-index: 1;
+    }
+    &::after {
+      content: ${({ caption }) =>
+        `'${caption}'`}; /* Use the caption prop value as the content of the caption */
+      position: absolute;
+      top: -20px; /* Adjust the top position of the caption */
+      left: ${({ markPosition }) =>
+        markPosition}; /* Use the markPosition prop value for left position */
+      transform: translateX(-50%);
+      white-space: nowrap;
+      color: black; /* Adjust the color of the caption */
+      font-size: 14px; /* Adjust the font size of the caption */
+      z-index: 2;
+    }
+  `;
 
   const Panes = () => (
     <div class="ui bottom attached segment active tab" style={{}}>
@@ -184,23 +193,28 @@ const ProgressBarWrapper = styled.div`
           </GridColumn>
 
           <GridColumn width={5}>
-          <ProgressBarWrapper caption="Your Belief" markPosition={`${hospilizationNoVac}%`}>
-  <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              reverse
-              percent={28}
-              color="red"
-            ></StyledProgressBar>
-</ProgressBarWrapper>
-           
+            <ProgressBarWrapper
+              caption="Your Belief"
+              markPosition={`${hospilizationNoVac}%`}
+            >
+              <StyledProgressBar
+                style={{ marginBottom: 20 }}
+                reverse
+                percent={28}
+                color="red"
+              ></StyledProgressBar>
+            </ProgressBarWrapper>
 
             <StyledProgressBar
               style={{ marginBottom: 20 }}
               percent={8}
               color="blue"
             ></StyledProgressBar>
-             <ProgressBarWrapper caption="Your Belief" markPosition={`${hospilizationVac}%`}>
-            <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
+            <ProgressBarWrapper
+              caption="Your Belief"
+              markPosition={`${hospilizationVac}%`}
+            >
+              <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
             </ProgressBarWrapper>
           </GridColumn>
           <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
@@ -276,21 +290,27 @@ const ProgressBarWrapper = styled.div`
           </GridColumn>
 
           <GridColumn width={5}>
-          <ProgressBarWrapper caption="Your Belief" markPosition={`${symptomsCOVID}%`}>
-            <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              reverse
-              percent={50}
-              color="red"
-            ></StyledProgressBar>
+            <ProgressBarWrapper
+              caption="Your Belief"
+              markPosition={`${symptomsCOVID}%`}
+            >
+              <StyledProgressBar
+                style={{ marginBottom: 20 }}
+                reverse
+                percent={50}
+                color="red"
+              ></StyledProgressBar>
             </ProgressBarWrapper>
             <StyledProgressBar
               style={{ marginBottom: 20 }}
               percent={12}
               color="blue"
             ></StyledProgressBar>
-            <ProgressBarWrapper caption="Your Belief" markPosition={`${symptomsVac}%`}>
-            <StyledProgressBar percent={8} color="blue"></StyledProgressBar>
+            <ProgressBarWrapper
+              caption="Your Belief"
+              markPosition={`${symptomsVac}%`}
+            >
+              <StyledProgressBar percent={8} color="blue"></StyledProgressBar>
             </ProgressBarWrapper>
           </GridColumn>
           <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
@@ -1066,13 +1086,13 @@ const ProgressBarWrapper = styled.div`
   return (
     <div>
       <div class="ui two column centered grid">
-        <div >
-          <DraggableBar 
-          sethospilizationVac={sethospilizationVac}
-          sethospilizationNoVac={sethospilizationNoVac}
-          setSymptomsCOVID={setSymptomsCOVID}
-          setSymptomsVac={setSymptomsVac}
-            ></DraggableBar>
+        <div>
+          <DraggableBar
+            sethospilizationVac={sethospilizationVac}
+            sethospilizationNoVac={sethospilizationNoVac}
+            setSymptomsCOVID={setSymptomsCOVID}
+            setSymptomsVac={setSymptomsVac}
+          ></DraggableBar>
           <Header
             as="h1"
             style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
@@ -1134,12 +1154,8 @@ const ProgressBarWrapper = styled.div`
                 content: {
                   content: (
                     <ul>
-                      <li>
-                       {t('step3_pfizer')}
-                      </li>
-                      <li>
-                        {t('step3_moderna')}
-                      </li>
+                      <li>{t("step3_pfizer")}</li>
+                      <li>{t("step3_moderna")}</li>
                     </ul>
                   ),
                 },
@@ -1150,69 +1166,68 @@ const ProgressBarWrapper = styled.div`
             icon={faExclamationTriangle}
             style={{ color: "red" }}
           />
-          <em>
-            {t('step3_warning')}
-          </em>
+          <em>{t("step3_warning")}</em>
           <div class="ui attached tabular menu">
             <Panes></Panes>
           </div>
         </div>
       </div>
 
-      {props.elicit?
+      {props.elicit ? (
         <div
-        style={{
-          paddingTop: 30,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <button
-          onClick={() => {
-            navigate("/decision-aid_elicit/step2");
+          style={{
+            paddingTop: 30,
+            display: "flex",
+            justifyContent: "space-between",
           }}
-          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
         >
-          {t("prev")}
-        </button>
-        <button
-          onClick={() => {
-            navigate("/decision-aid_elicit/step4");
+          <button
+            onClick={() => {
+              navigate("/decision-aid_elicit/step2");
+            }}
+            style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
+            class="ui large primary button"
+          >
+            {t("prev")}
+          </button>
+          <button
+            onClick={() => {
+              navigate("/decision-aid_elicit/step4");
+            }}
+            style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
+            class="ui large primary button"
+          >
+            {t("next")}
+          </button>
+        </div>
+      ) : (
+        <div
+          style={{
+            paddingTop: 30,
+            display: "flex",
+            justifyContent: "space-between",
           }}
-          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
         >
-          {t("next")}
-        </button>
-      </div>
-          :
-      <div
-        style={{
-          paddingTop: 30,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step2");
-          }}
-          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
-        >
-          {t("prev")}
-        </button>
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step4");
-          }}
-          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
-        >
-          {t("next")}
-        </button>
-      </div>}
+          <button
+            onClick={() => {
+              navigate("/decision-aid/step2");
+            }}
+            style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
+            class="ui large primary button"
+          >
+            {t("prev")}
+          </button>
+          <button
+            onClick={() => {
+              navigate("/decision-aid/step4");
+            }}
+            style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
+            class="ui large primary button"
+          >
+            {t("next")}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

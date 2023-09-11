@@ -310,7 +310,7 @@ function FinalDecision() {
       progress: undefined,
       theme: "colored",
     });
-    navigate("/decision-aid/step6");
+    navigate("/decision-aid/step1");
   }
 
   function handleChange(index, value) {

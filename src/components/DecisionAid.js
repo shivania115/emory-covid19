@@ -191,26 +191,12 @@ function AppBar2(props) {
 
           <Menu.Item
             style={{ paddingLeft: 15, paddingRight: 15 }}
-            active={props.menu === "step1"}
-            // onClick={() => navigate("/decision-aid/step1")}
-            name="step4"
-          >
-            <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t("step1")}:</HeaderContent>
-              <HeaderSubHeader style={{ color: "#fff" }}>
-                {t("step1_des")}
-              </HeaderSubHeader>
-            </Header>
-          </Menu.Item>
-
-          <Menu.Item
-            style={{ paddingLeft: 15, paddingRight: 15 }}
             active={props.menu === "step2"}
             // onClick={() => navigate("/decision-aid/step2")}
             name="step2"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t("step2")}:</HeaderContent>
+              <HeaderContent>{t("step1")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
                 {t("step2_des")}
               </HeaderSubHeader>
@@ -224,7 +210,7 @@ function AppBar2(props) {
             name="step3"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t("step3")}:</HeaderContent>
+              <HeaderContent>{t("step2")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
                 {t("step3_des")}
               </HeaderSubHeader>
@@ -244,7 +230,7 @@ function AppBar2(props) {
             name="step4"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t("step4")}:</HeaderContent>
+              <HeaderContent>{t("step3")}:</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
                 {t("step4_des")}
               </HeaderSubHeader>
@@ -258,9 +244,23 @@ function AppBar2(props) {
             name="step5"
           >
             <Header style={{ color: "#fff", fontWeight: 400 }}>
-              <HeaderContent>{t("step5")}</HeaderContent>
+              <HeaderContent>{t("step4")}</HeaderContent>
               <HeaderSubHeader style={{ color: "#fff" }}>
                 {t("step5_des")}
+              </HeaderSubHeader>
+            </Header>
+          </Menu.Item>
+
+          <Menu.Item
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            active={props.menu === "step1"}
+            // onClick={() => navigate("/decision-aid/step1")}
+            name="step1"
+          >
+            <Header style={{ color: "#fff", fontWeight: 400 }}>
+              <HeaderContent>{t("step5")}:</HeaderContent>
+              <HeaderSubHeader style={{ color: "#fff" }}>
+                {t("step1_des")}
               </HeaderSubHeader>
             </Header>
           </Menu.Item>
@@ -286,12 +286,12 @@ const DecisionAid = (props) => {
       {/* <StepFlow /> */}
       <Container style={{ marginTop: "8em", width: "95vw" }}>
         {step == "about" && <LandingPage elicit={false} />}
-        {step == "step2" && <VaccFAQ elicit={false}/>}
-        {step == "step3" && <CompareNoElicit elicit={false}/>}
-        {step == "step1" && <DecisionTable elicit={false}/>}
-        {step == "step4" && <PersonalRisk elicit={false}/>}
-        {step == "step5" && <FinalDecision elicit={false}/>}
-        {step == "step6" && <Resources elicit={false}/>}
+        {step == "step2" && <VaccFAQ elicit={false} />}
+        {step == "step3" && <CompareNoElicit elicit={false} />}
+        {step == "step1" && <DecisionTable elicit={false} />}
+        {step == "step4" && <PersonalRisk elicit={false} />}
+        {step == "step5" && <FinalDecision elicit={false} />}
+        {step == "step6" && <Resources elicit={false} />}
       </Container>
     </HEProvider>
   );
