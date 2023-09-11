@@ -185,7 +185,7 @@ function LandingPage(props) {
         {/* <Image size='large' src='/DA_pic/vaccine.jpg' >
         </Image> */}
         {props.elicit ? (
-          <Link to="/decision-aid_elicit/step1">
+          <Link to="/decision-aid_elicit/step2">
             <button
               style={{ marginTop: "3rem", marginBottom: "10%" }}
               class="ui massive primary button"
@@ -195,7 +195,7 @@ function LandingPage(props) {
           </Link>
         ) : (
           // button links to step1
-          <Link to="/decision-aid/step1">
+          <Link to="/decision-aid/step2">
             {/* <Link to="/decision-aid/step3"> */}
             <button
               style={{ marginTop: "3rem", marginBottom: "10%" }}
