@@ -57,27 +57,26 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 import i18n from "i18next";
-import { initReactI18next,useTranslation } from "react-i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
- 
-i18n
- .use(LanguageDetector)
- .use(initReactI18next)
- .init({
-  fallbackLng: 'en',
-   resources: {
-     en: {
-       translation: TRANSLATIONS_EN
-     },
-     span: {
-       translation: TRANSLATIONS_SPAN
-     }
-   }
- });
 
- 
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en",
+    resources: {
+      en: {
+        translation: TRANSLATIONS_EN,
+      },
+      span: {
+        translation: TRANSLATIONS_SPAN,
+      },
+    },
+  });
+
 function DecitionTable(props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -101,28 +100,28 @@ function DecitionTable(props) {
     const ethnicity = EthnicOptions[ethnicChecked];
     const occupation = OccupationOptions[occupationChecked];
     const vaccinated = VaccinateOptions[vaccinated];
-    const informed=VaccinateOptions[informedChecked];
-    const sources=selectedSources.map(index => SourcesOptions[index]);;
-   
+    const informed = VaccinateOptions[informedChecked];
+    const sources = selectedSources.map((index) => SourcesOptions[index]);
+
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const cookie={
+    const cookie = {
       step2_demograhpic_vaccinated: vaccinated ? false : true,
       step2_demographic_booster_taken: booster ? false : true,
-      step2_demographic_informed:informed,
-      step2_demographic_age:age,
-      step2_demographic_gender:gender,
-      step2_demographic_ethnicity:ethnicity,
-      step2_demographic_occupation:occupation,
+      step2_demographic_informed: informed,
+      step2_demographic_age: age,
+      step2_demographic_gender: gender,
+      step2_demographic_ethnicity: ethnicity,
+      step2_demographic_occupation: occupation,
       step2_survey_effective: radioSelectedValue[0],
       step2_survey_important: radioSelectedValue[1],
       step2_survey_negative_stories: radioSelectedValue[2],
       step2_survey_concerned_reactions: radioSelectedValue[3],
       step2_survey_childhood_vaccines: radioSelectedValue[4],
-      step2_survey_trust:radioSelectedValue[5],
-      step2_survey_online_tools:radioSelectedValue[6],
-      step2_survey_source:sources
-    }
+      step2_survey_trust: radioSelectedValue[5],
+      step2_survey_online_tools: radioSelectedValue[6],
+      step2_survey_source: sources,
+    };
     // const cookie = {
     //   step2: {
     //     demographic: {
@@ -156,7 +155,7 @@ function DecitionTable(props) {
       vaccinated === undefined ||
       booster === undefined ||
       informedChecked === undefined ||
-      selectedSources==undefined||
+      selectedSources == undefined ||
       !RadioTableFilled()
     ) {
       parseCookie();
@@ -164,7 +163,9 @@ function DecitionTable(props) {
       return;
     }
     parseCookie();
-    props.elicit? navigate("/decision-aid_elicit/step2"): navigate("/decision-aid/step2");;
+    props.elicit
+      ? navigate("/decision-aid_elicit/step6")
+      : navigate("/decision-aid/step6");
     // return navigate("/decision-aid/step2");
   }
 
@@ -187,7 +188,7 @@ function DecitionTable(props) {
     },
   ];
   const VaccinateOptions = [t("yes"), t("no")];
-  
+
   const BoosterOptions = [t("yes"), t("No")];
   const AgeOptions = ["18-29", "30-49", "50-69", "70+"];
   const GenderOptions = [t("female"), t("male"), t("non_binary"), t("not_say")];
@@ -197,7 +198,7 @@ function DecitionTable(props) {
     t("black"),
     t("native"),
     t("asian"),
-    t("other")
+    t("other"),
   ];
   const EducationOptions = [
     t("elementary"),
@@ -206,7 +207,7 @@ function DecitionTable(props) {
     t("bachelor"),
     t("master"),
     t("doctor"),
-    t("other")
+    t("other"),
   ];
   const OccupationOptions = [
     t("educator"),
@@ -220,16 +221,15 @@ function DecitionTable(props) {
     t("student"),
     t("home"),
     t("retired"),
-    t("other")
+    t("other"),
   ];
   const SourcesOptions = [
     "Healthcare professionals",
     "Government websites",
     "News media",
     "Social media",
-   "Friends/family",
-    "Other"
-    
+    "Friends/family",
+    "Other",
   ];
 
   //which index is currently being checked
@@ -239,23 +239,19 @@ function DecitionTable(props) {
   const [educationChecked, setEducationChecked] = useState();
   const [occupationChecked, setOccupationChecked] = useState();
   const [vaccinated, setVaccinated] = useState();
-  const[informedChecked,setInformedChecked]=useState();
+  const [informedChecked, setInformedChecked] = useState();
   const [booster, setBooster] = useState();
   const [show, setShow] = useState(false);
   const [selectedSources, setSelectedSources] = useState([]);
 
-  const [language,setLanguage]=useState('en');
+  const [language, setLanguage] = useState("en");
   const [radioSelectedValue, setRadioSelectedValue] = useState([]);
   const handleCheckboxChange = (index) => {
-
     if (selectedSources.includes(index)) {
-  
       setSelectedSources(selectedSources.filter((item) => item !== index));
     } else {
-
       setSelectedSources([...selectedSources, index]);
     }
-
   };
   return (
     <>
@@ -285,17 +281,11 @@ function DecitionTable(props) {
         <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="en">English</ToggleButton>
         <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="span">Spanish</ToggleButton>
       </ToggleButtonGroup> */}
-        <Header
-          as="h2"
-          style={{  fontWeight: 1000, fontSize: "2rem" }}
-        >
-          <Header.Content>{t('survey')}</Header.Content>
-          <HeaderSubHeader>
-            {t('toggle')}
-          </HeaderSubHeader>
+        <Header as="h2" style={{ fontWeight: 1000, fontSize: "2rem" }}>
+          <Header.Content>{t("survey")}</Header.Content>
+          <HeaderSubHeader>{t("toggle")}</HeaderSubHeader>
         </Header>
         <div className="checkbox" style={{ paddingTop: "15px" }}>
-        
           <label>{t("step1_ques1")} </label>
           {VaccinateOptions.map((option, index) => {
             return (
@@ -334,44 +324,45 @@ function DecitionTable(props) {
           })}
         </div>
         <div className="checkbox" style={{ paddingTop: "15px" }}>
-        
-        <label>Have you received any information or education about COVID-19 vaccines before this study?  </label>
-        {VaccinateOptions.map((option, index) => {
-          return (
-            <Checkbox
-              onClick={(e) => {
-                setInformedChecked(index);
-              }}
-              checked={informedChecked === index}
-              style={{
-                fontSize: "1 rem",
-                display: "block",
-                marginTop: "10px",
-              }}
-              label={option}
-            />
-          );
-        })}
-      </div>
+          <label>
+            Have you received any information or education about COVID-19
+            vaccines before this study?{" "}
+          </label>
+          {VaccinateOptions.map((option, index) => {
+            return (
+              <Checkbox
+                onClick={(e) => {
+                  setInformedChecked(index);
+                }}
+                checked={informedChecked === index}
+                style={{
+                  fontSize: "1 rem",
+                  display: "block",
+                  marginTop: "10px",
+                }}
+                label={option}
+              />
+            );
+          })}
+        </div>
         <Divider></Divider>
-        {t('table_des')}
+        {t("table_des")}
         <table className="ui striped table">
           <thead style={{ textAlign: "center" }}>
             <tr>
               <th></th>
               <div>
-                <th style={{ width: "20%" }}>{t('stronglydisagree')}</th>
-                <th style={{ width: "20%" }}>{t('slightlydisagree')}</th>
-                <th style={{ width: "20%" }}>{t('neither')}</th>
-                <th style={{ width: "20%" }}>{t('slightlyagree')}</th>
-                <th style={{ width: "20%" }}> {t('stronglyagree')}</th>
+                <th style={{ width: "20%" }}>{t("stronglydisagree")}</th>
+                <th style={{ width: "20%" }}>{t("slightlydisagree")}</th>
+                <th style={{ width: "20%" }}>{t("neither")}</th>
+                <th style={{ width: "20%" }}>{t("slightlyagree")}</th>
+                <th style={{ width: "20%" }}> {t("stronglyagree")}</th>
               </div>
             </tr>
-
           </thead>
           <tbody>
             <tr>
-              <td>{t('table_ques1')}</td>
+              <td>{t("table_ques1")}</td>
               <td colSpan="5">
                 {/* <Slider
                   defaultValue={50}
@@ -426,9 +417,7 @@ function DecitionTable(props) {
               </td>
             </tr>
             <tr>
-              <td>
-                {t('table_ques2')}
-              </td>
+              <td>{t("table_ques2")}</td>
               <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -477,9 +466,7 @@ function DecitionTable(props) {
               </td>
             </tr>
             <tr>
-              <td>
-                {t('table_ques3')}
-              </td>
+              <td>{t("table_ques3")}</td>
               <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -528,9 +515,7 @@ function DecitionTable(props) {
               </td>
             </tr>
             <tr>
-              <td>
-                {t('table_ques4')}
-              </td>
+              <td>{t("table_ques4")}</td>
               <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -579,7 +564,7 @@ function DecitionTable(props) {
               </td>
             </tr>
             <tr>
-              <td>{t('table_ques5')}</td>
+              <td>{t("table_ques5")}</td>
               <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -628,7 +613,11 @@ function DecitionTable(props) {
               </td>
             </tr>
             <tr>
-              <td> I trust the information provided by healthcare authorities and experts regarding COVID-19 vaccines</td>
+              <td>
+                {" "}
+                I trust the information provided by healthcare authorities and
+                experts regarding COVID-19 vaccines
+              </td>
               <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -677,7 +666,11 @@ function DecitionTable(props) {
               </td>
             </tr>
             <tr>
-              <td> I am likely to use an online decision-aid tool to learn more about the risks and potential benefits of COVID-19 vaccines</td>
+              <td>
+                {" "}
+                I am likely to use an online decision-aid tool to learn more
+                about the risks and potential benefits of COVID-19 vaccines
+              </td>
               <td colSpan="3">
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -730,7 +723,7 @@ function DecitionTable(props) {
         <Divider></Divider>
         <Form style={{ paddingBottom: 30 }}>
           <div className="checkbox">
-            <label>{t('step1_ques3')}</label>
+            <label>{t("step1_ques3")}</label>
             {AgeOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -749,7 +742,7 @@ function DecitionTable(props) {
             })}
           </div>
           <div className="checkbox">
-            <label>{t('step1_ques4')}</label>
+            <label>{t("step1_ques4")}</label>
             {GenderOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -768,7 +761,7 @@ function DecitionTable(props) {
             })}
           </div>
           <div className="checkbox">
-            <label>{t('step1_ques5')}</label>
+            <label>{t("step1_ques5")}</label>
             {EthnicOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -787,7 +780,7 @@ function DecitionTable(props) {
             })}
           </div>
           <div className="checkbox">
-            <label>{t('step1_ques6')}</label>
+            <label>{t("step1_ques6")}</label>
             {EducationOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -806,7 +799,7 @@ function DecitionTable(props) {
             })}
           </div>
           <div className="checkbox">
-            <label>{t('step1_ques7')}</label>
+            <label>{t("step1_ques7")}</label>
             {OccupationOptions.map((option, index) => {
               return (
                 <Checkbox
@@ -825,79 +818,78 @@ function DecitionTable(props) {
             })}
           </div>
           <div className="checkbox">
-      <label>
-      What are your main sources of information about COVID-19 and vaccines? (Select all that apply) {" "}
-      </label>
-      {SourcesOptions.map((option, index) => {
-        return (
-          <Checkbox
-            key={index}
-            onClick={() => handleCheckboxChange(index)}
-            checked={selectedSources.includes(index)}
-            style={{
-              fontSize: "1rem",
-              display: "block",
-              marginTop: "10px",
-            }}
-            label={option}
-          />
-        );
-      })}
-    </div>
-          
+            <label>
+              What are your main sources of information about COVID-19 and
+              vaccines? (Select all that apply){" "}
+            </label>
+            {SourcesOptions.map((option, index) => {
+              return (
+                <Checkbox
+                  key={index}
+                  onClick={() => handleCheckboxChange(index)}
+                  checked={selectedSources.includes(index)}
+                  style={{
+                    fontSize: "1rem",
+                    display: "block",
+                    marginTop: "10px",
+                  }}
+                  label={option}
+                />
+              );
+            })}
+          </div>
         </Form>
-        {props.elicit?
+        {props.elicit ? (
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <button
-            onClick={() => navigate("/decision-aid_elicit/about")}
-            style={{
-              size: "5rem",
-              marginTop: "1rem",
-              marginBottom: "4rem",
-            }}
-            className="ui large primary button"
-          >
-            {t('prev')}
-          </button>
-          <button
-            onClick={handleSubmit}
-            style={{
-              size: "5rem",
-              marginTop: "1rem",
-              marginBottom: "4rem",
-            }}
-            className="ui large primary button"
-          >
-            {t('next')}
-          </button>
-        </div>
-        :
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <button
-            onClick={() => navigate("/decision-aid/about")}
-            style={{
-              size: "5rem",
-              marginTop: "1rem",
-              marginBottom: "4rem",
-            }}
-            className="ui large primary button"
-          >
-            {t('prev')}
-          </button>
-          <button
-            onClick={handleSubmit}
-            style={{
-              size: "5rem",
-              marginTop: "1rem",
-              marginBottom: "4rem",
-            }}
-            className="ui large primary button"
-          >
-            {t('next')}
-          </button>
-        </div>
-        }
-      
+            <button
+              onClick={() => navigate("/decision-aid_elicit/about")}
+              style={{
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              className="ui large primary button"
+            >
+              {t("prev")}
+            </button>
+            <button
+              onClick={handleSubmit}
+              style={{
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              className="ui large primary button"
+            >
+              {t("next")}
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <button
+              onClick={() => navigate("/decision-aid/about")}
+              style={{
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              className="ui large primary button"
+            >
+              {t("prev")}
+            </button>
+            <button
+              onClick={handleSubmit}
+              style={{
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              className="ui large primary button"
+            >
+              {t("next")}
+            </button>
+          </div>
+        )}
       </div>
       <Modal
         show={show}
@@ -925,12 +917,10 @@ function DecitionTable(props) {
             </svg>
           </div>
         </Modal.Header>
-        <Modal.Body>
-          Please finish the survey before moving on.
-        </Modal.Body>
+        <Modal.Body>Please finish the survey before moving on.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
-            {t('close')}
+            {t("close")}
           </Button>
           {/* {props.elicit?
             <Button
@@ -945,7 +935,6 @@ function DecitionTable(props) {
           >
             {t('continue')}
           </Button>} */}
-         
         </Modal.Footer>
       </Modal>
     </>

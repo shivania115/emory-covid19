@@ -310,7 +310,7 @@ function FinalDecision() {
       progress: undefined,
       theme: "colored",
     });
-    navigate("/decision-aid/step6");
+    navigate("/decision-aid/step1");
   }
 
   function handleChange(index, value) {
@@ -888,6 +888,8 @@ function FinalDecision() {
       </div>
 
       {/* booster */}
+      {/* check checkbox other */}
+      {/* TODO: ticking option 4/5 only sends 4, textarea won't pop up when ticking "other" */}
       <div>
         <Header
           as="h4"
