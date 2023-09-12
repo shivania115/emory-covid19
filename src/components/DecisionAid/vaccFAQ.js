@@ -35,6 +35,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
 import snarkdown from "snarkdown";
+import { useCookie } from "react-use";
 
 i18n
   .use(LanguageDetector)
@@ -56,7 +57,13 @@ function VaccFAQ(props) {
   const [activeIndex, setActiveIndex] = useState([-1]);
   const navigate = useNavigate();
   const [vaccineData, setVaccineData] = useState();
+  const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
   useEffect(() => {
+    let cookie={}
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    setCookie(cookie, { path: "/", expires: tomorrow });
+
     fetch("/data/vaccineData.json")
       .then((res) => res.json())
       .then((x) => setVaccineData(x));

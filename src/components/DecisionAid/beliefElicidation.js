@@ -107,6 +107,7 @@ function DraggableBar(props) {
 
     let cookie = JSON.parse(cookies);
     cookie = { ...cookie, ...belief };
+    console.log(cookie)
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
 
