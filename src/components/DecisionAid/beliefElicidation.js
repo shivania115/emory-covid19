@@ -102,31 +102,14 @@ function DraggableBar(props) {
   const [hospilizationVac, sethospilizationVac] = useState(50);
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
 
-  //ln 106 - 121 dummy cookie
-  useEffect(() => {
-    // Initialize dummy cookie
-    const dummyBelief = {
-      dummyKey: "dummyValue",
-    };
-    parseCookie(dummyBelief);
-  }, []);
-
   function parseCookie(belief) {
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    let cookie = cookies ? JSON.parse(cookies) : {}; // Add a check for existing cookies
+    let cookie = JSON.parse(cookies);
     cookie = { ...cookie, ...belief };
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
-  // function parseCookie(belief) {
-  //   var tomorrow = new Date();
-  //   tomorrow.setDate(tomorrow.getDate() + 1);
-
-  //   let cookie = JSON.parse(cookies);
-  //   cookie = { ...cookie, ...belief };
-  //   setCookie(cookie, { path: "/", expires: tomorrow });
-  // }
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
@@ -145,7 +128,7 @@ function DraggableBar(props) {
     props.sethospilizationVac(hospilizationVac);
     props.setSymptomsCOVID(symptomsCOVID);
     props.setSymptomsVac(symptomsVac);
-    // parseCookie(belief);
+    parseCookie(belief);
     setOpen(false);
   }
   const renderQuestion = () => {

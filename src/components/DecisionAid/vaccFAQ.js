@@ -26,6 +26,7 @@ import React, {
   useContext,
   useMemo,
 } from "react";
+import { useCookie } from "react-use";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { useNavigate } from "react-router-dom";
 import { ProgressBar } from "react-bootstrap";
@@ -56,7 +57,13 @@ function VaccFAQ(props) {
   const [activeIndex, setActiveIndex] = useState([-1]);
   const navigate = useNavigate();
   const [vaccineData, setVaccineData] = useState();
+  const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
+
   useEffect(() => {
+    let cookie = {};
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    setCookie(cookie, { path: "/", expires: tomorrow });
     fetch("/data/vaccineData.json")
       .then((res) => res.json())
       .then((x) => setVaccineData(x));
@@ -72,15 +79,13 @@ function VaccFAQ(props) {
                 as="h2"
                 style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
               >
-                <Header.Content>{t('vaccination')}</Header.Content>
+                <Header.Content>{t("vaccination")}</Header.Content>
 
                 <Grid.Row>
                   <Grid.Column style={{ width: 600, paddingTop: 18 }}>
                     <div style={{ width: 600 }}>
-
                       <Header>
-
-                      <div>
+                        <div>
                           <Header
                             style={{
                               fontSize: "18px",
@@ -89,11 +94,10 @@ function VaccFAQ(props) {
                               width: 975,
                             }}
                           >
-                          <div style={{ whiteSpace: 'pre-line' }}>
-                          {t('percentbar_h3')}
-                          </div>
-                            
-                     
+                            <div style={{ whiteSpace: "pre-line" }}>
+                              {t("percentbar_h3")}
+                            </div>
+
                             <Header.Content
                               style={{
                                 paddingBottom: 5,
@@ -103,7 +107,7 @@ function VaccFAQ(props) {
                                 fontSize: "15px",
                               }}
                             >
-                             {t('percentbar_sub3')}
+                              {t("percentbar_sub3")}
                             </Header.Content>
                           </Header>
                         </div>
@@ -112,14 +116,24 @@ function VaccFAQ(props) {
                         >
                           <ProgressBar
                             style={{ height: 30, width: 600 }}
-                            label={`${(100 - (vaccineData["_nation"]["PercentAdministeredPartial"] + vaccineData["_nation"]["Series_Complete_Pop_Pct"])).toFixed(1)}%`}
-                            variant="success"
-                            now={(
-                              100-
+                            label={`${(
+                              100 -
                               (vaccineData["_nation"][
                                 "PercentAdministeredPartial"
                               ] +
-                              vaccineData["_nation"]["Series_Complete_Pop_Pct"])
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ])
+                            ).toFixed(1)}%`}
+                            variant="success"
+                            now={(
+                              100 -
+                              (vaccineData["_nation"][
+                                "PercentAdministeredPartial"
+                              ] +
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ])
                             ).toFixed(1)}
                           ></ProgressBar>
                         </Header.Content>
@@ -132,7 +146,7 @@ function VaccFAQ(props) {
                               width: 705,
                             }}
                           >
-                            {t('percentbar_h1')}
+                            {t("percentbar_h1")}
                             <br />
                             <Header.Content
                               style={{
@@ -143,7 +157,7 @@ function VaccFAQ(props) {
                                 fontSize: "15px",
                               }}
                             >
-                             {t('percentbar_sub1')}
+                              {t("percentbar_sub1")}
                             </Header.Content>
                           </Header>
                         </div>
@@ -183,7 +197,7 @@ function VaccFAQ(props) {
                               width: 975,
                             }}
                           >
-                            {t('percentbar_h2')}
+                            {t("percentbar_h2")}
                             <br />
                             <Header.Content
                               style={{
@@ -194,7 +208,7 @@ function VaccFAQ(props) {
                                 fontSize: "15px",
                               }}
                             >
-                              {t('percentbar_sub2')}
+                              {t("percentbar_sub2")}
                             </Header.Content>
                           </Header>
                         </div>
@@ -212,8 +226,6 @@ function VaccFAQ(props) {
                             ].toFixed(1)}
                           ></ProgressBar>
                         </Header.Content>
-
-                       
                       </Header>
                     </div>
                   </Grid.Column>
@@ -323,7 +335,7 @@ function VaccFAQ(props) {
                     color: "black",
                   }}
                 >
-                  {t('step2_left1')}
+                  {t("step2_left1")}
                 </HeaderSubHeader>
                 <HeaderSubHeader
                   style={{
@@ -334,7 +346,7 @@ function VaccFAQ(props) {
                     color: "black",
                   }}
                 >
-                {t('step2_left2')}
+                  {t("step2_left2")}
                 </HeaderSubHeader>
                 <HeaderSubHeader
                   style={{
@@ -345,7 +357,7 @@ function VaccFAQ(props) {
                     color: "black",
                   }}
                 >
-                 {t('step2_left3')}
+                  {t("step2_left3")}
                 </HeaderSubHeader>
               </Header>
               <ul>
@@ -600,19 +612,17 @@ function VaccFAQ(props) {
                   }
                 >
                   <Icon name="dropdown" />
-                  {t('step2_23q')}
+                  {t("step2_23q")}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
                   active={activeIndex.indexOf(10) > 0}
                 >
-                  <p style={{ marginBottom: 0 }}>
-                    {t('step2_23')}
-                  </p>
+                  <p style={{ marginBottom: 0 }}>{t("step2_23")}</p>
                   <p
-                   dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_24")),
-                        }}
+                    dangerouslySetInnerHTML={{
+                      __html: snarkdown(t("step2_24")),
+                    }}
                     style={{
                       paddingTop: "1rem",
                       paddingLeft: "0rem",
@@ -622,13 +632,11 @@ function VaccFAQ(props) {
                       fontSize: "14pt",
                       textAlign: "justify",
                     }}
-                  >
-               
-                  </p>
+                  ></p>
                   <p
-                   dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_25")),
-                        }}
+                    dangerouslySetInnerHTML={{
+                      __html: snarkdown(t("step2_25")),
+                    }}
                     style={{
                       paddingTop: "1rem",
                       paddingLeft: "0rem",
@@ -638,10 +646,7 @@ function VaccFAQ(props) {
                       fontSize: "14pt",
                       textAlign: "justify",
                     }}
-                  >
-               
-                  </p>
-
+                  ></p>
                 </Accordion.Content>
                 <Accordion.Title
                   style={{
@@ -660,7 +665,7 @@ function VaccFAQ(props) {
                   }
                 >
                   <Icon name="dropdown" />
-                 {t('step2_26q')}
+                  {t("step2_26q")}
                 </Accordion.Title>
                 <Accordion.Content
                   style={{ fontSize: "14pt" }}
@@ -672,16 +677,16 @@ function VaccFAQ(props) {
                         }}>
                 
                   </p> */}
-                  <p  dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_27")),
-                        }}>
-               
-                  </p>
-                  <p  dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_28")),
-                        }}>
-          
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: snarkdown(t("step2_27")),
+                    }}
+                  ></p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: snarkdown(t("step2_28")),
+                    }}
+                  ></p>
                 </Accordion.Content>
                 <Accordion.Title
                   style={{ fontSize: "15pt", color: "black" }}
@@ -731,68 +736,69 @@ function VaccFAQ(props) {
                   </Grid.Column>
               </Grid.Row> */}
         </Grid>
-        {props.elicit?
-        <div>
-          <button
-          onClick={() => {
-            navigate("/decision-aid_elicit/step1");
-          }}
-          style={{
-            float: "left",
-            size: "5rem",
-            marginTop: "1rem",
-            marginBottom: "4rem",
-          }}
-          class="ui large primary button"
-        >
-          {t("prev")}
-        </button>
-        <button
-          onClick={() => {
-            navigate("/decision-aid_elicit/step3");
-          }}
-          style={{
-            float: "right",
-            size: "5rem",
-            marginTop: "1rem",
-            marginBottom: "4rem",
-          }}
-          class="ui large primary button"
-        >
-          {t("next")}
-        </button>
-        </div>
-        : 
-        <div>
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step1");
-          }}
-          style={{
-            float: "left",
-            size: "5rem",
-            marginTop: "1rem",
-            marginBottom: "4rem",
-          }}
-          class="ui large primary button"
-        >
-          {t("prev")}
-        </button>
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step3");
-          }}
-          style={{
-            float: "right",
-            size: "5rem",
-            marginTop: "1rem",
-            marginBottom: "4rem",
-          }}
-          class="ui large primary button"
-        >
-          {t("next")}
-        </button></div>}
-        
+        {props.elicit ? (
+          <div>
+            <button
+              onClick={() => {
+                navigate("/decision-aid_elicit/step1");
+              }}
+              style={{
+                float: "left",
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              class="ui large primary button"
+            >
+              {t("prev")}
+            </button>
+            <button
+              onClick={() => {
+                navigate("/decision-aid_elicit/step3");
+              }}
+              style={{
+                float: "right",
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              class="ui large primary button"
+            >
+              {t("next")}
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => {
+                navigate("/decision-aid/step1");
+              }}
+              style={{
+                float: "left",
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              class="ui large primary button"
+            >
+              {t("prev")}
+            </button>
+            <button
+              onClick={() => {
+                navigate("/decision-aid/step3");
+              }}
+              style={{
+                float: "right",
+                size: "5rem",
+                marginTop: "1rem",
+                marginBottom: "4rem",
+              }}
+              class="ui large primary button"
+            >
+              {t("next")}
+            </button>
+          </div>
+        )}
       </div>
     );
   } else {
