@@ -29,6 +29,7 @@ import {
   Transition,
   List,
 } from "semantic-ui-react";
+import {ProgressBar} from 'react-bootstrap';
 import AppBar from "./AppBar";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { geoCentroid } from "d3-geo";
@@ -700,6 +701,13 @@ function ChartSection(props) {
         data[671].t,
         data[699].t,
         data[730].t,
+        data[760].t,
+        data[791].t,
+        data[821].t,
+        data[852].t,
+        data[883].t,
+        data[913].t,
+        data[944].t,
         data[data.length - 1].t,
       ]);
     } else if (chartNo1 === 0 || chartNo2 === 2) {
@@ -729,6 +737,13 @@ function ChartSection(props) {
         data[671].t,
         data[699].t,
         data[730].t,
+        data[760].t,
+        data[791].t,
+        data[821].t,
+        data[852].t,
+        data[883].t,
+        data[913].t,
+        data[944].t,
         data[data.length - 1].t,
       ]);
       setHeaderTime("");
@@ -2914,7 +2929,7 @@ const RaceBarChart = (props) => {
         barRatio,
       NHPI: props.demogData["race"][0]["NHPI"][0]["percentPop"] * barRatio,
       multiOther:
-        props.demogData["vaccineRace"][0]["Multiracial"][0]["percentPop"] *
+        props.demogData["vaccineRace"][0]["Multiple/Other"][0]["percentPop"] *
         barRatio,
     },
     {
@@ -2983,11 +2998,11 @@ const RaceBarChart = (props) => {
         props.fips == "_nation"
           ? props.demogData["race"][0]["Multiple/Other"][0]["percentCases"] *
             barRatio
-          : props.VaccineData[props.fips][0]["Multiracial"][0][
+          : props.VaccineData[props.fips][0]["Multiple/Other"][0][
               "percentVaccinated"
             ] === -9999
           ? 0
-          : props.VaccineData[props.fips][0]["Multiracial"][0][
+          : props.VaccineData[props.fips][0]["Multiple/Other"][0][
               "percentVaccinated"
             ] * barRatio,
     },
@@ -3007,7 +3022,6 @@ const RaceBarChart = (props) => {
 
       return (
         <div
-          className="tooltip"
           style={{
             background: "white",
             border: "2px",
@@ -3287,7 +3301,7 @@ const RaceBarChart = (props) => {
       ></Bar>
 
       <Bar
-        name="Multiracial"
+        name="Multiple/Other"
         id="multiOther"
         barSize={barSize}
         dataKey="multiOther"
@@ -3295,7 +3309,7 @@ const RaceBarChart = (props) => {
         fill={pieChartRace[6]}
         isAnimationActive={false}
         onMouseEnter={() => {
-          setHoverBar([6, "multiOther", "Multiracial"]);
+          setHoverBar([6, "multiOther", "Multiple/Other"]);
           setActiveIndex(6);
         }}
         onMouseLeave={() => setActiveIndex(-1)}
@@ -3385,7 +3399,7 @@ const SideRaceBarChart = (props) => {
       vaxvalue:
         props.vacc === false
           ? props.demogData["race"][0]["Multiple/Other"][0]["percentCases"]
-          : props.demogData["vaccineRace"][0]["Multiracial"][0][
+          : props.demogData["vaccineRace"][0]["Multiple/Other"][0][
               "seriesCompletePopPctKnown"
             ],
     },
@@ -3455,7 +3469,7 @@ const SideRaceBarChart = (props) => {
     if (active && payload && payload.length) {
       return (
         <div
-          className="tooltip"
+         
           style={{
             background: "white",
             border: "2px",
@@ -4003,8 +4017,8 @@ export default function NationalReportPilot(props) {
             x["vaccineRace"][0]["NHPI"][0]["percentPop"]) +
           (x["vaccineRace"][0]["Unknown"][0]["seriesCompletePopPctKnown"] >=
             x["vaccineRace"][0]["Unknown"][0]["percentPop"]) +
-          (x["vaccineRace"][0]["Multiracial"][0]["seriesCompletePopPctKnown"] >=
-            x["vaccineRace"][0]["Multiracial"][0]["percentPop"]);
+          (x["vaccineRace"][0]["Multiple/Other"][0]["seriesCompletePopPctKnown"] >=
+            x["vaccineRace"][0]["Multiple/Other"][0]["percentPop"]);
 
         setPctVacPopDisp(count);
 
@@ -4053,8 +4067,8 @@ export default function NationalReportPilot(props) {
           listW.push("Unknown");
         }
         if (
-          x["vaccineRace"][0]["Multiracial"][0]["seriesCompletePopPctKnown"] >=
-          x["vaccineRace"][0]["Multiracial"][0]["percentPop"]
+          x["vaccineRace"][0]["Multiple/Other"][0]["seriesCompletePopPctKnown"] >=
+          x["vaccineRace"][0]["Multiple/Other"][0]["percentPop"]
         ) {
           listW.push("Americans of Multiple races");
         }
@@ -4548,6 +4562,8 @@ export default function NationalReportPilot(props) {
         dataTS["_nation"][183].t,
         dataTS["_nation"][214].t,
         dataTS["_nation"][244].t,
+        dataTS['_nation'][274].t,
+        dataTS['_nation'][305].t,
         // heeeredataTS["_nation"]
         dataTS["_nation"][dataTS["_nation"].length - 1].t,
       ]);
@@ -4567,14 +4583,14 @@ export default function NationalReportPilot(props) {
   };
 
   if (data && dataTS && varMap) {
-    console.log(barData);
+    console.log(vaccineData);
     return (
       <HEProvider>
         <div>
           <AppBar menu="nationalReport" />
           <Container
             id="title"
-            style={{ marginTop: "8em", minWidth: "1260px" }}
+            style={{ marginTop: "8em", minWidth: "1260px"}}
           >
             <div>
               <br />
@@ -4799,9 +4815,11 @@ export default function NationalReportPilot(props) {
                                 color: "#000000",
                               }}
                             >
-                              {numberWithCommas(
-                                vaccineData["_nation"]["Doses_Distributed"]
-                              )}
+                             {vaccineData["_nation"]["Doses_Distributed"]!==-9999
+                                ? numberWithCommas(
+                                    vaccineData["_nation"]["Doses_Distributed"]
+                                  )
+                                : "Not Reported"}
                             </p>
                             <br />
                           </Header.Content>
@@ -4831,9 +4849,11 @@ export default function NationalReportPilot(props) {
                                 color: "#000000",
                               }}
                             >
-                              {numberWithCommas(
-                                vaccineData["_nation"]["Doses_Administered"]
-                              )}
+                                {vaccineData["_nation"]["Doses_Administered"]!==-9999
+                                ? numberWithCommas(
+                                    vaccineData["_nation"]["Doses_Administered"]
+                                  )
+                                : "Not Reported"}
                             </p>
                             <br />
                           </Header.Content>
@@ -4917,7 +4937,7 @@ export default function NationalReportPilot(props) {
                                 fontSize: "22px",
                                 fontFamily: "lato",
                                 color: "#004071",
-                                width: 900,
+                                width: 975,
                               }}
                             >
                               Percent of the U.S. population partially
@@ -4940,15 +4960,29 @@ export default function NationalReportPilot(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 900 }}
-                              percent={vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ].toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+             
+                               <ProgressBar
+                style={{ height:30,width: 970 ,marginBottom:30}}
+                label={`${
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }%`}
+                variant="success" 
+                now={
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }
+                ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -4957,7 +4991,7 @@ export default function NationalReportPilot(props) {
                                 fontSize: "22px",
                                 fontFamily: "lato",
                                 color: "#004071",
-                                width: 900,
+                                width: 975,
                               }}
                             >
                               Percent of the U.S. population fully vaccinated
@@ -4979,15 +5013,16 @@ export default function NationalReportPilot(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 900 }}
-                              percent={vaccineData["_nation"][
+                           <ProgressBar
+                style={{ height:30,width: 970 ,marginBottom:30}}
+                label={`${vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}%`}
+                variant="success" 
+                now={vaccineData["_nation"][
                                 "Series_Complete_Pop_Pct"
                               ].toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
                           </Header.Content>
 
                           <div>
@@ -4996,7 +5031,7 @@ export default function NationalReportPilot(props) {
                                 fontSize: "22px",
                                 fontFamily: "lato",
                                 color: "#004071",
-                                width: 900,
+                                width: 975,
                               }}
                             >
                               Percent of the U.S. population that received at
@@ -5019,9 +5054,18 @@ export default function NationalReportPilot(props) {
                           <Header.Content
                             style={{ paddingBottom: 0, paddingTop: 0 }}
                           >
-                            <Progress
-                              style={{ width: 900 }}
-                              percent={(
+                           <ProgressBar
+                style={{ height:30,width: 970,marginBottom:30 }}
+                label={`${(
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ]
+                              ).toFixed(1)}%`}
+                variant="success" 
+                now={(
                                 vaccineData["_nation"][
                                   "PercentAdministeredPartial"
                                 ] +
@@ -5029,10 +5073,8 @@ export default function NationalReportPilot(props) {
                                   "Series_Complete_Pop_Pct"
                                 ]
                               ).toFixed(1)}
-                              size="large"
-                              color="green"
-                              progress
-                            />
+                ></ProgressBar>
+                          
                           </Header.Content>
                         </Header>
                       </div>
@@ -5403,25 +5445,25 @@ export default function NationalReportPilot(props) {
                               )}
 
                               {nationalDemog["vaccineRace"][0][
-                                "Multiracial"
+                                "Multiple/Other"
                               ][0]["seriesCompletePopPctKnown"] <
                                 nationalDemog["vaccineRace"][0][
-                                  "Multiracial"
+                                  "Multiple/Other"
                                 ][0]["percentPop"] && (
                                 <li>
                                   {nationalDemog["vaccineRace"][0][
-                                    "Multiracial"
+                                    "Multiple/Other"
                                   ][0]["seriesCompletePopPctKnown"] <
                                   nationalDemog["vaccineRace"][0][
-                                    "Multiracial"
+                                    "Multiple/Other"
                                   ][0]["percentPop"]
                                     ? " Native Americans make up " +
                                       nationalDemog["vaccineRace"][0][
-                                        "Multiracial"
+                                        "Multiple/Other"
                                       ][0]["percentPop"].toFixed(0) +
                                       "% of the population, but only " +
                                       nationalDemog["vaccineRace"][0][
-                                        "Multiracial"
+                                        "Multiple/Other"
                                       ][0]["seriesCompletePopPctKnown"].toFixed(
                                         0
                                       ) +

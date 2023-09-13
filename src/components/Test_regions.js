@@ -94,7 +94,7 @@ export default function Test_region(props) {
         let scaleMap = {};
         _.each(x, (d) => {
           if (d[metric] >= 0) {
-            console.log(d);
+            // console.log(d);
             scaleMap[d["region"]] = cs(d[metric]);
           }
         });
@@ -104,8 +104,8 @@ export default function Test_region(props) {
       });
   }, []);
   if (data) {
-    console.log(data);
-    console.log(regions);
+    // console.log(data);
+    // console.log(regions);
     return (
       <div>
       <Container style={{marginTop: '1.5em', minWidth: '300px'}}>

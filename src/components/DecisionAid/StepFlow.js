@@ -38,44 +38,42 @@ export default function StepFlow() {
         }}
       >
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
-        <a href="/decision-aid/about">
-          <div
-            className="icon"
-            style={{
-              borderRadius: "50%",
-              border: "1px solid black",
-              padding: "15px",
-              marginLeft: "40px",
-              marginRight: "40px",
-              flex: "0, 0",
-            }}
-          >
-            <Information />
-          </div>
+          <a href="/decision-aid/about">
+            <div
+              className="icon"
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                padding: "15px",
+                marginLeft: "40px",
+                marginRight: "40px",
+                flex: "0, 0",
+              }}
+            >
+              <Information />
+            </div>
           </a>
-          <div style={{ textAlign: "center", marginTop: "10px" }}
-          >
+          <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>Start:</b>
             <p>About this decision aid</p>
           </div>
-        
         </li>
 
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
-        <a href="/decision-aid/step1">
-          <div
-            className="icon"
-            style={{
-              borderRadius: "50%",
-              border: "1px solid black",
-              padding: "15px",
-              marginLeft: "40px",
-              marginRight: "40px",
-              flex: "0, 0",
-            }}
-          >
-            <Covid />
-          </div>
+          <a href="/decision-aid/step1">
+            <div
+              className="icon"
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                padding: "15px",
+                marginLeft: "40px",
+                marginRight: "40px",
+                flex: "0, 0",
+              }}
+            >
+              <Covid />
+            </div>
           </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 1:</b>
@@ -83,20 +81,20 @@ export default function StepFlow() {
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
-        <a  href="/decision-aid/step2">
-          <div
-            className="icon"
-            style={{
-              borderRadius: "50%",
-              border: "1px solid black",
-              padding: "15px",
-              marginLeft: "40px",
-              marginRight: "40px",
-              flex: "0, 0",
-            }}
-          >
-            <Medicine />
-          </div>
+          <a href="/decision-aid/step2">
+            <div
+              className="icon"
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                padding: "15px",
+                marginLeft: "40px",
+                marginRight: "40px",
+                flex: "0, 0",
+              }}
+            >
+              <Medicine />
+            </div>
           </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 2:</b>
@@ -104,21 +102,20 @@ export default function StepFlow() {
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
-        <a  href="/decision-aid/step3">
-
-          <div
-            className="icon"
-            style={{
-              borderRadius: "50%",
-              border: "1px solid black",
-              padding: "15px",
-              marginLeft: "40px",
-              marginRight: "40px",
-              flex: "0, 0",
-            }}
-          >
-            <Children />
-          </div>
+          <a href="/decision-aid/step3">
+            <div
+              className="icon"
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                padding: "15px",
+                marginLeft: "40px",
+                marginRight: "40px",
+                flex: "0, 0",
+              }}
+            >
+              <Children />
+            </div>
           </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 3:</b>
@@ -126,20 +123,20 @@ export default function StepFlow() {
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
-        <a  href="/decision-aid/step4">
-          <div
-            className="icon"
-            style={{
-              borderRadius: "50%",
-              border: "1px solid black",
-              padding: "15px",
-              marginLeft: "40px",
-              marginRight: "40px",
-              flex: "0, 0",
-            }}
-          >
-            <Family />
-          </div>
+          <a href="/decision-aid/step4">
+            <div
+              className="icon"
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                padding: "15px",
+                marginLeft: "40px",
+                marginRight: "40px",
+                flex: "0, 0",
+              }}
+            >
+              <Family />
+            </div>
           </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 4:</b>
@@ -147,20 +144,20 @@ export default function StepFlow() {
           </div>
         </li>
         <li style={{ maginLeft: "20px", marginRight: "20px" }}>
-        <a  href="/decision-aid/step5">
-          <div
-            className="icon"
-            style={{
-              borderRadius: "50%",
-              border: "1px solid black",
-              padding: "15px",
-              marginLeft: "40px",
-              marginRight: "40px",
-              flex: "0, 0",
-            }}
-          >
-            <Decision />
-          </div>
+          <a href="/decision-aid/step5">
+            <div
+              className="icon"
+              style={{
+                borderRadius: "50%",
+                border: "1px solid black",
+                padding: "15px",
+                marginLeft: "40px",
+                marginRight: "40px",
+                flex: "0, 0",
+              }}
+            >
+              <Decision />
+            </div>
           </a>
           <div style={{ textAlign: "center", marginTop: "10px" }}>
             <b>STEP 5:</b>
@@ -168,7 +165,6 @@ export default function StepFlow() {
           </div>
         </li>
       </ul>
-    
     </div>
   );
 }

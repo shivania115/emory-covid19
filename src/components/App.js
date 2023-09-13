@@ -31,6 +31,7 @@ import OtherTools from "./OtherTools";
 import DecisionAid from "./DecisionAid.js";
 import DecisionAid_elicit from "./DecisionAid_elicit.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Construction from "./Construction";
 import ExcessDeath from "./ExcessDeath";
 import {
   BrowserRouter as Router,
@@ -38,6 +39,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import LandingPage from "./DecisionAid/landingPage";
 
 App.propTypes = {};
 export default function App() {
@@ -88,13 +90,21 @@ function AppUI() {
             element={<USVaccineTrackerPilot />}
           ></Route>
           <Route path="/US-Map-Pilot-12312" element={<USMapPilot />}></Route>
-          
+
           <Route path="/Vaccine-Tracker" element={<USVaccineTracker />}></Route>
           <Route path="/vaccine-map" element={<VaccineMap />}></Route>
           <Route path="/map-state" element={<MapYourState />}></Route>
 
           <Route path="/decision-aid/:step" element={<DecisionAid />}></Route>
-          <Route path="/decision-aid_elicit/:step" element={<DecisionAid_elicit />}></Route>
+          <Route
+            path="/decision-aid_elicit/:step"
+            element={<DecisionAid_elicit />}
+          ></Route>
+          {/* pilot page */}
+          {/* <Route
+            path="/decision-aid_pilot"
+            element={<DecisionAid_pilot />}
+          ></Route> */}
           <Route path="/ExcessDeath" element={<ExcessDeath />}></Route>
           <Route path="/media-hub/blog/:blogTitle" element={<Blog />}></Route>
           <Route
@@ -104,6 +114,7 @@ function AppUI() {
           <Route path="/media-hub" element={<MediaHub />}></Route>
           <Route path="/about-team" element={<AboutUs />}></Route>
           <Route path="/privacy" element={<Privacy />}></Route>
+          <Route path="/Construction" element={<Construction />}></Route>
           <Route path="/data-sources" element={<DataSources />}></Route>
 
           <Route
@@ -111,8 +122,9 @@ function AppUI() {
             element={<CountyReport />}
           ></Route>
           <Route path="/:stateFips" element={<StateMap />}></Route>
-          <Route path="/" element={<USMap />}></Route>
-          <Route path="*" element={<Navigate to="/" />}></Route>
+          {/* <Route path="/" element={<USMap />}></Route> */}
+          <Route path="/" element={<Navigate to="/Construction" />}></Route>
+          <Route path="US-Map" element={<USMap />}></Route>
         </Routes>
       </Router>
     </HEProvider>
