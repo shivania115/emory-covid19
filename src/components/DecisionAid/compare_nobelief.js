@@ -137,7 +137,11 @@ function CompareNoElicit(props) {
                   />
                 </sup>
               </Header.Content>
-              <HeaderSubHeader>{t("step3_number")}</HeaderSubHeader>
+              <HeaderSubHeader>
+                {
+                  "Number of people hospitalized with Covid-19 in the United States since March 2020"
+                }
+              </HeaderSubHeader>
             </Header>
           </GridColumn>
           <GridColumn width={3}>
@@ -1073,7 +1077,6 @@ function CompareNoElicit(props) {
             id="race"
             style={{
               paddingTop: 0,
-              paddingBottom: 15,
             }}
             defaultActiveIndex={1}
             panels={[
@@ -1081,39 +1084,44 @@ function CompareNoElicit(props) {
                 key: "acquire-dog",
                 title: {
                   content: (
-                    <u
-                      style={{
-                        fontFamily: "lato",
-                        fontSize: "1.5rem",
-                      }}
-                    >
-                      {t("aboutVaccine")}
-                    </u>
+                    <>
+                      <u
+                        style={{
+                          fontFamily: "lato",
+                          fontSize: "1.5rem",
+                        }}
+                      >
+                        {t("aboutVaccine")}
+                      </u>
+                      <br />
+                      Click to read more about the vaccine
+                    </>
                   ),
                   icon: "dropdown",
                 },
                 content: {
                   content: (
-                    <ul>
-                      <li>
-                       {t('step3_pfizer')}
-                      </li>
-                      <li>
-                        {t('step3_moderna')}
-                      </li>
+                    <ul style={{ textAlign: "left" }}>
+                      <li>{t("step3_pfizer")}</li>
+                      <pre />
+                      <li>{t("step3_moderna")}</li>
                     </ul>
                   ),
                 },
               },
             ]}
           />
+          {/* <Header as="h4" style={{ fontWeight: 400 }}>
+            <Header.Content>
+              "Click to read more about the vaccine"
+            </Header.Content>
+          </Header> */}
+          <pre></pre>
           <FontAwesomeIcon
             icon={faExclamationTriangle}
             style={{ color: "red" }}
           />
-          <em>
-            {t('step3_warning')}
-          </em>
+          <em>{t("step3_warning")}</em>
           <div class="ui attached tabular menu">
             <Panes></Panes>
           </div>
