@@ -1,144 +1,138 @@
 import {
-    Container,
-    Breadcrumb,
-    Dropdown,
-    Header,
-    Grid,
-    Progress,
-    Loader,
-    Divider,
-    Popup,
-    Table,
-    Button,
-    Image,
-    Rail,
-    Sticky,
-    Ref,
-    Segment,
-    Icon,
-    Menu,
-    Message,
-    Transition,
-    List,
-  } from "semantic-ui-react";
-  import React, {
-    useEffect,
-    useState,
-    useRef,
-    createRef,
-    PureComponent,
-  } from "react";
-  import { Link, useNavigate} from 'react-router-dom';
+  Container,
+  Breadcrumb,
+  Dropdown,
+  Header,
+  Grid,
+  Progress,
+  Loader,
+  Divider,
+  Popup,
+  Table,
+  Button,
+  Image,
+  Rail,
+  Sticky,
+  Ref,
+  Segment,
+  Icon,
+  Menu,
+  Message,
+  Transition,
+  List,
+} from "semantic-ui-react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  createRef,
+  PureComponent,
+} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck ,faClock,faQuestionCircle,faUserCircle,faArrowAltCircleLeft,faArrowAltCircleDown} from '@fortawesome/free-regular-svg-icons'
-import { faExclamationCircle,faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  faCircleCheck,
+  faClock,
+  faQuestionCircle,
+  faUserCircle,
+  faArrowAltCircleLeft,
+  faArrowAltCircleDown,
+} from "@fortawesome/free-regular-svg-icons";
+import {
+  faExclamationCircle,
+  faTimesCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import i18n from "i18next";
-import { initReactI18next,useTranslation } from "react-i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
- 
-i18n
- .use(LanguageDetector)
- .use(initReactI18next)
- .init({
-  fallbackLng: 'en',
-   resources: {
-     en: {
-       translation: TRANSLATIONS_EN
-     },
-     span: {
-       translation: TRANSLATIONS_SPAN
-     }
-   }
- });
 
-function PersonalRisk(props){
-    const navigate = useNavigate();
-    const { t } = useTranslation();
-    return(
-        <div>
-            <Grid>
-            <Grid.Row>
-            <Grid.Column width={3}></Grid.Column>
-            <Grid.Column width={3}> <FontAwesomeIcon icon={faUserCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
-            }}/></Grid.Column>
-             <Grid.Column width={10}>
-             <Header
-                            as="h2"
-                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
-                        >
-                         <Header.Content>
-                         <a target='_blank' href='https://www.mdcalc.com/calc/10348/covid-risk'>{t('step4_1header')} <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{fontSize:"2rem",marginTop:"3%",color:  "#024174", }}/></a>
-                            </Header.Content>
-                        </Header>
-            
-            </Grid.Column>
-            </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={3}></Grid.Column>
-                    <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faExclamationCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
-            }}/>
-                    </Grid.Column>
-                    <Grid.Column width={10}>
-                    <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon/>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Header
-                            as="h2"
-                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
-                        >
-                            <Header.Content>
-                           {t('step4_2header')}
-                            </Header.Content>
-                            </Header>
-        </AccordionSummary>
-        <AccordionDetails>
-        <ul style={{ paddingBottom: "0rem",
-                                lineHeight: "20pt",
-                                fontSize: "1rem",
-                                color: "black",}}>
-                                <li>
-                               {t('step4_11')}
-                                </li>
-                                <li>
-                                {t('step4_12')}
-                                </li>
-                                <li>
-                                {t('step4_13')}
-                                </li>
-                                <li>
-                                {t('step4_14')}
-                                </li>
-                                <li>
-                                {t('step4_15')}
-                                </li>
-                                <li>
-                                {t('step4_16')}
-                                </li>
-                                <li>
-                               {t('step4_17')}
-                                </li>
-                                <li>
-                                {t('step4_18')}
-                                </li>
-                                <li>
-                                {t('step4_19')}
-                                </li>
-                               </ul>
-        </AccordionDetails>
-      </Accordion>
-                    {/* <Header
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en",
+    resources: {
+      en: {
+        translation: TRANSLATIONS_EN,
+      },
+      span: {
+        translation: TRANSLATIONS_SPAN,
+      },
+    },
+  });
+
+function PersonalRisk(props) {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  return (
+    <div>
+      <Grid>
+        <Grid item xs={12}>
+          <Header as="h2" style={{ paddingTop: 25, fontWeight: 800 }}>
+            <Header.Content>
+              Click on the drop down menus and links below to learn more about
+              personal risks related to Covid-19.
+            </Header.Content>
+          </Header>
+          <pre></pre>
+        </Grid>
+
+        <Grid.Row>
+          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={3}>
+            <FontAwesomeIcon
+              icon={faExclamationCircle}
+              style={{ fontSize: "7rem", marginTop: "10%", color: "#024174" }}
+            />
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Header
+                  as="h2"
+                  style={{
+                    paddingTop: 30,
+                    fontWeight: 1000,
+                    fontSize: "1.7rem",
+                  }}
+                >
+                  <Header.Content>{t("step4_2header")}</Header.Content>
+                </Header>
+              </AccordionSummary>
+              <AccordionDetails>
+                <ul
+                  style={{
+                    paddingBottom: "0rem",
+                    lineHeight: "20pt",
+                    fontSize: "1rem",
+                    color: "black",
+                  }}
+                >
+                  <li>{t("step4_11")}</li>
+                  <li>{t("step4_12")}</li>
+                  <li>{t("step4_13")}</li>
+                  <li>{t("step4_14")}</li>
+                  <li>{t("step4_15")}</li>
+                  <li>{t("step4_16")}</li>
+                  <li>{t("step4_17")}</li>
+                  <li>{t("step4_18")}</li>
+                  <li>{t("step4_19")}</li>
+                </ul>
+              </AccordionDetails>
+            </Accordion>
+            {/* <Header
                             as="h2"
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
                         >
@@ -183,57 +177,53 @@ function PersonalRisk(props){
                                </ul>
                             </HeaderSubHeader>
                         </Header> */}
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={3}></Grid.Column>
-                    <Grid.Column width={3}>
-                    <FontAwesomeIcon icon={faTimesCircle} style={{fontSize:"7rem",marginTop:"10%",color:  "#024174", 
-            }}/>
-                    </Grid.Column>
-                    <Grid.Column width={10}>
-                    <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon/>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Header
-                            as="h2"
-                            style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
-                        >
-                            <Header.Content>
-                            {t('step4_3header')}
-                            </Header.Content>
-                            </Header>
-        </AccordionSummary>
-        <AccordionDetails>
-        <ul style={{ paddingBottom: "0rem",
-                                lineHeight: "20pt",
-                                fontSize: "1rem",
-                                color: "black",}}>
-                                <li>
-                                {t('step4_31')}
-                                </li>
-                                <li>
-                                {t('step4_32')}
-                                </li>
-                                <li>
-                                {t('step4_33')}
-                                </li>
-                              <li>
-                              {t('step4_34')}
-                              </li>
-                              <li>
-                             {t('step4_35')}
-                              </li>
-                              <li>
-                              {t('step4_36')}
-                              </li>
-                               </ul>
-        </AccordionDetails>
-      </Accordion>
-                    {/* <Header
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={3}>
+            <FontAwesomeIcon
+              icon={faTimesCircle}
+              style={{ fontSize: "7rem", marginTop: "10%", color: "#024174" }}
+            />
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Header
+                  as="h2"
+                  style={{
+                    paddingTop: 30,
+                    fontWeight: 1000,
+                    fontSize: "1.7rem",
+                  }}
+                >
+                  <Header.Content>{t("step4_3header")}</Header.Content>
+                </Header>
+              </AccordionSummary>
+              <AccordionDetails>
+                <ul
+                  style={{
+                    paddingBottom: "0rem",
+                    lineHeight: "20pt",
+                    fontSize: "1rem",
+                    color: "black",
+                  }}
+                >
+                  <li>{t("step4_31")}</li>
+                  <li>{t("step4_32")}</li>
+                  <li>{t("step4_33")}</li>
+                  <li>{t("step4_34")}</li>
+                  <li>{t("step4_35")}</li>
+                  <li>{t("step4_36")}</li>
+                </ul>
+              </AccordionDetails>
+            </Accordion>
+            {/* <Header
                             as="h2"
                             style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
                         >
@@ -268,9 +258,52 @@ function PersonalRisk(props){
                                </ul>
                             </HeaderSubHeader>
                         </Header> */}
-                    </Grid.Column>
-                </Grid.Row>
-                {/* <Grid.Row>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={16} textAlign="center">
+            <Header>
+              <Header.Content>
+                This link will open in a new window. Once you are done reading,
+                you can return to this page.
+              </Header.Content>
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={3}>
+            {" "}
+            <FontAwesomeIcon
+              icon={faUserCircle}
+              style={{ fontSize: "7rem", marginTop: "10%", color: "#024174" }}
+            />
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <Header
+              as="h2"
+              style={{ paddingTop: 30, fontWeight: 1000, fontSize: "1.7rem" }}
+            >
+              <Header.Content>
+                <a
+                  target="_blank"
+                  href="https://www.mdcalc.com/calc/10348/covid-risk"
+                >
+                  {t("step4_1header")}{" "}
+                  <FontAwesomeIcon
+                    icon={faArrowAltCircleLeft}
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "3%",
+                      color: "#024174",
+                    }}
+                  />
+                </a>
+              </Header.Content>
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+        {/* <Grid.Row>
                     <Grid.Column width={3}></Grid.Column>
                     <Grid.Column width={3}>
                     <FontAwesomeIcon icon={faClock} style={{fontSize:"10rem",marginTop:"10%",color:  "#024174", 
@@ -306,48 +339,71 @@ function PersonalRisk(props){
                         </Header>
                     </Grid.Column>
                 </Grid.Row> */}
-            </Grid>
-            {props.elicit?
-              <div style= {{paddingTop: 30}}>
-
-    
-<button
-  onClick={()=> {navigate("/decision-aid_elicit/step3")}}
-  style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
-  class="ui large primary button"
->
-  {t('prev')}
-</button>
-<button
-  onClick={()=> {navigate("/decision-aid_elicit/step5")}}
-  style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
-  class="ui large primary button"
->
-  {t('next')}
-</button>
-</div>
-           :
-           <div style= {{paddingTop: 30}}>
-
-    
-<button
-  onClick={()=> {navigate("/decision-aid/step3")}}
-  style={{ float: "left", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
-  class="ui large primary button"
->
-  {t('prev')}
-</button>
-<button
-  onClick={()=> {navigate("/decision-aid/step5")}}
-  style={{ float: "right", size:"5rem",marginTop: "1rem", marginBottom: "4rem" }}
-  class="ui large primary button"
->
-  {t('next')}
-</button>
-</div>
-      }
+      </Grid>
+      {props.elicit ? (
+        <div style={{ paddingTop: 30 }}>
+          <button
+            onClick={() => {
+              navigate("/decision-aid_elicit/step3");
+            }}
+            style={{
+              float: "left",
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            {t("prev")}
+          </button>
+          <button
+            onClick={() => {
+              navigate("/decision-aid_elicit/step5");
+            }}
+            style={{
+              float: "right",
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            {t("next")}
+          </button>
         </div>
-
-    )
+      ) : (
+        <div style={{ paddingTop: 30 }}>
+          <button
+            onClick={() => {
+              navigate("/decision-aid/step3");
+            }}
+            style={{
+              float: "left",
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            {t("prev")}
+          </button>
+          <button
+            onClick={() => {
+              navigate("/decision-aid/step5");
+            }}
+            style={{
+              float: "right",
+              size: "5rem",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+            }}
+            class="ui large primary button"
+          >
+            {t("next")}
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 export default PersonalRisk;

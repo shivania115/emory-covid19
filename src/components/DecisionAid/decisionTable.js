@@ -1,3 +1,4 @@
+//Step 5: Background Survey
 import {
   Container,
   Breadcrumb,
@@ -94,6 +95,7 @@ function DecitionTable(props) {
     }
     return true;
   }
+
   function parseCookie() {
     const age = AgeOptions[ageChecked];
     const gender = GenderOptions[genderChecked];
@@ -122,26 +124,6 @@ function DecitionTable(props) {
       step2_survey_online_tools: radioSelectedValue[6],
       step2_survey_source: sources,
     };
-    // const cookie = {
-    //   step2: {
-    //     demographic: {
-    //       vaccinated: vaccinated,
-    //       age: age,
-    //       gender: gender,
-    //       ethnicity: ethnicity,
-    //       occupation: occupation,
-    //       vaccinated: vaccinated ? false : true,
-    //       booster_taken: booster ? false : true,
-    //     },
-    //     vaccine_survey: {
-    //       effective: radioSelectedValue[0],
-    //       important: radioSelectedValue[1],
-    //       negative_stories: radioSelectedValue[2],
-    //       concerned_reactions: radioSelectedValue[3],
-    //       childhood_vaccines: radioSelectedValue[4],
-    //     },
-    //   },
-    // };
     setCookie(cookie, { path: "/", expires: tomorrow });
   }
 

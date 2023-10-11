@@ -1,3 +1,4 @@
+//Step 4: Make Your Decision
 import {
   Container,
   Breadcrumb,
@@ -74,6 +75,7 @@ function FinalDecision() {
   function valueLabelFormat() {
     return "asdlfkas";
   }
+
   const navigate = useNavigate();
 
   const usageOptions = ["Yes", "No"];
@@ -268,35 +270,6 @@ function FinalDecision() {
       cookie = { ...cookie, ...post_study_questionnaire };
       console.log(cookie);
       decision_aid.insertOne({ cookie });
-      // decision_aid.insertOne({
-      //   step2: {
-      //     demographic: cookie.step2.demographic,
-      //     vaccine_survey: cookie.step2.vaccine_survey,
-      //   },
-      //   step3_belief: cookie.step3,
-      //   step5: { final_decision: decision_choice, confidence: confidence },
-      //   //for post study questionnaire
-      //   post_study_questionnaire: {
-      //     q1: usageOptions[useChecked],
-      //     q2: usefulOptions[usefulnessChecked],
-      //     q3_willingness: willingness,
-      //     q4: vaccineWillingnessOptions[vaccineWillingnessChecked],
-      //     q5_rating: userFriendliness,
-      //     q6: enoughInfoOptions[enoughInfoChecked],
-      //     q7: influentialAspect,
-      //     q8: addressConcernOptions[addressConcernChecked],
-      //     q9: potentialRiskInfoOptions[potentialRiskInfoChekced],
-      //     q10: recommendationLikelinessOptions[recommendationLikelinessChecked],
-      //     q11: {
-      //       thinking: thinkingScale,
-      //       pace: paceScale,
-      //       work: workScale,
-      //       understanding: understandingScale,
-      //       feelings: feelingsScale,
-      //     },
-      //     q12_comments: additionalComments,
-      //   },
-      // });
     } catch (e) {
       console.log(e);
     }

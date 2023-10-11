@@ -36,6 +36,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
 import snarkdown from "snarkdown";
+import { Toolbar } from "@mui/material";
 
 i18n
   .use(LanguageDetector)
@@ -73,6 +74,20 @@ function VaccFAQ(props) {
     return (
       <div>
         <Grid style={{ width: "100%" }}>
+          <Grid xs={12}>
+            <Header
+              as="h4"
+              style={{ paddingTop: 30, fontWeight: 500, fontSize: "2rem" }}
+            >
+              <pre></pre>
+              <Header.Content>
+                {"Understanding the virus and the vaccine is crucial for making an" +
+                  "informed decision about getting vaccinated. Please view the information" +
+                  "below to learn more and get answers to frequently asked questions."}
+              </Header.Content>
+              <pre></pre>
+            </Header>
+          </Grid>
           <Grid.Row>
             <Grid.Column width={8}>
               <Header
@@ -85,6 +100,53 @@ function VaccFAQ(props) {
                   <Grid.Column style={{ width: 600, paddingTop: 18 }}>
                     <div style={{ width: 600 }}>
                       <Header>
+                        <div>
+                          <Header
+                            style={{
+                              fontSize: "18px",
+                              fontFamily: "lato",
+                              color: "#004071",
+                              width: 975,
+                            }}
+                          >
+<<<<<<< Updated upstream
+                            <div style={{ whiteSpace: "pre-line" }}>
+                              {t("percentbar_h3")}
+                            </div>
+
+=======
+                            {t("percentbar_h2")}
+                            <br />
+>>>>>>> Stashed changes
+                            <Header.Content
+                              style={{
+                                paddingBottom: 5,
+                                fontWeight: 300,
+                                paddingTop: 0,
+                                paddingLeft: 0,
+                                fontSize: "15px",
+                              }}
+                            >
+<<<<<<< Updated upstream
+=======
+                              {t("percentbar_sub2")}
+                            </Header.Content>
+                          </Header>
+                        </div>
+                        <Header.Content
+                          style={{ paddingBottom: 0, paddingTop: 0 }}
+                        >
+                          <ProgressBar
+                            style={{ height: 30, width: 600, marginBottom: 30 }}
+                            label={`${vaccineData["_nation"][
+                              "Series_Complete_Pop_Pct"
+                            ].toFixed(1)}%`}
+                            variant="success"
+                            now={vaccineData["_nation"][
+                              "Series_Complete_Pop_Pct"
+                            ].toFixed(1)}
+                          ></ProgressBar>
+                        </Header.Content>
                         <div>
                           <Header
                             style={{
@@ -107,6 +169,7 @@ function VaccFAQ(props) {
                                 fontSize: "15px",
                               }}
                             >
+>>>>>>> Stashed changes
                               {t("percentbar_sub3")}
                             </Header.Content>
                           </Header>
@@ -187,6 +250,7 @@ function VaccFAQ(props) {
                             }
                           ></ProgressBar>
                         </Header.Content>
+<<<<<<< Updated upstream
 
                         <div>
                           <Header
@@ -226,6 +290,9 @@ function VaccFAQ(props) {
                             ].toFixed(1)}
                           ></ProgressBar>
                         </Header.Content>
+=======
+                        {/* fully vaccinated progress bar */}
+>>>>>>> Stashed changes
                       </Header>
                     </div>
                   </Grid.Column>
@@ -366,6 +433,17 @@ function VaccFAQ(props) {
               </ul>
             </Grid.Column>
             <Grid.Column width={8}>
+              <Header
+                style={{ marginLeft: "4rem", marginTop: 30 }}
+                fluid
+                styled
+                exclusive={false}
+                as="h2"
+              >
+                <Header.Content>
+                  {"Click on the questions below to learn more"}
+                </Header.Content>
+              </Header>
               <Accordion
                 style={{ marginLeft: "4rem", marginTop: 30 }}
                 fluid
