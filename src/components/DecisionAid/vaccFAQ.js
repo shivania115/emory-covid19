@@ -109,15 +109,8 @@ function VaccFAQ(props) {
                               width: 975,
                             }}
                           >
-<<<<<<< Updated upstream
-                            <div style={{ whiteSpace: "pre-line" }}>
-                              {t("percentbar_h3")}
-                            </div>
-
-=======
                             {t("percentbar_h2")}
                             <br />
->>>>>>> Stashed changes
                             <Header.Content
                               style={{
                                 paddingBottom: 5,
@@ -127,8 +120,6 @@ function VaccFAQ(props) {
                                 fontSize: "15px",
                               }}
                             >
-<<<<<<< Updated upstream
-=======
                               {t("percentbar_sub2")}
                             </Header.Content>
                           </Header>
@@ -169,7 +160,6 @@ function VaccFAQ(props) {
                                 fontSize: "15px",
                               }}
                             >
->>>>>>> Stashed changes
                               {t("percentbar_sub3")}
                             </Header.Content>
                           </Header>
@@ -250,49 +240,7 @@ function VaccFAQ(props) {
                             }
                           ></ProgressBar>
                         </Header.Content>
-<<<<<<< Updated upstream
-
-                        <div>
-                          <Header
-                            style={{
-                              fontSize: "18px",
-                              fontFamily: "lato",
-                              color: "#004071",
-                              width: 975,
-                            }}
-                          >
-                            {t("percentbar_h2")}
-                            <br />
-                            <Header.Content
-                              style={{
-                                paddingBottom: 5,
-                                fontWeight: 300,
-                                paddingTop: 0,
-                                paddingLeft: 0,
-                                fontSize: "15px",
-                              }}
-                            >
-                              {t("percentbar_sub2")}
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content
-                          style={{ paddingBottom: 0, paddingTop: 0 }}
-                        >
-                          <ProgressBar
-                            style={{ height: 30, width: 600, marginBottom: 30 }}
-                            label={`${vaccineData["_nation"][
-                              "Series_Complete_Pop_Pct"
-                            ].toFixed(1)}%`}
-                            variant="success"
-                            now={vaccineData["_nation"][
-                              "Series_Complete_Pop_Pct"
-                            ].toFixed(1)}
-                          ></ProgressBar>
-                        </Header.Content>
-=======
                         {/* fully vaccinated progress bar */}
->>>>>>> Stashed changes
                       </Header>
                     </div>
                   </Grid.Column>
