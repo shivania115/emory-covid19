@@ -26,7 +26,6 @@ import React, {
   useContext,
   useMemo,
 } from "react";
-import { useCookie } from "react-use";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import { useNavigate } from "react-router-dom";
 import { ProgressBar } from "react-bootstrap";
@@ -58,13 +57,10 @@ function VaccFAQ(props) {
   const [activeIndex, setActiveIndex] = useState([-1]);
   const navigate = useNavigate();
   const [vaccineData, setVaccineData] = useState();
-  const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
 
   useEffect(() => {
-    let cookie = {};
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    setCookie(cookie, { path: "/", expires: tomorrow });
     fetch("/data/vaccineData.json")
       .then((res) => res.json())
       .then((x) => setVaccineData(x));

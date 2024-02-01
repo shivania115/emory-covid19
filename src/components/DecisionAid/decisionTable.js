@@ -87,6 +87,7 @@ function DecitionTable(props) {
     actions: { handleAnonymousLogin },
   } = useStitchAuth();
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
+
   function RadioTableFilled() {
     for (let i = 0; i < 7; i++) {
       if (!radioSelectedValue[i]) {
@@ -97,6 +98,7 @@ function DecitionTable(props) {
   }
 
   function parseCookie() {
+    let cookie = JSON.parse(cookies);
     const age = AgeOptions[ageChecked];
     const gender = GenderOptions[genderChecked];
     const ethnicity = EthnicOptions[ethnicChecked];
@@ -107,7 +109,8 @@ function DecitionTable(props) {
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const cookie = {
+
+    const step2_cookie = {
       step2_demograhpic_vaccinated: vaccinated ? false : true,
       step2_demographic_booster_taken: booster ? false : true,
       step2_demographic_informed: informed,
@@ -124,7 +127,9 @@ function DecitionTable(props) {
       step2_survey_online_tools: radioSelectedValue[6],
       step2_survey_source: sources,
     };
-    setCookie(cookie, { path: "/", expires: tomorrow });
+
+    cookie = { ...cookie, ...step2_cookie };
+    decision_aid.insertOne({ cookie });
   }
 
   function handleSubmit() {
@@ -145,6 +150,7 @@ function DecitionTable(props) {
       return;
     }
     parseCookie();
+    // check cookies
     props.elicit
       ? navigate("/decision-aid_elicit/step6")
       : navigate("/decision-aid/step6");

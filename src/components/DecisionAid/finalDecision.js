@@ -152,7 +152,6 @@ function FinalDecision() {
   const [confidence, setConfidence] = useState(0);
   const [other, setOther] = useState("");
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
-  // console.log(cookies);
   const [choiceIndex, setChoiceIndex] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [useChecked, setuseChecked] = useState();
@@ -234,16 +233,13 @@ function FinalDecision() {
       setShow(true); // Show the modal if any validation fails
       return; // Exit the function immediately if validation fails
     }
-
-    //end of step 1
-    let cookie = JSON.parse(cookies);
     var decision_choice = choices[choiceIndex];
 
     if (choiceIndex === 4) {
       decision_choice = decision_choice + ": " + other;
     }
     try {
-      const post_study_questionnaire = {
+      const cookie = {
         step5_final_decision: decision_choice,
         step5_confidence: confidence,
         step5_q1: usageOptions[useChecked],
@@ -266,10 +262,10 @@ function FinalDecision() {
         step5_email: collectEmail,
         step5_booster: boosterChoicesChecked,
       };
-      console.log(cookie);
-      cookie = { ...cookie, ...post_study_questionnaire };
-      console.log(cookie);
-      decision_aid.insertOne({ cookie });
+
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      setCookie(cookie, { path: "/", expires: tomorrow });
     } catch (e) {
       console.log(e);
     }
@@ -283,6 +279,7 @@ function FinalDecision() {
       progress: undefined,
       theme: "colored",
     });
+
     navigate("/decision-aid/step1");
   }
 
