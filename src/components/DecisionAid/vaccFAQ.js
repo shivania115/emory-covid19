@@ -1,41 +1,15 @@
-import {
-  Container,
-  Grid,
-  Rail,
-  Ref,
-  Sticky,
-  Divider,
-  Accordion,
-  Icon,
-  Header,
-  Table,
-  Loader,
-  Menu,
-  Tab,
-  Progress,
-  GridColumn,
-} from "semantic-ui-react";
-import Covid from "../icons/Covid";
-import Medicine from "../icons/Medicine";
-import React, {
-  useEffect,
-  useState,
-  Component,
-  createRef,
-  useRef,
-  useContext,
-  useMemo,
-} from "react";
-import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
-import { useNavigate } from "react-router-dom";
-import { ProgressBar } from "react-bootstrap";
+import { Box } from "@mui/system";
 import i18n from "i18next";
-import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { TRANSLATIONS_SPAN } from "./span/translation";
-import { TRANSLATIONS_EN } from "./en/translation";
+import React, { useEffect, useState } from "react";
+import { ProgressBar } from "react-bootstrap";
+import { initReactI18next, useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { Accordion, Grid, Header, Icon, Loader } from "semantic-ui-react";
+import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import snarkdown from "snarkdown";
-import { Toolbar } from "@mui/material";
+import { TRANSLATIONS_EN } from "./en/translation";
+import { TRANSLATIONS_SPAN } from "./span/translation";
 
 i18n
   .use(LanguageDetector)
@@ -53,6 +27,16 @@ i18n
   });
 
 function VaccFAQ(props) {
+  // handle screen size change to conditionally render page
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  // end of screen size monitor
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState([-1]);
   const navigate = useNavigate();
@@ -67,182 +51,799 @@ function VaccFAQ(props) {
   }, []);
   console.log(vaccineData);
   if (vaccineData) {
-    return (
-      <div>
-        <Grid style={{ width: "100%" }}>
-          <Grid xs={12}>
-            <Header
-              as="h4"
-              style={{ paddingTop: 30, fontWeight: 500, fontSize: "2rem" }}
-            >
-              <pre></pre>
-              <Header.Content>
-                {"Understanding the virus and the vaccine is crucial for making an" +
-                  "informed decision about getting vaccinated. Please view the information" +
-                  "below to learn more and get answers to frequently asked questions."}
-              </Header.Content>
-              <pre></pre>
-            </Header>
-          </Grid>
-          <Grid.Row>
-            <Grid.Column width={8}>
+    if (isMobileView) {
+      return (
+        // Start of Mobile/Tablet Vieww------------------------------------------------------------------
+        <div>
+          <Grid>
+            <Grid xs={12}>
               <Header
-                as="h2"
-                style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                as="h4"
+                style={{ paddingTop: 30, fontWeight: 500, fontSize: "1.3rem" }}
               >
-                <Header.Content>{t("vaccination")}</Header.Content>
-
-                <Grid.Row>
-                  <Grid.Column style={{ width: 600, paddingTop: 18 }}>
-                    <div style={{ width: 600 }}>
-                      <Header>
+                <pre></pre>
+                <Header.Content>
+                  {"Understanding the virus and the vaccine is crucial for making an" +
+                    "informed decision about getting vaccinated. Please view the information" +
+                    "below to learn more and get answers to frequently asked questions."}
+                </Header.Content>
+                <pre></pre>
+              </Header>
+            </Grid>
+            <Grid.Row>
+              <Grid.Column width={12}>
+                <Box style={{ width: "95vw" }}>
+                  <Header
+                    as="h2"
+                    style={{
+                      paddingTop: 30,
+                      fontWeight: 1000,
+                      fontSize: "1.5rem",
+                    }}
+                  >
+                    <Box style={{ textAlign: "center", marginBottom: "10px" }}>
+                      <Header.Content>{t("vaccination")}</Header.Content>
+                    </Box>
+                    <Grid.Row>
+                      <Grid.Column style={{ paddingTop: 18 }}>
                         <div>
-                          <Header
-                            style={{
-                              fontSize: "18px",
-                              fontFamily: "lato",
-                              color: "#004071",
-                              width: 975,
-                            }}
-                          >
-                            {t("percentbar_h2")}
-                            <br />
-                            <Header.Content
-                              style={{
-                                paddingBottom: 5,
-                                fontWeight: 300,
-                                paddingTop: 0,
-                                paddingLeft: 0,
-                                fontSize: "15px",
-                              }}
-                            >
-                              {t("percentbar_sub2")}
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content
-                          style={{ paddingBottom: 0, paddingTop: 0 }}
-                        >
-                          <ProgressBar
-                            style={{ height: 30, width: 600, marginBottom: 30 }}
-                            label={`${vaccineData["_nation"][
-                              "Series_Complete_Pop_Pct"
-                            ].toFixed(1)}%`}
-                            variant="success"
-                            now={vaccineData["_nation"][
-                              "Series_Complete_Pop_Pct"
-                            ].toFixed(1)}
-                          ></ProgressBar>
-                        </Header.Content>
-                        <div>
-                          <Header
-                            style={{
-                              fontSize: "18px",
-                              fontFamily: "lato",
-                              color: "#004071",
-                              width: 975,
-                            }}
-                          >
-                            <div style={{ whiteSpace: "pre-line" }}>
-                              {t("percentbar_h3")}
+                          <Header>
+                            <div>
+                              <Header
+                                style={{
+                                  marginLeft: "5vw",
+                                  fontSize: "18px",
+                                  fontFamily: "lato",
+                                  color: "#004071",
+                                  width: "90vw",
+                                }}
+                              >
+                                {t("percentbar_h2")}
+                                <br />
+                                <Header.Content
+                                  style={{
+                                    paddingBottom: 5,
+                                    fontWeight: 300,
+                                    paddingTop: 0,
+                                    paddingLeft: 0,
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  {t("percentbar_sub2")}
+                                </Header.Content>
+                              </Header>
                             </div>
-
                             <Header.Content
-                              style={{
-                                paddingBottom: 5,
-                                fontWeight: 300,
-                                paddingTop: 0,
-                                paddingLeft: 0,
-                                fontSize: "15px",
-                              }}
+                              style={{ paddingBottom: 0, paddingTop: 0 }}
                             >
-                              {t("percentbar_sub3")}
+                              <ProgressBar
+                                style={{
+                                  height: 30,
+                                  width: "90vw",
+                                  marginLeft: "5vw",
+                                  marginBottom: 30,
+                                }}
+                                label={`${vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ].toFixed(1)}%`}
+                                variant="success"
+                                now={vaccineData["_nation"][
+                                  "Series_Complete_Pop_Pct"
+                                ].toFixed(1)}
+                              ></ProgressBar>
                             </Header.Content>
+                            <div>
+                              <Header
+                                style={{
+                                  fontSize: "18px",
+                                  fontFamily: "lato",
+                                  color: "#004071",
+                                  width: "90vw",
+                                  marginLeft: "5vw",
+                                }}
+                              >
+                                <div style={{ whiteSpace: "pre-line" }}>
+                                  {t("percentbar_h3")}
+                                </div>
+
+                                <Header.Content
+                                  style={{
+                                    paddingBottom: 5,
+                                    fontWeight: 300,
+                                    paddingTop: 0,
+                                    paddingLeft: 0,
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  {t("percentbar_sub3")}
+                                </Header.Content>
+                              </Header>
+                            </div>
+                            <Header.Content
+                              style={{ paddingBottom: 0, paddingTop: 0 }}
+                            >
+                              <ProgressBar
+                                style={{
+                                  height: 30,
+                                  width: "90vw",
+                                  marginLeft: "5vw",
+                                  marginBottom: 30,
+                                }}
+                                label={`${(
+                                  100 -
+                                  (vaccineData["_nation"][
+                                    "PercentAdministeredPartial"
+                                  ] +
+                                    vaccineData["_nation"][
+                                      "Series_Complete_Pop_Pct"
+                                    ])
+                                ).toFixed(1)}%`}
+                                variant="success"
+                                now={(
+                                  100 -
+                                  (vaccineData["_nation"][
+                                    "PercentAdministeredPartial"
+                                  ] +
+                                    vaccineData["_nation"][
+                                      "Series_Complete_Pop_Pct"
+                                    ])
+                                ).toFixed(1)}
+                              ></ProgressBar>
+                            </Header.Content>
+                            <div>
+                              <Header
+                                style={{
+                                  fontSize: "18px",
+                                  fontFamily: "lato",
+                                  color: "#004071",
+                                  width: "90vw",
+                                  marginLeft: "5vw",
+                                }}
+                              >
+                                {t("percentbar_h1")}
+                                <br />
+                                <Header.Content
+                                  style={{
+                                    paddingBottom: 5,
+                                    fontWeight: 300,
+                                    paddingTop: 0,
+                                    paddingLeft: 0,
+                                    fontSize: "15px",
+                                  }}
+                                >
+                                  {t("percentbar_sub1")}
+                                </Header.Content>
+                              </Header>
+                            </div>
+                            <Header.Content
+                              style={{ paddingBottom: 0, paddingTop: 0 }}
+                            >
+                              <ProgressBar
+                                style={{
+                                  height: 30,
+                                  width: "90vw",
+                                  marginLeft: "5vw",
+                                  marginBottom: 30,
+                                }}
+                                label={`${
+                                  vaccineData["_nation"][
+                                    "PercentAdministeredPartial"
+                                  ]
+                                    ? vaccineData["_nation"][
+                                        "PercentAdministeredPartial"
+                                      ].toFixed(1)
+                                    : "Not Reported"
+                                }%`}
+                                variant="success"
+                                now={
+                                  vaccineData["_nation"][
+                                    "PercentAdministeredPartial"
+                                  ]
+                                    ? vaccineData["_nation"][
+                                        "PercentAdministeredPartial"
+                                      ].toFixed(1)
+                                    : "Not Reported"
+                                }
+                              ></ProgressBar>
+                            </Header.Content>
+                            {/* fully vaccinated progress bar */}
                           </Header>
                         </div>
-                        <Header.Content
-                          style={{ paddingBottom: 0, paddingTop: 0 }}
-                        >
-                          <ProgressBar
-                            style={{ height: 30, width: 600 }}
-                            label={`${(
-                              100 -
-                              (vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ] +
-                                vaccineData["_nation"][
-                                  "Series_Complete_Pop_Pct"
-                                ])
-                            ).toFixed(1)}%`}
-                            variant="success"
-                            now={(
-                              100 -
-                              (vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ] +
-                                vaccineData["_nation"][
-                                  "Series_Complete_Pop_Pct"
-                                ])
-                            ).toFixed(1)}
-                          ></ProgressBar>
-                        </Header.Content>
-                        <div>
-                          <Header
-                            style={{
-                              fontSize: "18px",
-                              fontFamily: "lato",
-                              color: "#004071",
-                              width: 705,
+                      </Grid.Column>
+                    </Grid.Row>
+                    {/* Start of "COVID-19 vaccines train our bodies to recognize...." */}
+                    <HeaderSubHeader
+                      style={{
+                        paddingTop: "2rem",
+                        paddingBottom: "0rem",
+                        lineHeight: "20pt",
+                        fontSize: "1rem",
+                        color: "black",
+                      }}
+                    >
+                      {t("step2_left1")}
+                    </HeaderSubHeader>
+                    <HeaderSubHeader
+                      style={{
+                        paddingTop: "2rem",
+                        paddingBottom: "0rem",
+                        lineHeight: "20pt",
+                        fontSize: "1rem",
+                        color: "black",
+                      }}
+                    >
+                      {t("step2_left2")}
+                    </HeaderSubHeader>
+                    <HeaderSubHeader
+                      style={{
+                        paddingTop: "2rem",
+                        paddingBottom: "0rem",
+                        lineHeight: "20pt",
+                        fontSize: "1rem",
+                        color: "black",
+                      }}
+                    >
+                      {t("step2_left3")}
+                    </HeaderSubHeader>
+                  </Header>
+                </Box>
+
+                <ul>
+                  <li>Pfizer/BioNTech</li>
+                  <li>Moderna</li>
+                </ul>
+              </Grid.Column>
+              {/* Start of "Click on the questions below to learn more"------------------------------------------------ */}
+              <Grid.Column width={12}>
+                <Box style={{ width: "95vw" }}>
+                  <Header
+                    style={{ marginTop: 30, fontSize: "1.6rem" }}
+                    fluid
+                    styled
+                    exclusive={false}
+                    as="h2"
+                  >
+                    <Header.Content>
+                      {"Click on the questions below to learn more"}
+                    </Header.Content>
+                  </Header>
+                  <Accordion
+                    style={{ marginTop: 30 }}
+                    fluid
+                    styled
+                    exclusive={false}
+                  >
+                    <Accordion.Title
+                      id="develop"
+                      style={{ fontSize: "14pt", color: "black" }}
+                      // active={activeIndex === 0}
+                      index={36}
+                      onClick={() =>
+                        activeIndex.indexOf(36) < 0
+                          ? setActiveIndex((activeIndex) => [
+                              ...activeIndex,
+                              36,
+                            ])
+                          : setActiveIndex((activeIndex) =>
+                              activeIndex.filter((item) => item !== 36)
+                            )
+                      }
+                    >
+                      <Icon name="dropdown" />
+                      {t("step2_1")}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ fontSize: "13pt" }}
+                      active={activeIndex.indexOf(36) > 0}
+                    >
+                      <p>{t("step2_2")}</p>
+                    </Accordion.Content>
+                    <Accordion.Title
+                      style={{ fontSize: "14pt", color: "black" }}
+                      index={0}
+                      onClick={() =>
+                        activeIndex.indexOf(0) < 0
+                          ? setActiveIndex((activeIndex) => [...activeIndex, 0])
+                          : setActiveIndex((activeIndex) =>
+                              activeIndex.filter((item) => item !== 0)
+                            )
+                      }
+                    >
+                      <Icon name="dropdown" />
+
+                      {t("step2_3")}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ fontSize: "13pt" }}
+                      active={activeIndex.indexOf(0) > 0}
+                    >
+                      <p style={{ marginBottom: 0 }}>
+                        {t("step2_4")}
+                        <ul>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_5")),
                             }}
-                          >
-                            {t("percentbar_h1")}
-                            <br />
-                            <Header.Content
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_6")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_7")),
+                            }}
+                          ></li>
+                        </ul>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_8")),
+                          }}
+                        ></p>
+                        <ul>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_9")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_10")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_11")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_12")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_13")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_14")),
+                            }}
+                          ></li>
+                          <li
+                            dangerouslySetInnerHTML={{
+                              __html: snarkdown(t("step2_15")),
+                            }}
+                          ></li>
+                        </ul>
+                        {t("step2_16")}
+                      </p>
+                    </Accordion.Content>
+
+                    <Accordion.Title
+                      style={{ fontSize: "14pt", color: "black" }}
+                      // active={activeIndex === 0}
+                      index={12}
+                      onClick={() =>
+                        activeIndex.indexOf(12) < 0
+                          ? setActiveIndex((activeIndex) => [
+                              ...activeIndex,
+                              12,
+                            ])
+                          : setActiveIndex((activeIndex) =>
+                              activeIndex.filter((item) => item !== 12)
+                            )
+                      }
+                    >
+                      <Icon name="dropdown" />
+                      {t("step2_17")}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ fontSize: "13pt" }}
+                      active={activeIndex.indexOf(12) > 0}
+                    >
+                      <p style={{ marginBottom: 0 }}>{t("step2_18")}</p>
+                      <p
+                        style={{
+                          paddingTop: "1rem",
+                          paddingLeft: "0rem",
+                          paddingRight: "1rem",
+                          marginBottom: "0",
+                          fontWeight: 400,
+                          fontSize: "13pt",
+                          textAlign: "justify",
+                        }}
+                      >
+                        {t("step2_19")}
+                      </p>
+                      <p
+                        style={{
+                          paddingTop: "1rem",
+                          paddingLeft: "0rem",
+                          paddingRight: "1rem",
+                          marginBottom: "0",
+                          fontWeight: 400,
+                          fontSize: "13pt",
+                          textAlign: "justify",
+                        }}
+                      >
+                        {t("step2_20")}
+                      </p>
+                    </Accordion.Content>
+                    <Accordion.Title
+                      style={{ fontSize: "14pt", color: "black" }}
+                      // active={activeIndex === 0}
+                      index={10}
+                      onClick={() =>
+                        activeIndex.indexOf(10) < 0
+                          ? setActiveIndex((activeIndex) => [
+                              ...activeIndex,
+                              10,
+                            ])
+                          : setActiveIndex((activeIndex) =>
+                              activeIndex.filter((item) => item !== 10)
+                            )
+                      }
+                    >
+                      <Icon name="dropdown" />
+                      {t("step2_23q")}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ fontSize: "13pt" }}
+                      active={activeIndex.indexOf(10) > 0}
+                    >
+                      <p style={{ marginBottom: 0 }}>{t("step2_23")}</p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_24")),
+                        }}
+                        style={{
+                          paddingTop: "1rem",
+                          paddingLeft: "0rem",
+                          paddingRight: "1rem",
+                          marginBottom: "0",
+                          fontWeight: 400,
+                          fontSize: "13pt",
+                          textAlign: "justify",
+                        }}
+                      ></p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_25")),
+                        }}
+                        style={{
+                          paddingTop: "1rem",
+                          paddingLeft: "0rem",
+                          paddingRight: "1rem",
+                          marginBottom: "0",
+                          fontWeight: 400,
+                          fontSize: "13pt",
+                          textAlign: "justify",
+                        }}
+                      ></p>
+                    </Accordion.Content>
+                    <Accordion.Title
+                      style={{
+                        fontSize: "14pt",
+                        color: "black",
+                        lineHeight: "1.4",
+                      }}
+                      // active={activeIndex === 0}
+                      index={49}
+                      onClick={() =>
+                        activeIndex.indexOf(49) < 0
+                          ? setActiveIndex((activeIndex) => [
+                              ...activeIndex,
+                              49,
+                            ])
+                          : setActiveIndex((activeIndex) =>
+                              activeIndex.filter((item) => item !== 49)
+                            )
+                      }
+                    >
+                      <Icon name="dropdown" />
+                      {t("step2_26q")}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ fontSize: "13pt" }}
+                      active={activeIndex.indexOf(49) > 0}
+                    >
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_27")),
+                        }}
+                      ></p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: snarkdown(t("step2_28")),
+                        }}
+                      ></p>
+                    </Accordion.Content>
+                    <Accordion.Title
+                      style={{ fontSize: "14pt", color: "black" }}
+                      // active={activeIndex === 0}
+                      index={13}
+                      onClick={() =>
+                        activeIndex.indexOf(13) < 0
+                          ? setActiveIndex((activeIndex) => [
+                              ...activeIndex,
+                              13,
+                            ])
+                          : setActiveIndex((activeIndex) =>
+                              activeIndex.filter((item) => item !== 13)
+                            )
+                      }
+                    >
+                      <Icon name="dropdown" />
+                      {t("step2_21")}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ fontSize: "13pt" }}
+                      active={activeIndex.indexOf(13) > 0}
+                    >
+                      <p>{t("step2_22")}</p>
+                    </Accordion.Content>
+                  </Accordion>
+                </Box>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              {props.elicit ? (
+                <div>
+                  <button
+                    onClick={() => {
+                      navigate("/decision-aid_elicit/step1");
+                    }}
+                    style={{
+                      float: "left",
+                      size: "5rem",
+                      marginTop: "1rem",
+                      marginBottom: "4rem",
+                    }}
+                    class="ui large primary button"
+                  >
+                    {t("prev")}
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/decision-aid_elicit/step3");
+                    }}
+                    style={{
+                      float: "right",
+                      size: "5rem",
+                      marginTop: "1rem",
+                      marginBottom: "4rem",
+                    }}
+                    class="ui large primary button"
+                  >
+                    {t("next")}
+                  </button>
+                </div>
+              ) : (
+                <div style={{ width: "95vw" }}>
+                  <button
+                    onClick={() => {
+                      navigate("/decision-aid/step1");
+                    }}
+                    style={{
+                      float: "left",
+                      size: "5rem",
+                      marginTop: "1rem",
+                      marginBottom: "2rem",
+                      marginLeft: "2rem",
+                    }}
+                    class="ui large primary button"
+                  >
+                    {t("prev")}
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/decision-aid/step3");
+                    }}
+                    style={{
+                      float: "right",
+                      size: "5rem",
+                      marginTop: "1rem",
+                      marginBottom: "2rem",
+                    }}
+                    class="ui large primary button"
+                  >
+                    {t("next")}
+                  </button>
+                </div>
+              )}
+            </Grid.Row>
+          </Grid>
+        </div>
+      );
+    } else {
+      // Start of Desktop View------------------------------------------------------------------
+      return (
+        <div>
+          <Grid style={{ width: "100%" }}>
+            <Grid xs={12}>
+              <Header
+                as="h4"
+                style={{ paddingTop: 30, fontWeight: 500, fontSize: "2rem" }}
+              >
+                <pre></pre>
+                <Header.Content>
+                  {"Understanding the virus and the vaccine is crucial for making an" +
+                    "informed decision about getting vaccinated. Please view the information" +
+                    "below to learn more and get answers to frequently asked questions."}
+                </Header.Content>
+                <pre></pre>
+              </Header>
+            </Grid>
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <Header
+                  as="h2"
+                  style={{ paddingTop: 30, fontWeight: 1000, fontSize: "2rem" }}
+                >
+                  <Header.Content>{t("vaccination")}</Header.Content>
+
+                  <Grid.Row>
+                    <Grid.Column style={{ width: 600, paddingTop: 18 }}>
+                      <div style={{ width: 600 }}>
+                        <Header>
+                          <div>
+                            <Header
                               style={{
-                                paddingBottom: 5,
-                                fontWeight: 300,
-                                paddingTop: 0,
-                                paddingLeft: 0,
-                                fontSize: "15px",
+                                fontSize: "18px",
+                                fontFamily: "lato",
+                                color: "#004071",
+                                width: 975,
                               }}
                             >
-                              {t("percentbar_sub1")}
-                            </Header.Content>
-                          </Header>
-                        </div>
-                        <Header.Content
-                          style={{ paddingBottom: 0, paddingTop: 0 }}
-                        >
-                          <ProgressBar
-                            style={{ height: 30, width: 600, marginBottom: 30 }}
-                            label={`${
-                              vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ]
-                                ? vaccineData["_nation"][
-                                    "PercentAdministeredPartial"
-                                  ].toFixed(1)
-                                : "Not Reported"
-                            }%`}
-                            variant="success"
-                            now={
-                              vaccineData["_nation"][
-                                "PercentAdministeredPartial"
-                              ]
-                                ? vaccineData["_nation"][
-                                    "PercentAdministeredPartial"
-                                  ].toFixed(1)
-                                : "Not Reported"
-                            }
-                          ></ProgressBar>
-                        </Header.Content>
-                        {/* fully vaccinated progress bar */}
-                      </Header>
-                    </div>
-                  </Grid.Column>
-                </Grid.Row>
+                              {t("percentbar_h2")}
+                              <br />
+                              <Header.Content
+                                style={{
+                                  paddingBottom: 5,
+                                  fontWeight: 300,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  fontSize: "15px",
+                                }}
+                              >
+                                {t("percentbar_sub2")}
+                              </Header.Content>
+                            </Header>
+                          </div>
+                          <Header.Content
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                          >
+                            <ProgressBar
+                              style={{
+                                height: 30,
+                                width: 600,
+                                marginBottom: 30,
+                              }}
+                              label={`${vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}%`}
+                              variant="success"
+                              now={vaccineData["_nation"][
+                                "Series_Complete_Pop_Pct"
+                              ].toFixed(1)}
+                            ></ProgressBar>
+                          </Header.Content>
+                          <div>
+                            <Header
+                              style={{
+                                fontSize: "18px",
+                                fontFamily: "lato",
+                                color: "#004071",
+                                width: 975,
+                              }}
+                            >
+                              <div style={{ whiteSpace: "pre-line" }}>
+                                {t("percentbar_h3")}
+                              </div>
 
-                {/* <Grid.Row>
+                              <Header.Content
+                                style={{
+                                  paddingBottom: 5,
+                                  fontWeight: 300,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  fontSize: "15px",
+                                }}
+                              >
+                                {t("percentbar_sub3")}
+                              </Header.Content>
+                            </Header>
+                          </div>
+                          <Header.Content
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                          >
+                            <ProgressBar
+                              style={{ height: 30, width: 600 }}
+                              label={`${(
+                                100 -
+                                (vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                  vaccineData["_nation"][
+                                    "Series_Complete_Pop_Pct"
+                                  ])
+                              ).toFixed(1)}%`}
+                              variant="success"
+                              now={(
+                                100 -
+                                (vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ] +
+                                  vaccineData["_nation"][
+                                    "Series_Complete_Pop_Pct"
+                                  ])
+                              ).toFixed(1)}
+                            ></ProgressBar>
+                          </Header.Content>
+                          <div>
+                            <Header
+                              style={{
+                                fontSize: "18px",
+                                fontFamily: "lato",
+                                color: "#004071",
+                                width: 705,
+                              }}
+                            >
+                              {t("percentbar_h1")}
+                              <br />
+                              <Header.Content
+                                style={{
+                                  paddingBottom: 5,
+                                  fontWeight: 300,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  fontSize: "15px",
+                                }}
+                              >
+                                {t("percentbar_sub1")}
+                              </Header.Content>
+                            </Header>
+                          </div>
+                          <Header.Content
+                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                          >
+                            <ProgressBar
+                              style={{
+                                height: 30,
+                                width: 600,
+                                marginBottom: 30,
+                              }}
+                              label={`${
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }%`}
+                              variant="success"
+                              now={
+                                vaccineData["_nation"][
+                                  "PercentAdministeredPartial"
+                                ]
+                                  ? vaccineData["_nation"][
+                                      "PercentAdministeredPartial"
+                                    ].toFixed(1)
+                                  : "Not Reported"
+                              }
+                            ></ProgressBar>
+                          </Header.Content>
+                          {/* fully vaccinated progress bar */}
+                        </Header>
+                      </div>
+                    </Grid.Column>
+                  </Grid.Row>
+
+                  {/* <Grid.Row>
                     { (
                       <Accordion
                         id="race"
@@ -337,168 +938,168 @@ function VaccFAQ(props) {
                       />
                     )}
                   </Grid.Row> */}
-                <HeaderSubHeader
-                  style={{
-                    paddingTop: "2rem",
-                    paddingBottom: "0rem",
-                    lineHeight: "20pt",
-                    fontSize: "1rem",
-                    color: "black",
-                  }}
+                  <HeaderSubHeader
+                    style={{
+                      paddingTop: "2rem",
+                      paddingBottom: "0rem",
+                      lineHeight: "20pt",
+                      fontSize: "1rem",
+                      color: "black",
+                    }}
+                  >
+                    {t("step2_left1")}
+                  </HeaderSubHeader>
+                  <HeaderSubHeader
+                    style={{
+                      paddingTop: "2rem",
+                      paddingBottom: "0rem",
+                      lineHeight: "20pt",
+                      fontSize: "1rem",
+                      color: "black",
+                    }}
+                  >
+                    {t("step2_left2")}
+                  </HeaderSubHeader>
+                  <HeaderSubHeader
+                    style={{
+                      paddingTop: "2rem",
+                      paddingBottom: "0rem",
+                      lineHeight: "20pt",
+                      fontSize: "1rem",
+                      color: "black",
+                    }}
+                  >
+                    {t("step2_left3")}
+                  </HeaderSubHeader>
+                </Header>
+                <ul>
+                  <li>Pfizer/BioNTech</li>
+                  <li>Moderna</li>
+                </ul>
+              </Grid.Column>
+              <Grid.Column width={8}>
+                <Header
+                  style={{ marginLeft: "4rem", marginTop: 30 }}
+                  fluid
+                  styled
+                  exclusive={false}
+                  as="h2"
                 >
-                  {t("step2_left1")}
-                </HeaderSubHeader>
-                <HeaderSubHeader
-                  style={{
-                    paddingTop: "2rem",
-                    paddingBottom: "0rem",
-                    lineHeight: "20pt",
-                    fontSize: "1rem",
-                    color: "black",
-                  }}
+                  <Header.Content>
+                    {"Click on the questions below to learn more"}
+                  </Header.Content>
+                </Header>
+                <Accordion
+                  style={{ marginLeft: "4rem", marginTop: 30 }}
+                  fluid
+                  styled
+                  exclusive={false}
                 >
-                  {t("step2_left2")}
-                </HeaderSubHeader>
-                <HeaderSubHeader
-                  style={{
-                    paddingTop: "2rem",
-                    paddingBottom: "0rem",
-                    lineHeight: "20pt",
-                    fontSize: "1rem",
-                    color: "black",
-                  }}
-                >
-                  {t("step2_left3")}
-                </HeaderSubHeader>
-              </Header>
-              <ul>
-                <li>Pfizer/BioNTech</li>
-                <li>Moderna</li>
-              </ul>
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <Header
-                style={{ marginLeft: "4rem", marginTop: 30 }}
-                fluid
-                styled
-                exclusive={false}
-                as="h2"
-              >
-                <Header.Content>
-                  {"Click on the questions below to learn more"}
-                </Header.Content>
-              </Header>
-              <Accordion
-                style={{ marginLeft: "4rem", marginTop: 30 }}
-                fluid
-                styled
-                exclusive={false}
-              >
-                <Accordion.Title
-                  id="develop"
-                  style={{ fontSize: "15pt", color: "black" }}
-                  // active={activeIndex === 0}
-                  index={36}
-                  onClick={() =>
-                    activeIndex.indexOf(36) < 0
-                      ? setActiveIndex((activeIndex) => [...activeIndex, 36])
-                      : setActiveIndex((activeIndex) =>
-                          activeIndex.filter((item) => item !== 36)
-                        )
-                  }
-                >
-                  <Icon name="dropdown" />
-                  {t("step2_1")}
-                </Accordion.Title>
-                <Accordion.Content
-                  style={{ fontSize: "14pt" }}
-                  active={activeIndex.indexOf(36) > 0}
-                >
-                  <p>{t("step2_2")}</p>
-                </Accordion.Content>
-                <Accordion.Title
-                  style={{ fontSize: "15pt", color: "black" }}
-                  index={0}
-                  onClick={() =>
-                    activeIndex.indexOf(0) < 0
-                      ? setActiveIndex((activeIndex) => [...activeIndex, 0])
-                      : setActiveIndex((activeIndex) =>
-                          activeIndex.filter((item) => item !== 0)
-                        )
-                  }
-                >
-                  <Icon name="dropdown" />
+                  <Accordion.Title
+                    id="develop"
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={36}
+                    onClick={() =>
+                      activeIndex.indexOf(36) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 36])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 36)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    {t("step2_1")}
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(36) > 0}
+                  >
+                    <p>{t("step2_2")}</p>
+                  </Accordion.Content>
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    index={0}
+                    onClick={() =>
+                      activeIndex.indexOf(0) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 0])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 0)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
 
-                  {t("step2_3")}
-                </Accordion.Title>
-                <Accordion.Content
-                  style={{ fontSize: "14pt" }}
-                  active={activeIndex.indexOf(0) > 0}
-                >
-                  <p style={{ marginBottom: 0 }}>
-                    {t("step2_4")}
-                    <ul>
-                      <li
+                    {t("step2_3")}
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(0) > 0}
+                  >
+                    <p style={{ marginBottom: 0 }}>
+                      {t("step2_4")}
+                      <ul>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_5")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_6")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_7")),
+                          }}
+                        ></li>
+                      </ul>
+                      <p
                         dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_5")),
+                          __html: snarkdown(t("step2_8")),
                         }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_6")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_7")),
-                        }}
-                      ></li>
-                    </ul>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: snarkdown(t("step2_8")),
-                      }}
-                    ></p>
-                    <ul>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_9")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_10")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_11")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_12")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_13")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_14")),
-                        }}
-                      ></li>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: snarkdown(t("step2_15")),
-                        }}
-                      ></li>
-                    </ul>
-                    {t("step2_16")}
-                  </p>
-                  {/* <p
+                      ></p>
+                      <ul>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_9")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_10")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_11")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_12")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_13")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_14")),
+                          }}
+                        ></li>
+                        <li
+                          dangerouslySetInnerHTML={{
+                            __html: snarkdown(t("step2_15")),
+                          }}
+                        ></li>
+                      </ul>
+                      {t("step2_16")}
+                    </p>
+                    {/* <p
                     style={{
                       paddingTop: "1rem",
                       paddingLeft: "0rem",
@@ -572,169 +1173,169 @@ function VaccFAQ(props) {
                     and indicated that the Johnson & Johnson vaccine can again
                     be distributed.
                   </p> */}
-                </Accordion.Content>
+                  </Accordion.Content>
 
-                <Accordion.Title
-                  style={{ fontSize: "15pt", color: "black" }}
-                  // active={activeIndex === 0}
-                  index={12}
-                  onClick={() =>
-                    activeIndex.indexOf(12) < 0
-                      ? setActiveIndex((activeIndex) => [...activeIndex, 12])
-                      : setActiveIndex((activeIndex) =>
-                          activeIndex.filter((item) => item !== 12)
-                        )
-                  }
-                >
-                  <Icon name="dropdown" />
-                  {t("step2_17")}
-                </Accordion.Title>
-                <Accordion.Content
-                  style={{ fontSize: "14pt" }}
-                  active={activeIndex.indexOf(12) > 0}
-                >
-                  <p style={{ marginBottom: 0 }}>{t("step2_18")}</p>
-                  <p
-                    style={{
-                      paddingTop: "1rem",
-                      paddingLeft: "0rem",
-                      paddingRight: "1rem",
-                      marginBottom: "0",
-                      fontWeight: 400,
-                      fontSize: "14pt",
-                      textAlign: "justify",
-                    }}
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={12}
+                    onClick={() =>
+                      activeIndex.indexOf(12) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 12])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 12)
+                          )
+                    }
                   >
-                    {t("step2_19")}
-                  </p>
-                  <p
-                    style={{
-                      paddingTop: "1rem",
-                      paddingLeft: "0rem",
-                      paddingRight: "1rem",
-                      marginBottom: "0",
-                      fontWeight: 400,
-                      fontSize: "14pt",
-                      textAlign: "justify",
-                    }}
+                    <Icon name="dropdown" />
+                    {t("step2_17")}
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(12) > 0}
                   >
-                    {t("step2_20")}
-                  </p>
-                </Accordion.Content>
-                <Accordion.Title
-                  style={{ fontSize: "15pt", color: "black" }}
-                  // active={activeIndex === 0}
-                  index={10}
-                  onClick={() =>
-                    activeIndex.indexOf(10) < 0
-                      ? setActiveIndex((activeIndex) => [...activeIndex, 10])
-                      : setActiveIndex((activeIndex) =>
-                          activeIndex.filter((item) => item !== 10)
-                        )
-                  }
-                >
-                  <Icon name="dropdown" />
-                  {t("step2_23q")}
-                </Accordion.Title>
-                <Accordion.Content
-                  style={{ fontSize: "14pt" }}
-                  active={activeIndex.indexOf(10) > 0}
-                >
-                  <p style={{ marginBottom: 0 }}>{t("step2_23")}</p>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: snarkdown(t("step2_24")),
-                    }}
+                    <p style={{ marginBottom: 0 }}>{t("step2_18")}</p>
+                    <p
+                      style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        marginBottom: "0",
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    >
+                      {t("step2_19")}
+                    </p>
+                    <p
+                      style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        marginBottom: "0",
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    >
+                      {t("step2_20")}
+                    </p>
+                  </Accordion.Content>
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={10}
+                    onClick={() =>
+                      activeIndex.indexOf(10) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 10])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 10)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    {t("step2_23q")}
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(10) > 0}
+                  >
+                    <p style={{ marginBottom: 0 }}>{t("step2_23")}</p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: snarkdown(t("step2_24")),
+                      }}
+                      style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        marginBottom: "0",
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    ></p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: snarkdown(t("step2_25")),
+                      }}
+                      style={{
+                        paddingTop: "1rem",
+                        paddingLeft: "0rem",
+                        paddingRight: "1rem",
+                        marginBottom: "0",
+                        fontWeight: 400,
+                        fontSize: "14pt",
+                        textAlign: "justify",
+                      }}
+                    ></p>
+                  </Accordion.Content>
+                  <Accordion.Title
                     style={{
-                      paddingTop: "1rem",
-                      paddingLeft: "0rem",
-                      paddingRight: "1rem",
-                      marginBottom: "0",
-                      fontWeight: 400,
-                      fontSize: "14pt",
-                      textAlign: "justify",
+                      fontSize: "15pt",
+                      color: "black",
+                      lineHeight: "1.4",
                     }}
-                  ></p>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: snarkdown(t("step2_25")),
-                    }}
-                    style={{
-                      paddingTop: "1rem",
-                      paddingLeft: "0rem",
-                      paddingRight: "1rem",
-                      marginBottom: "0",
-                      fontWeight: 400,
-                      fontSize: "14pt",
-                      textAlign: "justify",
-                    }}
-                  ></p>
-                </Accordion.Content>
-                <Accordion.Title
-                  style={{
-                    fontSize: "15pt",
-                    color: "black",
-                    lineHeight: "1.4",
-                  }}
-                  // active={activeIndex === 0}
-                  index={49}
-                  onClick={() =>
-                    activeIndex.indexOf(49) < 0
-                      ? setActiveIndex((activeIndex) => [...activeIndex, 49])
-                      : setActiveIndex((activeIndex) =>
-                          activeIndex.filter((item) => item !== 49)
-                        )
-                  }
-                >
-                  <Icon name="dropdown" />
-                  {t("step2_26q")}
-                </Accordion.Title>
-                <Accordion.Content
-                  style={{ fontSize: "14pt" }}
-                  active={activeIndex.indexOf(49) > 0}
-                >
-                  {/* <p 
+                    // active={activeIndex === 0}
+                    index={49}
+                    onClick={() =>
+                      activeIndex.indexOf(49) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 49])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 49)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    {t("step2_26q")}
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(49) > 0}
+                  >
+                    {/* <p 
                    dangerouslySetInnerHTML={{
                           __html: snarkdown(t("step2_26")),
                         }}>
                 
                   </p> */}
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: snarkdown(t("step2_27")),
-                    }}
-                  ></p>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: snarkdown(t("step2_28")),
-                    }}
-                  ></p>
-                </Accordion.Content>
-                <Accordion.Title
-                  style={{ fontSize: "15pt", color: "black" }}
-                  // active={activeIndex === 0}
-                  index={13}
-                  onClick={() =>
-                    activeIndex.indexOf(13) < 0
-                      ? setActiveIndex((activeIndex) => [...activeIndex, 13])
-                      : setActiveIndex((activeIndex) =>
-                          activeIndex.filter((item) => item !== 13)
-                        )
-                  }
-                >
-                  <Icon name="dropdown" />
-                  {t("step2_21")}
-                </Accordion.Title>
-                <Accordion.Content
-                  style={{ fontSize: "14pt" }}
-                  active={activeIndex.indexOf(13) > 0}
-                >
-                  <p>{t("step2_22")}</p>
-                </Accordion.Content>
-              </Accordion>
-            </Grid.Column>
-          </Grid.Row>
-          {/* <Grid.Row>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: snarkdown(t("step2_27")),
+                      }}
+                    ></p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: snarkdown(t("step2_28")),
+                      }}
+                    ></p>
+                  </Accordion.Content>
+                  <Accordion.Title
+                    style={{ fontSize: "15pt", color: "black" }}
+                    // active={activeIndex === 0}
+                    index={13}
+                    onClick={() =>
+                      activeIndex.indexOf(13) < 0
+                        ? setActiveIndex((activeIndex) => [...activeIndex, 13])
+                        : setActiveIndex((activeIndex) =>
+                            activeIndex.filter((item) => item !== 13)
+                          )
+                    }
+                  >
+                    <Icon name="dropdown" />
+                    {t("step2_21")}
+                  </Accordion.Title>
+                  <Accordion.Content
+                    style={{ fontSize: "14pt" }}
+                    active={activeIndex.indexOf(13) > 0}
+                  >
+                    <p>{t("step2_22")}</p>
+                  </Accordion.Content>
+                </Accordion>
+              </Grid.Column>
+            </Grid.Row>
+            {/* <Grid.Row>
                   <Grid.Column width={7}>
                       <Header
                           as="h2"
@@ -757,72 +1358,73 @@ function VaccFAQ(props) {
                       </Header>
                   </Grid.Column>
               </Grid.Row> */}
-        </Grid>
-        {props.elicit ? (
-          <div>
-            <button
-              onClick={() => {
-                navigate("/decision-aid_elicit/step1");
-              }}
-              style={{
-                float: "left",
-                size: "5rem",
-                marginTop: "1rem",
-                marginBottom: "4rem",
-              }}
-              class="ui large primary button"
-            >
-              {t("prev")}
-            </button>
-            <button
-              onClick={() => {
-                navigate("/decision-aid_elicit/step3");
-              }}
-              style={{
-                float: "right",
-                size: "5rem",
-                marginTop: "1rem",
-                marginBottom: "4rem",
-              }}
-              class="ui large primary button"
-            >
-              {t("next")}
-            </button>
-          </div>
-        ) : (
-          <div>
-            <button
-              onClick={() => {
-                navigate("/decision-aid/step1");
-              }}
-              style={{
-                float: "left",
-                size: "5rem",
-                marginTop: "1rem",
-                marginBottom: "4rem",
-              }}
-              class="ui large primary button"
-            >
-              {t("prev")}
-            </button>
-            <button
-              onClick={() => {
-                navigate("/decision-aid/step3");
-              }}
-              style={{
-                float: "right",
-                size: "5rem",
-                marginTop: "1rem",
-                marginBottom: "4rem",
-              }}
-              class="ui large primary button"
-            >
-              {t("next")}
-            </button>
-          </div>
-        )}
-      </div>
-    );
+          </Grid>
+          {props.elicit ? (
+            <div>
+              <button
+                onClick={() => {
+                  navigate("/decision-aid_elicit/step1");
+                }}
+                style={{
+                  float: "left",
+                  size: "5rem",
+                  marginTop: "1rem",
+                  marginBottom: "4rem",
+                }}
+                class="ui large primary button"
+              >
+                {t("prev")}
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/decision-aid_elicit/step3");
+                }}
+                style={{
+                  float: "right",
+                  size: "5rem",
+                  marginTop: "1rem",
+                  marginBottom: "4rem",
+                }}
+                class="ui large primary button"
+              >
+                {t("next")}
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button
+                onClick={() => {
+                  navigate("/decision-aid/step1");
+                }}
+                style={{
+                  float: "left",
+                  size: "5rem",
+                  marginTop: "1rem",
+                  marginBottom: "4rem",
+                }}
+                class="ui large primary button"
+              >
+                {t("prev")}
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/decision-aid/step3");
+                }}
+                style={{
+                  float: "right",
+                  size: "5rem",
+                  marginTop: "1rem",
+                  marginBottom: "4rem",
+                }}
+                class="ui large primary button"
+              >
+                {t("next")}
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    }
   } else {
     return <Loader active inline="centered" />;
   }
