@@ -1,53 +1,27 @@
 import {
-  Container,
-  Grid,
-  Rail,
-  Ref,
-  Sticky,
-  Divider,
-  Radio,
-  Segment,
-  Accordion,
-  Icon,
-  Header,
-  Table,
-  Menu,
-  Tab,
-  Progress,
-  GridColumn,
-} from "semantic-ui-react";
-import Covid from "../icons/Covid";
-import { blue } from "@mui/material/colors";
-import Medicine from "../icons/Medicine";
-import styled, { css } from "styled-components";
-import React, {
-  useEffect,
-  useState,
-  Component,
-  createRef,
-  useRef,
-  useContext,
-  useMemo,
-} from "react";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
-import { useNavigate } from "react-router-dom";
-import MultipleChoice from "./multiplechoice.js";
-import { useCookie } from "react-use";
-import { ProgressBar } from "react-bootstrap";
-import i18n from "i18next";
-import { initReactI18next, useTranslation } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
   faExclamationTriangle,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import i18n from "i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import React, { useEffect, useState } from "react";
+import { initReactI18next, useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
-import { TRANSLATIONS_SPAN } from "./span/translation";
-import { TRANSLATIONS_EN } from "./en/translation";
+import { useCookie } from "react-use";
+import {
+  Accordion,
+  Grid,
+  GridColumn,
+  Header,
+  Progress,
+} from "semantic-ui-react";
+import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
+import styled from "styled-components";
 import DraggableBar from "./beliefElicidation.js";
+import { TRANSLATIONS_EN } from "./en/translation";
+import { TRANSLATIONS_SPAN } from "./span/translation";
 const colorPalette = [
   "#007dba",
   "#808080",
@@ -72,6 +46,16 @@ i18n
     },
   });
 function Compare(props) {
+  // handle screen size change to conditionally render page
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  // end of screen size monitor
   const navigate = useNavigate();
   const [vaccine, setVaccine] = useState("pfizer");
   const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
@@ -241,15 +225,6 @@ function Compare(props) {
             </Header>
           </GridColumn>
         </Grid.Row>
-        {/* <Grid.Row>
-              <GridColumn width={4}></GridColumn>
-              <GridColumn width={8}>
-                <a href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20">
-                  Link Here.
-                </a>
-              
-              </GridColumn>
-            </Grid.Row> */}
       </Grid>
       <hr />
       <Grid style={{ paddingTop: 5 }}>
@@ -1111,23 +1086,9 @@ function Compare(props) {
                 }}
               >
                 {t("step3_subtitle")}
-                {/* {Date().slice(4,10)} */}
               </Header.Subheader>
             </Header.Content>
           </Header>
-          {/* <ToggleButtonGroup
-        color='primary'
-        value={vaccine}
-        size="large"
-        exclusive
-        onChange={(e,value)=>{vaccine!=value&&setVaccine(value)}}
-        aria-label="Platform"
-       style={{padding:10}}
-      >
-        <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="pfizer">Pfizer/BioNTech</ToggleButton>
-        <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="moderna">Moderna</ToggleButton>
-      </ToggleButtonGroup> */}
-
           <Accordion
             id="race"
             style={{
@@ -1172,7 +1133,7 @@ function Compare(props) {
           </div>
         </div>
       </div>
-
+      {/* Previous / Next button */}
       {props.elicit ? (
         <div
           style={{
