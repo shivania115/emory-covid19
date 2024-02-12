@@ -28,8 +28,7 @@ export const TRANSLATIONS_EN = {
   slightlyagree: "Slightly Agree",
   stronglyagree: "Strongly Agree",
   survey: "COVID-19 Vaccine Survey",
-  toggle:
-    "Please share your background and thoughts below. This step is optional.",
+  toggle: "Please share your background and thoughts below.",
   table_des:
     "For each statement below, please select the option which most closely matches your opinion on that statement",
   table_ques1: "COVID-19 vaccines are effective.",
