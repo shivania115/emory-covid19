@@ -19,9 +19,9 @@ import {
 } from "semantic-ui-react";
 import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
 import styled from "styled-components";
-import Compare_mobile_pane from "./compare_mobile_pane";
 import { TRANSLATIONS_EN } from "./en/translation";
 import { TRANSLATIONS_SPAN } from "./span/translation";
+import { Box } from "@mui/system";
 const colorPalette = [
   "#007dba",
   "#808080",
@@ -45,29 +45,9 @@ i18n
       },
     },
   });
-function CompareNoElicit(props) {
-  const navigate = useNavigate();
-  const [vaccine, setVaccine] = useState("pfizer");
-  const [cookies, setCookie, removeCookie] = useCookie(["decision_aid"]);
-  const [hospilizationVac, sethospilizationVac] = useState(0);
-  const [hospilizationNoVac, sethospilizationNoVac] = useState(0);
-  const [symptomsCOVID, setSymptomsCOVID] = useState(0);
-  const [symptomsVac, setSymptomsVac] = useState(0);
-  const cookie = JSON.parse(cookies);
+
+export default function Compare_mobile_pane() {
   const { t } = useTranslation();
-  // handle screen size change to conditionally render page
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth < 1024);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  // end of screen size monitor
-  const handleClick = (e) => {
-    e.stopPropagation(); // prevent the click event from bubbling up to the document
-  };
   const StyledProgressBar = styled(Progress)`
     &&& .bar {
       ${
@@ -76,80 +56,49 @@ function CompareNoElicit(props) {
       min-width: 0;
     }
   `;
-  const Panes = () => (
+  return (
     <div class="ui bottom attached segment active tab" style={{}}>
-      <Grid>
-        <Grid.Row style={{ paddingTop: 20 }}>
-          <GridColumn width={6}>
-            {" "}
-            {/* <MultipleChoice></MultipleChoice> */}
-            <Header
-              as="h4"
-              style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-            >
-              <Header.Content>{t("step3_risk")}</Header.Content>
-            </Header>
-          </GridColumn>
-          <GridColumn width={3}>{t("step3_conditions")}</GridColumn>
-
-          <GridColumn width={7}>{t("step3_number")}</GridColumn>
+      <Grid style={{ paddingTop: 5, marginLeft: 10 }}>
+        <Grid.Row>
+          {/* Table Header Content */}
+          <Header
+            as="h4"
+            style={{ paddingTop: 10, fontWeight: 500, fontSize: "14pt" }}
+          >
+            <Header.Content>
+              {t("step3_hospitalization")}
+              <sup style={{ verticalAlign: "super" }}>
+                <FontAwesomeIcon
+                  color="#ADD8E6"
+                  size="xs"
+                  icon={faInfoCircle}
+                  data-html={true}
+                  data-tip={`The data is taken from <a target='_blank' href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`}
+                />
+              </sup>
+            </Header.Content>
+            <HeaderSubHeader>
+              {
+                "Number of people hospitalized with Covid-19 in the United States since March 2020"
+              }
+            </HeaderSubHeader>
+          </Header>
         </Grid.Row>
-      </Grid>
-      <hr />
-      <Grid style={{ paddingTop: 5, paddingBottom: 0, marginBottom: 0 }}>
-        <Grid.Row style={{ paddingBottom: 0, marginBottom: 0 }}>
-          <GridColumn width={6}>
-            {" "}
-            <Header
-              as="h4"
-              style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-            >
-              <Header.Content>
-                {t("step3_hospitalization")}
-                <sup style={{ verticalAlign: "super" }}>
-                  <FontAwesomeIcon
-                    color="#ADD8E6"
-                    size="xs"
-                    icon={faInfoCircle}
-                    data-html={true}
-                    data-tip={`The data is taken from <a target='_blank' href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2796235#:~:text=Monthly%20hospitalization%20rates%20ranged%20from,eTable%207%20in%20the%20" target="_blank" rel="noopener noreferrer">JAMA Internal Medicine</a>, it displays the hospitalization rate of COVID-19 patients with vaccine and without vaccine.`}
-                  />
-                </sup>
-              </Header.Content>
-              <HeaderSubHeader>
-                {
-                  "Number of people hospitalized with Covid-19 in the United States since March 2020"
-                }
-              </HeaderSubHeader>
-            </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-            <Header as="h4">
+        <Grid.Row>
+          {/* Conditions */}
+          <GridColumn width={11}>
+            <Header as="h6">
               <Header.Content>{t("step3_novac")}</Header.Content>
             </Header>
-            <Header as="h4" style={{ marginTop: "4%" }}>
+            <Header as="h6" style={{ marginTop: "4%" }}>
               <Header.Content>{t("step3_vac")}</Header.Content>
             </Header>
-            <Header as="h4" style={{ marginTop: "4%" }}>
+            <Header as="h6" style={{ marginTop: "4%" }}>
               <Header.Content>{t("step3_boost")}</Header.Content>
             </Header>
           </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              reverse
-              percent={28}
-              color="red"
-            ></StyledProgressBar>
-            <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              percent={8}
-              color="blue"
-            ></StyledProgressBar>
-            <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+          {/* Numble of People */}
+          <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
             <Header as="h4">
               <Header.Content style={{ color: "#e02c2c" }}>
                 {t("t28")}
@@ -172,65 +121,70 @@ function CompareNoElicit(props) {
               </Header.Content>
             </Header>
           </GridColumn>
-        </Grid.Row>
-      </Grid>
-      <hr />
-      <Grid style={{ paddingTop: 5 }}>
-        <Grid.Row>
-          <GridColumn width={6}>
-            {" "}
-            <Header
-              as="h4"
-              style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
-            >
-              <Header.Content>
-                {t("step3_ICU")}
-                <sup style={{ verticalAlign: "super" }}>
-                  <FontAwesomeIcon
-                    color="#ADD8E6"
-                    size="xs"
-                    icon={faInfoCircle}
-                    data-html={true}
-                    data-tip={
-                      'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer" >Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a> '
-                    }
-                  />
-                </sup>
-              </Header.Content>
-              <HeaderSubHeader>{t("step3_number")}</HeaderSubHeader>
-            </Header>
-          </GridColumn>
-          <GridColumn width={3}>
-            <Header as="h4">
-              <Header.Content>{t("step3_novac")}</Header.Content>
-            </Header>
-            <Header as="h4" style={{ marginTop: "4%" }}>
-              <Header.Content>{t("step3_vac")}</Header.Content>
-            </Header>
-            <Header as="h4" style={{ marginTop: "4%" }}>
-              <Header.Content>{t("step3_boost")}</Header.Content>
-            </Header>
-          </GridColumn>
-
-          <GridColumn width={5}>
+          {/* Progress Bar */}
+          {/* <GridColumn width={16}>
             <StyledProgressBar
               style={{ marginBottom: 20 }}
               reverse
-              percent={50}
+              percent={28}
               color="red"
             ></StyledProgressBar>
             <StyledProgressBar
               style={{ marginBottom: 20 }}
-              percent={12}
+              percent={8}
               color="blue"
             ></StyledProgressBar>
-            <StyledProgressBar percent={8} color="blue"></StyledProgressBar>
+            <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
+          </GridColumn> */}
+        </Grid.Row>
+      </Grid>
+      <hr />
+      {/* ICU-LEVL Care */}
+      <Grid style={{ paddingTop: 5, marginLeft: 10 }}>
+        <Grid.Column width={16}>
+          {/* Detailed Header with Sub-Header */}
+          <Header
+            as="h4"
+            style={{
+              paddingTop: 10,
+              fontWeight: 500,
+              fontSize: "14pt",
+            }}
+          >
+            <Header.Content>
+              {t("step3_ICU")}
+              <sup style={{ verticalAlign: "super" }}>
+                <FontAwesomeIcon
+                  color="#ADD8E6"
+                  size="xs"
+                  icon={faInfoCircle}
+                  data-html={true}
+                  data-tip={
+                    'This data comes from <a href="https://pubmed-ncbi-nlm-nih-gov.proxy.library.emory.edu/35113851/" target="_blank" rel="noopener noreferrer">Los Angeles County. (2022). COVID-19 hospitalization rates by vaccination status during Omicron variant predominance.</a>'
+                  }
+                />
+              </sup>
+            </Header.Content>
+            <Header.Subheader>{t("step3_number")}</Header.Subheader>
+          </Header>
+        </Grid.Column>
+        <Grid.Row>
+          {/* Conditions */}
+          <GridColumn width={11}>
+            <Header as="h6">
+              <Header.Content>{t("step3_novac")}</Header.Content>
+            </Header>
+            <Header as="h6" style={{ marginTop: "4%" }}>
+              <Header.Content>{t("step3_vac")}</Header.Content>
+            </Header>
+            <Header as="h6" style={{ marginTop: "4%" }}>
+              <Header.Content>{t("step3_boost")}</Header.Content>
+            </Header>
           </GridColumn>
-          <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+          {/* Number of People */}
+          <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
             <Header as="h4">
-              <Header.Content
-                style={{ color: "#e02c2c", whiteSpace: "nowrap" }}
-              >
+              <Header.Content style={{ color: "#e02c2c" }}>
                 {t("tt50")}
                 <sup style={{ verticalAlign: "super" }}>
                   <FontAwesomeIcon
@@ -252,16 +206,33 @@ function CompareNoElicit(props) {
             </Header>
           </GridColumn>
         </Grid.Row>
+        {/* Progress Bar */}
+        {/* <Grid.Row>
+          <GridColumn width={16}>
+            <StyledProgressBar
+              style={{ marginBottom: 20 }}
+              reverse
+              percent={50}
+              color="red"
+            ></StyledProgressBar>
+            <StyledProgressBar
+              style={{ marginBottom: 20 }}
+              percent={12}
+              color="blue"
+            ></StyledProgressBar>
+            <StyledProgressBar percent={8} color="blue"></StyledProgressBar>
+          </GridColumn>
+        </Grid.Row> */}
       </Grid>
-      <hr />
 
-      <Grid style={{ paddingTop: 5 }}>
+      <hr />
+      {/* LONG-COVID */}
+      <Grid style={{ paddingTop: 5, marginLeft: 10 }}>
         <Grid.Row>
-          <GridColumn width={6}>
-            {" "}
+          <GridColumn width={16}>
             <Header
               as="h4"
-              style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+              style={{ paddingTop: 10, fontWeight: 500, fontSize: "14pt" }}
             >
               <Header.Content>{t("step3_long")}</Header.Content>
               <sup style={{ verticalAlign: "super" }}>
@@ -278,46 +249,20 @@ function CompareNoElicit(props) {
               <HeaderSubHeader>{t("step3_number")}</HeaderSubHeader>
             </Header>
           </GridColumn>
-          <GridColumn width={3}>
-            <Header as="h4">
+        </Grid.Row>
+        {/* Conditions */}
+        <Grid.Row>
+          <GridColumn width={11}>
+            <Header as="h6">
               <Header.Content>{t("step3_novac")}</Header.Content>
             </Header>
 
-            <Header as="h4" style={{ marginTop: "4%" }}>
+            <Header as="h6" style={{ marginTop: "4%" }}>
               <Header.Content>{t("step3_vac")}</Header.Content>
             </Header>
           </GridColumn>
-
-          <GridColumn width={5}>
-            <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              reverse
-              percent={24.2}
-              color="red"
-            ></StyledProgressBar>
-
-            <StyledProgressBar
-              percent={14.5}
-              style={{ marginBottom: 20 }}
-              color="blue"
-            ></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
-            {/* <Header as="h4">
-                  <Header.Content style={{ color: "#e02c2c" }}>
-                    20 in 100
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
-                  </Header.Content>
-                </Header>
-                <Header as="h4" style={{ marginTop: "0%" }}>
-                  <Header.Content style={{ color: "#0E6EB8" }}>
-                    zero
-                  </Header.Content>
-                </Header> */}
+          {/* Numble of Peopl */}
+          <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
             <Header as="h4">
               <Header.Content style={{ color: "#e02c2c" }}>
                 {t("t242")}
@@ -335,16 +280,33 @@ function CompareNoElicit(props) {
               </Header.Content>
             </Header>
           </GridColumn>
+          {/* Progress Bar */}
+          {/* <GridColumn width={16}>
+            <StyledProgressBar
+              style={{ marginBottom: 20 }}
+              reverse
+              percent={24.2}
+              color="red"
+            ></StyledProgressBar>
+
+            <StyledProgressBar
+              percent={14.5}
+              style={{ marginBottom: 20 }}
+              color="blue"
+            ></StyledProgressBar>
+          </GridColumn> */}
         </Grid.Row>
       </Grid>
       <hr />
-      <Grid style={{ paddingTop: 5 }}>
+
+      {/* DEATH */}
+      <Grid style={{ paddingTop: 5, marginLeft: 10 }}>
         <Grid.Row>
-          <GridColumn width={6}>
+          <GridColumn width={16}>
             {" "}
             <Header
               as="h4"
-              style={{ paddingTop: 10, fontWeight: 500, fontSize: "15pt" }}
+              style={{ paddingTop: 10, fontWeight: 500, fontSize: "14pt" }}
             >
               <Header.Content>
                 {t("step3_death")}
@@ -370,32 +332,23 @@ function CompareNoElicit(props) {
               <HeaderSubHeader>{t("step3_number")}</HeaderSubHeader>
             </Header>
           </GridColumn>
-          <GridColumn width={3}>
-            <Header as="h4">
+        </Grid.Row>
+        <Grid.Row>
+          {/* Conditions */}
+          <GridColumn width={11}>
+            <Header as="h6">
               <Header.Content>{t("step3_novac")}</Header.Content>
             </Header>
-            <Header as="h4" style={{ marginTop: "4%" }}>
+            <Header as="h6" style={{ marginTop: "4%" }}>
               <Header.Content>{t("step3_vac")}</Header.Content>
             </Header>
-            <Header as="h4" style={{ marginTop: "4%" }}>
+            <Header as="h6" style={{ marginTop: "4%" }}>
               <Header.Content>{t("step3_boost")}</Header.Content>
             </Header>
           </GridColumn>
 
-          <GridColumn width={5}>
-            <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              color="red"
-              percent={30}
-            ></StyledProgressBar>
-            <StyledProgressBar
-              style={{ marginBottom: 20 }}
-              percent={8}
-              color="blue"
-            ></StyledProgressBar>
-            <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
-          </GridColumn>
-          <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+          {/* Numble of People */}
+          <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
             <Header as="h4">
               <Header.Content
                 style={{ color: "#e02c2c", whiteSpace: "nowrap" }}
@@ -420,13 +373,28 @@ function CompareNoElicit(props) {
               </Header.Content>
             </Header>
           </GridColumn>
+          {/* Progress bar */}
+          {/* <GridColumn width={5}>
+            <StyledProgressBar
+              style={{ marginBottom: 20 }}
+              color="red"
+              percent={30}
+            ></StyledProgressBar>
+            <StyledProgressBar
+              style={{ marginBottom: 20 }}
+              percent={8}
+              color="blue"
+            ></StyledProgressBar>
+            <StyledProgressBar percent={7} color="blue"></StyledProgressBar>
+          </GridColumn> */}
         </Grid.Row>
       </Grid>
 
+      {/* Symptoms */}
       <hr />
-      <Grid style={{ paddingTop: 20 }}>
+      <Grid style={{ paddingTop: 20, marginLeft: 10 }}>
         <Grid.Row style={{ paddingTop: 0, marginBottom: 0, paddingBottom: 0 }}>
-          <GridColumn width={6}>
+          <GridColumn width={16}>
             {" "}
             <Header
               as="h4"
@@ -482,11 +450,15 @@ function CompareNoElicit(props) {
                 },
                 content: {
                   content: (
-                    <Grid style={{ paddingTop: 0 }}>
+                    <Grid style={{ paddingTop: 0, marginLeft: 10 }}>
+                      {/* Fever */}
                       <Grid.Row
-                        style={{ paddingBottom: 0, marginBottom: "1%" }}
+                        style={{
+                          paddingBottom: 0,
+                          marginBottom: "1%",
+                        }}
                       >
-                        <GridColumn width={6}>
+                        <GridColumn width={16}>
                           {" "}
                           <Header
                             as="h4"
@@ -502,7 +474,9 @@ function CompareNoElicit(props) {
                             </HeaderSubHeader>
                           </Header>
                         </GridColumn>
-                        <GridColumn width={3}>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <GridColumn width={11}>
                           <Header as="h4">
                             <Header.Content>
                               {t("step3_withCOVID")}
@@ -520,7 +494,7 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
 
-                        <GridColumn width={5}>
+                        {/* <GridColumn width={5}>
                           <StyledProgressBar
                             style={{ marginBottom: 20 }}
                             reverse
@@ -536,8 +510,8 @@ function CompareNoElicit(props) {
                             percent={15.8}
                             color="blue"
                           ></StyledProgressBar>
-                        </GridColumn>
-                        <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+                        </GridColumn> */}
+                        <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
                           <Header as="h4">
                             <Header.Content
                               style={{
@@ -561,11 +535,14 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
                       </Grid.Row>
-
+                      {/* COUGH */}
                       <Grid.Row
-                        style={{ paddingBottom: 0, marginBottom: "1%" }}
+                        style={{
+                          paddingBottom: 0,
+                          marginBottom: "1%",
+                        }}
                       >
-                        <GridColumn width={6}>
+                        <GridColumn width={16}>
                           {" "}
                           <Header
                             as="h4"
@@ -581,7 +558,9 @@ function CompareNoElicit(props) {
                             </HeaderSubHeader>
                           </Header>
                         </GridColumn>
-                        <GridColumn width={3}>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <GridColumn width={11}>
                           <Header as="h4">
                             <Header.Content>
                               {t("step3_withCOVID")}
@@ -599,7 +578,7 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
 
-                        <GridColumn width={5}>
+                        {/* <GridColumn width={5}>
                           <StyledProgressBar
                             style={{ marginBottom: 20 }}
                             reverse
@@ -615,8 +594,8 @@ function CompareNoElicit(props) {
                             percent={0}
                             color="blue"
                           ></StyledProgressBar>
-                        </GridColumn>
-                        <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+                        </GridColumn> */}
+                        <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
                           <Header as="h4">
                             <Header.Content
                               style={{ color: "#e02c2c", whiteSpace: "nowrap" }}
@@ -636,11 +615,11 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
                       </Grid.Row>
-
+                      {/* Shortness of Breath */}
                       <Grid.Row
                         style={{ paddingBottom: 0, marginBottom: "1%" }}
                       >
-                        <GridColumn width={6}>
+                        <GridColumn width={16}>
                           {" "}
                           <Header
                             as="h4"
@@ -658,7 +637,9 @@ function CompareNoElicit(props) {
                             </HeaderSubHeader>
                           </Header>
                         </GridColumn>
-                        <GridColumn width={3}>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <GridColumn width={11}>
                           <Header as="h4">
                             <Header.Content>
                               {t("step3_withCOVID")}
@@ -676,7 +657,7 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
 
-                        <GridColumn width={5}>
+                        {/* <GridColumn width={5}>
                           <StyledProgressBar
                             style={{ marginBottom: 20 }}
                             color="red"
@@ -691,8 +672,8 @@ function CompareNoElicit(props) {
                             percent={0}
                             color="blue"
                           ></StyledProgressBar>
-                        </GridColumn>
-                        <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+                        </GridColumn> */}
+                        <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
                           <Header as="h4">
                             <Header.Content
                               style={{ color: "#e02c2c", whiteSpace: "nowrap" }}
@@ -712,10 +693,11 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
                       </Grid.Row>
+                      {/* Myalgia Muscle of Joint Pain */}
                       <Grid.Row
                         style={{ paddingBottom: 0, marginBottom: "1%" }}
                       >
-                        <GridColumn width={6}>
+                        <GridColumn width={16}>
                           {" "}
                           <Header
                             as="h4"
@@ -733,7 +715,9 @@ function CompareNoElicit(props) {
                             </HeaderSubHeader>
                           </Header>
                         </GridColumn>
-                        <GridColumn width={3}>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <GridColumn width={11}>
                           <Header as="h4" style={{ marginTop: "1%" }}>
                             <Header.Content>
                               {t("step3_withCOVID")}
@@ -751,7 +735,7 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
 
-                        <GridColumn width={5}>
+                        {/* <GridColumn width={5}>
                           <StyledProgressBar
                             style={{ marginBottom: 20 }}
                             reverse
@@ -767,8 +751,8 @@ function CompareNoElicit(props) {
                             percent={21.3}
                             color="blue"
                           ></StyledProgressBar>
-                        </GridColumn>
-                        <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+                        </GridColumn> */}
+                        <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
                           <Header as="h4">
                             <Header.Content
                               style={{ color: "#e02c2c", whiteSpace: "nowrap" }}
@@ -788,11 +772,11 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
                       </Grid.Row>
-
+                      {/* Sore Throat */}
                       <Grid.Row
                         style={{ paddingBottom: 0, marginBottom: "1%" }}
                       >
-                        <GridColumn width={6}>
+                        <GridColumn width={16}>
                           {" "}
                           <Header
                             as="h4"
@@ -808,7 +792,9 @@ function CompareNoElicit(props) {
                             </HeaderSubHeader>
                           </Header>
                         </GridColumn>
-                        <GridColumn width={3}>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <GridColumn width={11}>
                           <Header as="h4">
                             <Header.Content>
                               {t("step3_withCOVID")}
@@ -826,7 +812,7 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
 
-                        <GridColumn width={5}>
+                        {/* <GridColumn width={5}>
                           <StyledProgressBar
                             style={{ marginBottom: 20 }}
                             color="red"
@@ -841,8 +827,8 @@ function CompareNoElicit(props) {
                             percent={0}
                             color="blue"
                           ></StyledProgressBar>
-                        </GridColumn>
-                        <GridColumn width={2} style={{ whiteSpace: "nowrap" }}>
+                        </GridColumn> */}
+                        <GridColumn width={5} style={{ whiteSpace: "nowrap" }}>
                           <Header as="h4">
                             <Header.Content
                               style={{
@@ -866,10 +852,11 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
                       </Grid.Row>
+                      {/* Local Swelling at the Injection Site */}
                       <Grid.Row
                         style={{ paddingBottom: 0, marginBottom: "1%" }}
                       >
-                        <GridColumn width={6}>
+                        <GridColumn width={16}>
                           {" "}
                           <Header
                             as="h5"
@@ -885,7 +872,9 @@ function CompareNoElicit(props) {
                             </HeaderSubHeader>
                           </Header>
                         </GridColumn>
-                        <GridColumn width={3}>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <GridColumn width={10}>
                           <Header as="h4">
                             <Header.Content>
                               {t("step3_withCOVID")}
@@ -903,7 +892,7 @@ function CompareNoElicit(props) {
                           </Header>
                         </GridColumn>
 
-                        <GridColumn width={5}>
+                        {/* <GridColumn width={5}>
                           <StyledProgressBar
                             style={{ marginBottom: 20 }}
                             reverse
@@ -919,8 +908,8 @@ function CompareNoElicit(props) {
                             percent={6.3}
                             color="blue"
                           ></StyledProgressBar>
-                        </GridColumn>
-                        <GridColumn width={2}>
+                        </GridColumn> */}
+                        <GridColumn width={6}>
                           <Header as="h4">
                             <Header.Content style={{ color: "#e02c2c" }}>
                               {t("notapply")}
@@ -949,136 +938,4 @@ function CompareNoElicit(props) {
       <hr />
     </div>
   );
-
-  // const [belief, setBelief] = useState();
-  //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  return (
-    <div>
-      <div class="ui two column centered grid">
-        <div style={{}}>
-          {/* <DraggableBar 
-          sethospilizationVac={sethospilizationVac}
-          sethospilizationNoVac={sethospilizationNoVac}
-          setSymptomsCOVID={setSymptomsCOVID}
-          setSymptomsVac={setSymptomsVac}
-            ></DraggableBar> */}
-          <Header
-            as="h1"
-            style={{ paddingTop: 30, fontWeight: 400, fontSize: "24pt" }}
-          >
-            <Header.Content>
-              {t("step3_title")}
-              <Header.Subheader
-                style={{
-                  paddingTop: "1.5rem",
-                  paddingLeft: "0rem",
-                  paddingBottom: "0rem",
-                  lineHeight: "20pt",
-                  fontWeight: 400,
-                  fontSize: "12pt",
-                  color: "black",
-                }}
-              >
-                {t("step3_subtitle")}
-                {/* {Date().slice(4,10)} */}
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
-          {/* <ToggleButtonGroup
-        color='primary'
-        value={vaccine}
-        size="large"
-        exclusive
-        onChange={(e,value)=>{vaccine!=value&&setVaccine(value)}}
-        aria-label="Platform"
-       style={{padding:10}}
-      >
-        <ToggleButton style={{width:200,fontSize:'1.25rem'}}   value="pfizer">Pfizer/BioNTech</ToggleButton>
-        <ToggleButton style={{width:200,fontSize:'1.25rem'}} value="moderna">Moderna</ToggleButton>
-      </ToggleButtonGroup> */}
-
-          <Accordion
-            id="race"
-            style={{
-              paddingTop: 0,
-            }}
-            defaultActiveIndex={1}
-            panels={[
-              {
-                key: "acquire-dog",
-                title: {
-                  content: (
-                    <>
-                      <u
-                        style={{
-                          fontFamily: "lato",
-                          fontSize: "1.5rem",
-                        }}
-                      >
-                        {t("aboutVaccine")}
-                      </u>
-                      <br />
-                      Click to read more about the vaccine
-                    </>
-                  ),
-                  icon: "dropdown",
-                },
-                content: {
-                  content: (
-                    <ul style={{ textAlign: "left" }}>
-                      <li>{t("step3_pfizer")}</li>
-                      <pre />
-                      <li>{t("step3_moderna")}</li>
-                    </ul>
-                  ),
-                },
-              },
-            ]}
-          />
-          {/* <Header as="h4" style={{ fontWeight: 400 }}>
-            <Header.Content>
-              "Click to read more about the vaccine"
-            </Header.Content>
-          </Header> */}
-          <pre></pre>
-          <FontAwesomeIcon
-            icon={faExclamationTriangle}
-            style={{ color: "red" }}
-          />
-          <em>{t("step3_warning")}</em>
-          <div class="ui attached tabular menu">
-            {isMobileView ? <Compare_mobile_pane /> : <Panes />}
-          </div>
-        </div>
-      </div>
-      <div
-        style={{
-          paddingTop: 30,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step2");
-          }}
-          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
-        >
-          {t("prev")}
-        </button>
-        <button
-          onClick={() => {
-            navigate("/decision-aid/step4");
-          }}
-          style={{ size: "5rem", marginTop: "1rem", marginBottom: "4rem" }}
-          class="ui large primary button"
-        >
-          {t("next")}
-        </button>
-      </div>
-    </div>
-  );
 }
-export default CompareNoElicit;
