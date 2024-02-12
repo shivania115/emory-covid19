@@ -1,59 +1,20 @@
 //Step 4: Make Your Decision
-import {
-  Container,
-  Breadcrumb,
-  Dropdown,
-  Header,
-  Grid,
-  Progress,
-  Loader,
-  Divider,
-  Popup,
-  Table,
-  Button,
-  Image,
-  Rail,
-  Sticky,
-  Ref,
-  Segment,
-  Accordion,
-  Icon,
-  Checkbox,
-  Menu,
-  Message,
-  Transition,
-  List,
-} from "semantic-ui-react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-bootstrap/Modal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Button, Checkbox, Grid, Header } from "semantic-ui-react";
 
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  createRef,
-  PureComponent,
-} from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Slider from "@mui/material/Slider";
-import HeaderSubHeader from "semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleCheck,
-  faClock,
-  faQuestionCircle,
-} from "@fortawesome/free-regular-svg-icons";
-import { useCookie } from "react-use";
-import { decision_aid } from "../../stitch/mongodb";
 import TextField from "@mui/material/TextField";
-import snarkdown from "snarkdown";
 import i18n from "i18next";
-import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { TRANSLATIONS_SPAN } from "./span/translation";
+import React, { useEffect, useState } from "react";
+import { initReactI18next, useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useCookie } from "react-use";
+import snarkdown from "snarkdown";
 import { TRANSLATIONS_EN } from "./en/translation";
-import DragScaleBar from "./DragScaleBar";
+import { TRANSLATIONS_SPAN } from "./span/translation";
 
 i18n
   .use(LanguageDetector)
@@ -71,6 +32,19 @@ i18n
   });
 
 function FinalDecision() {
+  // handle screen size change to conditionally render page
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const conditionalStyle = isMobileView
+    ? {}
+    : { marginLeft: "20%", width: "60%" };
+  // end of screen size monitor
   const { t } = useTranslation();
   function valueLabelFormat() {
     return "asdlfkas";
@@ -288,7 +262,7 @@ function FinalDecision() {
   }
 
   return (
-    <div style={{ marginLeft: "20%", width: "60%" }}>
+    <div style={conditionalStyle}>
       {/* mimic what is written below, and do it for all the questions and options */}
       {/* q1 */}
       <div className="checkbox">
