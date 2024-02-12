@@ -15,6 +15,7 @@ import { useCookie } from "react-use";
 import snarkdown from "snarkdown";
 import { TRANSLATIONS_EN } from "./en/translation";
 import { TRANSLATIONS_SPAN } from "./span/translation";
+import { Box, Typography } from "@mui/material";
 
 i18n
   .use(LanguageDetector)
@@ -905,27 +906,43 @@ function FinalDecision() {
           </div>
         </>
       )}
-      <button
-        onClick={() => {
-          navigate("/decision-aid/step4");
+      {/* Previous and Submit button */}
+      <Box style={{ marginTop: "3rem" }}>
+        <Typography fontFamily="lato">
+          Please click on the 'Next' button and complete Step 5 prior to exiting
+          the survey. Thank you for your cooperation!
+        </Typography>
+      </Box>
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: "1.5rem",
         }}
-        style={{ marginTop: "3rem" }}
-        class="ui large primary button"
       >
-        {t("prev")}
-      </button>
-      {!submitted ? (
         <button
-          onClick={handleSubmit}
-          type="submit"
-          style={{ marginTop: "3rem" }}
+          onClick={() => {
+            navigate("/decision-aid/step4");
+          }}
+          style={{ marginBottom: "50px" }}
           class="ui large primary button"
         >
-          {t("submit")}
+          {t("prev")}
         </button>
-      ) : (
-        <div></div>
-      )}
+        {!submitted ? (
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            style={{ marginBottom: "50px" }}
+            class="ui large primary button"
+          >
+            {t("next")}
+          </button>
+        ) : (
+          <div></div>
+        )}
+      </Box>
       {/* {submitted ? (
   <div>
     <Header as="h4" style={{ paddingTop: 10, fontWeight: 550, fontSize: "1.5rem" }}>
