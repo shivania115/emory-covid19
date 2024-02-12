@@ -62,6 +62,7 @@ import { initReactI18next, useTranslation } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { TRANSLATIONS_SPAN } from "./span/translation";
 import { TRANSLATIONS_EN } from "./en/translation";
+import { Box } from "@mui/system";
 
 i18n
   .use(LanguageDetector)
@@ -79,6 +80,27 @@ i18n
   });
 
 function DecitionTable(props) {
+  // handle screen size change to conditionally render page
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const conditionalWrapperStyle = isMobileView
+    ? { fontFamily: "lato", paddingBottom: "30px" }
+    : {
+        marginLeft: "10%",
+        width: "85%",
+        fontFamily: "lato",
+        paddingBottom: "30px",
+      };
+  const tableMargin = isMobileView
+    ? { alignContent: "center", marginLeft: "-3vw" }
+    : {};
+  // end of screen size monitor
   const { t } = useTranslation();
   const navigate = useNavigate();
   //info contains slider information
@@ -243,14 +265,7 @@ function DecitionTable(props) {
   };
   return (
     <>
-      <div
-        style={{
-          marginLeft: "10%",
-          width: "85%",
-          fontFamily: "lato",
-          paddingBottom: "30px",
-        }}
-      >
+      <div style={conditionalWrapperStyle}>
         {/* <ToggleButtonGroup
         color='primary'
         value={i18n.language}
@@ -335,379 +350,381 @@ function DecitionTable(props) {
         </div>
         <Divider></Divider>
         {t("table_des")}
-        <table className="ui striped table">
-          <thead style={{ textAlign: "center" }}>
-            <tr>
-              <th></th>
-              <div>
-                <th style={{ width: "20%" }}>{t("stronglydisagree")}</th>
-                <th style={{ width: "20%" }}>{t("slightlydisagree")}</th>
-                <th style={{ width: "20%" }}>{t("neither")}</th>
-                <th style={{ width: "20%" }}>{t("slightlyagree")}</th>
-                <th style={{ width: "20%" }}> {t("stronglyagree")}</th>
-              </div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{t("table_ques1")}</td>
-              <td colSpan="5">
-                {/* <Slider
+        <Box style={tableMargin}>
+          <table className="ui striped table">
+            <thead style={{ textAlign: "center" }}>
+              <tr>
+                <th></th>
+                <div>
+                  <th style={{ width: "20%" }}>{t("stronglydisagree")}</th>
+                  <th style={{ width: "20%" }}>{t("slightlydisagree")}</th>
+                  <th style={{ width: "20%" }}>{t("neither")}</th>
+                  <th style={{ width: "20%" }}>{t("slightlyagree")}</th>
+                  <th style={{ width: "20%" }}> {t("stronglyagree")}</th>
+                </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{t("table_ques1")}</td>
+                <td colSpan="5">
+                  {/* <Slider
                   defaultValue={50}
                   key={0}
                   aria-label="Default"
                   onChange={(event, value) => handleChange(0, value)}
                 /> */}
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[0] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(0, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[0] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(0, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[0] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(0, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[0] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(0, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[0] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(0, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-            <tr>
-              <td>{t("table_ques2")}</td>
-              <td colSpan="3">
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[1] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(1, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[1] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(1, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[1] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(1, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[1] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(1, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[1] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(1, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-            <tr>
-              <td>{t("table_ques3")}</td>
-              <td colSpan="3">
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[2] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(2, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[2] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(2, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[2] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(2, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[2] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(2, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[2] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(2, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-            <tr>
-              <td>{t("table_ques4")}</td>
-              <td colSpan="3">
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[3] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(3, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[3] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(3, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[3] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(3, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[3] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(3, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[3] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(3, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-            <tr>
-              <td>{t("table_ques5")}</td>
-              <td colSpan="3">
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[4] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(4, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[4] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(4, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[4] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(4, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[4] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(4, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[4] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(4, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                {" "}
-                I trust the information provided by healthcare authorities and
-                experts regarding COVID-19 vaccines
-              </td>
-              <td colSpan="3">
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[5] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(5, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[5] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(5, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[5] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(5, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[5] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(5, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[5] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(5, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                {" "}
-                I am likely to use an online decision-aid tool to learn more
-                about the risks and potential benefits of COVID-19 vaccines
-              </td>
-              <td colSpan="3">
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                  row
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
-                  }}
-                >
-                  <Radio
-                    checked={radioSelectedValue[6] === "Strongly Disagree"}
-                    onChange={(e) => handleRadioChange(6, e)}
-                    value="Strongly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[6] === "Slightly Disagree"}
-                    onChange={(e) => handleRadioChange(6, e)}
-                    value="Slightly Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={
-                      radioSelectedValue[6] === "Neither Agree nor Disagree"
-                    }
-                    onChange={(e) => handleRadioChange(6, e)}
-                    value="Neither Agree nor Disagree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[6] === "Slightly Agree"}
-                    onChange={(e) => handleRadioChange(6, e)}
-                    value="Slightly Agree"
-                    name="radio-buttons"
-                  />
-                  <Radio
-                    checked={radioSelectedValue[6] === "Strongly Agree"}
-                    onChange={(e) => handleRadioChange(6, e)}
-                    value="Strongly Agree"
-                    name="radio-buttons"
-                  />
-                </RadioGroup>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[0] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(0, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[0] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(0, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[0] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(0, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[0] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(0, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[0] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(0, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+              <tr>
+                <td>{t("table_ques2")}</td>
+                <td colSpan="3">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[1] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(1, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[1] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(1, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[1] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(1, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[1] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(1, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[1] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(1, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+              <tr>
+                <td>{t("table_ques3")}</td>
+                <td colSpan="3">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[2] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(2, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[2] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(2, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[2] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(2, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[2] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(2, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[2] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(2, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+              <tr>
+                <td>{t("table_ques4")}</td>
+                <td colSpan="3">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[3] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(3, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[3] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(3, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[3] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(3, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[3] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(3, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[3] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(3, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+              <tr>
+                <td>{t("table_ques5")}</td>
+                <td colSpan="3">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[4] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(4, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[4] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(4, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[4] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(4, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[4] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(4, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[4] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(4, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {" "}
+                  I trust the information provided by healthcare authorities and
+                  experts regarding COVID-19 vaccines
+                </td>
+                <td colSpan="3">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[5] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(5, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[5] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(5, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[5] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(5, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[5] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(5, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[5] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(5, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {" "}
+                  I am likely to use an online decision-aid tool to learn more
+                  about the risks and potential benefits of COVID-19 vaccines
+                </td>
+                <td colSpan="3">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
+                    row
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingLeft: "5%",
+                      paddingRight: "5%",
+                    }}
+                  >
+                    <Radio
+                      checked={radioSelectedValue[6] === "Strongly Disagree"}
+                      onChange={(e) => handleRadioChange(6, e)}
+                      value="Strongly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[6] === "Slightly Disagree"}
+                      onChange={(e) => handleRadioChange(6, e)}
+                      value="Slightly Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={
+                        radioSelectedValue[6] === "Neither Agree nor Disagree"
+                      }
+                      onChange={(e) => handleRadioChange(6, e)}
+                      value="Neither Agree nor Disagree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[6] === "Slightly Agree"}
+                      onChange={(e) => handleRadioChange(6, e)}
+                      value="Slightly Agree"
+                      name="radio-buttons"
+                    />
+                    <Radio
+                      checked={radioSelectedValue[6] === "Strongly Agree"}
+                      onChange={(e) => handleRadioChange(6, e)}
+                      value="Strongly Agree"
+                      name="radio-buttons"
+                    />
+                  </RadioGroup>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Box>
         <Divider></Divider>
         <Form style={{ paddingBottom: 30 }}>
           <div className="checkbox">
@@ -849,7 +866,7 @@ function DecitionTable(props) {
               }}
               className="ui large primary button"
             >
-              {t("next")}
+              {t("submit")}
             </button>
           </div>
         ) : (
@@ -874,7 +891,7 @@ function DecitionTable(props) {
               }}
               className="ui large primary button"
             >
-              {t("next")}
+              {t("submit")}
             </button>
           </div>
         )}
