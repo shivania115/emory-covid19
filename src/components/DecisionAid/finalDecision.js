@@ -160,6 +160,7 @@ function FinalDecision() {
   const [boosterChoicesChecked, setBoosterChoicesChecked] = useState();
 
   const [show, setShow] = useState(false);
+  const [showValidEmailModal, setShowValidEmailModal] = useState(false);
 
   function italicizeWords(text) {
     const words = [
@@ -189,10 +190,16 @@ function FinalDecision() {
     return result;
   }
 
+  function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
   function handleSubmit() {
     //step 1: validate inputs
     if (
       //ALERT TODO:
+      confidence === undefined ||
       useChecked === undefined ||
       usefulnessChecked === undefined ||
       willingness === undefined ||
@@ -203,10 +210,20 @@ function FinalDecision() {
       addressConcernChecked === undefined ||
       potentialRiskInfoChekced === undefined ||
       recommendationLikelinessChecked === undefined ||
-      boosterChoicesChecked === undefined
+      boosterChoicesChecked === undefined ||
+      influentialAspect === ""
     ) {
       setShow(true); // Show the modal if any validation fails
       return; // Exit the function immediately if validation fails
+    }
+    // validate email
+    if (
+      collectEmail === undefined ||
+      collectEmail === "" ||
+      !isValidEmail(collectEmail)
+    ) {
+      setShowValidEmailModal(true);
+      return;
     }
     var decision_choice = choices[choiceIndex];
 
@@ -990,6 +1007,42 @@ function FinalDecision() {
         <Modal.Body>Please complete all questions before submit.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>
+            {t("close")}
+          </Button>{" "}
+        </Modal.Footer>
+      </Modal>
+      {/* For validating email is valid */}
+      <Modal
+        show={showValidEmailModal}
+        onHide={() => {
+          setShowValidEmailModal(false);
+        }}
+      >
+        <Modal.Header style={{ display: "flex", justifyContent: "end" }}>
+          <div
+            onClick={() => {
+              setShowValidEmailModal(false);
+            }}
+          >
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            <path
+              fill="#BEBEBE"
+              fillRule="evenodd"
+              d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"
+            />
+          </div>
+        </Modal.Header>
+        <Modal.Body>Please submit a valid email.</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowValidEmailModal(false)}
+          >
             {t("close")}
           </Button>{" "}
         </Modal.Footer>
