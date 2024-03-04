@@ -125,8 +125,8 @@ function DecitionTable(props) {
     const gender = GenderOptions[genderChecked];
     const ethnicity = EthnicOptions[ethnicChecked];
     const occupation = OccupationOptions[occupationChecked];
-    const vaccinated = VaccinateOptions[vaccinated];
-    const informed = VaccinateOptions[informedChecked];
+    const vaccinatedOption = VaccinateOptions[vaccinated];
+    const informedOption = VaccinateOptions[informedChecked];
     const sources = selectedSources.map((index) => SourcesOptions[index]);
 
     var tomorrow = new Date();
@@ -135,9 +135,9 @@ function DecitionTable(props) {
     var timeNow = new Date();
 
     const step2_cookie = {
-      step2_demograhpic_vaccinated: vaccinated ? false : true,
+      step2_demograhpic_vaccinated: vaccinatedOption ? false : true,
       step2_demographic_booster_taken: booster ? false : true,
-      step2_demographic_informed: informed,
+      step2_demographic_informed: informedOption,
       step2_demographic_age: age,
       step2_demographic_gender: gender,
       step2_demographic_ethnicity: ethnicity,
