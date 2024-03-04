@@ -132,6 +132,8 @@ function DecitionTable(props) {
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
 
+    var timeNow = new Date();
+
     const step2_cookie = {
       step2_demograhpic_vaccinated: vaccinated ? false : true,
       step2_demographic_booster_taken: booster ? false : true,
@@ -148,8 +150,12 @@ function DecitionTable(props) {
       step2_survey_trust: radioSelectedValue[5],
       step2_survey_online_tools: radioSelectedValue[6],
       step2_survey_source: sources,
+      recordTime:
+        timeNow.toLocaleDateString("en-us") +
+        " " +
+        timeNow.toLocaleTimeString("en-us"),
     };
-
+    console.log(step2_cookie.recordTime);
     cookie = { ...cookie, ...step2_cookie };
     decision_aid.insertOne({ cookie });
   }
