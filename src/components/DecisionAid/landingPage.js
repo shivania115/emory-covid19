@@ -63,6 +63,7 @@ i18n
     },
   });
 function LandingPage(props) {
+  console.log("0304 update");
   // handle screen size change to conditionally render page
   const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
   useEffect(() => {
